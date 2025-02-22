@@ -1,0 +1,5 @@
+[package]
+name = "stack-deploy"
+version = "0.0.1"
+
+[dependencies]
