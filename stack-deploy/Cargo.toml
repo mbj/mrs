@@ -1,5 +1,15 @@
 [package]
 name = "stack-deploy"
+edition = "2024"
 version = "0.0.1"
 
 [dependencies]
+aws-config = "1.5.17"
+aws-sdk-cloudformation = "1.67.0"
+aws-sdk-s3 = "1.78.0"
+clap = { version = "4.5.27", features = ["derive"] }
+hex = "0.4.3"
+sha2 = "0.10.8"
+tokio = "1.44.0"
+uuid = { version = "1.15.1", features = ["v4"] }
+zip = "2.2.3"
