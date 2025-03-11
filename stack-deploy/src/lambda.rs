@@ -1,3 +1,5 @@
+pub mod bootstrap;
+
 use crate::instance_spec::InstanceSpec;
 use crate::types::{ParameterKey, ParameterMap, ParameterValue};
 use sha2::Digest;
