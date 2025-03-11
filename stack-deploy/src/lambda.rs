@@ -235,6 +235,12 @@ pub mod cli {
         command: Command,
     }
 
+    impl App {
+        pub async fn run(&self, config: &'_ Config<'_>) {
+            self.command.run(config).await
+        }
+    }
+
     pub struct Config<'a> {
         pub cloudformation: &'a aws_sdk_cloudformation::client::Client,
         pub parameter_key: ParameterKey,
@@ -312,12 +318,6 @@ pub mod cli {
                 ),
                 S3BucketSource::Static(s3_bucket_name) => s3_bucket_name.clone(),
             }
-        }
-    }
-
-    impl App {
-        pub async fn run(&self, config: &'_ Config<'_>) {
-            self.command.run(config).await
         }
     }
 
