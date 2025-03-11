@@ -1,7 +1,6 @@
 use crate::instance_spec::InstanceSpec;
 use crate::types::{ParameterKey, ParameterMap, ParameterValue};
 use sha2::Digest;
-use std::io::Write;
 
 pub struct BinaryName(pub String);
 pub struct BuildTarget(pub String);
@@ -168,7 +167,7 @@ impl Target {
                 .last_modified_time(zip::DateTime::default()),
         )
         .unwrap();
-        zip.write_all(binary.as_ref()).unwrap();
+        std::io::Write::write_all(&mut zip, binary.as_ref()).unwrap();
         zip.finish().unwrap();
 
         eprintln!("Computing zip hash");
