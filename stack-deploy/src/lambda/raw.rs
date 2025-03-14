@@ -27,6 +27,32 @@ impl App {
     }
 }
 
+#[derive(Clone, Debug, clap::ValueEnum)]
+pub enum OutputFormat {
+    JSON,
+    RAW,
+}
+
+impl OutputFormat {
+    fn print(&self, body: aws_sdk_lambda::primitives::Blob) {
+        match self {
+            Self::JSON => Self::print_json(body),
+            Self::RAW => Self::print_raw(body),
+        }
+    }
+
+    fn print_raw(body: aws_sdk_lambda::primitives::Blob) {
+        println!("{:#?}", body)
+    }
+
+    fn print_json(body: aws_sdk_lambda::primitives::Blob) {
+        println!(
+            "{}",
+            serde_json::from_slice::<serde_json::Value>(body.into_inner().as_ref()).unwrap()
+        )
+    }
+}
+
 #[derive(Clone, Debug, clap::Parser)]
 pub enum Command {
     /// Invoke raw lambda function
@@ -34,18 +60,28 @@ pub enum Command {
         /// Function name to execute
         #[arg(long = "function-name")]
         function_name: FunctionName,
+        /// Output format
+        #[arg(long = "output-format")]
+        output_format: OutputFormat,
     },
 }
 
 impl Command {
     pub async fn run(&self, lambda: &aws_sdk_lambda::client::Client) {
         match self {
-            Self::Invoke { function_name } => invoke(lambda, function_name).await,
+            Self::Invoke {
+                function_name,
+                output_format,
+            } => invoke(lambda, function_name, output_format).await,
         }
     }
 }
 
-async fn invoke(lambda: &aws_sdk_lambda::client::Client, function_name: &FunctionName) {
+async fn invoke(
+    lambda: &aws_sdk_lambda::client::Client,
+    function_name: &FunctionName,
+    output_format: &OutputFormat,
+) {
     fn decode_log(log_result: Option<String>) -> String {
         log_result.map_or_else(
             || String::from("Log field empty!"),
@@ -82,6 +118,8 @@ async fn invoke(lambda: &aws_sdk_lambda::client::Client, function_name: &Functio
                     error,
                     decode_log(output.log_result)
                 )
+            } else {
+                output_format.print(output.payload.unwrap())
             }
         }
     }
