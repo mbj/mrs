@@ -49,7 +49,7 @@ pub(crate) async fn fetch_stack_id(
     )
 }
 
-pub(crate) async fn fetch_stack_output(
+pub async fn fetch_stack_output(
     cloudformation: &aws_sdk_cloudformation::client::Client,
     stack_name: &StackName,
     output_key: &OutputKey,
