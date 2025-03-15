@@ -21,8 +21,8 @@ pub struct RequestId(pub String);
 pub struct TraceHeader(pub String);
 
 #[derive(Debug)]
-pub struct Event {
-    pub body: serde_json::Value,
+pub struct Event<T> {
+    pub body: T,
     pub request_id: RequestId,
     pub trace_header: TraceHeader,
 }
@@ -63,15 +63,19 @@ impl Client {
         Client { base_url, http }
     }
 
-    pub async fn run_event_loop(&self, process: fn(&Event) -> Result<serde_json::Value, String>) {
+    pub async fn run_event_loop<T: serde::Serialize, I: for<'a> serde::Deserialize<'a>>(
+        &self,
+        process: fn(&Event<I>) -> Result<T, String>,
+    ) {
         loop {
             let event = self.read_next_event().await;
+
             self.send_response(&event.request_id, process(&event).unwrap())
                 .await;
         }
     }
 
-    pub async fn read_next_event(&self) -> Event {
+    pub async fn read_next_event<T: for<'a> serde::Deserialize<'a>>(&self) -> Event<T> {
         fn fetch(map: &reqwest::header::HeaderMap, key: &str) -> String {
             map.get(key)
                 .unwrap_or_else(|| panic!("Missing required header: {key}"))
@@ -102,7 +106,7 @@ impl Client {
         }
     }
 
-    pub async fn send_response(&self, request_id: &RequestId, response: serde_json::Value) {
+    pub async fn send_response<T: serde::Serialize>(&self, request_id: &RequestId, response: T) {
         let url = self.absolute_url(&format!(
             "/2018-06-01/runtime/invocation/{}/response",
             request_id.0
