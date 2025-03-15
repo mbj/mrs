@@ -264,7 +264,7 @@ pub mod cli {
                 .upload(self.s3, &s3_bucket_name)
                 .await;
 
-            eprintln!("Lambad object key: {}", parameter_value.0);
+            eprintln!("Lambda object key: {}", parameter_value.0);
 
             parameter_value
         }
