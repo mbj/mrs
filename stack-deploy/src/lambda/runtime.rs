@@ -110,7 +110,7 @@ impl Client {
 
         let response = self.http.post(url).json(&response).send().await.unwrap();
 
-        if response.status() != reqwest::StatusCode::OK {
+        if response.status() != reqwest::StatusCode::ACCEPTED {
             panic!("Unexpected response while sending lambda response: {response:#?}")
         }
     }
