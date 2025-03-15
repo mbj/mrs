@@ -59,8 +59,9 @@ impl Poll {
                     ResourceStatus::UpdateInProgress => false,
                     ResourceStatus::UpdateRollbackInProgress => false,
                     unknown => match unknown.as_str() {
-                        // This missing case exists for ages in the AWS provided metadata
+                        // AWS boto misses these cases for nearly a decade!
                         "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS" => false,
+                        "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS" => false,
                         _other => panic!("Unexpected resource status: {:#?}", unknown),
                     },
                 }
