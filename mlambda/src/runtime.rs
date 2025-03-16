@@ -11,7 +11,7 @@ pub async fn run<T: Handler + std::str::FromStr>() {
 }
 
 pub struct Client {
-    pub base_url: url::Url,
+    pub base_url: reqwest::Url,
     pub http: reqwest::Client,
 }
 
@@ -51,7 +51,7 @@ impl Client {
             other => panic!("Unexpected AWS_LAMBDA_RUNTIME_API URI: {other:#?}"),
         };
 
-        let base_url = url::Url::parse(&base_uri.to_string()).unwrap();
+        let base_url = reqwest::Url::parse(&base_uri.to_string()).unwrap();
 
         let http = reqwest::ClientBuilder::new()
             .user_agent("mrs/lambda")
@@ -119,7 +119,7 @@ impl Client {
         }
     }
 
-    fn absolute_url(&self, path: &str) -> url::Url {
+    fn absolute_url(&self, path: &str) -> reqwest::Url {
         let mut new_url = self.base_url.clone();
         new_url.set_path(path);
         new_url
