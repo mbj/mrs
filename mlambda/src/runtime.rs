@@ -63,19 +63,19 @@ impl Client {
         Client { base_url, http }
     }
 
-    pub async fn run_event_loop<T: serde::Serialize, I: for<'a> serde::Deserialize<'a>>(
-        &self,
-        process: fn(&Event<I>) -> Result<T, String>,
-    ) {
+    pub async fn run_event_loop<E: for<'de> serde::Deserialize<'de>, R, F>(&self, process: F)
+    where
+        F: for<'a> Fn(&'a Event<E>) -> R,
+        R: serde::Serialize,
+    {
         loop {
             let event = self.read_next_event().await;
 
-            self.send_response(&event.request_id, process(&event).unwrap())
-                .await;
+            self.send_response(&event.request_id, process(&event)).await;
         }
     }
 
-    pub async fn read_next_event<T: for<'a> serde::Deserialize<'a>>(&self) -> Event<T> {
+    pub async fn read_next_event<T: for<'de> serde::Deserialize<'de>>(&self) -> Event<T> {
         fn fetch(map: &reqwest::header::HeaderMap, key: &str) -> String {
             map.get(key)
                 .unwrap_or_else(|| panic!("Missing required header: {key}"))
