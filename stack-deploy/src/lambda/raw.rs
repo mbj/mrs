@@ -77,28 +77,26 @@ impl Command {
     }
 }
 
+pub fn decode_log(log_result: Option<String>) -> String {
+    log_result.map_or_else(
+        || String::from("Log field empty!"),
+        |result| {
+            base64::Engine::decode(&base64::engine::general_purpose::STANDARD, result).map_or_else(
+                |error| format!("Log base64 decode failed!: {:#?}", error),
+                |bytes| {
+                    String::from_utf8(bytes)
+                        .unwrap_or_else(|error| format!("Log utf8 decode failed!: {:#?}", error))
+                },
+            )
+        },
+    )
+}
+
 async fn invoke(
     lambda: &aws_sdk_lambda::client::Client,
     function_name: &FunctionName,
     output_format: &OutputFormat,
 ) {
-    fn decode_log(log_result: Option<String>) -> String {
-        log_result.map_or_else(
-            || String::from("Log field empty!"),
-            |result| {
-                base64::Engine::decode(&base64::engine::general_purpose::STANDARD, result)
-                    .map_or_else(
-                        |error| format!("Log base64 decode failed!: {:#?}", error),
-                        |bytes| {
-                            String::from_utf8(bytes).unwrap_or_else(|error| {
-                                format!("Log utf8 decode failed!: {:#?}", error)
-                            })
-                        },
-                    )
-            },
-        )
-    }
-
     let response = lambda
         .invoke()
         .function_name(function_name)
