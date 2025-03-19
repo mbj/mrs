@@ -326,13 +326,13 @@ pub mod cli {
         /// Deploy lambda function with template update
         DeployTemplate {
             /// Instance spec name to deploy to
-            #[arg(long = "name")]
+            #[arg(long = "stack-name")]
             name: StackName,
         },
         /// Deploy lambda function with parameter update
         DeployParameter {
             /// Instance spec name to deploy to
-            #[arg(long = "name")]
+            #[arg(long = "stack-name")]
             name: StackName,
         },
         /// Build lambda function

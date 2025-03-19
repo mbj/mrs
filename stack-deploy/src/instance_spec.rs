@@ -11,7 +11,7 @@ pub type Capabilities = std::collections::BTreeSet<aws_sdk_cloudformation::types
 #[derive(Debug)]
 pub struct InstanceSpec {
     pub capabilities: Capabilities,
-    pub name: StackName,
+    pub stack_name: StackName,
     pub parameter_map: ParameterMap,
     pub template: Template,
 }
@@ -19,12 +19,12 @@ pub struct InstanceSpec {
 impl InstanceSpec {
     pub async fn delete(&self, cloudformation: &aws_sdk_cloudformation::client::Client) {
         let client_request_token = ClientRequestToken::generate();
-        let stack_id = crate::stack::fetch_stack_id(cloudformation, &self.name.0).await;
+        let stack_id = crate::stack::fetch_stack_id(cloudformation, &self.stack_name.0).await;
 
         cloudformation
             .delete_stack()
             .client_request_token(&client_request_token)
-            .stack_name(&self.name)
+            .stack_name(&self.stack_name)
             .send()
             .await
             .unwrap();
@@ -45,7 +45,7 @@ impl InstanceSpec {
     ) {
         Self::process_update_result(
             cloudformation,
-            match try_load_stack(cloudformation, &self.name).await {
+            match try_load_stack(cloudformation, &self.stack_name).await {
                 Some(existing_stack) => {
                     self.start_template_update(
                         cloudformation,
@@ -65,7 +65,7 @@ impl InstanceSpec {
         cloudformation: &aws_sdk_cloudformation::client::Client,
         user_parameter_map: &ParameterMap,
     ) {
-        let existing_stack = try_load_stack(cloudformation, &self.name)
+        let existing_stack = try_load_stack(cloudformation, &self.stack_name)
             .await
             .expect("stack exists");
 
@@ -99,7 +99,7 @@ impl InstanceSpec {
         let result = self
             .start_parameter_update(
                 cloudformation,
-                &try_load_stack(cloudformation, &self.name)
+                &try_load_stack(cloudformation, &self.stack_name)
                     .await
                     .expect("Stack should exist"),
                 user_parameter_map,
@@ -139,7 +139,7 @@ impl InstanceSpec {
         let stack_id = StackId(
             cloudformation
                 .create_stack()
-                .stack_name(&self.name)
+                .stack_name(&self.stack_name)
                 .set_parameters(Some(
                     self.parameter_map
                         .merge(user_parameter_map)
@@ -255,6 +255,6 @@ impl Registry {
     pub fn find(&self, instance_name: &StackName) -> Option<&InstanceSpec> {
         self.0
             .iter()
-            .find(|&instance_spec| instance_spec.name == *instance_name)
+            .find(|&instance_spec| instance_spec.stack_name == *instance_name)
     }
 }
