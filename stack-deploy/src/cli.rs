@@ -57,28 +57,28 @@ mod instance {
     pub enum Command {
         /// Delete stack instance
         Delete {
-            #[arg(long = "name")]
+            #[arg(long = "stack-name")]
             name: StackName,
         },
         /// List registered stack instances
         List,
         /// Update stack template, fails if absent
         Update {
-            #[arg(long = "name")]
+            #[arg(long = "stack-name")]
             name: StackName,
             #[arg(long = "parameter")]
             parameters: Vec<Parameter>,
         },
         /// Sync stack instance, creates if absent, template updates is missing
         Sync {
-            #[arg(long = "name")]
+            #[arg(long = "stack-name")]
             name: StackName,
             #[arg(long = "parameter")]
             parameters: Vec<Parameter>,
         },
         /// Watch stack events
         Watch {
-            #[arg(long = "name")]
+            #[arg(long = "stack-name")]
             name: StackName,
         },
     }
@@ -100,7 +100,7 @@ mod instance {
                 Self::List => registry
                     .0
                     .into_iter()
-                    .for_each(|instance_spec| eprintln!("{}", instance_spec.name.0)),
+                    .for_each(|instance_spec| eprintln!("{}", instance_spec.stack_name.0)),
                 Self::Sync { name, parameters } => {
                     let parameter_map = ParameterMap::parse(parameters).unwrap();
 
