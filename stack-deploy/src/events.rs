@@ -27,19 +27,28 @@ impl Poll {
             stack_event.resource_type.as_deref() == Some("AWS::CloudFormation::Stack")
         }
 
+        fn is_known_unknown(value: &str) -> bool {
+            match value {
+                // AWS boto misses these cases for nearly a decade!
+                "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS" => false,
+                "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS" => false,
+                _other => panic!("Unexpected resource status: {:#?}", value),
+            }
+        }
+
         fn is_initial(stack_event: &StackEvent) -> bool {
             if is_stack_resource_type(stack_event) {
-                match &stack_event.resource_status {
-                    Some(ResourceStatus::CreateComplete) => false,
-                    Some(ResourceStatus::DeleteComplete) => false,
-                    Some(ResourceStatus::UpdateComplete) => false,
-                    Some(ResourceStatus::RollbackComplete) => false,
-                    Some(ResourceStatus::CreateInProgress) => true,
-                    Some(ResourceStatus::DeleteInProgress) => true,
-                    Some(ResourceStatus::RollbackInProgress) => true,
-                    Some(ResourceStatus::UpdateInProgress) => false,
-                    Some(ResourceStatus::UpdateRollbackInProgress) => true,
-                    other => panic!("Unexpected resource status: {:#?}", other),
+                match &stack_event.resource_status.as_ref().unwrap() {
+                    ResourceStatus::CreateComplete => false,
+                    ResourceStatus::DeleteComplete => false,
+                    ResourceStatus::UpdateComplete => false,
+                    ResourceStatus::RollbackComplete => false,
+                    ResourceStatus::CreateInProgress => true,
+                    ResourceStatus::DeleteInProgress => true,
+                    ResourceStatus::RollbackInProgress => true,
+                    ResourceStatus::UpdateInProgress => false,
+                    ResourceStatus::UpdateRollbackInProgress => true,
+                    unknown => is_known_unknown(unknown.as_str()),
                 }
             } else {
                 false
@@ -58,12 +67,7 @@ impl Poll {
                     ResourceStatus::RollbackInProgress => false,
                     ResourceStatus::UpdateInProgress => false,
                     ResourceStatus::UpdateRollbackInProgress => false,
-                    unknown => match unknown.as_str() {
-                        // AWS boto misses these cases for nearly a decade!
-                        "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS" => false,
-                        "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS" => false,
-                        _other => panic!("Unexpected resource status: {:#?}", unknown),
-                    },
+                    unknown => is_known_unknown(unknown.as_str()),
                 }
             } else {
                 false
