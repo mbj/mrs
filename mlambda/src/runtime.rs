@@ -65,13 +65,14 @@ impl Client {
 
     pub async fn run_event_loop<E: for<'de> serde::Deserialize<'de>, R, F>(&self, process: F)
     where
-        F: for<'a> Fn(&'a Event<E>) -> R,
+        F: for<'a> AsyncFn(&'a Event<E>) -> R,
         R: serde::Serialize,
     {
         loop {
             let event = self.read_next_event().await;
 
-            self.send_response(&event.request_id, process(&event)).await;
+            self.send_response(&event.request_id, process(&event).await)
+                .await;
         }
     }
 
