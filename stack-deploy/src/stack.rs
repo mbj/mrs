@@ -28,7 +28,7 @@ pub(crate) async fn try_load_stack(
     }
 }
 
-pub(crate) async fn fetch_stack(
+pub async fn fetch_stack(
     cloudformation: &aws_sdk_cloudformation::client::Client,
     stack_identifier: &String,
 ) -> aws_sdk_cloudformation::types::Stack {
@@ -49,7 +49,7 @@ pub(crate) async fn fetch_stack_id(
     )
 }
 
-pub async fn fetch_stack_output(
+pub async fn read_stack_output(
     cloudformation: &aws_sdk_cloudformation::client::Client,
     stack_name: &StackName,
     output_key: &OutputKey,
@@ -60,6 +60,26 @@ pub async fn fetch_stack_output(
         .iter()
         .find(|output| output.output_key().unwrap() == output_key.0)
         .unwrap_or_else(|| panic!("stack: {} missing output: {}", stack_name.0, output_key.0))
+        .output_value()
+        .unwrap()
+        .to_string()
+}
+
+pub fn fetch_stack_output(
+    stack: &aws_sdk_cloudformation::types::Stack,
+    output_key: &OutputKey,
+) -> String {
+    stack
+        .outputs()
+        .iter()
+        .find(|output| output.output_key().unwrap() == output_key.0)
+        .unwrap_or_else(|| {
+            panic!(
+                "stack: {} missing output: {}",
+                stack.stack_name.as_ref().unwrap(),
+                output_key.0
+            )
+        })
         .output_value()
         .unwrap()
         .to_string()
