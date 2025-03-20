@@ -313,7 +313,7 @@ pub mod cli {
                     stack_name,
                     output_key,
                 } => crate::lambda::deploy::S3BucketName(
-                    crate::stack::fetch_stack_output(self.cloudformation, stack_name, output_key)
+                    crate::stack::read_stack_output(self.cloudformation, stack_name, output_key)
                         .await,
                 ),
                 S3BucketSource::Static(s3_bucket_name) => s3_bucket_name.clone(),
