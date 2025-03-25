@@ -47,12 +47,8 @@ impl InstanceSpec {
             cloudformation,
             match try_load_stack(cloudformation, &self.stack_name).await {
                 Some(existing_stack) => {
-                    self.start_template_update(
-                        cloudformation,
-                        StackId(existing_stack.stack_id.unwrap()),
-                        user_parameter_map,
-                    )
-                    .await
+                    self.start_template_update(cloudformation, &existing_stack, user_parameter_map)
+                        .await
                 }
                 None => Some(self.start_create(cloudformation, user_parameter_map).await),
             },
@@ -71,12 +67,8 @@ impl InstanceSpec {
 
         Self::process_update_result(
             cloudformation,
-            self.start_template_update(
-                cloudformation,
-                StackId(existing_stack.stack_id.unwrap()),
-                user_parameter_map,
-            )
-            .await,
+            self.start_template_update(cloudformation, &existing_stack, user_parameter_map)
+                .await,
         )
         .await
     }
@@ -164,17 +156,17 @@ impl InstanceSpec {
     async fn start_template_update(
         &self,
         cloudformation: &aws_sdk_cloudformation::Client,
-        stack_id: StackId,
+        existing_stack: &aws_sdk_cloudformation::types::Stack,
         user_parameter_map: &ParameterMap,
     ) -> Option<RemoteOperation> {
         let client_request_token = ClientRequestToken::generate();
         let response = cloudformation
             .update_stack()
-            .stack_name(&stack_id)
+            .stack_name(existing_stack.stack_id.as_ref().unwrap())
             .set_parameters(Some(
                 self.parameter_map
                     .merge(user_parameter_map)
-                    .to_template_update_parameters(self.template.parameter_keys()),
+                    .to_update_parameters(existing_stack),
             ))
             .template_body(self.template_body())
             .set_capabilities(Some(self.capabilities()))
@@ -196,11 +188,11 @@ impl InstanceSpec {
             .update_stack()
             .stack_name(existing_stack.stack_id.as_ref().unwrap())
             .set_parameters(Some(
-                user_parameter_map.to_parameter_update_parameters(existing_stack),
+                user_parameter_map.to_update_parameters(existing_stack),
             ))
-            .template_body(self.template_body())
             .set_capabilities(Some(self.capabilities()))
             .client_request_token(&client_request_token)
+            .use_previous_template(true)
             .send()
             .await;
 
