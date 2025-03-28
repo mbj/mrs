@@ -400,10 +400,10 @@ impl ParameterMap {
     ///         ParameterKey(String::from("key-b")),
     ///         ParameterValue(String::from("value-b2"))
     ///     ),]))
-    ///     .to_update_parameters(&existing_stack),
+    ///     .to_parameter_update_parameters(&existing_stack),
     /// )
     /// ```
-    pub fn to_update_parameters(
+    pub fn to_parameter_update_parameters(
         &self,
         existing_stack: &aws_sdk_cloudformation::types::Stack,
     ) -> Vec<aws_sdk_cloudformation::types::Parameter> {
@@ -428,6 +428,104 @@ impl ParameterMap {
                 })
                 .collect(),
         }
+    }
+
+    /// To template update parameters
+    ///
+    /// ### Examples
+    ///
+    /// One parameter unchanged `key-a`, one parameter changed `key-b`, one parameter
+    /// is probably new in the template `key-c`.
+    ///
+    /// ```
+    /// # use stack_deploy::types::*;
+    ///
+    /// let template_parameter_keys = ParameterKeys::from([
+    ///     ParameterKey(String::from("key-a")),
+    ///     ParameterKey(String::from("key-b")),
+    ///     ParameterKey(String::from("key-c")),
+    /// ]);
+    ///
+    /// let existing_stack_parameter_keys = ParameterKeys::from([ParameterKey(String::from("key-a"))]);
+    ///
+    /// assert_eq!(
+    ///     vec![
+    ///         aws_sdk_cloudformation::types::Parameter::builder()
+    ///             .parameter_key("key-a")
+    ///             .use_previous_value(true)
+    ///             .build(),
+    ///         aws_sdk_cloudformation::types::Parameter::builder()
+    ///             .parameter_key("key-b")
+    ///             .parameter_value("value-b")
+    ///             .build(),
+    ///     ],
+    ///     ParameterMap(std::collections::BTreeMap::from([(
+    ///         ParameterKey(String::from("key-b")),
+    ///         ParameterValue(String::from("value-b"))
+    ///     ),]))
+    ///     .to_template_update_parameters(&template_parameter_keys, &existing_stack_parameter_keys),
+    /// )
+    /// ```
+    pub fn to_template_update_parameters(
+        &self,
+        template_parameter_keys: &ParameterKeys,
+        existing_stack_parameter_keys: &ParameterKeys,
+    ) -> Vec<aws_sdk_cloudformation::types::Parameter> {
+        let mut parameters = vec![];
+
+        for key in self.to_parameter_keys().union(template_parameter_keys) {
+            let builder = aws_sdk_cloudformation::types::Parameter::builder().parameter_key(&key.0);
+
+            parameters.push(
+                match self.0.get(key) {
+                    Some(value) => builder.parameter_value(value.0.clone()),
+                    None => {
+                        if existing_stack_parameter_keys.contains(key) {
+                            builder.use_previous_value(true)
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+                .build(),
+            )
+        }
+
+        parameters
+    }
+
+    /// To parameter keys
+    ///
+    /// ### Examples
+    ///
+    /// ```
+    /// # use stack_deploy::types::*;
+    ///
+    /// let template = Template::Plain {
+    ///     body: String::from("ununsed"),
+    ///     parameter_keys: ParameterKeys::from([ParameterKey(String::from("key-a"))]),
+    /// };
+    ///
+    /// assert_eq!(
+    ///     ParameterKeys::from([
+    ///         ParameterKey(String::from("key-a")),
+    ///         ParameterKey(String::from("key-b")),
+    ///     ]),
+    ///     ParameterMap(std::collections::BTreeMap::from([
+    ///         (
+    ///             ParameterKey(String::from("key-a")),
+    ///             ParameterValue(String::from("value-a"))
+    ///         ),
+    ///         (
+    ///             ParameterKey(String::from("key-b")),
+    ///             ParameterValue(String::from("value-b"))
+    ///         ),
+    ///     ]))
+    ///     .to_parameter_keys()
+    /// )
+    /// ```
+    pub fn to_parameter_keys(&self) -> ParameterKeys {
+        ParameterKeys::from_iter(self.0.keys().cloned())
     }
 }
 
