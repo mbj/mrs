@@ -1,14 +1,12 @@
-use crate::types::{OutputKey, StackId, StackName};
+use crate::types::{OutputKey, StackId, StackIdentifier, StackName};
 
-pub(crate) async fn try_load_stack(
+pub(crate) async fn try_load_stack<T: StackIdentifier>(
     cloudformation: &aws_sdk_cloudformation::client::Client,
-    stack_identifier: impl Into<String>,
+    stack_identifier: &T,
 ) -> Option<aws_sdk_cloudformation::types::Stack> {
-    let stack_identifier = stack_identifier.into();
-
     let response = cloudformation
         .describe_stacks()
-        .stack_name(&stack_identifier)
+        .stack_name(stack_identifier.as_str())
         .send()
         .await;
 
@@ -17,7 +15,7 @@ pub(crate) async fn try_load_stack(
         Err(error) => {
             let service_error = error.into_service_error();
             let meta = service_error.meta();
-            let expected_message = format!("Stack with id {} does not exist", &stack_identifier);
+            let expected_message = format!("Stack with id {:#?} does not exist", stack_identifier);
 
             match meta.code() {
                 // There is no nicer way I know to check if a stack exist.
@@ -28,38 +26,43 @@ pub(crate) async fn try_load_stack(
     }
 }
 
-pub async fn fetch_stack(
+pub async fn load_stack<T: StackIdentifier>(
     cloudformation: &aws_sdk_cloudformation::client::Client,
-    stack_identifier: &String,
+    stack_identifier: &T,
 ) -> aws_sdk_cloudformation::types::Stack {
     try_load_stack(cloudformation, stack_identifier)
         .await
         .unwrap_or_else(|| panic!("stack: {:#?} does not exist!", stack_identifier))
 }
 
-pub(crate) async fn fetch_stack_id(
+pub(crate) async fn load_stack_id(
     cloudformation: &aws_sdk_cloudformation::client::Client,
-    stack_identifier: &String,
+    stack_name: &StackName,
 ) -> StackId {
     StackId(
-        fetch_stack(cloudformation, stack_identifier)
+        load_stack(cloudformation, &stack_name)
             .await
             .stack_id
             .unwrap(),
     )
 }
 
-pub async fn read_stack_output(
+pub async fn read_stack_output<T: StackIdentifier>(
     cloudformation: &aws_sdk_cloudformation::client::Client,
-    stack_name: &StackName,
+    stack_identifier: &T,
     output_key: &OutputKey,
 ) -> String {
-    fetch_stack(cloudformation, &stack_name.0)
+    load_stack(cloudformation, stack_identifier)
         .await
         .outputs()
         .iter()
         .find(|output| output.output_key().unwrap() == output_key.0)
-        .unwrap_or_else(|| panic!("stack: {} missing output: {}", stack_name.0, output_key.0))
+        .unwrap_or_else(|| {
+            panic!(
+                "stack: {:#?} missing output: {}",
+                stack_identifier, output_key.0
+            )
+        })
         .output_value()
         .unwrap()
         .to_string()
