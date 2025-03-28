@@ -122,7 +122,7 @@ mod instance {
                 Self::Watch { name } => {
                     crate::instance_spec::InstanceSpec::watch(
                         cloudformation,
-                        crate::stack::fetch_stack_id(cloudformation, &name.0).await,
+                        crate::stack::load_stack_id(cloudformation, name).await,
                     )
                     .await
                 }

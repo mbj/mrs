@@ -19,7 +19,7 @@ pub struct InstanceSpec {
 impl InstanceSpec {
     pub async fn delete(&self, cloudformation: &aws_sdk_cloudformation::client::Client) {
         let client_request_token = ClientRequestToken::generate();
-        let stack_id = crate::stack::fetch_stack_id(cloudformation, &self.stack_name.0).await;
+        let stack_id = crate::stack::load_stack_id(cloudformation, &self.stack_name).await;
 
         cloudformation
             .delete_stack()
