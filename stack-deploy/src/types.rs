@@ -2,6 +2,10 @@
 pub struct StackName(pub String);
 pub struct OutputKey(pub String);
 
+pub trait StackIdentifier: std::fmt::Debug {
+    fn as_str(&self) -> &str;
+}
+
 impl std::str::FromStr for StackName {
     type Err = &'static str;
 
@@ -16,12 +20,30 @@ impl From<&StackName> for String {
     }
 }
 
+impl StackIdentifier for StackName {
+    fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
+impl StackIdentifier for &StackName {
+    fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
 #[derive(Debug, PartialEq)]
 pub struct StackId(pub String);
 
 impl From<&StackId> for String {
     fn from(value: &StackId) -> Self {
         value.0.clone()
+    }
+}
+
+impl StackIdentifier for &StackId {
+    fn as_str(&self) -> &str {
+        &self.0
     }
 }
 
