@@ -12,22 +12,27 @@ pub trait SecretType:
     fn to_env_variable_name(&self) -> &str;
 }
 
-pub async fn read_stack_json<T: for<'a> serde::Deserialize<'a>, S: SecretType>(
+pub async fn read_stack_secret_string_json<T: for<'a> serde::Deserialize<'a>, S: SecretType>(
     secretsmanager: &aws_sdk_secretsmanager::client::Client,
     stack: &aws_sdk_cloudformation::types::Stack,
     secret: S,
 ) -> T {
-    serde_json::from_str(
-        &read_secret_value_string(
-            secretsmanager,
-            &SecretId(crate::stack::fetch_stack_output(
-                stack,
-                &secret.to_arn_output_key(),
-            )),
-        )
-        .await,
+    serde_json::from_str(&read_stack_secret_string(secretsmanager, stack, secret).await).unwrap()
+}
+
+pub async fn read_stack_secret_string<S: SecretType>(
+    secretsmanager: &aws_sdk_secretsmanager::client::Client,
+    stack: &aws_sdk_cloudformation::types::Stack,
+    secret: S,
+) -> String {
+    read_secret_value_string(
+        secretsmanager,
+        &SecretId(crate::stack::fetch_stack_output(
+            stack,
+            &secret.to_arn_output_key(),
+        )),
     )
-    .unwrap()
+    .await
 }
 
 pub async fn read_env_json<T: for<'a> serde::Deserialize<'a>, S: SecretType>(
