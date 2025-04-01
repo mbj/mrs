@@ -160,14 +160,14 @@ impl InstanceSpec {
         user_parameter_map: &ParameterMap,
     ) -> Option<RemoteOperation> {
         let client_request_token = ClientRequestToken::generate();
-        let existing_stack_parameters = std::collections::BTreeSet::from_iter(
-            existing_stack
-                .parameters
-                .as_ref()
-                .unwrap()
-                .iter()
-                .map(|parameter| ParameterKey(parameter.parameter_key.clone().unwrap())),
-        );
+        let existing_stack_parameters =
+            std::collections::BTreeSet::from_iter(match &existing_stack.parameters {
+                None => vec![],
+                Some(parameters) => parameters
+                    .iter()
+                    .map(|parameter| ParameterKey(parameter.parameter_key.clone().unwrap()))
+                    .collect(),
+            });
         let response = cloudformation
             .update_stack()
             .stack_name(existing_stack.stack_id.as_ref().unwrap())
