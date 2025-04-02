@@ -15,7 +15,8 @@ pub(crate) async fn try_load_stack<T: StackIdentifier>(
         Err(error) => {
             let service_error = error.into_service_error();
             let meta = service_error.meta();
-            let expected_message = format!("Stack with id {:#?} does not exist", stack_identifier);
+            let expected_message =
+                format!("Stack with id {} does not exist", stack_identifier.as_str());
 
             match meta.code() {
                 // There is no nicer way I know to check if a stack exist.
