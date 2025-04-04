@@ -20,6 +20,20 @@ pub struct RequestId(pub String);
 #[derive(Debug)]
 pub struct TraceHeader(pub String);
 
+/// Error returned when the event body cannot be decoded to the target type.
+#[derive(Debug)]
+pub struct EventBodyDecodeError(serde_path_to_error::Error<serde_json::Error>);
+
+impl EventBodyDecodeError {
+    pub fn path(&self) -> String {
+        self.0.path().to_string()
+    }
+
+    pub fn message(&self) -> String {
+        self.0.inner().to_string()
+    }
+}
+
 #[derive(Debug)]
 pub struct Event<T> {
     pub body: T,
@@ -63,9 +77,9 @@ impl Client {
         Client { base_url, http }
     }
 
-    pub async fn run_event_loop<E: for<'de> serde::Deserialize<'de>, R, F>(&self, process: F)
+    pub async fn run_event_loop<T: for<'de> serde::Deserialize<'de>, R, F>(&self, process: F)
     where
-        F: for<'a> AsyncFn(&'a Event<E>) -> R,
+        F: for<'a> AsyncFn(&'a Event<Result<T, EventBodyDecodeError>>) -> R,
         R: serde::Serialize,
     {
         loop {
@@ -76,7 +90,9 @@ impl Client {
         }
     }
 
-    pub async fn read_next_event<T: for<'de> serde::Deserialize<'de>>(&self) -> Event<T> {
+    pub async fn read_next_event<T: for<'de> serde::Deserialize<'de>>(
+        &self,
+    ) -> Event<Result<T, EventBodyDecodeError>> {
         fn fetch(map: &reqwest::header::HeaderMap, key: &str) -> String {
             map.get(key)
                 .unwrap_or_else(|| panic!("Missing required header: {key}"))
@@ -95,7 +111,9 @@ impl Client {
             let request_id = RequestId(fetch(headers, "Lambda-Runtime-Aws-Request-Id"));
             let trace_header = TraceHeader(fetch(headers, "Lambda-Runtime-Trace-Id"));
 
-            let body = response.json().await.unwrap();
+            let body_bytes = response.bytes().await.unwrap();
+            let deserializer = &mut serde_json::Deserializer::from_slice(&body_bytes);
+            let body = serde_path_to_error::deserialize(deserializer).map_err(EventBodyDecodeError);
 
             Event {
                 body,
