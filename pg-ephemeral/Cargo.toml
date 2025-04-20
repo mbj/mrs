@@ -1,0 +1,11 @@
+[package]
+name = "pg-ephemeral"
+version = "0.0.1"
+edition.workspace = true
+
+[dependencies]
+clap = "4.5.36"
+hostname-validator = "1.1.1"
+rand = "0.9.0"
+serde_json = "1.0.140"
+sqlx = { git = "https://github.com/mbj/sqlx", rev = "1bd0257122f46917af5fe1855964e4f689870d86", features = ["postgres", "runtime-tokio"] }

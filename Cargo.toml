@@ -1,5 +1,5 @@
 [workspace]
-members = ["mlambda", "stack-deploy"]
+members = ["mlambda", "pg-ephemeral", "stack-deploy"]
 resolver = "3"
 
 [workspace.package]
