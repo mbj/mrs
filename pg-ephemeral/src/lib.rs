@@ -125,12 +125,20 @@ impl Definition {
         result
     }
 
-    pub fn schema_dump(&self, client_config: pg_client::Config) -> String {
+    pub fn schema_dump(
+        &self,
+        client_config: pg_client::Config,
+        extra_arguments: &[String],
+    ) -> String {
         let (effective_config, mounts) = apply_cbt_mounts(client_config);
+
+        let mut effective_arguments = vec!["--schema-only".to_string(), "--verbose".to_string()];
+
+        effective_arguments.extend_from_slice(extra_arguments);
 
         let bytes = self
             .to_cbt_definition()
-            .entrypoint("pg_dump".to_string(), vec!["--schema-only".to_string()])
+            .entrypoint("pg_dump".to_string(), effective_arguments)
             .envs(effective_config.to_pg_env())
             .mounts(mounts)
             .run_capture_stdout();
