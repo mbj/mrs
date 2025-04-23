@@ -132,7 +132,7 @@ impl Definition {
     ) -> String {
         let (effective_config, mounts) = apply_cbt_mounts(client_config);
 
-        let mut effective_arguments = vec!["--schema-only".to_string(), "--verbose".to_string()];
+        let mut effective_arguments = vec!["--schema-only".to_string()];
 
         effective_arguments.extend_from_slice(extra_arguments);
 
