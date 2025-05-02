@@ -39,13 +39,16 @@ pub async fn read_env_json<T: for<'a> serde::Deserialize<'a>, S: SecretType>(
     secretsmanager: &aws_sdk_secretsmanager::client::Client,
     secret: S,
 ) -> T {
-    let secret_id = SecretId(
-        std::env::var(secret.to_env_variable_name())
-            .unwrap()
-            .to_string(),
-    );
+    serde_json::from_str(&read_env_secret_string(secretsmanager, secret).await).unwrap()
+}
 
-    serde_json::from_str(&read_secret_value_string(secretsmanager, &secret_id).await).unwrap()
+pub async fn read_env_secret_string<S: SecretType>(
+    secretsmanager: &aws_sdk_secretsmanager::client::Client,
+    secret: S,
+) -> String {
+    let secret_id = read_env_secret_id(secret);
+
+    read_secret_value_string(secretsmanager, &secret_id).await
 }
 
 pub async fn read_secret_value_string(
@@ -63,6 +66,16 @@ pub async fn read_secret_value_string(
         .secret_string()
         .unwrap()
         .to_string()
+}
+
+fn read_env_secret_id<S: SecretType>(secret: S) -> SecretId {
+    let env_variable_name = secret.to_env_variable_name();
+
+    SecretId(
+        std::env::var(env_variable_name)
+            .unwrap_or_else(|_| panic!("Secret env variable: {env_variable_name} is not present!"))
+            .to_string(),
+    )
 }
 
 pub async fn put_secret_value_string(
