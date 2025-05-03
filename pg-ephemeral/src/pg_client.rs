@@ -213,6 +213,13 @@ impl SslRootCert {
     pub fn from_path_unchecked(path: std::path::PathBuf) -> Option<SslRootCert> {
         FileBuf::from_path_unchecked(path).map(Self::File)
     }
+
+    fn to_pg_env_value(&self) -> String {
+        match self {
+            Self::File(file) => file.0.to_str().unwrap().to_string(),
+            Self::System => "system".to_string(),
+        }
+    }
 }
 
 #[macro_export]
@@ -225,15 +232,6 @@ macro_rules! ssl_root_cert_file {
 }
 
 pub use ssl_root_cert_file;
-
-impl SslRootCert {
-    fn to_pg_env_value(&self) -> String {
-        match self {
-            Self::File(file) => file.0.to_str().unwrap().to_string(),
-            Self::System => "system".to_string(),
-        }
-    }
-}
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Config {
@@ -270,7 +268,38 @@ impl Config {
         map
     }
 
-    pub fn to_sqlx_connection_config(&self) -> sqlx::postgres::PgConnectOptions {
+    /// Convert to an SQL pg connection config
+    ///
+    /// ```
+    /// # use pg_ephemeral::pg_client::*;
+    /// # use std::str::FromStr;
+    ///
+    /// let config = Config {
+    ///     database: Some(Database::from_str("some_db").unwrap()),
+    ///     host: Host::from_str("some-host").unwrap(),
+    ///     password: Some(Password::from_str("some_password").unwrap()),
+    ///     port: Port(5432),
+    ///     ssl_mode: SslMode::VerifyFull,
+    ///     ssl_root_cert: Some(SslRootCert::File(
+    ///         FileBuf::from_path_unchecked("/some.pem".into()).unwrap(),
+    ///     )),
+    ///     username: Username::from_str("some_username").unwrap(),
+    /// };
+    ///
+    /// assert_eq!(
+    ///     sqlx::postgres::PgConnectOptions::new_without_environment(
+    ///         "some-host".to_string(),
+    ///         5432,
+    ///         "some_username".to_string(),
+    ///         SslMode::VerifyFull
+    ///     )
+    ///     .database("some_db")
+    ///     .password("some_password")
+    ///     .ssl_root_cert("/some.pem"),
+    ///     config.to_sqlx_connect_options()
+    /// )
+    /// ```
+    pub fn to_sqlx_connect_options(&self) -> sqlx::postgres::PgConnectOptions {
         let mut options = sqlx::postgres::PgConnectOptions::new_without_environment(
             self.host.to_pg_env_value(),
             self.port.to_u16(),
@@ -278,8 +307,16 @@ impl Config {
             self.ssl_mode,
         );
 
+        if let Some(database) = &self.database {
+            options = options.database(&database.to_pg_env_value());
+        }
+
         if let Some(password) = &self.password {
             options = options.password(&password.to_pg_env_value());
+        }
+
+        if let Some(ssl_root_cert) = &self.ssl_root_cert {
+            options = options.ssl_root_cert(ssl_root_cert.to_pg_env_value());
         }
 
         options
