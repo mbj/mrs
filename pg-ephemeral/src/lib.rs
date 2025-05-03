@@ -184,7 +184,7 @@ impl Container {
     }
 
     pub async fn wait_available(&self) {
-        let config = self.client_config.to_sqlx_connection_config();
+        let config = self.client_config.to_sqlx_connect_options();
 
         for _ in 0..100 {
             match sqlx::ConnectOptions::connect(&config).await {
