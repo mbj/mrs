@@ -4,19 +4,19 @@ name = "stack-deploy"
 version = "0.0.1"
 
 [dependencies]
-aws-config = "1.6.1"
-aws-sdk-cloudformation = "1.71.0"
-aws-sdk-lambda = "1.75.0"
-aws-sdk-s3 = "1.82.0"
-aws-sdk-secretsmanager = "1.68.0"
+aws-config = "1.6.2"
+aws-sdk-cloudformation = "1.72.0"
+aws-sdk-lambda = "1.76.0"
+aws-sdk-s3 = "1.83.0"
+aws-sdk-secretsmanager = "1.69.0"
 base64 = "0.22.1"
-clap = { version = "4.5.36", features = ["derive"] }
+clap = { version = "4.5.37", features = ["derive"] }
 hex = "0.4.3"
 http = "1.3.1"
 reqwest = { version = "0.12.15", features = ["json", "rustls-tls"], default-features = false }
 serde = { version = "1.0.219", features = ["derive"] }
 serde_json = "1.0.140"
-sha2 = "0.10.8"
+sha2 = "0.10.9"
 strum = "0.27.1"
 tokio = "1.44.2"
 url = "2.5.4"
