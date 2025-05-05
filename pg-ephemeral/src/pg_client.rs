@@ -155,6 +155,12 @@ impl Password {
     }
 }
 
+impl From<String> for Password {
+    fn from(value: String) -> Self {
+        Self(value)
+    }
+}
+
 impl AsRef<str> for Password {
     fn as_ref(&self) -> &str {
         &self.0
@@ -164,61 +170,27 @@ impl AsRef<str> for Password {
 pub type SslMode = sqlx::postgres::PgSslMode;
 
 #[derive(Clone, Debug, PartialEq, Eq)]
-pub struct FileBuf(std::path::PathBuf);
-
-impl std::str::FromStr for FileBuf {
-    type Err = &'static str;
-
-    fn from_str(value: &str) -> Result<Self, Self::Err> {
-        match <std::path::PathBuf as std::str::FromStr>::from_str(value) {
-            Ok(path) => {
-                if path.is_file() {
-                    Ok(FileBuf(path))
-                } else {
-                    Err("path is not a file")
-                }
-            }
-            Err(_) => Err("input is not a valid path"),
-        }
-    }
-}
-
-impl AsRef<std::path::Path> for FileBuf {
-    fn as_ref(&self) -> &std::path::Path {
-        &self.0
-    }
-}
-
-impl FileBuf {
-    pub fn file_name(&self) -> &std::ffi::OsStr {
-        self.0.file_name().unwrap()
-    }
-
-    #[allow(clippy::manual_map)] // lifetime of yielded pointer leaks into using arg
-    pub fn from_path_unchecked(path: std::path::PathBuf) -> Option<Self> {
-        match path.file_name() {
-            Some(_) => Some(Self(path)),
-            None => None,
-        }
-    }
-}
-
-#[derive(Clone, Debug, PartialEq, Eq)]
 pub enum SslRootCert {
-    File(FileBuf),
+    File(file_buf::FileBuf),
     System,
 }
 
 impl SslRootCert {
-    pub fn from_path_unchecked(path: std::path::PathBuf) -> Option<SslRootCert> {
-        FileBuf::from_path_unchecked(path).map(Self::File)
+    pub fn from_path_unchecked_existance(path: std::path::PathBuf) -> Option<SslRootCert> {
+        file_buf::FileBuf::from_path_unchecked_existance(path).map(Self::File)
     }
 
     fn to_pg_env_value(&self) -> String {
         match self {
-            Self::File(file) => file.0.to_str().unwrap().to_string(),
+            Self::File(file) => file.as_ref().to_str().unwrap().to_string(),
             Self::System => "system".to_string(),
         }
+    }
+}
+
+impl From<file_buf::FileBuf> for SslRootCert {
+    fn from(value: file_buf::FileBuf) -> Self {
+        Self::File(value)
     }
 }
 
@@ -281,7 +253,7 @@ impl Config {
     ///     port: Port(5432),
     ///     ssl_mode: SslMode::VerifyFull,
     ///     ssl_root_cert: Some(SslRootCert::File(
-    ///         FileBuf::from_path_unchecked("/some.pem".into()).unwrap(),
+    ///         file_buf::FileBuf::from_path_unchecked_existance("/some.pem".into()).unwrap(),
     ///     )),
     ///     username: Username::from_str("some_username").unwrap(),
     /// };

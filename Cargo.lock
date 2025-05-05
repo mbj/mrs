@@ -2184,6 +2184,7 @@ name = "pg-ephemeral"
 version = "0.0.1"
 dependencies = [
  "clap",
+ "file-buf",
  "hostname-validator",
  "rand 0.9.1",
  "serde_json",
