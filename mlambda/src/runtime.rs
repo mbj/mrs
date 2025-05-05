@@ -77,9 +77,9 @@ impl Client {
         Client { base_url, http }
     }
 
-    pub async fn run_event_loop<T: for<'de> serde::Deserialize<'de>, R, F>(&self, process: F)
+    pub async fn run_event_loop<T: for<'de> serde::Deserialize<'de>, R, F>(&self, mut process: F)
     where
-        F: for<'a> AsyncFn(&'a Event<Result<T, EventBodyDecodeError>>) -> R,
+        F: for<'a> AsyncFnMut(&'a Event<Result<T, EventBodyDecodeError>>) -> R,
         R: serde::Serialize,
     {
         loop {
