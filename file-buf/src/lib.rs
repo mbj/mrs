@@ -4,7 +4,7 @@
 /// would be used, needing a per `PathBuf` input check.
 ///
 /// Beware of time-of-check-vs-time-of-use issues.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Ord, PartialOrd)]
 pub struct FileBuf(std::path::PathBuf);
 
 impl std::str::FromStr for FileBuf {
