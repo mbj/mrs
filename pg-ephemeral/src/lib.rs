@@ -86,7 +86,8 @@ pub fn apply_cbt_mounts(
                 (
                     pg_client::Config {
                         ssl_root_cert: Some(
-                            pg_client::SslRootCert::from_path_unchecked(container).unwrap(),
+                            pg_client::SslRootCert::from_path_unchecked_existance(container)
+                                .unwrap(),
                         ),
                         ..client_config
                     },
