@@ -100,6 +100,7 @@ pub struct Target {
     pub binary_name: BinaryName,
     pub build_target: BuildTarget,
     pub build_type: BuildType,
+    pub extra_files: std::collections::BTreeMap<file_buf::FileBuf, file_buf::FileBuf>,
 }
 
 impl Target {
@@ -115,7 +116,8 @@ impl Target {
     ///     Target {
     ///         binary_name: BinaryName(String::from("example-binary")),
     ///         build_target: BuildTarget(String::from("example-target")),
-    ///         build_type: BuildType::Debug
+    ///         build_type: BuildType::Debug,
+    ///         extra_files: std::collections::BTreeMap::new(),
     ///     }
     ///     .path()
     /// )
@@ -157,17 +159,12 @@ impl Target {
 
         let mut cursor: std::io::Cursor<Vec<u8>> = std::io::Cursor::new(vec![]);
         let mut zip = zip::write::ZipWriter::new(&mut cursor);
-        zip.start_file::<&str, ()>(
-            "bootstrap",
-            zip::write::FileOptions::default()
-                .unix_permissions(0o555)
-                // We want byte wise deterministic zip files
-                // The default is to encode the current time which
-                // would not be stable cross runs on unmodified binary.
-                .last_modified_time(zip::DateTime::default()),
-        )
-        .unwrap();
+        zip.start_file::<&str, ()>("bootstrap", Self::zip_file_options(0o555))
+            .unwrap();
         std::io::Write::write_all(&mut zip, binary.as_ref()).unwrap();
+
+        self.write_extra_files(&mut zip);
+
         zip.finish().unwrap();
 
         eprintln!("Computing zip hash");
@@ -179,6 +176,27 @@ impl Target {
             body: aws_sdk_s3::primitives::ByteStream::from(body),
             s3_object_key: S3ObjectKey(format!("{hash}.zip")),
         }
+    }
+
+    fn write_extra_files<W: std::io::Write + std::io::Seek>(
+        &self,
+        zip: &mut zip::write::ZipWriter<W>,
+    ) {
+        for (host, target) in &self.extra_files {
+            zip.start_file_from_path(target, Self::zip_file_options(0o444))
+                .unwrap();
+
+            std::io::copy(&mut std::fs::File::open(host).unwrap(), zip).unwrap();
+        }
+    }
+
+    fn zip_file_options(unix_permissions: u32) -> zip::write::FileOptions<'static, ()> {
+        zip::write::FileOptions::default()
+            .unix_permissions(unix_permissions)
+            // We want byte wise deterministic zip files
+            // The default is to encode the current time which
+            // would not be stable.
+            .last_modified_time(zip::DateTime::default())
     }
 
     pub async fn deploy_parameter_update(
