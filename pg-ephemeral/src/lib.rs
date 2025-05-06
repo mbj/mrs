@@ -215,6 +215,21 @@ impl Container {
         ))
     }
 
+    pub async fn with_connection<T, F: AsyncFnMut(&mut sqlx::postgres::PgConnection) -> T>(
+        &self,
+        mut action: F,
+    ) -> T {
+        let config = self.client_config.to_sqlx_connect_options();
+
+        let mut connection = sqlx::ConnectOptions::connect(&config).await.unwrap();
+
+        let result = action(&mut connection).await;
+
+        let _ = sqlx::Connection::close(connection).await;
+
+        result
+    }
+
     fn exec_container_shell(&self) {
         self.container
             .exec_interactive(self.container_client_config().to_pg_env(), "sh", [])
