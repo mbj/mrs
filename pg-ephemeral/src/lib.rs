@@ -3,11 +3,6 @@ use rand::Rng;
 pub mod cbt;
 pub mod pg_client;
 
-struct Container {
-    client_config: pg_client::Config,
-    container: cbt::Container,
-}
-
 pub enum Major {
     R15,
     R16,
@@ -114,12 +109,12 @@ impl Definition {
         cbt::Definition::new(image)
     }
 
-    async fn with_container<T>(&self, action: impl Fn(&Container) -> T) -> T {
+    pub async fn with_container<T>(&self, action: impl AsyncFn(&Container) -> T) -> T {
         let mut db_container = Container::run(self);
 
         db_container.wait_available().await;
 
-        let result = action(&db_container);
+        let result = action(&db_container).await;
 
         db_container.stop();
 
@@ -142,10 +137,16 @@ impl Definition {
             .entrypoint("pg_dump".to_string(), effective_arguments)
             .envs(effective_config.to_pg_env())
             .mounts(mounts)
-            .run_capture_stdout();
+            .run_capture_only_stdout();
 
         convert_schema(&bytes)
     }
+}
+
+#[derive(Debug)]
+pub struct Container {
+    client_config: pg_client::Config,
+    container: cbt::Container,
 }
 
 impl Container {
@@ -207,11 +208,26 @@ impl Container {
     }
 
     fn exec_container_schema_dump(&self) -> String {
-        convert_schema(&self.container.exec_capture_stdout(
+        convert_schema(&self.container.exec_capture_only_stdout(
             self.container_client_config().to_pg_env(),
             "pg_dump",
             ["--schema-only"],
         ))
+    }
+
+    pub async fn with_connection<T, F: AsyncFnMut(&mut sqlx::postgres::PgConnection) -> T>(
+        &self,
+        mut action: F,
+    ) -> T {
+        let config = self.client_config.to_sqlx_connect_options();
+
+        let mut connection = sqlx::ConnectOptions::connect(&config).await.unwrap();
+
+        let result = action(&mut connection).await;
+
+        let _ = sqlx::Connection::close(connection).await;
+
+        result
     }
 
     fn exec_container_shell(&self) {
@@ -282,21 +298,21 @@ pub mod cli {
         }
     }
 
-    fn host_psql(db_container: &Container) {
+    async fn host_psql(db_container: &Container) {
         let _ = std::process::Command::new("psql")
             .envs(db_container.client_config.to_pg_env())
             .status();
     }
 
-    fn container_schema_dump(db_container: &Container) {
+    async fn container_schema_dump(db_container: &Container) {
         eprintln!("{}", db_container.exec_container_schema_dump());
     }
 
-    fn container_psql(db_container: &Container) {
+    async fn container_psql(db_container: &Container) {
         db_container.exec_psql()
     }
 
-    fn container_shell(db_container: &Container) {
+    async fn container_shell(db_container: &Container) {
         db_container.exec_container_shell()
     }
 }
