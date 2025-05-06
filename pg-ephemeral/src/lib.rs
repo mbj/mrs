@@ -109,12 +109,12 @@ impl Definition {
         cbt::Definition::new(image)
     }
 
-    async fn with_container<T>(&self, action: impl Fn(&Container) -> T) -> T {
+    pub async fn with_container<T>(&self, action: impl AsyncFn(&Container) -> T) -> T {
         let mut db_container = Container::run(self);
 
         db_container.wait_available().await;
 
-        let result = action(&db_container);
+        let result = action(&db_container).await;
 
         db_container.stop();
 
@@ -283,21 +283,21 @@ pub mod cli {
         }
     }
 
-    fn host_psql(db_container: &Container) {
+    async fn host_psql(db_container: &Container) {
         let _ = std::process::Command::new("psql")
             .envs(db_container.client_config.to_pg_env())
             .status();
     }
 
-    fn container_schema_dump(db_container: &Container) {
+    async fn container_schema_dump(db_container: &Container) {
         eprintln!("{}", db_container.exec_container_schema_dump());
     }
 
-    fn container_psql(db_container: &Container) {
+    async fn container_psql(db_container: &Container) {
         db_container.exec_psql()
     }
 
-    fn container_shell(db_container: &Container) {
+    async fn container_shell(db_container: &Container) {
         db_container.exec_container_shell()
     }
 }
