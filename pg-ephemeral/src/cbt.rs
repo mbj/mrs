@@ -33,11 +33,24 @@ impl Command {
         self
     }
 
-    fn capture_stdout(mut self) -> Vec<u8> {
+    fn capture_only_stdout(mut self) -> Vec<u8> {
         eprintln!("{:#?}", self.inner);
 
-        match self.inner.stderr(std::process::Stdio::inherit()).output() {
-            Ok(output) => output.stdout,
+        // Command::output sadly also captures stderr which we do not want in this case.
+        match self.inner.stdout(std::process::Stdio::piped()).spawn() {
+            Ok(mut child) => {
+                let mut buf = vec![];
+
+                let mut stdout = child.stdout.as_mut().unwrap();
+
+                let _ = std::io::Read::read_to_end(&mut stdout, &mut buf);
+
+                let status = child.wait().unwrap();
+
+                assert!(status.success());
+
+                buf
+            }
             Err(error) => panic!("Failed to run container command: {error:#?}"),
         }
     }
@@ -243,7 +256,7 @@ impl Definition {
         }
     }
 
-    pub fn run_capture_stdout(self) -> Vec<u8> {
+    pub fn run_capture_only_stdout(self) -> Vec<u8> {
         self.no_detach().run_output()
     }
 
@@ -274,7 +287,7 @@ impl Definition {
                     .unwrap_or_default(),
             )
             .argument(&self.image)
-            .capture_stdout()
+            .capture_only_stdout()
     }
 }
 
@@ -324,7 +337,7 @@ impl Container {
         self.stopped = true;
     }
 
-    pub fn exec_capture_stdout<T: AsRef<OsStr>>(
+    pub fn exec_capture_only_stdout<T: AsRef<OsStr>>(
         &self,
         environment: impl IntoIterator<Item = (&'static str, String)>,
         executable: T,
@@ -340,7 +353,7 @@ impl Container {
             .argument(&self.id)
             .argument(executable)
             .arguments(arguments)
-            .capture_stdout()
+            .capture_only_stdout()
     }
 
     pub fn exec_interactive<T: AsRef<OsStr>>(
@@ -368,7 +381,7 @@ impl Container {
         let stdout = Command::new("podman")
             .argument("inspect")
             .argument(&self.id)
-            .capture_stdout();
+            .capture_only_stdout();
 
         serde_json::from_slice(&stdout).expect("invalid json")
     }
@@ -379,7 +392,7 @@ impl Container {
             .argument("--format")
             .argument(format)
             .argument(&self.id)
-            .capture_stdout();
+            .capture_only_stdout();
 
         std::str::from_utf8(strip_nl_end(&bytes))
             .expect("invalid utf8")

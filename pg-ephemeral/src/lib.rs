@@ -142,7 +142,7 @@ impl Definition {
             .entrypoint("pg_dump".to_string(), effective_arguments)
             .envs(effective_config.to_pg_env())
             .mounts(mounts)
-            .run_capture_stdout();
+            .run_capture_only_stdout();
 
         convert_schema(&bytes)
     }
@@ -207,7 +207,7 @@ impl Container {
     }
 
     fn exec_container_schema_dump(&self) -> String {
-        convert_schema(&self.container.exec_capture_stdout(
+        convert_schema(&self.container.exec_capture_only_stdout(
             self.container_client_config().to_pg_env(),
             "pg_dump",
             ["--schema-only"],
