@@ -304,7 +304,8 @@ fn strip_nl_end(value: &[u8]) -> &[u8] {
     }
 }
 
-struct ContainerId(String);
+#[derive(Debug)]
+pub struct ContainerId(String);
 
 impl std::convert::TryFrom<&[u8]> for ContainerId {
     type Error = std::str::Utf8Error;
@@ -320,6 +321,7 @@ impl AsRef<std::ffi::OsStr> for ContainerId {
     }
 }
 
+#[derive(Debug)]
 pub struct Container {
     id: ContainerId,
     stopped: bool,
