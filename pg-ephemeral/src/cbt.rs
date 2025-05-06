@@ -264,7 +264,7 @@ impl Definition {
         Command::new("podman")
             .argument("run")
             .optional_argument(self.detach.as_ref().map(|_| "--detach"))
-            .optional_argument(self.remove.as_ref().map(|_| "--remove"))
+            .optional_argument(self.remove.as_ref().map(|_| "--rm"))
             .arguments(
                 self.env
                     .iter()
