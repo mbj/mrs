@@ -3,11 +3,6 @@ use rand::Rng;
 pub mod cbt;
 pub mod pg_client;
 
-struct Container {
-    client_config: pg_client::Config,
-    container: cbt::Container,
-}
-
 pub enum Major {
     R15,
     R16,
@@ -146,6 +141,12 @@ impl Definition {
 
         convert_schema(&bytes)
     }
+}
+
+#[derive(Debug)]
+pub struct Container {
+    client_config: pg_client::Config,
+    container: cbt::Container,
 }
 
 impl Container {
