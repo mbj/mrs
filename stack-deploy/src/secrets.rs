@@ -55,7 +55,7 @@ pub async fn read_secret_value_string(
     secretsmanager: &aws_sdk_secretsmanager::client::Client,
     secret_id: &SecretId,
 ) -> String {
-    eprintln!("Reading secret: {}", secret_id.0);
+    log::info!("Reading secret: {}", secret_id.0);
 
     secretsmanager
         .get_secret_value()
@@ -83,7 +83,7 @@ pub async fn put_secret_value_string(
     secret_id: &SecretId,
     secret_string: &str,
 ) {
-    eprintln!("Writing secret: {}", secret_id.0);
+    log::info!("Writing secret: {}", secret_id.0);
 
     secretsmanager
         .put_secret_value()

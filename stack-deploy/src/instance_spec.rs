@@ -78,7 +78,7 @@ impl InstanceSpec {
         result: Option<RemoteOperation>,
     ) {
         match result {
-            None => eprintln!("Stack is already up to date"),
+            None => log::info!("Stack is already up to date"),
             Some(remote_operation) => Self::wait(cloudformation, remote_operation).await,
         }
     }
@@ -99,7 +99,7 @@ impl InstanceSpec {
             .await;
 
         match result {
-            None => eprintln!("Stack is already up to date"),
+            None => log::info!("Stack is already up to date"),
             Some(remote_operation) => Self::wait(cloudformation, remote_operation).await,
         }
     }

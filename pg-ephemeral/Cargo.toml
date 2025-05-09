@@ -7,6 +7,7 @@ edition.workspace = true
 clap = { version = "4.5.37", features = ["derive"] }
 file-buf = { version = "0.0.1", path = "../file-buf" }
 hostname-validator = "1.1.1"
+log = "0.4.27"
 rand = "0.9.1"
 serde_json = "1.0.140"
 sqlx = { git = "https://github.com/mbj/sqlx", branch = "mbj/fork", features = ["postgres", "runtime-tokio"] }
