@@ -100,7 +100,7 @@ mod instance {
                 Self::List => registry
                     .0
                     .into_iter()
-                    .for_each(|instance_spec| eprintln!("{}", instance_spec.stack_name.0)),
+                    .for_each(|instance_spec| println!("{}", instance_spec.stack_name.0)),
                 Self::Sync { name, parameters } => {
                     let parameter_map = ParameterMap::parse(parameters).unwrap();
 

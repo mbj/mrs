@@ -34,7 +34,7 @@ impl Command {
     }
 
     fn capture_only_stdout(mut self) -> Vec<u8> {
-        eprintln!("{:#?}", self.inner);
+        log::debug!("{:#?}", self.inner);
 
         // Command::output sadly also captures stderr which we do not want in this case.
         match self.inner.stdout(std::process::Stdio::piped()).spawn() {
@@ -56,7 +56,7 @@ impl Command {
     }
 
     fn status(mut self) -> std::process::ExitStatus {
-        eprintln!("{:#?}", self.inner);
+        log::debug!("{:#?}", self.inner);
 
         match self.inner.status() {
             Ok(status) => status,

@@ -219,7 +219,7 @@ impl Poll {
 }
 
 pub(crate) fn print_event(stack_event: &StackEvent) {
-    eprintln!(
+    log::info!(
         "{} {} {} {} {}",
         stack_event
             .timestamp
@@ -247,6 +247,6 @@ pub(crate) fn print_event(stack_event: &StackEvent) {
     );
 
     if let Some(ref message) = stack_event.resource_status_reason {
-        eprintln!("- {}", message)
+        log::info!("- {}", message)
     }
 }

@@ -131,7 +131,7 @@ impl Target {
 
     /// Build the lambda target via cargo
     pub fn build(&self) {
-        eprintln!("Building lambda target");
+        log::info!("Building lambda target");
         assert!(
             std::process::Command::new("cargo")
                 .args(["build", "--target", &self.build_target.0])
@@ -151,11 +151,11 @@ impl Target {
     /// Generate the zip file from target read from ./target
     fn generate_zip(&self) -> ZipFile {
         let path = self.path();
-        eprintln!("Reading binary from: {}", path.display());
+        log::info!("Reading binary from: {}", path.display());
 
         let binary = std::fs::read(path).unwrap();
 
-        eprintln!("Compressing binary into zip");
+        log::info!("Compressing binary into zip");
 
         let mut cursor: std::io::Cursor<Vec<u8>> = std::io::Cursor::new(vec![]);
         let mut zip = zip::write::ZipWriter::new(&mut cursor);
@@ -167,10 +167,10 @@ impl Target {
 
         zip.finish().unwrap();
 
-        eprintln!("Computing zip hash");
+        log::info!("Computing zip hash");
         let body = cursor.into_inner();
         let hash = hex::encode(sha2::Sha256::digest(&body).as_slice());
-        eprintln!("Content hash: {hash}");
+        log::info!("Content hash: {hash}");
 
         ZipFile {
             body: aws_sdk_s3::primitives::ByteStream::from(body),
@@ -282,7 +282,7 @@ pub mod cli {
                 .upload(self.s3, &s3_bucket_name)
                 .await;
 
-            eprintln!("Lambda object key: {}", parameter_value.0);
+            log::info!("Lambda object key: {}", parameter_value.0);
 
             parameter_value
         }
