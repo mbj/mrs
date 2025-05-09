@@ -198,7 +198,7 @@ impl Container {
                     return;
                 }
                 Err(error) => {
-                    eprintln!("{error:#?}, retry in 100ms");
+                    log::trace!("{error:#?}, retry in 100ms");
                 }
             }
             std::thread::sleep(std::time::Duration::from_millis(100));
