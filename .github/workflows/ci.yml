@@ -9,11 +9,15 @@ jobs:
   test:
     strategy:
       matrix:
-        command:
-        - cargo clippy
-        - cargo fmt --check
-        - cargo test --doc
-        - cargo test --lib
+        execute:
+        - command: cargo clippy
+          cache: clippy
+        - command: cargo fmt --check
+          cache: meta
+        - command: cargo test --doc
+          cache: build
+        - command: cargo test --lib
+          cache: build
         os:
         - cargo_build_target: aarch64-apple-darwin
           version: macos-15
@@ -38,5 +42,5 @@ jobs:
           ~/.cargo/registry/cache/
           ~/.cargo/registry/index/
           ~/.rustup
-        key: ${{ matrix.os.version }}-${{ matrix.os.cargo_build_target }}-${{ hashFiles('**/Cargo.lock', 'rust-toolchain.toml') }}
-    - run: ${{ matrix.command }}
+        key: ${{ matrix.os.version }}-${{ matrix.execute.cache}}-${{ matrix.os.cargo_build_target }}-${{ hashFiles('.github/workflow/ci.yaml', '**/Cargo.lock', 'rust-toolchain.toml') }}
+    - run: ${{ matrix.execute.command }}
