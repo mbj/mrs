@@ -109,7 +109,7 @@ impl Definition {
         cbt::Definition::new(image)
     }
 
-    pub async fn with_container<T>(&self, action: impl AsyncFn(&Container) -> T) -> T {
+    pub async fn with_container<T>(&self, mut action: impl AsyncFnMut(&Container) -> T) -> T {
         let mut db_container = Container::run(self);
 
         db_container.wait_available().await;
@@ -225,7 +225,7 @@ impl Container {
 
         let result = action(&mut connection).await;
 
-        let _ = sqlx::Connection::close(connection).await;
+        sqlx::Connection::close(connection).await.unwrap();
 
         result
     }
@@ -305,7 +305,7 @@ pub mod cli {
     }
 
     async fn container_schema_dump(db_container: &Container) {
-        eprintln!("{}", db_container.exec_container_schema_dump());
+        db_container.exec_container_schema_dump();
     }
 
     async fn container_psql(db_container: &Container) {
