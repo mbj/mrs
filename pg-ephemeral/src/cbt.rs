@@ -1,23 +1,23 @@
 use std::ffi::OsStr;
 
-struct Command {
+pub struct Command {
     inner: std::process::Command,
 }
 
 impl Command {
-    fn new(value: impl AsRef<OsStr>) -> Self {
+    pub fn new(value: impl AsRef<OsStr>) -> Self {
         Command {
             inner: std::process::Command::new(value),
         }
     }
 
-    fn argument(mut self, value: impl AsRef<OsStr>) -> Self {
+    pub fn argument(mut self, value: impl AsRef<OsStr>) -> Self {
         self.inner.arg(value);
 
         self
     }
 
-    fn optional_argument(mut self, optional: Option<impl AsRef<OsStr>>) -> Self {
+    pub fn optional_argument(mut self, optional: Option<impl AsRef<OsStr>>) -> Self {
         match optional {
             Some(value) => {
                 self.inner.arg(value);
@@ -27,13 +27,13 @@ impl Command {
         }
     }
 
-    fn arguments<T: AsRef<OsStr>>(mut self, value: impl IntoIterator<Item = T>) -> Self {
+    pub fn arguments<T: AsRef<OsStr>>(mut self, value: impl IntoIterator<Item = T>) -> Self {
         self.inner.args(value);
 
         self
     }
 
-    fn capture_only_stdout(mut self) -> Vec<u8> {
+    pub fn capture_only_stdout(mut self) -> Vec<u8> {
         log::debug!("{:#?}", self.inner);
 
         // Command::output sadly also captures stderr which we do not want in this case.
@@ -55,7 +55,13 @@ impl Command {
         }
     }
 
-    fn status(mut self) -> std::process::ExitStatus {
+    pub fn capture_only_stdout_string(self) -> String {
+        std::str::from_utf8(&self.capture_only_stdout())
+            .unwrap()
+            .to_string()
+    }
+
+    pub fn status(mut self) -> std::process::ExitStatus {
         log::debug!("{:#?}", self.inner);
 
         match self.inner.status() {
@@ -329,12 +335,10 @@ pub struct Container {
 
 impl Container {
     pub fn stop(&mut self) {
-        let status = Command::new("podman")
+        Command::new("podman")
             .arguments(["container", "stop"])
             .argument(&self.id)
-            .status();
-
-        assert!(status.success());
+            .capture_only_stdout();
 
         self.stopped = true;
     }
