@@ -105,4 +105,32 @@ impl FileBuf {
             None => None,
         }
     }
+
+    /// Read to string
+    pub fn read_to_string(&self) -> String {
+        std::fs::read_to_string(&self.0).unwrap()
+    }
+
+    /// Return str representation
+    ///
+    /// ### Panics
+    ///
+    /// if file-buf string is not valid UTF8
+    pub fn to_str(&self) -> &str {
+        self.0.to_str().unwrap()
+    }
+}
+
+#[macro_export]
+macro_rules! file_buf {
+    ($string: literal) => {
+        <file_buf::FileBuf as std::str::FromStr>::from_str($string).unwrap()
+    };
+}
+
+#[macro_export]
+macro_rules! file_buf_unchecked_existance {
+    ($string: literal) => {
+        file_buf::FileBuf::from_path_unchecked_existance(std::path::PathBuf::from($string)).unwrap()
+    };
 }
