@@ -74,6 +74,19 @@ impl FileBuf {
         self.0.file_name().unwrap()
     }
 
+    /// Return displayable value
+    ///
+    /// ```
+    /// # use file_buf::*;
+    ///
+    /// let file_buf = <FileBuf as std::str::FromStr>::from_str("./Cargo.toml").unwrap();
+    ///
+    /// assert_eq!("./Cargo.toml", format!("{}", file_buf.display()));
+    /// ```
+    pub fn display(&self) -> std::path::Display {
+        self.0.display()
+    }
+
     /// Create file buf for cases the file existance cannot be checked ahead of time
     ///
     /// Examples:
