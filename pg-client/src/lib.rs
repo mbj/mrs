@@ -70,13 +70,12 @@ impl std::str::FromStr for Host {
     }
 }
 
+#[macro_export]
 macro_rules! host {
     ($string: literal) => {
-        <crate::pg_client::Host as std::str::FromStr>::from_str($string).unwrap()
+        <pg_client::Host as std::str::FromStr>::from_str($string).unwrap()
     };
 }
-
-pub(crate) use host;
 
 impl From<HostName> for Host {
     fn from(value: HostName) -> Self {
@@ -126,13 +125,12 @@ pub struct Username(String);
 
 from_str_impl!(Username);
 
+#[macro_export]
 macro_rules! username {
     ($string: literal) => {
-        <crate::pg_client::Username as std::str::FromStr>::from_str($string).unwrap()
+        <pg_client::Username as std::str::FromStr>::from_str($string).unwrap()
     };
 }
-
-pub(crate) use username;
 
 impl Username {
     const MAX_LENGTH: usize = 63;
@@ -197,13 +195,11 @@ impl From<file_buf::FileBuf> for SslRootCert {
 #[macro_export]
 macro_rules! ssl_root_cert_file {
     ($string: literal) => {
-        <pg_ephemeral::pg_client::FileBuf as std::str::FromStr>::from_str($string)
-            .map(pg_ephemeral::pg_client::SslRootCert::File)
+        <pg_client::FileBuf as std::str::FromStr>::from_str($string)
+            .map(pg_client::SslRootCert::File)
             .unwrap()
     };
 }
-
-pub use ssl_root_cert_file;
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Config {
@@ -243,7 +239,7 @@ impl Config {
     /// Convert to an SQL pg connection config
     ///
     /// ```
-    /// # use pg_ephemeral::pg_client::*;
+    /// # use pg_client::*;
     /// # use std::str::FromStr;
     ///
     /// let config = Config {
@@ -292,5 +288,20 @@ impl Config {
         }
 
         options
+    }
+
+    pub async fn with_sqlx_connection<T, F: AsyncFnMut(&mut sqlx::postgres::PgConnection) -> T>(
+        &self,
+        mut action: F,
+    ) -> T {
+        let config = self.to_sqlx_connect_options();
+
+        let mut connection = sqlx::ConnectOptions::connect(&config).await.unwrap();
+
+        let result = action(&mut connection).await;
+
+        sqlx::Connection::close(connection).await.unwrap();
+
+        result
     }
 }

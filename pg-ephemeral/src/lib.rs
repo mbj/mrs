@@ -1,8 +1,8 @@
 use rand::Rng;
 
 pub mod cbt;
-pub mod pg_client;
 
+#[derive(Debug)]
 pub enum Major {
     R15,
     R16,
@@ -23,6 +23,7 @@ impl std::fmt::Display for Major {
     }
 }
 
+#[derive(Debug)]
 pub struct Minor(u8);
 
 impl Minor {
@@ -37,6 +38,7 @@ impl std::fmt::Display for Minor {
     }
 }
 
+#[derive(Debug)]
 pub struct Version {
     major: Major,
     minor: Minor,
@@ -54,13 +56,11 @@ impl std::fmt::Display for Version {
     }
 }
 
-pub struct Definition {
-    version: Version,
-}
-
 pub fn apply_cbt_mounts(
-    client_config: pg_client::Config,
+    client_config: &pg_client::Config,
 ) -> (pg_client::Config, Vec<crate::cbt::Mount>) {
+    let owned_client_config = client_config.clone();
+
     match client_config.ssl_root_cert {
         Some(ref ssl_root_cert) => match ssl_root_cert {
             pg_client::SslRootCert::File(file) => {
@@ -84,20 +84,82 @@ pub fn apply_cbt_mounts(
                             pg_client::SslRootCert::from_path_unchecked_existance(container)
                                 .unwrap(),
                         ),
-                        ..client_config
+                        ..owned_client_config
                     },
                     mounts,
                 )
             }
-            pg_client::SslRootCert::System => (client_config, vec![]),
+            pg_client::SslRootCert::System => (owned_client_config, vec![]),
         },
-        None => (client_config, vec![]),
+        None => (owned_client_config, vec![]),
     }
 }
 
+#[derive(Clone, Debug)]
+enum Step {
+    SqlFile(file_buf::FileBuf),
+    SqlFileGitRevision {
+        file: file_buf::FileBuf,
+        git_revision: &'static str,
+    },
+    PendingMigrations,
+}
+
+struct DumpSchema<'a> {
+    container: &'a Container<'a>,
+}
+
+impl mmigration::DumpSchema for DumpSchema<'_> {
+    async fn dump_schema(&self) -> mmigration::SchemaDump {
+        self.container.exec_dump_schema().into()
+    }
+}
+
+#[derive(Debug)]
+pub struct Definition {
+    steps: Vec<Step>,
+    version: Version,
+    migration_config: Option<mmigration::Config>,
+}
+
 impl Definition {
-    pub const fn new(version: Version) -> Self {
-        Self { version }
+    pub fn new(version: Version) -> Self {
+        Self {
+            migration_config: None,
+            steps: vec![],
+            version,
+        }
+    }
+
+    pub fn apply_file(self, file: file_buf::FileBuf) -> Self {
+        self.push_step(Step::SqlFile(file))
+    }
+
+    pub fn migration_config(self, migration_config: mmigration::Config) -> Self {
+        Self {
+            migration_config: Some(migration_config),
+            ..self
+        }
+    }
+
+    pub fn apply_pending_migrations(self) -> Self {
+        self.push_step(Step::PendingMigrations)
+    }
+
+    pub fn apply_file_from_git_revision(
+        self,
+        file: file_buf::FileBuf,
+        git_revision: &'static str,
+    ) -> Self {
+        self.push_step(Step::SqlFileGitRevision { file, git_revision })
+    }
+
+    fn push_step(self, step: Step) -> Self {
+        let mut steps = self.steps.clone();
+
+        steps.push(step);
+
+        Self { steps, ..self }
     }
 
     fn to_cbt_definition(&self) -> cbt::Definition {
@@ -114,6 +176,10 @@ impl Definition {
 
         db_container.wait_available().await;
 
+        for step in &self.steps {
+            self.apply_step(&db_container, step).await
+        }
+
         let result = action(&db_container).await;
 
         db_container.stop();
@@ -121,9 +187,21 @@ impl Definition {
         result
     }
 
-    pub fn schema_dump(
+    async fn apply_step(&self, db_container: &Container<'_>, step: &Step) {
+        match step {
+            Step::SqlFile(file) => db_container.apply_sql_file(file).await,
+            Step::SqlFileGitRevision { file, git_revision } => {
+                db_container
+                    .apply_sql_file_git_revision(file, git_revision)
+                    .await
+            }
+            Step::PendingMigrations => db_container.apply_pending_migrations().await,
+        }
+    }
+
+    pub fn dump_schema(
         &self,
-        client_config: pg_client::Config,
+        client_config: &pg_client::Config,
         extra_arguments: &[String],
     ) -> String {
         let (effective_config, mounts) = apply_cbt_mounts(client_config);
@@ -144,13 +222,14 @@ impl Definition {
 }
 
 #[derive(Debug)]
-pub struct Container {
+pub struct Container<'a> {
     client_config: pg_client::Config,
     container: cbt::Container,
+    definition: &'a Definition,
 }
 
-impl Container {
-    fn run(definition: &Definition) -> Self {
+impl<'a> Container<'a> {
+    fn run(definition: &'a Definition) -> Self {
         let password = generate_password();
 
         let container = definition
@@ -181,7 +260,22 @@ impl Container {
 
         Container {
             container,
+            definition,
             client_config,
+        }
+    }
+
+    fn migration_context(&'a self) -> mmigration::Context<'a, DumpSchema<'a>> {
+        let migration_config = self
+            .definition
+            .migration_config
+            .as_ref()
+            .expect("migration not configured");
+
+        mmigration::Context {
+            client_config: &self.client_config,
+            config: migration_config,
+            dump_schema: DumpSchema { container: self },
         }
     }
 
@@ -207,7 +301,7 @@ impl Container {
         panic!("container did not become avaialble within ~10 seconds!");
     }
 
-    fn exec_container_schema_dump(&self) -> String {
+    fn exec_dump_schema(&self) -> String {
         convert_schema(&self.container.exec_capture_only_stdout(
             self.container_client_config().to_pg_env(),
             "pg_dump",
@@ -219,15 +313,38 @@ impl Container {
         &self,
         mut action: F,
     ) -> T {
-        let config = self.client_config.to_sqlx_connect_options();
+        self.client_config
+            .with_sqlx_connection(async |connection| action(connection).await)
+            .await
+    }
 
-        let mut connection = sqlx::ConnectOptions::connect(&config).await.unwrap();
+    pub async fn apply_pending_migrations(&self) {
+        self.migration_context().apply_pending().await
+    }
 
-        let result = action(&mut connection).await;
+    pub async fn apply_sql_file(&self, file: &file_buf::FileBuf) {
+        self.apply_sql(&file.read_to_string()).await
+    }
 
-        sqlx::Connection::close(connection).await.unwrap();
+    pub async fn apply_sql_file_git_revision(
+        &self,
+        file: &file_buf::FileBuf,
+        git_revision: &'static str,
+    ) {
+        let sql = cbt::Command::new("git")
+            .argument("show")
+            .argument(format!("{git_revision}:{}", file.to_str()))
+            .capture_only_stdout_string();
 
-        result
+        self.apply_sql(&sql).await
+    }
+
+    pub async fn apply_sql(&self, sql: &str) {
+        self.with_connection(async |connection| {
+            log::debug!("Executing: {}", sql);
+            sqlx::raw_sql(sql).execute(connection).await.unwrap();
+        })
+        .await
     }
 
     fn exec_container_shell(&self) {
@@ -284,6 +401,7 @@ pub mod cli {
         ContainerPsql,
         ContainerSchemaDump,
         ContainerShell,
+        Migration(mmigration::cli::App),
         Psql,
     }
 
@@ -291,28 +409,35 @@ pub mod cli {
         pub async fn run(&self, definition: &Definition) {
             match self {
                 Self::ContainerPsql => definition.with_container(container_psql).await,
-                Self::ContainerSchemaDump => definition.with_container(container_schema_dump).await,
+                Self::ContainerSchemaDump => definition.with_container(container_dump_schema).await,
                 Self::ContainerShell => definition.with_container(container_shell).await,
+                Self::Migration(app) => run_migration(definition, app).await,
                 Self::Psql => definition.with_container(host_psql).await,
             }
         }
     }
 
-    async fn host_psql(db_container: &Container) {
+    async fn host_psql(db_container: &Container<'_>) {
         let _ = std::process::Command::new("psql")
             .envs(db_container.client_config.to_pg_env())
             .status();
     }
 
-    async fn container_schema_dump(db_container: &Container) {
-        db_container.exec_container_schema_dump();
+    async fn run_migration(definition: &Definition, app: &mmigration::cli::App) {
+        definition
+            .with_container(async |container| app.run(container.migration_context()).await)
+            .await
     }
 
-    async fn container_psql(db_container: &Container) {
+    async fn container_dump_schema(db_container: &Container<'_>) {
+        println!("{}", db_container.exec_dump_schema());
+    }
+
+    async fn container_psql(db_container: &Container<'_>) {
         db_container.exec_psql()
     }
 
-    async fn container_shell(db_container: &Container) {
+    async fn container_shell(db_container: &Container<'_>) {
         db_container.exec_container_shell()
     }
 }
