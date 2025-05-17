@@ -1,228 +1,14 @@
 pub mod cli;
+pub mod defined_migrations;
+pub mod types;
+
+pub use defined_migrations::*;
+pub use types::*;
 
 #[derive(Debug)]
 pub struct Config {
     pub migration_dir: std::path::PathBuf,
     pub schema_file: file_buf::FileBuf,
-}
-
-#[derive(Debug)]
-pub struct PendingMigration {
-    index: Index,
-    sql: std::rc::Rc<RawSql>,
-}
-
-impl PendingMigration {
-    pub fn digest(&self) -> [u8; 32] {
-        <sha2::Sha256 as sha2::Digest>::digest(std::rc::Rc::<RawSql>::as_ref(&self.sql)).into()
-    }
-}
-
-pub struct SchemaDump(String);
-
-impl AsRef<[u8]> for SchemaDump {
-    fn as_ref(&self) -> &[u8] {
-        self.0.as_ref()
-    }
-}
-
-impl From<String> for SchemaDump {
-    fn from(value: String) -> Self {
-        Self(value)
-    }
-}
-
-#[derive(Clone, Copy, Debug, Eq, Ord, PartialOrd, PartialEq)]
-pub struct Index(u32);
-
-impl Index {
-    /// Return successor of index
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// # use mmigration::*;
-    ///
-    /// let a: Index = 0_u32.into();
-    /// let b: Index = 1_u32.into();
-    ///
-    /// assert_eq!(a.succ(), b);
-    /// ```
-    pub fn succ(&self) -> Index {
-        Self(self.0.checked_add(1).unwrap())
-    }
-
-    /// Test if index is initial one
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// # use mmigration::*;
-    ///
-    /// let a: Index = 0_u32.into();
-    /// let b: Index = 1_u32.into();
-    ///
-    /// assert_eq!(a.is_initial(), true);
-    /// assert_eq!(b.is_initial(), false);
-    /// ```
-    pub fn is_initial(&self) -> bool {
-        self.0 == 0
-    }
-
-    /// Test if other is successor of self
-    ///
-    /// # Example
-    ///
-    /// ```
-    /// # use mmigration::*;
-    ///
-    /// let a: Index = 0_u32.into();
-    /// let b: Index = 1_u32.into();
-    /// let c: Index = 2_u32.into();
-    ///
-    /// assert_eq!(a.is_succ_of(a), false);
-    /// assert_eq!(a.is_succ_of(b), false);
-    /// assert_eq!(b.is_succ_of(a), true);
-    /// assert_eq!(c.is_succ_of(a), false);
-    /// assert_eq!(c.is_succ_of(b), true);
-    /// ```
-    pub fn is_succ_of(&self, other: Self) -> bool {
-        *self == other.succ()
-    }
-
-    pub fn to_u32(&self) -> u32 {
-        self.0
-    }
-}
-
-impl From<u32> for Index {
-    fn from(value: u32) -> Self {
-        Self(value)
-    }
-}
-
-impl sqlx::Decode<'_, sqlx::Postgres> for Index {
-    fn decode(
-        value: <sqlx::Postgres as sqlx::Database>::ValueRef<'_>,
-    ) -> Result<Index, Box<dyn std::error::Error + 'static + Send + Sync>> {
-        <i64 as sqlx::Decode<sqlx::Postgres>>::decode(value).and_then(|value| {
-            match value.try_into() {
-                Ok(valid) => Ok(Self(valid)),
-                Err(_) => Err("out of u32 range".into()),
-            }
-        })
-    }
-}
-
-impl sqlx::Encode<'_, sqlx::Postgres> for Index {
-    fn encode_by_ref(
-        &self,
-        buf: &mut sqlx::postgres::PgArgumentBuffer,
-    ) -> Result<sqlx::encode::IsNull, sqlx::error::BoxDynError> {
-        <i64 as sqlx::Encode<sqlx::Postgres>>::encode_by_ref(&self.0.into(), buf)
-    }
-}
-
-impl sqlx::Type<sqlx::Postgres> for Index {
-    fn type_info() -> <sqlx::Postgres as sqlx::Database>::TypeInfo {
-        <i64 as sqlx::Type<sqlx::Postgres>>::type_info()
-    }
-}
-
-impl sqlx::postgres::PgHasArrayType for Index {
-    fn array_type_info() -> sqlx::postgres::PgTypeInfo {
-        <i64 as sqlx::postgres::PgHasArrayType>::array_type_info()
-    }
-}
-
-#[derive(Clone, Debug)]
-struct RawSql(String);
-
-impl AsRef<[u8]> for RawSql {
-    fn as_ref(&self) -> &[u8] {
-        self.0.as_ref()
-    }
-}
-
-impl AsRef<str> for RawSql {
-    fn as_ref(&self) -> &str {
-        self.0.as_ref()
-    }
-}
-
-impl From<String> for RawSql {
-    fn from(value: String) -> Self {
-        Self(value)
-    }
-}
-
-#[derive(Debug)]
-struct DefinedMigrations(std::collections::BTreeMap<Index, std::rc::Rc<RawSql>>);
-
-impl DefinedMigrations {
-    fn new() -> Self {
-        DefinedMigrations(std::collections::BTreeMap::new())
-    }
-
-    fn add(&mut self, index: Index, raw_sql: RawSql) {
-        if self.0.insert(index, raw_sql.into()).is_some() {
-            panic!("Migration index: #{index:#?} is duplicated");
-        }
-    }
-
-    fn select_pending(&self, last: Option<Index>) -> Vec<PendingMigration> {
-        match last {
-            None => self.select_initial(),
-            Some(index) => self.select_from(index),
-        }
-    }
-
-    fn select_from(&self, last: Index) -> Vec<PendingMigration> {
-        let pending: Vec<_> = self
-            .0
-            .iter()
-            .filter(|(index, _)| **index > last)
-            .map(|(index, sql)| PendingMigration {
-                index: *index,
-                sql: sql.clone(),
-            })
-            .collect();
-
-        if let Some(migration) = pending.first() {
-            if !migration.index.is_succ_of(last) {
-                panic!(
-                    "Last migration {} needs to be followed by {}, got: {}!",
-                    last.to_u32(),
-                    last.succ().to_u32(),
-                    migration.index.to_u32()
-                )
-            }
-        }
-
-        pending
-    }
-
-    fn select_initial(&self) -> Vec<PendingMigration> {
-        let pending: Vec<_> = self
-            .0
-            .iter()
-            .map(|(index, sql)| PendingMigration {
-                index: *index,
-                sql: sql.clone(),
-            })
-            .collect();
-
-        if let Some(migration) = pending.first() {
-            if !migration.index.is_initial() {
-                panic!(
-                    "Initial migration needs to be indexed at 0, got: {}!",
-                    migration.index.to_u32()
-                );
-            }
-        }
-
-        pending
-    }
 }
 
 pub trait DumpSchema {
@@ -241,8 +27,20 @@ impl<D: DumpSchema> Context<'_, D> {
             .await;
     }
 
-    pub async fn apply_pending(&self) {
-        self.apply_pending_no_schema_dump().await;
+    pub async fn create_new_pending(&self) {
+        let next_index = self
+            .with_inner(async |mut inner| inner.next_index().await)
+            .await;
+
+        let next_path = self.config.migration_dir.join(format!("{next_index}.sql"));
+
+        log::info!("Creating new migration: {}", next_path.display());
+
+        std::fs::write(next_path, format!("// Migration {next_index}")).unwrap();
+    }
+
+    pub async fn dump_schema(&self) {
+        log::info!("Writing schema to: {}", self.config.schema_file.display());
 
         std::fs::write(
             &self.config.schema_file,
@@ -251,17 +49,25 @@ impl<D: DumpSchema> Context<'_, D> {
         .unwrap()
     }
 
+    pub async fn apply_pending(&self) {
+        self.apply_pending_no_schema_dump().await;
+
+        self.dump_schema().await
+    }
+
     pub async fn find_pending_migrations(&self) -> Vec<PendingMigration> {
         self.with_inner(async |mut inner| inner.find_pending_migrations().await)
             .await
     }
 
     async fn with_inner<T, F: AsyncFnMut(Inner) -> T>(&self, mut action: F) -> T {
+        let defined_migrations = DefinedMigrations::load(&self.config.migration_dir);
+
         self.client_config
             .with_sqlx_connection(async |connection| {
                 action(Inner {
-                    config: self.config,
                     connection,
+                    defined_migrations: &defined_migrations,
                 })
                 .await
             })
@@ -270,47 +76,19 @@ impl<D: DumpSchema> Context<'_, D> {
 }
 
 struct Inner<'a> {
-    pub config: &'a Config,
-    pub connection: &'a mut sqlx::postgres::PgConnection,
+    connection: &'a mut sqlx::postgres::PgConnection,
+    defined_migrations: &'a DefinedMigrations,
 }
 
 impl Inner<'_> {
-    fn load_defined_migrations(&self) -> DefinedMigrations {
-        let pattern = regex_lite::Regex::new(r#"\A(?<index>\d+)_[^\.]+\.sql\z"#).unwrap();
-
-        let mut migrations = DefinedMigrations::new();
-
-        let reader = std::fs::read_dir(&self.config.migration_dir).unwrap_or_else(|error| {
-            panic!(
-                "Migration dir: {} not readable: {error}",
-                self.config.migration_dir.display()
-            )
-        });
-
-        for entry in reader {
-            let dir_entry = entry.unwrap();
-
-            if !dir_entry.file_type().unwrap().is_file() {
-                panic!("Migration dir entry: {dir_entry:#?} is not a file!");
-            }
-
-            let path = dir_entry.path();
-
-            let file_name = path.file_name().unwrap().to_str().unwrap();
-
-            match pattern.captures(file_name) {
-                None => panic!("Migration file: {file_name} does not match file pattern"),
-                Some(captures) => {
-                    let index = <u32 as std::str::FromStr>::from_str(&captures["index"])
-                        .unwrap()
-                        .into();
-
-                    migrations.add(index, std::fs::read_to_string(path).unwrap().into())
-                }
-            }
+    async fn next_index(&mut self) -> Index {
+        match self.defined_migrations.next_index() {
+            Some(next_index) => next_index,
+            None => self
+                .find_last_applied_index()
+                .await
+                .unwrap_or(Index::initial()),
         }
-
-        migrations
     }
 
     pub async fn apply_pending(&mut self) {
@@ -321,14 +99,14 @@ impl Inner<'_> {
 
     async fn apply_migration(&mut self, migration: PendingMigration) {
         self.begin_serializable_transaction().await;
-        log::info!("Appying migration: {}", migration.index.to_u32());
+        log::info!("Appying migration: {}", migration.index());
 
         sqlx::query("BEGIN ISOLATION LEVEL SERIALIZABLE")
             .execute(&mut *self.connection)
             .await
             .unwrap();
 
-        sqlx::raw_sql(migration.sql.as_ref().as_ref())
+        sqlx::raw_sql(migration.raw_sql().as_ref())
             .execute(&mut *self.connection)
             .await
             .unwrap();
@@ -346,7 +124,7 @@ impl Inner<'_> {
               )
         "#,
         )
-        .bind(migration.index)
+        .bind(migration.index())
         .bind(migration.digest())
         .execute(&mut *self.connection)
         .await
@@ -354,7 +132,7 @@ impl Inner<'_> {
 
         self.set_applied_migrations_comment(&format!(
             "Last applied migration: {}",
-            migration.index.to_u32()
+            migration.index()
         ))
         .await;
 
@@ -410,10 +188,9 @@ impl Inner<'_> {
     async fn find_pending_migrations(&mut self) -> Vec<PendingMigration> {
         self.create_applied_migrations_table().await;
 
-        let defined_migrations = self.load_defined_migrations();
         let last_applied_index = self.find_last_applied_index().await;
 
-        defined_migrations.select_pending(last_applied_index)
+        self.defined_migrations.select_pending(last_applied_index)
     }
 
     async fn set_applied_migrations_comment(&mut self, comment: &str) {
