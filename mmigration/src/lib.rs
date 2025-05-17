@@ -43,8 +43,8 @@ impl Index {
     /// ```
     /// # use mmigration::*;
     ///
-    /// let a : Index = 0_u32.into();
-    /// let b : Index = 1_u32.into();
+    /// let a: Index = 0_u32.into();
+    /// let b: Index = 1_u32.into();
     ///
     /// assert_eq!(a.succ(), b);
     /// ```
@@ -59,8 +59,8 @@ impl Index {
     /// ```
     /// # use mmigration::*;
     ///
-    /// let a : Index = 0_u32.into();
-    /// let b : Index = 1_u32.into();
+    /// let a: Index = 0_u32.into();
+    /// let b: Index = 1_u32.into();
     ///
     /// assert_eq!(a.is_initial(), true);
     /// assert_eq!(b.is_initial(), false);
@@ -76,9 +76,9 @@ impl Index {
     /// ```
     /// # use mmigration::*;
     ///
-    /// let a : Index = 0_u32.into();
-    /// let b : Index = 1_u32.into();
-    /// let c : Index = 2_u32.into();
+    /// let a: Index = 0_u32.into();
+    /// let b: Index = 1_u32.into();
+    /// let c: Index = 2_u32.into();
     ///
     /// assert_eq!(a.is_succ_of(a), false);
     /// assert_eq!(a.is_succ_of(b), false);
@@ -86,7 +86,6 @@ impl Index {
     /// assert_eq!(c.is_succ_of(a), false);
     /// assert_eq!(c.is_succ_of(b), true);
     /// ```
-    ///
     pub fn is_succ_of(&self, other: Self) -> bool {
         *self == other.succ()
     }
