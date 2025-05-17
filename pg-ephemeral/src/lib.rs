@@ -272,11 +272,11 @@ impl<'a> Container<'a> {
             .as_ref()
             .expect("migration not configured");
 
-        mmigration::Context {
-            client_config: &self.client_config,
-            config: migration_config,
-            dump_schema: DumpSchema { container: self },
-        }
+        mmigration::Context::load(
+            migration_config,
+            &self.client_config,
+            DumpSchema { container: self },
+        )
     }
 
     pub async fn wait_available(&self) {
