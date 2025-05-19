@@ -102,7 +102,8 @@ enum Step {
         file: file_buf::FileBuf,
         git_revision: &'static str,
     },
-    PendingMigrations,
+    ApplyPendingMigrations,
+    ApplyPendingMigrationsNoSchemaDump,
 }
 
 struct DumpSchema<'a> {
@@ -143,7 +144,11 @@ impl Definition {
     }
 
     pub fn apply_pending_migrations(self) -> Self {
-        self.push_step(Step::PendingMigrations)
+        self.push_step(Step::ApplyPendingMigrations)
+    }
+
+    pub fn apply_pending_migrations_no_schema_dump(self) -> Self {
+        self.push_step(Step::ApplyPendingMigrationsNoSchemaDump)
     }
 
     pub fn apply_file_from_git_revision(
@@ -195,7 +200,10 @@ impl Definition {
                     .apply_sql_file_git_revision(file, git_revision)
                     .await
             }
-            Step::PendingMigrations => db_container.apply_pending_migrations().await,
+            Step::ApplyPendingMigrations => db_container.apply_pending_migrations().await,
+            Step::ApplyPendingMigrationsNoSchemaDump => {
+                db_container.apply_pending_migrations_no_schema_dump().await
+            }
         }
     }
 
@@ -320,6 +328,12 @@ impl<'a> Container<'a> {
 
     pub async fn apply_pending_migrations(&self) {
         self.migration_context().apply_pending().await
+    }
+
+    pub async fn apply_pending_migrations_no_schema_dump(&self) {
+        self.migration_context()
+            .apply_pending_no_schema_dump()
+            .await
     }
 
     pub async fn apply_sql_file(&self, file: &file_buf::FileBuf) {
