@@ -6,14 +6,21 @@ pub struct DefinedMigrations(std::collections::BTreeMap<Index, PendingMigration>
 impl DefinedMigrations {
     /// Load migrations from migration dir
     pub fn load(migration_dir: &std::path::Path) -> Self {
-        let pattern = regex_lite::Regex::new(r#"\A(?<index>\d+)_(?<name>[^\.]+)\.sql\z"#).unwrap();
+        let reader = match std::fs::read_dir(migration_dir) {
+            Err(error) => {
+                if error.kind() == std::io::ErrorKind::NotFound {
+                    return DefinedMigrations::new();
+                }
 
-        let reader = std::fs::read_dir(migration_dir).unwrap_or_else(|error| {
-            panic!(
-                "Migration dir: {} not readable: {error}",
-                migration_dir.display()
-            )
-        });
+                panic!(
+                    "Migration dir: {} not readable: {error}",
+                    migration_dir.display()
+                )
+            }
+            Ok(iterator) => iterator,
+        };
+
+        let pattern = regex_lite::Regex::new(r#"\A(?<index>\d+)_(?<name>[^\.]+)\.sql\z"#).unwrap();
 
         let mut tuples = reader
             .map(|entry| {
