@@ -16,7 +16,8 @@ use crate::types::Schema;
 /// -- Dumped from database version 16.9 (Debian 16.9-1.pgdg120+1)
 /// -- Dumped by pg_dump version 16.9 (Debian 16.9-1.pgdg120+1)
 /// REGULAR STATEMENTS;
-/// "#.into();
+/// "#
+/// .into();
 ///
 /// let expected: Schema = r#"
 /// --
@@ -25,7 +26,8 @@ use crate::types::Schema;
 /// -- Dumped from database version 16.9
 /// -- Dumped by pg_dump version 16.9 (Debian 16.9-1.pgdg120+1)
 /// REGULAR STATEMENTS;
-/// "#.into();
+/// "#
+/// .into();
 ///
 /// assert_eq!(expected, remove_version_details(&schema));
 /// ```
@@ -64,7 +66,8 @@ pub fn remove_version_details(schema: &Schema) -> Schema {
 /// -- Dumped from database version 16.9 (Debian 16.9-1.pgdg120+1)
 /// -- Dumped by pg_dump version 16.9 (Debian 16.9-1.pgdg120+1)
 /// REGULAR STATEMENTS;
-/// "#.into();
+/// "#
+/// .into();
 ///
 /// assert_eq!(schema, noop(&schema));
 /// ```
