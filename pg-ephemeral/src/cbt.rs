@@ -189,6 +189,13 @@ impl Definition {
         Self { env, ..self }
     }
 
+    pub fn env_optional(self, key: &str, option: Option<&str>) -> Self {
+        match option {
+            None => self,
+            Some(value) => self.env(key, value),
+        }
+    }
+
     pub fn envs<K: ToString, V: ToString>(self, values: impl IntoIterator<Item = (K, V)>) -> Self {
         let mut env = self.env.clone();
 
