@@ -12,7 +12,7 @@ use transaction::Transaction;
 #[derive(Debug)]
 pub struct Config {
     pub migration_dir: std::path::PathBuf,
-    pub normalize_schema: fn(Schema) -> Schema,
+    pub normalize_schema: fn(&Schema) -> Schema,
     pub schema_file: file_buf::FileBuf,
 }
 
@@ -74,7 +74,7 @@ impl<'a, D: SchemaDump> Context<'a, D> {
 
         std::fs::write(
             &self.config.schema_file,
-            (self.config.normalize_schema)(self.schema_dump.schema_dump().await),
+            (self.config.normalize_schema)(&self.schema_dump.schema_dump().await),
         )
         .unwrap()
     }
