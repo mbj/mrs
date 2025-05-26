@@ -118,9 +118,10 @@ impl mmigration::DumpSchema for DumpSchema<'_> {
 
 #[derive(Debug)]
 pub struct Definition {
-    steps: Vec<Step>,
-    version: Version,
     migration_config: Option<mmigration::Config>,
+    steps: Vec<Step>,
+    superuser: pg_client::Username,
+    version: Version,
 }
 
 impl Definition {
@@ -128,6 +129,7 @@ impl Definition {
         Self {
             migration_config: None,
             steps: vec![],
+            superuser: pg_client::username!("postgres"),
             version,
         }
     }
@@ -139,6 +141,13 @@ impl Definition {
     pub fn migration_config(self, migration_config: mmigration::Config) -> Self {
         Self {
             migration_config: Some(migration_config),
+            ..self
+        }
+    }
+
+    pub fn superuser(self, username: pg_client::Username) -> Self {
+        Self {
+            superuser: username,
             ..self
         }
     }
@@ -244,6 +253,7 @@ impl<'a> Container<'a> {
             .to_cbt_definition()
             .remove()
             .env("POSTGRES_PASSWORD", password.as_ref())
+            .env("POSTGRES_USER", definition.superuser.as_ref())
             .publish(cbt::Publish::from("127.0.0.1::5432/tcp"))
             .run_detached();
 
@@ -263,7 +273,7 @@ impl<'a> Container<'a> {
             port,
             ssl_mode: pg_client::SslMode::Disable,
             ssl_root_cert: None,
-            username: pg_client::username!("postgres"),
+            username: definition.superuser.clone(),
         };
 
         Container {
