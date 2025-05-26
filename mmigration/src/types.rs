@@ -173,15 +173,15 @@ impl PendingMigration {
 }
 
 #[derive(Debug, Eq, PartialEq)]
-pub struct SchemaDump(String);
+pub struct Schema(String);
 
-impl AsRef<[u8]> for SchemaDump {
+impl AsRef<[u8]> for Schema {
     fn as_ref(&self) -> &[u8] {
         self.0.as_ref()
     }
 }
 
-impl From<String> for SchemaDump {
+impl From<String> for Schema {
     fn from(value: String) -> Self {
         Self(value)
     }
