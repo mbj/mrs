@@ -18,6 +18,12 @@ macro_rules! from_str_impl {
                 }
             }
         }
+
+        impl AsRef<str> for $struct {
+            fn as_ref(&self) -> &str {
+                &self.0
+            }
+        }
     };
 }
 
@@ -156,12 +162,6 @@ impl Password {
 impl From<String> for Password {
     fn from(value: String) -> Self {
         Self(value)
-    }
-}
-
-impl AsRef<str> for Password {
-    fn as_ref(&self) -> &str {
-        &self.0
     }
 }
 
