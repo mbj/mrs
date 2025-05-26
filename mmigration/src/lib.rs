@@ -1,5 +1,6 @@
 pub mod cli;
 pub mod defined_migrations;
+pub mod schema;
 pub mod transaction;
 pub mod types;
 
@@ -11,29 +12,30 @@ use transaction::Transaction;
 #[derive(Debug)]
 pub struct Config {
     pub migration_dir: std::path::PathBuf,
+    pub normalize_schema: fn(Schema) -> Schema,
     pub schema_file: file_buf::FileBuf,
 }
 
-pub trait DumpSchema {
-    fn dump_schema(&self) -> impl std::future::Future<Output = SchemaDump> + Send;
+pub trait SchemaDump {
+    fn schema_dump(&self) -> impl std::future::Future<Output = Schema> + Send;
 }
 
-pub struct Context<'a, D: DumpSchema> {
+pub struct Context<'a, D: SchemaDump> {
     client_config: &'a pg_client::Config,
     config: &'a Config,
     defined_migrations: DefinedMigrations,
-    dump_schema: D,
+    schema_dump: D,
 }
 
-impl<'a, D: DumpSchema> Context<'a, D> {
-    pub fn load(config: &'a Config, client_config: &'a pg_client::Config, dump_schema: D) -> Self {
+impl<'a, D: SchemaDump> Context<'a, D> {
+    pub fn load(config: &'a Config, client_config: &'a pg_client::Config, schema_dump: D) -> Self {
         let defined_migrations = DefinedMigrations::load(&config.migration_dir);
 
         Context {
             config,
             client_config,
             defined_migrations,
-            dump_schema,
+            schema_dump,
         }
     }
 
@@ -49,7 +51,7 @@ impl<'a, D: DumpSchema> Context<'a, D> {
     pub async fn apply_pending(&self) {
         self.apply_pending_no_schema_dump().await;
 
-        self.dump_schema().await
+        self.schema_dump().await
     }
 
     pub async fn create_new_pending(&self, name: &MigrationName) {
@@ -67,12 +69,12 @@ impl<'a, D: DumpSchema> Context<'a, D> {
         std::fs::write(next_path, format!("-- Migration {next_index} {name}")).unwrap();
     }
 
-    pub async fn dump_schema(&self) {
+    pub async fn schema_dump(&self) {
         log::info!("Writing schema to: {}", self.config.schema_file.display());
 
         std::fs::write(
             &self.config.schema_file,
-            self.dump_schema.dump_schema().await,
+            (self.config.normalize_schema)(self.schema_dump.schema_dump().await),
         )
         .unwrap()
     }
