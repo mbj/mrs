@@ -106,13 +106,13 @@ enum Step {
     ApplyPendingMigrationsNoSchemaDump,
 }
 
-struct DumpSchema<'a> {
+struct SchemaDump<'a> {
     container: &'a Container<'a>,
 }
 
-impl mmigration::DumpSchema for DumpSchema<'_> {
-    async fn dump_schema(&self) -> mmigration::SchemaDump {
-        self.container.exec_dump_schema().into()
+impl mmigration::SchemaDump for SchemaDump<'_> {
+    async fn schema_dump(&self) -> mmigration::Schema {
+        self.container.exec_schema_dump().into()
     }
 }
 
@@ -216,7 +216,7 @@ impl Definition {
         }
     }
 
-    pub fn dump_schema(
+    pub fn schema_dump(
         &self,
         client_config: &pg_client::Config,
         extra_arguments: &[String],
@@ -283,7 +283,7 @@ impl<'a> Container<'a> {
         }
     }
 
-    fn migration_context(&'a self) -> mmigration::Context<'a, DumpSchema<'a>> {
+    fn migration_context(&'a self) -> mmigration::Context<'a, SchemaDump<'a>> {
         let migration_config = self
             .definition
             .migration_config
@@ -293,7 +293,7 @@ impl<'a> Container<'a> {
         mmigration::Context::load(
             migration_config,
             &self.client_config,
-            DumpSchema { container: self },
+            SchemaDump { container: self },
         )
     }
 
@@ -319,7 +319,7 @@ impl<'a> Container<'a> {
         panic!("container did not become avaialble within ~10 seconds!");
     }
 
-    fn exec_dump_schema(&self) -> String {
+    fn exec_schema_dump(&self) -> String {
         convert_schema(&self.container.exec_capture_only_stdout(
             self.container_client_config().to_pg_env(),
             "pg_dump",
@@ -433,7 +433,7 @@ pub mod cli {
         pub async fn run(&self, definition: &Definition) {
             match self {
                 Self::ContainerPsql => definition.with_container(container_psql).await,
-                Self::ContainerSchemaDump => definition.with_container(container_dump_schema).await,
+                Self::ContainerSchemaDump => definition.with_container(container_schema_dump).await,
                 Self::ContainerShell => definition.with_container(container_shell).await,
                 Self::Migration(app) => run_migration(definition, app).await,
                 Self::Psql => definition.with_container(host_psql).await,
@@ -453,8 +453,8 @@ pub mod cli {
             .await
     }
 
-    async fn container_dump_schema(db_container: &Container<'_>) {
-        println!("{}", db_container.exec_dump_schema());
+    async fn container_schema_dump(db_container: &Container<'_>) {
+        println!("{}", db_container.exec_schema_dump());
     }
 
     async fn container_psql(db_container: &Container<'_>) {

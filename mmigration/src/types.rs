@@ -172,16 +172,28 @@ impl PendingMigration {
     }
 }
 
-#[derive(Debug, Eq, PartialEq)]
-pub struct SchemaDump(String);
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Schema(String);
 
-impl AsRef<[u8]> for SchemaDump {
+impl AsRef<[u8]> for Schema {
     fn as_ref(&self) -> &[u8] {
         self.0.as_ref()
     }
 }
 
-impl From<String> for SchemaDump {
+impl AsRef<str> for Schema {
+    fn as_ref(&self) -> &str {
+        &self.0
+    }
+}
+
+impl From<&str> for Schema {
+    fn from(value: &str) -> Self {
+        value.to_string().into()
+    }
+}
+
+impl From<String> for Schema {
     fn from(value: String) -> Self {
         Self(value)
     }
