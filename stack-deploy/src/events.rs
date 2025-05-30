@@ -219,7 +219,8 @@ impl Poll {
 }
 
 pub(crate) fn print_event(stack_event: &StackEvent) {
-    log::info!(
+    log::log!(
+        log_level(stack_event),
         "{} {} {} {} {}",
         stack_event
             .timestamp
@@ -248,5 +249,46 @@ pub(crate) fn print_event(stack_event: &StackEvent) {
 
     if let Some(ref message) = stack_event.resource_status_reason {
         log::info!("- {}", message)
+    }
+}
+
+fn log_level(stack_event: &StackEvent) -> log::Level {
+    match &stack_event.resource_status {
+        Some(resource_status) => match resource_status {
+            ResourceStatus::CreateComplete => log::Level::Info,
+            ResourceStatus::CreateFailed => log::Level::Error,
+            ResourceStatus::CreateInProgress => log::Level::Info,
+            ResourceStatus::DeleteComplete => log::Level::Info,
+            ResourceStatus::DeleteFailed => log::Level::Error,
+            ResourceStatus::DeleteInProgress => log::Level::Info,
+            ResourceStatus::DeleteSkipped => log::Level::Warn,
+            ResourceStatus::ExportComplete => log::Level::Info,
+            ResourceStatus::ExportFailed => log::Level::Error,
+            ResourceStatus::ExportRollbackComplete => log::Level::Warn,
+            ResourceStatus::ExportRollbackFailed => log::Level::Error,
+            ResourceStatus::ExportRollbackInProgress => log::Level::Warn,
+            ResourceStatus::ImportComplete => log::Level::Info,
+            ResourceStatus::ImportFailed => log::Level::Error,
+            ResourceStatus::ImportRollbackComplete => log::Level::Warn,
+            ResourceStatus::ImportRollbackFailed => log::Level::Error,
+            ResourceStatus::ImportRollbackInProgress => log::Level::Warn,
+            ResourceStatus::RollbackComplete => log::Level::Warn,
+            ResourceStatus::RollbackFailed => log::Level::Error,
+            ResourceStatus::RollbackInProgress => log::Level::Warn,
+            ResourceStatus::UpdateComplete => log::Level::Info,
+            ResourceStatus::UpdateFailed => log::Level::Error,
+            ResourceStatus::UpdateInProgress => log::Level::Info,
+            ResourceStatus::UpdateRollbackComplete => log::Level::Warn,
+            ResourceStatus::UpdateRollbackFailed => log::Level::Error,
+            ResourceStatus::UpdateRollbackInProgress => log::Level::Warn,
+            other => {
+                if other.as_str() == "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS" {
+                    log::Level::Info
+                } else {
+                    log::Level::Warn
+                }
+            }
+        },
+        None => log::Level::Info,
     }
 }
