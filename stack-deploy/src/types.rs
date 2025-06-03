@@ -1,3 +1,5 @@
+const INLINE_TEMPLATE_LIMIT_BYTES: usize = 51200;
+
 #[derive(Clone, Debug, PartialEq)]
 pub struct StackName(pub String);
 pub struct OutputKey(pub String);
@@ -11,6 +13,12 @@ impl std::str::FromStr for StackName {
 
     fn from_str(input: &str) -> Result<StackName, Self::Err> {
         Ok(Self(String::from(input)))
+    }
+}
+
+impl AsRef<str> for StackName {
+    fn as_ref(&self) -> &str {
+        &self.0
     }
 }
 
@@ -502,7 +510,10 @@ impl ParameterMap {
     /// # use stack_deploy::types::*;
     ///
     /// let template = Template::Plain {
-    ///     body: String::from("ununsed"),
+    ///     rendered: TemplateRendered {
+    ///         body: "ununsed".into(),
+    ///         format: TemplateFormat::JSON,
+    ///     },
     ///     parameter_keys: ParameterKeys::from([ParameterKey(String::from("key-a"))]),
     /// };
     ///
@@ -532,8 +543,8 @@ impl ParameterMap {
 #[derive(Debug)]
 pub enum Template {
     Plain {
-        body: String,
         parameter_keys: ParameterKeys,
+        rendered: TemplateRendered,
     },
 }
 
@@ -542,5 +553,92 @@ impl Template {
         match self {
             Self::Plain { parameter_keys, .. } => parameter_keys,
         }
+    }
+}
+
+#[derive(Debug)]
+pub struct TemplateBody(String);
+
+impl AsRef<[u8]> for TemplateBody {
+    fn as_ref(&self) -> &[u8] {
+        self.0.as_bytes()
+    }
+}
+
+impl From<String> for TemplateBody {
+    fn from(value: String) -> Self {
+        Self(value)
+    }
+}
+
+impl From<TemplateBody> for String {
+    fn from(value: TemplateBody) -> Self {
+        value.0
+    }
+}
+
+impl From<&TemplateBody> for String {
+    fn from(value: &TemplateBody) -> Self {
+        value.0.clone()
+    }
+}
+
+impl From<&str> for TemplateBody {
+    fn from(value: &str) -> Self {
+        value.to_string().into()
+    }
+}
+
+impl From<&TemplateBody> for aws_sdk_s3::primitives::ByteStream {
+    fn from(value: &TemplateBody) -> Self {
+        value.0.as_bytes().to_vec().into()
+    }
+}
+
+impl TemplateBody {
+    pub fn needs_upload(&self) -> bool {
+        self.0.len() > INLINE_TEMPLATE_LIMIT_BYTES
+    }
+}
+
+#[derive(Debug)]
+pub enum TemplateFormat {
+    JSON,
+    YAML,
+}
+
+impl TemplateFormat {
+    pub fn file_ext(&self) -> &str {
+        match self {
+            Self::JSON => "json",
+            Self::YAML => "yaml",
+        }
+    }
+}
+
+#[derive(Debug)]
+pub struct TemplateRendered {
+    pub format: TemplateFormat,
+    pub body: TemplateBody,
+}
+
+#[derive(Debug)]
+pub struct TemplateUrl(String);
+
+impl From<&str> for TemplateUrl {
+    fn from(value: &str) -> Self {
+        value.to_string().into()
+    }
+}
+
+impl From<String> for TemplateUrl {
+    fn from(value: String) -> Self {
+        Self(value)
+    }
+}
+
+impl From<TemplateUrl> for String {
+    fn from(value: TemplateUrl) -> Self {
+        value.0
     }
 }

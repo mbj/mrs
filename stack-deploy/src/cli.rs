@@ -1,4 +1,4 @@
-use crate::instance_spec::Registry;
+use crate::instance_spec::{Registry, TemplateUploader};
 
 #[derive(Clone, Debug, clap::Parser)]
 pub struct App {
@@ -7,13 +7,15 @@ pub struct App {
 }
 
 impl App {
-    pub async fn run(
-        &self,
-        cloudformation: &aws_sdk_cloudformation::client::Client,
-        registry: Registry,
-    ) {
-        self.command.run(cloudformation, registry).await
+    pub async fn run(&self, config: &Config<'_>) {
+        self.command.run(config).await
     }
+}
+
+pub struct Config<'a> {
+    pub cloudformation: &'a aws_sdk_cloudformation::client::Client,
+    pub registry: &'a Registry,
+    pub template_uploader: Option<&'a TemplateUploader<'a>>,
 }
 
 #[derive(Clone, Debug, clap::Parser)]
@@ -22,19 +24,14 @@ pub enum Command {
 }
 
 impl Command {
-    pub async fn run(
-        &self,
-        cloudformation: &aws_sdk_cloudformation::client::Client,
-        registry: Registry,
-    ) {
+    pub async fn run(&self, config: &Config<'_>) {
         match self {
-            Self::Instance(command) => command.run(cloudformation, registry).await,
+            Self::Instance(command) => command.run(config).await,
         }
     }
 }
 
 mod instance {
-    use crate::instance_spec::Registry;
     use crate::types::*;
 
     #[derive(Clone, Debug, clap::Parser)]
@@ -44,12 +41,8 @@ mod instance {
     }
 
     impl App {
-        pub async fn run(
-            &self,
-            cloudformation: &aws_sdk_cloudformation::client::Client,
-            registry: Registry,
-        ) {
-            self.command.run(cloudformation, registry).await
+        pub async fn run(&self, config: &super::Config<'_>) {
+            self.command.run(config).await
         }
     }
 
@@ -84,45 +77,36 @@ mod instance {
     }
 
     impl Command {
-        pub async fn run(
-            &self,
-            cloudformation: &aws_sdk_cloudformation::client::Client,
-            registry: Registry,
-        ) {
+        pub async fn run(&self, config: &super::Config<'_>) {
+            let fetch_context = |name| {
+                config
+                    .registry
+                    .find(name)
+                    .expect("registered instance spec")
+                    .context(config.cloudformation, config.template_uploader)
+            };
+
             match self {
-                Self::Delete { name } => {
-                    registry
-                        .find(name)
-                        .expect("registered instance spec")
-                        .delete(cloudformation)
-                        .await
-                }
-                Self::List => registry
+                Self::Delete { name } => fetch_context(name).delete().await,
+                Self::List => config
+                    .registry
                     .0
-                    .into_iter()
+                    .iter()
                     .for_each(|instance_spec| println!("{}", instance_spec.stack_name.0)),
                 Self::Sync { name, parameters } => {
                     let parameter_map = ParameterMap::parse(parameters).unwrap();
 
-                    registry
-                        .find(name)
-                        .expect("registered instance spec")
-                        .sync(cloudformation, &parameter_map)
-                        .await
+                    fetch_context(name).sync(&parameter_map).await
                 }
                 Self::Update { name, parameters } => {
                     let parameter_map = ParameterMap::parse(parameters).unwrap();
 
-                    registry
-                        .find(name)
-                        .expect("registered instance spec")
-                        .update(cloudformation, &parameter_map)
-                        .await
+                    fetch_context(name).update(&parameter_map).await
                 }
                 Self::Watch { name } => {
                     crate::instance_spec::InstanceSpec::watch(
-                        cloudformation,
-                        crate::stack::load_stack_id(cloudformation, name).await,
+                        config.cloudformation,
+                        crate::stack::load_stack_id(config.cloudformation, name).await,
                     )
                     .await
                 }
