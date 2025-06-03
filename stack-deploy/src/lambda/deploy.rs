@@ -1,4 +1,4 @@
-use crate::instance_spec::InstanceSpec;
+use crate::instance_spec::{InstanceSpec, TemplateUploader};
 use crate::types::{ParameterKey, ParameterMap, ParameterValue};
 use sha2::Digest;
 
@@ -205,18 +205,17 @@ impl Target {
         s3_bucket_name: &S3BucketName,
         instance_spec: &InstanceSpec,
         parameter_key: &ParameterKey,
+        template_uploader: &Option<TemplateUploader<'_>>,
         zip_file: ZipFile,
     ) {
         let parameter_value = zip_file.upload(s3, s3_bucket_name).await;
 
         instance_spec
-            .parameter_update(
-                cloudformation,
-                &ParameterMap(std::collections::BTreeMap::from([(
-                    parameter_key.clone(),
-                    parameter_value,
-                )])),
-            )
+            .context(cloudformation, template_uploader.as_ref())
+            .parameter_update(&ParameterMap(std::collections::BTreeMap::from([(
+                parameter_key.clone(),
+                parameter_value,
+            )])))
             .await;
     }
 
@@ -226,24 +225,23 @@ impl Target {
         s3_bucket_name: &S3BucketName,
         instance_spec: &InstanceSpec,
         parameter_key: &ParameterKey,
+        template_uploader: &Option<TemplateUploader<'_>>,
         zip_file: ZipFile,
     ) {
         let parameter_value = zip_file.upload(s3, s3_bucket_name).await;
 
         instance_spec
-            .update(
-                cloudformation,
-                &ParameterMap(std::collections::BTreeMap::from([(
-                    parameter_key.clone(),
-                    parameter_value,
-                )])),
-            )
+            .context(cloudformation, template_uploader.as_ref())
+            .update(&ParameterMap(std::collections::BTreeMap::from([(
+                parameter_key.clone(),
+                parameter_value,
+            )])))
             .await;
     }
 }
 
 pub mod cli {
-    use crate::instance_spec::Registry;
+    use crate::instance_spec::{Registry, TemplateUploader};
     use crate::lambda::deploy::S3BucketSource;
     use crate::types::{ParameterKey, ParameterMap, ParameterValue, StackName};
 
@@ -266,6 +264,7 @@ pub mod cli {
         pub s3: &'a aws_sdk_s3::client::Client,
         pub s3_bucket_source: S3BucketSource,
         pub target: crate::lambda::deploy::Target,
+        pub template_uploader: &'a Option<TemplateUploader<'a>>,
     }
 
     impl Config<'_> {
@@ -296,13 +295,11 @@ pub mod cli {
             let parameter_value = self.upload().await;
 
             instance_spec
-                .sync(
-                    self.cloudformation,
-                    &ParameterMap(std::collections::BTreeMap::from([(
-                        self.parameter_key.clone(),
-                        parameter_value,
-                    )])),
-                )
+                .context(self.cloudformation, self.template_uploader.as_ref())
+                .sync(&ParameterMap(std::collections::BTreeMap::from([(
+                    self.parameter_key.clone(),
+                    parameter_value,
+                )])))
                 .await
         }
 
@@ -315,13 +312,11 @@ pub mod cli {
             let parameter_value = self.upload().await;
 
             instance_spec
-                .parameter_update(
-                    self.cloudformation,
-                    &ParameterMap(std::collections::BTreeMap::from([(
-                        self.parameter_key.clone(),
-                        parameter_value,
-                    )])),
-                )
+                .context(self.cloudformation, self.template_uploader.as_ref())
+                .parameter_update(&ParameterMap(std::collections::BTreeMap::from([(
+                    self.parameter_key.clone(),
+                    parameter_value,
+                )])))
                 .await
         }
 
