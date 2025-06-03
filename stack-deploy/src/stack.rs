@@ -53,6 +53,8 @@ pub async fn read_stack_output<T: StackIdentifier>(
     stack_identifier: &T,
     output_key: &OutputKey,
 ) -> String {
+    log::info!("Reading stack output, stack: {stack_identifier} output: {output_key}");
+
     load_stack(cloudformation, stack_identifier)
         .await
         .outputs()
