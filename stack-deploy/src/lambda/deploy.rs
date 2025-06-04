@@ -264,7 +264,7 @@ pub mod cli {
         pub s3: &'a aws_sdk_s3::client::Client,
         pub s3_bucket_source: S3BucketSource,
         pub target: crate::lambda::deploy::Target,
-        pub template_uploader: &'a Option<TemplateUploader<'a>>,
+        pub template_uploader: Option<&'a TemplateUploader<'a>>,
     }
 
     impl Config<'_> {
@@ -295,7 +295,7 @@ pub mod cli {
             let parameter_value = self.upload().await;
 
             instance_spec
-                .context(self.cloudformation, self.template_uploader.as_ref())
+                .context(self.cloudformation, self.template_uploader)
                 .sync(&ParameterMap(std::collections::BTreeMap::from([(
                     self.parameter_key.clone(),
                     parameter_value,
@@ -312,7 +312,7 @@ pub mod cli {
             let parameter_value = self.upload().await;
 
             instance_spec
-                .context(self.cloudformation, self.template_uploader.as_ref())
+                .context(self.cloudformation, self.template_uploader)
                 .parameter_update(&ParameterMap(std::collections::BTreeMap::from([(
                     self.parameter_key.clone(),
                     parameter_value,
