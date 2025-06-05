@@ -23,8 +23,9 @@ impl Poll {
     pub(crate) fn wait_for_remote_operation(
         remote_operation: crate::instance_spec::RemoteOperation,
     ) -> Poll {
-        fn is_stack_resource_type(stack_event: &StackEvent) -> bool {
+        fn is_root_stack_resource_event(stack_event: &StackEvent) -> bool {
             stack_event.resource_type.as_deref() == Some("AWS::CloudFormation::Stack")
+                && stack_event.stack_id == stack_event.physical_resource_id
         }
 
         fn is_known_unknown(value: &str) -> bool {
@@ -37,7 +38,7 @@ impl Poll {
         }
 
         fn is_initial(stack_event: &StackEvent) -> bool {
-            if is_stack_resource_type(stack_event) {
+            if is_root_stack_resource_event(stack_event) {
                 match &stack_event.resource_status.as_ref().unwrap() {
                     ResourceStatus::CreateComplete => false,
                     ResourceStatus::DeleteComplete => false,
@@ -57,7 +58,7 @@ impl Poll {
         }
 
         fn is_final(stack_event: &StackEvent) -> bool {
-            if is_stack_resource_type(stack_event) {
+            if is_root_stack_resource_event(stack_event) {
                 match &stack_event.resource_status.as_ref().unwrap() {
                     ResourceStatus::CreateComplete => true,
                     ResourceStatus::DeleteComplete => true,
