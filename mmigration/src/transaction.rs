@@ -1,5 +1,3 @@
-pub(crate) struct Transaction<'a>(&'a mut sqlx::postgres::PgConnection);
-
 use crate::types::*;
 
 pub enum AppliedMigrationsComment {
@@ -65,20 +63,48 @@ impl std::str::FromStr for AppliedMigrationsComment {
     }
 }
 
+pub(crate) struct Transaction<'a> {
+    connection: &'a mut sqlx::postgres::PgConnection,
+    qualified_table_identifier: &'a str,
+    qualified_table_name: &'a crate::QualifiedTableName,
+}
+
 impl Transaction<'_> {
     pub(crate) async fn with_transaction<T, F: AsyncFnMut(&mut Transaction) -> T>(
         client_config: &pg_client::Config,
+        qualified_table_name: &crate::QualifiedTableName,
         mut action: F,
     ) -> T {
         client_config
             .with_sqlx_connection(async |connection| {
+                let qualified_table_identifier =
+                    Self::read_qualified_table_identifier(&mut *connection, qualified_table_name)
+                        .await;
                 Self::begin_serializable_transaction(&mut *connection).await;
-                let mut transaction = Transaction(&mut *connection);
+                let mut transaction = Transaction {
+                    connection: &mut *connection,
+                    qualified_table_identifier: &qualified_table_identifier,
+                    qualified_table_name,
+                };
                 let result = action(&mut transaction).await;
                 Self::commit_transaction(&mut *connection).await;
                 result
             })
             .await
+    }
+
+    async fn read_qualified_table_identifier(
+        connection: &mut sqlx::postgres::PgConnection,
+        qualified_table_name: &crate::QualifiedTableName,
+    ) -> String {
+        let row = sqlx::query(r#"SELECT format('%I.%I', $1, $2) table_identifier"#)
+            .bind(&qualified_table_name.schema_name)
+            .bind(&qualified_table_name.table_name)
+            .fetch_one(&mut *connection)
+            .await
+            .unwrap();
+
+        sqlx::Row::get(&row, "table_identifier")
     }
 
     pub(crate) async fn find_last_applied_index(&mut self) -> Option<Index> {
@@ -95,29 +121,30 @@ impl Transaction<'_> {
         log::info!("Appying migration: {}", pending_migration.index);
 
         sqlx::raw_sql(pending_migration.raw_sql.as_ref())
-            .execute(&mut *self.0)
+            .execute(&mut *self.connection)
             .await
             .unwrap();
 
-        sqlx::query(
+        sqlx::query(&format!(
             r#"
-            INSERT INTO
-              public.applied_migrations
-              ( index
-              , digest
-              , name
-              )
-            VALUES
-              ( $1
-              , $2
-              , $3
-              )
-        "#,
-        )
+                INSERT INTO
+                  {}
+                  ( index
+                  , digest
+                  , name
+                  )
+                VALUES
+                  ( $1
+                  , $2
+                  , $3
+                  )
+            "#,
+            self.qualified_table_identifier
+        ))
         .bind(pending_migration.index)
         .bind(pending_migration.digest())
         .bind(&pending_migration.name)
-        .execute(&mut *self.0)
+        .execute(&mut *self.connection)
         .await
         .unwrap();
 
@@ -130,33 +157,34 @@ impl Transaction<'_> {
     async fn set_applied_migrations_comment(&mut self, comment: AppliedMigrationsComment) {
         // we use a termporary function to generate the SQL string literal for the comment safely PG
         // server side. PG does not support binds in place the string literal.
-        sqlx::raw_sql(
+        sqlx::raw_sql(&format!(
             r#"
-            CREATE FUNCTION
-              pg_temp.set_applied_migrations_comment(arg_comment text)
-            RETURNS
-              void
-            LANGUAGE
-              plpgsql
-            AS $$
-              BEGIN
-                EXECUTE format('COMMENT ON TABLE public.applied_migrations IS %L', arg_comment);
-              END;
-            $$
-        "#,
-        )
-        .execute(&mut *self.0)
+                    CREATE FUNCTION
+                      pg_temp.set_applied_migrations_comment(arg_comment text)
+                    RETURNS
+                      void
+                    LANGUAGE
+                      plpgsql
+                    AS $$
+                      BEGIN
+                        EXECUTE format('COMMENT ON TABLE {} IS %L', arg_comment);
+                      END;
+                    $$
+                "#,
+            self.qualified_table_identifier
+        ))
+        .execute(&mut *self.connection)
         .await
         .unwrap();
 
         sqlx::query("SELECT pg_temp.set_applied_migrations_comment($1)")
             .bind(comment.render())
-            .execute(&mut *self.0)
+            .execute(&mut *self.connection)
             .await
             .unwrap();
 
         sqlx::raw_sql("DROP FUNCTION pg_temp.set_applied_migrations_comment")
-            .execute(&mut *self.0)
+            .execute(&mut *self.connection)
             .await
             .unwrap();
     }
@@ -166,20 +194,23 @@ impl Transaction<'_> {
             log::info!("Applied migrations table does not exist, creating it!");
 
             sqlx::query(
-                r#"
-                CREATE TABLE
-                  public.applied_migrations
-                  ( index int8                    PRIMARY KEY
-                  , applied_by text               NOT NULL DEFAULT current_role
-                  , digest bytea                  NOT NULL CHECK (octet_length(digest) = 32)
-                  , elapsed interval              NOT NULL DEFAULT (clock_timestamp() - transaction_timestamp())
-                  , name text                     NOT NULL CHECK (char_length(name) BETWEEN 1 AND 128)
-                  , transaction_id bigint         NOT NULL DEFAULT txid_current()
-                  , transaction_start timestamptz NOT NULL DEFAULT transaction_timestamp()
-                  )
-                "#,
+                &format!(
+                    r#"
+                    CREATE TABLE
+                      {}
+                      ( index int8                    PRIMARY KEY
+                      , applied_by text               NOT NULL DEFAULT current_role
+                      , digest bytea                  NOT NULL CHECK (octet_length(digest) = 32)
+                      , elapsed interval              NOT NULL DEFAULT (clock_timestamp() - transaction_timestamp())
+                      , name text                     NOT NULL CHECK (char_length(name) BETWEEN 1 AND 128)
+                      , transaction_id bigint         NOT NULL DEFAULT txid_current()
+                      , transaction_start timestamptz NOT NULL DEFAULT transaction_timestamp()
+                      )
+                    "#,
+                    self.qualified_table_identifier
+                )
             )
-            .execute(&mut *self.0)
+            .execute(&mut *self.connection)
             .await
             .unwrap();
 
@@ -197,11 +228,13 @@ impl Transaction<'_> {
                 FROM
                   information_schema.tables
                 WHERE
-                  (table_schema, table_name) = ('public', 'applied_migrations')
+                  (table_schema, table_name) = ($1, $2)
              )
         "#,
         )
-        .fetch_one(&mut *self.0)
+        .bind(&self.qualified_table_name.schema_name)
+        .bind(&self.qualified_table_name.table_name)
+        .fetch_one(&mut *self.connection)
         .await
         .unwrap();
 
@@ -209,7 +242,7 @@ impl Transaction<'_> {
     }
 
     async fn read_applied_migrations_comment(&mut self) -> AppliedMigrationsComment {
-        let row = sqlx::raw_sql(
+        let row = sqlx::query(
             r#"
             SELECT
               description
@@ -222,13 +255,15 @@ impl Transaction<'_> {
             WHERE
               relkind = 'r'
             AND
-              relname = 'applied_migrations'
+              relnamespace = (SELECT oid FROM pg_namespace WHERE nspname = $1)
             AND
-              relnamespace = (SELECT oid FROM pg_namespace WHERE nspname = 'public')
+              relname = $2
             ;
         "#,
         )
-        .fetch_one(&mut *self.0)
+        .bind(&self.qualified_table_name.schema_name)
+        .bind(&self.qualified_table_name.table_name)
+        .fetch_one(&mut *self.connection)
         .await
         .unwrap();
 

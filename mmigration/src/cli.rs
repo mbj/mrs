@@ -18,7 +18,7 @@ pub enum Command {
     ApplyPendingNoSchemaDump,
     ListPending,
     NewPending {
-        #[arg(long = "name")]
+        #[arg(long)]
         name: MigrationName,
     },
     SchemaDump,
