@@ -10,10 +10,17 @@ pub use types::*;
 use transaction::Transaction;
 
 #[derive(Debug)]
+pub struct QualifiedTableName {
+    pub schema_name: String,
+    pub table_name: String,
+}
+
+#[derive(Debug)]
 pub struct Config {
     pub migration_dir: std::path::PathBuf,
     pub normalize_schema: fn(&Schema) -> Schema,
     pub schema_file: file_buf::FileBuf,
+    pub qualified_table_name: QualifiedTableName,
 }
 
 pub trait SchemaDump {
@@ -87,9 +94,11 @@ impl<'a, D: SchemaDump> Context<'a, D> {
     }
 
     async fn with_transaction<T, F: AsyncFnMut(&mut Transaction) -> T>(&self, mut action: F) -> T {
-        Transaction::with_transaction(self.client_config, async |transaction| {
-            action(transaction).await
-        })
+        Transaction::with_transaction(
+            self.client_config,
+            &self.config.qualified_table_name,
+            async |transaction| action(transaction).await,
+        )
         .await
     }
 
