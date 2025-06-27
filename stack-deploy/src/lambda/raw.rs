@@ -42,7 +42,7 @@ impl OutputFormat {
     }
 
     fn print_raw(body: aws_sdk_lambda::primitives::Blob) {
-        println!("{:#?}", body)
+        println!("{body:#?}")
     }
 
     fn print_json(body: aws_sdk_lambda::primitives::Blob) {
@@ -82,10 +82,10 @@ pub fn decode_log(log_result: Option<String>) -> String {
         || String::from("Log field empty!"),
         |result| {
             base64::Engine::decode(&base64::engine::general_purpose::STANDARD, result).map_or_else(
-                |error| format!("Log base64 decode failed!: {:#?}", error),
+                |error| format!("Log base64 decode failed!: {error:#?}"),
                 |bytes| {
                     String::from_utf8(bytes)
-                        .unwrap_or_else(|error| format!("Log utf8 decode failed!: {:#?}", error))
+                        .unwrap_or_else(|error| format!("Log utf8 decode failed!: {error:#?}"))
                 },
             )
         },
