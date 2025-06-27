@@ -33,7 +33,7 @@ impl Poll {
                 // AWS boto misses these cases for nearly a decade!
                 "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS" => false,
                 "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS" => false,
-                _other => panic!("Unexpected resource status: {:#?}", value),
+                _other => panic!("Unexpected resource status: {value:#?}"),
             }
         }
 
@@ -249,7 +249,7 @@ pub(crate) fn print_event(stack_event: &StackEvent) {
     );
 
     if let Some(ref message) = stack_event.resource_status_reason {
-        log::info!("- {}", message)
+        log::info!("- {message}")
     }
 }
 

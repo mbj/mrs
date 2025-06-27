@@ -33,7 +33,7 @@ pub async fn load_stack<T: StackIdentifier>(
 ) -> aws_sdk_cloudformation::types::Stack {
     try_load_stack(cloudformation, stack_identifier)
         .await
-        .unwrap_or_else(|| panic!("stack: {:#?} does not exist!", stack_identifier))
+        .unwrap_or_else(|| panic!("stack: {stack_identifier:#?} does not exist!"))
 }
 
 pub(crate) async fn load_stack_id(
