@@ -19,7 +19,7 @@ impl std::fmt::Display for Major {
             Self::R18 => "18",
         };
 
-        write!(formatter, "{}", value)
+        write!(formatter, "{value}")
     }
 }
 
@@ -365,7 +365,7 @@ impl<'a> Container<'a> {
 
     pub async fn apply_sql(&self, sql: &str) {
         self.with_connection(async |connection| {
-            log::debug!("Executing: {}", sql);
+            log::debug!("Executing: {sql}");
             sqlx::raw_sql(sql).execute(connection).await.unwrap();
         })
         .await
