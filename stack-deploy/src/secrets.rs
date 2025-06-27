@@ -160,7 +160,7 @@ pub mod cli {
 
     fn list<T: SecretType>() {
         for secret in T::iter() {
-            println!("{}", secret)
+            println!("{secret}")
         }
     }
 
