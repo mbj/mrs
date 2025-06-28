@@ -1,0 +1,14 @@
+[package]
+edition.workspace = true
+name = "stratosphere"
+version = "0.1.0"
+
+[dependencies]
+serde = { version = "1.0.218", features = ["derive"] }
+serde_json = "1.0.139"
+serde_path_to_error = "0.1.17"
+stratosphere-generator = { version = "0.0.1", path = "../stratosphere-generator" }
+strum = { version = "0.27.1", features = ["derive"] }
+
+[build-dependencies]
+stratosphere-resource-specification = { version = "0.0.1", path = "../stratosphere-resource-specification" }

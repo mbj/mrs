@@ -1,5 +1,16 @@
 [workspace]
-members = [ "file-buf", "mlambda", "mmigration", "pg-client", "pg-ephemeral", "stack-deploy"]
+members = [
+  "file-buf",
+  "mlambda",
+  "mmigration",
+  "pg-client",
+  "pg-ephemeral",
+  "stack-deploy",
+  "stratosphere",
+  "stratosphere-generator",
+  "stratosphere-resource-specification"
+]
+
 resolver = "3"
 
 [workspace.package]
