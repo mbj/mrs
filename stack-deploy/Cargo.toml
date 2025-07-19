@@ -4,11 +4,11 @@ name = "stack-deploy"
 version = "0.0.1"
 
 [dependencies]
-aws-config = "1.6.3"
-aws-sdk-cloudformation = "1.78.0"
-aws-sdk-lambda = "1.82.0"
-aws-sdk-s3 = "1.90.0"
-aws-sdk-secretsmanager = "1.75.0"
+aws-config = { version = "1", default-features = false }
+aws-sdk-cloudformation = { version = "1", default-features = false }
+aws-sdk-lambda = { version = "1", default-features = false }
+aws-sdk-s3 = { version = "1", default-features = false }
+aws-sdk-secretsmanager = { version = "1", default-features = false }
 base64 = "0.22.1"
 clap = { version = "4.5.39", features = ["derive"] }
 file-buf = { version = "0.0.1", path = "../file-buf" }
