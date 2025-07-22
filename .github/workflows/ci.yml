@@ -16,7 +16,7 @@ jobs:
           cache: meta
         - command: cargo test --doc
           cache: build
-        - command: cargo test --lib
+        - command: cargo test --all-targets
           cache: build
         os:
         - cargo_build_target: aarch64-apple-darwin
