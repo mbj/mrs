@@ -33,7 +33,7 @@ impl Command {
         self
     }
 
-    pub fn capture_only_stdout(mut self) -> Vec<u8> {
+    pub fn capture_only_stdout_result(mut self) -> Result<Vec<u8>, std::io::Error> {
         log::debug!("{:#?}", self.inner);
 
         // Command::output sadly also captures stderr which we do not want in this case.
@@ -47,12 +47,18 @@ impl Command {
 
                 let status = child.wait().unwrap();
 
-                assert!(status.success());
+                if !status.success() {
+                    panic!("Command exited nonzero unexpected: {status:#?}")
+                }
 
-                buf
+                Ok(buf)
             }
-            Err(error) => panic!("Failed to run container command: {error:#?}"),
+            Err(error) => Err(error),
         }
+    }
+
+    pub fn capture_only_stdout(self) -> Vec<u8> {
+        self.capture_only_stdout_result().unwrap()
     }
 
     pub fn capture_only_stdout_string(self) -> String {
@@ -150,8 +156,71 @@ impl Entrypoint {
     }
 }
 
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+pub enum Backend {
+    Docker,
+    Podman,
+}
+
+impl Backend {
+    pub fn command(&self) -> Command {
+        match self {
+            Self::Docker => Self::docker_command(),
+            Self::Podman => Self::podman_command(),
+        }
+    }
+
+    fn docker_command() -> Command {
+        Command::new("docker")
+    }
+
+    fn podman_command() -> Command {
+        Command::new("podman")
+    }
+
+    pub fn autodetect() -> Backend {
+        match std::env::var("CBT_BACKEND") {
+            Err(std::env::VarError::NotPresent) => Self::autodetect_present_tool(),
+            Err(std::env::VarError::NotUnicode(_)) => {
+                panic!("CBT_BACKEND env variable exist but is not unicode!")
+            }
+            Ok(value) => Self::autodetect_env_value(&value),
+        }
+    }
+
+    fn autodetect_env_value(value: &str) -> Self {
+        if value == "docker" {
+            Self::Docker
+        } else if value == "podman" {
+            Self::Podman
+        } else {
+            panic!("CBT_BACKEND env exists with unsupported value: {value}")
+        }
+    }
+
+    fn autodetect_present_tool() -> Self {
+        fn attempt(backend: Backend) -> Option<Backend> {
+            match backend
+                .command()
+                .argument("--version")
+                .capture_only_stdout_result()
+            {
+                Err(_) => None,
+                Ok(_) => Some(backend),
+            }
+        }
+
+        match attempt(Self::Podman) {
+            Some(backend) => Some(backend),
+            None => attempt(Self::Docker),
+        }
+        .expect("Could not autodetect CBT backend tool")
+    }
+}
+
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Definition {
+    backend: Backend,
     detach: Option<Detach>,
     entrypoint: Option<Entrypoint>,
     env: std::collections::BTreeMap<String, String>,
@@ -162,8 +231,9 @@ pub struct Definition {
 }
 
 impl Definition {
-    pub fn new(image: Image) -> Definition {
+    pub fn new(backend: Backend, image: Image) -> Definition {
         Definition {
+            backend,
             detach: None,
             entrypoint: None,
             env: std::collections::BTreeMap::new(),
@@ -172,6 +242,10 @@ impl Definition {
             publish: vec![],
             remove: None,
         }
+    }
+
+    pub fn backend(self, backend: Backend) -> Self {
+        Self { backend, ..self }
     }
 
     pub fn entrypoint(self, command: String, arguments: Vec<String>) -> Self {
@@ -260,10 +334,11 @@ impl Definition {
         Self { mounts, ..self }
     }
 
-    pub fn run_detached(self) -> Container {
-        let stdout = self.detach().run_output();
+    pub fn run_detached(&self) -> Container {
+        let stdout = self.clone().detach().run_output();
 
         Container {
+            backend: self.backend,
             id: ContainerId::try_from(strip_nl_end(&stdout)).unwrap(),
             stopped: false,
         }
@@ -274,7 +349,8 @@ impl Definition {
     }
 
     fn run_output(&self) -> Vec<u8> {
-        Command::new("podman")
+        self.backend
+            .command()
             .argument("run")
             .optional_argument(self.detach.as_ref().map(|_| "--detach"))
             .optional_argument(self.remove.as_ref().map(|_| "--rm"))
@@ -336,13 +412,14 @@ impl AsRef<std::ffi::OsStr> for ContainerId {
 
 #[derive(Debug)]
 pub struct Container {
+    backend: Backend,
     id: ContainerId,
     stopped: bool,
 }
 
 impl Container {
     pub fn stop(&mut self) {
-        Command::new("podman")
+        self.backend_command()
             .arguments(["container", "stop"])
             .argument(&self.id)
             .capture_only_stdout();
@@ -356,7 +433,7 @@ impl Container {
         executable: T,
         arguments: impl IntoIterator<Item = T>,
     ) -> Vec<u8> {
-        Command::new("podman")
+        self.backend_command()
             .argument("exec")
             .arguments(
                 environment
@@ -375,7 +452,8 @@ impl Container {
         executable: T,
         arguments: impl IntoIterator<Item = T>,
     ) {
-        let _status = Command::new("podman")
+        let _status = self
+            .backend_command()
             .argument("exec")
             .argument("--tty")
             .argument("--interactive")
@@ -391,7 +469,8 @@ impl Container {
     }
 
     pub fn inspect(&self) -> serde_json::Value {
-        let stdout = Command::new("podman")
+        let stdout = self
+            .backend_command()
             .argument("inspect")
             .argument(&self.id)
             .capture_only_stdout();
@@ -400,7 +479,8 @@ impl Container {
     }
 
     pub fn inspect_format(&self, format: &str) -> String {
-        let bytes = Command::new("podman")
+        let bytes = self
+            .backend_command()
             .argument("inspect")
             .argument("--format")
             .argument(format)
@@ -410,6 +490,10 @@ impl Container {
         std::str::from_utf8(strip_nl_end(&bytes))
             .expect("invalid utf8")
             .to_string()
+    }
+
+    fn backend_command(&self) -> Command {
+        self.backend.command()
     }
 }
 

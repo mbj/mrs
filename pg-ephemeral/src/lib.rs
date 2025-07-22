@@ -118,6 +118,7 @@ impl mmigration::SchemaDump for SchemaDump<'_> {
 
 #[derive(Debug)]
 pub struct Definition {
+    cbt_backend: crate::cbt::Backend,
     migration_config: Option<mmigration::Config>,
     steps: Vec<Step>,
     superuser: pg_client::Username,
@@ -127,6 +128,7 @@ pub struct Definition {
 impl Definition {
     pub fn new(version: Version) -> Self {
         Self {
+            cbt_backend: crate::cbt::Backend::autodetect(),
             migration_config: None,
             steps: vec![],
             superuser: pg_client::username!("postgres"),
@@ -182,7 +184,7 @@ impl Definition {
             self.version
         ));
 
-        cbt::Definition::new(image)
+        cbt::Definition::new(self.cbt_backend, image)
     }
 
     pub async fn with_container<T>(&self, mut action: impl AsyncFnMut(&Container) -> T) -> T {
