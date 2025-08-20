@@ -4,14 +4,14 @@ version = "0.0.1"
 edition.workspace = true
 
 [dependencies]
-clap = { version = "4.5.39", features = ["derive"] }
-file-buf = { version = "0.0.1", path = "../file-buf" }
-log = "0.4.27"
-mmigration = { version = "0.1.0", path = "../mmigration" }
-pg-client = { version = "0.0.1", path = "../pg-client" }
-rand = "0.9.1"
-serde_json = "1.0.140"
-sqlx = { git = "https://github.com/mbj/sqlx", branch = "mbj/fork", features = ["postgres", "runtime-tokio"] }
+clap = { workspace = true }
+file-buf = { workspace = true }
+log = { workspace = true }
+mmigration = { workspace = true }
+pg-client = { workspace = true }
+rand = { workspace = true }
+serde_json = { workspace = true }
+sqlx = { workspace = true }
 
 [dev-dependencies]
 tokio = { version = "1", features = ["full"] }

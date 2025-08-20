@@ -114,12 +114,47 @@ impl Port {
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
+pub struct ApplicationName(String);
+
+from_str_impl!(ApplicationName);
+
+#[macro_export]
+macro_rules! application_name {
+    ($string: literal) => {
+        <pg_client::ApplicationName as std::str::FromStr>::from_str($string).unwrap()
+    };
+}
+
+impl ApplicationName {
+    const MAX_LENGTH: usize = 63;
+
+    fn as_str(&self) -> &str {
+        &self.0
+    }
+
+    fn to_pg_env_value(&self) -> String {
+        self.0.clone()
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Database(String);
 
 from_str_impl!(Database);
 
+#[macro_export]
+macro_rules! database {
+    ($string: literal) => {
+        <pg_client::Database as std::str::FromStr>::from_str($string).unwrap()
+    };
+}
+
 impl Database {
     const MAX_LENGTH: usize = 63;
+
+    fn as_str(&self) -> &str {
+        &self.0
+    }
 
     fn to_pg_env_value(&self) -> String {
         self.0.clone()
@@ -144,6 +179,10 @@ impl Username {
     fn to_pg_env_value(&self) -> String {
         self.0.clone()
     }
+
+    fn as_str(&self) -> &str {
+        &self.0
+    }
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -157,6 +196,10 @@ impl Password {
     fn to_pg_env_value(&self) -> String {
         self.0.clone()
     }
+
+    fn as_str(&self) -> &str {
+        &self.0
+    }
 }
 
 impl From<String> for Password {
@@ -165,7 +208,45 @@ impl From<String> for Password {
     }
 }
 
-pub type SslMode = sqlx::postgres::PgSslMode;
+#[derive(Clone, Eq, Debug, PartialEq)]
+pub enum SslMode {
+    Allow,
+    Disable,
+    Prefer,
+    Require,
+    VerifyCa,
+    VerifyFull,
+}
+
+impl SslMode {
+    fn as_str(&self) -> &'static str {
+        match self {
+            Self::Disable => "disable",
+            Self::Allow => "allow",
+            Self::Prefer => "prefer",
+            Self::Require => "require",
+            Self::VerifyCa => "verify-ca",
+            Self::VerifyFull => "verify-full",
+        }
+    }
+
+    fn to_sqlx_ssl_mode(&self) -> sqlx::postgres::PgSslMode {
+        use sqlx::postgres::PgSslMode;
+
+        match self {
+            Self::Disable => PgSslMode::Disable,
+            Self::Allow => PgSslMode::Allow,
+            Self::Prefer => PgSslMode::Prefer,
+            Self::Require => PgSslMode::Require,
+            Self::VerifyCa => PgSslMode::VerifyCa,
+            Self::VerifyFull => PgSslMode::VerifyFull,
+        }
+    }
+
+    fn to_pg_env_value(&self) -> String {
+        self.as_str().to_string()
+    }
+}
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum SslRootCert {
@@ -203,7 +284,8 @@ macro_rules! ssl_root_cert_file {
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Config {
-    pub database: Option<Database>,
+    pub application_name: Option<ApplicationName>,
+    pub database: Database,
     pub host: Host,
     pub password: Option<Password>,
     pub port: Port,
@@ -213,16 +295,18 @@ pub struct Config {
 }
 
 impl Config {
+    /// Convert to PG environment variable names
     pub fn to_pg_env(&self) -> std::collections::BTreeMap<&'static str, String> {
         let mut map = std::collections::BTreeMap::new();
 
         map.insert("PGHOST", self.host.to_pg_env_value());
         map.insert("PGPORT", self.port.to_pg_env_value());
-        map.insert("PGSSLMODE", self.ssl_mode.to_static_str().to_string());
+        map.insert("PGSSLMODE", self.ssl_mode.to_pg_env_value());
         map.insert("PGUSER", self.username.to_pg_env_value());
+        map.insert("PGDATABASE", self.database.to_pg_env_value());
 
-        if let Some(database) = &self.database {
-            map.insert("PGDATABASE", database.to_pg_env_value());
+        if let Some(application_name) = &self.application_name {
+            map.insert("PGAPPNAME", application_name.to_pg_env_value());
         }
 
         if let Some(password) = &self.password {
@@ -243,48 +327,87 @@ impl Config {
     /// # use std::str::FromStr;
     ///
     /// let config = Config {
-    ///     database: Some(Database::from_str("some_db").unwrap()),
+    ///     application_name: Some(ApplicationName::from_str("some-app").unwrap()),
+    ///     database: Database::from_str("some-database").unwrap(),
     ///     host: Host::from_str("some-host").unwrap(),
-    ///     password: Some(Password::from_str("some_password").unwrap()),
+    ///     password: Some(Password::from_str("some-password").unwrap()),
     ///     port: Port(5432),
     ///     ssl_mode: SslMode::VerifyFull,
     ///     ssl_root_cert: Some(SslRootCert::File(
     ///         file_buf::FileBuf::from_path_unchecked_existance("/some.pem".into()).unwrap(),
     ///     )),
-    ///     username: Username::from_str("some_username").unwrap(),
+    ///     username: Username::from_str("some-username").unwrap(),
     /// };
     ///
-    /// assert_eq!(
-    ///     sqlx::postgres::PgConnectOptions::new_without_environment(
-    ///         "some-host".to_string(),
-    ///         5432,
-    ///         "some_username".to_string(),
-    ///         SslMode::VerifyFull
-    ///     )
-    ///     .database("some_db")
-    ///     .password("some_password")
-    ///     .ssl_root_cert("/some.pem"),
-    ///     config.to_sqlx_connect_options()
-    /// )
+    /// let options = config.to_sqlx_connect_options();
+    ///
+    /// // `PgConnectOptions` does not have `PartialEq` and only partial getters
+    /// // so we can only assert a few fields.
+    /// assert_eq!(Some("some-app"), options.get_application_name());
+    /// assert_eq!("some-host", options.get_host());
+    /// assert_eq!(5432, options.get_port());
+    /// assert_eq!("some-username", options.get_username());
+    /// // No PartialEQ instance
+    /// assert_eq!(format!("{:#?}", sqlx::postgres::PgSslMode::VerifyFull), format!("{:#?}", options.get_ssl_mode()));
+    /// assert_eq!(Some("some-database"), options.get_database());
+    /// // Unsupported.
+    /// // assert_eq!("some-password", options.get_password());
+    /// // assert_eq!("/some.pem", options.get_ssl_root_cert());
     /// ```
+    ///
+    /// # Panics
+    ///
+    /// Function may panic if fields inferred  from the process environment variables
+    /// infered by `PgConnectOptions::new` contradict the settings in `PgConfig`, and
+    /// there is no public API in `PgConnectOptions` to reset these values.
     pub fn to_sqlx_connect_options(&self) -> sqlx::postgres::PgConnectOptions {
-        let mut options = sqlx::postgres::PgConnectOptions::new_without_environment(
-            self.host.to_pg_env_value(),
-            self.port.to_u16(),
-            self.username.to_pg_env_value(),
-            self.ssl_mode,
-        );
+        fn reject_env(env_key: &str, field_name: &str) {
+            if std::env::var(env_key).is_ok() {
+                panic!(
+                    "`PgConnectOptions::new` has inferred a `{field_name}` from `{env_key}` environment variable, but `pg_client::Config` does not specify a `{field_name}` value. `PgConnectOptions` does not provide an API to construct an instance without inferring from the environment, does not provide an API to unset the field, we have to bail out at this point. Please remove the environment variable!"
+                )
+            }
+        }
 
-        if let Some(database) = &self.database {
-            options = options.database(&database.to_pg_env_value());
+        fn unsupported_env(env_key: &str, field_name: &str) {
+            if std::env::var(env_key).is_ok() {
+                panic!(
+                    "`PgConnnectOptions::new` has inferred `{field_name}` from the `{env_key}` environment variable, but `pg_client::Config` does not support that feature at this point. As `PgConnectOptions` has no option to unset that field, or a constructor that allows us to bypass the inference: we have to bail out, please remove the environment variable!"
+                )
+            }
+        }
+
+        // This is the "least powerful" API available to create a `PgConnectOptions`
+        // instance. Still it does ENV variable snooping and we below try hard to
+        // reset all of that snooped variables.
+        let mut options = sqlx::postgres::PgConnectOptions::new_without_pgpass();
+
+        unsupported_env("PGSSLKEY", "ssl_client_key");
+        unsupported_env("PGSSLCERT", "ssl_client_cert");
+        unsupported_env("PGOPTIONS", "options");
+
+        options = options.database(self.database.as_str());
+        options = options.host(&self.host.to_pg_env_value());
+        options = options.port(self.port.to_u16());
+        options = options.ssl_mode(self.ssl_mode.to_sqlx_ssl_mode());
+        options = options.username(self.username.as_str());
+
+        if let Some(application_name) = &self.application_name {
+            options = options.application_name(application_name.as_str());
+        } else {
+            reject_env("PGAPPNAME", "application_name");
         }
 
         if let Some(password) = &self.password {
-            options = options.password(&password.to_pg_env_value());
+            options = options.password(password.as_str());
+        } else {
+            reject_env("PGPASSWORD", "password");
         }
 
         if let Some(ssl_root_cert) = &self.ssl_root_cert {
             options = options.ssl_root_cert(ssl_root_cert.to_pg_env_value());
+        } else {
+            reject_env("PGSSLROOTCERT", "ssl_root_cert")
         }
 
         options
