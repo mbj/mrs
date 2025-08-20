@@ -118,7 +118,9 @@ impl mmigration::SchemaDump for SchemaDump<'_> {
 
 #[derive(Debug)]
 pub struct Definition {
+    application_name: Option<pg_client::ApplicationName>,
     cbt_backend: crate::cbt::Backend,
+    database: pg_client::Database,
     migration_config: Option<mmigration::Config>,
     steps: Vec<Step>,
     superuser: pg_client::Username,
@@ -129,9 +131,11 @@ impl Definition {
     pub fn new(version: Version) -> Self {
         Self {
             cbt_backend: crate::cbt::Backend::autodetect(),
+            application_name: None,
             migration_config: None,
             steps: vec![],
             superuser: pg_client::username!("postgres"),
+            database: pg_client::database!("postgres"),
             version,
         }
     }
@@ -269,7 +273,8 @@ impl<'a> Container<'a> {
         let host = pg_client::host!("localhost");
 
         let client_config = pg_client::Config {
-            database: None,
+            application_name: definition.application_name.clone(),
+            database: definition.database.clone(),
             host,
             password: Some(password),
             port,
