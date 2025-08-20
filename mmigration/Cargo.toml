@@ -10,4 +10,4 @@ log = "0.4.27"
 pg-client = { version = "0.0.1", path = "../pg-client" }
 regex-lite = "0.1.6"
 sha2 = "0.10.9"
-sqlx = { git = "https://github.com/mbj/sqlx", branch = "mbj/fork", features = ["postgres", "runtime-tokio"] }
+sqlx = { workspace = true }
