@@ -6,4 +6,4 @@ edition.workspace = true
 [dependencies]
 file-buf = { version = "0.0.1", path = "../file-buf" }
 hostname-validator = "1.1.1"
-sqlx = { git = "https://github.com/mbj/sqlx", branch = "mbj/fork", features = ["postgres", "runtime-tokio"] }
+sqlx = { workspace = true }
