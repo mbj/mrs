@@ -83,7 +83,7 @@ impl FileBuf {
     ///
     /// assert_eq!("./Cargo.toml", format!("{}", file_buf.display()));
     /// ```
-    pub fn display(&self) -> std::path::Display {
+    pub fn display(&self) -> std::path::Display<'_> {
         self.0.display()
     }
 
