@@ -165,13 +165,13 @@ impl DefinedMigrations {
     /// });
     /// ```
     pub fn add(&mut self, pending_migration: PendingMigration) {
-        if let Some(expected) = self.next_index() {
-            if pending_migration.index != expected {
-                panic!(
-                    "Expected next defined migration index: {expected} got: {}",
-                    pending_migration.index
-                );
-            }
+        if let Some(expected) = self.next_index()
+            && pending_migration.index != expected
+        {
+            panic!(
+                "Expected next defined migration index: {expected} got: {}",
+                pending_migration.index
+            );
         }
 
         self.0.insert(pending_migration.index, pending_migration);
@@ -334,14 +334,14 @@ impl DefinedMigrations {
             })
             .collect();
 
-        if let Some(migration) = pending.first() {
-            if !migration.index.is_succ_of(last) {
-                panic!(
-                    "Last migration {last} needs to be followed by {}, got: {}!",
-                    last.succ(),
-                    migration.index
-                )
-            }
+        if let Some(migration) = pending.first()
+            && !migration.index.is_succ_of(last)
+        {
+            panic!(
+                "Last migration {last} needs to be followed by {}, got: {}!",
+                last.succ(),
+                migration.index
+            )
         }
 
         pending
@@ -350,13 +350,13 @@ impl DefinedMigrations {
     fn select_initial(&self) -> Vec<&PendingMigration> {
         let pending: Vec<_> = self.0.values().collect();
 
-        if let Some(migration) = pending.first() {
-            if !migration.index.is_initial() {
-                panic!(
-                    "Initial migration needs to be indexed at 0, got: {}!",
-                    migration.index
-                );
-            }
+        if let Some(migration) = pending.first()
+            && !migration.index.is_initial()
+        {
+            panic!(
+                "Initial migration needs to be indexed at 0, got: {}!",
+                migration.index
+            );
         }
 
         pending
