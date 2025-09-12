@@ -9,22 +9,65 @@ pub use types::*;
 
 use transaction::Transaction;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct QualifiedTableName {
     pub schema_name: String,
     pub table_name: String,
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct Config {
     pub migration_dir: std::path::PathBuf,
-    pub normalize_schema: fn(&Schema) -> Schema,
+    pub schema_normalizer: Box<dyn SchemaNormalizer>,
     pub schema_file: file_buf::FileBuf,
     pub qualified_table_name: QualifiedTableName,
 }
 
+// See: https://github.com/rust-lang/rust/issues/31740
+impl PartialEq<&Self> for Box<dyn SchemaNormalizer> {
+    fn eq(&self, _other: &&Self) -> bool {
+        panic!("present to satisfy the compiler should never be called");
+    }
+}
+
+pub trait AsAny {
+    fn as_any(&self) -> &dyn std::any::Any;
+}
+
+pub trait DynEq {
+    fn dyn_eq(&self, other: &dyn std::any::Any) -> bool;
+}
+
+impl std::fmt::Debug for dyn SchemaNormalizer {
+    fn fmt(&self, _formatter: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        todo!();
+    }
+}
+
+impl<T: PartialEq + std::any::Any> DynEq for T {
+    fn dyn_eq(&self, other: &dyn std::any::Any) -> bool {
+        other.downcast_ref::<Self>() == Some(self)
+    }
+}
+
+impl PartialEq for dyn SchemaNormalizer {
+    fn eq(&self, other: &Self) -> bool {
+        self.dyn_eq(other.as_any())
+    }
+}
+
+impl AsAny for dyn SchemaNormalizer {
+    fn as_any(&self) -> &dyn std::any::Any {
+        self
+    }
+}
+
 pub trait SchemaDump {
     fn schema_dump(&self) -> impl std::future::Future<Output = Schema> + Send;
+}
+
+pub trait SchemaNormalizer: std::any::Any + DynEq + Sync {
+    fn normalize(&self, schema: &Schema) -> Schema;
 }
 
 pub struct Context<'a, D: SchemaDump> {
@@ -81,7 +124,9 @@ impl<'a, D: SchemaDump> Context<'a, D> {
 
         std::fs::write(
             &self.config.schema_file,
-            (self.config.normalize_schema)(&self.schema_dump.schema_dump().await),
+            self.config
+                .schema_normalizer
+                .normalize(&self.schema_dump.schema_dump().await),
         )
         .unwrap()
     }

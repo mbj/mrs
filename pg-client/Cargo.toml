@@ -6,4 +6,5 @@ edition.workspace = true
 [dependencies]
 file-buf = { workspace = true }
 hostname-validator = "1.1.1"
+serde = { workspace = true }
 sqlx = { workspace = true }

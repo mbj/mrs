@@ -1,0 +1,8 @@
+backend = "docker"
+image = "17.1"
+
+[instances.a]
+
+[instances.b]
+backend = "podman"
+image = "17.2"
