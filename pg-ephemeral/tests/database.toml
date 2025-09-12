@@ -1,0 +1,12 @@
+backend = "docker"
+
+[version]
+major = 17
+minor = 1
+
+[instances.a]
+
+[instances.b]
+backend = "podman"
+version.major = 17
+version.minor = 2

@@ -27,7 +27,7 @@ macro_rules! from_str_impl {
     };
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct HostName(String);
 
 impl std::str::FromStr for HostName {
@@ -47,6 +47,12 @@ pub enum Host {
     HostName(HostName),
     SocketAddr(std::net::SocketAddr),
     SocketPath(std::path::PathBuf),
+}
+
+impl serde::Serialize for Host {
+    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        serializer.serialize_str(&self.to_pg_env_value())
+    }
 }
 
 impl Host {
@@ -89,7 +95,7 @@ impl From<HostName> for Host {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Port(pub u16);
 
 impl std::str::FromStr for Port {
@@ -113,9 +119,8 @@ impl Port {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct ApplicationName(String);
-
 from_str_impl!(ApplicationName);
 
 #[macro_export]
@@ -137,7 +142,7 @@ impl ApplicationName {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Database(String);
 
 from_str_impl!(Database);
@@ -161,7 +166,7 @@ impl Database {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Username(String);
 
 from_str_impl!(Username);
@@ -185,7 +190,7 @@ impl Username {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Password(String);
 
 from_str_impl!(Password);
@@ -208,7 +213,8 @@ impl From<String> for Password {
     }
 }
 
-#[derive(Clone, Eq, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
+#[serde(rename_all = "kebab-case")]
 pub enum SslMode {
     Allow,
     Disable,
@@ -248,7 +254,8 @@ impl SslMode {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
+#[serde(rename_all = "kebab-case")]
 pub enum SslRootCert {
     File(file_buf::FileBuf),
     System,
@@ -282,7 +289,7 @@ macro_rules! ssl_root_cert_file {
     };
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Config {
     pub application_name: Option<ApplicationName>,
     pub database: Database,

@@ -9,13 +9,13 @@ pub use types::*;
 
 use transaction::Transaction;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct QualifiedTableName {
     pub schema_name: String,
     pub table_name: String,
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct Config {
     pub migration_dir: std::path::PathBuf,
     pub normalize_schema: fn(&Schema) -> Schema,
