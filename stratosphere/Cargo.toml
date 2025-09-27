@@ -1,0 +1,19 @@
+[package]
+name = "stratosphere"
+version = "0.0.1"
+edition.workspace = true
+
+[dependencies]
+clap = { workspace = true }
+prettyplease = "0.2"
+stratosphere-core = { path = "../stratosphere-core" }
+stratosphere-generator = { path = "../stratosphere-generator" }
+syn = "2"
+
+[dev-dependencies]
+insta = "1"
+pretty_assertions = "1"
+serde_json = { workspace = true }
+
+[[bin]]
+name = "stratosphere-generator"
