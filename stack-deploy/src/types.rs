@@ -1,13 +1,22 @@
+pub use stratosphere::template::OutputKey;
+
 const INLINE_TEMPLATE_LIMIT_BYTES: usize = 51200;
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct StackName(pub String);
 
-pub struct OutputKey(pub String);
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
+pub struct TemplateName(pub String);
 
-impl std::fmt::Display for OutputKey {
-    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        write!(formatter, "{}", self.0)
+impl From<&str> for TemplateName {
+    fn from(value: &str) -> Self {
+        Self(value.into())
+    }
+}
+
+impl TemplateName {
+    pub fn as_str(&self) -> &str {
+        self.0.as_str()
     }
 }
 
@@ -89,13 +98,10 @@ impl From<&ClientRequestToken> for String {
     }
 }
 
-#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
-pub struct ParameterKey(pub String);
-
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd, serde::Serialize)]
 pub struct ParameterValue(pub String);
 
-pub type ParameterKeys = std::collections::BTreeSet<ParameterKey>;
+pub use stratosphere::template::{ParameterKey, ParameterKeys};
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Parameter {
@@ -529,6 +535,7 @@ impl ParameterMap {
     /// # use stack_deploy::types::*;
     ///
     /// let template = Template::Plain {
+    ///     name: "example".into(),
     ///     rendered: TemplateRendered {
     ///         body: "ununsed".into(),
     ///         format: TemplateFormat::JSON,
@@ -559,23 +566,56 @@ impl ParameterMap {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Template {
     Plain {
+        name: TemplateName,
         parameter_keys: ParameterKeys,
         rendered: TemplateRendered,
+    },
+    Stratosphere {
+        name: TemplateName,
+        template: stratosphere::Template<'static>,
     },
 }
 
 impl Template {
-    pub fn parameter_keys(&self) -> &ParameterKeys {
+    pub fn parameter_keys(&self) -> ParameterKeys {
         match self {
-            Self::Plain { parameter_keys, .. } => parameter_keys,
+            Self::Stratosphere { template, .. } => template.parameter_keys(),
+            Self::Plain { parameter_keys, .. } => parameter_keys.clone(),
+        }
+    }
+
+    pub fn name(&self) -> &TemplateName {
+        match self {
+            Self::Stratosphere { name, .. } => name,
+            Self::Plain { name, .. } => name,
+        }
+    }
+
+    pub fn rendered(&self) -> TemplateRendered {
+        match self {
+            Self::Plain { rendered, .. } => rendered.clone(),
+            Self::Stratosphere { template, .. } => TemplateRendered {
+                body: template.render_json().into(),
+                format: TemplateFormat::JSON,
+            },
+        }
+    }
+
+    pub fn rendered_pretty(&self) -> TemplateRendered {
+        match self {
+            Self::Plain { rendered, .. } => rendered.clone(),
+            Self::Stratosphere { template, .. } => TemplateRendered {
+                body: template.render_json_pretty().into(),
+                format: TemplateFormat::JSON,
+            },
         }
     }
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct TemplateBody(String);
 
 impl AsRef<[u8]> for TemplateBody {
@@ -618,9 +658,13 @@ impl TemplateBody {
     pub fn needs_upload(&self) -> bool {
         self.0.len() > INLINE_TEMPLATE_LIMIT_BYTES
     }
+
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug, PartialEq)]
 pub enum TemplateFormat {
     JSON,
     YAML,
@@ -635,7 +679,7 @@ impl TemplateFormat {
     }
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct TemplateRendered {
     pub format: TemplateFormat,
     pub body: TemplateBody,

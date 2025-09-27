@@ -222,7 +222,7 @@ impl Context<'_> {
                     .parameter_map
                     .merge(user_parameter_map)
                     .to_template_update_parameters(
-                        self.instance_spec.template.parameter_keys(),
+                        &self.instance_spec.template.parameter_keys(),
                         &existing_stack_parameters,
                     ),
             ))
@@ -291,10 +291,8 @@ impl Context<'_> {
         self.instance_spec.capabilities.iter().cloned().collect()
     }
 
-    fn template_rendered(&self) -> &TemplateRendered {
-        match &self.instance_spec.template {
-            Template::Plain { rendered, .. } => rendered,
-        }
+    fn template_rendered(&self) -> TemplateRendered {
+        self.instance_spec.template.rendered()
     }
 
     async fn set_create_template(
@@ -317,7 +315,7 @@ impl Context<'_> {
         }
     }
 
-    async fn upload_template(&self) -> Result<TemplateUrl, &TemplateBody> {
+    async fn upload_template(&self) -> Result<TemplateUrl, TemplateBody> {
         let template_rendered = self.template_rendered();
 
         if template_rendered.body.needs_upload() {
@@ -328,9 +326,9 @@ impl Context<'_> {
                 .as_ref()
                 .expect("Template needs upload but template uploader not configured!");
 
-            Ok(template_uploader.upload(template_rendered).await)
+            Ok(template_uploader.upload(&template_rendered).await)
         } else {
-            Err(&template_rendered.body)
+            Err(template_rendered.body)
         }
     }
 }
@@ -342,5 +340,59 @@ impl Registry {
         self.0
             .iter()
             .find(|&instance_spec| instance_spec.stack_name == *instance_name)
+    }
+
+    pub fn templates(&self) -> std::collections::BTreeMap<TemplateName, &Template> {
+        let mut map = std::collections::BTreeMap::new();
+
+        for instance_spec in &self.0 {
+            let template = &instance_spec.template;
+            let name = template.name();
+
+            if let Some(other) = map.insert(name.clone(), template)
+                && other != template
+            {
+                panic!("Template name clash for unequal templates: {name:#?}")
+            }
+        }
+
+        map
+    }
+
+    pub fn golden_tests(&self, path: &std::path::Path) {
+        let mut base: std::path::PathBuf = path.into();
+        base.push("templates");
+        std::fs::create_dir_all(&base).unwrap();
+
+        for (_name, template) in self.templates() {
+            verify_template(&base, template)
+        }
+    }
+}
+
+fn verify_template(base: &std::path::Path, template: &Template) {
+    let new = template.rendered_pretty();
+
+    let mut template_path: std::path::PathBuf = base.into();
+
+    template_path.push(format!(
+        "{}.{}",
+        template.name().as_str(),
+        new.format.file_ext()
+    ));
+
+    if std::env::var("UPDATE_GOLDEN_TESTS").is_ok() {
+        if let Ok(existing) = std::fs::read_to_string(&template_path)
+            && new.body == existing.into()
+        {
+            return;
+        }
+        eprintln!("Updating: {}", template_path.display());
+        std::fs::write(template_path, new.body).unwrap();
+    } else {
+        let expected = std::fs::read_to_string(&template_path)
+            .unwrap_or_else(|error| panic!("Could not open: {}: {error}", template_path.display()));
+
+        assert_eq!(&expected, new.body.as_str())
     }
 }

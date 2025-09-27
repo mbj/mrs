@@ -1,0 +1,818 @@
+---
+source: stratosphere/tests/base.rs
+expression: "prettyplease::unparse(&abstract_file)"
+---
+pub mod cloudformation {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html
+    pub struct Tag_ {
+        pub key: stratosphere::value::ExpString,
+        pub value: stratosphere::value::ExpString,
+    }
+    #[allow(unused_macros)]
+    macro_rules! Tag {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("Tag" $($field $value)*)
+        };
+    }
+    pub(crate) use Tag;
+    impl stratosphere::value::ToValue for Tag_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties
+                .insert(
+                    "Key".to_string(),
+                    stratosphere::value::ToValue::to_value(&self.key),
+                );
+            properties
+                .insert(
+                    "Value".to_string(),
+                    stratosphere::value::ToValue::to_value(&self.value),
+                );
+            properties.into()
+        }
+    }
+    pub mod aws {
+        pub mod certificatemanager {
+            pub mod account {
+                ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-certificatemanager-account-expiryeventsconfiguration.html
+                pub struct ExpiryEventsConfiguration_ {
+                    pub days_before_expiry: Option<i64>,
+                }
+                #[allow(unused_macros)]
+                macro_rules! ExpiryEventsConfiguration {
+                    ($($field:ident : $value:expr),* $(,)?) => {
+                        stratosphere::generator::construct_property_type!("AWS::CertificateManager::Account.ExpiryEventsConfiguration"
+                        $($field $value)*)
+                    };
+                }
+                pub(crate) use ExpiryEventsConfiguration;
+                impl stratosphere::value::ToValue for ExpiryEventsConfiguration_ {
+                    fn to_value(&self) -> serde_json::Value {
+                        let mut properties = serde_json::Map::new();
+                        if let Some(ref value) = self.days_before_expiry {
+                            properties
+                                .insert(
+                                    "DaysBeforeExpiry".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        properties.into()
+                    }
+                }
+            }
+            pub mod certificate {
+                ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-certificatemanager-certificate-domainvalidationoption.html
+                pub struct DomainValidationOption_ {
+                    pub domain_name: stratosphere::value::ExpString,
+                    pub hosted_zone_id: Option<stratosphere::value::ExpString>,
+                    pub validation_domain: Option<stratosphere::value::ExpString>,
+                }
+                #[allow(unused_macros)]
+                macro_rules! DomainValidationOption {
+                    ($($field:ident : $value:expr),* $(,)?) => {
+                        stratosphere::generator::construct_property_type!("AWS::CertificateManager::Certificate.DomainValidationOption"
+                        $($field $value)*)
+                    };
+                }
+                pub(crate) use DomainValidationOption;
+                impl stratosphere::value::ToValue for DomainValidationOption_ {
+                    fn to_value(&self) -> serde_json::Value {
+                        let mut properties = serde_json::Map::new();
+                        properties
+                            .insert(
+                                "DomainName".to_string(),
+                                stratosphere::value::ToValue::to_value(&self.domain_name),
+                            );
+                        if let Some(ref value) = self.hosted_zone_id {
+                            properties
+                                .insert(
+                                    "HostedZoneId".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.validation_domain {
+                            properties
+                                .insert(
+                                    "ValidationDomain".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        properties.into()
+                    }
+                }
+            }
+            ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-account.html
+            pub struct Account_ {
+                pub expiry_events_configuration: super::certificatemanager::account::ExpiryEventsConfiguration_,
+            }
+            #[allow(unused_macros)]
+            macro_rules! Account {
+                ($($field:ident : $value:expr),* $(,)?) => {
+                    stratosphere::generator::construct_resource_type!("AWS::CertificateManager::Account"
+                    $($field $value)*)
+                };
+            }
+            pub(crate) use Account;
+            impl stratosphere::template::ToResource for Account_ {
+                const RESOURCE_TYPE_NAME: stratosphere::resource_specification::ResourceTypeName<
+                    'static,
+                > = stratosphere::resource_specification::ResourceTypeName {
+                    service: stratosphere::resource_specification::ServiceIdentifier {
+                        service_name: stratosphere::resource_specification::ServiceName(
+                            "CertificateManager",
+                        ),
+                        vendor_name: stratosphere::resource_specification::VendorName(
+                            "AWS",
+                        ),
+                    },
+                    resource_name: stratosphere::resource_specification::ResourceName(
+                        "Account",
+                    ),
+                };
+                fn to_resource_properties(
+                    &self,
+                ) -> stratosphere::template::ResourceProperties {
+                    let mut properties = stratosphere::template::ResourceProperties::new();
+                    properties
+                        .insert(
+                            "ExpiryEventsConfiguration".to_string(),
+                            stratosphere::value::ToValue::to_value(
+                                &self.expiry_events_configuration,
+                            ),
+                        );
+                    properties
+                }
+            }
+            ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html
+            pub struct Certificate_ {
+                pub certificate_authority_arn: Option<stratosphere::value::ExpString>,
+                pub certificate_export: Option<stratosphere::value::ExpString>,
+                pub certificate_transparency_logging_preference: Option<
+                    stratosphere::value::ExpString,
+                >,
+                pub domain_name: stratosphere::value::ExpString,
+                pub domain_validation_options: Option<
+                    Vec<super::certificatemanager::certificate::DomainValidationOption_>,
+                >,
+                pub key_algorithm: Option<stratosphere::value::ExpString>,
+                pub subject_alternative_names: Option<
+                    Vec<stratosphere::value::ExpString>,
+                >,
+                pub tags: Option<Vec<super::super::Tag_>>,
+                pub validation_method: Option<stratosphere::value::ExpString>,
+            }
+            #[allow(unused_macros)]
+            macro_rules! Certificate {
+                ($($field:ident : $value:expr),* $(,)?) => {
+                    stratosphere::generator::construct_resource_type!("AWS::CertificateManager::Certificate"
+                    $($field $value)*)
+                };
+            }
+            pub(crate) use Certificate;
+            impl stratosphere::template::ToResource for Certificate_ {
+                const RESOURCE_TYPE_NAME: stratosphere::resource_specification::ResourceTypeName<
+                    'static,
+                > = stratosphere::resource_specification::ResourceTypeName {
+                    service: stratosphere::resource_specification::ServiceIdentifier {
+                        service_name: stratosphere::resource_specification::ServiceName(
+                            "CertificateManager",
+                        ),
+                        vendor_name: stratosphere::resource_specification::VendorName(
+                            "AWS",
+                        ),
+                    },
+                    resource_name: stratosphere::resource_specification::ResourceName(
+                        "Certificate",
+                    ),
+                };
+                fn to_resource_properties(
+                    &self,
+                ) -> stratosphere::template::ResourceProperties {
+                    let mut properties = stratosphere::template::ResourceProperties::new();
+                    if let Some(ref value) = self.certificate_authority_arn {
+                        properties
+                            .insert(
+                                "CertificateAuthorityArn".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self.certificate_export {
+                        properties
+                            .insert(
+                                "CertificateExport".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self
+                        .certificate_transparency_logging_preference
+                    {
+                        properties
+                            .insert(
+                                "CertificateTransparencyLoggingPreference".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    properties
+                        .insert(
+                            "DomainName".to_string(),
+                            stratosphere::value::ToValue::to_value(&self.domain_name),
+                        );
+                    if let Some(ref value) = self.domain_validation_options {
+                        properties
+                            .insert(
+                                "DomainValidationOptions".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self.key_algorithm {
+                        properties
+                            .insert(
+                                "KeyAlgorithm".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self.subject_alternative_names {
+                        properties
+                            .insert(
+                                "SubjectAlternativeNames".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self.tags {
+                        properties
+                            .insert(
+                                "Tags".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self.validation_method {
+                        properties
+                            .insert(
+                                "ValidationMethod".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    properties
+                }
+            }
+        }
+        pub mod secretsmanager {
+            pub mod rotationschedule {
+                ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-hostedrotationlambda.html
+                pub struct HostedRotationLambda_ {
+                    pub exclude_characters: Option<stratosphere::value::ExpString>,
+                    pub kms_key_arn: Option<stratosphere::value::ExpString>,
+                    pub master_secret_arn: Option<stratosphere::value::ExpString>,
+                    pub master_secret_kms_key_arn: Option<
+                        stratosphere::value::ExpString,
+                    >,
+                    pub rotation_lambda_name: Option<stratosphere::value::ExpString>,
+                    pub rotation_type: stratosphere::value::ExpString,
+                    pub runtime: Option<stratosphere::value::ExpString>,
+                    pub superuser_secret_arn: Option<stratosphere::value::ExpString>,
+                    pub superuser_secret_kms_key_arn: Option<
+                        stratosphere::value::ExpString,
+                    >,
+                    pub vpc_security_group_ids: Option<stratosphere::value::ExpString>,
+                    pub vpc_subnet_ids: Option<stratosphere::value::ExpString>,
+                }
+                #[allow(unused_macros)]
+                macro_rules! HostedRotationLambda {
+                    ($($field:ident : $value:expr),* $(,)?) => {
+                        stratosphere::generator::construct_property_type!("AWS::SecretsManager::RotationSchedule.HostedRotationLambda"
+                        $($field $value)*)
+                    };
+                }
+                pub(crate) use HostedRotationLambda;
+                impl stratosphere::value::ToValue for HostedRotationLambda_ {
+                    fn to_value(&self) -> serde_json::Value {
+                        let mut properties = serde_json::Map::new();
+                        if let Some(ref value) = self.exclude_characters {
+                            properties
+                                .insert(
+                                    "ExcludeCharacters".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.kms_key_arn {
+                            properties
+                                .insert(
+                                    "KmsKeyArn".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.master_secret_arn {
+                            properties
+                                .insert(
+                                    "MasterSecretArn".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.master_secret_kms_key_arn {
+                            properties
+                                .insert(
+                                    "MasterSecretKmsKeyArn".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.rotation_lambda_name {
+                            properties
+                                .insert(
+                                    "RotationLambdaName".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        properties
+                            .insert(
+                                "RotationType".to_string(),
+                                stratosphere::value::ToValue::to_value(&self.rotation_type),
+                            );
+                        if let Some(ref value) = self.runtime {
+                            properties
+                                .insert(
+                                    "Runtime".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.superuser_secret_arn {
+                            properties
+                                .insert(
+                                    "SuperuserSecretArn".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.superuser_secret_kms_key_arn {
+                            properties
+                                .insert(
+                                    "SuperuserSecretKmsKeyArn".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.vpc_security_group_ids {
+                            properties
+                                .insert(
+                                    "VpcSecurityGroupIds".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.vpc_subnet_ids {
+                            properties
+                                .insert(
+                                    "VpcSubnetIds".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        properties.into()
+                    }
+                }
+                ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-rotationrules.html
+                pub struct RotationRules_ {
+                    pub automatically_after_days: Option<i64>,
+                    pub duration: Option<stratosphere::value::ExpString>,
+                    pub schedule_expression: Option<stratosphere::value::ExpString>,
+                }
+                #[allow(unused_macros)]
+                macro_rules! RotationRules {
+                    ($($field:ident : $value:expr),* $(,)?) => {
+                        stratosphere::generator::construct_property_type!("AWS::SecretsManager::RotationSchedule.RotationRules"
+                        $($field $value)*)
+                    };
+                }
+                pub(crate) use RotationRules;
+                impl stratosphere::value::ToValue for RotationRules_ {
+                    fn to_value(&self) -> serde_json::Value {
+                        let mut properties = serde_json::Map::new();
+                        if let Some(ref value) = self.automatically_after_days {
+                            properties
+                                .insert(
+                                    "AutomaticallyAfterDays".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.duration {
+                            properties
+                                .insert(
+                                    "Duration".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.schedule_expression {
+                            properties
+                                .insert(
+                                    "ScheduleExpression".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        properties.into()
+                    }
+                }
+            }
+            pub mod secret {
+                ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-secret-generatesecretstring.html
+                pub struct GenerateSecretString_ {
+                    pub exclude_characters: Option<stratosphere::value::ExpString>,
+                    pub exclude_lowercase: Option<stratosphere::value::ExpBool>,
+                    pub exclude_numbers: Option<stratosphere::value::ExpBool>,
+                    pub exclude_punctuation: Option<stratosphere::value::ExpBool>,
+                    pub exclude_uppercase: Option<stratosphere::value::ExpBool>,
+                    pub generate_string_key: Option<stratosphere::value::ExpString>,
+                    pub include_space: Option<stratosphere::value::ExpBool>,
+                    pub password_length: Option<i64>,
+                    pub require_each_included_type: Option<stratosphere::value::ExpBool>,
+                    pub secret_string_template: Option<stratosphere::value::ExpString>,
+                }
+                #[allow(unused_macros)]
+                macro_rules! GenerateSecretString {
+                    ($($field:ident : $value:expr),* $(,)?) => {
+                        stratosphere::generator::construct_property_type!("AWS::SecretsManager::Secret.GenerateSecretString"
+                        $($field $value)*)
+                    };
+                }
+                pub(crate) use GenerateSecretString;
+                impl stratosphere::value::ToValue for GenerateSecretString_ {
+                    fn to_value(&self) -> serde_json::Value {
+                        let mut properties = serde_json::Map::new();
+                        if let Some(ref value) = self.exclude_characters {
+                            properties
+                                .insert(
+                                    "ExcludeCharacters".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.exclude_lowercase {
+                            properties
+                                .insert(
+                                    "ExcludeLowercase".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.exclude_numbers {
+                            properties
+                                .insert(
+                                    "ExcludeNumbers".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.exclude_punctuation {
+                            properties
+                                .insert(
+                                    "ExcludePunctuation".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.exclude_uppercase {
+                            properties
+                                .insert(
+                                    "ExcludeUppercase".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.generate_string_key {
+                            properties
+                                .insert(
+                                    "GenerateStringKey".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.include_space {
+                            properties
+                                .insert(
+                                    "IncludeSpace".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.password_length {
+                            properties
+                                .insert(
+                                    "PasswordLength".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.require_each_included_type {
+                            properties
+                                .insert(
+                                    "RequireEachIncludedType".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        if let Some(ref value) = self.secret_string_template {
+                            properties
+                                .insert(
+                                    "SecretStringTemplate".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        properties.into()
+                    }
+                }
+                ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-secret-replicaregion.html
+                pub struct ReplicaRegion_ {
+                    pub kms_key_id: Option<stratosphere::value::ExpString>,
+                    pub region: stratosphere::value::ExpString,
+                }
+                #[allow(unused_macros)]
+                macro_rules! ReplicaRegion {
+                    ($($field:ident : $value:expr),* $(,)?) => {
+                        stratosphere::generator::construct_property_type!("AWS::SecretsManager::Secret.ReplicaRegion"
+                        $($field $value)*)
+                    };
+                }
+                pub(crate) use ReplicaRegion;
+                impl stratosphere::value::ToValue for ReplicaRegion_ {
+                    fn to_value(&self) -> serde_json::Value {
+                        let mut properties = serde_json::Map::new();
+                        if let Some(ref value) = self.kms_key_id {
+                            properties
+                                .insert(
+                                    "KmsKeyId".to_string(),
+                                    stratosphere::value::ToValue::to_value(value),
+                                );
+                        }
+                        properties
+                            .insert(
+                                "Region".to_string(),
+                                stratosphere::value::ToValue::to_value(&self.region),
+                            );
+                        properties.into()
+                    }
+                }
+            }
+            ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-resourcepolicy.html
+            pub struct ResourcePolicy_ {
+                pub block_public_policy: Option<stratosphere::value::ExpBool>,
+                pub resource_policy: serde_json::Value,
+                pub secret_id: stratosphere::value::ExpString,
+            }
+            #[allow(unused_macros)]
+            macro_rules! ResourcePolicy {
+                ($($field:ident : $value:expr),* $(,)?) => {
+                    stratosphere::generator::construct_resource_type!("AWS::SecretsManager::ResourcePolicy"
+                    $($field $value)*)
+                };
+            }
+            pub(crate) use ResourcePolicy;
+            impl stratosphere::template::ToResource for ResourcePolicy_ {
+                const RESOURCE_TYPE_NAME: stratosphere::resource_specification::ResourceTypeName<
+                    'static,
+                > = stratosphere::resource_specification::ResourceTypeName {
+                    service: stratosphere::resource_specification::ServiceIdentifier {
+                        service_name: stratosphere::resource_specification::ServiceName(
+                            "SecretsManager",
+                        ),
+                        vendor_name: stratosphere::resource_specification::VendorName(
+                            "AWS",
+                        ),
+                    },
+                    resource_name: stratosphere::resource_specification::ResourceName(
+                        "ResourcePolicy",
+                    ),
+                };
+                fn to_resource_properties(
+                    &self,
+                ) -> stratosphere::template::ResourceProperties {
+                    let mut properties = stratosphere::template::ResourceProperties::new();
+                    if let Some(ref value) = self.block_public_policy {
+                        properties
+                            .insert(
+                                "BlockPublicPolicy".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    properties
+                        .insert(
+                            "ResourcePolicy".to_string(),
+                            stratosphere::value::ToValue::to_value(&self.resource_policy),
+                        );
+                    properties
+                        .insert(
+                            "SecretId".to_string(),
+                            stratosphere::value::ToValue::to_value(&self.secret_id),
+                        );
+                    properties
+                }
+            }
+            ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-rotationschedule.html
+            pub struct RotationSchedule_ {
+                pub hosted_rotation_lambda: Option<
+                    super::secretsmanager::rotationschedule::HostedRotationLambda_,
+                >,
+                pub rotate_immediately_on_update: Option<stratosphere::value::ExpBool>,
+                pub rotation_lambda_arn: Option<stratosphere::value::ExpString>,
+                pub rotation_rules: Option<
+                    super::secretsmanager::rotationschedule::RotationRules_,
+                >,
+                pub secret_id: stratosphere::value::ExpString,
+            }
+            #[allow(unused_macros)]
+            macro_rules! RotationSchedule {
+                ($($field:ident : $value:expr),* $(,)?) => {
+                    stratosphere::generator::construct_resource_type!("AWS::SecretsManager::RotationSchedule"
+                    $($field $value)*)
+                };
+            }
+            pub(crate) use RotationSchedule;
+            impl stratosphere::template::ToResource for RotationSchedule_ {
+                const RESOURCE_TYPE_NAME: stratosphere::resource_specification::ResourceTypeName<
+                    'static,
+                > = stratosphere::resource_specification::ResourceTypeName {
+                    service: stratosphere::resource_specification::ServiceIdentifier {
+                        service_name: stratosphere::resource_specification::ServiceName(
+                            "SecretsManager",
+                        ),
+                        vendor_name: stratosphere::resource_specification::VendorName(
+                            "AWS",
+                        ),
+                    },
+                    resource_name: stratosphere::resource_specification::ResourceName(
+                        "RotationSchedule",
+                    ),
+                };
+                fn to_resource_properties(
+                    &self,
+                ) -> stratosphere::template::ResourceProperties {
+                    let mut properties = stratosphere::template::ResourceProperties::new();
+                    if let Some(ref value) = self.hosted_rotation_lambda {
+                        properties
+                            .insert(
+                                "HostedRotationLambda".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self.rotate_immediately_on_update {
+                        properties
+                            .insert(
+                                "RotateImmediatelyOnUpdate".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self.rotation_lambda_arn {
+                        properties
+                            .insert(
+                                "RotationLambdaARN".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self.rotation_rules {
+                        properties
+                            .insert(
+                                "RotationRules".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    properties
+                        .insert(
+                            "SecretId".to_string(),
+                            stratosphere::value::ToValue::to_value(&self.secret_id),
+                        );
+                    properties
+                }
+            }
+            ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html
+            pub struct Secret_ {
+                pub description: Option<stratosphere::value::ExpString>,
+                pub generate_secret_string: Option<
+                    super::secretsmanager::secret::GenerateSecretString_,
+                >,
+                pub kms_key_id: Option<stratosphere::value::ExpString>,
+                pub name: Option<stratosphere::value::ExpString>,
+                pub replica_regions: Option<
+                    Vec<super::secretsmanager::secret::ReplicaRegion_>,
+                >,
+                pub secret_string: Option<stratosphere::value::ExpString>,
+                pub tags: Option<Vec<super::super::Tag_>>,
+            }
+            #[allow(unused_macros)]
+            macro_rules! Secret {
+                ($($field:ident : $value:expr),* $(,)?) => {
+                    stratosphere::generator::construct_resource_type!("AWS::SecretsManager::Secret"
+                    $($field $value)*)
+                };
+            }
+            pub(crate) use Secret;
+            impl stratosphere::template::ToResource for Secret_ {
+                const RESOURCE_TYPE_NAME: stratosphere::resource_specification::ResourceTypeName<
+                    'static,
+                > = stratosphere::resource_specification::ResourceTypeName {
+                    service: stratosphere::resource_specification::ServiceIdentifier {
+                        service_name: stratosphere::resource_specification::ServiceName(
+                            "SecretsManager",
+                        ),
+                        vendor_name: stratosphere::resource_specification::VendorName(
+                            "AWS",
+                        ),
+                    },
+                    resource_name: stratosphere::resource_specification::ResourceName(
+                        "Secret",
+                    ),
+                };
+                fn to_resource_properties(
+                    &self,
+                ) -> stratosphere::template::ResourceProperties {
+                    let mut properties = stratosphere::template::ResourceProperties::new();
+                    if let Some(ref value) = self.description {
+                        properties
+                            .insert(
+                                "Description".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self.generate_secret_string {
+                        properties
+                            .insert(
+                                "GenerateSecretString".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self.kms_key_id {
+                        properties
+                            .insert(
+                                "KmsKeyId".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self.name {
+                        properties
+                            .insert(
+                                "Name".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self.replica_regions {
+                        properties
+                            .insert(
+                                "ReplicaRegions".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self.secret_string {
+                        properties
+                            .insert(
+                                "SecretString".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    if let Some(ref value) = self.tags {
+                        properties
+                            .insert(
+                                "Tags".to_string(),
+                                stratosphere::value::ToValue::to_value(value),
+                            );
+                    }
+                    properties
+                }
+            }
+            ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secrettargetattachment.html
+            pub struct SecretTargetAttachment_ {
+                pub secret_id: stratosphere::value::ExpString,
+                pub target_id: stratosphere::value::ExpString,
+                pub target_type: stratosphere::value::ExpString,
+            }
+            #[allow(unused_macros)]
+            macro_rules! SecretTargetAttachment {
+                ($($field:ident : $value:expr),* $(,)?) => {
+                    stratosphere::generator::construct_resource_type!("AWS::SecretsManager::SecretTargetAttachment"
+                    $($field $value)*)
+                };
+            }
+            pub(crate) use SecretTargetAttachment;
+            impl stratosphere::template::ToResource for SecretTargetAttachment_ {
+                const RESOURCE_TYPE_NAME: stratosphere::resource_specification::ResourceTypeName<
+                    'static,
+                > = stratosphere::resource_specification::ResourceTypeName {
+                    service: stratosphere::resource_specification::ServiceIdentifier {
+                        service_name: stratosphere::resource_specification::ServiceName(
+                            "SecretsManager",
+                        ),
+                        vendor_name: stratosphere::resource_specification::VendorName(
+                            "AWS",
+                        ),
+                    },
+                    resource_name: stratosphere::resource_specification::ResourceName(
+                        "SecretTargetAttachment",
+                    ),
+                };
+                fn to_resource_properties(
+                    &self,
+                ) -> stratosphere::template::ResourceProperties {
+                    let mut properties = stratosphere::template::ResourceProperties::new();
+                    properties
+                        .insert(
+                            "SecretId".to_string(),
+                            stratosphere::value::ToValue::to_value(&self.secret_id),
+                        );
+                    properties
+                        .insert(
+                            "TargetId".to_string(),
+                            stratosphere::value::ToValue::to_value(&self.target_id),
+                        );
+                    properties
+                        .insert(
+                            "TargetType".to_string(),
+                            stratosphere::value::ToValue::to_value(&self.target_type),
+                        );
+                    properties
+                }
+            }
+        }
+    }
+}
