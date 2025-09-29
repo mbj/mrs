@@ -77,6 +77,9 @@ pub enum ExpString {
         index: u8,
         values: Vec<ExpString>,
     },
+    Sub {
+        pattern: String,
+    },
 }
 
 impl ExpString {
@@ -282,7 +285,8 @@ impl ToValue for ExpString {
             ),
             ExpString::Literal(value) => serde_json::to_value(value).unwrap(),
             ExpString::Ref(value) => mk_func("Ref", value),
-            ExpString::ImportValue(value) => mk_func("ImportValue", value),
+            ExpString::ImportValue(value) => mk_func("Fn::ImportValue", value),
+            ExpString::Sub { pattern } => mk_func("Fn::Sub", pattern),
             other => todo!("{other:#?}"),
         }
     }
