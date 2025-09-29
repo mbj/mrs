@@ -1,9 +1,16 @@
-use crate::stack::try_load_stack;
+use crate::stack::{load_stack, try_load_stack};
 use crate::types::*;
+use std::collections::BTreeSet;
 
 pub(crate) struct RemoteOperation {
     pub(crate) client_request_token: ClientRequestToken,
     pub(crate) stack_id: StackId,
+}
+
+#[derive(Clone, Debug, clap::ValueEnum)]
+pub enum ReviewChangeSet {
+    Interactive,
+    NoReview,
 }
 
 pub type Capabilities = std::collections::BTreeSet<aws_sdk_cloudformation::types::Capability>;
@@ -81,6 +88,58 @@ pub struct Context<'a> {
 }
 
 impl Context<'_> {
+    pub async fn create_change_set(
+        &self,
+        change_set_name: &ChangeSetName,
+        user_parameter_map: &ParameterMap,
+    ) {
+        let existing_stack = load_stack(self.cloudformation, &self.instance_spec.stack_name).await;
+
+        let change_set_arn = self
+            .start_create_change_set(&existing_stack, change_set_name, user_parameter_map)
+            .await;
+
+        println!("ChangeSetArn: {}", change_set_arn.as_str());
+    }
+
+    pub async fn delete_change_set(&self, change_set_name: &ChangeSetName) {
+        self.cloudformation
+            .delete_change_set()
+            .change_set_name(change_set_name)
+            .stack_name(self.instance_spec.stack_name.as_str())
+            .send()
+            .await
+            .unwrap();
+    }
+
+    pub async fn describe_change_set(&self, change_set_name: &ChangeSetName) {
+        let output = self
+            .cloudformation
+            .describe_change_set()
+            .change_set_name(change_set_name)
+            .stack_name(self.instance_spec.stack_name.as_str())
+            .send()
+            .await
+            .unwrap();
+
+        crate::change_set::print_change_set_output(&output);
+    }
+
+    pub async fn list_change_sets(&self) {
+        let mut paginator = self
+            .cloudformation
+            .list_change_sets()
+            .stack_name(self.instance_spec.stack_name.as_str())
+            .into_paginator()
+            .send();
+
+        while let Some(result) = paginator.next().await {
+            for summary in result.unwrap().summaries.unwrap_or_default() {
+                eprintln!("{summary:#?}")
+            }
+        }
+    }
+
     pub async fn delete(&self) {
         let client_request_token = ClientRequestToken::generate();
         let stack_id =
@@ -103,50 +162,133 @@ impl Context<'_> {
         )
         .await
     }
-    pub async fn sync(&self, user_parameter_map: &ParameterMap) {
-        Self::process_update_result(
-            self.cloudformation,
-            match try_load_stack(self.cloudformation, &self.instance_spec.stack_name).await {
-                Some(existing_stack) => {
-                    self.start_template_update(&existing_stack, user_parameter_map)
-                        .await
-                }
-                None => Some(self.start_create(user_parameter_map).await),
-            },
-        )
-        .await
-    }
 
-    pub async fn update(&self, user_parameter_map: &ParameterMap) {
-        let existing_stack = try_load_stack(self.cloudformation, &self.instance_spec.stack_name)
+    pub async fn create(&self, user_parameter_map: &ParameterMap) {
+        self.wait_for_final(self.start_create(user_parameter_map).await)
             .await
-            .expect("stack exists");
+    }
 
-        Self::process_update_result(
-            self.cloudformation,
-            self.start_template_update(&existing_stack, user_parameter_map)
-                .await,
-        )
+    pub async fn sync(
+        &self,
+        review_change_set: &ReviewChangeSet,
+        user_parameter_map: &ParameterMap,
+    ) {
+        match try_load_stack(self.cloudformation, &self.instance_spec.stack_name).await {
+            Some(existing_stack) => {
+                self.update_existing_stack(review_change_set, &existing_stack, user_parameter_map)
+                    .await
+            }
+            None => self.create(user_parameter_map).await,
+        }
+    }
+
+    pub async fn update(
+        &self,
+        review_change_set: &ReviewChangeSet,
+        user_parameter_map: &ParameterMap,
+    ) {
+        let existing_stack = load_stack(self.cloudformation, &self.instance_spec.stack_name).await;
+        self.update_existing_stack(review_change_set, &existing_stack, user_parameter_map)
+            .await
+    }
+
+    async fn update_existing_stack(
+        &self,
+        review_change_set: &ReviewChangeSet,
+        existing_stack: &aws_sdk_cloudformation::types::Stack,
+        user_parameter_map: &ParameterMap,
+    ) {
+        match review_change_set {
+            ReviewChangeSet::Interactive => {
+                self.update_interactive(existing_stack, user_parameter_map)
+                    .await
+            }
+            ReviewChangeSet::NoReview => {
+                self.wait_for_final_update(
+                    self.start_template_update(existing_stack, user_parameter_map)
+                        .await,
+                )
+                .await
+            }
+        }
+    }
+
+    async fn update_interactive(
+        &self,
+        existing_stack: &aws_sdk_cloudformation::types::Stack,
+        user_parameter_map: &ParameterMap,
+    ) {
+        use std::io::BufRead;
+
+        let change_set_name =
+            format!("interactive-{}", chrono::Utc::now().format("%Y%m%d%H%M%S")).into();
+
+        log::info!("Creating change set: {change_set_name}");
+
+        let change_set_arn = self
+            .start_create_change_set(existing_stack, &change_set_name, user_parameter_map)
+            .await;
+
+        log::info!("Created change set: {change_set_arn}");
+
+        self.wait_for_final_change_set_status(&change_set_arn).await;
+
+        let output = self
+            .cloudformation
+            .describe_change_set()
+            .change_set_name(&change_set_arn)
+            .include_property_values(true)
+            .send()
+            .await
+            .unwrap();
+
+        let stack_id: StackId = StackId(output.stack_id.clone().unwrap());
+
+        crate::change_set::print_change_set_output(&output);
+
+        println!("Apply? Type YES to proceed or send SIGERM");
+
+        for line in std::io::stdin().lock().lines() {
+            if line.unwrap() == "YES" {
+                break;
+            } else {
+                println!("Only YES please ;)")
+            }
+        }
+
+        let client_request_token = ClientRequestToken::generate();
+
+        self.cloudformation
+            .execute_change_set()
+            .change_set_name(change_set_arn)
+            .client_request_token(&client_request_token)
+            .send()
+            .await
+            .unwrap();
+
+        self.wait_for_final(RemoteOperation {
+            stack_id,
+            client_request_token,
+        })
         .await
     }
 
-    async fn process_update_result(
-        cloudformation: &aws_sdk_cloudformation::Client,
-        result: Option<RemoteOperation>,
-    ) {
+    async fn wait_for_final_update(&self, result: Option<RemoteOperation>) {
         match result {
             None => log::info!("Stack is already up to date"),
-            Some(remote_operation) => Self::wait(cloudformation, remote_operation).await,
+            Some(remote_operation) => self.wait_for_final(remote_operation).await,
         }
+    }
+
+    async fn wait_for_final(&self, remote_operation: RemoteOperation) {
+        Self::wait(self.cloudformation, remote_operation).await
     }
 
     pub async fn parameter_update(&self, user_parameter_map: &ParameterMap) {
         let result = self
             .start_parameter_update(
                 self.cloudformation,
-                &try_load_stack(self.cloudformation, &self.instance_spec.stack_name)
-                    .await
-                    .expect("Stack should exist"),
+                &load_stack(self.cloudformation, &self.instance_spec.stack_name).await,
                 user_parameter_map,
             )
             .await;
@@ -164,6 +306,69 @@ impl Context<'_> {
         crate::events::Poll::wait_for_remote_operation(remote_operation)
             .run(cloudformation, crate::events::print_event)
             .await
+    }
+
+    async fn wait_for_final_change_set_status(&self, change_set_arn: &ChangeSetArn) {
+        use aws_sdk_cloudformation::types::ChangeSetStatus;
+
+        enum Iteration {
+            Continue,
+            Stop,
+        }
+
+        loop {
+            let output = self
+                .cloudformation
+                .describe_change_set()
+                .change_set_name(change_set_arn)
+                .include_property_values(true)
+                .send()
+                .await
+                .unwrap();
+
+            let status = output.status.unwrap();
+
+            let (log_level, panic_message, iteration) = match status {
+                ChangeSetStatus::CreateComplete | ChangeSetStatus::DeleteComplete => {
+                    (log::Level::Info, None, Iteration::Stop)
+                }
+                ChangeSetStatus::CreateInProgress
+                | ChangeSetStatus::CreatePending
+                | ChangeSetStatus::DeleteInProgress
+                | ChangeSetStatus::DeletePending => (log::Level::Info, None, Iteration::Continue),
+                ChangeSetStatus::DeleteFailed => (
+                    log::Level::Error,
+                    Some("Failed to delete change set"),
+                    Iteration::Stop,
+                ),
+                ChangeSetStatus::Failed => (
+                    log::Level::Error,
+                    Some("Failed to create change set"),
+                    Iteration::Stop,
+                ),
+                unknown => panic!("Unknown change set status: {unknown:#?}"),
+            };
+
+            log::log!(
+                log_level,
+                "{change_set_arn}: {status}, {}",
+                match output.status_reason.as_ref() {
+                    Some(reason) => reason.as_str(),
+                    None => "",
+                }
+            );
+
+            if let Some(panic_message) = panic_message {
+                panic!("{panic_message}");
+            }
+
+            match iteration {
+                Iteration::Continue => {}
+                Iteration::Stop => break,
+            }
+
+            tokio::time::sleep(std::time::Duration::new(1, 0)).await
+        }
     }
 
     async fn start_create(&self, user_parameter_map: &ParameterMap) -> RemoteOperation {
@@ -198,20 +403,50 @@ impl Context<'_> {
         }
     }
 
+    pub async fn start_create_change_set(
+        &self,
+        existing_stack: &aws_sdk_cloudformation::types::Stack,
+        change_set_name: &ChangeSetName,
+        user_parameter_map: &ParameterMap,
+    ) -> ChangeSetArn {
+        let client_request_token = ClientRequestToken::generate();
+
+        let existing_stack_parameter_keys = existing_stack_parameter_keys(existing_stack);
+
+        let request = self
+            .cloudformation
+            .create_change_set()
+            .change_set_name(change_set_name)
+            .stack_name(existing_stack.stack_id.as_ref().unwrap())
+            .set_parameters(Some(
+                self.instance_spec
+                    .parameter_map
+                    .merge(user_parameter_map)
+                    .to_template_update_parameters(
+                        &self.instance_spec.template.parameter_keys(),
+                        &existing_stack_parameter_keys,
+                    ),
+            ))
+            .set_capabilities(Some(self.capabilities()))
+            .client_token(&client_request_token);
+
+        let output = self
+            .set_create_change_set_template(request)
+            .await
+            .send()
+            .await
+            .unwrap();
+
+        ChangeSetArn(output.id.unwrap())
+    }
+
     async fn start_template_update(
         &self,
         existing_stack: &aws_sdk_cloudformation::types::Stack,
         user_parameter_map: &ParameterMap,
     ) -> Option<RemoteOperation> {
         let client_request_token = ClientRequestToken::generate();
-        let existing_stack_parameters =
-            std::collections::BTreeSet::from_iter(match &existing_stack.parameters {
-                None => vec![],
-                Some(parameters) => parameters
-                    .iter()
-                    .map(|parameter| ParameterKey(parameter.parameter_key.clone().unwrap()))
-                    .collect(),
-            });
+        let existing_stack_parameter_keys = existing_stack_parameter_keys(existing_stack);
 
         let request = self
             .cloudformation
@@ -223,7 +458,7 @@ impl Context<'_> {
                     .merge(user_parameter_map)
                     .to_template_update_parameters(
                         &self.instance_spec.template.parameter_keys(),
-                        &existing_stack_parameters,
+                        &existing_stack_parameter_keys,
                     ),
             ))
             .set_capabilities(Some(self.capabilities()))
@@ -299,6 +534,17 @@ impl Context<'_> {
         &self,
         request: aws_sdk_cloudformation::operation::create_stack::builders::CreateStackFluentBuilder,
     ) -> aws_sdk_cloudformation::operation::create_stack::builders::CreateStackFluentBuilder {
+        match self.upload_template().await {
+            Ok(template_url) => request.template_url(template_url),
+            Err(template_body) => request.template_body(template_body),
+        }
+    }
+
+    async fn set_create_change_set_template(
+        &self,
+        request: aws_sdk_cloudformation::operation::create_change_set::builders::CreateChangeSetFluentBuilder,
+    ) -> aws_sdk_cloudformation::operation::create_change_set::builders::CreateChangeSetFluentBuilder
+    {
         match self.upload_template().await {
             Ok(template_url) => request.template_url(template_url),
             Err(template_body) => request.template_body(template_body),
@@ -395,4 +641,16 @@ fn verify_template(base: &std::path::Path, template: &Template) {
 
         assert_eq!(&expected, new.body.as_str())
     }
+}
+
+fn existing_stack_parameter_keys(
+    existing_stack: &aws_sdk_cloudformation::types::Stack,
+) -> BTreeSet<ParameterKey> {
+    BTreeSet::from_iter(match &existing_stack.parameters {
+        None => vec![],
+        Some(parameters) => parameters
+            .iter()
+            .map(|parameter| ParameterKey(parameter.parameter_key.clone().unwrap()))
+            .collect(),
+    })
 }

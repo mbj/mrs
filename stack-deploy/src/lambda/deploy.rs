@@ -1,4 +1,4 @@
-use crate::instance_spec::{InstanceSpec, TemplateUploader};
+use crate::instance_spec::{InstanceSpec, ReviewChangeSet, TemplateUploader};
 use crate::types::{ParameterKey, ParameterMap, ParameterValue};
 use sha2::Digest;
 
@@ -219,11 +219,13 @@ impl Target {
             .await;
     }
 
+    #[allow(clippy::too_many_arguments)]
     pub async fn deploy_template_update(
         s3: &aws_sdk_s3::client::Client,
         cloudformation: &aws_sdk_cloudformation::Client,
         s3_bucket_name: &S3BucketName,
         instance_spec: &InstanceSpec,
+        review_change_set: &ReviewChangeSet,
         parameter_key: &ParameterKey,
         template_uploader: &Option<TemplateUploader<'_>>,
         zip_file: ZipFile,
@@ -232,16 +234,19 @@ impl Target {
 
         instance_spec
             .context(cloudformation, template_uploader.as_ref())
-            .update(&ParameterMap(std::collections::BTreeMap::from([(
-                parameter_key.clone(),
-                parameter_value,
-            )])))
+            .update(
+                review_change_set,
+                &ParameterMap(std::collections::BTreeMap::from([(
+                    parameter_key.clone(),
+                    parameter_value,
+                )])),
+            )
             .await;
     }
 }
 
 pub mod cli {
-    use crate::instance_spec::{Registry, TemplateUploader};
+    use crate::instance_spec::{Registry, ReviewChangeSet, TemplateUploader};
     use crate::lambda::deploy::S3BucketSource;
     use crate::types::{ParameterKey, ParameterMap, ParameterValue, StackName};
 
@@ -286,7 +291,11 @@ pub mod cli {
             parameter_value
         }
 
-        pub(crate) async fn deploy_template(&self, stack_name: &StackName) {
+        pub(crate) async fn deploy_template(
+            &self,
+            stack_name: &StackName,
+            review_change_set: &ReviewChangeSet,
+        ) {
             let instance_spec = self
                 .registry
                 .find(stack_name)
@@ -296,10 +305,13 @@ pub mod cli {
 
             instance_spec
                 .context(self.cloudformation, self.template_uploader)
-                .sync(&ParameterMap(std::collections::BTreeMap::from([(
-                    self.parameter_key.clone(),
-                    parameter_value,
-                )])))
+                .sync(
+                    review_change_set,
+                    &ParameterMap(std::collections::BTreeMap::from([(
+                        self.parameter_key.clone(),
+                        parameter_value,
+                    )])),
+                )
                 .await
         }
 
@@ -341,6 +353,8 @@ pub mod cli {
             /// Instance spec name to deploy to
             #[arg(long = "stack-name")]
             name: StackName,
+            #[arg(long, default_value = "interactive")]
+            review_change_set: ReviewChangeSet,
         },
         /// Deploy lambda function with parameter update
         DeployParameter {
@@ -361,7 +375,10 @@ pub mod cli {
                 Self::Upload => {
                     config.upload().await;
                 }
-                Self::DeployTemplate { name } => config.deploy_template(name).await,
+                Self::DeployTemplate {
+                    name,
+                    review_change_set,
+                } => config.deploy_template(name, review_change_set).await,
                 Self::DeployParameter { name } => config.deploy_parameter(name).await,
             }
         }
