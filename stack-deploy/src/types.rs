@@ -5,6 +5,12 @@ const INLINE_TEMPLATE_LIMIT_BYTES: usize = 51200;
 #[derive(Clone, Debug, PartialEq)]
 pub struct StackName(pub String);
 
+impl From<&str> for StackName {
+    fn from(value: &str) -> Self {
+        Self(value.into())
+    }
+}
+
 #[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
 pub struct TemplateName(pub String);
 
@@ -703,5 +709,61 @@ impl From<String> for TemplateUrl {
 impl From<TemplateUrl> for String {
     fn from(value: TemplateUrl) -> Self {
         value.0
+    }
+}
+
+#[derive(Clone, Debug)]
+pub struct ChangeSetName(String);
+
+impl std::str::FromStr for ChangeSetName {
+    type Err = &'static str;
+
+    fn from_str(input: &str) -> Result<Self, Self::Err> {
+        Ok(Self(input.to_string()))
+    }
+}
+
+impl From<&ChangeSetName> for String {
+    fn from(value: &ChangeSetName) -> String {
+        value.0.to_string()
+    }
+}
+
+impl From<String> for ChangeSetName {
+    fn from(value: String) -> Self {
+        Self(value)
+    }
+}
+
+impl std::fmt::Display for ChangeSetName {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        write!(formatter, "{}", self.0)
+    }
+}
+
+#[derive(Clone, Debug)]
+pub struct ChangeSetArn(pub String);
+
+impl ChangeSetArn {
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
+impl std::fmt::Display for ChangeSetArn {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        write!(formatter, "{}", self.0)
+    }
+}
+
+impl From<ChangeSetArn> for String {
+    fn from(value: ChangeSetArn) -> Self {
+        (&value.0).into()
+    }
+}
+
+impl From<&ChangeSetArn> for String {
+    fn from(value: &ChangeSetArn) -> Self {
+        value.0.to_string()
     }
 }
