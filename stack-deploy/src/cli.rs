@@ -32,6 +32,7 @@ impl Command {
 }
 
 mod instance {
+    use crate::instance_spec::ReviewChangeSet;
     use crate::types::*;
 
     #[derive(Clone, Debug, clap::Parser)]
@@ -47,7 +48,32 @@ mod instance {
     }
 
     #[derive(Clone, Debug, clap::Parser)]
+    pub enum ChangeSetCommand {
+        Create {
+            #[arg(long)]
+            change_set_name: ChangeSetName,
+            #[arg(long = "parameter")]
+            parameters: Vec<Parameter>,
+        },
+        Delete {
+            #[arg(long)]
+            change_set_name: ChangeSetName,
+        },
+        Describe {
+            #[arg(long)]
+            change_set_name: ChangeSetName,
+        },
+        List,
+    }
+
+    #[derive(Clone, Debug, clap::Parser)]
     pub enum Command {
+        ChangeSet {
+            #[arg(long = "stack-name")]
+            name: StackName,
+            #[clap(subcommand)]
+            command: ChangeSetCommand,
+        },
         /// Delete stack instance
         Delete {
             #[arg(long = "stack-name")]
@@ -61,13 +87,18 @@ mod instance {
             name: StackName,
             #[arg(long = "parameter")]
             parameters: Vec<Parameter>,
+            #[arg(long, default_value = "interactive")]
+            review_change_set: ReviewChangeSet,
         },
+        /// Update stack template, fails if absent
         /// Sync stack instance, creates if absent, template updates is missing
         Sync {
             #[arg(long = "stack-name")]
             name: StackName,
             #[arg(long = "parameter")]
             parameters: Vec<Parameter>,
+            #[arg(long, default_value = "interactive")]
+            review_change_set: ReviewChangeSet,
         },
         /// Watch stack events
         Watch {
@@ -87,21 +118,64 @@ mod instance {
             };
 
             match self {
+                Self::ChangeSet {
+                    name,
+                    command:
+                        ChangeSetCommand::Create {
+                            change_set_name,
+                            parameters,
+                        },
+                } => {
+                    let parameter_map = ParameterMap::parse(parameters).unwrap();
+                    fetch_context(name)
+                        .create_change_set(change_set_name, &parameter_map)
+                        .await;
+                }
+                Self::ChangeSet {
+                    name,
+                    command: ChangeSetCommand::Delete { change_set_name },
+                } => {
+                    fetch_context(name).delete_change_set(change_set_name).await;
+                }
+                Self::ChangeSet {
+                    name,
+                    command: ChangeSetCommand::Describe { change_set_name },
+                } => {
+                    fetch_context(name)
+                        .describe_change_set(change_set_name)
+                        .await;
+                }
+                Self::ChangeSet {
+                    name,
+                    command: ChangeSetCommand::List,
+                } => fetch_context(name).list_change_sets().await,
                 Self::Delete { name } => fetch_context(name).delete().await,
                 Self::List => config
                     .registry
                     .0
                     .iter()
                     .for_each(|instance_spec| println!("{}", instance_spec.stack_name.0)),
-                Self::Sync { name, parameters } => {
+                Self::Sync {
+                    name,
+                    parameters,
+                    review_change_set,
+                } => {
                     let parameter_map = ParameterMap::parse(parameters).unwrap();
 
-                    fetch_context(name).sync(&parameter_map).await
+                    fetch_context(name)
+                        .sync(review_change_set, &parameter_map)
+                        .await
                 }
-                Self::Update { name, parameters } => {
+                Self::Update {
+                    name,
+                    parameters,
+                    review_change_set,
+                } => {
                     let parameter_map = ParameterMap::parse(parameters).unwrap();
 
-                    fetch_context(name).update(&parameter_map).await
+                    fetch_context(name)
+                        .update(review_change_set, &parameter_map)
+                        .await
                 }
                 Self::Watch { name } => {
                     crate::instance_spec::InstanceSpec::watch(
