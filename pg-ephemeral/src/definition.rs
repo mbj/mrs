@@ -5,10 +5,10 @@ use crate::cbt;
 pub enum Step {
     ApplyPendingMigrations,
     ApplyPendingMigrationsNoSchemaDump,
-    SqlFile(file_buf::FileBuf),
+    SqlFile(std::path::PathBuf),
     SqlFileGitRevision {
-        file: file_buf::FileBuf,
         git_revision: &'static str,
+        path: std::path::PathBuf,
     },
 }
 
@@ -36,8 +36,8 @@ impl Definition {
         }
     }
 
-    pub fn apply_file(self, file: file_buf::FileBuf) -> Self {
-        self.push_step(Step::SqlFile(file))
+    pub fn apply_file(self, path: std::path::PathBuf) -> Self {
+        self.push_step(Step::SqlFile(path))
     }
 
     pub fn migration_config(self, migration_config: mmigration::Config) -> Self {
@@ -64,10 +64,10 @@ impl Definition {
 
     pub fn apply_file_from_git_revision(
         self,
-        file: file_buf::FileBuf,
+        path: std::path::PathBuf,
         git_revision: &'static str,
     ) -> Self {
-        self.push_step(Step::SqlFileGitRevision { file, git_revision })
+        self.push_step(Step::SqlFileGitRevision { git_revision, path })
     }
 
     fn push_step(self, step: Step) -> Self {
@@ -130,10 +130,10 @@ impl Definition {
 
     async fn apply_step(&self, db_container: &Container<'_>, step: &Step) {
         match step {
-            Step::SqlFile(file) => db_container.apply_sql_file(file).await,
-            Step::SqlFileGitRevision { file, git_revision } => {
+            Step::SqlFile(path) => db_container.apply_sql_file(path).await,
+            Step::SqlFileGitRevision { path, git_revision } => {
                 db_container
-                    .apply_sql_file_git_revision(file, git_revision)
+                    .apply_sql_file_git_revision(path, git_revision)
                     .await
             }
             Step::ApplyPendingMigrations => db_container.apply_pending_migrations().await,
@@ -180,23 +180,20 @@ pub fn apply_cbt_mounts(client_config: &pg_client::Config) -> (pg_client::Config
                 let host =
                     std::fs::canonicalize(file).expect("could not canonicalize ssl root path");
 
-                let mut container = std::path::PathBuf::new();
+                let mut container_path = std::path::PathBuf::new();
 
-                container.push("/pg_ephemeral");
-                container.push(file.file_name());
+                container_path.push("/pg_ephemeral");
+                container_path.push(file.file_name().unwrap());
 
                 let mounts = vec![cbt::Mount::from(format!(
                     "type=bind,ro,source={},target={}",
                     host.to_str().unwrap(),
-                    container.to_str().unwrap()
+                    container_path.to_str().unwrap()
                 ))];
 
                 (
                     pg_client::Config {
-                        ssl_root_cert: Some(
-                            pg_client::SslRootCert::from_path_unchecked_existance(container)
-                                .unwrap(),
-                        ),
+                        ssl_root_cert: Some(container_path.into()),
                         ..owned_client_config
                     },
                     mounts,

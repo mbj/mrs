@@ -257,25 +257,21 @@ impl SslMode {
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 #[serde(rename_all = "kebab-case")]
 pub enum SslRootCert {
-    File(file_buf::FileBuf),
+    File(std::path::PathBuf),
     System,
 }
 
 impl SslRootCert {
-    pub fn from_path_unchecked_existance(path: std::path::PathBuf) -> Option<SslRootCert> {
-        file_buf::FileBuf::from_path_unchecked_existance(path).map(Self::File)
-    }
-
     fn to_pg_env_value(&self) -> String {
         match self {
-            Self::File(file) => file.as_ref().to_str().unwrap().to_string(),
+            Self::File(path) => path.to_str().unwrap().to_string(),
             Self::System => "system".to_string(),
         }
     }
 }
 
-impl From<file_buf::FileBuf> for SslRootCert {
-    fn from(value: file_buf::FileBuf) -> Self {
+impl From<std::path::PathBuf> for SslRootCert {
+    fn from(value: std::path::PathBuf) -> Self {
         Self::File(value)
     }
 }
@@ -340,9 +336,7 @@ impl Config {
     ///     password: Some(Password::from_str("some-password").unwrap()),
     ///     port: Port(5432),
     ///     ssl_mode: SslMode::VerifyFull,
-    ///     ssl_root_cert: Some(SslRootCert::File(
-    ///         file_buf::FileBuf::from_path_unchecked_existance("/some.pem".into()).unwrap(),
-    ///     )),
+    ///     ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
     ///     username: Username::from_str("some-username").unwrap(),
     /// };
     ///

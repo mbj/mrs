@@ -19,7 +19,7 @@ pub struct QualifiedTableName {
 pub struct Config {
     pub migration_dir: std::path::PathBuf,
     pub schema_normalizer: Box<dyn SchemaNormalizer>,
-    pub schema_file: file_buf::FileBuf,
+    pub schema_path: std::path::PathBuf,
     pub qualified_table_name: QualifiedTableName,
 }
 
@@ -120,10 +120,10 @@ impl<'a, D: SchemaDump> Context<'a, D> {
     }
 
     pub async fn schema_dump(&self) {
-        log::info!("Writing schema to: {}", self.config.schema_file.display());
+        log::info!("Writing schema to: {}", self.config.schema_path.display());
 
         std::fs::write(
-            &self.config.schema_file,
+            &self.config.schema_path,
             self.config
                 .schema_normalizer
                 .normalize(&self.schema_dump.schema_dump().await),
