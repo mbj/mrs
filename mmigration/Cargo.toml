@@ -5,7 +5,6 @@ edition.workspace = true
 
 [dependencies]
 clap = { workspace = true }
-file-buf = { workspace = true }
 log = { workspace = true }
 pg-client = { workspace = true }
 regex-lite = { workspace = true }

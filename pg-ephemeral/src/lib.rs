@@ -131,18 +131,19 @@ impl<'a> Container<'a> {
             .await
     }
 
-    pub async fn apply_sql_file(&self, file: &file_buf::FileBuf) {
-        self.apply_sql(&file.read_to_string()).await
+    pub async fn apply_sql_file(&self, path: &std::path::Path) {
+        self.apply_sql(&std::fs::read_to_string(path).unwrap())
+            .await
     }
 
     pub async fn apply_sql_file_git_revision(
         &self,
-        file: &file_buf::FileBuf,
+        path: &std::path::Path,
         git_revision: &'static str,
     ) {
         let sql = cbt::Command::new("git")
             .argument("show")
-            .argument(format!("{git_revision}:{}", file.to_str()))
+            .argument(format!("{git_revision}:{}", path.to_str().unwrap()))
             .capture_only_stdout_string();
 
         self.apply_sql(&sql).await
