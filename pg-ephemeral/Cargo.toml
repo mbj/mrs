@@ -6,7 +6,6 @@ edition.workspace = true
 [dependencies]
 clap = { workspace = true }
 env_logger = { workspace = true }
-file-buf = { workspace = true }
 log = { workspace = true }
 mmigration = { workspace = true }
 pg-client = { workspace = true }
