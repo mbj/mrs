@@ -100,7 +100,7 @@ pub struct Target {
     pub binary_name: BinaryName,
     pub build_target: BuildTarget,
     pub build_type: BuildType,
-    pub extra_files: std::collections::BTreeMap<file_buf::FileBuf, file_buf::FileBuf>,
+    pub extra_files: std::collections::BTreeMap<std::path::PathBuf, std::path::PathBuf>,
 }
 
 impl Target {

@@ -1,6 +1,5 @@
 [workspace]
 members = [
-  "file-buf",
   "mlambda",
   "mmigration",
   "pg-client",
@@ -19,7 +18,6 @@ edition = "2024"
 [workspace.dependencies]
 clap = { version = "4.5", features = ["derive"] }
 env_logger = "0.11"
-file-buf = { path = "file-buf" }
 http = "1.3"
 log = "0.4"
 mmigration = { path = "mmigration" }
