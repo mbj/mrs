@@ -3,6 +3,12 @@ use crate::types::{Index, MigrationName, PendingMigration};
 #[derive(Debug)]
 pub struct DefinedMigrations(std::collections::BTreeMap<Index, PendingMigration>);
 
+impl Default for DefinedMigrations {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl DefinedMigrations {
     /// Load migrations from migration dir
     pub fn load(migration_dir: &std::path::Path) -> Self {
