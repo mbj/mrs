@@ -72,7 +72,7 @@ impl std::str::FromStr for Host {
     type Err = &'static str;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
-        match <std::net::SocketAddr as std::str::FromStr>::from_str(value) {
+        match std::net::SocketAddr::from_str(value) {
             Ok(addr) => Ok(Self::SocketAddr(addr)),
             Err(_) => match HostName::from_str(value) {
                 Ok(host_name) => Ok(Self::HostName(host_name)),
