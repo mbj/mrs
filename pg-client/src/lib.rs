@@ -227,8 +227,8 @@ pub enum SslMode {
 impl SslMode {
     fn as_str(&self) -> &'static str {
         match self {
-            Self::Disable => "disable",
             Self::Allow => "allow",
+            Self::Disable => "disable",
             Self::Prefer => "prefer",
             Self::Require => "require",
             Self::VerifyCa => "verify-ca",
@@ -240,8 +240,8 @@ impl SslMode {
         use sqlx::postgres::PgSslMode;
 
         match self {
-            Self::Disable => PgSslMode::Disable,
             Self::Allow => PgSslMode::Allow,
+            Self::Disable => PgSslMode::Disable,
             Self::Prefer => PgSslMode::Prefer,
             Self::Require => PgSslMode::Require,
             Self::VerifyCa => PgSslMode::VerifyCa,
