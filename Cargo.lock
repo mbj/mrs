@@ -1821,7 +1821,9 @@ name = "pg-client"
 version = "0.0.1"
 dependencies = [
  "hostname-validator",
+ "pretty_assertions",
  "serde",
+ "serde_json",
  "sqlx",
 ]
 

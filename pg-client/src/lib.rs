@@ -286,13 +286,24 @@ macro_rules! ssl_root_cert_file {
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
+/// PG connection config with various presentation modes.
+///
+/// Supported:
+///
+/// 1. Env variables via `to_pg_env()`
+/// 2. JSON document via `serde`
+/// 3. sqlx connect options via `to_sqlx_connect_options()`
+/// 4. Individual field access
 pub struct Config {
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub application_name: Option<ApplicationName>,
     pub database: Database,
     pub host: Host,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub password: Option<Password>,
     pub port: Port,
     pub ssl_mode: SslMode,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub ssl_root_cert: Option<SslRootCert>,
     pub username: Username,
 }
@@ -323,7 +334,7 @@ impl Config {
         map
     }
 
-    /// Convert to an SQL pg connection config
+    /// Convert to an sqlx pg connection config
     ///
     /// ```
     /// # use pg_client::*;
@@ -427,5 +438,106 @@ impl Config {
         sqlx::Connection::close(connection).await.unwrap();
 
         result
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use pretty_assertions::assert_eq;
+
+    fn assert_config(expected: serde_json::Value, config: &Config) {
+        assert_eq!(expected, serde_json::to_value(config).unwrap());
+    }
+
+    #[test]
+    fn test_json() {
+        use std::str::FromStr;
+
+        let config = Config {
+            application_name: None,
+            database: Database::from_str("some-database").unwrap(),
+            host: Host::from_str("some-host").unwrap(),
+            password: None,
+            port: Port(5432),
+            ssl_mode: SslMode::VerifyFull,
+            ssl_root_cert: None,
+            username: Username::from_str("some-username").unwrap(),
+        };
+
+        assert_config(
+            serde_json::json!({
+                "database": "some-database",
+                "host": "some-host",
+                "port": 5432,
+                "ssl_mode": "verify-full",
+                "username": "some-username"
+            }),
+            &config,
+        );
+
+        assert_config(
+            serde_json::json!({
+                "application_name": "some-app",
+                "database": "some-database",
+                "host": "some-host",
+                "password": "some-password",
+                "port": 5432,
+                "ssl_mode": "verify-full",
+                "ssl_root_cert": {
+                    "file": "/some.pem"
+                },
+                "username": "some-username"
+            }),
+            &Config {
+                application_name: Some(ApplicationName::from_str("some-app").unwrap()),
+                password: Some(Password::from_str("some-password").unwrap()),
+                ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
+                ..config.clone()
+            },
+        );
+
+        assert_config(
+            serde_json::json!({
+                "database": "some-database",
+                "host": "127.0.0.1",
+                "port": 5432,
+                "ssl_mode": "verify-full",
+                "username": "some-username"
+            }),
+            &Config {
+                host: Host::from_str("127.0.0.1").unwrap(),
+                ..config.clone()
+            },
+        );
+
+        assert_config(
+            serde_json::json!({
+                "database": "some-database",
+                "host": "/some/socket",
+                "port": 5432,
+                "ssl_mode": "verify-full",
+                "username": "some-username"
+            }),
+            &Config {
+                host: Host::SocketPath("/some/socket".into()),
+                ..config.clone()
+            },
+        );
+
+        assert_config(
+            serde_json::json!({
+                "database": "some-database",
+                "host": "some-host",
+                "port": 5432,
+                "ssl_mode": "verify-full",
+                "ssl_root_cert": "system",
+                "username": "some-username"
+            }),
+            &Config {
+                ssl_root_cert: Some(SslRootCert::System),
+                ..config.clone()
+            },
+        );
     }
 }
