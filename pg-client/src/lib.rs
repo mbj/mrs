@@ -72,7 +72,7 @@ impl std::str::FromStr for Host {
     type Err = &'static str;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
-        match <std::net::SocketAddr as std::str::FromStr>::from_str(value) {
+        match std::net::SocketAddr::from_str(value) {
             Ok(addr) => Ok(Self::SocketAddr(addr)),
             Err(_) => match HostName::from_str(value) {
                 Ok(host_name) => Ok(Self::HostName(host_name)),
@@ -227,8 +227,8 @@ pub enum SslMode {
 impl SslMode {
     fn as_str(&self) -> &'static str {
         match self {
-            Self::Disable => "disable",
             Self::Allow => "allow",
+            Self::Disable => "disable",
             Self::Prefer => "prefer",
             Self::Require => "require",
             Self::VerifyCa => "verify-ca",
@@ -240,8 +240,8 @@ impl SslMode {
         use sqlx::postgres::PgSslMode;
 
         match self {
-            Self::Disable => PgSslMode::Disable,
             Self::Allow => PgSslMode::Allow,
+            Self::Disable => PgSslMode::Disable,
             Self::Prefer => PgSslMode::Prefer,
             Self::Require => PgSslMode::Require,
             Self::VerifyCa => PgSslMode::VerifyCa,
@@ -285,7 +285,15 @@ macro_rules! ssl_root_cert_file {
     };
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
+#[derive(Clone, Debug, PartialEq, Eq)]
+/// PG connection config with various presentation modes.
+///
+/// Supported:
+///
+/// 1. Env variables via `to_pg_env()`
+/// 2. JSON document via `serde`
+/// 3. sqlx connect options via `to_sqlx_connect_options()`
+/// 4. Individual field access
 pub struct Config {
     pub application_name: Option<ApplicationName>,
     pub database: Database,
@@ -297,7 +305,107 @@ pub struct Config {
     pub username: Username,
 }
 
+impl serde::Serialize for Config {
+    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        use serde::ser::SerializeStruct;
+        let mut state = serializer.serialize_struct("Config", 8)?;
+
+        if let Some(application_name) = &self.application_name {
+            state.serialize_field("application_name", application_name)?;
+        }
+
+        state.serialize_field("database", &self.database)?;
+        state.serialize_field("host", &self.host)?;
+
+        if let Some(password) = &self.password {
+            state.serialize_field("password", password)?;
+        }
+
+        state.serialize_field("port", &self.port)?;
+        state.serialize_field("ssl_mode", &self.ssl_mode)?;
+
+        if let Some(ssl_root_cert) = &self.ssl_root_cert {
+            state.serialize_field("ssl_root_cert", ssl_root_cert)?;
+        }
+
+        state.serialize_field("username", &self.username)?;
+
+        state.serialize_field("url", &self.to_url())?;
+
+        state.end()
+    }
+}
+
 impl Config {
+    /// Convert to PG connection URL
+    ///
+    /// ```
+    /// # use pg_client::*;
+    /// # use std::str::FromStr;
+    /// # use url::Url;
+    ///
+    /// let config = Config {
+    ///     application_name: None,
+    ///     database: Database::from_str("some-database").unwrap(),
+    ///     host: Host::from_str("some-host").unwrap(),
+    ///     password: None,
+    ///     port: Port(5432),
+    ///     ssl_mode: SslMode::VerifyFull,
+    ///     ssl_root_cert: None,
+    ///     username: Username::from_str("some-username").unwrap(),
+    /// };
+    ///
+    /// let options = config.to_sqlx_connect_options();
+    ///
+    /// assert_eq!(
+    ///     Url::parse(
+    ///         "postgres://?host=some-host&dbname=some-database&user=some-username&port=5432&sslmode=verify-full"
+    ///     ).unwrap(),
+    ///     config.to_url()
+    /// );
+    ///
+    /// assert_eq!(
+    ///     Url::parse(
+    ///         "postgres://?host=some-host&dbname=some-database&user=some-username&password=some-password&port=5432&application_name=some-app&sslmode=verify-full&sslrootcert=%2Fsome.pem"
+    ///     ).unwrap(),
+    ///     Config {
+    ///         application_name: Some(ApplicationName::from_str("some-app").unwrap()),
+    ///         password: Some(Password::from_str("some-password").unwrap()),
+    ///         ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
+    ///         ..config
+    ///     }.to_url()
+    /// );
+    /// ```
+    pub fn to_url(&self) -> url::Url {
+        let mut url = url::Url::parse("postgres://").unwrap();
+
+        {
+            let mut pairs = url.query_pairs_mut();
+
+            pairs.append_pair("host", self.host.to_pg_env_value().as_str());
+            pairs.append_pair("dbname", self.database.as_str());
+            pairs.append_pair("user", self.username.to_pg_env_value().as_str());
+
+            if let Some(password) = &self.password {
+                pairs.append_pair("password", password.as_str());
+            }
+
+            pairs.append_pair("port", self.port.to_pg_env_value().as_str());
+
+            if let Some(application_name) = &self.application_name {
+                pairs.append_pair("application_name", application_name.as_str());
+            }
+
+            pairs.append_pair("sslmode", &self.ssl_mode.to_pg_env_value());
+
+            if let Some(ssl_root_cert) = &self.ssl_root_cert {
+                pairs.append_pair("sslrootcert", &ssl_root_cert.to_pg_env_value());
+            }
+        }
+
+        url
+    }
+
     /// Convert to PG environment variable names
     pub fn to_pg_env(&self) -> std::collections::BTreeMap<&'static str, String> {
         let mut map = std::collections::BTreeMap::new();
@@ -323,7 +431,7 @@ impl Config {
         map
     }
 
-    /// Convert to an SQL pg connection config
+    /// Convert to an sqlx pg connection config
     ///
     /// ```
     /// # use pg_client::*;
@@ -427,5 +535,111 @@ impl Config {
         sqlx::Connection::close(connection).await.unwrap();
 
         result
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use pretty_assertions::assert_eq;
+
+    fn assert_config(expected: serde_json::Value, config: &Config) {
+        assert_eq!(expected, serde_json::to_value(config).unwrap());
+    }
+
+    #[test]
+    fn test_json() {
+        use std::str::FromStr;
+
+        let config = Config {
+            application_name: None,
+            database: Database::from_str("some-database").unwrap(),
+            host: Host::from_str("some-host").unwrap(),
+            password: None,
+            port: Port(5432),
+            ssl_mode: SslMode::VerifyFull,
+            ssl_root_cert: None,
+            username: Username::from_str("some-username").unwrap(),
+        };
+
+        assert_config(
+            serde_json::json!({
+                "database": "some-database",
+                "host": "some-host",
+                "port": 5432,
+                "ssl_mode": "verify-full",
+                "url": "postgres://?host=some-host&dbname=some-database&user=some-username&port=5432&sslmode=verify-full",
+                "username": "some-username",
+            }),
+            &config,
+        );
+
+        assert_config(
+            serde_json::json!({
+                "application_name": "some-app",
+                "database": "some-database",
+                "host": "some-host",
+                "password": "some-password",
+                "port": 5432,
+                "ssl_mode": "verify-full",
+                "ssl_root_cert": {
+                    "file": "/some.pem"
+                },
+                "url": "postgres://?host=some-host&dbname=some-database&user=some-username&password=some-password&port=5432&application_name=some-app&sslmode=verify-full&sslrootcert=%2Fsome.pem",
+                "username": "some-username"
+            }),
+            &Config {
+                application_name: Some(ApplicationName::from_str("some-app").unwrap()),
+                password: Some(Password::from_str("some-password").unwrap()),
+                ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
+                ..config.clone()
+            },
+        );
+
+        assert_config(
+            serde_json::json!({
+                "database": "some-database",
+                "host": "127.0.0.1",
+                "port": 5432,
+                "ssl_mode": "verify-full",
+                "url": "postgres://?host=127.0.0.1&dbname=some-database&user=some-username&port=5432&sslmode=verify-full",
+                "username": "some-username"
+            }),
+            &Config {
+                host: Host::from_str("127.0.0.1").unwrap(),
+                ..config.clone()
+            },
+        );
+
+        assert_config(
+            serde_json::json!({
+                "database": "some-database",
+                "host": "/some/socket",
+                "port": 5432,
+                "ssl_mode": "verify-full",
+                "url": "postgres://?host=%2Fsome%2Fsocket&dbname=some-database&user=some-username&port=5432&sslmode=verify-full",
+                "username": "some-username"
+            }),
+            &Config {
+                host: Host::SocketPath("/some/socket".into()),
+                ..config.clone()
+            },
+        );
+
+        assert_config(
+            serde_json::json!({
+                "database": "some-database",
+                "host": "some-host",
+                "port": 5432,
+                "ssl_mode": "verify-full",
+                "ssl_root_cert": "system",
+                "url": "postgres://?host=some-host&dbname=some-database&user=some-username&port=5432&sslmode=verify-full&sslrootcert=system",
+                "username": "some-username"
+            }),
+            &Config {
+                ssl_root_cert: Some(SslRootCert::System),
+                ..config.clone()
+            },
+        );
     }
 }
