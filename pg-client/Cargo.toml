@@ -7,3 +7,8 @@ edition.workspace = true
 hostname-validator = "1.1.1"
 serde = { workspace = true }
 sqlx = { workspace = true }
+url = "2.5.7"
+
+[dev-dependencies]
+serde_json.workspace = true
+pretty_assertions = { workspace = true }
