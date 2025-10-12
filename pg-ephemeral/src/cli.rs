@@ -87,7 +87,7 @@ pub enum Command {
         command: crate::definition::cli::Command,
     },
     /// List defined instances
-    List,
+    InstanceList,
 }
 
 impl std::default::Default for Command {
@@ -113,7 +113,7 @@ impl Command {
                     Some(definition) => command.run(definition).await,
                 }
             }
-            Self::List => {
+            Self::InstanceList => {
                 for instance_name in instance_map.keys() {
                     println!("{}", instance_name)
                 }
