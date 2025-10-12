@@ -1,3 +1,4 @@
+pub mod change_set;
 pub mod cli;
 pub mod events;
 pub mod instance_spec;
