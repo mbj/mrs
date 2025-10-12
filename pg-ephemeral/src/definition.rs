@@ -241,6 +241,11 @@ pub mod cli {
         Migration(mmigration::cli::App),
         /// Run interactive psql on the host
         Psql,
+        /// Run shell command with PG* environment variables
+        RunEnv {
+            command: String,
+            arguments: Vec<String>,
+        },
     }
 
     impl Command {
@@ -252,6 +257,13 @@ pub mod cli {
                 Self::IntegrationServer => definition.run_integration_server().await,
                 Self::Migration(app) => run_migration(definition, app).await,
                 Self::Psql => definition.with_container(host_psql).await,
+                Self::RunEnv { command, arguments } => {
+                    definition
+                        .with_container(async |container| {
+                            host_command(container, command, arguments).await
+                        })
+                        .await
+                }
             }
         }
     }
@@ -259,6 +271,17 @@ pub mod cli {
     async fn host_psql(db_container: &Container<'_>) {
         let _ = std::process::Command::new("psql")
             .envs(db_container.client_config.to_pg_env())
+            .status();
+    }
+
+    async fn host_command<'a>(
+        db_container: &'a Container<'a>,
+        command: &str,
+        arguments: &'a Vec<String>,
+    ) {
+        let _ = std::process::Command::new(command)
+            .envs(db_container.client_config.to_pg_env())
+            .args(arguments)
             .status();
     }
 
