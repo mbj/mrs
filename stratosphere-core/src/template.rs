@@ -135,7 +135,7 @@ pub struct OutputExport {
 
 #[derive(Debug, PartialEq, serde::Serialize)]
 pub struct Template<'a> {
-    #[serde(rename = "Version")]
+    #[serde(rename = "AWSTemplateFormatVersion")]
     version: Version,
     #[serde(rename = "Description", skip_serializing_if = "Option::is_none")]
     description: Option<String>,

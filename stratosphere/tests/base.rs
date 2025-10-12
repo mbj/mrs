@@ -5,7 +5,7 @@ use stratosphere::token::*;
 stratosphere::generator::services!("AWS::EC2", "AWS::SecretsManager");
 
 const EXPECTED: &str = r#"{
-  "Version": "2010-09-09",
+  "AWSTemplateFormatVersion": "2010-09-09",
   "Outputs": {
     "SecurityGroupIdA": {
       "Description": "Id of the security group A",
