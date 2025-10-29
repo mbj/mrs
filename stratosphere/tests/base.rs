@@ -702,6 +702,77 @@ fn test_fn_if_macro() {
 }
 
 #[test]
+fn test_fn_and_macro() {
+    use stratosphere::value::ToValue;
+
+    let condition = stratosphere::fn_and!(true, false);
+    let value = condition.to_value();
+
+    let expected = serde_json::json!({
+        "Fn::And": [true, false]
+    });
+
+    assert_eq!(expected, value);
+}
+
+#[test]
+fn test_fn_or_macro() {
+    use stratosphere::value::ToValue;
+
+    let condition = stratosphere::fn_or!([true, false, true]);
+    let value = condition.to_value();
+
+    let expected = serde_json::json!({
+        "Fn::Or": [true, false, true]
+    });
+
+    assert_eq!(expected, value);
+}
+
+#[test]
+fn test_fn_not_macro() {
+    use stratosphere::value::ToValue;
+
+    let condition = stratosphere::fn_not!(true);
+    let value = condition.to_value();
+
+    let expected = serde_json::json!({
+        "Fn::Not": [true]
+    });
+
+    assert_eq!(expected, value);
+}
+
+#[test]
+fn test_fn_equals_string_macro() {
+    use stratosphere::value::ToValue;
+
+    // Test the macro directly
+    let condition = stratosphere::fn_equals_string!("production", "production");
+    let value = condition.to_value();
+
+    let expected = serde_json::json!({
+        "Fn::Equals": ["production", "production"]
+    });
+
+    assert_eq!(expected, value);
+}
+
+#[test]
+fn test_fn_equals_bool_macro() {
+    use stratosphere::value::ToValue;
+
+    let condition = stratosphere::fn_equals_bool!(true, false);
+    let value = condition.to_value();
+
+    let expected = serde_json::json!({
+        "Fn::Equals": [true, false]
+    });
+
+    assert_eq!(expected, value);
+}
+
+#[test]
 fn test_generation() {
     use stratosphere_core::resource_specification::*;
 
