@@ -567,12 +567,17 @@ fn resource_type_property_token_stream(
             primitive_type: None,
             item_type: Some(item_type),
             duplicates_allowed: _,
-            primitive_item_type: None,
+            primitive_item_type,
             documentation: _,
             update_type: _,
             required: _,
             r#type: Some(TypeReference::List),
-        } => mk_list_type(service_module_name, resource_module_name, item_type),
+        } => mk_list_type(
+            service_module_name,
+            resource_module_name,
+            item_type,
+            primitive_item_type.as_ref(),
+        ),
         ResourceTypeProperty {
             primitive_type: None,
             item_type: None,
@@ -601,8 +606,14 @@ fn mk_list_type(
     service_module_name: &ServiceModuleName,
     resource_module_name: &ResourceModuleName,
     item_type: &TypeReference,
+    primitive_item_type: Option<&PrimitiveItemType>,
 ) -> proc_macro2::TokenStream {
-    let item_type = mk_type_reference_type(service_module_name, resource_module_name, item_type);
+    let item_type = mk_type_reference_type(
+        service_module_name,
+        resource_module_name,
+        item_type,
+        primitive_item_type,
+    );
 
     quote! { Vec<#item_type> }
 }
@@ -633,14 +644,35 @@ fn mk_type_reference_type(
     service_module_name: &ServiceModuleName,
     resource_module_name: &ResourceModuleName,
     item_type: &TypeReference,
+    primitive_item_type: Option<&PrimitiveItemType>,
 ) -> proc_macro2::TokenStream {
     match item_type {
         TypeReference::Subproperty(name) => {
             mk_subproperty(service_module_name, resource_module_name, name)
         }
         TypeReference::Tag => quote! { super::super::Tag_ },
-        // RELEASE-TODO: Fix all these
-        unsupported => panic!("Currently unsupported: {unsupported:#?}"),
+        TypeReference::List => match primitive_item_type {
+            Some(PrimitiveItemType::Json) => quote! { Vec<serde_json::Value> },
+            Some(PrimitiveItemType::Double) => quote! { Vec<f64> },
+            Some(PrimitiveItemType::Integer) => quote! { Vec<i64> },
+            Some(PrimitiveItemType::String) => quote! { Vec<stratosphere::value::ExpString> },
+            None => panic!("TypeReference::List requires primitive_item_type to be specified"),
+        },
+        TypeReference::Map => match primitive_item_type {
+            Some(PrimitiveItemType::Json) => {
+                quote! { std::collections::BTreeMap<String, serde_json::Value> }
+            }
+            Some(PrimitiveItemType::Double) => {
+                quote! { std::collections::BTreeMap<String, f64> }
+            }
+            Some(PrimitiveItemType::Integer) => {
+                quote! { std::collections::BTreeMap<String, i64> }
+            }
+            Some(PrimitiveItemType::String) => {
+                quote! { std::collections::BTreeMap<String, stratosphere::value::ExpString> }
+            }
+            None => panic!("TypeReference::Map requires primitive_item_type to be specified"),
+        },
     }
 }
 
@@ -714,12 +746,10 @@ fn mk_primitive_type(primitive_type: &PrimitiveType) -> proc_macro2::TokenStream
     match primitive_type {
         PrimitiveType::Boolean => quote! { stratosphere::value::ExpBool },
         PrimitiveType::Double => quote! { f64 },
-        // RELEASE-TODO: Verify we do not need a bignum here
         PrimitiveType::Integer => quote! { i64 },
-        // RELEASE-TODO: Verify whats that
         PrimitiveType::Long => quote! { i64 },
         PrimitiveType::String => quote! { stratosphere::value::ExpString },
-        PrimitiveType::Timestamp => todo!(),
+        PrimitiveType::Timestamp => quote! { chrono::DateTime<chrono::Utc> },
         PrimitiveType::Json => quote! { serde_json::Value },
     }
 }
@@ -763,16 +793,18 @@ pub fn to_snake_case(input: &str) -> String {
     result
 }
 
-// Release todo: Cover all keywords
 pub fn mk_field_name(name: impl AsRef<str>) -> syn::Ident {
     let name = name.as_ref();
+    let snake_case_name = to_snake_case(name);
 
-    if name == "Type" {
-        quote::format_ident!("r#type")
-    } else if name == "Match" {
-        quote::format_ident!("r#match")
+    if snake_case_name == "self" {
+        return quote::format_ident!("self_value");
+    }
+
+    if syn::parse_str::<syn::Ident>(&snake_case_name).is_err() {
+        quote::format_ident!("r#{}", snake_case_name)
     } else {
-        quote::format_ident!("{}", to_snake_case(name))
+        quote::format_ident!("{}", snake_case_name)
     }
 }
 
@@ -819,5 +851,41 @@ mod tests {
     #[test]
     fn test_lowercase() {
         assert_snake_case("hello", "hello");
+    }
+
+    #[test]
+    fn test_keyword_detection_and_escaping() {
+        assert_eq!(mk_field_name("Type").to_string(), "r#type");
+        assert_eq!(mk_field_name("Match").to_string(), "r#match");
+        assert_eq!(mk_field_name("Async").to_string(), "r#async");
+        assert_eq!(mk_field_name("Await").to_string(), "r#await");
+        assert_eq!(mk_field_name("Const").to_string(), "r#const");
+        assert_eq!(mk_field_name("Loop").to_string(), "r#loop");
+        assert_eq!(mk_field_name("Return").to_string(), "r#return");
+        assert_eq!(mk_field_name("Impl").to_string(), "r#impl");
+        assert_eq!(mk_field_name("Mod").to_string(), "r#mod");
+        assert_eq!(mk_field_name("Pub").to_string(), "r#pub");
+        assert_eq!(mk_field_name("Use").to_string(), "r#use");
+        assert_eq!(mk_field_name("Fn").to_string(), "r#fn");
+        assert_eq!(mk_field_name("Static").to_string(), "r#static");
+        assert_eq!(mk_field_name("Mut").to_string(), "r#mut");
+        assert_eq!(mk_field_name("Ref").to_string(), "r#ref");
+        assert_eq!(mk_field_name("Dyn").to_string(), "r#dyn");
+        assert_eq!(mk_field_name("Self").to_string(), "self_value");
+        assert_eq!(mk_field_name("Abstract").to_string(), "r#abstract");
+        assert_eq!(mk_field_name("Final").to_string(), "r#final");
+        assert_eq!(mk_field_name("Override").to_string(), "r#override");
+        assert_eq!(mk_field_name("Yield").to_string(), "r#yield");
+        assert_eq!(mk_field_name("Try").to_string(), "r#try");
+        assert_eq!(mk_field_name("Gen").to_string(), "gen");
+        assert_eq!(mk_field_name("Union").to_string(), "union");
+        assert_eq!(mk_field_name("FooBar").to_string(), "foo_bar");
+        assert_eq!(mk_field_name("TestValue").to_string(), "test_value");
+        assert_eq!(mk_field_name("MyField").to_string(), "my_field");
+        assert_eq!(
+            mk_field_name("EnableDnsSupport").to_string(),
+            "enable_dns_support"
+        );
+        assert_eq!(mk_field_name("VpcId").to_string(), "vpc_id");
     }
 }

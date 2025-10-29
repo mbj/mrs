@@ -215,6 +215,15 @@ impl Template<'_> {
         parameter_key
     }
 
+    pub fn parameter_(
+        mut self,
+        parameter_key: impl Into<ParameterKey>,
+        parameter: Parameter,
+    ) -> Self {
+        self.parameter(parameter_key, parameter);
+        self
+    }
+
     pub fn output(&mut self, output_key: impl Into<OutputKey>, output: Output) -> OutputKey {
         let output_key = output_key.into();
 

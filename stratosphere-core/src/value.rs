@@ -287,7 +287,19 @@ impl ToValue for ExpString {
             ExpString::Ref(value) => mk_func("Ref", value),
             ExpString::ImportValue(value) => mk_func("Fn::ImportValue", value),
             ExpString::Sub { pattern } => mk_func("Fn::Sub", pattern),
-            other => todo!("{other:#?}"),
+            ExpString::Select { index, values } => mk_func(
+                "Fn::Select",
+                vec![
+                    serde_json::to_value(index).unwrap(),
+                    serde_json::to_value(
+                        values
+                            .iter()
+                            .map(|item| item.to_value())
+                            .collect::<Vec<_>>(),
+                    )
+                    .unwrap(),
+                ],
+            ),
         }
     }
 }
@@ -295,12 +307,6 @@ impl ToValue for ExpString {
 impl<A: ToValue> ToValue for Vec<A> {
     fn to_value(&self) -> serde_json::Value {
         self.iter().map(ToValue::to_value).collect()
-    }
-}
-
-impl ToValue for () {
-    fn to_value(&self) -> serde_json::Value {
-        todo!()
     }
 }
 
@@ -312,13 +318,13 @@ impl ToValue for i64 {
 
 impl ToValue for f64 {
     fn to_value(&self) -> serde_json::Value {
-        todo!()
+        serde_json::to_value(self).unwrap()
     }
 }
 
 impl ToValue for bool {
     fn to_value(&self) -> serde_json::Value {
-        todo!()
+        serde_json::to_value(self).unwrap()
     }
 }
 
@@ -333,6 +339,26 @@ impl ToValue for std::collections::BTreeMap<String, ExpString> {
         serde_json::Value::Object(serde_json::Map::from_iter(
             self.iter().map(|(key, exp)| (key.clone(), exp.to_value())),
         ))
+    }
+}
+
+impl ToValue for chrono::DateTime<chrono::Utc> {
+    /// Converts a timestamp to a JSON string value in RFC3339 format
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use stratosphere_core::value::ToValue;
+    /// # use chrono::{DateTime, Utc, TimeZone};
+    /// # use serde_json::json;
+    ///
+    /// let timestamp = Utc.with_ymd_and_hms(2024, 10, 13, 19, 0, 0).unwrap();
+    /// let value = timestamp.to_value();
+    ///
+    /// assert_eq!(value, json!("2024-10-13T19:00:00+00:00"));
+    /// ```
+    fn to_value(&self) -> serde_json::Value {
+        serde_json::to_value(self.to_rfc3339()).unwrap()
     }
 }
 
@@ -405,6 +431,7 @@ impl ToValue for ExpBool {
     ///
     fn to_value(&self) -> serde_json::Value {
         match self {
+            ExpBool::And(left, right) => mk_func("Fn::And", [left.to_value(), right.to_value()]),
             ExpBool::Equals(pair) => match pair {
                 ExpPair::Bool { left, right } => {
                     mk_func("Fn::Equals", [left.to_value(), right.to_value()])
@@ -414,7 +441,14 @@ impl ToValue for ExpBool {
                 }
             },
             ExpBool::Literal(value) => serde_json::Value::Bool(*value),
-            other => todo!("{other:#?}"),
+            ExpBool::Not(value) => mk_func("Fn::Not", [value.to_value()]),
+            ExpBool::Or(conditions) => mk_func(
+                "Fn::Or",
+                conditions
+                    .iter()
+                    .map(|condition| condition.to_value())
+                    .collect::<Vec<_>>(),
+            ),
         }
     }
 }
