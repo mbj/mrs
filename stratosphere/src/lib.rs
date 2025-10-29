@@ -96,3 +96,12 @@ macro_rules! fn_join {
         )
     };
 }
+
+#[macro_export]
+macro_rules! fn_sub {
+    ($pattern:expr) => {
+        $crate::value::ExpString::Sub {
+            pattern: $pattern.into(),
+        }
+    };
+}

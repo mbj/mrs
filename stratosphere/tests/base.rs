@@ -366,6 +366,50 @@ fn test_join_macro() {
 }
 
 #[test]
+fn test_sub_macro() {
+    use stratosphere::template::ParameterType;
+
+    let template = Template::build(|template| {
+        let _bucket_name = &template.parameter(
+            "BucketName",
+            stratosphere::Parameter! {
+                description: "S3 bucket name",
+                r#type: ParameterType::String
+            },
+        );
+
+        template.output(
+            "BucketArn",
+            stratosphere::Output! {
+                description: "ARN of the S3 bucket",
+                value: stratosphere::fn_sub!("arn:aws:s3:::${BucketName}/*"),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Outputs": {
+            "BucketArn": {
+                "Description": "ARN of the S3 bucket",
+                "Value": {
+                    "Fn::Sub": "arn:aws:s3:::${BucketName}/*"
+                }
+            }
+        },
+        "Parameters": {
+            "BucketName": {
+                "Description": "S3 bucket name",
+                "Type": "String"
+            }
+        },
+        "Resources": {}
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
 fn test_generation() {
     use stratosphere_core::resource_specification::*;
 
