@@ -73,7 +73,8 @@ macro_rules! Output {
     (
         description: $description:expr,
         value: $value:expr,
-        export: $export:expr,
+        export: $export:expr
+        $(,)?
     ) => {
         $crate::template::Output {
             description: $description.into(),
