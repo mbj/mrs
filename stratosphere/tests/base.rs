@@ -195,9 +195,174 @@ fn test_template_builder() {
                 value: security_group_a,
             },
         );
+
+        // Test fn_join! macro - create a combined output with delimiter
+        template.output(
+            "VpcInfo",
+            stratosphere::Output! {
+                description: "VPC information with CIDR",
+                value: stratosphere::fn_join![
+                    " - ",
+                    [
+                        "VPC:",
+                        vpc,
+                        "CIDR:",
+                        vpc_cidr,
+                    ]
+                ],
+            },
+        );
     });
 
-    assert_eq!(EXPECTED, serde_json::to_string_pretty(&template).unwrap())
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Outputs": {
+            "SecurityGroupIdA": {
+                "Description": "Id of the security group A",
+                "Value": {
+                    "Ref": "SecurityGroupA"
+                }
+            },
+            "VpcInfo": {
+                "Description": "VPC information with CIDR",
+                "Value": {
+                    "Fn::Join": [
+                        " - ",
+                        [
+                            "VPC:",
+                            {"Ref": "Vpc"},
+                            "CIDR:",
+                            {"Ref": "VpcCidr"}
+                        ]
+                    ]
+                }
+            }
+        },
+        "Parameters": {
+            "VpcCidr": {
+                "Description": "CIDR block for the VPC",
+                "Type": "String",
+                "AllowedPattern": r"^(\d{1,3}\.){3}\d{1,3}/\d{1,2}$"
+            }
+        },
+        "Resources": {
+            "SecurityGroupA": {
+                "Type": "AWS::EC2::SecurityGroup",
+                "Properties": {
+                    "GroupDescription": "Test Description A",
+                    "Tags": [
+                        {
+                            "Key": "Test Tag Key",
+                            "Value": "Test Tag Value"
+                        }
+                    ],
+                    "VpcId": {
+                        "Ref": "Vpc"
+                    }
+                }
+            },
+            "SecurityGroupB": {
+                "Type": "AWS::EC2::SecurityGroup",
+                "Properties": {
+                    "GroupDescription": "Test Description B",
+                    "SecurityGroupIngress": [
+                        {
+                            "CidrIp": "127.0.0.1",
+                            "IpProtocol": "tcp",
+                            "SourceSecurityGroupId": {
+                                "Ref": "SecurityGroupA"
+                            }
+                        }
+                    ],
+                    "VpcId": {
+                        "Ref": "Vpc"
+                    }
+                }
+            },
+            "Vpc": {
+                "Type": "AWS::EC2::VPC",
+                "Properties": {
+                    "CidrBlock": {
+                        "Ref": "VpcCidr"
+                    }
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
+fn test_join_macro() {
+    use stratosphere::template::ParameterType;
+
+    let template = Template::build(|template| {
+        let parameter_a = &template.parameter(
+            "ParameterA",
+            stratosphere::Parameter! {
+                description: "First parameter",
+                r#type: ParameterType::String
+            },
+        );
+
+        let parameter_b = &template.parameter(
+            "ParameterB",
+            stratosphere::Parameter! {
+                description: "Second parameter",
+                r#type: ParameterType::String
+            },
+        );
+
+        template.output(
+            "JoinedOutput",
+            stratosphere::Output! {
+                description: "Joined parameters with delimiter",
+                value: stratosphere::fn_join![
+                    ":",
+                    [
+                        "prefix",
+                        parameter_a,
+                        parameter_b,
+                        "suffix",
+                    ]
+                ],
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Outputs": {
+            "JoinedOutput": {
+                "Description": "Joined parameters with delimiter",
+                "Value": {
+                    "Fn::Join": [
+                        ":",
+                        [
+                            "prefix",
+                            {"Ref": "ParameterA"},
+                            {"Ref": "ParameterB"},
+                            "suffix"
+                        ]
+                    ]
+                }
+            }
+        },
+        "Parameters": {
+            "ParameterA": {
+                "Description": "First parameter",
+                "Type": "String"
+            },
+            "ParameterB": {
+                "Description": "Second parameter",
+                "Type": "String"
+            }
+        },
+        "Resources": {}
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
 }
 
 #[test]

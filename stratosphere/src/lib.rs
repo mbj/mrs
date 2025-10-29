@@ -83,3 +83,16 @@ macro_rules! Output {
         }
     };
 }
+
+#[macro_export]
+macro_rules! fn_join {
+    (
+        $delimiter:expr,
+        [$($value:expr),* $(,)?]
+    ) => {
+        $crate::value::join(
+            $delimiter,
+            vec![$($value.into()),*]
+        )
+    };
+}
