@@ -714,9 +714,7 @@ fn mk_primitive_type(primitive_type: &PrimitiveType) -> proc_macro2::TokenStream
     match primitive_type {
         PrimitiveType::Boolean => quote! { stratosphere::value::ExpBool },
         PrimitiveType::Double => quote! { f64 },
-        // RELEASE-TODO: Verify we do not need a bignum here
         PrimitiveType::Integer => quote! { i64 },
-        // RELEASE-TODO: Verify whats that
         PrimitiveType::Long => quote! { i64 },
         PrimitiveType::String => quote! { stratosphere::value::ExpString },
         PrimitiveType::Timestamp => todo!(),
