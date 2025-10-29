@@ -132,3 +132,10 @@ macro_rules! fn_get_att_arn {
         $crate::value::get_att_arn($resource)
     };
 }
+
+#[macro_export]
+macro_rules! fn_import_value {
+    ($export_name:expr) => {
+        $crate::value::ExpString::ImportValue($export_name.into())
+    };
+}
