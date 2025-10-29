@@ -318,13 +318,13 @@ impl ToValue for i64 {
 
 impl ToValue for f64 {
     fn to_value(&self) -> serde_json::Value {
-        todo!()
+        serde_json::to_value(self).unwrap()
     }
 }
 
 impl ToValue for bool {
     fn to_value(&self) -> serde_json::Value {
-        todo!()
+        serde_json::to_value(self).unwrap()
     }
 }
 
