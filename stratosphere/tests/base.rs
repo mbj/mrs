@@ -468,6 +468,50 @@ fn test_select_macro() {
 }
 
 #[test]
+fn test_get_att_macro() {
+    use cloudformation::aws::ec2;
+
+    let template = Template::build(|template| {
+        let _vpc = &template.resource(
+            "MyVpc",
+            ec2::VPC! {
+                cidr_block: "10.0.0.0/16"
+            },
+        );
+
+        template.output(
+            "VpcArn",
+            stratosphere::Output! {
+                description: "ARN of the VPC",
+                value: stratosphere::fn_get_att!("MyVpc", "Arn"),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Outputs": {
+            "VpcArn": {
+                "Description": "ARN of the VPC",
+                "Value": {
+                    "Fn::GetAtt": ["MyVpc", "Arn"]
+                }
+            }
+        },
+        "Resources": {
+            "MyVpc": {
+                "Type": "AWS::EC2::VPC",
+                "Properties": {
+                    "CidrBlock": "10.0.0.0/16"
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
 fn test_generation() {
     use stratosphere_core::resource_specification::*;
 
