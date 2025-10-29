@@ -21,10 +21,48 @@ pub mod token {
 pub use crate::template::Template;
 
 #[macro_export]
+macro_rules! Parameter {
+    (
+        r#type: $type:expr
+        $(,)?
+    ) => {
+        $crate::template::Parameter {
+            description: None,
+            r#type: $type,
+            allowed_pattern: None,
+        }
+    };
+    (
+        description: $description:expr,
+        r#type: $type:expr
+        $(,)?
+    ) => {
+        $crate::template::Parameter {
+            description: Some($description.into()),
+            r#type: $type,
+            allowed_pattern: None,
+        }
+    };
+    (
+        description: $description:expr,
+        r#type: $type:expr,
+        allowed_pattern: $allowed_pattern:expr
+        $(,)?
+    ) => {
+        $crate::template::Parameter {
+            description: Some($description.into()),
+            r#type: $type,
+            allowed_pattern: Some($allowed_pattern.into()),
+        }
+    };
+}
+
+#[macro_export]
 macro_rules! Output {
     (
         description: $description:expr,
-        value: $value:expr,
+        value: $value:expr
+        $(,)?
     ) => {
         $crate::template::Output {
             description: $description.into(),
