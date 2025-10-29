@@ -411,6 +411,7 @@ impl ToValue for ExpBool {
     ///
     fn to_value(&self) -> serde_json::Value {
         match self {
+            ExpBool::And(left, right) => mk_func("Fn::And", [left.to_value(), right.to_value()]),
             ExpBool::Equals(pair) => match pair {
                 ExpPair::Bool { left, right } => {
                     mk_func("Fn::Equals", [left.to_value(), right.to_value()])
@@ -420,7 +421,14 @@ impl ToValue for ExpBool {
                 }
             },
             ExpBool::Literal(value) => serde_json::Value::Bool(*value),
-            other => todo!("{other:#?}"),
+            ExpBool::Not(value) => mk_func("Fn::Not", [value.to_value()]),
+            ExpBool::Or(conditions) => mk_func(
+                "Fn::Or",
+                conditions
+                    .iter()
+                    .map(|condition| condition.to_value())
+                    .collect::<Vec<_>>(),
+            ),
         }
     }
 }
