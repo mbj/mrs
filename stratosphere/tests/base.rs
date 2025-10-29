@@ -632,6 +632,76 @@ fn test_base64_macro() {
 }
 
 #[test]
+fn test_mk_name_macro() {
+    let template = Template::build(|template| {
+        template.output(
+            "ResourceName",
+            stratosphere::Output! {
+                description: "Stack-prefixed resource name",
+                value: stratosphere::mk_name!("MyBucket"),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Outputs": {
+            "ResourceName": {
+                "Description": "Stack-prefixed resource name",
+                "Value": {
+                    "Fn::Join": [
+                        "-",
+                        [
+                            {"Ref": "AWS::StackName"},
+                            "MyBucket"
+                        ]
+                    ]
+                }
+            }
+        },
+        "Resources": {}
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
+fn test_fn_if_macro() {
+    let template = Template::build(|template| {
+        template.output(
+            "InstanceType",
+            stratosphere::Output! {
+                description: "Instance type based on environment",
+                value: stratosphere::fn_if!(
+                    "IsProduction",
+                    "m5.large",
+                    "t3.micro"
+                ),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Outputs": {
+            "InstanceType": {
+                "Description": "Instance type based on environment",
+                "Value": {
+                    "Fn::If": [
+                        "IsProduction",
+                        "m5.large",
+                        "t3.micro"
+                    ]
+                }
+            }
+        },
+        "Resources": {}
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
 fn test_generation() {
     use stratosphere_core::resource_specification::*;
 
