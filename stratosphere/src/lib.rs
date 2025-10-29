@@ -118,3 +118,10 @@ macro_rules! fn_select {
         }
     };
 }
+
+#[macro_export]
+macro_rules! fn_get_att {
+    ($resource:expr, $attribute:expr) => {
+        $crate::value::get_att($resource, $attribute)
+    };
+}
