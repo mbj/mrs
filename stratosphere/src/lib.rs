@@ -125,3 +125,10 @@ macro_rules! fn_get_att {
         $crate::value::get_att($resource, $attribute)
     };
 }
+
+#[macro_export]
+macro_rules! fn_get_att_arn {
+    ($resource:expr) => {
+        $crate::value::get_att_arn($resource)
+    };
+}

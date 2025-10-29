@@ -512,6 +512,52 @@ fn test_get_att_macro() {
 }
 
 #[test]
+fn test_get_att_arn_macro() {
+    use cloudformation::aws::ec2;
+
+    let template = Template::build(|template| {
+        let _security_group = &template.resource(
+            "MySecurityGroup",
+            ec2::SecurityGroup! {
+                group_description: "Test security group",
+                vpc_id: "vpc-12345678"
+            },
+        );
+
+        template.output(
+            "SecurityGroupArn",
+            stratosphere::Output! {
+                description: "ARN of the security group",
+                value: stratosphere::fn_get_att_arn!("MySecurityGroup"),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Outputs": {
+            "SecurityGroupArn": {
+                "Description": "ARN of the security group",
+                "Value": {
+                    "Fn::GetAtt": ["MySecurityGroup", "Arn"]
+                }
+            }
+        },
+        "Resources": {
+            "MySecurityGroup": {
+                "Type": "AWS::EC2::SecurityGroup",
+                "Properties": {
+                    "GroupDescription": "Test security group",
+                    "VpcId": "vpc-12345678"
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
 fn test_generation() {
     use stratosphere_core::resource_specification::*;
 
