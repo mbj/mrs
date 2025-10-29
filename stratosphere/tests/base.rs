@@ -558,6 +558,52 @@ fn test_get_att_arn_macro() {
 }
 
 #[test]
+fn test_import_value_macro() {
+    use cloudformation::aws::ec2;
+
+    let template = Template::build(|template| {
+        let _security_group = &template.resource(
+            "MySecurityGroup",
+            ec2::SecurityGroup! {
+                group_description: "Test security group",
+                vpc_id: stratosphere::fn_import_value!("NetworkStack-VpcId")
+            },
+        );
+
+        template.output(
+            "SecurityGroupId",
+            stratosphere::Output! {
+                description: "Security group ID",
+                value: "MySecurityGroup",
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Outputs": {
+            "SecurityGroupId": {
+                "Description": "Security group ID",
+                "Value": "MySecurityGroup"
+            }
+        },
+        "Resources": {
+            "MySecurityGroup": {
+                "Type": "AWS::EC2::SecurityGroup",
+                "Properties": {
+                    "GroupDescription": "Test security group",
+                    "VpcId": {
+                        "Fn::ImportValue": "NetworkStack-VpcId"
+                    }
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
 fn test_generation() {
     use stratosphere_core::resource_specification::*;
 
