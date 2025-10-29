@@ -164,3 +164,38 @@ macro_rules! fn_if {
         }
     };
 }
+
+#[macro_export]
+macro_rules! fn_and {
+    ($left:expr, $right:expr) => {
+        $crate::value::ExpBool::And(Box::new($left.into()), Box::new($right.into()))
+    };
+}
+
+#[macro_export]
+macro_rules! fn_or {
+    ([$($condition:expr),* $(,)?]) => {
+        $crate::value::ExpBool::Or(vec![$($condition.into()),*])
+    };
+}
+
+#[macro_export]
+macro_rules! fn_not {
+    ($value:expr) => {
+        $crate::value::ExpBool::Not(Box::new($value.into()))
+    };
+}
+
+#[macro_export]
+macro_rules! fn_equals_string {
+    ($left:expr, $right:expr) => {
+        $crate::value::equals_string($left, $right)
+    };
+}
+
+#[macro_export]
+macro_rules! fn_equals_bool {
+    ($left:expr, $right:expr) => {
+        $crate::value::equals_bool($left, $right)
+    };
+}
