@@ -105,3 +105,16 @@ macro_rules! fn_sub {
         }
     };
 }
+
+#[macro_export]
+macro_rules! fn_select {
+    (
+        $index:expr,
+        [$($value:expr),* $(,)?]
+    ) => {
+        $crate::value::ExpString::Select {
+            index: $index,
+            values: vec![$($value.into()),*],
+        }
+    };
+}

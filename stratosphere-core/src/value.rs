@@ -287,7 +287,19 @@ impl ToValue for ExpString {
             ExpString::Ref(value) => mk_func("Ref", value),
             ExpString::ImportValue(value) => mk_func("Fn::ImportValue", value),
             ExpString::Sub { pattern } => mk_func("Fn::Sub", pattern),
-            other => todo!("{other:#?}"),
+            ExpString::Select { index, values } => mk_func(
+                "Fn::Select",
+                vec![
+                    serde_json::to_value(index).unwrap(),
+                    serde_json::to_value(
+                        values
+                            .iter()
+                            .map(|item| item.to_value())
+                            .collect::<Vec<_>>(),
+                    )
+                    .unwrap(),
+                ],
+            ),
         }
     }
 }
