@@ -410,6 +410,64 @@ fn test_sub_macro() {
 }
 
 #[test]
+fn test_select_macro() {
+    use stratosphere::template::ParameterType;
+
+    let template = Template::build(|template| {
+        let _environment = &template.parameter(
+            "Environment",
+            stratosphere::Parameter! {
+                description: "Environment name",
+                r#type: ParameterType::String
+            },
+        );
+
+        template.output(
+            "SelectedValue",
+            stratosphere::Output! {
+                description: "Selected availability zone",
+                value: stratosphere::fn_select!(
+                    0,
+                    [
+                        "us-east-1a",
+                        "us-east-1b",
+                        "us-east-1c"
+                    ]
+                ),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Outputs": {
+            "SelectedValue": {
+                "Description": "Selected availability zone",
+                "Value": {
+                    "Fn::Select": [
+                        0,
+                        [
+                            "us-east-1a",
+                            "us-east-1b",
+                            "us-east-1c"
+                        ]
+                    ]
+                }
+            }
+        },
+        "Parameters": {
+            "Environment": {
+                "Description": "Environment name",
+                "Type": "String"
+            }
+        },
+        "Resources": {}
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
 fn test_generation() {
     use stratosphere_core::resource_specification::*;
 
