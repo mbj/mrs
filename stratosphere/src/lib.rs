@@ -146,3 +146,21 @@ macro_rules! fn_base64 {
         $crate::value::ExpString::Base64(Box::new($value.into()))
     };
 }
+
+#[macro_export]
+macro_rules! mk_name {
+    ($suffix:expr) => {
+        $crate::value::mk_name($suffix)
+    };
+}
+
+#[macro_export]
+macro_rules! fn_if {
+    ($condition:expr, $true_value:expr, $false_value:expr) => {
+        $crate::value::ExpString::If {
+            condition_name: $condition.into(),
+            true_branch: Box::new($true_value.into()),
+            else_branch: Box::new($false_value.into()),
+        }
+    };
+}
