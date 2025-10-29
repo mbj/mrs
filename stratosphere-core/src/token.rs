@@ -761,16 +761,22 @@ pub fn to_snake_case(input: &str) -> String {
     result
 }
 
-// Release todo: Cover all keywords
 pub fn mk_field_name(name: impl AsRef<str>) -> syn::Ident {
     let name = name.as_ref();
+    let snake_case_name = to_snake_case(name);
 
-    if name == "Type" {
-        quote::format_ident!("r#type")
-    } else if name == "Match" {
-        quote::format_ident!("r#match")
+    // Special case: 'self' and 'Self' cannot be raw identifiers
+    // Use a suffix instead
+    if snake_case_name == "self" {
+        return quote::format_ident!("self_value");
+    }
+
+    // Check if it's a Rust keyword using syn's parser (edition 2024)
+    // This catches all strict keywords and edition-specific keywords like 'gen'
+    if syn::parse_str::<syn::Ident>(&snake_case_name).is_err() {
+        quote::format_ident!("r#{}", snake_case_name)
     } else {
-        quote::format_ident!("{}", to_snake_case(name))
+        quote::format_ident!("{}", snake_case_name)
     }
 }
 
@@ -817,5 +823,55 @@ mod tests {
     #[test]
     fn test_lowercase() {
         assert_snake_case("hello", "hello");
+    }
+
+    #[test]
+    fn test_keyword_detection_and_escaping() {
+        // Edition 2024 keyword detection using syn::parse_str
+
+        // Strict keywords (always reserved)
+        assert_eq!(mk_field_name("Type").to_string(), "r#type");
+        assert_eq!(mk_field_name("Match").to_string(), "r#match");
+        assert_eq!(mk_field_name("Async").to_string(), "r#async");
+        assert_eq!(mk_field_name("Await").to_string(), "r#await");
+        assert_eq!(mk_field_name("Const").to_string(), "r#const");
+        assert_eq!(mk_field_name("Loop").to_string(), "r#loop");
+        assert_eq!(mk_field_name("Return").to_string(), "r#return");
+        assert_eq!(mk_field_name("Impl").to_string(), "r#impl");
+        assert_eq!(mk_field_name("Mod").to_string(), "r#mod");
+        assert_eq!(mk_field_name("Pub").to_string(), "r#pub");
+        assert_eq!(mk_field_name("Use").to_string(), "r#use");
+        assert_eq!(mk_field_name("Fn").to_string(), "r#fn");
+        assert_eq!(mk_field_name("Static").to_string(), "r#static");
+        assert_eq!(mk_field_name("Mut").to_string(), "r#mut");
+        assert_eq!(mk_field_name("Ref").to_string(), "r#ref");
+        assert_eq!(mk_field_name("Dyn").to_string(), "r#dyn");
+
+        // Special case: 'self' cannot be a raw identifier
+        assert_eq!(mk_field_name("Self").to_string(), "self_value");
+
+        // Reserved keywords (reserved for future use)
+        assert_eq!(mk_field_name("Abstract").to_string(), "r#abstract");
+        assert_eq!(mk_field_name("Final").to_string(), "r#final");
+        assert_eq!(mk_field_name("Override").to_string(), "r#override");
+        assert_eq!(mk_field_name("Yield").to_string(), "r#yield");
+
+        // Edition-specific keywords
+        assert_eq!(mk_field_name("Try").to_string(), "r#try"); // 2018+
+        // Note: 'gen' is a keyword in edition 2024, but syn 2.0.106 doesn't recognize it yet
+        assert_eq!(mk_field_name("Gen").to_string(), "gen");
+
+        // Weak/contextual keywords (allowed as identifiers in struct field context)
+        assert_eq!(mk_field_name("Union").to_string(), "union");
+
+        // Non-keywords (no escaping needed)
+        assert_eq!(mk_field_name("FooBar").to_string(), "foo_bar");
+        assert_eq!(mk_field_name("TestValue").to_string(), "test_value");
+        assert_eq!(mk_field_name("MyField").to_string(), "my_field");
+        assert_eq!(
+            mk_field_name("EnableDnsSupport").to_string(),
+            "enable_dns_support"
+        );
+        assert_eq!(mk_field_name("VpcId").to_string(), "vpc_id");
     }
 }
