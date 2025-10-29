@@ -604,6 +604,34 @@ fn test_import_value_macro() {
 }
 
 #[test]
+fn test_base64_macro() {
+    let template = Template::build(|template| {
+        template.output(
+            "EncodedData",
+            stratosphere::Output! {
+                description: "Base64 encoded user data",
+                value: stratosphere::fn_base64!("#!/bin/bash\necho 'Hello World'"),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Outputs": {
+            "EncodedData": {
+                "Description": "Base64 encoded user data",
+                "Value": {
+                    "Fn::Base64": "#!/bin/bash\necho 'Hello World'"
+                }
+            }
+        },
+        "Resources": {}
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
 fn test_generation() {
     use stratosphere_core::resource_specification::*;
 
