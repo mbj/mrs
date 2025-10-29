@@ -14,6 +14,13 @@ const EXPECTED: &str = r#"{
       }
     }
   },
+  "Parameters": {
+    "VpcCidr": {
+      "Description": "CIDR block for the VPC",
+      "Type": "String",
+      "AllowedPattern": "^(\\d{1,3}\\.){3}\\d{1,3}/\\d{1,2}$"
+    }
+  },
   "Resources": {
     "SecurityGroupA": {
       "Type": "AWS::EC2::SecurityGroup",
@@ -24,7 +31,10 @@ const EXPECTED: &str = r#"{
             "Key": "Test Tag Key",
             "Value": "Test Tag Value"
           }
-        ]
+        ],
+        "VpcId": {
+          "Ref": "Vpc"
+        }
       }
     },
     "SecurityGroupB": {
@@ -39,7 +49,18 @@ const EXPECTED: &str = r#"{
               "Ref": "SecurityGroupA"
             }
           }
-        ]
+        ],
+        "VpcId": {
+          "Ref": "Vpc"
+        }
+      }
+    },
+    "Vpc": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": {
+          "Ref": "VpcCidr"
+        }
       }
     }
   }
@@ -48,6 +69,26 @@ const EXPECTED: &str = r#"{
 #[test]
 fn test_template_explicit() {
     let template = Template::new()
+        .parameter_(
+            "VpcCidr",
+            stratosphere::template::Parameter {
+                description: Some("CIDR block for the VPC".into()),
+                r#type: stratosphere::template::ParameterType::String,
+                allowed_pattern: Some(r"^(\d{1,3}\.){3}\d{1,3}/\d{1,2}$".into()),
+            },
+        )
+        .resource_(
+            "Vpc",
+            cloudformation::aws::ec2::VPC_ {
+                cidr_block: Some(stratosphere::value::ExpString::Ref("VpcCidr".into())),
+                enable_dns_hostnames: None,
+                enable_dns_support: None,
+                instance_tenancy: None,
+                ipv4_ipam_pool_id: None,
+                ipv4_netmask_length: None,
+                tags: None,
+            },
+        )
         .resource_(
             "SecurityGroupA",
             cloudformation::aws::ec2::SecurityGroup_ {
@@ -55,7 +96,7 @@ fn test_template_explicit() {
                 group_name: None,
                 security_group_ingress: None,
                 security_group_egress: None,
-                vpc_id: None,
+                vpc_id: Some(stratosphere::value::ExpString::Ref("Vpc".into())),
                 tags: Some(
                     [cloudformation::Tag_ {
                         key: "Test Tag Key".into(),
@@ -86,7 +127,7 @@ fn test_template_explicit() {
                 .into(),
                 group_name: None,
                 security_group_egress: None,
-                vpc_id: None,
+                vpc_id: Some(stratosphere::value::ExpString::Ref("Vpc".into())),
                 tags: None,
             },
         )
@@ -106,13 +147,31 @@ fn test_template_explicit() {
 fn test_template_builder() {
     use cloudformation::Tag;
     use cloudformation::aws::ec2;
+    use stratosphere::template::ParameterType;
 
     let template = Template::build(|template| {
+        let vpc_cidr = &template.parameter(
+            "VpcCidr",
+            stratosphere::Parameter! {
+                description: "CIDR block for the VPC",
+                r#type: ParameterType::String,
+                allowed_pattern: r"^(\d{1,3}\.){3}\d{1,3}/\d{1,2}$"
+            },
+        );
+
+        let vpc = &template.resource(
+            "Vpc",
+            ec2::VPC! {
+                cidr_block: vpc_cidr
+            },
+        );
+
         let security_group_a = &template.resource(
             "SecurityGroupA",
             ec2::SecurityGroup! {
                 group_description: "Test Description A",
-                tags: [Tag! { key: "Test Tag Key", value: "Test Tag Value"}]
+                tags: [Tag! { key: "Test Tag Key", value: "Test Tag Value"}],
+                vpc_id: vpc
             },
         );
 
@@ -124,7 +183,8 @@ fn test_template_builder() {
                     ip_protocol: "tcp",
                     cidr_ip: "127.0.0.1",
                     source_security_group_id: security_group_a
-                }]
+                }],
+                vpc_id: vpc
             },
         );
 
