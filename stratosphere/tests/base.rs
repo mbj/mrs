@@ -833,6 +833,41 @@ fn test_timestamp_values() {
 }
 
 #[test]
+fn test_list_property() {
+    use cloudformation::aws::ec2;
+
+    let template = Template::build(|template| {
+        let _instance = &template.resource(
+            "MyInstance",
+            ec2::Instance! {
+                image_id: "ami-12345678",
+                instance_type: "t2.micro",
+                security_group_ids: vec![
+                    "sg-12345678".into(),
+                    "sg-87654321".into()
+                ]
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Resources": {
+            "MyInstance": {
+                "Type": "AWS::EC2::Instance",
+                "Properties": {
+                    "ImageId": "ami-12345678",
+                    "InstanceType": "t2.micro",
+                    "SecurityGroupIds": ["sg-12345678", "sg-87654321"]
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
 fn test_generation() {
     use stratosphere_core::resource_specification::*;
 

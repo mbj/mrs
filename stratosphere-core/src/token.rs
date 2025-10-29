@@ -567,12 +567,17 @@ fn resource_type_property_token_stream(
             primitive_type: None,
             item_type: Some(item_type),
             duplicates_allowed: _,
-            primitive_item_type: None,
+            primitive_item_type,
             documentation: _,
             update_type: _,
             required: _,
             r#type: Some(TypeReference::List),
-        } => mk_list_type(service_module_name, resource_module_name, item_type),
+        } => mk_list_type(
+            service_module_name,
+            resource_module_name,
+            item_type,
+            primitive_item_type.as_ref(),
+        ),
         ResourceTypeProperty {
             primitive_type: None,
             item_type: None,
@@ -601,8 +606,14 @@ fn mk_list_type(
     service_module_name: &ServiceModuleName,
     resource_module_name: &ResourceModuleName,
     item_type: &TypeReference,
+    primitive_item_type: Option<&PrimitiveItemType>,
 ) -> proc_macro2::TokenStream {
-    let item_type = mk_type_reference_type(service_module_name, resource_module_name, item_type);
+    let item_type = mk_type_reference_type(
+        service_module_name,
+        resource_module_name,
+        item_type,
+        primitive_item_type,
+    );
 
     quote! { Vec<#item_type> }
 }
@@ -633,14 +644,35 @@ fn mk_type_reference_type(
     service_module_name: &ServiceModuleName,
     resource_module_name: &ResourceModuleName,
     item_type: &TypeReference,
+    primitive_item_type: Option<&PrimitiveItemType>,
 ) -> proc_macro2::TokenStream {
     match item_type {
         TypeReference::Subproperty(name) => {
             mk_subproperty(service_module_name, resource_module_name, name)
         }
         TypeReference::Tag => quote! { super::super::Tag_ },
-        // RELEASE-TODO: Fix all these
-        unsupported => panic!("Currently unsupported: {unsupported:#?}"),
+        TypeReference::List => match primitive_item_type {
+            Some(PrimitiveItemType::Json) => quote! { Vec<serde_json::Value> },
+            Some(PrimitiveItemType::Double) => quote! { Vec<f64> },
+            Some(PrimitiveItemType::Integer) => quote! { Vec<i64> },
+            Some(PrimitiveItemType::String) => quote! { Vec<stratosphere::value::ExpString> },
+            None => panic!("TypeReference::List requires primitive_item_type to be specified"),
+        },
+        TypeReference::Map => match primitive_item_type {
+            Some(PrimitiveItemType::Json) => {
+                quote! { std::collections::BTreeMap<String, serde_json::Value> }
+            }
+            Some(PrimitiveItemType::Double) => {
+                quote! { std::collections::BTreeMap<String, f64> }
+            }
+            Some(PrimitiveItemType::Integer) => {
+                quote! { std::collections::BTreeMap<String, i64> }
+            }
+            Some(PrimitiveItemType::String) => {
+                quote! { std::collections::BTreeMap<String, stratosphere::value::ExpString> }
+            }
+            None => panic!("TypeReference::Map requires primitive_item_type to be specified"),
+        },
     }
 }
 
@@ -765,14 +797,10 @@ pub fn mk_field_name(name: impl AsRef<str>) -> syn::Ident {
     let name = name.as_ref();
     let snake_case_name = to_snake_case(name);
 
-    // Special case: 'self' and 'Self' cannot be raw identifiers
-    // Use a suffix instead
     if snake_case_name == "self" {
         return quote::format_ident!("self_value");
     }
 
-    // Check if it's a Rust keyword using syn's parser (edition 2024)
-    // This catches all strict keywords and edition-specific keywords like 'gen'
     if syn::parse_str::<syn::Ident>(&snake_case_name).is_err() {
         quote::format_ident!("r#{}", snake_case_name)
     } else {
@@ -827,9 +855,6 @@ mod tests {
 
     #[test]
     fn test_keyword_detection_and_escaping() {
-        // Edition 2024 keyword detection using syn::parse_str
-
-        // Strict keywords (always reserved)
         assert_eq!(mk_field_name("Type").to_string(), "r#type");
         assert_eq!(mk_field_name("Match").to_string(), "r#match");
         assert_eq!(mk_field_name("Async").to_string(), "r#async");
@@ -846,25 +871,14 @@ mod tests {
         assert_eq!(mk_field_name("Mut").to_string(), "r#mut");
         assert_eq!(mk_field_name("Ref").to_string(), "r#ref");
         assert_eq!(mk_field_name("Dyn").to_string(), "r#dyn");
-
-        // Special case: 'self' cannot be a raw identifier
         assert_eq!(mk_field_name("Self").to_string(), "self_value");
-
-        // Reserved keywords (reserved for future use)
         assert_eq!(mk_field_name("Abstract").to_string(), "r#abstract");
         assert_eq!(mk_field_name("Final").to_string(), "r#final");
         assert_eq!(mk_field_name("Override").to_string(), "r#override");
         assert_eq!(mk_field_name("Yield").to_string(), "r#yield");
-
-        // Edition-specific keywords
-        assert_eq!(mk_field_name("Try").to_string(), "r#try"); // 2018+
-        // Note: 'gen' is a keyword in edition 2024, but syn 2.0.106 doesn't recognize it yet
+        assert_eq!(mk_field_name("Try").to_string(), "r#try");
         assert_eq!(mk_field_name("Gen").to_string(), "gen");
-
-        // Weak/contextual keywords (allowed as identifiers in struct field context)
         assert_eq!(mk_field_name("Union").to_string(), "union");
-
-        // Non-keywords (no escaping needed)
         assert_eq!(mk_field_name("FooBar").to_string(), "foo_bar");
         assert_eq!(mk_field_name("TestValue").to_string(), "test_value");
         assert_eq!(mk_field_name("MyField").to_string(), "my_field");
