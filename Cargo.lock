@@ -644,6 +644,7 @@ dependencies = [
  "iana-time-zone",
  "js-sys",
  "num-traits",
+ "serde",
  "wasm-bindgen",
  "windows-link",
 ]
@@ -2732,6 +2733,7 @@ dependencies = [
 name = "stratosphere"
 version = "0.0.1"
 dependencies = [
+ "chrono",
  "clap",
  "insta",
  "pretty_assertions",
@@ -2746,6 +2748,7 @@ dependencies = [
 name = "stratosphere-core"
 version = "0.0.1"
 dependencies = [
+ "chrono",
  "clap",
  "proc-macro2",
  "quote",

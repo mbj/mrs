@@ -2,7 +2,11 @@ use pretty_assertions::assert_eq;
 use stratosphere::template::*;
 use stratosphere::token::*;
 
-stratosphere::generator::services!("AWS::EC2", "AWS::SecretsManager");
+stratosphere::generator::services!(
+    "AWS::EC2",
+    "AWS::SecretsManager",
+    "AWS::ApplicationAutoScaling"
+);
 
 const EXPECTED: &str = r#"{
   "AWSTemplateFormatVersion": "2010-09-09",
@@ -770,6 +774,62 @@ fn test_fn_equals_bool_macro() {
     });
 
     assert_eq!(expected, value);
+}
+
+#[test]
+fn test_timestamp_values() {
+    use chrono::{TimeZone, Utc};
+    use cloudformation::aws::applicationautoscaling;
+
+    let template = Template::build(|template| {
+        let start = Utc.with_ymd_and_hms(2024, 1, 1, 10, 0, 0).unwrap();
+        let end = Utc.with_ymd_and_hms(2024, 12, 31, 22, 0, 0).unwrap();
+
+        let _scalable_target = &template.resource(
+            "MyScalableTarget",
+            applicationautoscaling::ScalableTarget! {
+                max_capacity: 10,
+                min_capacity: 1,
+                resource_id: "service/my-cluster/my-service",
+                scalable_dimension: "ecs:service:DesiredCount",
+                service_namespace: "ecs",
+                scheduled_actions: vec![
+                    applicationautoscaling::scalabletarget::ScheduledAction! {
+                        schedule: "cron(0 10 * * ? *)",
+                        scheduled_action_name: "ScaleUp",
+                        start_time: start,
+                        end_time: end
+                    }
+                ]
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Resources": {
+            "MyScalableTarget": {
+                "Type": "AWS::ApplicationAutoScaling::ScalableTarget",
+                "Properties": {
+                    "MaxCapacity": 10,
+                    "MinCapacity": 1,
+                    "ResourceId": "service/my-cluster/my-service",
+                    "ScalableDimension": "ecs:service:DesiredCount",
+                    "ServiceNamespace": "ecs",
+                    "ScheduledActions": [
+                        {
+                            "Schedule": "cron(0 10 * * ? *)",
+                            "ScheduledActionName": "ScaleUp",
+                            "StartTime": "2024-01-01T10:00:00+00:00",
+                            "EndTime": "2024-12-31T22:00:00+00:00"
+                        }
+                    ]
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
 }
 
 #[test]

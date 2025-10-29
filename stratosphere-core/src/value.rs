@@ -342,6 +342,26 @@ impl ToValue for std::collections::BTreeMap<String, ExpString> {
     }
 }
 
+impl ToValue for chrono::DateTime<chrono::Utc> {
+    /// Converts a timestamp to a JSON string value in RFC3339 format
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use stratosphere_core::value::ToValue;
+    /// # use chrono::{DateTime, Utc, TimeZone};
+    /// # use serde_json::json;
+    ///
+    /// let timestamp = Utc.with_ymd_and_hms(2024, 10, 13, 19, 0, 0).unwrap();
+    /// let value = timestamp.to_value();
+    ///
+    /// assert_eq!(value, json!("2024-10-13T19:00:00+00:00"));
+    /// ```
+    fn to_value(&self) -> serde_json::Value {
+        serde_json::to_value(self.to_rfc3339()).unwrap()
+    }
+}
+
 fn mk_func<T: serde::Serialize>(name: &str, value: T) -> serde_json::Value {
     json!({name:value})
 }
