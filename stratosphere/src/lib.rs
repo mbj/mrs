@@ -139,3 +139,10 @@ macro_rules! fn_import_value {
         $crate::value::ExpString::ImportValue($export_name.into())
     };
 }
+
+#[macro_export]
+macro_rules! fn_base64 {
+    ($value:expr) => {
+        $crate::value::ExpString::Base64(Box::new($value.into()))
+    };
+}
