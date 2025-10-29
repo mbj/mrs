@@ -4,6 +4,7 @@ name = "stratosphere-core"
 version = "0.0.1"
 
 [dependencies]
+chrono = { version = "0.4", features = ["serde"] }
 clap = { workspace = true }
 proc-macro2 = "1.0"
 quote = "1.0"

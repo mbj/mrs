@@ -717,7 +717,7 @@ fn mk_primitive_type(primitive_type: &PrimitiveType) -> proc_macro2::TokenStream
         PrimitiveType::Integer => quote! { i64 },
         PrimitiveType::Long => quote! { i64 },
         PrimitiveType::String => quote! { stratosphere::value::ExpString },
-        PrimitiveType::Timestamp => todo!(),
+        PrimitiveType::Timestamp => quote! { chrono::DateTime<chrono::Utc> },
         PrimitiveType::Json => quote! { serde_json::Value },
     }
 }
