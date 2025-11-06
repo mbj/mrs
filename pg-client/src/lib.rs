@@ -51,7 +51,7 @@ impl std::str::FromStr for HostName {
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum Host {
     HostName(HostName),
-    SocketAddr(std::net::SocketAddr),
+    IpAddr(std::net::IpAddr),
     SocketPath(std::path::PathBuf),
 }
 
@@ -65,7 +65,7 @@ impl Host {
     fn to_pg_env_value(&self) -> String {
         match self {
             Self::HostName(value) => value.0.clone(),
-            Self::SocketAddr(value) => value.to_string(),
+            Self::IpAddr(value) => value.to_string(),
             Self::SocketPath(value) => value
                 .to_str()
                 .expect("socket path contains invalid utf8")
@@ -78,8 +78,8 @@ impl std::str::FromStr for Host {
     type Err = &'static str;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
-        match std::net::SocketAddr::from_str(value) {
-            Ok(addr) => Ok(Self::SocketAddr(addr)),
+        match std::net::IpAddr::from_str(value) {
+            Ok(addr) => Ok(Self::IpAddr(addr)),
             Err(_) => match HostName::from_str(value) {
                 Ok(host_name) => Ok(Self::HostName(host_name)),
                 Err(_) => Err("Not a socket address or FQDN"),
@@ -102,7 +102,7 @@ impl From<HostName> for Host {
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
-pub struct HostAddr(std::net::SocketAddr);
+pub struct HostAddr(std::net::IpAddr);
 
 impl HostAddr {
     fn to_pg_env_value(&self) -> String {
@@ -114,7 +114,7 @@ impl std::str::FromStr for HostAddr {
     type Err = &'static str;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
-        match std::net::SocketAddr::from_str(value) {
+        match std::net::IpAddr::from_str(value) {
             Ok(addr) => Ok(Self(addr)),
             Err(_) => Err("socket address"),
         }
@@ -450,7 +450,7 @@ impl Config {
     ///     application_name: Some("some-app".parse().unwrap()),
     ///     password: Some("some-password".parse().unwrap()),
     ///     ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
-    ///     host_addr: Some("127.0.0.1:5432".parse().unwrap()),
+    ///     host_addr: Some("127.0.0.1".parse().unwrap()),
     ///     ..config
     /// };
     ///
@@ -458,7 +458,7 @@ impl Config {
     ///     ("PGAPPNAME", "some-app".to_string()),
     ///     ("PGDATABASE", "some-database".to_string()),
     ///     ("PGHOST", "some-host".to_string()),
-    ///     ("PGHOSTADDR", "127.0.0.1:5432".to_string()),
+    ///     ("PGHOSTADDR", "127.0.0.1".to_string()),
     ///     ("PGPASSWORD", "some-password".to_string()),
     ///     ("PGPORT", "5432".to_string()),
     ///     ("PGSSLMODE", "verify-full".to_string()),
