@@ -101,6 +101,26 @@ impl From<HostName> for Host {
     }
 }
 
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct HostAddr(std::net::SocketAddr);
+
+impl HostAddr {
+    fn to_pg_env_value(&self) -> String {
+        self.0.to_string()
+    }
+}
+
+impl std::str::FromStr for HostAddr {
+    type Err = &'static str;
+
+    fn from_str(value: &str) -> Result<Self, Self::Err> {
+        match std::net::SocketAddr::from_str(value) {
+            Ok(addr) => Ok(Self(addr)),
+            Err(_) => Err("socket address"),
+        }
+    }
+}
+
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Port(pub u16);
 
@@ -288,6 +308,7 @@ pub struct Config {
     pub application_name: Option<ApplicationName>,
     pub database: Database,
     pub host: Host,
+    pub host_addr: Option<HostAddr>,
     pub password: Option<Password>,
     pub port: Port,
     pub ssl_mode: SslMode,
@@ -338,6 +359,7 @@ impl Config {
     ///     application_name: None,
     ///     database: Database::from_str("some-database").unwrap(),
     ///     host: Host::from_str("some-host").unwrap(),
+    ///     host_addr: None,
     ///     password: None,
     ///     port: Port(5432),
     ///     ssl_mode: SslMode::VerifyFull,
@@ -397,6 +419,55 @@ impl Config {
     }
 
     /// Convert to PG environment variable names
+    ///
+    /// ```
+    /// # use pg_client::*;
+    /// # use std::collections::BTreeMap;
+    ///
+    /// let config = Config {
+    ///     application_name: None,
+    ///     database: "some-database".parse().unwrap(),
+    ///     host: "some-host".parse().unwrap(),
+    ///     host_addr: None,
+    ///     password: None,
+    ///     port: Port(5432),
+    ///     ssl_mode: SslMode::VerifyFull,
+    ///     ssl_root_cert: None,
+    ///     username: "some-username".parse().unwrap(),
+    /// };
+    ///
+    /// let expected = BTreeMap::from([
+    ///     ("PGDATABASE", "some-database".to_string()),
+    ///     ("PGHOST", "some-host".to_string()),
+    ///     ("PGPORT", "5432".to_string()),
+    ///     ("PGSSLMODE", "verify-full".to_string()),
+    ///     ("PGUSER", "some-username".to_string()),
+    /// ]);
+    ///
+    /// assert_eq!(expected, config.to_pg_env());
+    ///
+    /// let config_with_optionals = Config {
+    ///     application_name: Some("some-app".parse().unwrap()),
+    ///     password: Some("some-password".parse().unwrap()),
+    ///     ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
+    ///     host_addr: Some("127.0.0.1:5432".parse().unwrap()),
+    ///     ..config
+    /// };
+    ///
+    /// let expected = BTreeMap::from([
+    ///     ("PGAPPNAME", "some-app".to_string()),
+    ///     ("PGDATABASE", "some-database".to_string()),
+    ///     ("PGHOST", "some-host".to_string()),
+    ///     ("PGHOSTADDR", "127.0.0.1:5432".to_string()),
+    ///     ("PGPASSWORD", "some-password".to_string()),
+    ///     ("PGPORT", "5432".to_string()),
+    ///     ("PGSSLMODE", "verify-full".to_string()),
+    ///     ("PGSSLROOTCERT", "/some.pem".to_string()),
+    ///     ("PGUSER", "some-username".to_string()),
+    /// ]);
+    ///
+    /// assert_eq!(expected, config_with_optionals.to_pg_env());
+    /// ```
     pub fn to_pg_env(&self) -> std::collections::BTreeMap<&'static str, String> {
         let mut map = std::collections::BTreeMap::new();
 
@@ -408,6 +479,10 @@ impl Config {
 
         if let Some(application_name) = &self.application_name {
             map.insert("PGAPPNAME", application_name.to_pg_env_value());
+        }
+
+        if let Some(host_addr) = &self.host_addr {
+            map.insert("PGHOSTADDR", host_addr.to_pg_env_value());
         }
 
         if let Some(password) = &self.password {
@@ -431,6 +506,7 @@ impl Config {
     ///     application_name: Some(ApplicationName::from_str("some-app").unwrap()),
     ///     database: Database::from_str("some-database").unwrap(),
     ///     host: Host::from_str("some-host").unwrap(),
+    ///     host_addr: None,
     ///     password: Some(Password::from_str("some-password").unwrap()),
     ///     port: Port(5432),
     ///     ssl_mode: SslMode::VerifyFull,
@@ -509,6 +585,10 @@ impl Config {
             reject_env("PGSSLROOTCERT", "ssl_root_cert")
         }
 
+        if let Some(_host_addr) = &self.host_addr {
+            panic!("sqlx does not support host_addr parameter")
+        }
+
         options
     }
 
@@ -545,6 +625,7 @@ mod test {
             application_name: None,
             database: Database::from_str("some-database").unwrap(),
             host: Host::from_str("some-host").unwrap(),
+            host_addr: None,
             password: None,
             port: Port(5432),
             ssl_mode: SslMode::VerifyFull,

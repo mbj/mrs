@@ -54,6 +54,7 @@ impl<'a> Container<'a> {
             application_name: definition.application_name.clone(),
             database: definition.database.clone(),
             host,
+            host_addr: None,
             password: Some(password),
             port,
             ssl_mode: pg_client::SslMode::Disable,
