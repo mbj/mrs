@@ -26,7 +26,7 @@ macro_rules! from_str_impl {
         }
 
         impl $struct {
-            fn as_str(&self) -> &str {
+            pub fn as_str(&self) -> &str {
                 &self.0
             }
         }
