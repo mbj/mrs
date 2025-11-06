@@ -24,6 +24,12 @@ macro_rules! from_str_impl {
                 &self.0
             }
         }
+
+        impl $struct {
+            fn as_str(&self) -> &str {
+                &self.0
+            }
+        }
     };
 }
 
@@ -133,10 +139,6 @@ macro_rules! application_name {
 impl ApplicationName {
     const MAX_LENGTH: usize = 63;
 
-    fn as_str(&self) -> &str {
-        &self.0
-    }
-
     fn to_pg_env_value(&self) -> String {
         self.0.clone()
     }
@@ -156,10 +158,6 @@ macro_rules! database {
 
 impl Database {
     const MAX_LENGTH: usize = 63;
-
-    fn as_str(&self) -> &str {
-        &self.0
-    }
 
     fn to_pg_env_value(&self) -> String {
         self.0.clone()
@@ -184,10 +182,6 @@ impl Username {
     fn to_pg_env_value(&self) -> String {
         self.0.clone()
     }
-
-    fn as_str(&self) -> &str {
-        &self.0
-    }
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
@@ -200,10 +194,6 @@ impl Password {
 
     fn to_pg_env_value(&self) -> String {
         self.0.clone()
-    }
-
-    fn as_str(&self) -> &str {
-        &self.0
     }
 }
 
