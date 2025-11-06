@@ -384,7 +384,17 @@ impl Config {
     ///         application_name: Some(ApplicationName::from_str("some-app").unwrap()),
     ///         password: Some(Password::from_str("some-password").unwrap()),
     ///         ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
-    ///         ..config
+    ///         ..config.clone()
+    ///     }.to_url()
+    /// );
+    ///
+    /// assert_eq!(
+    ///     Url::parse(
+    ///         "postgres://?host=some-host&hostaddr=127.0.0.1&dbname=some-database&user=some-username&port=5432&sslmode=verify-full"
+    ///     ).unwrap(),
+    ///     Config {
+    ///         host_addr: Some(HostAddr::from_str("127.0.0.1").unwrap()),
+    ///         ..config.clone()
     ///     }.to_url()
     /// );
     /// ```
@@ -395,6 +405,11 @@ impl Config {
             let mut pairs = url.query_pairs_mut();
 
             pairs.append_pair("host", self.host.to_pg_env_value().as_str());
+
+            if let Some(host_addr) = &self.host_addr {
+                pairs.append_pair("hostaddr", &host_addr.to_pg_env_value());
+            }
+
             pairs.append_pair("dbname", self.database.as_str());
             pairs.append_pair("user", self.username.to_pg_env_value().as_str());
 
@@ -709,6 +724,21 @@ mod test {
             }),
             &Config {
                 ssl_root_cert: Some(SslRootCert::System),
+                ..config.clone()
+            },
+        );
+
+        assert_config(
+            serde_json::json!({
+                "database": "some-database",
+                "host": "some-host",
+                "port": 5432,
+                "ssl_mode": "verify-full",
+                "url": "postgres://?host=some-host&hostaddr=192.168.1.100&dbname=some-database&user=some-username&port=5432&sslmode=verify-full",
+                "username": "some-username"
+            }),
+            &Config {
+                host_addr: Some(HostAddr::from_str("192.168.1.100").unwrap()),
                 ..config.clone()
             },
         );
