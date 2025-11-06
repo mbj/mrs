@@ -215,7 +215,7 @@ pub enum SslMode {
 }
 
 impl SslMode {
-    fn as_str(&self) -> &'static str {
+    pub fn as_str(&self) -> &'static str {
         match self {
             Self::Allow => "allow",
             Self::Disable => "disable",
