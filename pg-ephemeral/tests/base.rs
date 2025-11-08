@@ -1,6 +1,8 @@
+mod common;
+
 #[tokio::test]
 async fn test_base_feature() {
-    if platform_not_supported() {
+    if common::platform_not_supported() {
         return;
     }
 
@@ -19,10 +21,6 @@ async fn test_base_feature() {
                 .await
         })
         .await
-}
-
-fn platform_not_supported() -> bool {
-    std::env::consts::OS == "macos" && std::env::var("GITHUB_ACTIONS").is_ok()
 }
 
 #[test]
@@ -147,7 +145,7 @@ fn test_config_file_no_explicit_instance() {
 
 #[tokio::test]
 async fn test_run_env() {
-    if platform_not_supported() {
+    if common::platform_not_supported() {
         return;
     }
 
@@ -185,7 +183,7 @@ async fn test_run_env() {
 
 #[tokio::test]
 async fn test_run_env_database_url() {
-    if platform_not_supported() {
+    if common::platform_not_supported() {
         return;
     }
 
@@ -215,7 +213,7 @@ async fn test_run_env_database_url() {
 
 #[tokio::test]
 async fn test_run_env_multiple_flavors() {
-    if platform_not_supported() {
+    if common::platform_not_supported() {
         return;
     }
 
