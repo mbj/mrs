@@ -940,3 +940,73 @@ fn test_fn_if_bool_macro() {
 
     assert_eq!(expected, serde_json::to_value(&template).unwrap());
 }
+
+#[test]
+fn test_fn_select_bool() {
+    use cloudformation::aws::ec2::VPC;
+    use stratosphere::value::fn_select_bool;
+
+    let template = Template::build(|template| {
+        template.resource(
+            "Vpc",
+            VPC! {
+                cidr_block: "10.0.0.0/16",
+                enable_dns_support: fn_select_bool(0, vec![true.into(), false.into()]),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Resources": {
+            "Vpc": {
+                "Type": "AWS::EC2::VPC",
+                "Properties": {
+                    "CidrBlock": "10.0.0.0/16",
+                    "EnableDnsSupport": {
+                        "Fn::Select": [
+                            0,
+                            [true, false]
+                        ]
+                    }
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
+fn test_fn_select_string() {
+    use cloudformation::aws::ec2::VPC;
+    use stratosphere::value::fn_select_string;
+
+    let template = Template::build(|template| {
+        template.resource(
+            "Vpc",
+            VPC! {
+                cidr_block: fn_select_string(0, vec!["10.0.0.0/16".into(), "10.1.0.0/16".into()]),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Resources": {
+            "Vpc": {
+                "Type": "AWS::EC2::VPC",
+                "Properties": {
+                    "CidrBlock": {
+                        "Fn::Select": [
+                            0,
+                            ["10.0.0.0/16", "10.1.0.0/16"]
+                        ]
+                    }
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
