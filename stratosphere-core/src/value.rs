@@ -94,13 +94,16 @@ pub fn fn_if_bool(
 /// This trait enables generic helper functions for selecting an item from a list
 /// across different expression types (ExpString, ExpBool, etc.)
 pub trait FnSelect: Sized {
+    /// The type representing a list of values that can be selected from
+    type ValueList;
+
     /// Creates a select expression using `Fn::Select`
     ///
     /// # Arguments
     ///
     /// * `index` - Zero-based index of the item to select
     /// * `values` - List of values to select from
-    fn fn_select(index: u8, values: Vec<Self>) -> Self;
+    fn fn_select(index: u8, values: Self::ValueList) -> Self;
 }
 
 /// Generic helper function to create select (`Fn::Select`) expressions
@@ -117,9 +120,9 @@ pub trait FnSelect: Sized {
 ///
 /// ```
 /// # use stratosphere_core::value::*;
-/// let expr: ExpString = fn_select(0, vec!["first".into(), "second".into()]);
+/// let expr: ExpString = fn_select(0, vec!["first".into(), "second".into()].into());
 /// ```
-pub fn fn_select<T: FnSelect>(index: u8, values: Vec<T>) -> T {
+pub fn fn_select<T: FnSelect>(index: u8, values: T::ValueList) -> T {
     T::fn_select(index, values)
 }
 
@@ -131,8 +134,8 @@ pub fn fn_select_bool(index: u8, values: Vec<ExpBool>) -> ExpBool {
 
 /// Type-specific helper for string select expressions that doesn't require turbofish syntax.
 /// Use this when working with ExpString values.
-pub fn fn_select_string(index: u8, values: Vec<ExpString>) -> ExpString {
-    ExpString::fn_select(index, values)
+pub fn fn_select_string(index: u8, values: impl Into<ExpStringList>) -> ExpString {
+    ExpString::fn_select(index, values.into())
 }
 
 /// Helper function to create a split expression
@@ -225,6 +228,34 @@ pub fn fn_find_in_map_bool(
     ExpBool::fn_find_in_map(map_name, top_level_key, second_level_key)
 }
 
+/// Helper function to create a Fn::GetAZs expression
+///
+/// Returns an ExpStringList representing the list of Availability Zones for a region.
+/// Pass an empty string to get AZs for the current region.
+///
+/// # Arguments
+///
+/// * `region` - The region to get AZs for, or empty string for current region
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// // Get AZs for current region
+/// let azs = fn_get_azs("");
+///
+/// // Get AZs for specific region
+/// let azs = fn_get_azs("us-west-2");
+///
+/// // Use with Fn::Select to pick first AZ
+/// let first_az = fn_select_string(0, fn_get_azs(""));
+/// ```
+pub fn fn_get_azs(region: impl Into<ExpString>) -> ExpStringList {
+    ExpStringList::GetAZs {
+        region: Box::new(region.into()),
+    }
+}
+
 pub trait ToValue {
     fn to_value(&self) -> serde_json::Value;
 }
@@ -270,7 +301,7 @@ pub enum ExpString {
     Ref(LogicalResourceName),
     Select {
         index: u8,
-        values: Vec<ExpString>,
+        values: Box<ExpStringList>,
     },
     Split {
         delimiter: String,
@@ -302,8 +333,13 @@ impl FnIf for ExpString {
 }
 
 impl FnSelect for ExpString {
-    fn fn_select(index: u8, values: Vec<Self>) -> Self {
-        ExpString::Select { index, values }
+    type ValueList = ExpStringList;
+
+    fn fn_select(index: u8, values: Self::ValueList) -> Self {
+        ExpString::Select {
+            index,
+            values: Box::new(values),
+        }
     }
 }
 
@@ -534,16 +570,7 @@ impl ToValue for ExpString {
             ExpString::Sub { pattern } => mk_func("Fn::Sub", pattern),
             ExpString::Select { index, values } => mk_func(
                 "Fn::Select",
-                vec![
-                    serde_json::to_value(index).unwrap(),
-                    serde_json::to_value(
-                        values
-                            .iter()
-                            .map(|item| item.to_value())
-                            .collect::<Vec<_>>(),
-                    )
-                    .unwrap(),
-                ],
+                vec![serde_json::to_value(index).unwrap(), values.to_value()],
             ),
             ExpString::Split { delimiter, source } => mk_func(
                 "Fn::Split",
@@ -627,6 +654,33 @@ pub enum ExpPair {
     },
 }
 
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum ExpStringList {
+    GetAZs { region: Box<ExpString> },
+    Literal(Vec<ExpString>),
+}
+
+impl From<Vec<ExpString>> for ExpStringList {
+    fn from(values: Vec<ExpString>) -> Self {
+        ExpStringList::Literal(values)
+    }
+}
+
+impl ToValue for ExpStringList {
+    fn to_value(&self) -> serde_json::Value {
+        match self {
+            ExpStringList::GetAZs { region } => mk_func("Fn::GetAZs", region.to_value()),
+            ExpStringList::Literal(values) => serde_json::to_value(
+                values
+                    .iter()
+                    .map(|item| item.to_value())
+                    .collect::<Vec<_>>(),
+            )
+            .unwrap(),
+        }
+    }
+}
+
 #[derive(Clone, Debug)]
 pub enum ExpBool {
     And(Box<ExpBool>, Box<ExpBool>),
@@ -671,7 +725,9 @@ impl FnIf for ExpBool {
 }
 
 impl FnSelect for ExpBool {
-    fn fn_select(index: u8, values: Vec<Self>) -> Self {
+    type ValueList = Vec<ExpBool>;
+
+    fn fn_select(index: u8, values: Self::ValueList) -> Self {
         ExpBool::Select { index, values }
     }
 }

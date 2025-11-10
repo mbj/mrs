@@ -114,7 +114,7 @@ macro_rules! fn_select {
     ) => {
         $crate::value::ExpString::Select {
             index: $index,
-            values: vec![$($value.into()),*],
+            values: Box::new(vec![$($value.into()),*].into()),
         }
     };
 }
