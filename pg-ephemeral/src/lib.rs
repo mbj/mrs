@@ -10,6 +10,7 @@ pub mod seed;
 pub use config::Config;
 pub use definition::{BackendSelection, Definition};
 pub use image::Image;
+pub use seed::Command;
 pub use seed::DuplicateSeedName;
 pub use seed::Seed;
 pub use seed::SeedName;

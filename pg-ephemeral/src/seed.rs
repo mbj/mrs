@@ -55,6 +55,18 @@ impl TryFrom<&str> for SeedName {
 }
 
 #[derive(Clone, Debug, PartialEq)]
+pub struct Command {
+    pub command: String,
+    pub arguments: Vec<String>,
+}
+
+impl Command {
+    pub fn new(command: String, arguments: Vec<String>) -> Self {
+        Self { command, arguments }
+    }
+}
+
+#[derive(Clone, Debug, PartialEq)]
 pub enum Seed {
     ApplyPendingMigrations,
     ApplyPendingMigrationsNoSchemaDump,
@@ -63,6 +75,8 @@ pub enum Seed {
         git_revision: &'static str,
         path: std::path::PathBuf,
     },
+    Command(Command),
+    Script(String),
 }
 
 #[cfg(test)]
