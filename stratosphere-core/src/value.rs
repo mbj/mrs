@@ -256,6 +256,35 @@ pub fn fn_get_azs(region: impl Into<ExpString>) -> ExpStringList {
     }
 }
 
+/// Helper function to create a Fn::Cidr expression
+///
+/// Returns an ExpStringList representing a list of CIDR address blocks.
+/// Used to generate subnet CIDR blocks from a larger VPC CIDR block.
+///
+/// # Arguments
+///
+/// * `ip_block` - The CIDR block to divide (e.g., "10.0.0.0/16")
+/// * `count` - The number of CIDRs to generate (1-256)
+/// * `cidr_bits` - The number of subnet bits for the CIDR (typically 8 for /24 subnets)
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// // Generate 6 /24 subnets from a /16 VPC
+/// let subnets = fn_cidr("10.0.0.0/16", 6, 8);
+///
+/// // Use with Fn::Select to pick specific subnet
+/// let first_subnet = fn_select_string(0, fn_cidr("10.0.0.0/16", 6, 8));
+/// ```
+pub fn fn_cidr(ip_block: impl Into<ExpString>, count: u8, cidr_bits: u8) -> ExpStringList {
+    ExpStringList::Cidr {
+        ip_block: Box::new(ip_block.into()),
+        count,
+        cidr_bits,
+    }
+}
+
 pub trait ToValue {
     fn to_value(&self) -> serde_json::Value;
 }
@@ -656,7 +685,14 @@ pub enum ExpPair {
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum ExpStringList {
-    GetAZs { region: Box<ExpString> },
+    Cidr {
+        ip_block: Box<ExpString>,
+        count: u8,
+        cidr_bits: u8,
+    },
+    GetAZs {
+        region: Box<ExpString>,
+    },
     Literal(Vec<ExpString>),
 }
 
@@ -669,6 +705,18 @@ impl From<Vec<ExpString>> for ExpStringList {
 impl ToValue for ExpStringList {
     fn to_value(&self) -> serde_json::Value {
         match self {
+            ExpStringList::Cidr {
+                ip_block,
+                count,
+                cidr_bits,
+            } => mk_func(
+                "Fn::Cidr",
+                vec![
+                    ip_block.to_value(),
+                    serde_json::to_value(count).unwrap(),
+                    serde_json::to_value(cidr_bits).unwrap(),
+                ],
+            ),
             ExpStringList::GetAZs { region } => mk_func("Fn::GetAZs", region.to_value()),
             ExpStringList::Literal(values) => serde_json::to_value(
                 values
