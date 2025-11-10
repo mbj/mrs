@@ -36,6 +36,7 @@ impl App {
         let overwrites = crate::config::InstanceDefinition {
             backend: self.backend,
             image: self.image.clone(),
+            seeds: indexmap::IndexMap::new(),
         };
 
         let result = match &self.config_file {
@@ -51,9 +52,9 @@ impl App {
                     Ok(value) => Ok(value),
                     Err(error) => {
                         match error {
-                            crate::config::Error::IO(error)
-                                if error.kind() == std::io::ErrorKind::NotFound =>
-                            {
+                            crate::config::Error::IO(crate::config::IoError(
+                                std::io::ErrorKind::NotFound,
+                            )) => {
                                 log::info!(
                                     "Config file does not exist in default location, using default instance map"
                                 );

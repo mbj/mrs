@@ -2,15 +2,16 @@ use super::InstanceName;
 use crate::cbt;
 use crate::definition::Definition;
 use crate::image::Image;
+use crate::seed::{Command, Seed, SeedName};
 
-#[derive(Debug, thiserror::Error)]
+#[derive(Debug, thiserror::Error, PartialEq)]
 pub enum Error {
     #[error("Backend autodetection failed: {0}")]
-    BackendAutodetect(crate::cbt::backend::autodetect::Error),
+    BackendAutodetect(#[from] crate::cbt::backend::autodetect::Error),
     #[error("Cloud not load config file: {0}")]
-    IO(std::io::Error),
+    IO(IoError),
     #[error("Decoding as toml failed: {0}")]
-    TomlDecode(toml::de::Error),
+    TomlDecode(#[from] toml::de::Error),
     #[error("Instance {instance_name} does not specify {field} and no default applies")]
     MissingInstanceField {
         instance_name: InstanceName,
@@ -18,11 +19,57 @@ pub enum Error {
     },
 }
 
-#[derive(Debug, serde::Deserialize)]
+#[derive(Debug, PartialEq)]
+pub struct IoError(pub std::io::ErrorKind);
+
+impl std::fmt::Display for IoError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", std::io::Error::from(self.0))
+    }
+}
+
+impl std::error::Error for IoError {}
+
+impl From<std::io::Error> for IoError {
+    fn from(error: std::io::Error) -> Self {
+        Self(error.kind())
+    }
+}
+
+#[derive(Clone, Debug, serde::Deserialize, PartialEq)]
+#[serde(tag = "type", rename_all = "kebab-case")]
+pub enum SeedConfig {
+    SqlFile {
+        path: std::path::PathBuf,
+    },
+    Command {
+        command: String,
+        arguments: Vec<String>,
+    },
+    Script {
+        script: String,
+    },
+}
+
+impl From<SeedConfig> for Seed {
+    fn from(value: SeedConfig) -> Self {
+        match value {
+            SeedConfig::SqlFile { path } => Seed::SqlFile(path),
+            SeedConfig::Command { command, arguments } => {
+                Seed::Command(Command::new(command, arguments))
+            }
+            SeedConfig::Script { script } => Seed::Script(script),
+        }
+    }
+}
+
+#[derive(Debug, serde::Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct InstanceDefinition {
     pub backend: Option<cbt::Backend>,
     pub image: Option<Image>,
+    #[serde(default)]
+    pub seeds: indexmap::IndexMap<SeedName, SeedConfig>,
 }
 
 impl InstanceDefinition {
@@ -30,11 +77,12 @@ impl InstanceDefinition {
         Self {
             backend: None,
             image: None,
+            seeds: indexmap::IndexMap::new(),
         }
     }
 
     fn definition(
-        &self,
+        self,
         autodetect: &cbt::backend::autodetect::Lazy,
         instance_name: &InstanceName,
         defaults: &InstanceDefinition,
@@ -63,19 +111,25 @@ impl InstanceDefinition {
             },
         };
 
+        let seeds = self
+            .seeds
+            .into_iter()
+            .map(|(name, seed_config)| (name, seed_config.into()))
+            .collect();
+
         Ok(Definition {
             application_name: None,
             backend,
             database: pg_client::database!("postgres"),
             migration_config: None,
-            seeds: indexmap::IndexMap::new(),
+            seeds,
             superuser: pg_client::username!("postgres"),
             image,
         })
     }
 }
 
-#[derive(Debug, serde::Deserialize)]
+#[derive(Debug, serde::Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct Config {
     image: Option<Image>,
@@ -99,7 +153,7 @@ impl Config {
         overwrites: &InstanceDefinition,
     ) -> Result<super::InstanceMap, Error> {
         std::fs::read_to_string(file)
-            .map_err(Error::IO)
+            .map_err(|error| Error::IO(error.into()))
             .and_then(Self::load_toml)
             .and_then(|config| config.instance_map(overwrites))
     }
@@ -109,21 +163,22 @@ impl Config {
     }
 
     pub fn instance_map(
-        &self,
+        self,
         overwrites: &InstanceDefinition,
     ) -> Result<super::InstanceMap, Error> {
         let autodetect = crate::cbt::backend::autodetect::Lazy::new();
 
         let defaults = InstanceDefinition {
-            image: self.image.clone(),
             backend: self.backend,
+            image: self.image.clone(),
+            seeds: indexmap::IndexMap::new(),
         };
 
-        match &self.instances {
+        match self.instances {
             None => {
                 let instance_name = InstanceName::default();
 
-                defaults
+                InstanceDefinition::empty()
                     .definition(&autodetect, &instance_name, &defaults, overwrites)
                     .map(|definition| [(instance_name, definition)].into())
             }
@@ -133,12 +188,12 @@ impl Config {
                 for (instance_name, instance_definition) in map {
                     let definition = instance_definition.definition(
                         &autodetect,
-                        instance_name,
+                        &instance_name,
                         &defaults,
                         overwrites,
                     )?;
 
-                    instance_map.insert(instance_name.clone(), definition);
+                    instance_map.insert(instance_name, definition);
                 }
 
                 Ok(instance_map)
