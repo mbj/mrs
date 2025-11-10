@@ -895,3 +895,48 @@ fn test_generation() {
         }
     }
 }
+
+#[test]
+fn test_fn_if_bool_macro() {
+    use cloudformation::aws::ec2::VPC;
+    use stratosphere::value::fn_if_bool;
+
+    let template = Template::build(|template| {
+        template.resource(
+            "Vpc",
+            VPC! {
+                cidr_block: "10.0.0.0/16",
+                enable_dns_support: fn_if_bool("IsProduction", true, false),
+                enable_dns_hostnames: fn_if_bool("IsProduction", true, false),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Resources": {
+            "Vpc": {
+                "Type": "AWS::EC2::VPC",
+                "Properties": {
+                    "CidrBlock": "10.0.0.0/16",
+                    "EnableDnsSupport": {
+                        "Fn::If": [
+                            "IsProduction",
+                            true,
+                            false
+                        ]
+                    },
+                    "EnableDnsHostnames": {
+                        "Fn::If": [
+                            "IsProduction",
+                            true,
+                            false
+                        ]
+                    }
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
