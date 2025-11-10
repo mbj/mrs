@@ -316,10 +316,7 @@ impl Template<'_> {
                 description: description.into(),
                 value: value.into(),
                 export: Some(OutputExport {
-                    name: value::join(
-                        ":",
-                        [value::AWS_STACK_NAME.into(), output_key.as_str().into()],
-                    ),
+                    name: value::join(":", [value::AWS_STACK_NAME, output_key.as_str().into()]),
                     value: None,
                 }),
             },
