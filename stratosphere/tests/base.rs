@@ -1204,3 +1204,117 @@ fn test_fn_find_in_map_with_ref() {
 
     assert_eq!(expected, serde_json::to_value(&template).unwrap());
 }
+
+#[test]
+fn test_fn_get_azs_current_region() {
+    use cloudformation::aws::ec2::Subnet;
+    use stratosphere::value::{fn_get_azs, fn_select_string};
+
+    let template = Template::build(|template| {
+        template.resource(
+            "Subnet",
+            Subnet! {
+                vpc_id: "vpc-12345",
+                cidr_block: "10.0.1.0/24",
+                availability_zone: fn_select_string(0, fn_get_azs("")),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Resources": {
+            "Subnet": {
+                "Type": "AWS::EC2::Subnet",
+                "Properties": {
+                    "VpcId": "vpc-12345",
+                    "CidrBlock": "10.0.1.0/24",
+                    "AvailabilityZone": {
+                        "Fn::Select": [
+                            0,
+                            {"Fn::GetAZs": ""}
+                        ]
+                    }
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
+fn test_fn_get_azs_specific_region() {
+    use cloudformation::aws::ec2::Subnet;
+    use stratosphere::value::{fn_get_azs, fn_select_string};
+
+    let template = Template::build(|template| {
+        template.resource(
+            "Subnet",
+            Subnet! {
+                vpc_id: "vpc-12345",
+                cidr_block: "10.0.1.0/24",
+                availability_zone: fn_select_string(0, fn_get_azs("us-west-2")),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Resources": {
+            "Subnet": {
+                "Type": "AWS::EC2::Subnet",
+                "Properties": {
+                    "VpcId": "vpc-12345",
+                    "CidrBlock": "10.0.1.0/24",
+                    "AvailabilityZone": {
+                        "Fn::Select": [
+                            0,
+                            {"Fn::GetAZs": "us-west-2"}
+                        ]
+                    }
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
+fn test_fn_get_azs_with_ref() {
+    use cloudformation::aws::ec2::Subnet;
+    use stratosphere::value::{AWS_REGION, fn_get_azs, fn_select_string};
+
+    let template = Template::build(|template| {
+        template.resource(
+            "Subnet",
+            Subnet! {
+                vpc_id: "vpc-12345",
+                cidr_block: "10.0.1.0/24",
+                availability_zone: fn_select_string(1, fn_get_azs(AWS_REGION)),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Resources": {
+            "Subnet": {
+                "Type": "AWS::EC2::Subnet",
+                "Properties": {
+                    "VpcId": "vpc-12345",
+                    "CidrBlock": "10.0.1.0/24",
+                    "AvailabilityZone": {
+                        "Fn::Select": [
+                            1,
+                            {"Fn::GetAZs": {"Ref": "AWS::Region"}}
+                        ]
+                    }
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
