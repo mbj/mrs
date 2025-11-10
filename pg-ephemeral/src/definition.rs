@@ -2,6 +2,23 @@ use crate::Container;
 use crate::cbt;
 
 #[derive(Clone, Debug, PartialEq)]
+pub enum BackendSelection {
+    Auto,
+    Docker,
+    Podman,
+}
+
+impl BackendSelection {
+    pub fn resolve(&self) -> cbt::Backend {
+        match self {
+            Self::Auto => crate::cbt::backend::autodetect::run().unwrap(),
+            Self::Docker => cbt::Backend::Docker,
+            Self::Podman => cbt::Backend::Podman,
+        }
+    }
+}
+
+#[derive(Clone, Debug, PartialEq)]
 pub enum Step {
     ApplyPendingMigrations,
     ApplyPendingMigrationsNoSchemaDump,
@@ -24,9 +41,9 @@ pub struct Definition {
 }
 
 impl Definition {
-    pub fn new(image: crate::image::Image) -> Self {
+    pub fn new(backend_selection: BackendSelection, image: crate::image::Image) -> Self {
         Self {
-            backend: crate::cbt::backend::autodetect::run().unwrap(),
+            backend: backend_selection.resolve(),
             application_name: None,
             migration_config: None,
             steps: vec![],
