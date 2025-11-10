@@ -7,7 +7,7 @@ pub mod definition;
 pub mod image;
 
 pub use config::Config;
-pub use definition::Definition;
+pub use definition::{BackendSelection, Definition};
 pub use image::Image;
 
 struct SchemaDump<'a> {
