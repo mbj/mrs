@@ -35,6 +35,60 @@ pub fn equals_string<A: Into<ExpString>, B: Into<ExpString>>(left: A, right: B) 
     })
 }
 
+/// Trait for expression types that support conditional (`Fn::If`) expressions
+///
+/// This trait enables generic helper functions for constructing conditional
+/// expressions across different expression types (ExpString, ExpBool, etc.)
+pub trait FnIf: Sized {
+    /// Creates a conditional expression using `Fn::If`
+    ///
+    /// # Arguments
+    ///
+    /// * `condition_name` - Name of the condition to evaluate
+    /// * `true_branch` - Value returned when condition is true
+    /// * `else_branch` - Value returned when condition is false
+    fn fn_if(
+        condition_name: impl Into<ConditionName>,
+        true_branch: impl Into<Self>,
+        else_branch: impl Into<Self>,
+    ) -> Self;
+}
+
+/// Generic helper function to create conditional (`Fn::If`) expressions
+///
+/// This function works with any type implementing [`FnIf`],
+/// allowing for type-safe conditional expressions across different expression types.
+///
+/// # Arguments
+///
+/// * `condition_name` - Name of the condition to evaluate
+/// * `true_branch` - Value returned when condition is true
+/// * `else_branch` - Value returned when condition is false
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// let expr: ExpString = fn_if("MyCondition", "value-if-true", "value-if-false");
+/// ```
+pub fn fn_if<T: FnIf>(
+    condition_name: impl Into<ConditionName>,
+    true_branch: impl Into<T>,
+    else_branch: impl Into<T>,
+) -> T {
+    T::fn_if(condition_name, true_branch, else_branch)
+}
+
+/// Type-specific helper for boolean conditional expressions that doesn't require turbofish syntax.
+/// Use this when working with ExpBool values.
+pub fn fn_if_bool(
+    condition_name: impl Into<ConditionName>,
+    true_branch: impl Into<ExpBool>,
+    false_branch: impl Into<ExpBool>,
+) -> ExpBool {
+    ExpBool::fn_if(condition_name, true_branch, false_branch)
+}
+
 pub trait ToValue {
     fn to_value(&self) -> serde_json::Value;
 }
@@ -85,6 +139,20 @@ pub enum ExpString {
 impl ExpString {
     pub fn base64(self) -> ExpString {
         ExpString::Base64(Box::new(self))
+    }
+}
+
+impl FnIf for ExpString {
+    fn fn_if(
+        condition_name: impl Into<ConditionName>,
+        true_branch: impl Into<Self>,
+        else_branch: impl Into<Self>,
+    ) -> Self {
+        ExpString::If {
+            condition_name: condition_name.into(),
+            true_branch: Box::new(true_branch.into()),
+            else_branch: Box::new(else_branch.into()),
+        }
     }
 }
 
@@ -382,6 +450,11 @@ pub enum ExpPair {
 pub enum ExpBool {
     And(Box<ExpBool>, Box<ExpBool>),
     Equals(ExpPair),
+    If {
+        condition_name: ConditionName,
+        true_branch: Box<ExpBool>,
+        else_branch: Box<ExpBool>,
+    },
     Literal(bool),
     Not(Box<ExpBool>),
     Or(Vec<ExpBool>),
@@ -390,6 +463,20 @@ pub enum ExpBool {
 impl From<bool> for ExpBool {
     fn from(value: bool) -> Self {
         Self::Literal(value)
+    }
+}
+
+impl FnIf for ExpBool {
+    fn fn_if(
+        condition_name: impl Into<ConditionName>,
+        true_branch: impl Into<Self>,
+        else_branch: impl Into<Self>,
+    ) -> Self {
+        Self::If {
+            condition_name: condition_name.into(),
+            true_branch: Box::new(true_branch.into()),
+            else_branch: Box::new(else_branch.into()),
+        }
     }
 }
 
@@ -440,6 +527,18 @@ impl ToValue for ExpBool {
                     mk_func("Fn::Equals", [left.to_value(), right.to_value()])
                 }
             },
+            ExpBool::If {
+                condition_name,
+                true_branch,
+                else_branch,
+            } => mk_func(
+                "Fn::If",
+                [
+                    serde_json::to_value(condition_name).unwrap(),
+                    true_branch.to_value(),
+                    else_branch.to_value(),
+                ],
+            ),
             ExpBool::Literal(value) => serde_json::Value::Bool(*value),
             ExpBool::Not(value) => mk_func("Fn::Not", [value.to_value()]),
             ExpBool::Or(conditions) => mk_func(
