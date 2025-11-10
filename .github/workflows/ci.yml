@@ -66,8 +66,9 @@ jobs:
         retention-days: 7
 
   publish:
-    name: Publish Prerelease
+    name: Publish Edge Build
     needs: test
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -79,12 +80,12 @@ jobs:
       with:
         path: artifacts
 
-    - name: Create prerelease and upload all binaries
+    - name: Create edge build release and upload all binaries
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        TAG="prerelease-${{ github.sha }}"
-        RELEASE_NAME="Prerelease Build (${{ github.ref_name }} @ ${{ github.sha }})"
+        TAG="edge-${{ github.sha }}"
+        RELEASE_NAME="Edge Build (${{ github.ref_name }} @ ${{ github.sha }})"
 
         # Collect all artifact files
         FILES=$(find artifacts -type f \( -name "*.tar.gz" -o -name "*.sha256" \))
@@ -93,5 +94,5 @@ jobs:
         gh release create "$TAG" \
           --prerelease \
           --title "$RELEASE_NAME" \
-          --notes "Automated prerelease build from commit ${{ github.sha }}" \
+          --notes "Automated edge build from commit ${{ github.sha }}" \
           $FILES
