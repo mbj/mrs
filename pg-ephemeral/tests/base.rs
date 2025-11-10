@@ -37,7 +37,7 @@ fn test_config_file() {
                     backend: pg_ephemeral::cbt::Backend::Docker,
                     database: pg_client::database!("postgres"),
                     migration_config: None,
-                    steps: vec![],
+                    seeds: vec![],
                     superuser: pg_client::username!("postgres"),
                     image: "17.1".parse().unwrap()
                 }
@@ -49,7 +49,7 @@ fn test_config_file() {
                     backend: pg_ephemeral::cbt::Backend::Podman,
                     database: pg_client::database!("postgres"),
                     migration_config: None,
-                    steps: vec![],
+                    seeds: vec![],
                     superuser: pg_client::username!("postgres"),
                     image: "17.2".parse().unwrap()
                 }
@@ -71,7 +71,7 @@ fn test_config_file() {
                     backend: pg_ephemeral::cbt::Backend::Docker,
                     database: pg_client::database!("postgres"),
                     migration_config: None,
-                    steps: vec![],
+                    seeds: vec![],
                     superuser: pg_client::username!("postgres"),
                     image: "18.0".parse().unwrap()
                 }
@@ -83,7 +83,7 @@ fn test_config_file() {
                     backend: pg_ephemeral::cbt::Backend::Docker,
                     database: pg_client::database!("postgres"),
                     migration_config: None,
-                    steps: vec![],
+                    seeds: vec![],
                     superuser: pg_client::username!("postgres"),
                     image: "18.0".parse().unwrap()
                 }
@@ -110,7 +110,7 @@ fn test_config_file_no_explicit_instance() {
                 backend: pg_ephemeral::cbt::Backend::Docker,
                 database: pg_client::database!("postgres"),
                 migration_config: None,
-                steps: vec![],
+                seeds: vec![],
                 superuser: pg_client::username!("postgres"),
                 image: "17.1".parse().unwrap()
             }
@@ -130,7 +130,7 @@ fn test_config_file_no_explicit_instance() {
                 backend: pg_ephemeral::cbt::Backend::Podman,
                 database: pg_client::database!("postgres"),
                 migration_config: None,
-                steps: vec![],
+                seeds: vec![],
                 superuser: pg_client::username!("postgres"),
                 image: "18.0".parse().unwrap()
             }
