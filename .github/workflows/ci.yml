@@ -9,16 +9,6 @@ jobs:
   test:
     strategy:
       matrix:
-        execute:
-        - kind: clippy
-          command: cargo clippy --release
-          cache: clippy
-        - kind: fmt
-          command: cargo fmt --check
-          cache: meta
-        - kind: test
-          command: cargo test --release
-          cache: build
         os:
         - cargo_build_target: aarch64-apple-darwin
           version: macos-15
@@ -30,7 +20,7 @@ jobs:
           version: ubuntu-24.04
         - cargo_build_target: x86_64-unknown-linux-gnu
           version: ubuntu-24.04
-    name: Test
+    name: Test (${{ matrix.os.cargo_build_target }})
     runs-on: ${{ matrix.os.version }}
     env:
       CARGO_BUILD_TARGET: ${{ matrix.os.cargo_build_target }}
@@ -47,18 +37,26 @@ jobs:
           ~/.cargo/registry/cache/
           ~/.cargo/registry/index/
           ~/.rustup
-        key: ${{ matrix.os.version }}-${{ matrix.execute.cache}}-${{ matrix.os.cargo_build_target }}-${{ hashFiles('.github/workflows/ci.yml', '**/Cargo.lock', 'rust-toolchain.toml') }}
-    - run: ${{ matrix.execute.command }}
+        key: ${{ matrix.os.version }}-build-${{ matrix.os.cargo_build_target }}-${{ hashFiles('.github/workflows/ci.yml', '**/Cargo.lock', 'rust-toolchain.toml') }}
+
+    - name: Run fmt
+      run: cargo fmt --check
+
+    - name: Run clippy
+      run: cargo clippy --release
+
+    - name: Run tests
+      run: cargo test --release
 
     - name: Package release binary
-      if: matrix.execute.kind == 'test' && !endsWith(matrix.os.cargo_build_target, '-gnu')
+      if: ${{ !endsWith(matrix.os.cargo_build_target, '-gnu') }}
       run: |
         cd target/${{ matrix.os.cargo_build_target }}/release
         tar czf pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz pg-ephemeral
         sha256sum pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz > pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz.sha256
 
     - name: Upload build artifacts
-      if: matrix.execute.kind == 'test' && !endsWith(matrix.os.cargo_build_target, '-gnu')
+      if: ${{ !endsWith(matrix.os.cargo_build_target, '-gnu') }}
       uses: actions/upload-artifact@v4
       with:
         name: pg-ephemeral-${{ matrix.os.cargo_build_target }}
