@@ -339,6 +339,13 @@ pub enum ExpString {
     Sub {
         pattern: String,
     },
+    // Pseudo parameters that return strings
+    AwsAccountId,
+    AwsPartition,
+    AwsRegion,
+    AwsStackId,
+    AwsStackName,
+    AwsUrlSuffix,
 }
 
 impl ExpString {
@@ -432,7 +439,7 @@ pub fn get_att_arn(logical_resource_name: impl Into<LogicalResourceName>) -> Exp
 }
 
 pub fn mk_name(suffix: impl Into<ExpString>) -> ExpString {
-    join("-", [AWS_STACK_NAME.into(), suffix.into()])
+    join("-", [AWS_STACK_NAME, suffix.into()])
 }
 
 impl ToValue for &String {
@@ -594,7 +601,7 @@ impl ToValue for ExpString {
                 ],
             ),
             ExpString::Literal(value) => serde_json::to_value(value).unwrap(),
-            ExpString::Ref(value) => mk_func("Ref", value),
+            ExpString::Ref(value) => mk_ref(value),
             ExpString::ImportValue(value) => mk_func("Fn::ImportValue", value),
             ExpString::Sub { pattern } => mk_func("Fn::Sub", pattern),
             ExpString::Select { index, values } => mk_func(
@@ -605,6 +612,13 @@ impl ToValue for ExpString {
                 "Fn::Split",
                 vec![serde_json::to_value(delimiter).unwrap(), source.to_value()],
             ),
+            // Pseudo parameters serialize as Refs
+            ExpString::AwsAccountId => mk_ref("AWS::AccountId"),
+            ExpString::AwsPartition => mk_ref("AWS::Partition"),
+            ExpString::AwsRegion => mk_ref("AWS::Region"),
+            ExpString::AwsStackId => mk_ref("AWS::StackId"),
+            ExpString::AwsStackName => mk_ref("AWS::StackName"),
+            ExpString::AwsUrlSuffix => mk_ref("AWS::URLSuffix"),
         }
     }
 }
@@ -671,6 +685,10 @@ fn mk_func<T: serde::Serialize>(name: &str, value: T) -> serde_json::Value {
     json!({name:value})
 }
 
+fn mk_ref<T: serde::Serialize>(value: T) -> serde_json::Value {
+    mk_func("Ref", value)
+}
+
 #[derive(Clone, Debug)]
 pub enum ExpPair {
     Bool {
@@ -694,6 +712,8 @@ pub enum ExpStringList {
         region: Box<ExpString>,
     },
     Literal(Vec<ExpString>),
+    // Pseudo parameter that returns a list of strings
+    AwsNotificationArns,
 }
 
 impl From<Vec<ExpString>> for ExpStringList {
@@ -725,6 +745,8 @@ impl ToValue for ExpStringList {
                     .collect::<Vec<_>>(),
             )
             .unwrap(),
+            // Pseudo parameter that returns a list serializes as a Ref
+            ExpStringList::AwsNotificationArns => mk_ref("AWS::NotificationARNs"),
         }
     }
 }
@@ -887,14 +909,102 @@ impl ToValue for ExpBool {
     }
 }
 
-pub struct Pseudo(&'static str);
+// Pseudo parameter constants
 
-pub const AWS_ACCOUNT_ID: Pseudo = Pseudo("AWS::AccountId");
-pub const AWS_REGION: Pseudo = Pseudo("AWS::Region");
-pub const AWS_STACK_NAME: Pseudo = Pseudo("AWS::StackName");
+/// AWS account ID (e.g., "123456789012")
+///
+/// This pseudo parameter resolves to the AWS account ID of the account
+/// in which the CloudFormation stack is being created.
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// # use serde_json::json;
+/// assert_eq!(AWS_ACCOUNT_ID.to_value(), json!({"Ref": "AWS::AccountId"}));
+/// ```
+pub const AWS_ACCOUNT_ID: ExpString = ExpString::AwsAccountId;
 
-impl From<Pseudo> for ExpString {
-    fn from(value: Pseudo) -> Self {
-        LogicalResourceName::from(value.0).into()
-    }
-}
+/// AWS partition (e.g., "aws", "aws-cn", "aws-us-gov")
+///
+/// This pseudo parameter resolves to the partition that the resource is in.
+/// For standard AWS Regions, the partition is "aws". For resources in other
+/// partitions, the partition is "aws-partitionname".
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// # use serde_json::json;
+/// assert_eq!(AWS_PARTITION.to_value(), json!({"Ref": "AWS::Partition"}));
+/// ```
+pub const AWS_PARTITION: ExpString = ExpString::AwsPartition;
+
+/// AWS region (e.g., "us-east-1")
+///
+/// This pseudo parameter resolves to the AWS Region in which the
+/// CloudFormation stack is being created.
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// # use serde_json::json;
+/// assert_eq!(AWS_REGION.to_value(), json!({"Ref": "AWS::Region"}));
+/// ```
+pub const AWS_REGION: ExpString = ExpString::AwsRegion;
+
+/// Stack ID/ARN
+///
+/// This pseudo parameter resolves to the ID (ARN) of the stack.
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// # use serde_json::json;
+/// assert_eq!(AWS_STACK_ID.to_value(), json!({"Ref": "AWS::StackId"}));
+/// ```
+pub const AWS_STACK_ID: ExpString = ExpString::AwsStackId;
+
+/// Stack name
+///
+/// This pseudo parameter resolves to the name of the CloudFormation stack.
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// # use serde_json::json;
+/// assert_eq!(AWS_STACK_NAME.to_value(), json!({"Ref": "AWS::StackName"}));
+/// ```
+pub const AWS_STACK_NAME: ExpString = ExpString::AwsStackName;
+
+/// AWS domain suffix (e.g., "amazonaws.com")
+///
+/// This pseudo parameter resolves to the suffix for a domain. The suffix is
+/// typically "amazonaws.com", but might differ by Region. For example, in
+/// China (Beijing), the suffix is "amazonaws.com.cn".
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// # use serde_json::json;
+/// assert_eq!(AWS_URL_SUFFIX.to_value(), json!({"Ref": "AWS::URLSuffix"}));
+/// ```
+pub const AWS_URL_SUFFIX: ExpString = ExpString::AwsUrlSuffix;
+
+/// List of SNS topic ARNs for stack notifications
+///
+/// This pseudo parameter resolves to the list of notification Amazon SNS
+/// topic ARNs for the current stack.
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// # use serde_json::json;
+/// assert_eq!(AWS_NOTIFICATION_ARNS.to_value(), json!({"Ref": "AWS::NotificationARNs"}));
+/// ```
+pub const AWS_NOTIFICATION_ARNS: ExpStringList = ExpStringList::AwsNotificationArns;
