@@ -19,5 +19,8 @@ thiserror = { workspace = true }
 tokio = { workspace = true, features = ["io-std", "macros", "rt"] }
 toml = "0.9.5"
 
+[dev-dependencies]
+indoc = "2"
+
 [[bin]]
 name = "pg-ephemeral"

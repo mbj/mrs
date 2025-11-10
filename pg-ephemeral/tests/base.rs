@@ -93,7 +93,8 @@ fn test_config_file() {
             "tests/database.toml",
             &pg_ephemeral::config::InstanceDefinition {
                 backend: Some(pg_ephemeral::cbt::Backend::Docker),
-                image: Some("18.0".parse().unwrap())
+                image: Some("18.0".parse().unwrap()),
+                seeds: indexmap::IndexMap::new(),
             }
         )
         .unwrap()
@@ -139,7 +140,8 @@ fn test_config_file_no_explicit_instance() {
             "tests/database_no_explicit_instance.toml",
             &pg_ephemeral::config::InstanceDefinition {
                 backend: Some(pg_ephemeral::cbt::Backend::Podman),
-                image: Some("18.0".parse().unwrap())
+                image: Some("18.0".parse().unwrap()),
+                seeds: indexmap::IndexMap::new(),
             }
         )
         .unwrap()
@@ -187,4 +189,197 @@ async fn test_run_env() {
             );
         })
         .await
+}
+
+#[test]
+fn test_config_seeds_basic() {
+    let toml = indoc::indoc! {r#"
+        backend = "docker"
+        image = "17.1"
+
+        [instances.main.seeds.create-users-table]
+        type = "sql-file"
+        path = "tests/fixtures/create_users.sql"
+
+        [instances.main.seeds.insert-test-data]
+        type = "sql-file"
+        path = "tests/fixtures/insert_users.sql"
+    "#};
+
+    let config = pg_ephemeral::Config::load_toml(toml)
+        .unwrap()
+        .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+        .unwrap();
+
+    let definition = config
+        .get(&pg_ephemeral::InstanceName("main".to_string()))
+        .unwrap();
+
+    let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
+        (
+            "create-users-table".parse().unwrap(),
+            pg_ephemeral::Seed::SqlFile("tests/fixtures/create_users.sql".into()),
+        ),
+        (
+            "insert-test-data".parse().unwrap(),
+            pg_ephemeral::Seed::SqlFile("tests/fixtures/insert_users.sql".into()),
+        ),
+    ]
+    .into();
+
+    assert_eq!(definition.seeds, expected_seeds);
+}
+
+#[test]
+fn test_config_seeds_command() {
+    let toml = indoc::indoc! {r#"
+        backend = "docker"
+        image = "17.1"
+
+        [instances.main.seeds.setup-schema]
+        type = "sql-file"
+        path = "tests/fixtures/schema.sql"
+
+        [instances.main.seeds.run-migration]
+        type = "command"
+        command = "migrate"
+        arguments = ["up"]
+    "#};
+
+    let config = pg_ephemeral::Config::load_toml(toml)
+        .unwrap()
+        .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+        .unwrap();
+
+    let definition = config
+        .get(&pg_ephemeral::InstanceName("main".to_string()))
+        .unwrap();
+
+    let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
+        (
+            "setup-schema".parse().unwrap(),
+            pg_ephemeral::Seed::SqlFile("tests/fixtures/schema.sql".into()),
+        ),
+        (
+            "run-migration".parse().unwrap(),
+            pg_ephemeral::Seed::Command(pg_ephemeral::Command::new(
+                "migrate".to_string(),
+                vec!["up".to_string()],
+            )),
+        ),
+    ]
+    .into();
+
+    assert_eq!(definition.seeds, expected_seeds);
+}
+
+#[test]
+fn test_config_seeds_script() {
+    let toml = indoc::indoc! {r#"
+        backend = "docker"
+        image = "17.1"
+
+        [instances.main.seeds.initialize]
+        type = "script"
+        script = "echo 'Starting setup' && psql -c 'CREATE TABLE test (id INT)'"
+    "#};
+
+    let config = pg_ephemeral::Config::load_toml(toml)
+        .unwrap()
+        .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+        .unwrap();
+
+    let definition = config
+        .get(&pg_ephemeral::InstanceName("main".to_string()))
+        .unwrap();
+
+    let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [(
+        "initialize".parse().unwrap(),
+        pg_ephemeral::Seed::Script(
+            "echo 'Starting setup' && psql -c 'CREATE TABLE test (id INT)'".to_string(),
+        ),
+    )]
+    .into();
+
+    assert_eq!(definition.seeds, expected_seeds);
+}
+
+#[test]
+fn test_config_seeds_mixed() {
+    let toml = indoc::indoc! {r#"
+        backend = "docker"
+        image = "17.1"
+
+        [instances.main.seeds.schema]
+        type = "sql-file"
+        path = "tests/fixtures/schema.sql"
+
+        [instances.main.seeds.migrate]
+        type = "command"
+        command = "migrate"
+        arguments = ["up", "--verbose"]
+
+        [instances.main.seeds.verify]
+        type = "script"
+        script = "psql -c 'SELECT COUNT(*) FROM users'"
+    "#};
+
+    let config = pg_ephemeral::Config::load_toml(toml)
+        .unwrap()
+        .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+        .unwrap();
+
+    let definition = config
+        .get(&pg_ephemeral::InstanceName("main".to_string()))
+        .unwrap();
+
+    let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
+        (
+            "schema".parse().unwrap(),
+            pg_ephemeral::Seed::SqlFile("tests/fixtures/schema.sql".into()),
+        ),
+        (
+            "migrate".parse().unwrap(),
+            pg_ephemeral::Seed::Command(pg_ephemeral::Command::new(
+                "migrate".to_string(),
+                vec!["up".to_string(), "--verbose".to_string()],
+            )),
+        ),
+        (
+            "verify".parse().unwrap(),
+            pg_ephemeral::Seed::Script("psql -c 'SELECT COUNT(*) FROM users'".to_string()),
+        ),
+    ]
+    .into();
+
+    assert_eq!(definition.seeds, expected_seeds);
+}
+
+#[test]
+fn test_config_seeds_duplicate_name() {
+    let toml = indoc::indoc! {r#"
+        backend = "docker"
+        image = "17.1"
+
+        [instances.main.seeds.duplicate]
+        type = "sql-file"
+        path = "first.sql"
+
+        [instances.main.seeds.duplicate]
+        type = "sql-file"
+        path = "second.sql"
+    "#};
+
+    let error = pg_ephemeral::Config::load_toml(toml).unwrap_err();
+
+    assert_eq!(
+        error.to_string(),
+        indoc::indoc! {"
+            Decoding as toml failed: TOML parse error at line 8, column 23
+              |
+            8 | [instances.main.seeds.duplicate]
+              |                       ^^^^^^^^^
+            duplicate key
+        "}
+    );
 }
