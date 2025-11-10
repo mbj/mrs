@@ -7,5 +7,7 @@ async fn test_ruby_database_url_integration() {
 
 #[tokio::test]
 async fn test_prisma_database_url_integration() {
-    common::test_database_url_integration("prisma", "tests/integration/prisma").await
+    env_logger::init();
+    common::test_database_url_integration("prisma", "tests/integration/prisma").await;
+    panic!();
 }

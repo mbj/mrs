@@ -48,6 +48,8 @@ impl<'a> Container<'a> {
                 .expect("invalid port"),
         );
 
+        log::debug!("ContainerPort: {port:#?}");
+
         let host = pg_client::host!("localhost");
 
         let client_config = pg_client::Config {
