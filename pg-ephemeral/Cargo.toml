@@ -6,6 +6,7 @@ edition.workspace = true
 [dependencies]
 clap = { workspace = true }
 env_logger = { workspace = true }
+indexmap = { version = "2.7", features = ["serde"] }
 log = { workspace = true }
 mmigration = { workspace = true }
 pg-client = { workspace = true }

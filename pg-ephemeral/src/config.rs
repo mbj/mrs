@@ -68,7 +68,7 @@ impl InstanceDefinition {
             backend,
             database: pg_client::database!("postgres"),
             migration_config: None,
-            seeds: vec![],
+            seeds: indexmap::IndexMap::new(),
             superuser: pg_client::username!("postgres"),
             image,
         })
