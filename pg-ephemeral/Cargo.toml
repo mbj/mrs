@@ -6,6 +6,7 @@ edition.workspace = true
 [dependencies]
 clap = { workspace = true }
 env_logger = { workspace = true }
+indexmap = { version = "2.7", features = ["serde"] }
 log = { workspace = true }
 mmigration = { workspace = true }
 pg-client = { workspace = true }
@@ -17,6 +18,9 @@ sqlx = { workspace = true }
 thiserror = { workspace = true }
 tokio = { workspace = true, features = ["io-std", "macros", "rt"] }
 toml = "0.9.5"
+
+[dev-dependencies]
+indoc = "2"
 
 [[bin]]
 name = "pg-ephemeral"

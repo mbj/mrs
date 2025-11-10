@@ -31,7 +31,7 @@ pub mod autodetect {
 
     pub type Result = std::result::Result<super::Backend, Error>;
 
-    #[derive(Clone, Debug, thiserror::Error)]
+    #[derive(Clone, Debug, thiserror::Error, PartialEq)]
     pub enum Error {
         #[error(
             "Invalid env variable for {ENV_VARIABLE_NAME}, expected \"podman\" or \"docker\", got: {0}"
