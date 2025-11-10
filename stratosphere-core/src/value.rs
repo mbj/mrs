@@ -159,6 +159,72 @@ pub fn fn_split(delimiter: impl Into<String>, source: impl Into<ExpString>) -> E
     }
 }
 
+/// Trait for expression types that support find in map (`Fn::FindInMap`) expressions
+///
+/// This trait enables generic helper functions for retrieving values from mappings
+/// across different expression types (ExpString, ExpBool, etc.)
+pub trait FnFindInMap: Sized {
+    /// Creates a find in map expression using `Fn::FindInMap`
+    ///
+    /// # Arguments
+    ///
+    /// * `map_name` - MapName referencing the mapping to look up
+    /// * `top_level_key` - First-level key in the mapping
+    /// * `second_level_key` - Second-level key in the mapping
+    fn fn_find_in_map(
+        map_name: impl Into<crate::template::MapName>,
+        top_level_key: impl Into<ExpString>,
+        second_level_key: impl Into<String>,
+    ) -> Self;
+}
+
+/// Generic helper function to create find in map (`Fn::FindInMap`) expressions
+///
+/// This function works with any type implementing [`FnFindInMap`],
+/// allowing for type-safe mapping lookups across different expression types.
+///
+/// # Arguments
+///
+/// * `map_name` - MapName referencing the mapping to look up
+/// * `top_level_key` - First-level key in the mapping
+/// * `second_level_key` - Second-level key in the mapping
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// # use stratosphere_core::template::MapName;
+/// let region_map: MapName = "RegionMap".into();
+/// let expr: ExpString = fn_find_in_map(&region_map, "us-east-1", "AMI");
+/// ```
+pub fn fn_find_in_map<T: FnFindInMap>(
+    map_name: impl Into<crate::template::MapName>,
+    top_level_key: impl Into<ExpString>,
+    second_level_key: impl Into<String>,
+) -> T {
+    T::fn_find_in_map(map_name, top_level_key, second_level_key)
+}
+
+/// Type-specific helper for string find in map expressions that doesn't require turbofish syntax.
+/// Use this when working with ExpString values.
+pub fn fn_find_in_map_string(
+    map_name: impl Into<crate::template::MapName>,
+    top_level_key: impl Into<ExpString>,
+    second_level_key: impl Into<String>,
+) -> ExpString {
+    ExpString::fn_find_in_map(map_name, top_level_key, second_level_key)
+}
+
+/// Type-specific helper for boolean find in map expressions that doesn't require turbofish syntax.
+/// Use this when working with ExpBool values.
+pub fn fn_find_in_map_bool(
+    map_name: impl Into<crate::template::MapName>,
+    top_level_key: impl Into<ExpString>,
+    second_level_key: impl Into<String>,
+) -> ExpBool {
+    ExpBool::fn_find_in_map(map_name, top_level_key, second_level_key)
+}
+
 pub trait ToValue {
     fn to_value(&self) -> serde_json::Value;
 }
@@ -181,6 +247,11 @@ impl<T: ToValue> ToValue for Box<T> {
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum ExpString {
     Base64(Box<ExpString>),
+    FindInMap {
+        map_name: crate::template::MapName,
+        top_level_key: Box<ExpString>,
+        second_level_key: String,
+    },
     GetAtt {
         logical_resource_name: LogicalResourceName,
         attribute_name: AttributeName,
@@ -233,6 +304,20 @@ impl FnIf for ExpString {
 impl FnSelect for ExpString {
     fn fn_select(index: u8, values: Vec<Self>) -> Self {
         ExpString::Select { index, values }
+    }
+}
+
+impl FnFindInMap for ExpString {
+    fn fn_find_in_map(
+        map_name: impl Into<crate::template::MapName>,
+        top_level_key: impl Into<ExpString>,
+        second_level_key: impl Into<String>,
+    ) -> Self {
+        ExpString::FindInMap {
+            map_name: map_name.into(),
+            top_level_key: Box::new(top_level_key.into()),
+            second_level_key: second_level_key.into(),
+        }
     }
 }
 
@@ -396,6 +481,18 @@ impl ToValue for ExpString {
     fn to_value(&self) -> serde_json::Value {
         match self {
             ExpString::Base64(value) => mk_func("Fn::Base64", value.to_value()),
+            ExpString::FindInMap {
+                map_name,
+                top_level_key,
+                second_level_key,
+            } => mk_func(
+                "Fn::FindInMap",
+                vec![
+                    serde_json::to_value(map_name).unwrap(),
+                    top_level_key.to_value(),
+                    serde_json::to_value(second_level_key).unwrap(),
+                ],
+            ),
             ExpString::GetAtt {
                 logical_resource_name,
                 attribute_name,
@@ -534,6 +631,11 @@ pub enum ExpPair {
 pub enum ExpBool {
     And(Box<ExpBool>, Box<ExpBool>),
     Equals(ExpPair),
+    FindInMap {
+        map_name: crate::template::MapName,
+        top_level_key: Box<ExpString>,
+        second_level_key: String,
+    },
     If {
         condition_name: ConditionName,
         true_branch: Box<ExpBool>,
@@ -571,6 +673,20 @@ impl FnIf for ExpBool {
 impl FnSelect for ExpBool {
     fn fn_select(index: u8, values: Vec<Self>) -> Self {
         ExpBool::Select { index, values }
+    }
+}
+
+impl FnFindInMap for ExpBool {
+    fn fn_find_in_map(
+        map_name: impl Into<crate::template::MapName>,
+        top_level_key: impl Into<ExpString>,
+        second_level_key: impl Into<String>,
+    ) -> Self {
+        ExpBool::FindInMap {
+            map_name: map_name.into(),
+            top_level_key: Box::new(top_level_key.into()),
+            second_level_key: second_level_key.into(),
+        }
     }
 }
 
@@ -621,6 +737,18 @@ impl ToValue for ExpBool {
                     mk_func("Fn::Equals", [left.to_value(), right.to_value()])
                 }
             },
+            ExpBool::FindInMap {
+                map_name,
+                top_level_key,
+                second_level_key,
+            } => mk_func(
+                "Fn::FindInMap",
+                vec![
+                    serde_json::to_value(map_name).unwrap(),
+                    top_level_key.to_value(),
+                    serde_json::to_value(second_level_key).unwrap(),
+                ],
+            ),
             ExpBool::If {
                 condition_name,
                 true_branch,

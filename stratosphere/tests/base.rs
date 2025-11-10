@@ -1048,3 +1048,159 @@ fn test_fn_split_string() {
 
     assert_eq!(expected, serde_json::to_value(&template).unwrap());
 }
+
+#[test]
+fn test_fn_find_in_map_string() {
+    use cloudformation::aws::ec2::VPC;
+    use stratosphere::value::fn_find_in_map_string;
+
+    let template = Template::build(|template| {
+        let region_map = template.mapping(
+            "RegionMap",
+            [(
+                "us-east-1".to_string(),
+                [("CIDR".to_string(), serde_json::json!("10.0.0.0/16"))].into(),
+            )]
+            .into(),
+        );
+
+        template.resource(
+            "Vpc",
+            VPC! {
+                cidr_block: fn_find_in_map_string(&region_map, "us-east-1", "CIDR"),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Mappings": {
+            "RegionMap": {
+                "us-east-1": {
+                    "CIDR": "10.0.0.0/16"
+                }
+            }
+        },
+        "Resources": {
+            "Vpc": {
+                "Type": "AWS::EC2::VPC",
+                "Properties": {
+                    "CidrBlock": {
+                        "Fn::FindInMap": ["RegionMap", "us-east-1", "CIDR"]
+                    }
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
+fn test_fn_find_in_map_bool() {
+    use cloudformation::aws::ec2::VPC;
+    use stratosphere::value::fn_find_in_map_bool;
+
+    let template = Template::build(|template| {
+        let config_map = template.mapping(
+            "ConfigMap",
+            [(
+                "us-east-1".to_string(),
+                [("DnsEnabled".to_string(), serde_json::json!(true))].into(),
+            )]
+            .into(),
+        );
+
+        template.resource(
+            "Vpc",
+            VPC! {
+                cidr_block: "10.0.0.0/16",
+                enable_dns_support: fn_find_in_map_bool(&config_map, "us-east-1", "DnsEnabled"),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Mappings": {
+            "ConfigMap": {
+                "us-east-1": {
+                    "DnsEnabled": true
+                }
+            }
+        },
+        "Resources": {
+            "Vpc": {
+                "Type": "AWS::EC2::VPC",
+                "Properties": {
+                    "CidrBlock": "10.0.0.0/16",
+                    "EnableDnsSupport": {
+                        "Fn::FindInMap": ["ConfigMap", "us-east-1", "DnsEnabled"]
+                    }
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
+fn test_fn_find_in_map_with_ref() {
+    use cloudformation::aws::ec2::VPC;
+    use stratosphere::value::{AWS_REGION, fn_find_in_map_string};
+
+    let template = Template::build(|template| {
+        let region_map = template.mapping(
+            "RegionMap",
+            [
+                (
+                    "us-east-1".to_string(),
+                    [("CIDR".to_string(), serde_json::json!("10.0.0.0/16"))].into(),
+                ),
+                (
+                    "us-west-2".to_string(),
+                    [("CIDR".to_string(), serde_json::json!("10.1.0.0/16"))].into(),
+                ),
+            ]
+            .into(),
+        );
+
+        template.resource(
+            "Vpc",
+            VPC! {
+                cidr_block: fn_find_in_map_string(&region_map, AWS_REGION, "CIDR"),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Mappings": {
+            "RegionMap": {
+                "us-east-1": {
+                    "CIDR": "10.0.0.0/16"
+                },
+                "us-west-2": {
+                    "CIDR": "10.1.0.0/16"
+                }
+            }
+        },
+        "Resources": {
+            "Vpc": {
+                "Type": "AWS::EC2::VPC",
+                "Properties": {
+                    "CidrBlock": {
+                        "Fn::FindInMap": [
+                            "RegionMap",
+                            {"Ref": "AWS::Region"},
+                            "CIDR"
+                        ]
+                    }
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
