@@ -8,7 +8,6 @@ pub mod image;
 
 pub use config::Config;
 pub use definition::Definition;
-pub use definition::Flavor;
 pub use image::Image;
 
 struct SchemaDump<'a> {

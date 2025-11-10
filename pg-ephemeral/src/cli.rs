@@ -121,19 +121,14 @@ pub enum Command {
     Psql,
     /// Run shell command with environment variables for PostgreSQL connection
     ///
-    /// By default, sets libpq-style PG* environment variables (PGHOST, PGPORT, PGUSER,
-    /// PGDATABASE, PGPASSWORD, PGSSLMODE, etc.) for use with libpq-compatible tools.
-    ///
-    /// Can also set DATABASE_URL via --flavor database-url.
-    /// Multiple --flavor options can be specified to set multiple formats.
+    /// Sets all PostgreSQL-related environment variables:
+    /// - libpq-style PG* environment variables (PGHOST, PGPORT, PGUSER, PGDATABASE, PGPASSWORD, PGSSLMODE, etc.)
+    /// - DATABASE_URL in PostgreSQL URL format
     RunEnv {
         /// The command to run
         command: String,
         /// Arguments to pass to the command
         arguments: Vec<String>,
-        /// Environment variable flavor(s) to set (can be specified multiple times)
-        #[arg(long, default_value = "libpq")]
-        flavor: Vec<crate::definition::Flavor>,
     },
 }
 
@@ -196,17 +191,12 @@ impl Command {
                 self.run_on_main_instance(instance_map, crate::definition::cli::Command::Psql)
                     .await
             }
-            Self::RunEnv {
-                command,
-                arguments,
-                flavor,
-            } => {
+            Self::RunEnv { command, arguments } => {
                 self.run_on_main_instance(
                     instance_map,
                     crate::definition::cli::Command::RunEnv {
                         command: command.clone(),
                         arguments: arguments.clone(),
-                        flavor: flavor.clone(),
                     },
                 )
                 .await
