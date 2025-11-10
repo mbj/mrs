@@ -5,10 +5,16 @@ pub mod cli;
 pub mod config;
 pub mod definition;
 pub mod image;
+pub mod seed;
 
 pub use config::Config;
 pub use definition::{BackendSelection, Definition};
 pub use image::Image;
+pub use seed::Command;
+pub use seed::DuplicateSeedName;
+pub use seed::Seed;
+pub use seed::SeedName;
+pub use seed::SeedNameError;
 
 struct SchemaDump<'a> {
     container: &'a Container<'a>,

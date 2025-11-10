@@ -1,5 +1,6 @@
 use crate::Container;
 use crate::cbt;
+use crate::seed::{Command, DuplicateSeedName, Seed, SeedName};
 
 #[derive(Clone, Debug, PartialEq)]
 pub enum BackendSelection {
@@ -18,24 +19,13 @@ impl BackendSelection {
     }
 }
 
-#[derive(Clone, Debug, PartialEq)]
-pub enum Step {
-    ApplyPendingMigrations,
-    ApplyPendingMigrationsNoSchemaDump,
-    SqlFile(std::path::PathBuf),
-    SqlFileGitRevision {
-        git_revision: &'static str,
-        path: std::path::PathBuf,
-    },
-}
-
 #[derive(Debug, PartialEq)]
 pub struct Definition {
     pub application_name: Option<pg_client::ApplicationName>,
     pub backend: crate::cbt::Backend,
     pub database: pg_client::Database,
     pub migration_config: Option<mmigration::Config>,
-    pub steps: Vec<Step>,
+    pub seeds: indexmap::IndexMap<SeedName, Seed>,
     pub superuser: pg_client::Username,
     pub image: crate::image::Image,
 }
@@ -46,15 +36,30 @@ impl Definition {
             backend: backend_selection.resolve(),
             application_name: None,
             migration_config: None,
-            steps: vec![],
+            seeds: indexmap::IndexMap::new(),
             superuser: pg_client::username!("postgres"),
             database: pg_client::database!("postgres"),
             image,
         }
     }
 
-    pub fn apply_file(self, path: std::path::PathBuf) -> Self {
-        self.push_step(Step::SqlFile(path))
+    pub fn add_seed(self, name: SeedName, seed: Seed) -> Result<Self, DuplicateSeedName> {
+        let mut seeds = self.seeds.clone();
+
+        if seeds.contains_key(&name) {
+            return Err(DuplicateSeedName(name));
+        }
+
+        seeds.insert(name, seed);
+        Ok(Self { seeds, ..self })
+    }
+
+    pub fn apply_file(
+        self,
+        name: SeedName,
+        path: std::path::PathBuf,
+    ) -> Result<Self, DuplicateSeedName> {
+        self.add_seed(name, Seed::SqlFile(path))
     }
 
     pub fn migration_config(self, migration_config: mmigration::Config) -> Self {
@@ -71,28 +76,36 @@ impl Definition {
         }
     }
 
-    pub fn apply_pending_migrations(self) -> Self {
-        self.push_step(Step::ApplyPendingMigrations)
+    pub fn apply_pending_migrations(self, name: SeedName) -> Result<Self, DuplicateSeedName> {
+        self.add_seed(name, Seed::ApplyPendingMigrations)
     }
 
-    pub fn apply_pending_migrations_no_schema_dump(self) -> Self {
-        self.push_step(Step::ApplyPendingMigrationsNoSchemaDump)
+    pub fn apply_pending_migrations_no_schema_dump(
+        self,
+        name: SeedName,
+    ) -> Result<Self, DuplicateSeedName> {
+        self.add_seed(name, Seed::ApplyPendingMigrationsNoSchemaDump)
     }
 
     pub fn apply_file_from_git_revision(
         self,
+        name: SeedName,
         path: std::path::PathBuf,
         git_revision: &'static str,
-    ) -> Self {
-        self.push_step(Step::SqlFileGitRevision { git_revision, path })
+    ) -> Result<Self, DuplicateSeedName> {
+        self.add_seed(name, Seed::SqlFileGitRevision { git_revision, path })
     }
 
-    fn push_step(self, step: Step) -> Self {
-        let mut steps = self.steps.clone();
+    pub fn apply_command(
+        self,
+        name: SeedName,
+        command: Command,
+    ) -> Result<Self, DuplicateSeedName> {
+        self.add_seed(name, Seed::Command(command))
+    }
 
-        steps.push(step);
-
-        Self { steps, ..self }
+    pub fn apply_script(self, name: SeedName, script: String) -> Result<Self, DuplicateSeedName> {
+        self.add_seed(name, Seed::Script(script))
     }
 
     pub fn to_cbt_definition(&self) -> cbt::Definition {
@@ -104,8 +117,8 @@ impl Definition {
 
         db_container.wait_available().await;
 
-        for step in &self.steps {
-            self.apply_step(&db_container, step).await
+        for seed in self.seeds.values() {
+            self.apply_seed(&db_container, seed).await
         }
 
         let result = action(&db_container).await;
@@ -145,18 +158,52 @@ impl Definition {
         .await
     }
 
-    async fn apply_step(&self, db_container: &Container<'_>, step: &Step) {
-        match step {
-            Step::SqlFile(path) => db_container.apply_sql_file(path).await,
-            Step::SqlFileGitRevision { path, git_revision } => {
+    async fn apply_seed(&self, db_container: &Container<'_>, seed: &Seed) {
+        match seed {
+            Seed::SqlFile(path) => db_container.apply_sql_file(path).await,
+            Seed::SqlFileGitRevision { path, git_revision } => {
                 db_container
                     .apply_sql_file_git_revision(path, git_revision)
                     .await
             }
-            Step::ApplyPendingMigrations => db_container.apply_pending_migrations().await,
-            Step::ApplyPendingMigrationsNoSchemaDump => {
+            Seed::ApplyPendingMigrations => db_container.apply_pending_migrations().await,
+            Seed::ApplyPendingMigrationsNoSchemaDump => {
                 db_container.apply_pending_migrations_no_schema_dump().await
             }
+            Seed::Command(command) => self.execute_command(db_container, command),
+            Seed::Script(script) => self.execute_script(db_container, script),
+        }
+    }
+
+    fn apply_pg_env(cmd: &mut std::process::Command, db_container: &Container<'_>) {
+        cmd.envs(db_container.pg_env());
+        cmd.env("DATABASE_URL", db_container.database_url());
+    }
+
+    fn execute_command(&self, db_container: &Container<'_>, command: &Command) {
+        let mut cmd = std::process::Command::new(&command.command);
+        cmd.args(&command.arguments);
+
+        Self::apply_pg_env(&mut cmd, db_container);
+
+        let status = cmd.status().expect("Failed to execute command");
+
+        if !status.success() {
+            panic!("Command failed with status: {}", status);
+        }
+    }
+
+    fn execute_script(&self, db_container: &Container<'_>, script: &str) {
+        let mut cmd = std::process::Command::new("sh");
+        cmd.arg("-c");
+        cmd.arg(script);
+
+        Self::apply_pg_env(&mut cmd, db_container);
+
+        let status = cmd.status().expect("Failed to execute script");
+
+        if !status.success() {
+            panic!("Script failed with status: {}", status);
         }
     }
 
@@ -305,11 +352,7 @@ pub mod cli {
         let mut cmd = std::process::Command::new(command);
         cmd.args(arguments);
 
-        // Set all PG* environment variables
-        cmd.envs(db_container.pg_env());
-
-        // Set DATABASE_URL
-        cmd.env("DATABASE_URL", db_container.database_url());
+        Definition::apply_pg_env(&mut cmd, db_container);
 
         let _ = cmd.status();
     }
@@ -330,5 +373,115 @@ pub mod cli {
 
     async fn container_shell(db_container: &Container<'_>) {
         db_container.exec_container_shell()
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn test_add_seed_rejects_duplicate() {
+        let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
+        let seed_name: SeedName = "test-seed".parse().unwrap();
+
+        let definition = definition
+            .add_seed(seed_name.clone(), Seed::ApplyPendingMigrations)
+            .unwrap();
+
+        let result =
+            definition.add_seed(seed_name.clone(), Seed::ApplyPendingMigrationsNoSchemaDump);
+
+        assert_eq!(result, Err(DuplicateSeedName(seed_name)));
+    }
+
+    #[test]
+    fn test_add_seed_allows_different_names() {
+        let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
+
+        let definition = definition
+            .add_seed("seed1".parse().unwrap(), Seed::ApplyPendingMigrations)
+            .unwrap();
+
+        let result = definition.add_seed(
+            "seed2".parse().unwrap(),
+            Seed::ApplyPendingMigrationsNoSchemaDump,
+        );
+
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_apply_file_rejects_duplicate() {
+        let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
+        let seed_name: SeedName = "test-seed".parse().unwrap();
+
+        let definition = definition
+            .apply_file(seed_name.clone(), "file1.sql".into())
+            .unwrap();
+
+        let result = definition.apply_file(seed_name.clone(), "file2.sql".into());
+
+        assert_eq!(result, Err(DuplicateSeedName(seed_name)));
+    }
+
+    #[test]
+    fn test_apply_command_adds_seed() {
+        let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
+
+        let result = definition.apply_command(
+            "test-command".parse().unwrap(),
+            Command::new("echo".to_string(), vec!["test".to_string()]),
+        );
+
+        assert!(result.is_ok());
+        let definition = result.unwrap();
+        assert_eq!(definition.seeds.len(), 1);
+    }
+
+    #[test]
+    fn test_apply_command_rejects_duplicate() {
+        let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
+        let seed_name: SeedName = "test-command".parse().unwrap();
+
+        let definition = definition
+            .apply_command(
+                seed_name.clone(),
+                Command::new("echo".to_string(), vec!["test1".to_string()]),
+            )
+            .unwrap();
+
+        let result = definition.apply_command(
+            seed_name.clone(),
+            Command::new("echo".to_string(), vec!["test2".to_string()]),
+        );
+
+        assert_eq!(result, Err(DuplicateSeedName(seed_name)));
+    }
+
+    #[test]
+    fn test_apply_script_adds_seed() {
+        let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
+
+        let result =
+            definition.apply_script("test-script".parse().unwrap(), "echo test".to_string());
+
+        assert!(result.is_ok());
+        let definition = result.unwrap();
+        assert_eq!(definition.seeds.len(), 1);
+    }
+
+    #[test]
+    fn test_apply_script_rejects_duplicate() {
+        let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
+        let seed_name: SeedName = "test-script".parse().unwrap();
+
+        let definition = definition
+            .apply_script(seed_name.clone(), "echo test1".to_string())
+            .unwrap();
+
+        let result = definition.apply_script(seed_name.clone(), "echo test2".to_string());
+
+        assert_eq!(result, Err(DuplicateSeedName(seed_name)));
     }
 }
