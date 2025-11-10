@@ -135,6 +135,30 @@ pub fn fn_select_string(index: u8, values: Vec<ExpString>) -> ExpString {
     ExpString::fn_select(index, values)
 }
 
+/// Helper function to create a split expression
+///
+/// Returns an ExpString::Split expression representing a Fn::Split operation.
+/// Typically used with fn_select_string to extract specific elements.
+///
+/// # Arguments
+///
+/// * `delimiter` - The delimiter to split on
+/// * `source` - The source string to split
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// // Select first element from split result
+/// let first = fn_select_string(0, vec![fn_split(",", "a,b,c")]);
+/// ```
+pub fn fn_split(delimiter: impl Into<String>, source: impl Into<ExpString>) -> ExpString {
+    ExpString::Split {
+        delimiter: delimiter.into(),
+        source: Box::new(source.into()),
+    }
+}
+
 pub trait ToValue {
     fn to_value(&self) -> serde_json::Value;
 }
@@ -176,6 +200,10 @@ pub enum ExpString {
     Select {
         index: u8,
         values: Vec<ExpString>,
+    },
+    Split {
+        delimiter: String,
+        source: Box<ExpString>,
     },
     Sub {
         pattern: String,
@@ -419,6 +447,10 @@ impl ToValue for ExpString {
                     )
                     .unwrap(),
                 ],
+            ),
+            ExpString::Split { delimiter, source } => mk_func(
+                "Fn::Split",
+                vec![serde_json::to_value(delimiter).unwrap(), source.to_value()],
             ),
         }
     }
