@@ -10,13 +10,14 @@ jobs:
     strategy:
       matrix:
         execute:
-        - command: cargo clippy
+        - kind: clippy
+          command: cargo clippy --release
           cache: clippy
-        - command: cargo fmt --check
+        - kind: fmt
+          command: cargo fmt --check
           cache: meta
-        - command: cargo test --doc
-          cache: build
-        - command: cargo test --all-targets
+        - kind: test
+          command: cargo test --release
           cache: build
         os:
         - cargo_build_target: aarch64-apple-darwin
@@ -48,3 +49,51 @@ jobs:
           ~/.rustup
         key: ${{ matrix.os.version }}-${{ matrix.execute.cache}}-${{ matrix.os.cargo_build_target }}-${{ hashFiles('.github/workflows/ci.yaml', '**/Cargo.lock', 'rust-toolchain.toml') }}
     - run: ${{ matrix.execute.command }}
+
+    - name: Package release binary
+      if: matrix.execute.kind == 'test' && !endsWith(matrix.os.cargo_build_target, '-gnu')
+      run: |
+        cd target/${{ matrix.os.cargo_build_target }}/release
+        tar czf pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz pg-ephemeral
+        sha256sum pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz > pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz.sha256
+
+    - name: Upload build artifacts
+      if: matrix.execute.kind == 'test' && !endsWith(matrix.os.cargo_build_target, '-gnu')
+      uses: actions/upload-artifact@v4
+      with:
+        name: pg-ephemeral-${{ matrix.os.cargo_build_target }}
+        path: |
+          target/${{ matrix.os.cargo_build_target }}/release/pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz
+          target/${{ matrix.os.cargo_build_target }}/release/pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz.sha256
+        retention-days: 7
+
+  publish:
+    name: Publish Prerelease
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Download all artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: artifacts
+
+    - name: Create prerelease and upload all binaries
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        TAG="prerelease-${{ github.sha }}"
+        RELEASE_NAME="Prerelease Build (${{ github.ref_name }} @ ${{ github.sha }})"
+
+        # Collect all artifact files
+        FILES=$(find artifacts -type f \( -name "*.tar.gz" -o -name "*.sha256" \))
+
+        # Create prerelease with all artifacts
+        gh release create "$TAG" \
+          --prerelease \
+          --title "$RELEASE_NAME" \
+          --notes "Automated prerelease build from commit ${{ github.sha }}" \
+          $FILES
