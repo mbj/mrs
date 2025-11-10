@@ -1010,3 +1010,41 @@ fn test_fn_select_string() {
 
     assert_eq!(expected, serde_json::to_value(&template).unwrap());
 }
+
+#[test]
+fn test_fn_split_string() {
+    use cloudformation::aws::ec2::VPC;
+    use stratosphere::value::{fn_select_string, fn_split};
+
+    let template = Template::build(|template| {
+        template.resource(
+            "Vpc",
+            VPC! {
+                cidr_block: fn_select_string(0, vec![fn_split(",", "10.0.0.0/16,10.1.0.0/16")]),
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Resources": {
+            "Vpc": {
+                "Type": "AWS::EC2::VPC",
+                "Properties": {
+                    "CidrBlock": {
+                        "Fn::Select": [
+                            0,
+                            [
+                                {
+                                    "Fn::Split": [",", "10.0.0.0/16,10.1.0.0/16"]
+                                }
+                            ]
+                        ]
+                    }
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
