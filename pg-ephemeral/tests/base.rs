@@ -6,7 +6,10 @@ async fn test_base_feature() {
         return;
     }
 
-    let definition = pg_ephemeral::Definition::new(pg_ephemeral::Image::default());
+    let definition = pg_ephemeral::Definition::new(
+        pg_ephemeral::BackendSelection::Auto,
+        pg_ephemeral::Image::default(),
+    );
 
     definition
         .with_container(async |container| {
@@ -149,7 +152,10 @@ async fn test_run_env() {
         return;
     }
 
-    let definition = pg_ephemeral::Definition::new(pg_ephemeral::Image::default());
+    let definition = pg_ephemeral::Definition::new(
+        pg_ephemeral::BackendSelection::Auto,
+        pg_ephemeral::Image::default(),
+    );
 
     definition
         .with_container(async |container| {

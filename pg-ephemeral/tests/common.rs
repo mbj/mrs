@@ -8,7 +8,10 @@ pub async fn test_database_url_integration(language: &str, image_dir: &str) {
         return;
     }
 
-    let definition = pg_ephemeral::Definition::new(pg_ephemeral::Image::default());
+    let definition = pg_ephemeral::Definition::new(
+        pg_ephemeral::BackendSelection::Auto,
+        pg_ephemeral::Image::default(),
+    );
 
     definition
         .with_container(async |container| {
