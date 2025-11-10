@@ -114,7 +114,7 @@ macro_rules! fn_select {
     ) => {
         $crate::value::ExpString::Select {
             index: $index,
-            values: vec![$($value.into()),*],
+            values: Box::new(vec![$($value.into()),*].into()),
         }
     };
 }
@@ -157,11 +157,7 @@ macro_rules! mk_name {
 #[macro_export]
 macro_rules! fn_if {
     ($condition:expr, $true_value:expr, $false_value:expr) => {
-        $crate::value::ExpString::If {
-            condition_name: $condition.into(),
-            true_branch: Box::new($true_value.into()),
-            else_branch: Box::new($false_value.into()),
-        }
+        $crate::value::fn_if::<$crate::value::ExpString>($condition, $true_value, $false_value)
     };
 }
 

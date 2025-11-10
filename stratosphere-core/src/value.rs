@@ -35,6 +35,256 @@ pub fn equals_string<A: Into<ExpString>, B: Into<ExpString>>(left: A, right: B) 
     })
 }
 
+/// Trait for expression types that support conditional (`Fn::If`) expressions
+///
+/// This trait enables generic helper functions for constructing conditional
+/// expressions across different expression types (ExpString, ExpBool, etc.)
+pub trait FnIf: Sized {
+    /// Creates a conditional expression using `Fn::If`
+    ///
+    /// # Arguments
+    ///
+    /// * `condition_name` - Name of the condition to evaluate
+    /// * `true_branch` - Value returned when condition is true
+    /// * `else_branch` - Value returned when condition is false
+    fn fn_if(
+        condition_name: impl Into<ConditionName>,
+        true_branch: impl Into<Self>,
+        else_branch: impl Into<Self>,
+    ) -> Self;
+}
+
+/// Generic helper function to create conditional (`Fn::If`) expressions
+///
+/// This function works with any type implementing [`FnIf`],
+/// allowing for type-safe conditional expressions across different expression types.
+///
+/// # Arguments
+///
+/// * `condition_name` - Name of the condition to evaluate
+/// * `true_branch` - Value returned when condition is true
+/// * `else_branch` - Value returned when condition is false
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// let expr: ExpString = fn_if("MyCondition", "value-if-true", "value-if-false");
+/// ```
+pub fn fn_if<T: FnIf>(
+    condition_name: impl Into<ConditionName>,
+    true_branch: impl Into<T>,
+    else_branch: impl Into<T>,
+) -> T {
+    T::fn_if(condition_name, true_branch, else_branch)
+}
+
+/// Type-specific helper for boolean conditional expressions that doesn't require turbofish syntax.
+/// Use this when working with ExpBool values.
+pub fn fn_if_bool(
+    condition_name: impl Into<ConditionName>,
+    true_branch: impl Into<ExpBool>,
+    false_branch: impl Into<ExpBool>,
+) -> ExpBool {
+    ExpBool::fn_if(condition_name, true_branch, false_branch)
+}
+
+/// Trait for expression types that support select (`Fn::Select`) expressions
+///
+/// This trait enables generic helper functions for selecting an item from a list
+/// across different expression types (ExpString, ExpBool, etc.)
+pub trait FnSelect: Sized {
+    /// The type representing a list of values that can be selected from
+    type ValueList;
+
+    /// Creates a select expression using `Fn::Select`
+    ///
+    /// # Arguments
+    ///
+    /// * `index` - Zero-based index of the item to select
+    /// * `values` - List of values to select from
+    fn fn_select(index: u8, values: Self::ValueList) -> Self;
+}
+
+/// Generic helper function to create select (`Fn::Select`) expressions
+///
+/// This function works with any type implementing [`FnSelect`],
+/// allowing for type-safe selection from lists across different expression types.
+///
+/// # Arguments
+///
+/// * `index` - Zero-based index of the item to select
+/// * `values` - List of values to select from
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// let expr: ExpString = fn_select(0, vec!["first".into(), "second".into()].into());
+/// ```
+pub fn fn_select<T: FnSelect>(index: u8, values: T::ValueList) -> T {
+    T::fn_select(index, values)
+}
+
+/// Type-specific helper for boolean select expressions that doesn't require turbofish syntax.
+/// Use this when working with ExpBool values.
+pub fn fn_select_bool(index: u8, values: Vec<ExpBool>) -> ExpBool {
+    ExpBool::fn_select(index, values)
+}
+
+/// Type-specific helper for string select expressions that doesn't require turbofish syntax.
+/// Use this when working with ExpString values.
+pub fn fn_select_string(index: u8, values: impl Into<ExpStringList>) -> ExpString {
+    ExpString::fn_select(index, values.into())
+}
+
+/// Helper function to create a split expression
+///
+/// Returns an ExpString::Split expression representing a Fn::Split operation.
+/// Typically used with fn_select_string to extract specific elements.
+///
+/// # Arguments
+///
+/// * `delimiter` - The delimiter to split on
+/// * `source` - The source string to split
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// // Select first element from split result
+/// let first = fn_select_string(0, vec![fn_split(",", "a,b,c")]);
+/// ```
+pub fn fn_split(delimiter: impl Into<String>, source: impl Into<ExpString>) -> ExpString {
+    ExpString::Split {
+        delimiter: delimiter.into(),
+        source: Box::new(source.into()),
+    }
+}
+
+/// Trait for expression types that support find in map (`Fn::FindInMap`) expressions
+///
+/// This trait enables generic helper functions for retrieving values from mappings
+/// across different expression types (ExpString, ExpBool, etc.)
+pub trait FnFindInMap: Sized {
+    /// Creates a find in map expression using `Fn::FindInMap`
+    ///
+    /// # Arguments
+    ///
+    /// * `map_name` - MapName referencing the mapping to look up
+    /// * `top_level_key` - First-level key in the mapping
+    /// * `second_level_key` - Second-level key in the mapping
+    fn fn_find_in_map(
+        map_name: impl Into<crate::template::MapName>,
+        top_level_key: impl Into<ExpString>,
+        second_level_key: impl Into<String>,
+    ) -> Self;
+}
+
+/// Generic helper function to create find in map (`Fn::FindInMap`) expressions
+///
+/// This function works with any type implementing [`FnFindInMap`],
+/// allowing for type-safe mapping lookups across different expression types.
+///
+/// # Arguments
+///
+/// * `map_name` - MapName referencing the mapping to look up
+/// * `top_level_key` - First-level key in the mapping
+/// * `second_level_key` - Second-level key in the mapping
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// # use stratosphere_core::template::MapName;
+/// let region_map: MapName = "RegionMap".into();
+/// let expr: ExpString = fn_find_in_map(&region_map, "us-east-1", "AMI");
+/// ```
+pub fn fn_find_in_map<T: FnFindInMap>(
+    map_name: impl Into<crate::template::MapName>,
+    top_level_key: impl Into<ExpString>,
+    second_level_key: impl Into<String>,
+) -> T {
+    T::fn_find_in_map(map_name, top_level_key, second_level_key)
+}
+
+/// Type-specific helper for string find in map expressions that doesn't require turbofish syntax.
+/// Use this when working with ExpString values.
+pub fn fn_find_in_map_string(
+    map_name: impl Into<crate::template::MapName>,
+    top_level_key: impl Into<ExpString>,
+    second_level_key: impl Into<String>,
+) -> ExpString {
+    ExpString::fn_find_in_map(map_name, top_level_key, second_level_key)
+}
+
+/// Type-specific helper for boolean find in map expressions that doesn't require turbofish syntax.
+/// Use this when working with ExpBool values.
+pub fn fn_find_in_map_bool(
+    map_name: impl Into<crate::template::MapName>,
+    top_level_key: impl Into<ExpString>,
+    second_level_key: impl Into<String>,
+) -> ExpBool {
+    ExpBool::fn_find_in_map(map_name, top_level_key, second_level_key)
+}
+
+/// Helper function to create a Fn::GetAZs expression
+///
+/// Returns an ExpStringList representing the list of Availability Zones for a region.
+/// Pass an empty string to get AZs for the current region.
+///
+/// # Arguments
+///
+/// * `region` - The region to get AZs for, or empty string for current region
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// // Get AZs for current region
+/// let azs = fn_get_azs("");
+///
+/// // Get AZs for specific region
+/// let azs = fn_get_azs("us-west-2");
+///
+/// // Use with Fn::Select to pick first AZ
+/// let first_az = fn_select_string(0, fn_get_azs(""));
+/// ```
+pub fn fn_get_azs(region: impl Into<ExpString>) -> ExpStringList {
+    ExpStringList::GetAZs {
+        region: Box::new(region.into()),
+    }
+}
+
+/// Helper function to create a Fn::Cidr expression
+///
+/// Returns an ExpStringList representing a list of CIDR address blocks.
+/// Used to generate subnet CIDR blocks from a larger VPC CIDR block.
+///
+/// # Arguments
+///
+/// * `ip_block` - The CIDR block to divide (e.g., "10.0.0.0/16")
+/// * `count` - The number of CIDRs to generate (1-256)
+/// * `cidr_bits` - The number of subnet bits for the CIDR (typically 8 for /24 subnets)
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// // Generate 6 /24 subnets from a /16 VPC
+/// let subnets = fn_cidr("10.0.0.0/16", 6, 8);
+///
+/// // Use with Fn::Select to pick specific subnet
+/// let first_subnet = fn_select_string(0, fn_cidr("10.0.0.0/16", 6, 8));
+/// ```
+pub fn fn_cidr(ip_block: impl Into<ExpString>, count: u8, cidr_bits: u8) -> ExpStringList {
+    ExpStringList::Cidr {
+        ip_block: Box::new(ip_block.into()),
+        count,
+        cidr_bits,
+    }
+}
+
 pub trait ToValue {
     fn to_value(&self) -> serde_json::Value;
 }
@@ -57,6 +307,11 @@ impl<T: ToValue> ToValue for Box<T> {
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum ExpString {
     Base64(Box<ExpString>),
+    FindInMap {
+        map_name: crate::template::MapName,
+        top_level_key: Box<ExpString>,
+        second_level_key: String,
+    },
     GetAtt {
         logical_resource_name: LogicalResourceName,
         attribute_name: AttributeName,
@@ -75,7 +330,11 @@ pub enum ExpString {
     Ref(LogicalResourceName),
     Select {
         index: u8,
-        values: Vec<ExpString>,
+        values: Box<ExpStringList>,
+    },
+    Split {
+        delimiter: String,
+        source: Box<ExpString>,
     },
     Sub {
         pattern: String,
@@ -85,6 +344,45 @@ pub enum ExpString {
 impl ExpString {
     pub fn base64(self) -> ExpString {
         ExpString::Base64(Box::new(self))
+    }
+}
+
+impl FnIf for ExpString {
+    fn fn_if(
+        condition_name: impl Into<ConditionName>,
+        true_branch: impl Into<Self>,
+        else_branch: impl Into<Self>,
+    ) -> Self {
+        ExpString::If {
+            condition_name: condition_name.into(),
+            true_branch: Box::new(true_branch.into()),
+            else_branch: Box::new(else_branch.into()),
+        }
+    }
+}
+
+impl FnSelect for ExpString {
+    type ValueList = ExpStringList;
+
+    fn fn_select(index: u8, values: Self::ValueList) -> Self {
+        ExpString::Select {
+            index,
+            values: Box::new(values),
+        }
+    }
+}
+
+impl FnFindInMap for ExpString {
+    fn fn_find_in_map(
+        map_name: impl Into<crate::template::MapName>,
+        top_level_key: impl Into<ExpString>,
+        second_level_key: impl Into<String>,
+    ) -> Self {
+        ExpString::FindInMap {
+            map_name: map_name.into(),
+            top_level_key: Box::new(top_level_key.into()),
+            second_level_key: second_level_key.into(),
+        }
     }
 }
 
@@ -248,6 +546,18 @@ impl ToValue for ExpString {
     fn to_value(&self) -> serde_json::Value {
         match self {
             ExpString::Base64(value) => mk_func("Fn::Base64", value.to_value()),
+            ExpString::FindInMap {
+                map_name,
+                top_level_key,
+                second_level_key,
+            } => mk_func(
+                "Fn::FindInMap",
+                vec![
+                    serde_json::to_value(map_name).unwrap(),
+                    top_level_key.to_value(),
+                    serde_json::to_value(second_level_key).unwrap(),
+                ],
+            ),
             ExpString::GetAtt {
                 logical_resource_name,
                 attribute_name,
@@ -289,16 +599,11 @@ impl ToValue for ExpString {
             ExpString::Sub { pattern } => mk_func("Fn::Sub", pattern),
             ExpString::Select { index, values } => mk_func(
                 "Fn::Select",
-                vec![
-                    serde_json::to_value(index).unwrap(),
-                    serde_json::to_value(
-                        values
-                            .iter()
-                            .map(|item| item.to_value())
-                            .collect::<Vec<_>>(),
-                    )
-                    .unwrap(),
-                ],
+                vec![serde_json::to_value(index).unwrap(), values.to_value()],
+            ),
+            ExpString::Split { delimiter, source } => mk_func(
+                "Fn::Split",
+                vec![serde_json::to_value(delimiter).unwrap(), source.to_value()],
             ),
         }
     }
@@ -378,18 +683,114 @@ pub enum ExpPair {
     },
 }
 
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum ExpStringList {
+    Cidr {
+        ip_block: Box<ExpString>,
+        count: u8,
+        cidr_bits: u8,
+    },
+    GetAZs {
+        region: Box<ExpString>,
+    },
+    Literal(Vec<ExpString>),
+}
+
+impl From<Vec<ExpString>> for ExpStringList {
+    fn from(values: Vec<ExpString>) -> Self {
+        ExpStringList::Literal(values)
+    }
+}
+
+impl ToValue for ExpStringList {
+    fn to_value(&self) -> serde_json::Value {
+        match self {
+            ExpStringList::Cidr {
+                ip_block,
+                count,
+                cidr_bits,
+            } => mk_func(
+                "Fn::Cidr",
+                vec![
+                    ip_block.to_value(),
+                    serde_json::to_value(count).unwrap(),
+                    serde_json::to_value(cidr_bits).unwrap(),
+                ],
+            ),
+            ExpStringList::GetAZs { region } => mk_func("Fn::GetAZs", region.to_value()),
+            ExpStringList::Literal(values) => serde_json::to_value(
+                values
+                    .iter()
+                    .map(|item| item.to_value())
+                    .collect::<Vec<_>>(),
+            )
+            .unwrap(),
+        }
+    }
+}
+
 #[derive(Clone, Debug)]
 pub enum ExpBool {
     And(Box<ExpBool>, Box<ExpBool>),
     Equals(ExpPair),
+    FindInMap {
+        map_name: crate::template::MapName,
+        top_level_key: Box<ExpString>,
+        second_level_key: String,
+    },
+    If {
+        condition_name: ConditionName,
+        true_branch: Box<ExpBool>,
+        else_branch: Box<ExpBool>,
+    },
     Literal(bool),
     Not(Box<ExpBool>),
     Or(Vec<ExpBool>),
+    Select {
+        index: u8,
+        values: Vec<ExpBool>,
+    },
 }
 
 impl From<bool> for ExpBool {
     fn from(value: bool) -> Self {
         Self::Literal(value)
+    }
+}
+
+impl FnIf for ExpBool {
+    fn fn_if(
+        condition_name: impl Into<ConditionName>,
+        true_branch: impl Into<Self>,
+        else_branch: impl Into<Self>,
+    ) -> Self {
+        Self::If {
+            condition_name: condition_name.into(),
+            true_branch: Box::new(true_branch.into()),
+            else_branch: Box::new(else_branch.into()),
+        }
+    }
+}
+
+impl FnSelect for ExpBool {
+    type ValueList = Vec<ExpBool>;
+
+    fn fn_select(index: u8, values: Self::ValueList) -> Self {
+        ExpBool::Select { index, values }
+    }
+}
+
+impl FnFindInMap for ExpBool {
+    fn fn_find_in_map(
+        map_name: impl Into<crate::template::MapName>,
+        top_level_key: impl Into<ExpString>,
+        second_level_key: impl Into<String>,
+    ) -> Self {
+        ExpBool::FindInMap {
+            map_name: map_name.into(),
+            top_level_key: Box::new(top_level_key.into()),
+            second_level_key: second_level_key.into(),
+        }
     }
 }
 
@@ -440,6 +841,30 @@ impl ToValue for ExpBool {
                     mk_func("Fn::Equals", [left.to_value(), right.to_value()])
                 }
             },
+            ExpBool::FindInMap {
+                map_name,
+                top_level_key,
+                second_level_key,
+            } => mk_func(
+                "Fn::FindInMap",
+                vec![
+                    serde_json::to_value(map_name).unwrap(),
+                    top_level_key.to_value(),
+                    serde_json::to_value(second_level_key).unwrap(),
+                ],
+            ),
+            ExpBool::If {
+                condition_name,
+                true_branch,
+                else_branch,
+            } => mk_func(
+                "Fn::If",
+                [
+                    serde_json::to_value(condition_name).unwrap(),
+                    true_branch.to_value(),
+                    else_branch.to_value(),
+                ],
+            ),
             ExpBool::Literal(value) => serde_json::Value::Bool(*value),
             ExpBool::Not(value) => mk_func("Fn::Not", [value.to_value()]),
             ExpBool::Or(conditions) => mk_func(
@@ -448,6 +873,15 @@ impl ToValue for ExpBool {
                     .iter()
                     .map(|condition| condition.to_value())
                     .collect::<Vec<_>>(),
+            ),
+            ExpBool::Select { index, values } => mk_func(
+                "Fn::Select",
+                [
+                    serde_json::Value::Number((*index).into()),
+                    serde_json::Value::Array(
+                        values.iter().map(|v| v.to_value()).collect::<Vec<_>>(),
+                    ),
+                ],
             ),
         }
     }
