@@ -89,6 +89,52 @@ pub fn fn_if_bool(
     ExpBool::fn_if(condition_name, true_branch, false_branch)
 }
 
+/// Trait for expression types that support select (`Fn::Select`) expressions
+///
+/// This trait enables generic helper functions for selecting an item from a list
+/// across different expression types (ExpString, ExpBool, etc.)
+pub trait FnSelect: Sized {
+    /// Creates a select expression using `Fn::Select`
+    ///
+    /// # Arguments
+    ///
+    /// * `index` - Zero-based index of the item to select
+    /// * `values` - List of values to select from
+    fn fn_select(index: u8, values: Vec<Self>) -> Self;
+}
+
+/// Generic helper function to create select (`Fn::Select`) expressions
+///
+/// This function works with any type implementing [`FnSelect`],
+/// allowing for type-safe selection from lists across different expression types.
+///
+/// # Arguments
+///
+/// * `index` - Zero-based index of the item to select
+/// * `values` - List of values to select from
+///
+/// # Examples
+///
+/// ```
+/// # use stratosphere_core::value::*;
+/// let expr: ExpString = fn_select(0, vec!["first".into(), "second".into()]);
+/// ```
+pub fn fn_select<T: FnSelect>(index: u8, values: Vec<T>) -> T {
+    T::fn_select(index, values)
+}
+
+/// Type-specific helper for boolean select expressions that doesn't require turbofish syntax.
+/// Use this when working with ExpBool values.
+pub fn fn_select_bool(index: u8, values: Vec<ExpBool>) -> ExpBool {
+    ExpBool::fn_select(index, values)
+}
+
+/// Type-specific helper for string select expressions that doesn't require turbofish syntax.
+/// Use this when working with ExpString values.
+pub fn fn_select_string(index: u8, values: Vec<ExpString>) -> ExpString {
+    ExpString::fn_select(index, values)
+}
+
 pub trait ToValue {
     fn to_value(&self) -> serde_json::Value;
 }
@@ -153,6 +199,12 @@ impl FnIf for ExpString {
             true_branch: Box::new(true_branch.into()),
             else_branch: Box::new(else_branch.into()),
         }
+    }
+}
+
+impl FnSelect for ExpString {
+    fn fn_select(index: u8, values: Vec<Self>) -> Self {
+        ExpString::Select { index, values }
     }
 }
 
@@ -458,6 +510,10 @@ pub enum ExpBool {
     Literal(bool),
     Not(Box<ExpBool>),
     Or(Vec<ExpBool>),
+    Select {
+        index: u8,
+        values: Vec<ExpBool>,
+    },
 }
 
 impl From<bool> for ExpBool {
@@ -477,6 +533,12 @@ impl FnIf for ExpBool {
             true_branch: Box::new(true_branch.into()),
             else_branch: Box::new(else_branch.into()),
         }
+    }
+}
+
+impl FnSelect for ExpBool {
+    fn fn_select(index: u8, values: Vec<Self>) -> Self {
+        ExpBool::Select { index, values }
     }
 }
 
@@ -547,6 +609,15 @@ impl ToValue for ExpBool {
                     .iter()
                     .map(|condition| condition.to_value())
                     .collect::<Vec<_>>(),
+            ),
+            ExpBool::Select { index, values } => mk_func(
+                "Fn::Select",
+                [
+                    serde_json::Value::Number((*index).into()),
+                    serde_json::Value::Array(
+                        values.iter().map(|v| v.to_value()).collect::<Vec<_>>(),
+                    ),
+                ],
             ),
         }
     }
