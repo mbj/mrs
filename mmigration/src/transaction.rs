@@ -91,6 +91,7 @@ impl Transaction<'_> {
                 result
             })
             .await
+            .unwrap()
     }
 
     async fn read_qualified_table_identifier(
