@@ -115,6 +115,48 @@ impl OutputKey {
     }
 }
 
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd, serde::Serialize)]
+pub struct MapName(pub String);
+
+impl std::fmt::Display for MapName {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        write!(formatter, "{}", self.0)
+    }
+}
+
+impl From<&str> for MapName {
+    fn from(value: &str) -> Self {
+        Self(value.into())
+    }
+}
+
+impl From<&MapName> for MapName {
+    fn from(value: &MapName) -> Self {
+        value.clone()
+    }
+}
+
+impl From<MapName> for String {
+    fn from(value: MapName) -> Self {
+        value.0
+    }
+}
+
+impl From<&MapName> for String {
+    fn from(value: &MapName) -> Self {
+        value.0.clone()
+    }
+}
+
+impl MapName {
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
+pub type Mapping =
+    std::collections::BTreeMap<String, std::collections::BTreeMap<String, serde_json::Value>>;
+
 #[derive(Clone, Debug, Eq, PartialEq, serde::Serialize)]
 pub struct Output {
     #[serde(rename = "Description")]
@@ -140,6 +182,11 @@ pub struct Template<'a> {
     #[serde(rename = "Description", skip_serializing_if = "Option::is_none")]
     description: Option<String>,
     #[serde(
+        rename = "Mappings",
+        skip_serializing_if = "std::collections::BTreeMap::is_empty"
+    )]
+    mappings: std::collections::BTreeMap<MapName, Mapping>,
+    #[serde(
         rename = "Outputs",
         skip_serializing_if = "std::collections::BTreeMap::is_empty"
     )]
@@ -163,6 +210,7 @@ impl Template<'_> {
     pub fn new() -> Self {
         Self {
             description: None,
+            mappings: std::collections::BTreeMap::new(),
             outputs: std::collections::BTreeMap::new(),
             parameters: std::collections::BTreeMap::new(),
             resources: std::collections::BTreeMap::new(),
@@ -221,6 +269,21 @@ impl Template<'_> {
         parameter: Parameter,
     ) -> Self {
         self.parameter(parameter_key, parameter);
+        self
+    }
+
+    pub fn mapping(&mut self, map_name: impl Into<MapName>, mapping: Mapping) -> MapName {
+        let map_name = map_name.into();
+
+        if let Some(_existing) = self.mappings.insert(map_name.clone(), mapping) {
+            panic!("Mapping with name: {map_name} already exists")
+        }
+
+        map_name
+    }
+
+    pub fn mapping_(mut self, map_name: impl Into<MapName>, mapping: Mapping) -> Self {
+        self.mapping(map_name, mapping);
         self
     }
 
