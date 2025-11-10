@@ -1,6 +1,17 @@
 use crate::Container;
 use crate::cbt;
 
+#[derive(Clone, Debug, PartialEq, clap::ValueEnum)]
+pub enum Flavor {
+    /// libpq-style PG* environment variables (PGHOST, PGPORT, etc.)
+    Libpq,
+    /// DATABASE_URL environment variable in PostgreSQL URL format
+    ///
+    /// Note: For socket path connections, uses query parameters which may not
+    /// be compatible with all PostgreSQL client libraries.
+    DatabaseUrl,
+}
+
 #[derive(Clone, Debug, PartialEq)]
 pub enum Step {
     ApplyPendingMigrations,
@@ -241,10 +252,21 @@ pub mod cli {
         Migration(mmigration::cli::App),
         /// Run interactive psql on the host
         Psql,
-        /// Run shell command with PG* environment variables
+        /// Run shell command with environment variables for PostgreSQL connection
+        ///
+        /// By default, sets libpq-style PG* environment variables (PGHOST, PGPORT, PGUSER,
+        /// PGDATABASE, PGPASSWORD, PGSSLMODE, etc.) for use with libpq-compatible tools.
+        ///
+        /// Can also set DATABASE_URL via --flavor database-url.
+        /// Multiple --flavor options can be specified to set multiple formats.
         RunEnv {
+            /// The command to run
             command: String,
+            /// Arguments to pass to the command
             arguments: Vec<String>,
+            /// Environment variable flavor(s) to set (can be specified multiple times)
+            #[arg(long, default_value = "libpq")]
+            flavor: Vec<Flavor>,
         },
     }
 
@@ -257,10 +279,14 @@ pub mod cli {
                 Self::IntegrationServer => definition.run_integration_server().await,
                 Self::Migration(app) => run_migration(definition, app).await,
                 Self::Psql => definition.with_container(host_psql).await,
-                Self::RunEnv { command, arguments } => {
+                Self::RunEnv {
+                    command,
+                    arguments,
+                    flavor,
+                } => {
                     definition
                         .with_container(async |container| {
-                            host_command(container, command, arguments).await
+                            host_command(container, command, arguments, flavor).await
                         })
                         .await
                 }
@@ -278,11 +304,23 @@ pub mod cli {
         db_container: &'a Container<'a>,
         command: &str,
         arguments: &'a Vec<String>,
+        flavors: &'a Vec<Flavor>,
     ) {
-        let _ = std::process::Command::new(command)
-            .envs(db_container.client_config.to_pg_env())
-            .args(arguments)
-            .status();
+        let mut cmd = std::process::Command::new(command);
+        cmd.args(arguments);
+
+        for flavor in flavors {
+            match flavor {
+                Flavor::Libpq => {
+                    cmd.envs(db_container.pg_env());
+                }
+                Flavor::DatabaseUrl => {
+                    cmd.env("DATABASE_URL", db_container.database_url());
+                }
+            }
+        }
+
+        let _ = cmd.status();
     }
 
     async fn run_migration(definition: &Definition, app: &mmigration::cli::App) {

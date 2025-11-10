@@ -8,6 +8,7 @@ pub mod image;
 
 pub use config::Config;
 pub use definition::Definition;
+pub use definition::Flavor;
 pub use image::Image;
 
 struct SchemaDump<'a> {
@@ -53,10 +54,12 @@ impl<'a> Container<'a> {
         let client_config = pg_client::Config {
             application_name: definition.application_name.clone(),
             database: definition.database.clone(),
-            host,
-            host_addr: None,
+            endpoint: pg_client::Endpoint::Network {
+                host,
+                host_addr: None,
+                port: Some(port),
+            },
             password: Some(password),
-            port,
             ssl_mode: pg_client::SslMode::Disable,
             ssl_root_cert: None,
             username: definition.superuser.clone(),
@@ -84,7 +87,7 @@ impl<'a> Container<'a> {
     }
 
     pub async fn wait_available(&self) {
-        let config = self.client_config.to_sqlx_connect_options();
+        let config = self.client_config.to_sqlx_connect_options().unwrap();
 
         for _ in 0..100 {
             match sqlx::ConnectOptions::connect(&config).await {
@@ -120,6 +123,7 @@ impl<'a> Container<'a> {
         self.client_config
             .with_sqlx_connection(async |connection| action(connection).await)
             .await
+            .unwrap()
     }
 
     pub async fn apply_pending_migrations(&self) {
@@ -169,10 +173,28 @@ impl<'a> Container<'a> {
     }
 
     fn container_client_config(&self) -> pg_client::Config {
-        pg_client::Config {
-            port: pg_client::Port(5432),
-            ..self.client_config.clone()
+        let mut config = self.client_config.clone();
+        if let pg_client::Endpoint::Network {
+            ref host,
+            ref host_addr,
+            ..
+        } = config.endpoint
+        {
+            config.endpoint = pg_client::Endpoint::Network {
+                host: host.clone(),
+                host_addr: host_addr.clone(),
+                port: Some(pg_client::Port(5432)),
+            };
         }
+        config
+    }
+
+    pub fn pg_env(&self) -> std::collections::BTreeMap<&'static str, String> {
+        self.client_config.to_pg_env()
+    }
+
+    pub fn database_url(&self) -> String {
+        self.client_config.to_url().to_string()
     }
 
     fn stop(&mut self) {
