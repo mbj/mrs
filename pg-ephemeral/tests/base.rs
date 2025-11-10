@@ -153,74 +153,6 @@ async fn test_run_env() {
 
     definition
         .with_container(async |container| {
-            // Use sh -c to emit all PG* environment variables
-            let output = std::process::Command::new("sh")
-                .arg("-c")
-                .arg("env | grep '^PG' | sort")
-                .envs(container.pg_env())
-                .output()
-                .unwrap();
-
-            let actual = String::from_utf8(output.stdout).unwrap();
-
-            // Generate expected output from config
-            let pg_env = container.pg_env();
-            let mut expected_lines: Vec<String> = pg_env
-                .iter()
-                .map(|(key, value)| format!("{}={}", key, value))
-                .collect();
-            expected_lines.sort();
-            let expected = format!("{}\n", expected_lines.join("\n"));
-
-            assert_eq!(
-                expected, actual,
-                "PG* environment variables mismatch.\nExpected:\n{}\nActual:\n{}",
-                expected, actual
-            );
-        })
-        .await
-}
-
-#[tokio::test]
-async fn test_run_env_database_url() {
-    if common::platform_not_supported() {
-        return;
-    }
-
-    let definition = pg_ephemeral::Definition::new(pg_ephemeral::Image::default());
-
-    definition
-        .with_container(async |container| {
-            // Use sh -c to emit DATABASE_URL environment variable
-            let output = std::process::Command::new("sh")
-                .arg("-c")
-                .arg("echo $DATABASE_URL")
-                .env("DATABASE_URL", container.database_url())
-                .output()
-                .unwrap();
-
-            let actual = String::from_utf8(output.stdout).unwrap().trim().to_string();
-            let expected = container.database_url();
-
-            assert_eq!(
-                expected, actual,
-                "DATABASE_URL mismatch.\nExpected: {}\nActual: {}",
-                expected, actual
-            );
-        })
-        .await
-}
-
-#[tokio::test]
-async fn test_run_env_multiple_flavors() {
-    if common::platform_not_supported() {
-        return;
-    }
-
-    let definition = pg_ephemeral::Definition::new(pg_ephemeral::Image::default());
-
-    definition
-        .with_container(async |container| {
             // Use sh -c to emit both PG* and DATABASE_URL
             let output = std::process::Command::new("sh")
                 .arg("-c")
@@ -244,7 +176,7 @@ async fn test_run_env_multiple_flavors() {
 
             assert_eq!(
                 expected, actual,
-                "Multiple flavors mismatch.\nExpected:\n{}\nActual:\n{}",
+                "Environment variables mismatch.\nExpected:\n{}\nActual:\n{}",
                 expected, actual
             );
         })
