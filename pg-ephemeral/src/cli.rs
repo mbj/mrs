@@ -2,11 +2,19 @@ use crate::config::Config;
 use crate::{InstanceMap, InstanceName};
 
 #[derive(Clone, Debug, clap::Parser)]
+#[command(after_help = "COMMAND TYPES:
+  Instance Management:
+    instance, instance-list - Work with specific instances
+
+  Main Instance Commands:
+    All other commands (psql, run-env, container-*, integration-server, migration)
+    target the \"main\" instance by default. Use 'instance --name <NAME>' to target
+    other instances.")]
 pub struct App {
     /// Config file to use, defaults to attempt to load database.toml
     ///
     /// If absent on default location a single "main" database is assumed on
-    /// autodetected backend with 17.5 postgres and no other configuration.
+    /// autodetected backend with latest postgres and no other configuration.
     #[arg(long)]
     config_file: Option<std::path::PathBuf>,
     /// Overwrite backend
@@ -75,12 +83,11 @@ impl App {
     }
 }
 
-#[derive(Clone, Debug, clap::Parser)]
+#[derive(Clone, Debug, clap::Parser, Default)]
 pub enum Command {
-    /// Interact with a specific instance, also the default subcommand with chosing "main"
-    /// instance.
+    /// Interact with a specific instance.
     Instance {
-        /// specify instane name, defaults to "main"
+        /// specify instance name
         #[arg(long = "name")]
         instance_name: Option<InstanceName>,
         #[clap(subcommand)]
@@ -88,15 +95,46 @@ pub enum Command {
     },
     /// List defined instances
     InstanceList,
-}
-
-impl std::default::Default for Command {
-    fn default() -> Self {
-        Command::Instance {
-            instance_name: None,
-            command: crate::definition::cli::Command::Psql,
-        }
-    }
+    /// Run interactive psql session on the container
+    #[command(name = "container-psql")]
+    ContainerPsql,
+    /// Run schema dump form the container
+    #[command(name = "container-schema-dump")]
+    ContainerSchemaDump,
+    /// Run interactive shell on the container
+    #[command(name = "container-shell")]
+    ContainerShell,
+    /// Run integration server
+    ///
+    /// Intent to be used for automation with other languages wrapping pg-ephemeral.
+    ///
+    /// After sucessful boot this command will print a single line to stdout containing a JSON
+    /// represnetation of the root connection details.
+    ///
+    /// The server will stop once stdin returns EOF, aka the parent process closed it.
+    #[command(name = "integration-server")]
+    IntegrationServer,
+    /// Migration subcommands
+    Migration(mmigration::cli::App),
+    /// Run interactive psql on the host
+    #[default]
+    Psql,
+    /// Run shell command with environment variables for PostgreSQL connection
+    ///
+    /// By default, sets libpq-style PG* environment variables (PGHOST, PGPORT, PGUSER,
+    /// PGDATABASE, PGPASSWORD, PGSSLMODE, etc.) for use with libpq-compatible tools.
+    ///
+    /// Can also set DATABASE_URL via --flavor database-url.
+    /// Multiple --flavor options can be specified to set multiple formats.
+    RunEnv {
+        /// The command to run
+        command: String,
+        /// Arguments to pass to the command
+        arguments: Vec<String>,
+        /// Environment variable flavor(s) to set (can be specified multiple times)
+        #[arg(long, default_value = "libpq")]
+        flavor: Vec<crate::definition::Flavor>,
+    },
 }
 
 impl Command {
@@ -118,6 +156,74 @@ impl Command {
                     println!("{}", instance_name)
                 }
             }
+            // Top-level commands that implicitly target the "main" instance
+            Self::ContainerPsql => {
+                self.run_on_main_instance(
+                    instance_map,
+                    crate::definition::cli::Command::ContainerPsql,
+                )
+                .await
+            }
+            Self::ContainerSchemaDump => {
+                self.run_on_main_instance(
+                    instance_map,
+                    crate::definition::cli::Command::ContainerSchemaDump,
+                )
+                .await
+            }
+            Self::ContainerShell => {
+                self.run_on_main_instance(
+                    instance_map,
+                    crate::definition::cli::Command::ContainerShell,
+                )
+                .await
+            }
+            Self::IntegrationServer => {
+                self.run_on_main_instance(
+                    instance_map,
+                    crate::definition::cli::Command::IntegrationServer,
+                )
+                .await
+            }
+            Self::Migration(app) => {
+                self.run_on_main_instance(
+                    instance_map,
+                    crate::definition::cli::Command::Migration(app.clone()),
+                )
+                .await
+            }
+            Self::Psql => {
+                self.run_on_main_instance(instance_map, crate::definition::cli::Command::Psql)
+                    .await
+            }
+            Self::RunEnv {
+                command,
+                arguments,
+                flavor,
+            } => {
+                self.run_on_main_instance(
+                    instance_map,
+                    crate::definition::cli::Command::RunEnv {
+                        command: command.clone(),
+                        arguments: arguments.clone(),
+                        flavor: flavor.clone(),
+                    },
+                )
+                .await
+            }
+        }
+    }
+
+    async fn run_on_main_instance(
+        &self,
+        instance_map: &InstanceMap,
+        command: crate::definition::cli::Command,
+    ) {
+        let instance_name = InstanceName::default();
+
+        match instance_map.get(&instance_name) {
+            None => panic!("Unknown instance: {instance_name}"),
+            Some(definition) => command.run(definition).await,
         }
     }
 }
