@@ -2,12 +2,14 @@ use std::ffi::OsStr;
 
 pub struct Command {
     inner: std::process::Command,
+    stdin_data: Option<Vec<u8>>,
 }
 
 impl Command {
     pub fn new(value: impl AsRef<OsStr>) -> Self {
         Command {
             inner: std::process::Command::new(value),
+            stdin_data: None,
         }
     }
 
@@ -33,17 +35,36 @@ impl Command {
         self
     }
 
+    pub fn stdin_bytes(mut self, data: Vec<u8>) -> Self {
+        self.stdin_data = Some(data);
+        self
+    }
+
     pub fn capture_only_stdout_result(mut self) -> Result<Vec<u8>, std::io::Error> {
         log::debug!("{:#?}", self.inner);
 
         // Command::output sadly also captures stderr which we do not want in this case.
-        match self.inner.stdout(std::process::Stdio::piped()).spawn() {
+        self.inner.stdout(std::process::Stdio::piped());
+
+        // Configure stdin if we have data to send
+        if self.stdin_data.is_some() {
+            self.inner.stdin(std::process::Stdio::piped());
+        }
+
+        match self.inner.spawn() {
             Ok(mut child) => {
+                // Write stdin data if present
+                if let Some(data) = self.stdin_data
+                    && let Some(mut stdin) = child.stdin.take()
+                {
+                    use std::io::Write;
+                    stdin.write_all(&data)?;
+                    // stdin is dropped here, closing the pipe
+                }
+
                 let mut buf = vec![];
-
                 let mut stdout = child.stdout.as_mut().unwrap();
-
-                let _ = std::io::Read::read_to_end(&mut stdout, &mut buf);
+                std::io::Read::read_to_end(&mut stdout, &mut buf)?;
 
                 let status = child.wait().unwrap();
 
