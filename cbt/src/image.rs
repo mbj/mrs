@@ -1,6 +1,69 @@
 use crate::{Backend, Image};
 use sha2::{Digest, Sha256};
 use std::path::PathBuf;
+use std::str::FromStr;
+
+/// Build argument key
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
+pub struct BuildArgumentKey(String);
+
+impl BuildArgumentKey {
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
+impl FromStr for BuildArgumentKey {
+    type Err = BuildArgumentKeyError;
+
+    fn from_str(input: &str) -> Result<Self, Self::Err> {
+        if input.is_empty() {
+            return Err(BuildArgumentKeyError::Empty);
+        }
+        if input.contains('=') {
+            return Err(BuildArgumentKeyError::ContainsEquals);
+        }
+        Ok(BuildArgumentKey(input.to_string()))
+    }
+}
+
+#[derive(Debug, Clone, thiserror::Error)]
+pub enum BuildArgumentKeyError {
+    #[error("Build argument key cannot be empty")]
+    Empty,
+    #[error("Build argument key cannot contain '=' character")]
+    ContainsEquals,
+}
+
+/// Build argument value
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
+pub struct BuildArgumentValue(String);
+
+impl BuildArgumentValue {
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
+impl FromStr for BuildArgumentValue {
+    type Err = std::convert::Infallible;
+
+    fn from_str(input: &str) -> Result<Self, Self::Err> {
+        Ok(BuildArgumentValue(input.to_string()))
+    }
+}
+
+impl From<String> for BuildArgumentValue {
+    fn from(string: String) -> Self {
+        BuildArgumentValue(string)
+    }
+}
+
+impl From<&str> for BuildArgumentValue {
+    fn from(string: &str) -> Self {
+        BuildArgumentValue(string.to_string())
+    }
+}
 
 /// Source for building an image
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -11,157 +74,191 @@ pub enum BuildSource {
     Instructions(String),
 }
 
+/// Image naming strategy for the build
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum ImageName {
+    /// Use a static image name
+    Static(Image),
+    /// Generate image name with content-based hash
+    Hashed { name: String },
+}
+
 /// Definition for building a container image
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct BuildDefinition {
-    target_image: Image,
+    backend: Backend,
+    image_name: ImageName,
     source: BuildSource,
+    build_arguments: std::collections::BTreeMap<BuildArgumentKey, BuildArgumentValue>,
 }
 
 impl BuildDefinition {
     /// Create a new build definition from a directory containing a Dockerfile
-    pub fn from_directory(image: Image, path: impl Into<PathBuf>) -> Self {
+    pub fn from_directory(backend: Backend, image: Image, path: impl Into<PathBuf>) -> Self {
         Self {
-            target_image: image,
+            backend,
+            image_name: ImageName::Static(image),
             source: BuildSource::Directory(path.into()),
+            build_arguments: std::collections::BTreeMap::new(),
         }
     }
 
     /// Create a new build definition from Dockerfile instructions as a string
-    pub fn from_instructions(image: Image, instructions: impl Into<String>) -> Self {
+    pub fn from_instructions(
+        backend: Backend,
+        image: Image,
+        instructions: impl Into<String>,
+    ) -> Self {
         Self {
-            target_image: image,
+            backend,
+            image_name: ImageName::Static(image),
             source: BuildSource::Instructions(instructions.into()),
+            build_arguments: std::collections::BTreeMap::new(),
         }
     }
 
     /// Create a build definition from a directory with content-based hash tag
-    pub fn from_directory_hash(image_name: &str, path: impl Into<PathBuf>) -> Self {
-        let path = path.into();
-        let hash = compute_directory_hash(&path);
-        let image = Image::from(format!("{}:{}", image_name, hash));
+    pub fn from_directory_hash(
+        backend: Backend,
+        image_name: &str,
+        path: impl Into<PathBuf>,
+    ) -> Self {
         Self {
-            target_image: image,
-            source: BuildSource::Directory(path),
+            backend,
+            image_name: ImageName::Hashed {
+                name: image_name.to_string(),
+            },
+            source: BuildSource::Directory(path.into()),
+            build_arguments: std::collections::BTreeMap::new(),
         }
     }
 
     /// Create a build definition from Dockerfile instructions with content-based hash tag
-    pub fn from_instructions_hash(image_name: &str, instructions: impl Into<String>) -> Self {
-        let content = instructions.into();
-        let hash = compute_content_hash(&content);
-        let image = Image::from(format!("{}:{}", image_name, hash));
+    pub fn from_instructions_hash(
+        backend: Backend,
+        image_name: &str,
+        instructions: impl Into<String>,
+    ) -> Self {
         Self {
-            target_image: image,
-            source: BuildSource::Instructions(content),
+            backend,
+            image_name: ImageName::Hashed {
+                name: image_name.to_string(),
+            },
+            source: BuildSource::Instructions(instructions.into()),
+            build_arguments: std::collections::BTreeMap::new(),
         }
+    }
+
+    /// Add a build argument
+    pub fn build_argument(
+        mut self,
+        key: BuildArgumentKey,
+        value: impl Into<BuildArgumentValue>,
+    ) -> Self {
+        self.build_arguments.insert(key, value.into());
+        self
+    }
+
+    /// Add multiple build arguments
+    pub fn build_arguments<V: Into<BuildArgumentValue>>(
+        mut self,
+        arguments: impl IntoIterator<Item = (BuildArgumentKey, V)>,
+    ) -> Self {
+        for (key, value) in arguments {
+            self.build_arguments.insert(key, value.into());
+        }
+        self
     }
 
     /// Build the image using the specified backend and return the built image
-    pub fn build(&self, backend: Backend) -> Result<Image, crate::command::CaptureError> {
-        let mut arguments = vec![
-            "build".to_string(),
-            "--tag".to_string(),
-            self.target_image.as_str().to_string(),
-        ];
-
-        // Add source
-        match &self.source {
-            BuildSource::Directory(path) => {
-                arguments.push(path.to_string_lossy().to_string());
-            }
-            BuildSource::Instructions(content) => {
-                arguments.push("-".to_string());
-                backend
-                    .command()
-                    .arguments(arguments)
-                    .stdin_bytes(content.as_bytes().to_vec())
-                    .capture_only_stdout_result()
-                    .map(|_| self.target_image.clone())?;
-                return Ok(self.target_image.clone());
-            }
-        }
-
-        backend
-            .command()
-            .arguments(arguments)
-            .capture_only_stdout_result()
-            .map(|_| self.target_image.clone())
+    pub fn build(&self) -> Image {
+        self.build_image(self.compute_final_image())
     }
 
     /// Build the image only if it's not already present, and return the image
-    pub fn build_if_absent(&self, backend: Backend) -> Result<Image, crate::command::CaptureError> {
-        if !is_present(backend, &self.target_image) {
-            self.build(backend)
+    pub fn build_if_absent(&self) -> Image {
+        let target_image = self.compute_final_image();
+
+        if self.backend.is_image_present(&target_image) {
+            target_image
         } else {
-            Ok(self.target_image.clone())
+            self.build_image(target_image)
         }
     }
 
-    /// Get the target image that will be built
-    pub fn target_image(&self) -> &Image {
-        &self.target_image
-    }
-}
+    fn build_image(&self, target_image: Image) -> Image {
+        let mut arguments = vec![
+            "build".to_string(),
+            "--tag".to_string(),
+            target_image.as_str().to_string(),
+        ];
 
-/// Check if an image is present in the local registry
-pub fn is_present(backend: Backend, image: &Image) -> bool {
-    match backend {
-        Backend::Docker => backend
-            .command()
-            .arguments(["inspect", "--type", "image", image.as_str()])
-            .capture_only_stdout_result()
-            .is_ok(),
-        Backend::Podman => {
-            // For Podman, image exists returns 0 if present, 1 if not
-            // We use status() instead of capture because we don't need output
-            let status = backend
-                .command()
-                .arguments(["image", "exists", image.as_str()])
-                .status();
-            status.success()
+        for (key, value) in &self.build_arguments {
+            arguments.push("--build-arg".to_string());
+            arguments.push(format!("{}={}", key.as_str(), value.as_str()));
+        }
+
+        match &self.source {
+            BuildSource::Directory(path) => {
+                arguments.push(path.to_string_lossy().to_string());
+
+                self.backend
+                    .command()
+                    .arguments(arguments)
+                    .capture_only_stdout();
+            }
+            BuildSource::Instructions(content) => {
+                arguments.push("-".to_string());
+                self.backend
+                    .command()
+                    .arguments(arguments)
+                    .stdin_bytes(content.as_bytes().to_vec())
+                    .capture_only_stdout();
+            }
+        }
+
+        target_image
+    }
+
+    /// Compute the final image name with hash if this is a hash-based definition
+    fn compute_final_image(&self) -> Image {
+        match &self.image_name {
+            ImageName::Static(image) => image.clone(),
+            ImageName::Hashed { name } => {
+                let hash = match &self.source {
+                    BuildSource::Directory(path) => {
+                        compute_directory_hash(path, &self.build_arguments)
+                    }
+                    BuildSource::Instructions(content) => {
+                        compute_content_hash(content, &self.build_arguments)
+                    }
+                };
+                Image::from(format!("{}:{}", name, hash))
+            }
         }
     }
 }
 
-/// Tag an image with a new name
-pub fn tag(backend: Backend, source: &Image, target: &Image) {
-    backend
-        .command()
-        .arguments(["tag", source.as_str(), target.as_str()])
-        .capture_only_stdout();
-}
-
-/// Pull an image from a registry
-pub fn pull(backend: Backend, image: &Image) {
-    backend
-        .command()
-        .arguments(["pull", image.as_str()])
-        .capture_only_stdout();
-}
-
-/// Pull an image only if it's not already present
-pub fn pull_if_absent(backend: Backend, image: &Image) {
-    if !is_present(backend, image) {
-        pull(backend, image);
-    }
-}
-
-/// Push an image to a registry
-pub fn push(backend: Backend, image: &Image) {
-    backend
-        .command()
-        .arguments(["push", image.as_str()])
-        .capture_only_stdout();
-}
-
-fn compute_content_hash(content: &str) -> String {
+fn compute_content_hash(
+    content: &str,
+    build_arguments: &std::collections::BTreeMap<BuildArgumentKey, BuildArgumentValue>,
+) -> String {
     let mut hasher = Sha256::new();
     hasher.update(content.as_bytes());
+
+    for (key, value) in build_arguments {
+        hasher.update(key.as_str().as_bytes());
+        hasher.update(b"=");
+        hasher.update(value.as_str().as_bytes());
+    }
+
     format!("{:x}", hasher.finalize())
 }
 
-fn compute_directory_hash(path: &PathBuf) -> String {
+fn compute_directory_hash(
+    path: &PathBuf,
+    build_arguments: &std::collections::BTreeMap<BuildArgumentKey, BuildArgumentValue>,
+) -> String {
     use walkdir::WalkDir;
 
     let mut hasher = Sha256::new();
@@ -169,7 +266,7 @@ fn compute_directory_hash(path: &PathBuf) -> String {
     for entry in WalkDir::new(path)
         .sort_by_file_name()
         .into_iter()
-        .filter_map(|e| e.ok())
+        .filter_map(|result| result.ok())
     {
         if entry.file_type().is_file() {
             let relative_path = entry.path().strip_prefix(path).unwrap();
@@ -178,6 +275,12 @@ fn compute_directory_hash(path: &PathBuf) -> String {
             let content = std::fs::read(entry.path()).expect("Failed to read file");
             hasher.update(&content);
         }
+    }
+
+    for (key, value) in build_arguments {
+        hasher.update(key.as_str().as_bytes());
+        hasher.update(b"=");
+        hasher.update(value.as_str().as_bytes());
     }
 
     format!("{:x}", hasher.finalize())

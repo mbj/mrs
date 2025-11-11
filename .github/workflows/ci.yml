@@ -53,7 +53,8 @@ jobs:
     - name: Run tests
       run: |
         cargo test --release
-        CBT_BACKEND=podman cargo test --release --package cbt
+        # Podman on GH actions is old <5.x cannot deal corectly with concurrent access to overlay storage.
+        CBT_BACKEND=podman cargo test --release --package cbt -- --test-threads=1
 
     - name: Package release binary
       if: ${{ !endsWith(matrix.os.cargo_build_target, '-gnu') }}
