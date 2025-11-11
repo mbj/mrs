@@ -3,6 +3,9 @@ name: CI
 on: push
 
 env:
+  CBT_BACKEND: docker
+  RUST_BACKTRACE: full
+  RUST_LOG: debug
   RUSTFLAGS: --deny=warnings
 
 jobs:
@@ -48,7 +51,9 @@ jobs:
       run: cargo clippy --release
 
     - name: Run tests
-      run: cargo test --release
+      run: |
+        cargo test --release
+        CBT_BACKEND=podman cargo test --release --package cbt
 
     - name: Package release binary
       if: ${{ !endsWith(matrix.os.cargo_build_target, '-gnu') }}

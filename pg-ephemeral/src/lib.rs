@@ -97,6 +97,11 @@ impl<'a> Container<'a> {
                         .await
                         .expect("connection close failed");
 
+                    log::debug!(
+                        "pg is available on endpoint: {:#?}",
+                        self.client_config.endpoint
+                    );
+
                     return;
                 }
                 Err(error) => {

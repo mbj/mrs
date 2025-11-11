@@ -1,5 +1,12 @@
 use std::ffi::OsStr;
 
+#[derive(Debug, thiserror::Error)]
+#[error("Command execution failed: io_error={io_error:?}, exit_status={exit_status:?}")]
+pub struct CaptureError {
+    pub io_error: Option<std::io::Error>,
+    pub exit_status: Option<std::process::ExitStatus>,
+}
+
 pub struct Command {
     inner: std::process::Command,
     stdin_data: Option<Vec<u8>>,
@@ -40,7 +47,7 @@ impl Command {
         self
     }
 
-    pub fn capture_only_stdout_result(mut self) -> Result<Vec<u8>, std::io::Error> {
+    pub fn capture_only_stdout_result(mut self) -> Result<Vec<u8>, CaptureError> {
         log::debug!("{:#?}", self.inner);
 
         // Command::output sadly also captures stderr which we do not want in this case.
@@ -53,28 +60,45 @@ impl Command {
 
         match self.inner.spawn() {
             Ok(mut child) => {
+                let mut io_error = None;
+                let mut buf = vec![];
+
                 // Write stdin data if present
                 if let Some(data) = self.stdin_data
                     && let Some(mut stdin) = child.stdin.take()
                 {
                     use std::io::Write;
-                    stdin.write_all(&data)?;
+                    if let Err(e) = stdin.write_all(&data) {
+                        io_error = Some(e);
+                    }
                     // stdin is dropped here, closing the pipe
                 }
 
-                let mut buf = vec![];
-                let mut stdout = child.stdout.as_mut().unwrap();
-                std::io::Read::read_to_end(&mut stdout, &mut buf)?;
+                // Read stdout if no previous IO error
+                if io_error.is_none() {
+                    let mut stdout = child.stdout.as_mut().unwrap();
+                    if let Err(e) = std::io::Read::read_to_end(&mut stdout, &mut buf) {
+                        io_error = Some(e);
+                    }
+                }
 
                 let status = child.wait().unwrap();
 
-                if !status.success() {
-                    panic!("Command exited nonzero unexpected: {status:#?}")
+                // Success case: exit 0 and no IO errors
+                if status.success() && io_error.is_none() {
+                    return Ok(buf);
                 }
 
-                Ok(buf)
+                // Error case: non-zero exit or IO error (or both)
+                Err(CaptureError {
+                    io_error,
+                    exit_status: if status.success() { None } else { Some(status) },
+                })
             }
-            Err(error) => Err(error),
+            Err(error) => Err(CaptureError {
+                io_error: Some(error),
+                exit_status: None,
+            }),
         }
     }
 
