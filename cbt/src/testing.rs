@@ -22,3 +22,15 @@
 pub fn platform_not_supported() -> bool {
     std::env::consts::OS == "macos" && std::env::var("GITHUB_ACTIONS").is_ok()
 }
+
+#[macro_export]
+macro_rules! test_backend_setup {
+    () => {{
+        let _ = env_logger::builder().is_test(true).try_init();
+
+        if $crate::testing::platform_not_supported() {
+            return;
+        }
+        cbt::backend::autodetect::run().expect("No container backend detected")
+    }};
+}

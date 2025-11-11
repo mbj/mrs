@@ -1,20 +1,12 @@
 use indoc::indoc;
 
-macro_rules! backend_setup {
-    () => {{
-        if cbt::testing::platform_not_supported() {
-            return;
-        }
-        cbt::backend::autodetect::run().expect("No container backend detected")
-    }};
-}
-
 #[test]
 fn test_hello_world() {
-    let backend = backend_setup!();
+    let backend = cbt::test_backend_setup!();
 
     let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
-        .entrypoint("echo".to_string(), vec!["Hello, World!".to_string()])
+        .entrypoint("echo".to_string())
+        .argument("Hello, World!".to_string())
         .remove();
 
     let output = definition.run_capture_only_stdout();
@@ -26,18 +18,16 @@ fn test_hello_world() {
 
 #[test]
 fn test_backend_autodetect() {
-    let _backend = backend_setup!();
+    let _backend = cbt::test_backend_setup!();
 }
 
 #[test]
 fn test_container_with_env_vars() {
-    let backend = backend_setup!();
+    let backend = cbt::test_backend_setup!();
 
     let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
-        .entrypoint(
-            "sh".to_string(),
-            vec!["-c".to_string(), "echo $TEST_VAR".to_string()],
-        )
+        .entrypoint("sh".to_string())
+        .arguments(vec!["-c".to_string(), "echo $TEST_VAR".to_string()])
         .env("TEST_VAR", "test_value")
         .remove();
 
@@ -49,15 +39,14 @@ fn test_container_with_env_vars() {
 
 #[test]
 fn test_container_detached_and_exec() {
-    let backend = backend_setup!();
+    let backend = cbt::test_backend_setup!();
 
-    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest")).entrypoint(
-        "sh".to_string(),
-        vec![
+    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+        .entrypoint("sh".to_string())
+        .arguments(vec![
             "-c".to_string(),
             "trap 'exit 0' TERM; sleep 30 & wait".to_string(),
-        ],
-    );
+        ]);
 
     definition.with_container(|container| {
         let output = container.exec_capture_only_stdout([], "echo", ["Container is running!"]);
@@ -69,16 +58,14 @@ fn test_container_detached_and_exec() {
 
 #[test]
 fn test_read_host_tcp_port() {
-    let backend = backend_setup!();
+    let backend = cbt::test_backend_setup!();
 
     let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
-        .entrypoint(
-            "sh".to_string(),
-            vec![
-                "-c".to_string(),
-                "trap 'exit 0' TERM; sleep 30 & wait".to_string(),
-            ],
-        )
+        .entrypoint("sh".to_string())
+        .arguments(vec![
+            "-c".to_string(),
+            "trap 'exit 0' TERM; sleep 30 & wait".to_string(),
+        ])
         .publish(cbt::Publish::from("127.0.0.1::8080/tcp"));
 
     definition.with_container(|container| {
@@ -92,15 +79,14 @@ fn test_read_host_tcp_port() {
 
 #[test]
 fn test_read_host_tcp_port_not_published() {
-    let backend = backend_setup!();
+    let backend = cbt::test_backend_setup!();
 
-    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest")).entrypoint(
-        "sh".to_string(),
-        vec![
+    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+        .entrypoint("sh".to_string())
+        .arguments(vec![
             "-c".to_string(),
             "trap 'exit 0' TERM; sleep 30 & wait".to_string(),
-        ],
-    );
+        ]);
 
     definition.with_container(|container| {
         let host_port = container.read_host_tcp_port(8080);
@@ -111,10 +97,6 @@ fn test_read_host_tcp_port_not_published() {
 
 #[test]
 fn test_command_with_stdin() {
-    if cbt::testing::platform_not_supported() {
-        return;
-    }
-
     let input = b"Hello from stdin!";
     let output = cbt::Command::new("cat")
         .stdin_bytes(input.to_vec())
@@ -125,68 +107,77 @@ fn test_command_with_stdin() {
 
 #[test]
 fn test_image_build_from_instructions() {
-    let backend = backend_setup!();
+    let backend = cbt::test_backend_setup!();
 
     let dockerfile = indoc! {"
         FROM alpine:latest
-        RUN echo 'test build from instructions'
+        RUN touch dirty && echo 'test build from instructions'
     "};
-    let image = cbt::Image::from("cbt-test-instructions:latest");
 
-    let definition = cbt::BuildDefinition::from_instructions(image.clone(), dockerfile);
+    let definition = cbt::BuildDefinition::from_instructions(
+        cbt::Image::from("cbt-test-instructions:latest"),
+        dockerfile,
+    );
 
-    cbt::image::build(backend, &definition).expect("Build should succeed");
+    let built_image = definition.build(backend).expect("Build should succeed");
 
     assert!(
-        cbt::image::is_present(backend, &image),
+        cbt::image::is_present(backend, &built_image),
         "Image should exist after build"
     );
 
-    backend.remove_image(&image);
+    backend.remove_image(&built_image);
 }
 
 #[test]
 fn test_image_build_from_directory() {
-    let backend = backend_setup!();
+    let backend = cbt::test_backend_setup!();
 
-    let image = cbt::Image::from("cbt-test-directory:latest");
-    let definition =
-        cbt::BuildDefinition::from_directory(image.clone(), "tests/fixtures/test-build");
+    let definition = cbt::BuildDefinition::from_directory(
+        cbt::Image::from("cbt-test-directory:latest"),
+        "tests/fixtures/test-build",
+    );
 
-    cbt::image::build(backend, &definition).expect("Build should succeed");
+    let built_image = definition.build(backend).expect("Build should succeed");
 
     assert!(
-        cbt::image::is_present(backend, &image),
+        cbt::image::is_present(backend, &built_image),
         "Image should exist after build"
     );
 
-    backend.remove_image(&image);
+    backend.remove_image(&built_image);
 }
 
 #[test]
 fn test_image_build_if_absent() {
-    let backend = backend_setup!();
+    let backend = cbt::test_backend_setup!();
 
     let dockerfile = indoc! {"
         FROM alpine:latest
-        RUN echo 'test build if absent'
+        RUN touch dirty echo 'test build if absent'
     "};
-    let image = cbt::Image::from(format!("cbt-test-if-absent-{}:latest", std::process::id()));
 
-    let definition = cbt::BuildDefinition::from_instructions(image.clone(), dockerfile);
+    let definition = cbt::BuildDefinition::from_instructions(
+        cbt::Image::from("cbt-test-if-absent:latest"),
+        dockerfile,
+    );
 
-    cbt::image::build_if_absent(backend, &definition).expect("First build should succeed");
-    assert!(cbt::image::is_present(backend, &image));
+    let built_image = definition
+        .build_if_absent(backend)
+        .expect("First build should succeed");
+    assert!(cbt::image::is_present(backend, &built_image));
 
-    cbt::image::build_if_absent(backend, &definition).expect("Second build should succeed");
-    assert!(cbt::image::is_present(backend, &image));
+    let built_image2 = definition
+        .build_if_absent(backend)
+        .expect("Second build should succeed");
+    assert!(cbt::image::is_present(backend, &built_image2));
 
-    backend.remove_image(&image);
+    backend.remove_image(&built_image);
 }
 
 #[test]
 fn test_image_tag() {
-    let backend = backend_setup!();
+    let backend = cbt::test_backend_setup!();
 
     let source = cbt::Image::from("alpine:latest");
     cbt::image::pull_if_absent(backend, &source);
@@ -202,7 +193,7 @@ fn test_image_tag() {
 
 #[test]
 fn test_image_pull_if_absent() {
-    let backend = backend_setup!();
+    let backend = cbt::test_backend_setup!();
 
     let image = cbt::Image::from("alpine:latest");
 
@@ -212,37 +203,37 @@ fn test_image_pull_if_absent() {
 
 #[test]
 fn test_image_build_from_instructions_hash() {
-    let backend = backend_setup!();
+    let backend = cbt::test_backend_setup!();
 
     let dockerfile = indoc! {"
         FROM alpine:latest
-        RUN echo 'test hash'
+        RUN touch dirty && echo 'test hash'
     "};
 
     let definition = cbt::BuildDefinition::from_instructions_hash("cbt-test-hash", dockerfile);
 
-    cbt::image::build(backend, &definition).expect("Build should succeed");
-    assert!(cbt::image::is_present(backend, &definition.image));
+    let built_image = definition.build(backend).expect("Build should succeed");
+    assert!(cbt::image::is_present(backend, &built_image));
 
     let definition2 = cbt::BuildDefinition::from_instructions_hash("cbt-test-hash", dockerfile);
-    assert_eq!(definition.image, definition2.image);
+    assert_eq!(definition.image(), definition2.image());
 
-    backend.remove_image(&definition.image);
+    backend.remove_image(&built_image);
 }
 
 #[test]
 fn test_image_build_from_directory_hash() {
-    let backend = backend_setup!();
+    let backend = cbt::test_backend_setup!();
 
     let definition =
         cbt::BuildDefinition::from_directory_hash("cbt-test-dir-hash", "tests/fixtures/test-build");
 
-    cbt::image::build(backend, &definition).expect("Build should succeed");
-    assert!(cbt::image::is_present(backend, &definition.image));
+    let built_image = definition.build(backend).expect("Build should succeed");
+    assert!(cbt::image::is_present(backend, &built_image));
 
     let definition2 =
         cbt::BuildDefinition::from_directory_hash("cbt-test-dir-hash", "tests/fixtures/test-build");
-    assert_eq!(definition.image, definition2.image);
+    assert_eq!(definition.image(), definition2.image());
 
-    backend.remove_image(&definition.image);
+    backend.remove_image(&built_image);
 }

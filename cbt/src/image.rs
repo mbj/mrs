@@ -14,7 +14,7 @@ pub enum BuildSource {
 /// Definition for building a container image
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct BuildDefinition {
-    pub image: Image,
+    image: Image,
     pub source: BuildSource,
 }
 
@@ -56,6 +56,52 @@ impl BuildDefinition {
             source: BuildSource::Instructions(content),
         }
     }
+
+    /// Build the image using the specified backend and return the built image
+    pub fn build(&self, backend: Backend) -> Result<Image, crate::command::CaptureError> {
+        let mut arguments = vec![
+            "build".to_string(),
+            "--tag".to_string(),
+            self.image.as_str().to_string(),
+        ];
+
+        // Add source
+        match &self.source {
+            BuildSource::Directory(path) => {
+                arguments.push(path.to_string_lossy().to_string());
+            }
+            BuildSource::Instructions(content) => {
+                arguments.push("-".to_string());
+                backend
+                    .command()
+                    .arguments(arguments)
+                    .stdin_bytes(content.as_bytes().to_vec())
+                    .capture_only_stdout_result()
+                    .map(|_| self.image.clone())?;
+                return Ok(self.image.clone());
+            }
+        }
+
+        backend
+            .command()
+            .arguments(arguments)
+            .capture_only_stdout_result()
+            .map(|_| self.image.clone())
+    }
+
+    /// Build the image only if it's not already present, and return the image
+    pub fn build_if_absent(&self, backend: Backend) -> Result<Image, crate::command::CaptureError> {
+        if !is_present(backend, &self.image) {
+            self.build(backend)
+        } else {
+            Ok(self.image.clone())
+        }
+    }
+
+    /// Get the image that will be built
+    pub fn image(&self) -> &Image {
+        &self.image
+    }
 }
 
 /// Check if an image is present in the local registry
@@ -75,49 +121,6 @@ pub fn is_present(backend: Backend, image: &Image) -> bool {
                 .status();
             status.success()
         }
-    }
-}
-
-/// Build an image from a build definition
-pub fn build(backend: Backend, definition: &BuildDefinition) -> Result<(), std::io::Error> {
-    let mut args = vec![
-        "build".to_string(),
-        "--tag".to_string(),
-        definition.image.as_str().to_string(),
-    ];
-
-    // Add source
-    match &definition.source {
-        BuildSource::Directory(path) => {
-            args.push(path.to_string_lossy().to_string());
-        }
-        BuildSource::Instructions(content) => {
-            args.push("-".to_string());
-            return backend
-                .command()
-                .arguments(args)
-                .stdin_bytes(content.as_bytes().to_vec())
-                .capture_only_stdout_result()
-                .map(|_| ());
-        }
-    }
-
-    backend
-        .command()
-        .arguments(args)
-        .capture_only_stdout_result()
-        .map(|_| ())
-}
-
-/// Build an image only if it's not already present
-pub fn build_if_absent(
-    backend: Backend,
-    definition: &BuildDefinition,
-) -> Result<(), std::io::Error> {
-    if !is_present(backend, &definition.image) {
-        build(backend, definition)
-    } else {
-        Ok(())
     }
 }
 
