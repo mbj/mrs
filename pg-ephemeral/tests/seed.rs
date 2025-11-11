@@ -34,7 +34,7 @@ async fn assert_environment_matches(
 
 #[tokio::test]
 async fn test_command_seed_receives_environment() {
-    if common::platform_not_supported() {
+    if cbt::testing::platform_not_supported() {
         return;
     }
 
@@ -72,7 +72,7 @@ async fn test_command_seed_receives_environment() {
 
 #[tokio::test]
 async fn test_script_seed_receives_environment() {
-    if common::platform_not_supported() {
+    if cbt::testing::platform_not_supported() {
         return;
     }
 
