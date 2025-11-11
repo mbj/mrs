@@ -612,6 +612,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "cbt"
+version = "0.0.1"
+dependencies = [
+ "clap",
+ "log",
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
 name = "cc"
 version = "1.2.41"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1896,6 +1907,7 @@ dependencies = [
 name = "pg-ephemeral"
 version = "0.0.1"
 dependencies = [
+ "cbt",
  "clap",
  "env_logger",
  "indexmap",

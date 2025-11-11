@@ -4,6 +4,7 @@ version = "0.0.1"
 edition.workspace = true
 
 [dependencies]
+cbt = { workspace = true }
 clap = { workspace = true }
 env_logger = { workspace = true }
 indexmap = { version = "2.7", features = ["serde"] }

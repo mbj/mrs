@@ -2,7 +2,7 @@ mod common;
 
 #[tokio::test]
 async fn test_base_feature() {
-    if common::platform_not_supported() {
+    if cbt::testing::platform_not_supported() {
         return;
     }
 
@@ -34,7 +34,7 @@ fn test_config_file() {
                 pg_ephemeral::InstanceName("a".to_string()),
                 pg_ephemeral::Definition {
                     application_name: None,
-                    backend: pg_ephemeral::cbt::Backend::Docker,
+                    backend: cbt::Backend::Docker,
                     database: pg_client::database!("postgres"),
                     migration_config: None,
                     seeds: indexmap::IndexMap::new(),
@@ -46,7 +46,7 @@ fn test_config_file() {
                 pg_ephemeral::InstanceName("b".to_string()),
                 pg_ephemeral::Definition {
                     application_name: None,
-                    backend: pg_ephemeral::cbt::Backend::Podman,
+                    backend: cbt::Backend::Podman,
                     database: pg_client::database!("postgres"),
                     migration_config: None,
                     seeds: indexmap::IndexMap::new(),
@@ -68,7 +68,7 @@ fn test_config_file() {
                 pg_ephemeral::InstanceName("a".to_string()),
                 pg_ephemeral::Definition {
                     application_name: None,
-                    backend: pg_ephemeral::cbt::Backend::Docker,
+                    backend: cbt::Backend::Docker,
                     database: pg_client::database!("postgres"),
                     migration_config: None,
                     seeds: indexmap::IndexMap::new(),
@@ -80,7 +80,7 @@ fn test_config_file() {
                 pg_ephemeral::InstanceName("b".to_string()),
                 pg_ephemeral::Definition {
                     application_name: None,
-                    backend: pg_ephemeral::cbt::Backend::Docker,
+                    backend: cbt::Backend::Docker,
                     database: pg_client::database!("postgres"),
                     migration_config: None,
                     seeds: indexmap::IndexMap::new(),
@@ -92,7 +92,7 @@ fn test_config_file() {
         pg_ephemeral::Config::load_toml_file(
             "tests/database.toml",
             &pg_ephemeral::config::InstanceDefinition {
-                backend: Some(pg_ephemeral::cbt::Backend::Docker),
+                backend: Some(cbt::Backend::Docker),
                 image: Some("18.0".parse().unwrap()),
                 seeds: indexmap::IndexMap::new(),
             }
@@ -108,7 +108,7 @@ fn test_config_file_no_explicit_instance() {
             pg_ephemeral::InstanceName("main".to_string()),
             pg_ephemeral::Definition {
                 application_name: None,
-                backend: pg_ephemeral::cbt::Backend::Docker,
+                backend: cbt::Backend::Docker,
                 database: pg_client::database!("postgres"),
                 migration_config: None,
                 seeds: indexmap::IndexMap::new(),
@@ -128,7 +128,7 @@ fn test_config_file_no_explicit_instance() {
             pg_ephemeral::InstanceName("main".to_string()),
             pg_ephemeral::Definition {
                 application_name: None,
-                backend: pg_ephemeral::cbt::Backend::Podman,
+                backend: cbt::Backend::Podman,
                 database: pg_client::database!("postgres"),
                 migration_config: None,
                 seeds: indexmap::IndexMap::new(),
@@ -139,7 +139,7 @@ fn test_config_file_no_explicit_instance() {
         pg_ephemeral::Config::load_toml_file(
             "tests/database_no_explicit_instance.toml",
             &pg_ephemeral::config::InstanceDefinition {
-                backend: Some(pg_ephemeral::cbt::Backend::Podman),
+                backend: Some(cbt::Backend::Podman),
                 image: Some("18.0".parse().unwrap()),
                 seeds: indexmap::IndexMap::new(),
             }
@@ -150,7 +150,7 @@ fn test_config_file_no_explicit_instance() {
 
 #[tokio::test]
 async fn test_run_env() {
-    if common::platform_not_supported() {
+    if cbt::testing::platform_not_supported() {
         return;
     }
 

@@ -1,5 +1,6 @@
 pub mod backend;
 pub mod command;
+pub mod testing;
 
 pub use backend::Backend;
 pub use command::Command;
