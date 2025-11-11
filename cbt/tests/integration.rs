@@ -115,18 +115,19 @@ fn test_image_build_from_instructions() {
     "};
 
     let definition = cbt::BuildDefinition::from_instructions(
+        backend,
         cbt::Image::from("cbt-test-instructions:latest"),
         dockerfile,
     );
 
-    let built_image = definition.build(backend).expect("Build should succeed");
+    let image = definition.build();
 
     assert!(
-        cbt::image::is_present(backend, &built_image),
+        backend.is_image_present(&image),
         "Image should exist after build"
     );
 
-    backend.remove_image(&built_image);
+    backend.remove_image(&image);
 }
 
 #[test]
@@ -134,18 +135,19 @@ fn test_image_build_from_directory() {
     let backend = cbt::test_backend_setup!();
 
     let definition = cbt::BuildDefinition::from_directory(
+        backend,
         cbt::Image::from("cbt-test-directory:latest"),
         "tests/fixtures/test-build",
     );
 
-    let built_image = definition.build(backend).expect("Build should succeed");
+    let image = definition.build();
 
     assert!(
-        cbt::image::is_present(backend, &built_image),
+        backend.is_image_present(&image),
         "Image should exist after build"
     );
 
-    backend.remove_image(&built_image);
+    backend.remove_image(&image);
 }
 
 #[test]
@@ -154,25 +156,24 @@ fn test_image_build_if_absent() {
 
     let dockerfile = indoc! {"
         FROM alpine:latest
-        RUN touch dirty echo 'test build if absent'
+        RUN touch dirty && echo 'test build if absent'
     "};
 
     let definition = cbt::BuildDefinition::from_instructions(
+        backend,
         cbt::Image::from("cbt-test-if-absent:latest"),
         dockerfile,
     );
 
-    let built_image = definition
-        .build_if_absent(backend)
-        .expect("First build should succeed");
-    assert!(cbt::image::is_present(backend, &built_image));
+    let image1 = definition.build_if_absent();
+    assert!(backend.is_image_present(&image1));
 
-    let built_image2 = definition
-        .build_if_absent(backend)
-        .expect("Second build should succeed");
-    assert!(cbt::image::is_present(backend, &built_image2));
+    let image2 = definition.build_if_absent();
+    assert!(backend.is_image_present(&image2));
 
-    backend.remove_image(&built_image);
+    assert_eq!(image2, image2);
+
+    backend.remove_image(&image1);
 }
 
 #[test]
@@ -180,13 +181,16 @@ fn test_image_tag() {
     let backend = cbt::test_backend_setup!();
 
     let source = cbt::Image::from("alpine:latest");
-    cbt::image::pull_if_absent(backend, &source);
-
     let target = cbt::Image::from("cbt-test-tagged:latest");
-    cbt::image::tag(backend, &source, &target);
 
-    assert!(cbt::image::is_present(backend, &source));
-    assert!(cbt::image::is_present(backend, &target));
+    backend.pull_image_if_absent(&source);
+
+    assert!(!backend.is_image_present(&target));
+
+    backend.tag_image(&source, &target);
+
+    assert!(backend.is_image_present(&source));
+    assert!(backend.is_image_present(&target));
 
     backend.remove_image(&target);
 }
@@ -197,8 +201,8 @@ fn test_image_pull_if_absent() {
 
     let image = cbt::Image::from("alpine:latest");
 
-    cbt::image::pull_if_absent(backend, &image);
-    assert!(cbt::image::is_present(backend, &image));
+    backend.pull_image_if_absent(&image);
+    assert!(backend.is_image_present(&image));
 }
 
 #[test]
@@ -210,30 +214,128 @@ fn test_image_build_from_instructions_hash() {
         RUN touch dirty && echo 'test hash'
     "};
 
-    let definition = cbt::BuildDefinition::from_instructions_hash("cbt-test-hash", dockerfile);
+    let definition =
+        cbt::BuildDefinition::from_instructions_hash(backend, "cbt-test-hash", dockerfile);
 
-    let built_image = definition.build(backend).expect("Build should succeed");
-    assert!(cbt::image::is_present(backend, &built_image));
+    let image = definition.build();
+    assert!(backend.is_image_present(&image));
 
-    let definition2 = cbt::BuildDefinition::from_instructions_hash("cbt-test-hash", dockerfile);
-    assert_eq!(definition.target_image(), definition2.target_image());
+    let definition2 =
+        cbt::BuildDefinition::from_instructions_hash(backend, "cbt-test-hash", dockerfile);
+    let image2 = definition2.build();
+    assert_eq!(image, image2);
 
-    backend.remove_image(&built_image);
+    backend.remove_image(&image);
 }
 
 #[test]
 fn test_image_build_from_directory_hash() {
     let backend = cbt::test_backend_setup!();
 
-    let definition =
-        cbt::BuildDefinition::from_directory_hash("cbt-test-dir-hash", "tests/fixtures/test-build");
+    let definition = cbt::BuildDefinition::from_directory_hash(
+        backend,
+        "cbt-test-dir-hash",
+        "tests/fixtures/test-build",
+    );
 
-    let built_image = definition.build(backend).expect("Build should succeed");
-    assert!(cbt::image::is_present(backend, &built_image));
+    let image1 = definition.build();
+    assert!(backend.is_image_present(&image1));
+
+    let definition2 = cbt::BuildDefinition::from_directory_hash(
+        backend,
+        "cbt-test-dir-hash",
+        "tests/fixtures/test-build",
+    );
+    let image2 = definition2.build();
+    assert_eq!(image1, image2);
+
+    backend.remove_image(&image1);
+}
+
+#[test]
+fn test_image_build_with_build_args() {
+    let backend = cbt::test_backend_setup!();
+
+    let dockerfile = indoc! {"
+        FROM alpine:latest
+        ARG TEST_ARG
+        RUN touch dirty && echo \"Build arg value: $TEST_ARG\" > /test-output
+    "};
+
+    let definition = cbt::BuildDefinition::from_instructions(
+        backend,
+        cbt::Image::from("cbt-test-build-args:latest"),
+        dockerfile,
+    )
+    .build_argument("TEST_ARG".parse().unwrap(), "test_value");
+
+    let image = definition.build();
+    assert!(backend.is_image_present(&image));
+
+    // Verify the build arg was used by checking the file created during build
+    let def = cbt::Definition::new(backend, image.clone())
+        .entrypoint("cat".to_string())
+        .arguments(vec!["/test-output".to_string()])
+        .remove();
+
+    let output = def.run_capture_only_stdout();
+    let stdout = std::str::from_utf8(&output).expect("invalid utf8 in output");
+
+    assert!(stdout.contains("test_value"));
+
+    backend.remove_image(&image);
+}
+
+#[test]
+fn test_image_build_args_affect_hash() {
+    let backend = cbt::test_backend_setup!();
+
+    let dockerfile = indoc! {"
+        FROM alpine:latest
+        ARG VERSION
+        RUN touch dirty && echo \"Version: $VERSION\"
+    "};
+
+    let definition1 =
+        cbt::BuildDefinition::from_instructions_hash(backend, "cbt-test-args-hash", dockerfile)
+            .build_argument("VERSION".parse().unwrap(), "1.0");
+    let image1 = definition1.build();
 
     let definition2 =
-        cbt::BuildDefinition::from_directory_hash("cbt-test-dir-hash", "tests/fixtures/test-build");
-    assert_eq!(definition.target_image(), definition2.target_image());
+        cbt::BuildDefinition::from_instructions_hash(backend, "cbt-test-args-hash", dockerfile)
+            .build_argument("VERSION".parse().unwrap(), "2.0");
+    let image2 = definition2.build();
 
-    backend.remove_image(&built_image);
+    assert_ne!(
+        image1, image2,
+        "Different build arguments should produce different image tags"
+    );
+
+    let definition3 =
+        cbt::BuildDefinition::from_instructions_hash(backend, "cbt-test-args-hash", dockerfile)
+            .build_argument("VERSION".parse().unwrap(), "1.0");
+    let image3 = definition3.build();
+
+    assert_eq!(
+        image1, image3,
+        "Same build arguments should produce same image tag"
+    );
+
+    backend.remove_image(&image1);
+    backend.remove_image(&image2);
+}
+
+#[test]
+fn test_build_argument_key_cannot_be_empty() {
+    let result: Result<cbt::BuildArgumentKey, _> = "".parse();
+    assert!(matches!(result, Err(cbt::BuildArgumentKeyError::Empty)));
+}
+
+#[test]
+fn test_build_argument_key_cannot_contain_equals() {
+    let result: Result<cbt::BuildArgumentKey, _> = "KEY=VALUE".parse();
+    assert!(matches!(
+        result,
+        Err(cbt::BuildArgumentKeyError::ContainsEquals)
+    ));
 }
