@@ -44,21 +44,25 @@ use cbt::{Backend, Definition, Image, Publish};
 
 let backend = cbt::backend::autodetect::run().unwrap();
 
-// Run a detached container with port publishing
-let mut container = Definition::new(backend, Image::from("postgres:latest"))
+// Run a detached container with automatic cleanup
+let definition = Definition::new(backend, Image::from("postgres:latest"))
     .env("POSTGRES_PASSWORD", "secret")
     .env("POSTGRES_USER", "admin")
-    .publish(Publish::from("127.0.0.1::5432/tcp"))
-    .run_detached();
+    .publish(Publish::from("127.0.0.1::5432/tcp"));
 
-// Execute commands in the running container
-let output = container.exec_capture_only_stdout(
-    [],
-    "psql",
-    ["-U", "admin", "-c", "SELECT version()"]
-);
+definition.with_container(|container| {
+    // Execute commands in the running container
+    let output = container.exec_capture_only_stdout(
+        [],
+        "psql",
+        ["-U", "admin", "-c", "SELECT version()"]
+    );
+    // Container automatically stopped and cleaned up
+});
 
-// Stop the container when done
+// Or manually manage lifecycle
+let mut container = definition.run_detached();
+let output = container.exec_capture_only_stdout([], "psql", ["-U", "admin", "-c", "SELECT version()"]);
 container.stop();
 ```
 
@@ -106,6 +110,118 @@ let output = Command::new("git")
     .capture_only_stdout_string();
 
 println!("Current commit: {}", output.trim());
+```
+
+### Command with Stdin
+
+Commands can accept input via stdin:
+
+```rust
+use cbt::Command;
+
+let input = b"Hello, World!";
+let output = Command::new("cat")
+    .stdin_bytes(input.to_vec())
+    .capture_only_stdout();
+
+assert_eq!(output, input);
+```
+
+### Building Images
+
+CBT provides an API for building container images from Dockerfiles:
+
+```rust
+use cbt::{BuildDefinition, Image};
+
+let backend = cbt::backend::autodetect::run().unwrap();
+
+// Build from a directory containing a Dockerfile
+let image = Image::from("myapp:latest");
+let definition = BuildDefinition::from_directory(image, "./app");
+cbt::image::build(backend, &definition).expect("Build failed");
+
+// Build from inline Dockerfile instructions
+let dockerfile = "FROM alpine:latest\nRUN apk add curl";
+let image = Image::from("myimage:latest");
+let definition = BuildDefinition::from_instructions(image, dockerfile);
+cbt::image::build(backend, &definition).expect("Build failed");
+
+// Build only if not already present
+cbt::image::build_if_absent(backend, &definition).expect("Build failed");
+```
+
+### Content-Based Image Hashing
+
+CBT supports automatic tag generation based on content hashing (SHA256). This ensures deterministic builds where the same content always produces the same image tag:
+
+```rust
+use cbt::BuildDefinition;
+
+let backend = cbt::backend::autodetect::run().unwrap();
+
+// Build from directory with automatic hash-based tag
+// Produces: "myapp:a1b2c3d4..." where hash is SHA256 of directory contents
+let definition = BuildDefinition::from_directory_hash("myapp", "./app");
+cbt::image::build(backend, &definition).expect("Build failed");
+
+// Build from inline Dockerfile with automatic hash-based tag
+let dockerfile = "FROM alpine:latest\nRUN echo 'hello'";
+let definition = BuildDefinition::from_instructions_hash("myapp", dockerfile);
+// Produces: "myapp:e3b0c44..." where hash is SHA256 of Dockerfile content
+cbt::image::build(backend, &definition).expect("Build failed");
+
+// Same content always produces same hash - perfect for caching
+let definition2 = BuildDefinition::from_instructions_hash("myapp", dockerfile);
+assert_eq!(definition.image, definition2.image);
+```
+
+Benefits of content-based hashing:
+- **Deterministic**: Same content always produces the same tag
+- **Automatic cache invalidation**: Content changes automatically produce a new tag
+- **No manual tag management**: Hash is computed automatically
+- **Reproducibility**: Easy to verify if an image matches its source
+
+**Important**: Content-based hashing only captures the Dockerfile and build context, not the base images. Using unspecific tags like `FROM alpine:latest` reduces reproducibility since `latest` can point to different images over time. For fully reproducible builds, use specific base image digests:
+
+```dockerfile
+# Less reproducible - tag can change
+FROM alpine:latest
+
+# More reproducible - specific version tag
+FROM alpine:3.19
+
+# Most reproducible - pinned to specific digest
+FROM alpine@sha256:6457d53fb065d6f250e1504b9bc42d5b6c65941d57532c072d929dd0628977d0
+```
+
+### Image Management Operations
+
+```rust
+let backend = cbt::backend::autodetect::run().unwrap();
+let image = Image::from("alpine:latest");
+
+// Pull an image only if not already present locally
+cbt::image::pull_if_absent(backend, &image);
+
+// Check if an image is present locally
+if cbt::image::is_present(backend, &image) {
+    println!("Image is available");
+}
+
+// Pull an image from a registry
+cbt::image::pull(backend, &image);
+
+// Tag an image
+let source = Image::from("alpine:latest");
+let target = Image::from("myapp:v1.0");
+cbt::image::tag(backend, &source, &target);
+
+// Push to a registry
+cbt::image::push(backend, &target);
+
+// Remove an image
+backend.remove_image(&image);
 ```
 
 ## Testing Utilities

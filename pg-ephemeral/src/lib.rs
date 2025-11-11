@@ -46,11 +46,8 @@ impl<'a> Container<'a> {
 
         let port = pg_client::Port(
             container
-                .inspect_format(
-                    "{{(index (index .NetworkSettings.Ports \"5432/tcp\") 0).HostPort}}",
-                )
-                .parse()
-                .expect("invalid port"),
+                .read_host_tcp_port(5432)
+                .expect("port 5432 not published"),
         );
 
         let host = pg_client::host!("localhost");
