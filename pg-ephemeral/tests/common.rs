@@ -1,10 +1,6 @@
-pub fn platform_not_supported() -> bool {
-    std::env::consts::OS == "macos" && std::env::var("GITHUB_ACTIONS").is_ok()
-}
-
 #[allow(dead_code)]
 pub async fn test_database_url_integration(language: &str, image_dir: &str) {
-    if platform_not_supported() {
+    if cbt::testing::platform_not_supported() {
         return;
     }
 
@@ -15,7 +11,7 @@ pub async fn test_database_url_integration(language: &str, image_dir: &str) {
 
     definition
         .with_container(async |container| {
-            let backend = pg_ephemeral::cbt::backend::autodetect::run().unwrap();
+            let backend = cbt::backend::autodetect::run().unwrap();
             let image_tag = format!("pg-ephemeral-{}-test:latest", language);
 
             let _build_output = backend

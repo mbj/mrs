@@ -115,8 +115,6 @@ impl<'de> serde::Deserialize<'de> for Image {
     }
 }
 
-use crate::cbt;
-
 impl From<&Image> for cbt::Image {
     fn from(value: &Image) -> Self {
         cbt::Image::from(format!(

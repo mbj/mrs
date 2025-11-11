@@ -15,6 +15,12 @@ impl Backend {
         }
     }
 
+    pub fn remove_image(&self, image: &crate::Image) {
+        self.command()
+            .arguments(["image", "rm", image.as_str()])
+            .capture_only_stdout();
+    }
+
     fn docker_command() -> Command {
         Command::new("docker")
     }

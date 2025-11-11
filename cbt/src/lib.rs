@@ -1,8 +1,11 @@
 pub mod backend;
 pub mod command;
+pub mod image;
+pub mod testing;
 
 pub use backend::Backend;
 pub use command::Command;
+pub use image::{BuildDefinition, BuildSource};
 use std::ffi::OsStr;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -42,6 +45,12 @@ impl From<String> for Image {
 impl From<&str> for Image {
     fn from(value: &str) -> Self {
         Self(value.to_string())
+    }
+}
+
+impl Image {
+    pub fn as_str(&self) -> &str {
+        &self.0
     }
 }
 
@@ -108,6 +117,16 @@ impl Definition {
             publish: vec![],
             remove: None,
         }
+    }
+
+    pub fn with_container<F, R>(&self, f: F) -> R
+    where
+        F: FnOnce(&mut Container) -> R,
+    {
+        let mut container = self.run_detached();
+        let result = f(&mut container);
+        container.stop();
+        result
     }
 
     pub fn backend(self, backend: Backend) -> Self {
@@ -356,6 +375,20 @@ impl Container {
         std::str::from_utf8(strip_nl_end(&bytes))
             .expect("invalid utf8")
             .to_string()
+    }
+
+    pub fn read_host_tcp_port(&self, container_port: u16) -> Option<u16> {
+        let json = self.inspect();
+
+        json.get(0)?
+            .get("NetworkSettings")?
+            .get("Ports")?
+            .get(format!("{}/tcp", container_port))?
+            .get(0)?
+            .get("HostPort")?
+            .as_str()?
+            .parse()
+            .ok()
     }
 
     fn backend_command(&self) -> Command {
