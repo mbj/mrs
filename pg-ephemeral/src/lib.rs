@@ -1,6 +1,5 @@
 use rand::Rng;
 
-pub mod cbt;
 pub mod cli;
 pub mod config;
 pub mod definition;

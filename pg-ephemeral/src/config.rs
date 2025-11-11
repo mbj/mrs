@@ -1,5 +1,4 @@
 use super::InstanceName;
-use crate::cbt;
 use crate::definition::Definition;
 use crate::image::Image;
 use crate::seed::{Command, Seed, SeedName};
@@ -7,7 +6,7 @@ use crate::seed::{Command, Seed, SeedName};
 #[derive(Debug, thiserror::Error, PartialEq)]
 pub enum Error {
     #[error("Backend autodetection failed: {0}")]
-    BackendAutodetect(#[from] crate::cbt::backend::autodetect::Error),
+    BackendAutodetect(#[from] cbt::backend::autodetect::Error),
     #[error("Cloud not load config file: {0}")]
     IO(IoError),
     #[error("Decoding as toml failed: {0}")]
@@ -166,7 +165,7 @@ impl Config {
         self,
         overwrites: &InstanceDefinition,
     ) -> Result<super::InstanceMap, Error> {
-        let autodetect = crate::cbt::backend::autodetect::Lazy::new();
+        let autodetect = cbt::backend::autodetect::Lazy::new();
 
         let defaults = InstanceDefinition {
             backend: self.backend,

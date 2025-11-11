@@ -23,7 +23,7 @@ pub struct App {
     /// first based on env variable CBT_BACKEND, than on installed tools.
     /// If the autodetection fails exits with an error.
     #[arg(long)]
-    backend: Option<crate::cbt::Backend>,
+    backend: Option<cbt::Backend>,
     /// Overwrite image
     #[arg(long)]
     image: Option<crate::image::Image>,

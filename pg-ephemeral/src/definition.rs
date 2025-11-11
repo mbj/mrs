@@ -1,5 +1,4 @@
 use crate::Container;
-use crate::cbt;
 use crate::seed::{Command, DuplicateSeedName, Seed, SeedName};
 
 #[derive(Clone, Debug, PartialEq)]
@@ -12,7 +11,7 @@ pub enum BackendSelection {
 impl BackendSelection {
     pub fn resolve(&self) -> cbt::Backend {
         match self {
-            Self::Auto => crate::cbt::backend::autodetect::run().unwrap(),
+            Self::Auto => cbt::backend::autodetect::run().unwrap(),
             Self::Docker => cbt::Backend::Docker,
             Self::Podman => cbt::Backend::Podman,
         }
@@ -22,7 +21,7 @@ impl BackendSelection {
 #[derive(Debug, PartialEq)]
 pub struct Definition {
     pub application_name: Option<pg_client::ApplicationName>,
-    pub backend: crate::cbt::Backend,
+    pub backend: cbt::Backend,
     pub database: pg_client::Database,
     pub migration_config: Option<mmigration::Config>,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
