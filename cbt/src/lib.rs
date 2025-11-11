@@ -5,7 +5,10 @@ pub mod testing;
 
 pub use backend::Backend;
 pub use command::Command;
-pub use image::{BuildDefinition, BuildSource};
+pub use image::{
+    BuildArgumentKey, BuildArgumentKeyError, BuildArgumentValue, BuildDefinition, BuildSource,
+    ImageName,
+};
 use std::ffi::OsStr;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
