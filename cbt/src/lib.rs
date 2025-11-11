@@ -70,32 +70,18 @@ impl From<&str> for Publish {
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub struct Entrypoint {
-    command: String,
-    arguments: Vec<String>,
-}
+pub struct Entrypoint(String);
 
 impl Entrypoint {
     fn arguments(&self) -> Vec<String> {
-        vec![
-            "--entrypoint".to_string(),
-            if self.arguments.is_empty() {
-                self.command.to_string()
-            } else {
-                let mut arguments: Vec<String> = vec![];
-
-                arguments.push(self.command.clone());
-                arguments.append(&mut self.arguments.clone());
-
-                serde_json::to_string(&arguments).unwrap()
-            },
-        ]
+        vec!["--entrypoint".to_string(), self.0.clone()]
     }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Definition {
     backend: Backend,
+    container_arguments: Vec<String>,
     detach: Option<Detach>,
     entrypoint: Option<Entrypoint>,
     env: std::collections::BTreeMap<String, String>,
@@ -109,6 +95,7 @@ impl Definition {
     pub fn new(backend: Backend, image: Image) -> Definition {
         Definition {
             backend,
+            container_arguments: vec![],
             detach: None,
             entrypoint: None,
             env: std::collections::BTreeMap::new(),
@@ -133,9 +120,25 @@ impl Definition {
         Self { backend, ..self }
     }
 
-    pub fn entrypoint(self, command: String, arguments: Vec<String>) -> Self {
+    pub fn entrypoint(self, command: String) -> Self {
         Self {
-            entrypoint: Some(Entrypoint { command, arguments }),
+            entrypoint: Some(Entrypoint(command)),
+            ..self
+        }
+    }
+
+    pub fn arguments(self, arguments: Vec<String>) -> Self {
+        Self {
+            container_arguments: arguments,
+            ..self
+        }
+    }
+
+    pub fn argument(self, argument: String) -> Self {
+        let mut container_arguments = self.container_arguments.clone();
+        container_arguments.push(argument);
+        Self {
+            container_arguments,
             ..self
         }
     }
@@ -261,6 +264,7 @@ impl Definition {
                     .unwrap_or_default(),
             )
             .argument(&self.image)
+            .arguments(&self.container_arguments)
             .capture_only_stdout()
     }
 }

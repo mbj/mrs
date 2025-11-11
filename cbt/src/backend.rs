@@ -75,7 +75,10 @@ pub mod autodetect {
                 .capture_only_stdout_result()
             {
                 Err(_) => None,
-                Ok(_) => Some(backend),
+                Ok(version) => {
+                    log::debug!("cbt using: {}", std::str::from_utf8(&version).unwrap());
+                    Some(backend)
+                }
             }
         }
 

@@ -18,6 +18,15 @@ impl BackendSelection {
     }
 }
 
+impl From<cbt::Backend> for BackendSelection {
+    fn from(backend: cbt::Backend) -> Self {
+        match backend {
+            cbt::Backend::Docker => Self::Docker,
+            cbt::Backend::Podman => Self::Podman,
+        }
+    }
+}
+
 #[derive(Debug, PartialEq)]
 pub struct Definition {
     pub application_name: Option<pg_client::ApplicationName>,
@@ -219,7 +228,8 @@ impl Definition {
 
         let bytes = self
             .to_cbt_definition()
-            .entrypoint("pg_dump".to_string(), effective_arguments)
+            .entrypoint("pg_dump".to_string())
+            .arguments(effective_arguments)
             .envs(effective_config.to_pg_env())
             .mounts(mounts)
             .run_capture_only_stdout();
