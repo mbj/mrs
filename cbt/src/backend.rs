@@ -15,6 +15,54 @@ impl Backend {
         }
     }
 
+    /// Check if an image is present in the local registry
+    pub fn is_image_present(&self, image: &crate::Image) -> bool {
+        match self {
+            Backend::Docker => self
+                .command()
+                .arguments(["inspect", "--type", "image", image.as_str()])
+                .capture_only_stdout_result()
+                .is_ok(),
+            Backend::Podman => {
+                // For Podman, image exists returns 0 if present, 1 if not
+                // We use status() instead of capture because we don't need output
+                let status = self
+                    .command()
+                    .arguments(["image", "exists", image.as_str()])
+                    .status();
+                status.success()
+            }
+        }
+    }
+
+    /// Tag an image with a new name
+    pub fn tag_image(&self, source: &crate::Image, target: &crate::Image) {
+        self.command()
+            .arguments(["tag", source.as_str(), target.as_str()])
+            .capture_only_stdout();
+    }
+
+    /// Pull an image from a registry
+    pub fn pull_image(&self, image: &crate::Image) {
+        self.command()
+            .arguments(["pull", image.as_str()])
+            .capture_only_stdout();
+    }
+
+    /// Pull an image only if it's not already present
+    pub fn pull_image_if_absent(&self, image: &crate::Image) {
+        if !self.is_image_present(image) {
+            self.pull_image(image);
+        }
+    }
+
+    /// Push an image to a registry
+    pub fn push_image(&self, image: &crate::Image) {
+        self.command()
+            .arguments(["push", image.as_str()])
+            .capture_only_stdout();
+    }
+
     pub fn remove_image(&self, image: &crate::Image) {
         self.command()
             .arguments(["image", "rm", image.as_str()])
