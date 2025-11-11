@@ -1,17 +1,11 @@
 #[allow(dead_code)]
 pub async fn test_database_url_integration(language: &str, image_dir: &str) {
-    if cbt::testing::platform_not_supported() {
-        return;
-    }
+    let backend = cbt::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(
-        pg_ephemeral::BackendSelection::Auto,
-        pg_ephemeral::Image::default(),
-    );
+    let definition = pg_ephemeral::Definition::new(backend.into(), pg_ephemeral::Image::default());
 
     definition
         .with_container(async |container| {
-            let backend = cbt::backend::autodetect::run().unwrap();
             let image_tag = format!("pg-ephemeral-{}-test:latest", language);
 
             let _build_output = backend
