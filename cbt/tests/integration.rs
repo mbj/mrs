@@ -216,7 +216,7 @@ fn test_image_build_from_instructions_hash() {
     assert!(cbt::image::is_present(backend, &built_image));
 
     let definition2 = cbt::BuildDefinition::from_instructions_hash("cbt-test-hash", dockerfile);
-    assert_eq!(definition.image(), definition2.image());
+    assert_eq!(definition.target_image(), definition2.target_image());
 
     backend.remove_image(&built_image);
 }
@@ -233,7 +233,7 @@ fn test_image_build_from_directory_hash() {
 
     let definition2 =
         cbt::BuildDefinition::from_directory_hash("cbt-test-dir-hash", "tests/fixtures/test-build");
-    assert_eq!(definition.image(), definition2.image());
+    assert_eq!(definition.target_image(), definition2.target_image());
 
     backend.remove_image(&built_image);
 }
