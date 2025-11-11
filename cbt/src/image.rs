@@ -14,15 +14,15 @@ pub enum BuildSource {
 /// Definition for building a container image
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct BuildDefinition {
-    image: Image,
-    pub source: BuildSource,
+    target_image: Image,
+    source: BuildSource,
 }
 
 impl BuildDefinition {
     /// Create a new build definition from a directory containing a Dockerfile
     pub fn from_directory(image: Image, path: impl Into<PathBuf>) -> Self {
         Self {
-            image,
+            target_image: image,
             source: BuildSource::Directory(path.into()),
         }
     }
@@ -30,7 +30,7 @@ impl BuildDefinition {
     /// Create a new build definition from Dockerfile instructions as a string
     pub fn from_instructions(image: Image, instructions: impl Into<String>) -> Self {
         Self {
-            image,
+            target_image: image,
             source: BuildSource::Instructions(instructions.into()),
         }
     }
@@ -41,7 +41,7 @@ impl BuildDefinition {
         let hash = compute_directory_hash(&path);
         let image = Image::from(format!("{}:{}", image_name, hash));
         Self {
-            image,
+            target_image: image,
             source: BuildSource::Directory(path),
         }
     }
@@ -52,7 +52,7 @@ impl BuildDefinition {
         let hash = compute_content_hash(&content);
         let image = Image::from(format!("{}:{}", image_name, hash));
         Self {
-            image,
+            target_image: image,
             source: BuildSource::Instructions(content),
         }
     }
@@ -62,7 +62,7 @@ impl BuildDefinition {
         let mut arguments = vec![
             "build".to_string(),
             "--tag".to_string(),
-            self.image.as_str().to_string(),
+            self.target_image.as_str().to_string(),
         ];
 
         // Add source
@@ -77,8 +77,8 @@ impl BuildDefinition {
                     .arguments(arguments)
                     .stdin_bytes(content.as_bytes().to_vec())
                     .capture_only_stdout_result()
-                    .map(|_| self.image.clone())?;
-                return Ok(self.image.clone());
+                    .map(|_| self.target_image.clone())?;
+                return Ok(self.target_image.clone());
             }
         }
 
@@ -86,21 +86,21 @@ impl BuildDefinition {
             .command()
             .arguments(arguments)
             .capture_only_stdout_result()
-            .map(|_| self.image.clone())
+            .map(|_| self.target_image.clone())
     }
 
     /// Build the image only if it's not already present, and return the image
     pub fn build_if_absent(&self, backend: Backend) -> Result<Image, crate::command::CaptureError> {
-        if !is_present(backend, &self.image) {
+        if !is_present(backend, &self.target_image) {
             self.build(backend)
         } else {
-            Ok(self.image.clone())
+            Ok(self.target_image.clone())
         }
     }
 
-    /// Get the image that will be built
-    pub fn image(&self) -> &Image {
-        &self.image
+    /// Get the target image that will be built
+    pub fn target_image(&self) -> &Image {
+        &self.target_image
     }
 }
 
