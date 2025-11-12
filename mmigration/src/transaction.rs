@@ -1,4 +1,5 @@
 use crate::types::*;
+use sqlx::AssertSqlSafe;
 
 pub enum AppliedMigrationsComment {
     LastAppliedMigration { index: Index, name: MigrationName },
@@ -121,12 +122,12 @@ impl Transaction<'_> {
 
         log::info!("Appying migration: {}", pending_migration.index);
 
-        sqlx::raw_sql(pending_migration.raw_sql.as_ref())
+        sqlx::raw_sql(&pending_migration.raw_sql)
             .execute(&mut *self.connection)
             .await
             .unwrap();
 
-        sqlx::query(&format!(
+        sqlx::query(AssertSqlSafe(format!(
             r#"
                 INSERT INTO
                   {}
@@ -141,7 +142,7 @@ impl Transaction<'_> {
                   )
             "#,
             self.qualified_table_identifier
-        ))
+        )))
         .bind(pending_migration.index)
         .bind(pending_migration.digest())
         .bind(&pending_migration.name)
@@ -158,7 +159,7 @@ impl Transaction<'_> {
     async fn set_applied_migrations_comment(&mut self, comment: AppliedMigrationsComment) {
         // we use a termporary function to generate the SQL string literal for the comment safely PG
         // server side. PG does not support binds in place the string literal.
-        sqlx::raw_sql(&format!(
+        sqlx::raw_sql(AssertSqlSafe(format!(
             r#"
                     CREATE FUNCTION
                       pg_temp.set_applied_migrations_comment(arg_comment text)
@@ -173,7 +174,7 @@ impl Transaction<'_> {
                     $$
                 "#,
             self.qualified_table_identifier
-        ))
+        )))
         .execute(&mut *self.connection)
         .await
         .unwrap();
@@ -195,7 +196,8 @@ impl Transaction<'_> {
             log::info!("Applied migrations table does not exist, creating it!");
 
             sqlx::query(
-                &format!(
+                AssertSqlSafe(
+                format!(
                     r#"
                     CREATE TABLE
                       {}
@@ -209,7 +211,7 @@ impl Transaction<'_> {
                       )
                     "#,
                     self.qualified_table_identifier
-                )
+                ))
             )
             .execute(&mut *self.connection)
             .await
