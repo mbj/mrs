@@ -2,6 +2,12 @@ use crate::Container;
 use crate::seed::{Command, DuplicateSeedName, Seed, SeedName};
 
 #[derive(Clone, Debug, PartialEq)]
+pub enum SslConfig {
+    Generated { hostname: pg_client::HostName },
+    // UserProvided { ca_cert: PathBuf, server_cert: PathBuf, server_key: PathBuf },
+}
+
+#[derive(Clone, Debug, PartialEq)]
 pub enum BackendSelection {
     Auto,
     Docker,
@@ -34,6 +40,7 @@ pub struct Definition {
     pub database: pg_client::Database,
     pub migration_config: Option<mmigration::Config>,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
+    pub ssl_config: Option<SslConfig>,
     pub superuser: pg_client::Username,
     pub image: crate::image::Image,
 }
@@ -45,6 +52,7 @@ impl Definition {
             application_name: None,
             migration_config: None,
             seeds: indexmap::IndexMap::new(),
+            ssl_config: None,
             superuser: pg_client::username!("postgres"),
             database: pg_client::database!("postgres"),
             image,
@@ -114,6 +122,13 @@ impl Definition {
 
     pub fn apply_script(self, name: SeedName, script: String) -> Result<Self, DuplicateSeedName> {
         self.add_seed(name, Seed::Script(script))
+    }
+
+    pub fn ssl_config(self, ssl_config: SslConfig) -> Self {
+        Self {
+            ssl_config: Some(ssl_config),
+            ..self
+        }
     }
 
     pub fn to_cbt_definition(&self) -> cbt::Definition {

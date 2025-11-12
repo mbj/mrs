@@ -26,6 +26,37 @@ async fn test_base_feature() {
         .await
 }
 
+#[tokio::test]
+async fn test_ssl_generated() {
+    env_logger::init();
+
+    if cbt::testing::platform_not_supported() {
+        return;
+    }
+
+    let definition = pg_ephemeral::Definition::new(
+        pg_ephemeral::BackendSelection::Auto,
+        pg_ephemeral::Image::default(),
+    )
+    .ssl_config(pg_ephemeral::definition::SslConfig::Generated {
+        hostname: "postgresql.example.com".parse().unwrap(),
+    });
+
+    definition
+        .with_container(async |container| {
+            container
+                .with_connection(async |connection| {
+                    let row = sqlx::query("SELECT true")
+                        .fetch_one(connection)
+                        .await
+                        .unwrap();
+                    assert!(sqlx::Row::get::<bool, usize>(&row, 0))
+                })
+                .await
+        })
+        .await
+}
+
 #[test]
 fn test_config_file() {
     assert_eq!(
@@ -38,6 +69,7 @@ fn test_config_file() {
                     database: pg_client::database!("postgres"),
                     migration_config: None,
                     seeds: indexmap::IndexMap::new(),
+                    ssl_config: None,
                     superuser: pg_client::username!("postgres"),
                     image: "17.1".parse().unwrap()
                 }
@@ -50,6 +82,7 @@ fn test_config_file() {
                     database: pg_client::database!("postgres"),
                     migration_config: None,
                     seeds: indexmap::IndexMap::new(),
+                    ssl_config: None,
                     superuser: pg_client::username!("postgres"),
                     image: "17.2".parse().unwrap()
                 }
@@ -72,6 +105,7 @@ fn test_config_file() {
                     database: pg_client::database!("postgres"),
                     migration_config: None,
                     seeds: indexmap::IndexMap::new(),
+                    ssl_config: None,
                     superuser: pg_client::username!("postgres"),
                     image: "18.0".parse().unwrap()
                 }
@@ -84,6 +118,7 @@ fn test_config_file() {
                     database: pg_client::database!("postgres"),
                     migration_config: None,
                     seeds: indexmap::IndexMap::new(),
+                    ssl_config: None,
                     superuser: pg_client::username!("postgres"),
                     image: "18.0".parse().unwrap()
                 }
@@ -95,6 +130,7 @@ fn test_config_file() {
                 backend: Some(cbt::Backend::Docker),
                 image: Some("18.0".parse().unwrap()),
                 seeds: indexmap::IndexMap::new(),
+                ssl_config: None,
             }
         )
         .unwrap()
@@ -112,6 +148,7 @@ fn test_config_file_no_explicit_instance() {
                 database: pg_client::database!("postgres"),
                 migration_config: None,
                 seeds: indexmap::IndexMap::new(),
+                ssl_config: None,
                 superuser: pg_client::username!("postgres"),
                 image: "17.1".parse().unwrap()
             }
@@ -132,6 +169,7 @@ fn test_config_file_no_explicit_instance() {
                 database: pg_client::database!("postgres"),
                 migration_config: None,
                 seeds: indexmap::IndexMap::new(),
+                ssl_config: None,
                 superuser: pg_client::username!("postgres"),
                 image: "18.0".parse().unwrap()
             }
@@ -142,9 +180,47 @@ fn test_config_file_no_explicit_instance() {
                 backend: Some(cbt::Backend::Podman),
                 image: Some("18.0".parse().unwrap()),
                 seeds: indexmap::IndexMap::new(),
+                ssl_config: None,
             }
         )
         .unwrap()
+    )
+}
+
+#[test]
+fn test_config_ssl() {
+    use indoc::indoc;
+
+    let config_str = indoc! {r#"
+        backend = "docker"
+        image = "18.0"
+
+        [ssl_config]
+        hostname = "postgresql.example.com"
+
+        [instances.main]
+    "#};
+
+    assert_eq!(
+        pg_ephemeral::InstanceMap::from([(
+            pg_ephemeral::InstanceName("main".to_string()),
+            pg_ephemeral::Definition {
+                application_name: None,
+                backend: cbt::Backend::Docker,
+                database: pg_client::database!("postgres"),
+                migration_config: None,
+                seeds: indexmap::IndexMap::new(),
+                ssl_config: Some(pg_ephemeral::definition::SslConfig::Generated {
+                    hostname: "postgresql.example.com".parse().unwrap(),
+                }),
+                superuser: pg_client::username!("postgres"),
+                image: "18.0".parse().unwrap(),
+            }
+        )]),
+        pg_ephemeral::Config::load_toml(config_str)
+            .unwrap()
+            .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+            .unwrap()
     )
 }
 
