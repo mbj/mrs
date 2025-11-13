@@ -239,7 +239,21 @@ impl Definition {
         self.no_detach().run_output()
     }
 
-    fn run_output(&self) -> Vec<u8> {
+    /// Runs the container and returns the exit status.
+    pub fn run_status(&self) -> std::process::ExitStatus {
+        self.mk_run_command().status()
+    }
+
+    /// Runs the container and panics on non-zero exit.
+    pub fn run_status_success(&self) {
+        let status = self.run_status();
+
+        if !status.success() {
+            panic!("Container execution failed with status: {status}");
+        }
+    }
+
+    fn mk_run_command(&self) -> Command {
         self.backend
             .command()
             .argument("run")
@@ -268,7 +282,10 @@ impl Definition {
             )
             .argument(&self.image)
             .arguments(&self.container_arguments)
-            .capture_only_stdout()
+    }
+
+    fn run_output(&self) -> Vec<u8> {
+        self.mk_run_command().capture_only_stdout()
     }
 }
 

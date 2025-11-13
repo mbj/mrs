@@ -339,3 +339,51 @@ fn test_build_argument_key_cannot_contain_equals() {
         Err(cbt::BuildArgumentKeyError::ContainsEquals)
     ));
 }
+
+#[test]
+fn test_run_status_with_successful_exit() {
+    let backend = cbt::test_backend_setup!();
+
+    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+        .entrypoint("true".to_string())
+        .remove();
+
+    let status = definition.run_status();
+    assert!(status.success());
+}
+
+#[test]
+fn test_run_status_with_nonzero_exit() {
+    let backend = cbt::test_backend_setup!();
+
+    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+        .entrypoint("false".to_string())
+        .remove();
+
+    let status = definition.run_status();
+    assert_eq!(status.code(), Some(1));
+}
+
+#[test]
+fn test_run_status_success_with_successful_exit() {
+    let backend = cbt::test_backend_setup!();
+
+    cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+        .entrypoint("true".to_string())
+        .remove()
+        .run_status_success();
+}
+
+#[test]
+#[should_panic(expected = "Container execution failed with status: exit status: 1")]
+// we are not executing on OSX as on GH there is no docker support so cannot run into the panic
+// there.
+#[cfg(not(target_os = "macos"))]
+fn test_run_status_success_with_nonzero_exit() {
+    let backend = cbt::test_backend_setup!();
+
+    cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+        .entrypoint("false".to_string())
+        .remove()
+        .run_status_success();
+}
