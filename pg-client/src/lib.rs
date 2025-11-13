@@ -1,14 +1,20 @@
 /// Macro to generate `std::str::FromStr` plus helpers for string wrapped newtypes
 macro_rules! from_str_impl {
-    ($struct: ident, $max: expr) => {
+    ($struct: ident, $min: expr, $max: expr) => {
         impl std::str::FromStr for $struct {
             type Err = &'static str;
 
             fn from_str(value: &str) -> Result<Self, Self::Err> {
+                let min_length = Self::MIN_LENGTH;
                 let max_length = Self::MAX_LENGTH;
                 let actual = value.len();
 
-                if actual > max_length {
+                if actual < min_length {
+                    Err(concat!(
+                        stringify!($struct),
+                        " byte min length: {min_length} violated, got: {actual}"
+                    ))
+                } else if actual > max_length {
                     Err(concat!(
                         stringify!($struct),
                         " byte max length: {max_length} violated, got: {actual}"
@@ -26,6 +32,7 @@ macro_rules! from_str_impl {
         }
 
         impl $struct {
+            pub const MIN_LENGTH: usize = $min;
             pub const MAX_LENGTH: usize = $max;
 
             pub fn as_str(&self) -> &str {
@@ -221,7 +228,7 @@ impl From<&Port> for u16 {
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct ApplicationName(String);
 
-from_str_impl!(ApplicationName, 63);
+from_str_impl!(ApplicationName, 1, 63);
 
 #[macro_export]
 macro_rules! application_name {
@@ -239,7 +246,7 @@ impl ApplicationName {
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Database(String);
 
-from_str_impl!(Database, 63);
+from_str_impl!(Database, 1, 63);
 
 #[macro_export]
 macro_rules! database {
@@ -257,7 +264,7 @@ impl Database {
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Username(String);
 
-from_str_impl!(Username, 63);
+from_str_impl!(Username, 1, 63);
 
 #[macro_export]
 macro_rules! username {
@@ -275,7 +282,7 @@ impl Username {
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Password(String);
 
-from_str_impl!(Password, 4096);
+from_str_impl!(Password, 0, 4096);
 
 impl Password {
     fn to_pg_env_value(&self) -> String {
@@ -817,6 +824,38 @@ mod test {
     }
 
     #[test]
+    fn application_name_lt_min_length() {
+        let value = String::new();
+
+        let err = ApplicationName::from_str(&value).expect_err("expected min length failure");
+
+        assert_eq!(
+            err,
+            "ApplicationName byte min length: {min_length} violated, got: {actual}"
+        );
+    }
+
+    #[test]
+    fn application_name_eq_min_length() {
+        let value = repeat('a', 1);
+
+        let application_name =
+            ApplicationName::from_str(&value).expect("expected valid min length value");
+
+        assert_eq!(application_name, ApplicationName(value));
+    }
+
+    #[test]
+    fn application_name_gt_min_length() {
+        let value = repeat('a', 2);
+
+        let application_name =
+            ApplicationName::from_str(&value).expect("expected valid value greater than min");
+
+        assert_eq!(application_name, ApplicationName(value));
+    }
+
+    #[test]
     fn application_name_lt_max_length() {
         let value = repeat('a', 62);
 
@@ -846,6 +885,36 @@ mod test {
             err,
             "ApplicationName byte max length: {max_length} violated, got: {actual}"
         );
+    }
+
+    #[test]
+    fn database_lt_min_length() {
+        let value = String::new();
+
+        let err = Database::from_str(&value).expect_err("expected min length failure");
+
+        assert_eq!(
+            err,
+            "Database byte min length: {min_length} violated, got: {actual}"
+        );
+    }
+
+    #[test]
+    fn database_eq_min_length() {
+        let value = repeat('d', 1);
+
+        let database = Database::from_str(&value).expect("expected valid min length value");
+
+        assert_eq!(database, Database(value));
+    }
+
+    #[test]
+    fn database_gt_min_length() {
+        let value = repeat('d', 2);
+
+        let database = Database::from_str(&value).expect("expected valid value greater than min");
+
+        assert_eq!(database, Database(value));
     }
 
     #[test]
@@ -879,6 +948,36 @@ mod test {
     }
 
     #[test]
+    fn username_lt_min_length() {
+        let value = String::new();
+
+        let err = Username::from_str(&value).expect_err("expected min length failure");
+
+        assert_eq!(
+            err,
+            "Username byte min length: {min_length} violated, got: {actual}"
+        );
+    }
+
+    #[test]
+    fn username_eq_min_length() {
+        let value = repeat('u', 1);
+
+        let username = Username::from_str(&value).expect("expected valid min length value");
+
+        assert_eq!(username, Username(value));
+    }
+
+    #[test]
+    fn username_gt_min_length() {
+        let value = repeat('u', 2);
+
+        let username = Username::from_str(&value).expect("expected valid value greater than min");
+
+        assert_eq!(username, Username(value));
+    }
+
+    #[test]
     fn username_lt_max_length() {
         let value = repeat('u', 62);
 
@@ -906,6 +1005,24 @@ mod test {
             err,
             "Username byte max length: {max_length} violated, got: {actual}"
         );
+    }
+
+    #[test]
+    fn password_eq_min_length() {
+        let value = String::new();
+
+        let password = Password::from_str(&value).expect("expected valid min length value");
+
+        assert_eq!(password, Password(value));
+    }
+
+    #[test]
+    fn password_gt_min_length() {
+        let value = repeat('p', 1);
+
+        let password = Password::from_str(&value).expect("expected valid value greater than min");
+
+        assert_eq!(password, Password(value));
     }
 
     #[test]
