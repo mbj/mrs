@@ -387,3 +387,18 @@ fn test_run_status_success_with_nonzero_exit() {
         .remove()
         .run_status_success();
 }
+
+#[test]
+fn test_container_with_workdir() {
+    let backend = cbt::test_backend_setup!();
+
+    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+        .entrypoint("pwd".to_string())
+        .workdir("/tmp".to_string())
+        .remove();
+
+    let output = definition.run_capture_only_stdout();
+    let stdout = std::str::from_utf8(&output).expect("invalid utf8 in output");
+
+    assert_eq!(stdout.trim(), "/tmp");
+}
