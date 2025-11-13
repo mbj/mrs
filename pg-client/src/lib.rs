@@ -218,6 +218,7 @@ impl From<&Port> for u16 {
 
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct ApplicationName(String);
+
 from_str_impl!(ApplicationName);
 
 #[macro_export]
