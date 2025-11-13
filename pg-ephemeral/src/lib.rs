@@ -68,13 +68,13 @@ impl<'a> Container<'a> {
             let ssl_dir = "/var/lib/postgresql";
 
             cbt_definition = cbt_definition
-                .entrypoint("sh".to_string())
-                .argument("-e".to_string())
-                .argument("-c".to_string())
-                .argument(SSL_SETUP_SCRIPT.to_string())
-                .argument("--".to_string())
-                .argument("postgres".to_string())
-                .argument("--ssl=on".to_string())
+                .entrypoint("sh")
+                .argument("-e")
+                .argument("-c")
+                .argument(SSL_SETUP_SCRIPT)
+                .argument("--")
+                .argument("postgres")
+                .argument("--ssl=on")
                 .argument(format!("--ssl_cert_file={}/server.crt", ssl_dir))
                 .argument(format!("--ssl_key_file={}/server.key", ssl_dir))
                 .argument(format!("--ssl_ca_file={}/root.crt", ssl_dir))
