@@ -812,6 +812,7 @@ impl Config {
 mod test {
     use super::*;
     use pretty_assertions::assert_eq;
+    use std::str::FromStr;
 
     fn assert_config(expected: serde_json::Value, config: &Config) {
         assert_eq!(expected, serde_json::to_value(config).unwrap());
@@ -819,8 +820,6 @@ mod test {
 
     #[test]
     fn test_json() {
-        use std::str::FromStr;
-
         let config = Config {
             application_name: None,
             database: Database::from_str("some-database").unwrap(),
