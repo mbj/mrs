@@ -31,7 +31,7 @@ reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-feature
 serde = { version = "1.0", features = ["derive"] }
 serde_json = { version = "1.0", features = ["arbitrary_precision", "indexmap"] }
 sha2 = "0.10"
-sqlx = { git = "https://github.com/mbj/sqlx", rev = "b3c90e1f0861babfeb6418270bec3797c4ad385e", features = ["postgres", "runtime-tokio", "tls-rustls"] }
+sqlx = { git = "https://github.com/mbj/sqlx", rev = "f795fe994a6973ebe872c8c619706a4244c65d54", features = ["postgres", "runtime-tokio", "tls-rustls"] }
 stratosphere = { path = "./stratosphere" }
 thiserror = "2"
 tokio = "1"
