@@ -61,8 +61,14 @@ pub struct Command {
 }
 
 impl Command {
-    pub fn new(command: String, arguments: Vec<String>) -> Self {
-        Self { command, arguments }
+    pub fn new(
+        command: impl Into<String>,
+        arguments: impl IntoIterator<Item = impl Into<String>>,
+    ) -> Self {
+        Self {
+            command: command.into(),
+            arguments: arguments.into_iter().map(|a| a.into()).collect(),
+        }
     }
 }
 
