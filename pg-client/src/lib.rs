@@ -1,6 +1,6 @@
-/// Macro to generate `std::str::FromStr` for string wrapped newtypes
+/// Macro to generate `std::str::FromStr` plus helpers for string wrapped newtypes
 macro_rules! from_str_impl {
-    ($struct: ident) => {
+    ($struct: ident, $max: expr) => {
         impl std::str::FromStr for $struct {
             type Err = &'static str;
 
@@ -26,6 +26,8 @@ macro_rules! from_str_impl {
         }
 
         impl $struct {
+            pub const MAX_LENGTH: usize = $max;
+
             pub fn as_str(&self) -> &str {
                 &self.0
             }
@@ -219,7 +221,7 @@ impl From<&Port> for u16 {
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct ApplicationName(String);
 
-from_str_impl!(ApplicationName);
+from_str_impl!(ApplicationName, 63);
 
 #[macro_export]
 macro_rules! application_name {
@@ -229,8 +231,6 @@ macro_rules! application_name {
 }
 
 impl ApplicationName {
-    const MAX_LENGTH: usize = 63;
-
     fn to_pg_env_value(&self) -> String {
         self.0.clone()
     }
@@ -239,7 +239,7 @@ impl ApplicationName {
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Database(String);
 
-from_str_impl!(Database);
+from_str_impl!(Database, 63);
 
 #[macro_export]
 macro_rules! database {
@@ -249,8 +249,6 @@ macro_rules! database {
 }
 
 impl Database {
-    const MAX_LENGTH: usize = 63;
-
     fn to_pg_env_value(&self) -> String {
         self.0.clone()
     }
@@ -259,7 +257,7 @@ impl Database {
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Username(String);
 
-from_str_impl!(Username);
+from_str_impl!(Username, 63);
 
 #[macro_export]
 macro_rules! username {
@@ -269,8 +267,6 @@ macro_rules! username {
 }
 
 impl Username {
-    const MAX_LENGTH: usize = 63;
-
     fn to_pg_env_value(&self) -> String {
         self.0.clone()
     }
@@ -279,11 +275,9 @@ impl Username {
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Password(String);
 
-from_str_impl!(Password);
+from_str_impl!(Password, 4096);
 
 impl Password {
-    const MAX_LENGTH: usize = 4096;
-
     fn to_pg_env_value(&self) -> String {
         self.0.clone()
     }
