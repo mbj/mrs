@@ -27,6 +27,9 @@ pub struct App {
     /// Overwrite image
     #[arg(long)]
     image: Option<crate::image::Image>,
+    /// Enable SSL with the specified hostname
+    #[arg(long)]
+    ssl_hostname: Option<pg_client::HostName>,
     #[clap(subcommand)]
     command: Option<Command>,
 }
@@ -37,6 +40,10 @@ impl App {
             backend: self.backend,
             image: self.image.clone(),
             seeds: indexmap::IndexMap::new(),
+            ssl_config: self
+                .ssl_hostname
+                .clone()
+                .map(|hostname| crate::config::SslConfigDefinition { hostname }),
         };
 
         let result = match &self.config_file {

@@ -36,6 +36,12 @@ macro_rules! from_str_impl {
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct HostName(String);
 
+impl HostName {
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
 impl std::str::FromStr for HostName {
     type Err = &'static str;
 
@@ -45,6 +51,16 @@ impl std::str::FromStr for HostName {
         } else {
             Err("invalid host name")
         }
+    }
+}
+
+impl<'de> serde::Deserialize<'de> for HostName {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        let s = String::deserialize(deserializer)?;
+        s.parse().map_err(serde::de::Error::custom)
     }
 }
 
@@ -148,6 +164,12 @@ pub struct HostAddr(std::net::IpAddr);
 impl HostAddr {
     fn to_pg_env_value(&self) -> String {
         self.0.to_string()
+    }
+}
+
+impl std::fmt::Display for HostAddr {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(formatter, "{}", self.0)
     }
 }
 
@@ -348,7 +370,6 @@ macro_rules! ssl_root_cert_file {
 pub enum SqlxOptionsError {
     EnvConflict { env_key: String, field_name: String },
     UnsupportedFeature { env_key: String, field_name: String },
-    HostAddrNotSupported,
 }
 
 impl std::fmt::Display for SqlxOptionsError {
@@ -368,7 +389,6 @@ impl std::fmt::Display for SqlxOptionsError {
                 f,
                 "`PgConnectOptions::new` has inferred `{field_name}` from the `{env_key}` environment variable, but `pg_client::Config` does not support that feature at this point. As `PgConnectOptions` has no option to unset that field, or a constructor that allows us to bypass the inference: we have to bail out, please remove the environment variable!"
             ),
-            Self::HostAddrNotSupported => write!(f, "sqlx does not support host_addr parameter"),
         }
     }
 }
@@ -734,16 +754,16 @@ impl Config {
                 } else {
                     reject_env("PGPORT", "port")?;
                 }
-                if host_addr.is_some() {
-                    return Err(SqlxOptionsError::HostAddrNotSupported);
+                if let Some(host_addr) = host_addr {
+                    options = options.host_addr(&host_addr.to_string())
                 } else {
-                    reject_env("PGHOSTADDR", "host_addr")?;
+                    reject_env("PGHOSTADDR", "hostaddr")?;
                 }
             }
             Endpoint::SocketPath(path) => {
                 options = options.host(path.to_str().expect("socket path contains invalid utf8"));
                 reject_env("PGPORT", "port")?;
-                reject_env("PGHOSTADDR", "host_addr")?;
+                reject_env("PGHOSTADDR", "hostaddr")?;
             }
         }
 

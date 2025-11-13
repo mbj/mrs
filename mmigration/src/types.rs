@@ -158,6 +158,12 @@ impl From<&str> for RawSql {
     }
 }
 
+impl sqlx::SqlSafeStr for &RawSql {
+    fn into_sql_str(self) -> sqlx::SqlStr {
+        sqlx::AssertSqlSafe(self.0.clone()).into_sql_str()
+    }
+}
+
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct PendingMigration {
     pub index: Index,

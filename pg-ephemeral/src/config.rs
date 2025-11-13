@@ -62,6 +62,12 @@ impl From<SeedConfig> for Seed {
     }
 }
 
+#[derive(Clone, Debug, serde::Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct SslConfigDefinition {
+    pub hostname: pg_client::HostName,
+}
+
 #[derive(Debug, serde::Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct InstanceDefinition {
@@ -69,6 +75,7 @@ pub struct InstanceDefinition {
     pub image: Option<Image>,
     #[serde(default)]
     pub seeds: indexmap::IndexMap<SeedName, SeedConfig>,
+    pub ssl_config: Option<SslConfigDefinition>,
 }
 
 impl InstanceDefinition {
@@ -77,6 +84,7 @@ impl InstanceDefinition {
             backend: None,
             image: None,
             seeds: indexmap::IndexMap::new(),
+            ssl_config: None,
         }
     }
 
@@ -116,12 +124,22 @@ impl InstanceDefinition {
             .map(|(name, seed_config)| (name, seed_config.into()))
             .collect();
 
+        let ssl_config = overwrites
+            .ssl_config
+            .as_ref()
+            .or(self.ssl_config.as_ref())
+            .or(defaults.ssl_config.as_ref())
+            .map(|ssl_config_def| crate::definition::SslConfig::Generated {
+                hostname: ssl_config_def.hostname.clone(),
+            });
+
         Ok(Definition {
             application_name: None,
             backend,
             database: pg_client::database!("postgres"),
             migration_config: None,
             seeds,
+            ssl_config,
             superuser: pg_client::username!("postgres"),
             image,
         })
@@ -133,6 +151,7 @@ impl InstanceDefinition {
 pub struct Config {
     image: Option<Image>,
     backend: Option<cbt::Backend>,
+    ssl_config: Option<SslConfigDefinition>,
     instances: Option<std::collections::BTreeMap<InstanceName, InstanceDefinition>>,
 }
 
@@ -141,6 +160,7 @@ impl std::default::Default for Config {
         Self {
             image: Some(Image::default()),
             backend: None,
+            ssl_config: None,
             instances: None,
         }
     }
@@ -171,6 +191,7 @@ impl Config {
             backend: self.backend,
             image: self.image.clone(),
             seeds: indexmap::IndexMap::new(),
+            ssl_config: self.ssl_config.clone(),
         };
 
         match self.instances {
