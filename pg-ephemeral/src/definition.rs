@@ -120,8 +120,12 @@ impl Definition {
         self.add_seed(name, Seed::Command(command))
     }
 
-    pub fn apply_script(self, name: SeedName, script: String) -> Result<Self, DuplicateSeedName> {
-        self.add_seed(name, Seed::Script(script))
+    pub fn apply_script(
+        self,
+        name: SeedName,
+        script: impl Into<String>,
+    ) -> Result<Self, DuplicateSeedName> {
+        self.add_seed(name, Seed::Script(script.into()))
     }
 
     pub fn ssl_config(self, ssl_config: SslConfig) -> Self {
@@ -243,7 +247,7 @@ impl Definition {
 
         let bytes = self
             .to_cbt_definition()
-            .entrypoint("pg_dump".to_string())
+            .entrypoint("pg_dump")
             .arguments(effective_arguments)
             .envs(effective_config.to_pg_env())
             .mounts(mounts)
@@ -455,7 +459,7 @@ mod test {
 
         let result = definition.apply_command(
             "test-command".parse().unwrap(),
-            Command::new("echo".to_string(), vec!["test".to_string()]),
+            Command::new("echo", vec!["test"]),
         );
 
         assert!(result.is_ok());
@@ -469,16 +473,11 @@ mod test {
         let seed_name: SeedName = "test-command".parse().unwrap();
 
         let definition = definition
-            .apply_command(
-                seed_name.clone(),
-                Command::new("echo".to_string(), vec!["test1".to_string()]),
-            )
+            .apply_command(seed_name.clone(), Command::new("echo", vec!["test1"]))
             .unwrap();
 
-        let result = definition.apply_command(
-            seed_name.clone(),
-            Command::new("echo".to_string(), vec!["test2".to_string()]),
-        );
+        let result =
+            definition.apply_command(seed_name.clone(), Command::new("echo", vec!["test2"]));
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
     }
@@ -487,8 +486,7 @@ mod test {
     fn test_apply_script_adds_seed() {
         let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
 
-        let result =
-            definition.apply_script("test-script".parse().unwrap(), "echo test".to_string());
+        let result = definition.apply_script("test-script".parse().unwrap(), "echo test");
 
         assert!(result.is_ok());
         let definition = result.unwrap();
@@ -501,10 +499,10 @@ mod test {
         let seed_name: SeedName = "test-script".parse().unwrap();
 
         let definition = definition
-            .apply_script(seed_name.clone(), "echo test1".to_string())
+            .apply_script(seed_name.clone(), "echo test1")
             .unwrap();
 
-        let result = definition.apply_script(seed_name.clone(), "echo test2".to_string());
+        let result = definition.apply_script(seed_name.clone(), "echo test2");
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
     }

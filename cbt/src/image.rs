@@ -187,20 +187,16 @@ impl BuildDefinition {
     }
 
     fn build_image(&self, target_image: Image) -> Image {
-        let mut arguments = vec![
-            "build".to_string(),
-            "--tag".to_string(),
-            target_image.as_str().to_string(),
-        ];
+        let mut arguments = vec!["build".into(), "--tag".into(), target_image.as_str().into()];
 
         for (key, value) in &self.build_arguments {
-            arguments.push("--build-arg".to_string());
+            arguments.push("--build-arg".into());
             arguments.push(format!("{}={}", key.as_str(), value.as_str()));
         }
 
         match &self.source {
             BuildSource::Directory(path) => {
-                arguments.push(path.to_string_lossy().to_string());
+                arguments.push(path.to_string_lossy().into());
 
                 self.backend
                     .command()
@@ -208,7 +204,7 @@ impl BuildDefinition {
                     .capture_only_stdout();
             }
             BuildSource::Instructions(content) => {
-                arguments.push("-".to_string());
+                arguments.push("-".into());
                 self.backend
                     .command()
                     .arguments(arguments)
