@@ -82,6 +82,15 @@ impl Entrypoint {
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Workdir(String);
+
+impl Workdir {
+    fn arguments(&self) -> Vec<String> {
+        vec!["--workdir".to_string(), self.0.clone()]
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Definition {
     backend: Backend,
     container_arguments: Vec<String>,
@@ -92,6 +101,7 @@ pub struct Definition {
     remove: Option<Remove>,
     mounts: Vec<Mount>,
     publish: Vec<Publish>,
+    workdir: Option<Workdir>,
 }
 
 impl Definition {
@@ -106,6 +116,7 @@ impl Definition {
             mounts: vec![],
             publish: vec![],
             remove: None,
+            workdir: None,
         }
     }
 
@@ -126,6 +137,13 @@ impl Definition {
     pub fn entrypoint(self, command: String) -> Self {
         Self {
             entrypoint: Some(Entrypoint(command)),
+            ..self
+        }
+    }
+
+    pub fn workdir(self, path: String) -> Self {
+        Self {
+            workdir: Some(Workdir(path)),
             ..self
         }
     }
@@ -273,6 +291,12 @@ impl Definition {
                 self.mounts
                     .iter()
                     .flat_map(|mount| ["--mount".to_string(), mount.0.clone()]),
+            )
+            .arguments(
+                self.workdir
+                    .as_ref()
+                    .map(|workdir| workdir.arguments())
+                    .unwrap_or_default(),
             )
             .arguments(
                 self.entrypoint
