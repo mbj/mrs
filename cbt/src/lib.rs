@@ -134,30 +134,30 @@ impl Definition {
         Self { backend, ..self }
     }
 
-    pub fn entrypoint(self, command: String) -> Self {
+    pub fn entrypoint(self, command: impl Into<String>) -> Self {
         Self {
-            entrypoint: Some(Entrypoint(command)),
+            entrypoint: Some(Entrypoint(command.into())),
             ..self
         }
     }
 
-    pub fn workdir(self, path: String) -> Self {
+    pub fn workdir(self, path: impl Into<String>) -> Self {
         Self {
-            workdir: Some(Workdir(path)),
+            workdir: Some(Workdir(path.into())),
             ..self
         }
     }
 
-    pub fn arguments(self, arguments: Vec<String>) -> Self {
+    pub fn arguments(self, arguments: impl IntoIterator<Item = impl Into<String>>) -> Self {
         Self {
-            container_arguments: arguments,
+            container_arguments: arguments.into_iter().map(|a| a.into()).collect(),
             ..self
         }
     }
 
-    pub fn argument(self, argument: String) -> Self {
+    pub fn argument(self, argument: impl Into<String>) -> Self {
         let mut container_arguments = self.container_arguments.clone();
-        container_arguments.push(argument);
+        container_arguments.push(argument.into());
         Self {
             container_arguments,
             ..self

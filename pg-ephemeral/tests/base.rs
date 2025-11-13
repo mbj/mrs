@@ -338,10 +338,7 @@ fn test_config_seeds_command() {
         ),
         (
             "run-migration".parse().unwrap(),
-            pg_ephemeral::Seed::Command(pg_ephemeral::Command::new(
-                "migrate".to_string(),
-                vec!["up".to_string()],
-            )),
+            pg_ephemeral::Seed::Command(pg_ephemeral::Command::new("migrate", ["up"])),
         ),
     ]
     .into();
@@ -416,10 +413,7 @@ fn test_config_seeds_mixed() {
         ),
         (
             "migrate".parse().unwrap(),
-            pg_ephemeral::Seed::Command(pg_ephemeral::Command::new(
-                "migrate".to_string(),
-                vec!["up".to_string(), "--verbose".to_string()],
-            )),
+            pg_ephemeral::Seed::Command(pg_ephemeral::Command::new("migrate", ["up", "--verbose"])),
         ),
         (
             "verify".parse().unwrap(),

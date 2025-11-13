@@ -5,8 +5,8 @@ fn test_hello_world() {
     let backend = cbt::test_backend_setup!();
 
     let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
-        .entrypoint("echo".to_string())
-        .argument("Hello, World!".to_string())
+        .entrypoint("echo")
+        .argument("Hello, World!")
         .remove();
 
     let output = definition.run_capture_only_stdout();
@@ -26,8 +26,8 @@ fn test_container_with_env_vars() {
     let backend = cbt::test_backend_setup!();
 
     let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
-        .entrypoint("sh".to_string())
-        .arguments(vec!["-c".to_string(), "echo $TEST_VAR".to_string()])
+        .entrypoint("sh")
+        .arguments(["-c", "echo $TEST_VAR"])
         .env("TEST_VAR", "test_value")
         .remove();
 
@@ -42,11 +42,8 @@ fn test_container_detached_and_exec() {
     let backend = cbt::test_backend_setup!();
 
     let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
-        .entrypoint("sh".to_string())
-        .arguments(vec![
-            "-c".to_string(),
-            "trap 'exit 0' TERM; sleep 30 & wait".to_string(),
-        ]);
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
     definition.with_container(|container| {
         let output = container.exec_capture_only_stdout([], "echo", ["Container is running!"]);
@@ -82,11 +79,8 @@ fn test_read_host_tcp_port_not_published() {
     let backend = cbt::test_backend_setup!();
 
     let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
-        .entrypoint("sh".to_string())
-        .arguments(vec![
-            "-c".to_string(),
-            "trap 'exit 0' TERM; sleep 30 & wait".to_string(),
-        ]);
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
     definition.with_container(|container| {
         let host_port = container.read_host_tcp_port(8080);
@@ -274,8 +268,8 @@ fn test_image_build_with_build_args() {
 
     // Verify the build arg was used by checking the file created during build
     let def = cbt::Definition::new(backend, image.clone())
-        .entrypoint("cat".to_string())
-        .arguments(vec!["/test-output".to_string()])
+        .entrypoint("cat")
+        .arguments(["/test-output"])
         .remove();
 
     let output = def.run_capture_only_stdout();
@@ -345,7 +339,7 @@ fn test_run_status_with_successful_exit() {
     let backend = cbt::test_backend_setup!();
 
     let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
-        .entrypoint("true".to_string())
+        .entrypoint("true")
         .remove();
 
     let status = definition.run_status();
@@ -357,7 +351,7 @@ fn test_run_status_with_nonzero_exit() {
     let backend = cbt::test_backend_setup!();
 
     let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
-        .entrypoint("false".to_string())
+        .entrypoint("false")
         .remove();
 
     let status = definition.run_status();
@@ -369,7 +363,7 @@ fn test_run_status_success_with_successful_exit() {
     let backend = cbt::test_backend_setup!();
 
     cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
-        .entrypoint("true".to_string())
+        .entrypoint("true")
         .remove()
         .run_status_success();
 }
@@ -383,7 +377,7 @@ fn test_run_status_success_with_nonzero_exit() {
     let backend = cbt::test_backend_setup!();
 
     cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
-        .entrypoint("false".to_string())
+        .entrypoint("false")
         .remove()
         .run_status_success();
 }
@@ -393,8 +387,8 @@ fn test_container_with_workdir() {
     let backend = cbt::test_backend_setup!();
 
     let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
-        .entrypoint("pwd".to_string())
-        .workdir("/tmp".to_string())
+        .entrypoint("pwd")
+        .workdir("/tmp")
         .remove();
 
     let output = definition.run_capture_only_stdout();
