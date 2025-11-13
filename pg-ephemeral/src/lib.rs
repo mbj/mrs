@@ -1,5 +1,6 @@
 use rand::Rng;
 
+pub mod certificate;
 pub mod cli;
 pub mod config;
 pub mod definition;
@@ -25,6 +26,19 @@ impl mmigration::SchemaDump for SchemaDump<'_> {
     }
 }
 
+const SSL_SETUP_SCRIPT: &str = r#"
+printf '%s' "$PG_EPHEMERAL_CA_CERT_PEM" > ${PG_EPHEMERAL_SSL_DIR}/root.crt
+printf '%s' "$PG_EPHEMERAL_SERVER_CERT_PEM" > ${PG_EPHEMERAL_SSL_DIR}/server.crt
+printf '%s' "$PG_EPHEMERAL_SERVER_KEY_PEM" > ${PG_EPHEMERAL_SSL_DIR}/server.key
+chown postgres ${PG_EPHEMERAL_SSL_DIR}/root.crt
+chown postgres ${PG_EPHEMERAL_SSL_DIR}/server.crt
+chown postgres ${PG_EPHEMERAL_SSL_DIR}/server.key
+chmod 600 ${PG_EPHEMERAL_SSL_DIR}/root.crt
+chmod 600 ${PG_EPHEMERAL_SSL_DIR}/server.crt
+chmod 600 ${PG_EPHEMERAL_SSL_DIR}/server.key
+exec docker-entrypoint.sh "$@"
+"#;
+
 #[derive(Debug)]
 pub struct Container<'a> {
     client_config: pg_client::Config,
@@ -36,13 +50,45 @@ impl<'a> Container<'a> {
     fn run(definition: &'a Definition) -> Self {
         let password = generate_password();
 
-        let container = definition
+        let mut cbt_definition = definition
             .to_cbt_definition()
             .remove()
             .env("POSTGRES_PASSWORD", password.as_ref())
             .env("POSTGRES_USER", definition.superuser.as_ref())
-            .publish(cbt::Publish::from("127.0.0.1::5432/tcp"))
-            .run_detached();
+            .publish(cbt::Publish::from("127.0.0.1::5432/tcp"));
+
+        let ssl_bundle = if let Some(ssl_config) = &definition.ssl_config {
+            let hostname = match ssl_config {
+                definition::SslConfig::Generated { hostname } => hostname.as_str(),
+            };
+
+            let bundle = certificate::Bundle::generate(hostname)
+                .expect("Failed to generate SSL certificate bundle");
+
+            let ssl_dir = "/var/lib/postgresql";
+
+            cbt_definition = cbt_definition
+                .entrypoint("sh".to_string())
+                .argument("-e".to_string())
+                .argument("-c".to_string())
+                .argument(SSL_SETUP_SCRIPT.to_string())
+                .argument("--".to_string())
+                .argument("postgres".to_string())
+                .argument("--ssl=on".to_string())
+                .argument(format!("--ssl_cert_file={}/server.crt", ssl_dir))
+                .argument(format!("--ssl_key_file={}/server.key", ssl_dir))
+                .argument(format!("--ssl_ca_file={}/root.crt", ssl_dir))
+                .env("PG_EPHEMERAL_SSL_DIR", ssl_dir)
+                .env("PG_EPHEMERAL_CA_CERT_PEM", &bundle.ca_cert_pem)
+                .env("PG_EPHEMERAL_SERVER_CERT_PEM", &bundle.server_cert_pem)
+                .env("PG_EPHEMERAL_SERVER_KEY_PEM", &bundle.server_key_pem);
+
+            Some(bundle)
+        } else {
+            None
+        };
+
+        let container = cbt_definition.run_detached();
 
         let port = pg_client::Port(
             container
@@ -50,19 +96,47 @@ impl<'a> Container<'a> {
                 .expect("port 5432 not published"),
         );
 
-        let host = pg_client::host!("localhost");
+        let (host, host_addr, ssl_mode, ssl_root_cert) =
+            if let Some(ssl_config) = &definition.ssl_config {
+                let hostname = match ssl_config {
+                    definition::SslConfig::Generated { hostname } => hostname.clone(),
+                };
+
+                let timestamp = std::time::SystemTime::now()
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .unwrap()
+                    .as_nanos();
+                let ca_cert_path =
+                    std::env::temp_dir().join(format!("pg_ephemeral_ca_{}.crt", timestamp));
+                std::fs::write(&ca_cert_path, &ssl_bundle.as_ref().unwrap().ca_cert_pem)
+                    .expect("Failed to write CA certificate to temp file");
+
+                (
+                    pg_client::Host::HostName(hostname),
+                    Some("127.0.0.1".parse().unwrap()),
+                    pg_client::SslMode::VerifyFull,
+                    Some(pg_client::SslRootCert::File(ca_cert_path)),
+                )
+            } else {
+                (
+                    pg_client::host!("localhost"),
+                    None,
+                    pg_client::SslMode::Disable,
+                    None,
+                )
+            };
 
         let client_config = pg_client::Config {
             application_name: definition.application_name.clone(),
             database: definition.database.clone(),
             endpoint: pg_client::Endpoint::Network {
                 host,
-                host_addr: None,
+                host_addr,
                 port: Some(port),
             },
             password: Some(password),
-            ssl_mode: pg_client::SslMode::Disable,
-            ssl_root_cert: None,
+            ssl_mode,
+            ssl_root_cert,
             username: definition.superuser.clone(),
         };
 
@@ -90,7 +164,14 @@ impl<'a> Container<'a> {
     pub async fn wait_available(&self) {
         let config = self.client_config.to_sqlx_connect_options().unwrap();
 
-        for _ in 0..100 {
+        let start = std::time::Instant::now();
+        let max_duration = std::time::Duration::from_secs(10);
+        let sleep_duration = std::time::Duration::from_millis(100);
+
+        let mut last_error: Option<_> = None;
+
+        while start.elapsed() <= max_duration {
+            log::trace!("connection attempt");
             match sqlx::ConnectOptions::connect(&config).await {
                 Ok(connection) => {
                     sqlx::Connection::close(connection)
@@ -106,12 +187,15 @@ impl<'a> Container<'a> {
                 }
                 Err(error) => {
                     log::trace!("{error:#?}, retry in 100ms");
+                    last_error = Some(error);
                 }
             }
-            std::thread::sleep(std::time::Duration::from_millis(100));
+            tokio::time::sleep(sleep_duration).await;
         }
 
-        panic!("container did not become avaialble within ~10 seconds!");
+        panic!(
+            "Container did not become avaialble within ~10 seconds! Last connection error: {last_error:#?}"
+        );
     }
 
     fn exec_schema_dump(&self) -> String {
@@ -163,7 +247,10 @@ impl<'a> Container<'a> {
     pub async fn apply_sql(&self, sql: &str) {
         self.with_connection(async |connection| {
             log::debug!("Executing: {sql}");
-            sqlx::raw_sql(sql).execute(connection).await.unwrap();
+            sqlx::raw_sql(sqlx::AssertSqlSafe(sql))
+                .execute(connection)
+                .await
+                .unwrap();
         })
         .await
     }
