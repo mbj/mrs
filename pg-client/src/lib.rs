@@ -818,6 +818,132 @@ mod test {
         assert_eq!(expected, serde_json::to_value(config).unwrap());
     }
 
+    fn repeat(char: char, len: usize) -> String {
+        std::iter::repeat(char).take(len).collect()
+    }
+
+    #[test]
+    fn application_name_lt_max_length() {
+        let value = repeat('a', 62);
+
+        let application_name =
+            ApplicationName::from_str(&value).expect("expected valid value less than max");
+
+        assert_eq!(application_name, ApplicationName(value));
+    }
+
+    #[test]
+    fn application_name_eq_max_length() {
+        let value = repeat('a', 63);
+
+        let application_name =
+            ApplicationName::from_str(&value).expect("expected valid value equal to max");
+
+        assert_eq!(application_name, ApplicationName(value));
+    }
+
+    #[test]
+    fn application_name_gt_max_length() {
+        let value = repeat('a', 64);
+
+        let err = ApplicationName::from_str(&value).expect_err("expected max length failure");
+
+        assert_eq!(
+            err,
+            "ApplicationName byte max length: {max_length} violated, got: {actual}"
+        );
+    }
+
+    #[test]
+    fn database_lt_max_length() {
+        let value = repeat('d', 62);
+
+        let database = Database::from_str(&value).expect("expected valid value less than max");
+
+        assert_eq!(database, Database(value));
+    }
+
+    #[test]
+    fn database_eq_max_length() {
+        let value = repeat('d', 63);
+
+        let database = Database::from_str(&value).expect("expected valid value equal to max");
+
+        assert_eq!(database, Database(value));
+    }
+
+    #[test]
+    fn database_gt_max_length() {
+        let value = repeat('d', 64);
+
+        let err = Database::from_str(&value).expect_err("expected max length failure");
+
+        assert_eq!(
+            err,
+            "Database byte max length: {max_length} violated, got: {actual}"
+        );
+    }
+
+    #[test]
+    fn username_lt_max_length() {
+        let value = repeat('u', 62);
+
+        let username = Username::from_str(&value).expect("expected valid value less than max");
+
+        assert_eq!(username, Username(value));
+    }
+
+    #[test]
+    fn username_eq_max_length() {
+        let value = repeat('u', 63);
+
+        let username = Username::from_str(&value).expect("expected valid value equal to max");
+
+        assert_eq!(username, Username(value));
+    }
+
+    #[test]
+    fn username_gt_max_length() {
+        let value = repeat('u', 64);
+
+        let err = Username::from_str(&value).expect_err("expected max length failure");
+
+        assert_eq!(
+            err,
+            "Username byte max length: {max_length} violated, got: {actual}"
+        );
+    }
+
+    #[test]
+    fn password_lt_max_length() {
+        let value = repeat('p', 4095);
+
+        let password = Password::from_str(&value).expect("expected valid value less than max");
+
+        assert_eq!(password, Password(value));
+    }
+
+    #[test]
+    fn password_eq_max_length() {
+        let value = repeat('p', 4096);
+
+        let password = Password::from_str(&value).expect("expected valid value equal to max");
+
+        assert_eq!(password, Password(value));
+    }
+
+    #[test]
+    fn password_gt_max_length() {
+        let value = repeat('p', 4097);
+
+        let err = Password::from_str(&value).expect_err("expected max length failure");
+
+        assert_eq!(
+            err,
+            "Password byte max length: {max_length} violated, got: {actual}"
+        );
+    }
+
     #[test]
     fn test_json() {
         let config = Config {
