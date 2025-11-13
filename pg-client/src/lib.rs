@@ -19,6 +19,8 @@ macro_rules! from_str_impl {
                         stringify!($struct),
                         " byte max length: {max_length} violated, got: {actual}"
                     ))
+                } else if value.as_bytes().contains(&0) {
+                    Err(concat!(stringify!($struct), " contains NUL byte"))
                 } else {
                     Ok(Self(value.to_string()))
                 }
@@ -888,6 +890,15 @@ mod test {
     }
 
     #[test]
+    fn application_name_contains_nul() {
+        let value = String::from('\0');
+
+        let err = ApplicationName::from_str(&value).expect_err("expected NUL failure");
+
+        assert_eq!(err, "ApplicationName contains NUL byte");
+    }
+
+    #[test]
     fn database_lt_min_length() {
         let value = String::new();
 
@@ -945,6 +956,15 @@ mod test {
             err,
             "Database byte max length: {max_length} violated, got: {actual}"
         );
+    }
+
+    #[test]
+    fn database_contains_nul() {
+        let value = String::from('\0');
+
+        let err = Database::from_str(&value).expect_err("expected NUL failure");
+
+        assert_eq!(err, "Database contains NUL byte");
     }
 
     #[test]
@@ -1008,6 +1028,15 @@ mod test {
     }
 
     #[test]
+    fn username_contains_nul() {
+        let value = String::from('\0');
+
+        let err = Username::from_str(&value).expect_err("expected NUL failure");
+
+        assert_eq!(err, "Username contains NUL byte");
+    }
+
+    #[test]
     fn password_eq_min_length() {
         let value = String::new();
 
@@ -1053,6 +1082,15 @@ mod test {
             err,
             "Password byte max length: {max_length} violated, got: {actual}"
         );
+    }
+
+    #[test]
+    fn password_contains_nul() {
+        let value = String::from('\0');
+
+        let err = Password::from_str(&value).expect_err("expected NUL failure");
+
+        assert_eq!(err, "Password contains NUL byte");
     }
 
     #[test]
