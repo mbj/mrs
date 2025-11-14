@@ -123,6 +123,69 @@ impl From<HostName> for Host {
     }
 }
 
+impl From<std::net::IpAddr> for Host {
+    fn from(value: std::net::IpAddr) -> Self {
+        Self::IpAddr(value)
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct HostAddr(pub std::net::IpAddr);
+
+impl From<std::net::IpAddr> for HostAddr {
+    /// # Example
+    /// ```
+    /// use pg_client::HostAddr;
+    /// use std::net::IpAddr;
+    ///
+    /// let ip: IpAddr = "192.168.1.1".parse().unwrap();
+    /// let host_addr = HostAddr::from(ip);
+    /// assert_eq!(host_addr.0.to_string(), "192.168.1.1");
+    /// ```
+    fn from(value: std::net::IpAddr) -> Self {
+        Self(value)
+    }
+}
+
+impl std::fmt::Display for HostAddr {
+    /// # Example
+    /// ```
+    /// use pg_client::HostAddr;
+    ///
+    /// let host_addr: HostAddr = "10.0.0.1".parse().unwrap();
+    /// assert_eq!(host_addr.to_string(), "10.0.0.1");
+    /// ```
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(formatter, "{}", self.0)
+    }
+}
+
+impl std::str::FromStr for HostAddr {
+    type Err = &'static str;
+
+    /// # Example
+    /// ```
+    /// use pg_client::HostAddr;
+    /// use std::str::FromStr;
+    ///
+    /// let host_addr = HostAddr::from_str("127.0.0.1").unwrap();
+    /// assert_eq!(host_addr.to_string(), "127.0.0.1");
+    ///
+    /// // Also works with the parse method
+    /// let host_addr: HostAddr = "::1".parse().unwrap();
+    /// assert_eq!(host_addr.to_string(), "::1");
+    ///
+    /// // Invalid IP addresses return an error
+    /// assert!(HostAddr::from_str("not-an-ip").is_err());
+    /// ```
+    fn from_str(value: &str) -> Result<Self, Self::Err> {
+        match std::net::IpAddr::from_str(value) {
+            Ok(addr) => Ok(Self(addr)),
+            Err(_) => Err("invalid IP address"),
+        }
+    }
+}
+
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum Endpoint {
     Network {
@@ -145,7 +208,7 @@ impl serde::Serialize for Endpoint {
                 let mut state = serializer.serialize_struct("Endpoint", 3)?;
                 state.serialize_field("host", host)?;
                 if let Some(addr) = host_addr {
-                    state.serialize_field("host_addr", &addr.to_pg_env_value())?;
+                    state.serialize_field("host_addr", &addr.to_string())?;
                 }
                 if let Some(port) = port {
                     state.serialize_field("port", port)?;
@@ -160,32 +223,6 @@ impl serde::Serialize for Endpoint {
                 )?;
                 state.end()
             }
-        }
-    }
-}
-
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct HostAddr(std::net::IpAddr);
-
-impl HostAddr {
-    fn to_pg_env_value(&self) -> String {
-        self.0.to_string()
-    }
-}
-
-impl std::fmt::Display for HostAddr {
-    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(formatter, "{}", self.0)
-    }
-}
-
-impl std::str::FromStr for HostAddr {
-    type Err = &'static str;
-
-    fn from_str(value: &str) -> Result<Self, Self::Err> {
-        match std::net::IpAddr::from_str(value) {
-            Ok(addr) => Ok(Self(addr)),
-            Err(_) => Err("socket address"),
         }
     }
 }
@@ -492,7 +529,7 @@ impl Config {
     ///     Config {
     ///         endpoint: Endpoint::Network {
     ///             host: Host::from_str("some-host").unwrap(),
-    ///             host_addr: Some(HostAddr::from_str("127.0.0.1").unwrap()),
+    ///             host_addr: Some("127.0.0.1".parse().unwrap()),
     ///             port: Some(Port(5432)),
     ///         },
     ///         ..config.clone()
@@ -571,7 +608,7 @@ impl Config {
                 // host_addr has no dedicated URL component
                 if let Some(addr) = host_addr {
                     url.query_pairs_mut()
-                        .append_pair("hostaddr", &addr.to_pg_env_value());
+                        .append_pair("hostaddr", &addr.to_string());
                 }
             }
             Endpoint::SocketPath(path) => {
@@ -678,7 +715,7 @@ impl Config {
                     map.insert("PGPORT", port.to_pg_env_value());
                 }
                 if let Some(addr) = host_addr {
-                    map.insert("PGHOSTADDR", addr.to_pg_env_value());
+                    map.insert("PGHOSTADDR", addr.to_string());
                 }
             }
             Endpoint::SocketPath(path) => {
@@ -1262,7 +1299,7 @@ mod test {
             &Config {
                 endpoint: Endpoint::Network {
                     host: Host::from_str("some-host").unwrap(),
-                    host_addr: Some(HostAddr::from_str("192.168.1.100").unwrap()),
+                    host_addr: Some("192.168.1.100".parse().unwrap()),
                     port: Some(Port(5432)),
                 },
                 ..config.clone()
@@ -1305,7 +1342,7 @@ mod test {
             &Config {
                 endpoint: Endpoint::Network {
                     host: Host::from_str("some-host").unwrap(),
-                    host_addr: Some(HostAddr::from_str("10.0.0.1").unwrap()),
+                    host_addr: Some("10.0.0.1".parse().unwrap()),
                     port: None,
                 },
                 ..config.clone()
