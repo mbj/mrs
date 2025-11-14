@@ -165,7 +165,7 @@ fn test_image_build_if_absent() {
     let image2 = definition.build_if_absent();
     assert!(backend.is_image_present(&image2));
 
-    assert_eq!(image2, image2);
+    assert_eq!(image1, image2);
 
     backend.remove_image(&image1);
 }
