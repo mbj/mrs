@@ -41,6 +41,7 @@ exec docker-entrypoint.sh "$@"
 
 #[derive(Debug)]
 pub struct Container<'a> {
+    host_port: pg_client::Port,
     client_config: pg_client::Config,
     container: cbt::Container,
     definition: &'a Definition,
@@ -50,12 +51,18 @@ impl<'a> Container<'a> {
     fn run(definition: &'a Definition) -> Self {
         let password = generate_password();
 
+        let publish_addr = if definition.cross_container_access {
+            "0.0.0.0::5432/tcp"
+        } else {
+            "127.0.0.1::5432/tcp"
+        };
+
         let mut cbt_definition = definition
             .to_cbt_definition()
             .remove()
             .env("POSTGRES_PASSWORD", password.as_ref())
             .env("POSTGRES_USER", definition.superuser.as_ref())
-            .publish(cbt::Publish::from("127.0.0.1::5432/tcp"));
+            .publish(cbt::Publish::from(publish_addr));
 
         let ssl_bundle = if let Some(ssl_config) = &definition.ssl_config {
             let hostname = match ssl_config {
@@ -141,6 +148,7 @@ impl<'a> Container<'a> {
         };
 
         Container {
+            host_port: port,
             container,
             definition,
             client_config,
@@ -280,6 +288,43 @@ impl<'a> Container<'a> {
             };
         }
         config
+    }
+
+    pub fn cross_container_client_config(&self) -> pg_client::Config {
+        // Resolve host.docker.internal from inside a container
+        // This DNS name only works from inside containers, not from the host
+        // On Linux with Docker Engine, we need to add --add-host host.docker.internal:host-gateway
+        let output = self
+            .definition
+            .backend
+            .command()
+            .argument("run")
+            .argument("--rm")
+            .argument("--add-host")
+            .argument("host.docker.internal:host-gateway")
+            .argument("alpine:latest")
+            .argument("getent")
+            .argument("hosts")
+            .argument("host.docker.internal")
+            .capture_only_stdout();
+
+        // getent hosts output format: "IP_ADDRESS HOSTNAME [ALIASES...]"
+        // Extract the first field (IP address) before whitespace
+        let host: pg_client::Host = std::str::from_utf8(&output)
+            .expect("Invalid UTF-8 in getent output")
+            .split_whitespace()
+            .next()
+            .expect("No IP address found in getent output")
+            .parse()
+            .expect("Failed to parse IP address from container DNS resolution");
+
+        let endpoint = pg_client::Endpoint::Network {
+            host,
+            host_addr: None,
+            port: Some(self.host_port),
+        };
+
+        self.client_config.clone().endpoint(endpoint)
     }
 
     pub fn pg_env(&self) -> std::collections::BTreeMap<&'static str, String> {

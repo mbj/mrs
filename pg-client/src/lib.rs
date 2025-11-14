@@ -195,7 +195,7 @@ impl std::str::FromStr for HostAddr {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct Port(pub u16);
 
 impl std::str::FromStr for Port {
@@ -210,7 +210,7 @@ impl std::str::FromStr for Port {
 }
 
 impl Port {
-    fn to_pg_env_value(&self) -> String {
+    fn to_pg_env_value(self) -> String {
         self.0.to_string()
     }
 }
@@ -808,6 +808,10 @@ impl Config {
         sqlx::Connection::close(connection).await.unwrap();
 
         Ok(result)
+    }
+
+    pub fn endpoint(self, endpoint: Endpoint) -> Self {
+        Self { endpoint, ..self }
     }
 }
 

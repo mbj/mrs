@@ -71,7 +71,8 @@ fn test_config_file() {
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
                     superuser: pg_client::username!("postgres"),
-                    image: "17.1".parse().unwrap()
+                    image: "17.1".parse().unwrap(),
+                    cross_container_access: false,
                 }
             ),
             (
@@ -84,7 +85,8 @@ fn test_config_file() {
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
                     superuser: pg_client::username!("postgres"),
-                    image: "17.2".parse().unwrap()
+                    image: "17.2".parse().unwrap(),
+                    cross_container_access: false,
                 }
             )
         ]),
@@ -107,7 +109,8 @@ fn test_config_file() {
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
                     superuser: pg_client::username!("postgres"),
-                    image: "18.0".parse().unwrap()
+                    image: "18.0".parse().unwrap(),
+                    cross_container_access: false,
                 }
             ),
             (
@@ -120,7 +123,8 @@ fn test_config_file() {
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
                     superuser: pg_client::username!("postgres"),
-                    image: "18.0".parse().unwrap()
+                    image: "18.0".parse().unwrap(),
+                    cross_container_access: false,
                 }
             )
         ]),
@@ -150,7 +154,8 @@ fn test_config_file_no_explicit_instance() {
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
                 superuser: pg_client::username!("postgres"),
-                image: "17.1".parse().unwrap()
+                image: "17.1".parse().unwrap(),
+                cross_container_access: false,
             }
         ),]),
         pg_ephemeral::Config::load_toml_file(
@@ -171,7 +176,8 @@ fn test_config_file_no_explicit_instance() {
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
                 superuser: pg_client::username!("postgres"),
-                image: "18.0".parse().unwrap()
+                image: "18.0".parse().unwrap(),
+                cross_container_access: false,
             }
         ),]),
         pg_ephemeral::Config::load_toml_file(
@@ -215,6 +221,7 @@ fn test_config_ssl() {
                 }),
                 superuser: pg_client::username!("postgres"),
                 image: "18.0".parse().unwrap(),
+                cross_container_access: false,
             }
         )]),
         pg_ephemeral::Config::load_toml(config_str)

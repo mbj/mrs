@@ -142,6 +142,7 @@ impl InstanceDefinition {
             ssl_config,
             superuser: pg_client::username!("postgres"),
             image,
+            cross_container_access: false,
         })
     }
 }
