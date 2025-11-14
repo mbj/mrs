@@ -19,8 +19,8 @@ pub struct App {
     config_file: Option<std::path::PathBuf>,
     /// Overwrite backend
     ///
-    /// If not specified on the CLI and not in the config file will be autotected:
-    /// first based on env variable CBT_BACKEND, than on installed tools.
+    /// If not specified on the CLI and not in the config file will be autodetected:
+    /// first based on env variable CBT_BACKEND, then on installed tools.
     /// If the autodetection fails exits with an error.
     #[arg(long)]
     backend: Option<cbt::Backend>,
@@ -106,7 +106,7 @@ pub enum Command {
     /// Run interactive psql session on the container
     #[command(name = "container-psql")]
     ContainerPsql,
-    /// Run schema dump form the container
+    /// Run schema dump from the container
     #[command(name = "container-schema-dump")]
     ContainerSchemaDump,
     /// Run interactive shell on the container
@@ -116,8 +116,8 @@ pub enum Command {
     ///
     /// Intent to be used for automation with other languages wrapping pg-ephemeral.
     ///
-    /// After sucessful boot this command will print a single line to stdout containing a JSON
-    /// represnetation of the root connection details.
+    /// After successful boot this command will print a single line to stdout containing a JSON
+    /// representation of the root connection details.
     ///
     /// The server will stop once stdin returns EOF, aka the parent process closed it.
     #[command(name = "integration-server")]

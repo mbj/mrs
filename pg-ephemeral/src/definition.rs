@@ -332,7 +332,7 @@ pub mod cli {
     pub enum Command {
         /// Run interactive psql session on the container
         ContainerPsql,
-        /// Run schema dump form the container
+        /// Run schema dump from the container
         ContainerSchemaDump,
         /// Run interactive shell on the container
         ContainerShell,
@@ -340,8 +340,8 @@ pub mod cli {
         ///
         /// Intent to be used for automation with other languages wrapping pg-ephemeral.
         ///
-        /// After sucessful boot this command will print a single line to stdout containing a JSON
-        /// represnetation of the root connection details.
+        /// After successful boot this command will print a single line to stdout containing a JSON
+        /// representation of the root connection details.
         ///
         /// The server will stop once stdin returns EOF, aka the parent process closed it.
         IntegrationServer,
