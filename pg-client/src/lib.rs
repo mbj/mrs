@@ -498,6 +498,44 @@ impl Config {
     ///         ..config.clone()
     ///     }.to_url()
     /// );
+    ///
+    /// // IPv4 example
+    /// let ipv4_config = Config {
+    ///     application_name: None,
+    ///     database: Database::from_str("mydb").unwrap(),
+    ///     endpoint: Endpoint::Network {
+    ///         host: Host::IpAddr(std::net::IpAddr::V4(std::net::Ipv4Addr::new(127, 0, 0, 1))),
+    ///         host_addr: None,
+    ///         port: Some(Port(5432)),
+    ///     },
+    ///     password: None,
+    ///     ssl_mode: SslMode::Disable,
+    ///     ssl_root_cert: None,
+    ///     username: Username::from_str("user").unwrap(),
+    /// };
+    /// assert_eq!(
+    ///     ipv4_config.to_url().to_string(),
+    ///     "postgres://user@127.0.0.1:5432/mydb?sslmode=disable"
+    /// );
+    ///
+    /// // IPv6 example (automatically bracketed)
+    /// let ipv6_config = Config {
+    ///     application_name: None,
+    ///     database: Database::from_str("mydb").unwrap(),
+    ///     endpoint: Endpoint::Network {
+    ///         host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::LOCALHOST)),
+    ///         host_addr: None,
+    ///         port: Some(Port(5432)),
+    ///     },
+    ///     password: None,
+    ///     ssl_mode: SslMode::Disable,
+    ///     ssl_root_cert: None,
+    ///     username: Username::from_str("user").unwrap(),
+    /// };
+    /// assert_eq!(
+    ///     ipv6_config.to_url().to_string(),
+    ///     "postgres://user@[::1]:5432/mydb?sslmode=disable"
+    /// );
     /// ```
     pub fn to_url(&self) -> url::Url {
         let mut url = url::Url::parse("postgres://").unwrap();
@@ -508,7 +546,15 @@ impl Config {
                 host_addr,
                 port,
             } => {
-                url.set_host(Some(&host.to_pg_env_value())).unwrap();
+                // Use set_ip_host for IP addresses to handle IPv6 bracketing automatically
+                match host {
+                    Host::IpAddr(ip_addr) => {
+                        url.set_ip_host(*ip_addr).unwrap();
+                    }
+                    Host::HostName(hostname) => {
+                        url.set_host(Some(hostname.as_str())).unwrap();
+                    }
+                }
                 url.set_username(self.username.to_pg_env_value().as_str())
                     .unwrap();
 
@@ -1264,6 +1310,123 @@ mod test {
                 },
                 ..config.clone()
             },
+        );
+    }
+
+    #[test]
+    fn test_ipv6_url_formation() {
+        // Test IPv6 loopback address
+        let config_ipv6_loopback = Config {
+            application_name: None,
+            database: Database::from_str("testdb").unwrap(),
+            endpoint: Endpoint::Network {
+                host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::LOCALHOST)),
+                host_addr: None,
+                port: Some(Port(5432)),
+            },
+            password: None,
+            ssl_mode: SslMode::Disable,
+            ssl_root_cert: None,
+            username: Username::from_str("postgres").unwrap(),
+        };
+
+        let url = config_ipv6_loopback.to_url();
+        assert_eq!(
+            url.to_string(),
+            "postgres://postgres@[::1]:5432/testdb?sslmode=disable",
+            "IPv6 loopback address should be bracketed in URL"
+        );
+
+        // Test fe80 link-local IPv6 address
+        let config_ipv6_fe80 = Config {
+            application_name: None,
+            database: Database::from_str("testdb").unwrap(),
+            endpoint: Endpoint::Network {
+                host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::new(
+                    0xfe80, 0, 0, 0, 0, 0, 0, 1,
+                ))),
+                host_addr: None,
+                port: Some(Port(5432)),
+            },
+            password: None,
+            ssl_mode: SslMode::Disable,
+            ssl_root_cert: None,
+            username: Username::from_str("postgres").unwrap(),
+        };
+
+        let url = config_ipv6_fe80.to_url();
+        assert_eq!(
+            url.to_string(),
+            "postgres://postgres@[fe80::1]:5432/testdb?sslmode=disable",
+            "IPv6 link-local address should be bracketed in URL"
+        );
+
+        // Test full IPv6 address
+        let config_ipv6_full = Config {
+            application_name: None,
+            database: Database::from_str("testdb").unwrap(),
+            endpoint: Endpoint::Network {
+                host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::new(
+                    0x2001, 0x0db8, 0, 0, 0, 0, 0, 1,
+                ))),
+                host_addr: None,
+                port: Some(Port(5432)),
+            },
+            password: None,
+            ssl_mode: SslMode::Disable,
+            ssl_root_cert: None,
+            username: Username::from_str("postgres").unwrap(),
+        };
+
+        let url = config_ipv6_full.to_url();
+        assert_eq!(
+            url.to_string(),
+            "postgres://postgres@[2001:db8::1]:5432/testdb?sslmode=disable",
+            "Full IPv6 address should be bracketed in URL"
+        );
+
+        // Test IPv4 address (should NOT be bracketed)
+        let config_ipv4 = Config {
+            application_name: None,
+            database: Database::from_str("testdb").unwrap(),
+            endpoint: Endpoint::Network {
+                host: Host::IpAddr(std::net::IpAddr::V4(std::net::Ipv4Addr::LOCALHOST)),
+                host_addr: None,
+                port: Some(Port(5432)),
+            },
+            password: None,
+            ssl_mode: SslMode::Disable,
+            ssl_root_cert: None,
+            username: Username::from_str("postgres").unwrap(),
+        };
+
+        let url = config_ipv4.to_url();
+        assert_eq!(
+            url.to_string(),
+            "postgres://postgres@127.0.0.1:5432/testdb?sslmode=disable",
+            "IPv4 address should NOT be bracketed in URL"
+        );
+
+        // Test hostname (should NOT be bracketed)
+        let config_hostname = Config {
+            application_name: None,
+            database: Database::from_str("testdb").unwrap(),
+            endpoint: Endpoint::Network {
+                host: Host::from_str("localhost").unwrap(),
+                host_addr: None,
+                port: Some(Port(5432)),
+            },
+            password: None,
+            ssl_mode: SslMode::Disable,
+            ssl_root_cert: None,
+            username: Username::from_str("postgres").unwrap(),
+        };
+
+        let url = config_hostname.to_url();
+        assert_eq!(
+            url.to_string(),
+            "postgres://postgres@localhost:5432/testdb?sslmode=disable",
+            "Hostname should NOT be bracketed in URL"
         );
     }
 }
