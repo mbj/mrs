@@ -242,8 +242,9 @@ impl<'a> Container<'a> {
     pub async fn apply_sql_file_git_revision(
         &self,
         path: &std::path::Path,
-        git_revision: &'static str,
+        git_revision: impl Into<String>,
     ) {
+        let git_revision = git_revision.into();
         let sql = cbt::Command::new("git")
             .argument("show")
             .argument(format!("{git_revision}:{}", path.to_str().unwrap()))

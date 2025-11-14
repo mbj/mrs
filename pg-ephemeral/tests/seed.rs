@@ -101,3 +101,155 @@ async fn test_script_seed_receives_environment() {
         })
         .await
 }
+
+#[test]
+fn test_git_revision_seed() {
+    let _backend = cbt::test_backend_setup!();
+
+    // Create a temporary directory for the git repository
+    let repo_path = std::env::temp_dir().join(format!("pg-ephemeral-test-{}", std::process::id()));
+    std::fs::create_dir_all(&repo_path).unwrap();
+
+    // Initialize git repository
+    std::process::Command::new("git")
+        .arg("init")
+        .current_dir(&repo_path)
+        .output()
+        .unwrap();
+
+    // Configure git with hardcoded author (no environment reflection)
+    std::process::Command::new("git")
+        .args(["config", "user.name", "Test User"])
+        .current_dir(&repo_path)
+        .output()
+        .unwrap();
+
+    std::process::Command::new("git")
+        .args(["config", "user.email", "test@example.com"])
+        .current_dir(&repo_path)
+        .output()
+        .unwrap();
+
+    // Create seed.sql with table creation and insert for commit 1
+    let seed_path = repo_path.join("seed.sql");
+    std::fs::write(
+        &seed_path,
+        indoc::indoc! {r#"
+            CREATE TABLE users (id INTEGER PRIMARY KEY);
+            INSERT INTO users (id) VALUES (1);
+        "#},
+    )
+    .unwrap();
+
+    // Commit v1
+    std::process::Command::new("git")
+        .args(["add", "seed.sql"])
+        .current_dir(&repo_path)
+        .output()
+        .unwrap();
+
+    std::process::Command::new("git")
+        .args([
+            "commit",
+            "--message=Initial data",
+            "--author=Test User <test@example.com>",
+        ])
+        .current_dir(&repo_path)
+        .output()
+        .unwrap();
+
+    // Get the first commit hash
+    let commit1_output = std::process::Command::new("git")
+        .args(["rev-parse", "HEAD"])
+        .current_dir(&repo_path)
+        .output()
+        .unwrap();
+    let commit1_hash = String::from_utf8(commit1_output.stdout)
+        .unwrap()
+        .trim()
+        .to_string();
+
+    // Modify seed.sql to insert different data for commit 2
+    std::fs::write(
+        &seed_path,
+        indoc::indoc! {r#"
+            CREATE TABLE users (id INTEGER PRIMARY KEY);
+            INSERT INTO users (id) VALUES (2);
+        "#},
+    )
+    .unwrap();
+
+    // Commit v2
+    std::process::Command::new("git")
+        .args(["add", "seed.sql"])
+        .current_dir(&repo_path)
+        .output()
+        .unwrap();
+
+    std::process::Command::new("git")
+        .args([
+            "commit",
+            "--message=Different data",
+            "--author=Test User <test@example.com>",
+        ])
+        .current_dir(&repo_path)
+        .output()
+        .unwrap();
+
+    // Create TOML config that references commit1
+    let config_path = repo_path.join("database.toml");
+    let config_content = indoc::formatdoc! {r#"
+        image = "17.1"
+
+        [instances.main.seeds.schema]
+        type = "sql-file"
+        path = "seed.sql"
+        git_revision = "{commit1_hash}"
+    "#};
+    std::fs::write(&config_path, config_content).unwrap();
+
+    // Get path to pg-ephemeral binary using the canonical Cargo test environment variable
+    let pg_ephemeral_bin = env!("CARGO_BIN_EXE_pg-ephemeral");
+
+    // Start pg-ephemeral integration-server
+    let mut server = std::process::Command::new(pg_ephemeral_bin)
+        .arg("integration-server")
+        .current_dir(&repo_path)
+        .stdin(std::process::Stdio::piped())
+        .stdout(std::process::Stdio::piped())
+        .stderr(std::process::Stdio::inherit())
+        .spawn()
+        .unwrap();
+
+    // Read the JSON output with connection details
+    use std::io::BufRead;
+    std::io::BufReader::new(server.stdout.as_mut().unwrap())
+        .lines()
+        .next()
+        .unwrap()
+        .unwrap();
+
+    // Run psql command to query the data
+    let output = std::process::Command::new(pg_ephemeral_bin)
+        .arg("run-env")
+        .arg("--")
+        .arg("psql")
+        .arg("--csv")
+        .arg("--command=SELECT id FROM users ORDER BY id")
+        .current_dir(&repo_path)
+        .stderr(std::process::Stdio::inherit())
+        .output()
+        .unwrap();
+
+    assert!(output.status.success(), "psql command failed");
+
+    // Verify we have the data from commit 1 (id=1), not commit 2 (id=2)
+    assert_eq!(String::from_utf8(output.stdout).unwrap().trim(), "id\n1");
+
+    // Stop the server by closing stdin and wait for it to finish
+    drop(server.stdin.take());
+    server.wait().unwrap();
+
+    // Clean up temporary directory
+    std::fs::remove_dir_all(&repo_path).unwrap();
+}
