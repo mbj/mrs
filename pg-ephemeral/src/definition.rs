@@ -43,6 +43,7 @@ pub struct Definition {
     pub ssl_config: Option<SslConfig>,
     pub superuser: pg_client::Username,
     pub image: crate::image::Image,
+    pub cross_container_access: bool,
 }
 
 impl Definition {
@@ -56,6 +57,7 @@ impl Definition {
             superuser: pg_client::username!("postgres"),
             database: pg_client::database!("postgres"),
             image,
+            cross_container_access: false,
         }
     }
 
@@ -131,6 +133,13 @@ impl Definition {
     pub fn ssl_config(self, ssl_config: SslConfig) -> Self {
         Self {
             ssl_config: Some(ssl_config),
+            ..self
+        }
+    }
+
+    pub fn cross_container_access(self, enabled: bool) -> Self {
+        Self {
+            cross_container_access: enabled,
             ..self
         }
     }
