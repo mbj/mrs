@@ -115,7 +115,7 @@ impl InstanceDefinition {
         };
 
         let backend: cbt::Backend = match overwrites.backend.or(self.backend).or(defaults.backend) {
-            Some(image) => image,
+            Some(backend) => backend,
             None => match autodetect.result() {
                 Ok(value) => *value,
                 Err(error) => return Err(Error::BackendAutodetect(error.clone())),
