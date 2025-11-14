@@ -231,6 +231,7 @@ impl Definition {
 
     fn execute_script(&self, db_container: &Container<'_>, script: &str) {
         let mut cmd = std::process::Command::new("sh");
+        cmd.arg("-e");
         cmd.arg("-c");
         cmd.arg(script);
 
