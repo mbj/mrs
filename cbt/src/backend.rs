@@ -76,6 +76,156 @@ impl Backend {
     fn podman_command() -> Command {
         Command::new("podman")
     }
+
+    /// Create a hostname resolver that runs inside a container
+    ///
+    /// This is useful for resolving DNS names that only work inside containers
+    /// (e.g., host.docker.internal) or when you need to see how DNS resolves
+    /// from within a containerized environment.
+    ///
+    /// # Example
+    /// ```no_run
+    /// let ip = cbt::backend::autodetect::run()
+    ///     .unwrap()
+    ///     .container_resolver()
+    ///     .add_host("host.docker.internal:host-gateway")
+    ///     .resolve("host.docker.internal")
+    ///     .unwrap();
+    /// ```
+    pub fn container_resolver(&self) -> ContainerHostnameResolver {
+        ContainerHostnameResolver::new(*self)
+    }
+
+    /// Resolve host.docker.internal to an IP address
+    ///
+    /// This is a convenience method that resolves the special hostname
+    /// host.docker.internal, which allows containers to connect back to
+    /// services running on the host machine.
+    ///
+    /// On Linux with Docker Engine, this requires the --add-host flag with
+    /// host-gateway, which this method handles automatically.
+    ///
+    /// # Example
+    /// ```no_run
+    /// let ip = cbt::backend::autodetect::run()
+    ///     .unwrap()
+    ///     .resolve_host_docker_internal()
+    ///     .unwrap();
+    /// ```
+    pub fn resolve_host_docker_internal(&self) -> Result<std::net::IpAddr, ResolveHostnameError> {
+        self.container_resolver()
+            .add_host("host.docker.internal:host-gateway")
+            .resolve("host.docker.internal")
+    }
+}
+
+#[derive(Clone, Debug, thiserror::Error)]
+pub enum ResolveHostnameError {
+    #[error("hostname resolution command failed: {0}")]
+    CommandFailed(String),
+
+    #[error("Invalid UTF-8 in resolution output")]
+    InvalidUtf8,
+
+    #[error("No IP address found in resolution output for hostname: {0}")]
+    NoIpAddressFound(String),
+
+    #[error("Failed to parse IP address from resolution output: {source}")]
+    ParseError {
+        output: String,
+        #[source]
+        source: std::net::AddrParseError,
+    },
+}
+
+/// Resolves hostnames from within a container environment
+///
+/// This allows you to resolve DNS names as they would appear from within
+/// a container, which is useful for names like host.docker.internal or
+/// service names in custom Docker networks.
+pub struct ContainerHostnameResolver {
+    backend: Backend,
+    container_arguments: Vec<String>,
+}
+
+impl ContainerHostnameResolver {
+    fn new(backend: Backend) -> Self {
+        Self {
+            backend,
+            container_arguments: vec![],
+        }
+    }
+
+    /// Add a custom host mapping (--add-host)
+    pub fn add_host(mut self, mapping: impl Into<String>) -> Self {
+        self.container_arguments.push("--add-host".to_string());
+        self.container_arguments.push(mapping.into());
+        self
+    }
+
+    /// Specify a Docker/Podman network to use (--network)
+    pub fn network(mut self, network: impl Into<String>) -> Self {
+        self.container_arguments.push("--network".to_string());
+        self.container_arguments.push(network.into());
+        self
+    }
+
+    /// Add a custom container argument
+    pub fn argument(mut self, argument: impl Into<String>) -> Self {
+        self.container_arguments.push(argument.into());
+        self
+    }
+
+    /// Add multiple custom container arguments
+    pub fn arguments(mut self, arguments: impl IntoIterator<Item = impl Into<String>>) -> Self {
+        for argument in arguments {
+            self.container_arguments.push(argument.into());
+        }
+        self
+    }
+
+    /// Resolve the hostname to an IP address
+    ///
+    /// If multiple IP addresses are available for the hostname, returns the first one.
+    ///
+    /// # Arguments
+    /// * `hostname` - The hostname to resolve
+    ///
+    /// # Returns
+    /// The resolved IP address (supports both IPv4 and IPv6)
+    pub fn resolve(self, hostname: &str) -> Result<std::net::IpAddr, ResolveHostnameError> {
+        const ALPINE_IMAGE: &str = "alpine:latest";
+
+        let output = self
+            .backend
+            .command()
+            .argument("run")
+            .argument("--rm")
+            .arguments(&self.container_arguments)
+            .argument(ALPINE_IMAGE)
+            .argument("getent")
+            .argument("hosts")
+            .argument(hostname)
+            .capture_only_stdout_result()
+            .map_err(|error| ResolveHostnameError::CommandFailed(error.to_string()))?;
+
+        // Parse output: "IP_ADDRESS HOSTNAME [ALIASES...]"
+        // Extract the first IP address from the output
+        let output_str =
+            std::str::from_utf8(&output).map_err(|_| ResolveHostnameError::InvalidUtf8)?;
+
+        let ip_str = output_str
+            .split_whitespace()
+            .next()
+            .ok_or_else(|| ResolveHostnameError::NoIpAddressFound(hostname.to_string()))?;
+
+        ip_str
+            .parse()
+            .map_err(|parse_error| ResolveHostnameError::ParseError {
+                output: output_str.to_string(),
+                source: parse_error,
+            })
+    }
 }
 
 pub mod autodetect {
@@ -151,5 +301,93 @@ pub mod autodetect {
         pub fn result(&self) -> &Result {
             self.0.get_or_init(run)
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_container_resolver_localhost() {
+        let backend = crate::test_backend_setup!();
+
+        let ip = backend.container_resolver().resolve("localhost").unwrap();
+
+        assert!(ip.is_loopback());
+    }
+
+    #[test]
+    fn test_container_resolver_with_add_host() {
+        let backend = crate::test_backend_setup!();
+
+        let ip = backend
+            .container_resolver()
+            .add_host("host.docker.internal:host-gateway")
+            .resolve("host.docker.internal")
+            .unwrap();
+
+        // Should resolve to some IP address
+        assert!(ip.is_ipv4() || ip.is_ipv6());
+    }
+
+    #[test]
+    fn test_container_resolver_nonexistent() {
+        let backend = crate::test_backend_setup!();
+
+        let result = backend
+            .container_resolver()
+            .resolve("this-definitely-does-not-exist-12345.local");
+
+        assert!(result.is_err());
+        match result {
+            Err(ResolveHostnameError::CommandFailed(_)) => {
+                // Expected: hostname resolution will fail for nonexistent hostname
+            }
+            other => panic!("Expected CommandFailed error, got: {:?}", other),
+        }
+    }
+
+    #[test]
+    fn test_container_resolver_with_multiple_arguments() {
+        let backend = crate::test_backend_setup!();
+
+        let ip = backend
+            .container_resolver()
+            .add_host("custom-host:192.168.1.100")
+            .resolve("custom-host")
+            .unwrap();
+
+        assert_eq!(
+            ip,
+            std::net::IpAddr::V4(std::net::Ipv4Addr::new(192, 168, 1, 100))
+        );
+    }
+
+    #[test]
+    fn test_container_resolver_builder_pattern() {
+        let backend = crate::test_backend_setup!();
+
+        let resolver = backend
+            .container_resolver()
+            .argument("--add-host")
+            .argument("test-host:10.0.0.1");
+
+        let ip = resolver.resolve("test-host").unwrap();
+
+        assert_eq!(
+            ip,
+            std::net::IpAddr::V4(std::net::Ipv4Addr::new(10, 0, 0, 1))
+        );
+    }
+
+    #[test]
+    fn test_resolve_host_docker_internal() {
+        let backend = crate::test_backend_setup!();
+
+        let ip = backend.resolve_host_docker_internal().unwrap();
+
+        // Should resolve to some IP address
+        assert!(ip.is_ipv4() || ip.is_ipv6());
     }
 }
