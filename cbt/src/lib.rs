@@ -237,6 +237,16 @@ impl Definition {
         Self { publish, ..self }
     }
 
+    pub fn publishes(self, values: impl IntoIterator<Item = Publish>) -> Self {
+        let mut publish = self.publish.clone();
+
+        for value in values.into_iter() {
+            publish.push(value);
+        }
+
+        Self { publish, ..self }
+    }
+
     pub fn mount(self, value: Mount) -> Self {
         let mut mounts = self.mounts.clone();
 
