@@ -269,14 +269,8 @@ impl Definition {
             .mounts(mounts)
             .run_capture_only_stdout();
 
-        convert_schema(&bytes)
+        crate::convert_schema(&bytes)
     }
-}
-
-fn convert_schema(value: &[u8]) -> String {
-    std::str::from_utf8(value)
-        .expect("schema contains invalid utf8")
-        .to_string()
 }
 
 pub fn apply_cbt_mounts(client_config: &pg_client::Config) -> (pg_client::Config, Vec<cbt::Mount>) {

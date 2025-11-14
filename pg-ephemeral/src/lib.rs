@@ -334,7 +334,7 @@ fn generate_password() -> pg_client::Password {
     <pg_client::Password as std::str::FromStr>::from_str(&value).unwrap()
 }
 
-fn convert_schema(value: &[u8]) -> String {
+pub(crate) fn convert_schema(value: &[u8]) -> String {
     std::str::from_utf8(value)
         .expect("schema contains invalid utf8")
         .to_string()
