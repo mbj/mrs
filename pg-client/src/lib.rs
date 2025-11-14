@@ -79,7 +79,6 @@ impl<'de> serde::Deserialize<'de> for HostName {
 pub enum Host {
     HostName(HostName),
     IpAddr(std::net::IpAddr),
-    SocketPath(std::path::PathBuf),
 }
 
 impl serde::Serialize for Host {
@@ -93,10 +92,6 @@ impl Host {
         match self {
             Self::HostName(value) => value.0.clone(),
             Self::IpAddr(value) => value.to_string(),
-            Self::SocketPath(value) => value
-                .to_str()
-                .expect("socket path contains invalid utf8")
-                .to_string(),
         }
     }
 }
