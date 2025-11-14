@@ -40,6 +40,7 @@ impl From<std::io::Error> for IoError {
 pub enum SeedConfig {
     SqlFile {
         path: std::path::PathBuf,
+        git_revision: Option<String>,
     },
     Command {
         command: String,
@@ -53,7 +54,10 @@ pub enum SeedConfig {
 impl From<SeedConfig> for Seed {
     fn from(value: SeedConfig) -> Self {
         match value {
-            SeedConfig::SqlFile { path } => Seed::SqlFile(path),
+            SeedConfig::SqlFile { path, git_revision } => match git_revision {
+                Some(git_revision) => Seed::SqlFileGitRevision { git_revision, path },
+                None => Seed::SqlFile(path),
+            },
             SeedConfig::Command { command, arguments } => {
                 Seed::Command(Command::new(command, arguments))
             }

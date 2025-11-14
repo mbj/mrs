@@ -78,7 +78,7 @@ pub enum Seed {
     ApplyPendingMigrationsNoSchemaDump,
     SqlFile(std::path::PathBuf),
     SqlFileGitRevision {
-        git_revision: &'static str,
+        git_revision: String,
         path: std::path::PathBuf,
     },
     Command(Command),

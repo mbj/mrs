@@ -109,9 +109,15 @@ impl Definition {
         self,
         name: SeedName,
         path: std::path::PathBuf,
-        git_revision: &'static str,
+        git_revision: impl Into<String>,
     ) -> Result<Self, DuplicateSeedName> {
-        self.add_seed(name, Seed::SqlFileGitRevision { git_revision, path })
+        self.add_seed(
+            name,
+            Seed::SqlFileGitRevision {
+                git_revision: git_revision.into(),
+                path,
+            },
+        )
     }
 
     pub fn apply_command(
