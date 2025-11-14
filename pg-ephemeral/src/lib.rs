@@ -292,13 +292,13 @@ impl<'a> Container<'a> {
     }
 
     pub fn cross_container_client_config(&self) -> pg_client::Config {
-        // Resolve host.docker.internal from inside a container
+        // Resolve the container host from inside a container
         // This DNS name only works from inside containers, not from the host
         let ip_address = self
             .definition
             .backend
-            .resolve_host_docker_internal()
-            .expect("Failed to resolve host.docker.internal from container");
+            .resolve_container_host()
+            .expect("Failed to resolve container host from container");
 
         let endpoint = pg_client::Endpoint::Network {
             host: pg_client::Host::IpAddr(ip_address),
