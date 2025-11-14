@@ -1,4 +1,4 @@
-/// Postgresql images supported, references images from https://hub.docker.com/_/postgres
+/// Postgresql images supported, references images from <https://hub.docker.com/_/postgres>
 #[derive(Clone, Debug, PartialEq)]
 pub enum Image {
     /// Official release
@@ -169,7 +169,7 @@ impl std::fmt::Display for ReleaseCandidateNumber {
     }
 }
 
-/// Postgresql images supported, references images from https://hub.docker.com/_/postgres
+/// Operating system variant for PostgreSQL Docker images
 #[derive(Clone, Debug, PartialEq)]
 pub enum OS {
     Default,
