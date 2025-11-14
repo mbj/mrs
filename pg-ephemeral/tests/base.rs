@@ -460,3 +460,46 @@ fn test_config_seeds_duplicate_name() {
         "}
     );
 }
+
+#[test]
+fn test_config_seeds_with_git_revision() {
+    let toml = indoc::indoc! {r#"
+        backend = "docker"
+        image = "17.1"
+
+        [instances.main.seeds.from-git]
+        type = "sql-file"
+        path = "tests/fixtures/schema.sql"
+        git_revision = "main"
+
+        [instances.main.seeds.from-filesystem]
+        type = "sql-file"
+        path = "tests/fixtures/create_users.sql"
+    "#};
+
+    let config = pg_ephemeral::Config::load_toml(toml)
+        .unwrap()
+        .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+        .unwrap();
+
+    let definition = config
+        .get(&pg_ephemeral::InstanceName("main".to_string()))
+        .unwrap();
+
+    let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
+        (
+            "from-git".parse().unwrap(),
+            pg_ephemeral::Seed::SqlFileGitRevision {
+                git_revision: "main".to_string(),
+                path: "tests/fixtures/schema.sql".into(),
+            },
+        ),
+        (
+            "from-filesystem".parse().unwrap(),
+            pg_ephemeral::Seed::SqlFile("tests/fixtures/create_users.sql".into()),
+        ),
+    ]
+    .into();
+
+    assert_eq!(definition.seeds, expected_seeds);
+}
