@@ -30,6 +30,12 @@ impl From<String> for Mount {
     }
 }
 
+impl Mount {
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Image(String);
 
@@ -69,6 +75,12 @@ impl AsRef<std::ffi::OsStr> for Publish {
 impl From<&str> for Publish {
     fn from(value: &str) -> Self {
         Self(value.to_string())
+    }
+}
+
+impl Publish {
+    pub fn as_str(&self) -> &str {
+        &self.0
     }
 }
 
@@ -253,8 +265,8 @@ impl Definition {
         }
     }
 
-    pub fn run_capture_only_stdout(self) -> Vec<u8> {
-        self.no_detach().run_output()
+    pub fn run_capture_only_stdout(&self) -> Vec<u8> {
+        self.clone().no_detach().run_output()
     }
 
     /// Runs the container and returns the exit status.
@@ -340,6 +352,12 @@ impl std::convert::TryFrom<&[u8]> for ContainerId {
 impl AsRef<std::ffi::OsStr> for ContainerId {
     fn as_ref(&self) -> &std::ffi::OsStr {
         self.0.as_ref()
+    }
+}
+
+impl ContainerId {
+    pub fn as_str(&self) -> &str {
+        &self.0
     }
 }
 
