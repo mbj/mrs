@@ -1,0 +1,82 @@
+# frozen_string_literal: true
+
+require 'open3'
+require 'pathname'
+require 'json'
+require 'pg'
+require 'unparser'
+require 'rubygems'
+
+module PgEphemeral
+  def self.binary_path
+    gem_dir = Gem::Specification.find_by_name('pg-ephemeral').gem_dir
+    File.join(gem_dir, 'bin', 'pg-ephemeral')
+  end
+
+  def self.version
+    stdout, _stderr, status = Open3.capture3(binary_path, '--version')
+
+    unless status.success?
+      raise "Failed to get version from pg-ephemeral binary"
+    end
+
+    stdout.match(/\Apg-ephemeral (?<version>.+)\n\z/)[:version]
+  end
+
+  def self.with_server(instance_name: 'main', &block)
+    run_server(instance_name, &block).from_right
+  end
+
+  def self.with_connection(instance_name: 'main', &block)
+    with_server(instance_name: instance_name) do |server|
+      connection = PG.connect(server.url)
+
+      begin
+        block.call(connection)
+      ensure
+        connection.close
+      end
+    end
+  end
+
+  def self.run_server(instance_name, &block)
+    command = [
+      binary_path,
+      'instance',
+      '--name', instance_name,
+      'integration-server',
+      'v0'
+    ]
+
+    Open3.popen2(*command) do |stdin, stdout, wait_thread|
+      config_json = stdout.gets
+
+      return Unparser::Either::Left.new('Failed to read server configuration') unless config_json
+
+      url = JSON.parse(config_json).fetch('url')
+      server = Server.new(url, stdin, wait_thread)
+
+      begin
+        Unparser::Either::Right.new(block.call(server))
+      ensure
+        server.shutdown
+      end
+    end
+  end
+  private_class_method :run_server
+
+  class Server
+    attr_reader :url
+
+    def initialize(url, stdin, wait_thread)
+      @url = url
+      @stdin = stdin
+      @wait_thread = wait_thread
+    end
+
+    def shutdown
+      @stdin.close unless @stdin.closed?
+      @wait_thread.value
+    end
+  end
+end

@@ -214,6 +214,8 @@ fn test_git_revision_seed() {
     // Start pg-ephemeral integration-server
     let mut server = std::process::Command::new(pg_ephemeral_bin)
         .arg("integration-server")
+        .arg("--protocol")
+        .arg("v0")
         .current_dir(&repo_path)
         .stdin(std::process::Stdio::piped())
         .stdout(std::process::Stdio::piped())
