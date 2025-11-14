@@ -3,7 +3,7 @@ pub mod command;
 pub mod image;
 pub mod testing;
 
-pub use backend::Backend;
+pub use backend::{Backend, ContainerHostnameResolver, ResolveHostnameError};
 pub use command::Command;
 pub use image::{
     BuildArgumentKey, BuildArgumentKeyError, BuildArgumentValue, BuildDefinition, BuildSource,
