@@ -5,8 +5,8 @@
 #[allow(clippy::test_attr_in_doctest)]
 /// Check if the current platform is not supported for container tests
 ///
-/// Returns `true` on macOS running in GitHub Actions, where container
-/// runtime is not available or reliable.
+/// Returns `true` on ARM macOS (Apple Silicon) running in GitHub Actions, where
+/// Docker is not available. Intel macOS in GitHub Actions supports Docker.
 ///
 /// # Example
 ///
@@ -20,7 +20,9 @@
 /// }
 /// ```
 pub fn platform_not_supported() -> bool {
-    std::env::consts::OS == "macos" && std::env::var("GITHUB_ACTIONS").is_ok()
+    std::env::consts::OS == "macos"
+        && std::env::consts::ARCH == "aarch64"
+        && std::env::var("GITHUB_ACTIONS").is_ok()
 }
 
 #[macro_export]

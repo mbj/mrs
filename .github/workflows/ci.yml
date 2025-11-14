@@ -46,6 +46,19 @@ jobs:
           ~/.rustup
         key: ${{ matrix.os.version }}-build-${{ matrix.os.cargo_build_target }}-${{ hashFiles('.github/workflows/ci.yml', '**/Cargo.lock', 'rust-toolchain.toml') }}
 
+    - name: Setup Docker on Intel macOS
+      if: ${{ matrix.os.version == 'macos-15-intel' }}
+      uses: douglascamata/setup-docker-macos-action@1a5b5b065020af325e060039ba557f09055b767c
+
+    - name: Install and configure Docker Buildx on Intel macOS
+      if: ${{ matrix.os.version == 'macos-15-intel' }}
+      run: |
+        brew install docker-buildx
+        mkdir -p ~/.docker/cli-plugins
+        ln -sfn $(which docker-buildx) ~/.docker/cli-plugins/docker-buildx
+        docker buildx install
+        colima restart
+
     - name: Run fmt
       run: cargo fmt --check
 

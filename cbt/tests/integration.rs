@@ -370,9 +370,9 @@ fn test_run_status_success_with_successful_exit() {
 
 #[test]
 #[should_panic(expected = "Container execution failed with status: exit status: 1")]
-// we are not executing on OSX as on GH there is no docker support so cannot run into the panic
-// there.
-#[cfg(not(target_os = "macos"))]
+// we are not executing on ARM macOS as on GH there is no docker support so cannot run into the panic
+// there. Intel macOS in GH Actions supports Docker.
+#[cfg(not(all(target_os = "macos", target_arch = "aarch64")))]
 fn test_run_status_success_with_nonzero_exit() {
     let backend = cbt::test_backend_setup!();
 
