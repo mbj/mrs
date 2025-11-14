@@ -2,7 +2,8 @@
 pub async fn test_database_url_integration(language: &str, image_dir: &str) {
     let backend = cbt::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(backend.into(), pg_ephemeral::Image::default());
+    let definition = pg_ephemeral::Definition::new(backend.into(), pg_ephemeral::Image::default())
+        .cross_container_access(true);
 
     definition
         .with_container(async |container| {
@@ -16,13 +17,17 @@ pub async fn test_database_url_integration(language: &str, image_dir: &str) {
                 .argument(image_dir)
                 .capture_only_stdout();
 
+            let database_url = container
+                .cross_container_client_config()
+                .to_url()
+                .to_string();
+
             let output = backend
                 .command()
                 .argument("run")
                 .argument("--rm")
-                .argument("--network=host")
                 .argument("--env")
-                .argument(format!("DATABASE_URL={}", container.database_url()))
+                .argument(format!("DATABASE_URL={}", database_url))
                 .argument(&image_tag)
                 .capture_only_stdout_result();
 
