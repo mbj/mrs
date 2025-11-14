@@ -293,33 +293,14 @@ impl<'a> Container<'a> {
     pub fn cross_container_client_config(&self) -> pg_client::Config {
         // Resolve host.docker.internal from inside a container
         // This DNS name only works from inside containers, not from the host
-        // On Linux with Docker Engine, we need to add --add-host host.docker.internal:host-gateway
-        let output = self
+        let ip_address = self
             .definition
             .backend
-            .command()
-            .argument("run")
-            .argument("--rm")
-            .argument("--add-host")
-            .argument("host.docker.internal:host-gateway")
-            .argument("alpine:latest")
-            .argument("getent")
-            .argument("hosts")
-            .argument("host.docker.internal")
-            .capture_only_stdout();
-
-        // getent hosts output format: "IP_ADDRESS HOSTNAME [ALIASES...]"
-        // Extract the first field (IP address) before whitespace
-        let host: pg_client::Host = std::str::from_utf8(&output)
-            .expect("Invalid UTF-8 in getent output")
-            .split_whitespace()
-            .next()
-            .expect("No IP address found in getent output")
-            .parse()
-            .expect("Failed to parse IP address from container DNS resolution");
+            .resolve_host_docker_internal()
+            .expect("Failed to resolve host.docker.internal from container");
 
         let endpoint = pg_client::Endpoint::Network {
-            host,
+            host: pg_client::Host::IpAddr(ip_address),
             host_addr: None,
             port: Some(self.host_port),
         };
