@@ -15,6 +15,8 @@ jobs:
         os:
         - cargo_build_target: aarch64-apple-darwin
           version: macos-15
+        - cargo_build_target: x86_64-apple-darwin
+          version: macos-15-intel
         - cargo_build_target: aarch64-unknown-linux-musl
           version: ubuntu-24.04-arm
         - cargo_build_target: aarch64-unknown-linux-gnu
