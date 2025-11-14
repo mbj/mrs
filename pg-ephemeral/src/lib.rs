@@ -202,7 +202,7 @@ impl<'a> Container<'a> {
         }
 
         panic!(
-            "Container did not become avaialble within ~10 seconds! Last connection error: {last_error:#?}"
+            "Container did not become available within ~10 seconds! Last connection error: {last_error:#?}"
         );
     }
 

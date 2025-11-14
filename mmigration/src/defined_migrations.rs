@@ -91,11 +91,11 @@ impl DefinedMigrations {
 
     /// Add new defined migration
     ///
-    /// Its required migration indexes are added consective!
+    /// It's required migration indexes are added consecutive!
     ///
     /// ### Examples
     ///
-    /// Add intial migrations from initial
+    /// Add initial migrations from initial
     ///
     /// ```
     /// # use mmigration::*;
@@ -114,7 +114,7 @@ impl DefinedMigrations {
     /// });
     /// ```
     ///
-    /// Add intial migrations after initial was long deleted
+    /// Add initial migrations after initial was long deleted
     ///
     /// ```
     /// # use mmigration::*;
@@ -222,7 +222,7 @@ impl DefinedMigrations {
     ///
     /// defined.add(PendingMigration {
     ///     index: 0.into(),
-    ///     name: migration_name!("exmaple"),
+    ///     name: migration_name!("example"),
     ///     raw_sql: "SELECT 1".into(),
     /// });
     ///

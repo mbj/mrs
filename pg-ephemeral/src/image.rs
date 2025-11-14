@@ -11,9 +11,9 @@ pub enum Image {
     },
     /// Latest image on docker.com
     ///
-    /// Only use that one for quickand dirty testing, its recommended to always pin
+    /// Only use that one for quick and dirty testing, it's recommended to always pin
     /// specific images in config files. Also note that pg-ephemeral currently never refreshes
-    /// `latest` once cached in the local registry its never refreshed.
+    /// `latest` once cached in the local registry it's never refreshed.
     OfficialLatest { os: OS },
 }
 
