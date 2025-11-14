@@ -58,7 +58,7 @@ impl Image {
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub struct Publish(pub String);
+pub struct Publish(String);
 
 impl AsRef<std::ffi::OsStr> for Publish {
     fn as_ref(&self) -> &std::ffi::OsStr {
