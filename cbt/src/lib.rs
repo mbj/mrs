@@ -281,7 +281,7 @@ impl Definition {
 
     /// Runs the container and returns the exit status.
     pub fn run_status(&self) -> std::process::ExitStatus {
-        self.mk_run_command().status()
+        self.run_command().status()
     }
 
     /// Runs the container and panics on non-zero exit.
@@ -293,7 +293,7 @@ impl Definition {
         }
     }
 
-    fn mk_run_command(&self) -> Command {
+    fn run_command(&self) -> Command {
         self.backend
             .command()
             .argument("run")
@@ -331,7 +331,7 @@ impl Definition {
     }
 
     fn run_output(&self) -> Vec<u8> {
-        self.mk_run_command().capture_only_stdout()
+        self.run_command().capture_only_stdout()
     }
 }
 
