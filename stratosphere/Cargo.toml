@@ -3,6 +3,9 @@ name = "stratosphere"
 version = "0.0.1"
 edition.workspace = true
 
+[lints]
+workspace = true
+
 [dependencies]
 clap = { workspace = true }
 prettyplease = "0.2"

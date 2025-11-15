@@ -3,6 +3,9 @@ name = "stratosphere-generator"
 version = "0.0.1"
 edition.workspace = true
 
+[lints]
+workspace = true
+
 [dependencies]
 pretty_assertions = "1.4"
 prettyplease = "0.2"
