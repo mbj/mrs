@@ -3,6 +3,9 @@ edition.workspace = true
 name = "stack-deploy"
 version = "0.0.1"
 
+[lints]
+workspace = true
+
 [dependencies]
 aws-config = { version = "1", default-features = false }
 aws-sdk-cloudformation = { version = "1", default-features = false }

@@ -6,7 +6,6 @@ env:
   CBT_BACKEND: docker
   RUST_BACKTRACE: full
   RUST_LOG: debug
-  RUSTFLAGS: --deny=warnings
 
 jobs:
   build:

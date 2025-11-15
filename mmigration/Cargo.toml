@@ -3,6 +3,9 @@ name = "mmigration"
 version = "0.0.1"
 edition.workspace = true
 
+[lints]
+workspace = true
+
 [dependencies]
 clap = { workspace = true }
 log = { workspace = true }
