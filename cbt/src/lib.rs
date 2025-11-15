@@ -11,106 +11,170 @@ pub use image::{
 };
 use std::ffi::OsStr;
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-enum Detach {
-    Detach,
+trait Apply {
+    fn apply(&self, command: Command) -> Command;
+}
+
+impl<T: Apply> Apply for Vec<T> {
+    fn apply(&self, command: Command) -> Command {
+        self.iter()
+            .fold(command, |command, item| item.apply(command))
+    }
+}
+
+impl<T: Apply> Apply for Option<T> {
+    fn apply(&self, command: Command) -> Command {
+        match self {
+            Some(item) => item.apply(command),
+            None => command,
+        }
+    }
+}
+
+/// Macro to generate standard implementations for string wrapper newtypes
+macro_rules! string_newtype {
+    ($name:ident) => {
+        impl From<String> for $name {
+            fn from(value: String) -> Self {
+                Self(value)
+            }
+        }
+
+        impl From<&str> for $name {
+            fn from(value: &str) -> Self {
+                Self(value.to_string())
+            }
+        }
+
+        impl AsRef<std::ffi::OsStr> for $name {
+            fn as_ref(&self) -> &std::ffi::OsStr {
+                self.0.as_ref()
+            }
+        }
+
+        impl $name {
+            pub fn as_str(&self) -> &str {
+                &self.0
+            }
+        }
+    };
+}
+
+/// Macro to generate implementations for string wrapper newtypes with static flag + dynamic argument in Apply
+macro_rules! apply_argument {
+    ($name:ident, $flag:expr) => {
+        string_newtype!($name);
+
+        impl Apply for $name {
+            fn apply(&self, command: Command) -> Command {
+                command.argument($flag).argument(self)
+            }
+        }
+    };
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
-enum Remove {
+pub struct ContainerArgument(String);
+
+string_newtype!(ContainerArgument);
+
+impl Apply for ContainerArgument {
+    fn apply(&self, command: Command) -> Command {
+        command.argument(self)
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum Detach {
+    Detach,
+    NoDetach,
+}
+
+impl Apply for Detach {
+    fn apply(&self, command: Command) -> Command {
+        match self {
+            Self::Detach => command.argument("--detach"),
+            Self::NoDetach => command,
+        }
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum Remove {
     Remove,
+    NoRemove,
+}
+
+impl Apply for Remove {
+    fn apply(&self, command: Command) -> Command {
+        match self {
+            Self::Remove => command.argument("--rm"),
+            Self::NoRemove => command,
+        }
+    }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Mount(String);
 
-impl From<String> for Mount {
-    fn from(value: String) -> Self {
-        Self(value)
-    }
-}
-
-impl Mount {
-    pub fn as_str(&self) -> &str {
-        &self.0
-    }
-}
+apply_argument!(Mount, "--mount");
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Image(String);
 
-impl AsRef<std::ffi::OsStr> for Image {
-    fn as_ref(&self) -> &std::ffi::OsStr {
-        self.0.as_ref()
-    }
-}
+string_newtype!(Image);
 
-impl From<String> for Image {
-    fn from(value: String) -> Self {
-        Self(value)
-    }
-}
-
-impl From<&str> for Image {
-    fn from(value: &str) -> Self {
-        Self(value.to_string())
-    }
-}
-
-impl Image {
-    pub fn as_str(&self) -> &str {
-        &self.0
+impl Apply for Image {
+    fn apply(&self, command: Command) -> Command {
+        command.argument(self)
     }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Publish(String);
 
-impl AsRef<std::ffi::OsStr> for Publish {
-    fn as_ref(&self) -> &std::ffi::OsStr {
-        self.0.as_ref()
-    }
-}
-
-impl From<&str> for Publish {
-    fn from(value: &str) -> Self {
-        Self(value.to_string())
-    }
-}
-
-impl Publish {
-    pub fn as_str(&self) -> &str {
-        &self.0
-    }
-}
+apply_argument!(Publish, "--publish");
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Entrypoint(String);
 
-impl Entrypoint {
-    fn arguments(&self) -> Vec<String> {
-        vec!["--entrypoint".to_string(), self.0.clone()]
-    }
-}
+apply_argument!(Entrypoint, "--entrypoint");
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Workdir(String);
 
-impl Workdir {
-    fn arguments(&self) -> Vec<String> {
-        vec!["--workdir".to_string(), self.0.clone()]
+apply_argument!(Workdir, "--workdir");
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct EnvironmentVariables(std::collections::BTreeMap<String, String>);
+
+impl EnvironmentVariables {
+    fn new() -> Self {
+        Self(std::collections::BTreeMap::new())
+    }
+
+    fn insert(&mut self, key: String, value: String) {
+        self.0.insert(key, value);
+    }
+}
+
+impl Apply for EnvironmentVariables {
+    fn apply(&self, command: Command) -> Command {
+        self.0.iter().fold(command, |command, (key, value)| {
+            command.argument("--env").argument(format!("{key}={value}"))
+        })
     }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Definition {
     backend: Backend,
-    container_arguments: Vec<String>,
-    detach: Option<Detach>,
+    container_arguments: Vec<ContainerArgument>,
+    detach: Detach,
     entrypoint: Option<Entrypoint>,
-    env: std::collections::BTreeMap<String, String>,
+    environment_variables: EnvironmentVariables,
     image: Image,
-    remove: Option<Remove>,
+    remove: Remove,
     mounts: Vec<Mount>,
     publish: Vec<Publish>,
     workdir: Option<Workdir>,
@@ -121,13 +185,13 @@ impl Definition {
         Definition {
             backend,
             container_arguments: vec![],
-            detach: None,
+            detach: Detach::NoDetach,
             entrypoint: None,
-            env: std::collections::BTreeMap::new(),
+            environment_variables: EnvironmentVariables::new(),
             image,
             mounts: vec![],
             publish: vec![],
-            remove: None,
+            remove: Remove::NoRemove,
             workdir: None,
         }
     }
@@ -146,28 +210,31 @@ impl Definition {
         Self { backend, ..self }
     }
 
-    pub fn entrypoint(self, command: impl Into<String>) -> Self {
+    pub fn entrypoint(self, command: impl Into<Entrypoint>) -> Self {
         Self {
-            entrypoint: Some(Entrypoint(command.into())),
+            entrypoint: Some(command.into()),
             ..self
         }
     }
 
-    pub fn workdir(self, path: impl Into<String>) -> Self {
+    pub fn workdir(self, path: impl Into<Workdir>) -> Self {
         Self {
-            workdir: Some(Workdir(path.into())),
+            workdir: Some(path.into()),
             ..self
         }
     }
 
-    pub fn arguments(self, arguments: impl IntoIterator<Item = impl Into<String>>) -> Self {
+    pub fn arguments(
+        self,
+        arguments: impl IntoIterator<Item = impl Into<ContainerArgument>>,
+    ) -> Self {
         Self {
-            container_arguments: arguments.into_iter().map(|a| a.into()).collect(),
+            container_arguments: arguments.into_iter().map(Into::into).collect(),
             ..self
         }
     }
 
-    pub fn argument(self, argument: impl Into<String>) -> Self {
+    pub fn argument(self, argument: impl Into<ContainerArgument>) -> Self {
         let mut container_arguments = self.container_arguments.clone();
         container_arguments.push(argument.into());
         Self {
@@ -176,92 +243,86 @@ impl Definition {
         }
     }
 
-    pub fn env(self, key: &str, value: &str) -> Self {
-        let mut env = self.env.clone();
+    pub fn environment_variable(self, key: &str, value: &str) -> Self {
+        let mut environment_variables = self.environment_variables.clone();
 
-        env.insert(key.to_string(), value.to_string());
+        environment_variables.insert(key.to_string(), value.to_string());
 
-        Self { env, ..self }
-    }
-
-    pub fn env_optional(self, key: &str, option: Option<&str>) -> Self {
-        match option {
-            None => self,
-            Some(value) => self.env(key, value),
+        Self {
+            environment_variables,
+            ..self
         }
     }
 
-    pub fn envs<K: ToString, V: ToString>(self, values: impl IntoIterator<Item = (K, V)>) -> Self {
-        let mut env = self.env.clone();
+    pub fn environment_variables<K: ToString, V: ToString>(
+        self,
+        values: impl IntoIterator<Item = (K, V)>,
+    ) -> Self {
+        let mut environment_variables = self.environment_variables.clone();
 
         for (key, value) in values {
-            env.insert(key.to_string(), value.to_string());
+            environment_variables.insert(key.to_string(), value.to_string());
         }
 
-        Self { env, ..self }
+        Self {
+            environment_variables,
+            ..self
+        }
     }
 
     pub fn remove(self) -> Self {
         Self {
-            remove: Some(Remove::Remove),
+            remove: Remove::Remove,
             ..self
         }
     }
 
     pub fn no_remove(self) -> Self {
         Self {
-            remove: None,
+            remove: Remove::NoRemove,
             ..self
         }
     }
 
     pub fn detach(self) -> Self {
         Self {
-            detach: Some(Detach::Detach),
+            detach: Detach::Detach,
             ..self
         }
     }
 
     pub fn no_detach(self) -> Self {
         Self {
-            detach: None,
+            detach: Detach::NoDetach,
             ..self
         }
     }
 
-    pub fn publish(self, value: Publish) -> Self {
+    pub fn publish(self, value: impl Into<Publish>) -> Self {
         let mut publish = self.publish.clone();
 
-        publish.push(value);
+        publish.push(value.into());
 
         Self { publish, ..self }
     }
 
-    pub fn publishes(self, values: impl IntoIterator<Item = Publish>) -> Self {
+    pub fn publishes(self, values: impl IntoIterator<Item = impl Into<Publish>>) -> Self {
         let mut publish = self.publish.clone();
-
-        for value in values.into_iter() {
-            publish.push(value);
-        }
-
+        publish.extend(values.into_iter().map(Into::into));
         Self { publish, ..self }
     }
 
-    pub fn mount(self, value: Mount) -> Self {
+    pub fn mount(self, value: impl Into<Mount>) -> Self {
         let mut mounts = self.mounts.clone();
 
-        mounts.push(value);
+        mounts.push(value.into());
 
         Self { mounts, ..self }
     }
 
-    pub fn mounts(self, values: impl IntoIterator<Item = Mount>) -> Self {
+    pub fn mounts(self, values: impl IntoIterator<Item = impl Into<Mount>>) -> Self {
         let mut mounts = self.mounts.clone();
-
-        for value in values.into_iter() {
-            mounts.push(value);
-        }
-
+        mounts.extend(values.into_iter().map(Into::into));
         Self { mounts, ..self }
     }
 
@@ -281,7 +342,7 @@ impl Definition {
 
     /// Runs the container and returns the exit status.
     pub fn run_status(&self) -> std::process::ExitStatus {
-        self.run_command().status()
+        self.build_run_command().status()
     }
 
     /// Runs the container and panics on non-zero exit.
@@ -293,45 +354,23 @@ impl Definition {
         }
     }
 
-    fn run_command(&self) -> Command {
-        self.backend
-            .command()
-            .argument("run")
-            .optional_argument(self.detach.as_ref().map(|_| "--detach"))
-            .optional_argument(self.remove.as_ref().map(|_| "--rm"))
-            .arguments(
-                self.env
-                    .iter()
-                    .flat_map(|(key, value)| ["--env".to_string(), format!("{key}={value}")]),
-            )
-            .arguments(
-                self.publish
-                    .iter()
-                    .flat_map(|publish| ["--publish".to_string(), publish.0.clone()]),
-            )
-            .arguments(
-                self.mounts
-                    .iter()
-                    .flat_map(|mount| ["--mount".to_string(), mount.0.clone()]),
-            )
-            .arguments(
-                self.workdir
-                    .as_ref()
-                    .map(|workdir| workdir.arguments())
-                    .unwrap_or_default(),
-            )
-            .arguments(
-                self.entrypoint
-                    .as_ref()
-                    .map(|entrypoint| entrypoint.arguments())
-                    .unwrap_or_default(),
-            )
-            .argument(&self.image)
-            .arguments(&self.container_arguments)
+    fn build_run_command(&self) -> Command {
+        let command = self.backend.command().argument("run");
+
+        let command = self.detach.apply(command);
+        let command = self.remove.apply(command);
+        let command = self.environment_variables.apply(command);
+        let command = self.publish.apply(command);
+        let command = self.mounts.apply(command);
+        let command = self.workdir.apply(command);
+        let command = self.entrypoint.apply(command);
+        let command = self.image.apply(command);
+
+        self.container_arguments.apply(command)
     }
 
     fn run_output(&self) -> Vec<u8> {
-        self.run_command().capture_only_stdout()
+        self.build_run_command().capture_only_stdout()
     }
 }
 

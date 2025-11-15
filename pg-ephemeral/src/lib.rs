@@ -60,8 +60,8 @@ impl<'a> Container<'a> {
         let mut cbt_definition = definition
             .to_cbt_definition()
             .remove()
-            .env("POSTGRES_PASSWORD", password.as_ref())
-            .env("POSTGRES_USER", definition.superuser.as_ref())
+            .environment_variable("POSTGRES_PASSWORD", password.as_ref())
+            .environment_variable("POSTGRES_USER", definition.superuser.as_ref())
             .publish(cbt::Publish::from(publish_addr));
 
         let ssl_bundle = if let Some(ssl_config) = &definition.ssl_config {
@@ -85,10 +85,10 @@ impl<'a> Container<'a> {
                 .argument(format!("--ssl_cert_file={}/server.crt", ssl_dir))
                 .argument(format!("--ssl_key_file={}/server.key", ssl_dir))
                 .argument(format!("--ssl_ca_file={}/root.crt", ssl_dir))
-                .env("PG_EPHEMERAL_SSL_DIR", ssl_dir)
-                .env("PG_EPHEMERAL_CA_CERT_PEM", &bundle.ca_cert_pem)
-                .env("PG_EPHEMERAL_SERVER_CERT_PEM", &bundle.server_cert_pem)
-                .env("PG_EPHEMERAL_SERVER_KEY_PEM", &bundle.server_key_pem);
+                .environment_variable("PG_EPHEMERAL_SSL_DIR", ssl_dir)
+                .environment_variable("PG_EPHEMERAL_CA_CERT_PEM", &bundle.ca_cert_pem)
+                .environment_variable("PG_EPHEMERAL_SERVER_CERT_PEM", &bundle.server_cert_pem)
+                .environment_variable("PG_EPHEMERAL_SERVER_KEY_PEM", &bundle.server_key_pem);
 
             Some(bundle)
         } else {
