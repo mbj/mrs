@@ -51,19 +51,49 @@ pub fn services(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 
 #[proc_macro]
 pub fn construct_resource_type(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
+    match construct_resource_type_impl(input) {
+        Ok(tokens) => tokens,
+        Err(error) => error.to_compile_error().into(),
+    }
+}
+
+fn construct_resource_type_impl(
+    input: proc_macro::TokenStream,
+) -> Result<proc_macro::TokenStream, syn::Error> {
     let mut iterator = input.into_iter();
 
-    let first = iterator.next().expect("Missing resource type!");
+    let first = iterator.next().ok_or_else(|| {
+        syn::Error::new(
+            proc_macro2::Span::call_site(),
+            "Missing resource type argument",
+        )
+    })?;
 
-    let name = syn::parse::<syn::LitStr>(first.clone().into())
-        .unwrap_or_else(|error| {
-            panic!("Could not parse first argument as string: {error}, but got: #{first}")
-        })
-        .value();
+    let first_span = first.span();
+    let name_literal = syn::parse::<syn::LitStr>(first.clone().into()).map_err(|error| {
+        syn::Error::new(
+            first_span.into(),
+            format!("Could not parse first argument as string: {error}"),
+        )
+    })?;
 
-    let resource_type_name = ResourceTypeName::try_from(name.as_ref()).unwrap();
+    let name = name_literal.value();
+    let resource_type_name = ResourceTypeName::try_from(name.as_ref()).map_err(|error| {
+        syn::Error::new(
+            name_literal.span(),
+            format!("Invalid resource type name: {error}"),
+        )
+    })?;
 
-    let resource_type = instance().resource_types.get(&resource_type_name).unwrap();
+    let resource_type = instance()
+        .resource_types
+        .get(&resource_type_name)
+        .ok_or_else(|| {
+            syn::Error::new(
+                name_literal.span(),
+                format!("Unknown resource type: {resource_type_name}"),
+            )
+        })?;
 
     let mut outstanding: std::collections::BTreeMap<_, _> = std::iter::FromIterator::from_iter(
         resource_type
@@ -77,24 +107,46 @@ pub fn construct_resource_type(input: proc_macro::TokenStream) -> proc_macro::To
     let mut fields: Vec<proc_macro2::TokenStream> = vec![];
 
     while let Some(key) = iterator.next() {
-        let field_name =
-            syn::parse::<syn::Ident>(key.into()).expect("Cannot parse field value as identifier");
+        let key_span = key.span();
+        let field_name = syn::parse::<syn::Ident>(key.into()).map_err(|error| {
+            syn::Error::new(
+                key_span.into(),
+                format!("Cannot parse field name as identifier: {error}"),
+            )
+        })?;
 
         if !existing.contains(&field_name) {
-            panic!("#{resource_type_name} has no field #{field_name}")
+            return Err(syn::Error::new(
+                field_name.span(),
+                format!("{resource_type_name} has no field named '{field_name}'"),
+            ));
         }
 
-        let value = syn::parse::<syn::Expr>(
-            iterator
-                .next()
-                .expect("Field #{field_name} has no value")
-                .into(),
-        )
-        .expect("Cannot parse field value as expression");
+        let value_token = iterator.next().ok_or_else(|| {
+            syn::Error::new(
+                field_name.span(),
+                format!("Field '{field_name}' is missing a value"),
+            )
+        })?;
+
+        let value_span = value_token.span();
+        let value = syn::parse::<syn::Expr>(value_token.into()).map_err(|error| {
+            syn::Error::new(
+                value_span.into(),
+                format!("Cannot parse field value as expression: {error}"),
+            )
+        })?;
 
         let required = match outstanding.remove(&field_name) {
             Some(required) => required,
-            None => panic!("#{resource_type_name} field #{field_name} specified more than once!"),
+            None => {
+                return Err(syn::Error::new(
+                    field_name.span(),
+                    format!(
+                        "{resource_type_name} field '{field_name}' was specified more than once"
+                    ),
+                ));
+            }
         };
 
         fields.push(if required {
@@ -117,7 +169,15 @@ pub fn construct_resource_type(input: proc_macro::TokenStream) -> proc_macro::To
     }
 
     if !missing_required.is_empty() {
-        panic!("Missing required fields: #{missing_required:#?}");
+        let field_names = missing_required
+            .iter()
+            .map(|f| f.to_string())
+            .collect::<Vec<_>>()
+            .join(", ");
+        return Err(syn::Error::new(
+            name_literal.span(),
+            format!("{resource_type_name} is missing required fields: {field_names}"),
+        ));
     }
 
     let path = {
@@ -131,28 +191,58 @@ pub fn construct_resource_type(input: proc_macro::TokenStream) -> proc_macro::To
 
     let struct_name = resource_type_struct_name(&resource_type_name);
 
-    quote::quote! {
+    Ok(quote::quote! {
         #path::#struct_name { #(#fields),* }
     }
-    .into()
+    .into())
 }
 
 #[proc_macro]
 pub fn construct_property_type(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
+    match construct_property_type_impl(input) {
+        Ok(tokens) => tokens,
+        Err(error) => error.to_compile_error().into(),
+    }
+}
+
+fn construct_property_type_impl(
+    input: proc_macro::TokenStream,
+) -> Result<proc_macro::TokenStream, syn::Error> {
     let mut iterator = input.into_iter();
 
-    let first = iterator.next().expect("Missing property type!");
+    let first = iterator.next().ok_or_else(|| {
+        syn::Error::new(
+            proc_macro2::Span::call_site(),
+            "Missing property type argument",
+        )
+    })?;
 
-    let name = syn::parse::<syn::LitStr>(first.clone().into())
-        .unwrap_or_else(|error| {
-            panic!("Could not parse first argument as string: {error}, but got: #{first}")
-        })
-        .value();
+    let first_span = first.span();
+    let name_literal = syn::parse::<syn::LitStr>(first.clone().into()).map_err(|error| {
+        syn::Error::new(
+            first_span.into(),
+            format!("Could not parse first argument as string: {error}"),
+        )
+    })?;
 
-    let property_type_name: PropertyTypeName =
-        std::convert::TryFrom::try_from(name.as_ref()).unwrap();
+    let name = name_literal.value();
+    let property_type_name: PropertyTypeName = std::convert::TryFrom::try_from(name.as_ref())
+        .map_err(|error| {
+            syn::Error::new(
+                name_literal.span(),
+                format!("Invalid property type name: {error}"),
+            )
+        })?;
 
-    let property_type = instance().property_types.get(&property_type_name).unwrap();
+    let property_type = instance()
+        .property_types
+        .get(&property_type_name)
+        .ok_or_else(|| {
+            syn::Error::new(
+                name_literal.span(),
+                format!("Unknown property type: {property_type_name}"),
+            )
+        })?;
 
     let mut outstanding = match property_type.properties {
         Some(ref properties) => std::iter::FromIterator::from_iter(
@@ -168,25 +258,45 @@ pub fn construct_property_type(input: proc_macro::TokenStream) -> proc_macro::To
     let mut fields: Vec<proc_macro2::TokenStream> = vec![];
 
     while let Some(key) = iterator.next() {
-        let field_name =
-            syn::parse::<syn::Ident>(key.into()).expect("Cannot parse field value as identifier");
+        let key_span = key.span();
+        let field_name = syn::parse::<syn::Ident>(key.into()).map_err(|error| {
+            syn::Error::new(
+                key_span.into(),
+                format!("Cannot parse field name as identifier: {error}"),
+            )
+        })?;
 
         if !existing.contains(&field_name) {
-            panic!("#{property_type_name} has no field #{field_name}")
+            return Err(syn::Error::new(
+                field_name.span(),
+                format!("{property_type_name} has no field named '{field_name}'"),
+            ));
         }
 
-        let value = syn::parse::<syn::Expr>(
-            iterator
-                .next()
-                .expect("Field #{field_name} has no value")
-                .into(),
-        )
-        .expect("Cannot parse field value as expression");
+        let value_token = iterator.next().ok_or_else(|| {
+            syn::Error::new(
+                field_name.span(),
+                format!("Field '{field_name}' is missing a value"),
+            )
+        })?;
+
+        let value_span = value_token.span();
+        let value = syn::parse::<syn::Expr>(value_token.into()).map_err(|error| {
+            syn::Error::new(
+                value_span.into(),
+                format!("Cannot parse field value as expression: {error}"),
+            )
+        })?;
 
         let required = match outstanding.remove(&field_name) {
             Some(required) => required,
             None => {
-                panic!("#{property_type_name} field #{field_name} was specified more than once")
+                return Err(syn::Error::new(
+                    field_name.span(),
+                    format!(
+                        "{property_type_name} field '{field_name}' was specified more than once"
+                    ),
+                ));
             }
         };
 
@@ -210,7 +320,15 @@ pub fn construct_property_type(input: proc_macro::TokenStream) -> proc_macro::To
     }
 
     if !missing_required.is_empty() {
-        panic!("Missing required fields: #{missing_required:#?}");
+        let field_names = missing_required
+            .iter()
+            .map(|f| f.to_string())
+            .collect::<Vec<_>>()
+            .join(", ");
+        return Err(syn::Error::new(
+            name_literal.span(),
+            format!("{property_type_name} is missing required fields: {field_names}"),
+        ));
     }
 
     let (path, struct_name) = match property_type_name {
@@ -232,8 +350,8 @@ pub fn construct_property_type(input: proc_macro::TokenStream) -> proc_macro::To
         }
     };
 
-    quote::quote! {
+    Ok(quote::quote! {
         #path::#struct_name { #(#fields),* }
     }
-    .into()
+    .into())
 }
