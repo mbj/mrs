@@ -1,6 +1,11 @@
 use crate::config::Config;
 use crate::{InstanceMap, InstanceName};
 
+#[derive(Clone, Debug, clap::ValueEnum)]
+pub enum Protocol {
+    V0,
+}
+
 #[derive(Clone, Debug, clap::Parser)]
 #[command(after_help = "COMMAND TYPES:
   Instance Management:
@@ -10,6 +15,7 @@ use crate::{InstanceMap, InstanceName};
     All other commands (psql, run-env, container-*, integration-server, migration)
     target the \"main\" instance by default. Use 'instance --name <NAME>' to target
     other instances.")]
+#[command(version)]
 pub struct App {
     /// Config file to use, defaults to attempt to load database.toml
     ///
@@ -121,7 +127,11 @@ pub enum Command {
     ///
     /// The server will stop once stdin returns EOF, aka the parent process closed it.
     #[command(name = "integration-server")]
-    IntegrationServer,
+    IntegrationServer {
+        /// Protocol version to use
+        #[arg(long, value_enum)]
+        protocol: Protocol,
+    },
     /// Migration subcommands
     Migration(mmigration::cli::App),
     /// Run interactive psql on the host
@@ -181,10 +191,12 @@ impl Command {
                 )
                 .await
             }
-            Self::IntegrationServer => {
+            Self::IntegrationServer { protocol } => {
                 self.run_on_main_instance(
                     instance_map,
-                    crate::definition::cli::Command::IntegrationServer,
+                    crate::definition::cli::Command::IntegrationServer {
+                        protocol: protocol.clone(),
+                    },
                 )
                 .await
             }

@@ -16,6 +16,9 @@ pub use seed::Seed;
 pub use seed::SeedName;
 pub use seed::SeedNameError;
 
+/// The version of pg-ephemeral
+pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+
 struct SchemaDump<'a> {
     container: &'a Container<'a>,
 }
