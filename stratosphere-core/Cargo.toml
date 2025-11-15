@@ -3,6 +3,9 @@ edition.workspace = true
 name = "stratosphere-core"
 version = "0.0.1"
 
+[lints]
+workspace = true
+
 [dependencies]
 chrono = { version = "0.4", features = ["serde"] }
 clap = { workspace = true }

@@ -3,6 +3,9 @@ edition.workspace = true
 name = "mlambda"
 version = "0.0.1"
 
+[lints]
+workspace = true
+
 [dependencies]
 http = { workspace = true }
 reqwest = { workspace = true }

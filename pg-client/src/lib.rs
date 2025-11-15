@@ -904,7 +904,7 @@ mod test {
     }
 
     fn repeat(char: char, len: usize) -> String {
-        std::iter::repeat(char).take(len).collect()
+        std::iter::repeat_n(char, len).collect()
     }
 
     #[test]
