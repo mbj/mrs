@@ -10,8 +10,8 @@ pub enum Backend {
 impl Backend {
     pub fn command(&self) -> Command {
         match self {
-            Self::Docker => Self::docker_command(),
-            Self::Podman => Self::podman_command(),
+            Self::Docker => Command::new("docker"),
+            Self::Podman => Command::new("podman"),
         }
     }
 
@@ -67,14 +67,6 @@ impl Backend {
         self.command()
             .arguments(["image", "rm", image.as_str()])
             .capture_only_stdout();
-    }
-
-    fn docker_command() -> Command {
-        Command::new("docker")
-    }
-
-    fn podman_command() -> Command {
-        Command::new("podman")
     }
 
     /// Create a hostname resolver that runs inside a container
