@@ -28,7 +28,7 @@ fn test_container_with_env_vars() {
     let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
         .entrypoint("sh")
         .arguments(["-c", "echo $TEST_VAR"])
-        .env("TEST_VAR", "test_value")
+        .environment_variable("TEST_VAR", "test_value")
         .remove();
 
     let output = definition.run_capture_only_stdout();
@@ -165,7 +165,7 @@ fn test_image_build_if_absent() {
     let image2 = definition.build_if_absent();
     assert!(backend.is_image_present(&image2));
 
-    assert_eq!(image2, image2);
+    assert_eq!(image1, image2);
 
     backend.remove_image(&image1);
 }

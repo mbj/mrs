@@ -60,8 +60,8 @@ impl<'a> Container<'a> {
         let mut cbt_definition = definition
             .to_cbt_definition()
             .remove()
-            .env("POSTGRES_PASSWORD", password.as_ref())
-            .env("POSTGRES_USER", definition.superuser.as_ref())
+            .environment_variable("POSTGRES_PASSWORD", password.as_ref())
+            .environment_variable("POSTGRES_USER", definition.superuser.as_ref())
             .publish(cbt::Publish::from(publish_addr));
 
         let ssl_bundle = if let Some(ssl_config) = &definition.ssl_config {
@@ -85,10 +85,10 @@ impl<'a> Container<'a> {
                 .argument(format!("--ssl_cert_file={}/server.crt", ssl_dir))
                 .argument(format!("--ssl_key_file={}/server.key", ssl_dir))
                 .argument(format!("--ssl_ca_file={}/root.crt", ssl_dir))
-                .env("PG_EPHEMERAL_SSL_DIR", ssl_dir)
-                .env("PG_EPHEMERAL_CA_CERT_PEM", &bundle.ca_cert_pem)
-                .env("PG_EPHEMERAL_SERVER_CERT_PEM", &bundle.server_cert_pem)
-                .env("PG_EPHEMERAL_SERVER_KEY_PEM", &bundle.server_key_pem);
+                .environment_variable("PG_EPHEMERAL_SSL_DIR", ssl_dir)
+                .environment_variable("PG_EPHEMERAL_CA_CERT_PEM", &bundle.ca_cert_pem)
+                .environment_variable("PG_EPHEMERAL_SERVER_CERT_PEM", &bundle.server_cert_pem)
+                .environment_variable("PG_EPHEMERAL_SERVER_KEY_PEM", &bundle.server_key_pem);
 
             Some(bundle)
         } else {
@@ -202,7 +202,7 @@ impl<'a> Container<'a> {
         }
 
         panic!(
-            "Container did not become avaialble within ~10 seconds! Last connection error: {last_error:#?}"
+            "Container did not become available within ~10 seconds! Last connection error: {last_error:#?}"
         );
     }
 
@@ -292,13 +292,13 @@ impl<'a> Container<'a> {
     }
 
     pub fn cross_container_client_config(&self) -> pg_client::Config {
-        // Resolve host.docker.internal from inside a container
+        // Resolve the container host from inside a container
         // This DNS name only works from inside containers, not from the host
         let ip_address = self
             .definition
             .backend
-            .resolve_host_docker_internal()
-            .expect("Failed to resolve host.docker.internal from container");
+            .resolve_container_host()
+            .expect("Failed to resolve container host from container");
 
         let endpoint = pg_client::Endpoint::Network {
             host: pg_client::Host::IpAddr(ip_address),
@@ -334,7 +334,7 @@ fn generate_password() -> pg_client::Password {
     <pg_client::Password as std::str::FromStr>::from_str(&value).unwrap()
 }
 
-fn convert_schema(value: &[u8]) -> String {
+pub(crate) fn convert_schema(value: &[u8]) -> String {
     std::str::from_utf8(value)
         .expect("schema contains invalid utf8")
         .to_string()

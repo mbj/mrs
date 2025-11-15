@@ -10,8 +10,8 @@ pub enum Backend {
 impl Backend {
     pub fn command(&self) -> Command {
         match self {
-            Self::Docker => Self::docker_command(),
-            Self::Podman => Self::podman_command(),
+            Self::Docker => Command::new("docker"),
+            Self::Podman => Command::new("podman"),
         }
     }
 
@@ -69,14 +69,6 @@ impl Backend {
             .capture_only_stdout();
     }
 
-    fn docker_command() -> Command {
-        Command::new("docker")
-    }
-
-    fn podman_command() -> Command {
-        Command::new("podman")
-    }
-
     /// Create a hostname resolver that runs inside a container
     ///
     /// This is useful for resolving DNS names that only work inside containers
@@ -96,26 +88,35 @@ impl Backend {
         ContainerHostnameResolver::new(*self)
     }
 
-    /// Resolve host.docker.internal to an IP address
+    /// Resolve the container host to an IP address
     ///
-    /// This is a convenience method that resolves the special hostname
-    /// host.docker.internal, which allows containers to connect back to
-    /// services running on the host machine.
+    /// This is a convenience method that resolves the special hostname used to
+    /// connect back to services running on the host machine from within containers.
     ///
-    /// On Linux with Docker Engine, this requires the --add-host flag with
-    /// host-gateway, which this method handles automatically.
+    /// Uses host.containers.internal for Podman and host.docker.internal for Docker
+    /// (requires --add-host on Linux).
     ///
     /// # Example
     /// ```no_run
     /// let ip = cbt::backend::autodetect::run()
     ///     .unwrap()
-    ///     .resolve_host_docker_internal()
+    ///     .resolve_container_host()
     ///     .unwrap();
     /// ```
-    pub fn resolve_host_docker_internal(&self) -> Result<std::net::IpAddr, ResolveHostnameError> {
-        self.container_resolver()
-            .add_host("host.docker.internal:host-gateway")
-            .resolve("host.docker.internal")
+    pub fn resolve_container_host(&self) -> Result<std::net::IpAddr, ResolveHostnameError> {
+        match self {
+            Backend::Podman => {
+                // Podman provides host.containers.internal natively
+                self.container_resolver()
+                    .resolve("host.containers.internal")
+            }
+            Backend::Docker => {
+                // Docker needs --add-host on Linux
+                self.container_resolver()
+                    .add_host("host.docker.internal:host-gateway")
+                    .resolve("host.docker.internal")
+            }
+        }
     }
 }
 
@@ -178,9 +179,8 @@ impl ContainerHostnameResolver {
 
     /// Add multiple custom container arguments
     pub fn arguments(mut self, arguments: impl IntoIterator<Item = impl Into<String>>) -> Self {
-        for argument in arguments {
-            self.container_arguments.push(argument.into());
-        }
+        self.container_arguments
+            .extend(arguments.into_iter().map(Into::into));
         self
     }
 
@@ -382,10 +382,10 @@ mod tests {
     }
 
     #[test]
-    fn test_resolve_host_docker_internal() {
+    fn test_resolve_container_host() {
         let backend = crate::test_backend_setup!();
 
-        let ip = backend.resolve_host_docker_internal().unwrap();
+        let ip = backend.resolve_container_host().unwrap();
 
         // Should resolve to some IP address
         assert!(ip.is_ipv4() || ip.is_ipv6());

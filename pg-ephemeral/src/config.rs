@@ -7,7 +7,7 @@ use crate::seed::{Command, Seed, SeedName};
 pub enum Error {
     #[error("Backend autodetection failed: {0}")]
     BackendAutodetect(#[from] cbt::backend::autodetect::Error),
-    #[error("Cloud not load config file: {0}")]
+    #[error("Could not load config file: {0}")]
     IO(IoError),
     #[error("Decoding as toml failed: {0}")]
     TomlDecode(#[from] toml::de::Error),
@@ -115,7 +115,7 @@ impl InstanceDefinition {
         };
 
         let backend: cbt::Backend = match overwrites.backend.or(self.backend).or(defaults.backend) {
-            Some(image) => image,
+            Some(backend) => backend,
             None => match autodetect.result() {
                 Ok(value) => *value,
                 Err(error) => return Err(Error::BackendAutodetect(error.clone())),

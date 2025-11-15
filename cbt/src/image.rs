@@ -164,9 +164,11 @@ impl BuildDefinition {
         mut self,
         arguments: impl IntoIterator<Item = (BuildArgumentKey, V)>,
     ) -> Self {
-        for (key, value) in arguments {
-            self.build_arguments.insert(key, value.into());
-        }
+        self.build_arguments.extend(
+            arguments
+                .into_iter()
+                .map(|(key, value)| (key, value.into())),
+        );
         self
     }
 
@@ -194,14 +196,10 @@ impl BuildDefinition {
             arguments.push(format!("{}={}", key.as_str(), value.as_str()));
         }
 
-        match &self.source {
+        let command = match &self.source {
             BuildSource::Directory(path) => {
                 arguments.push(path.to_string_lossy().into());
-
-                self.backend
-                    .command()
-                    .arguments(arguments)
-                    .capture_only_stdout();
+                self.backend.command().arguments(arguments)
             }
             BuildSource::Instructions(content) => {
                 arguments.push("-".into());
@@ -209,9 +207,10 @@ impl BuildDefinition {
                     .command()
                     .arguments(arguments)
                     .stdin_bytes(content.as_bytes().to_vec())
-                    .capture_only_stdout();
             }
-        }
+        };
+
+        command.capture_only_stdout();
 
         target_image
     }
