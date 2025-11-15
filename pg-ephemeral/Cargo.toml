@@ -24,7 +24,7 @@ thiserror = { workspace = true }
 time = "0.3"
 tokio = { workspace = true, features = ["io-std", "macros", "rt"] }
 toml = "0.9.5"
-x509-parser = { version = "0.16", features = ["verify"] }
+x509-parser = { version = "0.18", features = ["verify"] }
 
 [dev-dependencies]
 indoc = "2"
