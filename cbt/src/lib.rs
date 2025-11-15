@@ -348,7 +348,7 @@ fn strip_nl_end(value: &[u8]) -> &[u8] {
     }
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct ContainerId(String);
 
 impl std::convert::TryFrom<&[u8]> for ContainerId {
