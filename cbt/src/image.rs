@@ -164,9 +164,11 @@ impl BuildDefinition {
         mut self,
         arguments: impl IntoIterator<Item = (BuildArgumentKey, V)>,
     ) -> Self {
-        for (key, value) in arguments {
-            self.build_arguments.insert(key, value.into());
-        }
+        self.build_arguments.extend(
+            arguments
+                .into_iter()
+                .map(|(key, value)| (key, value.into())),
+        );
         self
     }
 

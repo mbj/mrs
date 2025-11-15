@@ -28,7 +28,7 @@ fn test_container_with_env_vars() {
     let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
         .entrypoint("sh")
         .arguments(["-c", "echo $TEST_VAR"])
-        .env("TEST_VAR", "test_value")
+        .environment_variable("TEST_VAR", "test_value")
         .remove();
 
     let output = definition.run_capture_only_stdout();

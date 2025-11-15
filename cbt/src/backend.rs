@@ -187,9 +187,8 @@ impl ContainerHostnameResolver {
 
     /// Add multiple custom container arguments
     pub fn arguments(mut self, arguments: impl IntoIterator<Item = impl Into<String>>) -> Self {
-        for argument in arguments {
-            self.container_arguments.push(argument.into());
-        }
+        self.container_arguments
+            .extend(arguments.into_iter().map(Into::into));
         self
     }
 

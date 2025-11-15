@@ -265,7 +265,7 @@ impl Definition {
             .to_cbt_definition()
             .entrypoint("pg_dump")
             .arguments(effective_arguments)
-            .envs(effective_config.to_pg_env())
+            .environment_variables(effective_config.to_pg_env())
             .mounts(mounts)
             .run_capture_only_stdout();
 
