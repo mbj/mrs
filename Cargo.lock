@@ -1974,6 +1974,7 @@ dependencies = [
  "cbt",
  "clap",
  "env_logger",
+ "hex",
  "indexmap",
  "indoc",
  "log",
