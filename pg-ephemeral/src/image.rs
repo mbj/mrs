@@ -118,7 +118,16 @@ impl std::str::FromStr for Image {
                         tag("@sha256:"),
                         cut(take_while_m_n(64, 64, |ch: char| ch.is_ascii_hexdigit())),
                     ),
-                    |hash: &str| format!("sha256:{hash}").parse::<Digest>(),
+                    |hash: &str| {
+                        hex::decode(hash)
+                            .map_err(|err| format!("invalid hex: {err}"))
+                            .and_then(|bytes| {
+                                bytes
+                                    .try_into()
+                                    .map(Digest)
+                                    .map_err(|_| "hash must be exactly 32 bytes".to_string())
+                            })
+                    },
                 ),
             )(input)
         }
@@ -290,38 +299,11 @@ impl std::fmt::Display for OS {
 
 /// Docker image digest for pinning images to specific SHA256 hashes
 #[derive(Clone, Debug, PartialEq)]
-pub struct Digest(String);
-
-impl std::str::FromStr for Digest {
-    type Err = String;
-
-    fn from_str(value: &str) -> Result<Self, Self::Err> {
-        // Validate digest format: sha256:hexstring
-        if !value.starts_with("sha256:") {
-            return Err("digest must start with 'sha256:'".to_string());
-        }
-
-        let hash = &value[7..]; // Skip "sha256:" prefix
-
-        // Validate that the hash is 64 hex characters
-        if hash.len() != 64 {
-            return Err(format!(
-                "SHA256 hash must be exactly 64 hex characters, got {}",
-                hash.len()
-            ));
-        }
-
-        if !hash.chars().all(|c| c.is_ascii_hexdigit()) {
-            return Err("SHA256 hash must contain only hexadecimal characters".to_string());
-        }
-
-        Ok(Self(value.to_string()))
-    }
-}
+pub struct Digest([u8; 32]);
 
 impl std::fmt::Display for Digest {
     fn fmt(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(formatter, "{}", self.0)
+        write!(formatter, "sha256:{}", hex::encode(self.0))
     }
 }
 
@@ -455,8 +437,8 @@ mod test {
 
     #[test]
     fn test_image_with_digest() {
-        let digest = "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
-        let parsed_digest = Some(digest.parse::<Digest>().unwrap());
+        let hash = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
+        let parsed_digest = Some(Digest(hex::decode(hash).unwrap().try_into().unwrap()));
 
         // Test OfficialRelease with digest
         assert_image(
@@ -529,57 +511,13 @@ mod test {
     }
 
     #[test]
-    fn test_digest_validation() {
-        // Valid digest
-        assert!(
-            "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
-                .parse::<Digest>()
-                .is_ok()
-        );
-
-        // Invalid: wrong prefix
-        assert!(
-            "sha512:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
-                .parse::<Digest>()
-                .is_err()
-        );
-
-        // Invalid: too short
-        assert!("sha256:abc123".parse::<Digest>().is_err());
-
-        // Invalid: too long
-        assert!(
-            "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef00"
-                .parse::<Digest>()
-                .is_err()
-        );
-
-        // Invalid: non-hex characters
-        assert!(
-            "sha256:xyz3456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
-                .parse::<Digest>()
-                .is_err()
-        );
-
-        // Invalid: missing prefix
-        assert!(
-            "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
-                .parse::<Digest>()
-                .is_err()
-        );
-    }
-
-    #[test]
     fn test_cbt_image_conversion_with_digest() {
+        let hash = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
         let image = Image::OfficialRelease {
             major: Major(17),
             minor: Minor::Explicit(6),
             os: OS::Default,
-            digest: Some(
-                "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
-                    .parse()
-                    .unwrap(),
-            ),
+            digest: Some(Digest(hex::decode(hash).unwrap().try_into().unwrap())),
         };
 
         let cbt_image: cbt::Image = (&image).into();
