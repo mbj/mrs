@@ -503,3 +503,129 @@ fn test_config_seeds_with_git_revision() {
 
     assert_eq!(definition.seeds, expected_seeds);
 }
+
+#[test]
+fn test_config_image_with_sha256_digest() {
+    use indoc::indoc;
+
+    let config_str = indoc! {r#"
+        backend = "docker"
+        image = "17.6@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+
+        [instances.main]
+    "#};
+
+    let expected_image: pg_ephemeral::Image =
+        "17.6@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+            .parse()
+            .unwrap();
+
+    assert_eq!(
+        pg_ephemeral::InstanceMap::from([(
+            pg_ephemeral::InstanceName("main".to_string()),
+            pg_ephemeral::Definition {
+                application_name: None,
+                backend: cbt::Backend::Docker,
+                database: pg_client::database!("postgres"),
+                migration_config: None,
+                seeds: indexmap::IndexMap::new(),
+                ssl_config: None,
+                superuser: pg_client::username!("postgres"),
+                image: expected_image.clone(),
+                cross_container_access: false,
+            }
+        )]),
+        pg_ephemeral::Config::load_toml(config_str)
+            .unwrap()
+            .instance_map(&pg_ephemeral::config::InstanceDefinition::empty())
+            .unwrap()
+    );
+
+    // Verify the cbt::Image conversion includes the digest
+    let cbt_image: cbt::Image = (&expected_image).into();
+    assert_eq!(
+        cbt_image.as_str(),
+        "registry.hub.docker.com/library/postgres:17.6@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    );
+}
+
+#[test]
+fn test_config_invalid_image_format() {
+    use indoc::indoc;
+
+    let config_str = indoc! {r#"
+        backend = "docker"
+        image = "17.6@sha256:tooshort"
+
+        [instances.main]
+    "#};
+
+    let error = pg_ephemeral::Config::load_toml(config_str)
+        .unwrap_err()
+        .to_string();
+
+    let expected = indoc! {"
+        Decoding as toml failed: TOML parse error at line 2, column 9
+          |
+        2 | image = \"17.6@sha256:tooshort\"
+          |         ^^^^^^^^^^^^^^^^^^^^^^
+        0: at line 1, in TakeWhileMN:
+        17.6@sha256:tooshort
+                    ^
+
+        1: at line 1, in digest:
+        17.6@sha256:tooshort
+            ^
+
+        2: at line 1, in official release image:
+        17.6@sha256:tooshort
+        ^
+
+
+    "};
+
+    assert_eq!(error, expected);
+}
+
+#[test]
+fn test_config_invalid_image_nom_error() {
+    use indoc::indoc;
+
+    // This tests an image format that triggers nom's detailed error with caret
+    let config_str = indoc! {r#"
+        backend = "docker"
+        image = "INVALID"
+
+        [instances.main]
+    "#};
+
+    let error = pg_ephemeral::Config::load_toml(config_str)
+        .unwrap_err()
+        .to_string();
+
+    let expected = indoc! {"
+        Decoding as toml failed: TOML parse error at line 2, column 9
+          |
+        2 | image = \"INVALID\"
+          |         ^^^^^^^^^
+        0: at line 1, in TakeWhileMN:
+        INVALID
+        ^
+
+        1: at line 1, in OS name:
+        INVALID
+        ^
+
+        2: at line 1, in OS-only image:
+        INVALID
+        ^
+
+        3: at line 1, in Alt:
+        INVALID
+        ^
+
+
+    "};
+
+    assert_eq!(error, expected);
+}
