@@ -2,40 +2,73 @@
 #[derive(Clone, Debug, PartialEq)]
 pub enum Image {
     /// Official release
-    OfficialRelease { major: Major, minor: Minor, os: OS },
+    OfficialRelease {
+        major: Major,
+        minor: Minor,
+        os: OS,
+        digest: Option<Digest>,
+    },
     /// OfficialRelease candidate
     OfficialReleaseCandidate {
         major: Major,
         number: ReleaseCandidateNumber,
         os: OS,
+        digest: Option<Digest>,
     },
     /// Latest image on docker.com
     ///
     /// Only use that one for quick and dirty testing, it's recommended to always pin
     /// specific images in config files. Also note that pg-ephemeral currently never refreshes
     /// `latest` once cached in the local registry it's never refreshed.
-    OfficialLatest { os: OS },
+    OfficialLatest { os: OS, digest: Option<Digest> },
 }
 
 impl std::default::Default for Image {
     fn default() -> Self {
-        Self::OfficialLatest { os: OS::Default }
+        Self::OfficialLatest {
+            os: OS::Default,
+            digest: None,
+        }
     }
 }
 
 impl std::fmt::Display for Image {
     fn fmt(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::OfficialRelease { major, minor, os } => {
-                write!(formatter, "{}{}{}", major, minor, os)
+            Self::OfficialRelease {
+                major,
+                minor,
+                os,
+                digest,
+            } => {
+                write!(formatter, "{}{}{}", major, minor, os)?;
+                if let Some(digest) = digest {
+                    write!(formatter, "@{}", digest)?;
+                }
+                Ok(())
             }
-            Self::OfficialReleaseCandidate { major, number, os } => {
-                write!(formatter, "{}rc{}{}", major, number, os)
+            Self::OfficialReleaseCandidate {
+                major,
+                number,
+                os,
+                digest,
+            } => {
+                write!(formatter, "{}rc{}{}", major, number, os)?;
+                if let Some(digest) = digest {
+                    write!(formatter, "@{}", digest)?;
+                }
+                Ok(())
             }
-            Self::OfficialLatest { os } => match os {
-                OS::Default => write!(formatter, "latest"),
-                OS::Explicit(value) => write!(formatter, "{value}"),
-            },
+            Self::OfficialLatest { os, digest } => {
+                match os {
+                    OS::Default => write!(formatter, "latest")?,
+                    OS::Explicit(value) => write!(formatter, "{value}")?,
+                }
+                if let Some(digest) = digest {
+                    write!(formatter, "@{}", digest)?;
+                }
+                Ok(())
+            }
         }
     }
 }
@@ -44,66 +77,136 @@ impl std::str::FromStr for Image {
     type Err = String;
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
-        fn parse_field<T, N: std::str::FromStr>(
-            constructor: fn(N) -> T,
-            field: &str,
-            captures: &regex_lite::Captures,
-        ) -> Result<T, String>
-        where
-            <N as std::str::FromStr>::Err: std::fmt::Display,
-        {
-            match captures.name(field).unwrap().as_str().parse() {
-                Ok(value) => Ok(constructor(value)),
-                Err(error) => Err(format!(
-                    "Cannot parse image component {field}, error: {error}"
+        use nom::{
+            Finish, IResult,
+            branch::alt,
+            bytes::complete::{tag, take_while_m_n, take_while1},
+            character::complete::digit1,
+            combinator::{cut, map, map_res, opt, recognize},
+            error::{VerboseError, context},
+            sequence::{pair, preceded, tuple},
+        };
+
+        type ParseResult<'a, O> = IResult<&'a str, O, VerboseError<&'a str>>;
+
+        fn os_name(input: &str) -> ParseResult<'_, &str> {
+            context(
+                "OS name",
+                recognize(pair(
+                    take_while_m_n(1, 1, |ch: char| ch.is_ascii_lowercase()),
+                    take_while1(|ch: char| {
+                        ch.is_ascii_lowercase() || ch.is_ascii_digit() || ch == '.'
+                    }),
                 )),
-            }
+            )(input)
         }
 
-        if value == "latest" {
-            return Ok(Self::OfficialLatest { os: OS::Default });
+        fn os_suffix(input: &str) -> ParseResult<'_, OS> {
+            context(
+                "OS suffix",
+                map(preceded(tag("-"), os_name), |name: &str| {
+                    OS::Explicit(name.to_string())
+                }),
+            )(input)
         }
 
-        let os_pattern = r#"(?<os>[a-z]+(?:\d+\.\d+)?)"#;
-
-        let os_regex = regex_lite::Regex::new(&format!(r#"\A{os_pattern}\z"#)).unwrap();
-
-        if os_regex.is_match(value) {
-            return Ok(Self::OfficialLatest {
-                os: OS::Explicit(value.to_string()),
-            });
+        fn digest(input: &str) -> ParseResult<'_, Digest> {
+            context(
+                "digest",
+                map_res(
+                    preceded(
+                        tag("@sha256:"),
+                        cut(take_while_m_n(64, 64, |ch: char| ch.is_ascii_hexdigit())),
+                    ),
+                    |hash: &str| format!("sha256:{hash}").parse::<Digest>(),
+                ),
+            )(input)
         }
 
-        let regex = regex_lite::Regex::new(&format!(
-            r#"\A(?<major>[0-9]+)(?:\.(?<minor>\d+)|rc(?<number>[1-9]\d*))?(?:-{os_pattern})?\z"#
-        ))
-        .unwrap();
+        fn latest(input: &str) -> ParseResult<'_, Image> {
+            context(
+                "latest image",
+                map(tuple((tag("latest"), opt(digest))), |(_, digest)| {
+                    Image::OfficialLatest {
+                        os: OS::Default,
+                        digest,
+                    }
+                }),
+            )(input)
+        }
 
-        match regex.captures(value) {
-            None => Err("invalid image format".to_string()),
-            Some(captures) => {
-                let os = captures
-                    .name("os")
-                    .map_or(OS::Default, |value| OS::Explicit(value.as_str().into()));
+        fn os_only(input: &str) -> ParseResult<'_, Image> {
+            context(
+                "OS-only image",
+                map(tuple((os_name, opt(digest))), |(os, digest)| {
+                    Image::OfficialLatest {
+                        os: OS::Explicit(os.to_string()),
+                        digest,
+                    }
+                }),
+            )(input)
+        }
 
-                let major = parse_field(Major, "major", &captures)?;
+        fn release_candidate(input: &str) -> ParseResult<'_, Image> {
+            context(
+                "release candidate image",
+                map(
+                    tuple((
+                        map_res(digit1, |digits: &str| digits.parse::<u8>().map(Major)),
+                        preceded(
+                            tag("rc"),
+                            map_res(digit1, |digits: &str| {
+                                digits
+                                    .parse::<std::num::NonZero<u8>>()
+                                    .map(ReleaseCandidateNumber)
+                            }),
+                        ),
+                        opt(os_suffix),
+                        opt(digest),
+                    )),
+                    |(major, number, os, digest)| Image::OfficialReleaseCandidate {
+                        major,
+                        number,
+                        os: os.unwrap_or(OS::Default),
+                        digest,
+                    },
+                ),
+            )(input)
+        }
 
-                if let Some(capture) = captures.name("minor") {
-                    let minor = Minor::Explicit(capture.as_str().parse().unwrap());
-                    return Ok(Self::OfficialRelease { major, minor, os });
-                }
+        fn official_release(input: &str) -> ParseResult<'_, Image> {
+            context(
+                "official release image",
+                map(
+                    tuple((
+                        map_res(digit1, |digits: &str| digits.parse::<u8>().map(Major)),
+                        opt(preceded(
+                            tag("."),
+                            map_res(digit1, |digits: &str| {
+                                digits.parse::<u8>().map(Minor::Explicit)
+                            }),
+                        )),
+                        opt(os_suffix),
+                        opt(digest),
+                    )),
+                    |(major, minor, os, digest)| Image::OfficialRelease {
+                        major,
+                        minor: minor.unwrap_or(Minor::Latest),
+                        os: os.unwrap_or(OS::Default),
+                        digest,
+                    },
+                ),
+            )(input)
+        }
 
-                if let Some(capture) = captures.name("number") {
-                    let number = ReleaseCandidateNumber(capture.as_str().parse().unwrap());
-                    return Ok(Self::OfficialReleaseCandidate { major, number, os });
-                }
+        fn image(input: &str) -> ParseResult<'_, Image> {
+            alt((latest, release_candidate, official_release, os_only))(input)
+        }
 
-                Ok(Self::OfficialRelease {
-                    major,
-                    minor: Minor::Latest,
-                    os,
-                })
-            }
+        match image(value).finish() {
+            Ok(("", result)) => Ok(result),
+            Ok((remaining, _)) => Err(format!("unexpected trailing input: '{remaining}'")),
+            Err(error) => Err(nom::error::convert_error(value, error)),
         }
     }
 }
@@ -185,18 +288,62 @@ impl std::fmt::Display for OS {
     }
 }
 
+/// Docker image digest for pinning images to specific SHA256 hashes
+#[derive(Clone, Debug, PartialEq)]
+pub struct Digest(String);
+
+impl std::str::FromStr for Digest {
+    type Err = String;
+
+    fn from_str(value: &str) -> Result<Self, Self::Err> {
+        // Validate digest format: sha256:hexstring
+        if !value.starts_with("sha256:") {
+            return Err("digest must start with 'sha256:'".to_string());
+        }
+
+        let hash = &value[7..]; // Skip "sha256:" prefix
+
+        // Validate that the hash is 64 hex characters
+        if hash.len() != 64 {
+            return Err(format!(
+                "SHA256 hash must be exactly 64 hex characters, got {}",
+                hash.len()
+            ));
+        }
+
+        if !hash.chars().all(|c| c.is_ascii_hexdigit()) {
+            return Err("SHA256 hash must contain only hexadecimal characters".to_string());
+        }
+
+        Ok(Self(value.to_string()))
+    }
+}
+
+impl std::fmt::Display for Digest {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(formatter, "{}", self.0)
+    }
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
 
     #[test]
     fn test_image_string() {
-        assert_image("latest", &Image::OfficialLatest { os: OS::Default });
+        assert_image(
+            "latest",
+            &Image::OfficialLatest {
+                os: OS::Default,
+                digest: None,
+            },
+        );
 
         assert_image(
             "trixie",
             &Image::OfficialLatest {
                 os: OS::Explicit("trixie".to_string()),
+                digest: None,
             },
         );
 
@@ -206,6 +353,7 @@ mod test {
                 major: Major(18),
                 number: ReleaseCandidateNumber(1u8.try_into().unwrap()),
                 os: OS::Default,
+                digest: None,
             },
         );
 
@@ -215,6 +363,7 @@ mod test {
                 major: Major(18),
                 number: ReleaseCandidateNumber(1u8.try_into().unwrap()),
                 os: OS::Explicit("trixie".to_string()),
+                digest: None,
             },
         );
 
@@ -224,6 +373,7 @@ mod test {
                 major: Major(18),
                 number: ReleaseCandidateNumber(1u8.try_into().unwrap()),
                 os: OS::Explicit("bookworm".to_string()),
+                digest: None,
             },
         );
 
@@ -233,6 +383,7 @@ mod test {
                 major: Major(18),
                 number: ReleaseCandidateNumber(1u8.try_into().unwrap()),
                 os: OS::Explicit("alpine3.22".to_string()),
+                digest: None,
             },
         );
 
@@ -242,6 +393,7 @@ mod test {
                 major: Major(18),
                 number: ReleaseCandidateNumber(1u8.try_into().unwrap()),
                 os: OS::Explicit("alpine3.21".to_string()),
+                digest: None,
             },
         );
 
@@ -251,6 +403,7 @@ mod test {
                 major: Major(18),
                 number: ReleaseCandidateNumber(1u8.try_into().unwrap()),
                 os: OS::Explicit("alpine".to_string()),
+                digest: None,
             },
         );
 
@@ -260,6 +413,7 @@ mod test {
                 major: Major(17),
                 minor: Minor::Latest,
                 os: OS::Default,
+                digest: None,
             },
         );
 
@@ -269,6 +423,7 @@ mod test {
                 major: Major(17),
                 minor: Minor::Latest,
                 os: OS::Explicit("trixie".to_string()),
+                digest: None,
             },
         );
 
@@ -278,6 +433,7 @@ mod test {
                 major: Major(17),
                 minor: Minor::Explicit(6),
                 os: OS::Default,
+                digest: None,
             },
         );
 
@@ -287,6 +443,7 @@ mod test {
                 major: Major(17),
                 minor: Minor::Explicit(6),
                 os: OS::Explicit("trixie".to_string()),
+                digest: None,
             },
         );
     }
@@ -294,5 +451,212 @@ mod test {
     fn assert_image(syntax: &str, expected: &Image) {
         assert_eq!(syntax.parse().as_ref(), Ok(expected), "parses: {syntax:#?}");
         assert_eq!(format!("{expected}"), syntax, "generates: {syntax:#?}");
+    }
+
+    #[test]
+    fn test_image_with_digest() {
+        let digest = "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
+        let parsed_digest = Some(digest.parse::<Digest>().unwrap());
+
+        // Test OfficialRelease with digest
+        assert_image(
+            "17.6@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+            &Image::OfficialRelease {
+                major: Major(17),
+                minor: Minor::Explicit(6),
+                os: OS::Default,
+                digest: parsed_digest.clone(),
+            },
+        );
+
+        assert_image(
+            "17.6-trixie@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+            &Image::OfficialRelease {
+                major: Major(17),
+                minor: Minor::Explicit(6),
+                os: OS::Explicit("trixie".to_string()),
+                digest: parsed_digest.clone(),
+            },
+        );
+
+        assert_image(
+            "17@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+            &Image::OfficialRelease {
+                major: Major(17),
+                minor: Minor::Latest,
+                os: OS::Default,
+                digest: parsed_digest.clone(),
+            },
+        );
+
+        // Test OfficialReleaseCandidate with digest
+        assert_image(
+            "18rc1@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+            &Image::OfficialReleaseCandidate {
+                major: Major(18),
+                number: ReleaseCandidateNumber(1u8.try_into().unwrap()),
+                os: OS::Default,
+                digest: parsed_digest.clone(),
+            },
+        );
+
+        assert_image(
+            "18rc1-alpine@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+            &Image::OfficialReleaseCandidate {
+                major: Major(18),
+                number: ReleaseCandidateNumber(1u8.try_into().unwrap()),
+                os: OS::Explicit("alpine".to_string()),
+                digest: parsed_digest.clone(),
+            },
+        );
+
+        // Test OfficialLatest with digest
+        assert_image(
+            "latest@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+            &Image::OfficialLatest {
+                os: OS::Default,
+                digest: parsed_digest.clone(),
+            },
+        );
+
+        assert_image(
+            "trixie@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+            &Image::OfficialLatest {
+                os: OS::Explicit("trixie".to_string()),
+                digest: parsed_digest.clone(),
+            },
+        );
+    }
+
+    #[test]
+    fn test_digest_validation() {
+        // Valid digest
+        assert!(
+            "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+                .parse::<Digest>()
+                .is_ok()
+        );
+
+        // Invalid: wrong prefix
+        assert!(
+            "sha512:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+                .parse::<Digest>()
+                .is_err()
+        );
+
+        // Invalid: too short
+        assert!("sha256:abc123".parse::<Digest>().is_err());
+
+        // Invalid: too long
+        assert!(
+            "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef00"
+                .parse::<Digest>()
+                .is_err()
+        );
+
+        // Invalid: non-hex characters
+        assert!(
+            "sha256:xyz3456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+                .parse::<Digest>()
+                .is_err()
+        );
+
+        // Invalid: missing prefix
+        assert!(
+            "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+                .parse::<Digest>()
+                .is_err()
+        );
+    }
+
+    #[test]
+    fn test_cbt_image_conversion_with_digest() {
+        let image = Image::OfficialRelease {
+            major: Major(17),
+            minor: Minor::Explicit(6),
+            os: OS::Default,
+            digest: Some(
+                "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+                    .parse()
+                    .unwrap(),
+            ),
+        };
+
+        let cbt_image: cbt::Image = (&image).into();
+        let expected = "registry.hub.docker.com/library/postgres:17.6@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
+
+        assert_eq!(cbt_image.as_str(), expected);
+    }
+
+    #[test]
+    fn test_parse_error_uppercase() {
+        let error = "LATEST".parse::<Image>().unwrap_err();
+        let expected = indoc::indoc! {"
+            0: at line 1, in TakeWhileMN:
+            LATEST
+            ^
+
+            1: at line 1, in OS name:
+            LATEST
+            ^
+
+            2: at line 1, in OS-only image:
+            LATEST
+            ^
+
+            3: at line 1, in Alt:
+            LATEST
+            ^
+
+        "};
+        assert_eq!(error, expected);
+    }
+
+    #[test]
+    fn test_parse_error_invalid_rc() {
+        let error = "17rc".parse::<Image>().unwrap_err();
+        let expected = "unexpected trailing input: 'rc'";
+        assert_eq!(error, expected);
+    }
+
+    #[test]
+    fn test_parse_error_short_digest() {
+        let error = "17@sha256:abc".parse::<Image>().unwrap_err();
+        let expected = indoc::indoc! {"
+            0: at line 1, in TakeWhileMN:
+            17@sha256:abc
+                      ^
+
+            1: at line 1, in digest:
+            17@sha256:abc
+              ^
+
+            2: at line 1, in official release image:
+            17@sha256:abc
+            ^
+
+        "};
+        assert_eq!(error, expected);
+    }
+
+    #[test]
+    fn test_parse_error_trailing_dash() {
+        let error = "17-".parse::<Image>().unwrap_err();
+        let expected = "unexpected trailing input: '-'";
+        assert_eq!(error, expected);
+    }
+
+    #[test]
+    fn test_parse_error_trailing_content() {
+        let error = "17.6.5".parse::<Image>().unwrap_err();
+        let expected = "unexpected trailing input: '.5'";
+        assert_eq!(error, expected);
+    }
+
+    #[test]
+    fn test_parse_error_invalid_os_name() {
+        let error = "17-9invalid".parse::<Image>().unwrap_err();
+        let expected = "unexpected trailing input: '-9invalid'";
+        assert_eq!(error, expected);
     }
 }
