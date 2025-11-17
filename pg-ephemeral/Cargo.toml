@@ -13,10 +13,10 @@ env_logger = { workspace = true }
 indexmap = { version = "2.7", features = ["serde"] }
 log = { workspace = true }
 mmigration = { workspace = true }
+nom = { workspace = true }
 pg-client = { workspace = true }
 rand = { workspace = true }
 rcgen = "0.13"
-regex-lite = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 sqlx = { workspace = true }
