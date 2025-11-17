@@ -269,7 +269,7 @@ impl Definition {
             .mounts(mounts)
             .run_capture_only_stdout();
 
-        crate::convert_schema(&bytes)
+        crate::container::convert_schema(&bytes)
     }
 }
 
