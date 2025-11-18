@@ -1,0 +1,5 @@
+image = "17.2"
+
+[instances.main]
+
+[instances.custom]

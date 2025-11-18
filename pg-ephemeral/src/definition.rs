@@ -269,7 +269,7 @@ impl Definition {
             .mounts(mounts)
             .run_capture_only_stdout();
 
-        crate::container::convert_schema(&bytes)
+        crate::convert_schema(&bytes)
     }
 }
 
@@ -338,7 +338,10 @@ pub mod cli {
         /// representation of the root connection details.
         ///
         /// The server will stop once stdin returns EOF, aka the parent process closed it.
-        IntegrationServer,
+        IntegrationServer {
+            /// Protocol version to use
+            protocol: crate::cli::Protocol,
+        },
         /// Migration subcommands
         Migration(mmigration::cli::App),
         /// Run interactive psql on the host
@@ -362,7 +365,9 @@ pub mod cli {
                 Self::ContainerPsql => definition.with_container(container_psql).await,
                 Self::ContainerSchemaDump => definition.with_container(container_schema_dump).await,
                 Self::ContainerShell => definition.with_container(container_shell).await,
-                Self::IntegrationServer => definition.run_integration_server().await,
+                Self::IntegrationServer { protocol: _ } => {
+                    definition.run_integration_server().await
+                }
                 Self::Migration(app) => run_migration(definition, app).await,
                 Self::Psql => definition.with_container(host_psql).await,
                 Self::RunEnv { command, arguments } => {

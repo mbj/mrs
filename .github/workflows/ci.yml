@@ -49,6 +49,9 @@ jobs:
     - name: Run fmt
       run: cargo fmt --check
 
+    - name: Build all projects
+      run: cargo build --release --all-targets
+
     - name: Run clippy
       run: cargo clippy --release
 
@@ -58,12 +61,15 @@ jobs:
         # Podman on GH actions is old <5.x cannot deal corectly with concurrent access to overlay storage.
         CBT_BACKEND=podman cargo test --release --package cbt -- --test-threads=1
 
-    - name: Package release binary
-      if: ${{ !endsWith(matrix.os.cargo_build_target, '-gnu') }}
-      run: |
-        cd target/${{ matrix.os.cargo_build_target }}/release
-        tar czf pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz pg-ephemeral
-        sha256sum pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz > pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz.sha256
+    - name: Set up Ruby 3.4 for macOS gem build
+      if: ${{ endsWith(matrix.os.cargo_build_target, '-darwin') }}
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.4'
+
+    - name: Build integrations
+      if: ${{ endsWith(matrix.os.cargo_build_target, '-musl') || endsWith(matrix.os.cargo_build_target, '-darwin') }}
+      run: cargo run --release --package manager -- integrations build
 
     - name: Upload build artifacts
       if: ${{ !endsWith(matrix.os.cargo_build_target, '-gnu') }}
@@ -73,11 +79,45 @@ jobs:
         path: |
           target/${{ matrix.os.cargo_build_target }}/release/pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz
           target/${{ matrix.os.cargo_build_target }}/release/pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz.sha256
+          pg-ephemeral/integrations/ruby/pg-ephemeral-*.gem
+          target/${{ matrix.os.cargo_build_target }}/release/manager
         retention-days: 7
+
+  ruby-integration-test:
+    strategy:
+      matrix:
+        ruby-version:
+        - '3.2'
+        - '3.3'
+        - '3.4'
+    name: Ruby Integration Test (${{ matrix.ruby-version }})
+    runs-on: ubuntu-24.04
+    needs: build
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: pg-ephemeral-x86_64-unknown-linux-musl
+        path: .
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+
+    - name: Install gem
+      run: gem install pg-ephemeral/integrations/ruby/pg-ephemeral-*.gem
+
+    - name: Run integration tests with manager
+      run: chmod +x target/x86_64-unknown-linux-musl/release/manager && ./target/x86_64-unknown-linux-musl/release/manager integrations test-ci
 
   publish:
     name: Publish Edge Build
-    needs: build
+    needs:
+    - build
+    - ruby-integration-test
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
