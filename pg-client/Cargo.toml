@@ -10,8 +10,12 @@ workspace = true
 hostname-validator = "1.1.1"
 serde = { workspace = true }
 sqlx = { workspace = true }
+thiserror = { workspace = true }
 url = "2.5.7"
 
 [dev-dependencies]
+cbt = { workspace = true }
+pg-ephemeral = { workspace = true }
 serde_json.workspace = true
 pretty_assertions = { workspace = true }
+tokio = { workspace = true, features = ["macros", "rt"] }

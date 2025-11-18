@@ -217,6 +217,10 @@ impl<'a> Container<'a> {
         ))
     }
 
+    pub fn client_config(&self) -> &pg_client::Config {
+        &self.client_config
+    }
+
     pub async fn with_connection<T, F: AsyncFnMut(&mut sqlx::postgres::PgConnection) -> T>(
         &self,
         mut action: F,
