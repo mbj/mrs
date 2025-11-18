@@ -1,13 +1,18 @@
 use indoc::indoc;
 
+/// Helper function to create a Definition with .remove() automatically set
+/// to prevent container leaks in tests.
+fn test_definition(backend: cbt::Backend, image: cbt::Image) -> cbt::Definition {
+    cbt::Definition::new(backend, image).remove()
+}
+
 #[test]
 fn test_hello_world() {
     let backend = cbt::test_backend_setup!();
 
-    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+    let definition = test_definition(backend, cbt::Image::from("alpine:latest"))
         .entrypoint("echo")
-        .argument("Hello, World!")
-        .remove();
+        .argument("Hello, World!");
 
     let output = definition.run_capture_only_stdout();
 
@@ -25,11 +30,10 @@ fn test_backend_autodetect() {
 fn test_container_with_env_vars() {
     let backend = cbt::test_backend_setup!();
 
-    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+    let definition = test_definition(backend, cbt::Image::from("alpine:latest"))
         .entrypoint("sh")
         .arguments(["-c", "echo $TEST_VAR"])
-        .environment_variable("TEST_VAR", "test_value")
-        .remove();
+        .environment_variable("TEST_VAR", "test_value");
 
     let output = definition.run_capture_only_stdout();
     let stdout = std::str::from_utf8(&output).expect("invalid utf8 in output");
@@ -38,10 +42,10 @@ fn test_container_with_env_vars() {
 }
 
 #[test]
-fn test_container_detached_and_exec() {
+fn test_container_exec() {
     let backend = cbt::test_backend_setup!();
 
-    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+    let definition = test_definition(backend, cbt::Image::from("alpine:latest"))
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
@@ -57,7 +61,7 @@ fn test_container_detached_and_exec() {
 fn test_read_host_tcp_port() {
     let backend = cbt::test_backend_setup!();
 
-    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+    let definition = test_definition(backend, cbt::Image::from("alpine:latest"))
         .entrypoint("sh".to_string())
         .arguments(vec![
             "-c".to_string(),
@@ -78,7 +82,7 @@ fn test_read_host_tcp_port() {
 fn test_read_host_tcp_port_not_published() {
     let backend = cbt::test_backend_setup!();
 
-    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+    let definition = test_definition(backend, cbt::Image::from("alpine:latest"))
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
@@ -267,10 +271,9 @@ fn test_image_build_with_build_args() {
     assert!(backend.is_image_present(&image));
 
     // Verify the build arg was used by checking the file created during build
-    let def = cbt::Definition::new(backend, image.clone())
+    let def = test_definition(backend, image.clone())
         .entrypoint("cat")
-        .arguments(["/test-output"])
-        .remove();
+        .arguments(["/test-output"]);
 
     let output = def.run_capture_only_stdout();
     let stdout = std::str::from_utf8(&output).expect("invalid utf8 in output");
@@ -338,9 +341,7 @@ fn test_build_argument_key_cannot_contain_equals() {
 fn test_run_status_with_successful_exit() {
     let backend = cbt::test_backend_setup!();
 
-    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
-        .entrypoint("true")
-        .remove();
+    let definition = test_definition(backend, cbt::Image::from("alpine:latest")).entrypoint("true");
 
     let status = definition.run_status();
     assert!(status.success());
@@ -350,9 +351,8 @@ fn test_run_status_with_successful_exit() {
 fn test_run_status_with_nonzero_exit() {
     let backend = cbt::test_backend_setup!();
 
-    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
-        .entrypoint("false")
-        .remove();
+    let definition =
+        test_definition(backend, cbt::Image::from("alpine:latest")).entrypoint("false");
 
     let status = definition.run_status();
     assert_eq!(status.code(), Some(1));
@@ -362,9 +362,8 @@ fn test_run_status_with_nonzero_exit() {
 fn test_run_status_success_with_successful_exit() {
     let backend = cbt::test_backend_setup!();
 
-    cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+    test_definition(backend, cbt::Image::from("alpine:latest"))
         .entrypoint("true")
-        .remove()
         .run_status_success();
 }
 
@@ -376,9 +375,8 @@ fn test_run_status_success_with_successful_exit() {
 fn test_run_status_success_with_nonzero_exit() {
     let backend = cbt::test_backend_setup!();
 
-    cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+    test_definition(backend, cbt::Image::from("alpine:latest"))
         .entrypoint("false")
-        .remove()
         .run_status_success();
 }
 
@@ -386,10 +384,9 @@ fn test_run_status_success_with_nonzero_exit() {
 fn test_container_with_workdir() {
     let backend = cbt::test_backend_setup!();
 
-    let definition = cbt::Definition::new(backend, cbt::Image::from("alpine:latest"))
+    let definition = test_definition(backend, cbt::Image::from("alpine:latest"))
         .entrypoint("pwd")
-        .workdir("/tmp")
-        .remove();
+        .workdir("/tmp");
 
     let output = definition.run_capture_only_stdout();
     let stdout = std::str::from_utf8(&output).expect("invalid utf8 in output");
