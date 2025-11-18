@@ -1,6 +1,7 @@
 [workspace]
 members = [
   "cbt",
+  "manager",
   "mlambda",
   "mmigration",
   "pg-client",

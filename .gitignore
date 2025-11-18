@@ -1,1 +1,5 @@
 /target
+/pg-ephemeral/integrations/ruby/bin/
+/pg-ephemeral/integrations/ruby/*.gem
+/pg-ephemeral/integrations/ruby/LICENSE.txt
+/pg-ephemeral/integrations/ruby/Gemfile.acceptance.lock
