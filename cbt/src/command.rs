@@ -42,6 +42,16 @@ impl Command {
         self
     }
 
+    pub fn working_directory(mut self, dir: impl AsRef<std::path::Path>) -> Self {
+        self.inner.current_dir(dir);
+        self
+    }
+
+    pub fn env(mut self, key: impl AsRef<OsStr>, val: impl AsRef<OsStr>) -> Self {
+        self.inner.env(key, val);
+        self
+    }
+
     pub fn stdin_bytes(mut self, data: Vec<u8>) -> Self {
         self.stdin_data = Some(data);
         self
@@ -112,12 +122,29 @@ impl Command {
             .to_string()
     }
 
-    pub fn status(mut self) -> std::process::ExitStatus {
+    pub fn status_result(mut self) -> Result<std::process::ExitStatus, std::io::Error> {
         log::debug!("{:#?}", self.inner);
 
-        match self.inner.status() {
+        self.inner.status()
+    }
+
+    pub fn status(self) -> std::process::ExitStatus {
+        match self.status_result() {
             Ok(status) => status,
-            Err(error) => panic!("Failed to run container command: {error:#?}"),
+            Err(error) => panic!("Failed to run command: {error:#?}"),
+        }
+    }
+
+    pub fn output_result(mut self) -> Result<std::process::Output, std::io::Error> {
+        log::debug!("{:#?}", self.inner);
+
+        self.inner.output()
+    }
+
+    pub fn output(self) -> std::process::Output {
+        match self.output_result() {
+            Ok(output) => output,
+            Err(error) => panic!("Failed to run command: {error:#?}"),
         }
     }
 }

@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+# Use the globally installed pg-ephemeral gem
+gem 'pg-ephemeral'
+
+gem 'rspec', '~> 3.0'

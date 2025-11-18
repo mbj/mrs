@@ -355,6 +355,7 @@ fn test_run_status_with_nonzero_exit() {
         test_definition(backend, cbt::Image::from("alpine:latest")).entrypoint("false");
 
     let status = definition.run_status();
+    assert!(!status.success());
     assert_eq!(status.code(), Some(1));
 }
 
