@@ -431,6 +431,18 @@ impl std::fmt::Display for SqlxOptionsError {
 
 impl std::error::Error for SqlxOptionsError {}
 
+#[derive(Debug, thiserror::Error)]
+pub enum SqlxConnectionError {
+    #[error("Failed to create SQLx connect options")]
+    Options(#[from] SqlxOptionsError),
+
+    #[error("Failed to connect to database")]
+    Connect(#[source] sqlx::Error),
+
+    #[error("Failed to close database connection")]
+    Close(#[source] sqlx::Error),
+}
+
 #[derive(Clone, Debug, PartialEq, Eq)]
 /// PG connection config with various presentation modes.
 ///
@@ -876,14 +888,18 @@ impl Config {
     pub async fn with_sqlx_connection<T, F: AsyncFnMut(&mut sqlx::postgres::PgConnection) -> T>(
         &self,
         mut action: F,
-    ) -> Result<T, SqlxOptionsError> {
+    ) -> Result<T, SqlxConnectionError> {
         let config = self.to_sqlx_connect_options()?;
 
-        let mut connection = sqlx::ConnectOptions::connect(&config).await.unwrap();
+        let mut connection = sqlx::ConnectOptions::connect(&config)
+            .await
+            .map_err(SqlxConnectionError::Connect)?;
 
         let result = action(&mut connection).await;
 
-        sqlx::Connection::close(connection).await.unwrap();
+        sqlx::Connection::close(connection)
+            .await
+            .map_err(SqlxConnectionError::Close)?;
 
         Ok(result)
     }

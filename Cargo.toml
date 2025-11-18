@@ -27,6 +27,7 @@ log = "0.4"
 mmigration = { path = "mmigration" }
 nom = "7.1"
 pg-client = { path = "pg-client" }
+pg-ephemeral = { path = "pg-ephemeral" }
 pretty_assertions = "1.4"
 rand = "0.9"
 regex-lite = "0.1.6"
