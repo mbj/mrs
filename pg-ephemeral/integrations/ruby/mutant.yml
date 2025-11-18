@@ -1,0 +1,10 @@
+---
+usage: opensource
+integration: rspec
+includes:
+- lib
+requires:
+- pg_ephemeral
+matcher:
+  subjects:
+  - PgEphemeral*
