@@ -15,7 +15,9 @@ members = [
 resolver = "3"
 
 [workspace.package]
+authors = ["Markus Schirp <mbj@schirp-dso.com>"]
 edition = "2024"
+rust-version = "1.90"
 
 [workspace.dependencies]
 cbt = { path = "cbt" }
@@ -36,7 +38,9 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = { version = "1.0", features = ["arbitrary_precision", "indexmap"] }
 sha2 = "0.10"
 sqlx = { git = "https://github.com/mbj/sqlx", rev = "f795fe994a6973ebe872c8c619706a4244c65d54", features = ["postgres", "runtime-tokio", "tls-rustls"] }
-stratosphere = { path = "./stratosphere" }
+stratosphere = { version = "0.0.1", path = "./stratosphere" }
+stratosphere-core = { version = "0.0.1", path = "./stratosphere-core" }
+stratosphere-generator = { version = "0.0.1", path = "./stratosphere-generator" }
 thiserror = "2"
 tokio = "1"
 
