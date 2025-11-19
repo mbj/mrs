@@ -19,7 +19,7 @@ proc-macro2 = "1"
 quote = "1"
 serde = "1"
 serde_json = "1"
-stratosphere-core = { path = "../stratosphere-core" }
+stratosphere-core = { workspace = true }
 syn = { version = "2", features = ["derive"] }
 
 [lib]
