@@ -1,3 +1,5 @@
+#![doc = include_str!("../README.md")]
+
 use std::collections::{BTreeMap, BTreeSet};
 use stratosphere_core::resource_specification::*;
 use stratosphere_core::token::*;
