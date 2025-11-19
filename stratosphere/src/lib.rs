@@ -1,3 +1,5 @@
+#![doc = include_str!("../README.md")]
+
 pub mod value {
     pub use stratosphere_core::value::*;
 }

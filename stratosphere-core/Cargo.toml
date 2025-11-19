@@ -9,6 +9,7 @@ repository = "https://github.com/mbj/mrs/tree/main/stratosphere-core"
 homepage = "https://github.com/mbj/mrs/tree/main/stratosphere-core"
 keywords = ["aws", "cloudformation", "infrastructure", "template"]
 categories = ["development-tools"]
+exclude = ["update-model-file.sh"]
 
 [lints]
 workspace = true

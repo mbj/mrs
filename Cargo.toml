@@ -15,6 +15,7 @@ members = [
 resolver = "3"
 
 [workspace.package]
+authors = ["Markus Schirp <mbj@schirp-dso.com>"]
 edition = "2024"
 rust-version = "1.90"
 
