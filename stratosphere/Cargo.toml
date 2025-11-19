@@ -2,6 +2,7 @@
 name = "stratosphere"
 version = "0.0.1"
 edition.workspace = true
+rust-version.workspace = true
 description = "Type-safe CloudFormation template generation library for Rust"
 license = "MIT"
 repository = "https://github.com/mbj/mrs/tree/main/stratosphere"
