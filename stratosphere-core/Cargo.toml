@@ -2,6 +2,12 @@
 edition.workspace = true
 name = "stratosphere-core"
 version = "0.0.1"
+description = "Core types and utilities for stratosphere - a type-safe CloudFormation template generation library"
+license = "MIT"
+repository = "https://github.com/mbj/mrs/tree/main/stratosphere-core"
+homepage = "https://github.com/mbj/mrs/tree/main/stratosphere-core"
+keywords = ["aws", "cloudformation", "infrastructure", "template"]
+categories = ["development-tools"]
 
 [lints]
 workspace = true
