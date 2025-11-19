@@ -2,3 +2,4 @@
 /dist
 /pg-ephemeral/build
 /pg-ephemeral/integrations/ruby/Gemfile.acceptance.lock
+/pg-ephemeral/integrations/ruby/bin
