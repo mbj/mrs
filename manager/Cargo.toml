@@ -8,6 +8,7 @@ cbt.workspace = true
 clap = { version = "4.5", features = ["derive"] }
 env_logger.workspace = true
 flate2 = "1.0"
+indoc = "2"
 log.workspace = true
 pg-ephemeral = { path = "../pg-ephemeral" }
 sha2.workspace = true

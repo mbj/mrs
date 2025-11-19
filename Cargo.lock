@@ -1762,6 +1762,7 @@ dependencies = [
  "clap",
  "env_logger",
  "flate2",
+ "indoc",
  "log",
  "pg-ephemeral",
  "sha2",
