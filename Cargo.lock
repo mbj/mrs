@@ -1767,6 +1767,7 @@ dependencies = [
  "pg-ephemeral",
  "sha2",
  "tar",
+ "url",
 ]
 
 [[package]]
