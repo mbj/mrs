@@ -26,4 +26,4 @@ pretty_assertions = "1"
 serde_json = { workspace = true }
 
 [[bin]]
-name = "stratosphere-generator"
+name = "stratosphere-gen"
