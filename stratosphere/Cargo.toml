@@ -15,8 +15,8 @@ workspace = true
 [dependencies]
 clap = { workspace = true }
 prettyplease = "0.2"
-stratosphere-core = { path = "../stratosphere-core" }
-stratosphere-generator = { path = "../stratosphere-generator" }
+stratosphere-core = { workspace = true }
+stratosphere-generator = { workspace = true }
 syn = "2"
 
 [dev-dependencies]
