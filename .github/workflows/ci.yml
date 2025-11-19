@@ -77,9 +77,7 @@ jobs:
       with:
         name: pg-ephemeral-${{ matrix.os.cargo_build_target }}
         path: |
-          target/${{ matrix.os.cargo_build_target }}/release/pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz
-          target/${{ matrix.os.cargo_build_target }}/release/pg-ephemeral-${{ matrix.os.cargo_build_target }}.tar.gz.sha256
-          pg-ephemeral/integrations/ruby/pg-ephemeral-*.gem
+          dist/
           target/${{ matrix.os.cargo_build_target }}/release/manager
         retention-days: 7
 
@@ -108,7 +106,7 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
 
     - name: Install gem
-      run: gem install pg-ephemeral/integrations/ruby/pg-ephemeral-*.gem
+      run: gem install dist/gems/pg-ephemeral-*.gem
 
     - name: Run integration tests with manager
       run: chmod +x target/x86_64-unknown-linux-musl/release/manager && ./target/x86_64-unknown-linux-musl/release/manager integrations test-ci
@@ -130,19 +128,9 @@ jobs:
       with:
         path: artifacts
 
-    - name: Create edge build release and upload all binaries
+    - name: Create edge build release
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        TAG="edge-${{ github.sha }}"
-        RELEASE_NAME="Edge Build (${{ github.ref_name }} @ ${{ github.sha }})"
-
-        # Collect all artifact files
-        FILES=$(find artifacts -type f \( -name "*.tar.gz" -o -name "*.sha256" \))
-
-        # Create prerelease with all artifacts
-        gh release create "$TAG" \
-          --prerelease \
-          --title "$RELEASE_NAME" \
-          --notes "Automated edge build from commit ${{ github.sha }}" \
-          $FILES
+        chmod +x artifacts/pg-ephemeral-x86_64-unknown-linux-musl/target/x86_64-unknown-linux-musl/release/manager
+        artifacts/pg-ephemeral-x86_64-unknown-linux-musl/target/x86_64-unknown-linux-musl/release/manager release create-edge
