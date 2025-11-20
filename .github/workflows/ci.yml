@@ -49,9 +49,6 @@ jobs:
     - name: Build all targets
       run: cargo build --all-targets --release
 
-    - name: Build all projects
-      run: cargo build --release --all-targets
-
     - name: Run clippy
       run: cargo clippy --release
 
