@@ -43,11 +43,11 @@ jobs:
           ~/.rustup
         key: ${{ matrix.os.version }}-build-${{ matrix.os.cargo_build_target }}-${{ hashFiles('.github/workflows/ci.yml', '**/Cargo.lock', 'rust-toolchain.toml') }}
 
-    - name: Build all targets
-      run: cargo build --all-targets --release
-
     - name: Run fmt
       run: cargo fmt --check
+
+    - name: Build all targets
+      run: cargo build --all-targets --release
 
     - name: Build all projects
       run: cargo build --release --all-targets
@@ -84,32 +84,50 @@ jobs:
   ruby-integration-test:
     strategy:
       matrix:
+        platform:
+        - runner: ubuntu-24.04
+          target: x86_64-unknown-linux-musl
+        - runner: ubuntu-24.04-arm
+          target: aarch64-unknown-linux-musl
+        - runner: macos-15
+          target: aarch64-apple-darwin
         ruby-version:
         - '3.2'
         - '3.3'
         - '3.4'
-    name: Ruby Integration Test (${{ matrix.ruby-version }})
-    runs-on: ubuntu-24.04
+    name: Ruby Integration Test (${{ matrix.platform.runner }}, Ruby ${{ matrix.ruby-version }})
+    runs-on: ${{ matrix.platform.runner }}
     needs: build
     steps:
     - uses: actions/checkout@v4
 
-    - name: Download build artifacts
+    - name: Install libpq on macOS
+      if: ${{ startsWith(matrix.platform.runner, 'macos-') }}
+      run: brew install libpq
+
+    - name: Install libpq-dev on Ubuntu
+      if: ${{ startsWith(matrix.platform.runner, 'ubuntu-') }}
+      run: sudo apt-get update && sudo apt-get install --yes libpq-dev
+
+    - name: Download all artifacts
       uses: actions/download-artifact@v4
       with:
-        name: pg-ephemeral-x86_64-unknown-linux-musl
-        path: .
+        path: artifacts/
+        merge-multiple: false
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
 
-    - name: Install gem
-      run: gem install dist/gems/pg-ephemeral-*.gem
+    - name: Make manager executable
+      run: chmod +x artifacts/pg-ephemeral-${{ matrix.platform.target }}/target/${{ matrix.platform.target }}/release/manager
+
+    - name: Merge multi-platform gems
+      run: artifacts/pg-ephemeral-${{ matrix.platform.target }}/target/${{ matrix.platform.target }}/release/manager integrations merge-gems
 
     - name: Run integration tests with manager
-      run: chmod +x target/x86_64-unknown-linux-musl/release/manager && ./target/x86_64-unknown-linux-musl/release/manager integrations test-ci
+      run: artifacts/pg-ephemeral-${{ matrix.platform.target }}/target/${{ matrix.platform.target }}/release/manager integrations test
 
   publish:
     name: Publish Edge Build

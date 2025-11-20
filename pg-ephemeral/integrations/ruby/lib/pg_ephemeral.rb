@@ -23,6 +23,11 @@ module PgEphemeral
     stdout.match(/\Apg-ephemeral (?<version>.+)\n\z/)[:version]
   end
 
+  def self.platform_supported?
+    stdout, status = Open3.capture2(binary_path, 'platform')
+    status.success?
+  end
+
   def self.with_server(instance_name: 'main', config: nil, &block)
     run_server(instance_name, config, &block).from_right
   end

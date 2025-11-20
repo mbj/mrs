@@ -3,6 +3,12 @@
 require 'pg_ephemeral'
 
 RSpec.describe PgEphemeral do
+  describe '.platform_supported?' do
+    it 'returns a boolean value' do
+      expect([true, false]).to include(PgEphemeral.platform_supported?)
+    end
+  end
+
   describe '.version' do
     it 'returns the expected pg-ephemeral version' do
       expected_version = ENV.fetch('EXPECTED_PG_EPHEMERAL_VERSION')
@@ -27,6 +33,10 @@ RSpec.describe PgEphemeral do
   end
 
   describe '.with_server' do
+    before do
+      skip 'Platform does not support pg-ephemeral' unless PgEphemeral.platform_supported?
+    end
+
     it 'yields a server with url' do
       PgEphemeral.with_server do |server|
         expect(server).to be_a(PgEphemeral::Server)
@@ -69,6 +79,10 @@ RSpec.describe PgEphemeral do
   end
 
   describe '.with_connection' do
+    before do
+      skip 'Platform does not support pg-ephemeral' unless PgEphemeral.platform_supported?
+    end
+
     it 'yields a PG connection' do
       PgEphemeral.with_connection do |connection|
         expect(connection).to be_a(PG::Connection)
