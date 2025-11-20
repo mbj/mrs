@@ -101,10 +101,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install libpq on macOS
-      if: ${{ startsWith(matrix.platform.runner, 'macos-') }}
-      run: brew install libpq
-
     - name: Install libpq-dev on Ubuntu
       if: ${{ startsWith(matrix.platform.runner, 'ubuntu-') }}
       run: sudo apt-get update && sudo apt-get install --yes libpq-dev
