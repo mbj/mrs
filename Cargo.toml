@@ -47,3 +47,13 @@ url = "2.5"
 
 [workspace.lints.clippy]
 all = { level = "deny", priority = -1 }
+
+[profile.release]
+# Optimize for size rather than speed
+opt-level = "z"
+# Enable Link Time Optimization for better optimization across crates
+lto = true
+# Reduce number of codegen units to improve optimization (at cost of compile time)
+codegen-units = 1
+# Strip debug symbols from binary (backtraces preserved via panic unwinding)
+strip = true
