@@ -38,6 +38,12 @@ enum IntegrationsCommand {
     MergeGems,
     /// Test integrations (acceptance tests + unit tests + mutant)
     Test,
+    /// Publish gems to RubyGems.org from GitHub artifacts
+    Publish {
+        /// Actually push gems to RubyGems.org (default is dry-run)
+        #[clap(long)]
+        push: bool,
+    },
 }
 
 #[derive(Debug, clap::Parser)]
@@ -68,6 +74,10 @@ impl IntegrationsCommand {
             }
             Self::Test => {
                 test();
+                Ok(())
+            }
+            Self::Publish { push } => {
+                publish_gems(*push);
                 Ok(())
             }
         }
@@ -819,8 +829,128 @@ fn test() {
     run_ruby_tests(workspace_root, target);
 }
 
+fn publish_gems(push: bool) {
+    if push {
+        log::info!("Publishing gems to RubyGems.org");
+    } else {
+        log::info!("Running in DRY-RUN mode (use --push to actually publish)");
+    }
+
+    let workspace_root = std::env::current_dir()
+        .unwrap_or_else(|error| panic!("Failed to get current directory: {}", error));
+
+    // Get git commit SHA
+    let sha_output = cbt::Command::new("git")
+        .arguments(["rev-parse", "HEAD"])
+        .output_result()
+        .unwrap_or_else(|error| panic!("Failed to get git SHA: {}", error));
+
+    if !sha_output.status.success() {
+        panic!("Failed to get git SHA");
+    }
+
+    let sha = String::from_utf8(sha_output.stdout)
+        .unwrap_or_else(|error| panic!("Invalid UTF-8 in git SHA: {}", error))
+        .trim()
+        .to_string();
+
+    log::info!("Current git revision: {}", sha);
+
+    // Construct edge release tag
+    let release_tag = format!("edge-{}", sha);
+    log::info!("Looking for edge release: {}", release_tag);
+
+    // Create dist directory for downloading artifacts
+    let dist_dir = workspace_root.join("dist");
+    let dist_gems = dist_dir.join("gems");
+    if dist_gems.exists() {
+        log::info!("Removing existing dist/gems directory");
+        std::fs::remove_dir_all(&dist_gems)
+            .unwrap_or_else(|error| panic!("Failed to remove dist/gems directory: {}", error));
+    }
+    std::fs::create_dir_all(&dist_gems)
+        .unwrap_or_else(|error| panic!("Failed to create dist/gems directory: {}", error));
+
+    log::info!("Downloading artifacts from edge release {}", release_tag);
+
+    // Download all artifacts from the edge release
+    let status = cbt::Command::new("gh")
+        .arguments([
+            "release",
+            "download",
+            &release_tag,
+            "--repo",
+            "mbj/mrs",
+            "--dir",
+            dist_gems.to_str().unwrap(),
+            "--pattern",
+            "*.gem",
+        ])
+        .status_result()
+        .unwrap_or_else(|error| panic!("Failed to execute gh release download: {}", error));
+
+    if !status.success() {
+        panic!("Failed to download artifacts from release: {}", release_tag);
+    }
+
+    log::info!("All artifacts downloaded successfully");
+
+    // Collect and publish gems
+    let mut gems_to_publish = Vec::new();
+
+    for (_rust_target, ruby_platform) in PLATFORMS {
+        let version = pg_ephemeral::VERSION;
+        let gem_name = format!("pg-ephemeral-{}-{}.gem", version, ruby_platform);
+        let gem_path = dist_gems.join(&gem_name);
+
+        if !gem_path.exists() {
+            panic!("Expected gem file not found: {}", gem_path.display());
+        }
+
+        log::info!("Found gem: {}", gem_path.display());
+        gems_to_publish.push(gem_path);
+    }
+
+    log::info!("Collected {} gems to publish", gems_to_publish.len());
+
+    // Publish each gem
+    for gem_path in &gems_to_publish {
+        let mut command = std::process::Command::new("gem");
+        command.args(["push", gem_path.to_str().unwrap()]);
+
+        if push {
+            log::info!("Pushing gem: {}", gem_path.display());
+            let status = command
+                .status()
+                .unwrap_or_else(|error| panic!("Failed to execute gem push: {}", error));
+
+            if !status.success() {
+                panic!("Failed to push gem: {}", gem_path.display());
+            }
+            log::info!("Successfully pushed: {}", gem_path.display());
+        } else {
+            log::info!("[DRY-RUN] Would execute: {:?}", command);
+        }
+    }
+
+    if push {
+        log::info!(
+            "Successfully published {} gems to RubyGems.org",
+            gems_to_publish.len()
+        );
+    } else {
+        log::info!(
+            "[DRY-RUN] Would have published {} gems",
+            gems_to_publish.len()
+        );
+        log::info!("Run with --push to actually publish");
+    }
+
+    log::info!("Done");
+}
+
 fn main() {
-    env_logger::init();
+    env_logger::Builder::from_env(env_logger::Env::default().default_filter_or("info")).init();
 
     let app = <App as clap::Parser>::parse();
 
