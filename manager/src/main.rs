@@ -3,6 +3,13 @@ use indoc::formatdoc;
 use sha2::{Digest, Sha256};
 use std::path::PathBuf;
 
+// Expected platforms that should have built gems and binaries
+const PLATFORMS: &[(&str, &str)] = &[
+    ("x86_64-unknown-linux-musl", "x86_64-linux"),
+    ("aarch64-unknown-linux-musl", "aarch64-linux"),
+    ("aarch64-apple-darwin", "arm64-darwin"),
+];
+
 #[derive(Debug, clap::Parser)]
 struct App {
     #[clap(subcommand)]
@@ -27,10 +34,10 @@ enum AppCommand {
 enum IntegrationsCommand {
     /// Build integrations for current architecture
     Build,
-    /// Test integrations locally with Ruby 3.4
-    TestLocal,
-    /// Test integrations in CI environment
-    TestCi,
+    /// Merge multi-platform gems into unified repository
+    MergeGems,
+    /// Test integrations (acceptance tests + unit tests + mutant)
+    Test,
 }
 
 #[derive(Debug, clap::Parser)]
@@ -55,12 +62,12 @@ impl IntegrationsCommand {
                 build_integrations();
                 Ok(())
             }
-            Self::TestLocal => {
-                test_local();
+            Self::MergeGems => {
+                merge_gems();
                 Ok(())
             }
-            Self::TestCi => {
-                test_ci();
+            Self::Test => {
+                test();
                 Ok(())
             }
         }
@@ -84,6 +91,37 @@ fn verify_and_collect_file(path: PathBuf) -> PathBuf {
     }
     log::info!("Found: {}", path.display());
     path
+}
+
+struct PlatformArtifactPaths {
+    gem: PathBuf,
+    gem_sha256: PathBuf,
+    tarball: PathBuf,
+    tarball_sha256: PathBuf,
+}
+
+fn platform_artifact_paths(
+    workspace_root: &PathBuf,
+    rust_target: &str,
+    ruby_platform: &str,
+) -> PlatformArtifactPaths {
+    let version = pg_ephemeral::VERSION;
+    let artifact_base = workspace_root
+        .join("artifacts")
+        .join(format!("pg-ephemeral-{}", rust_target));
+
+    let gem_base = artifact_base.join("dist").join("gems");
+    let binary_base = artifact_base.join("dist").join("binaries");
+
+    let gem_name = format!("pg-ephemeral-{}-{}.gem", version, ruby_platform);
+    let tarball_name = format!("pg-ephemeral-{}.tar.gz", rust_target);
+
+    PlatformArtifactPaths {
+        gem: gem_base.join(&gem_name),
+        gem_sha256: gem_base.join(format!("{}.sha256", gem_name)),
+        tarball: binary_base.join(&tarball_name),
+        tarball_sha256: binary_base.join(format!("{}.sha256", tarball_name)),
+    }
 }
 
 fn create_edge_release() {
@@ -129,37 +167,16 @@ fn create_edge_release() {
     log::info!("Tag: {}", tag);
     log::info!("Title: {}", title);
 
-    let version = pg_ephemeral::VERSION;
-
-    // Expected platforms that should have built gems
-    let platforms = [
-        ("x86_64-unknown-linux-musl", "x86_64-linux"),
-        ("aarch64-unknown-linux-musl", "aarch64-linux"),
-        ("aarch64-apple-darwin", "aarch64-darwin"),
-    ];
-
     let mut release_files = Vec::new();
 
     // Verify and collect all expected artifacts
-    for (rust_target, ruby_platform) in &platforms {
-        let artifact_base = workspace_root
-            .join("artifacts")
-            .join(format!("pg-ephemeral-{}", rust_target));
+    for (rust_target, ruby_platform) in PLATFORMS {
+        let paths = platform_artifact_paths(&workspace_root, rust_target, ruby_platform);
 
-        let gem_base = artifact_base.join("dist").join("gems");
-        let binary_base = artifact_base.join("dist").join("binaries");
-
-        let gem_name = format!("pg-ephemeral-{}-{}.gem", version, ruby_platform);
-        let tarball_name = format!("pg-ephemeral-{}.tar.gz", rust_target);
-
-        release_files.push(verify_and_collect_file(gem_base.join(&gem_name)));
-        release_files.push(verify_and_collect_file(
-            gem_base.join(format!("{}.sha256", gem_name)),
-        ));
-        release_files.push(verify_and_collect_file(binary_base.join(&tarball_name)));
-        release_files.push(verify_and_collect_file(
-            binary_base.join(format!("{}.sha256", tarball_name)),
-        ));
+        release_files.push(verify_and_collect_file(paths.gem));
+        release_files.push(verify_and_collect_file(paths.gem_sha256));
+        release_files.push(verify_and_collect_file(paths.tarball));
+        release_files.push(verify_and_collect_file(paths.tarball_sha256));
     }
 
     log::info!(
@@ -207,16 +224,16 @@ fn create_edge_release() {
 }
 
 fn rust_target_to_ruby_platform(rust_target: &str) -> &str {
-    match rust_target {
-        "x86_64-unknown-linux-musl" => "x86_64-linux",
-        "aarch64-unknown-linux-musl" => "aarch64-linux",
-        "x86_64-apple-darwin" => "x86_64-darwin",
-        "aarch64-apple-darwin" => "aarch64-darwin",
-        _ => panic!(
-            "Unsupported Rust target for Ruby platform mapping: {}",
-            rust_target
-        ),
-    }
+    PLATFORMS
+        .iter()
+        .find(|(rust, _ruby)| *rust == rust_target)
+        .map(|(_rust, ruby)| *ruby)
+        .unwrap_or_else(|| {
+            panic!(
+                "Unsupported Rust target for Ruby platform mapping: {}",
+                rust_target
+            )
+        })
 }
 
 fn generate_gemspec(version: &str, ruby_platform: &str) -> String {
@@ -330,20 +347,20 @@ fn setup_staging_directory(staging_root: &PathBuf, items: Vec<StagingItem>) {
     }
 }
 
-fn build_integrations() {
-    let target = std::env::var("CARGO_BUILD_TARGET").unwrap_or_else(|_| {
+fn detect_target_platform() -> String {
+    std::env::var("CARGO_BUILD_TARGET").unwrap_or_else(|_| {
         match (std::env::consts::ARCH, std::env::consts::OS) {
             ("x86_64", "linux") => "x86_64-unknown-linux-musl".to_string(),
             ("aarch64", "linux") => "aarch64-unknown-linux-musl".to_string(),
             ("x86_64", "macos") => "x86_64-apple-darwin".to_string(),
             ("aarch64", "macos") => "aarch64-apple-darwin".to_string(),
-            (arch, os) => panic!(
-                "Unsupported platform for integration builds: {}-{}",
-                arch, os
-            ),
+            (arch, os) => panic!("Unsupported platform: {}-{}", arch, os),
         }
-    });
+    })
+}
 
+fn build_integrations() {
+    let target = detect_target_platform();
     let ruby_platform = rust_target_to_ruby_platform(&target);
     let version = pg_ephemeral::VERSION;
 
@@ -456,35 +473,54 @@ fn build_integrations() {
     }
 
     // Create dist directories
-    let dist_gems = workspace_root.join("dist").join("gems");
-    let dist_binaries = workspace_root.join("dist").join("binaries");
+    let dist_root = workspace_root.join("dist");
+    let dist_gems = dist_root.join("gems");
+    let dist_binaries = dist_root.join("binaries");
     std::fs::create_dir_all(&dist_gems)
         .unwrap_or_else(|error| panic!("Failed to create dist/gems directory: {}", error));
     std::fs::create_dir_all(&dist_binaries)
         .unwrap_or_else(|error| panic!("Failed to create dist/binaries directory: {}", error));
 
-    // Copy gem to dist
+    // Prepare gem for distribution
     let gem_filename = format!("pg-ephemeral-{}-{}.gem", version, ruby_platform);
     let gem_source = build_staging.join(&gem_filename);
-    let gem_dest = dist_gems.join(&gem_filename);
-
-    log::info!("Copying gem to dist: {}", gem_dest.display());
-    std::fs::copy(&gem_source, &gem_dest)
-        .unwrap_or_else(|error| panic!("Failed to copy gem to dist: {}", error));
 
     // Create SHA256 hash for gem
     log::info!("Creating SHA256 hash for gem");
     let gem_bytes =
-        std::fs::read(&gem_dest).unwrap_or_else(|error| panic!("Failed to read gem: {}", error));
+        std::fs::read(&gem_source).unwrap_or_else(|error| panic!("Failed to read gem: {}", error));
     let mut hasher = Sha256::new();
     hasher.update(&gem_bytes);
     let hash = hasher.finalize();
     let gem_hash_string = format!("{:x}  {}\n", hash, gem_filename);
-    let gem_sha256_path = dist_gems.join(format!("{}.sha256", gem_filename));
-    std::fs::write(&gem_sha256_path, gem_hash_string)
-        .unwrap_or_else(|error| panic!("Failed to write gem SHA256 file: {}", error));
 
-    log::info!("Gem SHA256 hash written to: {}", gem_sha256_path.display());
+    // Use staging to copy gem and write SHA256 to dist
+    setup_staging_directory(
+        &dist_gems,
+        vec![
+            StagingItem::CopyFile {
+                source: gem_source,
+                destination: gem_filename.clone(),
+            },
+            StagingItem::GenerateFile {
+                destination: format!("{}.sha256", gem_filename),
+                content: gem_hash_string,
+            },
+        ],
+    );
+
+    // Generate gem index for local gem source
+    log::info!("Generating gem index in: {}", dist_root.display());
+    let generate_index_status = cbt::Command::new("gem")
+        .arguments(["generate_index", "--directory", dist_root.to_str().unwrap()])
+        .status_result()
+        .unwrap_or_else(|error| panic!("Failed to generate gem index: {}", error));
+
+    if !generate_index_status.success() {
+        panic!("Failed to generate gem index");
+    }
+
+    log::info!("Gem index generated successfully");
 
     // Create tarball
     log::info!("Creating tarball");
@@ -524,102 +560,133 @@ fn build_integrations() {
     log::info!("Integrations build complete");
 }
 
-fn test_local() {
-    log::info!("Running local Ruby integration tests");
+fn merge_gems() {
+    log::info!("Merging multi-platform gems into unified repository");
 
-    let workspace_root = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-        .parent()
-        .unwrap()
-        .to_path_buf();
-
-    // Determine the local target platform
-    let target = match (std::env::consts::ARCH, std::env::consts::OS) {
-        ("x86_64", "linux") => "x86_64-unknown-linux-musl",
-        ("aarch64", "linux") => "aarch64-unknown-linux-musl",
-        ("x86_64", "macos") => "x86_64-apple-darwin",
-        ("aarch64", "macos") => "aarch64-apple-darwin",
-        (arch, os) => panic!("Unsupported platform: {}-{}", arch, os),
-    };
-
-    let build_staging = workspace_root
-        .join("pg-ephemeral")
-        .join("build")
-        .join(target);
-
-    let binary_path = build_staging.join("bin").join("pg-ephemeral");
-    let test_script = workspace_root
-        .join("pg-ephemeral")
-        .join("integrations")
-        .join("ruby")
-        .join("test.rb");
-
-    log::info!("Getting pg-ephemeral version");
-    let version_output = cbt::Command::new(&binary_path)
-        .argument("--version")
-        .output_result()
-        .unwrap_or_else(|error| {
-            panic!("Failed to get version from pg-ephemeral binary: {}", error)
-        });
-
-    if !version_output.status.success() {
-        panic!("Failed to get version from pg-ephemeral binary");
-    }
-
-    let version_string =
-        String::from_utf8(version_output.stdout).expect("Invalid UTF-8 in version output");
-
-    let version = version_string
-        .strip_prefix("pg-ephemeral ")
-        .and_then(|s| s.strip_suffix('\n'))
-        .expect("Unexpected version format");
-
-    log::info!("Using pg-ephemeral version: {}", version);
-
-    let status = cbt::Command::new("zsh")
-        .argument("-c")
-        .argument(format!(
-            "source ~/.zshrc && chruby ruby-3.4 && {}",
-            test_script.display()
-        ))
-        .env("EXPECTED_PG_EPHEMERAL_VERSION", version)
-        .status_result()
-        .unwrap_or_else(|error| panic!("Failed to run test script: {}", error));
-
-    if !status.success() {
-        panic!("Integration tests failed");
-    }
-
-    log::info!("Local integration tests complete");
-}
-
-fn test_ci() {
-    log::info!("Running CI Ruby acceptance tests");
-
-    // In CI, the manager binary is run from the workspace root after checkout
     let workspace_root = std::env::current_dir()
         .unwrap_or_else(|error| panic!("Failed to get current directory: {}", error));
 
+    let dist_root = workspace_root.join("dist");
+    let dist_gems = dist_root.join("gems");
+
+    log::info!("Verifying and collecting gems from all platforms");
+
+    let mut staging_items = Vec::new();
+
+    // Verify and prepare staging items for all expected gem files
+    for (rust_target, ruby_platform) in PLATFORMS {
+        let paths = platform_artifact_paths(&workspace_root, rust_target, ruby_platform);
+
+        // Verify and add gem file to staging
+        let gem_source = verify_and_collect_file(paths.gem);
+        staging_items.push(StagingItem::CopyFile {
+            source: gem_source.clone(),
+            destination: gem_source
+                .file_name()
+                .unwrap()
+                .to_str()
+                .unwrap()
+                .to_string(),
+        });
+
+        // Verify and add gem SHA256 file to staging
+        let gem_sha_source = verify_and_collect_file(paths.gem_sha256);
+        staging_items.push(StagingItem::CopyFile {
+            source: gem_sha_source.clone(),
+            destination: gem_sha_source
+                .file_name()
+                .unwrap()
+                .to_str()
+                .unwrap()
+                .to_string(),
+        });
+    }
+
+    let collected_gems = PLATFORMS.len();
+    setup_staging_directory(&dist_gems, staging_items);
+    log::info!("Collected {} platform gems", collected_gems);
+
+    // Generate gem index for the unified repository
+    log::info!("Generating gem index in: {}", dist_root.display());
+    let generate_index_status = cbt::Command::new("gem")
+        .arguments(["generate_index", "--directory", dist_root.to_str().unwrap()])
+        .status_result()
+        .unwrap_or_else(|error| panic!("Failed to generate gem index: {}", error));
+
+    if !generate_index_status.success() {
+        panic!("Failed to generate gem index");
+    }
+
+    log::info!(
+        "Gem index generated successfully with {} platform gems",
+        collected_gems
+    );
+    log::info!(
+        "Multi-platform gem repository ready at: {}",
+        dist_root.display()
+    );
+}
+
+fn run_ruby_tests(workspace_root: PathBuf, target: String) {
+    let version = pg_ephemeral::VERSION;
     let integration_directory = workspace_root
         .join("pg-ephemeral")
         .join("integrations")
         .join("ruby");
-    let version = pg_ephemeral::VERSION;
 
     log::info!("Using pg-ephemeral version: {}", version);
+    log::info!("Target platform: {}", target);
+
+    // Run acceptance tests with Gemfile.acceptance
+    let gem_source_directory = workspace_root.join("dist");
+    let gem_source_url = url::Url::from_directory_path(&gem_source_directory)
+        .unwrap_or_else(|_| {
+            panic!(
+                "Failed to convert path to URL: {}",
+                gem_source_directory.display()
+            )
+        })
+        .to_string();
+
+    // Configure pg gem build options on macOS
+    if std::env::consts::OS == "macos" {
+        log::info!("Configuring pg gem for macOS");
+        let pg_config_path = if std::env::consts::ARCH == "aarch64" {
+            "/opt/homebrew/opt/libpq/bin/pg_config"
+        } else {
+            "/usr/local/opt/libpq/bin/pg_config"
+        };
+
+        let bundle_config_status = cbt::Command::new("bundle")
+            .arguments([
+                "config",
+                "--local",
+                "build.pg",
+                &format!("--with-pg-config={}", pg_config_path),
+            ])
+            .working_directory(&integration_directory)
+            .status_result()
+            .unwrap_or_else(|error| panic!("Failed to configure bundle: {}", error));
+
+        if !bundle_config_status.success() {
+            panic!("bundle config failed");
+        }
+    }
 
     log::info!("Running bundle install with Gemfile.acceptance");
-    let bundle_install = cbt::Command::new("bundle")
+    let bundle_install_acceptance = cbt::Command::new("bundle")
         .arguments(["install", "--gemfile=Gemfile.acceptance"])
         .working_directory(&integration_directory)
+        .env("PG_EPHEMERAL_GEM_SOURCE", &gem_source_url)
         .status_result()
         .unwrap_or_else(|error| panic!("Failed to run bundle install: {}", error));
 
-    if !bundle_install.success() {
-        panic!("bundle install failed");
+    if !bundle_install_acceptance.success() {
+        panic!("bundle install for acceptance tests failed");
     }
 
     log::info!("Running RSpec acceptance tests");
-    let rspec_status = cbt::Command::new("bundle")
+    let rspec_acceptance_status = cbt::Command::new("bundle")
         .arguments([
             "exec",
             "--gemfile=Gemfile.acceptance",
@@ -628,23 +695,41 @@ fn test_ci() {
         ])
         .working_directory(&integration_directory)
         .env("EXPECTED_PG_EPHEMERAL_VERSION", version)
+        .env("PG_EPHEMERAL_GEM_SOURCE", &gem_source_url)
         .status_result()
-        .unwrap_or_else(|error| panic!("Failed to run RSpec tests: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to run RSpec acceptance tests: {}", error));
 
-    if !rspec_status.success() {
+    if !rspec_acceptance_status.success() {
         panic!("RSpec acceptance tests failed");
     }
 
-    // Extract pg-ephemeral binary to integration directory for mutant tests
-    // Determine target platform (CI runs on Linux x86_64)
-    let target = "x86_64-unknown-linux-musl";
+    // Copy pg-ephemeral binary from installed gem for local development
+    log::info!("Copying pg-ephemeral binary from installed gem");
 
-    log::info!("Extracting pg-ephemeral binary from tarball for mutant tests");
-    let tarball_path = workspace_root
-        .join("dist")
-        .join("binaries")
-        .join(format!("pg-ephemeral-{}.tar.gz", target));
+    // Get gem path using bundler
+    let gem_path_output = cbt::Command::new("bundle")
+        .arguments([
+            "exec",
+            "--gemfile=Gemfile.acceptance",
+            "ruby",
+            "-e",
+            "puts Gem::Specification.find_by_name('pg-ephemeral').gem_dir",
+        ])
+        .working_directory(&integration_directory)
+        .env("PG_EPHEMERAL_GEM_SOURCE", &gem_source_url)
+        .output_result()
+        .unwrap_or_else(|error| panic!("Failed to get gem path: {}", error));
 
+    if !gem_path_output.status.success() {
+        panic!("Failed to get pg-ephemeral gem path");
+    }
+
+    let gem_dir = String::from_utf8(gem_path_output.stdout)
+        .unwrap_or_else(|error| panic!("Invalid UTF-8 in gem path: {}", error))
+        .trim()
+        .to_string();
+
+    let binary_source = PathBuf::from(&gem_dir).join("bin").join("pg-ephemeral");
     let bin_directory = integration_directory.join("bin");
     let binary_destination = bin_directory.join("pg-ephemeral");
 
@@ -652,29 +737,14 @@ fn test_ci() {
     std::fs::create_dir_all(&bin_directory)
         .unwrap_or_else(|error| panic!("Failed to create bin directory: {}", error));
 
-    // Extract tarball
-    let tarball_file = std::fs::File::open(&tarball_path).unwrap_or_else(|error| {
-        panic!(
-            "Failed to open tarball {}: {}",
-            tarball_path.display(),
-            error
-        )
-    });
-    let decoder = flate2::read::GzDecoder::new(tarball_file);
-    let mut archive = tar::Archive::new(decoder);
-
-    for entry in archive
-        .entries()
-        .unwrap_or_else(|error| panic!("Failed to read tarball entries: {}", error))
-    {
-        let mut entry =
-            entry.unwrap_or_else(|error| panic!("Failed to read tarball entry: {}", error));
-
-        // Extract to bin directory
-        entry
-            .unpack(&binary_destination)
-            .unwrap_or_else(|error| panic!("Failed to extract binary: {}", error));
-    }
+    // Copy binary from gem
+    log::info!(
+        "Copying {} to {}",
+        binary_source.display(),
+        binary_destination.display()
+    );
+    std::fs::copy(&binary_source, &binary_destination)
+        .unwrap_or_else(|error| panic!("Failed to copy binary from gem: {}", error));
 
     // Make binary executable
     #[cfg(unix)]
@@ -688,32 +758,65 @@ fn test_ci() {
             .unwrap_or_else(|error| panic!("Failed to set binary permissions: {}", error));
     }
 
-    log::info!("Binary extracted to: {}", binary_destination.display());
+    log::info!("Binary copied to: {}", binary_destination.display());
 
-    log::info!("Running bundle install for Mutant");
-    let bundle_install_mutant = cbt::Command::new("bundle")
+    // Run bundle install
+    log::info!("Running bundle install");
+    let bundle_install = cbt::Command::new("bundle")
         .arguments(["install"])
         .working_directory(&integration_directory)
         .status_result()
         .unwrap_or_else(|error| panic!("Failed to run bundle install: {}", error));
 
-    if !bundle_install_mutant.success() {
+    if !bundle_install.success() {
         panic!("bundle install failed");
     }
 
-    log::info!("Running Mutant tests");
-    let mutant_status = cbt::Command::new("bundle")
-        .arguments(["exec", "mutant", "run"])
+    // Run RSpec tests
+    log::info!("Running RSpec tests");
+    let rspec_status = cbt::Command::new("bundle")
+        .arguments(["exec", "rspec"])
         .working_directory(&integration_directory)
         .env("EXPECTED_PG_EPHEMERAL_VERSION", version)
         .status_result()
-        .unwrap_or_else(|error| panic!("Failed to run Mutant tests: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to run RSpec tests: {}", error));
 
-    if !mutant_status.success() {
-        panic!("Mutant tests failed");
+    if !rspec_status.success() {
+        panic!("RSpec tests failed");
     }
 
-    log::info!("CI acceptance tests complete");
+    // Run Mutant tests (only on supported platforms)
+    match cbt::platform::support() {
+        Ok(()) => {
+            log::info!("Running Mutant tests");
+            let mutant_status = cbt::Command::new("bundle")
+                .arguments(["exec", "mutant", "run"])
+                .working_directory(&integration_directory)
+                .env("EXPECTED_PG_EPHEMERAL_VERSION", version)
+                .status_result()
+                .unwrap_or_else(|error| panic!("Failed to run Mutant tests: {}", error));
+
+            if !mutant_status.success() {
+                panic!("Mutant tests failed");
+            }
+        }
+        Err(error) => {
+            log::info!("Skipping Mutant tests - platform not supported: {}", error);
+        }
+    }
+
+    log::info!("Integration tests complete");
+}
+
+fn test() {
+    log::info!("Running Ruby integration tests");
+
+    let workspace_root = std::env::current_dir()
+        .unwrap_or_else(|error| panic!("Failed to get current directory: {}", error));
+
+    let target = detect_target_platform();
+
+    run_ruby_tests(workspace_root, target);
 }
 
 fn main() {

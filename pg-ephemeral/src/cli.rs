@@ -148,6 +148,13 @@ pub enum Command {
         /// Arguments to pass to the command
         arguments: Vec<String>,
     },
+    /// Check if the current platform is supported
+    ///
+    /// Exits with status 0 if platform is supported.
+    /// Exits with status 1 if platform is not supported.
+    /// This command does not require a database instance.
+    #[command(name = "platform")]
+    Platform,
 }
 
 impl Command {
@@ -221,6 +228,15 @@ impl Command {
                 )
                 .await
             }
+            Self::Platform => match cbt::platform::support() {
+                Ok(()) => {
+                    std::process::exit(0);
+                }
+                Err(error) => {
+                    log::info!("pg-ephemeral is not supported on this platform: {}", error);
+                    std::process::exit(1);
+                }
+            },
         }
     }
 

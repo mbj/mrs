@@ -13,3 +13,4 @@ log.workspace = true
 pg-ephemeral = { path = "../pg-ephemeral" }
 sha2.workspace = true
 tar = "0.4"
+url.workspace = true

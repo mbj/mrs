@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
-# Use the globally installed pg-ephemeral gem
-gem 'pg-ephemeral'
+# Use local .gem file from dist/gems directory
+# PG_EPHEMERAL_GEM_SOURCE must point to the directory containing built .gem files
+source ENV.fetch('PG_EPHEMERAL_GEM_SOURCE') do
+  gem 'pg-ephemeral'
+end
 
 gem 'rspec', '~> 3.0'
