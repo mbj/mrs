@@ -52,11 +52,19 @@ let json = serde_json::to_string_pretty(&template).unwrap();
 
 ## Features
 
+- **Comprehensive coverage**: Supports all AWS CloudFormation resource types
 - **Type-safe resource definitions**: Generated types for all AWS CloudFormation resources
 - **Compile-time validation**: Catch errors before deployment
+- **On-demand type generation**: Types are dynamically created per CloudFormation service using official AWS resource specifications, keeping compiled code minimal
 - **CloudFormation intrinsic functions**: Type-safe wrappers for `Fn::Sub`, `Fn::Join`, `Ref`, etc.
 - **Template builder API**: Fluent interface for constructing templates
 - **Helper macros**: Convenient macros for parameters, outputs, and common patterns
+
+## Design Philosophy
+
+Stratosphere generates CloudFormation resource types on-demand based on the AWS services you actually use. When you invoke the `services!` macro with specific AWS service names, it dynamically creates the necessary types from the official AWS CloudFormation resource specifications.
+
+This approach ensures that your compiled binary only includes the types for the services you're actually using, resulting in minimal compiled code size. You only pay for what you use, both in terms of compilation time and binary size.
 
 ## Module Organization
 
