@@ -67,7 +67,7 @@ fn test_read_host_tcp_port() {
             "-c".to_string(),
             "trap 'exit 0' TERM; sleep 30 & wait".to_string(),
         ])
-        .publish(cbt::Publish::from("127.0.0.1::8080/tcp"));
+        .publish(cbt::Publish::tcp(8080).host_ip(std::net::Ipv4Addr::LOCALHOST.into()));
 
     definition.with_container(|container| {
         let host_port = container
