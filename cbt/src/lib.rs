@@ -131,10 +131,199 @@ impl Apply for Image {
     }
 }
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct Publish(String);
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum Protocol {
+    Tcp,
+    Udp,
+}
 
-apply_argument!(Publish, "--publish");
+impl Protocol {
+    fn as_str(&self) -> &'static str {
+        match self {
+            Self::Tcp => "tcp",
+            Self::Udp => "udp",
+        }
+    }
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+struct HostBinding {
+    ip: std::net::IpAddr,
+    port: Option<u16>,
+}
+
+impl std::fmt::Display for HostBinding {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(formatter, "{}:", self.ip)?;
+
+        if let Some(port) = self.port {
+            write!(formatter, "{}", port)
+        } else {
+            Ok(())
+        }
+    }
+}
+
+/// Port publishing configuration for container networking.
+///
+/// Specifies how container ports are exposed to the host system.
+/// The format follows Docker's `--publish` flag: `[[ip:][hostPort]:]containerPort[/protocol]`
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Publish {
+    host_binding: Option<HostBinding>,
+    container_port: u16,
+    protocol: Protocol,
+}
+
+impl Publish {
+    /// Creates a TCP port publish configuration.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// let publish = cbt::Publish::tcp(8080);
+    /// assert_eq!(publish.to_string(), "8080/tcp");
+    /// ```
+    pub fn tcp(container_port: u16) -> Self {
+        Self {
+            host_binding: None,
+            container_port,
+            protocol: Protocol::Tcp,
+        }
+    }
+
+    /// Creates a UDP port publish configuration.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// let publish = cbt::Publish::udp(53);
+    /// assert_eq!(publish.to_string(), "53/udp");
+    /// ```
+    pub fn udp(container_port: u16) -> Self {
+        Self {
+            host_binding: None,
+            container_port,
+            protocol: Protocol::Udp,
+        }
+    }
+
+    /// Sets the host IP address to bind to.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let publish = cbt::Publish::tcp(8080)
+    ///     .host_ip(std::net::Ipv4Addr::LOCALHOST.into());
+    /// assert_eq!(publish.to_string(), "127.0.0.1::8080/tcp");
+    /// ```
+    ///
+    /// With unspecified address:
+    ///
+    /// ```
+    /// let publish = cbt::Publish::tcp(5432)
+    ///     .host_ip(std::net::Ipv4Addr::UNSPECIFIED.into());
+    /// assert_eq!(publish.to_string(), "0.0.0.0::5432/tcp");
+    /// ```
+    ///
+    /// With IPv6:
+    ///
+    /// ```
+    /// let publish = cbt::Publish::tcp(8080)
+    ///     .host_ip(std::net::Ipv6Addr::LOCALHOST.into());
+    /// assert_eq!(publish.to_string(), "::1::8080/tcp");
+    /// ```
+    ///
+    /// Preserves previously set host port:
+    ///
+    /// ```
+    /// let publish = cbt::Publish::tcp(80)
+    ///     .host_port(8080)
+    ///     .host_ip(std::net::Ipv4Addr::LOCALHOST.into());
+    /// assert_eq!(publish.to_string(), "127.0.0.1:8080:80/tcp");
+    /// ```
+    pub fn host_ip(self, ip: std::net::IpAddr) -> Self {
+        Self {
+            host_binding: Some(HostBinding {
+                ip,
+                port: self.host_binding.and_then(|binding| binding.port),
+            }),
+            ..self
+        }
+    }
+
+    /// Sets the host port to map to the container port.
+    ///
+    /// If no host IP has been set, defaults to `0.0.0.0`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let publish = cbt::Publish::tcp(80).host_port(8080);
+    /// assert_eq!(publish.to_string(), "0.0.0.0:8080:80/tcp");
+    /// ```
+    ///
+    /// Preserves previously set host IP:
+    ///
+    /// ```
+    /// let publish = cbt::Publish::tcp(80)
+    ///     .host_ip(std::net::Ipv4Addr::LOCALHOST.into())
+    ///     .host_port(8080);
+    /// assert_eq!(publish.to_string(), "127.0.0.1:8080:80/tcp");
+    /// ```
+    pub fn host_port(self, port: u16) -> Self {
+        Self {
+            host_binding: Some(HostBinding {
+                ip: self
+                    .host_binding
+                    .map(|binding| binding.ip)
+                    .unwrap_or(std::net::Ipv4Addr::UNSPECIFIED.into()),
+                port: Some(port),
+            }),
+            ..self
+        }
+    }
+
+    /// Sets both host IP and port in a single call.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// let publish = cbt::Publish::tcp(80)
+    ///     .host_ip_port(std::net::Ipv4Addr::LOCALHOST.into(), 8080);
+    /// assert_eq!(publish.to_string(), "127.0.0.1:8080:80/tcp");
+    /// ```
+    pub fn host_ip_port(self, ip: std::net::IpAddr, port: u16) -> Self {
+        Self {
+            host_binding: Some(HostBinding {
+                ip,
+                port: Some(port),
+            }),
+            ..self
+        }
+    }
+}
+
+impl std::fmt::Display for Publish {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        if let Some(host_binding) = self.host_binding {
+            write!(formatter, "{}:", host_binding)?;
+        }
+
+        write!(
+            formatter,
+            "{}/{}",
+            self.container_port,
+            self.protocol.as_str()
+        )
+    }
+}
+
+impl Apply for Publish {
+    fn apply(&self, command: Command) -> Command {
+        command.argument("--publish").argument(self.to_string())
+    }
+}
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Entrypoint(String);

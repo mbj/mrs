@@ -54,10 +54,10 @@ impl<'a> Container<'a> {
     fn run(definition: &'a Definition) -> Self {
         let password = generate_password();
 
-        let publish_addr = if definition.cross_container_access {
-            "0.0.0.0::5432/tcp"
+        let host_ip: std::net::IpAddr = if definition.cross_container_access {
+            std::net::Ipv4Addr::UNSPECIFIED.into()
         } else {
-            "127.0.0.1::5432/tcp"
+            std::net::Ipv4Addr::LOCALHOST.into()
         };
 
         let mut cbt_definition = definition
@@ -65,7 +65,7 @@ impl<'a> Container<'a> {
             .remove()
             .environment_variable("POSTGRES_PASSWORD", password.as_ref())
             .environment_variable("POSTGRES_USER", definition.superuser.as_ref())
-            .publish(cbt::Publish::from(publish_addr));
+            .publish(cbt::Publish::tcp(5432).host_ip(host_ip));
 
         let ssl_bundle = if let Some(ssl_config) = &definition.ssl_config {
             let hostname = match ssl_config {
