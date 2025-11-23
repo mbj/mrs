@@ -1,7 +1,7 @@
 use flate2::{Compression, write::GzEncoder};
 use indoc::formatdoc;
 use sha2::{Digest, Sha256};
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 // Expected platforms that should have built gems and binaries
 const PLATFORMS: &[(&str, &str)] = &[
@@ -111,7 +111,7 @@ struct PlatformArtifactPaths {
 }
 
 fn platform_artifact_paths(
-    workspace_root: &PathBuf,
+    workspace_root: &Path,
     rust_target: &str,
     ruby_platform: &str,
 ) -> PlatformArtifactPaths {
