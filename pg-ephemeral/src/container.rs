@@ -1,10 +1,11 @@
 use rand::Rng;
 
 use crate::Definition;
-use crate::definition;
 use crate::LOCALHOST_HOST_ADDR_IP;
 use crate::LOCALHOST_IP;
 use crate::UNSPECIFIED_IP;
+use crate::certificate;
+use crate::definition;
 
 pub(crate) struct SchemaDump<'a> {
     container: &'a Container<'a>,
@@ -59,7 +60,7 @@ impl<'a> Container<'a> {
                 definition::SslConfig::Generated { hostname } => hostname.as_str(),
             };
 
-            let bundle = crate::certificate::Bundle::generate(hostname)
+            let bundle = certificate::Bundle::generate(hostname)
                 .expect("Failed to generate SSL certificate bundle");
 
             let ssl_dir = "/var/lib/postgresql";
@@ -197,11 +198,15 @@ impl<'a> Container<'a> {
     }
 
     pub(crate) fn exec_schema_dump(&self) -> String {
-        convert_schema(&self.container.exec_capture_only_stdout(
+        crate::convert_schema(&self.container.exec_capture_only_stdout(
             self.container_client_config().to_pg_env(),
             "pg_dump",
             ["--schema-only"],
         ))
+    }
+
+    pub fn client_config(&self) -> &pg_client::Config {
+        &self.client_config
     }
 
     pub async fn with_connection<T, F: AsyncFnMut(&mut sqlx::postgres::PgConnection) -> T>(
@@ -322,10 +327,4 @@ fn generate_password() -> pg_client::Password {
         .collect();
 
     <pg_client::Password as std::str::FromStr>::from_str(&value).unwrap()
-}
-
-pub(crate) fn convert_schema(value: &[u8]) -> String {
-    std::str::from_utf8(value)
-        .expect("schema contains invalid utf8")
-        .to_string()
 }
