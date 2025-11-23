@@ -131,6 +131,8 @@ impl Apply for Image {
     }
 }
 
+const UNSPECIFIED_IP: std::net::IpAddr = std::net::IpAddr::V4(std::net::Ipv4Addr::UNSPECIFIED);
+
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Protocol {
     Tcp,
@@ -277,7 +279,7 @@ impl Publish {
                 ip: self
                     .host_binding
                     .map(|binding| binding.ip)
-                    .unwrap_or(std::net::Ipv4Addr::UNSPECIFIED.into()),
+                    .unwrap_or(UNSPECIFIED_IP),
                 port: Some(port),
             }),
             ..self
