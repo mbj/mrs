@@ -3,6 +3,9 @@ name = "manager"
 version = "0.0.1"
 edition.workspace = true
 
+[lints]
+workspace = true
+
 [dependencies]
 cbt.workspace = true
 clap = { version = "4.5", features = ["derive"] }
