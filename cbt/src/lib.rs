@@ -131,6 +131,8 @@ impl Apply for Image {
     }
 }
 
+const UNSPECIFIED_IP: std::net::IpAddr = std::net::IpAddr::V4(std::net::Ipv4Addr::UNSPECIFIED);
+
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Protocol {
     Tcp,
@@ -277,7 +279,7 @@ impl Publish {
                 ip: self
                     .host_binding
                     .map(|binding| binding.ip)
-                    .unwrap_or(std::net::Ipv4Addr::UNSPECIFIED.into()),
+                    .unwrap_or(UNSPECIFIED_IP),
                 port: Some(port),
             }),
             ..self
@@ -425,7 +427,7 @@ impl Definition {
     }
 
     pub fn argument(self, argument: impl Into<ContainerArgument>) -> Self {
-        let mut container_arguments = self.container_arguments.clone();
+        let mut container_arguments = self.container_arguments;
         container_arguments.push(argument.into());
         Self {
             container_arguments,
@@ -434,7 +436,7 @@ impl Definition {
     }
 
     pub fn environment_variable(self, key: &str, value: &str) -> Self {
-        let mut environment_variables = self.environment_variables.clone();
+        let mut environment_variables = self.environment_variables;
 
         environment_variables.insert(key.to_string(), value.to_string());
 
@@ -448,7 +450,7 @@ impl Definition {
         self,
         values: impl IntoIterator<Item = (K, V)>,
     ) -> Self {
-        let mut environment_variables = self.environment_variables.clone();
+        let mut environment_variables = self.environment_variables;
 
         for (key, value) in values {
             environment_variables.insert(key.to_string(), value.to_string());
@@ -489,7 +491,7 @@ impl Definition {
     }
 
     pub fn publish(self, value: impl Into<Publish>) -> Self {
-        let mut publish = self.publish.clone();
+        let mut publish = self.publish;
 
         publish.push(value.into());
 
@@ -497,13 +499,13 @@ impl Definition {
     }
 
     pub fn publishes(self, values: impl IntoIterator<Item = impl Into<Publish>>) -> Self {
-        let mut publish = self.publish.clone();
+        let mut publish = self.publish;
         publish.extend(values.into_iter().map(Into::into));
         Self { publish, ..self }
     }
 
     pub fn mount(self, value: impl Into<Mount>) -> Self {
-        let mut mounts = self.mounts.clone();
+        let mut mounts = self.mounts;
 
         mounts.push(value.into());
 
@@ -511,7 +513,7 @@ impl Definition {
     }
 
     pub fn mounts(self, values: impl IntoIterator<Item = impl Into<Mount>>) -> Self {
-        let mut mounts = self.mounts.clone();
+        let mut mounts = self.mounts;
         mounts.extend(values.into_iter().map(Into::into));
         Self { mounts, ..self }
     }

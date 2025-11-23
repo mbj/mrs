@@ -2,6 +2,9 @@ use rand::Rng;
 
 use crate::Definition;
 use crate::definition;
+use crate::LOCALHOST_HOST_ADDR_IP;
+use crate::LOCALHOST_IP;
+use crate::UNSPECIFIED_IP;
 
 pub(crate) struct SchemaDump<'a> {
     container: &'a Container<'a>,
@@ -38,10 +41,10 @@ impl<'a> Container<'a> {
     pub(crate) fn run(definition: &'a Definition) -> Self {
         let password = generate_password();
 
-        let host_ip: std::net::IpAddr = if definition.cross_container_access {
-            std::net::Ipv4Addr::UNSPECIFIED.into()
+        let host_ip = if definition.cross_container_access {
+            UNSPECIFIED_IP
         } else {
-            std::net::Ipv4Addr::LOCALHOST.into()
+            LOCALHOST_IP
         };
 
         let mut cbt_definition = definition
@@ -107,13 +110,13 @@ impl<'a> Container<'a> {
 
                 (
                     pg_client::Host::HostName(hostname),
-                    Some("127.0.0.1".parse().unwrap()),
+                    Some(LOCALHOST_HOST_ADDR_IP),
                     pg_client::SslMode::VerifyFull,
                     Some(pg_client::SslRootCert::File(ca_cert_path)),
                 )
             } else {
                 (
-                    pg_client::host!("localhost"),
+                    pg_client::Host::IpAddr(LOCALHOST_IP),
                     None,
                     pg_client::SslMode::Disable,
                     None,
