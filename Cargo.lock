@@ -2017,7 +2017,7 @@ dependencies = [
 
 [[package]]
 name = "pg-ephemeral"
-version = "0.0.1"
+version = "0.0.1-rc1"
 dependencies = [
  "cbt",
  "clap",
@@ -2031,6 +2031,7 @@ dependencies = [
  "pg-client",
  "rand 0.9.2",
  "rcgen",
+ "semver",
  "serde",
  "serde_json",
  "sqlx",
