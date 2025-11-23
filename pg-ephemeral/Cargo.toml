@@ -1,6 +1,6 @@
 [package]
 name = "pg-ephemeral"
-version = "0.0.1"
+version = "0.0.1-rc1"
 edition.workspace = true
 
 [lints]
@@ -20,6 +20,7 @@ rand = { workspace = true }
 rcgen = "0.13"
 serde = { workspace = true }
 serde_json = { workspace = true }
+semver = { workspace = true }
 sqlx = { workspace = true }
 thiserror = { workspace = true }
 time = "0.3"

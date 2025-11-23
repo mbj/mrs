@@ -15,7 +15,7 @@ pub enum Protocol {
     All other commands (psql, run-env, container-*, integration-server, migration)
     target the \"main\" instance by default. Use 'instance --name <NAME>' to target
     other instances.")]
-#[command(version)]
+#[command(version = crate::VERSION_STR)]
 pub struct App {
     /// Config file to use, defaults to attempt to load database.toml
     ///

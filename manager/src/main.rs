@@ -3,6 +3,16 @@ use indoc::formatdoc;
 use sha2::{Digest, Sha256};
 use std::path::{Path, PathBuf};
 
+fn ruby_version() -> String {
+    let version = pg_ephemeral::version();
+    let mut result = format!("{}.{}.{}", version.major, version.minor, version.patch);
+    if !version.pre.is_empty() {
+        result.push('.');
+        result.push_str(&version.pre.to_string());
+    }
+    result
+}
+
 // Expected platforms that should have built gems and binaries
 const PLATFORMS: &[(&str, &str)] = &[
     ("x86_64-unknown-linux-musl", "x86_64-linux"),
@@ -115,7 +125,7 @@ fn platform_artifact_paths(
     rust_target: &str,
     ruby_platform: &str,
 ) -> PlatformArtifactPaths {
-    let version = pg_ephemeral::VERSION;
+    let version = ruby_version();
     let artifact_base = workspace_root
         .join("artifacts")
         .join(format!("pg-ephemeral-{}", rust_target));
@@ -372,7 +382,7 @@ fn detect_target_platform() -> String {
 fn build_integrations() {
     let target = detect_target_platform();
     let ruby_platform = rust_target_to_ruby_platform(&target);
-    let version = pg_ephemeral::VERSION;
+    let version = ruby_version();
 
     log::info!("Building pg-ephemeral binary for target: {}", target);
     log::info!("Ruby platform: {}", ruby_platform);
@@ -419,7 +429,7 @@ fn build_integrations() {
         .join(&target);
 
     // Setup staging directory with all required files
-    let gemspec_content = generate_gemspec(version, ruby_platform);
+    let gemspec_content = generate_gemspec(&version, ruby_platform);
 
     setup_staging_directory(
         &build_staging,
@@ -638,7 +648,7 @@ fn merge_gems() {
 }
 
 fn run_ruby_tests(workspace_root: PathBuf, target: String) {
-    let version = pg_ephemeral::VERSION;
+    let version = ruby_version();
     let integration_directory = workspace_root
         .join("pg-ephemeral")
         .join("integrations")
@@ -704,7 +714,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
             "spec/integration",
         ])
         .working_directory(&integration_directory)
-        .env("EXPECTED_PG_EPHEMERAL_VERSION", version)
+        .env("EXPECTED_PG_EPHEMERAL_VERSION", &version)
         .env("PG_EPHEMERAL_GEM_SOURCE", &gem_source_url)
         .status_result()
         .unwrap_or_else(|error| panic!("Failed to run RSpec acceptance tests: {}", error));
@@ -787,7 +797,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
     let rspec_status = cbt::Command::new("bundle")
         .arguments(["exec", "rspec"])
         .working_directory(&integration_directory)
-        .env("EXPECTED_PG_EPHEMERAL_VERSION", version)
+        .env("EXPECTED_PG_EPHEMERAL_VERSION", &version)
         .status_result()
         .unwrap_or_else(|error| panic!("Failed to run RSpec tests: {}", error));
 
@@ -802,7 +812,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
             let mutant_status = cbt::Command::new("bundle")
                 .arguments(["exec", "mutant", "run"])
                 .working_directory(&integration_directory)
-                .env("EXPECTED_PG_EPHEMERAL_VERSION", version)
+                .env("EXPECTED_PG_EPHEMERAL_VERSION", &version)
                 .status_result()
                 .unwrap_or_else(|error| panic!("Failed to run Mutant tests: {}", error));
 
@@ -899,7 +909,7 @@ fn publish_gems(push: bool) {
     let mut gems_to_publish = Vec::new();
 
     for (_rust_target, ruby_platform) in PLATFORMS {
-        let version = pg_ephemeral::VERSION;
+        let version = ruby_version();
         let gem_name = format!("pg-ephemeral-{}-{}.gem", version, ruby_platform);
         let gem_path = dist_gems.join(&gem_name);
 
