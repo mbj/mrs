@@ -20,7 +20,13 @@ module PgEphemeral
       raise "Failed to get version from pg-ephemeral binary"
     end
 
-    stdout.match(/\Apg-ephemeral (?<version>.+)\n\z/)[:version]
+    match = stdout.match(/\Apg-ephemeral (?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)(-(?<pre>.+))?\n\z/)
+
+    raise "Failed to parse version from pg-ephemeral binary" unless match
+
+    version = "#{match[:major]}.#{match[:minor]}.#{match[:patch]}"
+    version += ".#{match[:pre]}" if match[:pre]
+    version
   end
 
   def self.platform_supported?
