@@ -129,7 +129,7 @@ impl<'a> Container<'a> {
                 )
             } else {
                 (
-                    pg_client::host!("localhost"),
+                    pg_client::Host::IpAddr(std::net::Ipv4Addr::LOCALHOST.into()),
                     None,
                     pg_client::SslMode::Disable,
                     None,
