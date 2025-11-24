@@ -1,9 +1,3 @@
-pub(crate) const LOCALHOST_IP: std::net::IpAddr =
-    std::net::IpAddr::V4(std::net::Ipv4Addr::LOCALHOST);
-pub(crate) const UNSPECIFIED_IP: std::net::IpAddr =
-    std::net::IpAddr::V4(std::net::Ipv4Addr::UNSPECIFIED);
-pub(crate) const LOCALHOST_HOST_ADDR_IP: pg_client::HostAddr = pg_client::HostAddr(LOCALHOST_IP);
-
 pub mod certificate;
 pub mod cli;
 pub mod config;
@@ -22,8 +16,18 @@ pub use seed::Seed;
 pub use seed::SeedName;
 pub use seed::SeedNameError;
 
-/// The version of pg-ephemeral
-pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+pub(crate) const VERSION_STR: &str = env!("CARGO_PKG_VERSION");
+pub(crate) const LOCALHOST_IP: std::net::IpAddr =
+    std::net::IpAddr::V4(std::net::Ipv4Addr::LOCALHOST);
+pub(crate) const UNSPECIFIED_IP: std::net::IpAddr =
+    std::net::IpAddr::V4(std::net::Ipv4Addr::UNSPECIFIED);
+pub(crate) const LOCALHOST_HOST_ADDR_IP: pg_client::HostAddr = pg_client::HostAddr(LOCALHOST_IP);
+
+pub fn version() -> &'static semver::Version {
+    static VERSION: std::sync::LazyLock<semver::Version> =
+        std::sync::LazyLock::new(|| semver::Version::parse(VERSION_STR).unwrap());
+    &VERSION
+}
 
 pub(crate) fn convert_schema(value: &[u8]) -> String {
     std::str::from_utf8(value)

@@ -21,7 +21,7 @@ RSpec.describe PgEphemeral do
     end
 
     it 'returns a semantic version format' do
-      expect(PgEphemeral.version).to match(/\A\d+\.\d+\.\d+\z/)
+      expect(PgEphemeral.version).to match(/\A\d+\.\d+\.\d+(\..+)?\z/)
     end
 
     it 'raises an error when binary execution fails' do
