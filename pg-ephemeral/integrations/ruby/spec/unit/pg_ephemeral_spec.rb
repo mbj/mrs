@@ -3,6 +3,35 @@
 require 'pg_ephemeral'
 
 RSpec.describe PgEphemeral do
+  describe '.version' do
+    let(:status) { instance_double(Process::Status, success?: true) }
+    let(:stdout) { "pg-ephemeral 10.20.30\n" }
+
+    before do
+      allow(Open3).to receive(:capture3).and_return([stdout, '', status])
+    end
+
+    it 'parses version without prerelease' do
+      expect(PgEphemeral.version).to eq('10.20.30')
+    end
+
+    context 'with prerelease' do
+      let(:stdout) { "pg-ephemeral 1.2.3-rc1\n" }
+
+      it 'converts to ruby convention' do
+        expect(PgEphemeral.version).to eq('1.2.3.rc1')
+      end
+    end
+
+    context 'with invalid version format' do
+      let(:stdout) { "pg-ephemeral invalid\n" }
+
+      it 'raises error' do
+        expect { PgEphemeral.version }.to raise_error(RuntimeError, 'Failed to parse version from pg-ephemeral binary')
+      end
+    end
+  end
+
   describe '.platform_supported?' do
     it 'calls pg-ephemeral binary with platform argument' do
       status = instance_double(Process::Status, success?: true)
