@@ -279,7 +279,6 @@ fn generate_gemspec(version: &str, ruby_platform: &str) -> String {
           spec.require_paths = ['lib']
 
           spec.add_dependency 'pg', '~> 1.5'
-          spec.add_dependency 'unparser', '~> 0.8.0'
 
           spec.add_development_dependency 'bundler', '~> 2.0'
           spec.add_development_dependency 'mutant-rspec', '~> 0.13.0'
