@@ -3,7 +3,6 @@ PATH
   specs:
     pg-ephemeral (0.0.1)
       pg (~> 1.5)
-      unparser (~> 0.8.0)
 
 GEM
   remote: https://rubygems.org/

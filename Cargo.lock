@@ -2017,7 +2017,7 @@ dependencies = [
 
 [[package]]
 name = "pg-ephemeral"
-version = "0.0.1-pre1"
+version = "0.0.1-pre2"
 dependencies = [
  "cbt",
  "clap",
