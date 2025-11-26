@@ -4,7 +4,6 @@ require 'open3'
 require 'pathname'
 require 'json'
 require 'pg'
-require 'unparser'
 require 'rubygems'
 
 module PgEphemeral
@@ -35,7 +34,7 @@ module PgEphemeral
   end
 
   def self.with_server(instance_name: 'main', config: nil, &block)
-    run_server(instance_name, config, &block).from_right
+    run_server(instance_name, config, &block)
   end
 
   def self.with_connection(instance_name: 'main', config: nil, &block)
@@ -67,13 +66,13 @@ module PgEphemeral
     Open3.popen2(*command) do |stdin, stdout, wait_thread|
       config_json = stdout.gets
 
-      return Unparser::Either::Left.new('Failed to read server configuration') unless config_json
+      raise 'Failed to read server configuration' unless config_json
 
       url = JSON.parse(config_json).fetch('url')
       server = Server.new(url, stdin, wait_thread)
 
       begin
-        Unparser::Either::Right.new(block.call(server))
+        block.call(server)
       ensure
         server.shutdown
       end
