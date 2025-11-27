@@ -26,14 +26,9 @@ impl ConfigFileSource {
 }
 
 #[derive(Clone, Debug, clap::Parser)]
-#[command(after_help = "COMMAND TYPES:
-  Instance Management:
-    instance, instance-list - Work with specific instances
-
-  Main Instance Commands:
-    All other commands (psql, run-env, container-*, integration-server, migration)
-    target the \"main\" instance by default. Use 'instance --name <NAME>' to target
-    other instances.")]
+#[command(after_help = "INSTANCE SELECTION:
+    All commands target the \"main\" instance by default.
+    Use --instance <NAME> to target a different instance.")]
 #[command(version = crate::VERSION_STR)]
 pub struct App {
     /// Config file to use, defaults to attempt to load database.toml
@@ -124,27 +119,31 @@ impl App {
     }
 }
 
-#[derive(Clone, Debug, clap::Parser, Default)]
+#[derive(Clone, Debug, clap::Parser)]
 pub enum Command {
-    /// Interact with a specific instance.
-    Instance {
-        /// specify instance name
-        #[arg(long = "name")]
-        instance_name: Option<InstanceName>,
-        #[clap(subcommand)]
-        command: crate::definition::cli::Command,
-    },
     /// List defined instances
-    InstanceList,
+    List,
     /// Run interactive psql session on the container
     #[command(name = "container-psql")]
-    ContainerPsql,
+    ContainerPsql {
+        /// Target instance name
+        #[arg(long)]
+        instance: Option<InstanceName>,
+    },
     /// Run schema dump from the container
     #[command(name = "container-schema-dump")]
-    ContainerSchemaDump,
+    ContainerSchemaDump {
+        /// Target instance name
+        #[arg(long)]
+        instance: Option<InstanceName>,
+    },
     /// Run interactive shell on the container
     #[command(name = "container-shell")]
-    ContainerShell,
+    ContainerShell {
+        /// Target instance name
+        #[arg(long)]
+        instance: Option<InstanceName>,
+    },
     /// Run integration server
     ///
     /// Intent to be used for automation with other languages wrapping pg-ephemeral.
@@ -155,21 +154,28 @@ pub enum Command {
     /// The server will stop once stdin returns EOF, aka the parent process closed it.
     #[command(name = "integration-server")]
     IntegrationServer {
+        /// Target instance name
+        #[arg(long)]
+        instance: Option<InstanceName>,
         /// Protocol version to use
         #[arg(long, value_enum)]
         protocol: Protocol,
     },
-    /// Migration subcommands
-    Migration(mmigration::cli::App),
     /// Run interactive psql on the host
-    #[default]
-    Psql,
+    Psql {
+        /// Target instance name
+        #[arg(long)]
+        instance: Option<InstanceName>,
+    },
     /// Run shell command with environment variables for PostgreSQL connection
     ///
     /// Sets all PostgreSQL-related environment variables:
     /// - libpq-style PG* environment variables (PGHOST, PGPORT, PGUSER, PGDATABASE, PGPASSWORD, PGSSLMODE, etc.)
     /// - DATABASE_URL in PostgreSQL URL format
     RunEnv {
+        /// Target instance name
+        #[arg(long)]
+        instance: Option<InstanceName>,
         /// The command to run
         command: String,
         /// Arguments to pass to the command
@@ -184,76 +190,54 @@ pub enum Command {
     Platform,
 }
 
+impl Default for Command {
+    fn default() -> Self {
+        Self::Psql { instance: None }
+    }
+}
+
 impl Command {
     pub async fn run(&self, instance_map: &InstanceMap) {
         match self {
-            Self::Instance {
-                instance_name,
-                command,
-            } => {
-                let instance_name = instance_name.clone().unwrap_or_default();
-
-                match instance_map.get(&instance_name) {
-                    None => panic!("Unknown instance: {instance_name}"),
-                    Some(definition) => command.run(definition).await,
-                }
-            }
-            Self::InstanceList => {
+            Self::List => {
                 for instance_name in instance_map.keys() {
                     println!("{}", instance_name)
                 }
             }
-            // Top-level commands that implicitly target the "main" instance
-            Self::ContainerPsql => {
-                self.run_on_main_instance(
-                    instance_map,
-                    crate::definition::cli::Command::ContainerPsql,
-                )
-                .await
+            Self::ContainerPsql { instance } => {
+                let definition = Self::get_instance(instance_map, instance);
+                definition.with_container(container_psql).await
             }
-            Self::ContainerSchemaDump => {
-                self.run_on_main_instance(
-                    instance_map,
-                    crate::definition::cli::Command::ContainerSchemaDump,
-                )
-                .await
+            Self::ContainerSchemaDump { instance } => {
+                let definition = Self::get_instance(instance_map, instance);
+                definition.with_container(container_schema_dump).await
             }
-            Self::ContainerShell => {
-                self.run_on_main_instance(
-                    instance_map,
-                    crate::definition::cli::Command::ContainerShell,
-                )
-                .await
+            Self::ContainerShell { instance } => {
+                let definition = Self::get_instance(instance_map, instance);
+                definition.with_container(container_shell).await
             }
-            Self::IntegrationServer { protocol } => {
-                self.run_on_main_instance(
-                    instance_map,
-                    crate::definition::cli::Command::IntegrationServer {
-                        protocol: protocol.clone(),
-                    },
-                )
-                .await
+            Self::IntegrationServer {
+                instance,
+                protocol: _,
+            } => {
+                let definition = Self::get_instance(instance_map, instance);
+                definition.run_integration_server().await
             }
-            Self::Migration(app) => {
-                self.run_on_main_instance(
-                    instance_map,
-                    crate::definition::cli::Command::Migration(app.clone()),
-                )
-                .await
+            Self::Psql { instance } => {
+                let definition = Self::get_instance(instance_map, instance);
+                definition.with_container(host_psql).await
             }
-            Self::Psql => {
-                self.run_on_main_instance(instance_map, crate::definition::cli::Command::Psql)
+            Self::RunEnv {
+                instance,
+                command,
+                arguments,
+            } => {
+                let definition = Self::get_instance(instance_map, instance);
+                definition
+                    .with_container(async |container| {
+                        host_command(container, command, arguments).await
+                    })
                     .await
-            }
-            Self::RunEnv { command, arguments } => {
-                self.run_on_main_instance(
-                    instance_map,
-                    crate::definition::cli::Command::RunEnv {
-                        command: command.clone(),
-                        arguments: arguments.clone(),
-                    },
-                )
-                .await
             }
             Self::Platform => match cbt::platform::support() {
                 Ok(()) => {
@@ -267,16 +251,44 @@ impl Command {
         }
     }
 
-    async fn run_on_main_instance(
-        &self,
-        instance_map: &InstanceMap,
-        command: crate::definition::cli::Command,
-    ) {
-        let instance_name = InstanceName::default();
+    fn get_instance<'a>(
+        instance_map: &'a InstanceMap,
+        instance: &Option<InstanceName>,
+    ) -> &'a crate::definition::Definition {
+        let instance_name = instance.clone().unwrap_or_default();
 
         match instance_map.get(&instance_name) {
             None => panic!("Unknown instance: {instance_name}"),
-            Some(definition) => command.run(definition).await,
+            Some(definition) => definition,
         }
     }
+}
+
+async fn host_psql(container: &crate::Container<'_>) {
+    let _ = std::process::Command::new("psql")
+        .envs(container.client_config.to_pg_env())
+        .status();
+}
+
+async fn host_command<'a>(
+    container: &'a crate::Container<'a>,
+    command: &str,
+    arguments: &'a Vec<String>,
+) {
+    let mut cmd = std::process::Command::new(command);
+    cmd.args(arguments);
+    crate::definition::Definition::apply_pg_env(&mut cmd, container);
+    let _ = cmd.status();
+}
+
+async fn container_psql(container: &crate::Container<'_>) {
+    container.exec_psql()
+}
+
+async fn container_schema_dump(container: &crate::Container<'_>) {
+    println!("{}", container.exec_schema_dump());
+}
+
+async fn container_shell(container: &crate::Container<'_>) {
+    container.exec_container_shell()
 }
