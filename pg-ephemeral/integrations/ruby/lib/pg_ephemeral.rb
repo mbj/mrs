@@ -57,10 +57,9 @@ module PgEphemeral
     end
 
     command.concat([
-      'instance',
-      '--name', instance_name,
       'integration-server',
-      'v0'
+      '--instance', instance_name,
+      '--protocol', 'v0'
     ])
 
     Open3.popen2(*command) do |stdin, stdout, wait_thread|
