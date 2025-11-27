@@ -74,13 +74,126 @@ impl Command {
 
 #[derive(Clone, Debug, PartialEq)]
 pub enum Seed {
-    SqlFile(std::path::PathBuf),
+    SqlFile {
+        path: std::path::PathBuf,
+    },
     SqlFileGitRevision {
         git_revision: String,
         path: std::path::PathBuf,
     },
-    Command(Command),
-    Script(String),
+    Command {
+        command: Command,
+    },
+    Script {
+        script: String,
+    },
+}
+
+#[derive(Debug, thiserror::Error)]
+pub enum LoadError {
+    #[error("Failed to load seed {name}: could not read file {path}: {source}")]
+    FileRead {
+        name: SeedName,
+        path: std::path::PathBuf,
+        source: std::io::Error,
+    },
+    #[error(
+        "Failed to load seed {name}: could not read {path} at git revision {git_revision}: {message}"
+    )]
+    GitRevision {
+        name: SeedName,
+        path: std::path::PathBuf,
+        git_revision: String,
+        message: String,
+    },
+    #[error("Failed to load seed {name}: path {path} is not valid UTF-8")]
+    InvalidUtf8Path {
+        name: SeedName,
+        path: std::path::PathBuf,
+    },
+}
+
+#[derive(Clone, Debug, PartialEq)]
+pub enum LoadedSeed {
+    SqlFile {
+        name: SeedName,
+        path: std::path::PathBuf,
+        content: String,
+    },
+    SqlFileGitRevision {
+        name: SeedName,
+        path: std::path::PathBuf,
+        git_revision: String,
+        content: String,
+    },
+    Command {
+        name: SeedName,
+        command: Command,
+    },
+    Script {
+        name: SeedName,
+        script: String,
+    },
+}
+
+impl Seed {
+    pub fn load(&self, name: SeedName) -> Result<LoadedSeed, LoadError> {
+        match self {
+            Seed::SqlFile { path } => {
+                let content =
+                    std::fs::read_to_string(path).map_err(|source| LoadError::FileRead {
+                        name: name.clone(),
+                        path: path.clone(),
+                        source,
+                    })?;
+                Ok(LoadedSeed::SqlFile {
+                    name,
+                    path: path.clone(),
+                    content,
+                })
+            }
+            Seed::SqlFileGitRevision { path, git_revision } => {
+                let path_str = path.to_str().ok_or_else(|| LoadError::InvalidUtf8Path {
+                    name: name.clone(),
+                    path: path.clone(),
+                })?;
+
+                let result = std::process::Command::new("git")
+                    .arg("show")
+                    .arg(format!("{git_revision}:{path_str}"))
+                    .output();
+
+                match result {
+                    Ok(output) if output.status.success() => Ok(LoadedSeed::SqlFileGitRevision {
+                        name,
+                        path: path.clone(),
+                        git_revision: git_revision.clone(),
+                        content: String::from_utf8_lossy(&output.stdout).into_owned(),
+                    }),
+                    Ok(output) => Err(LoadError::GitRevision {
+                        name,
+                        path: path.clone(),
+                        git_revision: git_revision.clone(),
+                        message: String::from_utf8_lossy(&output.stderr).into_owned(),
+                    }),
+                    Err(error) => Err(LoadError::GitRevision {
+                        name,
+                        path: path.clone(),
+                        git_revision: git_revision.clone(),
+                        message: error.to_string(),
+                    }),
+                }
+            }
+            Seed::Command { command } => Ok(LoadedSeed::Command {
+                name,
+                command: command.clone(),
+            }),
+            Seed::Script { script } => Ok(LoadedSeed::Script {
+                name,
+                script: script.clone(),
+            }),
+        }
+    }
 }
 
 #[cfg(test)]
@@ -115,5 +228,27 @@ mod test {
         let name: SeedName = "test-seed".parse().unwrap();
         assert_eq!(name.to_string(), "test-seed");
         assert_eq!(name.as_str(), "test-seed");
+    }
+
+    #[test]
+    fn test_load_sql_file_git_revision_invalid_utf8_path() {
+        use std::ffi::OsStr;
+        use std::os::unix::ffi::OsStrExt;
+
+        let invalid_utf8_bytes = b"invalid-\xff-path.sql";
+        let invalid_path = std::path::PathBuf::from(OsStr::from_bytes(invalid_utf8_bytes));
+
+        let seed = Seed::SqlFileGitRevision {
+            path: invalid_path.clone(),
+            git_revision: "HEAD".to_string(),
+        };
+
+        let result = seed.load("test-seed".parse().unwrap());
+
+        assert!(matches!(
+            result,
+            Err(LoadError::InvalidUtf8Path { name, path })
+                if name.as_str() == "test-seed" && path == invalid_path
+        ));
     }
 }
