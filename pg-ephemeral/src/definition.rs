@@ -217,7 +217,7 @@ impl Definition {
         }
     }
 
-    fn apply_pg_env(cmd: &mut std::process::Command, db_container: &Container<'_>) {
+    pub fn apply_pg_env(cmd: &mut std::process::Command, db_container: &Container<'_>) {
         cmd.envs(db_container.pg_env());
         cmd.env("DATABASE_URL", db_container.database_url());
     }
@@ -304,118 +304,6 @@ pub fn apply_cbt_mounts(client_config: &pg_client::Config) -> (pg_client::Config
             pg_client::SslRootCert::System => (owned_client_config, vec![]),
         },
         None => (owned_client_config, vec![]),
-    }
-}
-
-pub mod cli {
-    use super::*;
-
-    #[derive(Clone, Debug, clap::Parser)]
-    pub struct App {
-        #[clap(subcommand)]
-        command: Command,
-    }
-
-    impl App {
-        pub async fn run(&self, definition: &Definition) {
-            self.command.run(definition).await
-        }
-    }
-
-    #[derive(Clone, Debug, clap::Parser)]
-    pub enum Command {
-        /// Run interactive psql session on the container
-        ContainerPsql,
-        /// Run schema dump from the container
-        ContainerSchemaDump,
-        /// Run interactive shell on the container
-        ContainerShell,
-        /// Run integration server
-        ///
-        /// Intent to be used for automation with other languages wrapping pg-ephemeral.
-        ///
-        /// After successful boot this command will print a single line to stdout containing a JSON
-        /// representation of the root connection details.
-        ///
-        /// The server will stop once stdin returns EOF, aka the parent process closed it.
-        IntegrationServer {
-            /// Protocol version to use
-            protocol: crate::cli::Protocol,
-        },
-        /// Migration subcommands
-        Migration(mmigration::cli::App),
-        /// Run interactive psql on the host
-        Psql,
-        /// Run shell command with environment variables for PostgreSQL connection
-        ///
-        /// Sets all PostgreSQL-related environment variables:
-        /// - libpq-style PG* environment variables (PGHOST, PGPORT, PGUSER, PGDATABASE, PGPASSWORD, PGSSLMODE, etc.)
-        /// - DATABASE_URL in PostgreSQL URL format
-        RunEnv {
-            /// The command to run
-            command: String,
-            /// Arguments to pass to the command
-            arguments: Vec<String>,
-        },
-    }
-
-    impl Command {
-        pub async fn run(&self, definition: &Definition) {
-            match self {
-                Self::ContainerPsql => definition.with_container(container_psql).await,
-                Self::ContainerSchemaDump => definition.with_container(container_schema_dump).await,
-                Self::ContainerShell => definition.with_container(container_shell).await,
-                Self::IntegrationServer { protocol: _ } => {
-                    definition.run_integration_server().await
-                }
-                Self::Migration(app) => run_migration(definition, app).await,
-                Self::Psql => definition.with_container(host_psql).await,
-                Self::RunEnv { command, arguments } => {
-                    definition
-                        .with_container(async |container| {
-                            host_command(container, command, arguments).await
-                        })
-                        .await
-                }
-            }
-        }
-    }
-
-    async fn host_psql(db_container: &Container<'_>) {
-        let _ = std::process::Command::new("psql")
-            .envs(db_container.client_config.to_pg_env())
-            .status();
-    }
-
-    async fn host_command<'a>(
-        db_container: &'a Container<'a>,
-        command: &str,
-        arguments: &'a Vec<String>,
-    ) {
-        let mut cmd = std::process::Command::new(command);
-        cmd.args(arguments);
-
-        Definition::apply_pg_env(&mut cmd, db_container);
-
-        let _ = cmd.status();
-    }
-
-    async fn run_migration(definition: &Definition, app: &mmigration::cli::App) {
-        definition
-            .with_container(async |container| app.run(container.migration_context()).await)
-            .await
-    }
-
-    async fn container_schema_dump(db_container: &Container<'_>) {
-        println!("{}", db_container.exec_schema_dump());
-    }
-
-    async fn container_psql(db_container: &Container<'_>) {
-        db_container.exec_psql()
-    }
-
-    async fn container_shell(db_container: &Container<'_>) {
-        db_container.exec_container_shell()
     }
 }
 
