@@ -12,6 +12,8 @@ pub use definition::{BackendSelection, Definition};
 pub use image::Image;
 pub use seed::Command;
 pub use seed::DuplicateSeedName;
+pub use seed::LoadError;
+pub use seed::LoadedSeed;
 pub use seed::Seed;
 pub use seed::SeedName;
 pub use seed::SeedNameError;
