@@ -6,6 +6,25 @@ pub enum Protocol {
     V0,
 }
 
+#[derive(Clone, Debug, Default)]
+pub enum ConfigFileSource {
+    #[default]
+    Implicit,
+    Explicit(std::path::PathBuf),
+    None,
+}
+
+impl ConfigFileSource {
+    fn from_arguments(config_file: Option<std::path::PathBuf>, no_config_file: bool) -> Self {
+        match (config_file, no_config_file) {
+            (Some(path), false) => Self::Explicit(path),
+            (None, true) => Self::None,
+            (None, false) => Self::Implicit,
+            (Some(_), true) => unreachable!("clap conflicts_with prevents this"),
+        }
+    }
+}
+
 #[derive(Clone, Debug, clap::Parser)]
 #[command(after_help = "COMMAND TYPES:
   Instance Management:
@@ -21,8 +40,11 @@ pub struct App {
     ///
     /// If absent on default location a single "main" database is assumed on
     /// autodetected backend with latest postgres and no other configuration.
-    #[arg(long)]
+    #[arg(long, conflicts_with = "no_config_file")]
     config_file: Option<std::path::PathBuf>,
+    /// Do not load any config file, use default instance map
+    #[arg(long, conflicts_with = "config_file")]
+    no_config_file: bool,
     /// Overwrite backend
     ///
     /// If not specified on the CLI and not in the config file will be autodetected:
@@ -52,34 +74,39 @@ impl App {
                 .map(|hostname| crate::config::SslConfigDefinition { hostname }),
         };
 
-        let result = match &self.config_file {
-            Some(config_file) => {
-                Config::load_toml_file(config_file, &overwrites).map_err(|error| {
+        let config_file_source =
+            ConfigFileSource::from_arguments(self.config_file.clone(), self.no_config_file);
+
+        let result = match config_file_source {
+            ConfigFileSource::Explicit(config_file) => {
+                Config::load_toml_file(&config_file, &overwrites).map_err(|error| {
                     format!("Could not load config file specified on the CLI: {error}")
                 })
             }
-            None => {
+            ConfigFileSource::None => {
+                log::info!("--no-config-file specified, using default instance map");
+                crate::Config::default()
+                    .instance_map(&overwrites)
+                    .map_err(|error| format!("Could not load default config: {error}"))
+            }
+            ConfigFileSource::Implicit => {
                 log::info!("No config file specified, trying to load from default location");
 
                 match Config::load_toml_file("database.toml", &overwrites) {
                     Ok(value) => Ok(value),
-                    Err(error) => {
-                        match error {
-                            crate::config::Error::IO(crate::config::IoError(
-                                std::io::ErrorKind::NotFound,
-                            )) => {
-                                log::info!(
-                                    "Config file does not exist in default location, using default instance map"
-                                );
-                                crate::Config::default().instance_map(&overwrites).map_err(
-                                    |error| format!("Could not load default config file: {error}"),
-                                )
-                            }
-                            error => Err(format!(
-                                "Could not load config file specified on the CLI: {error}"
-                            )),
-                        }
+                    Err(crate::config::Error::IO(crate::config::IoError(
+                        std::io::ErrorKind::NotFound,
+                    ))) => {
+                        log::info!(
+                            "Config file does not exist in default location, using default instance map"
+                        );
+                        crate::Config::default()
+                            .instance_map(&overwrites)
+                            .map_err(|error| format!("Could not load default config: {error}"))
                     }
+                    Err(error) => Err(format!(
+                        "Could not load config file from default location: {error}"
+                    )),
                 }
             }
         };
