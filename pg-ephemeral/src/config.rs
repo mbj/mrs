@@ -56,12 +56,12 @@ impl From<SeedConfig> for Seed {
         match value {
             SeedConfig::SqlFile { path, git_revision } => match git_revision {
                 Some(git_revision) => Seed::SqlFileGitRevision { git_revision, path },
-                None => Seed::SqlFile(path),
+                None => Seed::SqlFile { path },
             },
-            SeedConfig::Command { command, arguments } => {
-                Seed::Command(Command::new(command, arguments))
-            }
-            SeedConfig::Script { script } => Seed::Script(script),
+            SeedConfig::Command { command, arguments } => Seed::Command {
+                command: Command::new(command, arguments),
+            },
+            SeedConfig::Script { script } => Seed::Script { script },
         }
     }
 }
