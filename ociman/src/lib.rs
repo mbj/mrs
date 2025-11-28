@@ -410,6 +410,10 @@ impl Definition {
         Self { backend, ..self }
     }
 
+    pub fn image(self, image: Image) -> Self {
+        Self { image, ..self }
+    }
+
     pub fn entrypoint(self, command: impl Into<Entrypoint>) -> Self {
         Self {
             entrypoint: Some(command.into()),

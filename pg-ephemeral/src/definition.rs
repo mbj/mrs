@@ -1,5 +1,8 @@
 use crate::Container;
-use crate::seed::{Command, DuplicateSeedName, LoadError, LoadedSeed, Seed, SeedName};
+use crate::seed::{
+    Command, CommandCacheConfig, DuplicateSeedName, LoadError, LoadedSeed, LoadedSeeds, Seed,
+    SeedName,
+};
 
 #[derive(Clone, Debug, PartialEq)]
 pub enum SslConfig {
@@ -33,7 +36,7 @@ impl From<ociman::Backend> for BackendSelection {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct Definition {
     pub application_name: Option<pg_client::ApplicationName>,
     pub backend: ociman::Backend,
@@ -43,6 +46,7 @@ pub struct Definition {
     pub superuser: pg_client::Username,
     pub image: crate::image::Image,
     pub cross_container_access: bool,
+    pub remove: bool,
 }
 
 impl Definition {
@@ -56,7 +60,16 @@ impl Definition {
             database: pg_client::database!("postgres"),
             image,
             cross_container_access: false,
+            remove: true,
         }
+    }
+
+    pub fn remove(self, remove: bool) -> Self {
+        Self { remove, ..self }
+    }
+
+    pub fn image(self, image: crate::image::Image) -> Self {
+        Self { image, ..self }
     }
 
     pub fn add_seed(self, name: SeedName, seed: Seed) -> Result<Self, DuplicateSeedName> {
@@ -78,10 +91,21 @@ impl Definition {
         self.add_seed(name, Seed::SqlFile { path })
     }
 
-    fn load_seeds(&self) -> impl Iterator<Item = Result<LoadedSeed, LoadError>> + '_ {
-        self.seeds
-            .iter()
-            .map(|(name, seed)| seed.load(name.clone()))
+    pub fn load_seeds(&self, instance_name: &str) -> Result<LoadedSeeds<'_>, LoadError> {
+        LoadedSeeds::load(
+            &self.image,
+            self.ssl_config.as_ref(),
+            &self.seeds,
+            self.backend,
+            instance_name,
+        )
+    }
+
+    pub fn print_cache_status(&self, instance_name: &str, verbose: bool) {
+        match self.load_seeds(instance_name) {
+            Ok(loaded_seeds) => loaded_seeds.print(verbose),
+            Err(error) => panic!("{error}"),
+        }
     }
 
     pub fn superuser(self, username: pg_client::Username) -> Self {
@@ -110,8 +134,9 @@ impl Definition {
         self,
         name: SeedName,
         command: Command,
+        cache: CommandCacheConfig,
     ) -> Result<Self, DuplicateSeedName> {
-        self.add_seed(name, Seed::Command { command })
+        self.add_seed(name, Seed::Command { command, cache })
     }
 
     pub fn apply_script(
@@ -146,16 +171,16 @@ impl Definition {
     }
 
     pub async fn with_container<T>(&self, mut action: impl AsyncFnMut(&Container) -> T) -> T {
-        let loaded_seeds: Vec<LoadedSeed> = self
-            .load_seeds()
-            .collect::<Result<Vec<_>, _>>()
+        // TODO: Pass instance_name through when caching is fully integrated
+        let loaded_seeds = self
+            .load_seeds("main")
             .unwrap_or_else(|error| panic!("{error}"));
 
         let mut db_container = Container::run(self);
 
         db_container.wait_available().await;
 
-        for loaded_seed in &loaded_seeds {
+        for loaded_seed in loaded_seeds.iter_seeds() {
             self.apply_loaded_seed(&db_container, loaded_seed).await
         }
 
@@ -164,6 +189,44 @@ impl Definition {
         db_container.stop();
 
         result
+    }
+
+    pub async fn populate_cache(&self, instance_name: &str) {
+        let loaded_seeds = self
+            .load_seeds(instance_name)
+            .unwrap_or_else(|error| panic!("{error}"));
+
+        let mut previous_cache_image: Option<&ociman::Image> = None;
+
+        for seed in loaded_seeds.iter_seeds() {
+            let Some(cache_image) = seed.cache_status().image() else {
+                // Uncacheable seed - cache chain is broken
+                break;
+            };
+
+            if seed.cache_status().is_hit() {
+                previous_cache_image = Some(cache_image);
+                continue;
+            }
+
+            let caching_definition = self
+                .clone()
+                .remove(false)
+                .image(
+                    previous_cache_image
+                        .map(|img| crate::image::Image::Explicit(img.clone()))
+                        .unwrap_or_else(|| self.image.clone()),
+                );
+
+            let mut container = Container::run(&caching_definition);
+            container.wait_available().await;
+
+            self.apply_loaded_seed(&container, seed).await;
+            container.stop_commit(cache_image);
+            log::info!("Committed cache image: {}", cache_image.as_str());
+
+            previous_cache_image = Some(cache_image);
+        }
     }
 
     pub async fn run_integration_server(&self) {
@@ -307,10 +370,20 @@ mod test {
         let seed_name: SeedName = "test-seed".parse().unwrap();
 
         let definition = definition
-            .add_seed(seed_name.clone(), Seed::SqlFile("file1.sql".into()))
+            .add_seed(
+                seed_name.clone(),
+                Seed::SqlFile {
+                    path: "file1.sql".into(),
+                },
+            )
             .unwrap();
 
-        let result = definition.add_seed(seed_name.clone(), Seed::SqlFile("file2.sql".into()));
+        let result = definition.add_seed(
+            seed_name.clone(),
+            Seed::SqlFile {
+                path: "file2.sql".into(),
+            },
+        );
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
     }
@@ -320,11 +393,20 @@ mod test {
         let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
 
         let definition = definition
-            .add_seed("seed1".parse().unwrap(), Seed::SqlFile("file1.sql".into()))
+            .add_seed(
+                "seed1".parse().unwrap(),
+                Seed::SqlFile {
+                    path: "file1.sql".into(),
+                },
+            )
             .unwrap();
 
-        let result =
-            definition.add_seed("seed2".parse().unwrap(), Seed::SqlFile("file2.sql".into()));
+        let result = definition.add_seed(
+            "seed2".parse().unwrap(),
+            Seed::SqlFile {
+                path: "file2.sql".into(),
+            },
+        );
 
         assert!(result.is_ok());
     }
@@ -350,6 +432,7 @@ mod test {
         let result = definition.apply_command(
             "test-command".parse().unwrap(),
             Command::new("echo", vec!["test"]),
+            CommandCacheConfig::CommandHash,
         );
 
         assert!(result.is_ok());
@@ -363,11 +446,18 @@ mod test {
         let seed_name: SeedName = "test-command".parse().unwrap();
 
         let definition = definition
-            .apply_command(seed_name.clone(), Command::new("echo", vec!["test1"]))
+            .apply_command(
+                seed_name.clone(),
+                Command::new("echo", vec!["test1"]),
+                CommandCacheConfig::CommandHash,
+            )
             .unwrap();
 
-        let result =
-            definition.apply_command(seed_name.clone(), Command::new("echo", vec!["test2"]));
+        let result = definition.apply_command(
+            seed_name.clone(),
+            Command::new("echo", vec!["test2"]),
+            CommandCacheConfig::CommandHash,
+        );
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
     }

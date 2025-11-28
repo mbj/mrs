@@ -72,6 +72,7 @@ fn test_config_file() {
                     superuser: pg_client::username!("postgres"),
                     image: "17.1".parse().unwrap(),
                     cross_container_access: false,
+                    remove: true,
                 }
             ),
             (
@@ -85,6 +86,7 @@ fn test_config_file() {
                     superuser: pg_client::username!("postgres"),
                     image: "17.2".parse().unwrap(),
                     cross_container_access: false,
+                    remove: true,
                 }
             )
         ]),
@@ -108,6 +110,7 @@ fn test_config_file() {
                     superuser: pg_client::username!("postgres"),
                     image: "18.0".parse().unwrap(),
                     cross_container_access: false,
+                    remove: true,
                 }
             ),
             (
@@ -121,6 +124,7 @@ fn test_config_file() {
                     superuser: pg_client::username!("postgres"),
                     image: "18.0".parse().unwrap(),
                     cross_container_access: false,
+                    remove: true,
                 }
             )
         ]),
@@ -151,6 +155,7 @@ fn test_config_file_no_explicit_instance() {
                 superuser: pg_client::username!("postgres"),
                 image: "17.1".parse().unwrap(),
                 cross_container_access: false,
+                remove: true,
             }
         ),]),
         pg_ephemeral::Config::load_toml_file(
@@ -172,6 +177,7 @@ fn test_config_file_no_explicit_instance() {
                 superuser: pg_client::username!("postgres"),
                 image: "18.0".parse().unwrap(),
                 cross_container_access: false,
+                remove: true,
             }
         ),]),
         pg_ephemeral::Config::load_toml_file(
@@ -215,6 +221,7 @@ fn test_config_ssl() {
                 superuser: pg_client::username!("postgres"),
                 image: "18.0".parse().unwrap(),
                 cross_container_access: false,
+                remove: true,
             }
         )]),
         pg_ephemeral::Config::load_toml(config_str)
@@ -324,6 +331,7 @@ fn test_config_seeds_command() {
         type = "command"
         command = "migrate"
         arguments = ["up"]
+        cache.type = "command-hash"
     "#};
 
     let config = pg_ephemeral::Config::load_toml(toml)
@@ -346,6 +354,7 @@ fn test_config_seeds_command() {
             "run-migration".parse().unwrap(),
             pg_ephemeral::Seed::Command {
                 command: pg_ephemeral::Command::new("migrate", ["up"]),
+                cache: pg_ephemeral::CommandCacheConfig::CommandHash,
             },
         ),
     ]
@@ -399,6 +408,7 @@ fn test_config_seeds_mixed() {
         type = "command"
         command = "migrate"
         arguments = ["up", "--verbose"]
+        cache.type = "command-hash"
 
         [instances.main.seeds.verify]
         type = "script"
@@ -425,6 +435,7 @@ fn test_config_seeds_mixed() {
             "migrate".parse().unwrap(),
             pg_ephemeral::Seed::Command {
                 command: pg_ephemeral::Command::new("migrate", ["up", "--verbose"]),
+                cache: pg_ephemeral::CommandCacheConfig::CommandHash,
             },
         ),
         (
@@ -541,6 +552,7 @@ fn test_config_image_with_sha256_digest() {
                 superuser: pg_client::username!("postgres"),
                 image: expected_image.clone(),
                 cross_container_access: false,
+                remove: true,
             }
         )]),
         pg_ephemeral::Config::load_toml(config_str)

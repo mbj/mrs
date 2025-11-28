@@ -1,7 +1,7 @@
 use super::InstanceName;
 use crate::definition::Definition;
 use crate::image::Image;
-use crate::seed::{Command, Seed, SeedName};
+use crate::seed::{Command, CommandCacheConfig, Seed, SeedName};
 
 #[derive(Debug, thiserror::Error, PartialEq)]
 pub enum Error {
@@ -44,7 +44,9 @@ pub enum SeedConfig {
     },
     Command {
         command: String,
+        #[serde(default)]
         arguments: Vec<String>,
+        cache: CommandCacheConfig,
     },
     Script {
         script: String,
@@ -58,8 +60,13 @@ impl From<SeedConfig> for Seed {
                 Some(git_revision) => Seed::SqlFileGitRevision { git_revision, path },
                 None => Seed::SqlFile { path },
             },
-            SeedConfig::Command { command, arguments } => Seed::Command {
+            SeedConfig::Command {
+                command,
+                arguments,
+                cache,
+            } => Seed::Command {
                 command: Command::new(command, arguments),
+                cache,
             },
             SeedConfig::Script { script } => Seed::Script { script },
         }
@@ -147,6 +154,7 @@ impl InstanceDefinition {
             superuser: pg_client::username!("postgres"),
             image,
             cross_container_access: false,
+            remove: true,
         })
     }
 }
