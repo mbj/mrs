@@ -74,8 +74,6 @@ impl Command {
 
 #[derive(Clone, Debug, PartialEq)]
 pub enum Seed {
-    ApplyPendingMigrations,
-    ApplyPendingMigrationsNoSchemaDump,
     SqlFile(std::path::PathBuf),
     SqlFileGitRevision {
         git_revision: String,

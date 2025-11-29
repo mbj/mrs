@@ -7,16 +7,6 @@ use crate::UNSPECIFIED_IP;
 use crate::certificate;
 use crate::definition;
 
-pub(crate) struct SchemaDump<'a> {
-    container: &'a Container<'a>,
-}
-
-impl mmigration::SchemaDump for SchemaDump<'_> {
-    async fn schema_dump(&self) -> mmigration::Schema {
-        self.container.exec_schema_dump().into()
-    }
-}
-
 const SSL_SETUP_SCRIPT: &str = r#"
 printf '%s' "$PG_EPHEMERAL_CA_CERT_PEM" > ${PG_EPHEMERAL_SSL_DIR}/root.crt
 printf '%s' "$PG_EPHEMERAL_SERVER_CERT_PEM" > ${PG_EPHEMERAL_SSL_DIR}/server.crt
@@ -146,20 +136,6 @@ impl<'a> Container<'a> {
         }
     }
 
-    pub(crate) fn migration_context(&'a self) -> mmigration::Context<'a, SchemaDump<'a>> {
-        let migration_config = self
-            .definition
-            .migration_config
-            .as_ref()
-            .expect("migration not configured");
-
-        mmigration::Context::load(
-            migration_config,
-            &self.client_config,
-            SchemaDump { container: self },
-        )
-    }
-
     pub async fn wait_available(&self) {
         let config = self.client_config.to_sqlx_connect_options().unwrap();
 
@@ -217,16 +193,6 @@ impl<'a> Container<'a> {
             .with_sqlx_connection(async |connection| action(connection).await)
             .await
             .unwrap()
-    }
-
-    pub async fn apply_pending_migrations(&self) {
-        self.migration_context().apply_pending().await
-    }
-
-    pub async fn apply_pending_migrations_no_schema_dump(&self) {
-        self.migration_context()
-            .apply_pending_no_schema_dump()
-            .await
     }
 
     pub async fn apply_sql_file(&self, path: &std::path::Path) {
