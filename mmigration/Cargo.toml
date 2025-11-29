@@ -7,9 +7,9 @@ edition.workspace = true
 workspace = true
 
 [dependencies]
-clap = { workspace = true }
-log = { workspace = true }
-pg-client = { workspace = true }
-regex-lite = { workspace = true }
-sha2 = { workspace = true }
-sqlx = { workspace = true }
+clap.workspace = true
+log.workspace = true
+pg-client.workspace = true
+regex-lite.workspace = true
+sha2.workspace = true
+sqlx.workspace = true

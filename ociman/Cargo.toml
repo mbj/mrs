@@ -15,14 +15,14 @@ categories = ["development-tools"]
 workspace = true
 
 [dependencies]
-clap = { workspace = true }
-log = { workspace = true }
-serde = { workspace = true }
-serde_json = { workspace = true }
+clap.workspace = true
+log.workspace = true
+serde.workspace = true
+serde_json.workspace = true
 sha2 = "0.10"
-thiserror = { workspace = true }
+thiserror.workspace = true
 walkdir = "2.5"
 
 [dev-dependencies]
 indoc = "2.0"
-env_logger = { workspace = true }
+env_logger.workspace = true
