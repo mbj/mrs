@@ -19,7 +19,7 @@ hostname-validator = "1.1.1"
 serde.workspace = true
 sqlx.workspace = true
 thiserror.workspace = true
-url = "2.5.7"
+url.workspace = true
 
 [dev-dependencies]
 ociman.workspace = true
