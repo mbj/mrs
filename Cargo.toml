@@ -20,7 +20,7 @@ edition = "2024"
 rust-version = "1.90"
 
 [workspace.dependencies]
-ociman = { version = "0.0.1-pre", path = "ociman" }
+ociman = { version = "0.0.1-pre1", path = "ociman" }
 clap = { version = "4.5", features = ["derive"] }
 env_logger = "0.11"
 hex = "0.4.3"
@@ -29,7 +29,7 @@ log = "0.4"
 mmigration = { path = "mmigration" }
 nom = "7.1"
 pg-client = { path = "pg-client" }
-pg-ephemeral = { path = "pg-ephemeral" }
+pg-ephemeral = { version = "0.0.1-pre2", path = "pg-ephemeral" }
 pretty_assertions = "1.4"
 rand = "0.9"
 regex-lite = "0.1.6"
