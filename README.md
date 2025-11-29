@@ -15,7 +15,7 @@ A collection of Rust tools for cloud infrastructure and PostgreSQL development.
 - [**mlambda**](mlambda/) - AWS Lambda runtime and API Gateway utilities
 
 ### Container Tools
-- [**cbt**](cbt/) - Container Backend Tool - unified API for Docker and Podman
+- [**ociman**](ociman/) - OCI Manager - unified API for OCI container runtimes (Docker, Podman)
 
 ### PostgreSQL
 - [**pg-client**](pg-client/) - PostgreSQL client configuration and types

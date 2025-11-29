@@ -13,7 +13,7 @@
 /// ```
 /// #[test]
 /// fn my_container_test() {
-///     if cbt::testing::platform_not_supported() {
+///     if ociman::testing::platform_not_supported() {
 ///         return;
 ///     }
 ///     // ... test code that requires containers

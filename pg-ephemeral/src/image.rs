@@ -227,9 +227,9 @@ impl<'de> serde::Deserialize<'de> for Image {
     }
 }
 
-impl From<&Image> for cbt::Image {
+impl From<&Image> for ociman::Image {
     fn from(value: &Image) -> Self {
-        cbt::Image::from(format!(
+        ociman::Image::from(format!(
             "registry.hub.docker.com/library/postgres:{}",
             value
         ))
@@ -511,7 +511,7 @@ mod test {
     }
 
     #[test]
-    fn test_cbt_image_conversion_with_digest() {
+    fn test_ociman_image_conversion_with_digest() {
         let hash = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
         let image = Image::OfficialRelease {
             major: Major(17),
@@ -520,10 +520,10 @@ mod test {
             digest: Some(Digest(hex::decode(hash).unwrap().try_into().unwrap())),
         };
 
-        let cbt_image: cbt::Image = (&image).into();
+        let ociman_image: ociman::Image = (&image).into();
         let expected = "registry.hub.docker.com/library/postgres:17.6@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 
-        assert_eq!(cbt_image.as_str(), expected);
+        assert_eq!(ociman_image.as_str(), expected);
     }
 
     #[test]

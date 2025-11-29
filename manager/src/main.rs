@@ -151,7 +151,7 @@ fn create_edge_release() {
         .unwrap_or_else(|error| panic!("Failed to get current directory: {}", error));
 
     // Get git commit SHA
-    let sha_output = cbt::Command::new("git")
+    let sha_output = ociman::Command::new("git")
         .arguments(["rev-parse", "HEAD"])
         .output_result()
         .unwrap_or_else(|error| panic!("Failed to get git SHA: {}", error));
@@ -166,7 +166,7 @@ fn create_edge_release() {
         .to_string();
 
     // Get current branch name
-    let branch_output = cbt::Command::new("git")
+    let branch_output = ociman::Command::new("git")
         .arguments(["rev-parse", "--abbrev-ref", "HEAD"])
         .output_result()
         .unwrap_or_else(|error| panic!("Failed to get git branch: {}", error));
@@ -226,7 +226,7 @@ fn create_edge_release() {
         release_files.len()
     );
 
-    let status = cbt::Command::new("gh")
+    let status = ociman::Command::new("gh")
         .arguments(
             arguments
                 .iter()
@@ -387,7 +387,7 @@ fn build_integrations() {
     log::info!("Ruby platform: {}", ruby_platform);
     log::info!("Version: {}", ruby_version);
 
-    let status = cbt::Command::new("cargo")
+    let status = ociman::Command::new("cargo")
         .arguments([
             "build",
             "--release",
@@ -460,7 +460,7 @@ fn build_integrations() {
     log::info!("Building gem");
     if target.contains("darwin") {
         log::info!("Using native gem build for macOS");
-        let status = cbt::Command::new("gem")
+        let status = ociman::Command::new("gem")
             .argument("build")
             .argument("pg-ephemeral.gemspec")
             .working_directory(&build_staging)
@@ -472,16 +472,16 @@ fn build_integrations() {
         }
     } else {
         log::info!("Using containerized gem build for Linux");
-        let backend = cbt::backend::autodetect::run().expect("Failed to detect backend");
+        let backend = ociman::backend::autodetect::run().expect("Failed to detect backend");
 
-        let mount = cbt::Mount::from(format!(
+        let mount = ociman::Mount::from(format!(
             "type=bind,source={},target=/build",
             build_staging.to_str().unwrap()
         ));
 
-        cbt::Definition::new(
+        ociman::Definition::new(
             backend,
-            cbt::Image::from("docker.io/library/ruby:3.4-alpine"),
+            ociman::Image::from("docker.io/library/ruby:3.4-alpine"),
         )
         .mount(mount)
         .workdir("/build")
@@ -530,7 +530,7 @@ fn build_integrations() {
 
     // Generate gem index for local gem source
     log::info!("Generating gem index in: {}", dist_root.display());
-    let generate_index_status = cbt::Command::new("gem")
+    let generate_index_status = ociman::Command::new("gem")
         .arguments(["generate_index", "--directory", dist_root.to_str().unwrap()])
         .status_result()
         .unwrap_or_else(|error| panic!("Failed to generate gem index: {}", error));
@@ -627,7 +627,7 @@ fn merge_gems() {
 
     // Generate gem index for the unified repository
     log::info!("Generating gem index in: {}", dist_root.display());
-    let generate_index_status = cbt::Command::new("gem")
+    let generate_index_status = ociman::Command::new("gem")
         .arguments(["generate_index", "--directory", dist_root.to_str().unwrap()])
         .status_result()
         .unwrap_or_else(|error| panic!("Failed to generate gem index: {}", error));
@@ -676,7 +676,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
             "/usr/local/opt/libpq/bin/pg_config"
         };
 
-        let bundle_config_status = cbt::Command::new("bundle")
+        let bundle_config_status = ociman::Command::new("bundle")
             .arguments([
                 "config",
                 "--local",
@@ -693,7 +693,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
     }
 
     log::info!("Running bundle install with Gemfile.acceptance");
-    let bundle_install_acceptance = cbt::Command::new("bundle")
+    let bundle_install_acceptance = ociman::Command::new("bundle")
         .arguments(["install", "--gemfile=Gemfile.acceptance"])
         .working_directory(&integration_directory)
         .env("PG_EPHEMERAL_GEM_SOURCE", &gem_source_url)
@@ -705,7 +705,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
     }
 
     log::info!("Running RSpec acceptance tests");
-    let rspec_acceptance_status = cbt::Command::new("bundle")
+    let rspec_acceptance_status = ociman::Command::new("bundle")
         .arguments([
             "exec",
             "--gemfile=Gemfile.acceptance",
@@ -726,7 +726,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
     log::info!("Copying pg-ephemeral binary from installed gem");
 
     // Get gem path using bundler
-    let gem_path_output = cbt::Command::new("bundle")
+    let gem_path_output = ociman::Command::new("bundle")
         .arguments([
             "exec",
             "--gemfile=Gemfile.acceptance",
@@ -781,7 +781,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
 
     // Run bundle install
     log::info!("Running bundle install");
-    let bundle_install = cbt::Command::new("bundle")
+    let bundle_install = ociman::Command::new("bundle")
         .arguments(["install"])
         .working_directory(&integration_directory)
         .status_result()
@@ -793,7 +793,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
 
     // Run RSpec tests
     log::info!("Running RSpec tests");
-    let rspec_status = cbt::Command::new("bundle")
+    let rspec_status = ociman::Command::new("bundle")
         .arguments(["exec", "rspec"])
         .working_directory(&integration_directory)
         .env("EXPECTED_PG_EPHEMERAL_VERSION", &ruby_version)
@@ -805,10 +805,10 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
     }
 
     // Run Mutant tests (only on supported platforms)
-    match cbt::platform::support() {
+    match ociman::platform::support() {
         Ok(()) => {
             log::info!("Running Mutant tests");
-            let mutant_status = cbt::Command::new("bundle")
+            let mutant_status = ociman::Command::new("bundle")
                 .arguments(["exec", "mutant", "run"])
                 .working_directory(&integration_directory)
                 .env("EXPECTED_PG_EPHEMERAL_VERSION", &ruby_version)
@@ -849,7 +849,7 @@ fn publish_gems(push: bool) {
         .unwrap_or_else(|error| panic!("Failed to get current directory: {}", error));
 
     // Get git commit SHA
-    let sha_output = cbt::Command::new("git")
+    let sha_output = ociman::Command::new("git")
         .arguments(["rev-parse", "HEAD"])
         .output_result()
         .unwrap_or_else(|error| panic!("Failed to get git SHA: {}", error));
@@ -883,7 +883,7 @@ fn publish_gems(push: bool) {
     log::info!("Downloading artifacts from edge release {}", release_tag);
 
     // Download all artifacts from the edge release
-    let status = cbt::Command::new("gh")
+    let status = ociman::Command::new("gh")
         .arguments([
             "release",
             "download",

@@ -77,7 +77,7 @@ impl Backend {
     ///
     /// # Example
     /// ```no_run
-    /// let ip = cbt::backend::autodetect::run()
+    /// let ip = ociman::backend::autodetect::run()
     ///     .unwrap()
     ///     .container_resolver()
     ///     .add_host("host.docker.internal:host-gateway")
@@ -98,7 +98,7 @@ impl Backend {
     ///
     /// # Example
     /// ```no_run
-    /// let ip = cbt::backend::autodetect::run()
+    /// let ip = ociman::backend::autodetect::run()
     ///     .unwrap()
     ///     .resolve_container_host()
     ///     .unwrap();
@@ -231,7 +231,7 @@ impl ContainerHostnameResolver {
 pub mod autodetect {
     use super::Backend;
 
-    const ENV_VARIABLE_NAME: &str = "CBT_BACKEND";
+    const ENV_VARIABLE_NAME: &str = "OCIMAN_BACKEND";
 
     pub type Result = std::result::Result<super::Backend, Error>;
 
@@ -274,7 +274,7 @@ pub mod autodetect {
             {
                 Err(_) => None,
                 Ok(version) => {
-                    log::debug!("cbt using: {}", std::str::from_utf8(&version).unwrap());
+                    log::debug!("ociman using: {}", std::str::from_utf8(&version).unwrap());
                     Some(backend)
                 }
             }

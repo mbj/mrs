@@ -2,15 +2,15 @@ use indoc::indoc;
 
 /// Helper function to create a Definition with .remove() automatically set
 /// to prevent container leaks in tests.
-fn test_definition(backend: cbt::Backend, image: cbt::Image) -> cbt::Definition {
-    cbt::Definition::new(backend, image).remove()
+fn test_definition(backend: ociman::Backend, image: ociman::Image) -> ociman::Definition {
+    ociman::Definition::new(backend, image).remove()
 }
 
 #[test]
 fn test_hello_world() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, cbt::Image::from("alpine:latest"))
+    let definition = test_definition(backend, ociman::Image::from("alpine:latest"))
         .entrypoint("echo")
         .argument("Hello, World!");
 
@@ -23,14 +23,14 @@ fn test_hello_world() {
 
 #[test]
 fn test_backend_autodetect() {
-    let _backend = cbt::test_backend_setup!();
+    let _backend = ociman::test_backend_setup!();
 }
 
 #[test]
 fn test_container_with_env_vars() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, cbt::Image::from("alpine:latest"))
+    let definition = test_definition(backend, ociman::Image::from("alpine:latest"))
         .entrypoint("sh")
         .arguments(["-c", "echo $TEST_VAR"])
         .environment_variable("TEST_VAR", "test_value");
@@ -43,9 +43,9 @@ fn test_container_with_env_vars() {
 
 #[test]
 fn test_container_exec() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, cbt::Image::from("alpine:latest"))
+    let definition = test_definition(backend, ociman::Image::from("alpine:latest"))
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
@@ -59,15 +59,15 @@ fn test_container_exec() {
 
 #[test]
 fn test_read_host_tcp_port() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, cbt::Image::from("alpine:latest"))
+    let definition = test_definition(backend, ociman::Image::from("alpine:latest"))
         .entrypoint("sh".to_string())
         .arguments(vec![
             "-c".to_string(),
             "trap 'exit 0' TERM; sleep 30 & wait".to_string(),
         ])
-        .publish(cbt::Publish::tcp(8080).host_ip(std::net::Ipv4Addr::LOCALHOST.into()));
+        .publish(ociman::Publish::tcp(8080).host_ip(std::net::Ipv4Addr::LOCALHOST.into()));
 
     definition.with_container(|container| {
         let host_port = container
@@ -80,9 +80,9 @@ fn test_read_host_tcp_port() {
 
 #[test]
 fn test_read_host_tcp_port_not_published() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, cbt::Image::from("alpine:latest"))
+    let definition = test_definition(backend, ociman::Image::from("alpine:latest"))
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
@@ -96,7 +96,7 @@ fn test_read_host_tcp_port_not_published() {
 #[test]
 fn test_command_with_stdin() {
     let input = b"Hello from stdin!";
-    let output = cbt::Command::new("cat")
+    let output = ociman::Command::new("cat")
         .stdin_bytes(input.to_vec())
         .capture_only_stdout();
 
@@ -105,16 +105,16 @@ fn test_command_with_stdin() {
 
 #[test]
 fn test_image_build_from_instructions() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
     let dockerfile = indoc! {"
         FROM alpine:latest
         RUN touch dirty && echo 'test build from instructions'
     "};
 
-    let definition = cbt::BuildDefinition::from_instructions(
+    let definition = ociman::BuildDefinition::from_instructions(
         backend,
-        cbt::Image::from("cbt-test-instructions:latest"),
+        ociman::Image::from("ociman-test-instructions:latest"),
         dockerfile,
     );
 
@@ -130,11 +130,11 @@ fn test_image_build_from_instructions() {
 
 #[test]
 fn test_image_build_from_directory() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
-    let definition = cbt::BuildDefinition::from_directory(
+    let definition = ociman::BuildDefinition::from_directory(
         backend,
-        cbt::Image::from("cbt-test-directory:latest"),
+        ociman::Image::from("ociman-test-directory:latest"),
         "tests/fixtures/test-build",
     );
 
@@ -150,16 +150,16 @@ fn test_image_build_from_directory() {
 
 #[test]
 fn test_image_build_if_absent() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
     let dockerfile = indoc! {"
         FROM alpine:latest
         RUN touch dirty && echo 'test build if absent'
     "};
 
-    let definition = cbt::BuildDefinition::from_instructions(
+    let definition = ociman::BuildDefinition::from_instructions(
         backend,
-        cbt::Image::from("cbt-test-if-absent:latest"),
+        ociman::Image::from("ociman-test-if-absent:latest"),
         dockerfile,
     );
 
@@ -176,10 +176,10 @@ fn test_image_build_if_absent() {
 
 #[test]
 fn test_image_tag() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
-    let source = cbt::Image::from("alpine:latest");
-    let target = cbt::Image::from("cbt-test-tagged:latest");
+    let source = ociman::Image::from("alpine:latest");
+    let target = ociman::Image::from("ociman-test-tagged:latest");
 
     backend.pull_image_if_absent(&source);
 
@@ -195,9 +195,9 @@ fn test_image_tag() {
 
 #[test]
 fn test_image_pull_if_absent() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
-    let image = cbt::Image::from("alpine:latest");
+    let image = ociman::Image::from("alpine:latest");
 
     backend.pull_image_if_absent(&image);
     assert!(backend.is_image_present(&image));
@@ -205,7 +205,7 @@ fn test_image_pull_if_absent() {
 
 #[test]
 fn test_image_build_from_instructions_hash() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
     let dockerfile = indoc! {"
         FROM alpine:latest
@@ -213,13 +213,13 @@ fn test_image_build_from_instructions_hash() {
     "};
 
     let definition =
-        cbt::BuildDefinition::from_instructions_hash(backend, "cbt-test-hash", dockerfile);
+        ociman::BuildDefinition::from_instructions_hash(backend, "ociman-test-hash", dockerfile);
 
     let image = definition.build();
     assert!(backend.is_image_present(&image));
 
     let definition2 =
-        cbt::BuildDefinition::from_instructions_hash(backend, "cbt-test-hash", dockerfile);
+        ociman::BuildDefinition::from_instructions_hash(backend, "ociman-test-hash", dockerfile);
     let image2 = definition2.build();
     assert_eq!(image, image2);
 
@@ -228,20 +228,20 @@ fn test_image_build_from_instructions_hash() {
 
 #[test]
 fn test_image_build_from_directory_hash() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
-    let definition = cbt::BuildDefinition::from_directory_hash(
+    let definition = ociman::BuildDefinition::from_directory_hash(
         backend,
-        "cbt-test-dir-hash",
+        "ociman-test-dir-hash",
         "tests/fixtures/test-build",
     );
 
     let image1 = definition.build();
     assert!(backend.is_image_present(&image1));
 
-    let definition2 = cbt::BuildDefinition::from_directory_hash(
+    let definition2 = ociman::BuildDefinition::from_directory_hash(
         backend,
-        "cbt-test-dir-hash",
+        "ociman-test-dir-hash",
         "tests/fixtures/test-build",
     );
     let image2 = definition2.build();
@@ -252,7 +252,7 @@ fn test_image_build_from_directory_hash() {
 
 #[test]
 fn test_image_build_with_build_args() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
     let dockerfile = indoc! {"
         FROM alpine:latest
@@ -260,9 +260,9 @@ fn test_image_build_with_build_args() {
         RUN touch dirty && echo \"Build arg value: $TEST_ARG\" > /test-output
     "};
 
-    let definition = cbt::BuildDefinition::from_instructions(
+    let definition = ociman::BuildDefinition::from_instructions(
         backend,
-        cbt::Image::from("cbt-test-build-args:latest"),
+        ociman::Image::from("ociman-test-build-args:latest"),
         dockerfile,
     )
     .build_argument("TEST_ARG".parse().unwrap(), "test_value");
@@ -285,7 +285,7 @@ fn test_image_build_with_build_args() {
 
 #[test]
 fn test_image_build_args_affect_hash() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
     let dockerfile = indoc! {"
         FROM alpine:latest
@@ -293,14 +293,20 @@ fn test_image_build_args_affect_hash() {
         RUN touch dirty && echo \"Version: $VERSION\"
     "};
 
-    let definition1 =
-        cbt::BuildDefinition::from_instructions_hash(backend, "cbt-test-args-hash", dockerfile)
-            .build_argument("VERSION".parse().unwrap(), "1.0");
+    let definition1 = ociman::BuildDefinition::from_instructions_hash(
+        backend,
+        "ociman-test-args-hash",
+        dockerfile,
+    )
+    .build_argument("VERSION".parse().unwrap(), "1.0");
     let image1 = definition1.build();
 
-    let definition2 =
-        cbt::BuildDefinition::from_instructions_hash(backend, "cbt-test-args-hash", dockerfile)
-            .build_argument("VERSION".parse().unwrap(), "2.0");
+    let definition2 = ociman::BuildDefinition::from_instructions_hash(
+        backend,
+        "ociman-test-args-hash",
+        dockerfile,
+    )
+    .build_argument("VERSION".parse().unwrap(), "2.0");
     let image2 = definition2.build();
 
     assert_ne!(
@@ -308,9 +314,12 @@ fn test_image_build_args_affect_hash() {
         "Different build arguments should produce different image tags"
     );
 
-    let definition3 =
-        cbt::BuildDefinition::from_instructions_hash(backend, "cbt-test-args-hash", dockerfile)
-            .build_argument("VERSION".parse().unwrap(), "1.0");
+    let definition3 = ociman::BuildDefinition::from_instructions_hash(
+        backend,
+        "ociman-test-args-hash",
+        dockerfile,
+    )
+    .build_argument("VERSION".parse().unwrap(), "1.0");
     let image3 = definition3.build();
 
     assert_eq!(
@@ -324,24 +333,25 @@ fn test_image_build_args_affect_hash() {
 
 #[test]
 fn test_build_argument_key_cannot_be_empty() {
-    let result: Result<cbt::BuildArgumentKey, _> = "".parse();
-    assert!(matches!(result, Err(cbt::BuildArgumentKeyError::Empty)));
+    let result: Result<ociman::BuildArgumentKey, _> = "".parse();
+    assert!(matches!(result, Err(ociman::BuildArgumentKeyError::Empty)));
 }
 
 #[test]
 fn test_build_argument_key_cannot_contain_equals() {
-    let result: Result<cbt::BuildArgumentKey, _> = "KEY=VALUE".parse();
+    let result: Result<ociman::BuildArgumentKey, _> = "KEY=VALUE".parse();
     assert!(matches!(
         result,
-        Err(cbt::BuildArgumentKeyError::ContainsEquals)
+        Err(ociman::BuildArgumentKeyError::ContainsEquals)
     ));
 }
 
 #[test]
 fn test_run_status_with_successful_exit() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, cbt::Image::from("alpine:latest")).entrypoint("true");
+    let definition =
+        test_definition(backend, ociman::Image::from("alpine:latest")).entrypoint("true");
 
     let status = definition.run_status();
     assert!(status.success());
@@ -349,10 +359,10 @@ fn test_run_status_with_successful_exit() {
 
 #[test]
 fn test_run_status_with_nonzero_exit() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
     let definition =
-        test_definition(backend, cbt::Image::from("alpine:latest")).entrypoint("false");
+        test_definition(backend, ociman::Image::from("alpine:latest")).entrypoint("false");
 
     let status = definition.run_status();
     assert!(!status.success());
@@ -361,9 +371,9 @@ fn test_run_status_with_nonzero_exit() {
 
 #[test]
 fn test_run_status_success_with_successful_exit() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
-    test_definition(backend, cbt::Image::from("alpine:latest"))
+    test_definition(backend, ociman::Image::from("alpine:latest"))
         .entrypoint("true")
         .run_status_success();
 }
@@ -374,18 +384,18 @@ fn test_run_status_success_with_successful_exit() {
 // there.
 #[cfg(not(target_os = "macos"))]
 fn test_run_status_success_with_nonzero_exit() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
-    test_definition(backend, cbt::Image::from("alpine:latest"))
+    test_definition(backend, ociman::Image::from("alpine:latest"))
         .entrypoint("false")
         .run_status_success();
 }
 
 #[test]
 fn test_container_with_workdir() {
-    let backend = cbt::test_backend_setup!();
+    let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, cbt::Image::from("alpine:latest"))
+    let definition = test_definition(backend, ociman::Image::from("alpine:latest"))
         .entrypoint("pwd")
         .workdir("/tmp");
 

@@ -7,7 +7,7 @@ edition.workspace = true
 workspace = true
 
 [dependencies]
-cbt.workspace = true
+ociman.workspace = true
 clap = { version = "4.5", features = ["derive"] }
 env_logger.workspace = true
 flate2 = "1.0"
