@@ -24,7 +24,7 @@ serde_json.workspace = true
 sha2.workspace = true
 stratosphere.workspace = true
 strum = "0.27.1"
-tokio = "1.45.1"
+tokio.workspace = true
 url = "2.5.4"
 uuid = { version = "1.17.0", features = ["v4"] }
 zip = "4.0.0"
