@@ -1,3 +1,5 @@
+#![doc = include_str!("../README.md")]
+
 /// Macro to generate `std::str::FromStr` plus helpers for string wrapped newtypes
 macro_rules! from_str_impl {
     ($struct: ident, $min: expr, $max: expr) => {
@@ -391,15 +393,6 @@ impl From<std::path::PathBuf> for SslRootCert {
     fn from(value: std::path::PathBuf) -> Self {
         Self::File(value)
     }
-}
-
-#[macro_export]
-macro_rules! ssl_root_cert_file {
-    ($string: literal) => {
-        <pg_client::FileBuf as std::str::FromStr>::from_str($string)
-            .map(pg_client::SslRootCert::File)
-            .unwrap()
-    };
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]

@@ -1,7 +1,15 @@
 [package]
 name = "pg-client"
-version = "0.0.1"
+version = "0.0.1-pre1"
 edition.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "PostgreSQL client configuration and connection management"
+license = "MIT"
+repository = "https://github.com/mbj/mrs/tree/main/pg-client"
+readme = "README.md"
+keywords = ["postgres", "postgresql", "database", "client"]
+categories = ["database"]
 
 [lints]
 workspace = true
