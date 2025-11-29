@@ -369,6 +369,7 @@ pub struct Definition {
     environment_variables: EnvironmentVariables,
     image: Image,
     remove: Remove,
+    remove_on_drop: bool,
     mounts: Vec<Mount>,
     publish: Vec<Publish>,
     workdir: Option<Workdir>,
@@ -386,6 +387,7 @@ impl Definition {
             mounts: vec![],
             publish: vec![],
             remove: Remove::NoRemove,
+            remove_on_drop: false,
             workdir: None,
         }
     }
@@ -478,6 +480,20 @@ impl Definition {
         }
     }
 
+    /// Marks the container for removal when the Container handle is dropped.
+    ///
+    /// This is different from `remove()` which uses `--rm` flag:
+    /// - `remove()` → docker/podman removes container when it stops (can't commit)
+    /// - `remove_on_drop()` → Rust removes container on Drop (can commit stopped container)
+    ///
+    /// Use this when you need to stop a container, commit it, then clean up.
+    pub fn remove_on_drop(self) -> Self {
+        Self {
+            remove_on_drop: true,
+            ..self
+        }
+    }
+
     pub fn detach(self) -> Self {
         Self {
             detach: Detach::Detach,
@@ -527,6 +543,8 @@ impl Definition {
             backend: self.backend,
             id: ContainerId::try_from(strip_nl_end(&stdout)).unwrap(),
             stopped: false,
+            removed: false,
+            remove_on_drop: self.remove_on_drop,
         }
     }
 
@@ -609,6 +627,8 @@ pub struct Container {
     backend: Backend,
     id: ContainerId,
     stopped: bool,
+    removed: bool,
+    remove_on_drop: bool,
 }
 
 impl Container {
@@ -619,6 +639,15 @@ impl Container {
             .capture_only_stdout();
 
         self.stopped = true;
+    }
+
+    pub fn remove(&mut self) {
+        self.backend_command()
+            .arguments(["container", "rm"])
+            .argument(&self.id)
+            .capture_only_stdout();
+
+        self.removed = true;
     }
 
     pub fn exec_capture_only_stdout<T: AsRef<OsStr>>(
@@ -725,6 +754,10 @@ impl Drop for Container {
     fn drop(&mut self) {
         if !self.stopped {
             self.stop()
+        }
+
+        if self.remove_on_drop && !self.removed {
+            self.remove()
         }
     }
 }
