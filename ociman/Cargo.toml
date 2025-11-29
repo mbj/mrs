@@ -24,5 +24,5 @@ thiserror.workspace = true
 walkdir = "2.5"
 
 [dev-dependencies]
-indoc = "2.0"
+indoc.workspace = true
 env_logger.workspace = true

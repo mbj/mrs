@@ -10,7 +10,7 @@ workspace = true
 clap.workspace = true
 env_logger.workspace = true
 flate2 = "1.0"
-indoc = "2"
+indoc.workspace = true
 log.workspace = true
 ociman.workspace = true
 pg-ephemeral = { path = "../pg-ephemeral" }
