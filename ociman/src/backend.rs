@@ -16,7 +16,7 @@ impl Backend {
     }
 
     /// Check if an image is present in the local registry
-    pub fn is_image_present(&self, image: &crate::Image) -> bool {
+    pub fn is_image_present(&self, image: &crate::Reference) -> bool {
         match self {
             Backend::Docker => self
                 .command()
@@ -36,34 +36,34 @@ impl Backend {
     }
 
     /// Tag an image with a new name
-    pub fn tag_image(&self, source: &crate::Image, target: &crate::Image) {
+    pub fn tag_image(&self, source: &crate::Reference, target: &crate::Reference) {
         self.command()
             .arguments(["tag", source.as_str(), target.as_str()])
             .capture_only_stdout();
     }
 
     /// Pull an image from a registry
-    pub fn pull_image(&self, image: &crate::Image) {
+    pub fn pull_image(&self, image: &crate::Reference) {
         self.command()
             .arguments(["pull", image.as_str()])
             .capture_only_stdout();
     }
 
     /// Pull an image only if it's not already present
-    pub fn pull_image_if_absent(&self, image: &crate::Image) {
+    pub fn pull_image_if_absent(&self, image: &crate::Reference) {
         if !self.is_image_present(image) {
             self.pull_image(image);
         }
     }
 
     /// Push an image to a registry
-    pub fn push_image(&self, image: &crate::Image) {
+    pub fn push_image(&self, image: &crate::Reference) {
         self.command()
             .arguments(["push", image.as_str()])
             .capture_only_stdout();
     }
 
-    pub fn remove_image(&self, image: &crate::Image) {
+    pub fn remove_image(&self, image: &crate::Reference) {
         self.command()
             .arguments(["image", "rm", image.as_str()])
             .capture_only_stdout();

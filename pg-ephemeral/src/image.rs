@@ -227,9 +227,9 @@ impl<'de> serde::Deserialize<'de> for Image {
     }
 }
 
-impl From<&Image> for ociman::Image {
+impl From<&Image> for ociman::Reference {
     fn from(value: &Image) -> Self {
-        ociman::Image::from(format!(
+        ociman::Reference::from(format!(
             "registry.hub.docker.com/library/postgres:{}",
             value
         ))
@@ -520,7 +520,7 @@ mod test {
             digest: Some(Digest(hex::decode(hash).unwrap().try_into().unwrap())),
         };
 
-        let ociman_image: ociman::Image = (&image).into();
+        let ociman_image: ociman::Reference = (&image).into();
         let expected = "registry.hub.docker.com/library/postgres:17.6@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 
         assert_eq!(ociman_image.as_str(), expected);

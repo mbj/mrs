@@ -1,4 +1,4 @@
-use crate::{Backend, Image};
+use crate::{Backend, Reference};
 use sha2::{Digest, Sha256};
 use std::path::PathBuf;
 use std::str::FromStr;
@@ -77,8 +77,8 @@ pub enum BuildSource {
 /// Image naming strategy for the build
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum ImageName {
-    /// Use a static image name
-    Static(Image),
+    /// Use a static image reference
+    Static(Reference),
     /// Generate image name with content-based hash
     Hashed { name: String },
 }
@@ -94,7 +94,7 @@ pub struct BuildDefinition {
 
 impl BuildDefinition {
     /// Create a new build definition from a directory containing a Dockerfile
-    pub fn from_directory(backend: Backend, image: Image, path: impl Into<PathBuf>) -> Self {
+    pub fn from_directory(backend: Backend, image: Reference, path: impl Into<PathBuf>) -> Self {
         Self {
             backend,
             image_name: ImageName::Static(image),
@@ -106,7 +106,7 @@ impl BuildDefinition {
     /// Create a new build definition from Dockerfile instructions as a string
     pub fn from_instructions(
         backend: Backend,
-        image: Image,
+        image: Reference,
         instructions: impl Into<String>,
     ) -> Self {
         Self {
@@ -172,13 +172,13 @@ impl BuildDefinition {
         self
     }
 
-    /// Build the image using the specified backend and return the built image
-    pub fn build(&self) -> Image {
+    /// Build the image using the specified backend and return the built reference
+    pub fn build(&self) -> Reference {
         self.build_image(self.compute_final_image())
     }
 
-    /// Build the image only if it's not already present, and return the image
-    pub fn build_if_absent(&self) -> Image {
+    /// Build the image only if it's not already present, and return the reference
+    pub fn build_if_absent(&self) -> Reference {
         let target_image = self.compute_final_image();
 
         if self.backend.is_image_present(&target_image) {
@@ -188,7 +188,7 @@ impl BuildDefinition {
         }
     }
 
-    fn build_image(&self, target_image: Image) -> Image {
+    fn build_image(&self, target_image: Reference) -> Reference {
         let mut arguments = vec!["build".into(), "--tag".into(), target_image.as_str().into()];
 
         for (key, value) in &self.build_arguments {
@@ -216,7 +216,7 @@ impl BuildDefinition {
     }
 
     /// Compute the final image name with hash if this is a hash-based definition
-    fn compute_final_image(&self) -> Image {
+    fn compute_final_image(&self) -> Reference {
         match &self.image_name {
             ImageName::Static(image) => image.clone(),
             ImageName::Hashed { name } => {
@@ -228,7 +228,7 @@ impl BuildDefinition {
                         compute_content_hash(content, &self.build_arguments)
                     }
                 };
-                Image::from(format!("{}:{}", name, hash))
+                Reference::from(format!("{}:{}", name, hash))
             }
         }
     }

@@ -2,13 +2,13 @@
 
 pub mod backend;
 pub mod command;
-pub mod image;
+pub mod reference;
 pub mod platform;
 pub mod testing;
 
 pub use backend::{Backend, ContainerHostnameResolver, ResolveHostnameError};
 pub use command::Command;
-pub use image::{
+pub use reference::{
     BuildArgumentKey, BuildArgumentKeyError, BuildArgumentValue, BuildDefinition, BuildSource,
     ImageName,
 };
@@ -123,11 +123,11 @@ pub struct Mount(String);
 apply_argument!(Mount, "--mount");
 
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub struct Image(String);
+pub struct Reference(String);
 
-string_newtype!(Image);
+string_newtype!(Reference);
 
-impl Apply for Image {
+impl Apply for Reference {
     fn apply(&self, command: Command) -> Command {
         command.argument(self)
     }
@@ -367,7 +367,7 @@ pub struct Definition {
     detach: Detach,
     entrypoint: Option<Entrypoint>,
     environment_variables: EnvironmentVariables,
-    image: Image,
+    image: Reference,
     remove: Remove,
     mounts: Vec<Mount>,
     publish: Vec<Publish>,
@@ -375,7 +375,7 @@ pub struct Definition {
 }
 
 impl Definition {
-    pub fn new(backend: Backend, image: Image) -> Definition {
+    pub fn new(backend: Backend, image: Reference) -> Definition {
         Definition {
             backend,
             container_arguments: vec![],
