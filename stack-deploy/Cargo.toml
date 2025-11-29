@@ -15,7 +15,7 @@ aws-sdk-secretsmanager = { version = "1", default-features = false }
 base64 = "0.22.1"
 chrono = "0.4"
 clap.workspace = true
-hex = "0.4.3"
+hex.workspace = true
 http.workspace = true
 log.workspace = true
 reqwest.workspace = true
