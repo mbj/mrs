@@ -78,36 +78,37 @@ impl std::str::FromStr for Image {
 
     fn from_str(value: &str) -> Result<Self, Self::Err> {
         use nom::{
-            Finish, IResult,
+            IResult, Parser,
             branch::alt,
             bytes::complete::{tag, take_while_m_n, take_while1},
             character::complete::digit1,
-            combinator::{cut, map, map_res, opt, recognize},
-            error::{VerboseError, context},
-            sequence::{pair, preceded, tuple},
+            combinator::{cut, map_res, opt, recognize},
+            error::context,
+            sequence::preceded,
         };
+        use nom_language::error::{VerboseError, convert_error};
 
         type ParseResult<'a, O> = IResult<&'a str, O, VerboseError<&'a str>>;
 
         fn os_name(input: &str) -> ParseResult<'_, &str> {
             context(
                 "OS name",
-                recognize(pair(
+                recognize((
                     take_while_m_n(1, 1, |ch: char| ch.is_ascii_lowercase()),
                     take_while1(|ch: char| {
                         ch.is_ascii_lowercase() || ch.is_ascii_digit() || ch == '.'
                     }),
                 )),
-            )(input)
+            )
+            .parse(input)
         }
 
         fn os_suffix(input: &str) -> ParseResult<'_, OS> {
             context(
                 "OS suffix",
-                map(preceded(tag("-"), os_name), |name: &str| {
-                    OS::Explicit(name.to_string())
-                }),
-            )(input)
+                preceded(tag("-"), os_name).map(|name: &str| OS::Explicit(name.to_string())),
+            )
+            .parse(input)
         }
 
         fn digest(input: &str) -> ParseResult<'_, Digest> {
@@ -129,93 +130,89 @@ impl std::str::FromStr for Image {
                             })
                     },
                 ),
-            )(input)
+            )
+            .parse(input)
         }
 
         fn latest(input: &str) -> ParseResult<'_, Image> {
             context(
                 "latest image",
-                map(tuple((tag("latest"), opt(digest))), |(_, digest)| {
-                    Image::OfficialLatest {
-                        os: OS::Default,
-                        digest,
-                    }
+                (tag("latest"), opt(digest)).map(|(_, digest)| Image::OfficialLatest {
+                    os: OS::Default,
+                    digest,
                 }),
-            )(input)
+            )
+            .parse(input)
         }
 
         fn os_only(input: &str) -> ParseResult<'_, Image> {
             context(
                 "OS-only image",
-                map(tuple((os_name, opt(digest))), |(os, digest)| {
-                    Image::OfficialLatest {
-                        os: OS::Explicit(os.to_string()),
-                        digest,
-                    }
+                (os_name, opt(digest)).map(|(os, digest)| Image::OfficialLatest {
+                    os: OS::Explicit(os.to_string()),
+                    digest,
                 }),
-            )(input)
+            )
+            .parse(input)
         }
 
         fn release_candidate(input: &str) -> ParseResult<'_, Image> {
             context(
                 "release candidate image",
-                map(
-                    tuple((
-                        map_res(digit1, |digits: &str| digits.parse::<u8>().map(Major)),
-                        preceded(
-                            tag("rc"),
-                            map_res(digit1, |digits: &str| {
-                                digits
-                                    .parse::<std::num::NonZero<u8>>()
-                                    .map(ReleaseCandidateNumber)
-                            }),
-                        ),
-                        opt(os_suffix),
-                        opt(digest),
-                    )),
-                    |(major, number, os, digest)| Image::OfficialReleaseCandidate {
+                (
+                    map_res(digit1, |digits: &str| digits.parse::<u8>().map(Major)),
+                    preceded(
+                        tag("rc"),
+                        map_res(digit1, |digits: &str| {
+                            digits
+                                .parse::<std::num::NonZero<u8>>()
+                                .map(ReleaseCandidateNumber)
+                        }),
+                    ),
+                    opt(os_suffix),
+                    opt(digest),
+                )
+                    .map(|(major, number, os, digest)| Image::OfficialReleaseCandidate {
                         major,
                         number,
                         os: os.unwrap_or(OS::Default),
                         digest,
-                    },
-                ),
-            )(input)
+                    }),
+            )
+            .parse(input)
         }
 
         fn official_release(input: &str) -> ParseResult<'_, Image> {
             context(
                 "official release image",
-                map(
-                    tuple((
-                        map_res(digit1, |digits: &str| digits.parse::<u8>().map(Major)),
-                        opt(preceded(
-                            tag("."),
-                            map_res(digit1, |digits: &str| {
-                                digits.parse::<u8>().map(Minor::Explicit)
-                            }),
-                        )),
-                        opt(os_suffix),
-                        opt(digest),
+                (
+                    map_res(digit1, |digits: &str| digits.parse::<u8>().map(Major)),
+                    opt(preceded(
+                        tag("."),
+                        map_res(digit1, |digits: &str| digits.parse::<u8>().map(Minor::Explicit)),
                     )),
-                    |(major, minor, os, digest)| Image::OfficialRelease {
+                    opt(os_suffix),
+                    opt(digest),
+                )
+                    .map(|(major, minor, os, digest)| Image::OfficialRelease {
                         major,
                         minor: minor.unwrap_or(Minor::Latest),
                         os: os.unwrap_or(OS::Default),
                         digest,
-                    },
-                ),
-            )(input)
+                    }),
+            )
+            .parse(input)
         }
 
         fn image(input: &str) -> ParseResult<'_, Image> {
-            alt((latest, release_candidate, official_release, os_only))(input)
+            alt((latest, release_candidate, official_release, os_only)).parse(input)
         }
 
-        match image(value).finish() {
+        match image(value) {
             Ok(("", result)) => Ok(result),
             Ok((remaining, _)) => Err(format!("unexpected trailing input: '{remaining}'")),
-            Err(error) => Err(nom::error::convert_error(value, error)),
+            Err(nom::Err::Error(err) | nom::Err::Failure(err)) => Err(convert_error(value, err)),
+            Err(nom::Err::Incomplete(_)) => Err("incomplete input".to_string()),
         }
     }
 }
