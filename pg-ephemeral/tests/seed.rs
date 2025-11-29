@@ -34,7 +34,7 @@ async fn assert_environment_matches(
 
 #[tokio::test]
 async fn test_command_seed_receives_environment() {
-    if cbt::testing::platform_not_supported() {
+    if ociman::testing::platform_not_supported() {
         return;
     }
 
@@ -72,7 +72,7 @@ async fn test_command_seed_receives_environment() {
 
 #[tokio::test]
 async fn test_script_seed_receives_environment() {
-    if cbt::testing::platform_not_supported() {
+    if ociman::testing::platform_not_supported() {
         return;
     }
 
@@ -104,7 +104,7 @@ async fn test_script_seed_receives_environment() {
 
 #[test]
 fn test_git_revision_seed() {
-    let _backend = cbt::test_backend_setup!();
+    let _backend = ociman::test_backend_setup!();
 
     // Create a temporary directory for the git repository
     let repo_path = std::env::temp_dir().join(format!("pg-ephemeral-test-{}", std::process::id()));

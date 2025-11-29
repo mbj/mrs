@@ -1,6 +1,6 @@
 #[tokio::test]
 async fn test_with_sqlx_connection() {
-    if cbt::testing::platform_not_supported() {
+    if ociman::testing::platform_not_supported() {
         return;
     }
 

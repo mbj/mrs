@@ -6,7 +6,7 @@ use crate::seed::{Command, Seed, SeedName};
 #[derive(Debug, thiserror::Error, PartialEq)]
 pub enum Error {
     #[error("Backend autodetection failed: {0}")]
-    BackendAutodetect(#[from] cbt::backend::autodetect::Error),
+    BackendAutodetect(#[from] ociman::backend::autodetect::Error),
     #[error("Could not load config file: {0}")]
     IO(IoError),
     #[error("Decoding as toml failed: {0}")]
@@ -75,7 +75,7 @@ pub struct SslConfigDefinition {
 #[derive(Debug, serde::Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct InstanceDefinition {
-    pub backend: Option<cbt::Backend>,
+    pub backend: Option<ociman::Backend>,
     pub image: Option<Image>,
     #[serde(default)]
     pub seeds: indexmap::IndexMap<SeedName, SeedConfig>,
@@ -94,7 +94,7 @@ impl InstanceDefinition {
 
     fn definition(
         self,
-        autodetect: &cbt::backend::autodetect::Lazy,
+        autodetect: &ociman::backend::autodetect::Lazy,
         instance_name: &InstanceName,
         defaults: &InstanceDefinition,
         overwrites: &InstanceDefinition,
@@ -114,13 +114,14 @@ impl InstanceDefinition {
             }
         };
 
-        let backend: cbt::Backend = match overwrites.backend.or(self.backend).or(defaults.backend) {
-            Some(backend) => backend,
-            None => match autodetect.result() {
-                Ok(value) => *value,
-                Err(error) => return Err(Error::BackendAutodetect(error.clone())),
-            },
-        };
+        let backend: ociman::Backend =
+            match overwrites.backend.or(self.backend).or(defaults.backend) {
+                Some(backend) => backend,
+                None => match autodetect.result() {
+                    Ok(value) => *value,
+                    Err(error) => return Err(Error::BackendAutodetect(error.clone())),
+                },
+            };
 
         let seeds = self
             .seeds
@@ -155,7 +156,7 @@ impl InstanceDefinition {
 #[serde(deny_unknown_fields)]
 pub struct Config {
     image: Option<Image>,
-    backend: Option<cbt::Backend>,
+    backend: Option<ociman::Backend>,
     ssl_config: Option<SslConfigDefinition>,
     instances: Option<std::collections::BTreeMap<InstanceName, InstanceDefinition>>,
 }
@@ -190,7 +191,7 @@ impl Config {
         self,
         overwrites: &InstanceDefinition,
     ) -> Result<super::InstanceMap, Error> {
-        let autodetect = cbt::backend::autodetect::Lazy::new();
+        let autodetect = ociman::backend::autodetect::Lazy::new();
 
         let defaults = InstanceDefinition {
             backend: self.backend,

@@ -15,20 +15,20 @@ pub enum BackendSelection {
 }
 
 impl BackendSelection {
-    pub fn resolve(&self) -> cbt::Backend {
+    pub fn resolve(&self) -> ociman::Backend {
         match self {
-            Self::Auto => cbt::backend::autodetect::run().unwrap(),
-            Self::Docker => cbt::Backend::Docker,
-            Self::Podman => cbt::Backend::Podman,
+            Self::Auto => ociman::backend::autodetect::run().unwrap(),
+            Self::Docker => ociman::Backend::Docker,
+            Self::Podman => ociman::Backend::Podman,
         }
     }
 }
 
-impl From<cbt::Backend> for BackendSelection {
-    fn from(backend: cbt::Backend) -> Self {
+impl From<ociman::Backend> for BackendSelection {
+    fn from(backend: ociman::Backend) -> Self {
         match backend {
-            cbt::Backend::Docker => Self::Docker,
-            cbt::Backend::Podman => Self::Podman,
+            ociman::Backend::Docker => Self::Docker,
+            ociman::Backend::Podman => Self::Podman,
         }
     }
 }
@@ -36,7 +36,7 @@ impl From<cbt::Backend> for BackendSelection {
 #[derive(Debug, PartialEq)]
 pub struct Definition {
     pub application_name: Option<pg_client::ApplicationName>,
-    pub backend: cbt::Backend,
+    pub backend: ociman::Backend,
     pub database: pg_client::Database,
     pub migration_config: Option<mmigration::Config>,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
@@ -150,8 +150,8 @@ impl Definition {
         }
     }
 
-    pub fn to_cbt_definition(&self) -> cbt::Definition {
-        cbt::Definition::new(self.backend, (&self.image).into())
+    pub fn to_ociman_definition(&self) -> ociman::Definition {
+        ociman::Definition::new(self.backend, (&self.image).into())
     }
 
     pub async fn with_container<T>(&self, mut action: impl AsyncFnMut(&Container) -> T) -> T {
@@ -255,14 +255,14 @@ impl Definition {
         client_config: &pg_client::Config,
         extra_arguments: &[String],
     ) -> String {
-        let (effective_config, mounts) = apply_cbt_mounts(client_config);
+        let (effective_config, mounts) = apply_ociman_mounts(client_config);
 
         let mut effective_arguments = vec!["--schema-only".to_string()];
 
         effective_arguments.extend_from_slice(extra_arguments);
 
         let bytes = self
-            .to_cbt_definition()
+            .to_ociman_definition()
             .entrypoint("pg_dump")
             .arguments(effective_arguments)
             .environment_variables(effective_config.to_pg_env())
@@ -273,7 +273,9 @@ impl Definition {
     }
 }
 
-pub fn apply_cbt_mounts(client_config: &pg_client::Config) -> (pg_client::Config, Vec<cbt::Mount>) {
+pub fn apply_ociman_mounts(
+    client_config: &pg_client::Config,
+) -> (pg_client::Config, Vec<ociman::Mount>) {
     let owned_client_config = client_config.clone();
 
     match client_config.ssl_root_cert {
@@ -287,7 +289,7 @@ pub fn apply_cbt_mounts(client_config: &pg_client::Config) -> (pg_client::Config
                 container_path.push("/pg_ephemeral");
                 container_path.push(file.file_name().unwrap());
 
-                let mounts = vec![cbt::Mount::from(format!(
+                let mounts = vec![ociman::Mount::from(format!(
                     "type=bind,ro,source={},target={}",
                     host.to_str().unwrap(),
                     container_path.to_str().unwrap()
