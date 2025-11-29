@@ -21,7 +21,7 @@ quote = "1"
 serde = "1"
 serde_json = "1"
 stratosphere-core = { workspace = true }
-syn = { version = "2", features = ["derive"] }
+syn.workspace = true
 
 [lib]
 proc-macro = true
