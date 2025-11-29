@@ -18,7 +18,7 @@ clap.workspace = true
 prettyplease = "0.2"
 stratosphere-core.workspace = true
 stratosphere-generator.workspace = true
-syn = "2"
+syn.workspace = true
 
 [dev-dependencies]
 chrono = "0.4"
