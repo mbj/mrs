@@ -21,7 +21,7 @@ stratosphere-generator.workspace = true
 syn.workspace = true
 
 [dev-dependencies]
-chrono = "0.4"
+chrono.workspace = true
 insta = "1"
 pretty_assertions = "1"
 serde_json.workspace = true

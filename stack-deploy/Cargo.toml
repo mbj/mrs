@@ -13,7 +13,7 @@ aws-sdk-lambda = { version = "1", default-features = false }
 aws-sdk-s3 = { version = "1", default-features = false }
 aws-sdk-secretsmanager = { version = "1", default-features = false }
 base64 = "0.22.1"
-chrono = "0.4"
+chrono.workspace = true
 clap.workspace = true
 hex.workspace = true
 http.workspace = true
