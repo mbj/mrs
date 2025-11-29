@@ -442,3 +442,77 @@ fn test_container_commit() {
 
     backend.remove_image(&target_image);
 }
+
+#[test]
+fn test_container_remove_on_drop() {
+    let backend = ociman::test_backend_setup!();
+
+    // Create a container with remove_on_drop but WITHOUT --rm flag
+    let definition = ociman::Definition::new(backend, ociman::Image::from("alpine:latest"))
+        .remove_on_drop()
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    let container_id: String;
+
+    {
+        let container = definition.run_detached();
+        container_id = container.inspect_format("{{.Id}}");
+
+        // Container should exist while we have the handle
+        let exists_during = backend
+            .command()
+            .arguments(["container", "inspect", &container_id])
+            .status()
+            .success();
+        assert!(exists_during, "Container should exist during scope");
+
+        // Container is dropped here, which should stop AND remove it
+    }
+
+    // Container should be removed after drop
+    let exists_after = backend
+        .command()
+        .arguments(["container", "inspect", &container_id])
+        .status()
+        .success();
+    assert!(
+        !exists_after,
+        "Container should be removed after drop with remove_on_drop"
+    );
+}
+
+#[test]
+fn test_container_without_remove_on_drop() {
+    let backend = ociman::test_backend_setup!();
+
+    // Create a container WITHOUT remove_on_drop and WITHOUT --rm flag
+    let definition = ociman::Definition::new(backend, ociman::Image::from("alpine:latest"))
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    let container_id: String;
+
+    {
+        let container = definition.run_detached();
+        container_id = container.inspect_format("{{.Id}}");
+        // Container is dropped here, which should only stop it, not remove
+    }
+
+    // Container should still exist (just stopped) after drop
+    let exists_after = backend
+        .command()
+        .arguments(["container", "inspect", &container_id])
+        .status()
+        .success();
+    assert!(
+        exists_after,
+        "Container should still exist after drop without remove_on_drop"
+    );
+
+    // Manually clean up the container
+    backend
+        .command()
+        .arguments(["container", "rm", &container_id])
+        .status();
+}
