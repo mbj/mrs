@@ -36,7 +36,7 @@ toml = "0.9.5"
 x509-parser = { version = "0.18", features = ["verify"] }
 
 [dev-dependencies]
-indoc = "2"
+indoc.workspace = true
 
 [[bin]]
 name = "pg-ephemeral"

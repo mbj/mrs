@@ -25,6 +25,7 @@ clap = { version = "4.5", features = ["derive"] }
 env_logger = "0.11"
 hex = "0.4.3"
 http = "1.3"
+indoc = "2"
 log = "0.4"
 mmigration = { path = "mmigration" }
 nom = "7.1"
