@@ -700,6 +700,22 @@ impl Container {
             .ok()
     }
 
+    pub fn commit(&self, image: &Image, pause: bool) {
+        let pause_argument = match (self.backend, pause) {
+            (Backend::Docker, true) => None,
+            (Backend::Docker, false) => Some("--no-pause"),
+            (Backend::Podman, true) => Some("--pause"),
+            (Backend::Podman, false) => None,
+        };
+
+        self.backend_command()
+            .argument("commit")
+            .optional_argument(pause_argument)
+            .argument(&self.id)
+            .argument(image.as_str())
+            .status();
+    }
+
     fn backend_command(&self) -> Command {
         self.backend.command()
     }
