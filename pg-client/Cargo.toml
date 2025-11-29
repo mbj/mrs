@@ -14,7 +14,7 @@ thiserror = { workspace = true }
 url = "2.5.7"
 
 [dev-dependencies]
-cbt = { workspace = true }
+ociman = { workspace = true }
 pg-ephemeral = { workspace = true }
 serde_json.workspace = true
 pretty_assertions = { workspace = true }

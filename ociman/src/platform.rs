@@ -29,7 +29,7 @@ impl std::error::Error for Error {}
 /// # Examples
 ///
 /// ```
-/// match cbt::platform::support() {
+/// match ociman::platform::support() {
 ///     Ok(()) => println!("Platform is supported"),
 ///     Err(error) => eprintln!("Platform not supported: {}", error),
 /// }

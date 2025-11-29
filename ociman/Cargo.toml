@@ -1,0 +1,28 @@
+[package]
+name = "ociman"
+version = "0.0.1-pre1"
+edition.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Unified API for OCI container runtimes (Docker, Podman)"
+license = "MIT"
+repository = "https://github.com/mbj/mrs/tree/main/ociman"
+readme = "README.md"
+keywords = ["docker", "podman", "container", "oci"]
+categories = ["development-tools"]
+
+[lints]
+workspace = true
+
+[dependencies]
+clap = { workspace = true }
+log = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = "0.10"
+thiserror = { workspace = true }
+walkdir = "2.5"
+
+[dev-dependencies]
+indoc = "2.0"
+env_logger = { workspace = true }

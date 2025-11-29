@@ -43,10 +43,10 @@ pub struct App {
     /// Overwrite backend
     ///
     /// If not specified on the CLI and not in the config file will be autodetected:
-    /// first based on env variable CBT_BACKEND, then on installed tools.
+    /// first based on env variable OCIMAN_BACKEND, then on installed tools.
     /// If the autodetection fails exits with an error.
     #[arg(long)]
-    backend: Option<cbt::Backend>,
+    backend: Option<ociman::Backend>,
     /// Overwrite image
     #[arg(long)]
     image: Option<crate::image::Image>,
@@ -239,7 +239,7 @@ impl Command {
                     })
                     .await
             }
-            Self::Platform => match cbt::platform::support() {
+            Self::Platform => match ociman::platform::support() {
                 Ok(()) => {
                     std::process::exit(0);
                 }
