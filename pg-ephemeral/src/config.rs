@@ -142,7 +142,6 @@ impl InstanceDefinition {
             application_name: None,
             backend,
             database: pg_client::database!("postgres"),
-            migration_config: None,
             seeds,
             ssl_config,
             superuser: pg_client::username!("postgres"),

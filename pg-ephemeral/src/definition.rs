@@ -38,7 +38,6 @@ pub struct Definition {
     pub application_name: Option<pg_client::ApplicationName>,
     pub backend: ociman::Backend,
     pub database: pg_client::Database,
-    pub migration_config: Option<mmigration::Config>,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
     pub ssl_config: Option<SslConfig>,
     pub superuser: pg_client::Username,
@@ -51,7 +50,6 @@ impl Definition {
         Self {
             backend: backend_selection.resolve(),
             application_name: None,
-            migration_config: None,
             seeds: indexmap::IndexMap::new(),
             ssl_config: None,
             superuser: pg_client::username!("postgres"),
@@ -80,29 +78,11 @@ impl Definition {
         self.add_seed(name, Seed::SqlFile(path))
     }
 
-    pub fn migration_config(self, migration_config: mmigration::Config) -> Self {
-        Self {
-            migration_config: Some(migration_config),
-            ..self
-        }
-    }
-
     pub fn superuser(self, username: pg_client::Username) -> Self {
         Self {
             superuser: username,
             ..self
         }
-    }
-
-    pub fn apply_pending_migrations(self, name: SeedName) -> Result<Self, DuplicateSeedName> {
-        self.add_seed(name, Seed::ApplyPendingMigrations)
-    }
-
-    pub fn apply_pending_migrations_no_schema_dump(
-        self,
-        name: SeedName,
-    ) -> Result<Self, DuplicateSeedName> {
-        self.add_seed(name, Seed::ApplyPendingMigrationsNoSchemaDump)
     }
 
     pub fn apply_file_from_git_revision(
@@ -207,10 +187,6 @@ impl Definition {
                 db_container
                     .apply_sql_file_git_revision(path, git_revision)
                     .await
-            }
-            Seed::ApplyPendingMigrations => db_container.apply_pending_migrations().await,
-            Seed::ApplyPendingMigrationsNoSchemaDump => {
-                db_container.apply_pending_migrations_no_schema_dump().await
             }
             Seed::Command(command) => self.execute_command(db_container, command),
             Seed::Script(script) => self.execute_script(db_container, script),
@@ -319,11 +295,10 @@ mod test {
         let seed_name: SeedName = "test-seed".parse().unwrap();
 
         let definition = definition
-            .add_seed(seed_name.clone(), Seed::ApplyPendingMigrations)
+            .add_seed(seed_name.clone(), Seed::SqlFile("file1.sql".into()))
             .unwrap();
 
-        let result =
-            definition.add_seed(seed_name.clone(), Seed::ApplyPendingMigrationsNoSchemaDump);
+        let result = definition.add_seed(seed_name.clone(), Seed::SqlFile("file2.sql".into()));
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
     }
@@ -333,13 +308,11 @@ mod test {
         let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
 
         let definition = definition
-            .add_seed("seed1".parse().unwrap(), Seed::ApplyPendingMigrations)
+            .add_seed("seed1".parse().unwrap(), Seed::SqlFile("file1.sql".into()))
             .unwrap();
 
-        let result = definition.add_seed(
-            "seed2".parse().unwrap(),
-            Seed::ApplyPendingMigrationsNoSchemaDump,
-        );
+        let result =
+            definition.add_seed("seed2".parse().unwrap(), Seed::SqlFile("file2.sql".into()));
 
         assert!(result.is_ok());
     }
