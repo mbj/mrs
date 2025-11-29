@@ -33,6 +33,7 @@ ociman = { version = "0.0.1-pre1", path = "ociman" }
 pg-client = { version = "0.0.1-pre1", path = "pg-client" }
 pg-ephemeral = { version = "0.0.1-pre2", path = "pg-ephemeral" }
 pretty_assertions = "1.4"
+prettyplease = "0.2"
 proc-macro2 = "1"
 quote = "1"
 rand = "0.9"
