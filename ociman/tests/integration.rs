@@ -404,3 +404,41 @@ fn test_container_with_workdir() {
 
     assert_eq!(stdout.trim(), "/tmp");
 }
+
+#[test]
+fn test_container_commit() {
+    let backend = ociman::test_backend_setup!();
+
+    let target_image = ociman::Image::from("ociman-test-commit:latest");
+
+    // Ensure target image doesn't exist before test
+    if backend.is_image_present(&target_image) {
+        backend.remove_image(&target_image);
+    }
+
+    let definition = test_definition(backend, ociman::Image::from("alpine:latest"))
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    definition.with_container(|container| {
+        container.exec_capture_only_stdout([], "touch", ["/committed-file"]);
+        container.commit(&target_image, true);
+    });
+
+    assert!(
+        backend.is_image_present(&target_image),
+        "Committed image should exist"
+    );
+
+    // Verify the committed file exists in the new image
+    let verify_definition = test_definition(backend, target_image.clone())
+        .entrypoint("ls")
+        .arguments(["/committed-file"]);
+
+    let output = verify_definition.run_capture_only_stdout();
+    let stdout = std::str::from_utf8(&output).expect("invalid utf8 in output");
+
+    assert_eq!(stdout.trim(), "/committed-file");
+
+    backend.remove_image(&target_image);
+}
