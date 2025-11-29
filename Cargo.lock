@@ -2025,7 +2025,6 @@ dependencies = [
  "indexmap",
  "indoc",
  "log",
- "mmigration",
  "nom",
  "ociman",
  "pg-client",
