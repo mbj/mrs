@@ -3,7 +3,7 @@ name: CI
 on: push
 
 env:
-  CBT_BACKEND: docker
+  OCIMAN_BACKEND: docker
   RUST_BACKTRACE: full
   RUST_LOG: debug
 
@@ -63,7 +63,7 @@ jobs:
       run: |
         cargo test --release
         # Podman on GH actions is old <5.x cannot deal corectly with concurrent access to overlay storage.
-        CBT_BACKEND=podman cargo test --release --package cbt -- --test-threads=1
+        OCIMAN_BACKEND=podman cargo test --release --package ociman -- --test-threads=1
 
     - name: Set up Ruby 3.4 for macOS gem build
       if: ${{ endsWith(matrix.os.cargo_build_target, '-darwin') }}

@@ -34,7 +34,7 @@ exec docker-entrypoint.sh "$@"
 pub struct Container<'a> {
     host_port: pg_client::Port,
     pub(crate) client_config: pg_client::Config,
-    container: cbt::Container,
+    container: ociman::Container,
     definition: &'a Definition,
 }
 
@@ -48,12 +48,12 @@ impl<'a> Container<'a> {
             LOCALHOST_IP
         };
 
-        let mut cbt_definition = definition
-            .to_cbt_definition()
+        let mut ociman_definition = definition
+            .to_ociman_definition()
             .remove()
             .environment_variable("POSTGRES_PASSWORD", password.as_ref())
             .environment_variable("POSTGRES_USER", definition.superuser.as_ref())
-            .publish(cbt::Publish::tcp(5432).host_ip(host_ip));
+            .publish(ociman::Publish::tcp(5432).host_ip(host_ip));
 
         let ssl_bundle = if let Some(ssl_config) = &definition.ssl_config {
             let hostname = match ssl_config {
@@ -65,7 +65,7 @@ impl<'a> Container<'a> {
 
             let ssl_dir = "/var/lib/postgresql";
 
-            cbt_definition = cbt_definition
+            ociman_definition = ociman_definition
                 .entrypoint("sh")
                 .argument("-e")
                 .argument("-c")
@@ -86,7 +86,7 @@ impl<'a> Container<'a> {
             None
         };
 
-        let container = cbt_definition.run_detached();
+        let container = ociman_definition.run_detached();
 
         let port = pg_client::Port(
             container
@@ -240,7 +240,7 @@ impl<'a> Container<'a> {
         git_revision: impl Into<String>,
     ) {
         let git_revision = git_revision.into();
-        let sql = cbt::Command::new("git")
+        let sql = ociman::Command::new("git")
             .argument("show")
             .argument(format!("{git_revision}:{}", path.to_str().unwrap()))
             .capture_only_stdout_string();

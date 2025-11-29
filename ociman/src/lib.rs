@@ -183,7 +183,7 @@ impl Publish {
     /// # Example
     ///
     /// ```
-    /// let publish = cbt::Publish::tcp(8080);
+    /// let publish = ociman::Publish::tcp(8080);
     /// assert_eq!(publish.to_string(), "8080/tcp");
     /// ```
     pub fn tcp(container_port: u16) -> Self {
@@ -199,7 +199,7 @@ impl Publish {
     /// # Example
     ///
     /// ```
-    /// let publish = cbt::Publish::udp(53);
+    /// let publish = ociman::Publish::udp(53);
     /// assert_eq!(publish.to_string(), "53/udp");
     /// ```
     pub fn udp(container_port: u16) -> Self {
@@ -215,7 +215,7 @@ impl Publish {
     /// # Examples
     ///
     /// ```
-    /// let publish = cbt::Publish::tcp(8080)
+    /// let publish = ociman::Publish::tcp(8080)
     ///     .host_ip(std::net::Ipv4Addr::LOCALHOST.into());
     /// assert_eq!(publish.to_string(), "127.0.0.1::8080/tcp");
     /// ```
@@ -223,7 +223,7 @@ impl Publish {
     /// With unspecified address:
     ///
     /// ```
-    /// let publish = cbt::Publish::tcp(5432)
+    /// let publish = ociman::Publish::tcp(5432)
     ///     .host_ip(std::net::Ipv4Addr::UNSPECIFIED.into());
     /// assert_eq!(publish.to_string(), "0.0.0.0::5432/tcp");
     /// ```
@@ -231,7 +231,7 @@ impl Publish {
     /// With IPv6:
     ///
     /// ```
-    /// let publish = cbt::Publish::tcp(8080)
+    /// let publish = ociman::Publish::tcp(8080)
     ///     .host_ip(std::net::Ipv6Addr::LOCALHOST.into());
     /// assert_eq!(publish.to_string(), "::1::8080/tcp");
     /// ```
@@ -239,7 +239,7 @@ impl Publish {
     /// Preserves previously set host port:
     ///
     /// ```
-    /// let publish = cbt::Publish::tcp(80)
+    /// let publish = ociman::Publish::tcp(80)
     ///     .host_port(8080)
     ///     .host_ip(std::net::Ipv4Addr::LOCALHOST.into());
     /// assert_eq!(publish.to_string(), "127.0.0.1:8080:80/tcp");
@@ -261,14 +261,14 @@ impl Publish {
     /// # Examples
     ///
     /// ```
-    /// let publish = cbt::Publish::tcp(80).host_port(8080);
+    /// let publish = ociman::Publish::tcp(80).host_port(8080);
     /// assert_eq!(publish.to_string(), "0.0.0.0:8080:80/tcp");
     /// ```
     ///
     /// Preserves previously set host IP:
     ///
     /// ```
-    /// let publish = cbt::Publish::tcp(80)
+    /// let publish = ociman::Publish::tcp(80)
     ///     .host_ip(std::net::Ipv4Addr::LOCALHOST.into())
     ///     .host_port(8080);
     /// assert_eq!(publish.to_string(), "127.0.0.1:8080:80/tcp");
@@ -291,7 +291,7 @@ impl Publish {
     /// # Example
     ///
     /// ```
-    /// let publish = cbt::Publish::tcp(80)
+    /// let publish = ociman::Publish::tcp(80)
     ///     .host_ip_port(std::net::Ipv4Addr::LOCALHOST.into(), 8080);
     /// assert_eq!(publish.to_string(), "127.0.0.1:8080:80/tcp");
     /// ```

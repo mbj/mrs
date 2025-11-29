@@ -1,25 +1,25 @@
-# cbt - Container Backend Tool
+# ociman - OCI Manager
 
-A Rust library providing a unified API for Docker and Podman container runtimes.
+A Rust library providing a unified API for OCI container runtimes (Docker, Podman).
 
 ## ⚠️ Status
 
-**CBT is highly unstable and exists solely to serve pg-ephemeral.** The API is changing frequently and nothing should be considered stable. Breaking changes occur without notice as the library evolves to meet pg-ephemeral's needs.
+**ociman is highly unstable and exists solely to serve pg-ephemeral.** The API is changing frequently and nothing should be considered stable. Breaking changes occur without notice as the library evolves to meet pg-ephemeral's needs.
 
 Do not use this library for other projects at this time.
 
 ## Goals
 
-- **Unified API**: Single interface for both Docker and Podman
+- **Unified API**: Single interface for OCI-compliant container runtimes
 - **Auto-detection**: Automatically detects available container runtime
-- **Environment override**: Control backend selection via `CBT_BACKEND` environment variable
+- **Environment override**: Control backend selection via `OCIMAN_BACKEND` environment variable
 - **Container lifecycle management**: Run, execute commands, inspect, and manage containers
 - **Image building**: Build images from Dockerfiles or inline instructions
 - **Content-based hashing**: Automatic tag generation based on SHA256 of build context/instructions for deterministic builds
 
 ## Content-Based Image Hashing
 
-CBT supports automatic tag generation based on content hashing (SHA256). This ensures deterministic builds where the same content always produces the same image tag.
+ociman supports automatic tag generation based on content hashing (SHA256). This ensures deterministic builds where the same content always produces the same image tag.
 
 Benefits:
 - **Deterministic**: Same content always produces the same tag
