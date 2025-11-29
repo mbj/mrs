@@ -2942,9 +2942,10 @@ version = "0.0.1"
 dependencies = [
  "chrono",
  "clap",
+ "nom 8.0.0",
+ "nom-language",
  "proc-macro2",
  "quote",
- "regex-lite",
  "serde",
  "serde_json",
  "serde_path_to_error",
