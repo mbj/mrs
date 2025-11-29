@@ -13,7 +13,6 @@ env_logger = { workspace = true }
 hex = { workspace = true }
 indexmap = { version = "2.7", features = ["serde"] }
 log = { workspace = true }
-mmigration = { workspace = true }
 nom = { workspace = true }
 pg-client = { workspace = true }
 rand = { workspace = true }
