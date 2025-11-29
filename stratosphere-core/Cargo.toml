@@ -22,6 +22,6 @@ quote.workspace = true
 regex-lite.workspace = true
 serde.workspace = true
 serde_json.workspace = true
-serde_path_to_error = "0.1.17"
+serde_path_to_error.workspace = true
 strum = { version = "0.27.1", features = ["derive"] }
 syn.workspace = true
