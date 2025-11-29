@@ -38,7 +38,7 @@ semver = "1"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = { version = "1.0", features = ["arbitrary_precision", "indexmap"] }
 sha2 = "0.10"
-sqlx = { git = "https://github.com/mbj/sqlx", rev = "f795fe994a6973ebe872c8c619706a4244c65d54", features = ["postgres", "runtime-tokio", "tls-rustls"] }
+sqlx = { version = "0.9.0-alpha.1", git = "https://github.com/mbj/sqlx", rev = "f795fe994a6973ebe872c8c619706a4244c65d54", features = ["postgres", "runtime-tokio", "tls-rustls"] }
 stratosphere = { version = "0.0.1", path = "./stratosphere" }
 stratosphere-core = { version = "0.0.1", path = "./stratosphere-core" }
 stratosphere-generator = { version = "0.0.1", path = "./stratosphere-generator" }
