@@ -447,8 +447,9 @@ fn test_container_commit() {
 fn test_container_remove_on_drop() {
     let backend = ociman::test_backend_setup!();
 
-    // Create a container with remove_on_drop but WITHOUT --rm flag
+    // Create a container with stop_on_drop and remove_on_drop but WITHOUT --rm flag
     let definition = ociman::Definition::new(backend, ociman::Image::from("alpine:latest"))
+        .stop_on_drop()
         .remove_on_drop()
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
@@ -483,10 +484,56 @@ fn test_container_remove_on_drop() {
 }
 
 #[test]
-fn test_container_without_remove_on_drop() {
+fn test_container_stop_on_drop() {
     let backend = ociman::test_backend_setup!();
 
-    // Create a container WITHOUT remove_on_drop and WITHOUT --rm flag
+    let definition = ociman::Definition::new(backend, ociman::Image::from("alpine:latest"))
+        .stop_on_drop()
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    let container_id: String;
+
+    {
+        let container = definition.run_detached();
+        container_id = container.inspect_format("{{.Id}}");
+
+        // Container should be running
+        let status = container.inspect_format("{{.State.Running}}");
+        assert_eq!(status, "true", "Container should be running");
+
+        // Container is dropped here, which should stop it
+    }
+
+    // Container should still exist but be stopped
+    let status = backend
+        .command()
+        .arguments([
+            "container",
+            "inspect",
+            "--format",
+            "{{.State.Running}}",
+            &container_id,
+        ])
+        .capture_only_stdout();
+    assert_eq!(
+        std::str::from_utf8(&status).unwrap().trim(),
+        "false",
+        "Container should be stopped after drop with stop_on_drop"
+    );
+
+    // Manually clean up the container
+    backend
+        .command()
+        .arguments(["container", "rm", &container_id])
+        .status();
+}
+
+#[test]
+fn test_container_without_stop_on_drop() {
+    let backend = ociman::test_backend_setup!();
+
+    // Create a container WITHOUT stop_on_drop (default)
     let definition = ociman::Definition::new(backend, ociman::Image::from("alpine:latest"))
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
@@ -496,21 +543,31 @@ fn test_container_without_remove_on_drop() {
     {
         let container = definition.run_detached();
         container_id = container.inspect_format("{{.Id}}");
-        // Container is dropped here, which should only stop it, not remove
+        // Container is dropped here, but should NOT be stopped
     }
 
-    // Container should still exist (just stopped) after drop
-    let exists_after = backend
+    // Container should still be running after drop
+    let status = backend
         .command()
-        .arguments(["container", "inspect", &container_id])
-        .status()
-        .success();
-    assert!(
-        exists_after,
-        "Container should still exist after drop without remove_on_drop"
+        .arguments([
+            "container",
+            "inspect",
+            "--format",
+            "{{.State.Running}}",
+            &container_id,
+        ])
+        .capture_only_stdout();
+    assert_eq!(
+        std::str::from_utf8(&status).unwrap().trim(),
+        "true",
+        "Container should still be running after drop without stop_on_drop"
     );
 
-    // Manually clean up the container
+    // Manually stop and clean up the container
+    backend
+        .command()
+        .arguments(["container", "stop", &container_id])
+        .status();
     backend
         .command()
         .arguments(["container", "rm", &container_id])
