@@ -21,6 +21,8 @@ pub enum Image {
     /// specific images in config files. Also note that pg-ephemeral currently never refreshes
     /// `latest` once cached in the local registry it's never refreshed.
     OfficialLatest { os: OS, digest: Option<Digest> },
+    /// Explicit OCI image reference, bypassing the official postgres image naming
+    Explicit(ociman::Image),
 }
 
 impl std::default::Default for Image {
@@ -69,6 +71,7 @@ impl std::fmt::Display for Image {
                 }
                 Ok(())
             }
+            Self::Explicit(image) => write!(formatter, "{}", image.as_str()),
         }
     }
 }
@@ -227,12 +230,20 @@ impl<'de> serde::Deserialize<'de> for Image {
     }
 }
 
+/// ```
+/// let explicit = pg_ephemeral::Image::Explicit(ociman::Image::from("my-registry.com/postgres:17"));
+/// let ociman_image: ociman::Image = (&explicit).into();
+/// assert_eq!(ociman_image.as_str(), "my-registry.com/postgres:17");
+/// ```
 impl From<&Image> for ociman::Image {
     fn from(value: &Image) -> Self {
-        ociman::Image::from(format!(
-            "registry.hub.docker.com/library/postgres:{}",
-            value
-        ))
+        match value {
+            Image::Explicit(image) => image.clone(),
+            _ => ociman::Image::from(format!(
+                "registry.hub.docker.com/library/postgres:{}",
+                value
+            )),
+        }
     }
 }
 
