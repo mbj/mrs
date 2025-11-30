@@ -369,6 +369,7 @@ pub struct Definition {
     environment_variables: EnvironmentVariables,
     image: Image,
     remove: Remove,
+    stop_on_drop: bool,
     remove_on_drop: bool,
     mounts: Vec<Mount>,
     publish: Vec<Publish>,
@@ -387,19 +388,22 @@ impl Definition {
             mounts: vec![],
             publish: vec![],
             remove: Remove::NoRemove,
+            stop_on_drop: false,
             remove_on_drop: false,
             workdir: None,
         }
     }
 
+    /// Runs a detached container and passes it to the provided closure.
+    ///
+    /// The container is automatically stopped when dropped (after the closure returns
+    /// or on panic).
     pub fn with_container<F, R>(&self, f: F) -> R
     where
         F: FnOnce(&mut Container) -> R,
     {
-        let mut container = self.run_detached();
-        let result = f(&mut container);
-        container.stop();
-        result
+        let mut container = self.clone().stop_on_drop().run_detached();
+        f(&mut container)
     }
 
     pub fn backend(self, backend: Backend) -> Self {
@@ -480,6 +484,17 @@ impl Definition {
         }
     }
 
+    /// Marks the container to be stopped when the Container handle is dropped.
+    ///
+    /// By default containers are not stopped on drop. Use this when you want
+    /// automatic cleanup of running containers when the handle goes out of scope.
+    pub fn stop_on_drop(self) -> Self {
+        Self {
+            stop_on_drop: true,
+            ..self
+        }
+    }
+
     /// Marks the container for removal when the Container handle is dropped.
     ///
     /// This is different from `remove()` which uses `--rm` flag:
@@ -544,6 +559,7 @@ impl Definition {
             id: ContainerId::try_from(strip_nl_end(&stdout)).unwrap(),
             stopped: false,
             removed: false,
+            stop_on_drop: self.stop_on_drop,
             remove_on_drop: self.remove_on_drop,
         }
     }
@@ -628,6 +644,7 @@ pub struct Container {
     id: ContainerId,
     stopped: bool,
     removed: bool,
+    stop_on_drop: bool,
     remove_on_drop: bool,
 }
 
@@ -752,7 +769,7 @@ impl Container {
 
 impl Drop for Container {
     fn drop(&mut self) {
-        if !self.stopped {
+        if self.stop_on_drop && !self.stopped {
             self.stop()
         }
 
