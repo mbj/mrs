@@ -1,3 +1,122 @@
+/// A temporary directory for testing.
+///
+/// The directory is automatically cleaned up when dropped.
+#[allow(dead_code)]
+pub struct TestDir {
+    pub path: std::path::PathBuf,
+}
+
+#[allow(dead_code)]
+impl TestDir {
+    /// Create a new temporary directory with the given name suffix.
+    pub fn new(name_suffix: &str) -> Self {
+        let path = std::env::temp_dir().join(format!(
+            "pg-ephemeral-{}-{}",
+            name_suffix,
+            std::process::id()
+        ));
+        std::fs::create_dir_all(&path).unwrap();
+        Self { path }
+    }
+
+    /// Write a file to the directory.
+    pub fn write_file(&self, name: &str, content: &str) {
+        std::fs::write(self.path.join(name), content).unwrap();
+    }
+}
+
+impl Drop for TestDir {
+    fn drop(&mut self) {
+        let _ = std::fs::remove_dir_all(&self.path);
+    }
+}
+
+/// A temporary git repository for testing.
+///
+/// Creates a temporary directory with an initialized git repository.
+/// The repository is automatically cleaned up when dropped.
+#[allow(dead_code)]
+pub struct TestGitRepo {
+    pub path: std::path::PathBuf,
+}
+
+impl TestGitRepo {
+    /// Create a new temporary git repository with the given name suffix.
+    #[allow(dead_code)]
+    pub fn new(name_suffix: &str) -> Self {
+        let path = std::env::temp_dir().join(format!(
+            "pg-ephemeral-{}-{}",
+            name_suffix,
+            std::process::id()
+        ));
+        std::fs::create_dir_all(&path).unwrap();
+
+        // Initialize git repository
+        std::process::Command::new("git")
+            .arg("init")
+            .current_dir(&path)
+            .output()
+            .unwrap();
+
+        // Configure git with hardcoded author (no environment reflection)
+        std::process::Command::new("git")
+            .args(["config", "user.name", "Test User"])
+            .current_dir(&path)
+            .output()
+            .unwrap();
+
+        std::process::Command::new("git")
+            .args(["config", "user.email", "test@example.com"])
+            .current_dir(&path)
+            .output()
+            .unwrap();
+
+        Self { path }
+    }
+
+    /// Write a file to the repository.
+    #[allow(dead_code)]
+    pub fn write_file(&self, name: &str, content: &str) {
+        std::fs::write(self.path.join(name), content).unwrap();
+    }
+
+    /// Commit all files with the given message, returning the commit hash.
+    #[allow(dead_code)]
+    pub fn commit(&self, message: &str) -> String {
+        std::process::Command::new("git")
+            .args(["add", "."])
+            .current_dir(&self.path)
+            .output()
+            .unwrap();
+
+        std::process::Command::new("git")
+            .args([
+                "commit",
+                &format!("--message={message}"),
+                "--author=Test User <test@example.com>",
+                "--date=2020-01-01T00:00:00Z",
+            ])
+            .env("GIT_COMMITTER_DATE", "2020-01-01T00:00:00Z")
+            .current_dir(&self.path)
+            .output()
+            .unwrap();
+
+        let output = std::process::Command::new("git")
+            .args(["rev-parse", "HEAD"])
+            .current_dir(&self.path)
+            .output()
+            .unwrap();
+
+        String::from_utf8(output.stdout).unwrap().trim().to_string()
+    }
+}
+
+impl Drop for TestGitRepo {
+    fn drop(&mut self) {
+        let _ = std::fs::remove_dir_all(&self.path);
+    }
+}
+
 #[allow(dead_code)]
 pub async fn test_database_url_integration(language: &str, image_dir: &str) {
     let backend = ociman::test_backend_setup!();

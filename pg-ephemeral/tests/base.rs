@@ -72,6 +72,7 @@ fn test_config_file() {
                     superuser: pg_client::username!("postgres"),
                     image: "17.1".parse().unwrap(),
                     cross_container_access: false,
+                    remove: true,
                 }
             ),
             (
@@ -85,6 +86,7 @@ fn test_config_file() {
                     superuser: pg_client::username!("postgres"),
                     image: "17.2".parse().unwrap(),
                     cross_container_access: false,
+                    remove: true,
                 }
             )
         ]),
@@ -108,6 +110,7 @@ fn test_config_file() {
                     superuser: pg_client::username!("postgres"),
                     image: "18.0".parse().unwrap(),
                     cross_container_access: false,
+                    remove: true,
                 }
             ),
             (
@@ -121,6 +124,7 @@ fn test_config_file() {
                     superuser: pg_client::username!("postgres"),
                     image: "18.0".parse().unwrap(),
                     cross_container_access: false,
+                    remove: true,
                 }
             )
         ]),
@@ -151,6 +155,7 @@ fn test_config_file_no_explicit_instance() {
                 superuser: pg_client::username!("postgres"),
                 image: "17.1".parse().unwrap(),
                 cross_container_access: false,
+                remove: true,
             }
         ),]),
         pg_ephemeral::Config::load_toml_file(
@@ -172,6 +177,7 @@ fn test_config_file_no_explicit_instance() {
                 superuser: pg_client::username!("postgres"),
                 image: "18.0".parse().unwrap(),
                 cross_container_access: false,
+                remove: true,
             }
         ),]),
         pg_ephemeral::Config::load_toml_file(
@@ -215,6 +221,7 @@ fn test_config_ssl() {
                 superuser: pg_client::username!("postgres"),
                 image: "18.0".parse().unwrap(),
                 cross_container_access: false,
+                remove: true,
             }
         )]),
         pg_ephemeral::Config::load_toml(config_str)
@@ -294,11 +301,15 @@ fn test_config_seeds_basic() {
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
         (
             "create-users-table".parse().unwrap(),
-            pg_ephemeral::Seed::SqlFile("tests/fixtures/create_users.sql".into()),
+            pg_ephemeral::Seed::SqlFile {
+                path: "tests/fixtures/create_users.sql".into(),
+            },
         ),
         (
             "insert-test-data".parse().unwrap(),
-            pg_ephemeral::Seed::SqlFile("tests/fixtures/insert_users.sql".into()),
+            pg_ephemeral::Seed::SqlFile {
+                path: "tests/fixtures/insert_users.sql".into(),
+            },
         ),
     ]
     .into();
@@ -320,6 +331,7 @@ fn test_config_seeds_command() {
         type = "command"
         command = "migrate"
         arguments = ["up"]
+        cache.type = "command-hash"
     "#};
 
     let config = pg_ephemeral::Config::load_toml(toml)
@@ -334,11 +346,16 @@ fn test_config_seeds_command() {
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
         (
             "setup-schema".parse().unwrap(),
-            pg_ephemeral::Seed::SqlFile("tests/fixtures/schema.sql".into()),
+            pg_ephemeral::Seed::SqlFile {
+                path: "tests/fixtures/schema.sql".into(),
+            },
         ),
         (
             "run-migration".parse().unwrap(),
-            pg_ephemeral::Seed::Command(pg_ephemeral::Command::new("migrate", ["up"])),
+            pg_ephemeral::Seed::Command {
+                command: pg_ephemeral::Command::new("migrate", ["up"]),
+                cache: pg_ephemeral::CommandCacheConfig::CommandHash,
+            },
         ),
     ]
     .into();
@@ -368,9 +385,9 @@ fn test_config_seeds_script() {
 
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [(
         "initialize".parse().unwrap(),
-        pg_ephemeral::Seed::Script(
-            "echo 'Starting setup' && psql -c 'CREATE TABLE test (id INT)'".to_string(),
-        ),
+        pg_ephemeral::Seed::Script {
+            script: "echo 'Starting setup' && psql -c 'CREATE TABLE test (id INT)'".to_string(),
+        },
     )]
     .into();
 
@@ -391,6 +408,7 @@ fn test_config_seeds_mixed() {
         type = "command"
         command = "migrate"
         arguments = ["up", "--verbose"]
+        cache.type = "command-hash"
 
         [instances.main.seeds.verify]
         type = "script"
@@ -409,15 +427,22 @@ fn test_config_seeds_mixed() {
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
         (
             "schema".parse().unwrap(),
-            pg_ephemeral::Seed::SqlFile("tests/fixtures/schema.sql".into()),
+            pg_ephemeral::Seed::SqlFile {
+                path: "tests/fixtures/schema.sql".into(),
+            },
         ),
         (
             "migrate".parse().unwrap(),
-            pg_ephemeral::Seed::Command(pg_ephemeral::Command::new("migrate", ["up", "--verbose"])),
+            pg_ephemeral::Seed::Command {
+                command: pg_ephemeral::Command::new("migrate", ["up", "--verbose"]),
+                cache: pg_ephemeral::CommandCacheConfig::CommandHash,
+            },
         ),
         (
             "verify".parse().unwrap(),
-            pg_ephemeral::Seed::Script("psql -c 'SELECT COUNT(*) FROM users'".to_string()),
+            pg_ephemeral::Seed::Script {
+                script: "psql -c 'SELECT COUNT(*) FROM users'".to_string(),
+            },
         ),
     ]
     .into();
@@ -489,7 +514,9 @@ fn test_config_seeds_with_git_revision() {
         ),
         (
             "from-filesystem".parse().unwrap(),
-            pg_ephemeral::Seed::SqlFile("tests/fixtures/create_users.sql".into()),
+            pg_ephemeral::Seed::SqlFile {
+                path: "tests/fixtures/create_users.sql".into(),
+            },
         ),
     ]
     .into();
@@ -525,6 +552,7 @@ fn test_config_image_with_sha256_digest() {
                 superuser: pg_client::username!("postgres"),
                 image: expected_image.clone(),
                 cross_container_access: false,
+                remove: true,
             }
         )]),
         pg_ephemeral::Config::load_toml(config_str)

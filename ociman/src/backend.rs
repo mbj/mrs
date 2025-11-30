@@ -69,6 +69,26 @@ impl Backend {
             .capture_only_stdout();
     }
 
+    /// List images by repository name (e.g., "pg-ephemeral/main")
+    pub fn list_images_by_repository(&self, repository: &str) -> Vec<crate::Image> {
+        let output = self
+            .command()
+            .arguments([
+                "images",
+                "--format",
+                "{{.Repository}}:{{.Tag}}",
+                "--filter",
+                &format!("reference={}:*", repository),
+            ])
+            .capture_only_stdout_string();
+
+        output
+            .lines()
+            .filter(|line| !line.is_empty())
+            .map(|line| crate::Image::from(line.to_string()))
+            .collect()
+    }
+
     /// Create a hostname resolver that runs inside a container
     ///
     /// This is useful for resolving DNS names that only work inside containers

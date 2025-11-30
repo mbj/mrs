@@ -40,10 +40,13 @@ impl<'a> Container<'a> {
 
         let mut ociman_definition = definition
             .to_ociman_definition()
-            .remove()
             .environment_variable("POSTGRES_PASSWORD", password.as_ref())
             .environment_variable("POSTGRES_USER", definition.superuser.as_ref())
             .publish(ociman::Publish::tcp(5432).host_ip(host_ip));
+
+        if definition.remove {
+            ociman_definition = ociman_definition.remove();
+        }
 
         let ssl_bundle = if let Some(ssl_config) = &definition.ssl_config {
             let hostname = match ssl_config {
@@ -136,7 +139,44 @@ impl<'a> Container<'a> {
         }
     }
 
-    pub async fn wait_available(&self) {
+    pub async fn wait_available(&mut self) {
+        if matches!(self.definition.image, crate::image::Image::Explicit(_)) {
+            self.wait_postgres_ready_exec().await;
+            self.reset_password();
+        } else {
+            self.wait_postgres_ready().await;
+        }
+    }
+
+    async fn wait_postgres_ready_exec(&self) {
+        let start = std::time::Instant::now();
+        let max_duration = std::time::Duration::from_secs(10);
+        let sleep_duration = std::time::Duration::from_millis(100);
+
+        while start.elapsed() <= max_duration {
+            log::trace!("pg_isready attempt via exec");
+
+            let output = self.container.exec_capture_only_stdout(
+                [],
+                "pg_isready",
+                ["--username", self.definition.superuser.as_ref()],
+            );
+
+            if !output.is_empty() {
+                log::debug!(
+                    "pg is available on endpoint: {:#?}",
+                    self.client_config.endpoint
+                );
+                return;
+            }
+
+            tokio::time::sleep(sleep_duration).await;
+        }
+
+        panic!("Container did not become available within ~10 seconds!");
+    }
+
+    async fn wait_postgres_ready(&self) {
         let config = self.client_config.to_sqlx_connect_options().unwrap();
 
         let start = std::time::Instant::now();
@@ -280,6 +320,43 @@ impl<'a> Container<'a> {
 
     pub(crate) fn stop(&mut self) {
         self.container.stop()
+    }
+
+    /// Stop the container (clean PostgreSQL shutdown) and commit it to an image.
+    pub(crate) fn stop_commit(&mut self, image: &ociman::Image) {
+        self.container.stop();
+        self.container.commit(image, false);
+    }
+
+    pub(crate) fn remove(&mut self) {
+        self.container.remove()
+    }
+
+    /// Reset the PostgreSQL password using peer authentication via exec.
+    /// This is needed when restarting from a cached image that has a different password.
+    pub(crate) fn reset_password(&self) {
+        let password = self
+            .client_config
+            .password
+            .as_ref()
+            .expect("password must be set");
+
+        self.container.exec_capture_only_stdout(
+            [],
+            "psql",
+            [
+                "--username",
+                self.definition.superuser.as_ref(),
+                "--dbname",
+                self.definition.database.as_ref(),
+                "--set",
+                &format!("target_user={}", self.definition.superuser.as_ref()),
+                "--set",
+                &format!("new_password={}", password.as_ref()),
+                "--command",
+                "ALTER USER :target_user WITH PASSWORD :'new_password'",
+            ],
+        );
     }
 }
 
