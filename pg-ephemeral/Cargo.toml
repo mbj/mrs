@@ -15,28 +15,28 @@ categories = ["development-tools::testing"]
 workspace = true
 
 [dependencies]
-ociman = { workspace = true }
-clap = { workspace = true }
-env_logger = { workspace = true }
-hex = { workspace = true }
+clap.workspace = true
+env_logger.workspace = true
+hex.workspace = true
 indexmap = { version = "2.7", features = ["serde"] }
-log = { workspace = true }
-nom = { workspace = true }
-pg-client = { workspace = true }
-rand = { workspace = true }
+log.workspace = true
+nom.workspace = true
+ociman.workspace = true
+pg-client.workspace = true
+rand.workspace = true
 rcgen = "0.13"
-serde = { workspace = true }
-serde_json = { workspace = true }
-semver = { workspace = true }
-sqlx = { workspace = true }
-thiserror = { workspace = true }
+semver.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sqlx.workspace = true
+thiserror.workspace = true
 time = "0.3"
-tokio = { workspace = true, features = ["io-std", "macros", "rt"] }
+tokio.workspace = true
 toml = "0.9.5"
 x509-parser = { version = "0.18", features = ["verify"] }
 
 [dev-dependencies]
-indoc = "2"
+indoc.workspace = true
 
 [[bin]]
 name = "pg-ephemeral"

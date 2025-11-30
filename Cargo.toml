@@ -20,30 +20,38 @@ edition = "2024"
 rust-version = "1.90"
 
 [workspace.dependencies]
-ociman = { version = "0.0.1-pre1", path = "ociman" }
+chrono = { version = "0.4", features = ["serde"] }
 clap = { version = "4.5", features = ["derive"] }
 env_logger = "0.11"
 hex = "0.4.3"
 http = "1.3"
+indoc = "2"
 log = "0.4"
 mmigration = { path = "mmigration" }
 nom = "7.1"
+ociman = { version = "0.0.1-pre1", path = "ociman" }
 pg-client = { version = "0.0.1-pre1", path = "pg-client" }
 pg-ephemeral = { version = "0.0.1-pre2", path = "pg-ephemeral" }
 pretty_assertions = "1.4"
+prettyplease = "0.2"
+proc-macro2 = "1"
+quote = "1"
 rand = "0.9"
 regex-lite = "0.1.6"
 reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
 semver = "1"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = { version = "1.0", features = ["arbitrary_precision", "indexmap"] }
+serde_path_to_error = "0.1"
 sha2 = "0.10"
 sqlx = { version = "0.9.0-alpha.1", git = "https://github.com/mbj/sqlx", rev = "f795fe994a6973ebe872c8c619706a4244c65d54", features = ["postgres", "runtime-tokio", "tls-rustls"] }
 stratosphere = { version = "0.0.1", path = "./stratosphere" }
 stratosphere-core = { version = "0.0.1", path = "./stratosphere-core" }
 stratosphere-generator = { version = "0.0.1", path = "./stratosphere-generator" }
+strum = { version = "0.27", features = ["derive"] }
+syn = { version = "2", features = ["derive"] }
 thiserror = "2"
-tokio = "1"
+tokio = { version = "1", features = ["io-std", "macros", "rt"] }
 url = "2.5"
 
 [workspace.lints.clippy]
