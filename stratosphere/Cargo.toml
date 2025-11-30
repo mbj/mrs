@@ -14,17 +14,17 @@ categories = ["development-tools"]
 workspace = true
 
 [dependencies]
-clap = { workspace = true }
-prettyplease = "0.2"
-stratosphere-core = { workspace = true }
-stratosphere-generator = { workspace = true }
-syn = "2"
+clap.workspace = true
+prettyplease.workspace = true
+stratosphere-core.workspace = true
+stratosphere-generator.workspace = true
+syn.workspace = true
 
 [dev-dependencies]
-chrono = "0.4"
+chrono.workspace = true
 insta = "1"
 pretty_assertions = "1"
-serde_json = { workspace = true }
+serde_json.workspace = true
 
 [[bin]]
 name = "stratosphere-gen"
