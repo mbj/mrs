@@ -1,0 +1,49 @@
+# Allowed duplicate crate versions for clippy::multiple_crate_versions lint
+#
+# These duplicates are caused by transitive dependencies that cannot be
+# resolved without waiting for upstream crates to update their dependencies.
+
+allowed-duplicate-crates = [
+    # AWS SDK still uses http 0.2 internally, while reqwest/hyper use http 1.x
+    # Source: aws-smithy-* crates depend on http 0.2, our direct deps use http 1.x
+    # Tracking: https://github.com/awslabs/aws-sdk-rust/issues/977
+    "http",
+    "http-body",
+
+    # AWS SDK's lru crate uses hashbrown 0.15 (foldhash 0.1),
+    # while sqlx/serde_json/indexmap use hashbrown 0.16 (foldhash 0.2)
+    # Source: aws-sdk-s3 -> lru -> hashbrown 0.15 -> foldhash 0.1
+    "foldhash",
+    "hashbrown",
+
+    # sqlx (upstream) uses rand 0.8, while pg-ephemeral and aws-sdk use rand 0.9
+    # Source: sqlx-postgres -> rand 0.8, pg-ephemeral/aws-sdk -> rand 0.9
+    # Note: We keep sqlx close to upstream to ease future updates
+    "rand",
+    "rand_core",
+    "rand_chacha",
+
+    # Transitive from rand 0.8/0.9 split, plus ring (crypto) uses getrandom 0.2
+    # Source: rand 0.8 -> getrandom 0.2, rand 0.9 -> getrandom 0.3
+    "getrandom",
+
+    # sqlx (upstream) uses webpki-roots 0.26, while reqwest uses 1.0
+    # Source: sqlx-core -> webpki-roots 0.26, reqwest/hyper-rustls -> webpki-roots 1.0
+    # Note: We keep sqlx close to upstream to ease future updates
+    "webpki-roots",
+
+    # Windows platform crates - multiple versions pulled by various dependencies
+    # (ring, tokio, rustls, aws-sdk, zip, etc.) targeting different Windows APIs
+    # These are platform-specific and don't affect Linux builds, but clippy
+    # still reports them. Common in the Rust ecosystem due to gradual migrations.
+    "windows-sys",
+    "windows-targets",
+    "windows_aarch64_gnullvm",
+    "windows_aarch64_msvc",
+    "windows_i686_gnu",
+    "windows_i686_gnullvm",
+    "windows_i686_msvc",
+    "windows_x86_64_gnu",
+    "windows_x86_64_gnullvm",
+    "windows_x86_64_msvc",
+]
