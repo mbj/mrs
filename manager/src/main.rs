@@ -481,7 +481,7 @@ fn build_integrations() {
 
         ociman::Definition::new(
             backend,
-            ociman::image::Reference::from("docker.io/library/ruby:3.4-alpine"),
+            "docker.io/library/ruby:3.4-alpine".parse().unwrap(),
         )
         .mount(mount)
         .workdir("/build")

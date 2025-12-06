@@ -4,13 +4,14 @@ pub mod backend;
 pub mod command;
 pub mod image;
 pub mod platform;
+pub mod reference;
 pub mod testing;
 
 pub use backend::{Backend, ContainerHostnameResolver, ResolveHostnameError};
 pub use command::Command;
 pub use image::{
     BuildArgumentKey, BuildArgumentKeyError, BuildArgumentValue, BuildDefinition, BuildSource,
-    ImageName, Reference,
+    BuildTarget, Reference,
 };
 use std::ffi::OsStr;
 
@@ -84,6 +85,12 @@ string_newtype!(ContainerArgument);
 impl Apply for ContainerArgument {
     fn apply(&self, command: Command) -> Command {
         command.argument(self)
+    }
+}
+
+impl Apply for image::Reference {
+    fn apply(&self, command: Command) -> Command {
+        command.argument(self.to_string())
     }
 }
 
@@ -747,7 +754,7 @@ impl Container {
             .argument("commit")
             .optional_argument(pause_argument)
             .argument(&self.id)
-            .argument(reference.as_str())
+            .argument(reference.to_string())
             .status();
     }
 

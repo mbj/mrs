@@ -71,7 +71,7 @@ impl std::fmt::Display for Image {
                 }
                 Ok(())
             }
-            Self::Explicit(image) => write!(formatter, "{}", image.as_str()),
+            Self::Explicit(image) => write!(formatter, "{image}"),
         }
     }
 }
@@ -231,18 +231,21 @@ impl<'de> serde::Deserialize<'de> for Image {
 }
 
 /// ```
-/// let explicit = pg_ephemeral::Image::Explicit(ociman::image::Reference::from("my-registry.com/postgres:17"));
+/// let explicit = pg_ephemeral::Image::Explicit("my-registry.com/postgres:17".parse().unwrap());
 /// let reference: ociman::image::Reference = (&explicit).into();
-/// assert_eq!(reference.as_str(), "my-registry.com/postgres:17");
+/// assert_eq!(reference.to_string(), "my-registry.com/postgres:17");
 /// ```
 impl From<&Image> for ociman::image::Reference {
-    fn from(value: &Image) -> Self {
-        match value {
+    fn from(image: &Image) -> Self {
+        match image {
             Image::Explicit(reference) => reference.clone(),
-            _ => ociman::image::Reference::from(format!(
-                "registry.hub.docker.com/library/postgres:{}",
-                value
-            )),
+            Image::OfficialRelease { .. }
+            | Image::OfficialReleaseCandidate { .. }
+            | Image::OfficialLatest { .. } => {
+                format!("registry.hub.docker.com/library/postgres:{image}")
+                    .parse()
+                    .unwrap()
+            }
         }
     }
 }
@@ -534,7 +537,7 @@ mod test {
         let reference: ociman::image::Reference = (&image).into();
         let expected = "registry.hub.docker.com/library/postgres:17.6@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 
-        assert_eq!(reference.as_str(), expected);
+        assert_eq!(reference.to_string(), expected);
     }
 
     #[test]
