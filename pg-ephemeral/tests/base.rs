@@ -536,7 +536,7 @@ fn test_config_image_with_sha256_digest() {
     // Verify the ociman::image::Reference conversion includes the digest
     let reference: ociman::image::Reference = (&expected_image).into();
     assert_eq!(
-        reference.as_str(),
+        reference.to_string(),
         "registry.hub.docker.com/library/postgres:17.6@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
     );
 }

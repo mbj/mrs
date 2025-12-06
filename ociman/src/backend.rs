@@ -17,10 +17,12 @@ impl Backend {
 
     /// Check if an image is present in the local registry
     pub fn is_image_present(&self, reference: &crate::image::Reference) -> bool {
+        let reference_string = reference.to_string();
+
         match self {
             Backend::Docker => self
                 .command()
-                .arguments(["inspect", "--type", "image", reference.as_str()])
+                .arguments(["inspect", "--type", "image", &reference_string])
                 .capture_only_stdout_result()
                 .is_ok(),
             Backend::Podman => {
@@ -28,7 +30,7 @@ impl Backend {
                 // We use status() instead of capture because we don't need output
                 let status = self
                     .command()
-                    .arguments(["image", "exists", reference.as_str()])
+                    .arguments(["image", "exists", &reference_string])
                     .status();
                 status.success()
             }
@@ -38,14 +40,14 @@ impl Backend {
     /// Tag an image with a new name
     pub fn tag_image(&self, source: &crate::image::Reference, target: &crate::image::Reference) {
         self.command()
-            .arguments(["tag", source.as_str(), target.as_str()])
+            .arguments(["tag", &source.to_string(), &target.to_string()])
             .capture_only_stdout();
     }
 
     /// Pull an image from a registry
     pub fn pull_image(&self, reference: &crate::image::Reference) {
         self.command()
-            .arguments(["pull", reference.as_str()])
+            .arguments(["pull", &reference.to_string()])
             .capture_only_stdout();
     }
 
@@ -59,13 +61,13 @@ impl Backend {
     /// Push an image to a registry
     pub fn push_image(&self, reference: &crate::image::Reference) {
         self.command()
-            .arguments(["push", reference.as_str()])
+            .arguments(["push", &reference.to_string()])
             .capture_only_stdout();
     }
 
     pub fn remove_image(&self, reference: &crate::image::Reference) {
         self.command()
-            .arguments(["image", "rm", reference.as_str()])
+            .arguments(["image", "rm", &reference.to_string()])
             .capture_only_stdout();
     }
 
