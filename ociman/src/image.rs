@@ -1,4 +1,20 @@
-use crate::{Backend, Image};
+//! OCI image reference and build utilities.
+//!
+//! This module provides types for working with OCI image references and building images.
+//!
+//! # Usage
+//!
+//! It's recommended to import this module as `image`:
+//!
+//! ```
+//! use ociman::image;
+//!
+//! let reference: image::Reference = "alpine:latest".parse().unwrap();
+//! ```
+
+pub use crate::reference::Reference;
+
+use crate::Backend;
 use sha2::{Digest, Sha256};
 use std::path::PathBuf;
 use std::str::FromStr;
@@ -74,30 +90,34 @@ pub enum BuildSource {
     Instructions(String),
 }
 
-/// Image naming strategy for the build
+/// Target image specification for the build
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub enum ImageName {
-    /// Use a static image name
-    Static(Image),
-    /// Generate image name with content-based hash
-    Hashed { name: String },
+pub enum BuildTarget {
+    /// Use a fixed image reference
+    Fixed(Reference),
+    /// Generate tag from content hash, using the given name
+    ContentAddressed(crate::reference::Name),
 }
 
 /// Definition for building a container image
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct BuildDefinition {
     backend: Backend,
-    image_name: ImageName,
+    target: BuildTarget,
     source: BuildSource,
     build_arguments: std::collections::BTreeMap<BuildArgumentKey, BuildArgumentValue>,
 }
 
 impl BuildDefinition {
     /// Create a new build definition from a directory containing a Dockerfile
-    pub fn from_directory(backend: Backend, image: Image, path: impl Into<PathBuf>) -> Self {
+    pub fn from_directory(
+        backend: Backend,
+        reference: Reference,
+        path: impl Into<PathBuf>,
+    ) -> Self {
         Self {
             backend,
-            image_name: ImageName::Static(image),
+            target: BuildTarget::Fixed(reference),
             source: BuildSource::Directory(path.into()),
             build_arguments: std::collections::BTreeMap::new(),
         }
@@ -106,12 +126,12 @@ impl BuildDefinition {
     /// Create a new build definition from Dockerfile instructions as a string
     pub fn from_instructions(
         backend: Backend,
-        image: Image,
+        reference: Reference,
         instructions: impl Into<String>,
     ) -> Self {
         Self {
             backend,
-            image_name: ImageName::Static(image),
+            target: BuildTarget::Fixed(reference),
             source: BuildSource::Instructions(instructions.into()),
             build_arguments: std::collections::BTreeMap::new(),
         }
@@ -120,14 +140,12 @@ impl BuildDefinition {
     /// Create a build definition from a directory with content-based hash tag
     pub fn from_directory_hash(
         backend: Backend,
-        image_name: &str,
+        name: crate::reference::Name,
         path: impl Into<PathBuf>,
     ) -> Self {
         Self {
             backend,
-            image_name: ImageName::Hashed {
-                name: image_name.to_string(),
-            },
+            target: BuildTarget::ContentAddressed(name),
             source: BuildSource::Directory(path.into()),
             build_arguments: std::collections::BTreeMap::new(),
         }
@@ -136,14 +154,12 @@ impl BuildDefinition {
     /// Create a build definition from Dockerfile instructions with content-based hash tag
     pub fn from_instructions_hash(
         backend: Backend,
-        image_name: &str,
+        name: crate::reference::Name,
         instructions: impl Into<String>,
     ) -> Self {
         Self {
             backend,
-            image_name: ImageName::Hashed {
-                name: image_name.to_string(),
-            },
+            target: BuildTarget::ContentAddressed(name),
             source: BuildSource::Instructions(instructions.into()),
             build_arguments: std::collections::BTreeMap::new(),
         }
@@ -172,24 +188,24 @@ impl BuildDefinition {
         self
     }
 
-    /// Build the image using the specified backend and return the built image
-    pub fn build(&self) -> Image {
-        self.build_image(self.compute_final_image())
+    /// Build the image using the specified backend and return the built image reference
+    pub fn build(&self) -> Reference {
+        self.build_image(self.compute_final_reference())
     }
 
-    /// Build the image only if it's not already present, and return the image
-    pub fn build_if_absent(&self) -> Image {
-        let target_image = self.compute_final_image();
+    /// Build the image only if it's not already present, and return the image reference
+    pub fn build_if_absent(&self) -> Reference {
+        let target_reference = self.compute_final_reference();
 
-        if self.backend.is_image_present(&target_image) {
-            target_image
+        if self.backend.is_image_present(&target_reference) {
+            target_reference
         } else {
-            self.build_image(target_image)
+            self.build_image(target_reference)
         }
     }
 
-    fn build_image(&self, target_image: Image) -> Image {
-        let mut arguments = vec!["build".into(), "--tag".into(), target_image.as_str().into()];
+    fn build_image(&self, target_reference: Reference) -> Reference {
+        let mut arguments = vec!["build".into(), "--tag".into(), target_reference.to_string()];
 
         for (key, value) in &self.build_arguments {
             arguments.push("--build-arg".into());
@@ -212,14 +228,14 @@ impl BuildDefinition {
 
         command.capture_only_stdout();
 
-        target_image
+        target_reference
     }
 
-    /// Compute the final image name with hash if this is a hash-based definition
-    fn compute_final_image(&self) -> Image {
-        match &self.image_name {
-            ImageName::Static(image) => image.clone(),
-            ImageName::Hashed { name } => {
+    /// Compute the final image reference with hash if this is a hash-based definition
+    fn compute_final_reference(&self) -> Reference {
+        match &self.target {
+            BuildTarget::Fixed(reference) => reference.clone(),
+            BuildTarget::ContentAddressed(name) => {
                 let hash = match &self.source {
                     BuildSource::Directory(path) => {
                         compute_directory_hash(path, &self.build_arguments)
@@ -228,7 +244,11 @@ impl BuildDefinition {
                         compute_content_hash(content, &self.build_arguments)
                     }
                 };
-                Image::from(format!("{}:{}", name, hash))
+                Reference {
+                    name: name.clone(),
+                    tag: Some(hash.into()),
+                    digest: None,
+                }
             }
         }
     }
@@ -237,7 +257,7 @@ impl BuildDefinition {
 fn compute_content_hash(
     content: &str,
     build_arguments: &std::collections::BTreeMap<BuildArgumentKey, BuildArgumentValue>,
-) -> String {
+) -> sha2::digest::Output<Sha256> {
     let mut hasher = Sha256::new();
     hasher.update(content.as_bytes());
 
@@ -247,13 +267,13 @@ fn compute_content_hash(
         hasher.update(value.as_str().as_bytes());
     }
 
-    format!("{:x}", hasher.finalize())
+    hasher.finalize()
 }
 
 fn compute_directory_hash(
     path: &PathBuf,
     build_arguments: &std::collections::BTreeMap<BuildArgumentKey, BuildArgumentValue>,
-) -> String {
+) -> sha2::digest::Output<Sha256> {
     use walkdir::WalkDir;
 
     let mut hasher = Sha256::new();
@@ -278,5 +298,5 @@ fn compute_directory_hash(
         hasher.update(value.as_str().as_bytes());
     }
 
-    format!("{:x}", hasher.finalize())
+    hasher.finalize()
 }

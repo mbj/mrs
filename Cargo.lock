@@ -1900,6 +1900,7 @@ dependencies = [
  "env_logger",
  "indoc",
  "log",
+ "nom",
  "serde",
  "serde_json",
  "sha2",
