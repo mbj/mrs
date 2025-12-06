@@ -22,7 +22,7 @@ pub enum Image {
     /// `latest` once cached in the local registry it's never refreshed.
     OfficialLatest { os: OS, digest: Option<Digest> },
     /// Explicit OCI image reference, bypassing the official postgres image naming
-    Explicit(ociman::Image),
+    Explicit(ociman::image::Reference),
 }
 
 impl std::default::Default for Image {
@@ -231,15 +231,15 @@ impl<'de> serde::Deserialize<'de> for Image {
 }
 
 /// ```
-/// let explicit = pg_ephemeral::Image::Explicit(ociman::Image::from("my-registry.com/postgres:17"));
-/// let ociman_image: ociman::Image = (&explicit).into();
-/// assert_eq!(ociman_image.as_str(), "my-registry.com/postgres:17");
+/// let explicit = pg_ephemeral::Image::Explicit(ociman::image::Reference::from("my-registry.com/postgres:17"));
+/// let reference: ociman::image::Reference = (&explicit).into();
+/// assert_eq!(reference.as_str(), "my-registry.com/postgres:17");
 /// ```
-impl From<&Image> for ociman::Image {
+impl From<&Image> for ociman::image::Reference {
     fn from(value: &Image) -> Self {
         match value {
-            Image::Explicit(image) => image.clone(),
-            _ => ociman::Image::from(format!(
+            Image::Explicit(reference) => reference.clone(),
+            _ => ociman::image::Reference::from(format!(
                 "registry.hub.docker.com/library/postgres:{}",
                 value
             )),
@@ -531,10 +531,10 @@ mod test {
             digest: Some(Digest(hex::decode(hash).unwrap().try_into().unwrap())),
         };
 
-        let ociman_image: ociman::Image = (&image).into();
+        let reference: ociman::image::Reference = (&image).into();
         let expected = "registry.hub.docker.com/library/postgres:17.6@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 
-        assert_eq!(ociman_image.as_str(), expected);
+        assert_eq!(reference.as_str(), expected);
     }
 
     #[test]

@@ -1,7 +1,63 @@
-use crate::{Backend, Image};
+//! OCI image reference and build utilities.
+//!
+//! This module provides types for working with OCI image references and building images.
+//!
+//! # Usage
+//!
+//! It's recommended to import this module as `image`:
+//!
+//! ```
+//! use ociman::image;
+//!
+//! let reference = image::Reference::from("alpine:latest");
+//! ```
+
+use crate::Backend;
 use sha2::{Digest, Sha256};
 use std::path::PathBuf;
 use std::str::FromStr;
+
+/// An OCI image reference.
+///
+/// This represents a reference to a container image following the OCI reference specification.
+/// The format is: `[domain/]path[:tag][@digest]`
+///
+/// Examples:
+/// - `alpine:latest`
+/// - `docker.io/library/postgres:15`
+/// - `ghcr.io/owner/repo@sha256:abc123...`
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Reference(String);
+
+impl From<String> for Reference {
+    fn from(value: String) -> Self {
+        Self(value)
+    }
+}
+
+impl From<&str> for Reference {
+    fn from(value: &str) -> Self {
+        Self(value.to_string())
+    }
+}
+
+impl AsRef<std::ffi::OsStr> for Reference {
+    fn as_ref(&self) -> &std::ffi::OsStr {
+        self.0.as_ref()
+    }
+}
+
+impl Reference {
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
+impl crate::Apply for Reference {
+    fn apply(&self, command: crate::Command) -> crate::Command {
+        command.argument(self)
+    }
+}
 
 /// Build argument key
 #[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
@@ -78,7 +134,7 @@ pub enum BuildSource {
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum ImageName {
     /// Use a static image name
-    Static(Image),
+    Static(Reference),
     /// Generate image name with content-based hash
     Hashed { name: String },
 }
@@ -94,10 +150,14 @@ pub struct BuildDefinition {
 
 impl BuildDefinition {
     /// Create a new build definition from a directory containing a Dockerfile
-    pub fn from_directory(backend: Backend, image: Image, path: impl Into<PathBuf>) -> Self {
+    pub fn from_directory(
+        backend: Backend,
+        reference: Reference,
+        path: impl Into<PathBuf>,
+    ) -> Self {
         Self {
             backend,
-            image_name: ImageName::Static(image),
+            image_name: ImageName::Static(reference),
             source: BuildSource::Directory(path.into()),
             build_arguments: std::collections::BTreeMap::new(),
         }
@@ -106,12 +166,12 @@ impl BuildDefinition {
     /// Create a new build definition from Dockerfile instructions as a string
     pub fn from_instructions(
         backend: Backend,
-        image: Image,
+        reference: Reference,
         instructions: impl Into<String>,
     ) -> Self {
         Self {
             backend,
-            image_name: ImageName::Static(image),
+            image_name: ImageName::Static(reference),
             source: BuildSource::Instructions(instructions.into()),
             build_arguments: std::collections::BTreeMap::new(),
         }
@@ -172,24 +232,28 @@ impl BuildDefinition {
         self
     }
 
-    /// Build the image using the specified backend and return the built image
-    pub fn build(&self) -> Image {
-        self.build_image(self.compute_final_image())
+    /// Build the image using the specified backend and return the built image reference
+    pub fn build(&self) -> Reference {
+        self.build_image(self.compute_final_reference())
     }
 
-    /// Build the image only if it's not already present, and return the image
-    pub fn build_if_absent(&self) -> Image {
-        let target_image = self.compute_final_image();
+    /// Build the image only if it's not already present, and return the image reference
+    pub fn build_if_absent(&self) -> Reference {
+        let target_reference = self.compute_final_reference();
 
-        if self.backend.is_image_present(&target_image) {
-            target_image
+        if self.backend.is_image_present(&target_reference) {
+            target_reference
         } else {
-            self.build_image(target_image)
+            self.build_image(target_reference)
         }
     }
 
-    fn build_image(&self, target_image: Image) -> Image {
-        let mut arguments = vec!["build".into(), "--tag".into(), target_image.as_str().into()];
+    fn build_image(&self, target_reference: Reference) -> Reference {
+        let mut arguments = vec![
+            "build".into(),
+            "--tag".into(),
+            target_reference.as_str().into(),
+        ];
 
         for (key, value) in &self.build_arguments {
             arguments.push("--build-arg".into());
@@ -212,13 +276,13 @@ impl BuildDefinition {
 
         command.capture_only_stdout();
 
-        target_image
+        target_reference
     }
 
-    /// Compute the final image name with hash if this is a hash-based definition
-    fn compute_final_image(&self) -> Image {
+    /// Compute the final image reference with hash if this is a hash-based definition
+    fn compute_final_reference(&self) -> Reference {
         match &self.image_name {
-            ImageName::Static(image) => image.clone(),
+            ImageName::Static(reference) => reference.clone(),
             ImageName::Hashed { name } => {
                 let hash = match &self.source {
                     BuildSource::Directory(path) => {
@@ -228,7 +292,7 @@ impl BuildDefinition {
                         compute_content_hash(content, &self.build_arguments)
                     }
                 };
-                Image::from(format!("{}:{}", name, hash))
+                Reference::from(format!("{}:{}", name, hash))
             }
         }
     }

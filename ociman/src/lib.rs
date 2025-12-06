@@ -10,7 +10,7 @@ pub use backend::{Backend, ContainerHostnameResolver, ResolveHostnameError};
 pub use command::Command;
 pub use image::{
     BuildArgumentKey, BuildArgumentKeyError, BuildArgumentValue, BuildDefinition, BuildSource,
-    ImageName,
+    ImageName, Reference,
 };
 use std::ffi::OsStr;
 
@@ -121,17 +121,6 @@ impl Apply for Remove {
 pub struct Mount(String);
 
 apply_argument!(Mount, "--mount");
-
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct Image(String);
-
-string_newtype!(Image);
-
-impl Apply for Image {
-    fn apply(&self, command: Command) -> Command {
-        command.argument(self)
-    }
-}
 
 const UNSPECIFIED_IP: std::net::IpAddr = std::net::IpAddr::V4(std::net::Ipv4Addr::UNSPECIFIED);
 
@@ -367,7 +356,7 @@ pub struct Definition {
     detach: Detach,
     entrypoint: Option<Entrypoint>,
     environment_variables: EnvironmentVariables,
-    image: Image,
+    image: image::Reference,
     remove: Remove,
     stop_on_drop: bool,
     remove_on_drop: bool,
@@ -377,14 +366,14 @@ pub struct Definition {
 }
 
 impl Definition {
-    pub fn new(backend: Backend, image: Image) -> Definition {
+    pub fn new(backend: Backend, reference: image::Reference) -> Definition {
         Definition {
             backend,
             container_arguments: vec![],
             detach: Detach::NoDetach,
             entrypoint: None,
             environment_variables: EnvironmentVariables::new(),
-            image,
+            image: reference,
             mounts: vec![],
             publish: vec![],
             remove: Remove::NoRemove,
@@ -746,7 +735,7 @@ impl Container {
             .ok()
     }
 
-    pub fn commit(&self, image: &Image, pause: bool) {
+    pub fn commit(&self, reference: &image::Reference, pause: bool) {
         let pause_argument = match (self.backend, pause) {
             (Backend::Docker, true) => None,
             (Backend::Docker, false) => Some("--no-pause"),
@@ -758,7 +747,7 @@ impl Container {
             .argument("commit")
             .optional_argument(pause_argument)
             .argument(&self.id)
-            .argument(image.as_str())
+            .argument(reference.as_str())
             .status();
     }
 
