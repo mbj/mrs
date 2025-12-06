@@ -28,9 +28,9 @@ jobs:
       CARGO_BUILD_TARGET: ${{ matrix.os.cargo_build_target }}
     steps:
     - if: ${{ endsWith(matrix.os.cargo_build_target, '-musl') }}
-      run: sudo apt-get install --yes musl-tools
+      run: sudo apt-get update && sudo apt-get install --yes musl-tools
     - if: ${{ startsWith(matrix.os.version, 'ubuntu-') }}
-      run: sudo apt-get install --yes postgresql-client
+      run: sudo apt-get update && sudo apt-get install --yes postgresql-client
     - uses: actions/checkout@v4
     # macOS uses static key due to hashFiles() bug:
     # https://github.com/actions/runner-images/issues/13341
