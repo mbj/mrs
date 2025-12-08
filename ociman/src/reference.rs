@@ -643,20 +643,17 @@ impl Tag {
 impl Parse for Tag {
     fn parse(input: &str) -> IResult<&str, Self> {
         map(
-            verify(
-                recognize(pair(
-                    take_while_m_n(1, 1, |character: char| {
-                        character.is_ascii_alphanumeric() || character == '_'
-                    }),
-                    take_while_m_n(0, 127, |character: char| {
-                        character.is_ascii_alphanumeric()
-                            || character == '_'
-                            || character == '.'
-                            || character == '-'
-                    }),
-                )),
-                |string: &str| string.len() <= 128,
-            ),
+            recognize(pair(
+                take_while_m_n(1, 1, |character: char| {
+                    character.is_ascii_alphanumeric() || character == '_'
+                }),
+                take_while_m_n(0, 127, |character: char| {
+                    character.is_ascii_alphanumeric()
+                        || character == '_'
+                        || character == '.'
+                        || character == '-'
+                }),
+            )),
             |string: &str| Self(string.to_string()),
         )(input)
     }
