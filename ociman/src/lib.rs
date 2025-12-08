@@ -363,7 +363,7 @@ pub struct Definition {
     detach: Detach,
     entrypoint: Option<Entrypoint>,
     environment_variables: EnvironmentVariables,
-    image: image::Reference,
+    reference: image::Reference,
     remove: Remove,
     stop_on_drop: bool,
     remove_on_drop: bool,
@@ -380,7 +380,7 @@ impl Definition {
             detach: Detach::NoDetach,
             entrypoint: None,
             environment_variables: EnvironmentVariables::new(),
-            image: reference,
+            reference,
             mounts: vec![],
             publish: vec![],
             remove: Remove::NoRemove,
@@ -588,7 +588,7 @@ impl Definition {
         let command = self.mounts.apply(command);
         let command = self.workdir.apply(command);
         let command = self.entrypoint.apply(command);
-        let command = self.image.apply(command);
+        let command = self.reference.apply(command);
 
         self.container_arguments.apply(command)
     }
