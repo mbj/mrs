@@ -50,7 +50,7 @@ use nom::{
     bytes::complete::{tag, take_while, take_while_m_n, take_while1},
     character::complete::{char, digit1, u16},
     combinator::{all_consuming, map, opt, recognize, verify},
-    multi::{many0, many1, separated_list1},
+    multi::{many0, separated_list1},
     sequence::{delimited, pair, preceded, tuple},
 };
 
@@ -408,6 +408,29 @@ impl std::fmt::Display for Domain {
 /// let component: PathComponent = "my_image-name.test".parse().unwrap();
 /// assert_eq!(component.as_str(), "my_image-name.test");
 ///
+/// // Single hyphen separator
+/// let component: PathComponent = "foo-bar".parse().unwrap();
+/// assert_eq!(component.as_str(), "foo-bar");
+///
+/// // Multiple hyphens as separator
+/// let component: PathComponent = "foo--bar".parse().unwrap();
+/// assert_eq!(component.as_str(), "foo--bar");
+///
+/// let component: PathComponent = "foo---bar".parse().unwrap();
+/// assert_eq!(component.as_str(), "foo---bar");
+///
+/// // Double underscore separator
+/// let component: PathComponent = "foo__bar".parse().unwrap();
+/// assert_eq!(component.as_str(), "foo__bar");
+///
+/// // Dot separator
+/// let component: PathComponent = "foo.bar".parse().unwrap();
+/// assert_eq!(component.as_str(), "foo.bar");
+///
+/// // Mixed separators
+/// let component: PathComponent = "a-b_c.d__e---f".parse().unwrap();
+/// assert_eq!(component.as_str(), "a-b_c.d__e---f");
+///
 /// // Rejects empty input
 /// assert_eq!(
 ///     "".parse::<PathComponent>().unwrap_err(),
@@ -451,7 +474,7 @@ impl PathComponent {
 
     /// Pattern: `[_.]|__|[-]*`
     fn parse_separator(input: &str) -> IResult<&str, &str> {
-        alt((tag("__"), tag("_"), tag("."), recognize(many1(char('-')))))(input)
+        alt((tag("__"), tag("_"), tag("."), recognize(many0(char('-')))))(input)
     }
 }
 
