@@ -21,6 +21,7 @@ hex.workspace = true
 indexmap = { version = "2.7", features = ["serde"] }
 log.workspace = true
 nom.workspace = true
+nom-language.workspace = true
 ociman.workspace = true
 pg-client.workspace = true
 rand.workspace = true
