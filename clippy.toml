@@ -32,6 +32,10 @@ allowed-duplicate-crates = [
     # Note: We keep sqlx close to upstream to ease future updates
     "webpki-roots",
 
+    # We use nom 8 while most of the ecosystem still depends on nom 7
+    # Source: ociman/pg-ephemeral -> nom 8, transitive deps -> nom 7
+    "nom",
+
     # Windows platform crates - multiple versions pulled by various dependencies
     # (ring, tokio, rustls, aws-sdk, zip, etc.) targeting different Windows APIs
     # These are platform-specific and don't affect Linux builds, but clippy

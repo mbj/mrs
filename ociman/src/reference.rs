@@ -45,13 +45,13 @@
 //! ```
 
 use nom::{
-    IResult,
+    IResult, Parser,
     branch::alt,
     bytes::complete::{tag, take_while, take_while_m_n, take_while1},
     character::complete::{char, digit1, u16},
-    combinator::{all_consuming, map, opt, recognize, verify},
+    combinator::{all_consuming, opt, recognize, verify},
     multi::{many0, separated_list1},
-    sequence::{delimited, pair, preceded, tuple},
+    sequence::{delimited, pair, preceded},
 };
 
 pub(crate) trait Parse: Sized {
@@ -85,7 +85,7 @@ macro_rules! impl_from_str {
                 type Err = String;
 
                 fn from_str(string: &str) -> Result<Self, Self::Err> {
-                    match all_consuming(<Self as Parse>::parse)(string) {
+                    match all_consuming(<Self as Parse>::parse).parse(string) {
                         Ok((_remaining, value)) => Ok(value),
                         Err(error) => Err(format!("parse error: {error}")),
                     }
@@ -174,16 +174,15 @@ impl AsRef<str> for DomainComponent {
 
 impl Parse for DomainComponent {
     fn parse(input: &str) -> IResult<&str, Self> {
-        map(
-            recognize(pair(
+        recognize(pair(
+            take_while1(|character: char| character.is_ascii_alphanumeric()),
+            many0(pair(
+                take_while1(|character: char| character == '-'),
                 take_while1(|character: char| character.is_ascii_alphanumeric()),
-                many0(pair(
-                    take_while1(|character: char| character == '-'),
-                    take_while1(|character: char| character.is_ascii_alphanumeric()),
-                )),
             )),
-            |string: &str| Self(string.to_string()),
-        )(input)
+        ))
+        .map(|string: &str| Self(string.to_string()))
+        .parse(input)
     }
 }
 
@@ -226,7 +225,9 @@ impl DomainName {
 
 impl Parse for DomainName {
     fn parse(input: &str) -> IResult<&str, Self> {
-        map(separated_list1(char('.'), DomainComponent::parse), Self)(input)
+        separated_list1(char('.'), DomainComponent::parse)
+            .map(Self)
+            .parse(input)
     }
 }
 
@@ -278,7 +279,7 @@ impl PortNumber {
 
 impl Parse for PortNumber {
     fn parse(input: &str) -> IResult<&str, Self> {
-        u16(input).map(|(remaining, value)| (remaining, Self(value)))
+        u16.map(Self).parse(input)
     }
 }
 
@@ -330,7 +331,7 @@ pub enum Host {
 
 impl Host {
     fn parse_ipv4(input: &str) -> IResult<&str, std::net::Ipv4Addr> {
-        let (remaining, address_string) = recognize(tuple((
+        recognize((
             digit1,
             char('.'),
             digit1,
@@ -338,41 +339,30 @@ impl Host {
             digit1,
             char('.'),
             digit1,
-        )))(input)?;
-
-        match address_string.parse() {
-            Ok(address) => Ok((remaining, address)),
-            Err(_) => Err(nom::Err::Error(nom::error::Error::new(
-                input,
-                nom::error::ErrorKind::Verify,
-            ))),
-        }
+        ))
+        .map_res(|s: &str| s.parse())
+        .parse(input)
     }
 
     fn parse_ipv6(input: &str) -> IResult<&str, std::net::Ipv6Addr> {
-        let (remaining, address_string) = delimited(
+        delimited(
             char('['),
             take_while1(|character: char| character.is_ascii_hexdigit() || character == ':'),
             char(']'),
-        )(input)?;
-
-        match address_string.parse() {
-            Ok(address) => Ok((remaining, address)),
-            Err(_) => Err(nom::Err::Error(nom::error::Error::new(
-                input,
-                nom::error::ErrorKind::Verify,
-            ))),
-        }
+        )
+        .map_res(|s: &str| s.parse())
+        .parse(input)
     }
 }
 
 impl Parse for Host {
     fn parse(input: &str) -> IResult<&str, Self> {
         alt((
-            map(Self::parse_ipv6, Self::Ipv6),
-            map(Self::parse_ipv4, Self::Ipv4),
-            map(DomainName::parse, Self::DomainName),
-        ))(input)
+            Self::parse_ipv6.map(Self::Ipv6),
+            Self::parse_ipv4.map(Self::Ipv4),
+            DomainName::parse.map(Self::DomainName),
+        ))
+        .parse(input)
     }
 }
 
@@ -411,10 +401,9 @@ pub struct Domain {
 
 impl Parse for Domain {
     fn parse(input: &str) -> IResult<&str, Self> {
-        map(
-            pair(Host::parse, opt(preceded(char(':'), PortNumber::parse))),
-            |(host, port)| Self { host, port },
-        )(input)
+        pair(Host::parse, opt(preceded(char(':'), PortNumber::parse)))
+            .map(|(host, port)| Self { host, port })
+            .parse(input)
     }
 }
 
@@ -510,26 +499,24 @@ impl AsRef<str> for PathComponent {
 impl PathComponent {
     /// Pattern: `[a-z0-9]+`
     fn parse_alpha_numeric(input: &str) -> IResult<&str, &str> {
-        take_while1(|character: char| character.is_ascii_lowercase() || character.is_ascii_digit())(
-            input,
-        )
+        take_while1(|character: char| character.is_ascii_lowercase() || character.is_ascii_digit())
+            .parse(input)
     }
 
     /// Pattern: `[_.]|__|[-]*`
     fn parse_separator(input: &str) -> IResult<&str, &str> {
-        alt((tag("__"), tag("_"), tag("."), recognize(many0(char('-')))))(input)
+        alt((tag("__"), tag("_"), tag("."), recognize(many0(char('-'))))).parse(input)
     }
 }
 
 impl Parse for PathComponent {
     fn parse(input: &str) -> IResult<&str, Self> {
-        map(
-            recognize(pair(
-                Self::parse_alpha_numeric,
-                many0(pair(Self::parse_separator, Self::parse_alpha_numeric)),
-            )),
-            |string: &str| Self(string.to_string()),
-        )(input)
+        recognize(pair(
+            Self::parse_alpha_numeric,
+            many0(pair(Self::parse_separator, Self::parse_alpha_numeric)),
+        ))
+        .map(|string: &str| Self(string.to_string()))
+        .parse(input)
     }
 }
 
@@ -585,7 +572,9 @@ impl Path {
 
 impl Parse for Path {
     fn parse(input: &str) -> IResult<&str, Self> {
-        map(separated_list1(char('/'), PathComponent::parse), Self)(input)
+        separated_list1(char('/'), PathComponent::parse)
+            .map(Self)
+            .parse(input)
     }
 }
 
@@ -622,28 +611,27 @@ pub struct Name {
 impl Parse for Name {
     fn parse(input: &str) -> IResult<&str, Self> {
         alt((
-            map(
-                pair(
-                    |input| {
-                        let (remaining, domain) = Domain::parse(input)?;
-                        if remaining.starts_with('/') {
-                            Ok((remaining, domain))
-                        } else {
-                            Err(nom::Err::Error(nom::error::Error::new(
-                                input,
-                                nom::error::ErrorKind::Verify,
-                            )))
-                        }
-                    },
-                    preceded(char('/'), Path::parse),
-                ),
-                |(domain, path)| Self {
-                    domain: Some(domain),
-                    path,
+            pair(
+                |input| {
+                    let (remaining, domain) = Domain::parse(input)?;
+                    if remaining.starts_with('/') {
+                        Ok((remaining, domain))
+                    } else {
+                        Err(nom::Err::Error(nom::error::Error::new(
+                            input,
+                            nom::error::ErrorKind::Verify,
+                        )))
+                    }
                 },
-            ),
-            map(Path::parse, |path| Self { domain: None, path }),
-        ))(input)
+                preceded(char('/'), Path::parse),
+            )
+            .map(|(domain, path)| Self {
+                domain: Some(domain),
+                path,
+            }),
+            Path::parse.map(|path| Self { domain: None, path }),
+        ))
+        .parse(input)
     }
 }
 
@@ -704,20 +692,19 @@ impl Tag {
 
 impl Parse for Tag {
     fn parse(input: &str) -> IResult<&str, Self> {
-        map(
-            recognize(pair(
-                take_while_m_n(1, 1, |character: char| {
-                    character.is_ascii_alphanumeric() || character == '_'
-                }),
-                take_while_m_n(0, 127, |character: char| {
-                    character.is_ascii_alphanumeric()
-                        || character == '_'
-                        || character == '.'
-                        || character == '-'
-                }),
-            )),
-            |string: &str| Self(string.to_string()),
-        )(input)
+        recognize(pair(
+            take_while_m_n(1, 1, |character: char| {
+                character.is_ascii_alphanumeric() || character == '_'
+            }),
+            take_while_m_n(0, 127, |character: char| {
+                character.is_ascii_alphanumeric()
+                    || character == '_'
+                    || character == '.'
+                    || character == '-'
+            }),
+        ))
+        .map(|string: &str| Self(string.to_string()))
+        .parse(input)
     }
 }
 
@@ -761,24 +748,24 @@ impl DigestAlgorithm {
         recognize(pair(
             take_while_m_n(1, 1, |character: char| character.is_ascii_alphabetic()),
             take_while(|character: char| character.is_ascii_alphanumeric()),
-        ))(input)
+        ))
+        .parse(input)
     }
 
     /// Pattern: `[+.-_]`
     fn parse_separator(input: &str) -> IResult<&str, char> {
-        alt((char('+'), char('.'), char('-'), char('_')))(input)
+        alt((char('+'), char('.'), char('-'), char('_'))).parse(input)
     }
 }
 
 impl Parse for DigestAlgorithm {
     fn parse(input: &str) -> IResult<&str, Self> {
-        map(
-            recognize(pair(
-                Self::parse_component,
-                many0(pair(Self::parse_separator, Self::parse_component)),
-            )),
-            |string: &str| Self(string.to_string()),
-        )(input)
+        recognize(pair(
+            Self::parse_component,
+            many0(pair(Self::parse_separator, Self::parse_component)),
+        ))
+        .map(|string: &str| Self(string.to_string()))
+        .parse(input)
     }
 }
 
@@ -838,19 +825,19 @@ impl Digest {
         verify(
             take_while1(|character: char| character.is_ascii_hexdigit()),
             |string: &str| string.len() >= 32,
-        )(input)
+        )
+        .parse(input)
     }
 }
 
 impl Parse for Digest {
     fn parse(input: &str) -> IResult<&str, Self> {
-        map(
-            tuple((DigestAlgorithm::parse, char(':'), Self::parse_hex)),
-            |(algorithm, _, hex)| Self {
+        (DigestAlgorithm::parse, char(':'), Self::parse_hex)
+            .map(|(algorithm, _, hex)| Self {
                 algorithm,
                 hex: hex.to_string(),
-            },
-        )(input)
+            })
+            .parse(input)
     }
 }
 
@@ -939,14 +926,13 @@ pub struct Reference {
 
 impl Parse for Reference {
     fn parse(input: &str) -> IResult<&str, Self> {
-        map(
-            tuple((
-                Name::parse,
-                opt(preceded(char(':'), Tag::parse)),
-                opt(preceded(char('@'), Digest::parse)),
-            )),
-            |(name, tag, digest)| Self { name, tag, digest },
-        )(input)
+        (
+            Name::parse,
+            opt(preceded(char(':'), Tag::parse)),
+            opt(preceded(char('@'), Digest::parse)),
+        )
+            .map(|(name, tag, digest)| Self { name, tag, digest })
+            .parse(input)
     }
 }
 
