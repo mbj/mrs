@@ -1,6 +1,5 @@
 use rand::Rng;
 
-use crate::Definition;
 use crate::LOCALHOST_HOST_ADDR_IP;
 use crate::LOCALHOST_IP;
 use crate::UNSPECIFIED_IP;
@@ -20,120 +19,66 @@ chmod 600 ${PG_EPHEMERAL_SSL_DIR}/server.key
 exec docker-entrypoint.sh "$@"
 "#;
 
+/// Low-level container definition for running a pre-initialized PostgreSQL image.
+///
+/// All fields are assumed to represent values already stored in the referenced image.
+/// No validation is performed - the caller is responsible for ensuring the credentials
+/// and configuration match what exists in the image.
 #[derive(Debug)]
-pub struct Container<'a> {
+pub struct Definition {
+    pub image: ociman::image::Reference,
+    pub password: pg_client::Password,
+    pub username: pg_client::Username,
+    pub database: pg_client::Database,
+    pub backend: ociman::Backend,
+    pub cross_container_access: bool,
+    pub application_name: Option<pg_client::ApplicationName>,
+    pub ssl_config: Option<definition::SslConfig>,
+}
+
+#[derive(Debug)]
+pub struct Container {
     host_port: pg_client::Port,
     pub(crate) client_config: pg_client::Config,
     container: ociman::Container,
-    definition: &'a Definition,
+    backend: ociman::Backend,
 }
 
-impl<'a> Container<'a> {
-    pub(crate) fn run(definition: &'a Definition) -> Self {
+impl Container {
+    pub(crate) fn run_definition(definition: &crate::definition::Definition) -> Self {
         let password = generate_password();
 
-        let host_ip = if definition.cross_container_access {
-            UNSPECIFIED_IP
-        } else {
-            LOCALHOST_IP
-        };
-
-        let mut ociman_definition = definition
+        let ociman_definition = definition
             .to_ociman_definition()
-            .remove()
             .environment_variable("POSTGRES_PASSWORD", password.as_ref())
-            .environment_variable("POSTGRES_USER", definition.superuser.as_ref())
-            .publish(ociman::Publish::tcp(5432).host_ip(host_ip));
+            .environment_variable("POSTGRES_USER", definition.superuser.as_ref());
 
-        let ssl_bundle = if let Some(ssl_config) = &definition.ssl_config {
-            let hostname = match ssl_config {
-                definition::SslConfig::Generated { hostname } => hostname.as_str(),
-            };
+        run_container(
+            ociman_definition,
+            definition.cross_container_access,
+            &definition.ssl_config,
+            &definition.backend,
+            &definition.application_name,
+            &definition.database,
+            &password,
+            &definition.superuser,
+        )
+    }
 
-            let bundle = certificate::Bundle::generate(hostname)
-                .expect("Failed to generate SSL certificate bundle");
+    pub fn run_container_definition(definition: &Definition) -> Self {
+        let ociman_definition =
+            ociman::Definition::new(definition.backend.clone(), definition.image.clone());
 
-            let ssl_dir = "/var/lib/postgresql";
-
-            ociman_definition = ociman_definition
-                .entrypoint("sh")
-                .argument("-e")
-                .argument("-c")
-                .argument(SSL_SETUP_SCRIPT)
-                .argument("--")
-                .argument("postgres")
-                .argument("--ssl=on")
-                .argument(format!("--ssl_cert_file={}/server.crt", ssl_dir))
-                .argument(format!("--ssl_key_file={}/server.key", ssl_dir))
-                .argument(format!("--ssl_ca_file={}/root.crt", ssl_dir))
-                .environment_variable("PG_EPHEMERAL_SSL_DIR", ssl_dir)
-                .environment_variable("PG_EPHEMERAL_CA_CERT_PEM", &bundle.ca_cert_pem)
-                .environment_variable("PG_EPHEMERAL_SERVER_CERT_PEM", &bundle.server_cert_pem)
-                .environment_variable("PG_EPHEMERAL_SERVER_KEY_PEM", &bundle.server_key_pem);
-
-            Some(bundle)
-        } else {
-            None
-        };
-
-        let container = ociman_definition.run_detached();
-
-        let port = pg_client::Port(
-            container
-                .read_host_tcp_port(5432)
-                .expect("port 5432 not published"),
-        );
-
-        let (host, host_addr, ssl_mode, ssl_root_cert) =
-            if let Some(ssl_config) = &definition.ssl_config {
-                let hostname = match ssl_config {
-                    definition::SslConfig::Generated { hostname } => hostname.clone(),
-                };
-
-                let timestamp = std::time::SystemTime::now()
-                    .duration_since(std::time::UNIX_EPOCH)
-                    .unwrap()
-                    .as_nanos();
-                let ca_cert_path =
-                    std::env::temp_dir().join(format!("pg_ephemeral_ca_{}.crt", timestamp));
-                std::fs::write(&ca_cert_path, &ssl_bundle.as_ref().unwrap().ca_cert_pem)
-                    .expect("Failed to write CA certificate to temp file");
-
-                (
-                    pg_client::Host::HostName(hostname),
-                    Some(LOCALHOST_HOST_ADDR_IP),
-                    pg_client::SslMode::VerifyFull,
-                    Some(pg_client::SslRootCert::File(ca_cert_path)),
-                )
-            } else {
-                (
-                    pg_client::Host::IpAddr(LOCALHOST_IP),
-                    None,
-                    pg_client::SslMode::Disable,
-                    None,
-                )
-            };
-
-        let client_config = pg_client::Config {
-            application_name: definition.application_name.clone(),
-            database: definition.database.clone(),
-            endpoint: pg_client::Endpoint::Network {
-                host,
-                host_addr,
-                port: Some(port),
-            },
-            password: Some(password),
-            ssl_mode,
-            ssl_root_cert,
-            username: definition.superuser.clone(),
-        };
-
-        Container {
-            host_port: port,
-            container,
-            definition,
-            client_config,
-        }
+        run_container(
+            ociman_definition,
+            definition.cross_container_access,
+            &definition.ssl_config,
+            &definition.backend,
+            &definition.application_name,
+            &definition.database,
+            &definition.password,
+            &definition.username,
+        )
     }
 
     pub async fn wait_available(&self) {
@@ -237,7 +182,6 @@ impl<'a> Container<'a> {
         // Resolve the container host from inside a container
         // This DNS name only works from inside containers, not from the host
         let ip_address = self
-            .definition
             .backend
             .resolve_container_host()
             .expect("Failed to resolve container host from container");
@@ -259,7 +203,7 @@ impl<'a> Container<'a> {
         self.client_config.to_url().to_string()
     }
 
-    pub(crate) fn stop(&mut self) {
+    pub fn stop(&mut self) {
         self.container.stop()
     }
 }
@@ -274,4 +218,117 @@ fn generate_password() -> pg_client::Password {
         .collect();
 
     <pg_client::Password as std::str::FromStr>::from_str(&value).unwrap()
+}
+
+#[allow(clippy::too_many_arguments)]
+fn run_container(
+    ociman_definition: ociman::Definition,
+    cross_container_access: bool,
+    ssl_config: &Option<definition::SslConfig>,
+    backend: &ociman::Backend,
+    application_name: &Option<pg_client::ApplicationName>,
+    database: &pg_client::Database,
+    password: &pg_client::Password,
+    username: &pg_client::Username,
+) -> Container {
+    let backend = backend.clone();
+    let host_ip = if cross_container_access {
+        UNSPECIFIED_IP
+    } else {
+        LOCALHOST_IP
+    };
+
+    let mut ociman_definition = ociman_definition
+        .stop_on_drop()
+        .remove()
+        .environment_variable("PGDATA", "/var/lib/postgresql/pg-ephemeral-data")
+        .publish(ociman::Publish::tcp(5432).host_ip(host_ip));
+
+    let ssl_bundle = if let Some(ssl_config) = ssl_config {
+        let hostname = match ssl_config {
+            definition::SslConfig::Generated { hostname } => hostname.as_str(),
+        };
+
+        let bundle = certificate::Bundle::generate(hostname)
+            .expect("Failed to generate SSL certificate bundle");
+
+        let ssl_dir = "/var/lib/postgresql";
+
+        ociman_definition = ociman_definition
+            .entrypoint("sh")
+            .argument("-e")
+            .argument("-c")
+            .argument(SSL_SETUP_SCRIPT)
+            .argument("--")
+            .argument("postgres")
+            .argument("--ssl=on")
+            .argument(format!("--ssl_cert_file={}/server.crt", ssl_dir))
+            .argument(format!("--ssl_key_file={}/server.key", ssl_dir))
+            .argument(format!("--ssl_ca_file={}/root.crt", ssl_dir))
+            .environment_variable("PG_EPHEMERAL_SSL_DIR", ssl_dir)
+            .environment_variable("PG_EPHEMERAL_CA_CERT_PEM", &bundle.ca_cert_pem)
+            .environment_variable("PG_EPHEMERAL_SERVER_CERT_PEM", &bundle.server_cert_pem)
+            .environment_variable("PG_EPHEMERAL_SERVER_KEY_PEM", &bundle.server_key_pem);
+
+        Some(bundle)
+    } else {
+        None
+    };
+
+    let container = ociman_definition.run_detached();
+
+    let port = pg_client::Port(
+        container
+            .read_host_tcp_port(5432)
+            .expect("port 5432 not published"),
+    );
+
+    let (host, host_addr, ssl_mode, ssl_root_cert) = if let Some(ssl_config) = ssl_config {
+        let hostname = match ssl_config {
+            definition::SslConfig::Generated { hostname } => hostname.clone(),
+        };
+
+        let timestamp = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap()
+            .as_nanos();
+        let ca_cert_path = std::env::temp_dir().join(format!("pg_ephemeral_ca_{}.crt", timestamp));
+        std::fs::write(&ca_cert_path, &ssl_bundle.as_ref().unwrap().ca_cert_pem)
+            .expect("Failed to write CA certificate to temp file");
+
+        (
+            pg_client::Host::HostName(hostname),
+            Some(LOCALHOST_HOST_ADDR_IP),
+            pg_client::SslMode::VerifyFull,
+            Some(pg_client::SslRootCert::File(ca_cert_path)),
+        )
+    } else {
+        (
+            pg_client::Host::IpAddr(LOCALHOST_IP),
+            None,
+            pg_client::SslMode::Disable,
+            None,
+        )
+    };
+
+    let client_config = pg_client::Config {
+        application_name: application_name.clone(),
+        database: database.clone(),
+        endpoint: pg_client::Endpoint::Network {
+            host,
+            host_addr,
+            port: Some(port),
+        },
+        password: Some(password.clone()),
+        ssl_mode,
+        ssl_root_cert,
+        username: username.clone(),
+    };
+
+    Container {
+        host_port: port,
+        container,
+        backend,
+        client_config,
+    }
 }

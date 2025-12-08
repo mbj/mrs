@@ -1,7 +1,7 @@
 pub mod certificate;
 pub mod cli;
 pub mod config;
-mod container;
+pub mod container;
 pub mod definition;
 pub mod image;
 pub mod seed;
