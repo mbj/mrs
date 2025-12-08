@@ -48,14 +48,34 @@ use nom::{
     IResult,
     branch::alt,
     bytes::complete::{tag, take_while, take_while_m_n, take_while1},
-    character::complete::{char, digit1},
+    character::complete::{char, digit1, u16},
     combinator::{all_consuming, map, opt, recognize, verify},
-    multi::{many0, many1, separated_list1},
+    multi::{many0, separated_list1},
     sequence::{delimited, pair, preceded, tuple},
 };
 
 pub(crate) trait Parse: Sized {
     fn parse(input: &str) -> IResult<&str, Self>;
+}
+
+fn write_interspersed<I, T>(
+    formatter: &mut std::fmt::Formatter<'_>,
+    items: I,
+    separator: &str,
+) -> std::fmt::Result
+where
+    I: IntoIterator<Item = T>,
+    T: AsRef<str>,
+{
+    let mut iter = items.into_iter();
+    if let Some(first) = iter.next() {
+        formatter.write_str(first.as_ref())?;
+        for item in iter {
+            formatter.write_str(separator)?;
+            formatter.write_str(item.as_ref())?;
+        }
+    }
+    Ok(())
 }
 
 macro_rules! impl_from_str {
@@ -104,6 +124,38 @@ impl_from_str!(
 ///
 /// let component: DomainComponent = "my-registry".parse().unwrap();
 /// assert_eq!(component.as_str(), "my-registry");
+///
+/// // Multiple consecutive hyphens allowed between alphanumerics
+/// let component: DomainComponent = "my--registry".parse().unwrap();
+/// assert_eq!(component.as_str(), "my--registry");
+///
+/// // Rejects empty input
+/// assert_eq!(
+///     "".parse::<DomainComponent>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"\", code: TakeWhile1 }"
+/// );
+///
+/// // Rejects leading hyphen
+/// assert_eq!(
+///     "-example".parse::<DomainComponent>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"-example\", code: TakeWhile1 }"
+/// );
+///
+/// // Rejects trailing hyphen
+/// assert_eq!(
+///     "example-".parse::<DomainComponent>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"-\", code: Eof }"
+/// );
+///
+/// // Rejects special characters
+/// assert_eq!(
+///     "_invalid".parse::<DomainComponent>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"_invalid\", code: TakeWhile1 }"
+/// );
+/// assert_eq!(
+///     "@invalid".parse::<DomainComponent>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"@invalid\", code: TakeWhile1 }"
+/// );
 /// ```
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct DomainComponent(String);
@@ -114,51 +166,24 @@ impl DomainComponent {
     }
 }
 
+impl AsRef<str> for DomainComponent {
+    fn as_ref(&self) -> &str {
+        &self.0
+    }
+}
+
 impl Parse for DomainComponent {
     fn parse(input: &str) -> IResult<&str, Self> {
         map(
             recognize(pair(
-                take_while_m_n(1, 1, |character: char| character.is_ascii_alphanumeric()),
-                take_while(|character: char| character.is_ascii_alphanumeric() || character == '-'),
+                take_while1(|character: char| character.is_ascii_alphanumeric()),
+                many0(pair(
+                    take_while1(|character: char| character == '-'),
+                    take_while1(|character: char| character.is_ascii_alphanumeric()),
+                )),
             )),
-            |string: &str| {
-                let trimmed = string.trim_end_matches('-');
-                Self(trimmed.to_string())
-            },
+            |string: &str| Self(string.to_string()),
         )(input)
-    }
-}
-
-#[cfg(test)]
-mod domain_component_tests {
-    use super::*;
-
-    #[test]
-    fn rejects_empty_input() {
-        assert_eq!(
-            DomainComponent::parse("").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"\", code: TakeWhileMN }"
-        );
-    }
-
-    #[test]
-    fn rejects_leading_hyphen() {
-        assert_eq!(
-            DomainComponent::parse("-example").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"-example\", code: TakeWhileMN }"
-        );
-    }
-
-    #[test]
-    fn rejects_special_characters() {
-        assert_eq!(
-            DomainComponent::parse("_invalid").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"_invalid\", code: TakeWhileMN }"
-        );
-        assert_eq!(
-            DomainComponent::parse("@invalid").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"@invalid\", code: TakeWhileMN }"
-        );
     }
 }
 
@@ -177,6 +202,18 @@ mod domain_component_tests {
 ///
 /// let name: DomainName = "ghcr.io".parse().unwrap();
 /// assert_eq!(name.to_string(), "ghcr.io");
+///
+/// // Rejects empty input
+/// assert_eq!(
+///     "".parse::<DomainName>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"\", code: TakeWhile1 }"
+/// );
+///
+/// // Rejects leading dot
+/// assert_eq!(
+///     ".example.com".parse::<DomainName>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \".example.com\", code: TakeWhile1 }"
+/// );
 /// ```
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct DomainName(Vec<DomainComponent>);
@@ -195,29 +232,7 @@ impl Parse for DomainName {
 
 impl std::fmt::Display for DomainName {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let parts: Vec<&str> = self.0.iter().map(|component| component.as_str()).collect();
-        write!(formatter, "{}", parts.join("."))
-    }
-}
-
-#[cfg(test)]
-mod domain_name_tests {
-    use super::*;
-
-    #[test]
-    fn rejects_empty_input() {
-        assert_eq!(
-            DomainName::parse("").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"\", code: TakeWhileMN }"
-        );
-    }
-
-    #[test]
-    fn rejects_leading_dot() {
-        assert_eq!(
-            DomainName::parse(".example.com").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \".example.com\", code: TakeWhileMN }"
-        );
+        write_interspersed(formatter, &self.0, ".")
     }
 }
 
@@ -233,6 +248,24 @@ mod domain_name_tests {
 ///
 /// let port: PortNumber = "8080".parse().unwrap();
 /// assert_eq!(port.value(), 8080);
+///
+/// // Rejects empty input
+/// assert_eq!(
+///     "".parse::<PortNumber>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"\", code: Digit }"
+/// );
+///
+/// // Rejects non-numeric
+/// assert_eq!(
+///     "abc".parse::<PortNumber>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"abc\", code: Digit }"
+/// );
+///
+/// // Rejects values > 65535 (u16::MAX)
+/// assert_eq!(
+///     "123456".parse::<PortNumber>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"123456\", code: Digit }"
+/// );
 /// ```
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub struct PortNumber(u16);
@@ -245,45 +278,13 @@ impl PortNumber {
 
 impl Parse for PortNumber {
     fn parse(input: &str) -> IResult<&str, Self> {
-        map(
-            verify(digit1, |string: &str| string.len() <= 5),
-            |string: &str| Self(string.parse().unwrap_or(0)),
-        )(input)
+        u16(input).map(|(remaining, value)| (remaining, Self(value)))
     }
 }
 
 impl std::fmt::Display for PortNumber {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(formatter, "{}", self.0)
-    }
-}
-
-#[cfg(test)]
-mod port_number_tests {
-    use super::*;
-
-    #[test]
-    fn rejects_empty_input() {
-        assert_eq!(
-            PortNumber::parse("").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"\", code: Digit }"
-        );
-    }
-
-    #[test]
-    fn rejects_non_numeric() {
-        assert_eq!(
-            PortNumber::parse("abc").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"abc\", code: Digit }"
-        );
-    }
-
-    #[test]
-    fn rejects_too_many_digits() {
-        assert_eq!(
-            PortNumber::parse("123456").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"123456\", code: Verify }"
-        );
     }
 }
 
@@ -303,6 +304,22 @@ mod port_number_tests {
 ///
 /// let host: Host = "[::1]".parse().unwrap();
 /// assert!(matches!(host, Host::Ipv6(_)));
+///
+/// // Rejects empty input
+/// assert_eq!(
+///     "".parse::<Host>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"\", code: TakeWhile1 }"
+/// );
+///
+/// // Rejects unclosed IPv6 bracket
+/// assert_eq!(
+///     "[::1".parse::<Host>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"[::1\", code: TakeWhile1 }"
+/// );
+///
+/// // Invalid IPv4 parses as domain name
+/// let host: Host = "999.999.999.999".parse().unwrap();
+/// assert!(matches!(host, Host::DomainName(_)));
 /// ```
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Host {
@@ -369,35 +386,6 @@ impl std::fmt::Display for Host {
     }
 }
 
-#[cfg(test)]
-mod host_tests {
-    use super::*;
-
-    #[test]
-    fn rejects_empty_input() {
-        assert_eq!(
-            Host::parse("").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"\", code: TakeWhileMN }"
-        );
-    }
-
-    #[test]
-    fn rejects_unclosed_ipv6_bracket() {
-        assert_eq!(
-            Host::parse("[::1").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"[::1\", code: TakeWhileMN }"
-        );
-    }
-
-    #[test]
-    fn rejects_invalid_ipv4() {
-        let (remaining, host) = Host::parse("999.999.999.999").unwrap();
-        // Parses as domain name, not IPv4
-        assert!(matches!(host, Host::DomainName(_)));
-        assert_eq!(remaining, "");
-    }
-}
-
 /// A domain: host with optional port number.
 ///
 /// Pattern: `host [':' port-number]`
@@ -454,6 +442,55 @@ impl std::fmt::Display for Domain {
 ///
 /// let component: PathComponent = "my_image-name.test".parse().unwrap();
 /// assert_eq!(component.as_str(), "my_image-name.test");
+///
+/// // Single hyphen separator
+/// let component: PathComponent = "foo-bar".parse().unwrap();
+/// assert_eq!(component.as_str(), "foo-bar");
+///
+/// // Multiple hyphens as separator
+/// let component: PathComponent = "foo--bar".parse().unwrap();
+/// assert_eq!(component.as_str(), "foo--bar");
+///
+/// let component: PathComponent = "foo---bar".parse().unwrap();
+/// assert_eq!(component.as_str(), "foo---bar");
+///
+/// // Double underscore separator
+/// let component: PathComponent = "foo__bar".parse().unwrap();
+/// assert_eq!(component.as_str(), "foo__bar");
+///
+/// // Dot separator
+/// let component: PathComponent = "foo.bar".parse().unwrap();
+/// assert_eq!(component.as_str(), "foo.bar");
+///
+/// // Mixed separators
+/// let component: PathComponent = "a-b_c.d__e---f".parse().unwrap();
+/// assert_eq!(component.as_str(), "a-b_c.d__e---f");
+///
+/// // Rejects empty input
+/// assert_eq!(
+///     "".parse::<PathComponent>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"\", code: TakeWhile1 }"
+/// );
+///
+/// // Rejects uppercase
+/// assert_eq!(
+///     "ALPINE".parse::<PathComponent>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"ALPINE\", code: TakeWhile1 }"
+/// );
+///
+/// // Rejects leading separator
+/// assert_eq!(
+///     "_alpine".parse::<PathComponent>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"_alpine\", code: TakeWhile1 }"
+/// );
+/// assert_eq!(
+///     ".alpine".parse::<PathComponent>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \".alpine\", code: TakeWhile1 }"
+/// );
+/// assert_eq!(
+///     "-alpine".parse::<PathComponent>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"-alpine\", code: TakeWhile1 }"
+/// );
 /// ```
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct PathComponent(String);
@@ -462,7 +499,15 @@ impl PathComponent {
     pub fn as_str(&self) -> &str {
         &self.0
     }
+}
 
+impl AsRef<str> for PathComponent {
+    fn as_ref(&self) -> &str {
+        &self.0
+    }
+}
+
+impl PathComponent {
     /// Pattern: `[a-z0-9]+`
     fn parse_alpha_numeric(input: &str) -> IResult<&str, &str> {
         take_while1(|character: char| character.is_ascii_lowercase() || character.is_ascii_digit())(
@@ -472,7 +517,7 @@ impl PathComponent {
 
     /// Pattern: `[_.]|__|[-]*`
     fn parse_separator(input: &str) -> IResult<&str, &str> {
-        alt((tag("__"), tag("_"), tag("."), recognize(many1(char('-')))))(input)
+        alt((tag("__"), tag("_"), tag("."), recognize(many0(char('-')))))(input)
     }
 }
 
@@ -494,43 +539,6 @@ impl std::fmt::Display for PathComponent {
     }
 }
 
-#[cfg(test)]
-mod path_component_tests {
-    use super::*;
-
-    #[test]
-    fn rejects_empty_input() {
-        assert_eq!(
-            PathComponent::parse("").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"\", code: TakeWhile1 }"
-        );
-    }
-
-    #[test]
-    fn rejects_uppercase() {
-        assert_eq!(
-            PathComponent::parse("ALPINE").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"ALPINE\", code: TakeWhile1 }"
-        );
-    }
-
-    #[test]
-    fn rejects_leading_separator() {
-        assert_eq!(
-            PathComponent::parse("_alpine").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"_alpine\", code: TakeWhile1 }"
-        );
-        assert_eq!(
-            PathComponent::parse(".alpine").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \".alpine\", code: TakeWhile1 }"
-        );
-        assert_eq!(
-            PathComponent::parse("-alpine").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"-alpine\", code: TakeWhile1 }"
-        );
-    }
-}
-
 /// A path (remote-name): one or more path components separated by slashes.
 ///
 /// Pattern: `path-component ['/' path-component]*`
@@ -547,6 +555,24 @@ mod path_component_tests {
 /// let path: Path = "owner/repo/subpath".parse().unwrap();
 /// assert_eq!(path.to_string(), "owner/repo/subpath");
 /// assert_eq!(path.components().len(), 3);
+///
+/// // Rejects empty input
+/// assert_eq!(
+///     "".parse::<Path>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"\", code: TakeWhile1 }"
+/// );
+///
+/// // Rejects leading slash
+/// assert_eq!(
+///     "/alpine".parse::<Path>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"/alpine\", code: TakeWhile1 }"
+/// );
+///
+/// // Double slash stops parsing (leaves remaining input)
+/// assert_eq!(
+///     "library//alpine".parse::<Path>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"//alpine\", code: Eof }"
+/// );
 /// ```
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Path(Vec<PathComponent>);
@@ -565,36 +591,7 @@ impl Parse for Path {
 
 impl std::fmt::Display for Path {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let parts: Vec<&str> = self.0.iter().map(|component| component.as_str()).collect();
-        write!(formatter, "{}", parts.join("/"))
-    }
-}
-
-#[cfg(test)]
-mod path_tests {
-    use super::*;
-
-    #[test]
-    fn rejects_empty_input() {
-        assert_eq!(
-            Path::parse("").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"\", code: TakeWhile1 }"
-        );
-    }
-
-    #[test]
-    fn rejects_leading_slash() {
-        assert_eq!(
-            Path::parse("/alpine").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"/alpine\", code: TakeWhile1 }"
-        );
-    }
-
-    #[test]
-    fn rejects_double_slash() {
-        let (remaining, path) = Path::parse("library//alpine").unwrap();
-        assert_eq!(path.to_string(), "library");
-        assert_eq!(remaining, "//alpine");
+        write_interspersed(formatter, &self.0, "/")
     }
 }
 
@@ -622,23 +619,14 @@ pub struct Name {
     pub path: Path,
 }
 
-impl Name {
-    fn looks_like_domain(string: &str) -> bool {
-        string.contains('.') || string.contains(':') || string == "localhost"
-    }
-}
-
 impl Parse for Name {
     fn parse(input: &str) -> IResult<&str, Self> {
-        // Try to parse domain followed by '/' and path
-        let domain_path_result: IResult<&str, Self> = map(
-            pair(
-                verify(
+        alt((
+            map(
+                pair(
                     |input| {
                         let (remaining, domain) = Domain::parse(input)?;
-                        if remaining.starts_with('/')
-                            && Self::looks_like_domain(&domain.to_string())
-                        {
+                        if remaining.starts_with('/') {
                             Ok((remaining, domain))
                         } else {
                             Err(nom::Err::Error(nom::error::Error::new(
@@ -647,20 +635,15 @@ impl Parse for Name {
                             )))
                         }
                     },
-                    |_: &Domain| true,
+                    preceded(char('/'), Path::parse),
                 ),
-                preceded(char('/'), Path::parse),
+                |(domain, path)| Self {
+                    domain: Some(domain),
+                    path,
+                },
             ),
-            |(domain, path)| Self {
-                domain: Some(domain),
-                path,
-            },
-        )(input);
-
-        match domain_path_result {
-            Ok(result) => Ok(result),
-            Err(_) => map(Path::parse, |path| Self { domain: None, path })(input),
-        }
+            map(Path::parse, |path| Self { domain: None, path }),
+        ))(input)
     }
 }
 
@@ -687,6 +670,28 @@ impl std::fmt::Display for Name {
 ///
 /// let tag: Tag = "v1.2.3-alpine".parse().unwrap();
 /// assert_eq!(tag.as_str(), "v1.2.3-alpine");
+///
+/// // Accepts leading underscore
+/// let tag: Tag = "_latest".parse().unwrap();
+/// assert_eq!(tag.as_str(), "_latest");
+///
+/// // Rejects empty input
+/// assert_eq!(
+///     "".parse::<Tag>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"\", code: TakeWhileMN }"
+/// );
+///
+/// // Rejects leading dot
+/// assert_eq!(
+///     ".latest".parse::<Tag>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \".latest\", code: TakeWhileMN }"
+/// );
+///
+/// // Rejects leading hyphen
+/// assert_eq!(
+///     "-latest".parse::<Tag>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"-latest\", code: TakeWhileMN }"
+/// );
 /// ```
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Tag(String);
@@ -700,20 +705,17 @@ impl Tag {
 impl Parse for Tag {
     fn parse(input: &str) -> IResult<&str, Self> {
         map(
-            verify(
-                recognize(pair(
-                    take_while_m_n(1, 1, |character: char| {
-                        character.is_ascii_alphanumeric() || character == '_'
-                    }),
-                    take_while_m_n(0, 127, |character: char| {
-                        character.is_ascii_alphanumeric()
-                            || character == '_'
-                            || character == '.'
-                            || character == '-'
-                    }),
-                )),
-                |string: &str| string.len() <= 128,
-            ),
+            recognize(pair(
+                take_while_m_n(1, 1, |character: char| {
+                    character.is_ascii_alphanumeric() || character == '_'
+                }),
+                take_while_m_n(0, 127, |character: char| {
+                    character.is_ascii_alphanumeric()
+                        || character == '_'
+                        || character == '.'
+                        || character == '-'
+                }),
+            )),
             |string: &str| Self(string.to_string()),
         )(input)
     }
@@ -728,42 +730,6 @@ impl std::fmt::Display for Tag {
 impl From<sha2::digest::Output<sha2::Sha256>> for Tag {
     fn from(hash: sha2::digest::Output<sha2::Sha256>) -> Self {
         Self(format!("{:x}", hash))
-    }
-}
-
-#[cfg(test)]
-mod tag_tests {
-    use super::*;
-
-    #[test]
-    fn rejects_empty_input() {
-        assert_eq!(
-            Tag::parse("").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"\", code: TakeWhileMN }"
-        );
-    }
-
-    #[test]
-    fn rejects_leading_dot() {
-        assert_eq!(
-            Tag::parse(".latest").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \".latest\", code: TakeWhileMN }"
-        );
-    }
-
-    #[test]
-    fn rejects_leading_hyphen() {
-        assert_eq!(
-            Tag::parse("-latest").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"-latest\", code: TakeWhileMN }"
-        );
-    }
-
-    #[test]
-    fn accepts_leading_underscore() {
-        let (remaining, tag) = Tag::parse("_latest").unwrap();
-        assert_eq!(tag.as_str(), "_latest");
-        assert_eq!(remaining, "");
     }
 }
 
@@ -835,6 +801,30 @@ impl std::fmt::Display for DigestAlgorithm {
 /// assert_eq!(digest.algorithm.as_str(), "sha256");
 /// assert_eq!(digest.hex, "0123456789abcdef0123456789abcdef");
 /// assert_eq!(digest.to_string(), "sha256:0123456789abcdef0123456789abcdef");
+///
+/// // Rejects empty input
+/// assert_eq!(
+///     "".parse::<Digest>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"\", code: TakeWhileMN }"
+/// );
+///
+/// // Rejects missing colon
+/// assert_eq!(
+///     "sha2560123456789abcdef0123456789abcdef".parse::<Digest>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"\", code: Char }"
+/// );
+///
+/// // Rejects short hex
+/// assert_eq!(
+///     "sha256:0123456789abcdef".parse::<Digest>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"0123456789abcdef\", code: Verify }"
+/// );
+///
+/// // Stops at non-hex characters (leaves remaining input, causing Eof error)
+/// assert_eq!(
+///     "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdefgh".parse::<Digest>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"gh\", code: Eof }"
+/// );
 /// ```
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Digest {
@@ -867,53 +857,6 @@ impl Parse for Digest {
 impl std::fmt::Display for Digest {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(formatter, "{}:{}", self.algorithm, self.hex)
-    }
-}
-
-#[cfg(test)]
-mod digest_tests {
-    use super::*;
-
-    #[test]
-    fn rejects_empty_input() {
-        assert_eq!(
-            Digest::parse("").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"\", code: TakeWhileMN }"
-        );
-    }
-
-    #[test]
-    fn rejects_missing_colon() {
-        assert_eq!(
-            Digest::parse("sha2560123456789abcdef0123456789abcdef")
-                .unwrap_err()
-                .to_string(),
-            "Parsing Error: Error { input: \"\", code: Char }"
-        );
-    }
-
-    #[test]
-    fn rejects_short_hex() {
-        assert_eq!(
-            Digest::parse("sha256:0123456789abcdef")
-                .unwrap_err()
-                .to_string(),
-            "Parsing Error: Error { input: \"0123456789abcdef\", code: Verify }"
-        );
-    }
-
-    #[test]
-    fn stops_at_non_hex_characters() {
-        let (remaining, digest) = Digest::parse(
-            "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdefgh",
-        )
-        .unwrap();
-        // Stops at 'g', leaving "gh" as remaining
-        assert_eq!(
-            digest.hex,
-            "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
-        );
-        assert_eq!(remaining, "gh");
     }
 }
 
@@ -951,6 +894,41 @@ mod digest_tests {
 /// let reference: Reference = input.parse().unwrap();
 /// assert_eq!(reference.to_string(), input);
 ///
+/// // Rejects empty input
+/// assert_eq!(
+///     "".parse::<Reference>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"\", code: TakeWhile1 }"
+/// );
+///
+/// // Rejects uppercase name
+/// assert_eq!(
+///     "ALPINE".parse::<Reference>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"ALPINE\", code: TakeWhile1 }"
+/// );
+///
+/// // Rejects trailing colon
+/// assert_eq!(
+///     "alpine:".parse::<Reference>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \":\", code: Eof }"
+/// );
+///
+/// // Rejects trailing @
+/// assert_eq!(
+///     "alpine@".parse::<Reference>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"@\", code: Eof }"
+/// );
+///
+/// // Rejects invalid digest
+/// assert_eq!(
+///     "alpine@sha256:tooshort".parse::<Reference>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"@sha256:tooshort\", code: Eof }"
+/// );
+///
+/// // Rejects special characters in name
+/// assert_eq!(
+///     "alpine!latest".parse::<Reference>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"!latest\", code: Eof }"
+/// );
 /// ```
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Reference {
@@ -982,58 +960,5 @@ impl std::fmt::Display for Reference {
             write!(formatter, "@{}", digest)?;
         }
         Ok(())
-    }
-}
-
-#[cfg(test)]
-mod reference_tests {
-    use super::*;
-
-    #[test]
-    fn rejects_empty_input() {
-        assert_eq!(
-            "".parse::<Reference>().unwrap_err(),
-            "parse error: Parsing Error: Error { input: \"\", code: TakeWhile1 }"
-        );
-    }
-
-    #[test]
-    fn rejects_uppercase_name() {
-        assert_eq!(
-            "ALPINE".parse::<Reference>().unwrap_err(),
-            "parse error: Parsing Error: Error { input: \"ALPINE\", code: TakeWhile1 }"
-        );
-    }
-
-    #[test]
-    fn rejects_trailing_colon() {
-        assert_eq!(
-            "alpine:".parse::<Reference>().unwrap_err(),
-            "parse error: Parsing Error: Error { input: \":\", code: Eof }"
-        );
-    }
-
-    #[test]
-    fn rejects_trailing_at() {
-        assert_eq!(
-            "alpine@".parse::<Reference>().unwrap_err(),
-            "parse error: Parsing Error: Error { input: \"@\", code: Eof }"
-        );
-    }
-
-    #[test]
-    fn rejects_invalid_digest() {
-        assert_eq!(
-            "alpine@sha256:tooshort".parse::<Reference>().unwrap_err(),
-            "parse error: Parsing Error: Error { input: \"@sha256:tooshort\", code: Eof }"
-        );
-    }
-
-    #[test]
-    fn rejects_special_characters_in_name() {
-        assert_eq!(
-            "alpine!latest".parse::<Reference>().unwrap_err(),
-            "parse error: Parsing Error: Error { input: \"!latest\", code: Eof }"
-        );
     }
 }
