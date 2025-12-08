@@ -66,7 +66,7 @@ jobs:
 
     - name: Build integrations
       if: ${{ endsWith(matrix.os.cargo_build_target, '-musl') || endsWith(matrix.os.cargo_build_target, '-darwin') }}
-      run: cargo run --release --package manager -- integrations build
+      run: target/${{ matrix.os.cargo_build_target }}/release/manager integrations build
 
     - name: Upload build artifacts
       if: ${{ !endsWith(matrix.os.cargo_build_target, '-gnu') }}
