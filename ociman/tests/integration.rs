@@ -121,14 +121,14 @@ fn test_image_build_from_instructions() {
         dockerfile,
     );
 
-    let image = definition.build();
+    let reference = definition.build();
 
     assert!(
-        backend.is_image_present(&image),
+        backend.is_image_present(&reference),
         "Image should exist after build"
     );
 
-    backend.remove_image(&image);
+    backend.remove_image(&reference);
 }
 
 #[test]
@@ -141,14 +141,14 @@ fn test_image_build_from_directory() {
         "tests/fixtures/test-build",
     );
 
-    let image = definition.build();
+    let reference = definition.build();
 
     assert!(
-        backend.is_image_present(&image),
+        backend.is_image_present(&reference),
         "Image should exist after build"
     );
 
-    backend.remove_image(&image);
+    backend.remove_image(&reference);
 }
 
 #[test]
@@ -166,15 +166,15 @@ fn test_image_build_if_absent() {
         dockerfile,
     );
 
-    let image1 = definition.build_if_absent();
-    assert!(backend.is_image_present(&image1));
+    let reference1 = definition.build_if_absent();
+    assert!(backend.is_image_present(&reference1));
 
-    let image2 = definition.build_if_absent();
-    assert!(backend.is_image_present(&image2));
+    let reference2 = definition.build_if_absent();
+    assert!(backend.is_image_present(&reference2));
 
-    assert_eq!(image1, image2);
+    assert_eq!(reference1, reference2);
 
-    backend.remove_image(&image1);
+    backend.remove_image(&reference1);
 }
 
 #[test]
@@ -200,10 +200,10 @@ fn test_image_tag() {
 fn test_image_pull_if_absent() {
     let backend = ociman::test_backend_setup!();
 
-    let image: ociman::image::Reference = "alpine:latest".parse().unwrap();
+    let reference: ociman::image::Reference = "alpine:latest".parse().unwrap();
 
-    backend.pull_image_if_absent(&image);
-    assert!(backend.is_image_present(&image));
+    backend.pull_image_if_absent(&reference);
+    assert!(backend.is_image_present(&reference));
 }
 
 #[test]
@@ -221,18 +221,18 @@ fn test_image_build_from_instructions_hash() {
         dockerfile,
     );
 
-    let image = definition.build();
-    assert!(backend.is_image_present(&image));
+    let reference = definition.build();
+    assert!(backend.is_image_present(&reference));
 
     let definition2 = ociman::BuildDefinition::from_instructions_hash(
         backend,
         "ociman-test-hash".parse().unwrap(),
         dockerfile,
     );
-    let image2 = definition2.build();
-    assert_eq!(image, image2);
+    let reference2 = definition2.build();
+    assert_eq!(reference, reference2);
 
-    backend.remove_image(&image);
+    backend.remove_image(&reference);
 }
 
 #[test]
@@ -245,18 +245,18 @@ fn test_image_build_from_directory_hash() {
         "tests/fixtures/test-build",
     );
 
-    let image1 = definition.build();
-    assert!(backend.is_image_present(&image1));
+    let reference1 = definition.build();
+    assert!(backend.is_image_present(&reference1));
 
     let definition2 = ociman::BuildDefinition::from_directory_hash(
         backend,
         "ociman-test-dir-hash".parse().unwrap(),
         "tests/fixtures/test-build",
     );
-    let image2 = definition2.build();
-    assert_eq!(image1, image2);
+    let reference2 = definition2.build();
+    assert_eq!(reference1, reference2);
 
-    backend.remove_image(&image1);
+    backend.remove_image(&reference1);
 }
 
 #[test]
@@ -276,11 +276,11 @@ fn test_image_build_with_build_args() {
     )
     .build_argument("TEST_ARG".parse().unwrap(), "test_value");
 
-    let image = definition.build();
-    assert!(backend.is_image_present(&image));
+    let reference = definition.build();
+    assert!(backend.is_image_present(&reference));
 
     // Verify the build arg was used by checking the file created during build
-    let def = test_definition(backend, image.clone())
+    let def = test_definition(backend, reference.clone())
         .entrypoint("cat")
         .arguments(["/test-output"]);
 
@@ -289,7 +289,7 @@ fn test_image_build_with_build_args() {
 
     assert!(stdout.contains("test_value"));
 
-    backend.remove_image(&image);
+    backend.remove_image(&reference);
 }
 
 #[test]
@@ -308,7 +308,7 @@ fn test_image_build_args_affect_hash() {
         dockerfile,
     )
     .build_argument("VERSION".parse().unwrap(), "1.0");
-    let image1 = definition1.build();
+    let reference1 = definition1.build();
 
     let definition2 = ociman::BuildDefinition::from_instructions_hash(
         backend,
@@ -316,10 +316,10 @@ fn test_image_build_args_affect_hash() {
         dockerfile,
     )
     .build_argument("VERSION".parse().unwrap(), "2.0");
-    let image2 = definition2.build();
+    let reference2 = definition2.build();
 
     assert_ne!(
-        image1, image2,
+        reference1, reference2,
         "Different build arguments should produce different image tags"
     );
 
@@ -329,15 +329,15 @@ fn test_image_build_args_affect_hash() {
         dockerfile,
     )
     .build_argument("VERSION".parse().unwrap(), "1.0");
-    let image3 = definition3.build();
+    let reference3 = definition3.build();
 
     assert_eq!(
-        image1, image3,
+        reference1, reference3,
         "Same build arguments should produce same image tag"
     );
 
-    backend.remove_image(&image1);
-    backend.remove_image(&image2);
+    backend.remove_image(&reference1);
+    backend.remove_image(&reference2);
 }
 
 #[test]
@@ -416,11 +416,11 @@ fn test_container_with_workdir() {
 fn test_container_commit() {
     let backend = ociman::test_backend_setup!();
 
-    let target_image: ociman::image::Reference = "ociman-test-commit:latest".parse().unwrap();
+    let target_reference: ociman::image::Reference = "ociman-test-commit:latest".parse().unwrap();
 
     // Ensure target image doesn't exist before test
-    if backend.is_image_present(&target_image) {
-        backend.remove_image(&target_image);
+    if backend.is_image_present(&target_reference) {
+        backend.remove_image(&target_reference);
     }
 
     let definition = test_definition(backend, "alpine:latest".parse().unwrap())
@@ -429,16 +429,16 @@ fn test_container_commit() {
 
     definition.with_container(|container| {
         container.exec_capture_only_stdout([], "touch", ["/committed-file"]);
-        container.commit(&target_image, true);
+        container.commit(&target_reference, true);
     });
 
     assert!(
-        backend.is_image_present(&target_image),
+        backend.is_image_present(&target_reference),
         "Committed image should exist"
     );
 
     // Verify the committed file exists in the new image
-    let verify_definition = test_definition(backend, target_image.clone())
+    let verify_definition = test_definition(backend, target_reference.clone())
         .entrypoint("ls")
         .arguments(["/committed-file"]);
 
@@ -447,7 +447,7 @@ fn test_container_commit() {
 
     assert_eq!(stdout.trim(), "/committed-file");
 
-    backend.remove_image(&target_image);
+    backend.remove_image(&target_reference);
 }
 
 #[test]
