@@ -58,6 +58,26 @@ pub(crate) trait Parse: Sized {
     fn parse(input: &str) -> IResult<&str, Self>;
 }
 
+fn write_interspersed<I, T>(
+    formatter: &mut std::fmt::Formatter<'_>,
+    items: I,
+    separator: &str,
+) -> std::fmt::Result
+where
+    I: IntoIterator<Item = T>,
+    T: AsRef<str>,
+{
+    let mut iter = items.into_iter();
+    if let Some(first) = iter.next() {
+        formatter.write_str(first.as_ref())?;
+        for item in iter {
+            formatter.write_str(separator)?;
+            formatter.write_str(item.as_ref())?;
+        }
+    }
+    Ok(())
+}
+
 macro_rules! impl_from_str {
     ($($type:ty),* $(,)?) => {
         $(
@@ -146,6 +166,12 @@ impl DomainComponent {
     }
 }
 
+impl AsRef<str> for DomainComponent {
+    fn as_ref(&self) -> &str {
+        &self.0
+    }
+}
+
 impl Parse for DomainComponent {
     fn parse(input: &str) -> IResult<&str, Self> {
         map(
@@ -206,8 +232,7 @@ impl Parse for DomainName {
 
 impl std::fmt::Display for DomainName {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let parts: Vec<&str> = self.0.iter().map(|component| component.as_str()).collect();
-        write!(formatter, "{}", parts.join("."))
+        write_interspersed(formatter, &self.0, ".")
     }
 }
 
@@ -474,7 +499,15 @@ impl PathComponent {
     pub fn as_str(&self) -> &str {
         &self.0
     }
+}
 
+impl AsRef<str> for PathComponent {
+    fn as_ref(&self) -> &str {
+        &self.0
+    }
+}
+
+impl PathComponent {
     /// Pattern: `[a-z0-9]+`
     fn parse_alpha_numeric(input: &str) -> IResult<&str, &str> {
         take_while1(|character: char| character.is_ascii_lowercase() || character.is_ascii_digit())(
@@ -558,8 +591,7 @@ impl Parse for Path {
 
 impl std::fmt::Display for Path {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let parts: Vec<&str> = self.0.iter().map(|component| component.as_str()).collect();
-        write!(formatter, "{}", parts.join("/"))
+        write_interspersed(formatter, &self.0, "/")
     }
 }
 
