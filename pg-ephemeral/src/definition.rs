@@ -1,5 +1,5 @@
 use crate::Container;
-use crate::seed::{Command, DuplicateSeedName, Seed, SeedName};
+use crate::seed::{Command, DuplicateSeedName, LoadError, LoadedSeed, Seed, SeedName};
 
 #[derive(Clone, Debug, PartialEq)]
 pub enum SslConfig {
@@ -75,7 +75,13 @@ impl Definition {
         name: SeedName,
         path: std::path::PathBuf,
     ) -> Result<Self, DuplicateSeedName> {
-        self.add_seed(name, Seed::SqlFile(path))
+        self.add_seed(name, Seed::SqlFile { path })
+    }
+
+    fn load_seeds(&self) -> impl Iterator<Item = Result<LoadedSeed, LoadError>> + '_ {
+        self.seeds
+            .iter()
+            .map(|(name, seed)| seed.load(name.clone()))
     }
 
     pub fn superuser(self, username: pg_client::Username) -> Self {
@@ -105,7 +111,7 @@ impl Definition {
         name: SeedName,
         command: Command,
     ) -> Result<Self, DuplicateSeedName> {
-        self.add_seed(name, Seed::Command(command))
+        self.add_seed(name, Seed::Command { command })
     }
 
     pub fn apply_script(
@@ -113,7 +119,12 @@ impl Definition {
         name: SeedName,
         script: impl Into<String>,
     ) -> Result<Self, DuplicateSeedName> {
-        self.add_seed(name, Seed::Script(script.into()))
+        self.add_seed(
+            name,
+            Seed::Script {
+                script: script.into(),
+            },
+        )
     }
 
     pub fn ssl_config(self, ssl_config: SslConfig) -> Self {
@@ -135,12 +146,17 @@ impl Definition {
     }
 
     pub async fn with_container<T>(&self, mut action: impl AsyncFnMut(&Container) -> T) -> T {
+        let loaded_seeds: Vec<LoadedSeed> = self
+            .load_seeds()
+            .collect::<Result<Vec<_>, _>>()
+            .unwrap_or_else(|error| panic!("{error}"));
+
         let mut db_container = Container::run(self);
 
         db_container.wait_available().await;
 
-        for seed in self.seeds.values() {
-            self.apply_seed(&db_container, seed).await
+        for loaded_seed in &loaded_seeds {
+            self.apply_loaded_seed(&db_container, loaded_seed).await
         }
 
         let result = action(&db_container).await;
@@ -180,16 +196,12 @@ impl Definition {
         .await
     }
 
-    async fn apply_seed(&self, db_container: &Container<'_>, seed: &Seed) {
-        match seed {
-            Seed::SqlFile(path) => db_container.apply_sql_file(path).await,
-            Seed::SqlFileGitRevision { path, git_revision } => {
-                db_container
-                    .apply_sql_file_git_revision(path, git_revision)
-                    .await
-            }
-            Seed::Command(command) => self.execute_command(db_container, command),
-            Seed::Script(script) => self.execute_script(db_container, script),
+    async fn apply_loaded_seed(&self, db_container: &Container<'_>, loaded_seed: &LoadedSeed) {
+        match loaded_seed {
+            LoadedSeed::SqlFile { content, .. } => db_container.apply_sql(content).await,
+            LoadedSeed::SqlFileGitRevision { content, .. } => db_container.apply_sql(content).await,
+            LoadedSeed::Command { command, .. } => self.execute_command(db_container, command),
+            LoadedSeed::Script { script, .. } => self.execute_script(db_container, script),
         }
     }
 
@@ -295,10 +307,20 @@ mod test {
         let seed_name: SeedName = "test-seed".parse().unwrap();
 
         let definition = definition
-            .add_seed(seed_name.clone(), Seed::SqlFile("file1.sql".into()))
+            .add_seed(
+                seed_name.clone(),
+                Seed::SqlFile {
+                    path: "file1.sql".into(),
+                },
+            )
             .unwrap();
 
-        let result = definition.add_seed(seed_name.clone(), Seed::SqlFile("file2.sql".into()));
+        let result = definition.add_seed(
+            seed_name.clone(),
+            Seed::SqlFile {
+                path: "file2.sql".into(),
+            },
+        );
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
     }
@@ -308,11 +330,20 @@ mod test {
         let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
 
         let definition = definition
-            .add_seed("seed1".parse().unwrap(), Seed::SqlFile("file1.sql".into()))
+            .add_seed(
+                "seed1".parse().unwrap(),
+                Seed::SqlFile {
+                    path: "file1.sql".into(),
+                },
+            )
             .unwrap();
 
-        let result =
-            definition.add_seed("seed2".parse().unwrap(), Seed::SqlFile("file2.sql".into()));
+        let result = definition.add_seed(
+            "seed2".parse().unwrap(),
+            Seed::SqlFile {
+                path: "file2.sql".into(),
+            },
+        );
 
         assert!(result.is_ok());
     }

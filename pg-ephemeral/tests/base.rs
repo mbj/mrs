@@ -294,11 +294,15 @@ fn test_config_seeds_basic() {
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
         (
             "create-users-table".parse().unwrap(),
-            pg_ephemeral::Seed::SqlFile("tests/fixtures/create_users.sql".into()),
+            pg_ephemeral::Seed::SqlFile {
+                path: "tests/fixtures/create_users.sql".into(),
+            },
         ),
         (
             "insert-test-data".parse().unwrap(),
-            pg_ephemeral::Seed::SqlFile("tests/fixtures/insert_users.sql".into()),
+            pg_ephemeral::Seed::SqlFile {
+                path: "tests/fixtures/insert_users.sql".into(),
+            },
         ),
     ]
     .into();
@@ -334,11 +338,15 @@ fn test_config_seeds_command() {
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
         (
             "setup-schema".parse().unwrap(),
-            pg_ephemeral::Seed::SqlFile("tests/fixtures/schema.sql".into()),
+            pg_ephemeral::Seed::SqlFile {
+                path: "tests/fixtures/schema.sql".into(),
+            },
         ),
         (
             "run-migration".parse().unwrap(),
-            pg_ephemeral::Seed::Command(pg_ephemeral::Command::new("migrate", ["up"])),
+            pg_ephemeral::Seed::Command {
+                command: pg_ephemeral::Command::new("migrate", ["up"]),
+            },
         ),
     ]
     .into();
@@ -368,9 +376,9 @@ fn test_config_seeds_script() {
 
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [(
         "initialize".parse().unwrap(),
-        pg_ephemeral::Seed::Script(
-            "echo 'Starting setup' && psql -c 'CREATE TABLE test (id INT)'".to_string(),
-        ),
+        pg_ephemeral::Seed::Script {
+            script: "echo 'Starting setup' && psql -c 'CREATE TABLE test (id INT)'".to_string(),
+        },
     )]
     .into();
 
@@ -409,15 +417,21 @@ fn test_config_seeds_mixed() {
     let expected_seeds: indexmap::IndexMap<pg_ephemeral::SeedName, pg_ephemeral::Seed> = [
         (
             "schema".parse().unwrap(),
-            pg_ephemeral::Seed::SqlFile("tests/fixtures/schema.sql".into()),
+            pg_ephemeral::Seed::SqlFile {
+                path: "tests/fixtures/schema.sql".into(),
+            },
         ),
         (
             "migrate".parse().unwrap(),
-            pg_ephemeral::Seed::Command(pg_ephemeral::Command::new("migrate", ["up", "--verbose"])),
+            pg_ephemeral::Seed::Command {
+                command: pg_ephemeral::Command::new("migrate", ["up", "--verbose"]),
+            },
         ),
         (
             "verify".parse().unwrap(),
-            pg_ephemeral::Seed::Script("psql -c 'SELECT COUNT(*) FROM users'".to_string()),
+            pg_ephemeral::Seed::Script {
+                script: "psql -c 'SELECT COUNT(*) FROM users'".to_string(),
+            },
         ),
     ]
     .into();
@@ -489,7 +503,9 @@ fn test_config_seeds_with_git_revision() {
         ),
         (
             "from-filesystem".parse().unwrap(),
-            pg_ephemeral::Seed::SqlFile("tests/fixtures/create_users.sql".into()),
+            pg_ephemeral::Seed::SqlFile {
+                path: "tests/fixtures/create_users.sql".into(),
+            },
         ),
     ]
     .into();

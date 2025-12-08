@@ -195,25 +195,6 @@ impl<'a> Container<'a> {
             .unwrap()
     }
 
-    pub async fn apply_sql_file(&self, path: &std::path::Path) {
-        self.apply_sql(&std::fs::read_to_string(path).unwrap())
-            .await
-    }
-
-    pub async fn apply_sql_file_git_revision(
-        &self,
-        path: &std::path::Path,
-        git_revision: impl Into<String>,
-    ) {
-        let git_revision = git_revision.into();
-        let sql = ociman::Command::new("git")
-            .argument("show")
-            .argument(format!("{git_revision}:{}", path.to_str().unwrap()))
-            .capture_only_stdout_string();
-
-        self.apply_sql(&sql).await
-    }
-
     pub async fn apply_sql(&self, sql: &str) {
         self.with_connection(async |connection| {
             log::debug!("Executing: {sql}");
