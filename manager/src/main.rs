@@ -43,7 +43,11 @@ enum AppCommand {
 #[derive(Debug, clap::Parser)]
 enum IntegrationsCommand {
     /// Build integrations for current architecture
-    Build,
+    Build {
+        /// Skip compilation (use pre-built binaries)
+        #[clap(long)]
+        no_compile: bool,
+    },
     /// Merge multi-platform gems into unified repository
     MergeGems,
     /// Test integrations (acceptance tests + unit tests + mutant)
@@ -74,8 +78,8 @@ impl App {
 impl IntegrationsCommand {
     fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
         match self {
-            Self::Build => {
-                build_integrations();
+            Self::Build { no_compile } => {
+                build_integrations(*no_compile);
                 Ok(())
             }
             Self::MergeGems => {
@@ -378,7 +382,7 @@ fn detect_target_platform() -> String {
     })
 }
 
-fn build_integrations() {
+fn build_integrations(no_compile: bool) {
     let target = detect_target_platform();
     let ruby_platform = rust_target_to_ruby_platform(&target);
     let ruby_version = ruby_version();
@@ -387,20 +391,24 @@ fn build_integrations() {
     log::info!("Ruby platform: {}", ruby_platform);
     log::info!("Version: {}", ruby_version);
 
-    let status = ociman::Command::new("cargo")
-        .arguments([
-            "build",
-            "--release",
-            "--package",
-            "pg-ephemeral",
-            "--target",
-            &target,
-        ])
-        .status_result()
-        .unwrap_or_else(|error| panic!("Failed to execute cargo build: {}", error));
+    if no_compile {
+        log::info!("Skipping compilation (--no-compile flag set)");
+    } else {
+        let status = ociman::Command::new("cargo")
+            .arguments([
+                "build",
+                "--release",
+                "--package",
+                "pg-ephemeral",
+                "--target",
+                &target,
+            ])
+            .status_result()
+            .unwrap_or_else(|error| panic!("Failed to execute cargo build: {}", error));
 
-    if !status.success() {
-        panic!("Failed to build pg-ephemeral binary");
+        if !status.success() {
+            panic!("Failed to build pg-ephemeral binary");
+        }
     }
 
     let workspace_root = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
