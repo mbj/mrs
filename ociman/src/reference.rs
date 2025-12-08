@@ -48,7 +48,7 @@ use nom::{
     IResult,
     branch::alt,
     bytes::complete::{tag, take_while, take_while_m_n, take_while1},
-    character::complete::{char, digit1},
+    character::complete::{char, digit1, u16},
     combinator::{all_consuming, map, opt, recognize, verify},
     multi::{many0, many1, separated_list1},
     sequence::{delimited, pair, preceded, tuple},
@@ -245,10 +245,7 @@ impl PortNumber {
 
 impl Parse for PortNumber {
     fn parse(input: &str) -> IResult<&str, Self> {
-        map(
-            verify(digit1, |string: &str| string.len() <= 5),
-            |string: &str| Self(string.parse().unwrap_or(0)),
-        )(input)
+        u16(input).map(|(remaining, value)| (remaining, Self(value)))
     }
 }
 
@@ -282,7 +279,7 @@ mod port_number_tests {
     fn rejects_too_many_digits() {
         assert_eq!(
             PortNumber::parse("123456").unwrap_err().to_string(),
-            "Parsing Error: Error { input: \"123456\", code: Verify }"
+            "Parsing Error: Error { input: \"123456\", code: Digit }"
         );
     }
 }
