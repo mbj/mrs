@@ -32,8 +32,6 @@ jobs:
     - if: ${{ startsWith(matrix.os.version, 'ubuntu-') }}
       run: sudo apt-get update && sudo apt-get install --yes postgresql-client
     - uses: actions/checkout@v4
-    # macOS uses static key due to hashFiles() bug:
-    # https://github.com/actions/runner-images/issues/13341
     - uses: actions/cache@v4
       with:
         path: |
@@ -43,12 +41,7 @@ jobs:
           ~/.cargo/registry/cache/
           ~/.cargo/registry/index/
           ~/.rustup
-        key: >-
-          ${{ matrix.os.version }}-build-${{ matrix.os.cargo_build_target }}-${{
-            startsWith(matrix.os.version, 'macos-')
-            && 'static-v0'
-            || hashFiles('.github/workflows/ci.yml', '**/Cargo.lock', 'rust-toolchain.toml')
-          }}
+        key: ${{ matrix.os.version }}-build-${{ matrix.os.cargo_build_target }}-${{ hashFiles('.github/workflows/ci.yml', '**/Cargo.lock', 'rust-toolchain.toml') }}
 
     - name: Run fmt
       run: cargo fmt --check
