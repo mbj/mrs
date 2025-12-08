@@ -622,33 +622,22 @@ pub struct Name {
     pub path: Path,
 }
 
-impl Name {
-    fn looks_like_domain(string: &str) -> bool {
-        string.contains('.') || string.contains(':') || string == "localhost"
-    }
-}
-
 impl Parse for Name {
     fn parse(input: &str) -> IResult<&str, Self> {
         // Try to parse domain followed by '/' and path
         let domain_path_result: IResult<&str, Self> = map(
             pair(
-                verify(
-                    |input| {
-                        let (remaining, domain) = Domain::parse(input)?;
-                        if remaining.starts_with('/')
-                            && Self::looks_like_domain(&domain.to_string())
-                        {
-                            Ok((remaining, domain))
-                        } else {
-                            Err(nom::Err::Error(nom::error::Error::new(
-                                input,
-                                nom::error::ErrorKind::Verify,
-                            )))
-                        }
-                    },
-                    |_: &Domain| true,
-                ),
+                |input| {
+                    let (remaining, domain) = Domain::parse(input)?;
+                    if remaining.starts_with('/') {
+                        Ok((remaining, domain))
+                    } else {
+                        Err(nom::Err::Error(nom::error::Error::new(
+                            input,
+                            nom::error::ErrorKind::Verify,
+                        )))
+                    }
+                },
                 preceded(char('/'), Path::parse),
             ),
             |(domain, path)| Self {
