@@ -556,32 +556,29 @@ pub struct Name {
 
 impl Parse for Name {
     fn parse(input: &str) -> IResult<&str, Self> {
-        // Try to parse domain followed by '/' and path
-        let domain_path_result: IResult<&str, Self> = map(
-            pair(
-                |input| {
-                    let (remaining, domain) = Domain::parse(input)?;
-                    if remaining.starts_with('/') {
-                        Ok((remaining, domain))
-                    } else {
-                        Err(nom::Err::Error(nom::error::Error::new(
-                            input,
-                            nom::error::ErrorKind::Verify,
-                        )))
-                    }
+        alt((
+            map(
+                pair(
+                    |input| {
+                        let (remaining, domain) = Domain::parse(input)?;
+                        if remaining.starts_with('/') {
+                            Ok((remaining, domain))
+                        } else {
+                            Err(nom::Err::Error(nom::error::Error::new(
+                                input,
+                                nom::error::ErrorKind::Verify,
+                            )))
+                        }
+                    },
+                    preceded(char('/'), Path::parse),
+                ),
+                |(domain, path)| Self {
+                    domain: Some(domain),
+                    path,
                 },
-                preceded(char('/'), Path::parse),
             ),
-            |(domain, path)| Self {
-                domain: Some(domain),
-                path,
-            },
-        )(input);
-
-        match domain_path_result {
-            Ok(result) => Ok(result),
-            Err(_) => map(Path::parse, |path| Self { domain: None, path })(input),
-        }
+            map(Path::parse, |path| Self { domain: None, path }),
+        ))(input)
     }
 }
 
