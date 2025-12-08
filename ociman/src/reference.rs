@@ -236,7 +236,7 @@ impl std::fmt::Display for DomainName {
 ///     "parse error: Parsing Error: Error { input: \"abc\", code: Digit }"
 /// );
 ///
-/// // Rejects too many digits (overflow)
+/// // Rejects values > 65535 (u16::MAX)
 /// assert_eq!(
 ///     "123456".parse::<PortNumber>().unwrap_err(),
 ///     "parse error: Parsing Error: Error { input: \"123456\", code: Digit }"
