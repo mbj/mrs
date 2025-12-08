@@ -1,5 +1,13 @@
 use std::collections::BTreeMap;
 
+use nom::{
+    IResult, Parser,
+    bytes::complete::{tag, take_while, take_while1},
+    combinator::{all_consuming, recognize},
+    multi::many0,
+    sequence::{pair, preceded},
+};
+
 #[derive(Debug, serde::Deserialize)]
 #[serde(deny_unknown_fields, rename_all = "PascalCase")]
 pub struct ResourceSpecification<'a> {
@@ -33,12 +41,35 @@ pub type ResourceTypePropertiesMap<'a> =
 
 pub type PropertyTypePropertiesMap<'a> = BTreeMap<PropertyName<'a>, PropertyTypeProperty<'a>>;
 
+/// Parser for base identifier pattern: `[a-zA-Z]+[a-zA-Z0-9]*`
+fn parse_base_identifier(input: &str) -> IResult<&str, &str> {
+    recognize(pair(
+        take_while1(|char: char| char.is_ascii_alphabetic()),
+        take_while(|char: char| char.is_ascii_alphanumeric()),
+    ))
+    .parse(input)
+}
+
+/// Parser for `::identifier` segment
+fn parse_colons_identifier(input: &str) -> IResult<&str, &str> {
+    preceded(tag("::"), parse_base_identifier).parse(input)
+}
+
+/// Parser for resource attribute name pattern: `identifier(.identifier)*`
+fn parse_resource_attribute_name(input: &str) -> IResult<&str, &str> {
+    recognize(pair(
+        parse_base_identifier,
+        many0(preceded(tag("."), parse_base_identifier)),
+    ))
+    .parse(input)
+}
+
 /// Macro to generate `std::str::FromStr` for zero copy str wrapped newtypes
 macro_rules! identifier {
     ($struct: ident) => {
-        identifier!($struct, r#"[a-zA-Z]+[a-zA-Z0-9]*"#);
+        identifier!($struct, parse_base_identifier);
     };
-    ($struct: ident, $pattern: literal) => {
+    ($struct: ident, $parser: ident) => {
         #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd, serde::Deserialize)]
         pub struct $struct<'a>(pub &'a str);
 
@@ -46,9 +77,6 @@ macro_rules! identifier {
             pub fn as_str(&self) -> &str {
                 self.0
             }
-
-            #[allow(unused)]
-            const BASE_PATTERN: &'static str = $pattern;
         }
 
         impl AsRef<str> for $struct<'_> {
@@ -73,21 +101,16 @@ macro_rules! identifier {
                     );
                 }
 
-                let syntax = concat!(r#"\A"#, $pattern, r#"\z"#);
-
-                let pattern = regex_lite::Regex::new(syntax).unwrap();
-
-                if !pattern.is_match(value) {
-                    return Err(format!(
+                match all_consuming($parser).parse(value) {
+                    Ok((_remaining, _parsed)) => Ok(Self(value)),
+                    Err(_error) => Err(format!(
                         concat!(
                             stringify!($struct),
-                            " does not match pattern: {}, value: {}",
+                            " does not match expected pattern, value: {}"
                         ),
-                        syntax, value
-                    ));
+                        value
+                    )),
                 }
-
-                Ok(Self(value))
             }
         }
 
@@ -99,10 +122,7 @@ macro_rules! identifier {
     };
 }
 
-identifier!(
-    ResourceAttributeName,
-    r#"\A[a-zA-Z]+[a-zA-Z0-9]*(\.[a-zA-Z]+[a-zA-Z0-9]*)*\z"#
-);
+identifier!(ResourceAttributeName, parse_resource_attribute_name);
 identifier!(ResourceName);
 identifier!(ResourceTypePropertyName);
 identifier!(ServiceName);
@@ -183,24 +203,22 @@ impl std::fmt::Display for ServiceIdentifier<'_> {
     }
 }
 
+fn parse_service_identifier(input: &str) -> IResult<&str, ServiceIdentifier<'_>> {
+    pair(parse_base_identifier, parse_colons_identifier)
+        .map(|(vendor_name, service_name)| ServiceIdentifier {
+            vendor_name: VendorName(vendor_name),
+            service_name: ServiceName(service_name),
+        })
+        .parse(input)
+}
+
 impl<'a> std::convert::TryFrom<&'a str> for ServiceIdentifier<'a> {
     type Error = String;
 
     fn try_from(value: &'a str) -> Result<Self, Self::Error> {
-        let pattern = regex_lite::Regex::new(&format!(
-            r#"\A(?<vendor_name>{})::(?<service_name>{})\z"#,
-            VendorName::BASE_PATTERN,
-            ServiceName::BASE_PATTERN,
-        ))
-        .unwrap();
-
-        if let Some(captures) = pattern.captures(value) {
-            Ok(ServiceIdentifier {
-                vendor_name: VendorName(captures.name("vendor_name").unwrap().as_str()),
-                service_name: ServiceName(captures.name("service_name").unwrap().as_str()),
-            })
-        } else {
-            Err(format!("Invalid value: {value}"))
+        match all_consuming(parse_service_identifier).parse(value) {
+            Ok((_remaining, service_identifier)) => Ok(service_identifier),
+            Err(_error) => Err(format!("Invalid value: {value}")),
         }
     }
 }
@@ -231,28 +249,22 @@ impl quote::ToTokens for ResourceTypeName<'_> {
     }
 }
 
+fn parse_resource_type_name(input: &str) -> IResult<&str, ResourceTypeName<'_>> {
+    pair(parse_service_identifier, parse_colons_identifier)
+        .map(|(service, resource_name)| ResourceTypeName {
+            service,
+            resource_name: ResourceName(resource_name),
+        })
+        .parse(input)
+}
+
 impl<'a> std::convert::TryFrom<&'a str> for ResourceTypeName<'a> {
     type Error = String;
 
     fn try_from(value: &'a str) -> Result<Self, Self::Error> {
-        let pattern = regex_lite::Regex::new(&format!(
-            r#"\A(?<vendor_name>{})::(?<service_name>{})::(?<resource_name>{})\z"#,
-            VendorName::BASE_PATTERN,
-            ServiceName::BASE_PATTERN,
-            ResourceName::BASE_PATTERN,
-        ))
-        .unwrap();
-
-        if let Some(captures) = pattern.captures(value) {
-            Ok(ResourceTypeName {
-                service: ServiceIdentifier {
-                    vendor_name: VendorName(captures.name("vendor_name").unwrap().as_str()),
-                    service_name: ServiceName(captures.name("service_name").unwrap().as_str()),
-                },
-                resource_name: ResourceName(captures.name("resource_name").unwrap().as_str()),
-            })
-        } else {
-            Err(format!("Invalid value: {value}"))
+        match all_consuming(parse_resource_type_name).parse(value) {
+            Ok((_remaining, resource_type_name)) => Ok(resource_type_name),
+            Err(_error) => Err(format!("Invalid value: {value}")),
         }
     }
 }
@@ -291,6 +303,20 @@ impl std::fmt::Display for PropertyTypeName<'_> {
     }
 }
 
+fn parse_resource_property_type_name(input: &str) -> IResult<&str, ResourcePropertyTypeName<'_>> {
+    pair(
+        parse_resource_type_name,
+        preceded(tag("."), parse_base_identifier),
+    )
+    .map(|(resource_type, property_name)| ResourcePropertyTypeName {
+        vendor_name: resource_type.service.vendor_name,
+        service_name: resource_type.service.service_name,
+        resource_name: resource_type.resource_name,
+        property_name: PropertyName(property_name),
+    })
+    .parse(input)
+}
+
 impl<'a> std::convert::TryFrom<&'a str> for PropertyTypeName<'a> {
     type Error = String;
 
@@ -298,30 +324,11 @@ impl<'a> std::convert::TryFrom<&'a str> for PropertyTypeName<'a> {
         if value == "Tag" {
             Ok(PropertyTypeName::Tag)
         } else {
-            let pattern = regex_lite::Regex::new(&format!(
-                r#"\A(?<vendor_name>{})::(?<service_name>{})::(?<resource_name>{})\.(?<property_name>{})\z"#,
-                VendorName::BASE_PATTERN,
-                ServiceName::BASE_PATTERN,
-                ResourceName::BASE_PATTERN,
-                PropertyName::BASE_PATTERN
-            ))
-            .unwrap();
-
-            if let Some(captures) = pattern.captures(value) {
-                Ok(PropertyTypeName::PropertyTypeName(
-                    ResourcePropertyTypeName {
-                        vendor_name: VendorName(captures.name("vendor_name").unwrap().as_str()),
-                        service_name: ServiceName(captures.name("service_name").unwrap().as_str()),
-                        resource_name: ResourceName(
-                            captures.name("resource_name").unwrap().as_str(),
-                        ),
-                        property_name: PropertyName(
-                            captures.name("property_name").unwrap().as_str(),
-                        ),
-                    },
-                ))
-            } else {
-                Err(format!("Invalid value: {value}"))
+            match all_consuming(parse_resource_property_type_name).parse(value) {
+                Ok((_remaining, resource_property_type_name)) => Ok(
+                    PropertyTypeName::PropertyTypeName(resource_property_type_name),
+                ),
+                Err(_error) => Err(format!("Invalid value: {value}")),
             }
         }
     }
