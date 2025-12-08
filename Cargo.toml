@@ -28,7 +28,8 @@ http = "1.3"
 indoc = "2"
 log = "0.4"
 mmigration = { path = "mmigration" }
-nom = "7.1"
+nom = "8"
+nom-language = "0.1"
 ociman = { version = "0.0.1-pre1", path = "ociman" }
 pg-client = { version = "0.0.1-pre1", path = "pg-client" }
 pg-ephemeral = { version = "0.0.1-pre2", path = "pg-ephemeral" }
