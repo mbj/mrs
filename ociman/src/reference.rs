@@ -105,26 +105,36 @@ impl_from_str!(
 /// let component: DomainComponent = "my-registry".parse().unwrap();
 /// assert_eq!(component.as_str(), "my-registry");
 ///
+/// // Multiple consecutive hyphens allowed between alphanumerics
+/// let component: DomainComponent = "my--registry".parse().unwrap();
+/// assert_eq!(component.as_str(), "my--registry");
+///
 /// // Rejects empty input
 /// assert_eq!(
 ///     "".parse::<DomainComponent>().unwrap_err(),
-///     "parse error: Parsing Error: Error { input: \"\", code: TakeWhileMN }"
+///     "parse error: Parsing Error: Error { input: \"\", code: TakeWhile1 }"
 /// );
 ///
 /// // Rejects leading hyphen
 /// assert_eq!(
 ///     "-example".parse::<DomainComponent>().unwrap_err(),
-///     "parse error: Parsing Error: Error { input: \"-example\", code: TakeWhileMN }"
+///     "parse error: Parsing Error: Error { input: \"-example\", code: TakeWhile1 }"
+/// );
+///
+/// // Rejects trailing hyphen
+/// assert_eq!(
+///     "example-".parse::<DomainComponent>().unwrap_err(),
+///     "parse error: Parsing Error: Error { input: \"-\", code: Eof }"
 /// );
 ///
 /// // Rejects special characters
 /// assert_eq!(
 ///     "_invalid".parse::<DomainComponent>().unwrap_err(),
-///     "parse error: Parsing Error: Error { input: \"_invalid\", code: TakeWhileMN }"
+///     "parse error: Parsing Error: Error { input: \"_invalid\", code: TakeWhile1 }"
 /// );
 /// assert_eq!(
 ///     "@invalid".parse::<DomainComponent>().unwrap_err(),
-///     "parse error: Parsing Error: Error { input: \"@invalid\", code: TakeWhileMN }"
+///     "parse error: Parsing Error: Error { input: \"@invalid\", code: TakeWhile1 }"
 /// );
 /// ```
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -140,13 +150,13 @@ impl Parse for DomainComponent {
     fn parse(input: &str) -> IResult<&str, Self> {
         map(
             recognize(pair(
-                take_while_m_n(1, 1, |character: char| character.is_ascii_alphanumeric()),
-                take_while(|character: char| character.is_ascii_alphanumeric() || character == '-'),
+                take_while1(|character: char| character.is_ascii_alphanumeric()),
+                many0(pair(
+                    take_while1(|character: char| character == '-'),
+                    take_while1(|character: char| character.is_ascii_alphanumeric()),
+                )),
             )),
-            |string: &str| {
-                let trimmed = string.trim_end_matches('-');
-                Self(trimmed.to_string())
-            },
+            |string: &str| Self(string.to_string()),
         )(input)
     }
 }
@@ -170,13 +180,13 @@ impl Parse for DomainComponent {
 /// // Rejects empty input
 /// assert_eq!(
 ///     "".parse::<DomainName>().unwrap_err(),
-///     "parse error: Parsing Error: Error { input: \"\", code: TakeWhileMN }"
+///     "parse error: Parsing Error: Error { input: \"\", code: TakeWhile1 }"
 /// );
 ///
 /// // Rejects leading dot
 /// assert_eq!(
 ///     ".example.com".parse::<DomainName>().unwrap_err(),
-///     "parse error: Parsing Error: Error { input: \".example.com\", code: TakeWhileMN }"
+///     "parse error: Parsing Error: Error { input: \".example.com\", code: TakeWhile1 }"
 /// );
 /// ```
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -273,13 +283,13 @@ impl std::fmt::Display for PortNumber {
 /// // Rejects empty input
 /// assert_eq!(
 ///     "".parse::<Host>().unwrap_err(),
-///     "parse error: Parsing Error: Error { input: \"\", code: TakeWhileMN }"
+///     "parse error: Parsing Error: Error { input: \"\", code: TakeWhile1 }"
 /// );
 ///
 /// // Rejects unclosed IPv6 bracket
 /// assert_eq!(
 ///     "[::1".parse::<Host>().unwrap_err(),
-///     "parse error: Parsing Error: Error { input: \"[::1\", code: TakeWhileMN }"
+///     "parse error: Parsing Error: Error { input: \"[::1\", code: TakeWhile1 }"
 /// );
 ///
 /// // Invalid IPv4 parses as domain name
