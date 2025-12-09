@@ -66,5 +66,5 @@ opt-level = "z"
 lto = true
 # Reduce number of codegen units to improve optimization (at cost of compile time)
 codegen-units = 1
-# Strip debug symbols from binary (backtraces preserved via panic unwinding)
-strip = true
+# Strip DWARF debug info but keep symbol names for backtraces
+strip = "debuginfo"
