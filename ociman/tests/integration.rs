@@ -61,6 +61,35 @@ fn test_container_exec() {
 }
 
 #[test]
+fn test_container_exec_status_success() {
+    let backend = ociman::test_backend_setup!();
+
+    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    definition.with_container(|container| {
+        let status = container.exec_status([], "true", [] as [&str; 0]);
+        assert!(status.success());
+    });
+}
+
+#[test]
+fn test_container_exec_status_failure() {
+    let backend = ociman::test_backend_setup!();
+
+    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    definition.with_container(|container| {
+        let status = container.exec_status([], "false", [] as [&str; 0]);
+        assert!(!status.success());
+        assert_eq!(status.code(), Some(1));
+    });
+}
+
+#[test]
 fn test_read_host_tcp_port() {
     let backend = ociman::test_backend_setup!();
 
