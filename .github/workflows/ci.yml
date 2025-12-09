@@ -44,19 +44,19 @@ jobs:
         key: ${{ matrix.os.version }}-build-${{ matrix.os.cargo_build_target }}-${{ hashFiles('.github/workflows/ci.yml', '**/Cargo.lock', 'rust-toolchain.toml') }}
 
     - name: Run fmt
-      run: cargo fmt --check
+      run: cargo --verbose fmt --check
 
     - name: Build all targets
-      run: cargo build --all-targets --release
+      run: cargo --verbose build --all-targets --release
 
     - name: Run clippy
-      run: cargo clippy --release
+      run: cargo --verbose clippy --release
 
     - name: Run tests
       run: |
-        cargo test --release
+        cargo --verbose test --release
         # Podman on GH actions is old <5.x cannot deal corectly with concurrent access to overlay storage.
-        OCIMAN_BACKEND=podman cargo test --release --package ociman -- --test-threads=1
+        OCIMAN_BACKEND=podman cargo --verbose test --release --package ociman -- --test-threads=1
 
     - name: Set up Ruby 3.4 for macOS gem build
       if: ${{ endsWith(matrix.os.cargo_build_target, '-darwin') }}
