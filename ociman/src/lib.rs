@@ -551,7 +551,7 @@ impl Definition {
         let stdout = self.clone().detach().run_output();
 
         Container {
-            backend: self.backend,
+            backend: self.backend.clone(),
             id: ContainerId::try_from(strip_nl_end(&stdout)).unwrap(),
             stopped: false,
             removed: false,
@@ -743,11 +743,19 @@ impl Container {
     }
 
     pub fn commit(&self, reference: &image::Reference, pause: bool) {
-        let pause_argument = match (self.backend, pause) {
-            (Backend::Docker, true) => None,
-            (Backend::Docker, false) => Some("--no-pause"),
-            (Backend::Podman, true) => Some("--pause"),
-            (Backend::Podman, false) => None,
+        let pause_argument = match (&self.backend, pause) {
+            (Backend::Docker { .. }, true) => None,
+            (Backend::Docker { version }, false) => {
+                // Docker 29.0 replaced --pause with --no-pause
+                // https://docs.docker.com/engine/release-notes/29/
+                if version.major >= 29 {
+                    Some("--no-pause")
+                } else {
+                    Some("--pause=false")
+                }
+            }
+            (Backend::Podman { .. }, true) => Some("--pause"),
+            (Backend::Podman { .. }, false) => None,
         };
 
         self.backend_command()

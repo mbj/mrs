@@ -3,17 +3,17 @@ use indoc::indoc;
 /// Helper function to create a Definition with .remove() automatically set
 /// to prevent container leaks in tests.
 fn test_definition(
-    backend: ociman::Backend,
+    backend: &ociman::Backend,
     reference: ociman::image::Reference,
 ) -> ociman::Definition {
-    ociman::Definition::new(backend, reference).remove()
+    ociman::Definition::new(backend.clone(), reference).remove()
 }
 
 #[test]
 fn test_hello_world() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, "alpine:latest".parse().unwrap())
+    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
         .entrypoint("echo")
         .argument("Hello, World!");
 
@@ -33,7 +33,7 @@ fn test_backend_autodetect() {
 fn test_container_with_env_vars() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, "alpine:latest".parse().unwrap())
+    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
         .entrypoint("sh")
         .arguments(["-c", "echo $TEST_VAR"])
         .environment_variable("TEST_VAR", "test_value");
@@ -48,7 +48,7 @@ fn test_container_with_env_vars() {
 fn test_container_exec() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, "alpine:latest".parse().unwrap())
+    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
@@ -64,7 +64,7 @@ fn test_container_exec() {
 fn test_read_host_tcp_port() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, "alpine:latest".parse().unwrap())
+    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
         .entrypoint("sh".to_string())
         .arguments(vec![
             "-c".to_string(),
@@ -85,7 +85,7 @@ fn test_read_host_tcp_port() {
 fn test_read_host_tcp_port_not_published() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, "alpine:latest".parse().unwrap())
+    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
@@ -116,7 +116,7 @@ fn test_image_build_from_instructions() {
     "};
 
     let definition = ociman::BuildDefinition::from_instructions(
-        backend,
+        &backend,
         "ociman-test-instructions:latest".parse().unwrap(),
         dockerfile,
     );
@@ -136,7 +136,7 @@ fn test_image_build_from_directory() {
     let backend = ociman::test_backend_setup!();
 
     let definition = ociman::BuildDefinition::from_directory(
-        backend,
+        &backend,
         "ociman-test-directory:latest".parse().unwrap(),
         "tests/fixtures/test-build",
     );
@@ -161,7 +161,7 @@ fn test_image_build_if_absent() {
     "};
 
     let definition = ociman::BuildDefinition::from_instructions(
-        backend,
+        &backend,
         "ociman-test-if-absent:latest".parse().unwrap(),
         dockerfile,
     );
@@ -216,7 +216,7 @@ fn test_image_build_from_instructions_hash() {
     "};
 
     let definition = ociman::BuildDefinition::from_instructions_hash(
-        backend,
+        &backend,
         "ociman-test-hash".parse().unwrap(),
         dockerfile,
     );
@@ -225,7 +225,7 @@ fn test_image_build_from_instructions_hash() {
     assert!(backend.is_image_present(&reference));
 
     let definition2 = ociman::BuildDefinition::from_instructions_hash(
-        backend,
+        &backend,
         "ociman-test-hash".parse().unwrap(),
         dockerfile,
     );
@@ -240,7 +240,7 @@ fn test_image_build_from_directory_hash() {
     let backend = ociman::test_backend_setup!();
 
     let definition = ociman::BuildDefinition::from_directory_hash(
-        backend,
+        &backend,
         "ociman-test-dir-hash".parse().unwrap(),
         "tests/fixtures/test-build",
     );
@@ -249,7 +249,7 @@ fn test_image_build_from_directory_hash() {
     assert!(backend.is_image_present(&reference1));
 
     let definition2 = ociman::BuildDefinition::from_directory_hash(
-        backend,
+        &backend,
         "ociman-test-dir-hash".parse().unwrap(),
         "tests/fixtures/test-build",
     );
@@ -270,7 +270,7 @@ fn test_image_build_with_build_args() {
     "};
 
     let definition = ociman::BuildDefinition::from_instructions(
-        backend,
+        &backend,
         "ociman-test-build-args:latest".parse().unwrap(),
         dockerfile,
     )
@@ -280,7 +280,7 @@ fn test_image_build_with_build_args() {
     assert!(backend.is_image_present(&reference));
 
     // Verify the build arg was used by checking the file created during build
-    let def = test_definition(backend, reference.clone())
+    let def = test_definition(&backend, reference.clone())
         .entrypoint("cat")
         .arguments(["/test-output"]);
 
@@ -303,7 +303,7 @@ fn test_image_build_args_affect_hash() {
     "};
 
     let definition1 = ociman::BuildDefinition::from_instructions_hash(
-        backend,
+        &backend,
         "ociman-test-args-hash".parse().unwrap(),
         dockerfile,
     )
@@ -311,7 +311,7 @@ fn test_image_build_args_affect_hash() {
     let reference1 = definition1.build();
 
     let definition2 = ociman::BuildDefinition::from_instructions_hash(
-        backend,
+        &backend,
         "ociman-test-args-hash".parse().unwrap(),
         dockerfile,
     )
@@ -324,7 +324,7 @@ fn test_image_build_args_affect_hash() {
     );
 
     let definition3 = ociman::BuildDefinition::from_instructions_hash(
-        backend,
+        &backend,
         "ociman-test-args-hash".parse().unwrap(),
         dockerfile,
     )
@@ -359,7 +359,7 @@ fn test_build_argument_key_cannot_contain_equals() {
 fn test_run_status_with_successful_exit() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, "alpine:latest".parse().unwrap()).entrypoint("true");
+    let definition = test_definition(&backend, "alpine:latest".parse().unwrap()).entrypoint("true");
 
     let status = definition.run_status();
     assert!(status.success());
@@ -369,7 +369,8 @@ fn test_run_status_with_successful_exit() {
 fn test_run_status_with_nonzero_exit() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, "alpine:latest".parse().unwrap()).entrypoint("false");
+    let definition =
+        test_definition(&backend, "alpine:latest".parse().unwrap()).entrypoint("false");
 
     let status = definition.run_status();
     assert!(!status.success());
@@ -380,7 +381,7 @@ fn test_run_status_with_nonzero_exit() {
 fn test_run_status_success_with_successful_exit() {
     let backend = ociman::test_backend_setup!();
 
-    test_definition(backend, "alpine:latest".parse().unwrap())
+    test_definition(&backend, "alpine:latest".parse().unwrap())
         .entrypoint("true")
         .run_status_success();
 }
@@ -393,7 +394,7 @@ fn test_run_status_success_with_successful_exit() {
 fn test_run_status_success_with_nonzero_exit() {
     let backend = ociman::test_backend_setup!();
 
-    test_definition(backend, "alpine:latest".parse().unwrap())
+    test_definition(&backend, "alpine:latest".parse().unwrap())
         .entrypoint("false")
         .run_status_success();
 }
@@ -402,7 +403,7 @@ fn test_run_status_success_with_nonzero_exit() {
 fn test_container_with_workdir() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = test_definition(backend, "alpine:latest".parse().unwrap())
+    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
         .entrypoint("pwd")
         .workdir("/tmp");
 
@@ -423,7 +424,7 @@ fn test_container_commit() {
         backend.remove_image(&target_reference);
     }
 
-    let definition = test_definition(backend, "alpine:latest".parse().unwrap())
+    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
@@ -438,7 +439,7 @@ fn test_container_commit() {
     );
 
     // Verify the committed file exists in the new image
-    let verify_definition = test_definition(backend, target_reference.clone())
+    let verify_definition = test_definition(&backend, target_reference.clone())
         .entrypoint("ls")
         .arguments(["/committed-file"]);
 
@@ -455,7 +456,7 @@ fn test_container_remove_on_drop() {
     let backend = ociman::test_backend_setup!();
 
     // Create a container with stop_on_drop and remove_on_drop but WITHOUT --rm flag
-    let definition = ociman::Definition::new(backend, "alpine:latest".parse().unwrap())
+    let definition = ociman::Definition::new(backend.clone(), "alpine:latest".parse().unwrap())
         .stop_on_drop()
         .remove_on_drop()
         .entrypoint("sh")
@@ -494,7 +495,7 @@ fn test_container_remove_on_drop() {
 fn test_container_stop_on_drop() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = ociman::Definition::new(backend, "alpine:latest".parse().unwrap())
+    let definition = ociman::Definition::new(backend.clone(), "alpine:latest".parse().unwrap())
         .stop_on_drop()
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
@@ -541,7 +542,7 @@ fn test_container_without_stop_on_drop() {
     let backend = ociman::test_backend_setup!();
 
     // Create a container WITHOUT stop_on_drop (default)
-    let definition = ociman::Definition::new(backend, "alpine:latest".parse().unwrap())
+    let definition = ociman::Definition::new(backend.clone(), "alpine:latest".parse().unwrap())
         .entrypoint("sh")
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 

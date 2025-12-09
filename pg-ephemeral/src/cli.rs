@@ -46,7 +46,7 @@ pub struct App {
     /// first based on env variable OCIMAN_BACKEND, then on installed tools.
     /// If the autodetection fails exits with an error.
     #[arg(long)]
-    backend: Option<ociman::Backend>,
+    backend: Option<ociman::backend::Selection>,
     /// Overwrite image
     #[arg(long)]
     image: Option<crate::image::Image>,
@@ -205,26 +205,36 @@ impl Command {
                 }
             }
             Self::ContainerPsql { instance } => {
-                let definition = Self::get_instance(instance_map, instance);
+                let definition = Self::get_instance(instance_map, instance)
+                    .definition()
+                    .unwrap();
                 definition.with_container(container_psql).await
             }
             Self::ContainerSchemaDump { instance } => {
-                let definition = Self::get_instance(instance_map, instance);
+                let definition = Self::get_instance(instance_map, instance)
+                    .definition()
+                    .unwrap();
                 definition.with_container(container_schema_dump).await
             }
             Self::ContainerShell { instance } => {
-                let definition = Self::get_instance(instance_map, instance);
+                let definition = Self::get_instance(instance_map, instance)
+                    .definition()
+                    .unwrap();
                 definition.with_container(container_shell).await
             }
             Self::IntegrationServer {
                 instance,
                 protocol: _,
             } => {
-                let definition = Self::get_instance(instance_map, instance);
+                let definition = Self::get_instance(instance_map, instance)
+                    .definition()
+                    .unwrap();
                 definition.run_integration_server().await
             }
             Self::Psql { instance } => {
-                let definition = Self::get_instance(instance_map, instance);
+                let definition = Self::get_instance(instance_map, instance)
+                    .definition()
+                    .unwrap();
                 definition.with_container(host_psql).await
             }
             Self::RunEnv {
@@ -232,7 +242,9 @@ impl Command {
                 command,
                 arguments,
             } => {
-                let definition = Self::get_instance(instance_map, instance);
+                let definition = Self::get_instance(instance_map, instance)
+                    .definition()
+                    .unwrap();
                 definition
                     .with_container(async |container| {
                         host_command(container, command, arguments).await
@@ -254,12 +266,12 @@ impl Command {
     fn get_instance<'a>(
         instance_map: &'a InstanceMap,
         instance: &Option<InstanceName>,
-    ) -> &'a crate::definition::Definition {
+    ) -> &'a crate::config::Instance {
         let instance_name = instance.clone().unwrap_or_default();
 
         match instance_map.get(&instance_name) {
             None => panic!("Unknown instance: {instance_name}"),
-            Some(definition) => definition,
+            Some(instance) => instance,
         }
     }
 }

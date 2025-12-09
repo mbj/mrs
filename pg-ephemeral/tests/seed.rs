@@ -34,14 +34,9 @@ async fn assert_environment_matches(
 
 #[tokio::test]
 async fn test_command_seed_receives_environment() {
-    if ociman::testing::platform_not_supported() {
-        return;
-    }
+    let backend = ociman::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(
-            pg_ephemeral::BackendSelection::Auto,
-            pg_ephemeral::Image::default(),
-        )
+    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default())
         .apply_file(
             "create-table".parse().unwrap(),
             "tests/fixtures/create_seed_env_table.sql".into(),
@@ -72,14 +67,9 @@ async fn test_command_seed_receives_environment() {
 
 #[tokio::test]
 async fn test_script_seed_receives_environment() {
-    if ociman::testing::platform_not_supported() {
-        return;
-    }
+    let backend = ociman::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(
-            pg_ephemeral::BackendSelection::Auto,
-            pg_ephemeral::Image::default(),
-        )
+    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default())
         .apply_file(
             "create-table".parse().unwrap(),
             "tests/fixtures/create_seed_env_table.sql".into(),
