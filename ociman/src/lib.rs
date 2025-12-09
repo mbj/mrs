@@ -745,7 +745,15 @@ impl Container {
     pub fn commit(&self, reference: &image::Reference, pause: bool) {
         let pause_argument = match (&self.backend, pause) {
             (Backend::Docker { .. }, true) => None,
-            (Backend::Docker { .. }, false) => Some("--no-pause"),
+            (Backend::Docker { version }, false) => {
+                // Docker 29.0 replaced --pause with --no-pause
+                // https://docs.docker.com/engine/release-notes/29/
+                if version.major >= 29 {
+                    Some("--no-pause")
+                } else {
+                    Some("--pause=false")
+                }
+            }
             (Backend::Podman { .. }, true) => Some("--pause"),
             (Backend::Podman { .. }, false) => None,
         };
