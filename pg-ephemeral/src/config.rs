@@ -1,12 +1,50 @@
 use super::InstanceName;
-use crate::definition::Definition;
+use crate::definition::{Definition, SslConfig};
 use crate::image::Image;
 use crate::seed::{Command, Seed, SeedName};
 
+#[derive(Clone, Debug, PartialEq)]
+pub struct Instance {
+    pub application_name: Option<pg_client::ApplicationName>,
+    pub backend: ociman::backend::Selection,
+    pub database: pg_client::Database,
+    pub seeds: indexmap::IndexMap<SeedName, Seed>,
+    pub ssl_config: Option<SslConfig>,
+    pub superuser: pg_client::Username,
+    pub image: Image,
+    pub cross_container_access: bool,
+}
+
+impl Instance {
+    pub fn new(backend: ociman::backend::Selection, image: Image) -> Self {
+        Self {
+            backend,
+            application_name: None,
+            seeds: indexmap::IndexMap::new(),
+            ssl_config: None,
+            superuser: pg_client::username!("postgres"),
+            database: pg_client::database!("postgres"),
+            image,
+            cross_container_access: false,
+        }
+    }
+
+    pub fn definition(&self) -> Result<Definition, ociman::backend::resolve::Error> {
+        Ok(Definition {
+            application_name: self.application_name.clone(),
+            backend: self.backend.resolve()?,
+            database: self.database.clone(),
+            seeds: self.seeds.clone(),
+            ssl_config: self.ssl_config.clone(),
+            superuser: self.superuser.clone(),
+            image: self.image.clone(),
+            cross_container_access: self.cross_container_access,
+        })
+    }
+}
+
 #[derive(Debug, thiserror::Error, PartialEq)]
 pub enum Error {
-    #[error("Backend autodetection failed: {0}")]
-    BackendAutodetect(#[from] ociman::backend::autodetect::Error),
     #[error("Could not load config file: {0}")]
     IO(IoError),
     #[error("Decoding as toml failed: {0}")]
@@ -75,7 +113,7 @@ pub struct SslConfigDefinition {
 #[derive(Debug, serde::Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct InstanceDefinition {
-    pub backend: Option<ociman::Backend>,
+    pub backend: Option<ociman::backend::Selection>,
     pub image: Option<Image>,
     #[serde(default)]
     pub seeds: indexmap::IndexMap<SeedName, SeedConfig>,
@@ -92,13 +130,12 @@ impl InstanceDefinition {
         }
     }
 
-    fn definition(
+    fn into_instance(
         self,
-        autodetect: &ociman::backend::autodetect::Lazy,
         instance_name: &InstanceName,
         defaults: &InstanceDefinition,
         overwrites: &InstanceDefinition,
-    ) -> Result<Definition, Error> {
+    ) -> Result<Instance, Error> {
         let image = match overwrites
             .image
             .as_ref()
@@ -114,14 +151,11 @@ impl InstanceDefinition {
             }
         };
 
-        let backend: ociman::Backend =
-            match overwrites.backend.or(self.backend).or(defaults.backend) {
-                Some(backend) => backend,
-                None => match autodetect.result() {
-                    Ok(value) => *value,
-                    Err(error) => return Err(Error::BackendAutodetect(error.clone())),
-                },
-            };
+        let backend = overwrites
+            .backend
+            .or(self.backend)
+            .or(defaults.backend)
+            .unwrap_or(ociman::backend::Selection::Auto);
 
         let seeds = self
             .seeds
@@ -134,11 +168,11 @@ impl InstanceDefinition {
             .as_ref()
             .or(self.ssl_config.as_ref())
             .or(defaults.ssl_config.as_ref())
-            .map(|ssl_config_def| crate::definition::SslConfig::Generated {
+            .map(|ssl_config_def| SslConfig::Generated {
                 hostname: ssl_config_def.hostname.clone(),
             });
 
-        Ok(Definition {
+        Ok(Instance {
             application_name: None,
             backend,
             database: pg_client::database!("postgres"),
@@ -155,7 +189,7 @@ impl InstanceDefinition {
 #[serde(deny_unknown_fields)]
 pub struct Config {
     image: Option<Image>,
-    backend: Option<ociman::Backend>,
+    backend: Option<ociman::backend::Selection>,
     ssl_config: Option<SslConfigDefinition>,
     instances: Option<std::collections::BTreeMap<InstanceName, InstanceDefinition>>,
 }
@@ -190,8 +224,6 @@ impl Config {
         self,
         overwrites: &InstanceDefinition,
     ) -> Result<super::InstanceMap, Error> {
-        let autodetect = ociman::backend::autodetect::Lazy::new();
-
         let defaults = InstanceDefinition {
             backend: self.backend,
             image: self.image.clone(),
@@ -204,21 +236,17 @@ impl Config {
                 let instance_name = InstanceName::default();
 
                 InstanceDefinition::empty()
-                    .definition(&autodetect, &instance_name, &defaults, overwrites)
-                    .map(|definition| [(instance_name, definition)].into())
+                    .into_instance(&instance_name, &defaults, overwrites)
+                    .map(|instance| [(instance_name, instance)].into())
             }
             Some(map) => {
                 let mut instance_map = std::collections::BTreeMap::new();
 
                 for (instance_name, instance_definition) in map {
-                    let definition = instance_definition.definition(
-                        &autodetect,
-                        &instance_name,
-                        &defaults,
-                        overwrites,
-                    )?;
+                    let instance =
+                        instance_definition.into_instance(&instance_name, &defaults, overwrites)?;
 
-                    instance_map.insert(instance_name, definition);
+                    instance_map.insert(instance_name, instance);
                 }
 
                 Ok(instance_map)

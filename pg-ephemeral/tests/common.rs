@@ -2,7 +2,7 @@
 pub async fn test_database_url_integration(language: &str, image_dir: &str) {
     let backend = ociman::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(backend.into(), pg_ephemeral::Image::default())
+    let definition = pg_ephemeral::Definition::new(backend.clone(), pg_ephemeral::Image::default())
         .cross_container_access(true);
 
     definition

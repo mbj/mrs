@@ -111,12 +111,12 @@ pub struct BuildDefinition {
 impl BuildDefinition {
     /// Create a new build definition from a directory containing a Dockerfile
     pub fn from_directory(
-        backend: Backend,
+        backend: &Backend,
         reference: Reference,
         path: impl Into<PathBuf>,
     ) -> Self {
         Self {
-            backend,
+            backend: backend.clone(),
             target: BuildTarget::Fixed(reference),
             source: BuildSource::Directory(path.into()),
             build_arguments: std::collections::BTreeMap::new(),
@@ -125,12 +125,12 @@ impl BuildDefinition {
 
     /// Create a new build definition from Dockerfile instructions as a string
     pub fn from_instructions(
-        backend: Backend,
+        backend: &Backend,
         reference: Reference,
         instructions: impl Into<String>,
     ) -> Self {
         Self {
-            backend,
+            backend: backend.clone(),
             target: BuildTarget::Fixed(reference),
             source: BuildSource::Instructions(instructions.into()),
             build_arguments: std::collections::BTreeMap::new(),
@@ -139,12 +139,12 @@ impl BuildDefinition {
 
     /// Create a build definition from a directory with content-based hash tag
     pub fn from_directory_hash(
-        backend: Backend,
+        backend: &Backend,
         name: crate::reference::Name,
         path: impl Into<PathBuf>,
     ) -> Self {
         Self {
-            backend,
+            backend: backend.clone(),
             target: BuildTarget::ContentAddressed(name),
             source: BuildSource::Directory(path.into()),
             build_arguments: std::collections::BTreeMap::new(),
@@ -153,12 +153,12 @@ impl BuildDefinition {
 
     /// Create a build definition from Dockerfile instructions with content-based hash tag
     pub fn from_instructions_hash(
-        backend: Backend,
+        backend: &Backend,
         name: crate::reference::Name,
         instructions: impl Into<String>,
     ) -> Self {
         Self {
-            backend,
+            backend: backend.clone(),
             target: BuildTarget::ContentAddressed(name),
             source: BuildSource::Instructions(instructions.into()),
             build_arguments: std::collections::BTreeMap::new(),
