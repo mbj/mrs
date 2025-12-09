@@ -1,13 +1,8 @@
 #[tokio::test]
 async fn test_with_sqlx_connection() {
-    if ociman::testing::platform_not_supported() {
-        return;
-    }
+    let backend = ociman::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(
-        pg_ephemeral::BackendSelection::Auto,
-        pg_ephemeral::Image::default(),
-    );
+    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default());
 
     definition
         .with_container(async |container| {

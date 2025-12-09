@@ -2,16 +2,36 @@ use super::command::*;
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq, serde::Deserialize, clap::ValueEnum)]
 #[serde(rename_all = "snake_case")]
-pub enum Backend {
+pub enum Selection {
+    Auto,
     Docker,
     Podman,
 }
 
+impl Selection {
+    pub fn resolve(&self) -> resolve::Result {
+        match self {
+            Self::Auto => resolve::auto(),
+            Self::Docker => resolve::docker(),
+            Self::Podman => resolve::podman(),
+        }
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum Backend {
+    Docker { version: semver::Version },
+    Podman { version: semver::Version },
+}
+
 impl Backend {
+    const DOCKER_EXECUTABLE: &'static str = "docker";
+    const PODMAN_EXECUTABLE: &'static str = "podman";
+
     pub fn command(&self) -> Command {
         match self {
-            Self::Docker => Command::new("docker"),
-            Self::Podman => Command::new("podman"),
+            Self::Docker { .. } => Command::new(Self::DOCKER_EXECUTABLE),
+            Self::Podman { .. } => Command::new(Self::PODMAN_EXECUTABLE),
         }
     }
 
@@ -20,12 +40,12 @@ impl Backend {
         let reference_string = reference.to_string();
 
         match self {
-            Backend::Docker => self
+            Backend::Docker { .. } => self
                 .command()
                 .arguments(["inspect", "--type", "image", &reference_string])
                 .capture_only_stdout_result()
                 .is_ok(),
-            Backend::Podman => {
+            Backend::Podman { .. } => {
                 // For Podman, image exists returns 0 if present, 1 if not
                 // We use status() instead of capture because we don't need output
                 let status = self
@@ -79,7 +99,7 @@ impl Backend {
     ///
     /// # Example
     /// ```no_run
-    /// let ip = ociman::backend::autodetect::run()
+    /// let ip = ociman::backend::resolve::auto()
     ///     .unwrap()
     ///     .container_resolver()
     ///     .add_host("host.docker.internal:host-gateway")
@@ -87,7 +107,7 @@ impl Backend {
     ///     .unwrap();
     /// ```
     pub fn container_resolver(&self) -> ContainerHostnameResolver {
-        ContainerHostnameResolver::new(*self)
+        ContainerHostnameResolver::new(self.clone())
     }
 
     /// Resolve the container host to an IP address
@@ -100,19 +120,19 @@ impl Backend {
     ///
     /// # Example
     /// ```no_run
-    /// let ip = ociman::backend::autodetect::run()
+    /// let ip = ociman::backend::resolve::auto()
     ///     .unwrap()
     ///     .resolve_container_host()
     ///     .unwrap();
     /// ```
     pub fn resolve_container_host(&self) -> Result<std::net::IpAddr, ResolveHostnameError> {
         match self {
-            Backend::Podman => {
+            Backend::Podman { .. } => {
                 // Podman provides host.containers.internal natively
                 self.container_resolver()
                     .resolve("host.containers.internal")
             }
-            Backend::Docker => {
+            Backend::Docker { .. } => {
                 // Docker needs --add-host on Linux
                 self.container_resolver()
                     .add_host("host.docker.internal:host-gateway")
@@ -230,12 +250,12 @@ impl ContainerHostnameResolver {
     }
 }
 
-pub mod autodetect {
-    use super::Backend;
+pub mod resolve {
+    use super::{Backend, Command};
 
     const ENV_VARIABLE_NAME: &str = "OCIMAN_BACKEND";
 
-    pub type Result = std::result::Result<super::Backend, Error>;
+    pub type Result = std::result::Result<Backend, Error>;
 
     #[derive(Clone, Debug, thiserror::Error, PartialEq)]
     pub enum Error {
@@ -245,9 +265,21 @@ pub mod autodetect {
         InvalidEnvVariable(String),
         #[error("No container tool detected in $PATH, searched for podman and docker")]
         NoContainerToolDetected,
+        #[error("Failed to detect {executable} version: {message}")]
+        VersionDetectionFailed {
+            executable: &'static str,
+            message: String,
+        },
+        #[error("Failed to parse {executable} version from output '{output}': {message}")]
+        VersionParseFailed {
+            executable: &'static str,
+            output: String,
+            message: String,
+        },
     }
 
-    pub fn run() -> Result {
+    /// Resolve backend automatically based on env var or available tools
+    pub fn auto() -> Result {
         match std::env::var(ENV_VARIABLE_NAME) {
             Err(std::env::VarError::NotPresent) => from_present_tool(),
             Err(std::env::VarError::NotUnicode(_)) => {
@@ -257,34 +289,80 @@ pub mod autodetect {
         }
     }
 
+    /// Resolve docker backend with version detection
+    pub fn docker() -> Result {
+        detect_version(Backend::DOCKER_EXECUTABLE, |version| Backend::Docker {
+            version,
+        })
+    }
+
+    /// Resolve podman backend with version detection
+    pub fn podman() -> Result {
+        detect_version(Backend::PODMAN_EXECUTABLE, |version| Backend::Podman {
+            version,
+        })
+    }
+
     fn from_env_value(value: &str) -> Result {
-        if value == "docker" {
-            Ok(Backend::Docker)
-        } else if value == "podman" {
-            Ok(Backend::Podman)
-        } else {
-            Err(Error::InvalidEnvVariable(value.to_string()))
+        match value {
+            "docker" => docker(),
+            "podman" => podman(),
+            _ => Err(Error::InvalidEnvVariable(value.to_string())),
         }
     }
 
     fn from_present_tool() -> Result {
-        fn attempt(backend: Backend) -> Option<Backend> {
-            match backend
-                .command()
-                .argument("--version")
-                .capture_only_stdout_result()
-            {
-                Err(_) => None,
-                Ok(version) => {
-                    log::debug!("ociman using: {}", std::str::from_utf8(&version).unwrap());
-                    Some(backend)
-                }
-            }
-        }
+        podman()
+            .or_else(|_| docker())
+            .map_err(|_| Error::NoContainerToolDetected)
+    }
 
-        attempt(Backend::Podman)
-            .or_else(|| attempt(Backend::Docker))
-            .ok_or(Error::NoContainerToolDetected)
+    fn detect_version(
+        executable: &'static str,
+        constructor: impl FnOnce(semver::Version) -> Backend,
+    ) -> Result {
+        let output = Command::new(executable)
+            .argument("--version")
+            .capture_only_stdout_result()
+            .map_err(|error| Error::VersionDetectionFailed {
+                executable,
+                message: error.to_string(),
+            })?;
+
+        let output_str =
+            std::str::from_utf8(&output).map_err(|_| Error::VersionDetectionFailed {
+                executable,
+                message: "invalid UTF-8 in version output".to_string(),
+            })?;
+
+        let version = parse_version(executable, output_str)?;
+
+        log::debug!("ociman using: {} {}", executable, version);
+
+        Ok(constructor(version))
+    }
+
+    fn parse_version(
+        executable: &'static str,
+        output: &str,
+    ) -> std::result::Result<semver::Version, Error> {
+        // Extract version string from output like:
+        // Docker: "Docker version 29.0.0, build abcdef1"
+        // Podman: "podman version 4.9.0"
+        let version_str = output
+            .split_whitespace()
+            .find(|word| word.chars().next().is_some_and(|c| c.is_ascii_digit()))
+            .map(|s| s.trim_end_matches(','))
+            .ok_or_else(|| Error::VersionDetectionFailed {
+                executable,
+                message: format!("no version found in output: {output}"),
+            })?;
+
+        semver::Version::parse(version_str).map_err(|error| Error::VersionParseFailed {
+            executable,
+            output: output.to_string(),
+            message: error.to_string(),
+        })
     }
 
     pub struct Lazy(std::cell::OnceCell<Result>);
@@ -301,7 +379,7 @@ pub mod autodetect {
         }
 
         pub fn result(&self) -> &Result {
-            self.0.get_or_init(run)
+            self.0.get_or_init(auto)
         }
     }
 }
