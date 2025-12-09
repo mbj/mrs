@@ -1,4 +1,4 @@
-use crate::Container;
+use crate::container::Container;
 use crate::seed::{Command, DuplicateSeedName, LoadError, LoadedSeed, Seed, SeedName};
 
 #[derive(Clone, Debug, PartialEq)]
@@ -125,7 +125,7 @@ impl Definition {
             .collect::<Result<Vec<_>, _>>()
             .unwrap_or_else(|error| panic!("{error}"));
 
-        let mut db_container = Container::run(self);
+        let mut db_container = Container::run_definition(self);
 
         db_container.wait_available().await;
 
@@ -170,7 +170,7 @@ impl Definition {
         .await
     }
 
-    async fn apply_loaded_seed(&self, db_container: &Container<'_>, loaded_seed: &LoadedSeed) {
+    async fn apply_loaded_seed(&self, db_container: &Container, loaded_seed: &LoadedSeed) {
         match loaded_seed {
             LoadedSeed::SqlFile { content, .. } => db_container.apply_sql(content).await,
             LoadedSeed::SqlFileGitRevision { content, .. } => db_container.apply_sql(content).await,
@@ -179,12 +179,12 @@ impl Definition {
         }
     }
 
-    pub fn apply_pg_env(cmd: &mut std::process::Command, db_container: &Container<'_>) {
+    pub fn apply_pg_env(cmd: &mut std::process::Command, db_container: &Container) {
         cmd.envs(db_container.pg_env());
         cmd.env("DATABASE_URL", db_container.database_url());
     }
 
-    fn execute_command(&self, db_container: &Container<'_>, command: &Command) {
+    fn execute_command(&self, db_container: &Container, command: &Command) {
         let mut cmd = std::process::Command::new(&command.command);
         cmd.args(&command.arguments);
 
@@ -197,7 +197,7 @@ impl Definition {
         }
     }
 
-    fn execute_script(&self, db_container: &Container<'_>, script: &str) {
+    fn execute_script(&self, db_container: &Container, script: &str) {
         let mut cmd = std::process::Command::new("sh");
         cmd.arg("-e");
         cmd.arg("-c");

@@ -276,16 +276,16 @@ impl Command {
     }
 }
 
-async fn host_psql(container: &crate::Container<'_>) {
+async fn host_psql(container: &crate::container::Container) {
     let _ = std::process::Command::new("psql")
         .envs(container.client_config.to_pg_env())
         .status();
 }
 
-async fn host_command<'a>(
-    container: &'a crate::Container<'a>,
+async fn host_command(
+    container: &crate::container::Container,
     command: &str,
-    arguments: &'a Vec<String>,
+    arguments: &Vec<String>,
 ) {
     let mut cmd = std::process::Command::new(command);
     cmd.args(arguments);
@@ -293,14 +293,14 @@ async fn host_command<'a>(
     let _ = cmd.status();
 }
 
-async fn container_psql(container: &crate::Container<'_>) {
+async fn container_psql(container: &crate::container::Container) {
     container.exec_psql()
 }
 
-async fn container_schema_dump(container: &crate::Container<'_>) {
+async fn container_schema_dump(container: &crate::container::Container) {
     println!("{}", container.exec_schema_dump());
 }
 
-async fn container_shell(container: &crate::Container<'_>) {
+async fn container_shell(container: &crate::container::Container) {
     container.exec_container_shell()
 }
