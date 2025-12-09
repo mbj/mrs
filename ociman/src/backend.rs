@@ -86,8 +86,22 @@ impl Backend {
     }
 
     pub fn remove_image(&self, reference: &crate::image::Reference) {
-        self.command()
-            .arguments(["image", "rm", &reference.to_string()])
+        self.do_remove_image(reference, false);
+    }
+
+    pub fn remove_image_force(&self, reference: &crate::image::Reference) {
+        self.do_remove_image(reference, true);
+    }
+
+    fn do_remove_image(&self, reference: &crate::image::Reference, force: bool) {
+        let command = self.command().arguments(["image", "rm"]);
+        let command = if force {
+            command.argument("--force")
+        } else {
+            command
+        };
+        command
+            .argument(reference.to_string())
             .capture_only_stdout();
     }
 

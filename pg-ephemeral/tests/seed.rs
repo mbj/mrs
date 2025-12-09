@@ -1,7 +1,7 @@
 mod common;
 
 async fn assert_environment_matches(
-    container: &pg_ephemeral::Container<'_>,
+    container: &pg_ephemeral::Container,
     connection: &mut sqlx::postgres::PgConnection,
 ) {
     // Read environment variables from database
