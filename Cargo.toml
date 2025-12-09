@@ -60,6 +60,8 @@ all = { level = "deny", priority = -1 }
 multiple_crate_versions = "deny"
 
 [profile.release]
+# Panic on integer overflow instead of wrapping
+overflow-checks = true
 # Optimize for size rather than speed
 opt-level = "z"
 # Enable Link Time Optimization for better optimization across crates
