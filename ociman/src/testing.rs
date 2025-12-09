@@ -31,6 +31,6 @@ macro_rules! test_backend_setup {
         if $crate::testing::platform_not_supported() {
             return;
         }
-        $crate::backend::autodetect::run().expect("No container backend detected")
+        $crate::backend::resolve::auto().expect("No container backend detected")
     }};
 }

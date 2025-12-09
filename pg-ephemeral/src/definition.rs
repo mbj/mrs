@@ -7,32 +7,6 @@ pub enum SslConfig {
     // UserProvided { ca_cert: PathBuf, server_cert: PathBuf, server_key: PathBuf },
 }
 
-#[derive(Clone, Debug, PartialEq)]
-pub enum BackendSelection {
-    Auto,
-    Docker,
-    Podman,
-}
-
-impl BackendSelection {
-    pub fn resolve(&self) -> ociman::Backend {
-        match self {
-            Self::Auto => ociman::backend::autodetect::run().unwrap(),
-            Self::Docker => ociman::Backend::Docker,
-            Self::Podman => ociman::Backend::Podman,
-        }
-    }
-}
-
-impl From<ociman::Backend> for BackendSelection {
-    fn from(backend: ociman::Backend) -> Self {
-        match backend {
-            ociman::Backend::Docker => Self::Docker,
-            ociman::Backend::Podman => Self::Podman,
-        }
-    }
-}
-
 #[derive(Debug, PartialEq)]
 pub struct Definition {
     pub application_name: Option<pg_client::ApplicationName>,
@@ -46,9 +20,9 @@ pub struct Definition {
 }
 
 impl Definition {
-    pub fn new(backend_selection: BackendSelection, image: crate::image::Image) -> Self {
+    pub fn new(backend: ociman::backend::Backend, image: crate::image::Image) -> Self {
         Self {
-            backend: backend_selection.resolve(),
+            backend,
             application_name: None,
             seeds: indexmap::IndexMap::new(),
             ssl_config: None,
@@ -142,7 +116,7 @@ impl Definition {
     }
 
     pub fn to_ociman_definition(&self) -> ociman::Definition {
-        ociman::Definition::new(self.backend, (&self.image).into())
+        ociman::Definition::new(self.backend.clone(), (&self.image).into())
     }
 
     pub async fn with_container<T>(&self, mut action: impl AsyncFnMut(&Container) -> T) -> T {
@@ -301,9 +275,15 @@ pub fn apply_ociman_mounts(
 mod test {
     use super::*;
 
+    fn dummy_backend() -> ociman::backend::Backend {
+        ociman::backend::Backend::Podman {
+            version: semver::Version::new(0, 0, 0),
+        }
+    }
+
     #[test]
     fn test_add_seed_rejects_duplicate() {
-        let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
+        let definition = Definition::new(dummy_backend(), crate::Image::default());
         let seed_name: SeedName = "test-seed".parse().unwrap();
 
         let definition = definition
@@ -327,7 +307,7 @@ mod test {
 
     #[test]
     fn test_add_seed_allows_different_names() {
-        let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
+        let definition = Definition::new(dummy_backend(), crate::Image::default());
 
         let definition = definition
             .add_seed(
@@ -350,7 +330,7 @@ mod test {
 
     #[test]
     fn test_apply_file_rejects_duplicate() {
-        let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
+        let definition = Definition::new(dummy_backend(), crate::Image::default());
         let seed_name: SeedName = "test-seed".parse().unwrap();
 
         let definition = definition
@@ -364,7 +344,7 @@ mod test {
 
     #[test]
     fn test_apply_command_adds_seed() {
-        let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
+        let definition = Definition::new(dummy_backend(), crate::Image::default());
 
         let result = definition.apply_command(
             "test-command".parse().unwrap(),
@@ -378,7 +358,7 @@ mod test {
 
     #[test]
     fn test_apply_command_rejects_duplicate() {
-        let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
+        let definition = Definition::new(dummy_backend(), crate::Image::default());
         let seed_name: SeedName = "test-command".parse().unwrap();
 
         let definition = definition
@@ -393,7 +373,7 @@ mod test {
 
     #[test]
     fn test_apply_script_adds_seed() {
-        let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
+        let definition = Definition::new(dummy_backend(), crate::Image::default());
 
         let result = definition.apply_script("test-script".parse().unwrap(), "echo test");
 
@@ -404,7 +384,7 @@ mod test {
 
     #[test]
     fn test_apply_script_rejects_duplicate() {
-        let definition = Definition::new(BackendSelection::Podman, crate::Image::default());
+        let definition = Definition::new(dummy_backend(), crate::Image::default());
         let seed_name: SeedName = "test-script".parse().unwrap();
 
         let definition = definition

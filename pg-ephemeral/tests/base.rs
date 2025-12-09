@@ -2,14 +2,9 @@ mod common;
 
 #[tokio::test]
 async fn test_base_feature() {
-    if ociman::testing::platform_not_supported() {
-        return;
-    }
+    let backend = ociman::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(
-        pg_ephemeral::BackendSelection::Auto,
-        pg_ephemeral::Image::default(),
-    );
+    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default());
 
     definition
         .with_container(async |container| {
@@ -28,19 +23,12 @@ async fn test_base_feature() {
 
 #[tokio::test]
 async fn test_ssl_generated() {
-    env_logger::init();
+    let backend = ociman::test_backend_setup!();
 
-    if ociman::testing::platform_not_supported() {
-        return;
-    }
-
-    let definition = pg_ephemeral::Definition::new(
-        pg_ephemeral::BackendSelection::Auto,
-        pg_ephemeral::Image::default(),
-    )
-    .ssl_config(pg_ephemeral::definition::SslConfig::Generated {
-        hostname: "postgresql.example.com".parse().unwrap(),
-    });
+    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default())
+        .ssl_config(pg_ephemeral::definition::SslConfig::Generated {
+            hostname: "postgresql.example.com".parse().unwrap(),
+        });
 
     definition
         .with_container(async |container| {
@@ -63,9 +51,9 @@ fn test_config_file() {
         pg_ephemeral::InstanceMap::from([
             (
                 pg_ephemeral::InstanceName("a".to_string()),
-                pg_ephemeral::Definition {
+                pg_ephemeral::Instance {
                     application_name: None,
-                    backend: ociman::Backend::Docker,
+                    backend: ociman::backend::Selection::Docker,
                     database: pg_client::database!("postgres"),
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
@@ -76,9 +64,9 @@ fn test_config_file() {
             ),
             (
                 pg_ephemeral::InstanceName("b".to_string()),
-                pg_ephemeral::Definition {
+                pg_ephemeral::Instance {
                     application_name: None,
-                    backend: ociman::Backend::Podman,
+                    backend: ociman::backend::Selection::Podman,
                     database: pg_client::database!("postgres"),
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
@@ -99,9 +87,9 @@ fn test_config_file() {
         pg_ephemeral::InstanceMap::from([
             (
                 pg_ephemeral::InstanceName("a".to_string()),
-                pg_ephemeral::Definition {
+                pg_ephemeral::Instance {
                     application_name: None,
-                    backend: ociman::Backend::Docker,
+                    backend: ociman::backend::Selection::Docker,
                     database: pg_client::database!("postgres"),
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
@@ -112,9 +100,9 @@ fn test_config_file() {
             ),
             (
                 pg_ephemeral::InstanceName("b".to_string()),
-                pg_ephemeral::Definition {
+                pg_ephemeral::Instance {
                     application_name: None,
-                    backend: ociman::Backend::Docker,
+                    backend: ociman::backend::Selection::Docker,
                     database: pg_client::database!("postgres"),
                     seeds: indexmap::IndexMap::new(),
                     ssl_config: None,
@@ -127,7 +115,7 @@ fn test_config_file() {
         pg_ephemeral::Config::load_toml_file(
             "tests/database.toml",
             &pg_ephemeral::config::InstanceDefinition {
-                backend: Some(ociman::Backend::Docker),
+                backend: Some(ociman::backend::Selection::Docker),
                 image: Some("18.0".parse().unwrap()),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
@@ -142,9 +130,9 @@ fn test_config_file_no_explicit_instance() {
     assert_eq!(
         pg_ephemeral::InstanceMap::from([(
             pg_ephemeral::InstanceName("main".to_string()),
-            pg_ephemeral::Definition {
+            pg_ephemeral::Instance {
                 application_name: None,
-                backend: ociman::Backend::Docker,
+                backend: ociman::backend::Selection::Docker,
                 database: pg_client::database!("postgres"),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
@@ -163,9 +151,9 @@ fn test_config_file_no_explicit_instance() {
     assert_eq!(
         pg_ephemeral::InstanceMap::from([(
             pg_ephemeral::InstanceName("main".to_string()),
-            pg_ephemeral::Definition {
+            pg_ephemeral::Instance {
                 application_name: None,
-                backend: ociman::Backend::Podman,
+                backend: ociman::backend::Selection::Podman,
                 database: pg_client::database!("postgres"),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
@@ -177,7 +165,7 @@ fn test_config_file_no_explicit_instance() {
         pg_ephemeral::Config::load_toml_file(
             "tests/database_no_explicit_instance.toml",
             &pg_ephemeral::config::InstanceDefinition {
-                backend: Some(ociman::Backend::Podman),
+                backend: Some(ociman::backend::Selection::Podman),
                 image: Some("18.0".parse().unwrap()),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
@@ -204,9 +192,9 @@ fn test_config_ssl() {
     assert_eq!(
         pg_ephemeral::InstanceMap::from([(
             pg_ephemeral::InstanceName("main".to_string()),
-            pg_ephemeral::Definition {
+            pg_ephemeral::Instance {
                 application_name: None,
-                backend: ociman::Backend::Docker,
+                backend: ociman::backend::Selection::Docker,
                 database: pg_client::database!("postgres"),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: Some(pg_ephemeral::definition::SslConfig::Generated {
@@ -226,14 +214,9 @@ fn test_config_ssl() {
 
 #[tokio::test]
 async fn test_run_env() {
-    if ociman::testing::platform_not_supported() {
-        return;
-    }
+    let backend = ociman::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(
-        pg_ephemeral::BackendSelection::Auto,
-        pg_ephemeral::Image::default(),
-    );
+    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default());
 
     definition
         .with_container(async |container| {
@@ -532,9 +515,9 @@ fn test_config_image_with_sha256_digest() {
     assert_eq!(
         pg_ephemeral::InstanceMap::from([(
             pg_ephemeral::InstanceName("main".to_string()),
-            pg_ephemeral::Definition {
+            pg_ephemeral::Instance {
                 application_name: None,
-                backend: ociman::Backend::Docker,
+                backend: ociman::backend::Selection::Docker,
                 database: pg_client::database!("postgres"),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,

@@ -6,9 +6,9 @@ pub mod definition;
 pub mod image;
 pub mod seed;
 
-pub use config::Config;
+pub use config::{Config, Instance};
 pub use container::Container;
-pub use definition::{BackendSelection, Definition};
+pub use definition::Definition;
 pub use image::Image;
 pub use seed::Command;
 pub use seed::DuplicateSeedName;
@@ -60,4 +60,4 @@ impl std::fmt::Display for InstanceName {
     }
 }
 
-pub type InstanceMap = std::collections::BTreeMap<InstanceName, Definition>;
+pub type InstanceMap = std::collections::BTreeMap<InstanceName, config::Instance>;

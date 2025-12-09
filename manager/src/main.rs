@@ -480,7 +480,7 @@ fn build_integrations(no_compile: bool) {
         }
     } else {
         log::info!("Using containerized gem build for Linux");
-        let backend = ociman::backend::autodetect::run().expect("Failed to detect backend");
+        let backend = ociman::backend::resolve::auto().expect("Failed to detect backend");
 
         let mount = ociman::Mount::from(format!(
             "type=bind,source={},target=/build",
