@@ -663,12 +663,12 @@ impl Container {
         self.removed = true;
     }
 
-    pub fn exec_capture_only_stdout<T: AsRef<OsStr>>(
+    fn exec_command<T: AsRef<OsStr>>(
         &self,
         environment: impl IntoIterator<Item = (&'static str, String)>,
         executable: T,
         arguments: impl IntoIterator<Item = T>,
-    ) -> Vec<u8> {
+    ) -> Command {
         self.backend_command()
             .argument("exec")
             .arguments(
@@ -679,7 +679,27 @@ impl Container {
             .argument(&self.id)
             .argument(executable)
             .arguments(arguments)
+    }
+
+    pub fn exec_capture_only_stdout<T: AsRef<OsStr>>(
+        &self,
+        environment: impl IntoIterator<Item = (&'static str, String)>,
+        executable: T,
+        arguments: impl IntoIterator<Item = T>,
+    ) -> Vec<u8> {
+        self.exec_command(environment, executable, arguments)
             .capture_only_stdout()
+    }
+
+    pub fn exec_status<T: AsRef<OsStr>>(
+        &self,
+        environment: impl IntoIterator<Item = (&'static str, String)>,
+        executable: T,
+        arguments: impl IntoIterator<Item = T>,
+    ) -> std::process::ExitStatus {
+        self.exec_command(environment, executable, arguments)
+            .output()
+            .status
     }
 
     pub fn exec_interactive<T: AsRef<OsStr>>(
