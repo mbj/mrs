@@ -1,6 +1,400 @@
 mod common;
 
 use common::{TestDir, TestGitRepo, run_pg_ephemeral};
+use std::str::FromStr;
+
+/// Helper to manage cache test cleanup
+struct CacheTestContext {
+    backend: ociman::Backend,
+    instance_name: String,
+    name: ociman::reference::Name,
+}
+
+impl CacheTestContext {
+    fn new(backend: ociman::Backend, instance_name: &str) -> Self {
+        let name: ociman::reference::Name = format!("localhost/pg-ephemeral/{instance_name}")
+            .parse()
+            .unwrap();
+
+        let context = Self {
+            backend,
+            instance_name: instance_name.to_string(),
+            name,
+        };
+        context.cleanup();
+        context
+    }
+
+    fn cleanup(&self) {
+        for reference in self.backend.image_references_by_name(&self.name) {
+            self.backend.remove_image_force(&reference);
+        }
+    }
+
+    fn definition(&self) -> pg_ephemeral::Definition {
+        pg_ephemeral::Definition::new(self.backend.clone(), pg_ephemeral::Image::default())
+    }
+}
+
+impl Drop for CacheTestContext {
+    fn drop(&mut self) {
+        self.cleanup();
+    }
+}
+
+#[tokio::test]
+async fn test_populate_cache_empty_seeds() {
+    let backend = ociman::test_backend_setup!();
+    let context = CacheTestContext::new(backend, "populate-cache-empty");
+
+    let definition = context.definition();
+
+    let (last_cache_hit, uncached_seeds) = definition.populate_cache(&context.instance_name).await;
+
+    assert!(last_cache_hit.is_none());
+    assert!(uncached_seeds.is_empty());
+}
+
+#[tokio::test]
+async fn test_populate_cache_multiple_seeds_chain() {
+    let backend = ociman::test_backend_setup!();
+    let context = CacheTestContext::new(backend, "populate-cache-chain");
+
+    let definition = context
+        .definition()
+        .apply_script(
+            "a-create-table".parse().unwrap(),
+            r#"psql -c "CREATE TABLE chain_test (id INTEGER PRIMARY KEY);""#,
+        )
+        .unwrap()
+        .apply_script(
+            "b-insert-first".parse().unwrap(),
+            r#"psql -c "INSERT INTO chain_test VALUES (1);""#,
+        )
+        .unwrap()
+        .apply_script(
+            "c-insert-second".parse().unwrap(),
+            r#"psql -c "INSERT INTO chain_test VALUES (2);""#,
+        )
+        .unwrap();
+
+    // All seeds should be miss initially
+    let loaded_seeds = definition.load_seeds(&context.instance_name).unwrap();
+    assert_eq!(loaded_seeds.iter_seeds().count(), 3);
+    for seed in loaded_seeds.iter_seeds() {
+        assert!(!seed.cache_status().is_hit());
+    }
+
+    // Populate cache
+    let (last_cache_hit, uncached_seeds) = definition.populate_cache(&context.instance_name).await;
+
+    // Should have cached all seeds
+    assert!(last_cache_hit.is_some());
+    assert!(uncached_seeds.is_empty());
+
+    // All seeds should now be hits
+    let loaded_seeds = definition.load_seeds(&context.instance_name).unwrap();
+    for seed in loaded_seeds.iter_seeds() {
+        assert!(seed.cache_status().is_hit());
+    }
+
+    // Verify the final cache image has all seed effects
+    let cache_definition = pg_ephemeral::container::Definition {
+        image: last_cache_hit.unwrap(),
+        password: pg_client::Password::from_str("test_password").unwrap(),
+        username: pg_client::Username::from_str("postgres").unwrap(),
+        database: pg_client::Database::from_str("postgres").unwrap(),
+        backend: context.backend.clone(),
+        cross_container_access: false,
+        application_name: None,
+        ssl_config: None,
+    };
+
+    let mut container = pg_ephemeral::Container::run_container_definition(&cache_definition);
+    container.set_superuser_password(&cache_definition.password);
+    container.wait_available().await;
+
+    container
+        .with_connection(async |connection| {
+            let rows: Vec<(i32,)> = sqlx::query_as("SELECT id FROM chain_test ORDER BY id")
+                .fetch_all(&mut *connection)
+                .await
+                .unwrap();
+            assert_eq!(rows, vec![(1,), (2,)]);
+        })
+        .await;
+
+    container.stop();
+}
+
+#[tokio::test]
+async fn test_populate_cache_partial_hit() {
+    let backend = ociman::test_backend_setup!();
+    let context = CacheTestContext::new(backend, "populate-cache-partial");
+
+    // First, populate cache with only the first seed
+    let definition_first = context
+        .definition()
+        .apply_script(
+            "a-create-table".parse().unwrap(),
+            r#"psql -c "CREATE TABLE partial_test (id INTEGER PRIMARY KEY);""#,
+        )
+        .unwrap();
+
+    definition_first
+        .populate_cache(&context.instance_name)
+        .await;
+
+    // Now create a definition with two seeds - first should be hit, second should be miss
+    let definition_two = context
+        .definition()
+        .apply_script(
+            "a-create-table".parse().unwrap(),
+            r#"psql -c "CREATE TABLE partial_test (id INTEGER PRIMARY KEY);""#,
+        )
+        .unwrap()
+        .apply_script(
+            "b-insert-data".parse().unwrap(),
+            r#"psql -c "INSERT INTO partial_test VALUES (99);""#,
+        )
+        .unwrap();
+
+    // Verify first is hit, second is miss
+    let loaded_seeds: Vec<_> = definition_two
+        .load_seeds(&context.instance_name)
+        .unwrap()
+        .iter_seeds()
+        .cloned()
+        .collect();
+
+    assert_eq!(loaded_seeds.len(), 2);
+    assert!(loaded_seeds[0].cache_status().is_hit());
+    assert!(!loaded_seeds[1].cache_status().is_hit());
+
+    // Populate cache - should only create one new image (for second seed)
+    let (last_cache_hit, uncached_seeds) =
+        definition_two.populate_cache(&context.instance_name).await;
+
+    assert!(last_cache_hit.is_some());
+    assert!(uncached_seeds.is_empty());
+
+    // Now both should be hits
+    let loaded_seeds: Vec<_> = definition_two
+        .load_seeds(&context.instance_name)
+        .unwrap()
+        .iter_seeds()
+        .cloned()
+        .collect();
+
+    assert!(loaded_seeds[0].cache_status().is_hit());
+    assert!(loaded_seeds[1].cache_status().is_hit());
+
+    // Verify the final cache image has both seed effects
+    let cache_definition = pg_ephemeral::container::Definition {
+        image: last_cache_hit.unwrap(),
+        password: pg_client::Password::from_str("test_password").unwrap(),
+        username: pg_client::Username::from_str("postgres").unwrap(),
+        database: pg_client::Database::from_str("postgres").unwrap(),
+        backend: context.backend.clone(),
+        cross_container_access: false,
+        application_name: None,
+        ssl_config: None,
+    };
+
+    let mut container = pg_ephemeral::Container::run_container_definition(&cache_definition);
+    container.set_superuser_password(&cache_definition.password);
+    container.wait_available().await;
+
+    container
+        .with_connection(async |connection| {
+            let row: (i32,) = sqlx::query_as("SELECT id FROM partial_test")
+                .fetch_one(&mut *connection)
+                .await
+                .unwrap();
+            assert_eq!(row.0, 99);
+        })
+        .await;
+
+    container.stop();
+}
+
+#[tokio::test]
+async fn test_populate_cache_all_hits() {
+    let backend = ociman::test_backend_setup!();
+    let context = CacheTestContext::new(backend, "populate-cache-allhits");
+
+    let definition = context
+        .definition()
+        .apply_script(
+            "a-create-table".parse().unwrap(),
+            r#"psql -c "CREATE TABLE allhits_test (id INTEGER PRIMARY KEY);""#,
+        )
+        .unwrap()
+        .apply_script(
+            "b-insert-data".parse().unwrap(),
+            r#"psql -c "INSERT INTO allhits_test VALUES (1);""#,
+        )
+        .unwrap();
+
+    // First populate to fill the cache
+    let (first_cache_hit, _) = definition.populate_cache(&context.instance_name).await;
+    assert!(first_cache_hit.is_some());
+
+    // All seeds should now be hits
+    let loaded_seeds: Vec<_> = definition
+        .load_seeds(&context.instance_name)
+        .unwrap()
+        .iter_seeds()
+        .cloned()
+        .collect();
+
+    for seed in &loaded_seeds {
+        assert!(seed.cache_status().is_hit());
+    }
+
+    // Call populate_cache again - should return immediately with same reference
+    let (second_cache_hit, uncached_seeds) =
+        definition.populate_cache(&context.instance_name).await;
+
+    assert_eq!(first_cache_hit, second_cache_hit);
+    assert!(uncached_seeds.is_empty());
+}
+
+#[tokio::test]
+async fn test_populate_cache_uncacheable_breaks_chain() {
+    let backend = ociman::test_backend_setup!();
+    let context = CacheTestContext::new(backend, "populate-cache-uncacheable");
+
+    // Create definition with: cacheable -> uncacheable -> cacheable
+    // The uncacheable seed should break the chain
+    let definition = context
+        .definition()
+        .apply_script(
+            "a-create-table".parse().unwrap(),
+            r#"psql -c "CREATE TABLE uncacheable_test (id INTEGER PRIMARY KEY);""#,
+        )
+        .unwrap()
+        .apply_command(
+            "b-uncacheable".parse().unwrap(),
+            pg_ephemeral::Command::new(
+                "psql",
+                ["-c", "INSERT INTO uncacheable_test VALUES (1);"],
+            ),
+            pg_ephemeral::CommandCacheConfig::None, // This makes it uncacheable
+        )
+        .unwrap()
+        .apply_script(
+            "c-after-uncacheable".parse().unwrap(),
+            r#"psql -c "INSERT INTO uncacheable_test VALUES (2);""#,
+        )
+        .unwrap();
+
+    // Verify the second seed is uncacheable
+    let loaded_seeds: Vec<_> = definition
+        .load_seeds(&context.instance_name)
+        .unwrap()
+        .iter_seeds()
+        .cloned()
+        .collect();
+
+    assert_eq!(loaded_seeds.len(), 3);
+    assert!(loaded_seeds[0].cache_status().reference().is_some()); // cacheable
+    assert!(loaded_seeds[1].cache_status().reference().is_none()); // uncacheable
+    assert!(loaded_seeds[2].cache_status().reference().is_none()); // chain broken
+
+    // Populate cache - should cache first seed, then return remaining as uncached
+    let (last_cache_hit, uncached_seeds) =
+        definition.populate_cache(&context.instance_name).await;
+
+    // Should have cached only the first seed
+    assert!(last_cache_hit.is_some());
+
+    // Should return the uncacheable seed and all seeds after it
+    assert_eq!(uncached_seeds.len(), 2);
+    assert_eq!(uncached_seeds[0].name().as_str(), "b-uncacheable");
+    assert_eq!(uncached_seeds[1].name().as_str(), "c-after-uncacheable");
+
+    // First seed should now be a hit
+    let loaded_seeds: Vec<_> = definition
+        .load_seeds(&context.instance_name)
+        .unwrap()
+        .iter_seeds()
+        .cloned()
+        .collect();
+
+    assert!(loaded_seeds[0].cache_status().is_hit());
+}
+
+#[tokio::test]
+async fn test_populate_cache() {
+    let backend = ociman::test_backend_setup!();
+    let instance_name = "populate-cache-test";
+
+    // Clean up any leftover images from previous runs
+    let name: ociman::reference::Name = format!("localhost/pg-ephemeral/{instance_name}")
+        .parse()
+        .unwrap();
+    for reference in backend.image_references_by_name(&name) {
+        backend.remove_image_force(&reference);
+    }
+
+    let definition = pg_ephemeral::Definition::new(backend.clone(), pg_ephemeral::Image::default())
+        .apply_script(
+            "schema-and-data".parse().unwrap(),
+            r#"psql -c "CREATE TABLE test_cache (id INTEGER PRIMARY KEY); INSERT INTO test_cache VALUES (42);""#,
+        )
+        .unwrap();
+
+    // Verify cache status is Miss initially
+    let loaded_seeds = definition.load_seeds(instance_name).unwrap();
+    for seed in loaded_seeds.iter_seeds() {
+        assert!(!seed.cache_status().is_hit());
+    }
+
+    // Populate cache
+    definition.populate_cache(instance_name).await;
+
+    // Verify cache status is now Hit
+    let loaded_seeds = definition.load_seeds(instance_name).unwrap();
+    let mut last_cache_reference = None;
+    for seed in loaded_seeds.iter_seeds() {
+        assert!(seed.cache_status().is_hit());
+        last_cache_reference = seed.cache_status().reference().cloned();
+    }
+
+    // Boot from the cached image and verify the seed effect is present
+    let cache_definition = pg_ephemeral::container::Definition {
+        image: last_cache_reference.clone().unwrap(),
+        password: pg_client::Password::from_str("test_password").unwrap(),
+        username: pg_client::Username::from_str("postgres").unwrap(),
+        database: pg_client::Database::from_str("postgres").unwrap(),
+        backend: backend.clone(),
+        cross_container_access: false,
+        application_name: None,
+        ssl_config: None,
+    };
+
+    let mut container = pg_ephemeral::Container::run_container_definition(&cache_definition);
+    container.set_superuser_password(&cache_definition.password);
+    container.wait_available().await;
+
+    container
+        .with_connection(async |connection| {
+            let row: (i32,) = sqlx::query_as("SELECT id FROM test_cache")
+                .fetch_one(&mut *connection)
+                .await
+                .unwrap();
+            assert_eq!(row.0, 42);
+        })
+        .await;
+
+    container.stop();
+
+    // Clean up images
+    for reference in backend.image_references_by_name(&name) {
+        backend.remove_image_force(&reference);
+    }
+}
 
 #[test]
 fn test_cache_status() {

@@ -129,6 +129,8 @@ pub enum CacheCommand {
     },
     /// Remove cached images for the instance
     Reset,
+    /// Populate cache by running seeds and committing at each cacheable point
+    Populate,
 }
 
 #[derive(Clone, Debug, clap::Parser)]
@@ -280,6 +282,24 @@ impl Command {
                     for reference in &references {
                         definition.backend.remove_image(reference);
                         println!("Removed: {reference}");
+                    }
+                }
+                CacheCommand::Populate => {
+                    let instance_name = instance.clone().unwrap_or_default();
+                    let definition = Self::get_instance(instance_map, instance)
+                        .definition()
+                        .unwrap();
+                    let (_last_cache_hit, uncached) =
+                        definition.populate_cache(&instance_name.to_string()).await;
+                    if !uncached.is_empty() {
+                        println!(
+                            "Seeds after broken cache chain: {}",
+                            uncached
+                                .iter()
+                                .map(|s| s.name().to_string())
+                                .collect::<Vec<_>>()
+                                .join(", ")
+                        );
                     }
                 }
             },

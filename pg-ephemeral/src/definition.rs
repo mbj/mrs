@@ -20,11 +20,12 @@ pub struct Definition {
     pub superuser: pg_client::Username,
     pub image: crate::image::Image,
     pub cross_container_access: bool,
+    pub remove: bool,
 }
 
 impl Definition {
     #[must_use]
-    pub fn new(backend: ociman::backend::Backend, image: crate::image::Image) -> Self {
+    pub fn new(backend: ociman::Backend, image: crate::image::Image) -> Self {
         Self {
             backend,
             application_name: None,
@@ -34,7 +35,16 @@ impl Definition {
             database: pg_client::database!("postgres"),
             image,
             cross_container_access: false,
+            remove: true,
         }
+    }
+
+    pub fn remove(self, remove: bool) -> Self {
+        Self { remove, ..self }
+    }
+
+    pub fn image(self, image: crate::image::Image) -> Self {
+        Self { image, ..self }
     }
 
     pub fn add_seed(self, name: SeedName, seed: Seed) -> Result<Self, DuplicateSeedName> {
@@ -157,6 +167,60 @@ impl Definition {
         db_container.stop();
 
         result
+    }
+
+    /// Populate cache images for seeds.
+    ///
+    /// Returns a tuple of:
+    /// - The last cache hit reference (if any), which can be used to boot from
+    /// - The loaded seeds that could not be cached because the cache chain was broken
+    pub async fn populate_cache(
+        &self,
+        instance_name: &str,
+    ) -> (Option<ociman::Reference>, Vec<LoadedSeed>) {
+        let loaded_seeds = self
+            .load_seeds(instance_name)
+            .unwrap_or_else(|error| panic!("{error}"));
+
+        let mut previous_cache_reference: Option<&ociman::Reference> = None;
+        let mut seeds_iter = loaded_seeds.iter_seeds().peekable();
+
+        while let Some(seed) = seeds_iter.next() {
+            let Some(cache_reference) = seed.cache_status().reference() else {
+                // Uncacheable seed - cache chain is broken, return remaining seeds
+                let mut remaining = vec![seed.clone()];
+                remaining.extend(seeds_iter.cloned());
+                return (previous_cache_reference.cloned(), remaining);
+            };
+
+            if seed.cache_status().is_hit() {
+                previous_cache_reference = Some(cache_reference);
+                continue;
+            }
+
+            let caching_definition = self.clone().remove(false).image(
+                previous_cache_reference
+                    .map(|reference| crate::image::Image::Explicit(reference.clone()))
+                    .unwrap_or_else(|| self.image.clone()),
+            );
+
+            let mut container = Container::run_definition(&caching_definition);
+
+            if previous_cache_reference.is_some() {
+                container
+                    .set_superuser_password(container.client_config.password.as_ref().unwrap());
+            }
+
+            container.wait_available().await;
+
+            self.apply_loaded_seed(&container, seed).await;
+            container.stop_commit(cache_reference);
+            log::info!("Committed cache image: {cache_reference}");
+
+            previous_cache_reference = Some(cache_reference);
+        }
+
+        (previous_cache_reference.cloned(), Vec::new())
     }
 
     pub async fn run_integration_server(&self) {

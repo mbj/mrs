@@ -40,6 +40,7 @@ impl Instance {
             superuser: self.superuser.clone(),
             image: self.image.clone(),
             cross_container_access: self.cross_container_access,
+            remove: true,
         })
     }
 }

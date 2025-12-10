@@ -47,7 +47,7 @@ pub struct Container {
 }
 
 impl Container {
-    pub(crate) fn run_definition(definition: &crate::definition::Definition) -> Self {
+    pub fn run_definition(definition: &crate::definition::Definition) -> Self {
         let password = generate_password();
 
         let ociman_definition = definition
@@ -64,6 +64,7 @@ impl Container {
             &definition.database,
             &password,
             &definition.superuser,
+            definition.remove,
         )
     }
 
@@ -81,6 +82,7 @@ impl Container {
             &definition.database,
             &definition.password,
             &definition.username,
+            true,
         )
     }
 
@@ -225,6 +227,52 @@ impl Container {
     pub fn stop(&mut self) {
         self.container.stop()
     }
+
+    /// Stop the container (clean PostgreSQL shutdown) and commit it to an image.
+    pub(crate) fn stop_commit(&mut self, reference: &ociman::Reference) {
+        self.container.stop();
+        self.container.commit(reference, false).unwrap();
+    }
+
+    fn wait_for_unix_socket(&self) {
+        let start = std::time::Instant::now();
+        let max_duration = std::time::Duration::from_secs(10);
+        let sleep_duration = std::time::Duration::from_millis(100);
+
+        while start.elapsed() <= max_duration {
+            if self.container.exec("pg_isready").status().is_ok() {
+                return;
+            }
+            std::thread::sleep(sleep_duration);
+        }
+
+        panic!("PostgreSQL did not become ready within ~10 seconds");
+    }
+
+    /// Set the superuser password using peer authentication via Unix domain socket.
+    ///
+    /// This is useful when resuming from a cached image where the password
+    /// doesn't match the newly generated one.
+    pub fn set_superuser_password(&self, password: &pg_client::Password) {
+        self.wait_for_unix_socket();
+
+        self.container
+            .exec("psql")
+            .arguments([
+                "--username",
+                self.client_config.username.as_ref(),
+                "--dbname",
+                "postgres",
+                "--variable",
+                &format!("target_user={}", self.client_config.username.as_ref()),
+                "--variable",
+                &format!("new_password={}", password.as_ref()),
+            ])
+            .stdin("ALTER USER :target_user WITH PASSWORD :'new_password'")
+            .stdout()
+            .bytes()
+            .unwrap();
+    }
 }
 
 fn generate_password() -> pg_client::Password {
@@ -249,6 +297,7 @@ fn run_container(
     database: &pg_client::Database,
     password: &pg_client::Password,
     username: &pg_client::Username,
+    remove: bool,
 ) -> Container {
     let backend = backend.clone();
     let host_ip = if cross_container_access {
@@ -259,9 +308,14 @@ fn run_container(
 
     let mut ociman_definition = ociman_definition
         .stop_on_drop()
-        .remove()
-        .environment_variable("PGDATA", "/var/lib/pg-ephemeral")
+        .environment_variable("PGDATA", PGDATA)
         .publish(ociman::Publish::tcp(5432).host_ip(host_ip));
+
+    ociman_definition = if remove {
+        ociman_definition.remove()
+    } else {
+        ociman_definition.remove_on_drop()
+    };
 
     let ssl_bundle = if let Some(ssl_config) = ssl_config {
         let hostname = match ssl_config {

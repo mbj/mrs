@@ -97,7 +97,7 @@ async fn test_script_seed_receives_environment() {
 fn test_git_revision_seed() {
     let _backend = ociman::test_backend_setup!();
 
-    let repo = common::TestGitRepo::new("git_revision_seed");
+    let repo = common::TestGitRepo::new("git-revision-test");
 
     // Create seed.sql with table creation and insert for commit 1
     repo.write_file(
@@ -107,8 +107,6 @@ fn test_git_revision_seed() {
             INSERT INTO users (id) VALUES (1);
         "#},
     );
-
-    // Commit v1
     let commit1_hash = repo.commit("Initial data");
 
     // Modify seed.sql to insert different data for commit 2
@@ -124,7 +122,6 @@ fn test_git_revision_seed() {
     let _ = repo.commit("Different data");
 
     // Create TOML config that references commit1
-    let config_path = repo.path.join("database.toml");
     let config_content = indoc::formatdoc! {r#"
         image = "17.1"
 
@@ -133,7 +130,7 @@ fn test_git_revision_seed() {
         path = "seed.sql"
         git_revision = "{commit1_hash}"
     "#};
-    std::fs::write(&config_path, config_content).unwrap();
+    repo.write_file("database.toml", &config_content);
 
     // Get path to pg-ephemeral binary using the canonical Cargo test environment variable
     let pg_ephemeral_bin = env!("CARGO_BIN_EXE_pg-ephemeral");

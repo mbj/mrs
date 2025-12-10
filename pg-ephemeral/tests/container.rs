@@ -12,6 +12,7 @@ async fn test_run_container_definition() {
     let static_database = "postgres";
     let snapshot_image: ociman::image::Reference = "pg-ephemeral-test:snapshot".parse().unwrap();
 
+    // Create a container, populate it with data, and commit it as a snapshot image
     let mut ociman_container = ociman::Definition::new(
         backend.clone(),
         "docker.io/library/postgres:17"
@@ -61,6 +62,7 @@ async fn test_run_container_definition() {
     ociman_container.commit(&snapshot_image, false).unwrap();
     drop(ociman_container);
 
+    // Now use pg_ephemeral to run from this snapshot image using container::Definition
     let definition = pg_ephemeral::container::Definition {
         image: snapshot_image.clone(),
         password: pg_client::Password::from_str(static_password).unwrap(),
@@ -72,7 +74,7 @@ async fn test_run_container_definition() {
         ssl_config: None,
     };
 
-    let mut container = pg_ephemeral::container::Container::run_container_definition(&definition);
+    let mut container = pg_ephemeral::Container::run_container_definition(&definition);
     container.wait_available().await;
 
     container
@@ -87,9 +89,34 @@ async fn test_run_container_definition() {
         .await;
 
     container.stop();
+
     // Force remove needed: container stop returns before container removal completes,
     // so a non-force remove may fail with "image is in use by stopped container".
     backend.remove_image_force(&snapshot_image);
+}
+
+#[tokio::test]
+async fn test_set_superuser_password() {
+    let backend = ociman::test_backend_setup!();
+
+    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default());
+
+    definition
+        .with_container(async |container| {
+            let new_password = pg_client::Password::from_str("new_password_123").unwrap();
+            container.set_superuser_password(&new_password);
+
+            let new_client_config = pg_client::Config {
+                password: Some(new_password),
+                ..container.client_config().clone()
+            };
+
+            new_client_config
+                .with_sqlx_connection(async |_| {})
+                .await
+                .unwrap();
+        })
+        .await;
 }
 
 async fn wait_for_postgres(config: &pg_client::Config) {
