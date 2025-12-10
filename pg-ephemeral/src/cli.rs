@@ -120,9 +120,29 @@ impl App {
 }
 
 #[derive(Clone, Debug, clap::Parser)]
+pub enum CacheCommand {
+    /// Print cache status for seeds
+    Status {
+        /// Show full cache key output instead of truncated
+        #[arg(long)]
+        verbose: bool,
+    },
+    /// Remove cached images for the instance
+    Reset,
+    /// Populate cache by running seeds and committing at each cacheable point
+    Populate,
+}
+
+#[derive(Clone, Debug, clap::Parser)]
 pub enum Command {
-    /// List defined instances
-    List,
+    /// Cache related commands
+    Cache {
+        /// Target instance name
+        #[arg(long)]
+        instance: Option<InstanceName>,
+        #[clap(subcommand)]
+        command: CacheCommand,
+    },
     /// Run interactive psql session on the container
     #[command(name = "container-psql")]
     ContainerPsql {
@@ -130,6 +150,8 @@ pub enum Command {
         #[arg(long)]
         instance: Option<InstanceName>,
     },
+    /// List defined instances
+    List,
     /// Run schema dump from the container
     #[command(name = "container-schema-dump")]
     ContainerSchemaDump {
@@ -199,11 +221,46 @@ impl Default for Command {
 impl Command {
     pub async fn run(&self, instance_map: &InstanceMap) {
         match self {
-            Self::List => {
-                for instance_name in instance_map.keys() {
-                    println!("{}", instance_name)
+            Self::Cache { instance, command } => match command {
+                CacheCommand::Status { verbose } => {
+                    let instance_name = instance.clone().unwrap_or_default();
+                    let definition = Self::get_instance(instance_map, instance)
+                        .definition()
+                        .unwrap();
+                    definition.print_cache_status(&instance_name.to_string(), *verbose)
                 }
-            }
+                CacheCommand::Reset => {
+                    let instance_name = instance.clone().unwrap_or_default();
+                    let definition = Self::get_instance(instance_map, instance)
+                        .definition()
+                        .unwrap();
+                    let name: ociman::reference::Name =
+                        format!("pg-ephemeral/{instance_name}").parse().unwrap();
+                    let references = definition.backend.image_references_by_name(&name);
+                    for reference in &references {
+                        definition.backend.remove_image(reference);
+                        println!("Removed: {reference}");
+                    }
+                }
+                CacheCommand::Populate => {
+                    let instance_name = instance.clone().unwrap_or_default();
+                    let definition = Self::get_instance(instance_map, instance)
+                        .definition()
+                        .unwrap();
+                    let (_last_cache_hit, uncached) =
+                        definition.populate_cache(&instance_name.to_string()).await;
+                    if !uncached.is_empty() {
+                        println!(
+                            "Seeds after broken cache chain: {}",
+                            uncached
+                                .iter()
+                                .map(|s| s.name().to_string())
+                                .collect::<Vec<_>>()
+                                .join(", ")
+                        );
+                    }
+                }
+            },
             Self::ContainerPsql { instance } => {
                 let definition = Self::get_instance(instance_map, instance)
                     .definition()
@@ -231,6 +288,11 @@ impl Command {
                     .unwrap();
                 definition.run_integration_server().await
             }
+            Self::List => {
+                for instance_name in instance_map.keys() {
+                    println!("{instance_name}")
+                }
+            }
             Self::Psql { instance } => {
                 let definition = Self::get_instance(instance_map, instance)
                     .definition()
@@ -256,7 +318,7 @@ impl Command {
                     std::process::exit(0);
                 }
                 Err(error) => {
-                    log::info!("pg-ephemeral is not supported on this platform: {}", error);
+                    log::info!("pg-ephemeral is not supported on this platform: {error}");
                     std::process::exit(1);
                 }
             },
