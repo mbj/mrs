@@ -33,7 +33,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install --yes postgresql-client git-restore-mtime
     - if: ${{ startsWith(matrix.os.version, 'macos-') }}
       run: brew install git-tools
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 0
     - run: git restore-mtime
@@ -105,7 +105,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install --yes git-restore-mtime
     - if: ${{ startsWith(matrix.platform.runner, 'macos-') }}
       run: brew install git-tools
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 0
     - run: git restore-mtime
@@ -145,7 +145,7 @@ jobs:
       contents: write
     steps:
     - run: sudo apt-get update && sudo apt-get install --yes git-restore-mtime
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 0
     - run: git restore-mtime
