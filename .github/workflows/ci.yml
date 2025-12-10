@@ -33,11 +33,11 @@ jobs:
       run: sudo apt-get update && sudo apt-get install --yes postgresql-client git-restore-mtime
     - if: ${{ startsWith(matrix.os.version, 'macos-') }}
       run: brew install git-tools
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       with:
         fetch-depth: 0
     - run: git restore-mtime
-    - uses: actions/cache@v4
+    - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
       with:
         path: |
           target/
@@ -65,7 +65,7 @@ jobs:
 
     - name: Set up Ruby 3.4 for macOS gem build
       if: ${{ endsWith(matrix.os.cargo_build_target, '-darwin') }}
-      uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@d697be2f83c6234b20877c3b5eac7a7f342f0d0c # v1.269.0
       with:
         ruby-version: '3.4'
 
@@ -75,7 +75,7 @@ jobs:
 
     - name: Upload build artifacts
       if: ${{ !endsWith(matrix.os.cargo_build_target, '-gnu') }}
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
       with:
         name: pg-ephemeral-${{ matrix.os.cargo_build_target }}
         path: |
@@ -105,7 +105,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install --yes git-restore-mtime
     - if: ${{ startsWith(matrix.platform.runner, 'macos-') }}
       run: brew install git-tools
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       with:
         fetch-depth: 0
     - run: git restore-mtime
@@ -115,13 +115,13 @@ jobs:
       run: sudo apt-get update && sudo apt-get install --yes libpq-dev
 
     - name: Download all artifacts
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
       with:
         path: artifacts/
         merge-multiple: false
 
     - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@d697be2f83c6234b20877c3b5eac7a7f342f0d0c # v1.269.0
       with:
         ruby-version: ${{ matrix.ruby-version }}
 
@@ -145,13 +145,13 @@ jobs:
       contents: write
     steps:
     - run: sudo apt-get update && sudo apt-get install --yes git-restore-mtime
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       with:
         fetch-depth: 0
     - run: git restore-mtime
 
     - name: Download all artifacts
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
       with:
         path: artifacts
 
