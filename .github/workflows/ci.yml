@@ -30,8 +30,13 @@ jobs:
     - if: ${{ endsWith(matrix.os.cargo_build_target, '-musl') }}
       run: sudo apt-get update && sudo apt-get install --yes musl-tools
     - if: ${{ startsWith(matrix.os.version, 'ubuntu-') }}
-      run: sudo apt-get update && sudo apt-get install --yes postgresql-client
+      run: sudo apt-get update && sudo apt-get install --yes postgresql-client git-restore-mtime
+    - if: ${{ startsWith(matrix.os.version, 'macos-') }}
+      run: brew install git-tools
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - run: git restore-mtime
     - uses: actions/cache@v4
       with:
         path: |
@@ -96,7 +101,14 @@ jobs:
     runs-on: ${{ matrix.platform.runner }}
     needs: build
     steps:
+    - if: ${{ startsWith(matrix.platform.runner, 'ubuntu-') }}
+      run: sudo apt-get update && sudo apt-get install --yes git-restore-mtime
+    - if: ${{ startsWith(matrix.platform.runner, 'macos-') }}
+      run: brew install git-tools
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - run: git restore-mtime
 
     - name: Install libpq-dev on Ubuntu
       if: ${{ startsWith(matrix.platform.runner, 'ubuntu-') }}
@@ -132,7 +144,11 @@ jobs:
     permissions:
       contents: write
     steps:
+    - run: sudo apt-get update && sudo apt-get install --yes git-restore-mtime
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - run: git restore-mtime
 
     - name: Download all artifacts
       uses: actions/download-artifact@v4
