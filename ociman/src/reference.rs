@@ -157,7 +157,7 @@ impl_from_str!(
 ///     "parse error: Parsing Error: Error { input: \"@invalid\", code: TakeWhile1 }"
 /// );
 /// ```
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct DomainComponent(String);
 
 impl DomainComponent {
@@ -214,7 +214,7 @@ impl Parse for DomainComponent {
 ///     "parse error: Parsing Error: Error { input: \".example.com\", code: TakeWhile1 }"
 /// );
 /// ```
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct DomainName(Vec<DomainComponent>);
 
 impl DomainName {
@@ -268,7 +268,7 @@ impl std::fmt::Display for DomainName {
 ///     "parse error: Parsing Error: Error { input: \"123456\", code: Digit }"
 /// );
 /// ```
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct PortNumber(u16);
 
 impl PortNumber {
@@ -322,7 +322,7 @@ impl std::fmt::Display for PortNumber {
 /// let host: Host = "999.999.999.999".parse().unwrap();
 /// assert!(matches!(host, Host::DomainName(_)));
 /// ```
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub enum Host {
     DomainName(DomainName),
     Ipv4(std::net::Ipv4Addr),
@@ -393,7 +393,7 @@ impl std::fmt::Display for Host {
 /// assert_eq!(domain.to_string(), "localhost:5000");
 /// assert_eq!(domain.port.map(|p| p.value()), Some(5000));
 /// ```
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct Domain {
     pub host: Host,
     pub port: Option<PortNumber>,
@@ -481,7 +481,7 @@ impl std::fmt::Display for Domain {
 ///     "parse error: Parsing Error: Error { input: \"-alpine\", code: TakeWhile1 }"
 /// );
 /// ```
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct PathComponent(String);
 
 impl PathComponent {
@@ -561,7 +561,7 @@ impl std::fmt::Display for PathComponent {
 ///     "parse error: Parsing Error: Error { input: \"//alpine\", code: Eof }"
 /// );
 /// ```
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct Path(Vec<PathComponent>);
 
 impl Path {
@@ -602,7 +602,7 @@ impl std::fmt::Display for Path {
 /// assert_eq!(name.domain.unwrap().to_string(), "docker.io");
 /// assert_eq!(name.path.to_string(), "library/alpine");
 /// ```
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct Name {
     pub domain: Option<Domain>,
     pub path: Path,
@@ -681,7 +681,7 @@ impl std::fmt::Display for Name {
 ///     "parse error: Parsing Error: Error { input: \"-latest\", code: TakeWhileMN }"
 /// );
 /// ```
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct Tag(String);
 
 impl Tag {
@@ -735,7 +735,7 @@ impl From<sha2::digest::Output<sha2::Sha256>> for Tag {
 /// let algorithm: DigestAlgorithm = "sha512".parse().unwrap();
 /// assert_eq!(algorithm.as_str(), "sha512");
 /// ```
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct DigestAlgorithm(String);
 
 impl DigestAlgorithm {
@@ -813,7 +813,7 @@ impl std::fmt::Display for DigestAlgorithm {
 ///     "parse error: Parsing Error: Error { input: \"gh\", code: Eof }"
 /// );
 /// ```
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct Digest {
     pub algorithm: DigestAlgorithm,
     pub hex: String,
@@ -917,7 +917,7 @@ impl std::fmt::Display for Digest {
 ///     "parse error: Parsing Error: Error { input: \"!latest\", code: Eof }"
 /// );
 /// ```
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct Reference {
     pub name: Name,
     pub tag: Option<Tag>,
