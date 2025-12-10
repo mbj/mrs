@@ -105,6 +105,36 @@ impl Backend {
             .capture_only_stdout();
     }
 
+    /// List image references by name (e.g., "pg-ephemeral/main")
+    ///
+    /// Note: Podman's `--filter reference=` with wildcards returns all tags sharing the same
+    /// image ID, not just matching references. This is a known issue partially addressed in
+    /// <https://github.com/containers/common/pull/2413>, but only for single fully-qualified
+    /// references ("query mode"), not wildcard patterns ("search mode"). We filter results
+    /// client-side to ensure only matching names are returned.
+    pub fn image_references_by_name(
+        &self,
+        name: &crate::reference::Name,
+    ) -> std::collections::BTreeSet<crate::image::Reference> {
+        let output = self
+            .command()
+            .arguments([
+                "images",
+                "--format",
+                "{{.Repository}}:{{.Tag}}",
+                "--filter",
+                &format!("reference={name}:*"),
+            ])
+            .capture_only_stdout_string();
+
+        output
+            .lines()
+            .filter(|line| !line.is_empty())
+            .map(|line| line.parse::<crate::image::Reference>().unwrap())
+            .filter(|reference| &reference.name == name)
+            .collect()
+    }
+
     /// Create a hostname resolver that runs inside a container
     ///
     /// This is useful for resolving DNS names that only work inside containers
@@ -483,5 +513,45 @@ mod tests {
 
         // Should resolve to some IP address
         assert!(ip.is_ipv4() || ip.is_ipv6());
+    }
+
+    #[test]
+    fn test_image_references_by_name() {
+        use std::collections::BTreeSet;
+
+        let backend = crate::test_backend_setup!();
+
+        // Use localhost prefix to match how Podman canonicalizes local images
+        let name: crate::reference::Name = "localhost/ociman-test/image-references-by-name"
+            .parse()
+            .unwrap();
+
+        // Clean up any existing images with this name
+        for image in backend.image_references_by_name(&name) {
+            backend.remove_image_force(&image);
+        }
+
+        // Create test images by tagging alpine:latest
+        let source: crate::image::Reference = "alpine:latest".parse().unwrap();
+        backend.pull_image_if_absent(&source);
+
+        let target_a: crate::image::Reference = "localhost/ociman-test/image-references-by-name:a"
+            .parse()
+            .unwrap();
+        let target_b: crate::image::Reference = "localhost/ociman-test/image-references-by-name:b"
+            .parse()
+            .unwrap();
+
+        backend.tag_image(&source, &target_a);
+        backend.tag_image(&source, &target_b);
+
+        assert_eq!(
+            backend.image_references_by_name(&name),
+            BTreeSet::from([target_a.clone(), target_b.clone()])
+        );
+
+        // Clean up
+        backend.remove_image_force(&target_a);
+        backend.remove_image_force(&target_b);
     }
 }
