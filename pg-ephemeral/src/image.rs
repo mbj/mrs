@@ -43,9 +43,9 @@ impl std::fmt::Display for Image {
                 os,
                 digest,
             } => {
-                write!(formatter, "{}{}{}", major, minor, os)?;
+                write!(formatter, "{major}{minor}{os}")?;
                 if let Some(digest) = digest {
-                    write!(formatter, "@{}", digest)?;
+                    write!(formatter, "@{digest}")?;
                 }
                 Ok(())
             }
@@ -55,9 +55,9 @@ impl std::fmt::Display for Image {
                 os,
                 digest,
             } => {
-                write!(formatter, "{}rc{}{}", major, number, os)?;
+                write!(formatter, "{major}rc{number}{os}")?;
                 if let Some(digest) = digest {
-                    write!(formatter, "@{}", digest)?;
+                    write!(formatter, "@{digest}")?;
                 }
                 Ok(())
             }
@@ -67,7 +67,7 @@ impl std::fmt::Display for Image {
                     OS::Explicit(value) => write!(formatter, "{value}")?,
                 }
                 if let Some(digest) = digest {
-                    write!(formatter, "@{}", digest)?;
+                    write!(formatter, "@{digest}")?;
                 }
                 Ok(())
             }

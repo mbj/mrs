@@ -201,7 +201,7 @@ impl Command {
         match self {
             Self::List => {
                 for instance_name in instance_map.keys() {
-                    println!("{}", instance_name)
+                    println!("{instance_name}")
                 }
             }
             Self::ContainerPsql { instance } => {
@@ -256,7 +256,7 @@ impl Command {
                     std::process::exit(0);
                 }
                 Err(error) => {
-                    log::info!("pg-ephemeral is not supported on this platform: {}", error);
+                    log::info!("pg-ephemeral is not supported on this platform: {error}");
                     std::process::exit(1);
                 }
             },
