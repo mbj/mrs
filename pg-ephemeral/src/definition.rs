@@ -1,5 +1,8 @@
-use crate::container::Container;
-use crate::seed::{Command, DuplicateSeedName, LoadError, LoadedSeed, Seed, SeedName};
+use crate::Container;
+use crate::seed::{
+    Command, CommandCacheConfig, DuplicateSeedName, LoadError, LoadedSeed, LoadedSeeds, Seed,
+    SeedName,
+};
 
 #[derive(Clone, Debug, PartialEq)]
 pub enum SslConfig {
@@ -7,7 +10,7 @@ pub enum SslConfig {
     // UserProvided { ca_cert: PathBuf, server_cert: PathBuf, server_key: PathBuf },
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct Definition {
     pub application_name: Option<pg_client::ApplicationName>,
     pub backend: ociman::Backend,
@@ -53,10 +56,21 @@ impl Definition {
         self.add_seed(name, Seed::SqlFile { path })
     }
 
-    fn load_seeds(&self) -> impl Iterator<Item = Result<LoadedSeed, LoadError>> + '_ {
-        self.seeds
-            .iter()
-            .map(|(name, seed)| seed.load(name.clone()))
+    pub fn load_seeds(&self, instance_name: &str) -> Result<LoadedSeeds<'_>, LoadError> {
+        LoadedSeeds::load(
+            &self.image,
+            self.ssl_config.as_ref(),
+            &self.seeds,
+            &self.backend,
+            instance_name,
+        )
+    }
+
+    pub fn print_cache_status(&self, instance_name: &str, verbose: bool) {
+        match self.load_seeds(instance_name) {
+            Ok(loaded_seeds) => loaded_seeds.print(verbose),
+            Err(error) => panic!("{error}"),
+        }
     }
 
     #[must_use]
@@ -86,8 +100,9 @@ impl Definition {
         self,
         name: SeedName,
         command: Command,
+        cache: CommandCacheConfig,
     ) -> Result<Self, DuplicateSeedName> {
-        self.add_seed(name, Seed::Command { command })
+        self.add_seed(name, Seed::Command { command, cache })
     }
 
     pub fn apply_script(
@@ -125,16 +140,15 @@ impl Definition {
     }
 
     pub async fn with_container<T>(&self, mut action: impl AsyncFnMut(&Container) -> T) -> T {
-        let loaded_seeds: Vec<LoadedSeed> = self
-            .load_seeds()
-            .collect::<Result<Vec<_>, _>>()
+        let loaded_seeds = self
+            .load_seeds("main")
             .unwrap_or_else(|error| panic!("{error}"));
 
         let mut db_container = Container::run_definition(self);
 
         db_container.wait_available().await;
 
-        for loaded_seed in &loaded_seeds {
+        for loaded_seed in loaded_seeds.iter_seeds() {
             self.apply_loaded_seed(&db_container, loaded_seed).await
         }
 
@@ -282,15 +296,15 @@ pub fn apply_ociman_mounts(
 mod test {
     use super::*;
 
-    fn dummy_backend() -> ociman::backend::Backend {
-        ociman::backend::Backend::Podman {
-            version: semver::Version::new(0, 0, 0),
+    fn test_backend() -> ociman::Backend {
+        ociman::Backend::Podman {
+            version: semver::Version::new(4, 0, 0),
         }
     }
 
     #[test]
     fn test_add_seed_rejects_duplicate() {
-        let definition = Definition::new(dummy_backend(), crate::Image::default());
+        let definition = Definition::new(test_backend(), crate::Image::default());
         let seed_name: SeedName = "test-seed".parse().unwrap();
 
         let definition = definition
@@ -314,7 +328,7 @@ mod test {
 
     #[test]
     fn test_add_seed_allows_different_names() {
-        let definition = Definition::new(dummy_backend(), crate::Image::default());
+        let definition = Definition::new(test_backend(), crate::Image::default());
 
         let definition = definition
             .add_seed(
@@ -337,7 +351,7 @@ mod test {
 
     #[test]
     fn test_apply_file_rejects_duplicate() {
-        let definition = Definition::new(dummy_backend(), crate::Image::default());
+        let definition = Definition::new(test_backend(), crate::Image::default());
         let seed_name: SeedName = "test-seed".parse().unwrap();
 
         let definition = definition
@@ -351,11 +365,12 @@ mod test {
 
     #[test]
     fn test_apply_command_adds_seed() {
-        let definition = Definition::new(dummy_backend(), crate::Image::default());
+        let definition = Definition::new(test_backend(), crate::Image::default());
 
         let result = definition.apply_command(
             "test-command".parse().unwrap(),
             Command::new("echo", vec!["test"]),
+            CommandCacheConfig::CommandHash,
         );
 
         assert!(result.is_ok());
@@ -365,22 +380,29 @@ mod test {
 
     #[test]
     fn test_apply_command_rejects_duplicate() {
-        let definition = Definition::new(dummy_backend(), crate::Image::default());
+        let definition = Definition::new(test_backend(), crate::Image::default());
         let seed_name: SeedName = "test-command".parse().unwrap();
 
         let definition = definition
-            .apply_command(seed_name.clone(), Command::new("echo", vec!["test1"]))
+            .apply_command(
+                seed_name.clone(),
+                Command::new("echo", vec!["test1"]),
+                CommandCacheConfig::CommandHash,
+            )
             .unwrap();
 
-        let result =
-            definition.apply_command(seed_name.clone(), Command::new("echo", vec!["test2"]));
+        let result = definition.apply_command(
+            seed_name.clone(),
+            Command::new("echo", vec!["test2"]),
+            CommandCacheConfig::CommandHash,
+        );
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
     }
 
     #[test]
     fn test_apply_script_adds_seed() {
-        let definition = Definition::new(dummy_backend(), crate::Image::default());
+        let definition = Definition::new(test_backend(), crate::Image::default());
 
         let result = definition.apply_script("test-script".parse().unwrap(), "echo test");
 
@@ -391,7 +413,7 @@ mod test {
 
     #[test]
     fn test_apply_script_rejects_duplicate() {
-        let definition = Definition::new(dummy_backend(), crate::Image::default());
+        let definition = Definition::new(test_backend(), crate::Image::default());
         let seed_name: SeedName = "test-script".parse().unwrap();
 
         let definition = definition
