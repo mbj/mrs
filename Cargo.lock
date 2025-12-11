@@ -2054,6 +2054,7 @@ dependencies = [
  "semver",
  "serde",
  "serde_json",
+ "sha2",
  "sqlx",
  "thiserror",
  "time",

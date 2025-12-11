@@ -1,5 +1,8 @@
-use crate::container::Container;
-use crate::seed::{Command, DuplicateSeedName, LoadError, LoadedSeed, Seed, SeedName};
+use crate::Container;
+use crate::seed::{
+    Command, CommandCacheConfig, DuplicateSeedName, LoadError, LoadedSeed, LoadedSeeds, Seed,
+    SeedName,
+};
 
 #[derive(Clone, Debug, PartialEq)]
 pub enum SslConfig {
@@ -7,7 +10,7 @@ pub enum SslConfig {
     // UserProvided { ca_cert: PathBuf, server_cert: PathBuf, server_key: PathBuf },
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct Definition {
     pub application_name: Option<pg_client::ApplicationName>,
     pub backend: ociman::Backend,
@@ -17,10 +20,11 @@ pub struct Definition {
     pub superuser: pg_client::Username,
     pub image: crate::image::Image,
     pub cross_container_access: bool,
+    pub remove: bool,
 }
 
 impl Definition {
-    pub fn new(backend: ociman::backend::Backend, image: crate::image::Image) -> Self {
+    pub fn new(backend: ociman::Backend, image: crate::image::Image) -> Self {
         Self {
             backend,
             application_name: None,
@@ -30,7 +34,16 @@ impl Definition {
             database: pg_client::database!("postgres"),
             image,
             cross_container_access: false,
+            remove: true,
         }
+    }
+
+    pub fn remove(self, remove: bool) -> Self {
+        Self { remove, ..self }
+    }
+
+    pub fn image(self, image: crate::image::Image) -> Self {
+        Self { image, ..self }
     }
 
     pub fn add_seed(self, name: SeedName, seed: Seed) -> Result<Self, DuplicateSeedName> {
@@ -52,10 +65,21 @@ impl Definition {
         self.add_seed(name, Seed::SqlFile { path })
     }
 
-    fn load_seeds(&self) -> impl Iterator<Item = Result<LoadedSeed, LoadError>> + '_ {
-        self.seeds
-            .iter()
-            .map(|(name, seed)| seed.load(name.clone()))
+    pub fn load_seeds(&self, instance_name: &str) -> Result<LoadedSeeds<'_>, LoadError> {
+        LoadedSeeds::load(
+            &self.image,
+            self.ssl_config.as_ref(),
+            &self.seeds,
+            &self.backend,
+            instance_name,
+        )
+    }
+
+    pub fn print_cache_status(&self, instance_name: &str, verbose: bool) {
+        match self.load_seeds(instance_name) {
+            Ok(loaded_seeds) => loaded_seeds.print(verbose),
+            Err(error) => panic!("{error}"),
+        }
     }
 
     pub fn superuser(self, username: pg_client::Username) -> Self {
@@ -84,8 +108,9 @@ impl Definition {
         self,
         name: SeedName,
         command: Command,
+        cache: CommandCacheConfig,
     ) -> Result<Self, DuplicateSeedName> {
-        self.add_seed(name, Seed::Command { command })
+        self.add_seed(name, Seed::Command { command, cache })
     }
 
     pub fn apply_script(
@@ -120,17 +145,27 @@ impl Definition {
     }
 
     pub async fn with_container<T>(&self, mut action: impl AsyncFnMut(&Container) -> T) -> T {
-        let loaded_seeds: Vec<LoadedSeed> = self
-            .load_seeds()
-            .collect::<Result<Vec<_>, _>>()
-            .unwrap_or_else(|error| panic!("{error}"));
+        // TODO: Pass instance_name through when caching is fully integrated
+        let instance_name = "main";
 
-        let mut db_container = Container::run_definition(self);
+        let (last_cache_hit, uncached_seeds) = self.populate_cache(instance_name).await;
+
+        let boot_definition = match &last_cache_hit {
+            Some(reference) => self.clone().image(crate::image::Image::Explicit(reference.clone())),
+            None => self.clone(),
+        };
+
+        let mut db_container = Container::run_definition(&boot_definition);
+
+        if last_cache_hit.is_some() {
+            db_container
+                .set_superuser_password(db_container.client_config.password.as_ref().unwrap());
+        }
 
         db_container.wait_available().await;
 
-        for loaded_seed in &loaded_seeds {
-            self.apply_loaded_seed(&db_container, loaded_seed).await
+        for seed in &uncached_seeds {
+            self.apply_loaded_seed(&db_container, seed).await;
         }
 
         let result = action(&db_container).await;
@@ -138,6 +173,59 @@ impl Definition {
         db_container.stop();
 
         result
+    }
+
+    /// Populate cache images for seeds.
+    ///
+    /// Returns a tuple of:
+    /// - The last cache hit reference (if any), which can be used to boot from
+    /// - The loaded seeds that could not be cached because the cache chain was broken
+    pub async fn populate_cache(
+        &self,
+        instance_name: &str,
+    ) -> (Option<ociman::Reference>, Vec<LoadedSeed>) {
+        let loaded_seeds = self
+            .load_seeds(instance_name)
+            .unwrap_or_else(|error| panic!("{error}"));
+
+        let mut previous_cache_reference: Option<&ociman::Reference> = None;
+        let mut seeds_iter = loaded_seeds.iter_seeds().peekable();
+
+        while let Some(seed) = seeds_iter.next() {
+            let Some(cache_reference) = seed.cache_status().reference() else {
+                // Uncacheable seed - cache chain is broken, return remaining seeds
+                let mut remaining = vec![seed.clone()];
+                remaining.extend(seeds_iter.cloned());
+                return (previous_cache_reference.cloned(), remaining);
+            };
+
+            if seed.cache_status().is_hit() {
+                previous_cache_reference = Some(cache_reference);
+                continue;
+            }
+
+            let caching_definition = self.clone().remove(false).image(
+                previous_cache_reference
+                    .map(|reference| crate::image::Image::Explicit(reference.clone()))
+                    .unwrap_or_else(|| self.image.clone()),
+            );
+
+            let mut container = Container::run_definition(&caching_definition);
+            container.wait_available().await;
+
+            if previous_cache_reference.is_some() {
+                container
+                    .set_superuser_password(container.client_config.password.as_ref().unwrap());
+            }
+
+            self.apply_loaded_seed(&container, seed).await;
+            container.stop_commit(cache_reference);
+            log::info!("Committed cache image: {cache_reference}");
+
+            previous_cache_reference = Some(cache_reference);
+        }
+
+        (previous_cache_reference.cloned(), Vec::new())
     }
 
     pub async fn run_integration_server(&self) {
@@ -275,15 +363,15 @@ pub fn apply_ociman_mounts(
 mod test {
     use super::*;
 
-    fn dummy_backend() -> ociman::backend::Backend {
-        ociman::backend::Backend::Podman {
-            version: semver::Version::new(0, 0, 0),
+    fn test_backend() -> ociman::Backend {
+        ociman::Backend::Podman {
+            version: semver::Version::new(4, 0, 0),
         }
     }
 
     #[test]
     fn test_add_seed_rejects_duplicate() {
-        let definition = Definition::new(dummy_backend(), crate::Image::default());
+        let definition = Definition::new(test_backend(), crate::Image::default());
         let seed_name: SeedName = "test-seed".parse().unwrap();
 
         let definition = definition
@@ -307,7 +395,7 @@ mod test {
 
     #[test]
     fn test_add_seed_allows_different_names() {
-        let definition = Definition::new(dummy_backend(), crate::Image::default());
+        let definition = Definition::new(test_backend(), crate::Image::default());
 
         let definition = definition
             .add_seed(
@@ -330,7 +418,7 @@ mod test {
 
     #[test]
     fn test_apply_file_rejects_duplicate() {
-        let definition = Definition::new(dummy_backend(), crate::Image::default());
+        let definition = Definition::new(test_backend(), crate::Image::default());
         let seed_name: SeedName = "test-seed".parse().unwrap();
 
         let definition = definition
@@ -344,11 +432,12 @@ mod test {
 
     #[test]
     fn test_apply_command_adds_seed() {
-        let definition = Definition::new(dummy_backend(), crate::Image::default());
+        let definition = Definition::new(test_backend(), crate::Image::default());
 
         let result = definition.apply_command(
             "test-command".parse().unwrap(),
             Command::new("echo", vec!["test"]),
+            CommandCacheConfig::CommandHash,
         );
 
         assert!(result.is_ok());
@@ -358,22 +447,29 @@ mod test {
 
     #[test]
     fn test_apply_command_rejects_duplicate() {
-        let definition = Definition::new(dummy_backend(), crate::Image::default());
+        let definition = Definition::new(test_backend(), crate::Image::default());
         let seed_name: SeedName = "test-command".parse().unwrap();
 
         let definition = definition
-            .apply_command(seed_name.clone(), Command::new("echo", vec!["test1"]))
+            .apply_command(
+                seed_name.clone(),
+                Command::new("echo", vec!["test1"]),
+                CommandCacheConfig::CommandHash,
+            )
             .unwrap();
 
-        let result =
-            definition.apply_command(seed_name.clone(), Command::new("echo", vec!["test2"]));
+        let result = definition.apply_command(
+            seed_name.clone(),
+            Command::new("echo", vec!["test2"]),
+            CommandCacheConfig::CommandHash,
+        );
 
         assert_eq!(result, Err(DuplicateSeedName(seed_name)));
     }
 
     #[test]
     fn test_apply_script_adds_seed() {
-        let definition = Definition::new(dummy_backend(), crate::Image::default());
+        let definition = Definition::new(test_backend(), crate::Image::default());
 
         let result = definition.apply_script("test-script".parse().unwrap(), "echo test");
 
@@ -384,7 +480,7 @@ mod test {
 
     #[test]
     fn test_apply_script_rejects_duplicate() {
-        let definition = Definition::new(dummy_backend(), crate::Image::default());
+        let definition = Definition::new(test_backend(), crate::Image::default());
         let seed_name: SeedName = "test-script".parse().unwrap();
 
         let definition = definition
