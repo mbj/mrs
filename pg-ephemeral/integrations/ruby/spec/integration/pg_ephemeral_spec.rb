@@ -78,6 +78,28 @@ RSpec.describe PgEphemeral do
     end
   end
 
+  describe 'backtrace quality' do
+    it 'includes file paths and line numbers in panic backtraces' do
+      output, status = Open3.capture2e(
+        { 'RUST_BACKTRACE' => '1' },
+        PgEphemeral.binary_path, 'platform', 'test-backtrace'
+      )
+
+      expect(status.success?).to be(false)
+      expect(output).to include('intentional panic for backtrace testing')
+      expect(output).to include('trigger_test_panic')
+      expect(output).to include('inner_function_for_backtrace_test')
+
+      # Verify file paths with line numbers are present in backtrace frames
+      backtrace_has_file_lines = output.lines.any? do |line|
+        !line.include?('panicked at') && line.include?('cli.rs:') && line.include?('at ')
+      end
+
+      expect(backtrace_has_file_lines).to be(true),
+        "Expected backtrace to contain file paths with line numbers (e.g., 'at cli.rs:123'), got:\n#{output}"
+    end
+  end
+
   describe '.with_connection' do
     before do
       skip 'Platform does not support pg-ephemeral' unless PgEphemeral.platform_supported?

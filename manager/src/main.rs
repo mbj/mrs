@@ -13,12 +13,77 @@ fn ruby_version() -> String {
     result
 }
 
-// Expected platforms that should have built gems and binaries
-const PLATFORMS: &[(&str, &str)] = &[
-    ("x86_64-unknown-linux-musl", "x86_64-linux"),
-    ("aarch64-unknown-linux-musl", "aarch64-linux"),
-    ("aarch64-apple-darwin", "arm64-darwin"),
-];
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum CpuArchitecture {
+    X86_64,
+    Aarch64,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum OperatingSystem {
+    Linux,
+    Darwin,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum Libc {
+    Musl,
+    None,
+}
+
+#[derive(Debug, Clone, Copy)]
+struct Platform(CpuArchitecture, OperatingSystem, Libc);
+
+impl Platform {
+    const ALL: &[Platform] = &[
+        Platform(CpuArchitecture::X86_64, OperatingSystem::Linux, Libc::Musl),
+        Platform(CpuArchitecture::Aarch64, OperatingSystem::Linux, Libc::Musl),
+        Platform(
+            CpuArchitecture::Aarch64,
+            OperatingSystem::Darwin,
+            Libc::None,
+        ),
+    ];
+
+    fn rust_target(self) -> &'static str {
+        match self {
+            Platform(CpuArchitecture::X86_64, OperatingSystem::Linux, Libc::Musl) => {
+                "x86_64-unknown-linux-musl"
+            }
+            Platform(CpuArchitecture::Aarch64, OperatingSystem::Linux, Libc::Musl) => {
+                "aarch64-unknown-linux-musl"
+            }
+            Platform(CpuArchitecture::Aarch64, OperatingSystem::Darwin, Libc::None) => {
+                "aarch64-apple-darwin"
+            }
+            _ => panic!("Unsupported platform: {self:?}"),
+        }
+    }
+
+    fn ruby_platform(self) -> &'static str {
+        match self {
+            Platform(CpuArchitecture::X86_64, OperatingSystem::Linux, Libc::Musl) => "x86_64-linux",
+            Platform(CpuArchitecture::Aarch64, OperatingSystem::Linux, Libc::Musl) => {
+                "aarch64-linux"
+            }
+            Platform(CpuArchitecture::Aarch64, OperatingSystem::Darwin, Libc::None) => {
+                "arm64-darwin"
+            }
+            _ => panic!("Unsupported platform: {self:?}"),
+        }
+    }
+
+    fn from_rust_target(target: &str) -> Option<Platform> {
+        Platform::ALL
+            .iter()
+            .find(|p| p.rust_target() == target)
+            .copied()
+    }
+
+    fn is_macos(self) -> bool {
+        self.1 == OperatingSystem::Darwin
+    }
+}
 
 #[derive(Debug, clap::Parser)]
 struct App {
@@ -182,8 +247,12 @@ fn create_edge_release() {
     let mut release_files = Vec::new();
 
     // Verify and collect all expected artifacts
-    for (rust_target, ruby_platform) in PLATFORMS {
-        let paths = platform_artifact_paths(&workspace_root, rust_target, ruby_platform);
+    for platform in Platform::ALL {
+        let paths = platform_artifact_paths(
+            &workspace_root,
+            platform.rust_target(),
+            platform.ruby_platform(),
+        );
 
         release_files.push(verify_and_collect_file(paths.gem));
         release_files.push(verify_and_collect_file(paths.gem_sha256));
@@ -231,22 +300,60 @@ fn create_edge_release() {
     log::info!("Successfully created edge release: {tag}");
 }
 
-fn rust_target_to_ruby_platform(rust_target: &str) -> &str {
-    PLATFORMS
-        .iter()
-        .find(|(rust, _ruby)| *rust == rust_target)
-        .map(|(_rust, ruby)| *ruby)
-        .unwrap_or_else(|| {
-            panic!("Unsupported Rust target for Ruby platform mapping: {rust_target}")
-        })
+#[derive(serde::Serialize)]
+struct GemspecConfig {
+    version: String,
+    ruby_platform: String,
+    bin_files: Vec<String>,
 }
 
-fn generate_gemspec(version: &str, ruby_platform: &str) -> String {
+fn collect_bin_files(build_staging: &Path, platform: Platform) -> Vec<String> {
+    let mut bin_files = vec!["bin/pg-ephemeral".to_string()];
+
+    if platform.is_macos() {
+        // Recursively collect all files in the .dSYM bundle
+        let dsym_dir = build_staging.join("bin/pg-ephemeral.dSYM");
+        if dsym_dir.exists() {
+            collect_files_recursive(&dsym_dir, build_staging, &mut bin_files);
+        }
+    }
+
+    bin_files
+}
+
+fn collect_files_recursive(dir: &Path, base: &Path, files: &mut Vec<String>) {
+    if let Ok(entries) = std::fs::read_dir(dir) {
+        for entry in entries.flatten() {
+            let path = entry.path();
+            if path.is_file() {
+                if let Ok(relative) = path.strip_prefix(base) {
+                    files.push(relative.to_string_lossy().to_string());
+                }
+            } else if path.is_dir() {
+                collect_files_recursive(&path, base, files);
+            }
+        }
+    }
+}
+
+fn gemspec_config(version: &str, platform: Platform, bin_files: Vec<String>) -> GemspecConfig {
+    GemspecConfig {
+        version: version.to_string(),
+        ruby_platform: platform.ruby_platform().to_string(),
+        bin_files,
+    }
+}
+
+fn generate_gemspec() -> String {
     formatdoc! {"
+        require 'json'
+
+        config = JSON.parse(ENV.fetch('PG_EPHEMERAL_GEMSPEC_CONFIG'))
+
         Gem::Specification.new do |spec|
           spec.name          = 'pg-ephemeral'
-          spec.version       = '{version}'
-          spec.platform      = Gem::Platform.new('{ruby_platform}')
+          spec.version       = config.fetch('version')
+          spec.platform      = Gem::Platform.new(config.fetch('ruby_platform'))
           spec.authors       = ['Markus Schirp']
           spec.email         = ['mbj@schirp-dso.com']
 
@@ -260,7 +367,7 @@ fn generate_gemspec(version: &str, ruby_platform: &str) -> String {
           spec.metadata['source_code_uri'] = 'https://github.com/mbj/mrs'
           spec.metadata['changelog_uri'] = 'https://github.com/mbj/mrs/blob/main/pg-ephemeral/CHANGELOG.md'
 
-          spec.files = Dir['lib/**/*', 'bin/*', 'README.md', 'LICENSE.txt']
+          spec.files = Dir['lib/**/*'] + config.fetch('bin_files') + ['LICENSE.txt']
           spec.require_paths = ['lib']
 
           spec.add_dependency 'pg', '~> 1.5'
@@ -351,8 +458,8 @@ fn setup_staging_directory(staging_root: &PathBuf, items: Vec<StagingItem>) {
     }
 }
 
-fn detect_target_platform() -> String {
-    std::env::var("CARGO_BUILD_TARGET").unwrap_or_else(|_| {
+fn detect_target_platform() -> Platform {
+    let target_str = std::env::var("CARGO_BUILD_TARGET").unwrap_or_else(|_| {
         match (std::env::consts::ARCH, std::env::consts::OS) {
             ("x86_64", "linux") => "x86_64-unknown-linux-musl".to_string(),
             ("aarch64", "linux") => "aarch64-unknown-linux-musl".to_string(),
@@ -360,15 +467,19 @@ fn detect_target_platform() -> String {
             ("aarch64", "macos") => "aarch64-apple-darwin".to_string(),
             (arch, os) => panic!("Unsupported platform: {arch}-{os}"),
         }
-    })
+    });
+
+    Platform::from_rust_target(&target_str)
+        .unwrap_or_else(|| panic!("Unsupported target: {target_str}"))
 }
 
 fn build_integrations(no_compile: bool) {
-    let target = detect_target_platform();
-    let ruby_platform = rust_target_to_ruby_platform(&target);
+    let platform = detect_target_platform();
+    let rust_target = platform.rust_target();
+    let ruby_platform = platform.ruby_platform();
     let ruby_version = ruby_version();
 
-    log::info!("Building pg-ephemeral binary for target: {target}");
+    log::info!("Building pg-ephemeral binary for target: {rust_target}");
     log::info!("Ruby platform: {ruby_platform}");
     log::info!("Version: {ruby_version}");
 
@@ -382,7 +493,7 @@ fn build_integrations(no_compile: bool) {
                 "--package",
                 "pg-ephemeral",
                 "--target",
-                &target,
+                rust_target,
             ])
             .status()
             .unwrap_or_else(|error| panic!("Failed to build pg-ephemeral binary: {error}"));
@@ -396,7 +507,7 @@ fn build_integrations(no_compile: bool) {
     // Paths for Rust artifacts
     let binary_source = workspace_root
         .join("target")
-        .join(&target)
+        .join(rust_target)
         .join("release")
         .join("pg-ephemeral");
 
@@ -410,45 +521,73 @@ fn build_integrations(no_compile: bool) {
     let build_staging = workspace_root
         .join("pg-ephemeral")
         .join("build")
-        .join(&target);
+        .join(rust_target);
 
     // Setup staging directory with all required files
-    let gemspec_content = generate_gemspec(&ruby_version, ruby_platform);
+    let gemspec_content = generate_gemspec();
 
-    setup_staging_directory(
-        &build_staging,
-        vec![
-            StagingItem::CopyDirectory {
-                source: integration_source.join("lib"),
-                destination: "lib".to_string(),
-            },
-            StagingItem::CopyDirectory {
-                source: integration_source.join("spec"),
-                destination: "spec".to_string(),
-            },
-            StagingItem::CopyFile {
-                source: binary_source.clone(),
-                destination: "bin/pg-ephemeral".to_string(),
-            },
-            StagingItem::CopyFile {
-                source: workspace_root.join("LICENSE.txt"),
-                destination: "LICENSE.txt".to_string(),
-            },
-            StagingItem::GenerateFile {
-                destination: "pg-ephemeral.gemspec".to_string(),
-                content: gemspec_content,
-            },
-        ],
-    );
+    let mut staging_items = vec![
+        StagingItem::CopyDirectory {
+            source: integration_source.join("lib"),
+            destination: "lib".to_string(),
+        },
+        StagingItem::CopyDirectory {
+            source: integration_source.join("spec"),
+            destination: "spec".to_string(),
+        },
+        StagingItem::CopyFile {
+            source: binary_source.clone(),
+            destination: "bin/pg-ephemeral".to_string(),
+        },
+        StagingItem::CopyFile {
+            source: workspace_root.join("LICENSE.txt"),
+            destination: "LICENSE.txt".to_string(),
+        },
+        StagingItem::GenerateFile {
+            destination: "pg-ephemeral.gemspec".to_string(),
+            content: gemspec_content,
+        },
+    ];
+
+    // On macOS, include the .dSYM bundle for debug symbols (required for backtraces with line numbers)
+    if platform.is_macos() {
+        let dsym_source = workspace_root
+            .join("target")
+            .join(rust_target)
+            .join("release")
+            .join("pg-ephemeral.dSYM");
+
+        if dsym_source.exists() {
+            log::info!("Including .dSYM debug symbols for macOS");
+            staging_items.push(StagingItem::CopyDirectory {
+                source: dsym_source,
+                destination: "bin/pg-ephemeral.dSYM".to_string(),
+            });
+        } else {
+            panic!(
+                ".dSYM bundle not found at {}. Cannot build gem without debug symbols.",
+                dsym_source.display()
+            );
+        }
+    }
+
+    setup_staging_directory(&build_staging, staging_items);
+
+    // Collect actual bin files from staging directory and create gemspec config
+    let bin_files = collect_bin_files(&build_staging, platform);
+    let gemspec_config = gemspec_config(&ruby_version, platform, bin_files);
+    let gemspec_config_json = serde_json::to_string(&gemspec_config)
+        .unwrap_or_else(|error| panic!("Failed to serialize gemspec config: {error}"));
 
     // Build gem
     log::info!("Building gem");
-    if target.contains("darwin") {
+    if platform.is_macos() {
         log::info!("Using native gem build for macOS");
         ociman::Command::new("gem")
             .argument("build")
             .argument("pg-ephemeral.gemspec")
             .working_directory(&build_staging)
+            .env("PG_EPHEMERAL_GEMSPEC_CONFIG", &gemspec_config_json)
             .status()
             .unwrap_or_else(|error| panic!("Failed to build gem: {error}"));
     } else {
@@ -466,6 +605,7 @@ fn build_integrations(no_compile: bool) {
         )
         .mount(mount)
         .workdir("/build")
+        .environment_variable("PG_EPHEMERAL_GEMSPEC_CONFIG", &gemspec_config_json)
         .entrypoint("gem")
         .arguments(["build", "pg-ephemeral.gemspec"])
         .remove()
@@ -521,7 +661,7 @@ fn build_integrations(no_compile: bool) {
 
     // Create tarball
     log::info!("Creating tarball");
-    let tarball_name = format!("pg-ephemeral-{target}.tar.gz");
+    let tarball_name = format!("pg-ephemeral-{rust_target}.tar.gz");
     let tarball_path = dist_binaries.join(&tarball_name);
 
     let tarball_file = std::fs::File::create(&tarball_path)
@@ -532,6 +672,27 @@ fn build_integrations(no_compile: bool) {
     archive
         .append_path_with_name(&binary_source, "pg-ephemeral")
         .expect("Failed to add binary to archive");
+
+    // On macOS, include the .dSYM bundle for debug symbols
+    if platform.is_macos() {
+        let dsym_source = workspace_root
+            .join("target")
+            .join(rust_target)
+            .join("release")
+            .join("pg-ephemeral.dSYM");
+
+        if dsym_source.exists() {
+            log::info!("Including .dSYM debug symbols in tarball");
+            archive
+                .append_dir_all("pg-ephemeral.dSYM", &dsym_source)
+                .expect("Failed to add .dSYM bundle to archive");
+        } else {
+            panic!(
+                ".dSYM bundle not found at {}. Cannot create tarball without debug symbols.",
+                dsym_source.display()
+            );
+        }
+    }
 
     let encoder = archive.into_inner().expect("Failed to finish archive");
     encoder.finish().expect("Failed to finish gzip compression");
@@ -571,8 +732,12 @@ fn merge_gems() {
     let mut staging_items = Vec::new();
 
     // Verify and prepare staging items for all expected gem files
-    for (rust_target, ruby_platform) in PLATFORMS {
-        let paths = platform_artifact_paths(&workspace_root, rust_target, ruby_platform);
+    for platform in Platform::ALL {
+        let paths = platform_artifact_paths(
+            &workspace_root,
+            platform.rust_target(),
+            platform.ruby_platform(),
+        );
 
         // Verify and add gem file to staging
         let gem_source = verify_and_collect_file(paths.gem);
@@ -599,7 +764,7 @@ fn merge_gems() {
         });
     }
 
-    let collected_gems = PLATFORMS.len();
+    let collected_gems = Platform::ALL.len();
     setup_staging_directory(&dist_gems, staging_items);
     log::info!("Collected {collected_gems} platform gems");
 
@@ -617,7 +782,7 @@ fn merge_gems() {
     );
 }
 
-fn run_ruby_tests(workspace_root: PathBuf, target: String) {
+fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
     let ruby_version = ruby_version();
     let integration_directory = workspace_root
         .join("pg-ephemeral")
@@ -625,7 +790,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
         .join("ruby");
 
     log::info!("Using pg-ephemeral version: {ruby_version}");
-    log::info!("Target platform: {target}");
+    log::info!("Target platform: {}", platform.rust_target());
 
     // Run acceptance tests with Gemfile.acceptance
     let gem_source_directory = workspace_root.join("dist");
@@ -731,6 +896,29 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
     }
 
     log::info!("Binary copied to: {}", binary_destination.display());
+
+    // On macOS, also copy the .dSYM bundle for debug symbols
+    if platform.is_macos() {
+        let dsym_source = PathBuf::from(&gem_dir)
+            .join("bin")
+            .join("pg-ephemeral.dSYM");
+        let dsym_destination = bin_directory.join("pg-ephemeral.dSYM");
+
+        if dsym_source.exists() {
+            log::info!(
+                "Copying .dSYM bundle {} to {}",
+                dsym_source.display(),
+                dsym_destination.display()
+            );
+            copy_dir_recursive(&dsym_source, &dsym_destination)
+                .unwrap_or_else(|error| panic!("Failed to copy .dSYM bundle: {error}"));
+        } else {
+            log::warn!(
+                ".dSYM bundle not found at {}. Backtraces may not include line numbers.",
+                dsym_source.display()
+            );
+        }
+    }
 
     // Run bundle install
     log::info!("Running bundle install");
@@ -840,9 +1028,12 @@ fn publish_gems(push: bool) {
     // Collect and publish gems
     let mut gems_to_publish = Vec::new();
 
-    for (_rust_target, ruby_platform) in PLATFORMS {
+    for platform in Platform::ALL {
         let ruby_version = ruby_version();
-        let gem_name = format!("pg-ephemeral-{ruby_version}-{ruby_platform}.gem");
+        let gem_name = format!(
+            "pg-ephemeral-{ruby_version}-{}.gem",
+            platform.ruby_platform()
+        );
         let gem_path = dist_gems.join(&gem_name);
 
         if !gem_path.exists() {

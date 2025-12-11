@@ -11,6 +11,20 @@ For cross-container access (integration tests):
 
 Note: Older versions of Docker Engine and Podman are supported via automatic `--add-host=host.docker.internal:host-gateway` flag.
 
+## Release Build Configuration
+
+Release builds use `split-debuginfo = "packed"` to separate debug information from the binary:
+
+- **Linux**: Debug info stored in `.dwp` file alongside the binary
+- **macOS**: Debug info stored in `.dSYM` bundle alongside the binary
+
+This configuration provides:
+- Smaller binary size (~8.6MB vs ~16MB with embedded debug info)
+- Full backtraces with file paths and line numbers (requires debug files present)
+- Cross-platform consistency
+
+The Ruby gem includes both the binary and its debug info files to ensure useful panic backtraces in production.
+
 ## License
 
 See workspace root for license information.
