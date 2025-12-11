@@ -51,6 +51,7 @@ async fn test_command_seed_receives_environment() {
                     "(env | grep '^PG' && echo DATABASE_URL=$DATABASE_URL) | sed 's/=/,/' | psql -c \"\\copy seed_env FROM STDIN WITH (FORMAT csv)\"",
                 ],
             ),
+            pg_ephemeral::CommandCacheConfig::None,
         )
         .unwrap();
 
