@@ -58,7 +58,7 @@ async fn test_run_container_definition() {
         .unwrap();
 
     ociman_container.stop();
-    ociman_container.commit(&snapshot_image, false);
+    ociman_container.commit(&snapshot_image, false).unwrap();
     drop(ociman_container);
 
     let definition = pg_ephemeral::container::Definition {

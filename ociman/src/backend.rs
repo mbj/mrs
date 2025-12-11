@@ -43,16 +43,16 @@ impl Backend {
             Backend::Docker { .. } => self
                 .command()
                 .arguments(["inspect", "--type", "image", &reference_string])
-                .capture_only_stdout_result()
+                .stdout()
+                .bytes()
                 .is_ok(),
             Backend::Podman { .. } => {
                 // For Podman, image exists returns 0 if present, 1 if not
                 // We use status() instead of capture because we don't need output
-                let status = self
-                    .command()
+                self.command()
                     .arguments(["image", "exists", &reference_string])
-                    .status();
-                status.success()
+                    .status()
+                    .is_ok()
             }
         }
     }
@@ -61,14 +61,16 @@ impl Backend {
     pub fn tag_image(&self, source: &crate::image::Reference, target: &crate::image::Reference) {
         self.command()
             .arguments(["tag", &source.to_string(), &target.to_string()])
-            .capture_only_stdout();
+            .status()
+            .unwrap();
     }
 
     /// Pull an image from a registry
     pub fn pull_image(&self, reference: &crate::image::Reference) {
         self.command()
             .arguments(["pull", &reference.to_string()])
-            .capture_only_stdout();
+            .status()
+            .unwrap();
     }
 
     /// Pull an image only if it's not already present
@@ -82,7 +84,8 @@ impl Backend {
     pub fn push_image(&self, reference: &crate::image::Reference) {
         self.command()
             .arguments(["push", &reference.to_string()])
-            .capture_only_stdout();
+            .status()
+            .unwrap();
     }
 
     pub fn remove_image(&self, reference: &crate::image::Reference) {
@@ -100,9 +103,7 @@ impl Backend {
         } else {
             command
         };
-        command
-            .argument(reference.to_string())
-            .capture_only_stdout();
+        command.argument(reference.to_string()).status().unwrap();
     }
 
     /// List image references by name (e.g., "pg-ephemeral/main")
@@ -125,7 +126,9 @@ impl Backend {
                 "--filter",
                 &format!("reference={name}:*"),
             ])
-            .capture_only_stdout_string();
+            .stdout()
+            .string()
+            .unwrap();
 
         output
             .lines()
@@ -272,7 +275,8 @@ impl ContainerHostnameResolver {
             .argument("getent")
             .argument("hosts")
             .argument(hostname)
-            .capture_only_stdout_result()
+            .stdout()
+            .bytes()
             .map_err(|error| ResolveHostnameError::CommandFailed(error.to_string()))?;
 
         // Parse output: "IP_ADDRESS HOSTNAME [ALIASES...]"
@@ -367,7 +371,8 @@ pub mod resolve {
     ) -> Result {
         let output = Command::new(executable)
             .argument("--version")
-            .capture_only_stdout_result()
+            .stdout()
+            .bytes()
             .map_err(|error| Error::VersionDetectionFailed {
                 executable,
                 message: error.to_string(),
