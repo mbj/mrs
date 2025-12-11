@@ -128,32 +128,33 @@ pub async fn test_database_url_integration(language: &str, image_dir: &str) {
         .with_container(async |container| {
             let image_tag = format!("pg-ephemeral-{}-test:latest", language);
 
-            let _build_output = backend
+            backend
                 .command()
                 .argument("build")
                 .argument("--tag")
                 .argument(&image_tag)
                 .argument(image_dir)
-                .capture_only_stdout();
+                .stdout()
+                .bytes()
+                .unwrap();
 
             let database_url = container
                 .cross_container_client_config()
                 .to_url()
                 .to_string();
 
-            let output = backend
+            let stdout = backend
                 .command()
                 .argument("run")
                 .argument("--rm")
                 .argument("--env")
                 .argument(format!("DATABASE_URL={}", database_url))
                 .argument(&image_tag)
-                .capture_only_stdout_result();
-
-            let stdout = match output {
-                Ok(bytes) => String::from_utf8(bytes).expect("invalid utf8 in output"),
-                Err(e) => panic!("Failed to run {} container: {:?}", language, e),
-            };
+                .stdout()
+                .string()
+                .unwrap_or_else(|error| {
+                    panic!("Failed to run {} container: {:?}", language, error)
+                });
 
             assert!(
                 stdout.contains("SUCCESS: Connected to PostgreSQL successfully"),

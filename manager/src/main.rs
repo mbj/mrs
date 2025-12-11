@@ -155,32 +155,20 @@ fn create_edge_release() {
         .unwrap_or_else(|error| panic!("Failed to get current directory: {}", error));
 
     // Get git commit SHA
-    let sha_output = ociman::Command::new("git")
+    let sha = ociman::Command::new("git")
         .arguments(["rev-parse", "HEAD"])
-        .output_result()
-        .unwrap_or_else(|error| panic!("Failed to get git SHA: {}", error));
-
-    if !sha_output.status.success() {
-        panic!("Failed to get git SHA");
-    }
-
-    let sha = String::from_utf8(sha_output.stdout)
-        .unwrap_or_else(|error| panic!("Invalid UTF-8 in git SHA: {}", error))
+        .stdout()
+        .string()
+        .unwrap_or_else(|error| panic!("Failed to get git SHA: {}", error))
         .trim()
         .to_string();
 
     // Get current branch name
-    let branch_output = ociman::Command::new("git")
+    let branch = ociman::Command::new("git")
         .arguments(["rev-parse", "--abbrev-ref", "HEAD"])
-        .output_result()
-        .unwrap_or_else(|error| panic!("Failed to get git branch: {}", error));
-
-    if !branch_output.status.success() {
-        panic!("Failed to get git branch");
-    }
-
-    let branch = String::from_utf8(branch_output.stdout)
-        .unwrap_or_else(|error| panic!("Invalid UTF-8 in branch name: {}", error))
+        .stdout()
+        .string()
+        .unwrap_or_else(|error| panic!("Failed to get git branch: {}", error))
         .trim()
         .to_string();
 
@@ -230,19 +218,15 @@ fn create_edge_release() {
         release_files.len()
     );
 
-    let status = ociman::Command::new("gh")
+    ociman::Command::new("gh")
         .arguments(
             arguments
                 .iter()
                 .map(|argument| argument.as_str())
                 .collect::<Vec<_>>(),
         )
-        .status_result()
-        .unwrap_or_else(|error| panic!("Failed to execute gh command: {}", error));
-
-    if !status.success() {
-        panic!("Failed to create GitHub release");
-    }
+        .status()
+        .unwrap_or_else(|error| panic!("Failed to create GitHub release: {}", error));
 
     log::info!("Successfully created edge release: {}", tag);
 }
@@ -394,7 +378,7 @@ fn build_integrations(no_compile: bool) {
     if no_compile {
         log::info!("Skipping compilation (--no-compile flag set)");
     } else {
-        let status = ociman::Command::new("cargo")
+        ociman::Command::new("cargo")
             .arguments([
                 "build",
                 "--release",
@@ -403,12 +387,8 @@ fn build_integrations(no_compile: bool) {
                 "--target",
                 &target,
             ])
-            .status_result()
-            .unwrap_or_else(|error| panic!("Failed to execute cargo build: {}", error));
-
-        if !status.success() {
-            panic!("Failed to build pg-ephemeral binary");
-        }
+            .status()
+            .unwrap_or_else(|error| panic!("Failed to build pg-ephemeral binary: {}", error));
     }
 
     let workspace_root = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
@@ -468,16 +448,12 @@ fn build_integrations(no_compile: bool) {
     log::info!("Building gem");
     if target.contains("darwin") {
         log::info!("Using native gem build for macOS");
-        let status = ociman::Command::new("gem")
+        ociman::Command::new("gem")
             .argument("build")
             .argument("pg-ephemeral.gemspec")
             .working_directory(&build_staging)
-            .status_result()
-            .unwrap_or_else(|error| panic!("Failed to execute gem build: {}", error));
-
-        if !status.success() {
-            panic!("Failed to build gem");
-        }
+            .status()
+            .unwrap_or_else(|error| panic!("Failed to build gem: {}", error));
     } else {
         log::info!("Using containerized gem build for Linux");
         let backend = ociman::backend::resolve::auto().expect("Failed to detect backend");
@@ -496,7 +472,8 @@ fn build_integrations(no_compile: bool) {
         .entrypoint("gem")
         .arguments(["build", "pg-ephemeral.gemspec"])
         .remove()
-        .run_status_success();
+        .run()
+        .unwrap_or_else(|error| panic!("Failed to build gem: {}", error));
     }
 
     // Create dist directories
@@ -538,14 +515,10 @@ fn build_integrations(no_compile: bool) {
 
     // Generate gem index for local gem source
     log::info!("Generating gem index in: {}", dist_root.display());
-    let generate_index_status = ociman::Command::new("gem")
+    ociman::Command::new("gem")
         .arguments(["generate_index", "--directory", dist_root.to_str().unwrap()])
-        .status_result()
+        .status()
         .unwrap_or_else(|error| panic!("Failed to generate gem index: {}", error));
-
-    if !generate_index_status.success() {
-        panic!("Failed to generate gem index");
-    }
 
     log::info!("Gem index generated successfully");
 
@@ -635,14 +608,10 @@ fn merge_gems() {
 
     // Generate gem index for the unified repository
     log::info!("Generating gem index in: {}", dist_root.display());
-    let generate_index_status = ociman::Command::new("gem")
+    ociman::Command::new("gem")
         .arguments(["generate_index", "--directory", dist_root.to_str().unwrap()])
-        .status_result()
+        .status()
         .unwrap_or_else(|error| panic!("Failed to generate gem index: {}", error));
-
-    if !generate_index_status.success() {
-        panic!("Failed to generate gem index");
-    }
 
     log::info!(
         "Gem index generated successfully with {} platform gems",
@@ -684,7 +653,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
             "/usr/local/opt/libpq/bin/pg_config"
         };
 
-        let bundle_config_status = ociman::Command::new("bundle")
+        ociman::Command::new("bundle")
             .arguments([
                 "config",
                 "--local",
@@ -692,28 +661,20 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
                 &format!("--with-pg-config={}", pg_config_path),
             ])
             .working_directory(&integration_directory)
-            .status_result()
+            .status()
             .unwrap_or_else(|error| panic!("Failed to configure bundle: {}", error));
-
-        if !bundle_config_status.success() {
-            panic!("bundle config failed");
-        }
     }
 
     log::info!("Running bundle install with Gemfile.acceptance");
-    let bundle_install_acceptance = ociman::Command::new("bundle")
+    ociman::Command::new("bundle")
         .arguments(["install", "--gemfile=Gemfile.acceptance"])
         .working_directory(&integration_directory)
         .env("PG_EPHEMERAL_GEM_SOURCE", &gem_source_url)
-        .status_result()
+        .status()
         .unwrap_or_else(|error| panic!("Failed to run bundle install: {}", error));
 
-    if !bundle_install_acceptance.success() {
-        panic!("bundle install for acceptance tests failed");
-    }
-
     log::info!("Running RSpec acceptance tests");
-    let rspec_acceptance_status = ociman::Command::new("bundle")
+    ociman::Command::new("bundle")
         .arguments([
             "exec",
             "--gemfile=Gemfile.acceptance",
@@ -723,18 +684,14 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
         .working_directory(&integration_directory)
         .env("EXPECTED_PG_EPHEMERAL_VERSION", &ruby_version)
         .env("PG_EPHEMERAL_GEM_SOURCE", &gem_source_url)
-        .status_result()
-        .unwrap_or_else(|error| panic!("Failed to run RSpec acceptance tests: {}", error));
-
-    if !rspec_acceptance_status.success() {
-        panic!("RSpec acceptance tests failed");
-    }
+        .status()
+        .unwrap_or_else(|error| panic!("RSpec acceptance tests failed: {}", error));
 
     // Copy pg-ephemeral binary from installed gem for local development
     log::info!("Copying pg-ephemeral binary from installed gem");
 
     // Get gem path using bundler
-    let gem_path_output = ociman::Command::new("bundle")
+    let gem_dir = ociman::Command::new("bundle")
         .arguments([
             "exec",
             "--gemfile=Gemfile.acceptance",
@@ -744,15 +701,9 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
         ])
         .working_directory(&integration_directory)
         .env("PG_EPHEMERAL_GEM_SOURCE", &gem_source_url)
-        .output_result()
-        .unwrap_or_else(|error| panic!("Failed to get gem path: {}", error));
-
-    if !gem_path_output.status.success() {
-        panic!("Failed to get pg-ephemeral gem path");
-    }
-
-    let gem_dir = String::from_utf8(gem_path_output.stdout)
-        .unwrap_or_else(|error| panic!("Invalid UTF-8 in gem path: {}", error))
+        .stdout()
+        .string()
+        .unwrap_or_else(|error| panic!("Failed to get gem path: {}", error))
         .trim()
         .to_string();
 
@@ -789,43 +740,31 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
 
     // Run bundle install
     log::info!("Running bundle install");
-    let bundle_install = ociman::Command::new("bundle")
+    ociman::Command::new("bundle")
         .arguments(["install"])
         .working_directory(&integration_directory)
-        .status_result()
+        .status()
         .unwrap_or_else(|error| panic!("Failed to run bundle install: {}", error));
-
-    if !bundle_install.success() {
-        panic!("bundle install failed");
-    }
 
     // Run RSpec tests
     log::info!("Running RSpec tests");
-    let rspec_status = ociman::Command::new("bundle")
+    ociman::Command::new("bundle")
         .arguments(["exec", "rspec"])
         .working_directory(&integration_directory)
         .env("EXPECTED_PG_EPHEMERAL_VERSION", &ruby_version)
-        .status_result()
-        .unwrap_or_else(|error| panic!("Failed to run RSpec tests: {}", error));
-
-    if !rspec_status.success() {
-        panic!("RSpec tests failed");
-    }
+        .status()
+        .unwrap_or_else(|error| panic!("RSpec tests failed: {}", error));
 
     // Run Mutant tests (only on supported platforms)
     match ociman::platform::support() {
         Ok(()) => {
             log::info!("Running Mutant tests");
-            let mutant_status = ociman::Command::new("bundle")
+            ociman::Command::new("bundle")
                 .arguments(["exec", "mutant", "run"])
                 .working_directory(&integration_directory)
                 .env("EXPECTED_PG_EPHEMERAL_VERSION", &ruby_version)
-                .status_result()
-                .unwrap_or_else(|error| panic!("Failed to run Mutant tests: {}", error));
-
-            if !mutant_status.success() {
-                panic!("Mutant tests failed");
-            }
+                .status()
+                .unwrap_or_else(|error| panic!("Mutant tests failed: {}", error));
         }
         Err(error) => {
             log::info!("Skipping Mutant tests - platform not supported: {}", error);
@@ -857,17 +796,11 @@ fn publish_gems(push: bool) {
         .unwrap_or_else(|error| panic!("Failed to get current directory: {}", error));
 
     // Get git commit SHA
-    let sha_output = ociman::Command::new("git")
+    let sha = ociman::Command::new("git")
         .arguments(["rev-parse", "HEAD"])
-        .output_result()
-        .unwrap_or_else(|error| panic!("Failed to get git SHA: {}", error));
-
-    if !sha_output.status.success() {
-        panic!("Failed to get git SHA");
-    }
-
-    let sha = String::from_utf8(sha_output.stdout)
-        .unwrap_or_else(|error| panic!("Invalid UTF-8 in git SHA: {}", error))
+        .stdout()
+        .string()
+        .unwrap_or_else(|error| panic!("Failed to get git SHA: {}", error))
         .trim()
         .to_string();
 
@@ -891,7 +824,7 @@ fn publish_gems(push: bool) {
     log::info!("Downloading artifacts from edge release {}", release_tag);
 
     // Download all artifacts from the edge release
-    let status = ociman::Command::new("gh")
+    ociman::Command::new("gh")
         .arguments([
             "release",
             "download",
@@ -903,12 +836,13 @@ fn publish_gems(push: bool) {
             "--pattern",
             "*.gem",
         ])
-        .status_result()
-        .unwrap_or_else(|error| panic!("Failed to execute gh release download: {}", error));
-
-    if !status.success() {
-        panic!("Failed to download artifacts from release: {}", release_tag);
-    }
+        .status()
+        .unwrap_or_else(|error| {
+            panic!(
+                "Failed to download artifacts from release {}: {}",
+                release_tag, error
+            )
+        });
 
     log::info!("All artifacts downloaded successfully");
 

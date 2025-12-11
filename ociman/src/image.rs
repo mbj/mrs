@@ -226,7 +226,7 @@ impl BuildDefinition {
             }
         };
 
-        command.capture_only_stdout();
+        command.status().unwrap();
 
         target_reference
     }
