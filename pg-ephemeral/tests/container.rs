@@ -21,7 +21,7 @@ async fn test_run_container_definition() {
     .remove_on_drop()
     .environment_variable("POSTGRES_PASSWORD", static_password)
     .environment_variable("POSTGRES_USER", static_username)
-    .environment_variable("PGDATA", "/var/lib/postgresql/pg-ephemeral-data")
+    .environment_variable("PGDATA", pg_ephemeral::container::PGDATA)
     .publish(ociman::Publish::tcp(5432))
     .run_detached();
 
