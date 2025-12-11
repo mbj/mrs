@@ -33,11 +33,11 @@ RSpec.describe PgEphemeral do
   end
 
   describe '.platform_supported?' do
-    it 'calls pg-ephemeral binary with platform argument' do
+    it 'calls pg-ephemeral binary with platform support argument' do
       status = instance_double(Process::Status, success?: true)
 
       expect(Open3).to receive(:capture2)
-        .with(PgEphemeral.binary_path, 'platform')
+        .with(PgEphemeral.binary_path, 'platform', 'support')
         .and_return(['', status])
 
       expect(PgEphemeral.platform_supported?).to be(true)

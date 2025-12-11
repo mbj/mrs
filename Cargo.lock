@@ -1749,6 +1749,8 @@ dependencies = [
  "log",
  "ociman",
  "pg-ephemeral",
+ "serde",
+ "serde_json",
  "sha2",
  "tar",
  "url",
