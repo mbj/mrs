@@ -268,15 +268,12 @@ fn run_container(
 
         ociman_definition = ociman_definition
             .entrypoint("sh")
-            .argument("-e")
-            .argument("-c")
-            .argument(SSL_SETUP_SCRIPT)
-            .argument("--")
-            .argument("postgres")
-            .argument("--ssl=on")
-            .argument(format!("--ssl_cert_file={}/server.crt", ssl_dir))
-            .argument(format!("--ssl_key_file={}/server.key", ssl_dir))
-            .argument(format!("--ssl_ca_file={}/root.crt", ssl_dir))
+            .arguments(["-e", "-c", SSL_SETUP_SCRIPT, "--", "postgres", "--ssl=on"])
+            .arguments([
+                format!("--ssl_cert_file={}/server.crt", ssl_dir),
+                format!("--ssl_key_file={}/server.key", ssl_dir),
+                format!("--ssl_ca_file={}/root.crt", ssl_dir),
+            ])
             .environment_variable("PG_EPHEMERAL_SSL_DIR", ssl_dir)
             .environment_variable("PG_EPHEMERAL_CA_CERT_PEM", &bundle.ca_cert_pem)
             .environment_variable("PG_EPHEMERAL_SERVER_CERT_PEM", &bundle.server_cert_pem)
