@@ -2,9 +2,93 @@ use std::ffi::OsStr;
 
 #[derive(Debug, thiserror::Error)]
 #[error("Command execution failed: io_error={io_error:?}, exit_status={exit_status:?}")]
-pub struct CaptureError {
+pub struct CommandError {
     pub io_error: Option<std::io::Error>,
     pub exit_status: Option<std::process::ExitStatus>,
+}
+
+/// Which stream to capture from a command.
+#[derive(Clone, Copy)]
+enum CaptureStream {
+    Stdout,
+    Stderr,
+}
+
+/// Builder for capturing command output.
+pub struct Capture {
+    command: Command,
+    stream: CaptureStream,
+}
+
+impl Capture {
+    fn new(command: Command, stream: CaptureStream) -> Self {
+        Self { command, stream }
+    }
+
+    /// Execute the command and return captured output as bytes.
+    pub fn bytes(mut self) -> Result<Vec<u8>, CommandError> {
+        use std::io::Write;
+        use std::process::Stdio;
+
+        log::debug!("{:#?}", self.command.inner);
+
+        self.command.inner.stdout(Stdio::piped());
+        self.command.inner.stderr(Stdio::piped());
+
+        if self.command.stdin_data.is_some() {
+            self.command.inner.stdin(Stdio::piped());
+        }
+
+        let mut child = self
+            .command
+            .inner
+            .spawn()
+            .map_err(|io_error| CommandError {
+                io_error: Some(io_error),
+                exit_status: None,
+            })?;
+
+        if let Some(stdin_data) = self.command.stdin_data {
+            child
+                .stdin
+                .take()
+                .unwrap()
+                .write_all(&stdin_data)
+                .map_err(|io_error| CommandError {
+                    io_error: Some(io_error),
+                    exit_status: None,
+                })?;
+        }
+
+        let output = child.wait_with_output().map_err(|io_error| CommandError {
+            io_error: Some(io_error),
+            exit_status: None,
+        })?;
+
+        if output.status.success() {
+            Ok(match self.stream {
+                CaptureStream::Stdout => output.stdout,
+                CaptureStream::Stderr => output.stderr,
+            })
+        } else {
+            Err(CommandError {
+                io_error: None,
+                exit_status: Some(output.status),
+            })
+        }
+    }
+
+    /// Execute the command and return captured output as a UTF-8 string.
+    pub fn string(self) -> Result<String, CommandError> {
+        let bytes = self.bytes()?;
+        String::from_utf8(bytes).map_err(|utf8_error| CommandError {
+            io_error: Some(std::io::Error::new(
+                std::io::ErrorKind::InvalidData,
+                utf8_error,
+            )),
+            exit_status: None,
+        })
+    }
 }
 
 pub struct Command {
@@ -57,94 +141,157 @@ impl Command {
         self
     }
 
-    pub fn capture_only_stdout_result(mut self) -> Result<Vec<u8>, CaptureError> {
+    /// Capture stdout from this command.
+    pub fn stdout(self) -> Capture {
+        Capture::new(self, CaptureStream::Stdout)
+    }
+
+    /// Capture stderr from this command.
+    pub fn stderr(self) -> Capture {
+        Capture::new(self, CaptureStream::Stderr)
+    }
+
+    /// Execute the command and return success or an error.
+    pub fn status(mut self) -> Result<(), CommandError> {
+        use std::io::Write;
+        use std::process::Stdio;
+
         log::debug!("{:#?}", self.inner);
 
-        // Command::output sadly also captures stderr which we do not want in this case.
-        self.inner.stdout(std::process::Stdio::piped());
-
-        // Configure stdin if we have data to send
         if self.stdin_data.is_some() {
-            self.inner.stdin(std::process::Stdio::piped());
+            self.inner.stdin(Stdio::piped());
         }
 
-        match self.inner.spawn() {
-            Ok(mut child) => {
-                let mut io_error = None;
-                let mut buf = vec![];
+        let mut child = self.inner.spawn().map_err(|io_error| CommandError {
+            io_error: Some(io_error),
+            exit_status: None,
+        })?;
 
-                // Write stdin data if present
-                if let Some(data) = self.stdin_data
-                    && let Some(mut stdin) = child.stdin.take()
-                {
-                    use std::io::Write;
-                    if let Err(e) = stdin.write_all(&data) {
-                        io_error = Some(e);
-                    }
-                    // stdin is dropped here, closing the pipe
-                }
+        if let Some(stdin_data) = self.stdin_data {
+            child
+                .stdin
+                .take()
+                .unwrap()
+                .write_all(&stdin_data)
+                .map_err(|io_error| CommandError {
+                    io_error: Some(io_error),
+                    exit_status: None,
+                })?;
+        }
 
-                // Read stdout if no previous IO error
-                if io_error.is_none() {
-                    let mut stdout = child.stdout.as_mut().unwrap();
-                    if let Err(e) = std::io::Read::read_to_end(&mut stdout, &mut buf) {
-                        io_error = Some(e);
-                    }
-                }
+        let exit_status = child.wait().map_err(|io_error| CommandError {
+            io_error: Some(io_error),
+            exit_status: None,
+        })?;
 
-                let status = child.wait().unwrap();
-
-                // Success case: exit 0 and no IO errors
-                if status.success() && io_error.is_none() {
-                    return Ok(buf);
-                }
-
-                // Error case: non-zero exit or IO error (or both)
-                Err(CaptureError {
-                    io_error,
-                    exit_status: if status.success() { None } else { Some(status) },
-                })
-            }
-            Err(error) => Err(CaptureError {
-                io_error: Some(error),
-                exit_status: None,
-            }),
+        if exit_status.success() {
+            Ok(())
+        } else {
+            Err(CommandError {
+                io_error: None,
+                exit_status: Some(exit_status),
+            })
         }
     }
+}
 
-    pub fn capture_only_stdout(self) -> Vec<u8> {
-        self.capture_only_stdout_result().unwrap()
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_stdout_bytes_success() {
+        assert_eq!(
+            Command::new("echo")
+                .argument("hello")
+                .stdout()
+                .bytes()
+                .unwrap(),
+            b"hello\n"
+        );
     }
 
-    pub fn capture_only_stdout_string(self) -> String {
-        std::str::from_utf8(&self.capture_only_stdout())
-            .unwrap()
-            .to_string()
+    #[test]
+    fn test_stdout_bytes_nonzero_exit() {
+        let error = Command::new("sh")
+            .arguments(["-c", "exit 42"])
+            .stdout()
+            .bytes()
+            .unwrap_err();
+        assert_eq!(
+            error.exit_status.map(|status| status.code()),
+            Some(Some(42))
+        );
+        assert!(error.io_error.is_none());
     }
 
-    pub fn status_result(mut self) -> Result<std::process::ExitStatus, std::io::Error> {
-        log::debug!("{:#?}", self.inner);
-
-        self.inner.status()
+    #[test]
+    fn test_stdout_bytes_io_error() {
+        let error = Command::new("./nonexistent").stdout().bytes().unwrap_err();
+        assert!(error.io_error.is_some());
+        assert_eq!(error.io_error.unwrap().kind(), std::io::ErrorKind::NotFound);
+        assert!(error.exit_status.is_none());
     }
 
-    pub fn status(self) -> std::process::ExitStatus {
-        match self.status_result() {
-            Ok(status) => status,
-            Err(error) => panic!("Failed to run command: {error:#?}"),
-        }
+    #[test]
+    fn test_stdout_string_success() {
+        assert_eq!(
+            Command::new("echo")
+                .argument("hello")
+                .stdout()
+                .string()
+                .unwrap(),
+            "hello\n"
+        );
     }
 
-    pub fn output_result(mut self) -> Result<std::process::Output, std::io::Error> {
-        log::debug!("{:#?}", self.inner);
-
-        self.inner.output()
+    #[test]
+    fn test_stderr_bytes_success() {
+        assert_eq!(
+            Command::new("sh")
+                .arguments(["-c", "echo error >&2"])
+                .stderr()
+                .bytes()
+                .unwrap(),
+            b"error\n"
+        );
     }
 
-    pub fn output(self) -> std::process::Output {
-        match self.output_result() {
-            Ok(output) => output,
-            Err(error) => panic!("Failed to run command: {error:#?}"),
-        }
+    #[test]
+    fn test_stderr_string_success() {
+        assert_eq!(
+            Command::new("sh")
+                .arguments(["-c", "echo error >&2"])
+                .stderr()
+                .string()
+                .unwrap(),
+            "error\n"
+        );
+    }
+
+    #[test]
+    fn test_status_success() {
+        assert!(matches!(Command::new("true").status(), Ok(())));
+    }
+
+    #[test]
+    fn test_status_nonzero_exit() {
+        let error = Command::new("sh")
+            .arguments(["-c", "exit 42"])
+            .status()
+            .unwrap_err();
+        assert_eq!(
+            error.exit_status.map(|status| status.code()),
+            Some(Some(42))
+        );
+        assert!(error.io_error.is_none());
+    }
+
+    #[test]
+    fn test_status_io_error() {
+        let error = Command::new("./nonexistent").status().unwrap_err();
+        assert!(error.io_error.is_some());
+        assert_eq!(error.io_error.unwrap().kind(), std::io::ErrorKind::NotFound);
+        assert!(error.exit_status.is_none());
     }
 }

@@ -13,7 +13,6 @@ pub use image::{
     BuildArgumentKey, BuildArgumentKeyError, BuildArgumentValue, BuildDefinition, BuildSource,
     BuildTarget, Reference,
 };
-use std::ffi::OsStr;
 
 trait Apply {
     fn apply(&self, command: Command) -> Command;
@@ -564,18 +563,9 @@ impl Definition {
         self.clone().no_detach().run_output()
     }
 
-    /// Runs the container and returns the exit status.
-    pub fn run_status(&self) -> std::process::ExitStatus {
+    /// Runs the container and returns success or an error.
+    pub fn run(&self) -> Result<(), command::CommandError> {
         self.build_run_command().status()
-    }
-
-    /// Runs the container and panics on non-zero exit.
-    pub fn run_status_success(&self) {
-        let status = self.run_status();
-
-        if !status.success() {
-            panic!("Container execution failed with status: {status}");
-        }
     }
 
     fn build_run_command(&self) -> Command {
@@ -594,7 +584,7 @@ impl Definition {
     }
 
     fn run_output(&self) -> Vec<u8> {
-        self.build_run_command().capture_only_stdout()
+        self.build_run_command().stdout().bytes().unwrap()
     }
 }
 
@@ -644,12 +634,129 @@ pub struct Container {
     remove_on_drop: bool,
 }
 
+/// Builder for executing commands inside a container.
+pub struct ExecCommand<'a> {
+    container: &'a Container,
+    executable: String,
+    arguments: Vec<String>,
+    environment: Vec<(String, String)>,
+    interactive: bool,
+    stdin_data: Option<Vec<u8>>,
+}
+
+impl<'a> ExecCommand<'a> {
+    fn new(container: &'a Container, executable: impl Into<String>) -> Self {
+        Self {
+            container,
+            executable: executable.into(),
+            arguments: Vec::new(),
+            environment: Vec::new(),
+            interactive: false,
+            stdin_data: None,
+        }
+    }
+
+    /// Add a single argument.
+    pub fn argument(mut self, value: impl Into<String>) -> Self {
+        self.arguments.push(value.into());
+        self
+    }
+
+    /// Add multiple arguments.
+    pub fn arguments(mut self, values: impl IntoIterator<Item = impl Into<String>>) -> Self {
+        self.arguments.extend(values.into_iter().map(Into::into));
+        self
+    }
+
+    /// Add an environment variable.
+    pub fn environment_variable(
+        mut self,
+        key: impl Into<String>,
+        value: impl Into<String>,
+    ) -> Self {
+        self.environment.push((key.into(), value.into()));
+        self
+    }
+
+    /// Add multiple environment variables.
+    pub fn environment_variables(
+        mut self,
+        variables: impl IntoIterator<Item = (impl Into<String>, impl Into<String>)>,
+    ) -> Self {
+        self.environment.extend(
+            variables
+                .into_iter()
+                .map(|(key, value)| (key.into(), value.into())),
+        );
+        self
+    }
+
+    /// Enable interactive mode (--tty --interactive).
+    pub fn interactive(mut self) -> Self {
+        self.interactive = true;
+        self
+    }
+
+    /// Set stdin data to send to the command.
+    pub fn stdin(mut self, data: impl Into<Vec<u8>>) -> Self {
+        self.stdin_data = Some(data.into());
+        self
+    }
+
+    fn build_command(self) -> Command {
+        let mut command = self.container.backend_command().argument("exec");
+
+        if self.interactive {
+            command = command.argument("--tty").argument("--interactive");
+        } else if self.stdin_data.is_some() {
+            command = command.argument("--interactive");
+        }
+
+        for (key, value) in self.environment {
+            command = command.argument("--env").argument(format!("{key}={value}"));
+        }
+
+        command = command
+            .argument(&self.container.id)
+            .argument(self.executable)
+            .arguments(self.arguments);
+
+        if let Some(data) = self.stdin_data {
+            command = command.stdin_bytes(data);
+        }
+
+        command
+    }
+
+    /// Capture stdout from this exec command.
+    pub fn stdout(self) -> command::Capture {
+        self.build_command().stdout()
+    }
+
+    /// Capture stderr from this exec command.
+    pub fn stderr(self) -> command::Capture {
+        self.build_command().stderr()
+    }
+
+    /// Execute the command and return success or an error.
+    pub fn status(self) -> Result<(), command::CommandError> {
+        self.build_command().status()
+    }
+}
+
 impl Container {
+    /// Create an exec command builder for running commands inside this container.
+    pub fn exec(&self, executable: impl Into<String>) -> ExecCommand<'_> {
+        ExecCommand::new(self, executable)
+    }
+
     pub fn stop(&mut self) {
         self.backend_command()
             .arguments(["container", "stop"])
             .argument(&self.id)
-            .capture_only_stdout();
+            .stdout()
+            .bytes()
+            .unwrap();
 
         self.stopped = true;
     }
@@ -658,70 +765,11 @@ impl Container {
         self.backend_command()
             .arguments(["container", "rm"])
             .argument(&self.id)
-            .capture_only_stdout();
+            .stdout()
+            .bytes()
+            .unwrap();
 
         self.removed = true;
-    }
-
-    fn exec_command<T: AsRef<OsStr>>(
-        &self,
-        environment: impl IntoIterator<Item = (&'static str, String)>,
-        executable: T,
-        arguments: impl IntoIterator<Item = T>,
-    ) -> Command {
-        self.backend_command()
-            .argument("exec")
-            .arguments(
-                environment
-                    .into_iter()
-                    .flat_map(|(key, value)| ["--env".to_string(), format!("{key}={value}")]),
-            )
-            .argument(&self.id)
-            .argument(executable)
-            .arguments(arguments)
-    }
-
-    pub fn exec_capture_only_stdout<T: AsRef<OsStr>>(
-        &self,
-        environment: impl IntoIterator<Item = (&'static str, String)>,
-        executable: T,
-        arguments: impl IntoIterator<Item = T>,
-    ) -> Vec<u8> {
-        self.exec_command(environment, executable, arguments)
-            .capture_only_stdout()
-    }
-
-    pub fn exec_status<T: AsRef<OsStr>>(
-        &self,
-        environment: impl IntoIterator<Item = (&'static str, String)>,
-        executable: T,
-        arguments: impl IntoIterator<Item = T>,
-    ) -> std::process::ExitStatus {
-        self.exec_command(environment, executable, arguments)
-            .output()
-            .status
-    }
-
-    pub fn exec_interactive<T: AsRef<OsStr>>(
-        &self,
-        environment: impl IntoIterator<Item = (&'static str, String)>,
-        executable: T,
-        arguments: impl IntoIterator<Item = T>,
-    ) {
-        let _status = self
-            .backend_command()
-            .argument("exec")
-            .argument("--tty")
-            .argument("--interactive")
-            .arguments(
-                environment
-                    .into_iter()
-                    .flat_map(|(key, value)| ["--env".to_string(), format!("{key}={value}")]),
-            )
-            .argument(&self.id)
-            .argument(executable)
-            .arguments(arguments)
-            .status();
     }
 
     pub fn inspect(&self) -> serde_json::Value {
@@ -729,7 +777,9 @@ impl Container {
             .backend_command()
             .argument("inspect")
             .argument(&self.id)
-            .capture_only_stdout();
+            .stdout()
+            .bytes()
+            .unwrap();
 
         serde_json::from_slice(&stdout).expect("invalid json")
     }
@@ -741,7 +791,9 @@ impl Container {
             .argument("--format")
             .argument(format)
             .argument(&self.id)
-            .capture_only_stdout();
+            .stdout()
+            .bytes()
+            .unwrap();
 
         std::str::from_utf8(strip_nl_end(&bytes))
             .expect("invalid utf8")
@@ -762,7 +814,11 @@ impl Container {
             .ok()
     }
 
-    pub fn commit(&self, reference: &image::Reference, pause: bool) {
+    pub fn commit(
+        &self,
+        reference: &image::Reference,
+        pause: bool,
+    ) -> Result<(), command::CommandError> {
         let pause_argument = match (&self.backend, pause) {
             (Backend::Docker { .. }, true) => None,
             (Backend::Docker { version }, false) => {
@@ -783,7 +839,7 @@ impl Container {
             .optional_argument(pause_argument)
             .argument(&self.id)
             .argument(reference.to_string())
-            .status();
+            .status()
     }
 
     fn backend_command(&self) -> Command {
