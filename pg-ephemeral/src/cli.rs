@@ -120,9 +120,27 @@ impl App {
 }
 
 #[derive(Clone, Debug, clap::Parser)]
+pub enum CacheCommand {
+    /// Print cache status for seeds
+    Status {
+        /// Show full cache key output instead of truncated
+        #[arg(long)]
+        verbose: bool,
+    },
+    /// Remove cached images for the instance
+    Reset,
+}
+
+#[derive(Clone, Debug, clap::Parser)]
 pub enum Command {
-    /// List defined instances
-    List,
+    /// Cache related commands
+    Cache {
+        /// Target instance name
+        #[arg(long)]
+        instance: Option<InstanceName>,
+        #[clap(subcommand)]
+        command: CacheCommand,
+    },
     /// Run interactive psql session on the container
     #[command(name = "container-psql")]
     ContainerPsql {
@@ -130,6 +148,8 @@ pub enum Command {
         #[arg(long)]
         instance: Option<InstanceName>,
     },
+    /// List defined instances
+    List,
     /// Run schema dump from the container
     #[command(name = "container-schema-dump")]
     ContainerSchemaDump {
@@ -241,11 +261,28 @@ impl Default for Command {
 impl Command {
     pub async fn run(&self, instance_map: &InstanceMap) {
         match self {
-            Self::List => {
-                for instance_name in instance_map.keys() {
-                    println!("{instance_name}")
+            Self::Cache { instance, command } => match command {
+                CacheCommand::Status { verbose } => {
+                    let instance_name = instance.clone().unwrap_or_default();
+                    let definition = Self::get_instance(instance_map, instance)
+                        .definition()
+                        .unwrap();
+                    definition.print_cache_status(&instance_name.to_string(), *verbose)
                 }
-            }
+                CacheCommand::Reset => {
+                    let instance_name = instance.clone().unwrap_or_default();
+                    let definition = Self::get_instance(instance_map, instance)
+                        .definition()
+                        .unwrap();
+                    let name: ociman::reference::Name =
+                        format!("pg-ephemeral/{instance_name}").parse().unwrap();
+                    let references = definition.backend.image_references_by_name(&name);
+                    for reference in &references {
+                        definition.backend.remove_image(reference);
+                        println!("Removed: {reference}");
+                    }
+                }
+            },
             Self::ContainerPsql { instance } => {
                 let definition = Self::get_instance(instance_map, instance)
                     .definition()
@@ -272,6 +309,11 @@ impl Command {
                     .definition()
                     .unwrap();
                 definition.run_integration_server().await
+            }
+            Self::List => {
+                for instance_name in instance_map.keys() {
+                    println!("{instance_name}")
+                }
             }
             Self::Psql { instance } => {
                 let definition = Self::get_instance(instance_map, instance)
