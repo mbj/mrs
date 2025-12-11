@@ -369,9 +369,9 @@ impl Parse for Host {
 impl std::fmt::Display for Host {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Self::DomainName(name) => write!(formatter, "{}", name),
-            Self::Ipv4(address) => write!(formatter, "{}", address),
-            Self::Ipv6(address) => write!(formatter, "[{}]", address),
+            Self::DomainName(name) => write!(formatter, "{name}"),
+            Self::Ipv4(address) => write!(formatter, "{address}"),
+            Self::Ipv6(address) => write!(formatter, "[{address}]"),
         }
     }
 }
@@ -411,7 +411,7 @@ impl std::fmt::Display for Domain {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(formatter, "{}", self.host)?;
         if let Some(port) = &self.port {
-            write!(formatter, ":{}", port)?;
+            write!(formatter, ":{port}")?;
         }
         Ok(())
     }
@@ -638,7 +638,7 @@ impl Parse for Name {
 impl std::fmt::Display for Name {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         if let Some(domain) = &self.domain {
-            write!(formatter, "{}/", domain)?;
+            write!(formatter, "{domain}/")?;
         }
         write!(formatter, "{}", self.path)
     }
@@ -716,7 +716,7 @@ impl std::fmt::Display for Tag {
 
 impl From<sha2::digest::Output<sha2::Sha256>> for Tag {
     fn from(hash: sha2::digest::Output<sha2::Sha256>) -> Self {
-        Self(format!("{:x}", hash))
+        Self(format!("{hash:x}"))
     }
 }
 
@@ -940,10 +940,10 @@ impl std::fmt::Display for Reference {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(formatter, "{}", self.name)?;
         if let Some(tag) = &self.tag {
-            write!(formatter, ":{}", tag)?;
+            write!(formatter, ":{tag}")?;
         }
         if let Some(digest) = &self.digest {
-            write!(formatter, "@{}", digest)?;
+            write!(formatter, "@{digest}")?;
         }
         Ok(())
     }

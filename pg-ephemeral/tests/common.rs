@@ -126,7 +126,7 @@ pub async fn test_database_url_integration(language: &str, image_dir: &str) {
 
     definition
         .with_container(async |container| {
-            let image_tag = format!("pg-ephemeral-{}-test:latest", language);
+            let image_tag = format!("pg-ephemeral-{language}-test:latest");
 
             backend
                 .command()
@@ -148,18 +148,15 @@ pub async fn test_database_url_integration(language: &str, image_dir: &str) {
                 .argument("run")
                 .argument("--rm")
                 .argument("--env")
-                .argument(format!("DATABASE_URL={}", database_url))
+                .argument(format!("DATABASE_URL={database_url}"))
                 .argument(&image_tag)
                 .stdout()
                 .string()
-                .unwrap_or_else(|error| {
-                    panic!("Failed to run {} container: {:?}", language, error)
-                });
+                .unwrap_or_else(|error| panic!("Failed to run {language} container: {error:?}"));
 
             assert!(
                 stdout.contains("SUCCESS: Connected to PostgreSQL successfully"),
-                "Expected success message not found in output.\nOutput: {}",
-                stdout
+                "Expected success message not found in output.\nOutput: {stdout}"
             );
         })
         .await
