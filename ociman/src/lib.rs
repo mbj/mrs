@@ -156,7 +156,7 @@ impl std::fmt::Display for HostBinding {
         write!(formatter, "{}:", self.ip)?;
 
         if let Some(port) = self.port {
-            write!(formatter, "{}", port)
+            write!(formatter, "{port}")
         } else {
             Ok(())
         }
@@ -306,7 +306,7 @@ impl Publish {
 impl std::fmt::Display for Publish {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         if let Some(host_binding) = self.host_binding {
-            write!(formatter, "{}:", host_binding)?;
+            write!(formatter, "{host_binding}:")?;
         }
 
         write!(
@@ -806,7 +806,7 @@ impl Container {
         json.get(0)?
             .get("NetworkSettings")?
             .get("Ports")?
-            .get(format!("{}/tcp", container_port))?
+            .get(format!("{container_port}/tcp"))?
             .get(0)?
             .get("HostPort")?
             .as_str()?

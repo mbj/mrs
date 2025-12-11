@@ -193,7 +193,7 @@ impl Definition {
         let status = cmd.status().expect("Failed to execute command");
 
         if !status.success() {
-            panic!("Command failed with status: {}", status);
+            panic!("Command failed with status: {status}");
         }
     }
 
@@ -208,7 +208,7 @@ impl Definition {
         let status = cmd.status().expect("Failed to execute script");
 
         if !status.success() {
-            panic!("Script failed with status: {}", status);
+            panic!("Script failed with status: {status}");
         }
     }
 
