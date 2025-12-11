@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.metadata['source_code_uri'] = 'https://github.com/mbj/mrs'
   spec.metadata['changelog_uri'] = 'https://github.com/mbj/mrs/blob/main/pg-ephemeral/CHANGELOG.md'
 
-  spec.files = Dir['lib/**/*', 'bin/*', 'README.md', 'LICENSE.txt']
+  spec.files = Dir['lib/**/*', 'bin/**/*', 'README.md', 'LICENSE.txt']
   spec.require_paths = ['lib']
 
   spec.add_dependency 'pg', '~> 1.5'

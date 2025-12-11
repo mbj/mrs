@@ -29,7 +29,7 @@ module PgEphemeral
   end
 
   def self.platform_supported?
-    stdout, status = Open3.capture2(binary_path, 'platform')
+    _stdout, status = Open3.capture2(binary_path, 'platform', 'support')
     status.success?
   end
 
