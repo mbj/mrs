@@ -53,17 +53,19 @@ impl Bundle {
         use x509_parser::prelude::*;
         use x509_parser::verify::verify_signature;
 
-        let (_, pem) = parse_x509_pem(ca_cert_pem.as_bytes()).map_err(|e| {
-            ValidationError::ParseError(format!("Failed to parse CA certificate PEM: {}", e))
+        let (_, pem) = parse_x509_pem(ca_cert_pem.as_bytes()).map_err(|error| {
+            ValidationError::ParseError(format!("Failed to parse CA certificate PEM: {error}"))
         })?;
-        let ca_cert = pem.parse_x509().map_err(|e| {
-            ValidationError::ParseError(format!("Failed to parse CA certificate: {}", e))
+        let ca_cert = pem.parse_x509().map_err(|error| {
+            ValidationError::ParseError(format!("Failed to parse CA certificate: {error}"))
         })?;
 
         let ca_basic_constraints = ca_cert
             .basic_constraints()
-            .map_err(|e| {
-                ValidationError::ValidationError(format!("CA should have basic constraints: {}", e))
+            .map_err(|error| {
+                ValidationError::ValidationError(format!(
+                    "CA should have basic constraints: {error}"
+                ))
             })?
             .ok_or_else(|| {
                 ValidationError::ValidationError(
@@ -84,11 +86,11 @@ impl Bundle {
             )));
         }
 
-        let (_, pem) = parse_x509_pem(server_cert_pem.as_bytes()).map_err(|e| {
-            ValidationError::ParseError(format!("Failed to parse server certificate PEM: {}", e))
+        let (_, pem) = parse_x509_pem(server_cert_pem.as_bytes()).map_err(|error| {
+            ValidationError::ParseError(format!("Failed to parse server certificate PEM: {error}"))
         })?;
-        let server_cert = pem.parse_x509().map_err(|e| {
-            ValidationError::ParseError(format!("Failed to parse server certificate: {}", e))
+        let server_cert = pem.parse_x509().map_err(|error| {
+            ValidationError::ParseError(format!("Failed to parse server certificate: {error}"))
         })?;
 
         if server_cert.subject().to_string() != "CN=pg-ephemeral server" {
@@ -101,10 +103,9 @@ impl Bundle {
         // Validate that the DNS name in SAN matches the expected hostname
         let san_ext = server_cert
             .subject_alternative_name()
-            .map_err(|e| {
+            .map_err(|error| {
                 ValidationError::ValidationError(format!(
-                    "Failed to read subject alternative name: {}",
-                    e
+                    "Failed to read subject alternative name: {error}"
                 ))
             })?
             .ok_or_else(|| {
@@ -128,8 +129,7 @@ impl Bundle {
 
         if !dns_names.contains(&expected_hostname) {
             return Err(ValidationError::ValidationError(format!(
-                "Server certificate DNS names {:?} should contain {}",
-                dns_names, expected_hostname
+                "Server certificate DNS names {dns_names:?} should contain {expected_hostname}"
             )));
         }
 
@@ -145,15 +145,14 @@ impl Bundle {
             &server_cert.signature_value,
             server_cert.tbs_certificate.as_ref(),
         )
-        .map_err(|e| {
+        .map_err(|error| {
             ValidationError::ValidationError(format!(
-                "Server certificate should be signed by CA: {}",
-                e
+                "Server certificate should be signed by CA: {error}"
             ))
         })?;
 
-        let server_key = rcgen::KeyPair::from_pem(&server_key_pem).map_err(|e| {
-            ValidationError::ParseError(format!("Failed to parse server key: {}", e))
+        let server_key = rcgen::KeyPair::from_pem(&server_key_pem).map_err(|error| {
+            ValidationError::ParseError(format!("Failed to parse server key: {error}"))
         })?;
 
         let server_key_public = server_key.public_key_der();
@@ -182,8 +181,8 @@ pub enum ValidationError {
 impl std::fmt::Display for ValidationError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            ValidationError::ParseError(msg) => write!(f, "Parse error: {}", msg),
-            ValidationError::ValidationError(msg) => write!(f, "Validation error: {}", msg),
+            ValidationError::ParseError(msg) => write!(f, "Parse error: {msg}"),
+            ValidationError::ValidationError(msg) => write!(f, "Validation error: {msg}"),
         }
     }
 }

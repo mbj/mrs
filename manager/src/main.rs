@@ -132,19 +132,19 @@ fn platform_artifact_paths(
     let ruby_version = ruby_version();
     let artifact_base = workspace_root
         .join("artifacts")
-        .join(format!("pg-ephemeral-{}", rust_target));
+        .join(format!("pg-ephemeral-{rust_target}"));
 
     let gem_base = artifact_base.join("dist").join("gems");
     let binary_base = artifact_base.join("dist").join("binaries");
 
-    let gem_name = format!("pg-ephemeral-{}-{}.gem", ruby_version, ruby_platform);
-    let tarball_name = format!("pg-ephemeral-{}.tar.gz", rust_target);
+    let gem_name = format!("pg-ephemeral-{ruby_version}-{ruby_platform}.gem");
+    let tarball_name = format!("pg-ephemeral-{rust_target}.tar.gz");
 
     PlatformArtifactPaths {
         gem: gem_base.join(&gem_name),
-        gem_sha256: gem_base.join(format!("{}.sha256", gem_name)),
+        gem_sha256: gem_base.join(format!("{gem_name}.sha256")),
         tarball: binary_base.join(&tarball_name),
-        tarball_sha256: binary_base.join(format!("{}.sha256", tarball_name)),
+        tarball_sha256: binary_base.join(format!("{tarball_name}.sha256")),
     }
 }
 
@@ -152,14 +152,14 @@ fn create_edge_release() {
     log::info!("Creating edge release");
 
     let workspace_root = std::env::current_dir()
-        .unwrap_or_else(|error| panic!("Failed to get current directory: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to get current directory: {error}"));
 
     // Get git commit SHA
     let sha = ociman::Command::new("git")
         .arguments(["rev-parse", "HEAD"])
         .stdout()
         .string()
-        .unwrap_or_else(|error| panic!("Failed to get git SHA: {}", error))
+        .unwrap_or_else(|error| panic!("Failed to get git SHA: {error}"))
         .trim()
         .to_string();
 
@@ -168,16 +168,16 @@ fn create_edge_release() {
         .arguments(["rev-parse", "--abbrev-ref", "HEAD"])
         .stdout()
         .string()
-        .unwrap_or_else(|error| panic!("Failed to get git branch: {}", error))
+        .unwrap_or_else(|error| panic!("Failed to get git branch: {error}"))
         .trim()
         .to_string();
 
-    let tag = format!("edge-{}", sha);
-    let title = format!("Edge Build ({} @ {})", branch, sha);
-    let notes = format!("Automated edge build from commit {}", sha);
+    let tag = format!("edge-{sha}");
+    let title = format!("Edge Build ({branch} @ {sha})");
+    let notes = format!("Automated edge build from commit {sha}");
 
-    log::info!("Tag: {}", tag);
-    log::info!("Title: {}", title);
+    log::info!("Tag: {tag}");
+    log::info!("Title: {title}");
 
     let mut release_files = Vec::new();
 
@@ -226,9 +226,9 @@ fn create_edge_release() {
                 .collect::<Vec<_>>(),
         )
         .status()
-        .unwrap_or_else(|error| panic!("Failed to create GitHub release: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to create GitHub release: {error}"));
 
-    log::info!("Successfully created edge release: {}", tag);
+    log::info!("Successfully created edge release: {tag}");
 }
 
 fn rust_target_to_ruby_platform(rust_target: &str) -> &str {
@@ -237,10 +237,7 @@ fn rust_target_to_ruby_platform(rust_target: &str) -> &str {
         .find(|(rust, _ruby)| *rust == rust_target)
         .map(|(_rust, ruby)| *ruby)
         .unwrap_or_else(|| {
-            panic!(
-                "Unsupported Rust target for Ruby platform mapping: {}",
-                rust_target
-            )
+            panic!("Unsupported Rust target for Ruby platform mapping: {rust_target}")
         })
 }
 
@@ -313,7 +310,7 @@ fn setup_staging_directory(staging_root: &PathBuf, items: Vec<StagingItem>) {
         staging_root.display()
     );
     std::fs::create_dir_all(staging_root)
-        .unwrap_or_else(|error| panic!("Failed to create staging directory: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to create staging directory: {error}"));
 
     for item in items {
         match item {
@@ -321,34 +318,34 @@ fn setup_staging_directory(staging_root: &PathBuf, items: Vec<StagingItem>) {
                 source,
                 destination,
             } => {
-                log::info!("Copying file: {}", destination);
+                log::info!("Copying file: {destination}");
                 let destination_path = staging_root.join(&destination);
                 if let Some(parent) = destination_path.parent() {
                     std::fs::create_dir_all(parent).unwrap_or_else(|error| {
-                        panic!("Failed to create directory for {}: {}", destination, error)
+                        panic!("Failed to create directory for {destination}: {error}")
                     });
                 }
                 std::fs::copy(&source, &destination_path)
-                    .unwrap_or_else(|error| panic!("Failed to copy {}: {}", destination, error));
+                    .unwrap_or_else(|error| panic!("Failed to copy {destination}: {error}"));
             }
             StagingItem::CopyDirectory {
                 source,
                 destination,
             } => {
-                log::info!("Copying directory: {}", destination);
+                log::info!("Copying directory: {destination}");
                 let destination_path = staging_root.join(&destination);
                 copy_dir_recursive(&source, &destination_path).unwrap_or_else(|error| {
-                    panic!("Failed to copy directory {}: {}", destination, error)
+                    panic!("Failed to copy directory {destination}: {error}")
                 });
             }
             StagingItem::GenerateFile {
                 destination,
                 content,
             } => {
-                log::info!("Generating file: {}", destination);
+                log::info!("Generating file: {destination}");
                 let destination_path = staging_root.join(&destination);
                 std::fs::write(&destination_path, content)
-                    .unwrap_or_else(|error| panic!("Failed to write {}: {}", destination, error));
+                    .unwrap_or_else(|error| panic!("Failed to write {destination}: {error}"));
             }
         }
     }
@@ -361,7 +358,7 @@ fn detect_target_platform() -> String {
             ("aarch64", "linux") => "aarch64-unknown-linux-musl".to_string(),
             ("x86_64", "macos") => "x86_64-apple-darwin".to_string(),
             ("aarch64", "macos") => "aarch64-apple-darwin".to_string(),
-            (arch, os) => panic!("Unsupported platform: {}-{}", arch, os),
+            (arch, os) => panic!("Unsupported platform: {arch}-{os}"),
         }
     })
 }
@@ -371,9 +368,9 @@ fn build_integrations(no_compile: bool) {
     let ruby_platform = rust_target_to_ruby_platform(&target);
     let ruby_version = ruby_version();
 
-    log::info!("Building pg-ephemeral binary for target: {}", target);
-    log::info!("Ruby platform: {}", ruby_platform);
-    log::info!("Version: {}", ruby_version);
+    log::info!("Building pg-ephemeral binary for target: {target}");
+    log::info!("Ruby platform: {ruby_platform}");
+    log::info!("Version: {ruby_version}");
 
     if no_compile {
         log::info!("Skipping compilation (--no-compile flag set)");
@@ -388,7 +385,7 @@ fn build_integrations(no_compile: bool) {
                 &target,
             ])
             .status()
-            .unwrap_or_else(|error| panic!("Failed to build pg-ephemeral binary: {}", error));
+            .unwrap_or_else(|error| panic!("Failed to build pg-ephemeral binary: {error}"));
     }
 
     let workspace_root = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
@@ -453,7 +450,7 @@ fn build_integrations(no_compile: bool) {
             .argument("pg-ephemeral.gemspec")
             .working_directory(&build_staging)
             .status()
-            .unwrap_or_else(|error| panic!("Failed to build gem: {}", error));
+            .unwrap_or_else(|error| panic!("Failed to build gem: {error}"));
     } else {
         log::info!("Using containerized gem build for Linux");
         let backend = ociman::backend::resolve::auto().expect("Failed to detect backend");
@@ -473,7 +470,7 @@ fn build_integrations(no_compile: bool) {
         .arguments(["build", "pg-ephemeral.gemspec"])
         .remove()
         .run()
-        .unwrap_or_else(|error| panic!("Failed to build gem: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to build gem: {error}"));
     }
 
     // Create dist directories
@@ -481,22 +478,22 @@ fn build_integrations(no_compile: bool) {
     let dist_gems = dist_root.join("gems");
     let dist_binaries = dist_root.join("binaries");
     std::fs::create_dir_all(&dist_gems)
-        .unwrap_or_else(|error| panic!("Failed to create dist/gems directory: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to create dist/gems directory: {error}"));
     std::fs::create_dir_all(&dist_binaries)
-        .unwrap_or_else(|error| panic!("Failed to create dist/binaries directory: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to create dist/binaries directory: {error}"));
 
     // Prepare gem for distribution
-    let gem_filename = format!("pg-ephemeral-{}-{}.gem", ruby_version, ruby_platform);
+    let gem_filename = format!("pg-ephemeral-{ruby_version}-{ruby_platform}.gem");
     let gem_source = build_staging.join(&gem_filename);
 
     // Create SHA256 hash for gem
     log::info!("Creating SHA256 hash for gem");
     let gem_bytes =
-        std::fs::read(&gem_source).unwrap_or_else(|error| panic!("Failed to read gem: {}", error));
+        std::fs::read(&gem_source).unwrap_or_else(|error| panic!("Failed to read gem: {error}"));
     let mut hasher = Sha256::new();
     hasher.update(&gem_bytes);
     let hash = hasher.finalize();
-    let gem_hash_string = format!("{:x}  {}\n", hash, gem_filename);
+    let gem_hash_string = format!("{hash:x}  {gem_filename}\n");
 
     // Use staging to copy gem and write SHA256 to dist
     setup_staging_directory(
@@ -507,7 +504,7 @@ fn build_integrations(no_compile: bool) {
                 destination: gem_filename.clone(),
             },
             StagingItem::GenerateFile {
-                destination: format!("{}.sha256", gem_filename),
+                destination: format!("{gem_filename}.sha256"),
                 content: gem_hash_string,
             },
         ],
@@ -518,17 +515,17 @@ fn build_integrations(no_compile: bool) {
     ociman::Command::new("gem")
         .arguments(["generate_index", "--directory", dist_root.to_str().unwrap()])
         .status()
-        .unwrap_or_else(|error| panic!("Failed to generate gem index: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to generate gem index: {error}"));
 
     log::info!("Gem index generated successfully");
 
     // Create tarball
     log::info!("Creating tarball");
-    let tarball_name = format!("pg-ephemeral-{}.tar.gz", target);
+    let tarball_name = format!("pg-ephemeral-{target}.tar.gz");
     let tarball_path = dist_binaries.join(&tarball_name);
 
     let tarball_file = std::fs::File::create(&tarball_path)
-        .unwrap_or_else(|error| panic!("Failed to create tarball file: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to create tarball file: {error}"));
     let encoder = GzEncoder::new(tarball_file, Compression::default());
     let mut archive = tar::Builder::new(encoder);
 
@@ -544,14 +541,14 @@ fn build_integrations(no_compile: bool) {
     // Create SHA256 hash for tarball
     log::info!("Creating SHA256 hash for tarball");
     let tarball_bytes = std::fs::read(&tarball_path)
-        .unwrap_or_else(|error| panic!("Failed to read tarball: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to read tarball: {error}"));
     let mut hasher = Sha256::new();
     hasher.update(&tarball_bytes);
     let hash = hasher.finalize();
-    let hash_string = format!("{:x}  {}\n", hash, tarball_name);
-    let tarball_sha256_path = dist_binaries.join(format!("{}.sha256", tarball_name));
+    let hash_string = format!("{hash:x}  {tarball_name}\n");
+    let tarball_sha256_path = dist_binaries.join(format!("{tarball_name}.sha256"));
     std::fs::write(&tarball_sha256_path, hash_string)
-        .unwrap_or_else(|error| panic!("Failed to write tarball SHA256 file: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to write tarball SHA256 file: {error}"));
 
     log::info!(
         "Tarball SHA256 hash written to: {}",
@@ -564,7 +561,7 @@ fn merge_gems() {
     log::info!("Merging multi-platform gems into unified repository");
 
     let workspace_root = std::env::current_dir()
-        .unwrap_or_else(|error| panic!("Failed to get current directory: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to get current directory: {error}"));
 
     let dist_root = workspace_root.join("dist");
     let dist_gems = dist_root.join("gems");
@@ -604,19 +601,16 @@ fn merge_gems() {
 
     let collected_gems = PLATFORMS.len();
     setup_staging_directory(&dist_gems, staging_items);
-    log::info!("Collected {} platform gems", collected_gems);
+    log::info!("Collected {collected_gems} platform gems");
 
     // Generate gem index for the unified repository
     log::info!("Generating gem index in: {}", dist_root.display());
     ociman::Command::new("gem")
         .arguments(["generate_index", "--directory", dist_root.to_str().unwrap()])
         .status()
-        .unwrap_or_else(|error| panic!("Failed to generate gem index: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to generate gem index: {error}"));
 
-    log::info!(
-        "Gem index generated successfully with {} platform gems",
-        collected_gems
-    );
+    log::info!("Gem index generated successfully with {collected_gems} platform gems");
     log::info!(
         "Multi-platform gem repository ready at: {}",
         dist_root.display()
@@ -630,8 +624,8 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
         .join("integrations")
         .join("ruby");
 
-    log::info!("Using pg-ephemeral version: {}", ruby_version);
-    log::info!("Target platform: {}", target);
+    log::info!("Using pg-ephemeral version: {ruby_version}");
+    log::info!("Target platform: {target}");
 
     // Run acceptance tests with Gemfile.acceptance
     let gem_source_directory = workspace_root.join("dist");
@@ -658,11 +652,11 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
                 "config",
                 "--local",
                 "build.pg",
-                &format!("--with-pg-config={}", pg_config_path),
+                &format!("--with-pg-config={pg_config_path}"),
             ])
             .working_directory(&integration_directory)
             .status()
-            .unwrap_or_else(|error| panic!("Failed to configure bundle: {}", error));
+            .unwrap_or_else(|error| panic!("Failed to configure bundle: {error}"));
     }
 
     log::info!("Running bundle install with Gemfile.acceptance");
@@ -671,7 +665,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
         .working_directory(&integration_directory)
         .env("PG_EPHEMERAL_GEM_SOURCE", &gem_source_url)
         .status()
-        .unwrap_or_else(|error| panic!("Failed to run bundle install: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to run bundle install: {error}"));
 
     log::info!("Running RSpec acceptance tests");
     ociman::Command::new("bundle")
@@ -685,7 +679,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
         .env("EXPECTED_PG_EPHEMERAL_VERSION", &ruby_version)
         .env("PG_EPHEMERAL_GEM_SOURCE", &gem_source_url)
         .status()
-        .unwrap_or_else(|error| panic!("RSpec acceptance tests failed: {}", error));
+        .unwrap_or_else(|error| panic!("RSpec acceptance tests failed: {error}"));
 
     // Copy pg-ephemeral binary from installed gem for local development
     log::info!("Copying pg-ephemeral binary from installed gem");
@@ -703,7 +697,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
         .env("PG_EPHEMERAL_GEM_SOURCE", &gem_source_url)
         .stdout()
         .string()
-        .unwrap_or_else(|error| panic!("Failed to get gem path: {}", error))
+        .unwrap_or_else(|error| panic!("Failed to get gem path: {error}"))
         .trim()
         .to_string();
 
@@ -713,7 +707,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
 
     // Create bin directory
     std::fs::create_dir_all(&bin_directory)
-        .unwrap_or_else(|error| panic!("Failed to create bin directory: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to create bin directory: {error}"));
 
     // Copy binary from gem
     log::info!(
@@ -722,18 +716,18 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
         binary_destination.display()
     );
     std::fs::copy(&binary_source, &binary_destination)
-        .unwrap_or_else(|error| panic!("Failed to copy binary from gem: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to copy binary from gem: {error}"));
 
     // Make binary executable
     #[cfg(unix)]
     {
         use std::os::unix::fs::PermissionsExt;
         let mut perms = std::fs::metadata(&binary_destination)
-            .unwrap_or_else(|error| panic!("Failed to get binary metadata: {}", error))
+            .unwrap_or_else(|error| panic!("Failed to get binary metadata: {error}"))
             .permissions();
         perms.set_mode(0o755);
         std::fs::set_permissions(&binary_destination, perms)
-            .unwrap_or_else(|error| panic!("Failed to set binary permissions: {}", error));
+            .unwrap_or_else(|error| panic!("Failed to set binary permissions: {error}"));
     }
 
     log::info!("Binary copied to: {}", binary_destination.display());
@@ -744,7 +738,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
         .arguments(["install"])
         .working_directory(&integration_directory)
         .status()
-        .unwrap_or_else(|error| panic!("Failed to run bundle install: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to run bundle install: {error}"));
 
     // Run RSpec tests
     log::info!("Running RSpec tests");
@@ -753,7 +747,7 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
         .working_directory(&integration_directory)
         .env("EXPECTED_PG_EPHEMERAL_VERSION", &ruby_version)
         .status()
-        .unwrap_or_else(|error| panic!("RSpec tests failed: {}", error));
+        .unwrap_or_else(|error| panic!("RSpec tests failed: {error}"));
 
     // Run Mutant tests (only on supported platforms)
     match ociman::platform::support() {
@@ -764,10 +758,10 @@ fn run_ruby_tests(workspace_root: PathBuf, target: String) {
                 .working_directory(&integration_directory)
                 .env("EXPECTED_PG_EPHEMERAL_VERSION", &ruby_version)
                 .status()
-                .unwrap_or_else(|error| panic!("Mutant tests failed: {}", error));
+                .unwrap_or_else(|error| panic!("Mutant tests failed: {error}"));
         }
         Err(error) => {
-            log::info!("Skipping Mutant tests - platform not supported: {}", error);
+            log::info!("Skipping Mutant tests - platform not supported: {error}");
         }
     }
 
@@ -778,7 +772,7 @@ fn test() {
     log::info!("Running Ruby integration tests");
 
     let workspace_root = std::env::current_dir()
-        .unwrap_or_else(|error| panic!("Failed to get current directory: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to get current directory: {error}"));
 
     let target = detect_target_platform();
 
@@ -793,22 +787,22 @@ fn publish_gems(push: bool) {
     }
 
     let workspace_root = std::env::current_dir()
-        .unwrap_or_else(|error| panic!("Failed to get current directory: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to get current directory: {error}"));
 
     // Get git commit SHA
     let sha = ociman::Command::new("git")
         .arguments(["rev-parse", "HEAD"])
         .stdout()
         .string()
-        .unwrap_or_else(|error| panic!("Failed to get git SHA: {}", error))
+        .unwrap_or_else(|error| panic!("Failed to get git SHA: {error}"))
         .trim()
         .to_string();
 
-    log::info!("Current git revision: {}", sha);
+    log::info!("Current git revision: {sha}");
 
     // Construct edge release tag
-    let release_tag = format!("edge-{}", sha);
-    log::info!("Looking for edge release: {}", release_tag);
+    let release_tag = format!("edge-{sha}");
+    log::info!("Looking for edge release: {release_tag}");
 
     // Create dist directory for downloading artifacts
     let dist_dir = workspace_root.join("dist");
@@ -816,12 +810,12 @@ fn publish_gems(push: bool) {
     if dist_gems.exists() {
         log::info!("Removing existing dist/gems directory");
         std::fs::remove_dir_all(&dist_gems)
-            .unwrap_or_else(|error| panic!("Failed to remove dist/gems directory: {}", error));
+            .unwrap_or_else(|error| panic!("Failed to remove dist/gems directory: {error}"));
     }
     std::fs::create_dir_all(&dist_gems)
-        .unwrap_or_else(|error| panic!("Failed to create dist/gems directory: {}", error));
+        .unwrap_or_else(|error| panic!("Failed to create dist/gems directory: {error}"));
 
-    log::info!("Downloading artifacts from edge release {}", release_tag);
+    log::info!("Downloading artifacts from edge release {release_tag}");
 
     // Download all artifacts from the edge release
     ociman::Command::new("gh")
@@ -838,10 +832,7 @@ fn publish_gems(push: bool) {
         ])
         .status()
         .unwrap_or_else(|error| {
-            panic!(
-                "Failed to download artifacts from release {}: {}",
-                release_tag, error
-            )
+            panic!("Failed to download artifacts from release {release_tag}: {error}")
         });
 
     log::info!("All artifacts downloaded successfully");
@@ -851,7 +842,7 @@ fn publish_gems(push: bool) {
 
     for (_rust_target, ruby_platform) in PLATFORMS {
         let ruby_version = ruby_version();
-        let gem_name = format!("pg-ephemeral-{}-{}.gem", ruby_version, ruby_platform);
+        let gem_name = format!("pg-ephemeral-{ruby_version}-{ruby_platform}.gem");
         let gem_path = dist_gems.join(&gem_name);
 
         if !gem_path.exists() {
@@ -862,7 +853,8 @@ fn publish_gems(push: bool) {
         gems_to_publish.push(gem_path);
     }
 
-    log::info!("Collected {} gems to publish", gems_to_publish.len());
+    let gems_count = gems_to_publish.len();
+    log::info!("Collected {gems_count} gems to publish");
 
     // Publish each gem
     for gem_path in &gems_to_publish {
@@ -873,27 +865,21 @@ fn publish_gems(push: bool) {
             log::info!("Pushing gem: {}", gem_path.display());
             let status = command
                 .status()
-                .unwrap_or_else(|error| panic!("Failed to execute gem push: {}", error));
+                .unwrap_or_else(|error| panic!("Failed to execute gem push: {error}"));
 
             if !status.success() {
                 panic!("Failed to push gem: {}", gem_path.display());
             }
             log::info!("Successfully pushed: {}", gem_path.display());
         } else {
-            log::info!("[DRY-RUN] Would execute: {:?}", command);
+            log::info!("[DRY-RUN] Would execute: {command:?}");
         }
     }
 
     if push {
-        log::info!(
-            "Successfully published {} gems to RubyGems.org",
-            gems_to_publish.len()
-        );
+        log::info!("Successfully published {gems_count} gems to RubyGems.org");
     } else {
-        log::info!(
-            "[DRY-RUN] Would have published {} gems",
-            gems_to_publish.len()
-        );
+        log::info!("[DRY-RUN] Would have published {gems_count} gems");
         log::info!("Run with --push to actually publish");
     }
 
@@ -906,7 +892,7 @@ fn main() {
     let app = <App as clap::Parser>::parse();
 
     if let Err(error) = app.run() {
-        log::error!("{}", error);
+        log::error!("{error}");
         std::process::exit(1);
     }
 }

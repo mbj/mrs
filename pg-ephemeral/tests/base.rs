@@ -235,16 +235,17 @@ async fn test_run_env() {
             let pg_env = container.pg_env();
             let mut expected_lines: Vec<String> = pg_env
                 .iter()
-                .map(|(key, value)| format!("{}={}", key, value))
+                .map(|(key, value)| format!("{key}={value}"))
                 .collect();
             expected_lines.sort();
-            expected_lines.push(format!("DATABASE_URL={}", container.database_url()));
-            let expected = format!("{}\n", expected_lines.join("\n"));
+            let database_url = container.database_url();
+            expected_lines.push(format!("DATABASE_URL={database_url}"));
+            let expected_lines = expected_lines.join("\n");
+            let expected = format!("{expected_lines}\n");
 
             assert_eq!(
                 expected, actual,
-                "Environment variables mismatch.\nExpected:\n{}\nActual:\n{}",
-                expected, actual
+                "Environment variables mismatch.\nExpected:\n{expected}\nActual:\n{actual}"
             );
         })
         .await

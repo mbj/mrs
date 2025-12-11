@@ -270,9 +270,9 @@ fn run_container(
             .entrypoint("sh")
             .arguments(["-e", "-c", SSL_SETUP_SCRIPT, "--", "postgres", "--ssl=on"])
             .arguments([
-                format!("--ssl_cert_file={}/server.crt", ssl_dir),
-                format!("--ssl_key_file={}/server.key", ssl_dir),
-                format!("--ssl_ca_file={}/root.crt", ssl_dir),
+                format!("--ssl_cert_file={ssl_dir}/server.crt"),
+                format!("--ssl_key_file={ssl_dir}/server.key"),
+                format!("--ssl_ca_file={ssl_dir}/root.crt"),
             ])
             .environment_variable("PG_EPHEMERAL_SSL_DIR", ssl_dir)
             .environment_variable("PG_EPHEMERAL_CA_CERT_PEM", &bundle.ca_cert_pem)
@@ -301,7 +301,7 @@ fn run_container(
             .duration_since(std::time::UNIX_EPOCH)
             .unwrap()
             .as_nanos();
-        let ca_cert_path = std::env::temp_dir().join(format!("pg_ephemeral_ca_{}.crt", timestamp));
+        let ca_cert_path = std::env::temp_dir().join(format!("pg_ephemeral_ca_{timestamp}.crt"));
         std::fs::write(&ca_cert_path, &ssl_bundle.as_ref().unwrap().ca_cert_pem)
             .expect("Failed to write CA certificate to temp file");
 
