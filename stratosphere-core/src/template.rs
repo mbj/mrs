@@ -110,6 +110,7 @@ impl From<&str> for OutputKey {
 }
 
 impl OutputKey {
+    #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
     }
@@ -149,6 +150,7 @@ impl From<&MapName> for String {
 }
 
 impl MapName {
+    #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
     }
@@ -207,6 +209,7 @@ impl Default for Template<'_> {
 }
 
 impl Template<'_> {
+    #[must_use]
     pub fn new() -> Self {
         Self {
             description: None,
@@ -332,16 +335,19 @@ impl Template<'_> {
         self
     }
 
+    #[must_use]
     pub fn render_json_pretty(&self) -> String {
         let mut string = serde_json::to_string_pretty(&self).unwrap();
         string.push('\n');
         string
     }
 
+    #[must_use]
     pub fn render_json(&self) -> String {
         serde_json::to_string(&self).unwrap()
     }
 
+    #[must_use]
     pub fn parameter_keys(&self) -> std::collections::BTreeSet<ParameterKey> {
         self.parameters.keys().cloned().collect()
     }

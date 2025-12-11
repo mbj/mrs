@@ -183,6 +183,7 @@ impl Publish {
     /// let publish = ociman::Publish::tcp(8080);
     /// assert_eq!(publish.to_string(), "8080/tcp");
     /// ```
+    #[must_use]
     pub fn tcp(container_port: u16) -> Self {
         Self {
             host_binding: None,
@@ -199,6 +200,7 @@ impl Publish {
     /// let publish = ociman::Publish::udp(53);
     /// assert_eq!(publish.to_string(), "53/udp");
     /// ```
+    #[must_use]
     pub fn udp(container_port: u16) -> Self {
         Self {
             host_binding: None,
@@ -241,6 +243,7 @@ impl Publish {
     ///     .host_ip(std::net::Ipv4Addr::LOCALHOST.into());
     /// assert_eq!(publish.to_string(), "127.0.0.1:8080:80/tcp");
     /// ```
+    #[must_use]
     pub fn host_ip(self, ip: std::net::IpAddr) -> Self {
         Self {
             host_binding: Some(HostBinding {
@@ -270,6 +273,7 @@ impl Publish {
     ///     .host_port(8080);
     /// assert_eq!(publish.to_string(), "127.0.0.1:8080:80/tcp");
     /// ```
+    #[must_use]
     pub fn host_port(self, port: u16) -> Self {
         Self {
             host_binding: Some(HostBinding {
@@ -292,6 +296,7 @@ impl Publish {
     ///     .host_ip_port(std::net::Ipv4Addr::LOCALHOST.into(), 8080);
     /// assert_eq!(publish.to_string(), "127.0.0.1:8080:80/tcp");
     /// ```
+    #[must_use]
     pub fn host_ip_port(self, ip: std::net::IpAddr, port: u16) -> Self {
         Self {
             host_binding: Some(HostBinding {
@@ -372,6 +377,7 @@ pub struct Definition {
 }
 
 impl Definition {
+    #[must_use]
     pub fn new(backend: Backend, reference: image::Reference) -> Definition {
         Definition {
             backend,
@@ -401,6 +407,7 @@ impl Definition {
         f(&mut container)
     }
 
+    #[must_use]
     pub fn backend(self, backend: Backend) -> Self {
         Self { backend, ..self }
     }
@@ -438,6 +445,7 @@ impl Definition {
         }
     }
 
+    #[must_use]
     pub fn environment_variable(self, key: &str, value: &str) -> Self {
         let mut environment_variables = self.environment_variables;
 
@@ -465,6 +473,7 @@ impl Definition {
         }
     }
 
+    #[must_use]
     pub fn remove(self) -> Self {
         Self {
             remove: Remove::Remove,
@@ -472,6 +481,7 @@ impl Definition {
         }
     }
 
+    #[must_use]
     pub fn no_remove(self) -> Self {
         Self {
             remove: Remove::NoRemove,
@@ -483,6 +493,7 @@ impl Definition {
     ///
     /// By default containers are not stopped on drop. Use this when you want
     /// automatic cleanup of running containers when the handle goes out of scope.
+    #[must_use]
     pub fn stop_on_drop(self) -> Self {
         Self {
             stop_on_drop: true,
@@ -497,6 +508,7 @@ impl Definition {
     /// - `remove_on_drop()` → Rust removes container on Drop (can commit stopped container)
     ///
     /// Use this when you need to stop a container, commit it, then clean up.
+    #[must_use]
     pub fn remove_on_drop(self) -> Self {
         Self {
             remove_on_drop: true,
@@ -504,6 +516,7 @@ impl Definition {
         }
     }
 
+    #[must_use]
     pub fn detach(self) -> Self {
         Self {
             detach: Detach::Detach,
@@ -511,6 +524,7 @@ impl Definition {
         }
     }
 
+    #[must_use]
     pub fn no_detach(self) -> Self {
         Self {
             detach: Detach::NoDetach,
@@ -546,6 +560,7 @@ impl Definition {
         Self { mounts, ..self }
     }
 
+    #[must_use]
     pub fn run_detached(&self) -> Container {
         let stdout = self.clone().detach().run_output();
 
@@ -559,6 +574,7 @@ impl Definition {
         }
     }
 
+    #[must_use]
     pub fn run_capture_only_stdout(&self) -> Vec<u8> {
         self.clone().no_detach().run_output()
     }
@@ -619,6 +635,7 @@ impl AsRef<std::ffi::OsStr> for ContainerId {
 }
 
 impl ContainerId {
+    #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
     }
@@ -692,6 +709,7 @@ impl<'a> ExecCommand<'a> {
     }
 
     /// Enable interactive mode (--tty --interactive).
+    #[must_use]
     pub fn interactive(mut self) -> Self {
         self.interactive = true;
         self
@@ -729,11 +747,13 @@ impl<'a> ExecCommand<'a> {
     }
 
     /// Capture stdout from this exec command.
+    #[must_use]
     pub fn stdout(self) -> command::Capture {
         self.build_command().stdout()
     }
 
     /// Capture stderr from this exec command.
+    #[must_use]
     pub fn stderr(self) -> command::Capture {
         self.build_command().stderr()
     }
@@ -772,6 +792,7 @@ impl Container {
         self.removed = true;
     }
 
+    #[must_use]
     pub fn inspect(&self) -> serde_json::Value {
         let stdout = self
             .backend_command()
@@ -784,6 +805,7 @@ impl Container {
         serde_json::from_slice(&stdout).expect("invalid json")
     }
 
+    #[must_use]
     pub fn inspect_format(&self, format: &str) -> String {
         let bytes = self
             .backend_command()
@@ -800,6 +822,7 @@ impl Container {
             .to_string()
     }
 
+    #[must_use]
     pub fn read_host_tcp_port(&self, container_port: u16) -> Option<u16> {
         let json = self.inspect();
 

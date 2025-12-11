@@ -21,6 +21,7 @@ impl From<&str> for TemplateName {
 }
 
 impl TemplateName {
+    #[must_use]
     pub fn as_str(&self) -> &str {
         self.0.as_str()
     }
@@ -93,6 +94,7 @@ impl std::fmt::Display for StackId {
 pub struct ClientRequestToken(pub String);
 
 impl ClientRequestToken {
+    #[must_use]
     pub fn generate() -> Self {
         Self(uuid::Uuid::new_v4().to_string())
     }
@@ -217,6 +219,7 @@ impl Default for ParameterMap {
 }
 
 impl ParameterMap {
+    #[must_use]
     pub fn new() -> Self {
         Self(std::collections::BTreeMap::new())
     }
@@ -352,6 +355,7 @@ impl ParameterMap {
     ///     original.merge(&extra)
     /// )
     /// ```
+    #[must_use]
     pub fn merge(&self, other: &Self) -> Self {
         let mut self_new = self.0.clone();
 
@@ -390,6 +394,7 @@ impl ParameterMap {
     ///     .to_create_parameters(),
     /// )
     /// ```
+    #[must_use]
     pub fn to_create_parameters(&self) -> Vec<aws_sdk_cloudformation::types::Parameter> {
         self.0
             .iter()
@@ -442,6 +447,7 @@ impl ParameterMap {
     ///     .to_parameter_update_parameters(&existing_stack),
     /// )
     /// ```
+    #[must_use]
     pub fn to_parameter_update_parameters(
         &self,
         existing_stack: &aws_sdk_cloudformation::types::Stack,
@@ -505,6 +511,7 @@ impl ParameterMap {
     ///     .to_template_update_parameters(&template_parameter_keys, &existing_stack_parameter_keys),
     /// )
     /// ```
+    #[must_use]
     pub fn to_template_update_parameters(
         &self,
         template_parameter_keys: &ParameterKeys,
@@ -567,6 +574,7 @@ impl ParameterMap {
     ///     .to_parameter_keys()
     /// )
     /// ```
+    #[must_use]
     pub fn to_parameter_keys(&self) -> ParameterKeys {
         ParameterKeys::from_iter(self.0.keys().cloned())
     }
@@ -586,6 +594,7 @@ pub enum Template {
 }
 
 impl Template {
+    #[must_use]
     pub fn parameter_keys(&self) -> ParameterKeys {
         match self {
             Self::Stratosphere { template, .. } => template.parameter_keys(),
@@ -593,6 +602,7 @@ impl Template {
         }
     }
 
+    #[must_use]
     pub fn name(&self) -> &TemplateName {
         match self {
             Self::Stratosphere { name, .. } => name,
@@ -600,6 +610,7 @@ impl Template {
         }
     }
 
+    #[must_use]
     pub fn rendered(&self) -> TemplateRendered {
         match self {
             Self::Plain { rendered, .. } => rendered.clone(),
@@ -610,6 +621,7 @@ impl Template {
         }
     }
 
+    #[must_use]
     pub fn rendered_pretty(&self) -> TemplateRendered {
         match self {
             Self::Plain { rendered, .. } => rendered.clone(),
@@ -661,10 +673,12 @@ impl From<&TemplateBody> for aws_sdk_s3::primitives::ByteStream {
 }
 
 impl TemplateBody {
+    #[must_use]
     pub fn needs_upload(&self) -> bool {
         self.0.len() > INLINE_TEMPLATE_LIMIT_BYTES
     }
 
+    #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
     }
@@ -677,6 +691,7 @@ pub enum TemplateFormat {
 }
 
 impl TemplateFormat {
+    #[must_use]
     pub fn file_ext(&self) -> &str {
         match self {
             Self::JSON => "json",
@@ -745,6 +760,7 @@ impl std::fmt::Display for ChangeSetName {
 pub struct ChangeSetArn(pub String);
 
 impl ChangeSetArn {
+    #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
     }
