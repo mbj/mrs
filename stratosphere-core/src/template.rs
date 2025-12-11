@@ -291,7 +291,7 @@ impl Template<'_> {
         let output_key = output_key.into();
 
         if let Some(_old) = self.outputs.insert(output_key.clone(), output) {
-            panic!("Output with name: {} already exists", output_key)
+            panic!("Output with name: {output_key} already exists")
         }
 
         output_key

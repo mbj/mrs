@@ -32,7 +32,7 @@ impl<'a> IndentWriter<'a> {
         for _ in 0..self.level {
             write!(self.writer, "{}", self.indent_str)?;
         }
-        writeln!(self.writer, "{}", value)
+        writeln!(self.writer, "{value}")
     }
 }
 
@@ -47,38 +47,38 @@ pub fn print_change_set_output(output: &DescribeChangeSetOutput) {
 fn print_basic_details(output: &DescribeChangeSetOutput, writer: &mut IndentWriter<'_>) {
     if let Some(name) = &output.change_set_name {
         writer
-            .write_line(format!("Change Set Name: {}", name))
+            .write_line(format!("Change Set Name: {name}"))
             .unwrap();
     }
     if let Some(id) = &output.change_set_id {
-        writer.write_line(format!("Change Set ID: {}", id)).unwrap();
+        writer.write_line(format!("Change Set ID: {id}")).unwrap();
     }
     if let Some(stack_name) = &output.stack_name {
         writer
-            .write_line(format!("Stack Name: {}", stack_name))
+            .write_line(format!("Stack Name: {stack_name}"))
             .unwrap();
     }
     if let Some(execution_status) = &output.execution_status {
         writer
-            .write_line(format!("Execution Status: {}", execution_status))
+            .write_line(format!("Execution Status: {execution_status}"))
             .unwrap();
     }
     if let Some(status) = &output.status {
-        writer.write_line(format!("Status: {:?}", status)).unwrap();
+        writer.write_line(format!("Status: {status:?}")).unwrap();
     }
     if let Some(status_reason) = &output.status_reason {
         writer
-            .write_line(format!("Status Reason: {}", status_reason))
+            .write_line(format!("Status Reason: {status_reason}"))
             .unwrap();
     }
     if let Some(creation_time) = &output.creation_time {
         writer
-            .write_line(format!("Creation Time: {}", creation_time))
+            .write_line(format!("Creation Time: {creation_time}"))
             .unwrap();
     }
     if let Some(description) = &output.description {
         writer
-            .write_line(format!("Description: {}", description))
+            .write_line(format!("Description: {description}"))
             .unwrap();
     }
 }
@@ -100,20 +100,20 @@ fn print_resource_change(resource_change: &ResourceChange, writer: &mut IndentWr
 
     let mut indented_writer = writer.indent();
     indented_writer
-        .write_line(format!("{}:", logical_resource_id))
+        .write_line(format!("{logical_resource_id}:"))
         .unwrap();
 
     let mut detail_writer = indented_writer.indent();
     detail_writer
-        .write_line(format!("Resource Type: {}", resource_type))
+        .write_line(format!("Resource Type: {resource_type}"))
         .unwrap();
     detail_writer
-        .write_line(format!("Action: {:?}", action))
+        .write_line(format!("Action: {action:?}"))
         .unwrap();
 
     if let Some(replacement) = &resource_change.replacement {
         detail_writer
-            .write_line(format!("Replacement: {:?}", replacement))
+            .write_line(format!("Replacement: {replacement:?}"))
             .unwrap();
     }
 
@@ -137,17 +137,17 @@ fn print_resource_change_detail(detail: &ResourceChangeDetail, writer: &mut Inde
     }
     if let Some(change_source) = &detail.change_source {
         inner_writer
-            .write_line(format!("Change Source: {:?}", change_source))
+            .write_line(format!("Change Source: {change_source:?}"))
             .unwrap();
     }
     if let Some(causing_entity) = &detail.causing_entity {
         inner_writer
-            .write_line(format!("Causing Entity: {}", causing_entity))
+            .write_line(format!("Causing Entity: {causing_entity}"))
             .unwrap();
     }
     if let Some(evaluation) = &detail.evaluation {
         inner_writer
-            .write_line(format!("Evaluation: {:?}", evaluation))
+            .write_line(format!("Evaluation: {evaluation:?}"))
             .unwrap();
     }
 }
@@ -158,13 +158,13 @@ fn print_target(target: &ResourceTargetDefinition, writer: &mut IndentWriter<'_>
     let mut indented_writer = writer.indent();
     if let Some(attribute) = &target.attribute {
         indented_writer
-            .write_line(format!("Attribute: {:?}", attribute))
+            .write_line(format!("Attribute: {attribute:?}"))
             .unwrap();
     }
     print_optional_field("Name", &target.name, &mut indented_writer);
     if let Some(requires_recreation) = &target.requires_recreation {
         indented_writer
-            .write_line(format!("Requires Recreation: {}", requires_recreation))
+            .write_line(format!("Requires Recreation: {requires_recreation}"))
             .unwrap();
     }
     print_optional_field("Path", &target.path, &mut indented_writer);
@@ -183,8 +183,6 @@ fn print_optional_field<T: Display>(
     writer: &mut IndentWriter<'_>,
 ) {
     if let Some(value) = field {
-        writer
-            .write_line(format!("{}: {}", field_name, value))
-            .unwrap();
+        writer.write_line(format!("{field_name}: {value}")).unwrap();
     }
 }

@@ -386,7 +386,7 @@ pub mod resolve {
 
         let version = parse_version(executable, output_str)?;
 
-        log::debug!("ociman using: {} {}", executable, version);
+        log::debug!("ociman using: {executable} {version}");
 
         Ok(constructor(version))
     }
@@ -473,7 +473,7 @@ mod tests {
             Err(ResolveHostnameError::CommandFailed(_)) => {
                 // Expected: hostname resolution will fail for nonexistent hostname
             }
-            other => panic!("Expected CommandFailed error, got: {:?}", other),
+            other => panic!("Expected CommandFailed error, got: {other:?}"),
         }
     }
 

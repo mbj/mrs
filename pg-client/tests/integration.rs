@@ -18,7 +18,7 @@ async fn test_with_sqlx_connection() {
                 })
                 .await;
 
-            assert!(result.is_ok(), "Connection should succeed: {:?}", result);
+            assert!(result.is_ok(), "Connection should succeed: {result:?}");
             assert!(result.unwrap(), "Query should return true");
         })
         .await
@@ -58,6 +58,6 @@ async fn test_with_sqlx_connection_error_on_unavailable_database() {
         pg_client::SqlxConnectionError::Connect(_) => {
             // Expected error variant
         }
-        other => panic!("Expected Connect error, got: {:?}", other),
+        other => panic!("Expected Connect error, got: {other:?}"),
     }
 }
