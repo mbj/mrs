@@ -14,6 +14,7 @@ impl Index {
     ///
     /// assert_eq!(a.succ(), b);
     /// ```
+    #[must_use]
     pub fn succ(&self) -> Index {
         Self(self.0.checked_add(1).unwrap())
     }
@@ -31,6 +32,7 @@ impl Index {
     /// assert_eq!(a.is_initial(), true);
     /// assert_eq!(b.is_initial(), false);
     /// ```
+    #[must_use]
     pub fn is_initial(&self) -> bool {
         self == &Self::initial()
     }
@@ -45,6 +47,7 @@ impl Index {
     ///
     /// assert_eq!(index, Index::initial());
     /// ```
+    #[must_use]
     pub fn initial() -> Index {
         Self(0)
     }
@@ -66,6 +69,7 @@ impl Index {
     /// assert_eq!(c.is_succ_of(a), false);
     /// assert_eq!(c.is_succ_of(b), true);
     /// ```
+    #[must_use]
     pub fn is_succ_of(&self, other: Self) -> bool {
         *self == other.succ()
     }
@@ -172,6 +176,7 @@ pub struct PendingMigration {
 }
 
 impl PendingMigration {
+    #[must_use]
     pub fn digest(&self) -> [u8; 32] {
         <sha2::Sha256 as sha2::Digest>::digest(<RawSql as AsRef<[u8]>>::as_ref(&self.raw_sql))
             .into()

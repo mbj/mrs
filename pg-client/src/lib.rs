@@ -50,6 +50,7 @@ macro_rules! from_str_impl {
 pub struct HostName(String);
 
 impl HostName {
+    #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
     }
@@ -344,6 +345,7 @@ pub enum SslMode {
 }
 
 impl SslMode {
+    #[must_use]
     pub fn as_str(&self) -> &'static str {
         match self {
             Self::Allow => "allow",
@@ -579,6 +581,7 @@ impl Config {
     ///     "postgres://user@[::1]:5432/mydb?sslmode=disable"
     /// );
     /// ```
+    #[must_use]
     pub fn to_url(&self) -> url::Url {
         let mut url = url::Url::parse("postgres://").unwrap();
 
@@ -706,6 +709,7 @@ impl Config {
     ///
     /// assert_eq!(expected, config_with_optionals.to_pg_env());
     /// ```
+    #[must_use]
     pub fn to_pg_env(&self) -> std::collections::BTreeMap<&'static str, String> {
         let mut map = std::collections::BTreeMap::new();
 
@@ -897,6 +901,7 @@ impl Config {
         Ok(result)
     }
 
+    #[must_use]
     pub fn endpoint(self, endpoint: Endpoint) -> Self {
         Self { endpoint, ..self }
     }

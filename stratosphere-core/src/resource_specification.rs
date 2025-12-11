@@ -29,6 +29,7 @@ impl ResourceSpecification<'_> {
 static INSTANCE: std::sync::LazyLock<ResourceSpecification> =
     std::sync::LazyLock::new(ResourceSpecification::load_from_file);
 
+#[must_use]
 pub fn instance() -> &'static ResourceSpecification<'static> {
     &INSTANCE
 }
@@ -163,6 +164,7 @@ impl quote::ToTokens for VendorName<'_> {
 pub struct Documentation<'a>(pub &'a str);
 
 impl Documentation<'_> {
+    #[must_use]
     pub fn as_str(&self) -> &str {
         self.0
     }
@@ -178,6 +180,7 @@ pub struct ServiceIdentifier<'a> {
 }
 
 impl ServiceIdentifier<'_> {
+    #[must_use]
     pub fn provides(&self, resource_type: &ResourceTypeName) -> bool {
         *self == resource_type.service
     }

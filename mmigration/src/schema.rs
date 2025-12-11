@@ -31,6 +31,7 @@ use crate::types::Schema;
 ///
 /// assert_eq!(expected, remove_version_details(&schema));
 /// ```
+#[must_use]
 pub fn remove_version_details(schema: &Schema) -> Schema {
     let mut output = String::new();
 
@@ -71,6 +72,7 @@ pub fn remove_version_details(schema: &Schema) -> Schema {
 ///
 /// assert_eq!(schema, noop(&schema));
 /// ```
+#[must_use]
 pub fn noop(schema: &Schema) -> Schema {
     schema.clone()
 }

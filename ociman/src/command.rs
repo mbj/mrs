@@ -136,17 +136,20 @@ impl Command {
         self
     }
 
+    #[must_use]
     pub fn stdin_bytes(mut self, data: Vec<u8>) -> Self {
         self.stdin_data = Some(data);
         self
     }
 
     /// Capture stdout from this command.
+    #[must_use]
     pub fn stdout(self) -> Capture {
         Capture::new(self, CaptureStream::Stdout)
     }
 
     /// Capture stderr from this command.
+    #[must_use]
     pub fn stderr(self) -> Capture {
         Capture::new(self, CaptureStream::Stderr)
     }

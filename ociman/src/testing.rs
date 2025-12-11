@@ -19,6 +19,7 @@
 ///     // ... test code that requires containers
 /// }
 /// ```
+#[must_use]
 pub fn platform_not_supported() -> bool {
     crate::platform::support().is_err()
 }

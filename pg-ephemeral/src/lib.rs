@@ -25,6 +25,7 @@ pub(crate) const UNSPECIFIED_IP: std::net::IpAddr =
     std::net::IpAddr::V4(std::net::Ipv4Addr::UNSPECIFIED);
 pub(crate) const LOCALHOST_HOST_ADDR_IP: pg_client::HostAddr = pg_client::HostAddr(LOCALHOST_IP);
 
+#[must_use]
 pub fn version() -> &'static semver::Version {
     static VERSION: std::sync::LazyLock<semver::Version> =
         std::sync::LazyLock::new(|| semver::Version::parse(VERSION_STR).unwrap());
