@@ -53,10 +53,14 @@ fn test_container_exec() {
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
     definition.with_container(|container| {
-        let output = container.exec_capture_only_stdout([], "echo", ["Container is running!"]);
-        let stdout = std::str::from_utf8(&output).expect("invalid utf8 in output");
+        let output = container
+            .exec("echo")
+            .argument("Container is running!")
+            .stdout()
+            .string()
+            .unwrap();
 
-        assert_eq!(stdout.trim(), "Container is running!");
+        assert_eq!(output.trim(), "Container is running!");
     });
 }
 
@@ -69,7 +73,7 @@ fn test_container_exec_status_success() {
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
     definition.with_container(|container| {
-        assert!(container.exec_status([], "true", [] as [&str; 0]).is_ok());
+        assert!(container.exec("true").status().is_ok());
     });
 }
 
@@ -82,10 +86,28 @@ fn test_container_exec_status_failure() {
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
     definition.with_container(|container| {
-        let error = container
-            .exec_status([], "false", [] as [&str; 0])
-            .unwrap_err();
+        let error = container.exec("false").status().unwrap_err();
         assert_eq!(error.exit_status.map(|status| status.code()), Some(Some(1)));
+    });
+}
+
+#[test]
+fn test_container_exec_with_stdin() {
+    let backend = ociman::test_backend_setup!();
+
+    let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
+        .entrypoint("sh")
+        .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
+
+    definition.with_container(|container| {
+        let output = container
+            .exec("cat")
+            .stdin(b"hello from stdin")
+            .stdout()
+            .bytes()
+            .unwrap();
+
+        assert_eq!(output, b"hello from stdin");
     });
 }
 
@@ -436,7 +458,11 @@ fn test_container_commit() {
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
     definition.with_container(|container| {
-        container.exec_capture_only_stdout([], "touch", ["/committed-file"]);
+        container
+            .exec("touch")
+            .argument("/committed-file")
+            .status()
+            .unwrap();
         container.commit(&target_reference, true).unwrap();
     });
 

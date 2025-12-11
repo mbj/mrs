@@ -119,11 +119,15 @@ impl Container {
     }
 
     pub(crate) fn exec_schema_dump(&self) -> String {
-        crate::convert_schema(&self.container.exec_capture_only_stdout(
-            self.container_client_config().to_pg_env(),
-            "pg_dump",
-            ["--schema-only"],
-        ))
+        let output = self
+            .container
+            .exec("pg_dump")
+            .argument("--schema-only")
+            .environment_variables(self.container_client_config().to_pg_env())
+            .stdout()
+            .bytes()
+            .unwrap();
+        crate::convert_schema(&output)
     }
 
     pub fn client_config(&self) -> &pg_client::Config {
@@ -153,12 +157,20 @@ impl Container {
 
     pub(crate) fn exec_container_shell(&self) {
         self.container
-            .exec_interactive(self.container_client_config().to_pg_env(), "sh", [])
+            .exec("sh")
+            .environment_variables(self.container_client_config().to_pg_env())
+            .interactive()
+            .status()
+            .unwrap();
     }
 
     pub(crate) fn exec_psql(&self) {
         self.container
-            .exec_interactive(self.container_client_config().to_pg_env(), "psql", [])
+            .exec("psql")
+            .environment_variables(self.container_client_config().to_pg_env())
+            .interactive()
+            .status()
+            .unwrap();
     }
 
     fn container_client_config(&self) -> pg_client::Config {
