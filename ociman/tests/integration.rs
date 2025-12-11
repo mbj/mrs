@@ -69,8 +69,7 @@ fn test_container_exec_status_success() {
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
     definition.with_container(|container| {
-        let status = container.exec_status([], "true", [] as [&str; 0]);
-        assert!(status.success());
+        assert!(container.exec_status([], "true", [] as [&str; 0]).is_ok());
     });
 }
 
@@ -83,9 +82,10 @@ fn test_container_exec_status_failure() {
         .arguments(["-c", "trap 'exit 0' TERM; sleep 30 & wait"]);
 
     definition.with_container(|container| {
-        let status = container.exec_status([], "false", [] as [&str; 0]);
-        assert!(!status.success());
-        assert_eq!(status.code(), Some(1));
+        let error = container
+            .exec_status([], "false", [] as [&str; 0])
+            .unwrap_err();
+        assert_eq!(error.exit_status.map(|status| status.code()), Some(Some(1)));
     });
 }
 
@@ -130,7 +130,9 @@ fn test_command_with_stdin() {
     let input = b"Hello from stdin!";
     let output = ociman::Command::new("cat")
         .stdin_bytes(input.to_vec())
-        .capture_only_stdout();
+        .stdout()
+        .bytes()
+        .unwrap();
 
     assert_eq!(output, input);
 }
@@ -385,47 +387,23 @@ fn test_build_argument_key_cannot_contain_equals() {
 }
 
 #[test]
-fn test_run_status_with_successful_exit() {
+fn test_run_with_successful_exit() {
     let backend = ociman::test_backend_setup!();
 
     let definition = test_definition(&backend, "alpine:latest".parse().unwrap()).entrypoint("true");
 
-    let status = definition.run_status();
-    assert!(status.success());
+    assert!(definition.run().is_ok());
 }
 
 #[test]
-fn test_run_status_with_nonzero_exit() {
+fn test_run_with_nonzero_exit() {
     let backend = ociman::test_backend_setup!();
 
     let definition =
         test_definition(&backend, "alpine:latest".parse().unwrap()).entrypoint("false");
 
-    let status = definition.run_status();
-    assert!(!status.success());
-    assert_eq!(status.code(), Some(1));
-}
-
-#[test]
-fn test_run_status_success_with_successful_exit() {
-    let backend = ociman::test_backend_setup!();
-
-    test_definition(&backend, "alpine:latest".parse().unwrap())
-        .entrypoint("true")
-        .run_status_success();
-}
-
-#[test]
-#[should_panic(expected = "Container execution failed with status: exit status: 1")]
-// we are not executing on OSX as on GH there is no docker support so cannot run into the panic
-// there.
-#[cfg(not(target_os = "macos"))]
-fn test_run_status_success_with_nonzero_exit() {
-    let backend = ociman::test_backend_setup!();
-
-    test_definition(&backend, "alpine:latest".parse().unwrap())
-        .entrypoint("false")
-        .run_status_success();
+    let error = definition.run().unwrap_err();
+    assert_eq!(error.exit_status.map(|status| status.code()), Some(Some(1)));
 }
 
 #[test]
@@ -459,7 +437,7 @@ fn test_container_commit() {
 
     definition.with_container(|container| {
         container.exec_capture_only_stdout([], "touch", ["/committed-file"]);
-        container.commit(&target_reference, true);
+        container.commit(&target_reference, true).unwrap();
     });
 
     assert!(
@@ -498,24 +476,25 @@ fn test_container_remove_on_drop() {
         container_id = container.inspect_format("{{.Id}}");
 
         // Container should exist while we have the handle
-        let exists_during = backend
-            .command()
-            .arguments(["container", "inspect", &container_id])
-            .status()
-            .success();
-        assert!(exists_during, "Container should exist during scope");
+        assert!(
+            backend
+                .command()
+                .arguments(["container", "inspect", &container_id])
+                .status()
+                .is_ok(),
+            "Container should exist during scope"
+        );
 
         // Container is dropped here, which should stop AND remove it
     }
 
     // Container should be removed after drop
-    let exists_after = backend
-        .command()
-        .arguments(["container", "inspect", &container_id])
-        .status()
-        .success();
     assert!(
-        !exists_after,
+        backend
+            .command()
+            .arguments(["container", "inspect", &container_id])
+            .status()
+            .is_err(),
         "Container should be removed after drop with remove_on_drop"
     );
 }
@@ -552,9 +531,11 @@ fn test_container_stop_on_drop() {
             "{{.State.Running}}",
             &container_id,
         ])
-        .capture_only_stdout();
+        .stdout()
+        .string()
+        .unwrap();
     assert_eq!(
-        std::str::from_utf8(&status).unwrap().trim(),
+        status.trim(),
         "false",
         "Container should be stopped after drop with stop_on_drop"
     );
@@ -563,7 +544,8 @@ fn test_container_stop_on_drop() {
     backend
         .command()
         .arguments(["container", "rm", &container_id])
-        .status();
+        .status()
+        .unwrap();
 }
 
 #[test]
@@ -593,9 +575,11 @@ fn test_container_without_stop_on_drop() {
             "{{.State.Running}}",
             &container_id,
         ])
-        .capture_only_stdout();
+        .stdout()
+        .string()
+        .unwrap();
     assert_eq!(
-        std::str::from_utf8(&status).unwrap().trim(),
+        status.trim(),
         "true",
         "Container should still be running after drop without stop_on_drop"
     );
@@ -604,9 +588,11 @@ fn test_container_without_stop_on_drop() {
     backend
         .command()
         .arguments(["container", "stop", &container_id])
-        .status();
+        .status()
+        .unwrap();
     backend
         .command()
         .arguments(["container", "rm", &container_id])
-        .status();
+        .status()
+        .unwrap();
 }
