@@ -24,6 +24,7 @@ use std::str::FromStr;
 pub struct BuildArgumentKey(String);
 
 impl BuildArgumentKey {
+    #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
     }
@@ -56,6 +57,7 @@ pub enum BuildArgumentKeyError {
 pub struct BuildArgumentValue(String);
 
 impl BuildArgumentValue {
+    #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
     }
@@ -189,11 +191,13 @@ impl BuildDefinition {
     }
 
     /// Build the image using the specified backend and return the built image reference
+    #[must_use]
     pub fn build(&self) -> Reference {
         self.build_image(self.compute_final_reference())
     }
 
     /// Build the image only if it's not already present, and return the image reference
+    #[must_use]
     pub fn build_if_absent(&self) -> Reference {
         let target_reference = self.compute_final_reference();
 

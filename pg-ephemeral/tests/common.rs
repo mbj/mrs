@@ -9,6 +9,7 @@ pub struct TestDir {
 #[allow(dead_code)]
 impl TestDir {
     /// Create a new temporary directory with the given name suffix.
+    #[must_use]
     pub fn new(name_suffix: &str) -> Self {
         let path = std::env::temp_dir().join(format!(
             "pg-ephemeral-{}-{}",
@@ -43,6 +44,7 @@ pub struct TestGitRepo {
 impl TestGitRepo {
     /// Create a new temporary git repository with the given name suffix.
     #[allow(dead_code)]
+    #[must_use]
     pub fn new(name_suffix: &str) -> Self {
         let path = std::env::temp_dir().join(format!(
             "pg-ephemeral-{}-{}",
@@ -82,6 +84,7 @@ impl TestGitRepo {
 
     /// Commit all files with the given message, returning the commit hash.
     #[allow(dead_code)]
+    #[must_use]
     pub fn commit(&self, message: &str) -> String {
         std::process::Command::new("git")
             .args(["add", "."])

@@ -20,6 +20,7 @@ pub struct Definition {
 }
 
 impl Definition {
+    #[must_use]
     pub fn new(backend: ociman::backend::Backend, image: crate::image::Image) -> Self {
         Self {
             backend,
@@ -58,6 +59,7 @@ impl Definition {
             .map(|(name, seed)| seed.load(name.clone()))
     }
 
+    #[must_use]
     pub fn superuser(self, username: pg_client::Username) -> Self {
         Self {
             superuser: username,
@@ -101,6 +103,7 @@ impl Definition {
         )
     }
 
+    #[must_use]
     pub fn ssl_config(self, ssl_config: SslConfig) -> Self {
         Self {
             ssl_config: Some(ssl_config),
@@ -108,6 +111,7 @@ impl Definition {
         }
     }
 
+    #[must_use]
     pub fn cross_container_access(self, enabled: bool) -> Self {
         Self {
             cross_container_access: enabled,
@@ -115,6 +119,7 @@ impl Definition {
         }
     }
 
+    #[must_use]
     pub fn to_ociman_definition(&self) -> ociman::Definition {
         ociman::Definition::new(self.backend.clone(), (&self.image).into())
     }
@@ -212,6 +217,7 @@ impl Definition {
         }
     }
 
+    #[must_use]
     pub fn schema_dump(
         &self,
         client_config: &pg_client::Config,
@@ -235,6 +241,7 @@ impl Definition {
     }
 }
 
+#[must_use]
 pub fn apply_ociman_mounts(
     client_config: &pg_client::Config,
 ) -> (pg_client::Config, Vec<ociman::Mount>) {

@@ -65,6 +65,7 @@ impl Container {
         )
     }
 
+    #[must_use]
     pub fn run_container_definition(definition: &Definition) -> Self {
         let ociman_definition =
             ociman::Definition::new(definition.backend.clone(), definition.image.clone());
@@ -130,6 +131,7 @@ impl Container {
         crate::convert_schema(&output)
     }
 
+    #[must_use]
     pub fn client_config(&self) -> &pg_client::Config {
         &self.client_config
     }
@@ -190,6 +192,7 @@ impl Container {
         config
     }
 
+    #[must_use]
     pub fn cross_container_client_config(&self) -> pg_client::Config {
         // Resolve the container host from inside a container
         // This DNS name only works from inside containers, not from the host
@@ -207,10 +210,12 @@ impl Container {
         self.client_config.clone().endpoint(endpoint)
     }
 
+    #[must_use]
     pub fn pg_env(&self) -> std::collections::BTreeMap<&'static str, String> {
         self.client_config.to_pg_env()
     }
 
+    #[must_use]
     pub fn database_url(&self) -> String {
         self.client_config.to_url().to_string()
     }

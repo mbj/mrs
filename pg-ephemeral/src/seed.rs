@@ -3,6 +3,7 @@
 pub struct SeedName(String);
 
 impl SeedName {
+    #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
     }

@@ -122,6 +122,7 @@ impl Target {
     ///     .path()
     /// )
     /// ```
+    #[must_use]
     pub fn path(&self) -> std::path::PathBuf {
         std::path::Path::new("./target")
             .join(&self.build_target.0)
@@ -143,6 +144,7 @@ impl Target {
     }
 
     /// Build the lambda target and generate zip file
+    #[must_use]
     pub fn build_zip(&self) -> ZipFile {
         self.build();
         self.generate_zip()

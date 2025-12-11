@@ -28,6 +28,7 @@ impl Backend {
     const DOCKER_EXECUTABLE: &'static str = "docker";
     const PODMAN_EXECUTABLE: &'static str = "podman";
 
+    #[must_use]
     pub fn command(&self) -> Command {
         match self {
             Self::Docker { .. } => Command::new(Self::DOCKER_EXECUTABLE),
@@ -36,6 +37,7 @@ impl Backend {
     }
 
     /// Check if an image is present in the local registry
+    #[must_use]
     pub fn is_image_present(&self, reference: &crate::image::Reference) -> bool {
         let reference_string = reference.to_string();
 
@@ -113,6 +115,7 @@ impl Backend {
     /// <https://github.com/containers/common/pull/2413>, but only for single fully-qualified
     /// references ("query mode"), not wildcard patterns ("search mode"). We filter results
     /// client-side to ensure only matching names are returned.
+    #[must_use]
     pub fn image_references_by_name(
         &self,
         name: &crate::reference::Name,
@@ -153,6 +156,7 @@ impl Backend {
     ///     .resolve("host.docker.internal")
     ///     .unwrap();
     /// ```
+    #[must_use]
     pub fn container_resolver(&self) -> ContainerHostnameResolver {
         ContainerHostnameResolver::new(self.clone())
     }
@@ -423,6 +427,7 @@ pub mod resolve {
     }
 
     impl Lazy {
+        #[must_use]
         pub fn new() -> Self {
             Self(std::cell::OnceCell::new())
         }

@@ -161,6 +161,7 @@ impl_from_str!(
 pub struct DomainComponent(String);
 
 impl DomainComponent {
+    #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
     }
@@ -218,6 +219,7 @@ impl Parse for DomainComponent {
 pub struct DomainName(Vec<DomainComponent>);
 
 impl DomainName {
+    #[must_use]
     pub fn components(&self) -> &[DomainComponent] {
         &self.0
     }
@@ -272,6 +274,7 @@ impl std::fmt::Display for DomainName {
 pub struct PortNumber(u16);
 
 impl PortNumber {
+    #[must_use]
     pub fn value(&self) -> u16 {
         self.0
     }
@@ -485,6 +488,7 @@ impl std::fmt::Display for Domain {
 pub struct PathComponent(String);
 
 impl PathComponent {
+    #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
     }
@@ -565,6 +569,7 @@ impl std::fmt::Display for PathComponent {
 pub struct Path(Vec<PathComponent>);
 
 impl Path {
+    #[must_use]
     pub fn components(&self) -> &[PathComponent] {
         &self.0
     }
@@ -685,6 +690,7 @@ impl std::fmt::Display for Name {
 pub struct Tag(String);
 
 impl Tag {
+    #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
     }
@@ -739,6 +745,7 @@ impl From<sha2::digest::Output<sha2::Sha256>> for Tag {
 pub struct DigestAlgorithm(String);
 
 impl DigestAlgorithm {
+    #[must_use]
     pub fn as_str(&self) -> &str {
         &self.0
     }

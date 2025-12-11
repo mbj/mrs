@@ -128,6 +128,7 @@ pub fn fn_select<T: FnSelect>(index: u8, values: T::ValueList) -> T {
 
 /// Type-specific helper for boolean select expressions that doesn't require turbofish syntax.
 /// Use this when working with ExpBool values.
+#[must_use]
 pub fn fn_select_bool(index: u8, values: Vec<ExpBool>) -> ExpBool {
     ExpBool::fn_select(index, values)
 }
@@ -349,6 +350,7 @@ pub enum ExpString {
 }
 
 impl ExpString {
+    #[must_use]
     pub fn base64(self) -> ExpString {
         ExpString::Base64(Box::new(self))
     }

@@ -11,6 +11,7 @@ impl Default for DefinedMigrations {
 
 impl DefinedMigrations {
     /// Load migrations from migration dir
+    #[must_use]
     pub fn load(migration_dir: &std::path::Path) -> Self {
         let reader = match std::fs::read_dir(migration_dir) {
             Err(error) => {
@@ -67,6 +68,7 @@ impl DefinedMigrations {
     ///
     /// This method only returns an index if there is already a defined migration
     /// Else this method returns None.
+    #[must_use]
     pub fn next_index(&self) -> Option<Index> {
         self.0.last_key_value().map(|(index, _)| index.succ())
     }
@@ -85,6 +87,7 @@ impl DefinedMigrations {
     ///     (vec![] as Vec<&PendingMigration>)
     /// )
     /// ```
+    #[must_use]
     pub fn new() -> Self {
         DefinedMigrations(std::collections::BTreeMap::new())
     }
@@ -320,6 +323,7 @@ impl DefinedMigrations {
     ///     }]
     /// );
     /// ```
+    #[must_use]
     pub fn select_pending(&self, last: Option<Index>) -> Vec<&PendingMigration> {
         match last {
             None => self.select_initial(),

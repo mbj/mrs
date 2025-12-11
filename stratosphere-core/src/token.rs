@@ -7,6 +7,7 @@ pub struct Target<'a> {
 }
 
 impl<'a> Target<'a> {
+    #[must_use]
     pub fn for_services(
         specification: &'a ResourceSpecification<'a>,
         selected_services: std::collections::BTreeSet<ServiceIdentifier<'a>>,
@@ -145,6 +146,7 @@ type PropertyTypeMap<'a> = std::collections::BTreeMap<&'a PropertyName<'a>, &'a 
 
 pub type VendorMap<'a> = std::collections::BTreeMap<&'a VendorName<'a>, ServiceMap<'a>>;
 
+#[must_use]
 pub fn token_stream(target: Target) -> proc_macro2::TokenStream {
     let mut stream = proc_macro2::TokenStream::new();
 
@@ -679,6 +681,7 @@ fn mk_type_reference_type(
 pub struct VendorModuleName(proc_macro2::Ident);
 
 impl VendorModuleName {
+    #[must_use]
     pub fn new(vendor_name: &VendorName<'_>) -> Self {
         Self(quote::format_ident!(
             "{}",
@@ -697,6 +700,7 @@ impl quote::ToTokens for VendorModuleName {
 pub struct ServiceModuleName(proc_macro2::Ident);
 
 impl ServiceModuleName {
+    #[must_use]
     pub fn new(service_name: &ServiceName<'_>) -> Self {
         Self(quote::format_ident!(
             "{}",
@@ -715,6 +719,7 @@ impl quote::ToTokens for ServiceModuleName {
 pub struct ResourceModuleName(proc_macro2::Ident);
 
 impl ResourceModuleName {
+    #[must_use]
     pub fn new(resource_name: &ResourceName<'_>) -> Self {
         Self(quote::format_ident!(
             "{}",
@@ -755,6 +760,7 @@ fn mk_primitive_type(primitive_type: &PrimitiveType) -> proc_macro2::TokenStream
 }
 
 /// Converts a string from CamelCase or PascalCase to snake_case
+#[must_use]
 pub fn to_snake_case(input: &str) -> String {
     if input.is_empty() {
         return String::new();
@@ -808,10 +814,12 @@ pub fn mk_field_name(name: impl AsRef<str>) -> syn::Ident {
     }
 }
 
+#[must_use]
 pub fn resource_type_struct_name(resource_type_name: &ResourceTypeName<'_>) -> syn::Ident {
     quote::format_ident!("{}_", resource_type_name.resource_name.as_str())
 }
 
+#[must_use]
 pub fn property_name_struct_name(property_name: &PropertyName<'_>) -> syn::Ident {
     quote::format_ident!("{property_name}_")
 }
