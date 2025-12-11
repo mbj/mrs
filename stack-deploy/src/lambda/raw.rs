@@ -77,6 +77,7 @@ impl Command {
     }
 }
 
+#[must_use]
 pub fn decode_log(log_result: Option<String>) -> String {
     log_result.map_or_else(
         || String::from("Log field empty!"),

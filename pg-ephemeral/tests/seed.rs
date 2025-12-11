@@ -120,7 +120,7 @@ fn test_git_revision_seed() {
     );
 
     // Commit v2
-    repo.commit("Different data");
+    let _ = repo.commit("Different data");
 
     // Create TOML config that references commit1
     let config_path = repo.path.join("database.toml");

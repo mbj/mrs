@@ -60,6 +60,7 @@ pub struct InstanceSpec {
 }
 
 impl InstanceSpec {
+    #[must_use]
     pub fn context<'a>(
         &'a self,
         cloudformation: &'a aws_sdk_cloudformation::Client,
@@ -582,12 +583,14 @@ impl Context<'_> {
 pub struct Registry(pub Vec<InstanceSpec>);
 
 impl Registry {
+    #[must_use]
     pub fn find(&self, instance_name: &StackName) -> Option<&InstanceSpec> {
         self.0
             .iter()
             .find(|&instance_spec| instance_spec.stack_name == *instance_name)
     }
 
+    #[must_use]
     pub fn templates(&self) -> std::collections::BTreeMap<TemplateName, &Template> {
         let mut map = std::collections::BTreeMap::new();
 

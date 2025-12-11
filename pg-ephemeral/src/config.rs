@@ -16,6 +16,7 @@ pub struct Instance {
 }
 
 impl Instance {
+    #[must_use]
     pub fn new(backend: ociman::backend::Selection, image: Image) -> Self {
         Self {
             backend,
@@ -121,6 +122,7 @@ pub struct InstanceDefinition {
 }
 
 impl InstanceDefinition {
+    #[must_use]
     pub fn empty() -> Self {
         Self {
             backend: None,

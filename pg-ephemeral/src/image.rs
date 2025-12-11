@@ -256,6 +256,7 @@ impl std::fmt::Display for Major {
 }
 
 impl Major {
+    #[must_use]
     pub const fn new(value: u8) -> Self {
         Self(value)
     }
@@ -280,6 +281,7 @@ impl std::fmt::Display for Minor {
 pub struct ReleaseCandidateNumber(std::num::NonZero<u8>);
 
 impl ReleaseCandidateNumber {
+    #[must_use]
     pub const fn new(value: std::num::NonZero<u8>) -> Self {
         Self(value)
     }

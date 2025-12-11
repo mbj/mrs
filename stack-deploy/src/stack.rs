@@ -71,6 +71,7 @@ pub async fn read_stack_output<T: StackIdentifier>(
         .to_string()
 }
 
+#[must_use]
 pub fn fetch_stack_output(
     stack: &aws_sdk_cloudformation::types::Stack,
     output_key: &OutputKey,

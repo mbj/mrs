@@ -25,10 +25,12 @@ pub struct TraceHeader(pub String);
 pub struct EventBodyDecodeError(serde_path_to_error::Error<serde_json::Error>);
 
 impl EventBodyDecodeError {
+    #[must_use]
     pub fn path(&self) -> String {
         self.0.path().to_string()
     }
 
+    #[must_use]
     pub fn message(&self) -> String {
         self.0.inner().to_string()
     }
@@ -42,6 +44,7 @@ pub struct Event<T> {
 }
 
 impl Client {
+    #[must_use]
     pub fn load() -> Client {
         let env_value = &std::env::var("AWS_LAMBDA_RUNTIME_API")
             .expect("Environment variable AWS_LAMBDA_RUNTIME_API missing");
