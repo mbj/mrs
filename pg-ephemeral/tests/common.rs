@@ -1,3 +1,28 @@
+/// Run pg-ephemeral with the given arguments and assert success.
+///
+/// Returns the captured stdout as a String.
+/// On failure, prints both stdout and stderr for debugging.
+#[allow(dead_code)]
+pub fn run_pg_ephemeral(args: &[&str], current_dir: &std::path::Path) -> String {
+    let pg_ephemeral_bin = env!("CARGO_BIN_EXE_pg-ephemeral");
+
+    let output = std::process::Command::new(pg_ephemeral_bin)
+        .args(args)
+        .current_dir(current_dir)
+        .output()
+        .unwrap();
+
+    assert!(
+        output.status.success(),
+        "pg-ephemeral {} failed:\nstdout:\n{}\nstderr:\n{}",
+        args.join(" "),
+        String::from_utf8_lossy(&output.stdout),
+        String::from_utf8_lossy(&output.stderr)
+    );
+
+    String::from_utf8(output.stdout).unwrap()
+}
+
 /// A temporary directory for testing.
 ///
 /// The directory is automatically cleaned up when dropped.

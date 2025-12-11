@@ -6,6 +6,8 @@ use crate::UNSPECIFIED_IP;
 use crate::certificate;
 use crate::definition;
 
+pub const PGDATA: &str = "/var/lib/pg-ephemeral";
+
 const SSL_SETUP_SCRIPT: &str = r#"
 printf '%s' "$PG_EPHEMERAL_CA_CERT_PEM" > ${PG_EPHEMERAL_SSL_DIR}/root.crt
 printf '%s' "$PG_EPHEMERAL_SERVER_CERT_PEM" > ${PG_EPHEMERAL_SSL_DIR}/server.crt
@@ -258,7 +260,7 @@ fn run_container(
     let mut ociman_definition = ociman_definition
         .stop_on_drop()
         .remove()
-        .environment_variable("PGDATA", "/var/lib/postgresql/pg-ephemeral-data")
+        .environment_variable("PGDATA", "/var/lib/pg-ephemeral")
         .publish(ociman::Publish::tcp(5432).host_ip(host_ip));
 
     let ssl_bundle = if let Some(ssl_config) = ssl_config {

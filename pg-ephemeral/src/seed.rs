@@ -1,3 +1,55 @@
+type CacheKey = [u8; 32];
+
+#[derive(Clone, Debug, PartialEq)]
+pub enum CacheStatus {
+    Hit { reference: ociman::Reference },
+    Miss { reference: ociman::Reference },
+    Uncacheable,
+}
+
+impl CacheStatus {
+    fn from_cache_key(
+        cache_key: Option<CacheKey>,
+        backend: &ociman::Backend,
+        instance_name: &str,
+    ) -> Self {
+        match cache_key {
+            Some(key) => {
+                let reference = format!("pg-ephemeral/{}:{}", instance_name, hex::encode(key))
+                    .parse()
+                    .unwrap();
+                if backend.is_image_present(&reference) {
+                    Self::Hit { reference }
+                } else {
+                    Self::Miss { reference }
+                }
+            }
+            None => Self::Uncacheable,
+        }
+    }
+
+    #[must_use]
+    pub fn reference(&self) -> Option<&ociman::Reference> {
+        match self {
+            Self::Hit { reference } | Self::Miss { reference } => Some(reference),
+            Self::Uncacheable => None,
+        }
+    }
+
+    #[must_use]
+    pub fn is_hit(&self) -> bool {
+        matches!(self, Self::Hit { .. })
+    }
+
+    fn status_str(&self) -> &'static str {
+        match self {
+            Self::Hit { .. } => "hit",
+            Self::Miss { .. } => "miss",
+            Self::Uncacheable => "uncacheable",
+        }
+    }
+}
+
 #[derive(Clone, Debug, Hash, Eq, PartialEq, serde::Deserialize, serde::Serialize)]
 #[serde(try_from = "String")]
 pub struct SeedName(String);
@@ -73,6 +125,23 @@ impl Command {
     }
 }
 
+#[derive(Clone, Debug, serde::Deserialize, PartialEq)]
+#[serde(tag = "type", rename_all = "kebab-case")]
+pub enum CommandCacheConfig {
+    /// Disable caching, breaks the cache chain
+    None,
+    /// Hash the command and arguments
+    CommandHash,
+    /// Run a command to get cache key input
+    KeyCommand {
+        command: String,
+        #[serde(default)]
+        arguments: Vec<String>,
+    },
+    /// Run a script to get cache key input
+    KeyScript { script: String },
+}
+
 #[derive(Clone, Debug, PartialEq)]
 pub enum Seed {
     SqlFile {
@@ -84,10 +153,177 @@ pub enum Seed {
     },
     Command {
         command: Command,
+        cache: CommandCacheConfig,
     },
     Script {
         script: String,
     },
+}
+
+impl Seed {
+    fn load(
+        &self,
+        name: SeedName,
+        hash_chain: &mut HashChain,
+        backend: &ociman::Backend,
+        instance_name: &str,
+    ) -> Result<LoadedSeed, LoadError> {
+        match self {
+            Seed::SqlFile { path } => {
+                let content =
+                    std::fs::read_to_string(path).map_err(|source| LoadError::FileRead {
+                        name: name.clone(),
+                        path: path.clone(),
+                        source,
+                    })?;
+
+                hash_chain.update(&content);
+
+                Ok(LoadedSeed::SqlFile {
+                    cache_status: CacheStatus::from_cache_key(
+                        hash_chain.cache_key(),
+                        backend,
+                        instance_name,
+                    ),
+                    name,
+                    path: path.clone(),
+                    content,
+                })
+            }
+            Seed::SqlFileGitRevision { path, git_revision } => {
+                let result = std::process::Command::new("git")
+                    .arg("show")
+                    .arg(format!("{git_revision}:{}", path.to_str().unwrap()))
+                    .output();
+
+                match result {
+                    Ok(output) if output.status.success() => {
+                        let content = String::from_utf8_lossy(&output.stdout).into_owned();
+
+                        hash_chain.update(&content);
+
+                        Ok(LoadedSeed::SqlFileGitRevision {
+                            cache_status: CacheStatus::from_cache_key(
+                                hash_chain.cache_key(),
+                                backend,
+                                instance_name,
+                            ),
+                            name,
+                            path: path.clone(),
+                            git_revision: git_revision.clone(),
+                            content,
+                        })
+                    }
+                    Ok(output) => Err(LoadError::GitRevision {
+                        name,
+                        path: path.clone(),
+                        git_revision: git_revision.clone(),
+                        message: String::from_utf8_lossy(&output.stderr).into_owned(),
+                    }),
+                    Err(error) => Err(LoadError::GitRevision {
+                        name,
+                        path: path.clone(),
+                        git_revision: git_revision.clone(),
+                        message: error.to_string(),
+                    }),
+                }
+            }
+            Seed::Command { command, cache } => {
+                let cache_key_output = match cache {
+                    CommandCacheConfig::None => {
+                        hash_chain.stop();
+                        None
+                    }
+                    CommandCacheConfig::CommandHash => {
+                        hash_chain.update(&command.command);
+                        for argument in &command.arguments {
+                            hash_chain.update(argument);
+                        }
+                        None
+                    }
+                    CommandCacheConfig::KeyCommand {
+                        command: key_command,
+                        arguments: key_arguments,
+                    } => {
+                        let result = std::process::Command::new(key_command)
+                            .args(key_arguments)
+                            .output();
+
+                        match result {
+                            Ok(output) if output.status.success() => {
+                                hash_chain.update(&output.stdout);
+                                Some(output.stdout)
+                            }
+                            Ok(output) => {
+                                return Err(LoadError::KeyCommand {
+                                    name,
+                                    command: key_command.clone(),
+                                    message: String::from_utf8_lossy(&output.stderr).into_owned(),
+                                });
+                            }
+                            Err(error) => {
+                                return Err(LoadError::KeyCommand {
+                                    name,
+                                    command: key_command.clone(),
+                                    message: error.to_string(),
+                                });
+                            }
+                        }
+                    }
+                    CommandCacheConfig::KeyScript { script: key_script } => {
+                        let result = std::process::Command::new("sh")
+                            .arg("-e")
+                            .arg("-c")
+                            .arg(key_script)
+                            .output();
+
+                        match result {
+                            Ok(output) if output.status.success() => {
+                                hash_chain.update(&output.stdout);
+                                Some(output.stdout)
+                            }
+                            Ok(output) => {
+                                return Err(LoadError::KeyScript {
+                                    name,
+                                    message: String::from_utf8_lossy(&output.stderr).into_owned(),
+                                });
+                            }
+                            Err(error) => {
+                                return Err(LoadError::KeyScript {
+                                    name,
+                                    message: error.to_string(),
+                                });
+                            }
+                        }
+                    }
+                };
+
+                Ok(LoadedSeed::Command {
+                    cache_status: CacheStatus::from_cache_key(
+                        hash_chain.cache_key(),
+                        backend,
+                        instance_name,
+                    ),
+                    cache_key_output,
+                    name,
+                    command: command.clone(),
+                })
+            }
+            Seed::Script { script } => {
+                hash_chain.update(script);
+
+                Ok(LoadedSeed::Script {
+                    cache_status: CacheStatus::from_cache_key(
+                        hash_chain.cache_key(),
+                        backend,
+                        instance_name,
+                    ),
+                    name,
+                    script: script.clone(),
+                })
+            }
+        }
+    }
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -107,93 +343,233 @@ pub enum LoadError {
         git_revision: String,
         message: String,
     },
-    #[error("Failed to load seed {name}: path {path} is not valid UTF-8")]
-    InvalidUtf8Path {
+    #[error("Failed to load seed {name}: cache key command {command} failed: {message}")]
+    KeyCommand {
         name: SeedName,
-        path: std::path::PathBuf,
+        command: String,
+        message: String,
     },
+    #[error("Failed to load seed {name}: cache key script failed: {message}")]
+    KeyScript { name: SeedName, message: String },
 }
 
 #[derive(Clone, Debug, PartialEq)]
 pub enum LoadedSeed {
     SqlFile {
+        cache_status: CacheStatus,
         name: SeedName,
         path: std::path::PathBuf,
         content: String,
     },
     SqlFileGitRevision {
+        cache_status: CacheStatus,
         name: SeedName,
         path: std::path::PathBuf,
         git_revision: String,
         content: String,
     },
     Command {
+        cache_status: CacheStatus,
+        cache_key_output: Option<Vec<u8>>,
         name: SeedName,
         command: Command,
     },
     Script {
+        cache_status: CacheStatus,
         name: SeedName,
         script: String,
     },
 }
 
-impl Seed {
-    pub fn load(&self, name: SeedName) -> Result<LoadedSeed, LoadError> {
+impl LoadedSeed {
+    #[must_use]
+    pub fn cache_status(&self) -> &CacheStatus {
         match self {
-            Seed::SqlFile { path } => {
-                let content =
-                    std::fs::read_to_string(path).map_err(|source| LoadError::FileRead {
-                        name: name.clone(),
-                        path: path.clone(),
-                        source,
-                    })?;
-                Ok(LoadedSeed::SqlFile {
-                    name,
-                    path: path.clone(),
-                    content,
-                })
-            }
-            Seed::SqlFileGitRevision { path, git_revision } => {
-                let path_str = path.to_str().ok_or_else(|| LoadError::InvalidUtf8Path {
-                    name: name.clone(),
-                    path: path.clone(),
-                })?;
-
-                let result = std::process::Command::new("git")
-                    .arg("show")
-                    .arg(format!("{git_revision}:{path_str}"))
-                    .output();
-
-                match result {
-                    Ok(output) if output.status.success() => Ok(LoadedSeed::SqlFileGitRevision {
-                        name,
-                        path: path.clone(),
-                        git_revision: git_revision.clone(),
-                        content: String::from_utf8_lossy(&output.stdout).into_owned(),
-                    }),
-                    Ok(output) => Err(LoadError::GitRevision {
-                        name,
-                        path: path.clone(),
-                        git_revision: git_revision.clone(),
-                        message: String::from_utf8_lossy(&output.stderr).into_owned(),
-                    }),
-                    Err(error) => Err(LoadError::GitRevision {
-                        name,
-                        path: path.clone(),
-                        git_revision: git_revision.clone(),
-                        message: error.to_string(),
-                    }),
-                }
-            }
-            Seed::Command { command } => Ok(LoadedSeed::Command {
-                name,
-                command: command.clone(),
-            }),
-            Seed::Script { script } => Ok(LoadedSeed::Script {
-                name,
-                script: script.clone(),
-            }),
+            Self::SqlFile { cache_status, .. } => cache_status,
+            Self::SqlFileGitRevision { cache_status, .. } => cache_status,
+            Self::Command { cache_status, .. } => cache_status,
+            Self::Script { cache_status, .. } => cache_status,
         }
+    }
+
+    #[must_use]
+    pub fn name(&self) -> &SeedName {
+        match self {
+            Self::SqlFile { name, .. } => name,
+            Self::SqlFileGitRevision { name, .. } => name,
+            Self::Command { name, .. } => name,
+            Self::Script { name, .. } => name,
+        }
+    }
+
+    fn variant_name(&self) -> &'static str {
+        match self {
+            Self::SqlFile { .. } => "sql-file",
+            Self::SqlFileGitRevision { .. } => "sql-file-git-revision",
+            Self::Command { .. } => "command",
+            Self::Script { .. } => "script",
+        }
+    }
+
+    fn cache_key_output(&self) -> Option<&[u8]> {
+        match self {
+            Self::Command {
+                cache_key_output, ..
+            } => cache_key_output.as_deref(),
+            _ => None,
+        }
+    }
+}
+
+fn format_cache_key_output(output: &[u8], verbose: bool) -> String {
+    match std::str::from_utf8(output) {
+        Ok(text) if verbose => text.to_string(),
+        Ok(text) => {
+            let first_line = text.lines().next().unwrap_or("");
+            let line_count = text.lines().count();
+            if line_count > 1 {
+                format!("{first_line} [...{} more lines]", line_count - 1)
+            } else {
+                first_line.to_string()
+            }
+        }
+        Err(_) if verbose => hex::encode(output),
+        Err(_) => {
+            let hex_string = hex::encode(output);
+            if hex_string.len() > 256 {
+                format!(
+                    "{}... [{} more bytes]",
+                    &hex_string[..256],
+                    output.len() - 128
+                )
+            } else {
+                hex_string
+            }
+        }
+    }
+}
+
+struct HashChain {
+    hasher: Option<sha2::Sha256>,
+}
+
+impl HashChain {
+    fn new() -> Self {
+        use sha2::Digest;
+
+        Self {
+            hasher: Some(sha2::Sha256::new()),
+        }
+    }
+
+    fn update(&mut self, bytes: impl AsRef<[u8]>) {
+        use sha2::Digest;
+
+        if let Some(ref mut hasher) = self.hasher {
+            hasher.update(bytes)
+        }
+    }
+
+    fn cache_key(&self) -> Option<CacheKey> {
+        use sha2::Digest;
+
+        self.hasher
+            .as_ref()
+            .map(|hasher| hasher.clone().finalize().into())
+    }
+
+    fn stop(&mut self) {
+        self.hasher = None
+    }
+}
+
+#[derive(Debug, PartialEq)]
+pub struct LoadedSeeds<'a> {
+    image: &'a crate::image::Image,
+    seeds: Vec<LoadedSeed>,
+}
+
+impl<'a> LoadedSeeds<'a> {
+    pub fn load(
+        image: &'a crate::image::Image,
+        ssl_config: Option<&crate::definition::SslConfig>,
+        seeds: &indexmap::IndexMap<SeedName, Seed>,
+        backend: &ociman::Backend,
+        instance_name: &str,
+    ) -> Result<Self, LoadError> {
+        let mut hash_chain = HashChain::new();
+        let mut loaded_seeds = Vec::new();
+
+        hash_chain.update(crate::VERSION_STR);
+        hash_chain.update(image.to_string());
+
+        match ssl_config {
+            Some(crate::definition::SslConfig::Generated { hostname }) => {
+                hash_chain.update("ssl:generated:");
+                hash_chain.update(hostname.as_str());
+            }
+            None => {
+                hash_chain.update("ssl:none");
+            }
+        }
+
+        for (name, seed) in seeds {
+            let loaded_seed = seed.load(name.clone(), &mut hash_chain, backend, instance_name)?;
+            loaded_seeds.push(loaded_seed);
+        }
+
+        Ok(Self {
+            image,
+            seeds: loaded_seeds,
+        })
+    }
+
+    pub fn iter_seeds(&self) -> impl Iterator<Item = &LoadedSeed> {
+        self.seeds.iter()
+    }
+
+    pub fn print(&self, verbose: bool) {
+        #[derive(serde::Serialize)]
+        struct Output {
+            version: String,
+            image: String,
+            seeds: Vec<SeedOutput>,
+        }
+
+        #[derive(serde::Serialize)]
+        struct SeedOutput {
+            name: String,
+            #[serde(rename = "type")]
+            variant: String,
+            #[serde(skip_serializing_if = "Option::is_none")]
+            cache_image: Option<String>,
+            status: String,
+            #[serde(skip_serializing_if = "Option::is_none")]
+            cache_key_output: Option<String>,
+        }
+
+        let output = Output {
+            version: crate::VERSION_STR.to_string(),
+            image: self.image.to_string(),
+            seeds: self
+                .seeds
+                .iter()
+                .map(|seed| SeedOutput {
+                    cache_image: seed
+                        .cache_status()
+                        .reference()
+                        .map(|reference| reference.to_string()),
+                    status: seed.cache_status().status_str().to_string(),
+                    cache_key_output: seed
+                        .cache_key_output()
+                        .map(|output| format_cache_key_output(output, verbose)),
+                    name: seed.name().to_string(),
+                    variant: seed.variant_name().to_string(),
+                })
+                .collect(),
+        };
+
+        print!("{}", toml::to_string_pretty(&output).unwrap());
     }
 }
 
@@ -232,24 +608,55 @@ mod test {
     }
 
     #[test]
-    fn test_load_sql_file_git_revision_invalid_utf8_path() {
-        use std::ffi::OsStr;
-        use std::os::unix::ffi::OsStrExt;
-
-        let invalid_utf8_bytes = b"invalid-\xff-path.sql";
-        let invalid_path = std::path::PathBuf::from(OsStr::from_bytes(invalid_utf8_bytes));
-
-        let seed = Seed::SqlFileGitRevision {
-            path: invalid_path.clone(),
-            git_revision: "HEAD".to_string(),
+    fn test_cache_status_uncacheable() {
+        let loaded_seed = LoadedSeed::Command {
+            cache_status: CacheStatus::Uncacheable,
+            cache_key_output: None,
+            name: "run-migrations".parse().unwrap(),
+            command: Command::new("migrate", ["up"]),
         };
 
-        let result = seed.load("test-seed".parse().unwrap());
+        assert!(loaded_seed.cache_status().reference().is_none());
+        assert!(!loaded_seed.cache_status().is_hit());
+    }
 
-        assert!(matches!(
-            result,
-            Err(LoadError::InvalidUtf8Path { name, path })
-                if name.as_str() == "test-seed" && path == invalid_path
-        ));
+    #[test]
+    fn test_cache_status_miss() {
+        let reference: ociman::Reference =
+            "pg-ephemeral/main:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+                .parse()
+                .unwrap();
+
+        let loaded_seed = LoadedSeed::SqlFile {
+            cache_status: CacheStatus::Miss {
+                reference: reference.clone(),
+            },
+            name: "schema".parse().unwrap(),
+            path: "schema.sql".into(),
+            content: "CREATE TABLE test();".to_string(),
+        };
+
+        assert_eq!(loaded_seed.cache_status().reference(), Some(&reference));
+        assert!(!loaded_seed.cache_status().is_hit());
+    }
+
+    #[test]
+    fn test_cache_status_hit() {
+        let reference: ociman::Reference =
+            "pg-ephemeral/main:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+                .parse()
+                .unwrap();
+
+        let loaded_seed = LoadedSeed::SqlFile {
+            cache_status: CacheStatus::Hit {
+                reference: reference.clone(),
+            },
+            name: "schema".parse().unwrap(),
+            path: "schema.sql".into(),
+            content: "CREATE TABLE test();".to_string(),
+        };
+
+        assert_eq!(loaded_seed.cache_status().reference(), Some(&reference));
+        assert!(loaded_seed.cache_status().is_hit());
     }
 }

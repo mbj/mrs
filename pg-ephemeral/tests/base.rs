@@ -306,6 +306,7 @@ fn test_config_seeds_command() {
         type = "command"
         command = "migrate"
         arguments = ["up"]
+        cache.type = "command-hash"
     "#};
 
     let config = pg_ephemeral::Config::load_toml(toml)
@@ -328,6 +329,7 @@ fn test_config_seeds_command() {
             "run-migration".parse().unwrap(),
             pg_ephemeral::Seed::Command {
                 command: pg_ephemeral::Command::new("migrate", ["up"]),
+                cache: pg_ephemeral::CommandCacheConfig::CommandHash,
             },
         ),
     ]
@@ -381,6 +383,7 @@ fn test_config_seeds_mixed() {
         type = "command"
         command = "migrate"
         arguments = ["up", "--verbose"]
+        cache.type = "command-hash"
 
         [instances.main.seeds.verify]
         type = "script"
@@ -407,6 +410,7 @@ fn test_config_seeds_mixed() {
             "migrate".parse().unwrap(),
             pg_ephemeral::Seed::Command {
                 command: pg_ephemeral::Command::new("migrate", ["up", "--verbose"]),
+                cache: pg_ephemeral::CommandCacheConfig::CommandHash,
             },
         ),
         (
