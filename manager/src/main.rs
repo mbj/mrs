@@ -103,6 +103,11 @@ enum AppCommand {
         #[clap(subcommand)]
         command: ReleaseCommand,
     },
+    /// Repository lint and verification commands
+    RepositoryLint {
+        #[clap(subcommand)]
+        command: RepositoryLintCommand,
+    },
 }
 
 #[derive(Debug, clap::Parser)]
@@ -131,11 +136,18 @@ enum ReleaseCommand {
     CreateEdge,
 }
 
+#[derive(Debug, clap::Parser)]
+enum RepositoryLintCommand {
+    /// Verify rust-version in Cargo.toml matches rust-toolchain.toml channel
+    RustVersion,
+}
+
 impl App {
     fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
         match &self.command {
             AppCommand::Integrations { command } => command.run(),
             AppCommand::Release { command } => command.run(),
+            AppCommand::RepositoryLint { command } => command.run(),
         }
     }
 }
@@ -172,6 +184,59 @@ impl ReleaseCommand {
             }
         }
     }
+}
+
+impl RepositoryLintCommand {
+    fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
+        match self {
+            Self::RustVersion => lint_rust_version(),
+        }
+    }
+}
+
+fn lint_rust_version() -> Result<(), Box<dyn std::error::Error>> {
+    let workspace_root = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .unwrap()
+        .to_path_buf();
+
+    let toolchain_path = workspace_root.join("rust-toolchain.toml");
+    let cargo_path = workspace_root.join("Cargo.toml");
+
+    log::info!("Checking rust-toolchain.toml: {}", toolchain_path.display());
+    log::info!("Checking Cargo.toml: {}", cargo_path.display());
+
+    let toolchain_content = std::fs::read_to_string(&toolchain_path)?;
+    let cargo_content = std::fs::read_to_string(&cargo_path)?;
+
+    let toolchain: toml::Value = toml::from_str(&toolchain_content)?;
+    let cargo: toml::Value = toml::from_str(&cargo_content)?;
+
+    let toolchain_channel = toolchain
+        .get("toolchain")
+        .and_then(|toolchain_table| toolchain_table.get("channel"))
+        .and_then(|channel| channel.as_str())
+        .ok_or("rust-toolchain.toml missing toolchain.channel")?;
+
+    let cargo_rust_version = cargo
+        .get("workspace")
+        .and_then(|workspace| workspace.get("package"))
+        .and_then(|package| package.get("rust-version"))
+        .and_then(|rust_version| rust_version.as_str())
+        .ok_or("Cargo.toml missing workspace.package.rust-version")?;
+
+    log::info!("rust-toolchain.toml channel: {toolchain_channel}");
+    log::info!("Cargo.toml rust-version: {cargo_rust_version}");
+
+    if toolchain_channel != cargo_rust_version {
+        return Err(format!(
+            "Rust version mismatch: rust-toolchain.toml has '{toolchain_channel}' but Cargo.toml has '{cargo_rust_version}'"
+        )
+        .into());
+    }
+
+    log::info!("Rust versions are in sync");
+    Ok(())
 }
 
 fn verify_and_collect_file(path: PathBuf) -> PathBuf {
