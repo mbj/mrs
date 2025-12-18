@@ -1182,6 +1182,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "greenhell"
+version = "0.0.1"
+dependencies = [
+ "clap",
+ "env_logger",
+ "log",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "tokio",
+]
+
+[[package]]
 name = "hashbrown"
 version = "0.15.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
