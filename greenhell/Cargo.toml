@@ -1,0 +1,36 @@
+[package]
+name = "greenhell"
+version = "0.0.1"
+edition.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "GitHub status check aggregator - ensures all commits in a PR pass CI"
+license = "MIT"
+repository = "https://github.com/mbj/mrs/tree/main/greenhell"
+readme = "README.md"
+keywords = ["github", "ci", "status-check", "pull-request"]
+categories = ["development-tools"]
+
+[lints]
+workspace = true
+
+[dependencies]
+clap.workspace = true
+env_logger.workspace = true
+futures-util.workspace = true
+http.workspace = true
+log.workspace = true
+mhttp.workspace = true
+nom.workspace = true
+nom-language.workspace = true
+reqwest.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+tower.workspace = true
+tower-service.workspace = true
+url.workspace = true
+
+[dev-dependencies]
+mhttp = { workspace = true, features = ["test-utils"] }

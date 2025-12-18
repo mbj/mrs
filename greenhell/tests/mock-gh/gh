@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ "$1" = "auth" ] && [ "$2" = "token" ]; then
+    echo "ghp_mock_token_from_gh_auth"
+    exit 0
+fi
+exit 1
