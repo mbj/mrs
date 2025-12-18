@@ -1,9 +1,10 @@
 [workspace]
 members = [
-  "ociman",
   "manager",
+  "mhttp",
   "mlambda",
   "mmigration",
+  "ociman",
   "pg-client",
   "pg-ephemeral",
   "stack-deploy",
@@ -17,7 +18,7 @@ resolver = "3"
 [workspace.package]
 authors = ["Markus Schirp <mbj@schirp-dso.com>"]
 edition = "2024"
-rust-version = "1.91.1"
+rust-version = "1.92"
 
 [workspace.dependencies]
 chrono = { version = "0.4", features = ["serde"] }
@@ -27,6 +28,7 @@ hex = "0.4.3"
 http = "1.3"
 indoc = "2"
 log = "0.4"
+mhttp = { path = "mhttp" }
 mmigration = { path = "mmigration" }
 nom = "8"
 nom-language = "0.1"
@@ -54,7 +56,9 @@ syn = { version = "2", features = ["derive"] }
 thiserror = "2"
 tokio = { version = "1", features = ["io-std", "macros", "rt"] }
 toml = "0.9"
-url = "2.5"
+tower-service = "0.3"
+futures-util = { version = "0.3", default-features = false }
+url = { version = "2.5", features = ["serde"] }
 
 [workspace.lints.clippy]
 all = { level = "deny", priority = -1 }

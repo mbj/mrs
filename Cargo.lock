@@ -1774,6 +1774,24 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f52b00d39961fc5b2736ea853c9cc86238e165017a493d1d5c8eac6bdc4cc273"
 
 [[package]]
+name = "mhttp"
+version = "0.0.1"
+dependencies = [
+ "futures-util",
+ "http 1.4.0",
+ "log",
+ "mhttp",
+ "nom 8.0.0",
+ "nom-language",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "tokio",
+ "tower-service",
+ "url",
+]
+
+[[package]]
 name = "minimal-lexical"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
