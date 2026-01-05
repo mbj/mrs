@@ -152,8 +152,6 @@ impl<T: 'static> Response<T> {
     pub async fn decode(&self, response: reqwest::Response) -> Result<T> {
         let status_code = response.status();
 
-        log::info!("Status: {status_code}");
-
         match self.map.get(&status_code) {
             Some(content_map) => Self::decode_content_type(content_map, response).await,
             None => Err(DecodeError {
