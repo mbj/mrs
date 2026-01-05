@@ -40,28 +40,38 @@ mhttp solves these by making requests data:
 - **Type-safe** - `Request::Response` associates the response type at compile time
 - **Testable** - Assert on request construction without HTTP, mock at the service layer
 
-## Usage
-
-Define a request type and implement the `Request` trait:
+## Example
 
 ```rust
 use mhttp::{BaseUrl, Request, decoder};
+use mhttp::link::{Paginated, PaginatedRequest};
 
-struct GetUser {
+// API marker type - distinguishes requests for different APIs
+struct GitHubApi;
+
+// Response types - what the API returns
+#[derive(Debug, serde::Deserialize)]
+struct User {
     id: u64,
+    login: String,
 }
 
 #[derive(Debug, serde::Deserialize)]
-struct User {
+struct Repository {
     id: u64,
     name: String,
 }
 
-struct MyApi;
+// Any type can become a request
+struct GetUser {
+    username: String,
+}
 
-impl Request<MyApi> for GetUser {
+// Implement Request to define how GetUser maps to HTTP
+impl Request<GitHubApi> for GetUser {
     type Response = User;
 
+    // Declarative decoder: expect 200 OK with JSON body
     decoder!(
         decoder::Response::build()
             .status_code_json(http::StatusCode::OK)
@@ -73,70 +83,94 @@ impl Request<MyApi> for GetUser {
         client: &reqwest::Client,
         base_url: &BaseUrl,
     ) -> reqwest::RequestBuilder {
-        client.get(base_url.set_path(&format!("/users/{}", self.id)))
+        client.get(base_url.set_path(&format!("/users/{}", self.username)))
     }
 }
-```
 
-## Declarative Response Decoding
+// Paginated request - returns data with Link header navigation
+struct ListRepos {
+    username: String,
+}
 
-Decoders are built using a builder pattern that maps status codes to content-type handlers:
+impl Request<GitHubApi> for ListRepos {
+    // Paginated wraps the response with parsed Link headers
+    type Response = Paginated<Vec<Repository>>;
 
-```rust
-# use mhttp::decoder;
-# #[derive(Debug, serde::Deserialize)]
-# struct User { id: u64 }
-# #[derive(Debug, serde::Deserialize)]
-# struct Created<T>(T);
-# impl<T> Created<T> { fn into_inner(self) -> T { self.0 } }
-// Simple JSON response
-let _: decoder::Response<User> = decoder::Response::build()
-    .status_code_json(http::StatusCode::OK)
-    .finish();
-
-// Multiple status codes with different handling
-let _: decoder::Response<User> = decoder::Response::build()
-    .status_code_json(http::StatusCode::OK)
-    .status_code_json_map(http::StatusCode::CREATED, Created::into_inner)
-    .finish();
-
-// Custom content-type handling
-let _: decoder::Response<String> = decoder::Response::build()
-    .status_code(http::StatusCode::OK, |content_types| {
-        content_types.add("text/plain", |body| {
-            Ok(String::from_utf8_lossy(body).into_owned())
-        });
-    })
-    .finish();
-```
-
-## Pagination
-
-Built-in support for RFC 8288 Link header pagination:
-
-```rust,ignore
-use mhttp::link::{paginate, Paginated, PaginatedRequest};
-
-struct ListUsers;
-
-impl Request<MyApi> for ListUsers {
-    type Response = Paginated<Vec<User>>;
-
+    // .paginated() wraps the decoder to parse Link headers
     decoder!(
         decoder::Response::build()
             .status_code_json(http::StatusCode::OK)
             .paginated()
     );
 
-    // ...
+    fn request_builder(
+        &self,
+        client: &reqwest::Client,
+        base_url: &BaseUrl,
+    ) -> reqwest::RequestBuilder {
+        client.get(base_url.set_path(&format!("/users/{}/repos", self.username)))
+    }
 }
 
-impl PaginatedRequest for ListUsers {}
+// Mark as supporting pagination to enable paginate() stream
+impl PaginatedRequest for ListRepos {}
 
-// Stream through all pages
-let mut pages = paginate(service, ListUsers);
-while let Some(users) = pages.next().await {
-    // process users
+// Client wraps HTTP transport with authentication
+struct Client {
+    http: reqwest::Client,
+    base_url: BaseUrl,
+    token: String,
+}
+
+impl Client {
+    pub fn new(token: String) -> Self {
+        Self {
+            http: reqwest::Client::new(),
+            base_url: BaseUrl::new("https://api.github.com".parse().unwrap()),
+            token,
+        }
+    }
+
+    // Generic over any Request<GitHubApi> - one method handles all endpoints
+    pub async fn execute<R: Request<GitHubApi>>(
+        &self,
+        request: R,
+    ) -> Result<R::Response, decoder::DecodeError> {
+        let response = request
+            .request_builder(&self.http, &self.base_url)
+            .bearer_auth(&self.token)
+            .send()
+            .await
+            .map_err(|error| decoder::DecodeError {
+                reason: decoder::ErrorReason::RequestError { error },
+            })?;
+
+        // DECODER is defined by the decoder!() macro on the Request impl
+        R::DECODER.decode(response).await
+    }
+}
+
+async fn example() -> Result<(), decoder::DecodeError> {
+    let client = Client::new("ghp_xxxx".to_string());
+
+    // Type-safe: GetUser returns User
+    let user: User = client.execute(GetUser {
+        username: "octocat".to_string(),
+    }).await?;
+
+    // Type-safe: ListRepos returns Paginated<Vec<Repository>>
+    let repos: Paginated<Vec<Repository>> = client.execute(ListRepos {
+        username: "octocat".to_string(),
+    }).await?;
+
+    // Access pagination links from response headers
+    if let Some(links) = repos.links {
+        if let Some(next_url) = links.next {
+            println!("Next page: {next_url}");
+        }
+    }
+
+    Ok(())
 }
 ```
 
@@ -147,25 +181,27 @@ Enable the `test-utils` feature for request assertion helpers:
 ```rust
 # use mhttp::{BaseUrl, Request, decoder};
 # #[derive(Debug, serde::Deserialize)]
-# struct User { id: u64 }
-# struct MyApi;
-# struct GetUser { id: u64 }
-# impl Request<MyApi> for GetUser {
+# struct User { id: u64, login: String }
+# struct GitHubApi;
+# struct GetUser { username: String }
+# impl Request<GitHubApi> for GetUser {
 #     type Response = User;
 #     decoder!(decoder::Response::build().status_code_json(http::StatusCode::OK).finish());
 #     fn request_builder(&self, client: &reqwest::Client, base_url: &BaseUrl) -> reqwest::RequestBuilder {
-#         client.get(base_url.set_path(&format!("/users/{}", self.id)))
+#         client.get(base_url.set_path(&format!("/users/{}", self.username)))
 #     }
 # }
-# let base_url = BaseUrl::new("https://api.example.com".parse().unwrap());
 use mhttp::testing::TestRequest;
+
+// Assert request construction without making HTTP calls
+let base_url = BaseUrl::new("https://api.github.com".parse().unwrap());
 
 TestRequest {
     method: reqwest::Method::GET,
-    url: "https://api.example.com/users/123".parse().unwrap(),
+    url: "https://api.github.com/users/octocat".parse().unwrap(),
     headers: http::HeaderMap::new(),
     body: None,
-}.assert(&GetUser { id: 123 }, &base_url);
+}.assert(&GetUser { username: "octocat".to_string() }, &base_url);
 ```
 
 ## License
