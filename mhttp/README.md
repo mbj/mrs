@@ -142,7 +142,8 @@ impl Client {
             .send()
             .await
             .map_err(|error| decoder::DecodeError {
-                reason: decoder::ErrorReason::RequestError { error },
+                reason: decoder::ErrorReason::RequestError,
+                source: Some(Box::new(error)),
             })?;
 
         // DECODER is defined by the decoder!() macro on the Request impl
