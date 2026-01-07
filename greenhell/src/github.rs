@@ -13,7 +13,7 @@ use nom_language::error::{VerboseError, VerboseErrorKind};
 use crate::impl_from_str;
 use crate::parse::Parse;
 
-impl_from_str!(Repository, Branch, PullRequest, Ref);
+impl_from_str!(Repository, Branch, PullRequestNumber, Ref);
 
 /// A GitHub repository identifier.
 ///
@@ -251,45 +251,48 @@ impl std::fmt::Display for Branch {
 
 /// A GitHub pull request number.
 ///
-/// Stored as a string but validated to contain only digits.
-///
 /// Constraints:
-/// - Minimum 1 character
-/// - Maximum 10 characters (author's choice)
-/// - Only ASCII digits
+/// - Must be a valid positive integer
+/// - Maximum 10 digits
 ///
 /// # Examples
 ///
 /// ```
-/// use greenhell::github::PullRequest;
+/// use greenhell::github::PullRequestNumber;
 ///
-/// let pr: PullRequest = "123".parse().unwrap();
-/// assert_eq!(pr.as_str(), "123");
+/// let pr: PullRequestNumber = "123".parse().unwrap();
+/// assert_eq!(pr.get(), 123);
 ///
-/// let pr: PullRequest = "1".parse().unwrap();
-/// assert_eq!(pr.as_str(), "1");
+/// let pr: PullRequestNumber = "1".parse().unwrap();
+/// assert_eq!(pr.get(), 1);
 ///
 /// // Rejects empty
-/// assert!("".parse::<PullRequest>().is_err());
+/// assert!("".parse::<PullRequestNumber>().is_err());
 ///
 /// // Rejects non-digits
-/// assert!("abc".parse::<PullRequest>().is_err());
-/// assert!("123a".parse::<PullRequest>().is_err());
+/// assert!("abc".parse::<PullRequestNumber>().is_err());
+/// assert!("123a".parse::<PullRequestNumber>().is_err());
 ///
 /// // Rejects too long (>10 chars)
-/// assert!("12345678901".parse::<PullRequest>().is_err());
+/// assert!("12345678901".parse::<PullRequestNumber>().is_err());
 /// ```
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct PullRequest(String);
+#[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd)]
+pub struct PullRequestNumber(u64);
 
-impl PullRequest {
+impl PullRequestNumber {
     #[must_use]
-    pub fn as_str(&self) -> &str {
-        &self.0
+    pub fn get(self) -> u64 {
+        self.0
     }
 }
 
-impl Parse for PullRequest {
+impl From<u64> for PullRequestNumber {
+    fn from(value: u64) -> Self {
+        Self(value)
+    }
+}
+
+impl Parse for PullRequestNumber {
     fn parse(remaining: &str) -> IResult<&str, Self, VerboseError<&str>> {
         context(
             "pull request number: 1-10 digits",
@@ -298,12 +301,12 @@ impl Parse for PullRequest {
                 |string: &str| string.len() <= 10,
             ),
         )
-        .map(|string: &str| Self(string.to_string()))
+        .map(|string: &str| Self(string.parse().unwrap()))
         .parse(remaining)
     }
 }
 
-impl std::fmt::Display for PullRequest {
+impl std::fmt::Display for PullRequestNumber {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(formatter, "{}", self.0)
     }

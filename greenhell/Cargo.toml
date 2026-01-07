@@ -15,10 +15,13 @@ categories = ["development-tools"]
 workspace = true
 
 [dependencies]
+async-stream.workspace = true
+chrono.workspace = true
 clap.workspace = true
 env_logger.workspace = true
 futures-util.workspace = true
 http.workspace = true
+itertools.workspace = true
 log.workspace = true
 mhttp.workspace = true
 nom.workspace = true
