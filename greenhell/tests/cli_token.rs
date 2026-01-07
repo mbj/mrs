@@ -5,9 +5,9 @@
 
 use std::process::Command;
 
-const MOCK_GH_TOKEN: &str = "ghp_mock_token_from_gh_auth";
-const ENV_GH_TOKEN: &str = "ghp_from_gh_token_env";
-const ENV_GITHUB_TOKEN: &str = "ghp_from_github_token_env";
+const MOCK_GH_TOKEN: &str = "ghp_mockTokenFromGhAuth1234567890abcdef";
+const ENV_GH_TOKEN: &str = "ghp_fromGhTokenEnv12345678901234567890";
+const ENV_GITHUB_TOKEN: &str = "ghp_fromGithubTokenEnv123456789012345";
 
 fn binary_path() -> std::path::PathBuf {
     env!("CARGO_BIN_EXE_greenhell").into()

@@ -17,6 +17,15 @@ use nom_language::error::VerboseError;
 use crate::impl_from_str;
 use crate::parse::Parse;
 
+/// Known GitHub token prefixes.
+const TOKEN_PREFIXES: &[&str] = &[
+    "ghp_", // Personal access tokens (fine-grained or classic)
+    "gho_", // OAuth access tokens
+    "ghu_", // GitHub App user-to-server tokens
+    "ghs_", // GitHub App installation tokens
+    "ghr_", // GitHub App refresh tokens
+];
+
 /// A validated GitHub token.
 ///
 /// GitHub tokens come in several formats:
@@ -27,8 +36,7 @@ use crate::parse::Parse;
 /// - `ghr_*` - GitHub App refresh tokens
 /// - 40 hex characters - Classic personal access tokens (legacy)
 ///
-/// This type validates that the token is non-empty and contains only
-/// valid token characters (alphanumeric and underscore).
+/// This type validates that the token matches one of these known formats.
 #[derive(Clone)]
 pub struct Token(String);
 
@@ -46,15 +54,31 @@ impl std::fmt::Debug for Token {
     }
 }
 
+/// Check if token has a known prefix (ghp_, ghs_, etc.) with valid suffix.
+fn is_prefixed_token(string: &str) -> bool {
+    TOKEN_PREFIXES.iter().any(|prefix| {
+        string.starts_with(prefix)
+            && string.len() > prefix.len()
+            && string[prefix.len()..]
+                .chars()
+                .all(|c| c.is_ascii_alphanumeric())
+    })
+}
+
+/// Check if token is a legacy 40-character hex token.
+fn is_legacy_token(string: &str) -> bool {
+    string.len() == 40 && string.chars().all(|c| c.is_ascii_hexdigit())
+}
+
 impl Parse for Token {
     fn parse(remaining: &str) -> IResult<&str, Self, VerboseError<&str>> {
         context(
-            "token: alphanumeric and underscore only",
+            "token: must be ghp_/gho_/ghu_/ghs_/ghr_ prefixed or 40-char hex",
             verify(
                 take_while1(|character: char| {
                     character.is_ascii_alphanumeric() || character == '_'
                 }),
-                |string: &str| string.len() >= 4,
+                |string: &str| is_prefixed_token(string) || is_legacy_token(string),
             ),
         )
         .map(|string: &str| Self(string.to_string()))
@@ -160,6 +184,86 @@ fn try_env_var(name: &str, source: Source) -> Option<Discovery> {
         .ok()
         .and_then(|value| value.parse::<Token>().ok())
         .map(|token| Discovery { token, source })
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn accepts_ghp_prefixed_token() {
+        let token: Token = "ghp_abcdefghij1234567890abcdefghij1234".parse().unwrap();
+        assert_eq!(token.as_str(), "ghp_abcdefghij1234567890abcdefghij1234");
+    }
+
+    #[test]
+    fn accepts_ghs_prefixed_token() {
+        let token: Token = "ghs_installationToken12345678901234567".parse().unwrap();
+        assert_eq!(token.as_str(), "ghs_installationToken12345678901234567");
+    }
+
+    #[test]
+    fn accepts_gho_prefixed_token() {
+        let token: Token = "gho_oauthToken123456789012345678901234".parse().unwrap();
+        assert_eq!(token.as_str(), "gho_oauthToken123456789012345678901234");
+    }
+
+    #[test]
+    fn accepts_ghu_prefixed_token() {
+        let token: Token = "ghu_userToken1234567890123456789012345".parse().unwrap();
+        assert_eq!(token.as_str(), "ghu_userToken1234567890123456789012345");
+    }
+
+    #[test]
+    fn accepts_ghr_prefixed_token() {
+        let token: Token = "ghr_refreshToken12345678901234567890123".parse().unwrap();
+        assert_eq!(token.as_str(), "ghr_refreshToken12345678901234567890123");
+    }
+
+    #[test]
+    fn accepts_legacy_40_char_hex_token() {
+        let token: Token = "0123456789abcdef0123456789abcdef01234567".parse().unwrap();
+        assert_eq!(
+            token.as_str(),
+            "0123456789abcdef0123456789abcdef01234567"
+        );
+    }
+
+    #[test]
+    fn rejects_unknown_prefix() {
+        let result = "xyz_sometoken123456789012345678901234".parse::<Token>();
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn rejects_prefix_only() {
+        let result = "ghp_".parse::<Token>();
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn rejects_short_hex_token() {
+        let result = "0123456789abcdef".parse::<Token>();
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn rejects_long_hex_token() {
+        let result = "0123456789abcdef0123456789abcdef012345678".parse::<Token>();
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn rejects_underscore_in_suffix() {
+        let result = "ghp_token_with_underscores".parse::<Token>();
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn rejects_empty_token() {
+        let result = "".parse::<Token>();
+        assert!(result.is_err());
+    }
 }
 
 /// Executes `gh auth token` and returns the token.
