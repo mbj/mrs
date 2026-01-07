@@ -1,5 +1,6 @@
 pub mod check_runs;
 pub mod commits;
+pub mod events;
 pub mod pull_requests;
 pub mod repository;
 
@@ -42,6 +43,14 @@ pub enum Command {
         #[clap(subcommand)]
         command: commits::Command,
     },
+    /// Events operations
+    Events {
+        /// Target repository (owner/repo)
+        #[clap(long)]
+        repository: Repository,
+        #[clap(subcommand)]
+        command: events::Command,
+    },
 }
 
 impl Command {
@@ -63,6 +72,10 @@ impl Command {
                 command,
             } => command.run(client, repository).await,
             Self::Commits {
+                repository,
+                command,
+            } => command.run(client, repository).await,
+            Self::Events {
                 repository,
                 command,
             } => command.run(client, repository).await,
