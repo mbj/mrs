@@ -19,6 +19,8 @@ type HeaderDecoderFn<T> = dyn Fn(&http::HeaderMap) -> Result<BodyDecoderFn<T>> +
 pub struct DecodeError {
     /// The reason for the decode failure.
     pub reason: ErrorReason,
+    /// The underlying error, if any.
+    pub source: Option<Box<dyn std::error::Error + Send + Sync>>,
 }
 
 impl std::fmt::Display for DecodeError {
@@ -29,7 +31,9 @@ impl std::fmt::Display for DecodeError {
 
 impl std::error::Error for DecodeError {
     fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
-        self.reason.source()
+        self.source
+            .as_ref()
+            .map(|value| value.as_ref() as &(dyn std::error::Error + 'static))
     }
 }
 
@@ -40,19 +44,22 @@ impl PartialEq for DecodeError {
 }
 
 /// Specific reason for a decode error.
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum ErrorReason {
-    /// Link header parsing failed.
-    InvalidLinkHeader(crate::link::ParseError),
-    /// JSON deserialization failed.
-    JsonDecodeError(serde_json::Error),
-    /// Response is missing the Content-Type header.
-    MissingContentTypeHeader,
-    /// HTTP request failed.
-    RequestError {
-        /// The underlying reqwest error.
-        error: reqwest::Error,
+    /// A required header has an invalid value.
+    InvalidHeaderValue {
+        /// The name of the header.
+        name: http::header::HeaderName,
     },
+    /// JSON deserialization failed.
+    JsonDecodeError,
+    /// Response is missing a required header.
+    MissingHeader {
+        /// The name of the missing header.
+        name: http::header::HeaderName,
+    },
+    /// HTTP request failed.
+    RequestError,
     /// Response has an unexpected Content-Type.
     UnexpectedContentType {
         /// The actual Content-Type received.
@@ -68,55 +75,16 @@ pub enum ErrorReason {
 impl std::fmt::Display for ErrorReason {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Self::InvalidLinkHeader(error) => write!(formatter, "invalid link header: {error}"),
-            Self::JsonDecodeError(error) => write!(formatter, "JSON decode error: {error}"),
-            Self::MissingContentTypeHeader => write!(formatter, "missing Content-Type header"),
-            Self::RequestError { error } => write!(formatter, "request error: {error}"),
+            Self::InvalidHeaderValue { name } => write!(formatter, "invalid {name} header value"),
+            Self::JsonDecodeError => write!(formatter, "JSON decode error"),
+            Self::MissingHeader { name } => write!(formatter, "missing {name} header"),
+            Self::RequestError => write!(formatter, "request error"),
             Self::UnexpectedContentType { content_type } => {
                 write!(formatter, "unexpected Content-Type: {content_type:?}")
             }
             Self::UnexpectedStatusCode { status_code } => {
                 write!(formatter, "unexpected status code: {status_code}")
             }
-        }
-    }
-}
-
-impl ErrorReason {
-    fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
-        match self {
-            Self::InvalidLinkHeader(error) => Some(error),
-            Self::JsonDecodeError(error) => Some(error),
-            Self::RequestError { error } => Some(error),
-            Self::MissingContentTypeHeader
-            | Self::UnexpectedContentType { .. }
-            | Self::UnexpectedStatusCode { .. } => None,
-        }
-    }
-}
-
-impl PartialEq for ErrorReason {
-    fn eq(&self, other: &Self) -> bool {
-        match (self, other) {
-            (Self::InvalidLinkHeader(left), Self::InvalidLinkHeader(right)) => left == right,
-            (Self::JsonDecodeError(left), Self::JsonDecodeError(right)) => {
-                left.to_string() == right.to_string()
-            }
-            (Self::MissingContentTypeHeader, Self::MissingContentTypeHeader) => true,
-            (Self::RequestError { error: left }, Self::RequestError { error: right }) => {
-                left.to_string() == right.to_string()
-            }
-            (
-                Self::UnexpectedContentType { content_type: left },
-                Self::UnexpectedContentType {
-                    content_type: right,
-                },
-            ) => left == right,
-            (
-                Self::UnexpectedStatusCode { status_code: left },
-                Self::UnexpectedStatusCode { status_code: right },
-            ) => left == right,
-            _ => false,
         }
     }
 }
@@ -156,6 +124,7 @@ impl<T: 'static> Response<T> {
             Some(content_map) => Self::decode_content_type(content_map, response).await,
             None => Err(DecodeError {
                 reason: ErrorReason::UnexpectedStatusCode { status_code },
+                source: None,
             }),
         }
     }
@@ -165,15 +134,22 @@ impl<T: 'static> Response<T> {
         response: reqwest::Response,
     ) -> Result<T> {
         match response.headers().get(http::header::CONTENT_TYPE) {
-            None => Err(DecodeError {
-                reason: ErrorReason::MissingContentTypeHeader,
-            }),
+            None => match content_types.default() {
+                Some(body_decoder) => Self::decode_body(body_decoder, response).await,
+                None => Err(DecodeError {
+                    reason: ErrorReason::MissingHeader {
+                        name: http::header::CONTENT_TYPE,
+                    },
+                    source: None,
+                }),
+            },
             Some(content_type) => match content_types.get(content_type) {
                 Some(body_decoder) => Self::decode_body(body_decoder, response).await,
                 None => Err(DecodeError {
                     reason: ErrorReason::UnexpectedContentType {
                         content_type: content_type.clone(),
                     },
+                    source: None,
                 }),
             },
         }
@@ -192,7 +168,8 @@ impl<T: 'static> Response<T> {
                 decode_body(bytes.as_ref())
             }
             Err(error) => Err(DecodeError {
-                reason: ErrorReason::RequestError { error },
+                reason: ErrorReason::RequestError,
+                source: Some(Box::new(error)),
             }),
         }
     }
@@ -358,6 +335,12 @@ impl<T: 'static> ContentTypes<T> {
             .map_or(self.default.as_ref(), Some)
     }
 
+    /// Gets the default body decoder for absent Content-Type header.
+    #[must_use]
+    pub fn default(&self) -> Option<&BodyDecoder<T>> {
+        self.default.as_ref()
+    }
+
     /// Adds JSON handlers that deserialize and map through a function.
     pub fn json_map<U: for<'de> serde::Deserialize<'de> + 'static>(
         &mut self,
@@ -470,7 +453,10 @@ fn parse_link_header(headers: &http::HeaderMap) -> Result<Option<crate::link::Li
         Some(value) => match crate::link::Links::from_header_value(value) {
             Ok(links) => Ok(Some(links)),
             Err(error) => Err(DecodeError {
-                reason: ErrorReason::InvalidLinkHeader(error),
+                reason: ErrorReason::InvalidHeaderValue {
+                    name: http::header::LINK,
+                },
+                source: Some(Box::new(error)),
             }),
         },
         None => Ok(None),
@@ -484,7 +470,8 @@ fn parse_link_header(headers: &http::HeaderMap) -> Result<Option<crate::link::Li
 /// Returns a `DecodeError` if JSON deserialization fails.
 pub fn json<T: for<'de> serde::Deserialize<'de>>(body: &[u8]) -> Result<T> {
     serde_json::from_slice(body).map_err(|error| DecodeError {
-        reason: ErrorReason::JsonDecodeError(error),
+        reason: ErrorReason::JsonDecodeError,
+        source: Some(Box::new(error)),
     })
 }
 
@@ -516,14 +503,8 @@ mod tests {
         let body = br#"{"id": "not a number"}"#;
         let error = json::<User>(body).unwrap_err();
 
-        // Parse the same invalid JSON to get the same serde error
-        let expected_serde_error = serde_json::from_slice::<User>(body).unwrap_err();
-        assert_eq!(
-            error,
-            DecodeError {
-                reason: ErrorReason::JsonDecodeError(expected_serde_error)
-            }
-        );
+        assert_eq!(error.reason, ErrorReason::JsonDecodeError);
+        assert!(error.source.is_some());
     }
 
     #[test]
@@ -531,13 +512,8 @@ mod tests {
         let body = b"not json at all";
         let error = json::<User>(body).unwrap_err();
 
-        let expected_serde_error = serde_json::from_slice::<User>(body).unwrap_err();
-        assert_eq!(
-            error,
-            DecodeError {
-                reason: ErrorReason::JsonDecodeError(expected_serde_error)
-            }
-        );
+        assert_eq!(error.reason, ErrorReason::JsonDecodeError);
+        assert!(error.source.is_some());
     }
 
     #[test]
@@ -587,5 +563,44 @@ mod tests {
             .finish();
 
         assert!(decoder.map.contains_key(&http::StatusCode::OK));
+    }
+
+    #[tokio::test]
+    async fn decode_missing_content_type_with_default() {
+        let decoder: Response<String> = Response::build()
+            .status_code(http::StatusCode::NO_CONTENT, |content_types| {
+                content_types.constant("empty".to_string());
+            })
+            .finish();
+
+        let response: reqwest::Response = http::Response::builder()
+            .status(http::StatusCode::NO_CONTENT)
+            .body("")
+            .unwrap()
+            .into();
+
+        let result = decoder.decode(response).await.unwrap();
+        assert_eq!(result, "empty");
+    }
+
+    #[tokio::test]
+    async fn decode_missing_content_type_without_default_errors() {
+        let decoder: Response<User> = Response::build()
+            .status_code_json(http::StatusCode::OK)
+            .finish();
+
+        let response: reqwest::Response = http::Response::builder()
+            .status(http::StatusCode::OK)
+            .body("")
+            .unwrap()
+            .into();
+
+        let error = decoder.decode(response).await.unwrap_err();
+        assert_eq!(
+            error.reason,
+            ErrorReason::MissingHeader {
+                name: http::header::CONTENT_TYPE
+            }
+        );
     }
 }
