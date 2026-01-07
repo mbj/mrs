@@ -3,12 +3,14 @@
 use std::sync::LazyLock;
 
 use futures_util::StreamExt;
+use itertools::{Itertools, Position};
 use tower_service::Service;
 
 use crate::github::{
     Branch, CheckName, CheckRun, CheckRunConclusion, CheckRunStatus, Client, CombinedStatus,
     CombinedStatusState, CommitStatusState, CompareCommits, CreateCommitStatus, GetCombinedStatus,
-    GetRepository, ListCheckRuns, ListPullRequestCommits, PullRequest, Repository,
+    GetRepository, ListCheckRuns, ListPullRequestCommits, ListPullRequests, PullRequestNumber,
+    PullRequestState, Repository,
 };
 
 /// The greenhell check name.
@@ -58,6 +60,8 @@ pub struct CommitResult {
     pub sha: String,
     /// The aggregated status.
     pub status: EvaluationStatus,
+    /// The existing greenhell commit status, if any.
+    pub existing_greenhell_state: Option<CommitStatusState>,
 }
 
 /// Result of evaluating all commits.
@@ -124,9 +128,16 @@ pub fn evaluate_commit(
         (EvaluationStatus::Success, EvaluationStatus::Success) => EvaluationStatus::Success,
     };
 
+    let existing_greenhell_state = combined_status
+        .statuses
+        .iter()
+        .find(|commit_status| commit_status.context.is_greenhell())
+        .map(|commit_status| commit_status.state);
+
     CommitResult {
         sha: sha.to_string(),
         status,
+        existing_greenhell_state,
     }
 }
 
@@ -199,13 +210,13 @@ pub async fn evaluate_shas(
 pub async fn evaluate_pull_request(
     client: &mut Client,
     repository: &Repository,
-    pull_request: &PullRequest,
+    pull_request: PullRequestNumber,
 ) -> Result<(EvaluationResult, Vec<String>), Error> {
     let commits = collect_pages(mhttp::link::paginate(
         &mut *client,
         ListPullRequestCommits {
             repository: repository.clone(),
-            pull_request: pull_request.clone(),
+            pull_request,
         },
     ))
     .await?;
@@ -254,6 +265,26 @@ pub async fn evaluate_branch(
     evaluate_shas(client, repository, shas).await
 }
 
+/// List all open pull request numbers.
+pub async fn list_open_prs(
+    client: &mut Client,
+    repository: &Repository,
+) -> Result<Vec<PullRequestNumber>, Error> {
+    let prs = collect_pages(mhttp::link::paginate(
+        &mut *client,
+        ListPullRequests {
+            repository: repository.clone(),
+        },
+    ))
+    .await?;
+
+    Ok(prs
+        .into_iter()
+        .filter(|pr| pr.state == PullRequestState::Open)
+        .map(|pr| PullRequestNumber::from(pr.number))
+        .collect())
+}
+
 async fn collect_pages<T, E>(
     stream: impl futures_util::Stream<Item = Result<Vec<T>, E>>,
 ) -> Result<Vec<T>, E> {
@@ -279,45 +310,45 @@ where
 ///
 /// All commits except the last (head) are marked as success.
 /// Only the head commit reflects the actual aggregated status.
+/// Skips commits where the existing status already matches the desired state.
 #[must_use]
 pub fn build_commit_statuses(
     repository: &Repository,
-    shas: &[String],
     result: &EvaluationResult,
 ) -> Vec<CreateCommitStatus> {
-    if shas.is_empty() {
-        return Vec::new();
-    }
+    let mut requests = Vec::new();
 
-    let mut requests = Vec::with_capacity(shas.len());
+    for (position, commit) in result.commits.iter().with_position() {
+        let is_head = matches!(position, Position::Last | Position::Only);
 
-    // All commits except the last get marked as success
-    for sha in &shas[..shas.len() - 1] {
+        let (desired_state, description) = if is_head {
+            let state = match result.status {
+                EvaluationStatus::Success => CommitStatusState::Success,
+                EvaluationStatus::Failure | EvaluationStatus::NoChecks => {
+                    CommitStatusState::Failure
+                }
+                EvaluationStatus::Pending => CommitStatusState::Pending,
+            };
+            (state, format_title(result))
+        } else {
+            (
+                CommitStatusState::Success,
+                "Intermediate commit".to_string(),
+            )
+        };
+
+        if commit.existing_greenhell_state == Some(desired_state) {
+            continue;
+        }
+
         requests.push(CreateCommitStatus {
             repository: repository.clone(),
-            sha: sha.clone(),
-            state: CommitStatusState::Success,
+            sha: commit.sha.clone(),
+            state: desired_state,
             context: GREENHELL.clone(),
-            description: Some("Intermediate commit".to_string()),
+            description: Some(description),
         });
     }
-
-    // Head commit gets the actual result
-    let head_sha = &shas[shas.len() - 1];
-
-    let state = match result.status {
-        EvaluationStatus::Success => CommitStatusState::Success,
-        EvaluationStatus::Failure | EvaluationStatus::NoChecks => CommitStatusState::Failure,
-        EvaluationStatus::Pending => CommitStatusState::Pending,
-    };
-
-    requests.push(CreateCommitStatus {
-        repository: repository.clone(),
-        sha: head_sha.clone(),
-        state,
-        context: GREENHELL.clone(),
-        description: Some(format_title(result)),
-    });
 
     requests
 }
@@ -332,6 +363,7 @@ pub async fn execute_commit_statuses(
         async move { client.call(request).await.map_err(Error::from) }
     })
     .await?;
+
     Ok(())
 }
 
@@ -442,7 +474,7 @@ mod tests {
                 .into_iter()
                 .map(|context| ApiCommitStatus {
                     id: 1,
-                    state: "success".to_string(),
+                    state: CommitStatusState::Success,
                     context,
                     description: None,
                     target_url: None,
@@ -595,10 +627,12 @@ mod tests {
                 CommitResult {
                     sha: "a".to_string(),
                     status: EvaluationStatus::Success,
+                    existing_greenhell_state: None,
                 },
                 CommitResult {
                     sha: "b".to_string(),
                     status: EvaluationStatus::Success,
+                    existing_greenhell_state: None,
                 },
             ];
             let result = EvaluationResult::from_commits(commits);
@@ -611,10 +645,12 @@ mod tests {
                 CommitResult {
                     sha: "a".to_string(),
                     status: EvaluationStatus::Success,
+                    existing_greenhell_state: None,
                 },
                 CommitResult {
                     sha: "b".to_string(),
                     status: EvaluationStatus::Pending,
+                    existing_greenhell_state: None,
                 },
             ];
             let result = EvaluationResult::from_commits(commits);
@@ -627,10 +663,12 @@ mod tests {
                 CommitResult {
                     sha: "a".to_string(),
                     status: EvaluationStatus::Success,
+                    existing_greenhell_state: None,
                 },
                 CommitResult {
                     sha: "b".to_string(),
                     status: EvaluationStatus::Failure,
+                    existing_greenhell_state: None,
                 },
             ];
             let result = EvaluationResult::from_commits(commits);
@@ -643,10 +681,12 @@ mod tests {
                 CommitResult {
                     sha: "a".to_string(),
                     status: EvaluationStatus::Pending,
+                    existing_greenhell_state: None,
                 },
                 CommitResult {
                     sha: "b".to_string(),
                     status: EvaluationStatus::Failure,
+                    existing_greenhell_state: None,
                 },
             ];
             let result = EvaluationResult::from_commits(commits);
@@ -659,10 +699,12 @@ mod tests {
                 CommitResult {
                     sha: "a".to_string(),
                     status: EvaluationStatus::Pending,
+                    existing_greenhell_state: None,
                 },
                 CommitResult {
                     sha: "b".to_string(),
                     status: EvaluationStatus::NoChecks,
+                    existing_greenhell_state: None,
                 },
             ];
             let result = EvaluationResult::from_commits(commits);

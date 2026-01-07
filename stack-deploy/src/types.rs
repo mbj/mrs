@@ -2,7 +2,7 @@ pub use stratosphere::template::OutputKey;
 
 const INLINE_TEMPLATE_LIMIT_BYTES: usize = 51200;
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct StackName(pub String);
 
 impl From<&str> for StackName {
@@ -111,7 +111,7 @@ pub struct ParameterValue(pub String);
 
 pub use stratosphere::template::{ParameterKey, ParameterKeys};
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Parameter {
     pub key: ParameterKey,
     pub value: ParameterValue,
@@ -727,7 +727,7 @@ impl From<TemplateUrl> for String {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct ChangeSetName(String);
 
 impl std::str::FromStr for ChangeSetName {

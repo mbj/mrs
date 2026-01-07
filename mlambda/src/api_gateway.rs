@@ -32,7 +32,7 @@ pub struct ProxyRequest {
     headers: HeaderMap,
     is_base64_encoded: bool,
     #[serde(default)]
-    path_paramters: PathParameters,
+    path_parameters: PathParameters,
     #[serde(default)]
     query_string_parameters: QueryStringParameters,
     raw_path: String,

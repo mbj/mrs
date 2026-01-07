@@ -252,7 +252,7 @@ pub mod cli {
     use crate::lambda::deploy::S3BucketSource;
     use crate::types::{ParameterKey, ParameterMap, ParameterValue, StackName};
 
-    #[derive(Clone, Debug, clap::Parser)]
+    #[derive(Clone, Debug, Eq, PartialEq, clap::Parser)]
     pub struct App {
         #[clap(subcommand)]
         command: Command,
@@ -348,7 +348,7 @@ pub mod cli {
         }
     }
 
-    #[derive(Clone, Debug, clap::Parser)]
+    #[derive(Clone, Debug, Eq, PartialEq, clap::Subcommand)]
     pub enum Command {
         /// Deploy lambda function with template update
         DeployTemplate {

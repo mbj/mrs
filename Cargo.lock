@@ -142,6 +142,28 @@ dependencies = [
 ]
 
 [[package]]
+name = "async-stream"
+version = "0.3.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0b5a71a6f37880a80d1d7f19efd781e4b5de42c88f0722cc13bcb6cc2cfe8476"
+dependencies = [
+ "async-stream-impl",
+ "futures-core",
+ "pin-project-lite",
+]
+
+[[package]]
+name = "async-stream-impl"
+version = "0.3.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c7c24de15d275a1ecfd47a380fb4d5ec9bfe0933f309ed5e705b775596a3574d"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "atoi"
 version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1185,17 +1207,33 @@ dependencies = [
 name = "greenhell"
 version = "0.0.1"
 dependencies = [
+ "async-stream",
+ "aws-config",
+ "aws-sdk-cloudformation",
+ "aws-sdk-s3",
+ "aws-sdk-secretsmanager",
+ "base64",
+ "chrono",
  "clap",
  "env_logger",
  "futures-util",
+ "hex",
+ "hmac",
  "http 1.4.0",
+ "itertools",
  "log",
  "mhttp",
+ "mlambda",
  "nom 8.0.0",
  "nom-language",
+ "rcgen",
  "reqwest",
  "serde",
  "serde_json",
+ "sha2",
+ "stack-deploy",
+ "stratosphere",
+ "strum",
  "thiserror",
  "tokio",
  "tower",
@@ -1590,6 +1628,15 @@ name = "is_terminal_polyfill"
 version = "1.70.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a6cb138bb79a146c1bd460005623e142ef0181e3d0219cb493e02f7d08a35695"
+
+[[package]]
+name = "itertools"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2b192c782037fadd9cfa75548310488aabdbf3d2da73885b31bd0abd03351285"
+dependencies = [
+ "either",
+]
 
 [[package]]
 name = "itoa"
