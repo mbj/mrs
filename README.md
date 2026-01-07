@@ -25,6 +25,9 @@ A collection of Rust tools for cloud infrastructure and PostgreSQL development.
 - [**pg-ephemeral**](pg-ephemeral/) - Ephemeral PostgreSQL instances for testing
 - [**mmigration**](mmigration/) - PostgreSQL migration management
 
+### GitHub
+- [**greenhell**](greenhell/) - GitHub status check aggregator - ensures all commits in a PR pass CI
+
 ---
 
 By [@mbj](https://github.com/mbj)
