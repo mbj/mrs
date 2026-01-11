@@ -27,14 +27,20 @@ allowed-duplicate-crates = [
     # Source: rand 0.8 -> getrandom 0.2, rand 0.9 -> getrandom 0.3
     "getrandom",
 
-    # sqlx (upstream) uses webpki-roots 0.26, while reqwest uses 1.0
-    # Source: sqlx-core -> webpki-roots 0.26, reqwest/hyper-rustls -> webpki-roots 1.0
+    # sqlx uses webpki-roots 0.26 which internally depends on webpki-roots 1.0
+    # Source: sqlx-core -> webpki-roots 0.26 -> webpki-roots 1.0
     # Note: We keep sqlx close to upstream to ease future updates
     "webpki-roots",
 
     # We use nom 8 while most of the ecosystem still depends on nom 7
     # Source: ociman/pg-ephemeral -> nom 8, transitive deps -> nom 7
     "nom",
+
+    # jni (Android support in rustls-platform-verifier) uses thiserror 1.x
+    # while our code uses thiserror 2.x. Android-only dep, not used on Linux.
+    # Source: rustls-platform-verifier -> jni -> thiserror 1.x
+    "thiserror",
+    "thiserror-impl",
 
     # Windows platform crates - multiple versions pulled by various dependencies
     # (ring, tokio, rustls, aws-sdk, zip, etc.) targeting different Windows APIs
