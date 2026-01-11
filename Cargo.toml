@@ -44,7 +44,7 @@ proc-macro2 = "1"
 quote = "1"
 rand = "0.9"
 regex-lite = "0.1.6"
-reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
+reqwest = { version = "0.13", features = ["json", "query", "rustls"], default-features = false }
 semver = "1"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = { version = "1.0", features = ["arbitrary_precision", "indexmap"] }
