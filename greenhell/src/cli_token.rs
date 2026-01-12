@@ -223,7 +223,10 @@ mod tests {
     #[test]
     fn accepts_legacy_40_char_hex_token() {
         let token: Token = "0123456789abcdef0123456789abcdef01234567".parse().unwrap();
-        assert_eq!(token.as_str(), "0123456789abcdef0123456789abcdef01234567");
+        assert_eq!(
+            token.as_str(),
+            "0123456789abcdef0123456789abcdef01234567"
+        );
     }
 
     #[test]
