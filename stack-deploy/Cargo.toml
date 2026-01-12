@@ -9,6 +9,7 @@ workspace = true
 [dependencies]
 aws-config = { version = "1", default-features = false }
 aws-sdk-cloudformation = { version = "1", default-features = false }
+aws-sdk-cloudwatchlogs = { version = "1", default-features = false }
 aws-sdk-lambda = { version = "1", default-features = false }
 aws-sdk-s3 = { version = "1", default-features = false }
 aws-sdk-secretsmanager = { version = "1", default-features = false }
@@ -25,6 +26,7 @@ serde_json.workspace = true
 sha2.workspace = true
 stratosphere.workspace = true
 strum.workspace = true
+thiserror.workspace = true
 tokio.workspace = true
 url.workspace = true
 uuid = { version = "1.17.0", features = ["v4"] }

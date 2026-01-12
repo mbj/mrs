@@ -26,6 +26,12 @@ rust-version = "1.92"
 
 [workspace.dependencies]
 async-stream = "0.3"
+aws-config = { version = "1", default-features = false }
+base64 = "0.22"
+aws-sdk-cloudformation = { version = "1", default-features = false }
+aws-sdk-cloudwatchlogs = { version = "1", default-features = false }
+aws-sdk-s3 = { version = "1", default-features = false }
+aws-sdk-secretsmanager = { version = "1", default-features = false }
 chrono = { version = "0.4", features = ["serde"] }
 clap = { version = "4.5", features = ["derive"] }
 cmd-proc = { version = "0.1.0", path = "cmd-proc" }
@@ -33,11 +39,13 @@ dirs = "6"
 env_logger = "0.11"
 git-proc = { version = "0.0.1", path = "git-proc" }
 hex = "0.4.3"
+hmac = "0.12"
 http = "1.3"
 indoc = "2"
 itertools = "0.14"
 log = "0.4"
 mhttp = { path = "mhttp" }
+mlambda = { path = "mlambda" }
 mmigration = { path = "mmigration" }
 nom = "8"
 nom-language = "0.1"
@@ -49,6 +57,7 @@ prettyplease = "0.2"
 proc-macro2 = "1"
 quote = "1"
 rand = "0.9"
+rcgen = "0.13"
 regex-lite = "0.1.6"
 reqwest = { version = "0.13", features = ["json", "query", "rustls"], default-features = false }
 semver = "1"
@@ -56,6 +65,7 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = { version = "1.0", features = ["arbitrary_precision", "indexmap"] }
 serde_path_to_error = "0.1"
 sha2 = "0.10"
+stack-deploy = { version = "0.0.1", path = "./stack-deploy" }
 sqlx = { version = "0.9.0-alpha.1", git = "https://github.com/mbj/sqlx", rev = "f795fe994a6973ebe872c8c619706a4244c65d54", features = ["postgres", "runtime-tokio", "tls-rustls"] }
 stratosphere = { version = "0.0.4", path = "./stratosphere" }
 stratosphere-core = { version = "0.0.4", path = "./stratosphere-core" }
