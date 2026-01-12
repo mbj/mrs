@@ -1,5 +1,6 @@
 use clap::error::ErrorKind;
-use greenhell::github::{Branch, PullRequest, Repository};
+use futures_util::StreamExt;
+use greenhell::github::{Branch, PullRequestNumber, Repository};
 
 #[derive(Debug, Eq, PartialEq, clap::Parser)]
 struct App {
@@ -52,23 +53,63 @@ enum Command {
         #[clap(subcommand)]
         command: greenhell::cli::GitHub,
     },
+    /// Watch repository events and print them
+    #[command(name = "watch-events")]
+    WatchEvents {
+        /// Target repository (owner/repo)
+        #[clap(long)]
+        repository: Repository,
+    },
+    /// Watch for PR activity and continuously evaluate
+    Watch {
+        /// Target repository (owner/repo)
+        #[clap(long)]
+        repository: Repository,
+
+        /// Poll interval for active PRs in seconds
+        #[clap(long, default_value = "20")]
+        poll_interval: u64,
+
+        /// How long a PR stays active after event activity in seconds
+        #[clap(long, default_value = "300")]
+        active_timeout: u64,
+
+        /// Print actions without executing
+        #[clap(long)]
+        dry_run: bool,
+    },
+    /// Manage secrets
+    Secrets {
+        #[clap(subcommand)]
+        command: stack_deploy::secrets::cli::Command<greenhell::secrets::Secret>,
+    },
+    /// Manage CloudFormation stack
+    Stack {
+        #[clap(subcommand)]
+        command: stack_deploy::cli::Command,
+    },
+    /// Lambda deployment
+    Lambda {
+        #[clap(subcommand)]
+        command: stack_deploy::lambda::deploy::cli::Command,
+    },
 }
 
 /// Target for evaluation: either a branch or a pull request number.
 #[derive(Debug, Eq, PartialEq)]
 enum EvaluateTarget {
     Branch(Branch),
-    PullRequest(PullRequest),
+    PullRequest(PullRequestNumber),
 }
 
 impl clap::FromArgMatches for EvaluateTarget {
     fn from_arg_matches(matches: &clap::ArgMatches) -> Result<Self, clap::Error> {
         let branch = matches.get_one::<Branch>("branch");
-        let pull_request = matches.get_one::<PullRequest>("pull_request");
+        let pull_request = matches.get_one::<PullRequestNumber>("pull_request");
 
         match (branch, pull_request) {
             (Some(branch), None) => Ok(Self::Branch(branch.clone())),
-            (None, Some(pull_request)) => Ok(Self::PullRequest(pull_request.clone())),
+            (None, Some(pull_request)) => Ok(Self::PullRequest(*pull_request)),
             (Some(_), Some(_)) => Err(clap::Error::raw(
                 ErrorKind::ArgumentConflict,
                 "--branch and --pull-request are mutually exclusive\n",
@@ -101,7 +142,7 @@ impl clap::Args for EvaluateTarget {
                     .long("pull-request")
                     .value_name("NUMBER")
                     .help("Pull request number to evaluate")
-                    .value_parser(clap::value_parser!(PullRequest)),
+                    .value_parser(clap::value_parser!(PullRequestNumber)),
             )
             .group(
                 clap::ArgGroup::new("target")
@@ -145,12 +186,12 @@ impl App {
                 let token = greenhell::cli_token::discover()?;
                 let mut client = greenhell::github::Client::new(token.token);
 
-                let (result, shas) = match target {
+                let (result, _) = match target {
                     EvaluateTarget::PullRequest(pull_request) => {
                         greenhell::evaluate::evaluate_pull_request(
                             &mut client,
                             repository,
-                            pull_request,
+                            *pull_request,
                         )
                         .await?
                     }
@@ -162,8 +203,7 @@ impl App {
 
                 log::info!("Evaluation result: {:?}", result.status);
 
-                let requests =
-                    greenhell::evaluate::build_commit_statuses(repository, &shas, &result);
+                let requests = greenhell::evaluate::build_commit_statuses(repository, &result);
 
                 if *dry_run {
                     log::info!("[dry-run] Would execute {} requests:", requests.len());
@@ -172,7 +212,10 @@ impl App {
                     }
                 } else {
                     greenhell::evaluate::execute_commit_statuses(&mut client, requests).await?;
-                    log::info!("Created commit statuses on {} commits", shas.len());
+                    log::info!(
+                        "Created commit statuses on {} commits",
+                        result.commits.len()
+                    );
                 }
             }
             Command::EvaluateAll {
@@ -192,20 +235,150 @@ impl App {
                 let mut client = greenhell::github::Client::new(token.token);
                 command.run(&mut client).await?;
             }
+            Command::WatchEvents { repository } => {
+                log::info!("Watching events on repository {repository}");
+
+                let token = greenhell::cli_token::discover()?;
+                let client = greenhell::github::Client::new(token.token);
+
+                let mut stream = std::pin::pin!(greenhell::events::stream_new_events(
+                    client,
+                    repository.clone()
+                ));
+
+                while let Some(result) = stream.next().await {
+                    match result {
+                        Ok(event) => {
+                            println!("{}: {}", event.id, event.event_type);
+                        }
+                        Err(error) => {
+                            log::error!("Event stream error: {error}");
+                            break;
+                        }
+                    }
+                }
+
+                log::warn!("Event stream desynced, full evaluation required");
+            }
+            Command::Watch {
+                repository,
+                poll_interval,
+                active_timeout,
+                dry_run,
+            } => {
+                let token = greenhell::cli_token::discover()?;
+                let client = greenhell::github::Client::new(token.token);
+
+                let config = greenhell::watch::Config {
+                    poll_interval: std::time::Duration::from_secs(*poll_interval),
+                    active_timeout: std::time::Duration::from_secs(*active_timeout),
+                };
+
+                greenhell::watch::run(client, repository.clone(), config, *dry_run).await?;
+            }
+            Command::Secrets { command } => {
+                let config = aws_config::load_defaults(aws_config::BehaviorVersion::latest()).await;
+                let cloudformation = aws_sdk_cloudformation::Client::new(&config);
+                let secretsmanager = aws_sdk_secretsmanager::Client::new(&config);
+                command.run(&cloudformation, &secretsmanager).await;
+            }
+            Command::Stack { command } => {
+                let aws_config =
+                    aws_config::load_defaults(aws_config::BehaviorVersion::latest()).await;
+                let cloudformation = aws_sdk_cloudformation::Client::new(&aws_config);
+                let registry = greenhell::stack::registry();
+
+                let config = stack_deploy::cli::Config {
+                    cloudformation: &cloudformation,
+                    registry: &registry,
+                    template_uploader: None,
+                };
+
+                command.run(&config).await;
+            }
+            Command::Lambda { command } => {
+                let target = stack_deploy::lambda::deploy::Target {
+                    binary_name: stack_deploy::lambda::deploy::BinaryName("greenhell".into()),
+                    build_target: stack_deploy::lambda::deploy::BuildTarget(
+                        "x86_64-unknown-linux-musl".into(),
+                    ),
+                    build_type: stack_deploy::lambda::deploy::BuildType::Release,
+                    extra_files: std::collections::BTreeMap::new(),
+                };
+
+                match command {
+                    stack_deploy::lambda::deploy::cli::Command::Build => {
+                        target.build();
+                    }
+                    _ => {
+                        let aws_config =
+                            aws_config::load_defaults(aws_config::BehaviorVersion::latest()).await;
+                        let cloudformation = aws_sdk_cloudformation::Client::new(&aws_config);
+                        let s3 = aws_sdk_s3::Client::new(&aws_config);
+                        let registry = greenhell::stack::registry();
+
+                        let config = stack_deploy::lambda::deploy::cli::Config {
+                            cloudformation: &cloudformation,
+                            parameter_key: stack_deploy::types::ParameterKey::from("LambdaS3Key"),
+                            registry,
+                            s3: &s3,
+                            s3_bucket_source:
+                                stack_deploy::lambda::deploy::S3BucketSource::StackOutput {
+                                    stack_name: stack_deploy::types::StackName::from(
+                                        greenhell::stack::artifacts::STACK_NAME,
+                                    ),
+                                    output_key: stack_deploy::types::OutputKey::from(
+                                        "LambdaBucketName",
+                                    ),
+                                },
+                            target,
+                            template_uploader: None,
+                        };
+
+                        command.run(&config).await;
+                    }
+                }
+            }
         }
         Ok(())
     }
 }
 
-#[tokio::main(flavor = "current_thread")]
-async fn main() {
+fn main() {
     env_logger::Builder::from_env(env_logger::Env::default().default_filter_or("info")).init();
 
-    let app = <App as clap::Parser>::parse();
-    if let Err(error) = app.run().await {
-        log::error!("{error}");
-        std::process::exit(1);
+    let binary_name = std::env::args()
+        .next()
+        .and_then(|path| path.rsplit('/').next().map(String::from))
+        .unwrap();
+
+    if binary_name == "bootstrap" {
+        run_webhook();
+    } else {
+        run_cli();
     }
+}
+
+fn run_webhook() {
+    tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap()
+        .block_on(greenhell::webhook::run());
+}
+
+fn run_cli() {
+    tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap()
+        .block_on(async {
+            let app = <App as clap::Parser>::parse();
+            if let Err(error) = app.run().await {
+                log::error!("{error}");
+                std::process::exit(1);
+            }
+        });
 }
 
 #[cfg(test)]

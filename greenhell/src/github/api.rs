@@ -1,8 +1,8 @@
 //! GitHub API request types.
 
-use super::{Client, PullRequest, Ref, Repository};
+use super::{Branch, Client, PullRequestNumber, Ref, Repository};
 
-/// Derives `Debug`, `PartialEq`, and `serde::Deserialize`.
+/// Derives `Clone`, `Debug`, `PartialEq`, and `serde::Deserialize`.
 ///
 /// Note: This macro intentionally does not use `#[serde(deny_unknown_fields)]`.
 /// GitHub's API versioning policy explicitly allows adding new response fields
@@ -22,7 +22,7 @@ macro_rules! serde_derive {
         }
     ) => {
         $(#[$attr])*
-        #[derive(Debug, PartialEq, serde::Deserialize)]
+        #[derive(Clone, Debug, PartialEq, serde::Deserialize)]
         $vis struct $name {
             $(
                 $(#[$field_attr])*
@@ -37,7 +37,7 @@ macro_rules! serde_derive {
         }
     ) => {
         $(#[$attr])*
-        #[derive(Debug, PartialEq, serde::Deserialize, serde::Serialize)]
+        #[derive(Clone, Debug, PartialEq, serde::Deserialize, serde::Serialize)]
         #[serde(rename_all = "snake_case")]
         $vis enum $name {
             $($variant),*
@@ -283,7 +283,7 @@ serde_derive! {
     /// Individual commit status.
     pub struct CommitStatus {
         pub id: u64,
-        pub state: String,
+        pub state: CommitStatusState,
         pub context: CheckName,
         pub description: Option<String>,
         pub target_url: Option<String>,
@@ -452,8 +452,8 @@ impl mhttp::Request<Client> for UpdateCheckRun {
     }
 }
 
-/// State for creating a commit status.
-#[derive(Debug, Clone, Copy, PartialEq, serde::Serialize)]
+/// State for a commit status.
+#[derive(Debug, Clone, Copy, PartialEq, serde::Deserialize, serde::Serialize)]
 #[serde(rename_all = "snake_case")]
 pub enum CommitStatusState {
     /// The status is pending.
@@ -581,7 +581,7 @@ serde_derive! {
 /// `GET /repos/{owner}/{repo}/pulls/{pull_number}`
 pub struct GetPullRequest {
     pub repository: Repository,
-    pub pull_request: PullRequest,
+    pub pull_request: PullRequestNumber,
 }
 
 impl mhttp::Request<Client> for GetPullRequest {
@@ -639,6 +639,41 @@ impl mhttp::Request<Client> for ListPullRequests {
 }
 
 impl mhttp::link::PaginatedRequest for ListPullRequests {}
+
+/// List pull requests by head branch.
+///
+/// `GET /repos/{owner}/{repo}/pulls?head={owner}:{branch}`
+pub struct ListPullRequestsByHead {
+    pub repository: Repository,
+    pub branch: Branch,
+}
+
+impl mhttp::Request<Client> for ListPullRequestsByHead {
+    type Response = mhttp::link::Paginated<Vec<PullRequestInfo>>;
+
+    mhttp::decoder!(
+        mhttp::decoder::Response::build()
+            .status_code_json(http::StatusCode::OK)
+            .paginated()
+    );
+
+    fn request_builder(
+        &self,
+        client: &reqwest::Client,
+        base_url: &mhttp::BaseUrl,
+    ) -> reqwest::RequestBuilder {
+        let head = format!("{}:{}", self.repository.owner(), self.branch);
+        client
+            .get(base_url.set_path(&format!(
+                "/repos/{}/{}/pulls",
+                self.repository.owner(),
+                self.repository.repo()
+            )))
+            .query(&[("head", head), ("per_page", MAX_PER_PAGE.to_string())])
+    }
+}
+
+impl mhttp::link::PaginatedRequest for ListPullRequestsByHead {}
 
 serde_derive! {
     /// A commit from `GET /repos/{owner}/{repo}/pulls/{pull_number}/commits`.
@@ -709,7 +744,7 @@ serde_derive! {
 /// `GET /repos/{owner}/{repo}/pulls/{pull_number}/commits`
 pub struct ListPullRequestCommits {
     pub repository: Repository,
-    pub pull_request: PullRequest,
+    pub pull_request: PullRequestNumber,
 }
 
 impl mhttp::Request<Client> for ListPullRequestCommits {
@@ -738,6 +773,153 @@ impl mhttp::Request<Client> for ListPullRequestCommits {
 }
 
 impl mhttp::link::PaginatedRequest for ListPullRequestCommits {}
+
+serde_derive! {
+    /// Event from GitHub Events API.
+    pub struct Event {
+        pub id: String,
+        #[serde(rename = "type")]
+        pub event_type: String,
+        pub created_at: String,
+        #[serde(default)]
+        pub payload: serde_json::Value,
+    }
+}
+
+/// Events page response from GitHub Events API.
+#[derive(Clone, Debug, PartialEq)]
+pub enum EventsPage {
+    /// Content with events and headers.
+    Content {
+        /// The events in this page.
+        events: Vec<Event>,
+        /// Server-recommended polling interval in seconds (from X-Poll-Interval header).
+        poll_interval: u64,
+        /// ETag for conditional requests (from ETag header).
+        etag: String,
+    },
+    /// Not modified (304) - no new events since last request.
+    NotModified,
+}
+
+/// Headers extracted from events API response.
+struct EventsHeaders {
+    poll_interval: u64,
+    etag: String,
+}
+
+fn extract_events_headers(
+    headers: &http::HeaderMap,
+) -> Result<EventsHeaders, mhttp::decoder::DecodeError> {
+    const X_POLL_INTERVAL: http::header::HeaderName =
+        http::header::HeaderName::from_static("x-poll-interval");
+
+    // GitHub's default 60s poll interval is too slow for responsive CLI feedback.
+    // We override it to 5s for better UX while still respecting rate limits.
+    let poll_interval = match headers.get(&X_POLL_INTERVAL) {
+        None => {
+            return Err(mhttp::decoder::DecodeError {
+                reason: mhttp::decoder::ErrorReason::MissingHeader {
+                    name: X_POLL_INTERVAL,
+                },
+                source: None,
+            });
+        }
+        Some(value) => {
+            let value: u64 = value
+                .to_str()
+                .ok()
+                .and_then(|value| value.parse().ok())
+                .ok_or_else(|| mhttp::decoder::DecodeError {
+                    reason: mhttp::decoder::ErrorReason::InvalidHeaderValue {
+                        name: X_POLL_INTERVAL,
+                    },
+                    source: None,
+                })?;
+            if value == 60 { 5 } else { value }
+        }
+    };
+
+    let etag = headers
+        .get(http::header::ETAG)
+        .and_then(|value| value.to_str().ok())
+        .map(|value| value.to_string())
+        .unwrap_or_default();
+
+    Ok(EventsHeaders {
+        poll_interval,
+        etag,
+    })
+}
+
+fn decode_events_page(
+    headers: EventsHeaders,
+    body: &[u8],
+) -> Result<EventsPage, mhttp::decoder::DecodeError> {
+    let events: Vec<Event> = mhttp::decoder::json(body)?;
+    Ok(EventsPage::Content {
+        events,
+        poll_interval: headers.poll_interval,
+        etag: headers.etag,
+    })
+}
+
+/// List repository events.
+///
+/// `GET /repos/{owner}/{repo}/events`
+///
+/// Returns up to 300 events from the last 30 days.
+/// If `etag` is provided, sends `If-None-Match` header for conditional request.
+pub struct ListRepositoryEvents {
+    pub repository: Repository,
+    /// ETag from previous request for conditional polling.
+    pub etag: Option<String>,
+}
+
+impl mhttp::Request<Client> for ListRepositoryEvents {
+    type Response = mhttp::link::Paginated<EventsPage>;
+
+    mhttp::decoder!(
+        mhttp::decoder::Response::build()
+            .status_code(http::StatusCode::OK, |content_types| {
+                content_types.add_with_headers(
+                    "application/json",
+                    extract_events_headers,
+                    decode_events_page,
+                );
+                content_types.add_with_headers(
+                    "application/json; charset=utf-8",
+                    extract_events_headers,
+                    decode_events_page,
+                );
+            })
+            .status_code(http::StatusCode::NOT_MODIFIED, |content_types| {
+                content_types.constant(EventsPage::NotModified);
+            })
+            .paginated()
+    );
+
+    fn request_builder(
+        &self,
+        client: &reqwest::Client,
+        base_url: &mhttp::BaseUrl,
+    ) -> reqwest::RequestBuilder {
+        let builder = client
+            .get(base_url.set_path(&format!(
+                "/repos/{}/{}/events",
+                self.repository.owner(),
+                self.repository.repo()
+            )))
+            .query(&[("per_page", MAX_PER_PAGE)]);
+
+        match &self.etag {
+            Some(etag) => builder.header(http::header::IF_NONE_MATCH, etag),
+            None => builder,
+        }
+    }
+}
+
+impl mhttp::link::PaginatedRequest for ListRepositoryEvents {}
 
 #[cfg(test)]
 mod tests {

@@ -1,5 +1,5 @@
 use crate::github::{
-    GetPullRequest, ListPullRequestCommits, ListPullRequests, PullRequest, Repository,
+    GetPullRequest, ListPullRequestCommits, ListPullRequests, PullRequestNumber, Repository,
 };
 use futures_util::StreamExt;
 use tower_service::Service;
@@ -14,13 +14,13 @@ pub enum Command {
     Get {
         /// Pull request number
         #[clap(long)]
-        number: PullRequest,
+        number: PullRequestNumber,
     },
     /// List commits on a pull request
     Commits {
         /// Pull request number
         #[clap(long)]
-        number: PullRequest,
+        number: PullRequestNumber,
     },
 }
 
@@ -49,7 +49,7 @@ impl Command {
             Self::Get { number } => {
                 let request = GetPullRequest {
                     repository: repository.clone(),
-                    pull_request: number.clone(),
+                    pull_request: *number,
                 };
                 let response = client.call(request).await?;
                 println!("{response:#?}");
@@ -58,7 +58,7 @@ impl Command {
             Self::Commits { number } => {
                 let request = ListPullRequestCommits {
                     repository: repository.clone(),
-                    pull_request: number.clone(),
+                    pull_request: *number,
                 };
                 let mut stream = std::pin::pin!(mhttp::link::paginate(client, request));
 
