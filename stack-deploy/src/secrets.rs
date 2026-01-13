@@ -97,7 +97,7 @@ pub async fn put_secret_value_string(
 pub mod cli {
     use crate::secrets::{SecretId, SecretType};
 
-    #[derive(Clone, Debug, clap::Parser)]
+    #[derive(Clone, Debug, Eq, PartialEq, clap::Parser)]
     pub struct App<T: SecretType + 'static> {
         #[clap(subcommand)]
         command: Command<T>,
@@ -115,7 +115,7 @@ pub mod cli {
         }
     }
 
-    #[derive(Clone, Debug, clap::Parser)]
+    #[derive(Clone, Debug, Eq, PartialEq, clap::Parser)]
     pub enum Command<T: SecretType + 'static> {
         /// List registered secrets
         List,
