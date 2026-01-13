@@ -4170,6 +4170,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9edde0db4769d2dc68579893f2306b26c6ecfbe0ef499b013d731b7b9247e0b9"
 
 [[package]]
+name = "wtt"
+version = "0.0.1"
+dependencies = [
+ "clap",
+ "env_logger",
+ "log",
+ "nom 8.0.0",
+ "nom-language",
+ "ociman",
+ "thiserror 2.0.17",
+]
+
+[[package]]
 name = "x509-parser"
 version = "0.18.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

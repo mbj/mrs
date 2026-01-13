@@ -3,7 +3,7 @@ mrs
 
 [![CI](https://github.com/mbj/mrs/actions/workflows/ci.yml/badge.svg)](https://github.com/mbj/mrs/actions/workflows/ci.yml)
 
-A collection of Rust tools for cloud infrastructure and PostgreSQL development.
+A collection of Rust tools for cloud infrastructure, PostgreSQL, Git, and GitHub.
 
 ## Projects
 
@@ -27,6 +27,9 @@ A collection of Rust tools for cloud infrastructure and PostgreSQL development.
 
 ### GitHub
 - [**greenhell**](greenhell/) - GitHub status check aggregator - ensures all commits in a PR pass CI
+
+### Git
+- [**wtt**](wtt/) - Work Tree Tool - manages git worktrees using bare clones
 
 ---
 

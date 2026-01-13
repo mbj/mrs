@@ -12,6 +12,7 @@ members = [
   "stratosphere",
   "stratosphere-core",
   "stratosphere-generator",
+  "wtt",
 ]
 
 resolver = "3"
@@ -63,6 +64,7 @@ tower = { version = "0.5", features = ["limit"], default-features = false }
 tower-service = "0.3"
 futures-util = { version = "0.3", default-features = false }
 url = { version = "2.5", features = ["serde"] }
+wtt = { version = "0.0.1", path = "wtt" }
 
 [workspace.lints.clippy]
 all = { level = "deny", priority = -1 }
