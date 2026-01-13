@@ -36,6 +36,7 @@ pub struct Definition {
     pub cross_container_access: bool,
     pub application_name: Option<pg_client::ApplicationName>,
     pub ssl_config: Option<definition::SslConfig>,
+    pub wait_available_timeout: std::time::Duration,
 }
 
 #[derive(Debug)]
@@ -44,6 +45,7 @@ pub struct Container {
     pub(crate) client_config: pg_client::Config,
     container: ociman::Container,
     backend: ociman::Backend,
+    wait_available_timeout: std::time::Duration,
 }
 
 impl Container {
@@ -64,6 +66,7 @@ impl Container {
             &definition.database,
             &password,
             &definition.superuser,
+            definition.wait_available_timeout,
         )
     }
 
@@ -81,6 +84,7 @@ impl Container {
             &definition.database,
             &definition.password,
             &definition.username,
+            definition.wait_available_timeout,
         )
     }
 
@@ -88,7 +92,7 @@ impl Container {
         let config = self.client_config.to_sqlx_connect_options().unwrap();
 
         let start = std::time::Instant::now();
-        let max_duration = std::time::Duration::from_secs(10);
+        let max_duration = self.wait_available_timeout;
         let sleep_duration = std::time::Duration::from_millis(100);
 
         let mut last_error: Option<_> = None;
@@ -117,7 +121,8 @@ impl Container {
         }
 
         panic!(
-            "Container did not become available within ~10 seconds! Last connection error: {last_error:#?}"
+            "Container did not become available within ~{} seconds! Last connection error: {last_error:#?}",
+            max_duration.as_secs()
         );
     }
 
@@ -249,6 +254,7 @@ fn run_container(
     database: &pg_client::Database,
     password: &pg_client::Password,
     username: &pg_client::Username,
+    wait_available_timeout: std::time::Duration,
 ) -> Container {
     let backend = backend.clone();
     let host_ip = if cross_container_access {
@@ -349,5 +355,6 @@ fn run_container(
         container,
         backend,
         client_config,
+        wait_available_timeout,
     }
 }

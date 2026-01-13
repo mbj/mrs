@@ -18,6 +18,7 @@ workspace = true
 clap.workspace = true
 env_logger.workspace = true
 hex.workspace = true
+humantime-serde = "1"
 indexmap = { version = "2.7", features = ["serde"] }
 log.workspace = true
 nom.workspace = true
