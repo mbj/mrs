@@ -7,7 +7,7 @@ pub(crate) struct RemoteOperation {
     pub(crate) stack_id: StackId,
 }
 
-#[derive(Clone, Debug, clap::ValueEnum)]
+#[derive(Clone, Debug, Eq, PartialEq, clap::ValueEnum)]
 pub enum ReviewChangeSet {
     Interactive,
     NoReview,
