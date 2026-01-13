@@ -1,0 +1,35 @@
+{
+  "name": "pg-ephemeral",
+  "version": "0.0.1",
+  "description": "Ephemeral PostgreSQL instances for testing",
+  "main": "index.js",
+  "bin": {
+    "pg-ephemeral": "./bin/pg-ephemeral.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbj/mrs.git",
+    "directory": "pg-ephemeral"
+  },
+  "homepage": "https://github.com/mbj/mrs/tree/main/pg-ephemeral",
+  "keywords": [
+    "postgresql",
+    "postgres",
+    "testing",
+    "ephemeral",
+    "database"
+  ],
+  "author": "Markus Schirp",
+  "license": "SEE LICENSE IN LICENSE",
+  "optionalDependencies": {
+    "@pg-ephemeral/linux-x64": "0.0.1",
+    "@pg-ephemeral/linux-arm64": "0.0.1",
+    "@pg-ephemeral/darwin-arm64": "0.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
