@@ -22,6 +22,9 @@ pub mod token {
 
 pub use crate::template::Template;
 
+pub mod lambda;
+pub mod logs;
+
 #[macro_export]
 macro_rules! Parameter {
     (
