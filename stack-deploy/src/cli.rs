@@ -18,7 +18,7 @@ pub struct Config<'a> {
     pub template_uploader: Option<&'a TemplateUploader<'a>>,
 }
 
-#[derive(Clone, Debug, clap::Parser)]
+#[derive(Clone, Debug, Eq, PartialEq, clap::Parser)]
 pub enum Command {
     Instance(Box<crate::cli::instance::App>),
 }
@@ -35,7 +35,7 @@ mod instance {
     use crate::instance_spec::ReviewChangeSet;
     use crate::types::*;
 
-    #[derive(Clone, Debug, clap::Parser)]
+    #[derive(Clone, Debug, Eq, PartialEq, clap::Parser)]
     pub struct App {
         #[clap(subcommand)]
         command: Command,
@@ -47,7 +47,7 @@ mod instance {
         }
     }
 
-    #[derive(Clone, Debug, clap::Parser)]
+    #[derive(Clone, Debug, Eq, PartialEq, clap::Parser)]
     pub enum ChangeSetCommand {
         Create {
             #[arg(long)]
@@ -66,7 +66,7 @@ mod instance {
         List,
     }
 
-    #[derive(Clone, Debug, clap::Parser)]
+    #[derive(Clone, Debug, Eq, PartialEq, clap::Parser)]
     pub enum Command {
         ChangeSet {
             #[arg(long = "stack-name")]

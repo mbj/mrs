@@ -70,6 +70,8 @@ async fn test_run_container_definition() {
         cross_container_access: false,
         application_name: None,
         ssl_config: None,
+        // CI environments may be slow, use 30s instead of default 10s
+        wait_available_timeout: std::time::Duration::from_secs(30),
     };
 
     let mut container = pg_ephemeral::container::Container::run_container_definition(&definition);

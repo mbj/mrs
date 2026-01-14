@@ -67,6 +67,7 @@ impl App {
                 .ssl_hostname
                 .clone()
                 .map(|hostname| crate::config::SslConfigDefinition { hostname }),
+            wait_available_timeout: None,
         };
 
         let config_file_source =

@@ -4,9 +4,7 @@ mod common;
 async fn test_base_feature() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default());
-
-    definition
+    common::test_definition(backend)
         .with_container(async |container| {
             container
                 .with_connection(async |connection| {
@@ -25,12 +23,10 @@ async fn test_base_feature() {
 async fn test_ssl_generated() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default())
+    common::test_definition(backend)
         .ssl_config(pg_ephemeral::definition::SslConfig::Generated {
             hostname: "postgresql.example.com".parse().unwrap(),
-        });
-
-    definition
+        })
         .with_container(async |container| {
             container
                 .with_connection(async |connection| {
@@ -60,6 +56,7 @@ fn test_config_file() {
                     superuser: pg_client::username!("postgres"),
                     image: "17.1".parse().unwrap(),
                     cross_container_access: false,
+                    wait_available_timeout: std::time::Duration::from_secs(10),
                 }
             ),
             (
@@ -73,6 +70,7 @@ fn test_config_file() {
                     superuser: pg_client::username!("postgres"),
                     image: "17.2".parse().unwrap(),
                     cross_container_access: false,
+                    wait_available_timeout: std::time::Duration::from_secs(10),
                 }
             )
         ]),
@@ -96,6 +94,7 @@ fn test_config_file() {
                     superuser: pg_client::username!("postgres"),
                     image: "18.0".parse().unwrap(),
                     cross_container_access: false,
+                    wait_available_timeout: std::time::Duration::from_secs(10),
                 }
             ),
             (
@@ -109,6 +108,7 @@ fn test_config_file() {
                     superuser: pg_client::username!("postgres"),
                     image: "18.0".parse().unwrap(),
                     cross_container_access: false,
+                    wait_available_timeout: std::time::Duration::from_secs(10),
                 }
             )
         ]),
@@ -119,6 +119,7 @@ fn test_config_file() {
                 image: Some("18.0".parse().unwrap()),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
+                wait_available_timeout: None,
             }
         )
         .unwrap()
@@ -139,6 +140,7 @@ fn test_config_file_no_explicit_instance() {
                 superuser: pg_client::username!("postgres"),
                 image: "17.1".parse().unwrap(),
                 cross_container_access: false,
+                wait_available_timeout: std::time::Duration::from_secs(10),
             }
         ),]),
         pg_ephemeral::Config::load_toml_file(
@@ -160,6 +162,7 @@ fn test_config_file_no_explicit_instance() {
                 superuser: pg_client::username!("postgres"),
                 image: "18.0".parse().unwrap(),
                 cross_container_access: false,
+                wait_available_timeout: std::time::Duration::from_secs(10),
             }
         ),]),
         pg_ephemeral::Config::load_toml_file(
@@ -169,6 +172,7 @@ fn test_config_file_no_explicit_instance() {
                 image: Some("18.0".parse().unwrap()),
                 seeds: indexmap::IndexMap::new(),
                 ssl_config: None,
+                wait_available_timeout: None,
             }
         )
         .unwrap()
@@ -203,6 +207,7 @@ fn test_config_ssl() {
                 superuser: pg_client::username!("postgres"),
                 image: "18.0".parse().unwrap(),
                 cross_container_access: false,
+                wait_available_timeout: std::time::Duration::from_secs(10),
             }
         )]),
         pg_ephemeral::Config::load_toml(config_str)
@@ -216,9 +221,7 @@ fn test_config_ssl() {
 async fn test_run_env() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default());
-
-    definition
+    common::test_definition(backend)
         .with_container(async |container| {
             // Use sh -c to emit both PG* and DATABASE_URL
             let output = std::process::Command::new("sh")
@@ -527,6 +530,7 @@ fn test_config_image_with_sha256_digest() {
                 superuser: pg_client::username!("postgres"),
                 image: expected_image.clone(),
                 cross_container_access: false,
+                wait_available_timeout: std::time::Duration::from_secs(10),
             }
         )]),
         pg_ephemeral::Config::load_toml(config_str)

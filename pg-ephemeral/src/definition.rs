@@ -20,6 +20,7 @@ pub struct Definition {
     pub superuser: pg_client::Username,
     pub image: crate::image::Image,
     pub cross_container_access: bool,
+    pub wait_available_timeout: std::time::Duration,
 }
 
 impl Definition {
@@ -34,6 +35,7 @@ impl Definition {
             database: pg_client::database!("postgres"),
             image,
             cross_container_access: false,
+            wait_available_timeout: std::time::Duration::from_secs(10),
         }
     }
 
@@ -130,6 +132,14 @@ impl Definition {
     pub fn cross_container_access(self, enabled: bool) -> Self {
         Self {
             cross_container_access: enabled,
+            ..self
+        }
+    }
+
+    #[must_use]
+    pub fn wait_available_timeout(self, timeout: std::time::Duration) -> Self {
+        Self {
+            wait_available_timeout: timeout,
             ..self
         }
     }
