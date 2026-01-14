@@ -28,49 +28,47 @@ Branch names containing `/` become subdirectories (e.g., `feature/login` → `~/
 Create bare clone and prepare worktree directory.
 
 ```sh
-wtt setup --repo <repo> --url <url>
+wtt setup <REPO> <URL>
 ```
 
+- `<REPO>` - Local name for the repository
+- `<URL>` - Git remote URL to clone
 - Clones bare repo to `~/.wtt/bare/<repo>.git`
 - Creates empty `~/devel/<repo>/` directory
-- Does not create any worktrees
 
 ### add
 
 Create a worktree.
 
 ```sh
-wtt add <branch> [--base <ref>] [--repo <repo>]
+wtt add [OPTIONS] <BRANCH>
 ```
 
-- `--repo` auto-detected from cwd when inside a worktree
-- `--base` defaults to repo's configured default branch
+- `<BRANCH>` - Branch name for the new worktree
+- `--base <BASE>` - Base ref for new branches (default: remote default branch)
+- `--repo <REPO>` - Repository name (default: auto-detected from current directory)
 - Auto-detects existing vs new branch:
   - If branch exists (local/remote): checkout
   - If branch doesn't exist: create from base
-- Errors if `--repo` not provided and can't detect from cwd
 
 ### list
 
 List worktrees.
 
 ```sh
-wtt list [--repo <repo>]
+wtt list [OPTIONS]
 ```
 
-- No `--repo`, outside worktree: list all repos and their worktrees
-- No `--repo`, inside worktree: list worktrees for detected repo
-- `--repo` provided: list worktrees for specified repo
+- `--repo <REPO>` - Repository name (default: auto-detected, or list all if outside worktree)
 
 ### remove
 
 Remove a worktree.
 
 ```sh
-wtt remove <branch> [--repo <repo>]
+wtt remove [OPTIONS] <BRANCH>
 ```
 
-- Deletes worktree directory only
-- Does not delete the branch
-- `--repo` auto-detected from cwd when inside a worktree
-- Errors if `--repo` not provided and can't detect from cwd
+- `<BRANCH>` - Branch name of the worktree to remove
+- `--repo <REPO>` - Repository name (default: auto-detected from current directory)
+- Deletes worktree directory only, does not delete the branch

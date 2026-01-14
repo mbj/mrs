@@ -2,6 +2,7 @@ use crate::{Command, Config, Error, RepoName, detect_repo_from_cwd, git};
 
 #[derive(Debug, clap::Parser)]
 pub struct List {
+    /// Repository name [default: auto-detected, or list all if outside worktree]
     #[clap(long)]
     repo: Option<RepoName>,
 }
@@ -10,7 +11,7 @@ impl List {
     pub fn run(self, config: &Config) -> Result<(), Error> {
         let repo = match self.repo {
             Some(repo) => Some(repo),
-            None => detect_repo_from_cwd(config),
+            None => detect_repo_from_cwd(config).ok(),
         };
 
         match repo {
