@@ -1,12 +1,12 @@
-use crate::{Command, Config, Error, RepoName};
+use crate::{Command, Config, Error, GitUrl, RepoName};
 
 #[derive(Debug, clap::Parser)]
 pub struct Setup {
-    #[clap(long)]
+    /// Local name for the repository
     repo: RepoName,
 
-    #[clap(long)]
-    url: String,
+    /// Git remote URL to clone
+    url: GitUrl,
 }
 
 impl Setup {

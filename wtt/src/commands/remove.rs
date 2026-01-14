@@ -1,9 +1,11 @@
-use crate::{Command, Config, Error, RepoName, detect_repo_from_cwd};
+use crate::{Branch, Command, Config, Error, RepoName, detect_repo_from_cwd};
 
 #[derive(Debug, clap::Parser)]
 pub struct Remove {
-    branch: String,
+    /// Branch name of the worktree to remove
+    branch: Branch,
 
+    /// Repository name [default: auto-detected from current directory]
     #[clap(long)]
     repo: Option<RepoName>,
 }
@@ -12,7 +14,7 @@ impl Remove {
     pub fn run(self, config: &Config) -> Result<(), Error> {
         let repo = match self.repo {
             Some(repo) => repo,
-            None => detect_repo_from_cwd(config).ok_or(Error::RepoDetectionFailed)?,
+            None => detect_repo_from_cwd(config)?,
         };
 
         let bare_path = config.bare_repo_path(&repo);
@@ -45,8 +47,8 @@ impl Remove {
     }
 }
 
-fn cleanup_empty_parents(config: &Config, repo: &RepoName, branch: &str) -> Result<(), Error> {
-    if !branch.contains('/') {
+fn cleanup_empty_parents(config: &Config, repo: &RepoName, branch: &Branch) -> Result<(), Error> {
+    if !branch.has_parents() {
         return Ok(());
     }
 
