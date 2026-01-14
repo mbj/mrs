@@ -13,6 +13,7 @@ pub struct Instance {
     pub superuser: pg_client::Username,
     pub image: Image,
     pub cross_container_access: bool,
+    pub wait_available_timeout: std::time::Duration,
 }
 
 impl Instance {
@@ -27,6 +28,7 @@ impl Instance {
             database: pg_client::database!("postgres"),
             image,
             cross_container_access: false,
+            wait_available_timeout: std::time::Duration::from_secs(10),
         }
     }
 
@@ -40,6 +42,7 @@ impl Instance {
             superuser: self.superuser.clone(),
             image: self.image.clone(),
             cross_container_access: self.cross_container_access,
+            wait_available_timeout: self.wait_available_timeout,
         })
     }
 }
@@ -126,6 +129,8 @@ pub struct InstanceDefinition {
     #[serde(default)]
     pub seeds: indexmap::IndexMap<SeedName, SeedConfig>,
     pub ssl_config: Option<SslConfigDefinition>,
+    #[serde(default, with = "humantime_serde")]
+    pub wait_available_timeout: Option<std::time::Duration>,
 }
 
 impl InstanceDefinition {
@@ -136,6 +141,7 @@ impl InstanceDefinition {
             image: None,
             seeds: indexmap::IndexMap::new(),
             ssl_config: None,
+            wait_available_timeout: None,
         }
     }
 
@@ -181,6 +187,12 @@ impl InstanceDefinition {
                 hostname: ssl_config_def.hostname.clone(),
             });
 
+        let wait_available_timeout = overwrites
+            .wait_available_timeout
+            .or(self.wait_available_timeout)
+            .or(defaults.wait_available_timeout)
+            .unwrap_or(std::time::Duration::from_secs(10));
+
         Ok(Instance {
             application_name: None,
             backend,
@@ -190,6 +202,7 @@ impl InstanceDefinition {
             superuser: pg_client::username!("postgres"),
             image,
             cross_container_access: false,
+            wait_available_timeout,
         })
     }
 }
@@ -200,6 +213,8 @@ pub struct Config {
     image: Option<Image>,
     backend: Option<ociman::backend::Selection>,
     ssl_config: Option<SslConfigDefinition>,
+    #[serde(default, with = "humantime_serde")]
+    wait_available_timeout: Option<std::time::Duration>,
     instances: Option<std::collections::BTreeMap<InstanceName, InstanceDefinition>>,
 }
 
@@ -209,6 +224,7 @@ impl std::default::Default for Config {
             image: Some(Image::default()),
             backend: None,
             ssl_config: None,
+            wait_available_timeout: None,
             instances: None,
         }
     }
@@ -238,6 +254,7 @@ impl Config {
             image: self.image.clone(),
             seeds: indexmap::IndexMap::new(),
             ssl_config: self.ssl_config.clone(),
+            wait_available_timeout: self.wait_available_timeout,
         };
 
         match self.instances {

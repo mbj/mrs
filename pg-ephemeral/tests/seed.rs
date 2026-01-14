@@ -36,7 +36,7 @@ async fn assert_environment_matches(
 async fn test_command_seed_receives_environment() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default())
+    let definition = common::test_definition(backend)
         .apply_file(
             "create-table".parse().unwrap(),
             "tests/fixtures/create_seed_env_table.sql".into(),
@@ -70,7 +70,7 @@ async fn test_command_seed_receives_environment() {
 async fn test_script_seed_receives_environment() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default())
+    let definition = common::test_definition(backend)
         .apply_file(
             "create-table".parse().unwrap(),
             "tests/fixtures/create_seed_env_table.sql".into(),

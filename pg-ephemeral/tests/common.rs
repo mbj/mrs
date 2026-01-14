@@ -1,3 +1,12 @@
+/// Create a test definition with extended timeout.
+///
+/// CI environments may be slow, so we use 30s instead of the default 10s.
+#[allow(dead_code)]
+pub fn test_definition(backend: ociman::Backend) -> pg_ephemeral::Definition {
+    pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default())
+        .wait_available_timeout(std::time::Duration::from_secs(30))
+}
+
 /// Run pg-ephemeral with the given arguments and assert success.
 ///
 /// Returns the captured stdout as a String.
@@ -149,8 +158,7 @@ impl Drop for TestGitRepo {
 pub async fn test_database_url_integration(language: &str, image_dir: &str) {
     let backend = ociman::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(backend.clone(), pg_ephemeral::Image::default())
-        .cross_container_access(true);
+    let definition = test_definition(backend.clone()).cross_container_access(true);
 
     definition
         .with_container(async |container| {

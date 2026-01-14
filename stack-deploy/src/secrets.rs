@@ -10,6 +10,7 @@ pub trait SecretType:
 {
     fn to_arn_output_key(&self) -> crate::types::OutputKey;
     fn to_env_variable_name(&self) -> &str;
+    fn validate(&self, input: &str) -> Result<(), String>;
 }
 
 pub async fn read_stack_secret_string_json<T: for<'a> serde::Deserialize<'a>, S: SecretType>(
@@ -97,7 +98,7 @@ pub async fn put_secret_value_string(
 pub mod cli {
     use crate::secrets::{SecretId, SecretType};
 
-    #[derive(Clone, Debug, clap::Parser)]
+    #[derive(Clone, Debug, Eq, PartialEq, clap::Parser)]
     pub struct App<T: SecretType + 'static> {
         #[clap(subcommand)]
         command: Command<T>,
@@ -115,7 +116,7 @@ pub mod cli {
         }
     }
 
-    #[derive(Clone, Debug, clap::Parser)]
+    #[derive(Clone, Debug, Eq, PartialEq, clap::Parser)]
     pub enum Command<T: SecretType + 'static> {
         /// List registered secrets
         List,
@@ -170,6 +171,8 @@ pub mod cli {
         stack_name: &crate::types::StackName,
         secret: &T,
     ) {
+        use std::io::IsTerminal;
+
         let secret_id = SecretId(
             crate::stack::read_stack_output(
                 cloudformation,
@@ -179,16 +182,30 @@ pub mod cli {
             .await,
         );
 
-        let mut secret = String::new();
+        let stdin = std::io::stdin();
+        let is_tty = stdin.is_terminal();
 
-        eprintln!(
-            "Enter secret, newline terminates reading, last character(\\n) will be ignored. Secret will be echoded:"
-        );
+        if is_tty {
+            eprintln!("Enter secret (newline terminates). Secret will be echoed:");
+        }
 
-        match std::io::stdin().read_line(&mut secret) {
+        let mut input = String::new();
+
+        match stdin.read_line(&mut input) {
             Ok(_) => {
-                secret.truncate(secret.len() - 1);
-                crate::secrets::put_secret_value_string(secretsmanager, &secret_id, &secret).await;
+                if is_tty && input.ends_with('\n') {
+                    input.truncate(input.len() - 1);
+                }
+                match secret.validate(&input) {
+                    Ok(()) => {
+                        crate::secrets::put_secret_value_string(secretsmanager, &secret_id, &input)
+                            .await;
+                    }
+                    Err(error) => {
+                        eprintln!("Validation error: {error}");
+                        std::process::exit(1);
+                    }
+                }
             }
             Err(error) => panic!("Error: {error}"),
         }
