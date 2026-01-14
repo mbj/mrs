@@ -1,12 +1,15 @@
-use crate::{Base, Command, Config, Error, RepoName, detect_repo_from_cwd, git};
+use crate::{Base, Branch, Command, Config, Error, RepoName, detect_repo_from_cwd, git};
 
 #[derive(Debug, clap::Parser)]
 pub struct Add {
-    branch: String,
+    /// Branch name for the new worktree
+    branch: Branch,
 
+    /// Base ref for new branches [default: remote default branch]
     #[clap(long)]
     base: Option<Base>,
 
+    /// Repository name [default: auto-detected from current directory]
     #[clap(long)]
     repo: Option<RepoName>,
 }
@@ -15,7 +18,7 @@ impl Add {
     pub fn run(self, config: &Config) -> Result<(), Error> {
         let repo = match self.repo {
             Some(repo) => repo,
-            None => detect_repo_from_cwd(config).ok_or(Error::RepoDetectionFailed)?,
+            None => detect_repo_from_cwd(config)?,
         };
 
         let bare_path = config.bare_repo_path(&repo);
@@ -87,7 +90,10 @@ impl Add {
     }
 }
 
-fn branch_exists(bare_path: &std::path::Path, branch: &str) -> Result<bool, crate::CommandError> {
+fn branch_exists(
+    bare_path: &std::path::Path,
+    branch: &Branch,
+) -> Result<bool, crate::CommandError> {
     let local_result = Command::new("git")
         .argument("-C")
         .argument(bare_path)
