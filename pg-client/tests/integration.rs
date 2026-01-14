@@ -2,7 +2,9 @@
 async fn test_with_sqlx_connection() {
     let backend = ociman::test_backend_setup!();
 
-    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default());
+    // CI environments may be slow, use 30s instead of default 10s
+    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default())
+        .wait_available_timeout(std::time::Duration::from_secs(30));
 
     definition
         .with_container(async |container| {
