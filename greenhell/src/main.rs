@@ -78,6 +78,21 @@ enum Command {
         #[clap(long)]
         dry_run: bool,
     },
+    /// Manage secrets
+    Secrets {
+        #[clap(subcommand)]
+        command: stack_deploy::secrets::cli::Command<greenhell::secrets::Secret>,
+    },
+    /// Manage CloudFormation stack
+    Stack {
+        #[clap(subcommand)]
+        command: stack_deploy::cli::Command,
+    },
+    /// Lambda deployment
+    Lambda {
+        #[clap(subcommand)]
+        command: stack_deploy::lambda::deploy::cli::Command,
+    },
 }
 
 /// Target for evaluation: either a branch or a pull request number.
@@ -261,20 +276,112 @@ impl App {
 
                 greenhell::watch::run(client, repository.clone(), config, *dry_run).await?;
             }
+            Command::Secrets { command } => {
+                let config = aws_config::load_defaults(aws_config::BehaviorVersion::latest()).await;
+                let cloudformation = aws_sdk_cloudformation::Client::new(&config);
+                let secretsmanager = aws_sdk_secretsmanager::Client::new(&config);
+                command.run(&cloudformation, &secretsmanager).await;
+            }
+            Command::Stack { command } => {
+                let aws_config =
+                    aws_config::load_defaults(aws_config::BehaviorVersion::latest()).await;
+                let cloudformation = aws_sdk_cloudformation::Client::new(&aws_config);
+                let registry = greenhell::stack::registry();
+
+                let config = stack_deploy::cli::Config {
+                    cloudformation: &cloudformation,
+                    registry: &registry,
+                    template_uploader: None,
+                };
+
+                command.run(&config).await;
+            }
+            Command::Lambda { command } => {
+                let target = stack_deploy::lambda::deploy::Target {
+                    binary_name: stack_deploy::lambda::deploy::BinaryName("greenhell".into()),
+                    build_target: stack_deploy::lambda::deploy::BuildTarget(
+                        "x86_64-unknown-linux-musl".into(),
+                    ),
+                    build_type: stack_deploy::lambda::deploy::BuildType::Release,
+                    extra_files: std::collections::BTreeMap::new(),
+                };
+
+                match command {
+                    stack_deploy::lambda::deploy::cli::Command::Build => {
+                        target.build();
+                    }
+                    _ => {
+                        let aws_config =
+                            aws_config::load_defaults(aws_config::BehaviorVersion::latest()).await;
+                        let cloudformation = aws_sdk_cloudformation::Client::new(&aws_config);
+                        let s3 = aws_sdk_s3::Client::new(&aws_config);
+                        let registry = greenhell::stack::registry();
+
+                        let config = stack_deploy::lambda::deploy::cli::Config {
+                            cloudformation: &cloudformation,
+                            parameter_key: stack_deploy::types::ParameterKey::from("LambdaS3Key"),
+                            registry,
+                            s3: &s3,
+                            s3_bucket_source:
+                                stack_deploy::lambda::deploy::S3BucketSource::StackOutput {
+                                    stack_name: stack_deploy::types::StackName::from(
+                                        greenhell::stack::artifacts::STACK_NAME,
+                                    ),
+                                    output_key: stack_deploy::types::OutputKey::from(
+                                        "LambdaBucketName",
+                                    ),
+                                },
+                            target,
+                            template_uploader: None,
+                        };
+
+                        command.run(&config).await;
+                    }
+                }
+            }
         }
         Ok(())
     }
 }
 
-#[tokio::main(flavor = "current_thread")]
-async fn main() {
-    env_logger::Builder::from_env(env_logger::Env::default().default_filter_or("info")).init();
+fn main() {
+    let binary_name = std::env::args()
+        .next()
+        .and_then(|path| path.rsplit('/').next().map(String::from))
+        .unwrap();
 
-    let app = <App as clap::Parser>::parse();
-    if let Err(error) = app.run().await {
-        log::error!("{error}");
-        std::process::exit(1);
+    let mut builder =
+        env_logger::Builder::from_env(env_logger::Env::default().default_filter_or("info"));
+
+    if binary_name == "bootstrap" {
+        builder.format_timestamp(None).init();
+        run_webhook();
+    } else {
+        builder.init();
+        run_cli();
     }
+}
+
+fn run_webhook() {
+    tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap()
+        .block_on(greenhell::webhook::run());
+}
+
+fn run_cli() {
+    tokio::runtime::Builder::new_current_thread()
+        .enable_all()
+        .build()
+        .unwrap()
+        .block_on(async {
+            let app = <App as clap::Parser>::parse();
+            if let Err(error) = app.run().await {
+                log::error!("{error}");
+                std::process::exit(1);
+            }
+        });
 }
 
 #[cfg(test)]
