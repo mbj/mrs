@@ -1,5 +1,7 @@
 use std::path::PathBuf;
 
+use crate::Branch;
+
 #[derive(Clone, Debug)]
 pub struct Config {
     pub bare_clone_dir: PathBuf,
@@ -28,7 +30,7 @@ impl Config {
     }
 
     #[must_use]
-    pub fn worktree_path(&self, repo: &crate::RepoName, branch: &str) -> PathBuf {
-        self.worktree_base_path(repo).join(branch)
+    pub fn worktree_path(&self, repo: &crate::RepoName, branch: &Branch) -> PathBuf {
+        self.worktree_base_path(repo).join(branch.as_str())
     }
 }

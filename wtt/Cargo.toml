@@ -2,20 +2,26 @@
 name = "wtt"
 version = "0.0.1"
 edition.workspace = true
-rust-version.workspace = true
 authors.workspace = true
-
-[dependencies]
-clap = { workspace = true }
-env_logger = { workspace = true }
-log = { workspace = true }
-nom = { workspace = true }
-nom-language = { workspace = true }
-ociman = { workspace = true }
-thiserror = { workspace = true }
+rust-version.workspace = true
+description = "Git worktree manager using bare clones"
+license = "MIT"
+repository = "https://github.com/mbj/mrs/tree/main/wtt"
+readme = "README.md"
+keywords = ["git", "worktree", "bare", "clone"]
+categories = ["development-tools"]
 
 [lints]
 workspace = true
+
+[dependencies]
+clap.workspace = true
+env_logger.workspace = true
+log.workspace = true
+nom.workspace = true
+nom-language.workspace = true
+ociman.workspace = true
+thiserror.workspace = true
 
 [[bin]]
 name = "wtt"
