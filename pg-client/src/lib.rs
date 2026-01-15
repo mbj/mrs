@@ -133,7 +133,14 @@ impl From<std::net::IpAddr> for Host {
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
-pub struct HostAddr(pub std::net::IpAddr);
+pub struct HostAddr(std::net::IpAddr);
+
+impl HostAddr {
+    #[must_use]
+    pub const fn new(ip: std::net::IpAddr) -> Self {
+        Self(ip)
+    }
+}
 
 impl From<std::net::IpAddr> for HostAddr {
     /// # Example
@@ -143,10 +150,22 @@ impl From<std::net::IpAddr> for HostAddr {
     ///
     /// let ip: IpAddr = "192.168.1.1".parse().unwrap();
     /// let host_addr = HostAddr::from(ip);
-    /// assert_eq!(host_addr.0.to_string(), "192.168.1.1");
+    /// assert_eq!(IpAddr::from(host_addr).to_string(), "192.168.1.1");
     /// ```
     fn from(value: std::net::IpAddr) -> Self {
         Self(value)
+    }
+}
+
+impl From<HostAddr> for std::net::IpAddr {
+    fn from(value: HostAddr) -> Self {
+        value.0
+    }
+}
+
+impl From<&HostAddr> for std::net::IpAddr {
+    fn from(value: &HostAddr) -> Self {
+        value.0
     }
 }
 
@@ -231,7 +250,18 @@ impl serde::Serialize for Endpoint {
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize)]
-pub struct Port(pub u16);
+pub struct Port(u16);
+
+impl Port {
+    #[must_use]
+    pub const fn new(port: u16) -> Self {
+        Self(port)
+    }
+
+    fn to_pg_env_value(self) -> String {
+        self.0.to_string()
+    }
+}
 
 impl std::str::FromStr for Port {
     type Err = &'static str;
@@ -244,9 +274,9 @@ impl std::str::FromStr for Port {
     }
 }
 
-impl Port {
-    fn to_pg_env_value(self) -> String {
-        self.0.to_string()
+impl From<u16> for Port {
+    fn from(port: u16) -> Self {
+        Self(port)
     }
 }
 
@@ -494,7 +524,7 @@ impl Config {
     ///     endpoint: Endpoint::Network {
     ///         host: Host::from_str("some-host").unwrap(),
     ///         host_addr: None,
-    ///         port: Some(Port(5432)),
+    ///         port: Some(Port::new(5432)),
     ///     },
     ///     password: None,
     ///     ssl_mode: SslMode::VerifyFull,
@@ -531,7 +561,7 @@ impl Config {
     ///         endpoint: Endpoint::Network {
     ///             host: Host::from_str("some-host").unwrap(),
     ///             host_addr: Some("127.0.0.1".parse().unwrap()),
-    ///             port: Some(Port(5432)),
+    ///             port: Some(Port::new(5432)),
     ///         },
     ///         ..config.clone()
     ///     }.to_url()
@@ -544,7 +574,7 @@ impl Config {
     ///     endpoint: Endpoint::Network {
     ///         host: Host::IpAddr(std::net::IpAddr::V4(std::net::Ipv4Addr::new(127, 0, 0, 1))),
     ///         host_addr: None,
-    ///         port: Some(Port(5432)),
+    ///         port: Some(Port::new(5432)),
     ///     },
     ///     password: None,
     ///     ssl_mode: SslMode::Disable,
@@ -563,7 +593,7 @@ impl Config {
     ///     endpoint: Endpoint::Network {
     ///         host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::LOCALHOST)),
     ///         host_addr: None,
-    ///         port: Some(Port(5432)),
+    ///         port: Some(Port::new(5432)),
     ///     },
     ///     password: None,
     ///     ssl_mode: SslMode::Disable,
@@ -659,7 +689,7 @@ impl Config {
     ///     endpoint: Endpoint::Network {
     ///         host: "some-host".parse().unwrap(),
     ///         host_addr: None,
-    ///         port: Some(Port(5432)),
+    ///         port: Some(Port::new(5432)),
     ///     },
     ///     password: None,
     ///     ssl_mode: SslMode::VerifyFull,
@@ -682,7 +712,7 @@ impl Config {
     ///     endpoint: Endpoint::Network {
     ///         host: "some-host".parse().unwrap(),
     ///         host_addr: Some("127.0.0.1".parse().unwrap()),
-    ///         port: Some(Port(5432)),
+    ///         port: Some(Port::new(5432)),
     ///     },
     ///     password: Some("some-password".parse().unwrap()),
     ///     ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
@@ -762,7 +792,7 @@ impl Config {
     ///     endpoint: Endpoint::Network {
     ///         host: Host::from_str("some-host").unwrap(),
     ///         host_addr: None,
-    ///         port: Some(Port(5432)),
+    ///         port: Some(Port::new(5432)),
     ///     },
     ///     password: Some(Password::from_str("some-password").unwrap()),
     ///     ssl_mode: SslMode::VerifyFull,
@@ -1170,7 +1200,7 @@ mod test {
             endpoint: Endpoint::Network {
                 host: Host::from_str("some-host").unwrap(),
                 host_addr: None,
-                port: Some(Port(5432)),
+                port: Some(Port::new(5432)),
             },
             password: None,
             ssl_mode: SslMode::VerifyFull,
@@ -1231,7 +1261,7 @@ mod test {
                 endpoint: Endpoint::Network {
                     host: Host::from_str("127.0.0.1").unwrap(),
                     host_addr: None,
-                    port: Some(Port(5432)),
+                    port: Some(Port::new(5432)),
                 },
                 ..config.clone()
             },
@@ -1287,7 +1317,7 @@ mod test {
                 endpoint: Endpoint::Network {
                     host: Host::from_str("some-host").unwrap(),
                     host_addr: Some("192.168.1.100".parse().unwrap()),
-                    port: Some(Port(5432)),
+                    port: Some(Port::new(5432)),
                 },
                 ..config.clone()
             },
@@ -1346,7 +1376,7 @@ mod test {
             endpoint: Endpoint::Network {
                 host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::LOCALHOST)),
                 host_addr: None,
-                port: Some(Port(5432)),
+                port: Some(Port::new(5432)),
             },
             password: None,
             ssl_mode: SslMode::Disable,
@@ -1370,7 +1400,7 @@ mod test {
                     0xfe80, 0, 0, 0, 0, 0, 0, 1,
                 ))),
                 host_addr: None,
-                port: Some(Port(5432)),
+                port: Some(Port::new(5432)),
             },
             password: None,
             ssl_mode: SslMode::Disable,
@@ -1394,7 +1424,7 @@ mod test {
                     0x2001, 0x0db8, 0, 0, 0, 0, 0, 1,
                 ))),
                 host_addr: None,
-                port: Some(Port(5432)),
+                port: Some(Port::new(5432)),
             },
             password: None,
             ssl_mode: SslMode::Disable,
@@ -1416,7 +1446,7 @@ mod test {
             endpoint: Endpoint::Network {
                 host: Host::IpAddr(std::net::IpAddr::V4(std::net::Ipv4Addr::LOCALHOST)),
                 host_addr: None,
-                port: Some(Port(5432)),
+                port: Some(Port::new(5432)),
             },
             password: None,
             ssl_mode: SslMode::Disable,
@@ -1438,7 +1468,7 @@ mod test {
             endpoint: Endpoint::Network {
                 host: Host::from_str("localhost").unwrap(),
                 host_addr: None,
-                port: Some(Port(5432)),
+                port: Some(Port::new(5432)),
             },
             password: None,
             ssl_mode: SslMode::Disable,
