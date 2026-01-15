@@ -357,8 +357,11 @@ impl Password {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
+#[derive(
+    Clone, Debug, PartialEq, Eq, serde::Serialize, strum::IntoStaticStr, strum::EnumString,
+)]
 #[serde(rename_all = "kebab-case")]
+#[strum(serialize_all = "kebab-case")]
 pub enum SslMode {
     Allow,
     Disable,
@@ -371,14 +374,7 @@ pub enum SslMode {
 impl SslMode {
     #[must_use]
     pub fn as_str(&self) -> &'static str {
-        match self {
-            Self::Allow => "allow",
-            Self::Disable => "disable",
-            Self::Prefer => "prefer",
-            Self::Require => "require",
-            Self::VerifyCa => "verify-ca",
-            Self::VerifyFull => "verify-full",
-        }
+        self.into()
     }
 
     fn to_sqlx_ssl_mode(&self) -> sqlx::postgres::PgSslMode {
