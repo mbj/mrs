@@ -42,23 +42,20 @@ impl Add {
             .argument("--all")
             .status()?;
 
-        let branch_exists = branch_exists(&bare_path, &self.branch)?;
+        let mut command = Command::new("git")
+            .argument("-C")
+            .argument(&bare_path)
+            .argument("worktree")
+            .argument("add");
 
-        if branch_exists {
+        if branch_exists(&bare_path, &self.branch)? {
             log::info!(
                 "Creating worktree for existing branch '{}' at {}",
                 self.branch,
                 worktree_path.display()
             );
 
-            Command::new("git")
-                .argument("-C")
-                .argument(&bare_path)
-                .argument("worktree")
-                .argument("add")
-                .argument(&worktree_path)
-                .argument(&self.branch)
-                .status()?;
+            command = command.argument(&worktree_path).argument(&self.branch);
         } else {
             let base = match self.base {
                 Some(base) => base,
@@ -72,17 +69,16 @@ impl Add {
                 worktree_path.display()
             );
 
-            Command::new("git")
-                .argument("-C")
-                .argument(&bare_path)
-                .argument("worktree")
-                .argument("add")
+            command = command
                 .argument("-b")
                 .argument(&self.branch)
                 .argument(&worktree_path)
-                .argument(&base)
-                .status()?;
+                .argument(&base);
         }
+
+        command.status()?;
+
+        set_upstream(&worktree_path, &self.branch)?;
 
         log::info!("Worktree created at {}", worktree_path.display());
 
@@ -136,4 +132,19 @@ fn get_remote_default_branch(bare_path: &std::path::Path) -> Result<Base, Error>
     format!("origin/{branch}")
         .parse()
         .map_err(|_| Error::DefaultBranchNotFound)
+}
+
+fn set_upstream(
+    worktree_path: &std::path::Path,
+    branch: &Branch,
+) -> Result<(), crate::CommandError> {
+    log::info!("Setting upstream to origin/{branch}");
+
+    Command::new("git")
+        .argument("-C")
+        .argument(worktree_path)
+        .argument("branch")
+        .argument("--set-upstream-to")
+        .argument(format!("origin/{branch}"))
+        .status()
 }
