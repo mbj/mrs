@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.3
+
+- Add `--force` option to `wtt remove` to bypass dirty checkout limitations
+- Add `rm` alias for the `remove` command
+
 ## 0.0.2
 
 - Fix `wtt add` to use `origin/<branch>` as base when creating new worktrees,
