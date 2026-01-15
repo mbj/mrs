@@ -8,21 +8,82 @@ use nom::{
     sequence::{pair, preceded},
 };
 
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
+pub struct FeatureName(String);
+
+impl FeatureName {
+    #[must_use]
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
+impl std::fmt::Display for FeatureName {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter) -> Result<(), std::fmt::Error> {
+        write!(formatter, "{}", self.0)
+    }
+}
+
 #[derive(Debug, serde::Deserialize)]
 #[serde(deny_unknown_fields, rename_all = "PascalCase")]
-pub struct ResourceSpecification<'a> {
+struct ResourceSpecificationInner<'a> {
     #[serde(borrow = "'a")]
+    property_types: PropertyTypeMap<'a>,
+    resource_specification_version: ResourceSpecificationVersion<'a>,
+    resource_types: ResourceTypeMap<'a>,
+}
+
+#[derive(Debug)]
+pub struct ResourceSpecification<'a> {
     pub property_types: PropertyTypeMap<'a>,
     pub resource_specification_version: ResourceSpecificationVersion<'a>,
     pub resource_types: ResourceTypeMap<'a>,
+    feature_names: BTreeMap<ServiceIdentifier<'a>, FeatureName>,
 }
 
-impl ResourceSpecification<'_> {
+impl<'a> From<ResourceSpecificationInner<'a>> for ResourceSpecification<'a> {
+    fn from(inner: ResourceSpecificationInner<'a>) -> Self {
+        let feature_names = inner
+            .resource_types
+            .keys()
+            .map(|resource_type_name| {
+                let service = resource_type_name.service.clone();
+                let feature_name = FeatureName(format!(
+                    "{}_{}",
+                    service.vendor_name.as_str().to_lowercase(),
+                    service.service_name.as_str().to_lowercase()
+                ));
+                (service, feature_name)
+            })
+            .collect();
+
+        Self {
+            property_types: inner.property_types,
+            resource_specification_version: inner.resource_specification_version,
+            resource_types: inner.resource_types,
+            feature_names,
+        }
+    }
+}
+
+impl<'a> ResourceSpecification<'a> {
     fn load_from_file() -> ResourceSpecification<'static> {
-        serde_json::from_slice(include_bytes!(
+        let inner: ResourceSpecificationInner<'static> = serde_json::from_slice(include_bytes!(
             "../CloudFormationResourceSpecification.json"
         ))
-        .unwrap()
+        .unwrap();
+        inner.into()
+    }
+
+    pub fn feature_names(&self) -> impl Iterator<Item = &FeatureName> {
+        self.feature_names.values()
+    }
+
+    #[must_use]
+    pub fn feature_name(&self, service: &ServiceIdentifier<'a>) -> &FeatureName {
+        self.feature_names
+            .get(service)
+            .expect("unknown service identifier")
     }
 }
 
@@ -477,5 +538,26 @@ mod tests {
     #[test]
     fn parses_resource_specification() {
         eprintln!("{:#?}", &*INSTANCE);
+    }
+
+    #[test]
+    fn feature_names_contains_aws_s3() {
+        let spec = instance();
+        let feature_names: Vec<_> = spec.feature_names().collect();
+
+        assert!(feature_names.iter().any(|name| name.as_str() == "aws_s3"));
+    }
+
+    #[test]
+    fn feature_name_for_s3_service() {
+        let spec = instance();
+        let s3_service = ServiceIdentifier {
+            vendor_name: VendorName("AWS"),
+            service_name: ServiceName("S3"),
+        };
+
+        let feature_name = spec.feature_name(&s3_service);
+
+        assert_eq!(feature_name.as_str(), "aws_s3");
     }
 }
