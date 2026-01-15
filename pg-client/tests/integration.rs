@@ -57,7 +57,7 @@ async fn test_with_sqlx_connection_error_on_unavailable_database() {
 
     let error = result.unwrap_err();
     match error {
-        pg_client::SqlxConnectionError::Connect(_) => {
+        pg_client::sqlx::ConnectionError::Connect(_) => {
             // Expected error variant
         }
         other => panic!("Expected Connect error, got: {other:?}"),

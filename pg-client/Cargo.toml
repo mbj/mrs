@@ -14,10 +14,14 @@ categories = ["database"]
 [lints]
 workspace = true
 
+[features]
+default = []
+sqlx = ["dep:sqlx"]
+
 [dependencies]
 hostname-validator = "1.1.1"
 serde.workspace = true
-sqlx.workspace = true
+sqlx = { workspace = true, optional = true }
 strum.workspace = true
 thiserror.workspace = true
 url.workspace = true
@@ -28,4 +32,5 @@ ociman.workspace = true
 pg-ephemeral.workspace = true
 pretty_assertions.workspace = true
 serde_json.workspace = true
+sqlx.workspace = true
 tokio.workspace = true
