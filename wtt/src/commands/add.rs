@@ -62,7 +62,7 @@ impl Add {
         } else {
             let base = match self.base {
                 Some(base) => base,
-                None => get_default_branch(&bare_path)?,
+                None => get_remote_default_branch(&bare_path)?,
             };
 
             log::info!(
@@ -119,7 +119,7 @@ fn branch_exists(
     Ok(!remote_output.trim().is_empty())
 }
 
-fn get_default_branch(bare_path: &std::path::Path) -> Result<Base, Error> {
+fn get_remote_default_branch(bare_path: &std::path::Path) -> Result<Base, Error> {
     let output = Command::new("git")
         .argument("-C")
         .argument(bare_path)
@@ -130,5 +130,9 @@ fn get_default_branch(bare_path: &std::path::Path) -> Result<Base, Error> {
         .stdout()
         .string()?;
 
-    git::parse_default_branch(&output).map_err(|_| Error::DefaultBranchNotFound)
+    let branch = git::parse_default_branch(&output).map_err(|_| Error::DefaultBranchNotFound)?;
+
+    format!("origin/{branch}")
+        .parse()
+        .map_err(|_| Error::DefaultBranchNotFound)
 }
