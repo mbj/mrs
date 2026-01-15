@@ -52,7 +52,7 @@ jobs:
       run: cargo --verbose fmt --check
 
     - name: Build all targets
-      run: cargo --verbose build --all-targets --release
+      run: cargo --verbose build --all-targets --all-features --release
 
     - name: Check for dirty repository
       run: git diff --exit-code
@@ -60,8 +60,11 @@ jobs:
     - name: Run repository lint
       run: target/${{ matrix.os.cargo_build_target }}/release/manager repository-lint rust-version
 
+    - name: Verify stratosphere generated code is committed
+      run: target/${{ matrix.os.cargo_build_target }}/release/manager stratosphere sync --reject-dirty
+
     - name: Run clippy
-      run: cargo --verbose clippy --release
+      run: cargo --verbose clippy --all-features --release
 
     - name: Install nextest
       uses: taiki-e/install-action@90558ad1e179036f31467972b00dec6cb80701fa # v2.66.3
@@ -70,9 +73,9 @@ jobs:
 
     - name: Run tests
       run: |
-        cargo --verbose nextest run --release
+        cargo --verbose nextest run --all-features --release
         # Podman on GH actions is old <5.x cannot deal corectly with concurrent access to overlay storage.
-        OCIMAN_BACKEND=podman cargo --verbose nextest run --release --package ociman --test-threads=1
+        OCIMAN_BACKEND=podman cargo --verbose nextest run --all-features --release --package ociman --test-threads=1
 
     - name: Set up Ruby 3.4 for macOS gem build
       if: ${{ endsWith(matrix.os.cargo_build_target, '-darwin') }}
