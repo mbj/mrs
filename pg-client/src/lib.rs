@@ -4,7 +4,7 @@
 macro_rules! from_str_impl {
     ($struct: ident, $min: expr, $max: expr) => {
         impl std::str::FromStr for $struct {
-            type Err = &'static str;
+            type Err = String;
 
             fn from_str(value: &str) -> Result<Self, Self::Err> {
                 let min_length = Self::MIN_LENGTH;
@@ -12,17 +12,17 @@ macro_rules! from_str_impl {
                 let actual = value.len();
 
                 if actual < min_length {
-                    Err(concat!(
-                        stringify!($struct),
-                        " byte min length: {min_length} violated, got: {actual}"
+                    Err(format!(
+                        "{} byte min length: {min_length} violated, got: {actual}",
+                        stringify!($struct)
                     ))
                 } else if actual > max_length {
-                    Err(concat!(
-                        stringify!($struct),
-                        " byte max length: {max_length} violated, got: {actual}"
+                    Err(format!(
+                        "{} byte max length: {max_length} violated, got: {actual}",
+                        stringify!($struct)
                     ))
                 } else if value.as_bytes().contains(&0) {
-                    Err(concat!(stringify!($struct), " contains NUL byte"))
+                    Err(format!("{} contains NUL byte", stringify!($struct)))
                 } else {
                     Ok(Self(value.to_string()))
                 }
@@ -927,10 +927,7 @@ mod test {
 
         let err = ApplicationName::from_str(&value).expect_err("expected min length failure");
 
-        assert_eq!(
-            err,
-            "ApplicationName byte min length: {min_length} violated, got: {actual}"
-        );
+        assert_eq!(err, "ApplicationName byte min length: 1 violated, got: 0");
     }
 
     #[test]
@@ -979,10 +976,7 @@ mod test {
 
         let err = ApplicationName::from_str(&value).expect_err("expected max length failure");
 
-        assert_eq!(
-            err,
-            "ApplicationName byte max length: {max_length} violated, got: {actual}"
-        );
+        assert_eq!(err, "ApplicationName byte max length: 63 violated, got: 64");
     }
 
     #[test]
@@ -1000,10 +994,7 @@ mod test {
 
         let err = Database::from_str(&value).expect_err("expected min length failure");
 
-        assert_eq!(
-            err,
-            "Database byte min length: {min_length} violated, got: {actual}"
-        );
+        assert_eq!(err, "Database byte min length: 1 violated, got: 0");
     }
 
     #[test]
@@ -1048,10 +1039,7 @@ mod test {
 
         let err = Database::from_str(&value).expect_err("expected max length failure");
 
-        assert_eq!(
-            err,
-            "Database byte max length: {max_length} violated, got: {actual}"
-        );
+        assert_eq!(err, "Database byte max length: 63 violated, got: 64");
     }
 
     #[test]
@@ -1069,10 +1057,7 @@ mod test {
 
         let err = Username::from_str(&value).expect_err("expected min length failure");
 
-        assert_eq!(
-            err,
-            "Username byte min length: {min_length} violated, got: {actual}"
-        );
+        assert_eq!(err, "Username byte min length: 1 violated, got: 0");
     }
 
     #[test]
@@ -1117,10 +1102,7 @@ mod test {
 
         let err = Username::from_str(&value).expect_err("expected max length failure");
 
-        assert_eq!(
-            err,
-            "Username byte max length: {max_length} violated, got: {actual}"
-        );
+        assert_eq!(err, "Username byte max length: 63 violated, got: 64");
     }
 
     #[test]
@@ -1174,10 +1156,7 @@ mod test {
 
         let err = Password::from_str(&value).expect_err("expected max length failure");
 
-        assert_eq!(
-            err,
-            "Password byte max length: {max_length} violated, got: {actual}"
-        );
+        assert_eq!(err, "Password byte max length: 4096 violated, got: 4097");
     }
 
     #[test]
