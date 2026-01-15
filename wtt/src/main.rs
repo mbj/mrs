@@ -19,6 +19,7 @@ enum Command {
     Setup(commands::Setup),
     Add(commands::Add),
     List(commands::List),
+    #[clap(visible_alias = "rm")]
     Remove(commands::Remove),
 }
 
