@@ -14,12 +14,29 @@ cargo install --path wtt
 
 ## Paths
 
-| Type | Location |
-|------|----------|
-| Bare clones | `~/.wtt/bare/<repo>.git` |
-| Worktrees | `~/devel/<repo>/<branch>/` |
+| Type        | Default Location                       |
+|-------------|----------------------------------------|
+| Config      | `~/.config/wtt.toml`                   |
+| Bare clones | `~/.local/share/wtt/bare/<repo>.git`   |
+| Worktrees   | `~/devel/<repo>/<branch>/`             |
 
 Branch names containing `/` become subdirectories (e.g., `feature/login` → `~/devel/myrepo/feature/login/`).
+
+## Configuration
+
+Configuration is loaded from `~/.config/wtt.toml` by default. All fields are optional.
+
+```toml
+bare_clone_dir = "/path/to/bare/clones"
+worktree_dir = "/path/to/worktrees"
+```
+
+### CLI Flags
+
+| Flag                    | Description                            |
+|-------------------------|----------------------------------------|
+| `--config-file <PATH>`  | Load configuration from specified file |
+| `--no-config-file`      | Disable configuration file loading     |
 
 ## Commands
 
@@ -33,7 +50,7 @@ wtt setup <REPO> <URL>
 
 - `<REPO>` - Local name for the repository
 - `<URL>` - Git remote URL to clone
-- Clones bare repo to `~/.wtt/bare/<repo>.git`
+- Clones bare repo to `~/.local/share/wtt/bare/<repo>.git`
 - Creates empty `~/devel/<repo>/` directory
 
 ### add
