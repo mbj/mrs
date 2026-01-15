@@ -8,6 +8,9 @@ pub struct Remove {
     /// Repository name [default: auto-detected from current directory]
     #[clap(long)]
     repo: Option<RepoName>,
+
+    #[clap(long)]
+    force: bool,
 }
 
 impl Remove {
@@ -31,13 +34,17 @@ impl Remove {
 
         log::info!("Removing worktree at {}", worktree_path.display());
 
-        Command::new("git")
+        let mut command = Command::new("git")
             .argument("-C")
             .argument(&bare_path)
             .argument("worktree")
-            .argument("remove")
-            .argument(&worktree_path)
-            .status()?;
+            .argument("remove");
+
+        if self.force {
+            command = command.argument("--force");
+        }
+
+        command.argument(&worktree_path).status()?;
 
         cleanup_empty_parents(config, &repo, &self.branch)?;
 
