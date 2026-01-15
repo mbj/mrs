@@ -116,13 +116,6 @@ impl std::str::FromStr for Host {
     }
 }
 
-#[macro_export]
-macro_rules! host {
-    ($string: literal) => {
-        <pg_client::Host as std::str::FromStr>::from_str($string).unwrap()
-    };
-}
-
 impl From<HostName> for Host {
     fn from(value: HostName) -> Self {
         Self::HostName(value)
@@ -300,13 +293,6 @@ pub struct ApplicationName(String);
 
 from_str_impl!(ApplicationName, 1, 63);
 
-#[macro_export]
-macro_rules! application_name {
-    ($string: literal) => {
-        <pg_client::ApplicationName as std::str::FromStr>::from_str($string).unwrap()
-    };
-}
-
 impl ApplicationName {
     fn to_pg_env_value(&self) -> String {
         self.0.clone()
@@ -318,13 +304,6 @@ pub struct Database(String);
 
 from_str_impl!(Database, 1, 63);
 
-#[macro_export]
-macro_rules! database {
-    ($string: literal) => {
-        <pg_client::Database as std::str::FromStr>::from_str($string).unwrap()
-    };
-}
-
 impl Database {
     fn to_pg_env_value(&self) -> String {
         self.0.clone()
@@ -335,13 +314,6 @@ impl Database {
 pub struct Username(String);
 
 from_str_impl!(Username, 1, 63);
-
-#[macro_export]
-macro_rules! username {
-    ($string: literal) => {
-        <pg_client::Username as std::str::FromStr>::from_str($string).unwrap()
-    };
-}
 
 impl Username {
     fn to_pg_env_value(&self) -> String {
