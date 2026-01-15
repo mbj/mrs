@@ -42,6 +42,10 @@ allowed-duplicate-crates = [
     "thiserror",
     "thiserror-impl",
 
+    # libredox 0.1.12 requires redox_syscall 0.7, while other crates still use 0.5
+    # Source: filetime/redox_users/whoami -> libredox 0.1.12 -> redox_syscall 0.7
+    "redox_syscall",
+
     # Windows platform crates - multiple versions pulled by various dependencies
     # (ring, tokio, rustls, aws-sdk, zip, etc.) targeting different Windows APIs
     # These are platform-specific and don't affect Linux builds, but clippy
