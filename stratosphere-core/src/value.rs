@@ -655,10 +655,11 @@ impl ToValue for serde_json::Value {
     }
 }
 
-impl ToValue for std::collections::BTreeMap<String, ExpString> {
+impl<T: ToValue> ToValue for std::collections::BTreeMap<String, T> {
     fn to_value(&self) -> serde_json::Value {
         serde_json::Value::Object(serde_json::Map::from_iter(
-            self.iter().map(|(key, exp)| (key.clone(), exp.to_value())),
+            self.iter()
+                .map(|(key, value)| (key.clone(), value.to_value())),
         ))
     }
 }

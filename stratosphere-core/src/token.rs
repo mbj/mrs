@@ -1,105 +1,6 @@
 use crate::resource_specification::*;
 use quote::quote;
 
-pub struct Target<'a> {
-    tag_definition: TagDefinition<'a>,
-    vendor_map: VendorMap<'a>,
-}
-
-impl<'a> Target<'a> {
-    #[must_use]
-    pub fn for_services(
-        specification: &'a ResourceSpecification<'a>,
-        selected_services: std::collections::BTreeSet<ServiceIdentifier<'a>>,
-    ) -> Self {
-        fn mk_service_definition<'a>(
-            resource_type_name: &'a ResourceTypeName,
-            resource_type: &'a ResourceType,
-        ) -> ServiceDefinition<'a> {
-            ServiceDefinition {
-                resource_type_map: [(resource_type_name, resource_type)].into(),
-                resource_property_type_map: [].into(),
-            }
-        }
-        let mut vendor_map = VendorMap::new();
-
-        for (resource_type_name, resource_type) in &specification.resource_types {
-            let target_service = &resource_type_name.service;
-
-            if !selected_services.contains(target_service) {
-                continue;
-            }
-
-            let vendor_name = &target_service.vendor_name;
-            let service_name = &target_service.service_name;
-
-            vendor_map
-                .entry(vendor_name)
-                .and_modify(|service_map: &mut ServiceMap| {
-                    service_map
-                        .entry(service_name)
-                        .and_modify(|service_definition| {
-                            service_definition
-                                .resource_type_map
-                                .insert(resource_type_name, resource_type);
-                        })
-                        .or_insert_with(|| {
-                            mk_service_definition(resource_type_name, resource_type)
-                        });
-                })
-                .or_insert_with(|| {
-                    [(
-                        service_name,
-                        mk_service_definition(resource_type_name, resource_type),
-                    )]
-                    .into()
-                });
-        }
-
-        let mut tag_definition: Option<TagDefinition> = None;
-
-        for (property_type_name, property_type) in &specification.property_types {
-            match property_type_name {
-                PropertyTypeName::Tag => {
-                    tag_definition = Some(TagDefinition(property_type));
-                }
-                PropertyTypeName::PropertyTypeName(resource_property_type_name) => {
-                    let vendor_name = &resource_property_type_name.vendor_name;
-                    let service_name = &resource_property_type_name.service_name;
-
-                    let service_identifier = ServiceIdentifier {
-                        vendor_name: vendor_name.clone(),
-                        service_name: service_name.clone(),
-                    };
-
-                    if !selected_services.contains(&service_identifier) {
-                        continue;
-                    }
-
-                    vendor_map
-                        .entry(&resource_property_type_name.vendor_name)
-                        .and_modify(|service_map: &mut ServiceMap| {
-                            service_map
-                                .entry(service_name)
-                                .and_modify(|service_definition| {
-                                    service_definition.add_resource_property_type(
-                                        resource_property_type_name,
-                                        property_type,
-                                    )
-                                });
-                        })
-                        .or_insert_with(|| panic!("Property without resource"));
-                }
-            }
-        }
-
-        Self {
-            tag_definition: tag_definition.expect("Tag property missing"),
-            vendor_map,
-        }
-    }
-}
-
 pub struct ServiceDefinition<'a> {
     pub resource_type_map: ResourceTypeMap<'a>,
     pub resource_property_type_map: ResourcePropertyTypeMap<'a>,
@@ -146,70 +47,94 @@ type PropertyTypeMap<'a> = std::collections::BTreeMap<&'a PropertyName<'a>, &'a 
 
 pub type VendorMap<'a> = std::collections::BTreeMap<&'a VendorName<'a>, ServiceMap<'a>>;
 
+/// Builds a VendorMap containing all services from the specification
 #[must_use]
-pub fn token_stream(target: Target) -> proc_macro2::TokenStream {
-    let mut stream = proc_macro2::TokenStream::new();
-
-    for (vendor_name, service_map) in target.vendor_map {
-        let vendor_module_name = VendorModuleName::new(vendor_name);
-
-        let services = service_map_token_stream(vendor_name, service_map);
-
-        let module_stream: proc_macro2::TokenStream = quote! {
-            pub mod #vendor_module_name {
-                #services
-            }
-        };
-
-        stream.extend(module_stream);
-    }
-
-    let tag_definition = target.tag_definition;
-
-    quote! {
-        pub mod cloudformation {
-            #tag_definition
-            #stream
+pub fn build_vendor_map<'a>(specification: &'a ResourceSpecification<'a>) -> VendorMap<'a> {
+    fn mk_service_definition<'a>(
+        resource_type_name: &'a ResourceTypeName,
+        resource_type: &'a ResourceType,
+    ) -> ServiceDefinition<'a> {
+        ServiceDefinition {
+            resource_type_map: [(resource_type_name, resource_type)].into(),
+            resource_property_type_map: [].into(),
         }
     }
+
+    let mut vendor_map = VendorMap::new();
+
+    for (resource_type_name, resource_type) in &specification.resource_types {
+        let target_service = &resource_type_name.service;
+        let vendor_name = &target_service.vendor_name;
+        let service_name = &target_service.service_name;
+
+        vendor_map
+            .entry(vendor_name)
+            .and_modify(|service_map: &mut ServiceMap| {
+                service_map
+                    .entry(service_name)
+                    .and_modify(|service_definition| {
+                        service_definition
+                            .resource_type_map
+                            .insert(resource_type_name, resource_type);
+                    })
+                    .or_insert_with(|| mk_service_definition(resource_type_name, resource_type));
+            })
+            .or_insert_with(|| {
+                [(
+                    service_name,
+                    mk_service_definition(resource_type_name, resource_type),
+                )]
+                .into()
+            });
+    }
+
+    for (property_type_name, property_type) in &specification.property_types {
+        if let PropertyTypeName::PropertyTypeName(resource_property_type_name) = property_type_name
+        {
+            let service_name = &resource_property_type_name.service_name;
+
+            vendor_map
+                .entry(&resource_property_type_name.vendor_name)
+                .and_modify(|service_map: &mut ServiceMap| {
+                    service_map
+                        .entry(service_name)
+                        .and_modify(|service_definition| {
+                            service_definition.add_resource_property_type(
+                                resource_property_type_name,
+                                property_type,
+                            )
+                        });
+                });
+        }
+    }
+
+    vendor_map
 }
 
-fn service_map_token_stream(
-    vendor_name: &VendorName<'_>,
-    service_map: ServiceMap,
+/// Generates the token stream for a single service file (for pre-generated services)
+#[must_use]
+pub fn service_file_token_stream(
+    service: &ServiceIdentifier<'_>,
+    service_definition: &ServiceDefinition<'_>,
 ) -> proc_macro2::TokenStream {
-    let mut stream = proc_macro2::TokenStream::new();
+    let service_module_name = ServiceModuleName::new(&service.service_name);
 
-    for (service_name, service_definition) in service_map {
-        let service_module_name = ServiceModuleName::new(service_name);
+    let properties = resource_property_type_map_token_stream(
+        service,
+        &service_definition.resource_property_type_map,
+    );
+    let resources =
+        resource_type_map_token_stream(&service_module_name, &service_definition.resource_type_map);
 
-        let properties = resource_property_type_map_token_stream(
-            &ServiceIdentifier {
-                vendor_name: vendor_name.clone(),
-                service_name: service_name.clone(),
-            },
-            service_definition.resource_property_type_map,
-        );
-        let resources = resource_type_map_token_stream(
-            &service_module_name,
-            service_definition.resource_type_map,
-        );
-
-        let service_stream: proc_macro2::TokenStream = quote! {
-            pub mod #service_module_name {
-                #properties
-                #resources
-            }
-        };
-
-        stream.extend(service_stream);
+    quote! {
+        #properties
+        #resources
     }
-    stream
 }
 
 fn resource_property_type_map_token_stream(
     service: &ServiceIdentifier<'_>,
-    resource_property_type_map: ResourcePropertyTypeMap,
+    resource_property_type_map: &ResourcePropertyTypeMap<'_>,
 ) -> proc_macro2::TokenStream {
     let mut stream = proc_macro2::TokenStream::new();
 
@@ -227,19 +152,19 @@ fn resource_property_type_map_token_stream(
 fn property_type_map_token_stream(
     service: &ServiceIdentifier<'_>,
     resource_name: &ResourceName<'_>,
-    property_type_map: PropertyTypeMap<'_>,
+    property_type_map: &PropertyTypeMap<'_>,
 ) -> proc_macro2::TokenStream {
     let resource_module_name = ResourceModuleName::new(resource_name);
 
     let property_types: Vec<_> = property_type_map
-        .into_iter()
+        .iter()
         .map(|(property_name, property_type)| {
             property_type_token_stream(
                 &PropertyTypeName::PropertyTypeName(ResourcePropertyTypeName {
                     vendor_name: service.vendor_name.clone(),
                     service_name: service.service_name.clone(),
                     resource_name: resource_name.clone(),
-                    property_name: property_name.clone(),
+                    property_name: (*property_name).clone(),
                 }),
                 property_name,
                 property_type,
@@ -261,6 +186,16 @@ fn property_type_token_stream(
 ) -> proc_macro2::TokenStream {
     let struct_name = property_name_struct_name(property_name);
     let macro_name = quote::format_ident!("{property_name}");
+    let prefixed_macro_name = match property_type_name {
+        PropertyTypeName::Tag => quote::format_ident!("__Tag"),
+        PropertyTypeName::PropertyTypeName(name) => quote::format_ident!(
+            "__{}_{}_{}_{}",
+            name.vendor_name.as_ref().to_lowercase(),
+            name.service_name.as_ref().to_lowercase(),
+            name.resource_name.as_ref(),
+            name.property_name.as_ref()
+        ),
+    };
 
     let properties = match &property_type.properties {
         Some(properties) => properties,
@@ -289,28 +224,37 @@ fn property_type_token_stream(
 
     let property_type_name_str: &str = &property_type_name.to_string();
 
+    let to_value_body = if to_values.is_empty() {
+        quote! {
+            serde_json::Value::Object(serde_json::Map::new())
+        }
+    } else {
+        quote! {
+            let mut properties = serde_json::Map::new();
+            #(#to_values)*
+            properties.into()
+        }
+    };
+
     quote! {
         #[doc = #documentation]
         pub struct #struct_name {
             #(#fields),*
         }
 
-        #[allow(unused_macros)]
-        macro_rules! #macro_name {
+        #[doc(hidden)]
+        #[macro_export]
+        macro_rules! #prefixed_macro_name {
             ($($field:ident : $value:expr),* $(,)?) => {
-               stratosphere::generator::construct_property_type!(#property_type_name_str $($field $value)*)
+               stratosphere_generator::construct_property_type!(#property_type_name_str $($field $value)*)
             }
         }
 
-        pub(crate) use #macro_name;
+        pub use crate::#prefixed_macro_name as #macro_name;
 
-        impl stratosphere::value::ToValue for #struct_name {
+        impl crate::value::ToValue for #struct_name {
             fn to_value(&self) -> serde_json::Value {
-                let mut properties = serde_json::Map::new();
-
-                #(#to_values)*
-
-                properties.into()
+                #to_value_body
             }
         }
     }
@@ -339,7 +283,7 @@ fn property_type_property_token_stream(
             r#type: Some(TypeReference::List),
             required: _,
             update_type: _,
-        } => quote! { Vec<super::super::super::Tag_> },
+        } => quote! { Vec<crate::Tag_> },
         PropertyTypeProperty {
             documentation: _,
             duplicates_allowed: _,
@@ -374,11 +318,12 @@ fn property_type_property_token_stream(
             update_type: _,
         } => {
             let struct_name = property_name_struct_name(property_name);
-            quote! { #struct_name }
+            // Box to break potential recursive type cycles between property types
+            quote! { Box<#struct_name> }
         }
         PropertyTypeProperty {
             documentation: _,
-            duplicates_allowed: None,
+            duplicates_allowed: _,
             item_type: None,
             primitive_item_type: Some(item_type),
             primitive_type: None,
@@ -386,6 +331,19 @@ fn property_type_property_token_stream(
             required: _,
             update_type: _,
         } => mk_primitive_map_type(item_type),
+        PropertyTypeProperty {
+            documentation: _,
+            duplicates_allowed: _,
+            item_type: Some(TypeReference::Subproperty(property_name)),
+            primitive_item_type: None,
+            primitive_type: None,
+            r#type: Some(TypeReference::Map),
+            required: _,
+            update_type: _,
+        } => {
+            let struct_name = property_name_struct_name(property_name);
+            quote! { std::collections::BTreeMap<String, #struct_name> }
+        }
         other => panic!("Unsupported property type property: {other:#?}"),
     };
 
@@ -402,7 +360,7 @@ fn mk_option(required: bool, stream: proc_macro2::TokenStream) -> proc_macro2::T
 
 fn resource_type_map_token_stream(
     service_module_name: &ServiceModuleName,
-    resource_type_map: ResourceTypeMap,
+    resource_type_map: &ResourceTypeMap<'_>,
 ) -> proc_macro2::TokenStream {
     let mut stream = proc_macro2::TokenStream::new();
 
@@ -445,7 +403,7 @@ fn mk_to_value(
             properties
                 .insert(
                     #key.to_string(),
-                    stratosphere::value::ToValue::to_value(&self.#field_name)
+                    crate::value::ToValue::to_value(&self.#field_name)
                 );
         }
     } else {
@@ -453,7 +411,7 @@ fn mk_to_value(
           if let Some(ref value) = self.#field_name {
               properties.insert(
                   #key.to_string(),
-                  stratosphere::value::ToValue::to_value(value)
+                  crate::value::ToValue::to_value(value)
               );
           }
         }
@@ -470,6 +428,20 @@ fn resource_type_token_stream(
     let struct_name = quote::format_ident!("{resource_name_ref}_");
 
     let macro_name = quote::format_ident!("{resource_name_ref}");
+
+    let prefixed_macro_name = quote::format_ident!(
+        "__{}_{}_{resource_name_ref}",
+        resource_type_name
+            .service
+            .vendor_name
+            .as_ref()
+            .to_lowercase(),
+        resource_type_name
+            .service
+            .service_name
+            .as_ref()
+            .to_lowercase(),
+    );
 
     let resource_module_name = ResourceModuleName::new(&resource_type_name.resource_name);
 
@@ -496,31 +468,40 @@ fn resource_type_token_stream(
 
     let resource_type_name_str: &str = &resource_type_name.to_string();
 
+    let to_resource_properties_body = if to_values.is_empty() {
+        quote! {
+            crate::template::ResourceProperties::new()
+        }
+    } else {
+        quote! {
+            let mut properties = crate::template::ResourceProperties::new();
+            #(#to_values)*
+            properties
+        }
+    };
+
     let stream = quote! {
         #[doc = #documentation]
         pub struct #struct_name {
             #(#fields),*
         }
 
-        #[allow(unused_macros)]
-        macro_rules! #macro_name {
+        #[doc(hidden)]
+        #[macro_export]
+        macro_rules! #prefixed_macro_name {
             ($($field:ident : $value:expr),* $(,)?) => {
-               stratosphere::generator::construct_resource_type!(#resource_type_name_str $($field $value)*)
+               stratosphere_generator::construct_resource_type!(#resource_type_name_str $($field $value)*)
             }
         }
 
-        pub(crate) use #macro_name;
+        pub use crate::#prefixed_macro_name as #macro_name;
 
-        impl stratosphere::template::ToResource for #struct_name {
-            const RESOURCE_TYPE_NAME: stratosphere::resource_specification::ResourceTypeName<'static> =
+        impl crate::template::ToResource for #struct_name {
+            const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
                 #resource_type_name;
 
-            fn to_resource_properties(&self) -> stratosphere::template::ResourceProperties {
-                let mut properties = stratosphere::template::ResourceProperties::new();
-
-                #(#to_values)*
-
-                properties
+            fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+                #to_resource_properties_body
             }
         }
     };
@@ -600,6 +581,31 @@ fn resource_type_property_token_stream(
             required: _,
             r#type: Some(TypeReference::Subproperty(subproperty_name)),
         } => mk_subproperty(service_module_name, resource_module_name, subproperty_name),
+        ResourceTypeProperty {
+            primitive_type: None,
+            item_type: Some(item_type),
+            duplicates_allowed: _,
+            primitive_item_type,
+            documentation: _,
+            update_type: _,
+            required: _,
+            r#type: Some(TypeReference::Map),
+        } => mk_map_type(
+            service_module_name,
+            resource_module_name,
+            item_type,
+            primitive_item_type.as_ref(),
+        ),
+        ResourceTypeProperty {
+            primitive_type: None,
+            item_type: None,
+            duplicates_allowed: _,
+            primitive_item_type: Some(primitive_item_type),
+            documentation: _,
+            update_type: _,
+            required: _,
+            r#type: Some(TypeReference::Map),
+        } => mk_primitive_map_type(primitive_item_type),
         other => panic!("Unsupported property type: {other:#?}"),
     }
 }
@@ -625,10 +631,26 @@ fn mk_primitive_list_type(primitive_item_type: &PrimitiveItemType) -> proc_macro
         PrimitiveItemType::Json => quote! { serde_json::Value },
         PrimitiveItemType::Double => quote! { f64 },
         PrimitiveItemType::Integer => quote! { i64 },
-        PrimitiveItemType::String => quote! { stratosphere::value::ExpString },
+        PrimitiveItemType::String => quote! { crate::value::ExpString },
     };
 
     quote! { Vec<#item_type> }
+}
+
+fn mk_map_type(
+    service_module_name: &ServiceModuleName,
+    resource_module_name: &ResourceModuleName,
+    item_type: &TypeReference,
+    primitive_item_type: Option<&PrimitiveItemType>,
+) -> proc_macro2::TokenStream {
+    let value_type = mk_type_reference_type(
+        service_module_name,
+        resource_module_name,
+        item_type,
+        primitive_item_type,
+    );
+
+    quote! { std::collections::BTreeMap<String, #value_type> }
 }
 
 fn mk_primitive_map_type(primitive_item_type: &PrimitiveItemType) -> proc_macro2::TokenStream {
@@ -636,7 +658,7 @@ fn mk_primitive_map_type(primitive_item_type: &PrimitiveItemType) -> proc_macro2
         PrimitiveItemType::Json => quote! { serde_json::Value },
         PrimitiveItemType::Double => quote! { f64 },
         PrimitiveItemType::Integer => quote! { i64 },
-        PrimitiveItemType::String => quote! { stratosphere::value::ExpString },
+        PrimitiveItemType::String => quote! { crate::value::ExpString },
     };
 
     quote! { std::collections::BTreeMap<String, #item_type> }
@@ -652,12 +674,12 @@ fn mk_type_reference_type(
         TypeReference::Subproperty(name) => {
             mk_subproperty(service_module_name, resource_module_name, name)
         }
-        TypeReference::Tag => quote! { super::super::Tag_ },
+        TypeReference::Tag => quote! { crate::Tag_ },
         TypeReference::List => match primitive_item_type {
             Some(PrimitiveItemType::Json) => quote! { Vec<serde_json::Value> },
             Some(PrimitiveItemType::Double) => quote! { Vec<f64> },
             Some(PrimitiveItemType::Integer) => quote! { Vec<i64> },
-            Some(PrimitiveItemType::String) => quote! { Vec<stratosphere::value::ExpString> },
+            Some(PrimitiveItemType::String) => quote! { Vec<crate::value::ExpString> },
             None => panic!("TypeReference::List requires primitive_item_type to be specified"),
         },
         TypeReference::Map => match primitive_item_type {
@@ -671,7 +693,7 @@ fn mk_type_reference_type(
                 quote! { std::collections::BTreeMap<String, i64> }
             }
             Some(PrimitiveItemType::String) => {
-                quote! { std::collections::BTreeMap<String, stratosphere::value::ExpString> }
+                quote! { std::collections::BTreeMap<String, crate::value::ExpString> }
             }
             None => panic!("TypeReference::Map requires primitive_item_type to be specified"),
         },
@@ -721,10 +743,7 @@ pub struct ResourceModuleName(proc_macro2::Ident);
 impl ResourceModuleName {
     #[must_use]
     pub fn new(resource_name: &ResourceName<'_>) -> Self {
-        Self(quote::format_ident!(
-            "{}",
-            resource_name.as_ref().to_lowercase()
-        ))
+        Self(resource_name.to_module_ident())
     }
 }
 
@@ -749,11 +768,11 @@ fn mk_subproperty(
 
 fn mk_primitive_type(primitive_type: &PrimitiveType) -> proc_macro2::TokenStream {
     match primitive_type {
-        PrimitiveType::Boolean => quote! { stratosphere::value::ExpBool },
+        PrimitiveType::Boolean => quote! { crate::value::ExpBool },
         PrimitiveType::Double => quote! { f64 },
         PrimitiveType::Integer => quote! { i64 },
         PrimitiveType::Long => quote! { i64 },
-        PrimitiveType::String => quote! { stratosphere::value::ExpString },
+        PrimitiveType::String => quote! { crate::value::ExpString },
         PrimitiveType::Timestamp => quote! { chrono::DateTime<chrono::Utc> },
         PrimitiveType::Json => quote! { serde_json::Value },
     }
@@ -799,6 +818,17 @@ pub fn to_snake_case(input: &str) -> String {
     result
 }
 
+/// Creates a safe Rust identifier, escaping with `r#` if the name is a keyword
+#[must_use]
+pub fn mk_safe_ident(name: impl AsRef<str>) -> syn::Ident {
+    let name = name.as_ref();
+    if syn::parse_str::<syn::Ident>(name).is_err() {
+        quote::format_ident!("r#{}", name)
+    } else {
+        quote::format_ident!("{}", name)
+    }
+}
+
 pub fn mk_field_name(name: impl AsRef<str>) -> syn::Ident {
     let name = name.as_ref();
     let snake_case_name = to_snake_case(name);
@@ -807,11 +837,7 @@ pub fn mk_field_name(name: impl AsRef<str>) -> syn::Ident {
         return quote::format_ident!("self_value");
     }
 
-    if syn::parse_str::<syn::Ident>(&snake_case_name).is_err() {
-        quote::format_ident!("r#{}", snake_case_name)
-    } else {
-        quote::format_ident!("{}", snake_case_name)
-    }
+    mk_safe_ident(snake_case_name)
 }
 
 #[must_use]

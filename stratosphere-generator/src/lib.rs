@@ -1,55 +1,8 @@
 #![doc = include_str!("../README.md")]
 
-use std::collections::{BTreeMap, BTreeSet};
+use std::collections::BTreeMap;
 use stratosphere_core::resource_specification::*;
 use stratosphere_core::token::*;
-
-struct ServiceLiterals(syn::punctuated::Punctuated<syn::LitStr, syn::token::Comma>);
-
-impl syn::parse::Parse for ServiceLiterals {
-    fn parse(buffer: &syn::parse::ParseBuffer<'_>) -> Result<Self, syn::Error> {
-        Ok(Self(buffer.parse_terminated(
-            <syn::LitStr as syn::parse::Parse>::parse,
-            syn::Token![,],
-        )?))
-    }
-}
-
-#[proc_macro]
-pub fn services(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
-    let mut service_identifiers = BTreeSet::new();
-
-    let input = syn::parse_macro_input!(input as ServiceLiterals);
-
-    let pairs: Vec<(String, syn::LitStr)> = input
-        .0
-        .into_iter()
-        .map(|literal| (literal.value(), literal))
-        .collect::<Vec<_>>();
-
-    for (string, literal) in pairs.iter() {
-        match ServiceIdentifier::try_from(string.as_str()) {
-            Ok(service) => {
-                if !service_identifiers.insert(service) {
-                    return proc_macro::TokenStream::from(
-                        syn::Error::new(literal.span(), "Duplicate entry").to_compile_error(),
-                    );
-                }
-            }
-            Err(error) => {
-                return proc_macro::TokenStream::from(
-                    syn::Error::new(
-                        literal.span(),
-                        format!("Cannot parse as service identifier: {error}"),
-                    )
-                    .to_compile_error(),
-                );
-            }
-        }
-    }
-
-    token_stream(Target::for_services(instance(), service_identifiers)).into()
-}
 
 #[proc_macro]
 pub fn construct_resource_type(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
@@ -187,7 +140,7 @@ fn construct_resource_type_impl(
         let service_module_name = ServiceModuleName::new(&resource_type_name.service.service_name);
 
         quote::quote! {
-            cloudformation::#vendor_module_name::#service_module_name
+            stratosphere::services::#vendor_module_name::#service_module_name
         }
     };
 
@@ -335,7 +288,7 @@ fn construct_property_type_impl(
 
     let (path, struct_name) = match property_type_name {
         PropertyTypeName::Tag => (
-            quote::quote! { crate::cloudformation },
+            quote::quote! { stratosphere },
             property_name_struct_name(&PropertyName("Tag")),
         ),
         PropertyTypeName::PropertyTypeName(ref name) => {
@@ -345,7 +298,7 @@ fn construct_property_type_impl(
 
             (
                 quote::quote! {
-                    cloudformation::#vendor_module_name::#service_module_name::#resource_module_name
+                    stratosphere::services::#vendor_module_name::#service_module_name::#resource_module_name
                 },
                 property_name_struct_name(&name.property_name),
             )

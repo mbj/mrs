@@ -85,6 +85,12 @@ impl<'a> ResourceSpecification<'a> {
             .get(service)
             .expect("unknown service identifier")
     }
+
+    pub fn services_with_feature_names(
+        &self,
+    ) -> impl Iterator<Item = (&ServiceIdentifier<'a>, &FeatureName)> {
+        self.feature_names.iter()
+    }
 }
 
 static INSTANCE: std::sync::LazyLock<ResourceSpecification> =
@@ -196,7 +202,7 @@ impl quote::ToTokens for ServiceName<'_> {
         let str_value = self.as_str();
 
         stream.extend(quote::quote! {
-            stratosphere::resource_specification::ServiceName(#str_value)
+            crate::resource_specification::ServiceName(#str_value)
         })
     }
 }
@@ -206,8 +212,16 @@ impl quote::ToTokens for ResourceName<'_> {
         let str_value = self.as_str();
 
         stream.extend(quote::quote! {
-            stratosphere::resource_specification::ResourceName(#str_value)
+            crate::resource_specification::ResourceName(#str_value)
         })
+    }
+}
+
+impl ResourceName<'_> {
+    /// Converts the resource name to a safe Rust module identifier (lowercase, escaped if keyword)
+    #[must_use]
+    pub fn to_module_ident(&self) -> syn::Ident {
+        crate::token::mk_safe_ident(self.as_str().to_lowercase())
     }
 }
 
@@ -216,7 +230,7 @@ impl quote::ToTokens for VendorName<'_> {
         let str_value = self.as_str();
 
         stream.extend(quote::quote! {
-            stratosphere::resource_specification::VendorName(#str_value)
+            crate::resource_specification::VendorName(#str_value)
         })
     }
 }
@@ -253,7 +267,7 @@ impl quote::ToTokens for ServiceIdentifier<'_> {
         let service_name = &self.service_name;
 
         stream.extend(quote::quote! {
-            stratosphere::resource_specification::ServiceIdentifier {
+            crate::resource_specification::ServiceIdentifier {
                 service_name: #service_name,
                 vendor_name: #vendor_name,
             }
@@ -305,7 +319,7 @@ impl quote::ToTokens for ResourceTypeName<'_> {
         let resource_name = &self.resource_name;
 
         stream.extend(quote::quote! {
-            stratosphere::resource_specification::ResourceTypeName {
+            crate::resource_specification::ResourceTypeName {
                 service: #service,
                 resource_name: #resource_name,
             }
