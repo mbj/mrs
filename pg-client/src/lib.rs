@@ -327,12 +327,6 @@ impl Password {
     }
 }
 
-impl From<String> for Password {
-    fn from(value: String) -> Self {
-        Self(value)
-    }
-}
-
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 #[serde(rename_all = "kebab-case")]
 pub enum SslMode {

@@ -36,7 +36,7 @@ async fn test_with_sqlx_connection_error_on_unavailable_database() {
             host_addr: None,
             port: Some(pg_client::Port(0)), // Port 0 is reserved and never available
         },
-        password: Some(pg_client::Password::from("test".to_string())),
+        password: Some("test".parse().unwrap()),
         ssl_mode: pg_client::SslMode::Disable,
         ssl_root_cert: None,
         username: pg_client::username!("test"),
