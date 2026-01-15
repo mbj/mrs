@@ -100,7 +100,8 @@ fn branch_exists(
         .argument("show-ref")
         .argument("--verify")
         .argument(format!("refs/heads/{branch}"))
-        .status();
+        .stdout()
+        .bytes();
 
     if local_result.is_ok() {
         return Ok(true);
