@@ -3,6 +3,8 @@
 #[cfg(feature = "sqlx")]
 pub mod sqlx;
 
+pub mod url;
+
 /// Macro to generate `std::str::FromStr` plus helpers for string wrapped newtypes
 macro_rules! from_str_impl {
     ($struct: ident, $min: expr, $max: expr) => {
@@ -89,12 +91,12 @@ pub enum Host {
 
 impl serde::Serialize for Host {
     fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
-        serializer.serialize_str(&self.to_pg_env_value())
+        serializer.serialize_str(&self.pg_env_value())
     }
 }
 
 impl Host {
-    pub(crate) fn to_pg_env_value(&self) -> String {
+    pub(crate) fn pg_env_value(&self) -> String {
         match self {
             Self::HostName(value) => value.0.clone(),
             Self::IpAddr(value) => value.to_string(),
@@ -254,7 +256,7 @@ impl Port {
         Self(port)
     }
 
-    fn to_pg_env_value(self) -> String {
+    fn pg_env_value(self) -> String {
         self.0.to_string()
     }
 }
@@ -294,7 +296,7 @@ pub struct ApplicationName(String);
 from_str_impl!(ApplicationName, 1, 63);
 
 impl ApplicationName {
-    fn to_pg_env_value(&self) -> String {
+    fn pg_env_value(&self) -> String {
         self.0.clone()
     }
 }
@@ -305,7 +307,7 @@ pub struct Database(String);
 from_str_impl!(Database, 1, 63);
 
 impl Database {
-    fn to_pg_env_value(&self) -> String {
+    fn pg_env_value(&self) -> String {
         self.0.clone()
     }
 }
@@ -316,7 +318,7 @@ pub struct Username(String);
 from_str_impl!(Username, 1, 63);
 
 impl Username {
-    fn to_pg_env_value(&self) -> String {
+    fn pg_env_value(&self) -> String {
         self.0.clone()
     }
 }
@@ -327,13 +329,13 @@ pub struct Password(String);
 from_str_impl!(Password, 0, 4096);
 
 impl Password {
-    fn to_pg_env_value(&self) -> String {
+    fn pg_env_value(&self) -> String {
         self.0.clone()
     }
 }
 
 #[derive(
-    Clone, Debug, PartialEq, Eq, serde::Serialize, strum::IntoStaticStr, strum::EnumString,
+    Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, strum::IntoStaticStr, strum::EnumString,
 )]
 #[serde(rename_all = "kebab-case")]
 #[strum(serialize_all = "kebab-case")]
@@ -352,7 +354,7 @@ impl SslMode {
         self.into()
     }
 
-    fn to_pg_env_value(&self) -> String {
+    fn pg_env_value(&self) -> String {
         self.as_str().to_string()
     }
 }
@@ -365,7 +367,7 @@ pub enum SslRootCert {
 }
 
 impl SslRootCert {
-    pub(crate) fn to_pg_env_value(&self) -> String {
+    pub(crate) fn pg_env_value(&self) -> String {
         match self {
             Self::File(path) => path.to_str().unwrap().to_string(),
             Self::System => "system".to_string(),
@@ -433,7 +435,7 @@ impl Config {
     /// ```
     /// # use pg_client::*;
     /// # use std::str::FromStr;
-    /// # use url::Url;
+    /// # use ::url::Url;
     ///
     /// let config = Config {
     ///     application_name: None,
@@ -523,8 +525,8 @@ impl Config {
     /// );
     /// ```
     #[must_use]
-    pub fn to_url(&self) -> url::Url {
-        let mut url = url::Url::parse("postgres://").unwrap();
+    pub fn to_url(&self) -> ::url::Url {
+        let mut url = ::url::Url::parse("postgres://").unwrap();
 
         match &self.endpoint {
             Endpoint::Network {
@@ -541,7 +543,7 @@ impl Config {
                         url.set_host(Some(hostname.as_str())).unwrap();
                     }
                 }
-                url.set_username(self.username.to_pg_env_value().as_str())
+                url.set_username(self.username.pg_env_value().as_str())
                     .unwrap();
 
                 if let Some(password) = &self.password {
@@ -568,7 +570,7 @@ impl Config {
                         path.to_str().expect("socket path contains invalid utf8"),
                     )
                     .append_pair("dbname", self.database.as_str())
-                    .append_pair("user", self.username.to_pg_env_value().as_str());
+                    .append_pair("user", self.username.pg_env_value().as_str());
 
                 if let Some(password) = &self.password {
                     url.query_pairs_mut()
@@ -584,10 +586,10 @@ impl Config {
                 pairs.append_pair("application_name", application_name.as_str());
             }
 
-            pairs.append_pair("sslmode", &self.ssl_mode.to_pg_env_value());
+            pairs.append_pair("sslmode", &self.ssl_mode.pg_env_value());
 
             if let Some(ssl_root_cert) = &self.ssl_root_cert {
-                pairs.append_pair("sslrootcert", &ssl_root_cert.to_pg_env_value());
+                pairs.append_pair("sslrootcert", &ssl_root_cert.pg_env_value());
             }
         }
 
@@ -660,9 +662,9 @@ impl Config {
                 host_addr,
                 port,
             } => {
-                map.insert("PGHOST", host.to_pg_env_value());
+                map.insert("PGHOST", host.pg_env_value());
                 if let Some(port) = port {
-                    map.insert("PGPORT", port.to_pg_env_value());
+                    map.insert("PGPORT", port.pg_env_value());
                 }
                 if let Some(addr) = host_addr {
                     map.insert("PGHOSTADDR", addr.to_string());
@@ -678,20 +680,20 @@ impl Config {
             }
         }
 
-        map.insert("PGSSLMODE", self.ssl_mode.to_pg_env_value());
-        map.insert("PGUSER", self.username.to_pg_env_value());
-        map.insert("PGDATABASE", self.database.to_pg_env_value());
+        map.insert("PGSSLMODE", self.ssl_mode.pg_env_value());
+        map.insert("PGUSER", self.username.pg_env_value());
+        map.insert("PGDATABASE", self.database.pg_env_value());
 
         if let Some(application_name) = &self.application_name {
-            map.insert("PGAPPNAME", application_name.to_pg_env_value());
+            map.insert("PGAPPNAME", application_name.pg_env_value());
         }
 
         if let Some(password) = &self.password {
-            map.insert("PGPASSWORD", password.to_pg_env_value());
+            map.insert("PGPASSWORD", password.pg_env_value());
         }
 
         if let Some(ssl_root_cert) = &self.ssl_root_cert {
-            map.insert("PGSSLROOTCERT", ssl_root_cert.to_pg_env_value());
+            map.insert("PGSSLROOTCERT", ssl_root_cert.pg_env_value());
         }
 
         map
@@ -700,6 +702,24 @@ impl Config {
     #[must_use]
     pub fn endpoint(self, endpoint: Endpoint) -> Self {
         Self { endpoint, ..self }
+    }
+
+    /// Parse a PostgreSQL connection URL into a Config.
+    ///
+    /// When the URL does not specify `sslmode`, it defaults to `verify-full`
+    /// to ensure secure connections by default.
+    ///
+    /// See [`url::parse`] for full documentation.
+    pub fn from_url(url: &::url::Url) -> Result<Self, crate::url::ParseError> {
+        crate::url::parse(url)
+    }
+
+    /// Parse a PostgreSQL connection URL string into a Config.
+    ///
+    /// See [`Self::from_url`] for details on SSL mode defaults.
+    pub fn from_str_url(url: &str) -> Result<Self, crate::url::ParseError> {
+        let parsed_url = url.parse()?;
+        crate::url::parse(&parsed_url)
     }
 }
 
