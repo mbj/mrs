@@ -54,6 +54,9 @@ jobs:
     - name: Build all targets
       run: cargo --verbose build --all-targets --release
 
+    - name: Check for dirty repository
+      run: git diff --exit-code
+
     - name: Run repository lint
       run: target/${{ matrix.os.cargo_build_target }}/release/manager repository-lint rust-version
 
