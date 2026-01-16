@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.4
+
+- Add automatic upstream configuration on `wtt add`, setting the branch to track
+  `origin/<branch>` for proper `git push` and `git pull` functionality
+
 ## 0.0.3
 
 - Add `--force` option to `wtt remove` to bypass dirty checkout limitations
