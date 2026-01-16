@@ -138,7 +138,7 @@ impl Config {
                 host_addr,
                 port,
             } => {
-                options = options.host(&host.to_pg_env_value());
+                options = options.host(&host.pg_env_value());
                 if let Some(port) = port {
                     options = options.port(port.into());
                 } else {
@@ -173,7 +173,7 @@ impl Config {
         }
 
         if let Some(ssl_root_cert) = &self.ssl_root_cert {
-            options = options.ssl_root_cert(ssl_root_cert.to_pg_env_value());
+            options = options.ssl_root_cert(ssl_root_cert.pg_env_value());
         } else {
             reject_env("PGSSLROOTCERT", "ssl_root_cert")?;
         }

@@ -20,6 +20,7 @@ sqlx = ["dep:sqlx"]
 
 [dependencies]
 hostname-validator = "1.1.1"
+percent-encoding = "2.3"
 serde.workspace = true
 sqlx = { workspace = true, optional = true }
 strum.workspace = true

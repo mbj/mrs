@@ -2233,6 +2233,7 @@ dependencies = [
  "env_logger",
  "hostname-validator",
  "ociman",
+ "percent-encoding",
  "pg-ephemeral",
  "pretty_assertions",
  "serde",
