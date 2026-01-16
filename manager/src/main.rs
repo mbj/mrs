@@ -108,6 +108,11 @@ enum AppCommand {
         #[clap(subcommand)]
         command: RepositoryLintCommand,
     },
+    /// Stratosphere code generation commands
+    Stratosphere {
+        #[clap(subcommand)]
+        command: StratosphereCommand,
+    },
 }
 
 #[derive(Debug, clap::Parser)]
@@ -142,12 +147,23 @@ enum RepositoryLintCommand {
     RustVersion,
 }
 
+#[derive(Debug, clap::Parser)]
+enum StratosphereCommand {
+    /// Sync stratosphere with CloudFormation resource specification (Cargo.toml features and generated source)
+    Sync {
+        /// Panic if git is dirty after syncing (for CI verification)
+        #[clap(long)]
+        reject_dirty: bool,
+    },
+}
+
 impl App {
     fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
         match &self.command {
             AppCommand::Integrations { command } => command.run(),
             AppCommand::Release { command } => command.run(),
             AppCommand::RepositoryLint { command } => command.run(),
+            AppCommand::Stratosphere { command } => command.run(),
         }
     }
 }
@@ -190,6 +206,14 @@ impl RepositoryLintCommand {
     fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
         match self {
             Self::RustVersion => lint_rust_version(),
+        }
+    }
+}
+
+impl StratosphereCommand {
+    fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
+        match self {
+            Self::Sync { reject_dirty } => stratosphere_sync(*reject_dirty),
         }
     }
 }
@@ -1145,6 +1169,191 @@ fn publish_gems(push: bool) {
     }
 
     log::info!("Done");
+}
+
+fn write_token_stream(
+    path: &Path,
+    tokens: proc_macro2::TokenStream,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let syntax_tree: syn::File = syn::parse2(tokens)?;
+    let formatted = prettyplease::unparse(&syntax_tree);
+    std::fs::write(path, formatted)?;
+    log::info!("Wrote {}", path.display());
+    Ok(())
+}
+
+fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error::Error>> {
+    let workspace_root = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .unwrap()
+        .to_path_buf();
+
+    let spec = stratosphere_core::resource_specification::instance();
+    let feature_names: Vec<_> = spec.feature_names().collect();
+
+    // Update Cargo.toml features
+    let cargo_toml_path = workspace_root.join("stratosphere/Cargo.toml");
+
+    log::info!("Reading {}", cargo_toml_path.display());
+    let content = std::fs::read_to_string(&cargo_toml_path)?;
+    let mut doc: toml_edit::DocumentMut = content.parse()?;
+
+    let mut features = toml_edit::Table::new();
+    for feature_name in &feature_names {
+        features.insert(
+            feature_name.as_str(),
+            toml_edit::value(toml_edit::Array::new()),
+        );
+    }
+
+    doc["features"] = toml_edit::Item::Table(features);
+
+    std::fs::write(&cargo_toml_path, doc.to_string())?;
+    log::info!("Wrote {}", cargo_toml_path.display());
+
+    // Create services directory
+    let services_dir = workspace_root.join("stratosphere/src/services");
+    std::fs::create_dir_all(&services_dir)?;
+
+    // Build vendor map (single pass over all resources and properties)
+    let vendor_map = stratosphere_core::token::build_vendor_map(spec);
+
+    // Generate services.rs
+    let services_rs_path = workspace_root.join("stratosphere/src/services.rs");
+
+    let vendor_modules: Vec<_> = vendor_map
+        .keys()
+        .map(|vendor_name| {
+            let vendor_ident = quote::format_ident!("{}", vendor_name.as_ref().to_lowercase());
+            quote::quote! {
+                pub mod #vendor_ident;
+            }
+        })
+        .collect();
+
+    let services_tokens = quote::quote! {
+        #![doc = include_str!("services/README.md")]
+
+        pub mod tag;
+
+        #(#vendor_modules)*
+    };
+
+    write_token_stream(&services_rs_path, services_tokens)?;
+
+    // Generate vendor modules and create directories
+    for (vendor_name, service_map) in &vendor_map {
+        let vendor = vendor_name.as_ref().to_lowercase();
+        let vendor_rs_path = services_dir.join(format!("{vendor}.rs"));
+
+        let service_modules: Vec<_> = service_map
+            .keys()
+            .map(|service_name| {
+                let service_id = stratosphere_core::resource_specification::ServiceIdentifier {
+                    vendor_name: (*vendor_name).clone(),
+                    service_name: (*service_name).clone(),
+                };
+                let feature_name = spec.feature_name(&service_id);
+                let feature_str = feature_name.as_str();
+                let service_ident =
+                    quote::format_ident!("{}", service_name.as_ref().to_lowercase());
+                quote::quote! {
+                    #[cfg(feature = #feature_str)]
+                    pub mod #service_ident;
+                }
+            })
+            .collect();
+
+        let vendor_tokens = quote::quote! {
+            #(#service_modules)*
+        };
+
+        write_token_stream(&vendor_rs_path, vendor_tokens)?;
+
+        // Create vendor directory for service files
+        let vendor_dir = services_dir.join(&vendor);
+        std::fs::create_dir_all(&vendor_dir)?;
+    }
+
+    // Collect all service file generation tasks
+    let service_tasks: Vec<_> = vendor_map
+        .iter()
+        .flat_map(|(vendor_name, service_map)| {
+            let vendor = vendor_name.as_ref().to_lowercase();
+            let vendor_dir = services_dir.join(&vendor);
+
+            service_map
+                .iter()
+                .map(move |(service_name, service_definition)| {
+                    let service_id = stratosphere_core::resource_specification::ServiceIdentifier {
+                        vendor_name: (*vendor_name).clone(),
+                        service_name: (*service_name).clone(),
+                    };
+                    let service_file_name = format!("{}.rs", service_name.as_ref().to_lowercase());
+                    let path = vendor_dir.join(&service_file_name);
+                    (path, service_id, service_definition)
+                })
+        })
+        .collect();
+
+    // Generate service files in parallel
+    use rayon::prelude::*;
+
+    let results: Vec<_> = service_tasks
+        .par_iter()
+        .map(|(path, service_id, service_definition)| {
+            let service_tokens =
+                stratosphere_core::token::service_file_token_stream(service_id, service_definition);
+            write_token_stream(path, service_tokens)
+                .map_err(|error| format!("Failed to generate {service_id}: {error}"))
+        })
+        .collect();
+
+    // Check for errors
+    for result in results {
+        result?;
+    }
+
+    // Generate services/tag.rs
+    let tag_property_type = spec
+        .property_types
+        .get(&stratosphere_core::resource_specification::PropertyTypeName::Tag)
+        .expect("Tag property type not found");
+
+    let tag_definition = stratosphere_core::token::TagDefinition(tag_property_type);
+    let tag_tokens = quote::quote! { #tag_definition };
+
+    write_token_stream(&services_dir.join("tag.rs"), tag_tokens)?;
+
+    log::info!("Generated {} services", feature_names.len());
+
+    // Format generated code
+    log::info!("Running cargo fmt on stratosphere");
+    ociman::Command::new("cargo")
+        .arguments(["fmt", "--package", "stratosphere"])
+        .working_directory(&workspace_root)
+        .status()
+        .map_err(|error| format!("Failed to run cargo fmt: {error}"))?;
+
+    if reject_dirty {
+        log::info!("Checking for uncommitted changes");
+        let status = ociman::Command::new("git")
+            .arguments(["status", "--porcelain"])
+            .working_directory(&workspace_root)
+            .stdout()
+            .string()
+            .map_err(|error| format!("Failed to run git status: {error}"))?;
+
+        if !status.is_empty() {
+            return Err(format!(
+                "Git working directory is dirty after sync. Uncommitted changes:\n{status}"
+            )
+            .into());
+        }
+        log::info!("Working directory is clean");
+    }
+
+    Ok(())
 }
 
 fn main() {
