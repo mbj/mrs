@@ -1,12 +1,6 @@
 use pretty_assertions::assert_eq;
+use stratosphere::services as cloudformation;
 use stratosphere::template::*;
-use stratosphere::token::*;
-
-stratosphere::generator::services!(
-    "AWS::EC2",
-    "AWS::SecretsManager",
-    "AWS::ApplicationAutoScaling"
-);
 
 const EXPECTED: &str = r#"{
   "AWSTemplateFormatVersion": "2010-09-09",
@@ -102,7 +96,7 @@ fn test_template_explicit() {
                 security_group_egress: None,
                 vpc_id: Some(stratosphere::value::ExpString::Ref("Vpc".into())),
                 tags: Some(
-                    [cloudformation::Tag_ {
+                    [stratosphere::Tag_ {
                         key: "Test Tag Key".into(),
                         value: "Test Tag Value".into(),
                     }]
@@ -149,8 +143,8 @@ fn test_template_explicit() {
 
 #[test]
 fn test_template_builder() {
-    use cloudformation::Tag;
     use cloudformation::aws::ec2;
+    use stratosphere::Tag;
     use stratosphere::template::ParameterType;
 
     let template = Template::build(|template| {
@@ -865,35 +859,6 @@ fn test_list_property() {
     });
 
     assert_eq!(expected, serde_json::to_value(&template).unwrap());
-}
-
-#[test]
-fn test_generation() {
-    use stratosphere_core::resource_specification::*;
-
-    let stream = stratosphere_core::token::token_stream(Target::for_services(
-        instance(),
-        [
-            ServiceIdentifier {
-                vendor_name: VendorName("AWS"),
-                service_name: ServiceName("CertificateManager"),
-            },
-            ServiceIdentifier {
-                vendor_name: VendorName("AWS"),
-                service_name: ServiceName("SecretsManager"),
-            },
-        ]
-        .into(),
-    ));
-
-    match syn::parse2(stream.clone()) {
-        Ok(abstract_file) => {
-            insta::assert_snapshot!(prettyplease::unparse(&abstract_file));
-        }
-        Err(error) => {
-            panic!("Code failed to parse with error: {error:#?}\nCode:\n{stream}");
-        }
-    }
 }
 
 #[test]

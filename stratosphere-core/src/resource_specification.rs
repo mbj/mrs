@@ -8,21 +8,88 @@ use nom::{
     sequence::{pair, preceded},
 };
 
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
+pub struct FeatureName(String);
+
+impl FeatureName {
+    #[must_use]
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
+impl std::fmt::Display for FeatureName {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter) -> Result<(), std::fmt::Error> {
+        write!(formatter, "{}", self.0)
+    }
+}
+
 #[derive(Debug, serde::Deserialize)]
 #[serde(deny_unknown_fields, rename_all = "PascalCase")]
-pub struct ResourceSpecification<'a> {
+struct ResourceSpecificationInner<'a> {
     #[serde(borrow = "'a")]
+    property_types: PropertyTypeMap<'a>,
+    resource_specification_version: ResourceSpecificationVersion<'a>,
+    resource_types: ResourceTypeMap<'a>,
+}
+
+#[derive(Debug)]
+pub struct ResourceSpecification<'a> {
     pub property_types: PropertyTypeMap<'a>,
     pub resource_specification_version: ResourceSpecificationVersion<'a>,
     pub resource_types: ResourceTypeMap<'a>,
+    feature_names: BTreeMap<ServiceIdentifier<'a>, FeatureName>,
 }
 
-impl ResourceSpecification<'_> {
+impl<'a> From<ResourceSpecificationInner<'a>> for ResourceSpecification<'a> {
+    fn from(inner: ResourceSpecificationInner<'a>) -> Self {
+        let feature_names = inner
+            .resource_types
+            .keys()
+            .map(|resource_type_name| {
+                let service = resource_type_name.service.clone();
+                let feature_name = FeatureName(format!(
+                    "{}_{}",
+                    service.vendor_name.as_str().to_lowercase(),
+                    service.service_name.as_str().to_lowercase()
+                ));
+                (service, feature_name)
+            })
+            .collect();
+
+        Self {
+            property_types: inner.property_types,
+            resource_specification_version: inner.resource_specification_version,
+            resource_types: inner.resource_types,
+            feature_names,
+        }
+    }
+}
+
+impl<'a> ResourceSpecification<'a> {
     fn load_from_file() -> ResourceSpecification<'static> {
-        serde_json::from_slice(include_bytes!(
+        let inner: ResourceSpecificationInner<'static> = serde_json::from_slice(include_bytes!(
             "../CloudFormationResourceSpecification.json"
         ))
-        .unwrap()
+        .unwrap();
+        inner.into()
+    }
+
+    pub fn feature_names(&self) -> impl Iterator<Item = &FeatureName> {
+        self.feature_names.values()
+    }
+
+    #[must_use]
+    pub fn feature_name(&self, service: &ServiceIdentifier<'a>) -> &FeatureName {
+        self.feature_names
+            .get(service)
+            .expect("unknown service identifier")
+    }
+
+    pub fn services_with_feature_names(
+        &self,
+    ) -> impl Iterator<Item = (&ServiceIdentifier<'a>, &FeatureName)> {
+        self.feature_names.iter()
     }
 }
 
@@ -135,7 +202,7 @@ impl quote::ToTokens for ServiceName<'_> {
         let str_value = self.as_str();
 
         stream.extend(quote::quote! {
-            stratosphere::resource_specification::ServiceName(#str_value)
+            crate::resource_specification::ServiceName(#str_value)
         })
     }
 }
@@ -145,8 +212,16 @@ impl quote::ToTokens for ResourceName<'_> {
         let str_value = self.as_str();
 
         stream.extend(quote::quote! {
-            stratosphere::resource_specification::ResourceName(#str_value)
+            crate::resource_specification::ResourceName(#str_value)
         })
+    }
+}
+
+impl ResourceName<'_> {
+    /// Converts the resource name to a safe Rust module identifier (lowercase, escaped if keyword)
+    #[must_use]
+    pub fn to_module_ident(&self) -> syn::Ident {
+        crate::token::mk_safe_ident(self.as_str().to_lowercase())
     }
 }
 
@@ -155,7 +230,7 @@ impl quote::ToTokens for VendorName<'_> {
         let str_value = self.as_str();
 
         stream.extend(quote::quote! {
-            stratosphere::resource_specification::VendorName(#str_value)
+            crate::resource_specification::VendorName(#str_value)
         })
     }
 }
@@ -192,7 +267,7 @@ impl quote::ToTokens for ServiceIdentifier<'_> {
         let service_name = &self.service_name;
 
         stream.extend(quote::quote! {
-            stratosphere::resource_specification::ServiceIdentifier {
+            crate::resource_specification::ServiceIdentifier {
                 service_name: #service_name,
                 vendor_name: #vendor_name,
             }
@@ -244,7 +319,7 @@ impl quote::ToTokens for ResourceTypeName<'_> {
         let resource_name = &self.resource_name;
 
         stream.extend(quote::quote! {
-            stratosphere::resource_specification::ResourceTypeName {
+            crate::resource_specification::ResourceTypeName {
                 service: #service,
                 resource_name: #resource_name,
             }
@@ -477,5 +552,26 @@ mod tests {
     #[test]
     fn parses_resource_specification() {
         eprintln!("{:#?}", &*INSTANCE);
+    }
+
+    #[test]
+    fn feature_names_contains_aws_s3() {
+        let spec = instance();
+        let feature_names: Vec<_> = spec.feature_names().collect();
+
+        assert!(feature_names.iter().any(|name| name.as_str() == "aws_s3"));
+    }
+
+    #[test]
+    fn feature_name_for_s3_service() {
+        let spec = instance();
+        let s3_service = ServiceIdentifier {
+            vendor_name: VendorName("AWS"),
+            service_name: ServiceName("S3"),
+        };
+
+        let feature_name = spec.feature_name(&s3_service);
+
+        assert_eq!(feature_name.as_str(), "aws_s3");
     }
 }

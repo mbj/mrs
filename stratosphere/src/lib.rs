@@ -12,18 +12,17 @@ pub mod resource_specification {
     pub use stratosphere_core::resource_specification::*;
 }
 
-pub mod generator {
-    pub use stratosphere_generator::*;
-}
-
 pub mod token {
     pub use stratosphere_core::token::*;
 }
 
+pub use crate::services::tag::Tag;
+pub use crate::services::tag::Tag_;
 pub use crate::template::Template;
 
 pub mod lambda;
 pub mod logs;
+pub mod services;
 
 #[macro_export]
 macro_rules! Parameter {

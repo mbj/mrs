@@ -7,17 +7,11 @@ with compile-time validation of resource types and properties.
 
 ## Getting Started
 
-Generate Rust types for the AWS services you need, then build your CloudFormation template:
+Enable the AWS services you need via Cargo features, then build your CloudFormation template:
 
 ```rust
 use stratosphere::template::*;
-use cloudformation::aws::ec2;
-
-// Generate types for AWS services
-stratosphere::generator::services!(
-    "AWS::EC2",
-    "AWS::SecretsManager"
-);
+use stratosphere::services::aws::ec2;
 
 // Build your CloudFormation template using the generated resource macros
 let template = Template::build(|t| {
@@ -50,26 +44,40 @@ let json = serde_json::to_string_pretty(&template).unwrap();
 // This JSON can now be used with AWS CloudFormation APIs
 ```
 
+## Cargo Features
+
+Enable the AWS services you need in your `Cargo.toml`:
+
+```toml
+[dependencies]
+stratosphere = { version = "0.0.2", features = ["aws_ec2", "aws_secretsmanager"] }
+```
+
+Each AWS service has its own feature flag (e.g., `aws_ec2`, `aws_s3`, `aws_lambda`).
+
 ## Features
 
 - **Comprehensive coverage**: Supports all AWS CloudFormation resource types
-- **Type-safe resource definitions**: Generated types for all AWS CloudFormation resources
+- **Type-safe resource definitions**: Pre-generated types for all AWS CloudFormation resources
 - **Compile-time validation**: Catch errors before deployment
-- **On-demand type generation**: Types are dynamically created per CloudFormation service using official AWS resource specifications, keeping compiled code minimal
+- **Feature-gated services**: Only compile the services you need, keeping build times fast
 - **CloudFormation intrinsic functions**: Type-safe wrappers for `Fn::Sub`, `Fn::Join`, `Ref`, etc.
 - **Template builder API**: Fluent interface for constructing templates
 - **Helper macros**: Convenient macros for parameters, outputs, and common patterns
 
 ## Design Philosophy
 
-Stratosphere generates CloudFormation resource types on-demand based on the AWS services you actually use. When you invoke the `services!` macro with specific AWS service names, it dynamically creates the necessary types from the official AWS CloudFormation resource specifications.
+Stratosphere provides pre-generated CloudFormation resource types gated behind Cargo features.
+Enable only the AWS services you need, and your compiled binary will only include those types.
 
-This approach ensures that your compiled binary only includes the types for the services you're actually using, resulting in minimal compiled code size. You only pay for what you use, both in terms of compilation time and binary size.
+This approach ensures fast compilation times and minimal binary size - you only pay for what you use.
+
+Note: Once Rust's declarative macros 2.0 are stabilized, pre-generation can be removed in favor
+of on-demand type generation via proc macros with proper namespacing support.
 
 ## Module Organization
 
-- `generator`: Procedural macros for generating CloudFormation resource types
+- `services`: Pre-generated CloudFormation resource types organized by vendor and service
 - `template`: Core template types and builder API
 - `value`: CloudFormation values and intrinsic functions
 - `resource_specification`: AWS resource type definitions
-- `token`: Code generation utilities

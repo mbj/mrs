@@ -14,9 +14,16 @@ indoc.workspace = true
 log.workspace = true
 ociman.workspace = true
 pg-ephemeral = { path = "../pg-ephemeral" }
+prettyplease.workspace = true
+proc-macro2.workspace = true
+quote.workspace = true
+rayon = "1"
 serde.workspace = true
 serde_json.workspace = true
 sha2.workspace = true
+stratosphere-core.workspace = true
+syn.workspace = true
 tar = "0.4"
 toml.workspace = true
+toml_edit.workspace = true
 url.workspace = true
