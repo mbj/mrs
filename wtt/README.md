@@ -53,6 +53,20 @@ wtt setup <REPO> <URL>
 - Clones bare repo to `~/.local/share/wtt/bare/<repo>.git`
 - Creates empty `~/devel/<repo>/` directory
 
+### teardown
+
+Remove a repository completely (inverse of setup).
+
+```sh
+wtt teardown [OPTIONS] <REPO>
+```
+
+- `<REPO>` - Repository name to remove
+- `--force` - Force removal of worktrees with uncommitted changes
+- Removes all worktrees
+- Removes bare clone at `~/.local/share/wtt/bare/<repo>.git`
+- Removes worktree directory at `~/devel/<repo>/`
+
 ### add
 
 Create a worktree.
@@ -67,6 +81,9 @@ wtt add [OPTIONS] <BRANCH>
 - Auto-detects existing vs new branch:
   - If branch exists (local/remote): checkout
   - If branch doesn't exist: create from base
+- Configures upstream tracking to `origin/<branch>` via git config, so `git push`
+  and `git pull` work without additional flags, even for new branches that don't
+  exist on the remote yet
 
 ### list
 

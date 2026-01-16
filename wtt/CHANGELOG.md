@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.5
+
+- Add `teardown` command to remove a repository completely (inverse of setup)
+- Fix `wtt add` upstream tracking for new branches by using git config directly,
+  allowing `git push` to work before the remote branch exists
+
 ## 0.0.4
 
 - Add automatic upstream configuration on `wtt add`, setting the branch to track
