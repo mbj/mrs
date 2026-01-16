@@ -17,6 +17,7 @@ struct App {
 #[derive(Debug, clap::Parser)]
 enum Command {
     Setup(commands::Setup),
+    Teardown(commands::Teardown),
     Add(commands::Add),
     List(commands::List),
     #[clap(visible_alias = "rm")]
@@ -46,6 +47,7 @@ fn main() {
 
     let result = match app.command {
         Command::Setup(cmd) => cmd.run(&config),
+        Command::Teardown(cmd) => cmd.run(&config),
         Command::Add(cmd) => cmd.run(&config),
         Command::List(cmd) => cmd.run(&config),
         Command::Remove(cmd) => cmd.run(&config),
