@@ -143,8 +143,16 @@ fn set_upstream(
     Command::new("git")
         .argument("-C")
         .argument(worktree_path)
-        .argument("branch")
-        .argument("--set-upstream-to")
-        .argument(format!("origin/{branch}"))
+        .argument("config")
+        .argument(format!("branch.{branch}.remote"))
+        .argument("origin")
+        .status()?;
+
+    Command::new("git")
+        .argument("-C")
+        .argument(worktree_path)
+        .argument("config")
+        .argument(format!("branch.{branch}.merge"))
+        .argument(format!("refs/heads/{branch}"))
         .status()
 }

@@ -67,6 +67,9 @@ wtt add [OPTIONS] <BRANCH>
 - Auto-detects existing vs new branch:
   - If branch exists (local/remote): checkout
   - If branch doesn't exist: create from base
+- Configures upstream tracking to `origin/<branch>` via git config, so `git push`
+  and `git pull` work without additional flags, even for new branches that don't
+  exist on the remote yet
 
 ### list
 
