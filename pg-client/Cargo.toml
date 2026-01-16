@@ -1,6 +1,6 @@
 [package]
 name = "pg-client"
-version = "0.0.1-pre1"
+version = "0.0.1"
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true
