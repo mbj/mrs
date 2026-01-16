@@ -1,4 +1,6 @@
-use crate::{Branch, Command, Config, Error, RepoName, detect_repo_from_cwd};
+use std::path::Path;
+
+use crate::{Branch, Command, CommandError, Config, Error, RepoName, detect_repo_from_cwd};
 
 #[derive(Debug, clap::Parser)]
 pub struct Remove {
@@ -32,19 +34,7 @@ impl Remove {
             return Err(Error::WorktreeNotFound(worktree_path));
         }
 
-        log::info!("Removing worktree at {}", worktree_path.display());
-
-        let mut command = Command::new("git")
-            .argument("-C")
-            .argument(&bare_path)
-            .argument("worktree")
-            .argument("remove");
-
-        if self.force {
-            command = command.argument("--force");
-        }
-
-        command.argument(&worktree_path).status()?;
+        remove_worktree(&bare_path, &worktree_path, self.force)?;
 
         cleanup_empty_parents(config, &repo, &self.branch)?;
 
@@ -52,6 +42,26 @@ impl Remove {
 
         Ok(())
     }
+}
+
+pub fn remove_worktree(
+    bare_path: &Path,
+    worktree_path: &Path,
+    force: bool,
+) -> Result<(), CommandError> {
+    log::info!("Removing worktree at {}", worktree_path.display());
+
+    let mut command = Command::new("git")
+        .argument("-C")
+        .argument(bare_path)
+        .argument("worktree")
+        .argument("remove");
+
+    if force {
+        command = command.argument("--force");
+    }
+
+    command.argument(worktree_path).status()
 }
 
 fn cleanup_empty_parents(config: &Config, repo: &RepoName, branch: &Branch) -> Result<(), Error> {
