@@ -16,6 +16,20 @@ A PostgreSQL client configuration library providing strongly-typed connection pa
 
 `pg-client` addresses these issues by providing a pure configuration type with complete control over all connection parameters.
 
+## Feature Flags
+
+### `sqlx`
+
+Enables integration with [sqlx](https://github.com/launchbadge/sqlx):
+
+- `Config::to_sqlx_connect_options()` - converts to `sqlx::postgres::PgConnectOptions`
+- `Config::with_sqlx_connection()` - runs an async action with a managed connection
+
+```toml
+[dependencies]
+pg-client = { version = "0.0.1-pre1", features = ["sqlx"] }
+```
+
 ## Features
 
 ### Strongly-Typed Connection Parameters
