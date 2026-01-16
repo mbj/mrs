@@ -1,6 +1,6 @@
 [package]
 name = "wtt"
-version = "0.0.4"
+version = "0.0.5"
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true
