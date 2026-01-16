@@ -1,6 +1,6 @@
 use rand::Rng;
 
-use crate::LOCALHOST_HOST_ADDR_IP;
+use crate::LOCALHOST_HOST_ADDR;
 use crate::LOCALHOST_IP;
 use crate::UNSPECIFIED_IP;
 use crate::certificate;
@@ -193,7 +193,7 @@ impl Container {
             config.endpoint = pg_client::Endpoint::Network {
                 host: host.clone(),
                 host_addr: host_addr.clone(),
-                port: Some(pg_client::Port(5432)),
+                port: Some(pg_client::Port::new(5432)),
             };
         }
         config
@@ -302,11 +302,10 @@ fn run_container(
 
     let container = ociman_definition.run_detached();
 
-    let port = pg_client::Port(
-        container
-            .read_host_tcp_port(5432)
-            .expect("port 5432 not published"),
-    );
+    let port: pg_client::Port = container
+        .read_host_tcp_port(5432)
+        .expect("port 5432 not published")
+        .into();
 
     let (host, host_addr, ssl_mode, ssl_root_cert) = if let Some(ssl_config) = ssl_config {
         let hostname = match ssl_config {
@@ -323,7 +322,7 @@ fn run_container(
 
         (
             pg_client::Host::HostName(hostname),
-            Some(LOCALHOST_HOST_ADDR_IP),
+            Some(LOCALHOST_HOST_ADDR),
             pg_client::SslMode::VerifyFull,
             Some(pg_client::SslRootCert::File(ca_cert_path)),
         )

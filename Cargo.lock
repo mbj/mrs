@@ -2228,16 +2228,18 @@ checksum = "9b4f627cb1b25917193a259e49bdad08f671f8d9708acfd5fe0a8c1455d87220"
 
 [[package]]
 name = "pg-client"
-version = "0.0.1-pre1"
+version = "0.0.1"
 dependencies = [
  "env_logger",
  "hostname-validator",
  "ociman",
+ "percent-encoding",
  "pg-ephemeral",
  "pretty_assertions",
  "serde",
  "serde_json",
  "sqlx",
+ "strum",
  "thiserror 2.0.17",
  "tokio",
  "url",
