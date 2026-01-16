@@ -30,16 +30,16 @@ async fn test_with_sqlx_connection() {
 async fn test_with_sqlx_connection_error_on_unavailable_database() {
     let config = pg_client::Config {
         application_name: None,
-        database: pg_client::database!("test_db"),
+        database: "test_db".parse().unwrap(),
         endpoint: pg_client::Endpoint::Network {
-            host: pg_client::host!("localhost"),
+            host: "localhost".parse().unwrap(),
             host_addr: None,
-            port: Some(pg_client::Port(0)), // Port 0 is reserved and never available
+            port: Some(pg_client::Port::new(0)), // Port 0 is reserved and never available
         },
-        password: Some(pg_client::Password::from("test".to_string())),
+        password: Some("test".parse().unwrap()),
         ssl_mode: pg_client::SslMode::Disable,
         ssl_root_cert: None,
-        username: pg_client::username!("test"),
+        username: "test".parse().unwrap(),
     };
 
     let result = config
@@ -57,7 +57,7 @@ async fn test_with_sqlx_connection_error_on_unavailable_database() {
 
     let error = result.unwrap_err();
     match error {
-        pg_client::SqlxConnectionError::Connect(_) => {
+        pg_client::sqlx::ConnectionError::Connect(_) => {
             // Expected error variant
         }
         other => panic!("Expected Connect error, got: {other:?}"),

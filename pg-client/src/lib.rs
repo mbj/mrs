@@ -1,10 +1,15 @@
 #![doc = include_str!("../README.md")]
 
+#[cfg(feature = "sqlx")]
+pub mod sqlx;
+
+pub mod url;
+
 /// Macro to generate `std::str::FromStr` plus helpers for string wrapped newtypes
 macro_rules! from_str_impl {
     ($struct: ident, $min: expr, $max: expr) => {
         impl std::str::FromStr for $struct {
-            type Err = &'static str;
+            type Err = String;
 
             fn from_str(value: &str) -> Result<Self, Self::Err> {
                 let min_length = Self::MIN_LENGTH;
@@ -12,17 +17,17 @@ macro_rules! from_str_impl {
                 let actual = value.len();
 
                 if actual < min_length {
-                    Err(concat!(
-                        stringify!($struct),
-                        " byte min length: {min_length} violated, got: {actual}"
+                    Err(format!(
+                        "{} byte min length: {min_length} violated, got: {actual}",
+                        stringify!($struct)
                     ))
                 } else if actual > max_length {
-                    Err(concat!(
-                        stringify!($struct),
-                        " byte max length: {max_length} violated, got: {actual}"
+                    Err(format!(
+                        "{} byte max length: {max_length} violated, got: {actual}",
+                        stringify!($struct)
                     ))
                 } else if value.as_bytes().contains(&0) {
-                    Err(concat!(stringify!($struct), " contains NUL byte"))
+                    Err(format!("{} contains NUL byte", stringify!($struct)))
                 } else {
                     Ok(Self(value.to_string()))
                 }
@@ -86,12 +91,12 @@ pub enum Host {
 
 impl serde::Serialize for Host {
     fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
-        serializer.serialize_str(&self.to_pg_env_value())
+        serializer.serialize_str(&self.pg_env_value())
     }
 }
 
 impl Host {
-    fn to_pg_env_value(&self) -> String {
+    pub(crate) fn pg_env_value(&self) -> String {
         match self {
             Self::HostName(value) => value.0.clone(),
             Self::IpAddr(value) => value.to_string(),
@@ -113,13 +118,6 @@ impl std::str::FromStr for Host {
     }
 }
 
-#[macro_export]
-macro_rules! host {
-    ($string: literal) => {
-        <pg_client::Host as std::str::FromStr>::from_str($string).unwrap()
-    };
-}
-
 impl From<HostName> for Host {
     fn from(value: HostName) -> Self {
         Self::HostName(value)
@@ -133,7 +131,14 @@ impl From<std::net::IpAddr> for Host {
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
-pub struct HostAddr(pub std::net::IpAddr);
+pub struct HostAddr(std::net::IpAddr);
+
+impl HostAddr {
+    #[must_use]
+    pub const fn new(ip: std::net::IpAddr) -> Self {
+        Self(ip)
+    }
+}
 
 impl From<std::net::IpAddr> for HostAddr {
     /// # Example
@@ -143,10 +148,22 @@ impl From<std::net::IpAddr> for HostAddr {
     ///
     /// let ip: IpAddr = "192.168.1.1".parse().unwrap();
     /// let host_addr = HostAddr::from(ip);
-    /// assert_eq!(host_addr.0.to_string(), "192.168.1.1");
+    /// assert_eq!(IpAddr::from(host_addr).to_string(), "192.168.1.1");
     /// ```
     fn from(value: std::net::IpAddr) -> Self {
         Self(value)
+    }
+}
+
+impl From<HostAddr> for std::net::IpAddr {
+    fn from(value: HostAddr) -> Self {
+        value.0
+    }
+}
+
+impl From<&HostAddr> for std::net::IpAddr {
+    fn from(value: &HostAddr) -> Self {
+        value.0
     }
 }
 
@@ -231,7 +248,18 @@ impl serde::Serialize for Endpoint {
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize)]
-pub struct Port(pub u16);
+pub struct Port(u16);
+
+impl Port {
+    #[must_use]
+    pub const fn new(port: u16) -> Self {
+        Self(port)
+    }
+
+    fn pg_env_value(self) -> String {
+        self.0.to_string()
+    }
+}
 
 impl std::str::FromStr for Port {
     type Err = &'static str;
@@ -244,9 +272,9 @@ impl std::str::FromStr for Port {
     }
 }
 
-impl Port {
-    fn to_pg_env_value(self) -> String {
-        self.0.to_string()
+impl From<u16> for Port {
+    fn from(port: u16) -> Self {
+        Self(port)
     }
 }
 
@@ -267,15 +295,8 @@ pub struct ApplicationName(String);
 
 from_str_impl!(ApplicationName, 1, 63);
 
-#[macro_export]
-macro_rules! application_name {
-    ($string: literal) => {
-        <pg_client::ApplicationName as std::str::FromStr>::from_str($string).unwrap()
-    };
-}
-
 impl ApplicationName {
-    fn to_pg_env_value(&self) -> String {
+    fn pg_env_value(&self) -> String {
         self.0.clone()
     }
 }
@@ -285,15 +306,8 @@ pub struct Database(String);
 
 from_str_impl!(Database, 1, 63);
 
-#[macro_export]
-macro_rules! database {
-    ($string: literal) => {
-        <pg_client::Database as std::str::FromStr>::from_str($string).unwrap()
-    };
-}
-
 impl Database {
-    fn to_pg_env_value(&self) -> String {
+    fn pg_env_value(&self) -> String {
         self.0.clone()
     }
 }
@@ -303,15 +317,8 @@ pub struct Username(String);
 
 from_str_impl!(Username, 1, 63);
 
-#[macro_export]
-macro_rules! username {
-    ($string: literal) => {
-        <pg_client::Username as std::str::FromStr>::from_str($string).unwrap()
-    };
-}
-
 impl Username {
-    fn to_pg_env_value(&self) -> String {
+    fn pg_env_value(&self) -> String {
         self.0.clone()
     }
 }
@@ -322,19 +329,16 @@ pub struct Password(String);
 from_str_impl!(Password, 0, 4096);
 
 impl Password {
-    fn to_pg_env_value(&self) -> String {
+    fn pg_env_value(&self) -> String {
         self.0.clone()
     }
 }
 
-impl From<String> for Password {
-    fn from(value: String) -> Self {
-        Self(value)
-    }
-}
-
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, strum::IntoStaticStr, strum::EnumString,
+)]
 #[serde(rename_all = "kebab-case")]
+#[strum(serialize_all = "kebab-case")]
 pub enum SslMode {
     Allow,
     Disable,
@@ -347,30 +351,10 @@ pub enum SslMode {
 impl SslMode {
     #[must_use]
     pub fn as_str(&self) -> &'static str {
-        match self {
-            Self::Allow => "allow",
-            Self::Disable => "disable",
-            Self::Prefer => "prefer",
-            Self::Require => "require",
-            Self::VerifyCa => "verify-ca",
-            Self::VerifyFull => "verify-full",
-        }
+        self.into()
     }
 
-    fn to_sqlx_ssl_mode(&self) -> sqlx::postgres::PgSslMode {
-        use sqlx::postgres::PgSslMode;
-
-        match self {
-            Self::Allow => PgSslMode::Allow,
-            Self::Disable => PgSslMode::Disable,
-            Self::Prefer => PgSslMode::Prefer,
-            Self::Require => PgSslMode::Require,
-            Self::VerifyCa => PgSslMode::VerifyCa,
-            Self::VerifyFull => PgSslMode::VerifyFull,
-        }
-    }
-
-    fn to_pg_env_value(&self) -> String {
+    fn pg_env_value(&self) -> String {
         self.as_str().to_string()
     }
 }
@@ -383,7 +367,7 @@ pub enum SslRootCert {
 }
 
 impl SslRootCert {
-    fn to_pg_env_value(&self) -> String {
+    pub(crate) fn pg_env_value(&self) -> String {
         match self {
             Self::File(path) => path.to_str().unwrap().to_string(),
             Self::System => "system".to_string(),
@@ -395,47 +379,6 @@ impl From<std::path::PathBuf> for SslRootCert {
     fn from(value: std::path::PathBuf) -> Self {
         Self::File(value)
     }
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum SqlxOptionsError {
-    EnvConflict { env_key: String, field_name: String },
-    UnsupportedFeature { env_key: String, field_name: String },
-}
-
-impl std::fmt::Display for SqlxOptionsError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Self::EnvConflict {
-                env_key,
-                field_name,
-            } => write!(
-                f,
-                "`PgConnectOptions::new` has inferred a `{field_name}` from `{env_key}` environment variable, but `pg_client::Config` does not specify a `{field_name}` value. `PgConnectOptions` does not provide an API to construct an instance without inferring from the environment, does not provide an API to unset the field, we have to bail out at this point. Please remove the environment variable!"
-            ),
-            Self::UnsupportedFeature {
-                env_key,
-                field_name,
-            } => write!(
-                f,
-                "`PgConnectOptions::new` has inferred `{field_name}` from the `{env_key}` environment variable, but `pg_client::Config` does not support that feature at this point. As `PgConnectOptions` has no option to unset that field, or a constructor that allows us to bypass the inference: we have to bail out, please remove the environment variable!"
-            ),
-        }
-    }
-}
-
-impl std::error::Error for SqlxOptionsError {}
-
-#[derive(Debug, thiserror::Error)]
-pub enum SqlxConnectionError {
-    #[error("Failed to create SQLx connect options")]
-    Options(#[from] SqlxOptionsError),
-
-    #[error("Failed to connect to database")]
-    Connect(#[source] sqlx::Error),
-
-    #[error("Failed to close database connection")]
-    Close(#[source] sqlx::Error),
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -492,7 +435,7 @@ impl Config {
     /// ```
     /// # use pg_client::*;
     /// # use std::str::FromStr;
-    /// # use url::Url;
+    /// # use ::url::Url;
     ///
     /// let config = Config {
     ///     application_name: None,
@@ -500,7 +443,7 @@ impl Config {
     ///     endpoint: Endpoint::Network {
     ///         host: Host::from_str("some-host").unwrap(),
     ///         host_addr: None,
-    ///         port: Some(Port(5432)),
+    ///         port: Some(Port::new(5432)),
     ///     },
     ///     password: None,
     ///     ssl_mode: SslMode::VerifyFull,
@@ -537,7 +480,7 @@ impl Config {
     ///         endpoint: Endpoint::Network {
     ///             host: Host::from_str("some-host").unwrap(),
     ///             host_addr: Some("127.0.0.1".parse().unwrap()),
-    ///             port: Some(Port(5432)),
+    ///             port: Some(Port::new(5432)),
     ///         },
     ///         ..config.clone()
     ///     }.to_url()
@@ -550,7 +493,7 @@ impl Config {
     ///     endpoint: Endpoint::Network {
     ///         host: Host::IpAddr(std::net::IpAddr::V4(std::net::Ipv4Addr::new(127, 0, 0, 1))),
     ///         host_addr: None,
-    ///         port: Some(Port(5432)),
+    ///         port: Some(Port::new(5432)),
     ///     },
     ///     password: None,
     ///     ssl_mode: SslMode::Disable,
@@ -569,7 +512,7 @@ impl Config {
     ///     endpoint: Endpoint::Network {
     ///         host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::LOCALHOST)),
     ///         host_addr: None,
-    ///         port: Some(Port(5432)),
+    ///         port: Some(Port::new(5432)),
     ///     },
     ///     password: None,
     ///     ssl_mode: SslMode::Disable,
@@ -582,8 +525,8 @@ impl Config {
     /// );
     /// ```
     #[must_use]
-    pub fn to_url(&self) -> url::Url {
-        let mut url = url::Url::parse("postgres://").unwrap();
+    pub fn to_url(&self) -> ::url::Url {
+        let mut url = ::url::Url::parse("postgres://").unwrap();
 
         match &self.endpoint {
             Endpoint::Network {
@@ -600,7 +543,7 @@ impl Config {
                         url.set_host(Some(hostname.as_str())).unwrap();
                     }
                 }
-                url.set_username(self.username.to_pg_env_value().as_str())
+                url.set_username(self.username.pg_env_value().as_str())
                     .unwrap();
 
                 if let Some(password) = &self.password {
@@ -627,7 +570,7 @@ impl Config {
                         path.to_str().expect("socket path contains invalid utf8"),
                     )
                     .append_pair("dbname", self.database.as_str())
-                    .append_pair("user", self.username.to_pg_env_value().as_str());
+                    .append_pair("user", self.username.pg_env_value().as_str());
 
                 if let Some(password) = &self.password {
                     url.query_pairs_mut()
@@ -643,10 +586,10 @@ impl Config {
                 pairs.append_pair("application_name", application_name.as_str());
             }
 
-            pairs.append_pair("sslmode", &self.ssl_mode.to_pg_env_value());
+            pairs.append_pair("sslmode", &self.ssl_mode.pg_env_value());
 
             if let Some(ssl_root_cert) = &self.ssl_root_cert {
-                pairs.append_pair("sslrootcert", &ssl_root_cert.to_pg_env_value());
+                pairs.append_pair("sslrootcert", &ssl_root_cert.pg_env_value());
             }
         }
 
@@ -665,7 +608,7 @@ impl Config {
     ///     endpoint: Endpoint::Network {
     ///         host: "some-host".parse().unwrap(),
     ///         host_addr: None,
-    ///         port: Some(Port(5432)),
+    ///         port: Some(Port::new(5432)),
     ///     },
     ///     password: None,
     ///     ssl_mode: SslMode::VerifyFull,
@@ -688,7 +631,7 @@ impl Config {
     ///     endpoint: Endpoint::Network {
     ///         host: "some-host".parse().unwrap(),
     ///         host_addr: Some("127.0.0.1".parse().unwrap()),
-    ///         port: Some(Port(5432)),
+    ///         port: Some(Port::new(5432)),
     ///     },
     ///     password: Some("some-password".parse().unwrap()),
     ///     ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
@@ -719,9 +662,9 @@ impl Config {
                 host_addr,
                 port,
             } => {
-                map.insert("PGHOST", host.to_pg_env_value());
+                map.insert("PGHOST", host.pg_env_value());
                 if let Some(port) = port {
-                    map.insert("PGPORT", port.to_pg_env_value());
+                    map.insert("PGPORT", port.pg_env_value());
                 }
                 if let Some(addr) = host_addr {
                     map.insert("PGHOSTADDR", addr.to_string());
@@ -737,173 +680,46 @@ impl Config {
             }
         }
 
-        map.insert("PGSSLMODE", self.ssl_mode.to_pg_env_value());
-        map.insert("PGUSER", self.username.to_pg_env_value());
-        map.insert("PGDATABASE", self.database.to_pg_env_value());
+        map.insert("PGSSLMODE", self.ssl_mode.pg_env_value());
+        map.insert("PGUSER", self.username.pg_env_value());
+        map.insert("PGDATABASE", self.database.pg_env_value());
 
         if let Some(application_name) = &self.application_name {
-            map.insert("PGAPPNAME", application_name.to_pg_env_value());
+            map.insert("PGAPPNAME", application_name.pg_env_value());
         }
 
         if let Some(password) = &self.password {
-            map.insert("PGPASSWORD", password.to_pg_env_value());
+            map.insert("PGPASSWORD", password.pg_env_value());
         }
 
         if let Some(ssl_root_cert) = &self.ssl_root_cert {
-            map.insert("PGSSLROOTCERT", ssl_root_cert.to_pg_env_value());
+            map.insert("PGSSLROOTCERT", ssl_root_cert.pg_env_value());
         }
 
         map
     }
 
-    /// Convert to an sqlx pg connection config
-    ///
-    /// ```
-    /// # use pg_client::*;
-    /// # use std::str::FromStr;
-    ///
-    /// let config = Config {
-    ///     application_name: Some(ApplicationName::from_str("some-app").unwrap()),
-    ///     database: Database::from_str("some-database").unwrap(),
-    ///     endpoint: Endpoint::Network {
-    ///         host: Host::from_str("some-host").unwrap(),
-    ///         host_addr: None,
-    ///         port: Some(Port(5432)),
-    ///     },
-    ///     password: Some(Password::from_str("some-password").unwrap()),
-    ///     ssl_mode: SslMode::VerifyFull,
-    ///     ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
-    ///     username: Username::from_str("some-username").unwrap(),
-    /// };
-    ///
-    /// let options = config.to_sqlx_connect_options().unwrap();
-    ///
-    /// // `PgConnectOptions` does not have `PartialEq` and only partial getters
-    /// // so we can only assert a few fields.
-    /// assert_eq!(Some("some-app"), options.get_application_name());
-    /// assert_eq!("some-host", options.get_host());
-    /// assert_eq!(5432, options.get_port());
-    /// assert_eq!("some-username", options.get_username());
-    /// // No PartialEQ instance
-    /// assert_eq!(format!("{:#?}", sqlx::postgres::PgSslMode::VerifyFull), format!("{:#?}", options.get_ssl_mode()));
-    /// assert_eq!(Some("some-database"), options.get_database());
-    /// // Unsupported.
-    /// // assert_eq!("some-password", options.get_password());
-    /// // assert_eq!("/some.pem", options.get_ssl_root_cert());
-    /// ```
-    ///
-    /// # Errors
-    ///
-    /// Returns an error if fields inferred from the process environment variables
-    /// by `PgConnectOptions::new` contradict the settings in `Config`, and
-    /// there is no public API in `PgConnectOptions` to reset these values.
-    pub fn to_sqlx_connect_options(
-        &self,
-    ) -> Result<sqlx::postgres::PgConnectOptions, SqlxOptionsError> {
-        fn reject_env(env_key: &str, field_name: &str) -> Result<(), SqlxOptionsError> {
-            if std::env::var(env_key).is_ok() {
-                Err(SqlxOptionsError::EnvConflict {
-                    env_key: env_key.to_string(),
-                    field_name: field_name.to_string(),
-                })
-            } else {
-                Ok(())
-            }
-        }
-
-        fn unsupported_env(env_key: &str, field_name: &str) -> Result<(), SqlxOptionsError> {
-            if std::env::var(env_key).is_ok() {
-                Err(SqlxOptionsError::UnsupportedFeature {
-                    env_key: env_key.to_string(),
-                    field_name: field_name.to_string(),
-                })
-            } else {
-                Ok(())
-            }
-        }
-
-        // This is the "least powerful" API available to create a `PgConnectOptions`
-        // instance. Still it does ENV variable snooping and we below try hard to
-        // reset all of that snooped variables.
-        let mut options = sqlx::postgres::PgConnectOptions::new_without_pgpass();
-
-        unsupported_env("PGSSLKEY", "ssl_client_key")?;
-        unsupported_env("PGSSLCERT", "ssl_client_cert")?;
-        unsupported_env("PGOPTIONS", "options")?;
-
-        options = options.database(self.database.as_str());
-
-        match &self.endpoint {
-            Endpoint::Network {
-                host,
-                host_addr,
-                port,
-            } => {
-                options = options.host(&host.to_pg_env_value());
-                if let Some(port) = port {
-                    options = options.port(port.into());
-                } else {
-                    reject_env("PGPORT", "port")?;
-                }
-                if let Some(host_addr) = host_addr {
-                    options = options.host_addr(&host_addr.to_string())
-                } else {
-                    reject_env("PGHOSTADDR", "hostaddr")?;
-                }
-            }
-            Endpoint::SocketPath(path) => {
-                options = options.host(path.to_str().expect("socket path contains invalid utf8"));
-                reject_env("PGPORT", "port")?;
-                reject_env("PGHOSTADDR", "hostaddr")?;
-            }
-        }
-
-        options = options.ssl_mode(self.ssl_mode.to_sqlx_ssl_mode());
-        options = options.username(self.username.as_str());
-
-        if let Some(application_name) = &self.application_name {
-            options = options.application_name(application_name.as_str());
-        } else {
-            reject_env("PGAPPNAME", "application_name")?;
-        }
-
-        if let Some(password) = &self.password {
-            options = options.password(password.as_str());
-        } else {
-            reject_env("PGPASSWORD", "password")?;
-        }
-
-        if let Some(ssl_root_cert) = &self.ssl_root_cert {
-            options = options.ssl_root_cert(ssl_root_cert.to_pg_env_value());
-        } else {
-            reject_env("PGSSLROOTCERT", "ssl_root_cert")?;
-        }
-
-        Ok(options)
-    }
-
-    pub async fn with_sqlx_connection<T, F: AsyncFnMut(&mut sqlx::postgres::PgConnection) -> T>(
-        &self,
-        mut action: F,
-    ) -> Result<T, SqlxConnectionError> {
-        let config = self.to_sqlx_connect_options()?;
-
-        let mut connection = sqlx::ConnectOptions::connect(&config)
-            .await
-            .map_err(SqlxConnectionError::Connect)?;
-
-        let result = action(&mut connection).await;
-
-        sqlx::Connection::close(connection)
-            .await
-            .map_err(SqlxConnectionError::Close)?;
-
-        Ok(result)
-    }
-
     #[must_use]
     pub fn endpoint(self, endpoint: Endpoint) -> Self {
         Self { endpoint, ..self }
+    }
+
+    /// Parse a PostgreSQL connection URL into a Config.
+    ///
+    /// When the URL does not specify `sslmode`, it defaults to `verify-full`
+    /// to ensure secure connections by default.
+    ///
+    /// See [`url::parse`] for full documentation.
+    pub fn from_url(url: &::url::Url) -> Result<Self, crate::url::ParseError> {
+        crate::url::parse(url)
+    }
+
+    /// Parse a PostgreSQL connection URL string into a Config.
+    ///
+    /// See [`Self::from_url`] for details on SSL mode defaults.
+    pub fn from_str_url(url: &str) -> Result<Self, crate::url::ParseError> {
+        let parsed_url = url.parse()?;
+        crate::url::parse(&parsed_url)
     }
 }
 
@@ -927,10 +743,7 @@ mod test {
 
         let err = ApplicationName::from_str(&value).expect_err("expected min length failure");
 
-        assert_eq!(
-            err,
-            "ApplicationName byte min length: {min_length} violated, got: {actual}"
-        );
+        assert_eq!(err, "ApplicationName byte min length: 1 violated, got: 0");
     }
 
     #[test]
@@ -979,10 +792,7 @@ mod test {
 
         let err = ApplicationName::from_str(&value).expect_err("expected max length failure");
 
-        assert_eq!(
-            err,
-            "ApplicationName byte max length: {max_length} violated, got: {actual}"
-        );
+        assert_eq!(err, "ApplicationName byte max length: 63 violated, got: 64");
     }
 
     #[test]
@@ -1000,10 +810,7 @@ mod test {
 
         let err = Database::from_str(&value).expect_err("expected min length failure");
 
-        assert_eq!(
-            err,
-            "Database byte min length: {min_length} violated, got: {actual}"
-        );
+        assert_eq!(err, "Database byte min length: 1 violated, got: 0");
     }
 
     #[test]
@@ -1048,10 +855,7 @@ mod test {
 
         let err = Database::from_str(&value).expect_err("expected max length failure");
 
-        assert_eq!(
-            err,
-            "Database byte max length: {max_length} violated, got: {actual}"
-        );
+        assert_eq!(err, "Database byte max length: 63 violated, got: 64");
     }
 
     #[test]
@@ -1069,10 +873,7 @@ mod test {
 
         let err = Username::from_str(&value).expect_err("expected min length failure");
 
-        assert_eq!(
-            err,
-            "Username byte min length: {min_length} violated, got: {actual}"
-        );
+        assert_eq!(err, "Username byte min length: 1 violated, got: 0");
     }
 
     #[test]
@@ -1117,10 +918,7 @@ mod test {
 
         let err = Username::from_str(&value).expect_err("expected max length failure");
 
-        assert_eq!(
-            err,
-            "Username byte max length: {max_length} violated, got: {actual}"
-        );
+        assert_eq!(err, "Username byte max length: 63 violated, got: 64");
     }
 
     #[test]
@@ -1174,10 +972,7 @@ mod test {
 
         let err = Password::from_str(&value).expect_err("expected max length failure");
 
-        assert_eq!(
-            err,
-            "Password byte max length: {max_length} violated, got: {actual}"
-        );
+        assert_eq!(err, "Password byte max length: 4096 violated, got: 4097");
     }
 
     #[test]
@@ -1197,7 +992,7 @@ mod test {
             endpoint: Endpoint::Network {
                 host: Host::from_str("some-host").unwrap(),
                 host_addr: None,
-                port: Some(Port(5432)),
+                port: Some(Port::new(5432)),
             },
             password: None,
             ssl_mode: SslMode::VerifyFull,
@@ -1258,7 +1053,7 @@ mod test {
                 endpoint: Endpoint::Network {
                     host: Host::from_str("127.0.0.1").unwrap(),
                     host_addr: None,
-                    port: Some(Port(5432)),
+                    port: Some(Port::new(5432)),
                 },
                 ..config.clone()
             },
@@ -1314,7 +1109,7 @@ mod test {
                 endpoint: Endpoint::Network {
                     host: Host::from_str("some-host").unwrap(),
                     host_addr: Some("192.168.1.100".parse().unwrap()),
-                    port: Some(Port(5432)),
+                    port: Some(Port::new(5432)),
                 },
                 ..config.clone()
             },
@@ -1373,7 +1168,7 @@ mod test {
             endpoint: Endpoint::Network {
                 host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::LOCALHOST)),
                 host_addr: None,
-                port: Some(Port(5432)),
+                port: Some(Port::new(5432)),
             },
             password: None,
             ssl_mode: SslMode::Disable,
@@ -1397,7 +1192,7 @@ mod test {
                     0xfe80, 0, 0, 0, 0, 0, 0, 1,
                 ))),
                 host_addr: None,
-                port: Some(Port(5432)),
+                port: Some(Port::new(5432)),
             },
             password: None,
             ssl_mode: SslMode::Disable,
@@ -1421,7 +1216,7 @@ mod test {
                     0x2001, 0x0db8, 0, 0, 0, 0, 0, 1,
                 ))),
                 host_addr: None,
-                port: Some(Port(5432)),
+                port: Some(Port::new(5432)),
             },
             password: None,
             ssl_mode: SslMode::Disable,
@@ -1443,7 +1238,7 @@ mod test {
             endpoint: Endpoint::Network {
                 host: Host::IpAddr(std::net::IpAddr::V4(std::net::Ipv4Addr::LOCALHOST)),
                 host_addr: None,
-                port: Some(Port(5432)),
+                port: Some(Port::new(5432)),
             },
             password: None,
             ssl_mode: SslMode::Disable,
@@ -1465,7 +1260,7 @@ mod test {
             endpoint: Endpoint::Network {
                 host: Host::from_str("localhost").unwrap(),
                 host_addr: None,
-                port: Some(Port(5432)),
+                port: Some(Port::new(5432)),
             },
             password: None,
             ssl_mode: SslMode::Disable,

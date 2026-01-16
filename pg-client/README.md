@@ -16,6 +16,20 @@ A PostgreSQL client configuration library providing strongly-typed connection pa
 
 `pg-client` addresses these issues by providing a pure configuration type with complete control over all connection parameters.
 
+## Feature Flags
+
+### `sqlx`
+
+Enables integration with [sqlx](https://github.com/launchbadge/sqlx):
+
+- `Config::to_sqlx_connect_options()` - converts to `sqlx::postgres::PgConnectOptions`
+- `Config::with_sqlx_connection()` - runs an async action with a managed connection
+
+```toml
+[dependencies]
+pg-client = { version = "0.0.1-pre1", features = ["sqlx"] }
+```
+
 ## Features
 
 ### Strongly-Typed Connection Parameters
@@ -62,6 +76,14 @@ let options = config.to_sqlx_connect_options()?;
 ```
 
 This prevents subtle bugs where environment variables override your intended configuration. The library also rejects unsupported environment variables (`PGSSLKEY`, `PGSSLCERT`, `PGOPTIONS`) that sqlx would pick up.
+
+### Secure Defaults
+
+When parsing connection URLs without an explicit `sslmode` parameter, this library defaults to `verify-full` rather than the `prefer` default used by libpq and sqlx.
+
+libpq's `prefer` mode attempts TLS but silently falls back to unencrypted connections if TLS fails, providing no protection against downgrade attacks. This default made sense in 1996 when PostgreSQL was primarily used on trusted networks, but is inappropriate for modern deployments where databases are frequently accessed over untrusted networks.
+
+By defaulting to `verify-full`, connections require TLS with full certificate verification. Applications that explicitly need weaker security can specify `sslmode=prefer` or `sslmode=disable` in their connection URLs.
 
 ## License
 

@@ -38,7 +38,7 @@ mmigration = { path = "mmigration" }
 nom = "8"
 nom-language = "0.1"
 ociman = { version = "0.0.1", path = "ociman" }
-pg-client = { version = "0.0.1-pre1", path = "pg-client" }
+pg-client = { version = "0.0.1", path = "pg-client", features = ["sqlx"] }
 pg-ephemeral = { version = "0.0.1-pre2", path = "pg-ephemeral" }
 pretty_assertions = "1.4"
 prettyplease = "0.2"

@@ -33,7 +33,7 @@ async fn test_run_container_definition() {
         endpoint: pg_client::Endpoint::Network {
             host: pg_client::Host::IpAddr(std::net::IpAddr::V4(std::net::Ipv4Addr::LOCALHOST)),
             host_addr: None,
-            port: Some(pg_client::Port(port)),
+            port: Some(port.into()),
         },
         password: Some(pg_client::Password::from_str(static_password).unwrap()),
         ssl_mode: pg_client::SslMode::Disable,
