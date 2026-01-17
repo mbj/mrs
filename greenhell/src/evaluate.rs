@@ -10,7 +10,7 @@ use crate::github::{
     Branch, CheckName, CheckRun, CheckRunConclusion, CheckRunStatus, Client, CombinedStatus,
     CombinedStatusState, CommitStatusState, CompareCommits, CreateCommitStatus, GetCombinedStatus,
     GetRepository, ListCheckRuns, ListPullRequestCommits, ListPullRequests, PullRequestNumber,
-    PullRequestState, Repository,
+    PullRequestState, Ref, Repository, Sha,
 };
 
 /// The greenhell check name.
@@ -57,7 +57,7 @@ pub enum CommitStatus {
 #[derive(Debug, Clone, PartialEq)]
 pub struct CommitResult {
     /// The commit SHA.
-    pub sha: String,
+    pub sha: Sha,
     /// The aggregated status.
     pub status: EvaluationStatus,
     /// The existing greenhell commit status, if any.
@@ -110,7 +110,7 @@ impl EvaluationResult {
 /// Returns NoChecks if there are no checks at all.
 #[must_use]
 pub fn evaluate_commit(
-    sha: &str,
+    sha: &Sha,
     check_runs: &[CheckRun],
     combined_status: &CombinedStatus,
 ) -> CommitResult {
@@ -135,7 +135,7 @@ pub fn evaluate_commit(
         .map(|commit_status| commit_status.state);
 
     CommitResult {
-        sha: sha.to_string(),
+        sha: sha.clone(),
         status,
         existing_greenhell_state,
     }
@@ -158,8 +158,8 @@ pub enum Error {
 pub async fn evaluate_shas(
     client: &mut Client,
     repository: &Repository,
-    shas: Vec<String>,
-) -> Result<(EvaluationResult, Vec<String>), Error> {
+    shas: Vec<Sha>,
+) -> Result<(EvaluationResult, Vec<Sha>), Error> {
     // Fetch check-runs and combined status for all commits in parallel
     let commit_results = try_join_map(shas.iter(), |sha| {
         let sha = sha.clone();
@@ -173,7 +173,7 @@ pub async fn evaluate_shas(
                 &mut client,
                 ListCheckRuns {
                     repository: repository.clone(),
-                    git_ref: sha.parse().unwrap(),
+                    git_ref: Ref::from(&sha),
                 },
             );
 
@@ -187,7 +187,7 @@ pub async fn evaluate_shas(
                 status_client
                     .call(GetCombinedStatus {
                         repository,
-                        git_ref: sha.parse().unwrap(),
+                        git_ref: Ref::from(&sha),
                     })
                     .await
                     .map_err(Error::from)
@@ -211,7 +211,7 @@ pub async fn evaluate_pull_request(
     client: &mut Client,
     repository: &Repository,
     pull_request: PullRequestNumber,
-) -> Result<(EvaluationResult, Vec<String>), Error> {
+) -> Result<(EvaluationResult, Vec<Sha>), Error> {
     let commits = collect_pages(mhttp::link::paginate(
         &mut *client,
         ListPullRequestCommits {
@@ -221,7 +221,7 @@ pub async fn evaluate_pull_request(
     ))
     .await?;
 
-    let shas: Vec<String> = commits.iter().map(|commit| commit.sha.clone()).collect();
+    let shas: Vec<Sha> = commits.into_iter().map(|commit| commit.sha).collect();
 
     evaluate_shas(client, repository, shas).await
 }
@@ -236,7 +236,7 @@ pub async fn evaluate_branch(
     client: &mut Client,
     repository: &Repository,
     branch: &Branch,
-) -> Result<(EvaluationResult, Vec<String>), Error> {
+) -> Result<(EvaluationResult, Vec<Sha>), Error> {
     // Get the default branch for this repository
     let repo_info = client
         .call(GetRepository {
@@ -260,7 +260,7 @@ pub async fn evaluate_branch(
         collect_pages(comparison_stream.map(|result| result.map(|comparison| comparison.commits)))
             .await?;
 
-    let shas: Vec<String> = commits.iter().map(|commit| commit.sha.clone()).collect();
+    let shas: Vec<Sha> = commits.into_iter().map(|commit| commit.sha).collect();
 
     evaluate_shas(client, repository, shas).await
 }
@@ -453,6 +453,14 @@ mod tests {
     use super::*;
     use crate::github::CommitStatus as ApiCommitStatus;
 
+    fn sha_a() -> Sha {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa".parse().unwrap()
+    }
+
+    fn sha_b() -> Sha {
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb".parse().unwrap()
+    }
+
     fn check_run(
         name: CheckName,
         status: CheckRunStatus,
@@ -480,7 +488,7 @@ mod tests {
                     target_url: None,
                 })
                 .collect(),
-            sha: "abc123".to_string(),
+            sha: sha_a(),
         }
     }
 
@@ -625,12 +633,12 @@ mod tests {
         fn all_success() {
             let commits = vec![
                 CommitResult {
-                    sha: "a".to_string(),
+                    sha: sha_a(),
                     status: EvaluationStatus::Success,
                     existing_greenhell_state: None,
                 },
                 CommitResult {
-                    sha: "b".to_string(),
+                    sha: sha_b(),
                     status: EvaluationStatus::Success,
                     existing_greenhell_state: None,
                 },
@@ -643,12 +651,12 @@ mod tests {
         fn one_pending() {
             let commits = vec![
                 CommitResult {
-                    sha: "a".to_string(),
+                    sha: sha_a(),
                     status: EvaluationStatus::Success,
                     existing_greenhell_state: None,
                 },
                 CommitResult {
-                    sha: "b".to_string(),
+                    sha: sha_b(),
                     status: EvaluationStatus::Pending,
                     existing_greenhell_state: None,
                 },
@@ -661,12 +669,12 @@ mod tests {
         fn one_failure() {
             let commits = vec![
                 CommitResult {
-                    sha: "a".to_string(),
+                    sha: sha_a(),
                     status: EvaluationStatus::Success,
                     existing_greenhell_state: None,
                 },
                 CommitResult {
-                    sha: "b".to_string(),
+                    sha: sha_b(),
                     status: EvaluationStatus::Failure,
                     existing_greenhell_state: None,
                 },
@@ -679,12 +687,12 @@ mod tests {
         fn failure_takes_precedence_over_pending() {
             let commits = vec![
                 CommitResult {
-                    sha: "a".to_string(),
+                    sha: sha_a(),
                     status: EvaluationStatus::Pending,
                     existing_greenhell_state: None,
                 },
                 CommitResult {
-                    sha: "b".to_string(),
+                    sha: sha_b(),
                     status: EvaluationStatus::Failure,
                     existing_greenhell_state: None,
                 },
@@ -697,12 +705,12 @@ mod tests {
         fn no_checks_takes_precedence_over_pending() {
             let commits = vec![
                 CommitResult {
-                    sha: "a".to_string(),
+                    sha: sha_a(),
                     status: EvaluationStatus::Pending,
                     existing_greenhell_state: None,
                 },
                 CommitResult {
-                    sha: "b".to_string(),
+                    sha: sha_b(),
                     status: EvaluationStatus::NoChecks,
                     existing_greenhell_state: None,
                 },

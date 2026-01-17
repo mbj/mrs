@@ -25,6 +25,18 @@ impl Client {
     /// Default GitHub API base URL.
     pub const DEFAULT_BASE_URL: &str = "https://api.github.com";
 
+    /// Creates a new GitHub API client by discovering a token using CLI resolution order.
+    ///
+    /// Checks sources in order:
+    /// 1. `GH_TOKEN` environment variable
+    /// 2. `GITHUB_TOKEN` environment variable
+    /// 3. `gh auth token` command
+    pub fn discover() -> Result<Self, crate::cli_token::NotFound> {
+        let discovery = crate::cli_token::discover()?;
+        log::info!("Token source: {}", discovery.source);
+        Ok(Self::new(discovery.token))
+    }
+
     /// Creates a new GitHub API client.
     #[must_use]
     pub fn new(token: Token) -> Self {
