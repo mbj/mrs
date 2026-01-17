@@ -67,7 +67,7 @@ impl Command {
                     for commit in commits {
                         println!(
                             "{} {}",
-                            &commit.sha[..7],
+                            commit.sha.abbrev(),
                             commit.commit.message.lines().next().unwrap_or("")
                         );
                     }
