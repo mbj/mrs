@@ -1,6 +1,6 @@
 //! GitHub API request types.
 
-use super::{Branch, Client, PullRequestNumber, Ref, Repository};
+use super::{Branch, Client, PullRequestNumber, Ref, Repository, Sha};
 
 /// Derives `Clone`, `Debug`, `PartialEq`, and `serde::Deserialize`.
 ///
@@ -107,7 +107,7 @@ serde_derive! {
 serde_derive! {
     /// A commit from the GitHub API.
     pub struct Commit {
-        pub sha: String,
+        pub sha: Sha,
     }
 }
 
@@ -243,15 +243,7 @@ pub struct ListCheckRuns {
     pub git_ref: Ref,
 }
 
-impl mhttp::Request<Client> for ListCheckRuns {
-    type Response = mhttp::link::Paginated<CheckRunList>;
-
-    mhttp::decoder!(
-        mhttp::decoder::Response::build()
-            .status_code_json(http::StatusCode::OK)
-            .paginated()
-    );
-
+impl ListCheckRuns {
     fn request_builder(
         &self,
         client: &reqwest::Client,
@@ -268,7 +260,51 @@ impl mhttp::Request<Client> for ListCheckRuns {
     }
 }
 
+impl mhttp::Request<Client> for ListCheckRuns {
+    type Response = mhttp::link::Paginated<CheckRunList>;
+
+    mhttp::decoder!(
+        mhttp::decoder::Response::build()
+            .status_code_json(http::StatusCode::OK)
+            .paginated()
+    );
+
+    fn request_builder(
+        &self,
+        client: &reqwest::Client,
+        base_url: &mhttp::BaseUrl,
+    ) -> reqwest::RequestBuilder {
+        Self::request_builder(self, client, base_url)
+    }
+}
+
 impl mhttp::link::PaginatedRequest for ListCheckRuns {}
+
+/// `GET /repos/{owner}/{repo}/commits/{ref}/check-runs`
+///
+/// Returns `None` if the commit doesn't exist on GitHub (422 status).
+pub struct TryListCheckRuns(pub ListCheckRuns);
+
+impl mhttp::Request<Client> for TryListCheckRuns {
+    type Response = Option<CheckRunList>;
+
+    mhttp::decoder!(
+        mhttp::decoder::Response::build()
+            .status_code_json_map(http::StatusCode::OK, Some)
+            .status_code(http::StatusCode::UNPROCESSABLE_ENTITY, |content_types| {
+                content_types.constant(None);
+            })
+            .finish()
+    );
+
+    fn request_builder(
+        &self,
+        client: &reqwest::Client,
+        base_url: &mhttp::BaseUrl,
+    ) -> reqwest::RequestBuilder {
+        self.0.request_builder(client, base_url)
+    }
+}
 
 serde_derive! {
     /// Combined status state.
@@ -296,7 +332,7 @@ serde_derive! {
         pub state: CombinedStatusState,
         pub total_count: u64,
         pub statuses: Vec<CommitStatus>,
-        pub sha: String,
+        pub sha: Sha,
     }
 }
 
@@ -348,7 +384,7 @@ serde_derive! {
 pub struct CreateCheckRun {
     pub repository: Repository,
     pub name: CheckName,
-    pub head_sha: String,
+    pub head_sha: Sha,
     pub status: CheckRunStatus,
     pub conclusion: Option<CheckRunConclusion>,
     pub output: Option<CheckRunOutput>,
@@ -378,7 +414,7 @@ impl mhttp::Request<Client> for CreateCheckRun {
         #[derive(serde::Serialize)]
         struct Body<'a> {
             name: &'a CheckName,
-            head_sha: &'a str,
+            head_sha: &'a Sha,
             status: &'a CheckRunStatus,
             #[serde(skip_serializing_if = "Option::is_none")]
             conclusion: Option<&'a CheckRunConclusion>,
@@ -472,7 +508,7 @@ pub enum CommitStatusState {
 #[derive(Debug)]
 pub struct CreateCommitStatus {
     pub repository: Repository,
-    pub sha: String,
+    pub sha: Sha,
     pub state: CommitStatusState,
     pub context: CheckName,
     pub description: Option<String>,
@@ -570,7 +606,7 @@ serde_derive! {
     pub struct PullRequestRef {
         pub label: String,
         pub r#ref: String,
-        pub sha: String,
+        pub sha: Sha,
         pub user: serde_json::Value,
         pub repo: serde_json::Value,
     }
@@ -679,7 +715,7 @@ serde_derive! {
     /// A commit from `GET /repos/{owner}/{repo}/pulls/{pull_number}/commits`.
     pub struct PullRequestCommit {
         pub url: url::Url,
-        pub sha: String,
+        pub sha: Sha,
         pub node_id: String,
         pub html_url: url::Url,
         pub comments_url: url::Url,
@@ -716,7 +752,7 @@ serde_derive! {
     /// Tree reference in a commit.
     pub struct CommitTree {
         pub url: url::Url,
-        pub sha: String,
+        pub sha: Sha,
     }
 }
 
@@ -734,7 +770,7 @@ serde_derive! {
     /// Parent commit reference.
     pub struct CommitParent {
         pub url: url::Url,
-        pub sha: String,
+        pub sha: Sha,
         pub html_url: url::Url,
     }
 }
@@ -1015,8 +1051,8 @@ mod tests {
                     "ahead_by": 2,
                     "behind_by": 0,
                     "commits": [
-                        {"sha": "abc123"},
-                        {"sha": "def456"}
+                        {"sha": "abc123abc123abc123abc123abc123abc123abc1"},
+                        {"sha": "def456def456def456def456def456def456def4"}
                     ]
                 }"#,
             );
@@ -1032,10 +1068,10 @@ mod tests {
                         behind_by: 0,
                         commits: vec![
                             Commit {
-                                sha: "abc123".to_string()
+                                sha: "abc123abc123abc123abc123abc123abc123abc1".parse().unwrap()
                             },
                             Commit {
-                                sha: "def456".to_string()
+                                sha: "def456def456def456def456def456def456def4".parse().unwrap()
                             },
                         ],
                     },
@@ -1175,14 +1211,14 @@ mod tests {
                     "head": {
                         "label": "mbj:feature",
                         "ref": "feature",
-                        "sha": "abc123",
+                        "sha": "abc123abc123abc123abc123abc123abc123abc1",
                         "user": {"login": "mbj"},
                         "repo": {"name": "mrs"}
                     },
                     "base": {
                         "label": "mbj:main",
                         "ref": "main",
-                        "sha": "def456",
+                        "sha": "def456def456def456def456def456def456def4",
                         "user": {"login": "mbj"},
                         "repo": {"name": "mrs"}
                     },
@@ -1245,14 +1281,14 @@ mod tests {
                     head: PullRequestRef {
                         label: "mbj:feature".to_string(),
                         r#ref: "feature".to_string(),
-                        sha: "abc123".to_string(),
+                        sha: "abc123abc123abc123abc123abc123abc123abc1".parse().unwrap(),
                         user: serde_json::json!({"login": "mbj"}),
                         repo: serde_json::json!({"name": "mrs"}),
                     },
                     base: PullRequestRef {
                         label: "mbj:main".to_string(),
                         r#ref: "main".to_string(),
-                        sha: "def456".to_string(),
+                        sha: "def456def456def456def456def456def456def4".parse().unwrap(),
                         user: serde_json::json!({"login": "mbj"}),
                         repo: serde_json::json!({"name": "mrs"}),
                     },
@@ -1323,14 +1359,14 @@ mod tests {
                         "head": {
                             "label": "mbj:feature",
                             "ref": "feature",
-                            "sha": "abc123",
+                            "sha": "abc123abc123abc123abc123abc123abc123abc1",
                             "user": {"login": "mbj"},
                             "repo": {"name": "mrs"}
                         },
                         "base": {
                             "label": "mbj:main",
                             "ref": "main",
-                            "sha": "def456",
+                            "sha": "def456def456def456def456def456def456def4",
                             "user": {"login": "mbj"},
                             "repo": {"name": "mrs"}
                         },
@@ -1396,14 +1432,14 @@ mod tests {
                         head: PullRequestRef {
                             label: "mbj:feature".to_string(),
                             r#ref: "feature".to_string(),
-                            sha: "abc123".to_string(),
+                            sha: "abc123abc123abc123abc123abc123abc123abc1".parse().unwrap(),
                             user: serde_json::json!({"login": "mbj"}),
                             repo: serde_json::json!({"name": "mrs"}),
                         },
                         base: PullRequestRef {
                             label: "mbj:main".to_string(),
                             r#ref: "main".to_string(),
-                            sha: "def456".to_string(),
+                            sha: "def456def456def456def456def456def456def4".parse().unwrap(),
                             user: serde_json::json!({"login": "mbj"}),
                             repo: serde_json::json!({"name": "mrs"}),
                         },
@@ -1446,7 +1482,7 @@ mod tests {
                 r#"[
                     {
                         "url": "https://api.github.com/repos/mbj/mrs/commits/abc123",
-                        "sha": "abc123",
+                        "sha": "abc123abc123abc123abc123abc123abc123abc1",
                         "node_id": "C_abc123",
                         "html_url": "https://github.com/mbj/mrs/commit/abc123",
                         "comments_url": "https://api.github.com/repos/mbj/mrs/commits/abc123/comments",
@@ -1466,7 +1502,7 @@ mod tests {
                             "comment_count": 0,
                             "tree": {
                                 "url": "https://api.github.com/repos/mbj/mrs/git/trees/tree123",
-                                "sha": "tree123"
+                                "sha": "1234567890123456789012345678901234567890"
                             },
                             "verification": {
                                 "verified": false,
@@ -1480,7 +1516,7 @@ mod tests {
                         "parents": [
                             {
                                 "url": "https://api.github.com/repos/mbj/mrs/commits/parent123",
-                                "sha": "parent123",
+                                "sha": "aaaaaaaabbbbbbbbccccccccddddddddeeeeeeee",
                                 "html_url": "https://github.com/mbj/mrs/commit/parent123"
                             }
                         ]
@@ -1500,7 +1536,7 @@ mod tests {
                         url: "https://api.github.com/repos/mbj/mrs/commits/abc123"
                             .parse()
                             .unwrap(),
-                        sha: "abc123".to_string(),
+                        sha: "abc123abc123abc123abc123abc123abc123abc1".parse().unwrap(),
                         node_id: "C_abc123".to_string(),
                         html_url: "https://github.com/mbj/mrs/commit/abc123".parse().unwrap(),
                         comments_url:
@@ -1527,7 +1563,7 @@ mod tests {
                                 url: "https://api.github.com/repos/mbj/mrs/git/trees/tree123"
                                     .parse()
                                     .unwrap(),
-                                sha: "tree123".to_string(),
+                                sha: "1234567890123456789012345678901234567890".parse().unwrap(),
                             },
                             verification: CommitVerification {
                                 verified: false,
@@ -1542,7 +1578,7 @@ mod tests {
                             url: "https://api.github.com/repos/mbj/mrs/commits/parent123"
                                 .parse()
                                 .unwrap(),
-                            sha: "parent123".to_string(),
+                            sha: "aaaaaaaabbbbbbbbccccccccddddddddeeeeeeee".parse().unwrap(),
                             html_url: "https://github.com/mbj/mrs/commit/parent123"
                                 .parse()
                                 .unwrap(),

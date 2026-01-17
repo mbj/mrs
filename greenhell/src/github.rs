@@ -1,5 +1,6 @@
 mod api;
 mod client;
+pub mod git;
 
 pub use api::*;
 pub use client::{Client, Error};
@@ -13,7 +14,7 @@ use nom_language::error::{VerboseError, VerboseErrorKind};
 use crate::impl_from_str;
 use crate::parse::Parse;
 
-impl_from_str!(Repository, Branch, PullRequestNumber, Ref);
+impl_from_str!(Repository, Branch, PullRequestNumber, Ref, Sha);
 
 /// A GitHub repository identifier.
 ///
@@ -363,5 +364,74 @@ impl std::fmt::Display for Ref {
 impl From<Branch> for Ref {
     fn from(branch: Branch) -> Self {
         Self(branch.as_str().to_string())
+    }
+}
+
+impl From<&Sha> for Ref {
+    fn from(sha: &Sha) -> Self {
+        Self(sha.as_str().to_string())
+    }
+}
+
+impl From<Sha> for Ref {
+    fn from(sha: Sha) -> Self {
+        Self(sha.as_str().to_string())
+    }
+}
+
+/// A git commit SHA.
+///
+/// Constraints:
+/// - Exactly 40 lowercase hexadecimal characters
+///
+/// # Examples
+///
+/// ```
+/// use greenhell::github::Sha;
+///
+/// let sha: Sha = "abc123def456abc123def456abc123def456abc1".parse().unwrap();
+/// assert_eq!(sha.as_str(), "abc123def456abc123def456abc123def456abc1");
+///
+/// // Rejects empty
+/// assert!("".parse::<Sha>().is_err());
+///
+/// // Rejects short SHAs
+/// assert!("abc123".parse::<Sha>().is_err());
+///
+/// // Rejects non-hex characters
+/// assert!("ghijklmnopqrstuvwxyzghijklmnopqrstuvwxyz".parse::<Sha>().is_err());
+/// ```
+#[derive(Clone, Debug, Eq, PartialEq, serde::Deserialize, serde::Serialize)]
+#[serde(transparent)]
+pub struct Sha(String);
+
+impl Sha {
+    #[must_use]
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+
+    #[must_use]
+    pub fn abbrev(&self) -> &str {
+        &self.0[..7]
+    }
+}
+
+impl Parse for Sha {
+    fn parse(remaining: &str) -> IResult<&str, Self, VerboseError<&str>> {
+        context(
+            "sha: exactly 40 lowercase hex characters",
+            verify(take_while1(|c: char| c.is_ascii_hexdigit()), |s: &str| {
+                s.len() == 40
+            }),
+        )
+        .map(|s: &str| Self(s.to_ascii_lowercase()))
+        .parse(remaining)
+    }
+}
+
+impl std::fmt::Display for Sha {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(formatter, "{}", self.0)
     }
 }

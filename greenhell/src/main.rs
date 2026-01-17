@@ -1,6 +1,6 @@
 use clap::error::ErrorKind;
 use futures_util::StreamExt;
-use greenhell::github::{Branch, PullRequestNumber, Repository};
+use greenhell::github::{Branch, PullRequestNumber, Ref, Repository};
 
 #[derive(Debug, Eq, PartialEq, clap::Parser)]
 struct App {
@@ -73,6 +73,27 @@ enum Command {
         /// How long a PR stays active after event activity in seconds
         #[clap(long, default_value = "300")]
         active_timeout: u64,
+
+        /// Print actions without executing
+        #[clap(long)]
+        dry_run: bool,
+    },
+    /// Push commits individually to trigger CI builds for each
+    ///
+    /// GitHub Actions only builds the HEAD commit when multiple commits are pushed.
+    /// This command identifies commits without check runs and pushes them individually.
+    ///
+    /// By default, uses the upstream tracking branch as the base. If no upstream is
+    /// configured, you must provide --base explicitly.
+    #[command(name = "push-each")]
+    PushEach {
+        /// Base ref to compare against (default: upstream tracking branch)
+        #[clap(long)]
+        base: Option<Ref>,
+
+        /// Git remote name
+        #[clap(long, default_value = "origin")]
+        remote: String,
 
         /// Print actions without executing
         #[clap(long)]
@@ -260,6 +281,82 @@ impl App {
                 };
 
                 greenhell::watch::run(client, repository.clone(), config, *dry_run).await?;
+            }
+            Command::PushEach {
+                base,
+                remote,
+                dry_run,
+            } => {
+                use greenhell::github::git;
+                use tower_service::Service;
+
+                let repository = git::get_github_repository(remote)?;
+                let branch = git::get_current_branch()?;
+
+                let base_ref = match base {
+                    Some(base) => base.clone(),
+                    None => git::get_upstream()?
+                        .ok_or("No upstream branch detected. Use --base to specify a base ref.")?,
+                };
+
+                log::info!("Checking commits from {base_ref} to HEAD on {repository}/{branch}");
+
+                let commits = git::list_commits(&base_ref)?;
+
+                if commits.is_empty() {
+                    log::info!("No commits to push");
+                    return Ok(());
+                }
+
+                log::info!("Found {} commits", commits.len());
+
+                let mut client = greenhell::github::Client::discover()?;
+
+                let mut remaining_unpushed = false;
+
+                for sha in &commits {
+                    if remaining_unpushed {
+                        if *dry_run {
+                            log::info!("  {} - [dry-run] would push", sha.abbrev());
+                        } else {
+                            log::info!("  {} - pushing", sha.abbrev());
+                            git::force_push_commit(remote, sha, &branch)?;
+                        }
+                        continue;
+                    }
+
+                    let request =
+                        greenhell::github::TryListCheckRuns(greenhell::github::ListCheckRuns {
+                            repository: repository.clone(),
+                            git_ref: sha.into(),
+                        });
+
+                    let check_runs = match client.call(request).await? {
+                        Some(list) => list,
+                        None => {
+                            remaining_unpushed = true;
+                            if *dry_run {
+                                log::info!("  {} - [dry-run] would push", sha.abbrev());
+                            } else {
+                                log::info!("  {} - pushing", sha.abbrev());
+                                git::force_push_commit(remote, sha, &branch)?;
+                            }
+                            continue;
+                        }
+                    };
+
+                    if !check_runs.check_runs.is_empty() {
+                        log::info!("  {} - has check runs, skipping", sha.abbrev());
+                        continue;
+                    }
+
+                    if *dry_run {
+                        log::info!("  {} - [dry-run] would push", sha.abbrev());
+                    } else {
+                        log::info!("  {} - pushing", sha.abbrev());
+                        git::force_push_commit(remote, sha, &branch)?;
+                    }
+                }
             }
         }
         Ok(())
