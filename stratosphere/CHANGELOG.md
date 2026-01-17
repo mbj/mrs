@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.3
+
+### Changed
+
+- Bump stratosphere-core and stratosphere-generator dependencies to 0.0.3
+
 ## 0.0.2
 
 ### Changed
