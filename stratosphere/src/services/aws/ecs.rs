@@ -10,7 +10,7 @@ pub mod capacityprovider {
     #[macro_export]
     macro_rules! __aws_ecs_CapacityProvider_AutoScalingGroupProvider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::CapacityProvider.AutoScalingGroupProvider"
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.AutoScalingGroupProvider"
             $($field $value)*)
         };
     }
@@ -55,7 +55,7 @@ pub mod capacityprovider {
     #[macro_export]
     macro_rules! __aws_ecs_CapacityProvider_ManagedScaling {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::CapacityProvider.ManagedScaling"
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.ManagedScaling"
             $($field $value)*)
         };
     }
@@ -105,7 +105,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_ecs_Cluster_CapacityProviderStrategyItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Cluster.CapacityProviderStrategyItem"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Cluster.CapacityProviderStrategyItem"
             $($field $value)*)
         };
     }
@@ -137,7 +137,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_ecs_Cluster_ClusterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Cluster.ClusterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Cluster.ClusterConfiguration"
             $($field $value)*)
         };
     }
@@ -169,7 +169,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_ecs_Cluster_ClusterSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Cluster.ClusterSettings"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Cluster.ClusterSettings"
             $($field $value)*)
         };
     }
@@ -196,7 +196,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_ecs_Cluster_ExecuteCommandConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Cluster.ExecuteCommandConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Cluster.ExecuteCommandConfiguration"
             $($field $value)*)
         };
     }
@@ -237,7 +237,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_ecs_Cluster_ExecuteCommandLogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Cluster.ExecuteCommandLogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Cluster.ExecuteCommandLogConfiguration"
             $($field $value)*)
         };
     }
@@ -287,7 +287,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_ecs_Cluster_ManagedStorageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Cluster.ManagedStorageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Cluster.ManagedStorageConfiguration"
             $($field $value)*)
         };
     }
@@ -318,7 +318,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_ecs_Cluster_ServiceConnectDefaults {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Cluster.ServiceConnectDefaults"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Cluster.ServiceConnectDefaults"
             $($field $value)*)
         };
     }
@@ -347,7 +347,7 @@ pub mod clustercapacityproviderassociations {
     #[macro_export]
     macro_rules! __aws_ecs_ClusterCapacityProviderAssociations_CapacityProviderStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::ClusterCapacityProviderAssociations.CapacityProviderStrategy"
+            stratosphere::generator::construct_property_type!("AWS::ECS::ClusterCapacityProviderAssociations.CapacityProviderStrategy"
             $($field $value)*)
         };
     }
@@ -381,7 +381,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_AdvancedConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.AdvancedConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.AdvancedConfiguration"
             $($field $value)*)
         };
     }
@@ -424,7 +424,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_AwsVpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.AwsVpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.AwsVpcConfiguration"
             $($field $value)*)
         };
     }
@@ -463,7 +463,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_CapacityProviderStrategyItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.CapacityProviderStrategyItem"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.CapacityProviderStrategyItem"
             $($field $value)*)
         };
     }
@@ -496,7 +496,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_DeploymentAlarms {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.DeploymentAlarms"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.DeploymentAlarms"
             $($field $value)*)
         };
     }
@@ -528,7 +528,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_DeploymentCircuitBreaker {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.DeploymentCircuitBreaker"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.DeploymentCircuitBreaker"
             $($field $value)*)
         };
     }
@@ -561,7 +561,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_DeploymentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.DeploymentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.DeploymentConfiguration"
             $($field $value)*)
         };
     }
@@ -619,7 +619,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_DeploymentController {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.DeploymentController"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.DeploymentController"
             $($field $value)*)
         };
     }
@@ -644,7 +644,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_DeploymentLifecycleHook {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.DeploymentLifecycleHook"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.DeploymentLifecycleHook"
             $($field $value)*)
         };
     }
@@ -683,7 +683,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_EBSTagSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.EBSTagSpecification"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.EBSTagSpecification"
             $($field $value)*)
         };
     }
@@ -716,7 +716,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_ForceNewDeployment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.ForceNewDeployment"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.ForceNewDeployment"
             $($field $value)*)
         };
     }
@@ -749,7 +749,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_LoadBalancer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.LoadBalancer"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.LoadBalancer"
             $($field $value)*)
         };
     }
@@ -800,7 +800,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_LogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.LogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.LogConfiguration"
             $($field $value)*)
         };
     }
@@ -837,7 +837,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_NetworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.NetworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.NetworkConfiguration"
             $($field $value)*)
         };
     }
@@ -863,7 +863,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_PlacementConstraint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.PlacementConstraint"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.PlacementConstraint"
             $($field $value)*)
         };
     }
@@ -893,7 +893,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_PlacementStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.PlacementStrategy"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.PlacementStrategy"
             $($field $value)*)
         };
     }
@@ -920,7 +920,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_Secret {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.Secret"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.Secret"
             $($field $value)*)
         };
     }
@@ -949,7 +949,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_ServiceConnectClientAlias {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.ServiceConnectClientAlias"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.ServiceConnectClientAlias"
             $($field $value)*)
         };
     }
@@ -987,7 +987,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_ServiceConnectConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.ServiceConnectConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.ServiceConnectConfiguration"
             $($field $value)*)
         };
     }
@@ -1033,7 +1033,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_ServiceConnectService {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.ServiceConnectService"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.ServiceConnectService"
             $($field $value)*)
         };
     }
@@ -1083,7 +1083,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_ServiceConnectTestTrafficRules {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.ServiceConnectTestTrafficRules"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.ServiceConnectTestTrafficRules"
             $($field $value)*)
         };
     }
@@ -1107,7 +1107,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_ServiceConnectTestTrafficRulesHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.ServiceConnectTestTrafficRulesHeader"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.ServiceConnectTestTrafficRulesHeader"
             $($field $value)*)
         };
     }
@@ -1133,7 +1133,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_ServiceConnectTestTrafficRulesHeaderValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.ServiceConnectTestTrafficRulesHeaderValue"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.ServiceConnectTestTrafficRulesHeaderValue"
             $($field $value)*)
         };
     }
@@ -1156,7 +1156,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_ServiceConnectTlsCertificateAuthority {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.ServiceConnectTlsCertificateAuthority"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.ServiceConnectTlsCertificateAuthority"
             $($field $value)*)
         };
     }
@@ -1183,7 +1183,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_ServiceConnectTlsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.ServiceConnectTlsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.ServiceConnectTlsConfiguration"
             $($field $value)*)
         };
     }
@@ -1225,7 +1225,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_ServiceManagedEBSVolumeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.ServiceManagedEBSVolumeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.ServiceManagedEBSVolumeConfiguration"
             $($field $value)*)
         };
     }
@@ -1308,7 +1308,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_ServiceRegistry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.ServiceRegistry"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.ServiceRegistry"
             $($field $value)*)
         };
     }
@@ -1349,7 +1349,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_ServiceVolumeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.ServiceVolumeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.ServiceVolumeConfiguration"
             $($field $value)*)
         };
     }
@@ -1379,7 +1379,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_TimeoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.TimeoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.TimeoutConfiguration"
             $($field $value)*)
         };
     }
@@ -1412,7 +1412,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_ecs_Service_VpcLatticeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::Service.VpcLatticeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.VpcLatticeConfiguration"
             $($field $value)*)
         };
     }
@@ -1446,7 +1446,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_AuthorizationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.AuthorizationConfig"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.AuthorizationConfig"
             $($field $value)*)
         };
     }
@@ -1515,7 +1515,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_ContainerDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.ContainerDefinition"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.ContainerDefinition"
             $($field $value)*)
         };
     }
@@ -1771,7 +1771,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_ContainerDependency {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.ContainerDependency"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.ContainerDependency"
             $($field $value)*)
         };
     }
@@ -1804,7 +1804,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_Device {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.Device"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.Device"
             $($field $value)*)
         };
     }
@@ -1845,7 +1845,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_DockerVolumeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.DockerVolumeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.DockerVolumeConfiguration"
             $($field $value)*)
         };
     }
@@ -1889,7 +1889,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_EFSVolumeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.EFSVolumeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.EFSVolumeConfiguration"
             $($field $value)*)
         };
     }
@@ -1937,7 +1937,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_EnvironmentFile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.EnvironmentFile"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.EnvironmentFile"
             $($field $value)*)
         };
     }
@@ -1962,7 +1962,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_EphemeralStorage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.EphemeralStorage"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.EphemeralStorage"
             $($field $value)*)
         };
     }
@@ -1988,7 +1988,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_FSxAuthorizationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.FSxAuthorizationConfig"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.FSxAuthorizationConfig"
             $($field $value)*)
         };
     }
@@ -2017,7 +2017,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_FSxWindowsFileServerVolumeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.FSxWindowsFileServerVolumeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.FSxWindowsFileServerVolumeConfiguration"
             $($field $value)*)
         };
     }
@@ -2051,7 +2051,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_FirelensConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.FirelensConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.FirelensConfiguration"
             $($field $value)*)
         };
     }
@@ -2083,7 +2083,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_HealthCheck {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.HealthCheck"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.HealthCheck"
             $($field $value)*)
         };
     }
@@ -2133,7 +2133,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_HostEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.HostEntry"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.HostEntry"
             $($field $value)*)
         };
     }
@@ -2164,7 +2164,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_HostVolumeProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.HostVolumeProperties"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.HostVolumeProperties"
             $($field $value)*)
         };
     }
@@ -2190,7 +2190,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_KernelCapabilities {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.KernelCapabilities"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.KernelCapabilities"
             $($field $value)*)
         };
     }
@@ -2216,7 +2216,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_KeyValuePair {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.KeyValuePair"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.KeyValuePair"
             $($field $value)*)
         };
     }
@@ -2247,7 +2247,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_LinuxParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.LinuxParameters"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.LinuxParameters"
             $($field $value)*)
         };
     }
@@ -2307,7 +2307,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_LogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.LogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.LogConfiguration"
             $($field $value)*)
         };
     }
@@ -2344,7 +2344,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_MountPoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.MountPoint"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.MountPoint"
             $($field $value)*)
         };
     }
@@ -2386,7 +2386,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_PortMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.PortMapping"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.PortMapping"
             $($field $value)*)
         };
     }
@@ -2440,7 +2440,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_ProxyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.ProxyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.ProxyConfiguration"
             $($field $value)*)
         };
     }
@@ -2472,7 +2472,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_RepositoryCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.RepositoryCredentials"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.RepositoryCredentials"
             $($field $value)*)
         };
     }
@@ -2498,7 +2498,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_ResourceRequirement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.ResourceRequirement"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.ResourceRequirement"
             $($field $value)*)
         };
     }
@@ -2527,7 +2527,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_RestartPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.RestartPolicy"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.RestartPolicy"
             $($field $value)*)
         };
     }
@@ -2565,7 +2565,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_RuntimePlatform {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.RuntimePlatform"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.RuntimePlatform"
             $($field $value)*)
         };
     }
@@ -2597,7 +2597,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_Secret {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.Secret"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.Secret"
             $($field $value)*)
         };
     }
@@ -2625,7 +2625,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_SystemControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.SystemControl"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.SystemControl"
             $($field $value)*)
         };
     }
@@ -2654,7 +2654,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_TaskDefinitionPlacementConstraint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.TaskDefinitionPlacementConstraint"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.TaskDefinitionPlacementConstraint"
             $($field $value)*)
         };
     }
@@ -2685,7 +2685,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_Tmpfs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.Tmpfs"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.Tmpfs"
             $($field $value)*)
         };
     }
@@ -2722,7 +2722,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_Ulimit {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.Ulimit"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.Ulimit"
             $($field $value)*)
         };
     }
@@ -2759,7 +2759,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_Volume {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.Volume"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.Volume"
             $($field $value)*)
         };
     }
@@ -2809,7 +2809,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_ecs_TaskDefinition_VolumeFrom {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskDefinition.VolumeFrom"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskDefinition.VolumeFrom"
             $($field $value)*)
         };
     }
@@ -2844,7 +2844,7 @@ pub mod taskset {
     #[macro_export]
     macro_rules! __aws_ecs_TaskSet_AwsVpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskSet.AwsVpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskSet.AwsVpcConfiguration"
             $($field $value)*)
         };
     }
@@ -2881,7 +2881,7 @@ pub mod taskset {
     #[macro_export]
     macro_rules! __aws_ecs_TaskSet_CapacityProviderStrategyItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskSet.CapacityProviderStrategyItem"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskSet.CapacityProviderStrategyItem"
             $($field $value)*)
         };
     }
@@ -2914,7 +2914,7 @@ pub mod taskset {
     #[macro_export]
     macro_rules! __aws_ecs_TaskSet_LoadBalancer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskSet.LoadBalancer"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskSet.LoadBalancer"
             $($field $value)*)
         };
     }
@@ -2951,7 +2951,7 @@ pub mod taskset {
     #[macro_export]
     macro_rules! __aws_ecs_TaskSet_NetworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskSet.NetworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskSet.NetworkConfiguration"
             $($field $value)*)
         };
     }
@@ -2977,7 +2977,7 @@ pub mod taskset {
     #[macro_export]
     macro_rules! __aws_ecs_TaskSet_Scale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskSet.Scale"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskSet.Scale"
             $($field $value)*)
         };
     }
@@ -3005,7 +3005,7 @@ pub mod taskset {
     #[macro_export]
     macro_rules! __aws_ecs_TaskSet_ServiceRegistry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECS::TaskSet.ServiceRegistry"
+            stratosphere::generator::construct_property_type!("AWS::ECS::TaskSet.ServiceRegistry"
             $($field $value)*)
         };
     }
@@ -3049,7 +3049,7 @@ pub struct CapacityProvider_ {
 #[macro_export]
 macro_rules! __aws_ecs_CapacityProvider {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ECS::CapacityProvider"
+        stratosphere::generator::construct_resource_type!("AWS::ECS::CapacityProvider"
         $($field $value)*)
     };
 }
@@ -3095,7 +3095,7 @@ pub struct Cluster_ {
 #[macro_export]
 macro_rules! __aws_ecs_Cluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ECS::Cluster" $($field
+        stratosphere::generator::construct_resource_type!("AWS::ECS::Cluster" $($field
         $value)*)
     };
 }
@@ -3164,7 +3164,7 @@ pub struct ClusterCapacityProviderAssociations_ {
 #[macro_export]
 macro_rules! __aws_ecs_ClusterCapacityProviderAssociations {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ECS::ClusterCapacityProviderAssociations"
+        stratosphere::generator::construct_resource_type!("AWS::ECS::ClusterCapacityProviderAssociations"
         $($field $value)*)
     };
 }
@@ -3207,7 +3207,7 @@ pub struct PrimaryTaskSet_ {
 #[macro_export]
 macro_rules! __aws_ecs_PrimaryTaskSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ECS::PrimaryTaskSet"
+        stratosphere::generator::construct_resource_type!("AWS::ECS::PrimaryTaskSet"
         $($field $value)*)
     };
 }
@@ -3271,7 +3271,7 @@ pub struct Service_ {
 #[macro_export]
 macro_rules! __aws_ecs_Service {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ECS::Service" $($field
+        stratosphere::generator::construct_resource_type!("AWS::ECS::Service" $($field
         $value)*)
     };
 }
@@ -3465,7 +3465,7 @@ pub struct TaskDefinition_ {
 #[macro_export]
 macro_rules! __aws_ecs_TaskDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ECS::TaskDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::ECS::TaskDefinition"
         $($field $value)*)
     };
 }
@@ -3593,7 +3593,7 @@ pub struct TaskSet_ {
 #[macro_export]
 macro_rules! __aws_ecs_TaskSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ECS::TaskSet" $($field
+        stratosphere::generator::construct_resource_type!("AWS::ECS::TaskSet" $($field
         $value)*)
     };
 }

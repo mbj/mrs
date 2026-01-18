@@ -11,7 +11,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_codebuild_Fleet_ComputeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Fleet.ComputeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Fleet.ComputeConfiguration"
             $($field $value)*)
         };
     }
@@ -53,7 +53,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_codebuild_Fleet_FleetProxyRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Fleet.FleetProxyRule"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Fleet.FleetProxyRule"
             $($field $value)*)
         };
     }
@@ -85,7 +85,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_codebuild_Fleet_ProxyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Fleet.ProxyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Fleet.ProxyConfiguration"
             $($field $value)*)
         };
     }
@@ -118,7 +118,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_codebuild_Fleet_ScalingConfigurationInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Fleet.ScalingConfigurationInput"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Fleet.ScalingConfigurationInput"
             $($field $value)*)
         };
     }
@@ -156,7 +156,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_codebuild_Fleet_TargetTrackingScalingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Fleet.TargetTrackingScalingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Fleet.TargetTrackingScalingConfiguration"
             $($field $value)*)
         };
     }
@@ -189,7 +189,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_codebuild_Fleet_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Fleet.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Fleet.VpcConfig"
             $($field $value)*)
         };
     }
@@ -233,7 +233,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_Artifacts {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.Artifacts"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.Artifacts"
             $($field $value)*)
         };
     }
@@ -299,7 +299,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_BatchRestrictions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.BatchRestrictions"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.BatchRestrictions"
             $($field $value)*)
         };
     }
@@ -331,7 +331,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_BuildStatusConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.BuildStatusConfig"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.BuildStatusConfig"
             $($field $value)*)
         };
     }
@@ -364,7 +364,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_CloudWatchLogsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.CloudWatchLogsConfig"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.CloudWatchLogsConfig"
             $($field $value)*)
         };
     }
@@ -400,7 +400,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_DockerServer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.DockerServer"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.DockerServer"
             $($field $value)*)
         };
     }
@@ -438,7 +438,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_Environment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.Environment"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.Environment"
             $($field $value)*)
         };
     }
@@ -510,7 +510,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_EnvironmentVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.EnvironmentVariable"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.EnvironmentVariable"
             $($field $value)*)
         };
     }
@@ -538,7 +538,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_FilterGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.FilterGroup"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.FilterGroup"
             $($field $value)*)
         };
     }
@@ -556,7 +556,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_GitSubmodulesConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.GitSubmodulesConfig"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.GitSubmodulesConfig"
             $($field $value)*)
         };
     }
@@ -580,7 +580,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_LogsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.LogsConfig"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.LogsConfig"
             $($field $value)*)
         };
     }
@@ -612,7 +612,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_ProjectBuildBatchConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.ProjectBuildBatchConfig"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.ProjectBuildBatchConfig"
             $($field $value)*)
         };
     }
@@ -664,7 +664,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_ProjectCache {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.ProjectCache"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.ProjectCache"
             $($field $value)*)
         };
     }
@@ -706,7 +706,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_ProjectFileSystemLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.ProjectFileSystemLocation"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.ProjectFileSystemLocation"
             $($field $value)*)
         };
     }
@@ -747,7 +747,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_ProjectFleet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.ProjectFleet"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.ProjectFleet"
             $($field $value)*)
         };
     }
@@ -773,7 +773,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_ProjectSourceVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.ProjectSourceVersion"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.ProjectSourceVersion"
             $($field $value)*)
         };
     }
@@ -806,7 +806,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_ProjectTriggers {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.ProjectTriggers"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.ProjectTriggers"
             $($field $value)*)
         };
     }
@@ -856,7 +856,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_PullRequestBuildPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.PullRequestBuildPolicy"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.PullRequestBuildPolicy"
             $($field $value)*)
         };
     }
@@ -886,7 +886,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_RegistryCredential {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.RegistryCredential"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.RegistryCredential"
             $($field $value)*)
         };
     }
@@ -915,7 +915,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_S3LogsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.S3LogsConfig"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.S3LogsConfig"
             $($field $value)*)
         };
     }
@@ -952,7 +952,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_ScopeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.ScopeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.ScopeConfiguration"
             $($field $value)*)
         };
     }
@@ -990,7 +990,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_Source {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.Source"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.Source"
             $($field $value)*)
         };
     }
@@ -1065,7 +1065,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_SourceAuth {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.SourceAuth"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.SourceAuth"
             $($field $value)*)
         };
     }
@@ -1096,7 +1096,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.VpcConfig"
             $($field $value)*)
         };
     }
@@ -1132,7 +1132,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_codebuild_Project_WebhookFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::Project.WebhookFilter"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::Project.WebhookFilter"
             $($field $value)*)
         };
     }
@@ -1168,7 +1168,7 @@ pub mod reportgroup {
     #[macro_export]
     macro_rules! __aws_codebuild_ReportGroup_ReportExportConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::ReportGroup.ReportExportConfig"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::ReportGroup.ReportExportConfig"
             $($field $value)*)
         };
     }
@@ -1202,7 +1202,7 @@ pub mod reportgroup {
     #[macro_export]
     macro_rules! __aws_codebuild_ReportGroup_S3ReportExportConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeBuild::ReportGroup.S3ReportExportConfig"
+            stratosphere::generator::construct_property_type!("AWS::CodeBuild::ReportGroup.S3ReportExportConfig"
             $($field $value)*)
         };
     }
@@ -1264,8 +1264,8 @@ pub struct Fleet_ {
 #[macro_export]
 macro_rules! __aws_codebuild_Fleet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeBuild::Fleet" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::CodeBuild::Fleet"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_codebuild_Fleet as Fleet;
@@ -1381,7 +1381,7 @@ pub struct Project_ {
 #[macro_export]
 macro_rules! __aws_codebuild_Project {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeBuild::Project"
+        stratosphere::generator::construct_resource_type!("AWS::CodeBuild::Project"
         $($field $value)*)
     };
 }
@@ -1545,7 +1545,7 @@ pub struct ReportGroup_ {
 #[macro_export]
 macro_rules! __aws_codebuild_ReportGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeBuild::ReportGroup"
+        stratosphere::generator::construct_resource_type!("AWS::CodeBuild::ReportGroup"
         $($field $value)*)
     };
 }
@@ -1595,7 +1595,7 @@ pub struct SourceCredential_ {
 #[macro_export]
 macro_rules! __aws_codebuild_SourceCredential {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeBuild::SourceCredential"
+        stratosphere::generator::construct_resource_type!("AWS::CodeBuild::SourceCredential"
         $($field $value)*)
     };
 }

@@ -9,7 +9,7 @@ pub mod member {
     #[macro_export]
     macro_rules! __aws_managedblockchain_Member_ApprovalThresholdPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ManagedBlockchain::Member.ApprovalThresholdPolicy"
+            stratosphere::generator::construct_property_type!("AWS::ManagedBlockchain::Member.ApprovalThresholdPolicy"
             $($field $value)*)
         };
     }
@@ -48,7 +48,7 @@ pub mod member {
     #[macro_export]
     macro_rules! __aws_managedblockchain_Member_MemberConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ManagedBlockchain::Member.MemberConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ManagedBlockchain::Member.MemberConfiguration"
             $($field $value)*)
         };
     }
@@ -84,7 +84,7 @@ pub mod member {
     #[macro_export]
     macro_rules! __aws_managedblockchain_Member_MemberFabricConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ManagedBlockchain::Member.MemberFabricConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ManagedBlockchain::Member.MemberFabricConfiguration"
             $($field $value)*)
         };
     }
@@ -111,7 +111,7 @@ pub mod member {
     #[macro_export]
     macro_rules! __aws_managedblockchain_Member_MemberFrameworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ManagedBlockchain::Member.MemberFrameworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ManagedBlockchain::Member.MemberFrameworkConfiguration"
             $($field $value)*)
         };
     }
@@ -141,7 +141,7 @@ pub mod member {
     #[macro_export]
     macro_rules! __aws_managedblockchain_Member_NetworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ManagedBlockchain::Member.NetworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ManagedBlockchain::Member.NetworkConfiguration"
             $($field $value)*)
         };
     }
@@ -188,7 +188,7 @@ pub mod member {
     #[macro_export]
     macro_rules! __aws_managedblockchain_Member_NetworkFabricConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ManagedBlockchain::Member.NetworkFabricConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ManagedBlockchain::Member.NetworkFabricConfiguration"
             $($field $value)*)
         };
     }
@@ -211,7 +211,7 @@ pub mod member {
     #[macro_export]
     macro_rules! __aws_managedblockchain_Member_NetworkFrameworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ManagedBlockchain::Member.NetworkFrameworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ManagedBlockchain::Member.NetworkFrameworkConfiguration"
             $($field $value)*)
         };
     }
@@ -236,7 +236,7 @@ pub mod member {
     #[macro_export]
     macro_rules! __aws_managedblockchain_Member_VotingPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ManagedBlockchain::Member.VotingPolicy"
+            stratosphere::generator::construct_property_type!("AWS::ManagedBlockchain::Member.VotingPolicy"
             $($field $value)*)
         };
     }
@@ -264,7 +264,7 @@ pub mod node {
     #[macro_export]
     macro_rules! __aws_managedblockchain_Node_NodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ManagedBlockchain::Node.NodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ManagedBlockchain::Node.NodeConfiguration"
             $($field $value)*)
         };
     }
@@ -294,7 +294,7 @@ pub struct Accessor_ {
 #[macro_export]
 macro_rules! __aws_managedblockchain_Accessor {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ManagedBlockchain::Accessor"
+        stratosphere::generator::construct_resource_type!("AWS::ManagedBlockchain::Accessor"
         $($field $value)*)
     };
 }
@@ -337,7 +337,7 @@ pub struct Member_ {
 #[macro_export]
 macro_rules! __aws_managedblockchain_Member {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ManagedBlockchain::Member"
+        stratosphere::generator::construct_resource_type!("AWS::ManagedBlockchain::Member"
         $($field $value)*)
     };
 }
@@ -388,7 +388,7 @@ pub struct Node_ {
 #[macro_export]
 macro_rules! __aws_managedblockchain_Node {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ManagedBlockchain::Node"
+        stratosphere::generator::construct_resource_type!("AWS::ManagedBlockchain::Node"
         $($field $value)*)
     };
 }

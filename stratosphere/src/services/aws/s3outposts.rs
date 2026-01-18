@@ -7,7 +7,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_s3outposts_AccessPoint_VpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Outposts::AccessPoint.VpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3Outposts::AccessPoint.VpcConfiguration"
             $($field $value)*)
         };
     }
@@ -31,7 +31,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3outposts_Bucket_AbortIncompleteMultipartUpload {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Outposts::Bucket.AbortIncompleteMultipartUpload"
+            stratosphere::generator::construct_property_type!("AWS::S3Outposts::Bucket.AbortIncompleteMultipartUpload"
             $($field $value)*)
         };
     }
@@ -56,7 +56,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3outposts_Bucket_Filter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Outposts::Bucket.Filter"
+            stratosphere::generator::construct_property_type!("AWS::S3Outposts::Bucket.Filter"
             $($field $value)*)
         };
     }
@@ -88,7 +88,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3outposts_Bucket_FilterAndOperator {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Outposts::Bucket.FilterAndOperator"
+            stratosphere::generator::construct_property_type!("AWS::S3Outposts::Bucket.FilterAndOperator"
             $($field $value)*)
         };
     }
@@ -115,7 +115,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3outposts_Bucket_FilterTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Outposts::Bucket.FilterTag"
+            stratosphere::generator::construct_property_type!("AWS::S3Outposts::Bucket.FilterTag"
             $($field $value)*)
         };
     }
@@ -142,7 +142,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3outposts_Bucket_LifecycleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Outposts::Bucket.LifecycleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3Outposts::Bucket.LifecycleConfiguration"
             $($field $value)*)
         };
     }
@@ -170,7 +170,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3outposts_Bucket_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Outposts::Bucket.Rule"
+            stratosphere::generator::construct_property_type!("AWS::S3Outposts::Bucket.Rule"
             $($field $value)*)
         };
     }
@@ -220,7 +220,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_s3outposts_Endpoint_FailedReason {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Outposts::Endpoint.FailedReason"
+            stratosphere::generator::construct_property_type!("AWS::S3Outposts::Endpoint.FailedReason"
             $($field $value)*)
         };
     }
@@ -251,7 +251,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_s3outposts_Endpoint_NetworkInterface {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Outposts::Endpoint.NetworkInterface"
+            stratosphere::generator::construct_property_type!("AWS::S3Outposts::Endpoint.NetworkInterface"
             $($field $value)*)
         };
     }
@@ -278,7 +278,7 @@ pub struct AccessPoint_ {
 #[macro_export]
 macro_rules! __aws_s3outposts_AccessPoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3Outposts::AccessPoint"
+        stratosphere::generator::construct_resource_type!("AWS::S3Outposts::AccessPoint"
         $($field $value)*)
     };
 }
@@ -323,7 +323,7 @@ pub struct Bucket_ {
 #[macro_export]
 macro_rules! __aws_s3outposts_Bucket {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3Outposts::Bucket"
+        stratosphere::generator::construct_resource_type!("AWS::S3Outposts::Bucket"
         $($field $value)*)
     };
 }
@@ -368,7 +368,7 @@ pub struct BucketPolicy_ {
 #[macro_export]
 macro_rules! __aws_s3outposts_BucketPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3Outposts::BucketPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::S3Outposts::BucketPolicy"
         $($field $value)*)
     };
 }
@@ -408,7 +408,7 @@ pub struct Endpoint_ {
 #[macro_export]
 macro_rules! __aws_s3outposts_Endpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3Outposts::Endpoint"
+        stratosphere::generator::construct_resource_type!("AWS::S3Outposts::Endpoint"
         $($field $value)*)
     };
 }

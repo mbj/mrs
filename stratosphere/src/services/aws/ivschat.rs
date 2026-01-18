@@ -7,7 +7,7 @@ pub mod loggingconfiguration {
     #[macro_export]
     macro_rules! __aws_ivschat_LoggingConfiguration_CloudWatchLogsDestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVSChat::LoggingConfiguration.CloudWatchLogsDestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVSChat::LoggingConfiguration.CloudWatchLogsDestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -32,7 +32,7 @@ pub mod loggingconfiguration {
     #[macro_export]
     macro_rules! __aws_ivschat_LoggingConfiguration_DestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVSChat::LoggingConfiguration.DestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVSChat::LoggingConfiguration.DestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -66,7 +66,7 @@ pub mod loggingconfiguration {
     #[macro_export]
     macro_rules! __aws_ivschat_LoggingConfiguration_FirehoseDestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVSChat::LoggingConfiguration.FirehoseDestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVSChat::LoggingConfiguration.FirehoseDestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -89,7 +89,7 @@ pub mod loggingconfiguration {
     #[macro_export]
     macro_rules! __aws_ivschat_LoggingConfiguration_S3DestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVSChat::LoggingConfiguration.S3DestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVSChat::LoggingConfiguration.S3DestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -115,7 +115,7 @@ pub mod room {
     #[macro_export]
     macro_rules! __aws_ivschat_Room_MessageReviewHandler {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVSChat::Room.MessageReviewHandler"
+            stratosphere::generator::construct_property_type!("AWS::IVSChat::Room.MessageReviewHandler"
             $($field $value)*)
         };
     }
@@ -146,7 +146,7 @@ pub struct LoggingConfiguration_ {
 #[macro_export]
 macro_rules! __aws_ivschat_LoggingConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IVSChat::LoggingConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::IVSChat::LoggingConfiguration"
         $($field $value)*)
     };
 }
@@ -188,7 +188,7 @@ pub struct Room_ {
 #[macro_export]
 macro_rules! __aws_ivschat_Room {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IVSChat::Room" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IVSChat::Room" $($field
         $value)*)
     };
 }

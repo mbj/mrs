@@ -15,7 +15,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AacSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AacSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AacSettings"
             $($field $value)*)
         };
     }
@@ -92,7 +92,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Ac3Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Ac3Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Ac3Settings"
             $($field $value)*)
         };
     }
@@ -159,7 +159,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AdditionalDestinations {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AdditionalDestinations"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AdditionalDestinations"
             $($field $value)*)
         };
     }
@@ -184,7 +184,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AncillarySourceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AncillarySourceSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AncillarySourceSettings"
             $($field $value)*)
         };
     }
@@ -210,7 +210,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AnywhereSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AnywhereSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AnywhereSettings"
             $($field $value)*)
         };
     }
@@ -241,7 +241,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_ArchiveCdnSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.ArchiveCdnSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.ArchiveCdnSettings"
             $($field $value)*)
         };
     }
@@ -267,7 +267,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_ArchiveContainerSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.ArchiveContainerSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.ArchiveContainerSettings"
             $($field $value)*)
         };
     }
@@ -300,7 +300,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_ArchiveGroupSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.ArchiveGroupSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.ArchiveGroupSettings"
             $($field $value)*)
         };
     }
@@ -339,7 +339,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_ArchiveOutputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.ArchiveOutputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.ArchiveOutputSettings"
             $($field $value)*)
         };
     }
@@ -376,7 +376,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_ArchiveS3Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.ArchiveS3Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.ArchiveS3Settings"
             $($field $value)*)
         };
     }
@@ -399,7 +399,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AribDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AribDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AribDestinationSettings"
             $($field $value)*)
         };
     }
@@ -415,7 +415,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AribSourceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AribSourceSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AribSourceSettings"
             $($field $value)*)
         };
     }
@@ -434,7 +434,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioChannelMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioChannelMapping"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioChannelMapping"
             $($field $value)*)
         };
     }
@@ -471,7 +471,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioCodecSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioCodecSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioCodecSettings"
             $($field $value)*)
         };
     }
@@ -544,7 +544,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioDescription {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioDescription"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioDescription"
             $($field $value)*)
         };
     }
@@ -638,7 +638,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioDolbyEDecode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioDolbyEDecode"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioDolbyEDecode"
             $($field $value)*)
         };
     }
@@ -664,7 +664,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioHlsRenditionSelection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioHlsRenditionSelection"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioHlsRenditionSelection"
             $($field $value)*)
         };
     }
@@ -693,7 +693,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioLanguageSelection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioLanguageSelection"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioLanguageSelection"
             $($field $value)*)
         };
     }
@@ -726,7 +726,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioNormalizationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioNormalizationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioNormalizationSettings"
             $($field $value)*)
         };
     }
@@ -766,7 +766,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioOnlyHlsSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioOnlyHlsSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioOnlyHlsSettings"
             $($field $value)*)
         };
     }
@@ -809,7 +809,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioPidSelection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioPidSelection"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioPidSelection"
             $($field $value)*)
         };
     }
@@ -832,7 +832,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioSelector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioSelector"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioSelector"
             $($field $value)*)
         };
     }
@@ -863,7 +863,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioSelectorSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioSelectorSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioSelectorSettings"
             $($field $value)*)
         };
     }
@@ -907,7 +907,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioSilenceFailoverSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioSilenceFailoverSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioSilenceFailoverSettings"
             $($field $value)*)
         };
     }
@@ -938,7 +938,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioTrack {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioTrack"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioTrack"
             $($field $value)*)
         };
     }
@@ -961,7 +961,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioTrackSelection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioTrackSelection"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioTrackSelection"
             $($field $value)*)
         };
     }
@@ -989,7 +989,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AudioWatermarkSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AudioWatermarkSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AudioWatermarkSettings"
             $($field $value)*)
         };
     }
@@ -1017,7 +1017,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AutomaticInputFailoverSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AutomaticInputFailoverSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AutomaticInputFailoverSettings"
             $($field $value)*)
         };
     }
@@ -1063,7 +1063,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Av1ColorSpaceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Av1ColorSpaceSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Av1ColorSpaceSettings"
             $($field $value)*)
         };
     }
@@ -1124,7 +1124,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Av1Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Av1Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Av1Settings"
             $($field $value)*)
         };
     }
@@ -1255,7 +1255,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AvailBlanking {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AvailBlanking"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AvailBlanking"
             $($field $value)*)
         };
     }
@@ -1284,7 +1284,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AvailConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AvailConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AvailConfiguration"
             $($field $value)*)
         };
     }
@@ -1317,7 +1317,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_AvailSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.AvailSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.AvailSettings"
             $($field $value)*)
         };
     }
@@ -1352,7 +1352,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_BandwidthReductionFilterSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.BandwidthReductionFilterSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.BandwidthReductionFilterSettings"
             $($field $value)*)
         };
     }
@@ -1387,7 +1387,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_BlackoutSlate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.BlackoutSlate"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.BlackoutSlate"
             $($field $value)*)
         };
     }
@@ -1450,7 +1450,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_BurnInDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.BurnInDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.BurnInDestinationSettings"
             $($field $value)*)
         };
     }
@@ -1581,7 +1581,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_CaptionDescription {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.CaptionDescription"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.CaptionDescription"
             $($field $value)*)
         };
     }
@@ -1660,7 +1660,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_CaptionDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.CaptionDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.CaptionDestinationSettings"
             $($field $value)*)
         };
     }
@@ -1759,7 +1759,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_CaptionLanguageMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.CaptionLanguageMapping"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.CaptionLanguageMapping"
             $($field $value)*)
         };
     }
@@ -1799,7 +1799,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_CaptionRectangle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.CaptionRectangle"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.CaptionRectangle"
             $($field $value)*)
         };
     }
@@ -1838,7 +1838,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_CaptionSelector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.CaptionSelector"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.CaptionSelector"
             $($field $value)*)
         };
     }
@@ -1878,7 +1878,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_CaptionSelectorSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.CaptionSelectorSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.CaptionSelectorSettings"
             $($field $value)*)
         };
     }
@@ -1939,7 +1939,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_CdiInputSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.CdiInputSpecification"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.CdiInputSpecification"
             $($field $value)*)
         };
     }
@@ -1964,7 +1964,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_ChannelEngineVersionRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.ChannelEngineVersionRequest"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.ChannelEngineVersionRequest"
             $($field $value)*)
         };
     }
@@ -1990,7 +1990,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_CmafIngestCaptionLanguageMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.CmafIngestCaptionLanguageMapping"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.CmafIngestCaptionLanguageMapping"
             $($field $value)*)
         };
     }
@@ -2037,7 +2037,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_CmafIngestGroupSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.CmafIngestGroupSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.CmafIngestGroupSettings"
             $($field $value)*)
         };
     }
@@ -2158,7 +2158,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_CmafIngestOutputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.CmafIngestOutputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.CmafIngestOutputSettings"
             $($field $value)*)
         };
     }
@@ -2185,7 +2185,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_ColorCorrection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.ColorCorrection"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.ColorCorrection"
             $($field $value)*)
         };
     }
@@ -2219,7 +2219,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_ColorCorrectionSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.ColorCorrectionSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.ColorCorrectionSettings"
             $($field $value)*)
         };
     }
@@ -2242,7 +2242,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_ColorSpacePassthroughSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.ColorSpacePassthroughSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.ColorSpacePassthroughSettings"
             $($field $value)*)
         };
     }
@@ -2258,7 +2258,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_DolbyVision81Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.DolbyVision81Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.DolbyVision81Settings"
             $($field $value)*)
         };
     }
@@ -2278,7 +2278,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_DvbNitSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.DvbNitSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.DvbNitSettings"
             $($field $value)*)
         };
     }
@@ -2318,7 +2318,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_DvbSdtSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.DvbSdtSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.DvbSdtSettings"
             $($field $value)*)
         };
     }
@@ -2378,7 +2378,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_DvbSubDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.DvbSubDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.DvbSubDestinationSettings"
             $($field $value)*)
         };
     }
@@ -2503,7 +2503,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_DvbSubSourceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.DvbSubSourceSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.DvbSubSourceSettings"
             $($field $value)*)
         };
     }
@@ -2531,7 +2531,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_DvbTdtSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.DvbTdtSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.DvbTdtSettings"
             $($field $value)*)
         };
     }
@@ -2562,7 +2562,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Eac3AtmosSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Eac3AtmosSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Eac3AtmosSettings"
             $($field $value)*)
         };
     }
@@ -2639,7 +2639,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Eac3Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Eac3Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Eac3Settings"
             $($field $value)*)
         };
     }
@@ -2780,7 +2780,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_EbuTtDDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.EbuTtDDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.EbuTtDDestinationSettings"
             $($field $value)*)
         };
     }
@@ -2833,7 +2833,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_EmbeddedDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.EmbeddedDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.EmbeddedDestinationSettings"
             $($field $value)*)
         };
     }
@@ -2849,7 +2849,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_EmbeddedPlusScte20DestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.EmbeddedPlusScte20DestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.EmbeddedPlusScte20DestinationSettings"
             $($field $value)*)
         };
     }
@@ -2870,7 +2870,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_EmbeddedSourceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.EmbeddedSourceSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.EmbeddedSourceSettings"
             $($field $value)*)
         };
     }
@@ -2926,7 +2926,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_EncoderSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.EncoderSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.EncoderSettings"
             $($field $value)*)
         };
     }
@@ -3030,7 +3030,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_EpochLockingSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.EpochLockingSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.EpochLockingSettings"
             $($field $value)*)
         };
     }
@@ -3066,7 +3066,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Esam {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Esam"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Esam"
             $($field $value)*)
         };
     }
@@ -3121,7 +3121,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_FailoverCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.FailoverCondition"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.FailoverCondition"
             $($field $value)*)
         };
     }
@@ -3148,7 +3148,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_FailoverConditionSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.FailoverConditionSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.FailoverConditionSettings"
             $($field $value)*)
         };
     }
@@ -3186,7 +3186,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_FeatureActivations {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.FeatureActivations"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.FeatureActivations"
             $($field $value)*)
         };
     }
@@ -3219,7 +3219,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_FecOutputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.FecOutputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.FecOutputSettings"
             $($field $value)*)
         };
     }
@@ -3258,7 +3258,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Fmp4HlsSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Fmp4HlsSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Fmp4HlsSettings"
             $($field $value)*)
         };
     }
@@ -3295,7 +3295,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_FrameCaptureCdnSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.FrameCaptureCdnSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.FrameCaptureCdnSettings"
             $($field $value)*)
         };
     }
@@ -3321,7 +3321,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_FrameCaptureGroupSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.FrameCaptureGroupSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.FrameCaptureGroupSettings"
             $($field $value)*)
         };
     }
@@ -3350,7 +3350,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_FrameCaptureHlsSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.FrameCaptureHlsSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.FrameCaptureHlsSettings"
             $($field $value)*)
         };
     }
@@ -3368,7 +3368,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_FrameCaptureOutputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.FrameCaptureOutputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.FrameCaptureOutputSettings"
             $($field $value)*)
         };
     }
@@ -3393,7 +3393,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_FrameCaptureS3Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.FrameCaptureS3Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.FrameCaptureS3Settings"
             $($field $value)*)
         };
     }
@@ -3420,7 +3420,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_FrameCaptureSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.FrameCaptureSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.FrameCaptureSettings"
             $($field $value)*)
         };
     }
@@ -3463,7 +3463,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_GlobalConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.GlobalConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.GlobalConfiguration"
             $($field $value)*)
         };
     }
@@ -3526,7 +3526,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_H264ColorSpaceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.H264ColorSpaceSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.H264ColorSpaceSettings"
             $($field $value)*)
         };
     }
@@ -3564,7 +3564,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_H264FilterSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.H264FilterSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.H264FilterSettings"
             $($field $value)*)
         };
     }
@@ -3637,7 +3637,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_H264Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.H264Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.H264Settings"
             $($field $value)*)
         };
     }
@@ -3906,7 +3906,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_H265ColorSpaceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.H265ColorSpaceSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.H265ColorSpaceSettings"
             $($field $value)*)
         };
     }
@@ -3956,7 +3956,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_H265FilterSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.H265FilterSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.H265FilterSettings"
             $($field $value)*)
         };
     }
@@ -4024,7 +4024,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_H265Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.H265Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.H265Settings"
             $($field $value)*)
         };
     }
@@ -4260,7 +4260,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Hdr10Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Hdr10Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Hdr10Settings"
             $($field $value)*)
         };
     }
@@ -4294,7 +4294,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_HlsAkamaiSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.HlsAkamaiSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.HlsAkamaiSettings"
             $($field $value)*)
         };
     }
@@ -4352,7 +4352,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_HlsBasicPutSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.HlsBasicPutSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.HlsBasicPutSettings"
             $($field $value)*)
         };
     }
@@ -4399,7 +4399,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_HlsCdnSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.HlsCdnSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.HlsCdnSettings"
             $($field $value)*)
         };
     }
@@ -4490,7 +4490,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_HlsGroupSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.HlsGroupSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.HlsGroupSettings"
             $($field $value)*)
         };
     }
@@ -4768,7 +4768,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_HlsInputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.HlsInputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.HlsInputSettings"
             $($field $value)*)
         };
     }
@@ -4821,7 +4821,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_HlsMediaStoreSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.HlsMediaStoreSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.HlsMediaStoreSettings"
             $($field $value)*)
         };
     }
@@ -4873,7 +4873,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_HlsOutputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.HlsOutputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.HlsOutputSettings"
             $($field $value)*)
         };
     }
@@ -4916,7 +4916,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_HlsS3Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.HlsS3Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.HlsS3Settings"
             $($field $value)*)
         };
     }
@@ -4944,7 +4944,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_HlsSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.HlsSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.HlsSettings"
             $($field $value)*)
         };
     }
@@ -4991,7 +4991,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_HlsWebdavSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.HlsWebdavSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.HlsWebdavSettings"
             $($field $value)*)
         };
     }
@@ -5038,7 +5038,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_HtmlMotionGraphicsSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.HtmlMotionGraphicsSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.HtmlMotionGraphicsSettings"
             $($field $value)*)
         };
     }
@@ -5060,7 +5060,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_InputAttachment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.InputAttachment"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.InputAttachment"
             $($field $value)*)
         };
     }
@@ -5110,7 +5110,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_InputChannelLevel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.InputChannelLevel"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.InputChannelLevel"
             $($field $value)*)
         };
     }
@@ -5140,7 +5140,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_InputLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.InputLocation"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.InputLocation"
             $($field $value)*)
         };
     }
@@ -5178,7 +5178,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_InputLossBehavior {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.InputLossBehavior"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.InputLossBehavior"
             $($field $value)*)
         };
     }
@@ -5227,7 +5227,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_InputLossFailoverSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.InputLossFailoverSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.InputLossFailoverSettings"
             $($field $value)*)
         };
     }
@@ -5262,7 +5262,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_InputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.InputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.InputSettings"
             $($field $value)*)
         };
     }
@@ -5349,7 +5349,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_InputSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.InputSpecification"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.InputSpecification"
             $($field $value)*)
         };
     }
@@ -5383,7 +5383,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_KeyProviderSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.KeyProviderSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.KeyProviderSettings"
             $($field $value)*)
         };
     }
@@ -5455,7 +5455,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_M2tsSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.M2tsSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.M2tsSettings"
             $($field $value)*)
         };
     }
@@ -5762,7 +5762,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_M3u8Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.M3u8Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.M3u8Settings"
             $($field $value)*)
         };
     }
@@ -5887,7 +5887,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MaintenanceCreateSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MaintenanceCreateSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MaintenanceCreateSettings"
             $($field $value)*)
         };
     }
@@ -5920,7 +5920,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MaintenanceUpdateSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MaintenanceUpdateSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MaintenanceUpdateSettings"
             $($field $value)*)
         };
     }
@@ -5958,7 +5958,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MediaPackageGroupSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MediaPackageGroupSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MediaPackageGroupSettings"
             $($field $value)*)
         };
     }
@@ -5991,7 +5991,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MediaPackageOutputDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MediaPackageOutputDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MediaPackageOutputDestinationSettings"
             $($field $value)*)
         };
     }
@@ -6028,7 +6028,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MediaPackageOutputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MediaPackageOutputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MediaPackageOutputSettings"
             $($field $value)*)
         };
     }
@@ -6056,7 +6056,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MediaPackageV2DestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MediaPackageV2DestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MediaPackageV2DestinationSettings"
             $($field $value)*)
         };
     }
@@ -6099,7 +6099,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MediaPackageV2GroupSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MediaPackageV2GroupSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MediaPackageV2GroupSettings"
             $($field $value)*)
         };
     }
@@ -6125,7 +6125,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MotionGraphicsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MotionGraphicsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MotionGraphicsConfiguration"
             $($field $value)*)
         };
     }
@@ -6156,7 +6156,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MotionGraphicsSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MotionGraphicsSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MotionGraphicsSettings"
             $($field $value)*)
         };
     }
@@ -6183,7 +6183,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Mp2Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Mp2Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Mp2Settings"
             $($field $value)*)
         };
     }
@@ -6220,7 +6220,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Mpeg2FilterSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Mpeg2FilterSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Mpeg2FilterSettings"
             $($field $value)*)
         };
     }
@@ -6261,7 +6261,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Mpeg2Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Mpeg2Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Mpeg2Settings"
             $($field $value)*)
         };
     }
@@ -6400,7 +6400,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MsSmoothGroupSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MsSmoothGroupSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MsSmoothGroupSettings"
             $($field $value)*)
         };
     }
@@ -6534,7 +6534,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MsSmoothOutputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MsSmoothOutputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MsSmoothOutputSettings"
             $($field $value)*)
         };
     }
@@ -6565,7 +6565,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MulticastInputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MulticastInputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MulticastInputSettings"
             $($field $value)*)
         };
     }
@@ -6590,7 +6590,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MultiplexContainerSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MultiplexContainerSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MultiplexContainerSettings"
             $($field $value)*)
         };
     }
@@ -6613,7 +6613,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MultiplexGroupSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MultiplexGroupSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MultiplexGroupSettings"
             $($field $value)*)
         };
     }
@@ -6644,7 +6644,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MultiplexM2tsSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MultiplexM2tsSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MultiplexM2tsSettings"
             $($field $value)*)
         };
     }
@@ -6739,7 +6739,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MultiplexOutputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MultiplexOutputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MultiplexOutputSettings"
             $($field $value)*)
         };
     }
@@ -6771,7 +6771,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_MultiplexProgramChannelDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.MultiplexProgramChannelDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MultiplexProgramChannelDestinationSettings"
             $($field $value)*)
         };
     }
@@ -6804,7 +6804,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_NetworkInputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.NetworkInputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.NetworkInputSettings"
             $($field $value)*)
         };
     }
@@ -6843,7 +6843,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_NielsenCBET {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.NielsenCBET"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.NielsenCBET"
             $($field $value)*)
         };
     }
@@ -6878,7 +6878,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_NielsenConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.NielsenConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.NielsenConfiguration"
             $($field $value)*)
         };
     }
@@ -6911,7 +6911,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_NielsenNaesIiNw {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.NielsenNaesIiNw"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.NielsenNaesIiNw"
             $($field $value)*)
         };
     }
@@ -6947,7 +6947,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_NielsenWatermarksSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.NielsenWatermarksSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.NielsenWatermarksSettings"
             $($field $value)*)
         };
     }
@@ -6988,7 +6988,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Output {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Output"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Output"
             $($field $value)*)
         };
     }
@@ -7042,7 +7042,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_OutputDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.OutputDestination"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.OutputDestination"
             $($field $value)*)
         };
     }
@@ -7097,7 +7097,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_OutputDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.OutputDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.OutputDestinationSettings"
             $($field $value)*)
         };
     }
@@ -7139,7 +7139,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_OutputGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.OutputGroup"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.OutputGroup"
             $($field $value)*)
         };
     }
@@ -7182,7 +7182,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_OutputGroupSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.OutputGroupSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.OutputGroupSettings"
             $($field $value)*)
         };
     }
@@ -7261,7 +7261,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_OutputLocationRef {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.OutputLocationRef"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.OutputLocationRef"
             $($field $value)*)
         };
     }
@@ -7287,7 +7287,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_OutputLockingSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.OutputLockingSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.OutputLockingSettings"
             $($field $value)*)
         };
     }
@@ -7327,7 +7327,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_OutputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.OutputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.OutputSettings"
             $($field $value)*)
         };
     }
@@ -7404,7 +7404,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_PassThroughSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.PassThroughSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.PassThroughSettings"
             $($field $value)*)
         };
     }
@@ -7420,7 +7420,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_PipelineLockingSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.PipelineLockingSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.PipelineLockingSettings"
             $($field $value)*)
         };
     }
@@ -7436,7 +7436,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_RawSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.RawSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.RawSettings"
             $($field $value)*)
         };
     }
@@ -7452,7 +7452,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Rec601Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Rec601Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Rec601Settings"
             $($field $value)*)
         };
     }
@@ -7468,7 +7468,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Rec709Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Rec709Settings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Rec709Settings"
             $($field $value)*)
         };
     }
@@ -7488,7 +7488,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_RemixSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.RemixSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.RemixSettings"
             $($field $value)*)
         };
     }
@@ -7523,7 +7523,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_RtmpCaptionInfoDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.RtmpCaptionInfoDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.RtmpCaptionInfoDestinationSettings"
             $($field $value)*)
         };
     }
@@ -7548,7 +7548,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_RtmpGroupSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.RtmpGroupSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.RtmpGroupSettings"
             $($field $value)*)
         };
     }
@@ -7618,7 +7618,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_RtmpOutputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.RtmpOutputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.RtmpOutputSettings"
             $($field $value)*)
         };
     }
@@ -7659,7 +7659,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Scte20PlusEmbeddedDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Scte20PlusEmbeddedDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Scte20PlusEmbeddedDestinationSettings"
             $($field $value)*)
         };
     }
@@ -7678,7 +7678,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Scte20SourceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Scte20SourceSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Scte20SourceSettings"
             $($field $value)*)
         };
     }
@@ -7707,7 +7707,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Scte27DestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Scte27DestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Scte27DestinationSettings"
             $($field $value)*)
         };
     }
@@ -7726,7 +7726,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Scte27SourceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Scte27SourceSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Scte27SourceSettings"
             $($field $value)*)
         };
     }
@@ -7756,7 +7756,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Scte35SpliceInsert {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Scte35SpliceInsert"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Scte35SpliceInsert"
             $($field $value)*)
         };
     }
@@ -7795,7 +7795,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_Scte35TimeSignalApos {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.Scte35TimeSignalApos"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Scte35TimeSignalApos"
             $($field $value)*)
         };
     }
@@ -7830,7 +7830,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_SmpteTtDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.SmpteTtDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.SmpteTtDestinationSettings"
             $($field $value)*)
         };
     }
@@ -7848,7 +7848,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_SrtGroupSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.SrtGroupSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.SrtGroupSettings"
             $($field $value)*)
         };
     }
@@ -7875,7 +7875,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_SrtOutputDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.SrtOutputDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.SrtOutputDestinationSettings"
             $($field $value)*)
         };
     }
@@ -7913,7 +7913,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_SrtOutputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.SrtOutputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.SrtOutputSettings"
             $($field $value)*)
         };
     }
@@ -7963,7 +7963,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_StandardHlsSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.StandardHlsSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.StandardHlsSettings"
             $($field $value)*)
         };
     }
@@ -7995,7 +7995,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_StaticKeySettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.StaticKeySettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.StaticKeySettings"
             $($field $value)*)
         };
     }
@@ -8024,7 +8024,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_TeletextDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.TeletextDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.TeletextDestinationSettings"
             $($field $value)*)
         };
     }
@@ -8043,7 +8043,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_TeletextSourceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.TeletextSourceSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.TeletextSourceSettings"
             $($field $value)*)
         };
     }
@@ -8075,7 +8075,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_TemporalFilterSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.TemporalFilterSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.TemporalFilterSettings"
             $($field $value)*)
         };
     }
@@ -8106,7 +8106,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_ThumbnailConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.ThumbnailConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.ThumbnailConfiguration"
             $($field $value)*)
         };
     }
@@ -8130,7 +8130,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_TimecodeBurninSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.TimecodeBurninSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.TimecodeBurninSettings"
             $($field $value)*)
         };
     }
@@ -8165,7 +8165,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_TimecodeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.TimecodeConfig"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.TimecodeConfig"
             $($field $value)*)
         };
     }
@@ -8193,7 +8193,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_TtmlDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.TtmlDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.TtmlDestinationSettings"
             $($field $value)*)
         };
     }
@@ -8218,7 +8218,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_UdpContainerSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.UdpContainerSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.UdpContainerSettings"
             $($field $value)*)
         };
     }
@@ -8245,7 +8245,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_UdpGroupSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.UdpGroupSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.UdpGroupSettings"
             $($field $value)*)
         };
     }
@@ -8285,7 +8285,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_UdpOutputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.UdpOutputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.UdpOutputSettings"
             $($field $value)*)
         };
     }
@@ -8329,7 +8329,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_VideoBlackFailoverSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.VideoBlackFailoverSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.VideoBlackFailoverSettings"
             $($field $value)*)
         };
     }
@@ -8364,7 +8364,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_VideoCodecSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.VideoCodecSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.VideoCodecSettings"
             $($field $value)*)
         };
     }
@@ -8419,7 +8419,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_VideoDescription {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.VideoDescription"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.VideoDescription"
             $($field $value)*)
         };
     }
@@ -8474,7 +8474,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_VideoSelector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.VideoSelector"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.VideoSelector"
             $($field $value)*)
         };
     }
@@ -8517,7 +8517,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_VideoSelectorColorSpaceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.VideoSelectorColorSpaceSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.VideoSelectorColorSpaceSettings"
             $($field $value)*)
         };
     }
@@ -8542,7 +8542,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_VideoSelectorPid {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.VideoSelectorPid"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.VideoSelectorPid"
             $($field $value)*)
         };
     }
@@ -8564,7 +8564,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_VideoSelectorProgramId {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.VideoSelectorProgramId"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.VideoSelectorProgramId"
             $($field $value)*)
         };
     }
@@ -8590,7 +8590,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_VideoSelectorSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.VideoSelectorSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.VideoSelectorSettings"
             $($field $value)*)
         };
     }
@@ -8623,7 +8623,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_VpcOutputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.VpcOutputSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.VpcOutputSettings"
             $($field $value)*)
         };
     }
@@ -8662,7 +8662,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_WavSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.WavSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.WavSettings"
             $($field $value)*)
         };
     }
@@ -8699,7 +8699,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_medialive_Channel_WebvttDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Channel.WebvttDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.WebvttDestinationSettings"
             $($field $value)*)
         };
     }
@@ -8727,7 +8727,7 @@ pub mod channelplacementgroup {
     #[macro_export]
     macro_rules! __aws_medialive_ChannelPlacementGroup_Tags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::ChannelPlacementGroup.Tags"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::ChannelPlacementGroup.Tags"
             $($field $value)*)
         };
     }
@@ -8755,7 +8755,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_medialive_Cluster_ClusterNetworkSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Cluster.ClusterNetworkSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Cluster.ClusterNetworkSettings"
             $($field $value)*)
         };
     }
@@ -8787,7 +8787,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_medialive_Cluster_InterfaceMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Cluster.InterfaceMapping"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Cluster.InterfaceMapping"
             $($field $value)*)
         };
     }
@@ -8819,7 +8819,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_medialive_Cluster_Tags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Cluster.Tags"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Cluster.Tags"
             $($field $value)*)
         };
     }
@@ -8846,7 +8846,7 @@ pub mod eventbridgeruletemplate {
     #[macro_export]
     macro_rules! __aws_medialive_EventBridgeRuleTemplate_EventBridgeRuleTemplateTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::EventBridgeRuleTemplate.EventBridgeRuleTemplateTarget"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::EventBridgeRuleTemplate.EventBridgeRuleTemplateTarget"
             $($field $value)*)
         };
     }
@@ -8874,7 +8874,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_InputDestinationRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.InputDestinationRequest"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.InputDestinationRequest"
             $($field $value)*)
         };
     }
@@ -8917,7 +8917,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_InputDeviceRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.InputDeviceRequest"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.InputDeviceRequest"
             $($field $value)*)
         };
     }
@@ -8939,7 +8939,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_InputDeviceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.InputDeviceSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.InputDeviceSettings"
             $($field $value)*)
         };
     }
@@ -8962,7 +8962,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_InputRequestDestinationRoute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.InputRequestDestinationRoute"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.InputRequestDestinationRoute"
             $($field $value)*)
         };
     }
@@ -8991,7 +8991,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_InputSdpLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.InputSdpLocation"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.InputSdpLocation"
             $($field $value)*)
         };
     }
@@ -9021,7 +9021,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_InputSourceRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.InputSourceRequest"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.InputSourceRequest"
             $($field $value)*)
         };
     }
@@ -9056,7 +9056,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_InputVpcRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.InputVpcRequest"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.InputVpcRequest"
             $($field $value)*)
         };
     }
@@ -9087,7 +9087,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_MediaConnectFlowRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.MediaConnectFlowRequest"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.MediaConnectFlowRequest"
             $($field $value)*)
         };
     }
@@ -9112,7 +9112,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_MulticastSettingsCreateRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.MulticastSettingsCreateRequest"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.MulticastSettingsCreateRequest"
             $($field $value)*)
         };
     }
@@ -9137,7 +9137,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_MulticastSettingsUpdateRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.MulticastSettingsUpdateRequest"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.MulticastSettingsUpdateRequest"
             $($field $value)*)
         };
     }
@@ -9163,7 +9163,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_MulticastSourceCreateRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.MulticastSourceCreateRequest"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.MulticastSourceCreateRequest"
             $($field $value)*)
         };
     }
@@ -9192,7 +9192,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_MulticastSourceUpdateRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.MulticastSourceUpdateRequest"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.MulticastSourceUpdateRequest"
             $($field $value)*)
         };
     }
@@ -9220,7 +9220,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_Smpte2110ReceiverGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.Smpte2110ReceiverGroup"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.Smpte2110ReceiverGroup"
             $($field $value)*)
         };
     }
@@ -9247,7 +9247,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_Smpte2110ReceiverGroupSdpSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.Smpte2110ReceiverGroupSdpSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.Smpte2110ReceiverGroupSdpSettings"
             $($field $value)*)
         };
     }
@@ -9284,7 +9284,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_Smpte2110ReceiverGroupSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.Smpte2110ReceiverGroupSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.Smpte2110ReceiverGroupSettings"
             $($field $value)*)
         };
     }
@@ -9310,7 +9310,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_SrtCallerDecryptionRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.SrtCallerDecryptionRequest"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.SrtCallerDecryptionRequest"
             $($field $value)*)
         };
     }
@@ -9345,7 +9345,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_SrtCallerSourceRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.SrtCallerSourceRequest"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.SrtCallerSourceRequest"
             $($field $value)*)
         };
     }
@@ -9394,7 +9394,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_medialive_Input_SrtSettingsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Input.SrtSettingsRequest"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.SrtSettingsRequest"
             $($field $value)*)
         };
     }
@@ -9421,7 +9421,7 @@ pub mod inputsecuritygroup {
     #[macro_export]
     macro_rules! __aws_medialive_InputSecurityGroup_InputWhitelistRuleCidr {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::InputSecurityGroup.InputWhitelistRuleCidr"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::InputSecurityGroup.InputWhitelistRuleCidr"
             $($field $value)*)
         };
     }
@@ -9445,7 +9445,7 @@ pub mod multiplex {
     #[macro_export]
     macro_rules! __aws_medialive_Multiplex_MultiplexMediaConnectOutputDestinationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Multiplex.MultiplexMediaConnectOutputDestinationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Multiplex.MultiplexMediaConnectOutputDestinationSettings"
             $($field $value)*)
         };
     }
@@ -9471,7 +9471,7 @@ pub mod multiplex {
     #[macro_export]
     macro_rules! __aws_medialive_Multiplex_MultiplexOutputDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Multiplex.MultiplexOutputDestination"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Multiplex.MultiplexOutputDestination"
             $($field $value)*)
         };
     }
@@ -9499,7 +9499,7 @@ pub mod multiplex {
     #[macro_export]
     macro_rules! __aws_medialive_Multiplex_MultiplexSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Multiplex.MultiplexSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Multiplex.MultiplexSettings"
             $($field $value)*)
         };
     }
@@ -9539,7 +9539,7 @@ pub mod multiplex {
     #[macro_export]
     macro_rules! __aws_medialive_Multiplex_Tags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Multiplex.Tags"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Multiplex.Tags"
             $($field $value)*)
         };
     }
@@ -9578,7 +9578,7 @@ pub mod multiplexprogram {
     #[macro_export]
     macro_rules! __aws_medialive_Multiplexprogram_MultiplexProgramPacketIdentifiersMap {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Multiplexprogram.MultiplexProgramPacketIdentifiersMap"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Multiplexprogram.MultiplexProgramPacketIdentifiersMap"
             $($field $value)*)
         };
     }
@@ -9670,7 +9670,7 @@ pub mod multiplexprogram {
     #[macro_export]
     macro_rules! __aws_medialive_Multiplexprogram_MultiplexProgramPipelineDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Multiplexprogram.MultiplexProgramPipelineDetail"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Multiplexprogram.MultiplexProgramPipelineDetail"
             $($field $value)*)
         };
     }
@@ -9702,7 +9702,7 @@ pub mod multiplexprogram {
     #[macro_export]
     macro_rules! __aws_medialive_Multiplexprogram_MultiplexProgramServiceDescriptor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Multiplexprogram.MultiplexProgramServiceDescriptor"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Multiplexprogram.MultiplexProgramServiceDescriptor"
             $($field $value)*)
         };
     }
@@ -9732,7 +9732,7 @@ pub mod multiplexprogram {
     #[macro_export]
     macro_rules! __aws_medialive_Multiplexprogram_MultiplexProgramSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Multiplexprogram.MultiplexProgramSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Multiplexprogram.MultiplexProgramSettings"
             $($field $value)*)
         };
     }
@@ -9775,7 +9775,7 @@ pub mod multiplexprogram {
     #[macro_export]
     macro_rules! __aws_medialive_Multiplexprogram_MultiplexStatmuxVideoSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Multiplexprogram.MultiplexStatmuxVideoSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Multiplexprogram.MultiplexStatmuxVideoSettings"
             $($field $value)*)
         };
     }
@@ -9813,7 +9813,7 @@ pub mod multiplexprogram {
     #[macro_export]
     macro_rules! __aws_medialive_Multiplexprogram_MultiplexVideoSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Multiplexprogram.MultiplexVideoSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Multiplexprogram.MultiplexVideoSettings"
             $($field $value)*)
         };
     }
@@ -9846,7 +9846,7 @@ pub mod network {
     #[macro_export]
     macro_rules! __aws_medialive_Network_IpPool {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Network.IpPool"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Network.IpPool"
             $($field $value)*)
         };
     }
@@ -9869,7 +9869,7 @@ pub mod network {
     #[macro_export]
     macro_rules! __aws_medialive_Network_Route {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Network.Route"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Network.Route"
             $($field $value)*)
         };
     }
@@ -9898,7 +9898,7 @@ pub mod network {
     #[macro_export]
     macro_rules! __aws_medialive_Network_Tags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::Network.Tags"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Network.Tags"
             $($field $value)*)
         };
     }
@@ -9926,7 +9926,7 @@ pub mod sdisource {
     #[macro_export]
     macro_rules! __aws_medialive_SdiSource_Tags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::SdiSource.Tags"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::SdiSource.Tags"
             $($field $value)*)
         };
     }
@@ -9955,7 +9955,7 @@ pub mod signalmap {
     #[macro_export]
     macro_rules! __aws_medialive_SignalMap_MediaResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::SignalMap.MediaResource"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::SignalMap.MediaResource"
             $($field $value)*)
         };
     }
@@ -9990,7 +9990,7 @@ pub mod signalmap {
     #[macro_export]
     macro_rules! __aws_medialive_SignalMap_MediaResourceNeighbor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::SignalMap.MediaResourceNeighbor"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::SignalMap.MediaResourceNeighbor"
             $($field $value)*)
         };
     }
@@ -10018,7 +10018,7 @@ pub mod signalmap {
     #[macro_export]
     macro_rules! __aws_medialive_SignalMap_MonitorDeployment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::SignalMap.MonitorDeployment"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::SignalMap.MonitorDeployment"
             $($field $value)*)
         };
     }
@@ -10054,7 +10054,7 @@ pub mod signalmap {
     #[macro_export]
     macro_rules! __aws_medialive_SignalMap_SuccessfulMonitorDeployment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaLive::SignalMap.SuccessfulMonitorDeployment"
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::SignalMap.SuccessfulMonitorDeployment"
             $($field $value)*)
         };
     }
@@ -10096,7 +10096,7 @@ pub struct Channel_ {
 #[macro_export]
 macro_rules! __aws_medialive_Channel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaLive::Channel"
+        stratosphere::generator::construct_resource_type!("AWS::MediaLive::Channel"
         $($field $value)*)
     };
 }
@@ -10204,7 +10204,7 @@ pub struct ChannelPlacementGroup_ {
 #[macro_export]
 macro_rules! __aws_medialive_ChannelPlacementGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaLive::ChannelPlacementGroup"
+        stratosphere::generator::construct_resource_type!("AWS::MediaLive::ChannelPlacementGroup"
         $($field $value)*)
     };
 }
@@ -10258,7 +10258,7 @@ pub struct CloudWatchAlarmTemplate_ {
 #[macro_export]
 macro_rules! __aws_medialive_CloudWatchAlarmTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaLive::CloudWatchAlarmTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::MediaLive::CloudWatchAlarmTemplate"
         $($field $value)*)
     };
 }
@@ -10344,7 +10344,7 @@ pub struct CloudWatchAlarmTemplateGroup_ {
 #[macro_export]
 macro_rules! __aws_medialive_CloudWatchAlarmTemplateGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaLive::CloudWatchAlarmTemplateGroup"
+        stratosphere::generator::construct_resource_type!("AWS::MediaLive::CloudWatchAlarmTemplateGroup"
         $($field $value)*)
     };
 }
@@ -10390,7 +10390,7 @@ pub struct Cluster_ {
 #[macro_export]
 macro_rules! __aws_medialive_Cluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaLive::Cluster"
+        stratosphere::generator::construct_resource_type!("AWS::MediaLive::Cluster"
         $($field $value)*)
     };
 }
@@ -10447,7 +10447,7 @@ pub struct EventBridgeRuleTemplate_ {
 #[macro_export]
 macro_rules! __aws_medialive_EventBridgeRuleTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaLive::EventBridgeRuleTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::MediaLive::EventBridgeRuleTemplate"
         $($field $value)*)
     };
 }
@@ -10505,7 +10505,7 @@ pub struct EventBridgeRuleTemplateGroup_ {
 #[macro_export]
 macro_rules! __aws_medialive_EventBridgeRuleTemplateGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaLive::EventBridgeRuleTemplateGroup"
+        stratosphere::generator::construct_resource_type!("AWS::MediaLive::EventBridgeRuleTemplateGroup"
         $($field $value)*)
     };
 }
@@ -10562,8 +10562,8 @@ pub struct Input_ {
 #[macro_export]
 macro_rules! __aws_medialive_Input {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaLive::Input" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::MediaLive::Input"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_medialive_Input as Input;
@@ -10668,7 +10668,7 @@ pub struct InputSecurityGroup_ {
 #[macro_export]
 macro_rules! __aws_medialive_InputSecurityGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaLive::InputSecurityGroup"
+        stratosphere::generator::construct_resource_type!("AWS::MediaLive::InputSecurityGroup"
         $($field $value)*)
     };
 }
@@ -10708,7 +10708,7 @@ pub struct Multiplex_ {
 #[macro_export]
 macro_rules! __aws_medialive_Multiplex {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaLive::Multiplex"
+        stratosphere::generator::construct_resource_type!("AWS::MediaLive::Multiplex"
         $($field $value)*)
     };
 }
@@ -10764,7 +10764,7 @@ pub struct Multiplexprogram_ {
 #[macro_export]
 macro_rules! __aws_medialive_Multiplexprogram {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaLive::Multiplexprogram"
+        stratosphere::generator::construct_resource_type!("AWS::MediaLive::Multiplexprogram"
         $($field $value)*)
     };
 }
@@ -10830,7 +10830,7 @@ pub struct Network_ {
 #[macro_export]
 macro_rules! __aws_medialive_Network {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaLive::Network"
+        stratosphere::generator::construct_resource_type!("AWS::MediaLive::Network"
         $($field $value)*)
     };
 }
@@ -10874,7 +10874,7 @@ pub struct SdiSource_ {
 #[macro_export]
 macro_rules! __aws_medialive_SdiSource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaLive::SdiSource"
+        stratosphere::generator::construct_resource_type!("AWS::MediaLive::SdiSource"
         $($field $value)*)
     };
 }
@@ -10921,7 +10921,7 @@ pub struct SignalMap_ {
 #[macro_export]
 macro_rules! __aws_medialive_SignalMap {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaLive::SignalMap"
+        stratosphere::generator::construct_resource_type!("AWS::MediaLive::SignalMap"
         $($field $value)*)
     };
 }

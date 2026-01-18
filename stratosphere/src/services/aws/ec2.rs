@@ -8,7 +8,7 @@ pub mod capacityreservation {
     #[macro_export]
     macro_rules! __aws_ec2_CapacityReservation_CapacityAllocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::CapacityReservation.CapacityAllocation"
+            stratosphere::generator::construct_property_type!("AWS::EC2::CapacityReservation.CapacityAllocation"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub mod capacityreservation {
     #[macro_export]
     macro_rules! __aws_ec2_CapacityReservation_CommitmentInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::CapacityReservation.CommitmentInfo"
+            stratosphere::generator::construct_property_type!("AWS::EC2::CapacityReservation.CommitmentInfo"
             $($field $value)*)
         };
     }
@@ -69,7 +69,7 @@ pub mod capacityreservation {
     #[macro_export]
     macro_rules! __aws_ec2_CapacityReservation_TagSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::CapacityReservation.TagSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::CapacityReservation.TagSpecification"
             $($field $value)*)
         };
     }
@@ -105,7 +105,7 @@ pub mod capacityreservationfleet {
     #[macro_export]
     macro_rules! __aws_ec2_CapacityReservationFleet_InstanceTypeSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::CapacityReservationFleet.InstanceTypeSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::CapacityReservationFleet.InstanceTypeSpecification"
             $($field $value)*)
         };
     }
@@ -164,7 +164,7 @@ pub mod capacityreservationfleet {
     #[macro_export]
     macro_rules! __aws_ec2_CapacityReservationFleet_TagSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::CapacityReservationFleet.TagSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::CapacityReservationFleet.TagSpecification"
             $($field $value)*)
         };
     }
@@ -194,7 +194,7 @@ pub mod clientvpnendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_ClientVpnEndpoint_CertificateAuthenticationRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.CertificateAuthenticationRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.CertificateAuthenticationRequest"
             $($field $value)*)
         };
     }
@@ -220,7 +220,7 @@ pub mod clientvpnendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_ClientVpnEndpoint_ClientAuthenticationRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.ClientAuthenticationRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.ClientAuthenticationRequest"
             $($field $value)*)
         };
     }
@@ -262,7 +262,7 @@ pub mod clientvpnendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_ClientVpnEndpoint_ClientConnectOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.ClientConnectOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.ClientConnectOptions"
             $($field $value)*)
         };
     }
@@ -292,7 +292,7 @@ pub mod clientvpnendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_ClientVpnEndpoint_ClientLoginBannerOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.ClientLoginBannerOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.ClientLoginBannerOptions"
             $($field $value)*)
         };
     }
@@ -321,7 +321,7 @@ pub mod clientvpnendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_ClientVpnEndpoint_ClientRouteEnforcementOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.ClientRouteEnforcementOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.ClientRouteEnforcementOptions"
             $($field $value)*)
         };
     }
@@ -348,7 +348,7 @@ pub mod clientvpnendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_ClientVpnEndpoint_ConnectionLogOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.ConnectionLogOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.ConnectionLogOptions"
             $($field $value)*)
         };
     }
@@ -383,7 +383,7 @@ pub mod clientvpnendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_ClientVpnEndpoint_DirectoryServiceAuthenticationRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.DirectoryServiceAuthenticationRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.DirectoryServiceAuthenticationRequest"
             $($field $value)*)
         };
     }
@@ -407,7 +407,7 @@ pub mod clientvpnendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_ClientVpnEndpoint_FederatedAuthenticationRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.FederatedAuthenticationRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.FederatedAuthenticationRequest"
             $($field $value)*)
         };
     }
@@ -437,7 +437,7 @@ pub mod clientvpnendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_ClientVpnEndpoint_TagSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.TagSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::ClientVpnEndpoint.TagSpecification"
             $($field $value)*)
         };
     }
@@ -467,7 +467,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_AcceleratorCountRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.AcceleratorCountRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.AcceleratorCountRequest"
             $($field $value)*)
         };
     }
@@ -493,7 +493,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_AcceleratorTotalMemoryMiBRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.AcceleratorTotalMemoryMiBRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.AcceleratorTotalMemoryMiBRequest"
             $($field $value)*)
         };
     }
@@ -519,7 +519,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_BaselineEbsBandwidthMbpsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.BaselineEbsBandwidthMbpsRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.BaselineEbsBandwidthMbpsRequest"
             $($field $value)*)
         };
     }
@@ -544,7 +544,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_BaselinePerformanceFactorsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.BaselinePerformanceFactorsRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.BaselinePerformanceFactorsRequest"
             $($field $value)*)
         };
     }
@@ -569,7 +569,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_BlockDeviceMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.BlockDeviceMapping"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.BlockDeviceMapping"
             $($field $value)*)
         };
     }
@@ -610,7 +610,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_CapacityRebalance {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.CapacityRebalance"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.CapacityRebalance"
             $($field $value)*)
         };
     }
@@ -641,7 +641,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_CapacityReservationOptionsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.CapacityReservationOptionsRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.CapacityReservationOptionsRequest"
             $($field $value)*)
         };
     }
@@ -666,7 +666,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_CpuPerformanceFactorRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.CpuPerformanceFactorRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.CpuPerformanceFactorRequest"
             $($field $value)*)
         };
     }
@@ -697,7 +697,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_EbsBlockDevice {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.EbsBlockDevice"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.EbsBlockDevice"
             $($field $value)*)
         };
     }
@@ -756,7 +756,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_FleetLaunchTemplateConfigRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.FleetLaunchTemplateConfigRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.FleetLaunchTemplateConfigRequest"
             $($field $value)*)
         };
     }
@@ -795,7 +795,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_FleetLaunchTemplateOverridesRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.FleetLaunchTemplateOverridesRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.FleetLaunchTemplateOverridesRequest"
             $($field $value)*)
         };
     }
@@ -870,7 +870,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_FleetLaunchTemplateSpecificationRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.FleetLaunchTemplateSpecificationRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.FleetLaunchTemplateSpecificationRequest"
             $($field $value)*)
         };
     }
@@ -929,7 +929,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_InstanceRequirementsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.InstanceRequirementsRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.InstanceRequirementsRequest"
             $($field $value)*)
         };
     }
@@ -1098,7 +1098,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_MaintenanceStrategies {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.MaintenanceStrategies"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.MaintenanceStrategies"
             $($field $value)*)
         };
     }
@@ -1124,7 +1124,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_MemoryGiBPerVCpuRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.MemoryGiBPerVCpuRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.MemoryGiBPerVCpuRequest"
             $($field $value)*)
         };
     }
@@ -1150,7 +1150,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_MemoryMiBRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.MemoryMiBRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.MemoryMiBRequest"
             $($field $value)*)
         };
     }
@@ -1176,7 +1176,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_NetworkBandwidthGbpsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.NetworkBandwidthGbpsRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.NetworkBandwidthGbpsRequest"
             $($field $value)*)
         };
     }
@@ -1202,7 +1202,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_NetworkInterfaceCountRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.NetworkInterfaceCountRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.NetworkInterfaceCountRequest"
             $($field $value)*)
         };
     }
@@ -1232,7 +1232,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_OnDemandOptionsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.OnDemandOptionsRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.OnDemandOptionsRequest"
             $($field $value)*)
         };
     }
@@ -1287,7 +1287,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_PerformanceFactorReferenceRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.PerformanceFactorReferenceRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.PerformanceFactorReferenceRequest"
             $($field $value)*)
         };
     }
@@ -1319,7 +1319,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_Placement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.Placement"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.Placement"
             $($field $value)*)
         };
     }
@@ -1390,7 +1390,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_SpotOptionsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.SpotOptionsRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.SpotOptionsRequest"
             $($field $value)*)
         };
     }
@@ -1458,7 +1458,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_TagSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.TagSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.TagSpecification"
             $($field $value)*)
         };
     }
@@ -1490,7 +1490,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_TargetCapacitySpecificationRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.TargetCapacitySpecificationRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.TargetCapacitySpecificationRequest"
             $($field $value)*)
         };
     }
@@ -1538,7 +1538,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_TotalLocalStorageGBRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.TotalLocalStorageGBRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.TotalLocalStorageGBRequest"
             $($field $value)*)
         };
     }
@@ -1564,7 +1564,7 @@ pub mod ec2fleet {
     #[macro_export]
     macro_rules! __aws_ec2_EC2Fleet_VCpuCountRangeRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::EC2Fleet.VCpuCountRangeRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::EC2Fleet.VCpuCountRangeRequest"
             $($field $value)*)
         };
     }
@@ -1593,7 +1593,7 @@ pub mod flowlog {
     #[macro_export]
     macro_rules! __aws_ec2_FlowLog_DestinationOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::FlowLog.DestinationOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::FlowLog.DestinationOptions"
             $($field $value)*)
         };
     }
@@ -1626,7 +1626,7 @@ pub mod ipam {
     #[macro_export]
     macro_rules! __aws_ec2_IPAM_IpamOperatingRegion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::IPAM.IpamOperatingRegion"
+            stratosphere::generator::construct_property_type!("AWS::EC2::IPAM.IpamOperatingRegion"
             $($field $value)*)
         };
     }
@@ -1649,7 +1649,7 @@ pub mod ipam {
     #[macro_export]
     macro_rules! __aws_ec2_IPAM_IpamOrganizationalUnitExclusion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::IPAM.IpamOrganizationalUnitExclusion"
+            stratosphere::generator::construct_property_type!("AWS::EC2::IPAM.IpamOrganizationalUnitExclusion"
             $($field $value)*)
         };
     }
@@ -1674,7 +1674,7 @@ pub mod ipampool {
     #[macro_export]
     macro_rules! __aws_ec2_IPAMPool_ProvisionedCidr {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::IPAMPool.ProvisionedCidr"
+            stratosphere::generator::construct_property_type!("AWS::EC2::IPAMPool.ProvisionedCidr"
             $($field $value)*)
         };
     }
@@ -1700,7 +1700,7 @@ pub mod ipampool {
     #[macro_export]
     macro_rules! __aws_ec2_IPAMPool_SourceResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::IPAMPool.SourceResource"
+            stratosphere::generator::construct_property_type!("AWS::EC2::IPAMPool.SourceResource"
             $($field $value)*)
         };
     }
@@ -1737,7 +1737,7 @@ pub mod ipamresourcediscovery {
     #[macro_export]
     macro_rules! __aws_ec2_IPAMResourceDiscovery_IpamOperatingRegion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::IPAMResourceDiscovery.IpamOperatingRegion"
+            stratosphere::generator::construct_property_type!("AWS::EC2::IPAMResourceDiscovery.IpamOperatingRegion"
             $($field $value)*)
         };
     }
@@ -1760,7 +1760,7 @@ pub mod ipamresourcediscovery {
     #[macro_export]
     macro_rules! __aws_ec2_IPAMResourceDiscovery_IpamResourceDiscoveryOrganizationalUnitExclusion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::IPAMResourceDiscovery.IpamResourceDiscoveryOrganizationalUnitExclusion"
+            stratosphere::generator::construct_property_type!("AWS::EC2::IPAMResourceDiscovery.IpamResourceDiscoveryOrganizationalUnitExclusion"
             $($field $value)*)
         };
     }
@@ -1786,7 +1786,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_AssociationParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.AssociationParameter"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.AssociationParameter"
             $($field $value)*)
         };
     }
@@ -1816,7 +1816,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_BlockDeviceMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.BlockDeviceMapping"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.BlockDeviceMapping"
             $($field $value)*)
         };
     }
@@ -1855,7 +1855,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_CpuOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.CpuOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.CpuOptions"
             $($field $value)*)
         };
     }
@@ -1886,7 +1886,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_CreditSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.CreditSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.CreditSpecification"
             $($field $value)*)
         };
     }
@@ -1917,7 +1917,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_Ebs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.Ebs"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.Ebs"
             $($field $value)*)
         };
     }
@@ -1975,7 +1975,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_ElasticGpuSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.ElasticGpuSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.ElasticGpuSpecification"
             $($field $value)*)
         };
     }
@@ -1999,7 +1999,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_ElasticInferenceAccelerator {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.ElasticInferenceAccelerator"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.ElasticInferenceAccelerator"
             $($field $value)*)
         };
     }
@@ -2026,7 +2026,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_EnaSrdSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.EnaSrdSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.EnaSrdSpecification"
             $($field $value)*)
         };
     }
@@ -2057,7 +2057,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_EnaSrdUdpSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.EnaSrdUdpSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.EnaSrdUdpSpecification"
             $($field $value)*)
         };
     }
@@ -2082,7 +2082,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_EnclaveOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.EnclaveOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.EnclaveOptions"
             $($field $value)*)
         };
     }
@@ -2107,7 +2107,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_HibernationOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.HibernationOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.HibernationOptions"
             $($field $value)*)
         };
     }
@@ -2132,7 +2132,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_InstanceIpv6Address {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.InstanceIpv6Address"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.InstanceIpv6Address"
             $($field $value)*)
         };
     }
@@ -2157,7 +2157,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_LaunchTemplateSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.LaunchTemplateSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.LaunchTemplateSpecification"
             $($field $value)*)
         };
     }
@@ -2192,7 +2192,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_LicenseSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.LicenseSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.LicenseSpecification"
             $($field $value)*)
         };
     }
@@ -2219,7 +2219,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_MetadataOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.MetadataOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.MetadataOptions"
             $($field $value)*)
         };
     }
@@ -2281,7 +2281,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_NetworkInterface {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.NetworkInterface"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.NetworkInterface"
             $($field $value)*)
         };
     }
@@ -2384,7 +2384,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_PrivateDnsNameOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.PrivateDnsNameOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.PrivateDnsNameOptions"
             $($field $value)*)
         };
     }
@@ -2422,7 +2422,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_PrivateIpAddressSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.PrivateIpAddressSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.PrivateIpAddressSpecification"
             $($field $value)*)
         };
     }
@@ -2450,7 +2450,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_SsmAssociation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.SsmAssociation"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.SsmAssociation"
             $($field $value)*)
         };
     }
@@ -2480,7 +2480,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_State {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.State"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.State"
             $($field $value)*)
         };
     }
@@ -2506,7 +2506,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_ec2_Instance_Volume {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Instance.Volume"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Instance.Volume"
             $($field $value)*)
         };
     }
@@ -2536,7 +2536,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_AcceleratorCount {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.AcceleratorCount"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.AcceleratorCount"
             $($field $value)*)
         };
     }
@@ -2562,7 +2562,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_AcceleratorTotalMemoryMiB {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.AcceleratorTotalMemoryMiB"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.AcceleratorTotalMemoryMiB"
             $($field $value)*)
         };
     }
@@ -2588,7 +2588,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_BaselineEbsBandwidthMbps {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.BaselineEbsBandwidthMbps"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.BaselineEbsBandwidthMbps"
             $($field $value)*)
         };
     }
@@ -2613,7 +2613,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_BaselinePerformanceFactors {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.BaselinePerformanceFactors"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.BaselinePerformanceFactors"
             $($field $value)*)
         };
     }
@@ -2638,7 +2638,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_BlockDeviceMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.BlockDeviceMapping"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.BlockDeviceMapping"
             $($field $value)*)
         };
     }
@@ -2679,7 +2679,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_CapacityReservationSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.CapacityReservationSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.CapacityReservationSpecification"
             $($field $value)*)
         };
     }
@@ -2711,7 +2711,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_CapacityReservationTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.CapacityReservationTarget"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.CapacityReservationTarget"
             $($field $value)*)
         };
     }
@@ -2744,7 +2744,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_ConnectionTrackingSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.ConnectionTrackingSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.ConnectionTrackingSpecification"
             $($field $value)*)
         };
     }
@@ -2781,7 +2781,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_Cpu {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.Cpu"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.Cpu"
             $($field $value)*)
         };
     }
@@ -2808,7 +2808,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_CpuOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.CpuOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.CpuOptions"
             $($field $value)*)
         };
     }
@@ -2845,7 +2845,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_CreditSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.CreditSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.CreditSpecification"
             $($field $value)*)
         };
     }
@@ -2878,7 +2878,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_Ebs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.Ebs"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.Ebs"
             $($field $value)*)
         };
     }
@@ -2949,7 +2949,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_EnaSrdSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.EnaSrdSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.EnaSrdSpecification"
             $($field $value)*)
         };
     }
@@ -2980,7 +2980,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_EnaSrdUdpSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.EnaSrdUdpSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.EnaSrdUdpSpecification"
             $($field $value)*)
         };
     }
@@ -3005,7 +3005,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_EnclaveOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.EnclaveOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.EnclaveOptions"
             $($field $value)*)
         };
     }
@@ -3030,7 +3030,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_HibernationOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.HibernationOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.HibernationOptions"
             $($field $value)*)
         };
     }
@@ -3056,7 +3056,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_IamInstanceProfile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.IamInstanceProfile"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.IamInstanceProfile"
             $($field $value)*)
         };
     }
@@ -3082,7 +3082,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_InstanceMarketOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.InstanceMarketOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.InstanceMarketOptions"
             $($field $value)*)
         };
     }
@@ -3137,7 +3137,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_InstanceRequirements {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.InstanceRequirements"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.InstanceRequirements"
             $($field $value)*)
         };
     }
@@ -3306,7 +3306,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_Ipv4PrefixSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.Ipv4PrefixSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.Ipv4PrefixSpecification"
             $($field $value)*)
         };
     }
@@ -3331,7 +3331,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_Ipv6Add {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.Ipv6Add"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.Ipv6Add"
             $($field $value)*)
         };
     }
@@ -3356,7 +3356,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_Ipv6PrefixSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.Ipv6PrefixSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.Ipv6PrefixSpecification"
             $($field $value)*)
         };
     }
@@ -3410,7 +3410,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_LaunchTemplateData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.LaunchTemplateData"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.LaunchTemplateData"
             $($field $value)*)
         };
     }
@@ -3610,7 +3610,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_LaunchTemplateTagSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.LaunchTemplateTagSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.LaunchTemplateTagSpecification"
             $($field $value)*)
         };
     }
@@ -3638,7 +3638,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_LicenseSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.LicenseSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.LicenseSpecification"
             $($field $value)*)
         };
     }
@@ -3663,7 +3663,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_MaintenanceOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.MaintenanceOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.MaintenanceOptions"
             $($field $value)*)
         };
     }
@@ -3689,7 +3689,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_MemoryGiBPerVCpu {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.MemoryGiBPerVCpu"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.MemoryGiBPerVCpu"
             $($field $value)*)
         };
     }
@@ -3715,7 +3715,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_MemoryMiB {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.MemoryMiB"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.MemoryMiB"
             $($field $value)*)
         };
     }
@@ -3744,7 +3744,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_MetadataOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.MetadataOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.MetadataOptions"
             $($field $value)*)
         };
     }
@@ -3793,7 +3793,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_Monitoring {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.Monitoring"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.Monitoring"
             $($field $value)*)
         };
     }
@@ -3819,7 +3819,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_NetworkBandwidthGbps {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.NetworkBandwidthGbps"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.NetworkBandwidthGbps"
             $($field $value)*)
         };
     }
@@ -3866,7 +3866,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_NetworkInterface {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.NetworkInterface"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.NetworkInterface"
             $($field $value)*)
         };
     }
@@ -4021,7 +4021,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_NetworkInterfaceCount {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.NetworkInterfaceCount"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.NetworkInterfaceCount"
             $($field $value)*)
         };
     }
@@ -4046,7 +4046,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_NetworkPerformanceOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.NetworkPerformanceOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.NetworkPerformanceOptions"
             $($field $value)*)
         };
     }
@@ -4079,7 +4079,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_Placement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.Placement"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.Placement"
             $($field $value)*)
         };
     }
@@ -4151,7 +4151,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_PrivateDnsNameOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.PrivateDnsNameOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.PrivateDnsNameOptions"
             $($field $value)*)
         };
     }
@@ -4189,7 +4189,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_PrivateIpAdd {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.PrivateIpAdd"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.PrivateIpAdd"
             $($field $value)*)
         };
     }
@@ -4220,7 +4220,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_Reference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.Reference"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.Reference"
             $($field $value)*)
         };
     }
@@ -4249,7 +4249,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_SpotOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.SpotOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.SpotOptions"
             $($field $value)*)
         };
     }
@@ -4299,7 +4299,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_TagSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.TagSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.TagSpecification"
             $($field $value)*)
         };
     }
@@ -4328,7 +4328,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_TotalLocalStorageGB {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.TotalLocalStorageGB"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.TotalLocalStorageGB"
             $($field $value)*)
         };
     }
@@ -4354,7 +4354,7 @@ pub mod launchtemplate {
     #[macro_export]
     macro_rules! __aws_ec2_LaunchTemplate_VCpuCount {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::LaunchTemplate.VCpuCount"
+            stratosphere::generator::construct_property_type!("AWS::EC2::LaunchTemplate.VCpuCount"
             $($field $value)*)
         };
     }
@@ -4382,7 +4382,7 @@ pub mod networkaclentry {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkAclEntry_Icmp {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkAclEntry.Icmp"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkAclEntry.Icmp"
             $($field $value)*)
         };
     }
@@ -4408,7 +4408,7 @@ pub mod networkaclentry {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkAclEntry_PortRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkAclEntry.PortRange"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkAclEntry.PortRange"
             $($field $value)*)
         };
     }
@@ -4437,7 +4437,7 @@ pub mod networkinsightsaccessscope {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAccessScope_AccessScopePathRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAccessScope.AccessScopePathRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAccessScope.AccessScopePathRequest"
             $($field $value)*)
         };
     }
@@ -4477,7 +4477,7 @@ pub mod networkinsightsaccessscope {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAccessScope_PacketHeaderStatementRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAccessScope.PacketHeaderStatementRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAccessScope.PacketHeaderStatementRequest"
             $($field $value)*)
         };
     }
@@ -4539,7 +4539,7 @@ pub mod networkinsightsaccessscope {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAccessScope_PathStatementRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAccessScope.PathStatementRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAccessScope.PathStatementRequest"
             $($field $value)*)
         };
     }
@@ -4571,7 +4571,7 @@ pub mod networkinsightsaccessscope {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAccessScope_ResourceStatementRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAccessScope.ResourceStatementRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAccessScope.ResourceStatementRequest"
             $($field $value)*)
         };
     }
@@ -4602,7 +4602,7 @@ pub mod networkinsightsaccessscope {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAccessScope_ThroughResourcesStatementRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAccessScope.ThroughResourcesStatementRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAccessScope.ThroughResourcesStatementRequest"
             $($field $value)*)
         };
     }
@@ -4632,7 +4632,7 @@ pub mod networkinsightsanalysis {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAnalysis_AdditionalDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AdditionalDetail"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AdditionalDetail"
             $($field $value)*)
         };
     }
@@ -4676,7 +4676,7 @@ pub mod networkinsightsanalysis {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAnalysis_AlternatePathHint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AlternatePathHint"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AlternatePathHint"
             $($field $value)*)
         };
     }
@@ -4712,7 +4712,7 @@ pub mod networkinsightsanalysis {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAnalysis_AnalysisAclRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AnalysisAclRule"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AnalysisAclRule"
             $($field $value)*)
         };
     }
@@ -4762,7 +4762,7 @@ pub mod networkinsightsanalysis {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAnalysis_AnalysisComponent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AnalysisComponent"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AnalysisComponent"
             $($field $value)*)
         };
     }
@@ -4788,7 +4788,7 @@ pub mod networkinsightsanalysis {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAnalysis_AnalysisLoadBalancerListener {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AnalysisLoadBalancerListener"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AnalysisLoadBalancerListener"
             $($field $value)*)
         };
     }
@@ -4822,7 +4822,7 @@ pub mod networkinsightsanalysis {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAnalysis_AnalysisLoadBalancerTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AnalysisLoadBalancerTarget"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AnalysisLoadBalancerTarget"
             $($field $value)*)
         };
     }
@@ -4866,7 +4866,7 @@ pub mod networkinsightsanalysis {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAnalysis_AnalysisPacketHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AnalysisPacketHeader"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AnalysisPacketHeader"
             $($field $value)*)
         };
     }
@@ -4925,7 +4925,7 @@ pub mod networkinsightsanalysis {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAnalysis_AnalysisRouteTableRoute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AnalysisRouteTableRoute"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AnalysisRouteTableRoute"
             $($field $value)*)
         };
     }
@@ -5009,7 +5009,7 @@ pub mod networkinsightsanalysis {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAnalysis_AnalysisSecurityGroupRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AnalysisSecurityGroupRule"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.AnalysisSecurityGroupRule"
             $($field $value)*)
         };
     }
@@ -5111,7 +5111,7 @@ pub mod networkinsightsanalysis {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAnalysis_Explanation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.Explanation"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.Explanation"
             $($field $value)*)
         };
     }
@@ -5434,7 +5434,7 @@ pub mod networkinsightsanalysis {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAnalysis_PathComponent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.PathComponent"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.PathComponent"
             $($field $value)*)
         };
     }
@@ -5550,7 +5550,7 @@ pub mod networkinsightsanalysis {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAnalysis_PortRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.PortRange"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.PortRange"
             $($field $value)*)
         };
     }
@@ -5581,7 +5581,7 @@ pub mod networkinsightsanalysis {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsAnalysis_TransitGatewayRouteTableRoute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.TransitGatewayRouteTableRoute"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsAnalysis.TransitGatewayRouteTableRoute"
             $($field $value)*)
         };
     }
@@ -5642,7 +5642,7 @@ pub mod networkinsightspath {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsPath_FilterPortRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsPath.FilterPortRange"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsPath.FilterPortRange"
             $($field $value)*)
         };
     }
@@ -5673,7 +5673,7 @@ pub mod networkinsightspath {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInsightsPath_PathFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInsightsPath.PathFilter"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInsightsPath.PathFilter"
             $($field $value)*)
         };
     }
@@ -5720,7 +5720,7 @@ pub mod networkinterface {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInterface_ConnectionTrackingSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInterface.ConnectionTrackingSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInterface.ConnectionTrackingSpecification"
             $($field $value)*)
         };
     }
@@ -5757,7 +5757,7 @@ pub mod networkinterface {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInterface_InstanceIpv6Address {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInterface.InstanceIpv6Address"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInterface.InstanceIpv6Address"
             $($field $value)*)
         };
     }
@@ -5780,7 +5780,7 @@ pub mod networkinterface {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInterface_Ipv4PrefixSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInterface.Ipv4PrefixSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInterface.Ipv4PrefixSpecification"
             $($field $value)*)
         };
     }
@@ -5803,7 +5803,7 @@ pub mod networkinterface {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInterface_Ipv6PrefixSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInterface.Ipv6PrefixSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInterface.Ipv6PrefixSpecification"
             $($field $value)*)
         };
     }
@@ -5827,7 +5827,7 @@ pub mod networkinterface {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInterface_PrivateIpAddressSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInterface.PrivateIpAddressSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInterface.PrivateIpAddressSpecification"
             $($field $value)*)
         };
     }
@@ -5857,7 +5857,7 @@ pub mod networkinterfaceattachment {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInterfaceAttachment_EnaSrdSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInterfaceAttachment.EnaSrdSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInterfaceAttachment.EnaSrdSpecification"
             $($field $value)*)
         };
     }
@@ -5888,7 +5888,7 @@ pub mod networkinterfaceattachment {
     #[macro_export]
     macro_rules! __aws_ec2_NetworkInterfaceAttachment_EnaSrdUdpSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::NetworkInterfaceAttachment.EnaSrdUdpSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInterfaceAttachment.EnaSrdUdpSpecification"
             $($field $value)*)
         };
     }
@@ -5916,7 +5916,7 @@ pub mod prefixlist {
     #[macro_export]
     macro_rules! __aws_ec2_PrefixList_Entry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::PrefixList.Entry"
+            stratosphere::generator::construct_property_type!("AWS::EC2::PrefixList.Entry"
             $($field $value)*)
         };
     }
@@ -5948,7 +5948,7 @@ pub mod routeserverpeer {
     #[macro_export]
     macro_rules! __aws_ec2_RouteServerPeer_BgpOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::RouteServerPeer.BgpOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::RouteServerPeer.BgpOptions"
             $($field $value)*)
         };
     }
@@ -5988,7 +5988,7 @@ pub mod securitygroup {
     #[macro_export]
     macro_rules! __aws_ec2_SecurityGroup_Egress {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SecurityGroup.Egress"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SecurityGroup.Egress"
             $($field $value)*)
         };
     }
@@ -6056,7 +6056,7 @@ pub mod securitygroup {
     #[macro_export]
     macro_rules! __aws_ec2_SecurityGroup_Ingress {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SecurityGroup.Ingress"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SecurityGroup.Ingress"
             $($field $value)*)
         };
     }
@@ -6130,7 +6130,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_AcceleratorCountRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.AcceleratorCountRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.AcceleratorCountRequest"
             $($field $value)*)
         };
     }
@@ -6156,7 +6156,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_AcceleratorTotalMemoryMiBRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.AcceleratorTotalMemoryMiBRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.AcceleratorTotalMemoryMiBRequest"
             $($field $value)*)
         };
     }
@@ -6182,7 +6182,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_BaselineEbsBandwidthMbpsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.BaselineEbsBandwidthMbpsRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.BaselineEbsBandwidthMbpsRequest"
             $($field $value)*)
         };
     }
@@ -6207,7 +6207,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_BaselinePerformanceFactorsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.BaselinePerformanceFactorsRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.BaselinePerformanceFactorsRequest"
             $($field $value)*)
         };
     }
@@ -6232,7 +6232,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_BlockDeviceMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.BlockDeviceMapping"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.BlockDeviceMapping"
             $($field $value)*)
         };
     }
@@ -6270,7 +6270,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_ClassicLoadBalancer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.ClassicLoadBalancer"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.ClassicLoadBalancer"
             $($field $value)*)
         };
     }
@@ -6293,7 +6293,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_ClassicLoadBalancersConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.ClassicLoadBalancersConfig"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.ClassicLoadBalancersConfig"
             $($field $value)*)
         };
     }
@@ -6316,7 +6316,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_CpuPerformanceFactorRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.CpuPerformanceFactorRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.CpuPerformanceFactorRequest"
             $($field $value)*)
         };
     }
@@ -6346,7 +6346,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_EbsBlockDevice {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.EbsBlockDevice"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.EbsBlockDevice"
             $($field $value)*)
         };
     }
@@ -6400,7 +6400,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_FleetLaunchTemplateSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.FleetLaunchTemplateSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.FleetLaunchTemplateSpecification"
             $($field $value)*)
         };
     }
@@ -6435,7 +6435,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_GroupIdentifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.GroupIdentifier"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.GroupIdentifier"
             $($field $value)*)
         };
     }
@@ -6458,7 +6458,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_IamInstanceProfileSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.IamInstanceProfileSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.IamInstanceProfileSpecification"
             $($field $value)*)
         };
     }
@@ -6480,7 +6480,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_InstanceIpv6Address {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.InstanceIpv6Address"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.InstanceIpv6Address"
             $($field $value)*)
         };
     }
@@ -6513,7 +6513,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_InstanceNetworkInterfaceSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.InstanceNetworkInterfaceSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.InstanceNetworkInterfaceSpecification"
             $($field $value)*)
         };
     }
@@ -6619,7 +6619,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_InstanceRequirementsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.InstanceRequirementsRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.InstanceRequirementsRequest"
             $($field $value)*)
         };
     }
@@ -6789,7 +6789,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_LaunchTemplateConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.LaunchTemplateConfig"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.LaunchTemplateConfig"
             $($field $value)*)
         };
     }
@@ -6826,7 +6826,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_LaunchTemplateOverrides {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.LaunchTemplateOverrides"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.LaunchTemplateOverrides"
             $($field $value)*)
         };
     }
@@ -6888,7 +6888,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_LoadBalancersConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.LoadBalancersConfig"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.LoadBalancersConfig"
             $($field $value)*)
         };
     }
@@ -6920,7 +6920,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_MemoryGiBPerVCpuRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.MemoryGiBPerVCpuRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.MemoryGiBPerVCpuRequest"
             $($field $value)*)
         };
     }
@@ -6946,7 +6946,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_MemoryMiBRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.MemoryMiBRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.MemoryMiBRequest"
             $($field $value)*)
         };
     }
@@ -6972,7 +6972,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_NetworkBandwidthGbpsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.NetworkBandwidthGbpsRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.NetworkBandwidthGbpsRequest"
             $($field $value)*)
         };
     }
@@ -6998,7 +6998,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_NetworkInterfaceCountRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.NetworkInterfaceCountRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.NetworkInterfaceCountRequest"
             $($field $value)*)
         };
     }
@@ -7023,7 +7023,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_PerformanceFactorReferenceRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.PerformanceFactorReferenceRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.PerformanceFactorReferenceRequest"
             $($field $value)*)
         };
     }
@@ -7049,7 +7049,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_PrivateIpAddressSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.PrivateIpAddressSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.PrivateIpAddressSpecification"
             $($field $value)*)
         };
     }
@@ -7079,7 +7079,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_SpotCapacityRebalance {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.SpotCapacityRebalance"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.SpotCapacityRebalance"
             $($field $value)*)
         };
     }
@@ -7127,7 +7127,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_SpotFleetLaunchSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.SpotFleetLaunchSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.SpotFleetLaunchSpecification"
             $($field $value)*)
         };
     }
@@ -7252,7 +7252,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_SpotFleetMonitoring {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.SpotFleetMonitoring"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.SpotFleetMonitoring"
             $($field $value)*)
         };
     }
@@ -7299,7 +7299,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_SpotFleetRequestConfigData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.SpotFleetRequestConfigData"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.SpotFleetRequestConfigData"
             $($field $value)*)
         };
     }
@@ -7450,7 +7450,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_SpotFleetTagSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.SpotFleetTagSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.SpotFleetTagSpecification"
             $($field $value)*)
         };
     }
@@ -7478,7 +7478,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_SpotMaintenanceStrategies {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.SpotMaintenanceStrategies"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.SpotMaintenanceStrategies"
             $($field $value)*)
         };
     }
@@ -7505,7 +7505,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_SpotPlacement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.SpotPlacement"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.SpotPlacement"
             $($field $value)*)
         };
     }
@@ -7542,7 +7542,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_TargetGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.TargetGroup"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.TargetGroup"
             $($field $value)*)
         };
     }
@@ -7565,7 +7565,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_TargetGroupsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.TargetGroupsConfig"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.TargetGroupsConfig"
             $($field $value)*)
         };
     }
@@ -7589,7 +7589,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_TotalLocalStorageGBRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.TotalLocalStorageGBRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.TotalLocalStorageGBRequest"
             $($field $value)*)
         };
     }
@@ -7615,7 +7615,7 @@ pub mod spotfleet {
     #[macro_export]
     macro_rules! __aws_ec2_SpotFleet_VCpuCountRangeRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::SpotFleet.VCpuCountRangeRequest"
+            stratosphere::generator::construct_property_type!("AWS::EC2::SpotFleet.VCpuCountRangeRequest"
             $($field $value)*)
         };
     }
@@ -7642,7 +7642,7 @@ pub mod subnet {
     #[macro_export]
     macro_rules! __aws_ec2_Subnet_BlockPublicAccessStates {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Subnet.BlockPublicAccessStates"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Subnet.BlockPublicAccessStates"
             $($field $value)*)
         };
     }
@@ -7669,7 +7669,7 @@ pub mod subnet {
     #[macro_export]
     macro_rules! __aws_ec2_Subnet_PrivateDnsNameOptionsOnLaunch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::Subnet.PrivateDnsNameOptionsOnLaunch"
+            stratosphere::generator::construct_property_type!("AWS::EC2::Subnet.PrivateDnsNameOptionsOnLaunch"
             $($field $value)*)
         };
     }
@@ -7709,7 +7709,7 @@ pub mod trafficmirrorfilterrule {
     #[macro_export]
     macro_rules! __aws_ec2_TrafficMirrorFilterRule_TrafficMirrorPortRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::TrafficMirrorFilterRule.TrafficMirrorPortRange"
+            stratosphere::generator::construct_property_type!("AWS::EC2::TrafficMirrorFilterRule.TrafficMirrorPortRange"
             $($field $value)*)
         };
     }
@@ -7741,7 +7741,7 @@ pub mod transitgatewayattachment {
     #[macro_export]
     macro_rules! __aws_ec2_TransitGatewayAttachment_Options {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::TransitGatewayAttachment.Options"
+            stratosphere::generator::construct_property_type!("AWS::EC2::TransitGatewayAttachment.Options"
             $($field $value)*)
         };
     }
@@ -7786,7 +7786,7 @@ pub mod transitgatewayconnect {
     #[macro_export]
     macro_rules! __aws_ec2_TransitGatewayConnect_TransitGatewayConnectOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::TransitGatewayConnect.TransitGatewayConnectOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::TransitGatewayConnect.TransitGatewayConnectOptions"
             $($field $value)*)
         };
     }
@@ -7817,7 +7817,7 @@ pub mod transitgatewayconnectpeer {
     #[macro_export]
     macro_rules! __aws_ec2_TransitGatewayConnectPeer_TransitGatewayAttachmentBgpConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::TransitGatewayConnectPeer.TransitGatewayAttachmentBgpConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EC2::TransitGatewayConnectPeer.TransitGatewayAttachmentBgpConfiguration"
             $($field $value)*)
         };
     }
@@ -7870,7 +7870,7 @@ pub mod transitgatewayconnectpeer {
     #[macro_export]
     macro_rules! __aws_ec2_TransitGatewayConnectPeer_TransitGatewayConnectPeerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::TransitGatewayConnectPeer.TransitGatewayConnectPeerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EC2::TransitGatewayConnectPeer.TransitGatewayConnectPeerConfiguration"
             $($field $value)*)
         };
     }
@@ -7919,7 +7919,7 @@ pub mod transitgatewaymulticastdomain {
     #[macro_export]
     macro_rules! __aws_ec2_TransitGatewayMulticastDomain_Options {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::TransitGatewayMulticastDomain.Options"
+            stratosphere::generator::construct_property_type!("AWS::EC2::TransitGatewayMulticastDomain.Options"
             $($field $value)*)
         };
     }
@@ -7959,7 +7959,7 @@ pub mod transitgatewaypeeringattachment {
     #[macro_export]
     macro_rules! __aws_ec2_TransitGatewayPeeringAttachment_PeeringAttachmentStatus {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::TransitGatewayPeeringAttachment.PeeringAttachmentStatus"
+            stratosphere::generator::construct_property_type!("AWS::EC2::TransitGatewayPeeringAttachment.PeeringAttachmentStatus"
             $($field $value)*)
         };
     }
@@ -7992,7 +7992,7 @@ pub mod transitgatewayvpcattachment {
     #[macro_export]
     macro_rules! __aws_ec2_TransitGatewayVpcAttachment_Options {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::TransitGatewayVpcAttachment.Options"
+            stratosphere::generator::construct_property_type!("AWS::EC2::TransitGatewayVpcAttachment.Options"
             $($field $value)*)
         };
     }
@@ -8038,7 +8038,7 @@ pub mod vpcendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_VPCEndpoint_DnsOptionsSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VPCEndpoint.DnsOptionsSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VPCEndpoint.DnsOptionsSpecification"
             $($field $value)*)
         };
     }
@@ -8073,7 +8073,7 @@ pub mod vpnconnection {
     #[macro_export]
     macro_rules! __aws_ec2_VPNConnection_CloudwatchLogOptionsSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VPNConnection.CloudwatchLogOptionsSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VPNConnection.CloudwatchLogOptionsSpecification"
             $($field $value)*)
         };
     }
@@ -8110,7 +8110,7 @@ pub mod vpnconnection {
     #[macro_export]
     macro_rules! __aws_ec2_VPNConnection_IKEVersionsRequestListValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VPNConnection.IKEVersionsRequestListValue"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VPNConnection.IKEVersionsRequestListValue"
             $($field $value)*)
         };
     }
@@ -8132,7 +8132,7 @@ pub mod vpnconnection {
     #[macro_export]
     macro_rules! __aws_ec2_VPNConnection_Phase1DHGroupNumbersRequestListValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VPNConnection.Phase1DHGroupNumbersRequestListValue"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VPNConnection.Phase1DHGroupNumbersRequestListValue"
             $($field $value)*)
         };
     }
@@ -8154,7 +8154,7 @@ pub mod vpnconnection {
     #[macro_export]
     macro_rules! __aws_ec2_VPNConnection_Phase1EncryptionAlgorithmsRequestListValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VPNConnection.Phase1EncryptionAlgorithmsRequestListValue"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VPNConnection.Phase1EncryptionAlgorithmsRequestListValue"
             $($field $value)*)
         };
     }
@@ -8176,7 +8176,7 @@ pub mod vpnconnection {
     #[macro_export]
     macro_rules! __aws_ec2_VPNConnection_Phase1IntegrityAlgorithmsRequestListValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VPNConnection.Phase1IntegrityAlgorithmsRequestListValue"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VPNConnection.Phase1IntegrityAlgorithmsRequestListValue"
             $($field $value)*)
         };
     }
@@ -8198,7 +8198,7 @@ pub mod vpnconnection {
     #[macro_export]
     macro_rules! __aws_ec2_VPNConnection_Phase2DHGroupNumbersRequestListValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VPNConnection.Phase2DHGroupNumbersRequestListValue"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VPNConnection.Phase2DHGroupNumbersRequestListValue"
             $($field $value)*)
         };
     }
@@ -8220,7 +8220,7 @@ pub mod vpnconnection {
     #[macro_export]
     macro_rules! __aws_ec2_VPNConnection_Phase2EncryptionAlgorithmsRequestListValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VPNConnection.Phase2EncryptionAlgorithmsRequestListValue"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VPNConnection.Phase2EncryptionAlgorithmsRequestListValue"
             $($field $value)*)
         };
     }
@@ -8242,7 +8242,7 @@ pub mod vpnconnection {
     #[macro_export]
     macro_rules! __aws_ec2_VPNConnection_Phase2IntegrityAlgorithmsRequestListValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VPNConnection.Phase2IntegrityAlgorithmsRequestListValue"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VPNConnection.Phase2IntegrityAlgorithmsRequestListValue"
             $($field $value)*)
         };
     }
@@ -8264,7 +8264,7 @@ pub mod vpnconnection {
     #[macro_export]
     macro_rules! __aws_ec2_VPNConnection_VpnTunnelLogOptionsSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VPNConnection.VpnTunnelLogOptionsSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VPNConnection.VpnTunnelLogOptionsSpecification"
             $($field $value)*)
         };
     }
@@ -8308,7 +8308,7 @@ pub mod vpnconnection {
     #[macro_export]
     macro_rules! __aws_ec2_VPNConnection_VpnTunnelOptionsSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VPNConnection.VpnTunnelOptionsSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VPNConnection.VpnTunnelOptionsSpecification"
             $($field $value)*)
         };
     }
@@ -8452,7 +8452,7 @@ pub mod verifiedaccessendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessEndpoint_CidrOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessEndpoint.CidrOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessEndpoint.CidrOptions"
             $($field $value)*)
         };
     }
@@ -8496,7 +8496,7 @@ pub mod verifiedaccessendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessEndpoint_LoadBalancerOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessEndpoint.LoadBalancerOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessEndpoint.LoadBalancerOptions"
             $($field $value)*)
         };
     }
@@ -8545,7 +8545,7 @@ pub mod verifiedaccessendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessEndpoint_NetworkInterfaceOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessEndpoint.NetworkInterfaceOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessEndpoint.NetworkInterfaceOptions"
             $($field $value)*)
         };
     }
@@ -8586,7 +8586,7 @@ pub mod verifiedaccessendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessEndpoint_PortRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessEndpoint.PortRange"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessEndpoint.PortRange"
             $($field $value)*)
         };
     }
@@ -8620,7 +8620,7 @@ pub mod verifiedaccessendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessEndpoint_RdsOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessEndpoint.RdsOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessEndpoint.RdsOptions"
             $($field $value)*)
         };
     }
@@ -8679,7 +8679,7 @@ pub mod verifiedaccessendpoint {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessEndpoint_SseSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessEndpoint.SseSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessEndpoint.SseSpecification"
             $($field $value)*)
         };
     }
@@ -8713,7 +8713,7 @@ pub mod verifiedaccessgroup {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessGroup_SseSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessGroup.SseSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessGroup.SseSpecification"
             $($field $value)*)
         };
     }
@@ -8747,7 +8747,7 @@ pub mod verifiedaccessinstance {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessInstance_CloudWatchLogs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessInstance.CloudWatchLogs"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessInstance.CloudWatchLogs"
             $($field $value)*)
         };
     }
@@ -8779,7 +8779,7 @@ pub mod verifiedaccessinstance {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessInstance_KinesisDataFirehose {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessInstance.KinesisDataFirehose"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessInstance.KinesisDataFirehose"
             $($field $value)*)
         };
     }
@@ -8813,7 +8813,7 @@ pub mod verifiedaccessinstance {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessInstance_S3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessInstance.S3"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessInstance.S3"
             $($field $value)*)
         };
     }
@@ -8857,7 +8857,7 @@ pub mod verifiedaccessinstance {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessInstance_VerifiedAccessLogs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessInstance.VerifiedAccessLogs"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessInstance.VerifiedAccessLogs"
             $($field $value)*)
         };
     }
@@ -8907,7 +8907,7 @@ pub mod verifiedaccessinstance {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessInstance_VerifiedAccessTrustProvider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessInstance.VerifiedAccessTrustProvider"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessInstance.VerifiedAccessTrustProvider"
             $($field $value)*)
         };
     }
@@ -8959,7 +8959,7 @@ pub mod verifiedaccesstrustprovider {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessTrustProvider_DeviceOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessTrustProvider.DeviceOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessTrustProvider.DeviceOptions"
             $($field $value)*)
         };
     }
@@ -8997,7 +8997,7 @@ pub mod verifiedaccesstrustprovider {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessTrustProvider_NativeApplicationOidcOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessTrustProvider.NativeApplicationOidcOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessTrustProvider.NativeApplicationOidcOptions"
             $($field $value)*)
         };
     }
@@ -9064,7 +9064,7 @@ pub mod verifiedaccesstrustprovider {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessTrustProvider_OidcOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessTrustProvider.OidcOptions"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessTrustProvider.OidcOptions"
             $($field $value)*)
         };
     }
@@ -9120,7 +9120,7 @@ pub mod verifiedaccesstrustprovider {
     #[macro_export]
     macro_rules! __aws_ec2_VerifiedAccessTrustProvider_SseSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EC2::VerifiedAccessTrustProvider.SseSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EC2::VerifiedAccessTrustProvider.SseSpecification"
             $($field $value)*)
         };
     }
@@ -9166,7 +9166,7 @@ pub struct CapacityReservation_ {
 #[macro_export]
 macro_rules! __aws_ec2_CapacityReservation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::CapacityReservation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::CapacityReservation"
         $($field $value)*)
     };
 }
@@ -9286,7 +9286,7 @@ pub struct CapacityReservationFleet_ {
 #[macro_export]
 macro_rules! __aws_ec2_CapacityReservationFleet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::CapacityReservationFleet"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::CapacityReservationFleet"
         $($field $value)*)
     };
 }
@@ -9368,7 +9368,7 @@ pub struct CarrierGateway_ {
 #[macro_export]
 macro_rules! __aws_ec2_CarrierGateway {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::CarrierGateway"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::CarrierGateway"
         $($field $value)*)
     };
 }
@@ -9406,7 +9406,7 @@ pub struct ClientVpnAuthorizationRule_ {
 #[macro_export]
 macro_rules! __aws_ec2_ClientVpnAuthorizationRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::ClientVpnAuthorizationRule"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::ClientVpnAuthorizationRule"
         $($field $value)*)
     };
 }
@@ -9480,7 +9480,7 @@ pub struct ClientVpnEndpoint_ {
 #[macro_export]
 macro_rules! __aws_ec2_ClientVpnEndpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::ClientVpnEndpoint"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::ClientVpnEndpoint"
         $($field $value)*)
     };
 }
@@ -9609,7 +9609,7 @@ pub struct ClientVpnRoute_ {
 #[macro_export]
 macro_rules! __aws_ec2_ClientVpnRoute {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::ClientVpnRoute"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::ClientVpnRoute"
         $($field $value)*)
     };
 }
@@ -9655,7 +9655,7 @@ pub struct ClientVpnTargetNetworkAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_ClientVpnTargetNetworkAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::ClientVpnTargetNetworkAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::ClientVpnTargetNetworkAssociation"
         $($field $value)*)
     };
 }
@@ -9698,7 +9698,7 @@ pub struct CustomerGateway_ {
 #[macro_export]
 macro_rules! __aws_ec2_CustomerGateway {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::CustomerGateway"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::CustomerGateway"
         $($field $value)*)
     };
 }
@@ -9763,8 +9763,8 @@ pub struct DHCPOptions_ {
 #[macro_export]
 macro_rules! __aws_ec2_DHCPOptions {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::DHCPOptions" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::EC2::DHCPOptions"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_ec2_DHCPOptions as DHCPOptions;
@@ -9840,7 +9840,7 @@ pub struct EC2Fleet_ {
 #[macro_export]
 macro_rules! __aws_ec2_EC2Fleet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::EC2Fleet" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::EC2Fleet" $($field
         $value)*)
     };
 }
@@ -9939,7 +9939,7 @@ pub struct EIP_ {
 #[macro_export]
 macro_rules! __aws_ec2_EIP {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::EIP" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::EIP" $($field
         $value)*)
     };
 }
@@ -10011,7 +10011,7 @@ pub struct EIPAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_EIPAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::EIPAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::EIPAssociation"
         $($field $value)*)
     };
 }
@@ -10063,7 +10063,7 @@ pub struct EgressOnlyInternetGateway_ {
 #[macro_export]
 macro_rules! __aws_ec2_EgressOnlyInternetGateway {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::EgressOnlyInternetGateway"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::EgressOnlyInternetGateway"
         $($field $value)*)
     };
 }
@@ -10098,7 +10098,7 @@ pub struct EnclaveCertificateIamRoleAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_EnclaveCertificateIamRoleAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::EnclaveCertificateIamRoleAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::EnclaveCertificateIamRoleAssociation"
         $($field $value)*)
     };
 }
@@ -10146,7 +10146,7 @@ pub struct FlowLog_ {
 #[macro_export]
 macro_rules! __aws_ec2_FlowLog {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::FlowLog" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::FlowLog" $($field
         $value)*)
     };
 }
@@ -10239,7 +10239,7 @@ pub struct GatewayRouteTableAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_GatewayRouteTableAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::GatewayRouteTableAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::GatewayRouteTableAssociation"
         $($field $value)*)
     };
 }
@@ -10284,7 +10284,7 @@ pub struct Host_ {
 #[macro_export]
 macro_rules! __aws_ec2_Host {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::Host" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::Host" $($field
         $value)*)
     };
 }
@@ -10367,7 +10367,7 @@ pub struct IPAM_ {
 #[macro_export]
 macro_rules! __aws_ec2_IPAM {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::IPAM" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::IPAM" $($field
         $value)*)
     };
 }
@@ -10433,7 +10433,7 @@ pub struct IPAMAllocation_ {
 #[macro_export]
 macro_rules! __aws_ec2_IPAMAllocation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::IPAMAllocation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::IPAMAllocation"
         $($field $value)*)
     };
 }
@@ -10494,7 +10494,7 @@ pub struct IPAMPool_ {
 #[macro_export]
 macro_rules! __aws_ec2_IPAMPool {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::IPAMPool" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::IPAMPool" $($field
         $value)*)
     };
 }
@@ -10609,7 +10609,7 @@ pub struct IPAMPoolCidr_ {
 #[macro_export]
 macro_rules! __aws_ec2_IPAMPoolCidr {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::IPAMPoolCidr"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::IPAMPoolCidr"
         $($field $value)*)
     };
 }
@@ -10654,7 +10654,7 @@ pub struct IPAMResourceDiscovery_ {
 #[macro_export]
 macro_rules! __aws_ec2_IPAMResourceDiscovery {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::IPAMResourceDiscovery"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::IPAMResourceDiscovery"
         $($field $value)*)
     };
 }
@@ -10704,7 +10704,7 @@ pub struct IPAMResourceDiscoveryAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_IPAMResourceDiscoveryAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::IPAMResourceDiscoveryAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::IPAMResourceDiscoveryAssociation"
         $($field $value)*)
     };
 }
@@ -10746,7 +10746,7 @@ pub struct IPAMScope_ {
 #[macro_export]
 macro_rules! __aws_ec2_IPAMScope {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::IPAMScope" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::IPAMScope" $($field
         $value)*)
     };
 }
@@ -10827,7 +10827,7 @@ pub struct Instance_ {
 #[macro_export]
 macro_rules! __aws_ec2_Instance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::Instance" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::Instance" $($field
         $value)*)
     };
 }
@@ -11098,7 +11098,7 @@ pub struct InstanceConnectEndpoint_ {
 #[macro_export]
 macro_rules! __aws_ec2_InstanceConnectEndpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::InstanceConnectEndpoint"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::InstanceConnectEndpoint"
         $($field $value)*)
     };
 }
@@ -11150,7 +11150,7 @@ pub struct InternetGateway_ {
 #[macro_export]
 macro_rules! __aws_ec2_InternetGateway {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::InternetGateway"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::InternetGateway"
         $($field $value)*)
     };
 }
@@ -11181,7 +11181,7 @@ pub struct IpPoolRouteTableAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_IpPoolRouteTableAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::IpPoolRouteTableAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::IpPoolRouteTableAssociation"
         $($field $value)*)
     };
 }
@@ -11222,7 +11222,7 @@ pub struct KeyPair_ {
 #[macro_export]
 macro_rules! __aws_ec2_KeyPair {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::KeyPair" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::KeyPair" $($field
         $value)*)
     };
 }
@@ -11278,7 +11278,7 @@ pub struct LaunchTemplate_ {
 #[macro_export]
 macro_rules! __aws_ec2_LaunchTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::LaunchTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::LaunchTemplate"
         $($field $value)*)
     };
 }
@@ -11330,7 +11330,7 @@ pub struct LocalGatewayRoute_ {
 #[macro_export]
 macro_rules! __aws_ec2_LocalGatewayRoute {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::LocalGatewayRoute"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::LocalGatewayRoute"
         $($field $value)*)
     };
 }
@@ -11379,7 +11379,7 @@ pub struct LocalGatewayRouteTable_ {
 #[macro_export]
 macro_rules! __aws_ec2_LocalGatewayRouteTable {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::LocalGatewayRouteTable"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::LocalGatewayRouteTable"
         $($field $value)*)
     };
 }
@@ -11418,7 +11418,7 @@ pub struct LocalGatewayRouteTableVPCAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_LocalGatewayRouteTableVPCAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::LocalGatewayRouteTableVPCAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::LocalGatewayRouteTableVPCAssociation"
         $($field $value)*)
     };
 }
@@ -11460,7 +11460,7 @@ pub struct LocalGatewayRouteTableVirtualInterfaceGroupAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_LocalGatewayRouteTableVirtualInterfaceGroupAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::LocalGatewayRouteTableVirtualInterfaceGroupAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::LocalGatewayRouteTableVirtualInterfaceGroupAssociation"
         $($field $value)*)
     };
 }
@@ -11508,7 +11508,7 @@ pub struct NatGateway_ {
 #[macro_export]
 macro_rules! __aws_ec2_NatGateway {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::NatGateway" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::NatGateway" $($field
         $value)*)
     };
 }
@@ -11587,7 +11587,7 @@ pub struct NetworkAcl_ {
 #[macro_export]
 macro_rules! __aws_ec2_NetworkAcl {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::NetworkAcl" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::NetworkAcl" $($field
         $value)*)
     };
 }
@@ -11629,7 +11629,7 @@ pub struct NetworkAclEntry_ {
 #[macro_export]
 macro_rules! __aws_ec2_NetworkAclEntry {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::NetworkAclEntry"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::NetworkAclEntry"
         $($field $value)*)
     };
 }
@@ -11698,7 +11698,7 @@ pub struct NetworkInsightsAccessScope_ {
 #[macro_export]
 macro_rules! __aws_ec2_NetworkInsightsAccessScope {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::NetworkInsightsAccessScope"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::NetworkInsightsAccessScope"
         $($field $value)*)
     };
 }
@@ -11743,7 +11743,7 @@ pub struct NetworkInsightsAccessScopeAnalysis_ {
 #[macro_export]
 macro_rules! __aws_ec2_NetworkInsightsAccessScopeAnalysis {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::NetworkInsightsAccessScopeAnalysis"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::NetworkInsightsAccessScopeAnalysis"
         $($field $value)*)
     };
 }
@@ -11783,7 +11783,7 @@ pub struct NetworkInsightsAnalysis_ {
 #[macro_export]
 macro_rules! __aws_ec2_NetworkInsightsAnalysis {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::NetworkInsightsAnalysis"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::NetworkInsightsAnalysis"
         $($field $value)*)
     };
 }
@@ -11843,7 +11843,7 @@ pub struct NetworkInsightsPath_ {
 #[macro_export]
 macro_rules! __aws_ec2_NetworkInsightsPath {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::NetworkInsightsPath"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::NetworkInsightsPath"
         $($field $value)*)
     };
 }
@@ -11934,7 +11934,7 @@ pub struct NetworkInterface_ {
 #[macro_export]
 macro_rules! __aws_ec2_NetworkInterface {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::NetworkInterface"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::NetworkInterface"
         $($field $value)*)
     };
 }
@@ -12056,7 +12056,7 @@ pub struct NetworkInterfaceAttachment_ {
 #[macro_export]
 macro_rules! __aws_ec2_NetworkInterfaceAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::NetworkInterfaceAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::NetworkInterfaceAttachment"
         $($field $value)*)
     };
 }
@@ -12111,7 +12111,7 @@ pub struct NetworkInterfacePermission_ {
 #[macro_export]
 macro_rules! __aws_ec2_NetworkInterfacePermission {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::NetworkInterfacePermission"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::NetworkInterfacePermission"
         $($field $value)*)
     };
 }
@@ -12155,7 +12155,7 @@ pub struct NetworkPerformanceMetricSubscription_ {
 #[macro_export]
 macro_rules! __aws_ec2_NetworkPerformanceMetricSubscription {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::NetworkPerformanceMetricSubscription"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::NetworkPerformanceMetricSubscription"
         $($field $value)*)
     };
 }
@@ -12203,7 +12203,7 @@ pub struct PlacementGroup_ {
 #[macro_export]
 macro_rules! __aws_ec2_PlacementGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::PlacementGroup"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::PlacementGroup"
         $($field $value)*)
     };
 }
@@ -12255,7 +12255,7 @@ pub struct PrefixList_ {
 #[macro_export]
 macro_rules! __aws_ec2_PrefixList {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::PrefixList" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::PrefixList" $($field
         $value)*)
     };
 }
@@ -12319,7 +12319,7 @@ pub struct Route_ {
 #[macro_export]
 macro_rules! __aws_ec2_Route {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::Route" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::Route" $($field
         $value)*)
     };
 }
@@ -12438,8 +12438,8 @@ pub struct RouteServer_ {
 #[macro_export]
 macro_rules! __aws_ec2_RouteServer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::RouteServer" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::EC2::RouteServer"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_ec2_RouteServer as RouteServer;
@@ -12491,7 +12491,7 @@ pub struct RouteServerAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_RouteServerAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::RouteServerAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::RouteServerAssociation"
         $($field $value)*)
     };
 }
@@ -12528,7 +12528,7 @@ pub struct RouteServerEndpoint_ {
 #[macro_export]
 macro_rules! __aws_ec2_RouteServerEndpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::RouteServerEndpoint"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::RouteServerEndpoint"
         $($field $value)*)
     };
 }
@@ -12569,7 +12569,7 @@ pub struct RouteServerPeer_ {
 #[macro_export]
 macro_rules! __aws_ec2_RouteServerPeer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::RouteServerPeer"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::RouteServerPeer"
         $($field $value)*)
     };
 }
@@ -12612,7 +12612,7 @@ pub struct RouteServerPropagation_ {
 #[macro_export]
 macro_rules! __aws_ec2_RouteServerPropagation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::RouteServerPropagation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::RouteServerPropagation"
         $($field $value)*)
     };
 }
@@ -12648,7 +12648,7 @@ pub struct RouteTable_ {
 #[macro_export]
 macro_rules! __aws_ec2_RouteTable {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::RouteTable" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::RouteTable" $($field
         $value)*)
     };
 }
@@ -12687,7 +12687,7 @@ pub struct SecurityGroup_ {
 #[macro_export]
 macro_rules! __aws_ec2_SecurityGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::SecurityGroup"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::SecurityGroup"
         $($field $value)*)
     };
 }
@@ -12750,7 +12750,7 @@ pub struct SecurityGroupEgress_ {
 #[macro_export]
 macro_rules! __aws_ec2_SecurityGroupEgress {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::SecurityGroupEgress"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::SecurityGroupEgress"
         $($field $value)*)
     };
 }
@@ -12832,7 +12832,7 @@ pub struct SecurityGroupIngress_ {
 #[macro_export]
 macro_rules! __aws_ec2_SecurityGroupIngress {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::SecurityGroupIngress"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::SecurityGroupIngress"
         $($field $value)*)
     };
 }
@@ -12924,7 +12924,7 @@ pub struct SecurityGroupVpcAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_SecurityGroupVpcAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::SecurityGroupVpcAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::SecurityGroupVpcAssociation"
         $($field $value)*)
     };
 }
@@ -12961,7 +12961,7 @@ pub struct SnapshotBlockPublicAccess_ {
 #[macro_export]
 macro_rules! __aws_ec2_SnapshotBlockPublicAccess {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::SnapshotBlockPublicAccess"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::SnapshotBlockPublicAccess"
         $($field $value)*)
     };
 }
@@ -12992,7 +12992,7 @@ pub struct SpotFleet_ {
 #[macro_export]
 macro_rules! __aws_ec2_SpotFleet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::SpotFleet" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::SpotFleet" $($field
         $value)*)
     };
 }
@@ -13040,7 +13040,7 @@ pub struct Subnet_ {
 #[macro_export]
 macro_rules! __aws_ec2_Subnet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::Subnet" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::Subnet" $($field
         $value)*)
     };
 }
@@ -13167,7 +13167,7 @@ pub struct SubnetCidrBlock_ {
 #[macro_export]
 macro_rules! __aws_ec2_SubnetCidrBlock {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::SubnetCidrBlock"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::SubnetCidrBlock"
         $($field $value)*)
     };
 }
@@ -13217,7 +13217,7 @@ pub struct SubnetNetworkAclAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_SubnetNetworkAclAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::SubnetNetworkAclAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::SubnetNetworkAclAssociation"
         $($field $value)*)
     };
 }
@@ -13255,7 +13255,7 @@ pub struct SubnetRouteTableAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_SubnetRouteTableAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::SubnetRouteTableAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::SubnetRouteTableAssociation"
         $($field $value)*)
     };
 }
@@ -13294,7 +13294,7 @@ pub struct TrafficMirrorFilter_ {
 #[macro_export]
 macro_rules! __aws_ec2_TrafficMirrorFilter {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TrafficMirrorFilter"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TrafficMirrorFilter"
         $($field $value)*)
     };
 }
@@ -13347,7 +13347,7 @@ pub struct TrafficMirrorFilterRule_ {
 #[macro_export]
 macro_rules! __aws_ec2_TrafficMirrorFilterRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TrafficMirrorFilterRule"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TrafficMirrorFilterRule"
         $($field $value)*)
     };
 }
@@ -13433,7 +13433,7 @@ pub struct TrafficMirrorSession_ {
 #[macro_export]
 macro_rules! __aws_ec2_TrafficMirrorSession {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TrafficMirrorSession"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TrafficMirrorSession"
         $($field $value)*)
     };
 }
@@ -13507,7 +13507,7 @@ pub struct TrafficMirrorTarget_ {
 #[macro_export]
 macro_rules! __aws_ec2_TrafficMirrorTarget {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TrafficMirrorTarget"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TrafficMirrorTarget"
         $($field $value)*)
     };
 }
@@ -13573,7 +13573,7 @@ pub struct TransitGateway_ {
 #[macro_export]
 macro_rules! __aws_ec2_TransitGateway {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TransitGateway"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGateway"
         $($field $value)*)
     };
 }
@@ -13679,7 +13679,7 @@ pub struct TransitGatewayAttachment_ {
 #[macro_export]
 macro_rules! __aws_ec2_TransitGatewayAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TransitGatewayAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayAttachment"
         $($field $value)*)
     };
 }
@@ -13729,7 +13729,7 @@ pub struct TransitGatewayConnect_ {
 #[macro_export]
 macro_rules! __aws_ec2_TransitGatewayConnect {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TransitGatewayConnect"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayConnect"
         $($field $value)*)
     };
 }
@@ -13770,7 +13770,7 @@ pub struct TransitGatewayConnectPeer_ {
 #[macro_export]
 macro_rules! __aws_ec2_TransitGatewayConnectPeer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TransitGatewayConnectPeer"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayConnectPeer"
         $($field $value)*)
     };
 }
@@ -13810,7 +13810,7 @@ pub struct TransitGatewayMulticastDomain_ {
 #[macro_export]
 macro_rules! __aws_ec2_TransitGatewayMulticastDomain {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TransitGatewayMulticastDomain"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayMulticastDomain"
         $($field $value)*)
     };
 }
@@ -13854,7 +13854,7 @@ pub struct TransitGatewayMulticastDomainAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_TransitGatewayMulticastDomainAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TransitGatewayMulticastDomainAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayMulticastDomainAssociation"
         $($field $value)*)
     };
 }
@@ -13897,7 +13897,7 @@ pub struct TransitGatewayMulticastGroupMember_ {
 #[macro_export]
 macro_rules! __aws_ec2_TransitGatewayMulticastGroupMember {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TransitGatewayMulticastGroupMember"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayMulticastGroupMember"
         $($field $value)*)
     };
 }
@@ -13940,7 +13940,7 @@ pub struct TransitGatewayMulticastGroupSource_ {
 #[macro_export]
 macro_rules! __aws_ec2_TransitGatewayMulticastGroupSource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TransitGatewayMulticastGroupSource"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayMulticastGroupSource"
         $($field $value)*)
     };
 }
@@ -13985,7 +13985,7 @@ pub struct TransitGatewayPeeringAttachment_ {
 #[macro_export]
 macro_rules! __aws_ec2_TransitGatewayPeeringAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TransitGatewayPeeringAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayPeeringAttachment"
         $($field $value)*)
     };
 }
@@ -14036,7 +14036,7 @@ pub struct TransitGatewayRoute_ {
 #[macro_export]
 macro_rules! __aws_ec2_TransitGatewayRoute {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TransitGatewayRoute"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayRoute"
         $($field $value)*)
     };
 }
@@ -14084,7 +14084,7 @@ pub struct TransitGatewayRouteTable_ {
 #[macro_export]
 macro_rules! __aws_ec2_TransitGatewayRouteTable {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TransitGatewayRouteTable"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayRouteTable"
         $($field $value)*)
     };
 }
@@ -14119,7 +14119,7 @@ pub struct TransitGatewayRouteTableAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_TransitGatewayRouteTableAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TransitGatewayRouteTableAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayRouteTableAssociation"
         $($field $value)*)
     };
 }
@@ -14157,7 +14157,7 @@ pub struct TransitGatewayRouteTablePropagation_ {
 #[macro_export]
 macro_rules! __aws_ec2_TransitGatewayRouteTablePropagation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TransitGatewayRouteTablePropagation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayRouteTablePropagation"
         $($field $value)*)
     };
 }
@@ -14200,7 +14200,7 @@ pub struct TransitGatewayVpcAttachment_ {
 #[macro_export]
 macro_rules! __aws_ec2_TransitGatewayVpcAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::TransitGatewayVpcAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayVpcAttachment"
         $($field $value)*)
     };
 }
@@ -14268,7 +14268,7 @@ pub struct VPC_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPC {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPC" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPC" $($field
         $value)*)
     };
 }
@@ -14337,7 +14337,7 @@ pub struct VPCBlockPublicAccessExclusion_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPCBlockPublicAccessExclusion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPCBlockPublicAccessExclusion"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPCBlockPublicAccessExclusion"
         $($field $value)*)
     };
 }
@@ -14382,7 +14382,7 @@ pub struct VPCBlockPublicAccessOptions_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPCBlockPublicAccessOptions {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPCBlockPublicAccessOptions"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPCBlockPublicAccessOptions"
         $($field $value)*)
     };
 }
@@ -14424,7 +14424,7 @@ pub struct VPCCidrBlock_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPCCidrBlock {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPCCidrBlock"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPCCidrBlock"
         $($field $value)*)
     };
 }
@@ -14510,7 +14510,7 @@ pub struct VPCDHCPOptionsAssociation_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPCDHCPOptionsAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPCDHCPOptionsAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPCDHCPOptionsAssociation"
         $($field $value)*)
     };
 }
@@ -14558,8 +14558,8 @@ pub struct VPCEndpoint_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPCEndpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPCEndpoint" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPCEndpoint"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_ec2_VPCEndpoint as VPCEndpoint;
@@ -14667,7 +14667,7 @@ pub struct VPCEndpointConnectionNotification_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPCEndpointConnectionNotification {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPCEndpointConnectionNotification"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPCEndpointConnectionNotification"
         $($field $value)*)
     };
 }
@@ -14723,7 +14723,7 @@ pub struct VPCEndpointService_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPCEndpointService {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPCEndpointService"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPCEndpointService"
         $($field $value)*)
     };
 }
@@ -14796,7 +14796,7 @@ pub struct VPCEndpointServicePermissions_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPCEndpointServicePermissions {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPCEndpointServicePermissions"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPCEndpointServicePermissions"
         $($field $value)*)
     };
 }
@@ -14837,7 +14837,7 @@ pub struct VPCGatewayAttachment_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPCGatewayAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPCGatewayAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPCGatewayAttachment"
         $($field $value)*)
     };
 }
@@ -14885,7 +14885,7 @@ pub struct VPCPeeringConnection_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPCPeeringConnection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPCPeeringConnection"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPCPeeringConnection"
         $($field $value)*)
     };
 }
@@ -14957,7 +14957,7 @@ pub struct VPNConnection_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPNConnection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPNConnection"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPNConnection"
         $($field $value)*)
     };
 }
@@ -15074,7 +15074,7 @@ pub struct VPNConnectionRoute_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPNConnectionRoute {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPNConnectionRoute"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPNConnectionRoute"
         $($field $value)*)
     };
 }
@@ -15111,7 +15111,7 @@ pub struct VPNGateway_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPNGateway {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPNGateway" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPNGateway" $($field
         $value)*)
     };
 }
@@ -15152,7 +15152,7 @@ pub struct VPNGatewayRoutePropagation_ {
 #[macro_export]
 macro_rules! __aws_ec2_VPNGatewayRoutePropagation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VPNGatewayRoutePropagation"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPNGatewayRoutePropagation"
         $($field $value)*)
     };
 }
@@ -15205,7 +15205,7 @@ pub struct VerifiedAccessEndpoint_ {
 #[macro_export]
 macro_rules! __aws_ec2_VerifiedAccessEndpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VerifiedAccessEndpoint"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VerifiedAccessEndpoint"
         $($field $value)*)
     };
 }
@@ -15324,7 +15324,7 @@ pub struct VerifiedAccessGroup_ {
 #[macro_export]
 macro_rules! __aws_ec2_VerifiedAccessGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VerifiedAccessGroup"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VerifiedAccessGroup"
         $($field $value)*)
     };
 }
@@ -15389,7 +15389,7 @@ pub struct VerifiedAccessInstance_ {
 #[macro_export]
 macro_rules! __aws_ec2_VerifiedAccessInstance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VerifiedAccessInstance"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VerifiedAccessInstance"
         $($field $value)*)
     };
 }
@@ -15465,7 +15465,7 @@ pub struct VerifiedAccessTrustProvider_ {
 #[macro_export]
 macro_rules! __aws_ec2_VerifiedAccessTrustProvider {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VerifiedAccessTrustProvider"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VerifiedAccessTrustProvider"
         $($field $value)*)
     };
 }
@@ -15559,7 +15559,7 @@ pub struct Volume_ {
 #[macro_export]
 macro_rules! __aws_ec2_Volume {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::Volume" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EC2::Volume" $($field
         $value)*)
     };
 }
@@ -15655,7 +15655,7 @@ pub struct VolumeAttachment_ {
 #[macro_export]
 macro_rules! __aws_ec2_VolumeAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EC2::VolumeAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VolumeAttachment"
         $($field $value)*)
     };
 }

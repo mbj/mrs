@@ -7,7 +7,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_dax_Cluster_SSESpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DAX::Cluster.SSESpecification"
+            stratosphere::generator::construct_property_type!("AWS::DAX::Cluster.SSESpecification"
             $($field $value)*)
         };
     }
@@ -47,7 +47,7 @@ pub struct Cluster_ {
 #[macro_export]
 macro_rules! __aws_dax_Cluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DAX::Cluster" $($field
+        stratosphere::generator::construct_resource_type!("AWS::DAX::Cluster" $($field
         $value)*)
     };
 }
@@ -157,7 +157,7 @@ pub struct ParameterGroup_ {
 #[macro_export]
 macro_rules! __aws_dax_ParameterGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DAX::ParameterGroup"
+        stratosphere::generator::construct_resource_type!("AWS::DAX::ParameterGroup"
         $($field $value)*)
     };
 }
@@ -204,8 +204,8 @@ pub struct SubnetGroup_ {
 #[macro_export]
 macro_rules! __aws_dax_SubnetGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DAX::SubnetGroup" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::DAX::SubnetGroup"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_dax_SubnetGroup as SubnetGroup;

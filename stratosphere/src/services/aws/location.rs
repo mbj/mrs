@@ -9,7 +9,7 @@ pub mod apikey {
     #[macro_export]
     macro_rules! __aws_location_APIKey_ApiKeyRestrictions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Location::APIKey.ApiKeyRestrictions"
+            stratosphere::generator::construct_property_type!("AWS::Location::APIKey.ApiKeyRestrictions"
             $($field $value)*)
         };
     }
@@ -46,7 +46,7 @@ pub mod map {
     #[macro_export]
     macro_rules! __aws_location_Map_MapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Location::Map.MapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Location::Map.MapConfiguration"
             $($field $value)*)
         };
     }
@@ -83,7 +83,7 @@ pub mod placeindex {
     #[macro_export]
     macro_rules! __aws_location_PlaceIndex_DataSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Location::PlaceIndex.DataSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Location::PlaceIndex.DataSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -116,8 +116,8 @@ pub struct APIKey_ {
 #[macro_export]
 macro_rules! __aws_location_APIKey {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Location::APIKey" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::Location::APIKey"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_location_APIKey as APIKey;
@@ -187,7 +187,7 @@ pub struct GeofenceCollection_ {
 #[macro_export]
 macro_rules! __aws_location_GeofenceCollection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Location::GeofenceCollection"
+        stratosphere::generator::construct_resource_type!("AWS::Location::GeofenceCollection"
         $($field $value)*)
     };
 }
@@ -237,7 +237,7 @@ pub struct Map_ {
 #[macro_export]
 macro_rules! __aws_location_Map {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Location::Map" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Location::Map" $($field
         $value)*)
     };
 }
@@ -292,7 +292,7 @@ pub struct PlaceIndex_ {
 #[macro_export]
 macro_rules! __aws_location_PlaceIndex {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Location::PlaceIndex"
+        stratosphere::generator::construct_resource_type!("AWS::Location::PlaceIndex"
         $($field $value)*)
     };
 }
@@ -352,7 +352,7 @@ pub struct RouteCalculator_ {
 #[macro_export]
 macro_rules! __aws_location_RouteCalculator {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Location::RouteCalculator"
+        stratosphere::generator::construct_resource_type!("AWS::Location::RouteCalculator"
         $($field $value)*)
     };
 }
@@ -408,7 +408,7 @@ pub struct Tracker_ {
 #[macro_export]
 macro_rules! __aws_location_Tracker {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Location::Tracker"
+        stratosphere::generator::construct_resource_type!("AWS::Location::Tracker"
         $($field $value)*)
     };
 }
@@ -473,7 +473,7 @@ pub struct TrackerConsumer_ {
 #[macro_export]
 macro_rules! __aws_location_TrackerConsumer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Location::TrackerConsumer"
+        stratosphere::generator::construct_resource_type!("AWS::Location::TrackerConsumer"
         $($field $value)*)
     };
 }

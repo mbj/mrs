@@ -9,7 +9,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_AwsVpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.AwsVpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.AwsVpcConfiguration"
             $($field $value)*)
         };
     }
@@ -44,7 +44,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_BatchArrayProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.BatchArrayProperties"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.BatchArrayProperties"
             $($field $value)*)
         };
     }
@@ -69,7 +69,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_BatchContainerOverrides {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.BatchContainerOverrides"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.BatchContainerOverrides"
             $($field $value)*)
         };
     }
@@ -113,7 +113,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_BatchEnvironmentVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.BatchEnvironmentVariable"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.BatchEnvironmentVariable"
             $($field $value)*)
         };
     }
@@ -139,7 +139,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_BatchJobDependency {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.BatchJobDependency"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.BatchJobDependency"
             $($field $value)*)
         };
     }
@@ -165,7 +165,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_BatchResourceRequirement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.BatchResourceRequirement"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.BatchResourceRequirement"
             $($field $value)*)
         };
     }
@@ -192,7 +192,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_BatchRetryStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.BatchRetryStrategy"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.BatchRetryStrategy"
             $($field $value)*)
         };
     }
@@ -219,7 +219,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_CapacityProviderStrategyItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.CapacityProviderStrategyItem"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.CapacityProviderStrategyItem"
             $($field $value)*)
         };
     }
@@ -248,7 +248,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_CloudwatchLogsLogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.CloudwatchLogsLogDestination"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.CloudwatchLogsLogDestination"
             $($field $value)*)
         };
     }
@@ -273,7 +273,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_DeadLetterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.DeadLetterConfig"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.DeadLetterConfig"
             $($field $value)*)
         };
     }
@@ -297,7 +297,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_DimensionMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.DimensionMapping"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.DimensionMapping"
             $($field $value)*)
         };
     }
@@ -335,7 +335,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_EcsContainerOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.EcsContainerOverride"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.EcsContainerOverride"
             $($field $value)*)
         };
     }
@@ -394,7 +394,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_EcsEnvironmentFile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.EcsEnvironmentFile"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.EcsEnvironmentFile"
             $($field $value)*)
         };
     }
@@ -422,7 +422,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_EcsEnvironmentVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.EcsEnvironmentVariable"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.EcsEnvironmentVariable"
             $($field $value)*)
         };
     }
@@ -447,7 +447,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_EcsEphemeralStorage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.EcsEphemeralStorage"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.EcsEphemeralStorage"
             $($field $value)*)
         };
     }
@@ -471,7 +471,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_EcsInferenceAcceleratorOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.EcsInferenceAcceleratorOverride"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.EcsInferenceAcceleratorOverride"
             $($field $value)*)
         };
     }
@@ -503,7 +503,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_EcsResourceRequirement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.EcsResourceRequirement"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.EcsResourceRequirement"
             $($field $value)*)
         };
     }
@@ -536,7 +536,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_EcsTaskOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.EcsTaskOverride"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.EcsTaskOverride"
             $($field $value)*)
         };
     }
@@ -591,7 +591,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_Filter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.Filter"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.Filter"
             $($field $value)*)
         };
     }
@@ -616,7 +616,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_FilterCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.FilterCriteria"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.FilterCriteria"
             $($field $value)*)
         };
     }
@@ -641,7 +641,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_FirehoseLogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.FirehoseLogDestination"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.FirehoseLogDestination"
             $($field $value)*)
         };
     }
@@ -666,7 +666,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_MQBrokerAccessCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.MQBrokerAccessCredentials"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.MQBrokerAccessCredentials"
             $($field $value)*)
         };
     }
@@ -690,7 +690,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_MSKAccessCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.MSKAccessCredentials"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.MSKAccessCredentials"
             $($field $value)*)
         };
     }
@@ -723,7 +723,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_MultiMeasureAttributeMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.MultiMeasureAttributeMapping"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.MultiMeasureAttributeMapping"
             $($field $value)*)
         };
     }
@@ -755,7 +755,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_MultiMeasureMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.MultiMeasureMapping"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.MultiMeasureMapping"
             $($field $value)*)
         };
     }
@@ -782,7 +782,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_NetworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.NetworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.NetworkConfiguration"
             $($field $value)*)
         };
     }
@@ -810,7 +810,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeEnrichmentHttpParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeEnrichmentHttpParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeEnrichmentHttpParameters"
             $($field $value)*)
         };
     }
@@ -848,7 +848,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeEnrichmentParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeEnrichmentParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeEnrichmentParameters"
             $($field $value)*)
         };
     }
@@ -883,7 +883,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeLogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeLogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeLogConfiguration"
             $($field $value)*)
         };
     }
@@ -932,7 +932,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeSourceActiveMQBrokerParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceActiveMQBrokerParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceActiveMQBrokerParameters"
             $($field $value)*)
         };
     }
@@ -978,7 +978,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeSourceDynamoDBStreamParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceDynamoDBStreamParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceDynamoDBStreamParameters"
             $($field $value)*)
         };
     }
@@ -1051,7 +1051,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeSourceKinesisStreamParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceKinesisStreamParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceKinesisStreamParameters"
             $($field $value)*)
         };
     }
@@ -1127,7 +1127,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeSourceManagedStreamingKafkaParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceManagedStreamingKafkaParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceManagedStreamingKafkaParameters"
             $($field $value)*)
         };
     }
@@ -1188,7 +1188,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeSourceParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceParameters"
             $($field $value)*)
         };
     }
@@ -1259,7 +1259,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeSourceRabbitMQBrokerParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceRabbitMQBrokerParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceRabbitMQBrokerParameters"
             $($field $value)*)
         };
     }
@@ -1312,7 +1312,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeSourceSelfManagedKafkaParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceSelfManagedKafkaParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceSelfManagedKafkaParameters"
             $($field $value)*)
         };
     }
@@ -1381,7 +1381,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeSourceSqsQueueParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceSqsQueueParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeSourceSqsQueueParameters"
             $($field $value)*)
         };
     }
@@ -1418,7 +1418,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeTargetBatchJobParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetBatchJobParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetBatchJobParameters"
             $($field $value)*)
         };
     }
@@ -1476,7 +1476,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeTargetCloudWatchLogsParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetCloudWatchLogsParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetCloudWatchLogsParameters"
             $($field $value)*)
         };
     }
@@ -1521,7 +1521,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeTargetEcsTaskParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetEcsTaskParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetEcsTaskParameters"
             $($field $value)*)
         };
     }
@@ -1626,7 +1626,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeTargetEventBridgeEventBusParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetEventBridgeEventBusParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetEventBridgeEventBusParameters"
             $($field $value)*)
         };
     }
@@ -1672,7 +1672,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeTargetHttpParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetHttpParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetHttpParameters"
             $($field $value)*)
         };
     }
@@ -1709,7 +1709,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeTargetKinesisStreamParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetKinesisStreamParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetKinesisStreamParameters"
             $($field $value)*)
         };
     }
@@ -1732,7 +1732,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeTargetLambdaFunctionParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetLambdaFunctionParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetLambdaFunctionParameters"
             $($field $value)*)
         };
     }
@@ -1770,7 +1770,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeTargetParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetParameters"
             $($field $value)*)
         };
     }
@@ -1872,7 +1872,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeTargetRedshiftDataParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetRedshiftDataParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetRedshiftDataParameters"
             $($field $value)*)
         };
     }
@@ -1920,7 +1920,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeTargetSageMakerPipelineParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetSageMakerPipelineParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetSageMakerPipelineParameters"
             $($field $value)*)
         };
     }
@@ -1946,7 +1946,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeTargetSqsQueueParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetSqsQueueParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetSqsQueueParameters"
             $($field $value)*)
         };
     }
@@ -1977,7 +1977,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeTargetStateMachineParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetStateMachineParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetStateMachineParameters"
             $($field $value)*)
         };
     }
@@ -2009,7 +2009,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PipeTargetTimestreamParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetTimestreamParameters"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PipeTargetTimestreamParameters"
             $($field $value)*)
         };
     }
@@ -2071,7 +2071,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PlacementConstraint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PlacementConstraint"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PlacementConstraint"
             $($field $value)*)
         };
     }
@@ -2100,7 +2100,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_PlacementStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.PlacementStrategy"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.PlacementStrategy"
             $($field $value)*)
         };
     }
@@ -2128,7 +2128,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_S3LogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.S3LogDestination"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.S3LogDestination"
             $($field $value)*)
         };
     }
@@ -2169,7 +2169,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_SageMakerPipelineParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.SageMakerPipelineParameter"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.SageMakerPipelineParameter"
             $($field $value)*)
         };
     }
@@ -2199,7 +2199,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_SelfManagedKafkaAccessConfigurationCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.SelfManagedKafkaAccessConfigurationCredentials"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.SelfManagedKafkaAccessConfigurationCredentials"
             $($field $value)*)
         };
     }
@@ -2243,7 +2243,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_SelfManagedKafkaAccessConfigurationVpc {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.SelfManagedKafkaAccessConfigurationVpc"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.SelfManagedKafkaAccessConfigurationVpc"
             $($field $value)*)
         };
     }
@@ -2276,7 +2276,7 @@ pub mod pipe {
     #[macro_export]
     macro_rules! __aws_pipes_Pipe_SingleMeasureMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pipes::Pipe.SingleMeasureMapping"
+            stratosphere::generator::construct_property_type!("AWS::Pipes::Pipe.SingleMeasureMapping"
             $($field $value)*)
         };
     }
@@ -2320,7 +2320,7 @@ pub struct Pipe_ {
 #[macro_export]
 macro_rules! __aws_pipes_Pipe {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pipes::Pipe" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Pipes::Pipe" $($field
         $value)*)
     };
 }

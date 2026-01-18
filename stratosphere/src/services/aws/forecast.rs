@@ -8,7 +8,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_forecast_Dataset_AttributesItems {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Forecast::Dataset.AttributesItems"
+            stratosphere::generator::construct_property_type!("AWS::Forecast::Dataset.AttributesItems"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_forecast_Dataset_EncryptionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Forecast::Dataset.EncryptionConfig"
+            stratosphere::generator::construct_property_type!("AWS::Forecast::Dataset.EncryptionConfig"
             $($field $value)*)
         };
     }
@@ -71,7 +71,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_forecast_Dataset_Schema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Forecast::Dataset.Schema"
+            stratosphere::generator::construct_property_type!("AWS::Forecast::Dataset.Schema"
             $($field $value)*)
         };
     }
@@ -97,7 +97,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_forecast_Dataset_TagsItems {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Forecast::Dataset.TagsItems"
+            stratosphere::generator::construct_property_type!("AWS::Forecast::Dataset.TagsItems"
             $($field $value)*)
         };
     }
@@ -131,7 +131,7 @@ pub struct Dataset_ {
 #[macro_export]
 macro_rules! __aws_forecast_Dataset {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Forecast::Dataset"
+        stratosphere::generator::construct_resource_type!("AWS::Forecast::Dataset"
         $($field $value)*)
     };
 }
@@ -192,7 +192,7 @@ pub struct DatasetGroup_ {
 #[macro_export]
 macro_rules! __aws_forecast_DatasetGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Forecast::DatasetGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Forecast::DatasetGroup"
         $($field $value)*)
     };
 }

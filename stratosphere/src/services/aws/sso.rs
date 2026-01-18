@@ -8,7 +8,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_sso_Application_PortalOptionsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSO::Application.PortalOptionsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SSO::Application.PortalOptionsConfiguration"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_sso_Application_SignInOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSO::Application.SignInOptions"
+            stratosphere::generator::construct_property_type!("AWS::SSO::Application.SignInOptions"
             $($field $value)*)
         };
     }
@@ -72,7 +72,7 @@ pub mod instanceaccesscontrolattributeconfiguration {
     #[macro_export]
     macro_rules! __aws_sso_InstanceAccessControlAttributeConfiguration_AccessControlAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSO::InstanceAccessControlAttributeConfiguration.AccessControlAttribute"
+            stratosphere::generator::construct_property_type!("AWS::SSO::InstanceAccessControlAttributeConfiguration.AccessControlAttribute"
             $($field $value)*)
         };
     }
@@ -99,7 +99,7 @@ pub mod instanceaccesscontrolattributeconfiguration {
     #[macro_export]
     macro_rules! __aws_sso_InstanceAccessControlAttributeConfiguration_AccessControlAttributeValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSO::InstanceAccessControlAttributeConfiguration.AccessControlAttributeValue"
+            stratosphere::generator::construct_property_type!("AWS::SSO::InstanceAccessControlAttributeConfiguration.AccessControlAttributeValue"
             $($field $value)*)
         };
     }
@@ -125,7 +125,7 @@ pub mod permissionset {
     #[macro_export]
     macro_rules! __aws_sso_PermissionSet_CustomerManagedPolicyReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSO::PermissionSet.CustomerManagedPolicyReference"
+            stratosphere::generator::construct_property_type!("AWS::SSO::PermissionSet.CustomerManagedPolicyReference"
             $($field $value)*)
         };
     }
@@ -152,7 +152,7 @@ pub mod permissionset {
     #[macro_export]
     macro_rules! __aws_sso_PermissionSet_PermissionsBoundary {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSO::PermissionSet.PermissionsBoundary"
+            stratosphere::generator::construct_property_type!("AWS::SSO::PermissionSet.PermissionsBoundary"
             $($field $value)*)
         };
     }
@@ -190,8 +190,8 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_sso_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSO::Application" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::SSO::Application"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_sso_Application as Application;
@@ -249,7 +249,7 @@ pub struct ApplicationAssignment_ {
 #[macro_export]
 macro_rules! __aws_sso_ApplicationAssignment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSO::ApplicationAssignment"
+        stratosphere::generator::construct_resource_type!("AWS::SSO::ApplicationAssignment"
         $($field $value)*)
     };
 }
@@ -293,7 +293,7 @@ pub struct Assignment_ {
 #[macro_export]
 macro_rules! __aws_sso_Assignment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSO::Assignment" $($field
+        stratosphere::generator::construct_resource_type!("AWS::SSO::Assignment" $($field
         $value)*)
     };
 }
@@ -345,7 +345,7 @@ pub struct Instance_ {
 #[macro_export]
 macro_rules! __aws_sso_Instance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSO::Instance" $($field
+        stratosphere::generator::construct_resource_type!("AWS::SSO::Instance" $($field
         $value)*)
     };
 }
@@ -381,7 +381,7 @@ pub struct InstanceAccessControlAttributeConfiguration_ {
 #[macro_export]
 macro_rules! __aws_sso_InstanceAccessControlAttributeConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSO::InstanceAccessControlAttributeConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::SSO::InstanceAccessControlAttributeConfiguration"
         $($field $value)*)
     };
 }
@@ -430,7 +430,7 @@ pub struct PermissionSet_ {
 #[macro_export]
 macro_rules! __aws_sso_PermissionSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSO::PermissionSet"
+        stratosphere::generator::construct_resource_type!("AWS::SSO::PermissionSet"
         $($field $value)*)
     };
 }

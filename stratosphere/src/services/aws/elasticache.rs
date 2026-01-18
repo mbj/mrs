@@ -7,7 +7,7 @@ pub mod cachecluster {
     #[macro_export]
     macro_rules! __aws_elasticache_CacheCluster_CloudWatchLogsDestinationDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::CacheCluster.CloudWatchLogsDestinationDetails"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::CacheCluster.CloudWatchLogsDestinationDetails"
             $($field $value)*)
         };
     }
@@ -31,7 +31,7 @@ pub mod cachecluster {
     #[macro_export]
     macro_rules! __aws_elasticache_CacheCluster_DestinationDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::CacheCluster.DestinationDetails"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::CacheCluster.DestinationDetails"
             $($field $value)*)
         };
     }
@@ -62,7 +62,7 @@ pub mod cachecluster {
     #[macro_export]
     macro_rules! __aws_elasticache_CacheCluster_KinesisFirehoseDestinationDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::CacheCluster.KinesisFirehoseDestinationDetails"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::CacheCluster.KinesisFirehoseDestinationDetails"
             $($field $value)*)
         };
     }
@@ -88,7 +88,7 @@ pub mod cachecluster {
     #[macro_export]
     macro_rules! __aws_elasticache_CacheCluster_LogDeliveryConfigurationRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::CacheCluster.LogDeliveryConfigurationRequest"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::CacheCluster.LogDeliveryConfigurationRequest"
             $($field $value)*)
         };
     }
@@ -127,7 +127,7 @@ pub mod globalreplicationgroup {
     #[macro_export]
     macro_rules! __aws_elasticache_GlobalReplicationGroup_GlobalReplicationGroupMember {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::GlobalReplicationGroup.GlobalReplicationGroupMember"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::GlobalReplicationGroup.GlobalReplicationGroupMember"
             $($field $value)*)
         };
     }
@@ -163,7 +163,7 @@ pub mod globalreplicationgroup {
     #[macro_export]
     macro_rules! __aws_elasticache_GlobalReplicationGroup_RegionalConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::GlobalReplicationGroup.RegionalConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::GlobalReplicationGroup.RegionalConfiguration"
             $($field $value)*)
         };
     }
@@ -201,7 +201,7 @@ pub mod globalreplicationgroup {
     #[macro_export]
     macro_rules! __aws_elasticache_GlobalReplicationGroup_ReshardingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::GlobalReplicationGroup.ReshardingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::GlobalReplicationGroup.ReshardingConfiguration"
             $($field $value)*)
         };
     }
@@ -234,7 +234,7 @@ pub mod replicationgroup {
     #[macro_export]
     macro_rules! __aws_elasticache_ReplicationGroup_CloudWatchLogsDestinationDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::ReplicationGroup.CloudWatchLogsDestinationDetails"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::ReplicationGroup.CloudWatchLogsDestinationDetails"
             $($field $value)*)
         };
     }
@@ -258,7 +258,7 @@ pub mod replicationgroup {
     #[macro_export]
     macro_rules! __aws_elasticache_ReplicationGroup_DestinationDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::ReplicationGroup.DestinationDetails"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::ReplicationGroup.DestinationDetails"
             $($field $value)*)
         };
     }
@@ -289,7 +289,7 @@ pub mod replicationgroup {
     #[macro_export]
     macro_rules! __aws_elasticache_ReplicationGroup_KinesisFirehoseDestinationDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::ReplicationGroup.KinesisFirehoseDestinationDetails"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::ReplicationGroup.KinesisFirehoseDestinationDetails"
             $($field $value)*)
         };
     }
@@ -315,7 +315,7 @@ pub mod replicationgroup {
     #[macro_export]
     macro_rules! __aws_elasticache_ReplicationGroup_LogDeliveryConfigurationRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::ReplicationGroup.LogDeliveryConfigurationRequest"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::ReplicationGroup.LogDeliveryConfigurationRequest"
             $($field $value)*)
         };
     }
@@ -354,7 +354,7 @@ pub mod replicationgroup {
     #[macro_export]
     macro_rules! __aws_elasticache_ReplicationGroup_NodeGroupConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::ReplicationGroup.NodeGroupConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::ReplicationGroup.NodeGroupConfiguration"
             $($field $value)*)
         };
     }
@@ -403,7 +403,7 @@ pub mod serverlesscache {
     #[macro_export]
     macro_rules! __aws_elasticache_ServerlessCache_CacheUsageLimits {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::ServerlessCache.CacheUsageLimits"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::ServerlessCache.CacheUsageLimits"
             $($field $value)*)
         };
     }
@@ -436,7 +436,7 @@ pub mod serverlesscache {
     #[macro_export]
     macro_rules! __aws_elasticache_ServerlessCache_DataStorage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::ServerlessCache.DataStorage"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::ServerlessCache.DataStorage"
             $($field $value)*)
         };
     }
@@ -472,7 +472,7 @@ pub mod serverlesscache {
     #[macro_export]
     macro_rules! __aws_elasticache_ServerlessCache_ECPUPerSecond {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::ServerlessCache.ECPUPerSecond"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::ServerlessCache.ECPUPerSecond"
             $($field $value)*)
         };
     }
@@ -504,7 +504,7 @@ pub mod serverlesscache {
     #[macro_export]
     macro_rules! __aws_elasticache_ServerlessCache_Endpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::ServerlessCache.Endpoint"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::ServerlessCache.Endpoint"
             $($field $value)*)
         };
     }
@@ -535,7 +535,7 @@ pub mod user {
     #[macro_export]
     macro_rules! __aws_elasticache_User_AuthenticationMode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElastiCache::User.AuthenticationMode"
+            stratosphere::generator::construct_property_type!("AWS::ElastiCache::User.AuthenticationMode"
             $($field $value)*)
         };
     }
@@ -590,7 +590,7 @@ pub struct CacheCluster_ {
 #[macro_export]
 macro_rules! __aws_elasticache_CacheCluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElastiCache::CacheCluster"
+        stratosphere::generator::construct_resource_type!("AWS::ElastiCache::CacheCluster"
         $($field $value)*)
     };
 }
@@ -762,7 +762,7 @@ pub struct GlobalReplicationGroup_ {
 #[macro_export]
 macro_rules! __aws_elasticache_GlobalReplicationGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElastiCache::GlobalReplicationGroup"
+        stratosphere::generator::construct_resource_type!("AWS::ElastiCache::GlobalReplicationGroup"
         $($field $value)*)
     };
 }
@@ -847,7 +847,7 @@ pub struct ParameterGroup_ {
 #[macro_export]
 macro_rules! __aws_elasticache_ParameterGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElastiCache::ParameterGroup"
+        stratosphere::generator::construct_resource_type!("AWS::ElastiCache::ParameterGroup"
         $($field $value)*)
     };
 }
@@ -931,7 +931,7 @@ pub struct ReplicationGroup_ {
 #[macro_export]
 macro_rules! __aws_elasticache_ReplicationGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElastiCache::ReplicationGroup"
+        stratosphere::generator::construct_resource_type!("AWS::ElastiCache::ReplicationGroup"
         $($field $value)*)
     };
 }
@@ -1182,7 +1182,7 @@ pub struct SecurityGroup_ {
 #[macro_export]
 macro_rules! __aws_elasticache_SecurityGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElastiCache::SecurityGroup"
+        stratosphere::generator::construct_resource_type!("AWS::ElastiCache::SecurityGroup"
         $($field $value)*)
     };
 }
@@ -1218,7 +1218,7 @@ pub struct SecurityGroupIngress_ {
 #[macro_export]
 macro_rules! __aws_elasticache_SecurityGroupIngress {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElastiCache::SecurityGroupIngress"
+        stratosphere::generator::construct_resource_type!("AWS::ElastiCache::SecurityGroupIngress"
         $($field $value)*)
     };
 }
@@ -1274,7 +1274,7 @@ pub struct ServerlessCache_ {
 #[macro_export]
 macro_rules! __aws_elasticache_ServerlessCache {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElastiCache::ServerlessCache"
+        stratosphere::generator::construct_resource_type!("AWS::ElastiCache::ServerlessCache"
         $($field $value)*)
     };
 }
@@ -1393,7 +1393,7 @@ pub struct SubnetGroup_ {
 #[macro_export]
 macro_rules! __aws_elasticache_SubnetGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElastiCache::SubnetGroup"
+        stratosphere::generator::construct_resource_type!("AWS::ElastiCache::SubnetGroup"
         $($field $value)*)
     };
 }
@@ -1444,7 +1444,7 @@ pub struct User_ {
 #[macro_export]
 macro_rules! __aws_elasticache_User {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElastiCache::User"
+        stratosphere::generator::construct_resource_type!("AWS::ElastiCache::User"
         $($field $value)*)
     };
 }
@@ -1513,7 +1513,7 @@ pub struct UserGroup_ {
 #[macro_export]
 macro_rules! __aws_elasticache_UserGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElastiCache::UserGroup"
+        stratosphere::generator::construct_resource_type!("AWS::ElastiCache::UserGroup"
         $($field $value)*)
     };
 }

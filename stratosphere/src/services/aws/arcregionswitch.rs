@@ -10,7 +10,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_ArcRoutingControlConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.ArcRoutingControlConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.ArcRoutingControlConfiguration"
             $($field $value)*)
         };
     }
@@ -53,7 +53,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_Asg {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Asg"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Asg"
             $($field $value)*)
         };
     }
@@ -90,7 +90,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_AssociatedAlarm {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.AssociatedAlarm"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.AssociatedAlarm"
             $($field $value)*)
         };
     }
@@ -133,7 +133,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_CustomActionLambdaConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.CustomActionLambdaConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.CustomActionLambdaConfiguration"
             $($field $value)*)
         };
     }
@@ -180,7 +180,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_Ec2AsgCapacityIncreaseConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Ec2AsgCapacityIncreaseConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Ec2AsgCapacityIncreaseConfiguration"
             $($field $value)*)
         };
     }
@@ -227,7 +227,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_Ec2Ungraceful {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Ec2Ungraceful"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Ec2Ungraceful"
             $($field $value)*)
         };
     }
@@ -254,7 +254,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_EcsCapacityIncreaseConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.EcsCapacityIncreaseConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.EcsCapacityIncreaseConfiguration"
             $($field $value)*)
         };
     }
@@ -301,7 +301,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_EcsUngraceful {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.EcsUngraceful"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.EcsUngraceful"
             $($field $value)*)
         };
     }
@@ -326,7 +326,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_EksCluster {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.EksCluster"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.EksCluster"
             $($field $value)*)
         };
     }
@@ -367,7 +367,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_EksResourceScalingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.EksResourceScalingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.EksResourceScalingConfiguration"
             $($field $value)*)
         };
     }
@@ -426,7 +426,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_EksResourceScalingUngraceful {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.EksResourceScalingUngraceful"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.EksResourceScalingUngraceful"
             $($field $value)*)
         };
     }
@@ -450,7 +450,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_ExecutionApprovalConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.ExecutionApprovalConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.ExecutionApprovalConfiguration"
             $($field $value)*)
         };
     }
@@ -488,7 +488,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_ExecutionBlockConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.ExecutionBlockConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.ExecutionBlockConfiguration"
             $($field $value)*)
         };
     }
@@ -573,7 +573,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_GlobalAuroraConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.GlobalAuroraConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.GlobalAuroraConfiguration"
             $($field $value)*)
         };
     }
@@ -628,7 +628,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_GlobalAuroraUngraceful {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.GlobalAuroraUngraceful"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.GlobalAuroraUngraceful"
             $($field $value)*)
         };
     }
@@ -654,7 +654,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_KubernetesResourceType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.KubernetesResourceType"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.KubernetesResourceType"
             $($field $value)*)
         };
     }
@@ -681,7 +681,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_LambdaUngraceful {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.LambdaUngraceful"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.LambdaUngraceful"
             $($field $value)*)
         };
     }
@@ -708,7 +708,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_Lambdas {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Lambdas"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Lambdas"
             $($field $value)*)
         };
     }
@@ -742,7 +742,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_ParallelExecutionBlockConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.ParallelExecutionBlockConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.ParallelExecutionBlockConfiguration"
             $($field $value)*)
         };
     }
@@ -767,7 +767,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_RegionSwitchPlanConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.RegionSwitchPlanConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.RegionSwitchPlanConfiguration"
             $($field $value)*)
         };
     }
@@ -807,7 +807,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_Route53HealthCheckConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Route53HealthCheckConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Route53HealthCheckConfiguration"
             $($field $value)*)
         };
     }
@@ -861,7 +861,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_Route53HealthChecks {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Route53HealthChecks"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Route53HealthChecks"
             $($field $value)*)
         };
     }
@@ -905,7 +905,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_Route53ResourceRecordSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Route53ResourceRecordSet"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Route53ResourceRecordSet"
             $($field $value)*)
         };
     }
@@ -936,7 +936,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_Service {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Service"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Service"
             $($field $value)*)
         };
     }
@@ -982,7 +982,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_Step {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Step"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Step"
             $($field $value)*)
         };
     }
@@ -1023,7 +1023,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_Trigger {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Trigger"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Trigger"
             $($field $value)*)
         };
     }
@@ -1065,7 +1065,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_TriggerCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.TriggerCondition"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.TriggerCondition"
             $($field $value)*)
         };
     }
@@ -1095,7 +1095,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_arcregionswitch_Plan_Workflow {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Workflow"
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Workflow"
             $($field $value)*)
         };
     }
@@ -1145,7 +1145,7 @@ pub struct Plan_ {
 #[macro_export]
 macro_rules! __aws_arcregionswitch_Plan {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ARCRegionSwitch::Plan"
+        stratosphere::generator::construct_resource_type!("AWS::ARCRegionSwitch::Plan"
         $($field $value)*)
     };
 }

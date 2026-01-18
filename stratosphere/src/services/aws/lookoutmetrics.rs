@@ -8,7 +8,7 @@ pub mod alert {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_Alert_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::Alert.Action"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::Alert.Action"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod alert {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_Alert_LambdaConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::Alert.LambdaConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::Alert.LambdaConfiguration"
             $($field $value)*)
         };
     }
@@ -68,7 +68,7 @@ pub mod alert {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_Alert_SNSConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::Alert.SNSConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::Alert.SNSConfiguration"
             $($field $value)*)
         };
     }
@@ -97,7 +97,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_AnomalyDetector_AnomalyDetectorConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.AnomalyDetectorConfig"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.AnomalyDetectorConfig"
             $($field $value)*)
         };
     }
@@ -121,7 +121,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_AnomalyDetector_AppFlowConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.AppFlowConfig"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.AppFlowConfig"
             $($field $value)*)
         };
     }
@@ -148,7 +148,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_AnomalyDetector_CloudwatchConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.CloudwatchConfig"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.CloudwatchConfig"
             $($field $value)*)
         };
     }
@@ -176,7 +176,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_AnomalyDetector_CsvFormatDescriptor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.CsvFormatDescriptor"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.CsvFormatDescriptor"
             $($field $value)*)
         };
     }
@@ -232,7 +232,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_AnomalyDetector_FileFormatDescriptor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.FileFormatDescriptor"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.FileFormatDescriptor"
             $($field $value)*)
         };
     }
@@ -264,7 +264,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_AnomalyDetector_JsonFormatDescriptor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.JsonFormatDescriptor"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.JsonFormatDescriptor"
             $($field $value)*)
         };
     }
@@ -297,7 +297,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_AnomalyDetector_Metric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.Metric"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.Metric"
             $($field $value)*)
         };
     }
@@ -338,7 +338,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_AnomalyDetector_MetricSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.MetricSet"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.MetricSet"
             $($field $value)*)
         };
     }
@@ -406,7 +406,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_AnomalyDetector_MetricSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.MetricSource"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.MetricSource"
             $($field $value)*)
         };
     }
@@ -462,7 +462,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_AnomalyDetector_RDSSourceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.RDSSourceConfig"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.RDSSourceConfig"
             $($field $value)*)
         };
     }
@@ -520,7 +520,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_AnomalyDetector_RedshiftSourceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.RedshiftSourceConfig"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.RedshiftSourceConfig"
             $($field $value)*)
         };
     }
@@ -574,7 +574,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_AnomalyDetector_S3SourceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.S3SourceConfig"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.S3SourceConfig"
             $($field $value)*)
         };
     }
@@ -614,7 +614,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_AnomalyDetector_TimestampColumn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.TimestampColumn"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.TimestampColumn"
             $($field $value)*)
         };
     }
@@ -646,7 +646,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_lookoutmetrics_AnomalyDetector_VpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.VpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::LookoutMetrics::AnomalyDetector.VpcConfiguration"
             $($field $value)*)
         };
     }
@@ -678,7 +678,7 @@ pub struct Alert_ {
 #[macro_export]
 macro_rules! __aws_lookoutmetrics_Alert {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::LookoutMetrics::Alert"
+        stratosphere::generator::construct_resource_type!("AWS::LookoutMetrics::Alert"
         $($field $value)*)
     };
 }
@@ -733,7 +733,7 @@ pub struct AnomalyDetector_ {
 #[macro_export]
 macro_rules! __aws_lookoutmetrics_AnomalyDetector {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::LookoutMetrics::AnomalyDetector"
+        stratosphere::generator::construct_resource_type!("AWS::LookoutMetrics::AnomalyDetector"
         $($field $value)*)
     };
 }

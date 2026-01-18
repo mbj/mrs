@@ -8,7 +8,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_pcs_Cluster_Accounting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::Cluster.Accounting"
+            stratosphere::generator::construct_property_type!("AWS::PCS::Cluster.Accounting"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_pcs_Cluster_AuthKey {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::Cluster.AuthKey"
+            stratosphere::generator::construct_property_type!("AWS::PCS::Cluster.AuthKey"
             $($field $value)*)
         };
     }
@@ -69,7 +69,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_pcs_Cluster_Endpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::Cluster.Endpoint"
+            stratosphere::generator::construct_property_type!("AWS::PCS::Cluster.Endpoint"
             $($field $value)*)
         };
     }
@@ -113,7 +113,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_pcs_Cluster_ErrorInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::Cluster.ErrorInfo"
+            stratosphere::generator::construct_property_type!("AWS::PCS::Cluster.ErrorInfo"
             $($field $value)*)
         };
     }
@@ -143,7 +143,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_pcs_Cluster_Networking {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::Cluster.Networking"
+            stratosphere::generator::construct_property_type!("AWS::PCS::Cluster.Networking"
             $($field $value)*)
         };
     }
@@ -181,7 +181,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_pcs_Cluster_Scheduler {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::Cluster.Scheduler"
+            stratosphere::generator::construct_property_type!("AWS::PCS::Cluster.Scheduler"
             $($field $value)*)
         };
     }
@@ -211,7 +211,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_pcs_Cluster_SlurmConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::Cluster.SlurmConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::PCS::Cluster.SlurmConfiguration"
             $($field $value)*)
         };
     }
@@ -255,7 +255,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_pcs_Cluster_SlurmCustomSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::Cluster.SlurmCustomSetting"
+            stratosphere::generator::construct_property_type!("AWS::PCS::Cluster.SlurmCustomSetting"
             $($field $value)*)
         };
     }
@@ -285,7 +285,7 @@ pub mod computenodegroup {
     #[macro_export]
     macro_rules! __aws_pcs_ComputeNodeGroup_CustomLaunchTemplate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::ComputeNodeGroup.CustomLaunchTemplate"
+            stratosphere::generator::construct_property_type!("AWS::PCS::ComputeNodeGroup.CustomLaunchTemplate"
             $($field $value)*)
         };
     }
@@ -315,7 +315,7 @@ pub mod computenodegroup {
     #[macro_export]
     macro_rules! __aws_pcs_ComputeNodeGroup_ErrorInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::ComputeNodeGroup.ErrorInfo"
+            stratosphere::generator::construct_property_type!("AWS::PCS::ComputeNodeGroup.ErrorInfo"
             $($field $value)*)
         };
     }
@@ -343,7 +343,7 @@ pub mod computenodegroup {
     #[macro_export]
     macro_rules! __aws_pcs_ComputeNodeGroup_InstanceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::ComputeNodeGroup.InstanceConfig"
+            stratosphere::generator::construct_property_type!("AWS::PCS::ComputeNodeGroup.InstanceConfig"
             $($field $value)*)
         };
     }
@@ -369,7 +369,7 @@ pub mod computenodegroup {
     #[macro_export]
     macro_rules! __aws_pcs_ComputeNodeGroup_ScalingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::ComputeNodeGroup.ScalingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::PCS::ComputeNodeGroup.ScalingConfiguration"
             $($field $value)*)
         };
     }
@@ -396,7 +396,7 @@ pub mod computenodegroup {
     #[macro_export]
     macro_rules! __aws_pcs_ComputeNodeGroup_SlurmConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::ComputeNodeGroup.SlurmConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::PCS::ComputeNodeGroup.SlurmConfiguration"
             $($field $value)*)
         };
     }
@@ -422,7 +422,7 @@ pub mod computenodegroup {
     #[macro_export]
     macro_rules! __aws_pcs_ComputeNodeGroup_SlurmCustomSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::ComputeNodeGroup.SlurmCustomSetting"
+            stratosphere::generator::construct_property_type!("AWS::PCS::ComputeNodeGroup.SlurmCustomSetting"
             $($field $value)*)
         };
     }
@@ -449,7 +449,7 @@ pub mod computenodegroup {
     #[macro_export]
     macro_rules! __aws_pcs_ComputeNodeGroup_SpotOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::ComputeNodeGroup.SpotOptions"
+            stratosphere::generator::construct_property_type!("AWS::PCS::ComputeNodeGroup.SpotOptions"
             $($field $value)*)
         };
     }
@@ -476,7 +476,7 @@ pub mod queue {
     #[macro_export]
     macro_rules! __aws_pcs_Queue_ComputeNodeGroupConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::Queue.ComputeNodeGroupConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::PCS::Queue.ComputeNodeGroupConfiguration"
             $($field $value)*)
         };
     }
@@ -502,7 +502,7 @@ pub mod queue {
     #[macro_export]
     macro_rules! __aws_pcs_Queue_ErrorInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCS::Queue.ErrorInfo"
+            stratosphere::generator::construct_property_type!("AWS::PCS::Queue.ErrorInfo"
             $($field $value)*)
         };
     }
@@ -536,7 +536,7 @@ pub struct Cluster_ {
 #[macro_export]
 macro_rules! __aws_pcs_Cluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PCS::Cluster" $($field
+        stratosphere::generator::construct_resource_type!("AWS::PCS::Cluster" $($field
         $value)*)
     };
 }
@@ -598,7 +598,7 @@ pub struct ComputeNodeGroup_ {
 #[macro_export]
 macro_rules! __aws_pcs_ComputeNodeGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PCS::ComputeNodeGroup"
+        stratosphere::generator::construct_resource_type!("AWS::PCS::ComputeNodeGroup"
         $($field $value)*)
     };
 }
@@ -680,7 +680,7 @@ pub struct Queue_ {
 #[macro_export]
 macro_rules! __aws_pcs_Queue {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PCS::Queue" $($field
+        stratosphere::generator::construct_resource_type!("AWS::PCS::Queue" $($field
         $value)*)
     };
 }

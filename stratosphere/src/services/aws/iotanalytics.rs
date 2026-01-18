@@ -8,7 +8,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Channel_ChannelStorage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Channel.ChannelStorage"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Channel.ChannelStorage"
             $($field $value)*)
         };
     }
@@ -41,7 +41,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Channel_CustomerManagedS3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Channel.CustomerManagedS3"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Channel.CustomerManagedS3"
             $($field $value)*)
         };
     }
@@ -75,7 +75,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Channel_RetentionPeriod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Channel.RetentionPeriod"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Channel.RetentionPeriod"
             $($field $value)*)
         };
     }
@@ -110,7 +110,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.Action"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.Action"
             $($field $value)*)
         };
     }
@@ -148,7 +148,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_ContainerAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.ContainerAction"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.ContainerAction"
             $($field $value)*)
         };
     }
@@ -186,7 +186,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_DatasetContentDeliveryRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.DatasetContentDeliveryRule"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.DatasetContentDeliveryRule"
             $($field $value)*)
         };
     }
@@ -216,7 +216,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_DatasetContentDeliveryRuleDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.DatasetContentDeliveryRuleDestination"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.DatasetContentDeliveryRuleDestination"
             $($field $value)*)
         };
     }
@@ -247,7 +247,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_DatasetContentVersionValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.DatasetContentVersionValue"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.DatasetContentVersionValue"
             $($field $value)*)
         };
     }
@@ -271,7 +271,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_DeltaTime {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.DeltaTime"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.DeltaTime"
             $($field $value)*)
         };
     }
@@ -298,7 +298,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_DeltaTimeSessionWindowConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.DeltaTimeSessionWindowConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.DeltaTimeSessionWindowConfiguration"
             $($field $value)*)
         };
     }
@@ -321,7 +321,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_Filter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.Filter"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.Filter"
             $($field $value)*)
         };
     }
@@ -347,7 +347,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_GlueConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.GlueConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.GlueConfiguration"
             $($field $value)*)
         };
     }
@@ -375,7 +375,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_IotEventsDestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.IotEventsDestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.IotEventsDestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -403,7 +403,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_LateDataRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.LateDataRule"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.LateDataRule"
             $($field $value)*)
         };
     }
@@ -433,7 +433,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_LateDataRuleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.LateDataRuleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.LateDataRuleConfiguration"
             $($field $value)*)
         };
     }
@@ -458,7 +458,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_OutputFileUriValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.OutputFileUriValue"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.OutputFileUriValue"
             $($field $value)*)
         };
     }
@@ -482,7 +482,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_QueryAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.QueryAction"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.QueryAction"
             $($field $value)*)
         };
     }
@@ -512,7 +512,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_ResourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.ResourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.ResourceConfiguration"
             $($field $value)*)
         };
     }
@@ -540,7 +540,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_RetentionPeriod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.RetentionPeriod"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.RetentionPeriod"
             $($field $value)*)
         };
     }
@@ -574,7 +574,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_S3DestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.S3DestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.S3DestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -611,7 +611,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_Schedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.Schedule"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.Schedule"
             $($field $value)*)
         };
     }
@@ -635,7 +635,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_Trigger {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.Trigger"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.Trigger"
             $($field $value)*)
         };
     }
@@ -666,7 +666,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_TriggeringDataset {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.TriggeringDataset"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.TriggeringDataset"
             $($field $value)*)
         };
     }
@@ -693,7 +693,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_Variable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.Variable"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.Variable"
             $($field $value)*)
         };
     }
@@ -741,7 +741,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Dataset_VersioningConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Dataset.VersioningConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Dataset.VersioningConfiguration"
             $($field $value)*)
         };
     }
@@ -775,7 +775,7 @@ pub mod datastore {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Datastore_Column {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Datastore.Column"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Datastore.Column"
             $($field $value)*)
         };
     }
@@ -804,7 +804,7 @@ pub mod datastore {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Datastore_CustomerManagedS3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Datastore.CustomerManagedS3"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Datastore.CustomerManagedS3"
             $($field $value)*)
         };
     }
@@ -838,7 +838,7 @@ pub mod datastore {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Datastore_CustomerManagedS3Storage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Datastore.CustomerManagedS3Storage"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Datastore.CustomerManagedS3Storage"
             $($field $value)*)
         };
     }
@@ -868,7 +868,7 @@ pub mod datastore {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Datastore_DatastorePartition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Datastore.DatastorePartition"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Datastore.DatastorePartition"
             $($field $value)*)
         };
     }
@@ -899,7 +899,7 @@ pub mod datastore {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Datastore_DatastorePartitions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Datastore.DatastorePartitions"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Datastore.DatastorePartitions"
             $($field $value)*)
         };
     }
@@ -926,7 +926,7 @@ pub mod datastore {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Datastore_DatastoreStorage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Datastore.DatastoreStorage"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Datastore.DatastoreStorage"
             $($field $value)*)
         };
     }
@@ -964,7 +964,7 @@ pub mod datastore {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Datastore_FileFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Datastore.FileFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Datastore.FileFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -995,7 +995,7 @@ pub mod datastore {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Datastore_IotSiteWiseMultiLayerStorage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Datastore.IotSiteWiseMultiLayerStorage"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Datastore.IotSiteWiseMultiLayerStorage"
             $($field $value)*)
         };
     }
@@ -1020,7 +1020,7 @@ pub mod datastore {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Datastore_ParquetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Datastore.ParquetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Datastore.ParquetConfiguration"
             $($field $value)*)
         };
     }
@@ -1045,7 +1045,7 @@ pub mod datastore {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Datastore_Partition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Datastore.Partition"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Datastore.Partition"
             $($field $value)*)
         };
     }
@@ -1069,7 +1069,7 @@ pub mod datastore {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Datastore_RetentionPeriod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Datastore.RetentionPeriod"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Datastore.RetentionPeriod"
             $($field $value)*)
         };
     }
@@ -1100,7 +1100,7 @@ pub mod datastore {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Datastore_SchemaDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Datastore.SchemaDefinition"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Datastore.SchemaDefinition"
             $($field $value)*)
         };
     }
@@ -1126,7 +1126,7 @@ pub mod datastore {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Datastore_TimestampPartition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Datastore.TimestampPartition"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Datastore.TimestampPartition"
             $($field $value)*)
         };
     }
@@ -1166,7 +1166,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Pipeline_Activity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.Activity"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.Activity"
             $($field $value)*)
         };
     }
@@ -1238,7 +1238,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Pipeline_AddAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.AddAttributes"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.AddAttributes"
             $($field $value)*)
         };
     }
@@ -1270,7 +1270,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Pipeline_Channel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.Channel"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.Channel"
             $($field $value)*)
         };
     }
@@ -1301,7 +1301,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Pipeline_Datastore {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.Datastore"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.Datastore"
             $($field $value)*)
         };
     }
@@ -1332,7 +1332,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Pipeline_DeviceRegistryEnrich {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.DeviceRegistryEnrich"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.DeviceRegistryEnrich"
             $($field $value)*)
         };
     }
@@ -1374,7 +1374,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Pipeline_DeviceShadowEnrich {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.DeviceShadowEnrich"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.DeviceShadowEnrich"
             $($field $value)*)
         };
     }
@@ -1414,7 +1414,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Pipeline_Filter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.Filter"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.Filter"
             $($field $value)*)
         };
     }
@@ -1447,7 +1447,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Pipeline_Lambda {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.Lambda"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.Lambda"
             $($field $value)*)
         };
     }
@@ -1484,7 +1484,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Pipeline_Math {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.Math"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.Math"
             $($field $value)*)
         };
     }
@@ -1520,7 +1520,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Pipeline_RemoveAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.RemoveAttributes"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.RemoveAttributes"
             $($field $value)*)
         };
     }
@@ -1552,7 +1552,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_iotanalytics_Pipeline_SelectAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.SelectAttributes"
+            stratosphere::generator::construct_property_type!("AWS::IoTAnalytics::Pipeline.SelectAttributes"
             $($field $value)*)
         };
     }
@@ -1586,7 +1586,7 @@ pub struct Channel_ {
 #[macro_export]
 macro_rules! __aws_iotanalytics_Channel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTAnalytics::Channel"
+        stratosphere::generator::construct_resource_type!("AWS::IoTAnalytics::Channel"
         $($field $value)*)
     };
 }
@@ -1642,7 +1642,7 @@ pub struct Dataset_ {
 #[macro_export]
 macro_rules! __aws_iotanalytics_Dataset {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTAnalytics::Dataset"
+        stratosphere::generator::construct_resource_type!("AWS::IoTAnalytics::Dataset"
         $($field $value)*)
     };
 }
@@ -1717,7 +1717,7 @@ pub struct Datastore_ {
 #[macro_export]
 macro_rules! __aws_iotanalytics_Datastore {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTAnalytics::Datastore"
+        stratosphere::generator::construct_resource_type!("AWS::IoTAnalytics::Datastore"
         $($field $value)*)
     };
 }
@@ -1779,7 +1779,7 @@ pub struct Pipeline_ {
 #[macro_export]
 macro_rules! __aws_iotanalytics_Pipeline {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTAnalytics::Pipeline"
+        stratosphere::generator::construct_resource_type!("AWS::IoTAnalytics::Pipeline"
         $($field $value)*)
     };
 }

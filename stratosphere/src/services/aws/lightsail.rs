@@ -8,7 +8,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_lightsail_Bucket_AccessRules {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Bucket.AccessRules"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Bucket.AccessRules"
             $($field $value)*)
         };
     }
@@ -45,7 +45,7 @@ pub mod container {
     #[macro_export]
     macro_rules! __aws_lightsail_Container_Container {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Container.Container"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Container.Container"
             $($field $value)*)
         };
     }
@@ -89,7 +89,7 @@ pub mod container {
     #[macro_export]
     macro_rules! __aws_lightsail_Container_ContainerServiceDeployment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Container.ContainerServiceDeployment"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Container.ContainerServiceDeployment"
             $($field $value)*)
         };
     }
@@ -121,7 +121,7 @@ pub mod container {
     #[macro_export]
     macro_rules! __aws_lightsail_Container_EcrImagePullerRole {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Container.EcrImagePullerRole"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Container.EcrImagePullerRole"
             $($field $value)*)
         };
     }
@@ -153,7 +153,7 @@ pub mod container {
     #[macro_export]
     macro_rules! __aws_lightsail_Container_EnvironmentVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Container.EnvironmentVariable"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Container.EnvironmentVariable"
             $($field $value)*)
         };
     }
@@ -186,7 +186,7 @@ pub mod container {
     #[macro_export]
     macro_rules! __aws_lightsail_Container_HealthCheckConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Container.HealthCheckConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Container.HealthCheckConfig"
             $($field $value)*)
         };
     }
@@ -239,7 +239,7 @@ pub mod container {
     #[macro_export]
     macro_rules! __aws_lightsail_Container_PortInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Container.PortInfo"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Container.PortInfo"
             $($field $value)*)
         };
     }
@@ -267,7 +267,7 @@ pub mod container {
     #[macro_export]
     macro_rules! __aws_lightsail_Container_PrivateRegistryAccess {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Container.PrivateRegistryAccess"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Container.PrivateRegistryAccess"
             $($field $value)*)
         };
     }
@@ -293,7 +293,7 @@ pub mod container {
     #[macro_export]
     macro_rules! __aws_lightsail_Container_PublicDomainName {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Container.PublicDomainName"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Container.PublicDomainName"
             $($field $value)*)
         };
     }
@@ -326,7 +326,7 @@ pub mod container {
     #[macro_export]
     macro_rules! __aws_lightsail_Container_PublicEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Container.PublicEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Container.PublicEndpoint"
             $($field $value)*)
         };
     }
@@ -372,7 +372,7 @@ pub mod database {
     #[macro_export]
     macro_rules! __aws_lightsail_Database_RelationalDatabaseParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Database.RelationalDatabaseParameter"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Database.RelationalDatabaseParameter"
             $($field $value)*)
         };
     }
@@ -443,7 +443,7 @@ pub mod disk {
     #[macro_export]
     macro_rules! __aws_lightsail_Disk_AddOn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Disk.AddOn"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Disk.AddOn"
             $($field $value)*)
         };
     }
@@ -475,7 +475,7 @@ pub mod disk {
     #[macro_export]
     macro_rules! __aws_lightsail_Disk_AutoSnapshotAddOn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Disk.AutoSnapshotAddOn"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Disk.AutoSnapshotAddOn"
             $($field $value)*)
         };
     }
@@ -501,7 +501,7 @@ pub mod disk {
     #[macro_export]
     macro_rules! __aws_lightsail_Disk_Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Disk.Location"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Disk.Location"
             $($field $value)*)
         };
     }
@@ -534,7 +534,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_lightsail_Distribution_CacheBehavior {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Distribution.CacheBehavior"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Distribution.CacheBehavior"
             $($field $value)*)
         };
     }
@@ -560,7 +560,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_lightsail_Distribution_CacheBehaviorPerPath {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Distribution.CacheBehaviorPerPath"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Distribution.CacheBehaviorPerPath"
             $($field $value)*)
         };
     }
@@ -595,7 +595,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_lightsail_Distribution_CacheSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Distribution.CacheSettings"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Distribution.CacheSettings"
             $($field $value)*)
         };
     }
@@ -663,7 +663,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_lightsail_Distribution_CookieObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Distribution.CookieObject"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Distribution.CookieObject"
             $($field $value)*)
         };
     }
@@ -692,7 +692,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_lightsail_Distribution_HeaderObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Distribution.HeaderObject"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Distribution.HeaderObject"
             $($field $value)*)
         };
     }
@@ -722,7 +722,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_lightsail_Distribution_InputOrigin {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Distribution.InputOrigin"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Distribution.InputOrigin"
             $($field $value)*)
         };
     }
@@ -757,7 +757,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_lightsail_Distribution_QueryStringObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Distribution.QueryStringObject"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Distribution.QueryStringObject"
             $($field $value)*)
         };
     }
@@ -791,7 +791,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_lightsail_Domain_DomainEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Domain.DomainEntry"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Domain.DomainEntry"
             $($field $value)*)
         };
     }
@@ -832,7 +832,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_lightsail_Domain_Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Domain.Location"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Domain.Location"
             $($field $value)*)
         };
     }
@@ -867,7 +867,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_lightsail_Instance_AddOn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Instance.AddOn"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Instance.AddOn"
             $($field $value)*)
         };
     }
@@ -899,7 +899,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_lightsail_Instance_AutoSnapshotAddOn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Instance.AutoSnapshotAddOn"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Instance.AutoSnapshotAddOn"
             $($field $value)*)
         };
     }
@@ -930,7 +930,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_lightsail_Instance_Disk {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Instance.Disk"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Instance.Disk"
             $($field $value)*)
         };
     }
@@ -986,7 +986,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_lightsail_Instance_Hardware {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Instance.Hardware"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Instance.Hardware"
             $($field $value)*)
         };
     }
@@ -1021,7 +1021,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_lightsail_Instance_Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Instance.Location"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Instance.Location"
             $($field $value)*)
         };
     }
@@ -1052,7 +1052,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_lightsail_Instance_MonthlyTransfer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Instance.MonthlyTransfer"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Instance.MonthlyTransfer"
             $($field $value)*)
         };
     }
@@ -1078,7 +1078,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_lightsail_Instance_Networking {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Instance.Networking"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Instance.Networking"
             $($field $value)*)
         };
     }
@@ -1116,7 +1116,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_lightsail_Instance_Port {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Instance.Port"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Instance.Port"
             $($field $value)*)
         };
     }
@@ -1190,7 +1190,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_lightsail_Instance_State {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::Instance.State"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::Instance.State"
             $($field $value)*)
         };
     }
@@ -1218,7 +1218,7 @@ pub mod instancesnapshot {
     #[macro_export]
     macro_rules! __aws_lightsail_InstanceSnapshot_Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lightsail::InstanceSnapshot.Location"
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::InstanceSnapshot.Location"
             $($field $value)*)
         };
     }
@@ -1260,8 +1260,8 @@ pub struct Alarm_ {
 #[macro_export]
 macro_rules! __aws_lightsail_Alarm {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lightsail::Alarm" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::Alarm"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_lightsail_Alarm as Alarm;
@@ -1347,7 +1347,7 @@ pub struct Bucket_ {
 #[macro_export]
 macro_rules! __aws_lightsail_Bucket {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lightsail::Bucket"
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::Bucket"
         $($field $value)*)
     };
 }
@@ -1412,7 +1412,7 @@ pub struct Certificate_ {
 #[macro_export]
 macro_rules! __aws_lightsail_Certificate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lightsail::Certificate"
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::Certificate"
         $($field $value)*)
     };
 }
@@ -1464,7 +1464,7 @@ pub struct Container_ {
 #[macro_export]
 macro_rules! __aws_lightsail_Container {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lightsail::Container"
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::Container"
         $($field $value)*)
     };
 }
@@ -1545,7 +1545,7 @@ pub struct Database_ {
 #[macro_export]
 macro_rules! __aws_lightsail_Database {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lightsail::Database"
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::Database"
         $($field $value)*)
     };
 }
@@ -1654,7 +1654,7 @@ pub struct Disk_ {
 #[macro_export]
 macro_rules! __aws_lightsail_Disk {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lightsail::Disk" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::Disk" $($field
         $value)*)
     };
 }
@@ -1716,7 +1716,7 @@ pub struct Distribution_ {
 #[macro_export]
 macro_rules! __aws_lightsail_Distribution {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lightsail::Distribution"
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::Distribution"
         $($field $value)*)
     };
 }
@@ -1794,7 +1794,7 @@ pub struct Domain_ {
 #[macro_export]
 macro_rules! __aws_lightsail_Domain {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lightsail::Domain"
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::Domain"
         $($field $value)*)
     };
 }
@@ -1845,7 +1845,7 @@ pub struct Instance_ {
 #[macro_export]
 macro_rules! __aws_lightsail_Instance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lightsail::Instance"
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::Instance"
         $($field $value)*)
     };
 }
@@ -1931,7 +1931,7 @@ pub struct InstanceSnapshot_ {
 #[macro_export]
 macro_rules! __aws_lightsail_InstanceSnapshot {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lightsail::InstanceSnapshot"
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::InstanceSnapshot"
         $($field $value)*)
     };
 }
@@ -1977,7 +1977,7 @@ pub struct LoadBalancer_ {
 #[macro_export]
 macro_rules! __aws_lightsail_LoadBalancer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lightsail::LoadBalancer"
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::LoadBalancer"
         $($field $value)*)
     };
 }
@@ -2056,7 +2056,7 @@ pub struct LoadBalancerTlsCertificate_ {
 #[macro_export]
 macro_rules! __aws_lightsail_LoadBalancerTlsCertificate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lightsail::LoadBalancerTlsCertificate"
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::LoadBalancerTlsCertificate"
         $($field $value)*)
     };
 }
@@ -2116,7 +2116,7 @@ pub struct StaticIp_ {
 #[macro_export]
 macro_rules! __aws_lightsail_StaticIp {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lightsail::StaticIp"
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::StaticIp"
         $($field $value)*)
     };
 }

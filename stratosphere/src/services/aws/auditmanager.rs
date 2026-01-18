@@ -9,7 +9,7 @@ pub mod assessment {
     #[macro_export]
     macro_rules! __aws_auditmanager_Assessment_AWSAccount {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AuditManager::Assessment.AWSAccount"
+            stratosphere::generator::construct_property_type!("AWS::AuditManager::Assessment.AWSAccount"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod assessment {
     #[macro_export]
     macro_rules! __aws_auditmanager_Assessment_AWSService {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AuditManager::Assessment.AWSService"
+            stratosphere::generator::construct_property_type!("AWS::AuditManager::Assessment.AWSService"
             $($field $value)*)
         };
     }
@@ -66,7 +66,7 @@ pub mod assessment {
     #[macro_export]
     macro_rules! __aws_auditmanager_Assessment_AssessmentReportsDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AuditManager::Assessment.AssessmentReportsDestination"
+            stratosphere::generator::construct_property_type!("AWS::AuditManager::Assessment.AssessmentReportsDestination"
             $($field $value)*)
         };
     }
@@ -107,7 +107,7 @@ pub mod assessment {
     #[macro_export]
     macro_rules! __aws_auditmanager_Assessment_Delegation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AuditManager::Assessment.Delegation"
+            stratosphere::generator::construct_property_type!("AWS::AuditManager::Assessment.Delegation"
             $($field $value)*)
         };
     }
@@ -187,7 +187,7 @@ pub mod assessment {
     #[macro_export]
     macro_rules! __aws_auditmanager_Assessment_Role {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AuditManager::Assessment.Role"
+            stratosphere::generator::construct_property_type!("AWS::AuditManager::Assessment.Role"
             $($field $value)*)
         };
     }
@@ -219,7 +219,7 @@ pub mod assessment {
     #[macro_export]
     macro_rules! __aws_auditmanager_Assessment_Scope {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AuditManager::Assessment.Scope"
+            stratosphere::generator::construct_property_type!("AWS::AuditManager::Assessment.Scope"
             $($field $value)*)
         };
     }
@@ -261,7 +261,7 @@ pub struct Assessment_ {
 #[macro_export]
 macro_rules! __aws_auditmanager_Assessment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AuditManager::Assessment"
+        stratosphere::generator::construct_resource_type!("AWS::AuditManager::Assessment"
         $($field $value)*)
     };
 }

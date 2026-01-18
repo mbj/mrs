@@ -9,7 +9,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_opensearchserverless_Index_Index {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchServerless::Index.Index"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchServerless::Index.Index"
             $($field $value)*)
         };
     }
@@ -43,7 +43,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_opensearchserverless_Index_IndexSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchServerless::Index.IndexSettings"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchServerless::Index.IndexSettings"
             $($field $value)*)
         };
     }
@@ -65,7 +65,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_opensearchserverless_Index_Mappings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchServerless::Index.Mappings"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchServerless::Index.Mappings"
             $($field $value)*)
         };
     }
@@ -93,7 +93,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_opensearchserverless_Index_Method {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchServerless::Index.Method"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchServerless::Index.Method"
             $($field $value)*)
         };
     }
@@ -132,7 +132,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_opensearchserverless_Index_Parameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchServerless::Index.Parameters"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchServerless::Index.Parameters"
             $($field $value)*)
         };
     }
@@ -165,7 +165,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_opensearchserverless_Index_PropertyMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchServerless::Index.PropertyMapping"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchServerless::Index.PropertyMapping"
             $($field $value)*)
         };
     }
@@ -212,7 +212,7 @@ pub mod securityconfig {
     #[macro_export]
     macro_rules! __aws_opensearchserverless_SecurityConfig_IamFederationConfigOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchServerless::SecurityConfig.IamFederationConfigOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchServerless::SecurityConfig.IamFederationConfigOptions"
             $($field $value)*)
         };
     }
@@ -248,7 +248,7 @@ pub mod securityconfig {
     #[macro_export]
     macro_rules! __aws_opensearchserverless_SecurityConfig_IamIdentityCenterConfigOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchServerless::SecurityConfig.IamIdentityCenterConfigOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchServerless::SecurityConfig.IamIdentityCenterConfigOptions"
             $($field $value)*)
         };
     }
@@ -305,7 +305,7 @@ pub mod securityconfig {
     #[macro_export]
     macro_rules! __aws_opensearchserverless_SecurityConfig_SamlConfigOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchServerless::SecurityConfig.SamlConfigOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchServerless::SecurityConfig.SamlConfigOptions"
             $($field $value)*)
         };
     }
@@ -356,7 +356,7 @@ pub struct AccessPolicy_ {
 #[macro_export]
 macro_rules! __aws_opensearchserverless_AccessPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpenSearchServerless::AccessPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::OpenSearchServerless::AccessPolicy"
         $($field $value)*)
     };
 }
@@ -405,7 +405,7 @@ pub struct Collection_ {
 #[macro_export]
 macro_rules! __aws_opensearchserverless_Collection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpenSearchServerless::Collection"
+        stratosphere::generator::construct_resource_type!("AWS::OpenSearchServerless::Collection"
         $($field $value)*)
     };
 }
@@ -457,7 +457,7 @@ pub struct Index_ {
 #[macro_export]
 macro_rules! __aws_opensearchserverless_Index {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpenSearchServerless::Index"
+        stratosphere::generator::construct_resource_type!("AWS::OpenSearchServerless::Index"
         $($field $value)*)
     };
 }
@@ -507,7 +507,7 @@ pub struct LifecyclePolicy_ {
 #[macro_export]
 macro_rules! __aws_opensearchserverless_LifecyclePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpenSearchServerless::LifecyclePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::OpenSearchServerless::LifecyclePolicy"
         $($field $value)*)
     };
 }
@@ -559,7 +559,7 @@ pub struct SecurityConfig_ {
 #[macro_export]
 macro_rules! __aws_opensearchserverless_SecurityConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpenSearchServerless::SecurityConfig"
+        stratosphere::generator::construct_resource_type!("AWS::OpenSearchServerless::SecurityConfig"
         $($field $value)*)
     };
 }
@@ -619,7 +619,7 @@ pub struct SecurityPolicy_ {
 #[macro_export]
 macro_rules! __aws_opensearchserverless_SecurityPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpenSearchServerless::SecurityPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::OpenSearchServerless::SecurityPolicy"
         $($field $value)*)
     };
 }
@@ -667,7 +667,7 @@ pub struct VpcEndpoint_ {
 #[macro_export]
 macro_rules! __aws_opensearchserverless_VpcEndpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpenSearchServerless::VpcEndpoint"
+        stratosphere::generator::construct_resource_type!("AWS::OpenSearchServerless::VpcEndpoint"
         $($field $value)*)
     };
 }

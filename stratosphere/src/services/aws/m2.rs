@@ -8,7 +8,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_m2_Application_Definition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::M2::Application.Definition"
+            stratosphere::generator::construct_property_type!("AWS::M2::Application.Definition"
             $($field $value)*)
         };
     }
@@ -42,7 +42,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_m2_Environment_EfsStorageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::M2::Environment.EfsStorageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::M2::Environment.EfsStorageConfiguration"
             $($field $value)*)
         };
     }
@@ -70,7 +70,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_m2_Environment_FsxStorageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::M2::Environment.FsxStorageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::M2::Environment.FsxStorageConfiguration"
             $($field $value)*)
         };
     }
@@ -97,7 +97,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_m2_Environment_HighAvailabilityConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::M2::Environment.HighAvailabilityConfig"
+            stratosphere::generator::construct_property_type!("AWS::M2::Environment.HighAvailabilityConfig"
             $($field $value)*)
         };
     }
@@ -121,7 +121,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_m2_Environment_StorageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::M2::Environment.StorageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::M2::Environment.StorageConfiguration"
             $($field $value)*)
         };
     }
@@ -153,7 +153,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_m2_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::M2::Application" $($field
+        stratosphere::generator::construct_resource_type!("AWS::M2::Application" $($field
         $value)*)
     };
 }
@@ -217,7 +217,7 @@ pub struct Deployment_ {
 #[macro_export]
 macro_rules! __aws_m2_Deployment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::M2::Deployment" $($field
+        stratosphere::generator::construct_resource_type!("AWS::M2::Deployment" $($field
         $value)*)
     };
 }
@@ -269,7 +269,7 @@ pub struct Environment_ {
 #[macro_export]
 macro_rules! __aws_m2_Environment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::M2::Environment" $($field
+        stratosphere::generator::construct_resource_type!("AWS::M2::Environment" $($field
         $value)*)
     };
 }

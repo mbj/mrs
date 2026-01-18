@@ -8,7 +8,7 @@ pub mod customactiontype {
     #[macro_export]
     macro_rules! __aws_codepipeline_CustomActionType_ArtifactDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::CustomActionType.ArtifactDetails"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::CustomActionType.ArtifactDetails"
             $($field $value)*)
         };
     }
@@ -41,7 +41,7 @@ pub mod customactiontype {
     #[macro_export]
     macro_rules! __aws_codepipeline_CustomActionType_ConfigurationProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::CustomActionType.ConfigurationProperties"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::CustomActionType.ConfigurationProperties"
             $($field $value)*)
         };
     }
@@ -94,7 +94,7 @@ pub mod customactiontype {
     #[macro_export]
     macro_rules! __aws_codepipeline_CustomActionType_Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::CustomActionType.Settings"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::CustomActionType.Settings"
             $($field $value)*)
         };
     }
@@ -151,7 +151,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_ActionDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.ActionDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.ActionDeclaration"
             $($field $value)*)
         };
     }
@@ -244,7 +244,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_ActionTypeId {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.ActionTypeId"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.ActionTypeId"
             $($field $value)*)
         };
     }
@@ -281,7 +281,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_ArtifactStore {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.ArtifactStore"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.ArtifactStore"
             $($field $value)*)
         };
     }
@@ -315,7 +315,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_ArtifactStoreMap {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.ArtifactStoreMap"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.ArtifactStoreMap"
             $($field $value)*)
         };
     }
@@ -342,7 +342,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_BeforeEntryConditions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.BeforeEntryConditions"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.BeforeEntryConditions"
             $($field $value)*)
         };
     }
@@ -368,7 +368,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_BlockerDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.BlockerDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.BlockerDeclaration"
             $($field $value)*)
         };
     }
@@ -396,7 +396,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_Condition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.Condition"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.Condition"
             $($field $value)*)
         };
     }
@@ -422,7 +422,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_EncryptionKey {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.EncryptionKey"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.EncryptionKey"
             $($field $value)*)
         };
     }
@@ -448,7 +448,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_EnvironmentVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.EnvironmentVariable"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.EnvironmentVariable"
             $($field $value)*)
         };
     }
@@ -480,7 +480,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_FailureConditions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.FailureConditions"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.FailureConditions"
             $($field $value)*)
         };
     }
@@ -515,7 +515,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_GitBranchFilterCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.GitBranchFilterCriteria"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.GitBranchFilterCriteria"
             $($field $value)*)
         };
     }
@@ -548,7 +548,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_GitConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.GitConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.GitConfiguration"
             $($field $value)*)
         };
     }
@@ -581,7 +581,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_GitFilePathFilterCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.GitFilePathFilterCriteria"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.GitFilePathFilterCriteria"
             $($field $value)*)
         };
     }
@@ -614,7 +614,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_GitPullRequestFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.GitPullRequestFilter"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.GitPullRequestFilter"
             $($field $value)*)
         };
     }
@@ -650,7 +650,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_GitPushFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.GitPushFilter"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.GitPushFilter"
             $($field $value)*)
         };
     }
@@ -685,7 +685,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_GitTagFilterCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.GitTagFilterCriteria"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.GitTagFilterCriteria"
             $($field $value)*)
         };
     }
@@ -716,7 +716,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_InputArtifact {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.InputArtifact"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.InputArtifact"
             $($field $value)*)
         };
     }
@@ -740,7 +740,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_OutputArtifact {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.OutputArtifact"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.OutputArtifact"
             $($field $value)*)
         };
     }
@@ -767,7 +767,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_PipelineTriggerDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.PipelineTriggerDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.PipelineTriggerDeclaration"
             $($field $value)*)
         };
     }
@@ -796,7 +796,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_RetryConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.RetryConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.RetryConfiguration"
             $($field $value)*)
         };
     }
@@ -827,7 +827,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_RuleDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.RuleDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.RuleDeclaration"
             $($field $value)*)
         };
     }
@@ -885,7 +885,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_RuleTypeId {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.RuleTypeId"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.RuleTypeId"
             $($field $value)*)
         };
     }
@@ -930,7 +930,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_StageDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.StageDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.StageDeclaration"
             $($field $value)*)
         };
     }
@@ -982,7 +982,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_StageTransition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.StageTransition"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.StageTransition"
             $($field $value)*)
         };
     }
@@ -1009,7 +1009,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_SuccessConditions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.SuccessConditions"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.SuccessConditions"
             $($field $value)*)
         };
     }
@@ -1036,7 +1036,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_codepipeline_Pipeline_VariableDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Pipeline.VariableDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Pipeline.VariableDeclaration"
             $($field $value)*)
         };
     }
@@ -1074,7 +1074,7 @@ pub mod webhook {
     #[macro_export]
     macro_rules! __aws_codepipeline_Webhook_WebhookAuthConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Webhook.WebhookAuthConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Webhook.WebhookAuthConfiguration"
             $($field $value)*)
         };
     }
@@ -1106,7 +1106,7 @@ pub mod webhook {
     #[macro_export]
     macro_rules! __aws_codepipeline_Webhook_WebhookFilterRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodePipeline::Webhook.WebhookFilterRule"
+            stratosphere::generator::construct_property_type!("AWS::CodePipeline::Webhook.WebhookFilterRule"
             $($field $value)*)
         };
     }
@@ -1144,7 +1144,7 @@ pub struct CustomActionType_ {
 #[macro_export]
 macro_rules! __aws_codepipeline_CustomActionType {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodePipeline::CustomActionType"
+        stratosphere::generator::construct_resource_type!("AWS::CodePipeline::CustomActionType"
         $($field $value)*)
     };
 }
@@ -1218,7 +1218,7 @@ pub struct Pipeline_ {
 #[macro_export]
 macro_rules! __aws_codepipeline_Pipeline {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodePipeline::Pipeline"
+        stratosphere::generator::construct_resource_type!("AWS::CodePipeline::Pipeline"
         $($field $value)*)
     };
 }
@@ -1314,7 +1314,7 @@ pub struct Webhook_ {
 #[macro_export]
 macro_rules! __aws_codepipeline_Webhook {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodePipeline::Webhook"
+        stratosphere::generator::construct_resource_type!("AWS::CodePipeline::Webhook"
         $($field $value)*)
     };
 }

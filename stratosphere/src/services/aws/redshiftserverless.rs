@@ -19,7 +19,7 @@ pub mod namespace {
     #[macro_export]
     macro_rules! __aws_redshiftserverless_Namespace_Namespace {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RedshiftServerless::Namespace.Namespace"
+            stratosphere::generator::construct_property_type!("AWS::RedshiftServerless::Namespace.Namespace"
             $($field $value)*)
         };
     }
@@ -112,7 +112,7 @@ pub mod namespace {
     #[macro_export]
     macro_rules! __aws_redshiftserverless_Namespace_SnapshotCopyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RedshiftServerless::Namespace.SnapshotCopyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::RedshiftServerless::Namespace.SnapshotCopyConfiguration"
             $($field $value)*)
         };
     }
@@ -158,7 +158,7 @@ pub mod snapshot {
     #[macro_export]
     macro_rules! __aws_redshiftserverless_Snapshot_Snapshot {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RedshiftServerless::Snapshot.Snapshot"
+            stratosphere::generator::construct_property_type!("AWS::RedshiftServerless::Snapshot.Snapshot"
             $($field $value)*)
         };
     }
@@ -237,7 +237,7 @@ pub mod workgroup {
     #[macro_export]
     macro_rules! __aws_redshiftserverless_Workgroup_ConfigParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RedshiftServerless::Workgroup.ConfigParameter"
+            stratosphere::generator::construct_property_type!("AWS::RedshiftServerless::Workgroup.ConfigParameter"
             $($field $value)*)
         };
     }
@@ -270,7 +270,7 @@ pub mod workgroup {
     #[macro_export]
     macro_rules! __aws_redshiftserverless_Workgroup_Endpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RedshiftServerless::Workgroup.Endpoint"
+            stratosphere::generator::construct_property_type!("AWS::RedshiftServerless::Workgroup.Endpoint"
             $($field $value)*)
         };
     }
@@ -307,7 +307,7 @@ pub mod workgroup {
     #[macro_export]
     macro_rules! __aws_redshiftserverless_Workgroup_NetworkInterface {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RedshiftServerless::Workgroup.NetworkInterface"
+            stratosphere::generator::construct_property_type!("AWS::RedshiftServerless::Workgroup.NetworkInterface"
             $($field $value)*)
         };
     }
@@ -351,7 +351,7 @@ pub mod workgroup {
     #[macro_export]
     macro_rules! __aws_redshiftserverless_Workgroup_PerformanceTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RedshiftServerless::Workgroup.PerformanceTarget"
+            stratosphere::generator::construct_property_type!("AWS::RedshiftServerless::Workgroup.PerformanceTarget"
             $($field $value)*)
         };
     }
@@ -378,7 +378,7 @@ pub mod workgroup {
     #[macro_export]
     macro_rules! __aws_redshiftserverless_Workgroup_VpcEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RedshiftServerless::Workgroup.VpcEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::RedshiftServerless::Workgroup.VpcEndpoint"
             $($field $value)*)
         };
     }
@@ -427,7 +427,7 @@ pub mod workgroup {
     #[macro_export]
     macro_rules! __aws_redshiftserverless_Workgroup_Workgroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RedshiftServerless::Workgroup.Workgroup"
+            stratosphere::generator::construct_property_type!("AWS::RedshiftServerless::Workgroup.Workgroup"
             $($field $value)*)
         };
     }
@@ -556,7 +556,7 @@ pub struct Namespace_ {
 #[macro_export]
 macro_rules! __aws_redshiftserverless_Namespace {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RedshiftServerless::Namespace"
+        stratosphere::generator::construct_resource_type!("AWS::RedshiftServerless::Namespace"
         $($field $value)*)
     };
 }
@@ -674,7 +674,7 @@ pub struct Snapshot_ {
 #[macro_export]
 macro_rules! __aws_redshiftserverless_Snapshot {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RedshiftServerless::Snapshot"
+        stratosphere::generator::construct_resource_type!("AWS::RedshiftServerless::Snapshot"
         $($field $value)*)
     };
 }
@@ -737,7 +737,7 @@ pub struct Workgroup_ {
 #[macro_export]
 macro_rules! __aws_redshiftserverless_Workgroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RedshiftServerless::Workgroup"
+        stratosphere::generator::construct_resource_type!("AWS::RedshiftServerless::Workgroup"
         $($field $value)*)
     };
 }

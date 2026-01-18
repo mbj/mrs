@@ -8,7 +8,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_elasticbeanstalk_Application_ApplicationResourceLifecycleConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticBeanstalk::Application.ApplicationResourceLifecycleConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticBeanstalk::Application.ApplicationResourceLifecycleConfig"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_elasticbeanstalk_Application_ApplicationVersionLifecycleConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticBeanstalk::Application.ApplicationVersionLifecycleConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticBeanstalk::Application.ApplicationVersionLifecycleConfig"
             $($field $value)*)
         };
     }
@@ -73,7 +73,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_elasticbeanstalk_Application_MaxAgeRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticBeanstalk::Application.MaxAgeRule"
+            stratosphere::generator::construct_property_type!("AWS::ElasticBeanstalk::Application.MaxAgeRule"
             $($field $value)*)
         };
     }
@@ -112,7 +112,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_elasticbeanstalk_Application_MaxCountRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticBeanstalk::Application.MaxCountRule"
+            stratosphere::generator::construct_property_type!("AWS::ElasticBeanstalk::Application.MaxCountRule"
             $($field $value)*)
         };
     }
@@ -152,7 +152,7 @@ pub mod applicationversion {
     #[macro_export]
     macro_rules! __aws_elasticbeanstalk_ApplicationVersion_SourceBundle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticBeanstalk::ApplicationVersion.SourceBundle"
+            stratosphere::generator::construct_property_type!("AWS::ElasticBeanstalk::ApplicationVersion.SourceBundle"
             $($field $value)*)
         };
     }
@@ -184,7 +184,7 @@ pub mod configurationtemplate {
     #[macro_export]
     macro_rules! __aws_elasticbeanstalk_ConfigurationTemplate_ConfigurationOptionSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticBeanstalk::ConfigurationTemplate.ConfigurationOptionSetting"
+            stratosphere::generator::construct_property_type!("AWS::ElasticBeanstalk::ConfigurationTemplate.ConfigurationOptionSetting"
             $($field $value)*)
         };
     }
@@ -221,7 +221,7 @@ pub mod configurationtemplate {
     #[macro_export]
     macro_rules! __aws_elasticbeanstalk_ConfigurationTemplate_SourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticBeanstalk::ConfigurationTemplate.SourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ElasticBeanstalk::ConfigurationTemplate.SourceConfiguration"
             $($field $value)*)
         };
     }
@@ -253,7 +253,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_elasticbeanstalk_Environment_OptionSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticBeanstalk::Environment.OptionSetting"
+            stratosphere::generator::construct_property_type!("AWS::ElasticBeanstalk::Environment.OptionSetting"
             $($field $value)*)
         };
     }
@@ -291,7 +291,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_elasticbeanstalk_Environment_Tier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticBeanstalk::Environment.Tier"
+            stratosphere::generator::construct_property_type!("AWS::ElasticBeanstalk::Environment.Tier"
             $($field $value)*)
         };
     }
@@ -326,7 +326,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_elasticbeanstalk_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElasticBeanstalk::Application"
+        stratosphere::generator::construct_resource_type!("AWS::ElasticBeanstalk::Application"
         $($field $value)*)
     };
 }
@@ -373,7 +373,7 @@ pub struct ApplicationVersion_ {
 #[macro_export]
 macro_rules! __aws_elasticbeanstalk_ApplicationVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElasticBeanstalk::ApplicationVersion"
+        stratosphere::generator::construct_resource_type!("AWS::ElasticBeanstalk::ApplicationVersion"
         $($field $value)*)
     };
 }
@@ -422,7 +422,7 @@ pub struct ConfigurationTemplate_ {
 #[macro_export]
 macro_rules! __aws_elasticbeanstalk_ConfigurationTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElasticBeanstalk::ConfigurationTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::ElasticBeanstalk::ConfigurationTemplate"
         $($field $value)*)
     };
 }
@@ -500,7 +500,7 @@ pub struct Environment_ {
 #[macro_export]
 macro_rules! __aws_elasticbeanstalk_Environment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElasticBeanstalk::Environment"
+        stratosphere::generator::construct_resource_type!("AWS::ElasticBeanstalk::Environment"
         $($field $value)*)
     };
 }

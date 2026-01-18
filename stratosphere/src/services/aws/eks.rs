@@ -8,7 +8,7 @@ pub mod accessentry {
     #[macro_export]
     macro_rules! __aws_eks_AccessEntry_AccessPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::AccessEntry.AccessPolicy"
+            stratosphere::generator::construct_property_type!("AWS::EKS::AccessEntry.AccessPolicy"
             $($field $value)*)
         };
     }
@@ -36,7 +36,7 @@ pub mod accessentry {
     #[macro_export]
     macro_rules! __aws_eks_AccessEntry_AccessScope {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::AccessEntry.AccessScope"
+            stratosphere::generator::construct_property_type!("AWS::EKS::AccessEntry.AccessScope"
             $($field $value)*)
         };
     }
@@ -67,7 +67,7 @@ pub mod addon {
     #[macro_export]
     macro_rules! __aws_eks_Addon_NamespaceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Addon.NamespaceConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Addon.NamespaceConfig"
             $($field $value)*)
         };
     }
@@ -91,7 +91,7 @@ pub mod addon {
     #[macro_export]
     macro_rules! __aws_eks_Addon_PodIdentityAssociation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Addon.PodIdentityAssociation"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Addon.PodIdentityAssociation"
             $($field $value)*)
         };
     }
@@ -121,7 +121,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_AccessConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.AccessConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.AccessConfig"
             $($field $value)*)
         };
     }
@@ -152,7 +152,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_BlockStorage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.BlockStorage"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.BlockStorage"
             $($field $value)*)
         };
     }
@@ -177,7 +177,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_ClusterLogging {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.ClusterLogging"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.ClusterLogging"
             $($field $value)*)
         };
     }
@@ -204,7 +204,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_ComputeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.ComputeConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.ComputeConfig"
             $($field $value)*)
         };
     }
@@ -241,7 +241,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_ControlPlanePlacement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.ControlPlanePlacement"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.ControlPlanePlacement"
             $($field $value)*)
         };
     }
@@ -266,7 +266,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_ElasticLoadBalancing {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.ElasticLoadBalancing"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.ElasticLoadBalancing"
             $($field $value)*)
         };
     }
@@ -292,7 +292,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_EncryptionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.EncryptionConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.EncryptionConfig"
             $($field $value)*)
         };
     }
@@ -326,7 +326,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_KubernetesNetworkConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.KubernetesNetworkConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.KubernetesNetworkConfig"
             $($field $value)*)
         };
     }
@@ -369,7 +369,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_Logging {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.Logging"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.Logging"
             $($field $value)*)
         };
     }
@@ -394,7 +394,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_LoggingTypeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.LoggingTypeConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.LoggingTypeConfig"
             $($field $value)*)
         };
     }
@@ -418,7 +418,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_OutpostConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.OutpostConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.OutpostConfig"
             $($field $value)*)
         };
     }
@@ -451,7 +451,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_Provider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.Provider"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.Provider"
             $($field $value)*)
         };
     }
@@ -474,7 +474,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_RemoteNetworkConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.RemoteNetworkConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.RemoteNetworkConfig"
             $($field $value)*)
         };
     }
@@ -503,7 +503,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_RemoteNodeNetwork {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.RemoteNodeNetwork"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.RemoteNodeNetwork"
             $($field $value)*)
         };
     }
@@ -526,7 +526,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_RemotePodNetwork {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.RemotePodNetwork"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.RemotePodNetwork"
             $($field $value)*)
         };
     }
@@ -553,7 +553,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_ResourcesVpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.ResourcesVpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.ResourcesVpcConfig"
             $($field $value)*)
         };
     }
@@ -600,7 +600,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_StorageConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.StorageConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.StorageConfig"
             $($field $value)*)
         };
     }
@@ -625,7 +625,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_UpgradePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.UpgradePolicy"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.UpgradePolicy"
             $($field $value)*)
         };
     }
@@ -650,7 +650,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_eks_Cluster_ZonalShiftConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Cluster.ZonalShiftConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.ZonalShiftConfig"
             $($field $value)*)
         };
     }
@@ -678,7 +678,7 @@ pub mod fargateprofile {
     #[macro_export]
     macro_rules! __aws_eks_FargateProfile_Label {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::FargateProfile.Label"
+            stratosphere::generator::construct_property_type!("AWS::EKS::FargateProfile.Label"
             $($field $value)*)
         };
     }
@@ -706,7 +706,7 @@ pub mod fargateprofile {
     #[macro_export]
     macro_rules! __aws_eks_FargateProfile_Selector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::FargateProfile.Selector"
+            stratosphere::generator::construct_property_type!("AWS::EKS::FargateProfile.Selector"
             $($field $value)*)
         };
     }
@@ -740,7 +740,7 @@ pub mod identityproviderconfig {
     #[macro_export]
     macro_rules! __aws_eks_IdentityProviderConfig_OidcIdentityProviderConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::IdentityProviderConfig.OidcIdentityProviderConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::IdentityProviderConfig.OidcIdentityProviderConfig"
             $($field $value)*)
         };
     }
@@ -798,7 +798,7 @@ pub mod identityproviderconfig {
     #[macro_export]
     macro_rules! __aws_eks_IdentityProviderConfig_RequiredClaim {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::IdentityProviderConfig.RequiredClaim"
+            stratosphere::generator::construct_property_type!("AWS::EKS::IdentityProviderConfig.RequiredClaim"
             $($field $value)*)
         };
     }
@@ -829,7 +829,7 @@ pub mod nodegroup {
     #[macro_export]
     macro_rules! __aws_eks_Nodegroup_LaunchTemplateSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Nodegroup.LaunchTemplateSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Nodegroup.LaunchTemplateSpecification"
             $($field $value)*)
         };
     }
@@ -860,7 +860,7 @@ pub mod nodegroup {
     #[macro_export]
     macro_rules! __aws_eks_Nodegroup_NodeRepairConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Nodegroup.NodeRepairConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Nodegroup.NodeRepairConfig"
             $($field $value)*)
         };
     }
@@ -886,7 +886,7 @@ pub mod nodegroup {
     #[macro_export]
     macro_rules! __aws_eks_Nodegroup_RemoteAccess {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Nodegroup.RemoteAccess"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Nodegroup.RemoteAccess"
             $($field $value)*)
         };
     }
@@ -917,7 +917,7 @@ pub mod nodegroup {
     #[macro_export]
     macro_rules! __aws_eks_Nodegroup_ScalingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Nodegroup.ScalingConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Nodegroup.ScalingConfig"
             $($field $value)*)
         };
     }
@@ -956,7 +956,7 @@ pub mod nodegroup {
     #[macro_export]
     macro_rules! __aws_eks_Nodegroup_Taint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Nodegroup.Taint"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Nodegroup.Taint"
             $($field $value)*)
         };
     }
@@ -986,7 +986,7 @@ pub mod nodegroup {
     #[macro_export]
     macro_rules! __aws_eks_Nodegroup_UpdateConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EKS::Nodegroup.UpdateConfig"
+            stratosphere::generator::construct_property_type!("AWS::EKS::Nodegroup.UpdateConfig"
             $($field $value)*)
         };
     }
@@ -1030,8 +1030,8 @@ pub struct AccessEntry_ {
 #[macro_export]
 macro_rules! __aws_eks_AccessEntry {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EKS::AccessEntry" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::EKS::AccessEntry"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_eks_AccessEntry as AccessEntry;
@@ -1098,7 +1098,7 @@ pub struct Addon_ {
 #[macro_export]
 macro_rules! __aws_eks_Addon {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EKS::Addon" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EKS::Addon" $($field
         $value)*)
     };
 }
@@ -1195,7 +1195,7 @@ pub struct Cluster_ {
 #[macro_export]
 macro_rules! __aws_eks_Cluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EKS::Cluster" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EKS::Cluster" $($field
         $value)*)
     };
 }
@@ -1322,7 +1322,7 @@ pub struct FargateProfile_ {
 #[macro_export]
 macro_rules! __aws_eks_FargateProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EKS::FargateProfile"
+        stratosphere::generator::construct_resource_type!("AWS::EKS::FargateProfile"
         $($field $value)*)
     };
 }
@@ -1380,7 +1380,7 @@ pub struct IdentityProviderConfig_ {
 #[macro_export]
 macro_rules! __aws_eks_IdentityProviderConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EKS::IdentityProviderConfig"
+        stratosphere::generator::construct_resource_type!("AWS::EKS::IdentityProviderConfig"
         $($field $value)*)
     };
 }
@@ -1445,7 +1445,7 @@ pub struct Nodegroup_ {
 #[macro_export]
 macro_rules! __aws_eks_Nodegroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EKS::Nodegroup" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EKS::Nodegroup" $($field
         $value)*)
     };
 }
@@ -1577,7 +1577,7 @@ pub struct PodIdentityAssociation_ {
 #[macro_export]
 macro_rules! __aws_eks_PodIdentityAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EKS::PodIdentityAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::EKS::PodIdentityAssociation"
         $($field $value)*)
     };
 }

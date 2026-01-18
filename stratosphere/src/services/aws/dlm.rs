@@ -8,7 +8,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.Action"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.Action"
             $($field $value)*)
         };
     }
@@ -35,7 +35,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_ArchiveRetainRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.ArchiveRetainRule"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.ArchiveRetainRule"
             $($field $value)*)
         };
     }
@@ -58,7 +58,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_ArchiveRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.ArchiveRule"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.ArchiveRule"
             $($field $value)*)
         };
     }
@@ -86,7 +86,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_CreateRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.CreateRule"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.CreateRule"
             $($field $value)*)
         };
     }
@@ -140,7 +140,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_CrossRegionCopyAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.CrossRegionCopyAction"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.CrossRegionCopyAction"
             $($field $value)*)
         };
     }
@@ -174,7 +174,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_CrossRegionCopyDeprecateRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.CrossRegionCopyDeprecateRule"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.CrossRegionCopyDeprecateRule"
             $($field $value)*)
         };
     }
@@ -202,7 +202,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_CrossRegionCopyRetainRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.CrossRegionCopyRetainRule"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.CrossRegionCopyRetainRule"
             $($field $value)*)
         };
     }
@@ -235,7 +235,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_CrossRegionCopyRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.CrossRegionCopyRule"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.CrossRegionCopyRule"
             $($field $value)*)
         };
     }
@@ -288,7 +288,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_CrossRegionCopyTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.CrossRegionCopyTarget"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.CrossRegionCopyTarget"
             $($field $value)*)
         };
     }
@@ -311,7 +311,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_CrossRegionCopyTargets {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.CrossRegionCopyTargets"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.CrossRegionCopyTargets"
             $($field $value)*)
         };
     }
@@ -331,7 +331,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_DeprecateRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.DeprecateRule"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.DeprecateRule"
             $($field $value)*)
         };
     }
@@ -366,7 +366,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_EncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.EncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.EncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -394,7 +394,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_EventParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.EventParameters"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.EventParameters"
             $($field $value)*)
         };
     }
@@ -428,7 +428,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_EventSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.EventSource"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.EventSource"
             $($field $value)*)
         };
     }
@@ -455,7 +455,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_ExcludeTags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.ExcludeTags"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.ExcludeTags"
             $($field $value)*)
         };
     }
@@ -471,7 +471,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_ExcludeVolumeTypesList {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.ExcludeVolumeTypesList"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.ExcludeVolumeTypesList"
             $($field $value)*)
         };
     }
@@ -491,7 +491,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_Exclusions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.Exclusions"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.Exclusions"
             $($field $value)*)
         };
     }
@@ -531,7 +531,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_FastRestoreRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.FastRestoreRule"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.FastRestoreRule"
             $($field $value)*)
         };
     }
@@ -573,7 +573,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_Parameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.Parameters"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.Parameters"
             $($field $value)*)
         };
     }
@@ -625,7 +625,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_PolicyDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.PolicyDetails"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.PolicyDetails"
             $($field $value)*)
         };
     }
@@ -742,7 +742,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_RetainRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.RetainRule"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.RetainRule"
             $($field $value)*)
         };
     }
@@ -778,7 +778,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_RetentionArchiveTier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.RetentionArchiveTier"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.RetentionArchiveTier"
             $($field $value)*)
         };
     }
@@ -822,7 +822,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_Schedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.Schedule"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.Schedule"
             $($field $value)*)
         };
     }
@@ -909,7 +909,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_Script {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.Script"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.Script"
             $($field $value)*)
         };
     }
@@ -963,7 +963,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_ShareRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.ShareRule"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.ShareRule"
             $($field $value)*)
         };
     }
@@ -998,7 +998,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_dlm_LifecyclePolicy_VolumeTypeValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DLM::LifecyclePolicy.VolumeTypeValues"
+            stratosphere::generator::construct_property_type!("AWS::DLM::LifecyclePolicy.VolumeTypeValues"
             $($field $value)*)
         };
     }
@@ -1028,7 +1028,7 @@ pub struct LifecyclePolicy_ {
 #[macro_export]
 macro_rules! __aws_dlm_LifecyclePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DLM::LifecyclePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::DLM::LifecyclePolicy"
         $($field $value)*)
     };
 }

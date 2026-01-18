@@ -8,7 +8,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_memorydb_Cluster_Endpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MemoryDB::Cluster.Endpoint"
+            stratosphere::generator::construct_property_type!("AWS::MemoryDB::Cluster.Endpoint"
             $($field $value)*)
         };
     }
@@ -39,7 +39,7 @@ pub mod user {
     #[macro_export]
     macro_rules! __aws_memorydb_User_AuthenticationMode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MemoryDB::User.AuthenticationMode"
+            stratosphere::generator::construct_property_type!("AWS::MemoryDB::User.AuthenticationMode"
             $($field $value)*)
         };
     }
@@ -70,7 +70,7 @@ pub struct ACL_ {
 #[macro_export]
 macro_rules! __aws_memorydb_ACL {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MemoryDB::ACL" $($field
+        stratosphere::generator::construct_resource_type!("AWS::MemoryDB::ACL" $($field
         $value)*)
     };
 }
@@ -138,7 +138,7 @@ pub struct Cluster_ {
 #[macro_export]
 macro_rules! __aws_memorydb_Cluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MemoryDB::Cluster"
+        stratosphere::generator::construct_resource_type!("AWS::MemoryDB::Cluster"
         $($field $value)*)
     };
 }
@@ -333,7 +333,7 @@ pub struct MultiRegionCluster_ {
 #[macro_export]
 macro_rules! __aws_memorydb_MultiRegionCluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MemoryDB::MultiRegionCluster"
+        stratosphere::generator::construct_resource_type!("AWS::MemoryDB::MultiRegionCluster"
         $($field $value)*)
     };
 }
@@ -416,7 +416,7 @@ pub struct ParameterGroup_ {
 #[macro_export]
 macro_rules! __aws_memorydb_ParameterGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MemoryDB::ParameterGroup"
+        stratosphere::generator::construct_resource_type!("AWS::MemoryDB::ParameterGroup"
         $($field $value)*)
     };
 }
@@ -469,7 +469,7 @@ pub struct SubnetGroup_ {
 #[macro_export]
 macro_rules! __aws_memorydb_SubnetGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MemoryDB::SubnetGroup"
+        stratosphere::generator::construct_resource_type!("AWS::MemoryDB::SubnetGroup"
         $($field $value)*)
     };
 }
@@ -516,7 +516,7 @@ pub struct User_ {
 #[macro_export]
 macro_rules! __aws_memorydb_User {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MemoryDB::User" $($field
+        stratosphere::generator::construct_resource_type!("AWS::MemoryDB::User" $($field
         $value)*)
     };
 }

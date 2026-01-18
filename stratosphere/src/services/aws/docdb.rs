@@ -8,7 +8,7 @@ pub mod dbcluster {
     #[macro_export]
     macro_rules! __aws_docdb_DBCluster_ServerlessV2ScalingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DocDB::DBCluster.ServerlessV2ScalingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DocDB::DBCluster.ServerlessV2ScalingConfiguration"
             $($field $value)*)
         };
     }
@@ -66,8 +66,8 @@ pub struct DBCluster_ {
 #[macro_export]
 macro_rules! __aws_docdb_DBCluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DocDB::DBCluster" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::DocDB::DBCluster"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_docdb_DBCluster as DBCluster;
@@ -271,7 +271,7 @@ pub struct DBClusterParameterGroup_ {
 #[macro_export]
 macro_rules! __aws_docdb_DBClusterParameterGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DocDB::DBClusterParameterGroup"
+        stratosphere::generator::construct_resource_type!("AWS::DocDB::DBClusterParameterGroup"
         $($field $value)*)
     };
 }
@@ -325,7 +325,7 @@ pub struct DBInstance_ {
 #[macro_export]
 macro_rules! __aws_docdb_DBInstance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DocDB::DBInstance"
+        stratosphere::generator::construct_resource_type!("AWS::DocDB::DBInstance"
         $($field $value)*)
     };
 }
@@ -408,7 +408,7 @@ pub struct DBSubnetGroup_ {
 #[macro_export]
 macro_rules! __aws_docdb_DBSubnetGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DocDB::DBSubnetGroup"
+        stratosphere::generator::construct_resource_type!("AWS::DocDB::DBSubnetGroup"
         $($field $value)*)
     };
 }
@@ -457,7 +457,7 @@ pub struct EventSubscription_ {
 #[macro_export]
 macro_rules! __aws_docdb_EventSubscription {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DocDB::EventSubscription"
+        stratosphere::generator::construct_resource_type!("AWS::DocDB::EventSubscription"
         $($field $value)*)
     };
 }

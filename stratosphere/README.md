@@ -50,7 +50,7 @@ Enable the AWS services you need in your `Cargo.toml`:
 
 ```toml
 [dependencies]
-stratosphere = { version = "0.0.2", features = ["aws_ec2", "aws_secretsmanager"] }
+stratosphere = { version = "0.0.4", features = ["aws_ec2", "aws_secretsmanager"] }
 ```
 
 Each AWS service has its own feature flag (e.g., `aws_ec2`, `aws_s3`, `aws_lambda`).

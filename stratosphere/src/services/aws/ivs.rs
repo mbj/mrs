@@ -9,7 +9,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_ivs_Channel_MultitrackInputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVS::Channel.MultitrackInputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVS::Channel.MultitrackInputConfiguration"
             $($field $value)*)
         };
     }
@@ -48,7 +48,7 @@ pub mod encoderconfiguration {
     #[macro_export]
     macro_rules! __aws_ivs_EncoderConfiguration_Video {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVS::EncoderConfiguration.Video"
+            stratosphere::generator::construct_property_type!("AWS::IVS::EncoderConfiguration.Video"
             $($field $value)*)
         };
     }
@@ -87,7 +87,7 @@ pub mod recordingconfiguration {
     #[macro_export]
     macro_rules! __aws_ivs_RecordingConfiguration_DestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVS::RecordingConfiguration.DestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVS::RecordingConfiguration.DestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -110,7 +110,7 @@ pub mod recordingconfiguration {
     #[macro_export]
     macro_rules! __aws_ivs_RecordingConfiguration_RenditionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVS::RecordingConfiguration.RenditionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVS::RecordingConfiguration.RenditionConfiguration"
             $($field $value)*)
         };
     }
@@ -141,7 +141,7 @@ pub mod recordingconfiguration {
     #[macro_export]
     macro_rules! __aws_ivs_RecordingConfiguration_S3DestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVS::RecordingConfiguration.S3DestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVS::RecordingConfiguration.S3DestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -167,7 +167,7 @@ pub mod recordingconfiguration {
     #[macro_export]
     macro_rules! __aws_ivs_RecordingConfiguration_ThumbnailConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVS::RecordingConfiguration.ThumbnailConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVS::RecordingConfiguration.ThumbnailConfiguration"
             $($field $value)*)
         };
     }
@@ -216,7 +216,7 @@ pub mod stage {
     #[macro_export]
     macro_rules! __aws_ivs_Stage_AutoParticipantRecordingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVS::Stage.AutoParticipantRecordingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVS::Stage.AutoParticipantRecordingConfiguration"
             $($field $value)*)
         };
     }
@@ -264,7 +264,7 @@ pub mod stage {
     #[macro_export]
     macro_rules! __aws_ivs_Stage_HlsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVS::Stage.HlsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVS::Stage.HlsConfiguration"
             $($field $value)*)
         };
     }
@@ -289,7 +289,7 @@ pub mod stage {
     #[macro_export]
     macro_rules! __aws_ivs_Stage_ParticipantRecordingHlsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVS::Stage.ParticipantRecordingHlsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVS::Stage.ParticipantRecordingHlsConfiguration"
             $($field $value)*)
         };
     }
@@ -316,7 +316,7 @@ pub mod stage {
     #[macro_export]
     macro_rules! __aws_ivs_Stage_ParticipantThumbnailConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVS::Stage.ParticipantThumbnailConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVS::Stage.ParticipantThumbnailConfiguration"
             $($field $value)*)
         };
     }
@@ -353,7 +353,7 @@ pub mod stage {
     #[macro_export]
     macro_rules! __aws_ivs_Stage_ThumbnailConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVS::Stage.ThumbnailConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVS::Stage.ThumbnailConfiguration"
             $($field $value)*)
         };
     }
@@ -380,7 +380,7 @@ pub mod storageconfiguration {
     #[macro_export]
     macro_rules! __aws_ivs_StorageConfiguration_S3StorageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IVS::StorageConfiguration.S3StorageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IVS::StorageConfiguration.S3StorageConfiguration"
             $($field $value)*)
         };
     }
@@ -413,7 +413,7 @@ pub struct Channel_ {
 #[macro_export]
 macro_rules! __aws_ivs_Channel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IVS::Channel" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IVS::Channel" $($field
         $value)*)
     };
 }
@@ -490,7 +490,7 @@ pub struct EncoderConfiguration_ {
 #[macro_export]
 macro_rules! __aws_ivs_EncoderConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IVS::EncoderConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::IVS::EncoderConfiguration"
         $($field $value)*)
     };
 }
@@ -531,7 +531,7 @@ pub struct IngestConfiguration_ {
 #[macro_export]
 macro_rules! __aws_ivs_IngestConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IVS::IngestConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::IVS::IngestConfiguration"
         $($field $value)*)
     };
 }
@@ -587,7 +587,7 @@ pub struct PlaybackKeyPair_ {
 #[macro_export]
 macro_rules! __aws_ivs_PlaybackKeyPair {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IVS::PlaybackKeyPair"
+        stratosphere::generator::construct_resource_type!("AWS::IVS::PlaybackKeyPair"
         $($field $value)*)
     };
 }
@@ -630,7 +630,7 @@ pub struct PlaybackRestrictionPolicy_ {
 #[macro_export]
 macro_rules! __aws_ivs_PlaybackRestrictionPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IVS::PlaybackRestrictionPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::IVS::PlaybackRestrictionPolicy"
         $($field $value)*)
     };
 }
@@ -683,7 +683,7 @@ pub struct PublicKey_ {
 #[macro_export]
 macro_rules! __aws_ivs_PublicKey {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IVS::PublicKey" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IVS::PublicKey" $($field
         $value)*)
     };
 }
@@ -729,7 +729,7 @@ pub struct RecordingConfiguration_ {
 #[macro_export]
 macro_rules! __aws_ivs_RecordingConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IVS::RecordingConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::IVS::RecordingConfiguration"
         $($field $value)*)
     };
 }
@@ -787,7 +787,7 @@ pub struct Stage_ {
 #[macro_export]
 macro_rules! __aws_ivs_Stage {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IVS::Stage" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IVS::Stage" $($field
         $value)*)
     };
 }
@@ -828,7 +828,7 @@ pub struct StorageConfiguration_ {
 #[macro_export]
 macro_rules! __aws_ivs_StorageConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IVS::StorageConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::IVS::StorageConfiguration"
         $($field $value)*)
     };
 }
@@ -863,7 +863,7 @@ pub struct StreamKey_ {
 #[macro_export]
 macro_rules! __aws_ivs_StreamKey {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IVS::StreamKey" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IVS::StreamKey" $($field
         $value)*)
     };
 }

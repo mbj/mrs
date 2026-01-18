@@ -7,7 +7,7 @@ pub mod association {
     #[macro_export]
     macro_rules! __aws_ssm_Association_InstanceAssociationOutputLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::Association.InstanceAssociationOutputLocation"
+            stratosphere::generator::construct_property_type!("AWS::SSM::Association.InstanceAssociationOutputLocation"
             $($field $value)*)
         };
     }
@@ -34,7 +34,7 @@ pub mod association {
     #[macro_export]
     macro_rules! __aws_ssm_Association_S3OutputLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::Association.S3OutputLocation"
+            stratosphere::generator::construct_property_type!("AWS::SSM::Association.S3OutputLocation"
             $($field $value)*)
         };
     }
@@ -72,7 +72,7 @@ pub mod association {
     #[macro_export]
     macro_rules! __aws_ssm_Association_Target {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::Association.Target"
+            stratosphere::generator::construct_property_type!("AWS::SSM::Association.Target"
             $($field $value)*)
         };
     }
@@ -103,7 +103,7 @@ pub mod document {
     #[macro_export]
     macro_rules! __aws_ssm_Document_AttachmentsSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::Document.AttachmentsSource"
+            stratosphere::generator::construct_property_type!("AWS::SSM::Document.AttachmentsSource"
             $($field $value)*)
         };
     }
@@ -132,7 +132,7 @@ pub mod document {
     #[macro_export]
     macro_rules! __aws_ssm_Document_DocumentRequires {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::Document.DocumentRequires"
+            stratosphere::generator::construct_property_type!("AWS::SSM::Document.DocumentRequires"
             $($field $value)*)
         };
     }
@@ -163,7 +163,7 @@ pub mod maintenancewindowtarget {
     #[macro_export]
     macro_rules! __aws_ssm_MaintenanceWindowTarget_Targets {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::MaintenanceWindowTarget.Targets"
+            stratosphere::generator::construct_property_type!("AWS::SSM::MaintenanceWindowTarget.Targets"
             $($field $value)*)
         };
     }
@@ -193,7 +193,7 @@ pub mod maintenancewindowtask {
     #[macro_export]
     macro_rules! __aws_ssm_MaintenanceWindowTask_CloudWatchOutputConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.CloudWatchOutputConfig"
+            stratosphere::generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.CloudWatchOutputConfig"
             $($field $value)*)
         };
     }
@@ -226,7 +226,7 @@ pub mod maintenancewindowtask {
     #[macro_export]
     macro_rules! __aws_ssm_MaintenanceWindowTask_LoggingInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.LoggingInfo"
+            stratosphere::generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.LoggingInfo"
             $($field $value)*)
         };
     }
@@ -260,7 +260,7 @@ pub mod maintenancewindowtask {
     #[macro_export]
     macro_rules! __aws_ssm_MaintenanceWindowTask_MaintenanceWindowAutomationParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.MaintenanceWindowAutomationParameters"
+            stratosphere::generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.MaintenanceWindowAutomationParameters"
             $($field $value)*)
         };
     }
@@ -293,7 +293,7 @@ pub mod maintenancewindowtask {
     #[macro_export]
     macro_rules! __aws_ssm_MaintenanceWindowTask_MaintenanceWindowLambdaParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.MaintenanceWindowLambdaParameters"
+            stratosphere::generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.MaintenanceWindowLambdaParameters"
             $($field $value)*)
         };
     }
@@ -340,7 +340,7 @@ pub mod maintenancewindowtask {
     #[macro_export]
     macro_rules! __aws_ssm_MaintenanceWindowTask_MaintenanceWindowRunCommandParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.MaintenanceWindowRunCommandParameters"
+            stratosphere::generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.MaintenanceWindowRunCommandParameters"
             $($field $value)*)
         };
     }
@@ -426,7 +426,7 @@ pub mod maintenancewindowtask {
     #[macro_export]
     macro_rules! __aws_ssm_MaintenanceWindowTask_MaintenanceWindowStepFunctionsParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.MaintenanceWindowStepFunctionsParameters"
+            stratosphere::generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.MaintenanceWindowStepFunctionsParameters"
             $($field $value)*)
         };
     }
@@ -453,7 +453,7 @@ pub mod maintenancewindowtask {
     #[macro_export]
     macro_rules! __aws_ssm_MaintenanceWindowTask_NotificationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.NotificationConfig"
+            stratosphere::generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.NotificationConfig"
             $($field $value)*)
         };
     }
@@ -489,7 +489,7 @@ pub mod maintenancewindowtask {
     #[macro_export]
     macro_rules! __aws_ssm_MaintenanceWindowTask_Target {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.Target"
+            stratosphere::generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.Target"
             $($field $value)*)
         };
     }
@@ -522,7 +522,7 @@ pub mod maintenancewindowtask {
     #[macro_export]
     macro_rules! __aws_ssm_MaintenanceWindowTask_TaskInvocationParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.TaskInvocationParameters"
+            stratosphere::generator::construct_property_type!("AWS::SSM::MaintenanceWindowTask.TaskInvocationParameters"
             $($field $value)*)
         };
     }
@@ -568,7 +568,7 @@ pub mod patchbaseline {
     #[macro_export]
     macro_rules! __aws_ssm_PatchBaseline_PatchFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::PatchBaseline.PatchFilter"
+            stratosphere::generator::construct_property_type!("AWS::SSM::PatchBaseline.PatchFilter"
             $($field $value)*)
         };
     }
@@ -593,7 +593,7 @@ pub mod patchbaseline {
     #[macro_export]
     macro_rules! __aws_ssm_PatchBaseline_PatchFilterGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::PatchBaseline.PatchFilterGroup"
+            stratosphere::generator::construct_property_type!("AWS::SSM::PatchBaseline.PatchFilterGroup"
             $($field $value)*)
         };
     }
@@ -620,7 +620,7 @@ pub mod patchbaseline {
     #[macro_export]
     macro_rules! __aws_ssm_PatchBaseline_PatchSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::PatchBaseline.PatchSource"
+            stratosphere::generator::construct_property_type!("AWS::SSM::PatchBaseline.PatchSource"
             $($field $value)*)
         };
     }
@@ -658,7 +658,7 @@ pub mod patchbaseline {
     #[macro_export]
     macro_rules! __aws_ssm_PatchBaseline_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::PatchBaseline.Rule"
+            stratosphere::generator::construct_property_type!("AWS::SSM::PatchBaseline.Rule"
             $($field $value)*)
         };
     }
@@ -707,7 +707,7 @@ pub mod patchbaseline {
     #[macro_export]
     macro_rules! __aws_ssm_PatchBaseline_RuleGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::PatchBaseline.RuleGroup"
+            stratosphere::generator::construct_property_type!("AWS::SSM::PatchBaseline.RuleGroup"
             $($field $value)*)
         };
     }
@@ -735,7 +735,7 @@ pub mod resourcedatasync {
     #[macro_export]
     macro_rules! __aws_ssm_ResourceDataSync_AwsOrganizationsSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::ResourceDataSync.AwsOrganizationsSource"
+            stratosphere::generator::construct_property_type!("AWS::SSM::ResourceDataSync.AwsOrganizationsSource"
             $($field $value)*)
         };
     }
@@ -768,7 +768,7 @@ pub mod resourcedatasync {
     #[macro_export]
     macro_rules! __aws_ssm_ResourceDataSync_S3Destination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::ResourceDataSync.S3Destination"
+            stratosphere::generator::construct_property_type!("AWS::SSM::ResourceDataSync.S3Destination"
             $($field $value)*)
         };
     }
@@ -814,7 +814,7 @@ pub mod resourcedatasync {
     #[macro_export]
     macro_rules! __aws_ssm_ResourceDataSync_SyncSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSM::ResourceDataSync.SyncSource"
+            stratosphere::generator::construct_property_type!("AWS::SSM::ResourceDataSync.SyncSource"
             $($field $value)*)
         };
     }
@@ -870,8 +870,8 @@ pub struct Association_ {
 #[macro_export]
 macro_rules! __aws_ssm_Association {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSM::Association" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::SSM::Association"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_ssm_Association as Association;
@@ -1006,7 +1006,7 @@ pub struct Document_ {
 #[macro_export]
 macro_rules! __aws_ssm_Document {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSM::Document" $($field
+        stratosphere::generator::construct_resource_type!("AWS::SSM::Document" $($field
         $value)*)
     };
 }
@@ -1095,7 +1095,7 @@ pub struct MaintenanceWindow_ {
 #[macro_export]
 macro_rules! __aws_ssm_MaintenanceWindow {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSM::MaintenanceWindow"
+        stratosphere::generator::construct_resource_type!("AWS::SSM::MaintenanceWindow"
         $($field $value)*)
     };
 }
@@ -1180,7 +1180,7 @@ pub struct MaintenanceWindowTarget_ {
 #[macro_export]
 macro_rules! __aws_ssm_MaintenanceWindowTarget {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSM::MaintenanceWindowTarget"
+        stratosphere::generator::construct_resource_type!("AWS::SSM::MaintenanceWindowTarget"
         $($field $value)*)
     };
 }
@@ -1248,7 +1248,7 @@ pub struct MaintenanceWindowTask_ {
 #[macro_export]
 macro_rules! __aws_ssm_MaintenanceWindowTask {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSM::MaintenanceWindowTask"
+        stratosphere::generator::construct_resource_type!("AWS::SSM::MaintenanceWindowTask"
         $($field $value)*)
     };
 }
@@ -1356,7 +1356,7 @@ pub struct Parameter_ {
 #[macro_export]
 macro_rules! __aws_ssm_Parameter {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSM::Parameter" $($field
+        stratosphere::generator::construct_resource_type!("AWS::SSM::Parameter" $($field
         $value)*)
     };
 }
@@ -1438,7 +1438,7 @@ pub struct PatchBaseline_ {
 #[macro_export]
 macro_rules! __aws_ssm_PatchBaseline {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSM::PatchBaseline"
+        stratosphere::generator::construct_resource_type!("AWS::SSM::PatchBaseline"
         $($field $value)*)
     };
 }
@@ -1558,7 +1558,7 @@ pub struct ResourceDataSync_ {
 #[macro_export]
 macro_rules! __aws_ssm_ResourceDataSync {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSM::ResourceDataSync"
+        stratosphere::generator::construct_resource_type!("AWS::SSM::ResourceDataSync"
         $($field $value)*)
     };
 }
@@ -1638,7 +1638,7 @@ pub struct ResourcePolicy_ {
 #[macro_export]
 macro_rules! __aws_ssm_ResourcePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSM::ResourcePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::SSM::ResourcePolicy"
         $($field $value)*)
     };
 }

@@ -8,7 +8,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_rbin_Rule_ResourceTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Rbin::Rule.ResourceTag"
+            stratosphere::generator::construct_property_type!("AWS::Rbin::Rule.ResourceTag"
             $($field $value)*)
         };
     }
@@ -36,7 +36,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_rbin_Rule_RetentionPeriod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Rbin::Rule.RetentionPeriod"
+            stratosphere::generator::construct_property_type!("AWS::Rbin::Rule.RetentionPeriod"
             $($field $value)*)
         };
     }
@@ -64,7 +64,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_rbin_Rule_UnlockDelay {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Rbin::Rule.UnlockDelay"
+            stratosphere::generator::construct_property_type!("AWS::Rbin::Rule.UnlockDelay"
             $($field $value)*)
         };
     }
@@ -103,7 +103,7 @@ pub struct Rule_ {
 #[macro_export]
 macro_rules! __aws_rbin_Rule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Rbin::Rule" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Rbin::Rule" $($field
         $value)*)
     };
 }

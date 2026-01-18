@@ -10,7 +10,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_Application {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.Application"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.Application"
             $($field $value)*)
         };
     }
@@ -48,7 +48,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_AutoScalingPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.AutoScalingPolicy"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.AutoScalingPolicy"
             $($field $value)*)
         };
     }
@@ -75,7 +75,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_AutoTerminationPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.AutoTerminationPolicy"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.AutoTerminationPolicy"
             $($field $value)*)
         };
     }
@@ -101,7 +101,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_BootstrapActionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.BootstrapActionConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.BootstrapActionConfig"
             $($field $value)*)
         };
     }
@@ -136,7 +136,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_CloudWatchAlarmDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.CloudWatchAlarmDefinition"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.CloudWatchAlarmDefinition"
             $($field $value)*)
         };
     }
@@ -202,7 +202,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_ComputeLimits {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.ComputeLimits"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.ComputeLimits"
             $($field $value)*)
         };
     }
@@ -248,7 +248,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.Configuration"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.Configuration"
             $($field $value)*)
         };
     }
@@ -286,7 +286,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_EbsBlockDeviceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.EbsBlockDeviceConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.EbsBlockDeviceConfig"
             $($field $value)*)
         };
     }
@@ -316,7 +316,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_EbsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.EbsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.EbsConfiguration"
             $($field $value)*)
         };
     }
@@ -350,7 +350,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_HadoopJarStepConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.HadoopJarStepConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.HadoopJarStepConfig"
             $($field $value)*)
         };
     }
@@ -393,7 +393,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_InstanceFleetConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.InstanceFleetConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.InstanceFleetConfig"
             $($field $value)*)
         };
     }
@@ -446,7 +446,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_InstanceFleetProvisioningSpecifications {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.InstanceFleetProvisioningSpecifications"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.InstanceFleetProvisioningSpecifications"
             $($field $value)*)
         };
     }
@@ -478,7 +478,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_InstanceFleetResizingSpecifications {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.InstanceFleetResizingSpecifications"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.InstanceFleetResizingSpecifications"
             $($field $value)*)
         };
     }
@@ -517,7 +517,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_InstanceGroupConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.InstanceGroupConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.InstanceGroupConfig"
             $($field $value)*)
         };
     }
@@ -587,7 +587,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_InstanceTypeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.InstanceTypeConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.InstanceTypeConfig"
             $($field $value)*)
         };
     }
@@ -670,7 +670,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_JobFlowInstancesConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.JobFlowInstancesConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.JobFlowInstancesConfig"
             $($field $value)*)
         };
     }
@@ -807,7 +807,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_KerberosAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.KerberosAttributes"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.KerberosAttributes"
             $($field $value)*)
         };
     }
@@ -853,7 +853,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_KeyValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.KeyValue"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.KeyValue"
             $($field $value)*)
         };
     }
@@ -880,7 +880,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_ManagedScalingPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.ManagedScalingPolicy"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.ManagedScalingPolicy"
             $($field $value)*)
         };
     }
@@ -918,7 +918,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_MetricDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.MetricDimension"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.MetricDimension"
             $($field $value)*)
         };
     }
@@ -947,7 +947,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_OnDemandCapacityReservationOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.OnDemandCapacityReservationOptions"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.OnDemandCapacityReservationOptions"
             $($field $value)*)
         };
     }
@@ -985,7 +985,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_OnDemandProvisioningSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.OnDemandProvisioningSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.OnDemandProvisioningSpecification"
             $($field $value)*)
         };
     }
@@ -1016,7 +1016,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_OnDemandResizingSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.OnDemandResizingSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.OnDemandResizingSpecification"
             $($field $value)*)
         };
     }
@@ -1054,7 +1054,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_PlacementGroupConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.PlacementGroupConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.PlacementGroupConfig"
             $($field $value)*)
         };
     }
@@ -1083,7 +1083,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_PlacementType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.PlacementType"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.PlacementType"
             $($field $value)*)
         };
     }
@@ -1107,7 +1107,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_ScalingAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.ScalingAction"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.ScalingAction"
             $($field $value)*)
         };
     }
@@ -1134,7 +1134,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_ScalingConstraints {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.ScalingConstraints"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.ScalingConstraints"
             $($field $value)*)
         };
     }
@@ -1164,7 +1164,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_ScalingRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.ScalingRule"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.ScalingRule"
             $($field $value)*)
         };
     }
@@ -1201,7 +1201,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_ScalingTrigger {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.ScalingTrigger"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.ScalingTrigger"
             $($field $value)*)
         };
     }
@@ -1225,7 +1225,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_ScriptBootstrapActionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.ScriptBootstrapActionConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.ScriptBootstrapActionConfig"
             $($field $value)*)
         };
     }
@@ -1253,7 +1253,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_SimpleScalingPolicyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.SimpleScalingPolicyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.SimpleScalingPolicyConfiguration"
             $($field $value)*)
         };
     }
@@ -1291,7 +1291,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_SpotProvisioningSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.SpotProvisioningSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.SpotProvisioningSpecification"
             $($field $value)*)
         };
     }
@@ -1331,7 +1331,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_SpotResizingSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.SpotResizingSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.SpotResizingSpecification"
             $($field $value)*)
         };
     }
@@ -1364,7 +1364,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_StepConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.StepConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.StepConfig"
             $($field $value)*)
         };
     }
@@ -1400,7 +1400,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_emr_Cluster_VolumeSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Cluster.VolumeSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Cluster.VolumeSpecification"
             $($field $value)*)
         };
     }
@@ -1441,7 +1441,7 @@ pub mod instancefleetconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceFleetConfig_Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.Configuration"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.Configuration"
             $($field $value)*)
         };
     }
@@ -1479,7 +1479,7 @@ pub mod instancefleetconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceFleetConfig_EbsBlockDeviceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.EbsBlockDeviceConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.EbsBlockDeviceConfig"
             $($field $value)*)
         };
     }
@@ -1509,7 +1509,7 @@ pub mod instancefleetconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceFleetConfig_EbsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.EbsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.EbsConfiguration"
             $($field $value)*)
         };
     }
@@ -1541,7 +1541,7 @@ pub mod instancefleetconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceFleetConfig_InstanceFleetProvisioningSpecifications {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.InstanceFleetProvisioningSpecifications"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.InstanceFleetProvisioningSpecifications"
             $($field $value)*)
         };
     }
@@ -1573,7 +1573,7 @@ pub mod instancefleetconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceFleetConfig_InstanceFleetResizingSpecifications {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.InstanceFleetResizingSpecifications"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.InstanceFleetResizingSpecifications"
             $($field $value)*)
         };
     }
@@ -1611,7 +1611,7 @@ pub mod instancefleetconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceFleetConfig_InstanceTypeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.InstanceTypeConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.InstanceTypeConfig"
             $($field $value)*)
         };
     }
@@ -1678,7 +1678,7 @@ pub mod instancefleetconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceFleetConfig_OnDemandCapacityReservationOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.OnDemandCapacityReservationOptions"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.OnDemandCapacityReservationOptions"
             $($field $value)*)
         };
     }
@@ -1716,7 +1716,7 @@ pub mod instancefleetconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceFleetConfig_OnDemandProvisioningSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.OnDemandProvisioningSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.OnDemandProvisioningSpecification"
             $($field $value)*)
         };
     }
@@ -1747,7 +1747,7 @@ pub mod instancefleetconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceFleetConfig_OnDemandResizingSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.OnDemandResizingSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.OnDemandResizingSpecification"
             $($field $value)*)
         };
     }
@@ -1787,7 +1787,7 @@ pub mod instancefleetconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceFleetConfig_SpotProvisioningSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.SpotProvisioningSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.SpotProvisioningSpecification"
             $($field $value)*)
         };
     }
@@ -1827,7 +1827,7 @@ pub mod instancefleetconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceFleetConfig_SpotResizingSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.SpotResizingSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.SpotResizingSpecification"
             $($field $value)*)
         };
     }
@@ -1861,7 +1861,7 @@ pub mod instancefleetconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceFleetConfig_VolumeSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.VolumeSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceFleetConfig.VolumeSpecification"
             $($field $value)*)
         };
     }
@@ -1900,7 +1900,7 @@ pub mod instancegroupconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceGroupConfig_AutoScalingPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.AutoScalingPolicy"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.AutoScalingPolicy"
             $($field $value)*)
         };
     }
@@ -1935,7 +1935,7 @@ pub mod instancegroupconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceGroupConfig_CloudWatchAlarmDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.CloudWatchAlarmDefinition"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.CloudWatchAlarmDefinition"
             $($field $value)*)
         };
     }
@@ -2000,7 +2000,7 @@ pub mod instancegroupconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceGroupConfig_Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.Configuration"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.Configuration"
             $($field $value)*)
         };
     }
@@ -2038,7 +2038,7 @@ pub mod instancegroupconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceGroupConfig_EbsBlockDeviceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.EbsBlockDeviceConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.EbsBlockDeviceConfig"
             $($field $value)*)
         };
     }
@@ -2068,7 +2068,7 @@ pub mod instancegroupconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceGroupConfig_EbsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.EbsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.EbsConfiguration"
             $($field $value)*)
         };
     }
@@ -2100,7 +2100,7 @@ pub mod instancegroupconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceGroupConfig_MetricDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.MetricDimension"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.MetricDimension"
             $($field $value)*)
         };
     }
@@ -2128,7 +2128,7 @@ pub mod instancegroupconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceGroupConfig_ScalingAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.ScalingAction"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.ScalingAction"
             $($field $value)*)
         };
     }
@@ -2155,7 +2155,7 @@ pub mod instancegroupconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceGroupConfig_ScalingConstraints {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.ScalingConstraints"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.ScalingConstraints"
             $($field $value)*)
         };
     }
@@ -2185,7 +2185,7 @@ pub mod instancegroupconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceGroupConfig_ScalingRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.ScalingRule"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.ScalingRule"
             $($field $value)*)
         };
     }
@@ -2222,7 +2222,7 @@ pub mod instancegroupconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceGroupConfig_ScalingTrigger {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.ScalingTrigger"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.ScalingTrigger"
             $($field $value)*)
         };
     }
@@ -2247,7 +2247,7 @@ pub mod instancegroupconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceGroupConfig_SimpleScalingPolicyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.SimpleScalingPolicyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.SimpleScalingPolicyConfiguration"
             $($field $value)*)
         };
     }
@@ -2285,7 +2285,7 @@ pub mod instancegroupconfig {
     #[macro_export]
     macro_rules! __aws_emr_InstanceGroupConfig_VolumeSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.VolumeSpecification"
+            stratosphere::generator::construct_property_type!("AWS::EMR::InstanceGroupConfig.VolumeSpecification"
             $($field $value)*)
         };
     }
@@ -2326,7 +2326,7 @@ pub mod step {
     #[macro_export]
     macro_rules! __aws_emr_Step_HadoopJarStepConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Step.HadoopJarStepConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Step.HadoopJarStepConfig"
             $($field $value)*)
         };
     }
@@ -2365,7 +2365,7 @@ pub mod step {
     #[macro_export]
     macro_rules! __aws_emr_Step_KeyValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMR::Step.KeyValue"
+            stratosphere::generator::construct_property_type!("AWS::EMR::Step.KeyValue"
             $($field $value)*)
         };
     }
@@ -2417,7 +2417,7 @@ pub struct Cluster_ {
 #[macro_export]
 macro_rules! __aws_emr_Cluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EMR::Cluster" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EMR::Cluster" $($field
         $value)*)
     };
 }
@@ -2598,7 +2598,7 @@ pub struct InstanceFleetConfig_ {
 #[macro_export]
 macro_rules! __aws_emr_InstanceFleetConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EMR::InstanceFleetConfig"
+        stratosphere::generator::construct_resource_type!("AWS::EMR::InstanceFleetConfig"
         $($field $value)*)
     };
 }
@@ -2676,7 +2676,7 @@ pub struct InstanceGroupConfig_ {
 #[macro_export]
 macro_rules! __aws_emr_InstanceGroupConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EMR::InstanceGroupConfig"
+        stratosphere::generator::construct_resource_type!("AWS::EMR::InstanceGroupConfig"
         $($field $value)*)
     };
 }
@@ -2756,7 +2756,7 @@ pub struct SecurityConfiguration_ {
 #[macro_export]
 macro_rules! __aws_emr_SecurityConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EMR::SecurityConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::EMR::SecurityConfiguration"
         $($field $value)*)
     };
 }
@@ -2793,7 +2793,7 @@ pub struct Step_ {
 #[macro_export]
 macro_rules! __aws_emr_Step {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EMR::Step" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EMR::Step" $($field
         $value)*)
     };
 }
@@ -2852,7 +2852,7 @@ pub struct Studio_ {
 #[macro_export]
 macro_rules! __aws_emr_Studio {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EMR::Studio" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EMR::Studio" $($field
         $value)*)
     };
 }
@@ -2965,7 +2965,7 @@ pub struct StudioSessionMapping_ {
 #[macro_export]
 macro_rules! __aws_emr_StudioSessionMapping {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EMR::StudioSessionMapping"
+        stratosphere::generator::construct_resource_type!("AWS::EMR::StudioSessionMapping"
         $($field $value)*)
     };
 }
@@ -3009,7 +3009,7 @@ pub struct WALWorkspace_ {
 #[macro_export]
 macro_rules! __aws_emr_WALWorkspace {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EMR::WALWorkspace"
+        stratosphere::generator::construct_resource_type!("AWS::EMR::WALWorkspace"
         $($field $value)*)
     };
 }

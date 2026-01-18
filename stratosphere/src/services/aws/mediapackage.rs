@@ -8,7 +8,7 @@ pub mod asset {
     #[macro_export]
     macro_rules! __aws_mediapackage_Asset_EgressEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::Asset.EgressEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::Asset.EgressEndpoint"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_mediapackage_Channel_HlsIngest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::Channel.HlsIngest"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::Channel.HlsIngest"
             $($field $value)*)
         };
     }
@@ -65,7 +65,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_mediapackage_Channel_IngestEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::Channel.IngestEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::Channel.IngestEndpoint"
             $($field $value)*)
         };
     }
@@ -97,7 +97,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_mediapackage_Channel_LogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::Channel.LogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::Channel.LogConfiguration"
             $($field $value)*)
         };
     }
@@ -125,7 +125,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackage_OriginEndpoint_Authorization {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.Authorization"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.Authorization"
             $($field $value)*)
         };
     }
@@ -155,7 +155,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackage_OriginEndpoint_CmafEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.CmafEncryption"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.CmafEncryption"
             $($field $value)*)
         };
     }
@@ -200,7 +200,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackage_OriginEndpoint_CmafPackage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.CmafPackage"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.CmafPackage"
             $($field $value)*)
         };
     }
@@ -250,7 +250,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackage_OriginEndpoint_DashEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.DashEncryption"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.DashEncryption"
             $($field $value)*)
         };
     }
@@ -294,7 +294,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackage_OriginEndpoint_DashPackage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.DashPackage"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.DashPackage"
             $($field $value)*)
         };
     }
@@ -407,7 +407,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackage_OriginEndpoint_EncryptionContractConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.EncryptionContractConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.EncryptionContractConfiguration"
             $($field $value)*)
         };
     }
@@ -429,7 +429,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackage_OriginEndpoint_HlsEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.HlsEncryption"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.HlsEncryption"
             $($field $value)*)
         };
     }
@@ -485,7 +485,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackage_OriginEndpoint_HlsManifest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.HlsManifest"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.HlsManifest"
             $($field $value)*)
         };
     }
@@ -567,7 +567,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackage_OriginEndpoint_HlsPackage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.HlsPackage"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.HlsPackage"
             $($field $value)*)
         };
     }
@@ -658,7 +658,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackage_OriginEndpoint_MssEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.MssEncryption"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.MssEncryption"
             $($field $value)*)
         };
     }
@@ -684,7 +684,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackage_OriginEndpoint_MssPackage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.MssPackage"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.MssPackage"
             $($field $value)*)
         };
     }
@@ -732,7 +732,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackage_OriginEndpoint_SpekeKeyProvider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.SpekeKeyProvider"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.SpekeKeyProvider"
             $($field $value)*)
         };
     }
@@ -781,7 +781,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackage_OriginEndpoint_StreamSelection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.StreamSelection"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::OriginEndpoint.StreamSelection"
             $($field $value)*)
         };
     }
@@ -820,7 +820,7 @@ pub mod packagingconfiguration {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingConfiguration_CmafEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.CmafEncryption"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.CmafEncryption"
             $($field $value)*)
         };
     }
@@ -846,7 +846,7 @@ pub mod packagingconfiguration {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingConfiguration_CmafPackage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.CmafPackage"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.CmafPackage"
             $($field $value)*)
         };
     }
@@ -887,7 +887,7 @@ pub mod packagingconfiguration {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingConfiguration_DashEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.DashEncryption"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.DashEncryption"
             $($field $value)*)
         };
     }
@@ -915,7 +915,7 @@ pub mod packagingconfiguration {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingConfiguration_DashManifest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.DashManifest"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.DashManifest"
             $($field $value)*)
         };
     }
@@ -976,7 +976,7 @@ pub mod packagingconfiguration {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingConfiguration_DashPackage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.DashPackage"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.DashPackage"
             $($field $value)*)
         };
     }
@@ -1036,7 +1036,7 @@ pub mod packagingconfiguration {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingConfiguration_EncryptionContractConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.EncryptionContractConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.EncryptionContractConfiguration"
             $($field $value)*)
         };
     }
@@ -1065,7 +1065,7 @@ pub mod packagingconfiguration {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingConfiguration_HlsEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.HlsEncryption"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.HlsEncryption"
             $($field $value)*)
         };
     }
@@ -1105,7 +1105,7 @@ pub mod packagingconfiguration {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingConfiguration_HlsManifest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.HlsManifest"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.HlsManifest"
             $($field $value)*)
         };
     }
@@ -1164,7 +1164,7 @@ pub mod packagingconfiguration {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingConfiguration_HlsPackage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.HlsPackage"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.HlsPackage"
             $($field $value)*)
         };
     }
@@ -1211,7 +1211,7 @@ pub mod packagingconfiguration {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingConfiguration_MssEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.MssEncryption"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.MssEncryption"
             $($field $value)*)
         };
     }
@@ -1235,7 +1235,7 @@ pub mod packagingconfiguration {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingConfiguration_MssManifest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.MssManifest"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.MssManifest"
             $($field $value)*)
         };
     }
@@ -1268,7 +1268,7 @@ pub mod packagingconfiguration {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingConfiguration_MssPackage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.MssPackage"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.MssPackage"
             $($field $value)*)
         };
     }
@@ -1306,7 +1306,7 @@ pub mod packagingconfiguration {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingConfiguration_SpekeKeyProvider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.SpekeKeyProvider"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.SpekeKeyProvider"
             $($field $value)*)
         };
     }
@@ -1345,7 +1345,7 @@ pub mod packagingconfiguration {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingConfiguration_StreamSelection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.StreamSelection"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingConfiguration.StreamSelection"
             $($field $value)*)
         };
     }
@@ -1385,7 +1385,7 @@ pub mod packaginggroup {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingGroup_Authorization {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingGroup.Authorization"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingGroup.Authorization"
             $($field $value)*)
         };
     }
@@ -1412,7 +1412,7 @@ pub mod packaginggroup {
     #[macro_export]
     macro_rules! __aws_mediapackage_PackagingGroup_LogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackage::PackagingGroup.LogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackage::PackagingGroup.LogConfiguration"
             $($field $value)*)
         };
     }
@@ -1444,7 +1444,7 @@ pub struct Asset_ {
 #[macro_export]
 macro_rules! __aws_mediapackage_Asset {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaPackage::Asset"
+        stratosphere::generator::construct_resource_type!("AWS::MediaPackage::Asset"
         $($field $value)*)
     };
 }
@@ -1504,7 +1504,7 @@ pub struct Channel_ {
 #[macro_export]
 macro_rules! __aws_mediapackage_Channel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaPackage::Channel"
+        stratosphere::generator::construct_resource_type!("AWS::MediaPackage::Channel"
         $($field $value)*)
     };
 }
@@ -1572,7 +1572,7 @@ pub struct OriginEndpoint_ {
 #[macro_export]
 macro_rules! __aws_mediapackage_OriginEndpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaPackage::OriginEndpoint"
+        stratosphere::generator::construct_resource_type!("AWS::MediaPackage::OriginEndpoint"
         $($field $value)*)
     };
 }
@@ -1679,7 +1679,7 @@ pub struct PackagingConfiguration_ {
 #[macro_export]
 macro_rules! __aws_mediapackage_PackagingConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaPackage::PackagingConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::MediaPackage::PackagingConfiguration"
         $($field $value)*)
     };
 }
@@ -1741,7 +1741,7 @@ pub struct PackagingGroup_ {
 #[macro_export]
 macro_rules! __aws_mediapackage_PackagingGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaPackage::PackagingGroup"
+        stratosphere::generator::construct_resource_type!("AWS::MediaPackage::PackagingGroup"
         $($field $value)*)
     };
 }

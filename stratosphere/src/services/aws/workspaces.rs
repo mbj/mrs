@@ -10,7 +10,7 @@ pub mod connectionalias {
     #[macro_export]
     macro_rules! __aws_workspaces_ConnectionAlias_ConnectionAliasAssociation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpaces::ConnectionAlias.ConnectionAliasAssociation"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpaces::ConnectionAlias.ConnectionAliasAssociation"
             $($field $value)*)
         };
     }
@@ -59,7 +59,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_workspaces_Workspace_WorkspaceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpaces::Workspace.WorkspaceProperties"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpaces::Workspace.WorkspaceProperties"
             $($field $value)*)
         };
     }
@@ -111,7 +111,7 @@ pub mod workspacespool {
     #[macro_export]
     macro_rules! __aws_workspaces_WorkspacesPool_ApplicationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpaces::WorkspacesPool.ApplicationSettings"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpaces::WorkspacesPool.ApplicationSettings"
             $($field $value)*)
         };
     }
@@ -140,7 +140,7 @@ pub mod workspacespool {
     #[macro_export]
     macro_rules! __aws_workspaces_WorkspacesPool_Capacity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpaces::WorkspacesPool.Capacity"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpaces::WorkspacesPool.Capacity"
             $($field $value)*)
         };
     }
@@ -165,7 +165,7 @@ pub mod workspacespool {
     #[macro_export]
     macro_rules! __aws_workspaces_WorkspacesPool_TimeoutSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpaces::WorkspacesPool.TimeoutSettings"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpaces::WorkspacesPool.TimeoutSettings"
             $($field $value)*)
         };
     }
@@ -204,7 +204,7 @@ pub struct ConnectionAlias_ {
 #[macro_export]
 macro_rules! __aws_workspaces_ConnectionAlias {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkSpaces::ConnectionAlias"
+        stratosphere::generator::construct_resource_type!("AWS::WorkSpaces::ConnectionAlias"
         $($field $value)*)
     };
 }
@@ -245,7 +245,7 @@ pub struct Workspace_ {
 #[macro_export]
 macro_rules! __aws_workspaces_Workspace {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkSpaces::Workspace"
+        stratosphere::generator::construct_resource_type!("AWS::WorkSpaces::Workspace"
         $($field $value)*)
     };
 }
@@ -318,7 +318,7 @@ pub struct WorkspacesPool_ {
 #[macro_export]
 macro_rules! __aws_workspaces_WorkspacesPool {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkSpaces::WorkspacesPool"
+        stratosphere::generator::construct_resource_type!("AWS::WorkSpaces::WorkspacesPool"
         $($field $value)*)
     };
 }

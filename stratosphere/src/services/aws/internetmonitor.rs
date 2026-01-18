@@ -10,7 +10,7 @@ pub mod monitor {
     #[macro_export]
     macro_rules! __aws_internetmonitor_Monitor_HealthEventsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InternetMonitor::Monitor.HealthEventsConfig"
+            stratosphere::generator::construct_property_type!("AWS::InternetMonitor::Monitor.HealthEventsConfig"
             $($field $value)*)
         };
     }
@@ -53,7 +53,7 @@ pub mod monitor {
     #[macro_export]
     macro_rules! __aws_internetmonitor_Monitor_InternetMeasurementsLogDelivery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InternetMonitor::Monitor.InternetMeasurementsLogDelivery"
+            stratosphere::generator::construct_property_type!("AWS::InternetMonitor::Monitor.InternetMeasurementsLogDelivery"
             $($field $value)*)
         };
     }
@@ -80,7 +80,7 @@ pub mod monitor {
     #[macro_export]
     macro_rules! __aws_internetmonitor_Monitor_LocalHealthEventsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InternetMonitor::Monitor.LocalHealthEventsConfig"
+            stratosphere::generator::construct_property_type!("AWS::InternetMonitor::Monitor.LocalHealthEventsConfig"
             $($field $value)*)
         };
     }
@@ -116,7 +116,7 @@ pub mod monitor {
     #[macro_export]
     macro_rules! __aws_internetmonitor_Monitor_S3Config {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InternetMonitor::Monitor.S3Config"
+            stratosphere::generator::construct_property_type!("AWS::InternetMonitor::Monitor.S3Config"
             $($field $value)*)
         };
     }
@@ -166,7 +166,7 @@ pub struct Monitor_ {
 #[macro_export]
 macro_rules! __aws_internetmonitor_Monitor {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::InternetMonitor::Monitor"
+        stratosphere::generator::construct_resource_type!("AWS::InternetMonitor::Monitor"
         $($field $value)*)
     };
 }

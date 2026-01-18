@@ -9,7 +9,7 @@ pub struct Connection_ {
 #[macro_export]
 macro_rules! __aws_codeconnections_Connection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeConnections::Connection"
+        stratosphere::generator::construct_resource_type!("AWS::CodeConnections::Connection"
         $($field $value)*)
     };
 }

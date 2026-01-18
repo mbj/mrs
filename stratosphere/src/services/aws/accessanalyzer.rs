@@ -7,7 +7,7 @@ pub mod analyzer {
     #[macro_export]
     macro_rules! __aws_accessanalyzer_Analyzer_AnalysisRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.AnalysisRule"
+            stratosphere::generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.AnalysisRule"
             $($field $value)*)
         };
     }
@@ -33,7 +33,7 @@ pub mod analyzer {
     #[macro_export]
     macro_rules! __aws_accessanalyzer_Analyzer_AnalysisRuleCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.AnalysisRuleCriteria"
+            stratosphere::generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.AnalysisRuleCriteria"
             $($field $value)*)
         };
     }
@@ -65,7 +65,7 @@ pub mod analyzer {
     #[macro_export]
     macro_rules! __aws_accessanalyzer_Analyzer_AnalyzerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.AnalyzerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.AnalyzerConfiguration"
             $($field $value)*)
         };
     }
@@ -97,7 +97,7 @@ pub mod analyzer {
     #[macro_export]
     macro_rules! __aws_accessanalyzer_Analyzer_ArchiveRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.ArchiveRule"
+            stratosphere::generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.ArchiveRule"
             $($field $value)*)
         };
     }
@@ -128,7 +128,7 @@ pub mod analyzer {
     #[macro_export]
     macro_rules! __aws_accessanalyzer_Analyzer_Filter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.Filter"
+            stratosphere::generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.Filter"
             $($field $value)*)
         };
     }
@@ -166,7 +166,7 @@ pub mod analyzer {
     #[macro_export]
     macro_rules! __aws_accessanalyzer_Analyzer_InternalAccessAnalysisRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.InternalAccessAnalysisRule"
+            stratosphere::generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.InternalAccessAnalysisRule"
             $($field $value)*)
         };
     }
@@ -193,7 +193,7 @@ pub mod analyzer {
     #[macro_export]
     macro_rules! __aws_accessanalyzer_Analyzer_InternalAccessAnalysisRuleCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.InternalAccessAnalysisRuleCriteria"
+            stratosphere::generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.InternalAccessAnalysisRuleCriteria"
             $($field $value)*)
         };
     }
@@ -230,7 +230,7 @@ pub mod analyzer {
     #[macro_export]
     macro_rules! __aws_accessanalyzer_Analyzer_InternalAccessConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.InternalAccessConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.InternalAccessConfiguration"
             $($field $value)*)
         };
     }
@@ -256,7 +256,7 @@ pub mod analyzer {
     #[macro_export]
     macro_rules! __aws_accessanalyzer_Analyzer_UnusedAccessConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.UnusedAccessConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AccessAnalyzer::Analyzer.UnusedAccessConfiguration"
             $($field $value)*)
         };
     }
@@ -292,7 +292,7 @@ pub struct Analyzer_ {
 #[macro_export]
 macro_rules! __aws_accessanalyzer_Analyzer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AccessAnalyzer::Analyzer"
+        stratosphere::generator::construct_resource_type!("AWS::AccessAnalyzer::Analyzer"
         $($field $value)*)
     };
 }

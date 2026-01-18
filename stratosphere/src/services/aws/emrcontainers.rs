@@ -7,7 +7,7 @@ pub mod virtualcluster {
     #[macro_export]
     macro_rules! __aws_emrcontainers_VirtualCluster_ContainerInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRContainers::VirtualCluster.ContainerInfo"
+            stratosphere::generator::construct_property_type!("AWS::EMRContainers::VirtualCluster.ContainerInfo"
             $($field $value)*)
         };
     }
@@ -32,7 +32,7 @@ pub mod virtualcluster {
     #[macro_export]
     macro_rules! __aws_emrcontainers_VirtualCluster_ContainerProvider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRContainers::VirtualCluster.ContainerProvider"
+            stratosphere::generator::construct_property_type!("AWS::EMRContainers::VirtualCluster.ContainerProvider"
             $($field $value)*)
         };
     }
@@ -60,7 +60,7 @@ pub mod virtualcluster {
     #[macro_export]
     macro_rules! __aws_emrcontainers_VirtualCluster_EksInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRContainers::VirtualCluster.EksInfo"
+            stratosphere::generator::construct_property_type!("AWS::EMRContainers::VirtualCluster.EksInfo"
             $($field $value)*)
         };
     }
@@ -87,7 +87,7 @@ pub struct VirtualCluster_ {
 #[macro_export]
 macro_rules! __aws_emrcontainers_VirtualCluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EMRContainers::VirtualCluster"
+        stratosphere::generator::construct_resource_type!("AWS::EMRContainers::VirtualCluster"
         $($field $value)*)
     };
 }

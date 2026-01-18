@@ -8,7 +8,7 @@ pub mod environmentec2 {
     #[macro_export]
     macro_rules! __aws_cloud9_EnvironmentEC2_Repository {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cloud9::EnvironmentEC2.Repository"
+            stratosphere::generator::construct_property_type!("AWS::Cloud9::EnvironmentEC2.Repository"
             $($field $value)*)
         };
     }
@@ -45,7 +45,7 @@ pub struct EnvironmentEC2_ {
 #[macro_export]
 macro_rules! __aws_cloud9_EnvironmentEC2 {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cloud9::EnvironmentEC2"
+        stratosphere::generator::construct_resource_type!("AWS::Cloud9::EnvironmentEC2"
         $($field $value)*)
     };
 }

@@ -8,7 +8,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_ApplicationCodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ApplicationCodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ApplicationCodeConfiguration"
             $($field $value)*)
         };
     }
@@ -44,7 +44,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_ApplicationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ApplicationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ApplicationConfiguration"
             $($field $value)*)
         };
     }
@@ -118,7 +118,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_ApplicationEncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ApplicationEncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ApplicationEncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -144,7 +144,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_ApplicationMaintenanceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ApplicationMaintenanceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ApplicationMaintenanceConfiguration"
             $($field $value)*)
         };
     }
@@ -168,7 +168,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_ApplicationRestoreConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ApplicationRestoreConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ApplicationRestoreConfiguration"
             $($field $value)*)
         };
     }
@@ -197,7 +197,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_ApplicationSnapshotConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ApplicationSnapshotConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ApplicationSnapshotConfiguration"
             $($field $value)*)
         };
     }
@@ -220,7 +220,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_ApplicationSystemRollbackConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ApplicationSystemRollbackConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ApplicationSystemRollbackConfiguration"
             $($field $value)*)
         };
     }
@@ -244,7 +244,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_CSVMappingParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.CSVMappingParameters"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.CSVMappingParameters"
             $($field $value)*)
         };
     }
@@ -271,7 +271,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_CatalogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.CatalogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.CatalogConfiguration"
             $($field $value)*)
         };
     }
@@ -299,7 +299,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_CheckpointConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.CheckpointConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.CheckpointConfiguration"
             $($field $value)*)
         };
     }
@@ -342,7 +342,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_CodeContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.CodeContent"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.CodeContent"
             $($field $value)*)
         };
     }
@@ -381,7 +381,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_CustomArtifactConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.CustomArtifactConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.CustomArtifactConfiguration"
             $($field $value)*)
         };
     }
@@ -416,7 +416,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_DeployAsApplicationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.DeployAsApplicationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.DeployAsApplicationConfiguration"
             $($field $value)*)
         };
     }
@@ -439,7 +439,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_EnvironmentProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.EnvironmentProperties"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.EnvironmentProperties"
             $($field $value)*)
         };
     }
@@ -466,7 +466,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_FlinkApplicationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.FlinkApplicationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.FlinkApplicationConfiguration"
             $($field $value)*)
         };
     }
@@ -503,7 +503,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_FlinkRunConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.FlinkRunConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.FlinkRunConfiguration"
             $($field $value)*)
         };
     }
@@ -528,7 +528,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_GlueDataCatalogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.GlueDataCatalogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.GlueDataCatalogConfiguration"
             $($field $value)*)
         };
     }
@@ -558,7 +558,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_Input {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.Input"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.Input"
             $($field $value)*)
         };
     }
@@ -609,7 +609,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_InputLambdaProcessor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.InputLambdaProcessor"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.InputLambdaProcessor"
             $($field $value)*)
         };
     }
@@ -632,7 +632,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_InputParallelism {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.InputParallelism"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.InputParallelism"
             $($field $value)*)
         };
     }
@@ -654,7 +654,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_InputProcessingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.InputProcessingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.InputProcessingConfiguration"
             $($field $value)*)
         };
     }
@@ -681,7 +681,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_InputSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.InputSchema"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.InputSchema"
             $($field $value)*)
         };
     }
@@ -714,7 +714,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_JSONMappingParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.JSONMappingParameters"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.JSONMappingParameters"
             $($field $value)*)
         };
     }
@@ -737,7 +737,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_KinesisFirehoseInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.KinesisFirehoseInput"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.KinesisFirehoseInput"
             $($field $value)*)
         };
     }
@@ -760,7 +760,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_KinesisStreamsInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.KinesisStreamsInput"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.KinesisStreamsInput"
             $($field $value)*)
         };
     }
@@ -784,7 +784,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_MappingParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.MappingParameters"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.MappingParameters"
             $($field $value)*)
         };
     }
@@ -817,7 +817,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_MavenReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.MavenReference"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.MavenReference"
             $($field $value)*)
         };
     }
@@ -850,7 +850,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_MonitoringConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.MonitoringConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.MonitoringConfiguration"
             $($field $value)*)
         };
     }
@@ -888,7 +888,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_ParallelismConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ParallelismConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ParallelismConfiguration"
             $($field $value)*)
         };
     }
@@ -930,7 +930,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_PropertyGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.PropertyGroup"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.PropertyGroup"
             $($field $value)*)
         };
     }
@@ -963,7 +963,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_RecordColumn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.RecordColumn"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.RecordColumn"
             $($field $value)*)
         };
     }
@@ -997,7 +997,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_RecordFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.RecordFormat"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.RecordFormat"
             $($field $value)*)
         };
     }
@@ -1027,7 +1027,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_RunConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.RunConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.RunConfiguration"
             $($field $value)*)
         };
     }
@@ -1059,7 +1059,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_S3ContentBaseLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.S3ContentBaseLocation"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.S3ContentBaseLocation"
             $($field $value)*)
         };
     }
@@ -1090,7 +1090,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_S3ContentLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.S3ContentLocation"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.S3ContentLocation"
             $($field $value)*)
         };
     }
@@ -1123,7 +1123,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_SqlApplicationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.SqlApplicationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.SqlApplicationConfiguration"
             $($field $value)*)
         };
     }
@@ -1146,7 +1146,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_VpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.VpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.VpcConfiguration"
             $($field $value)*)
         };
     }
@@ -1176,7 +1176,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_ZeppelinApplicationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ZeppelinApplicationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ZeppelinApplicationConfiguration"
             $($field $value)*)
         };
     }
@@ -1219,7 +1219,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_Application_ZeppelinMonitoringConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ZeppelinMonitoringConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::Application.ZeppelinMonitoringConfiguration"
             $($field $value)*)
         };
     }
@@ -1246,7 +1246,7 @@ pub mod applicationcloudwatchloggingoption {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_ApplicationCloudWatchLoggingOption_CloudWatchLoggingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationCloudWatchLoggingOption.CloudWatchLoggingOption"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationCloudWatchLoggingOption.CloudWatchLoggingOption"
             $($field $value)*)
         };
     }
@@ -1271,7 +1271,7 @@ pub mod applicationoutput {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_ApplicationOutput_DestinationSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationOutput.DestinationSchema"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationOutput.DestinationSchema"
             $($field $value)*)
         };
     }
@@ -1296,7 +1296,7 @@ pub mod applicationoutput {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_ApplicationOutput_KinesisFirehoseOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationOutput.KinesisFirehoseOutput"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationOutput.KinesisFirehoseOutput"
             $($field $value)*)
         };
     }
@@ -1319,7 +1319,7 @@ pub mod applicationoutput {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_ApplicationOutput_KinesisStreamsOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationOutput.KinesisStreamsOutput"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationOutput.KinesisStreamsOutput"
             $($field $value)*)
         };
     }
@@ -1342,7 +1342,7 @@ pub mod applicationoutput {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_ApplicationOutput_LambdaOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationOutput.LambdaOutput"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationOutput.LambdaOutput"
             $($field $value)*)
         };
     }
@@ -1369,7 +1369,7 @@ pub mod applicationoutput {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_ApplicationOutput_Output {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationOutput.Output"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationOutput.Output"
             $($field $value)*)
         };
     }
@@ -1416,7 +1416,7 @@ pub mod applicationreferencedatasource {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_ApplicationReferenceDataSource_CSVMappingParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.CSVMappingParameters"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.CSVMappingParameters"
             $($field $value)*)
         };
     }
@@ -1443,7 +1443,7 @@ pub mod applicationreferencedatasource {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_ApplicationReferenceDataSource_JSONMappingParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.JSONMappingParameters"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.JSONMappingParameters"
             $($field $value)*)
         };
     }
@@ -1467,7 +1467,7 @@ pub mod applicationreferencedatasource {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_ApplicationReferenceDataSource_MappingParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.MappingParameters"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.MappingParameters"
             $($field $value)*)
         };
     }
@@ -1500,7 +1500,7 @@ pub mod applicationreferencedatasource {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_ApplicationReferenceDataSource_RecordColumn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.RecordColumn"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.RecordColumn"
             $($field $value)*)
         };
     }
@@ -1534,7 +1534,7 @@ pub mod applicationreferencedatasource {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_ApplicationReferenceDataSource_RecordFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.RecordFormat"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.RecordFormat"
             $($field $value)*)
         };
     }
@@ -1565,7 +1565,7 @@ pub mod applicationreferencedatasource {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_ApplicationReferenceDataSource_ReferenceDataSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.ReferenceDataSource"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.ReferenceDataSource"
             $($field $value)*)
         };
     }
@@ -1602,7 +1602,7 @@ pub mod applicationreferencedatasource {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_ApplicationReferenceDataSource_ReferenceSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.ReferenceSchema"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.ReferenceSchema"
             $($field $value)*)
         };
     }
@@ -1636,7 +1636,7 @@ pub mod applicationreferencedatasource {
     #[macro_export]
     macro_rules! __aws_kinesisanalyticsv2_ApplicationReferenceDataSource_S3ReferenceDataSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.S3ReferenceDataSource"
+            stratosphere::generator::construct_property_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource.S3ReferenceDataSource"
             $($field $value)*)
         };
     }
@@ -1674,7 +1674,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_kinesisanalyticsv2_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::KinesisAnalyticsV2::Application"
+        stratosphere::generator::construct_resource_type!("AWS::KinesisAnalyticsV2::Application"
         $($field $value)*)
     };
 }
@@ -1750,7 +1750,7 @@ pub struct ApplicationCloudWatchLoggingOption_ {
 #[macro_export]
 macro_rules! __aws_kinesisanalyticsv2_ApplicationCloudWatchLoggingOption {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::KinesisAnalyticsV2::ApplicationCloudWatchLoggingOption"
+        stratosphere::generator::construct_resource_type!("AWS::KinesisAnalyticsV2::ApplicationCloudWatchLoggingOption"
         $($field $value)*)
     };
 }
@@ -1788,7 +1788,7 @@ pub struct ApplicationOutput_ {
 #[macro_export]
 macro_rules! __aws_kinesisanalyticsv2_ApplicationOutput {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::KinesisAnalyticsV2::ApplicationOutput"
+        stratosphere::generator::construct_resource_type!("AWS::KinesisAnalyticsV2::ApplicationOutput"
         $($field $value)*)
     };
 }
@@ -1825,7 +1825,7 @@ pub struct ApplicationReferenceDataSource_ {
 #[macro_export]
 macro_rules! __aws_kinesisanalyticsv2_ApplicationReferenceDataSource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource"
+        stratosphere::generator::construct_resource_type!("AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource"
         $($field $value)*)
     };
 }

@@ -16,7 +16,7 @@ pub mod appmonitor {
     #[macro_export]
     macro_rules! __aws_rum_AppMonitor_AppMonitorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RUM::AppMonitor.AppMonitorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::RUM::AppMonitor.AppMonitorConfiguration"
             $($field $value)*)
         };
     }
@@ -95,7 +95,7 @@ pub mod appmonitor {
     #[macro_export]
     macro_rules! __aws_rum_AppMonitor_CustomEvents {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RUM::AppMonitor.CustomEvents"
+            stratosphere::generator::construct_property_type!("AWS::RUM::AppMonitor.CustomEvents"
             $($field $value)*)
         };
     }
@@ -117,7 +117,7 @@ pub mod appmonitor {
     #[macro_export]
     macro_rules! __aws_rum_AppMonitor_DeobfuscationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RUM::AppMonitor.DeobfuscationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::RUM::AppMonitor.DeobfuscationConfiguration"
             $($field $value)*)
         };
     }
@@ -143,7 +143,7 @@ pub mod appmonitor {
     #[macro_export]
     macro_rules! __aws_rum_AppMonitor_JavaScriptSourceMaps {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RUM::AppMonitor.JavaScriptSourceMaps"
+            stratosphere::generator::construct_property_type!("AWS::RUM::AppMonitor.JavaScriptSourceMaps"
             $($field $value)*)
         };
     }
@@ -174,7 +174,7 @@ pub mod appmonitor {
     #[macro_export]
     macro_rules! __aws_rum_AppMonitor_MetricDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RUM::AppMonitor.MetricDefinition"
+            stratosphere::generator::construct_property_type!("AWS::RUM::AppMonitor.MetricDefinition"
             $($field $value)*)
         };
     }
@@ -230,7 +230,7 @@ pub mod appmonitor {
     #[macro_export]
     macro_rules! __aws_rum_AppMonitor_MetricDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RUM::AppMonitor.MetricDestination"
+            stratosphere::generator::construct_property_type!("AWS::RUM::AppMonitor.MetricDestination"
             $($field $value)*)
         };
     }
@@ -272,7 +272,7 @@ pub mod appmonitor {
     #[macro_export]
     macro_rules! __aws_rum_AppMonitor_ResourcePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RUM::AppMonitor.ResourcePolicy"
+            stratosphere::generator::construct_property_type!("AWS::RUM::AppMonitor.ResourcePolicy"
             $($field $value)*)
         };
     }
@@ -310,7 +310,7 @@ pub struct AppMonitor_ {
 #[macro_export]
 macro_rules! __aws_rum_AppMonitor {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RUM::AppMonitor" $($field
+        stratosphere::generator::construct_resource_type!("AWS::RUM::AppMonitor" $($field
         $value)*)
     };
 }

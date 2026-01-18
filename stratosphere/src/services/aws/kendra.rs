@@ -7,7 +7,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_AccessControlListConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.AccessControlListConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.AccessControlListConfiguration"
             $($field $value)*)
         };
     }
@@ -32,7 +32,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_AclConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.AclConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.AclConfiguration"
             $($field $value)*)
         };
     }
@@ -59,7 +59,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ColumnConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ColumnConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ColumnConfiguration"
             $($field $value)*)
         };
     }
@@ -103,7 +103,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ConfluenceAttachmentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ConfluenceAttachmentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ConfluenceAttachmentConfiguration"
             $($field $value)*)
         };
     }
@@ -136,7 +136,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ConfluenceAttachmentToIndexFieldMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ConfluenceAttachmentToIndexFieldMapping"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ConfluenceAttachmentToIndexFieldMapping"
             $($field $value)*)
         };
     }
@@ -169,7 +169,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ConfluenceBlogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ConfluenceBlogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ConfluenceBlogConfiguration"
             $($field $value)*)
         };
     }
@@ -196,7 +196,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ConfluenceBlogToIndexFieldMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ConfluenceBlogToIndexFieldMapping"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ConfluenceBlogToIndexFieldMapping"
             $($field $value)*)
         };
     }
@@ -238,7 +238,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ConfluenceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ConfluenceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ConfluenceConfiguration"
             $($field $value)*)
         };
     }
@@ -311,7 +311,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ConfluencePageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ConfluencePageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ConfluencePageConfiguration"
             $($field $value)*)
         };
     }
@@ -338,7 +338,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ConfluencePageToIndexFieldMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ConfluencePageToIndexFieldMapping"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ConfluencePageToIndexFieldMapping"
             $($field $value)*)
         };
     }
@@ -375,7 +375,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ConfluenceSpaceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ConfluenceSpaceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ConfluenceSpaceConfiguration"
             $($field $value)*)
         };
     }
@@ -426,7 +426,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ConfluenceSpaceToIndexFieldMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ConfluenceSpaceToIndexFieldMapping"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ConfluenceSpaceToIndexFieldMapping"
             $($field $value)*)
         };
     }
@@ -463,7 +463,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ConnectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ConnectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ConnectionConfiguration"
             $($field $value)*)
         };
     }
@@ -505,7 +505,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_CustomDocumentEnrichmentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.CustomDocumentEnrichmentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.CustomDocumentEnrichmentConfiguration"
             $($field $value)*)
         };
     }
@@ -558,7 +558,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_DataSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.DataSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.DataSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -645,7 +645,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_DataSourceToIndexFieldMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.DataSourceToIndexFieldMapping"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.DataSourceToIndexFieldMapping"
             $($field $value)*)
         };
     }
@@ -679,7 +679,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_DataSourceVpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.DataSourceVpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.DataSourceVpcConfiguration"
             $($field $value)*)
         };
     }
@@ -711,7 +711,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_DatabaseConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.DatabaseConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.DatabaseConfiguration"
             $($field $value)*)
         };
     }
@@ -762,7 +762,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_DocumentAttributeCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.DocumentAttributeCondition"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.DocumentAttributeCondition"
             $($field $value)*)
         };
     }
@@ -797,7 +797,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_DocumentAttributeTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.DocumentAttributeTarget"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.DocumentAttributeTarget"
             $($field $value)*)
         };
     }
@@ -835,7 +835,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_DocumentAttributeValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.DocumentAttributeValue"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.DocumentAttributeValue"
             $($field $value)*)
         };
     }
@@ -878,7 +878,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_DocumentsMetadataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.DocumentsMetadataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.DocumentsMetadataConfiguration"
             $($field $value)*)
         };
     }
@@ -909,7 +909,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_GoogleDriveConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.GoogleDriveConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.GoogleDriveConfiguration"
             $($field $value)*)
         };
     }
@@ -970,7 +970,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_HookConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.HookConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.HookConfiguration"
             $($field $value)*)
         };
     }
@@ -1005,7 +1005,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_InlineCustomDocumentEnrichmentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.InlineCustomDocumentEnrichmentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.InlineCustomDocumentEnrichmentConfiguration"
             $($field $value)*)
         };
     }
@@ -1045,7 +1045,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_OneDriveConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.OneDriveConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.OneDriveConfiguration"
             $($field $value)*)
         };
     }
@@ -1101,7 +1101,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_OneDriveUsers {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.OneDriveUsers"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.OneDriveUsers"
             $($field $value)*)
         };
     }
@@ -1134,7 +1134,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ProxyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ProxyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ProxyConfiguration"
             $($field $value)*)
         };
     }
@@ -1172,7 +1172,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_S3DataSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.S3DataSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.S3DataSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -1226,7 +1226,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_S3Path {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.S3Path"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.S3Path"
             $($field $value)*)
         };
     }
@@ -1256,7 +1256,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_SalesforceChatterFeedConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.SalesforceChatterFeedConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.SalesforceChatterFeedConfiguration"
             $($field $value)*)
         };
     }
@@ -1306,7 +1306,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_SalesforceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.SalesforceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.SalesforceConfiguration"
             $($field $value)*)
         };
     }
@@ -1378,7 +1378,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_SalesforceCustomKnowledgeArticleTypeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.SalesforceCustomKnowledgeArticleTypeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.SalesforceCustomKnowledgeArticleTypeConfiguration"
             $($field $value)*)
         };
     }
@@ -1421,7 +1421,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_SalesforceKnowledgeArticleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.SalesforceKnowledgeArticleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.SalesforceKnowledgeArticleConfiguration"
             $($field $value)*)
         };
     }
@@ -1458,7 +1458,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_SalesforceStandardKnowledgeArticleTypeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.SalesforceStandardKnowledgeArticleTypeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.SalesforceStandardKnowledgeArticleTypeConfiguration"
             $($field $value)*)
         };
     }
@@ -1494,7 +1494,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_SalesforceStandardObjectAttachmentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.SalesforceStandardObjectAttachmentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.SalesforceStandardObjectAttachmentConfiguration"
             $($field $value)*)
         };
     }
@@ -1528,7 +1528,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_SalesforceStandardObjectConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.SalesforceStandardObjectConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.SalesforceStandardObjectConfiguration"
             $($field $value)*)
         };
     }
@@ -1572,7 +1572,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ServiceNowConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ServiceNowConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ServiceNowConfiguration"
             $($field $value)*)
         };
     }
@@ -1627,7 +1627,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ServiceNowKnowledgeArticleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ServiceNowKnowledgeArticleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ServiceNowKnowledgeArticleConfiguration"
             $($field $value)*)
         };
     }
@@ -1691,7 +1691,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_ServiceNowServiceCatalogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.ServiceNowServiceCatalogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.ServiceNowServiceCatalogConfiguration"
             $($field $value)*)
         };
     }
@@ -1755,7 +1755,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_SharePointConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.SharePointConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.SharePointConfiguration"
             $($field $value)*)
         };
     }
@@ -1840,7 +1840,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_SqlConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.SqlConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.SqlConfiguration"
             $($field $value)*)
         };
     }
@@ -1865,7 +1865,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_TemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.TemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.TemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -1888,7 +1888,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_WebCrawlerAuthenticationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.WebCrawlerAuthenticationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.WebCrawlerAuthenticationConfiguration"
             $($field $value)*)
         };
     }
@@ -1915,7 +1915,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_WebCrawlerBasicAuthentication {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.WebCrawlerBasicAuthentication"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.WebCrawlerBasicAuthentication"
             $($field $value)*)
         };
     }
@@ -1954,7 +1954,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_WebCrawlerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.WebCrawlerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.WebCrawlerConfiguration"
             $($field $value)*)
         };
     }
@@ -2026,7 +2026,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_WebCrawlerSeedUrlConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.WebCrawlerSeedUrlConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.WebCrawlerSeedUrlConfiguration"
             $($field $value)*)
         };
     }
@@ -2055,7 +2055,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_WebCrawlerSiteMapsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.WebCrawlerSiteMapsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.WebCrawlerSiteMapsConfiguration"
             $($field $value)*)
         };
     }
@@ -2079,7 +2079,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_WebCrawlerUrls {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.WebCrawlerUrls"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.WebCrawlerUrls"
             $($field $value)*)
         };
     }
@@ -2115,7 +2115,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_kendra_DataSource_WorkDocsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::DataSource.WorkDocsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::DataSource.WorkDocsConfiguration"
             $($field $value)*)
         };
     }
@@ -2171,7 +2171,7 @@ pub mod faq {
     #[macro_export]
     macro_rules! __aws_kendra_Faq_S3Path {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::Faq.S3Path"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::Faq.S3Path"
             $($field $value)*)
         };
     }
@@ -2201,7 +2201,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_kendra_Index_CapacityUnitsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::Index.CapacityUnitsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::Index.CapacityUnitsConfiguration"
             $($field $value)*)
         };
     }
@@ -2231,7 +2231,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_kendra_Index_DocumentMetadataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::Index.DocumentMetadataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::Index.DocumentMetadataConfiguration"
             $($field $value)*)
         };
     }
@@ -2268,7 +2268,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_kendra_Index_JsonTokenTypeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::Index.JsonTokenTypeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::Index.JsonTokenTypeConfiguration"
             $($field $value)*)
         };
     }
@@ -2301,7 +2301,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_kendra_Index_JwtTokenTypeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::Index.JwtTokenTypeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::Index.JwtTokenTypeConfiguration"
             $($field $value)*)
         };
     }
@@ -2358,7 +2358,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_kendra_Index_Relevance {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::Index.Relevance"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::Index.Relevance"
             $($field $value)*)
         };
     }
@@ -2410,7 +2410,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_kendra_Index_Search {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::Index.Search"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::Index.Search"
             $($field $value)*)
         };
     }
@@ -2453,7 +2453,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_kendra_Index_ServerSideEncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::Index.ServerSideEncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::Index.ServerSideEncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -2479,7 +2479,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_kendra_Index_UserTokenConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::Index.UserTokenConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::Index.UserTokenConfiguration"
             $($field $value)*)
         };
     }
@@ -2511,7 +2511,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_kendra_Index_ValueImportanceItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kendra::Index.ValueImportanceItem"
+            stratosphere::generator::construct_property_type!("AWS::Kendra::Index.ValueImportanceItem"
             $($field $value)*)
         };
     }
@@ -2547,7 +2547,7 @@ pub struct DataSource_ {
 #[macro_export]
 macro_rules! __aws_kendra_DataSource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Kendra::DataSource"
+        stratosphere::generator::construct_resource_type!("AWS::Kendra::DataSource"
         $($field $value)*)
     };
 }
@@ -2632,7 +2632,7 @@ pub struct Faq_ {
 #[macro_export]
 macro_rules! __aws_kendra_Faq {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Kendra::Faq" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Kendra::Faq" $($field
         $value)*)
     };
 }
@@ -2707,7 +2707,7 @@ pub struct Index_ {
 #[macro_export]
 macro_rules! __aws_kendra_Index {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Kendra::Index" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Kendra::Index" $($field
         $value)*)
     };
 }

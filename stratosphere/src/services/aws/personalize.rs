@@ -7,7 +7,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_personalize_Dataset_DataSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Personalize::Dataset.DataSource"
+            stratosphere::generator::construct_property_type!("AWS::Personalize::Dataset.DataSource"
             $($field $value)*)
         };
     }
@@ -36,7 +36,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_personalize_Dataset_DatasetImportJob {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Personalize::Dataset.DatasetImportJob"
+            stratosphere::generator::construct_property_type!("AWS::Personalize::Dataset.DatasetImportJob"
             $($field $value)*)
         };
     }
@@ -89,7 +89,7 @@ pub mod solution {
     #[macro_export]
     macro_rules! __aws_personalize_Solution_AlgorithmHyperParameterRanges {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Personalize::Solution.AlgorithmHyperParameterRanges"
+            stratosphere::generator::construct_property_type!("AWS::Personalize::Solution.AlgorithmHyperParameterRanges"
             $($field $value)*)
         };
     }
@@ -127,7 +127,7 @@ pub mod solution {
     #[macro_export]
     macro_rules! __aws_personalize_Solution_AutoMLConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Personalize::Solution.AutoMLConfig"
+            stratosphere::generator::construct_property_type!("AWS::Personalize::Solution.AutoMLConfig"
             $($field $value)*)
         };
     }
@@ -159,7 +159,7 @@ pub mod solution {
     #[macro_export]
     macro_rules! __aws_personalize_Solution_CategoricalHyperParameterRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Personalize::Solution.CategoricalHyperParameterRange"
+            stratosphere::generator::construct_property_type!("AWS::Personalize::Solution.CategoricalHyperParameterRange"
             $($field $value)*)
         };
     }
@@ -186,7 +186,7 @@ pub mod solution {
     #[macro_export]
     macro_rules! __aws_personalize_Solution_ContinuousHyperParameterRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Personalize::Solution.ContinuousHyperParameterRange"
+            stratosphere::generator::construct_property_type!("AWS::Personalize::Solution.ContinuousHyperParameterRange"
             $($field $value)*)
         };
     }
@@ -222,7 +222,7 @@ pub mod solution {
     #[macro_export]
     macro_rules! __aws_personalize_Solution_HpoConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Personalize::Solution.HpoConfig"
+            stratosphere::generator::construct_property_type!("AWS::Personalize::Solution.HpoConfig"
             $($field $value)*)
         };
     }
@@ -261,7 +261,7 @@ pub mod solution {
     #[macro_export]
     macro_rules! __aws_personalize_Solution_HpoObjective {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Personalize::Solution.HpoObjective"
+            stratosphere::generator::construct_property_type!("AWS::Personalize::Solution.HpoObjective"
             $($field $value)*)
         };
     }
@@ -296,7 +296,7 @@ pub mod solution {
     #[macro_export]
     macro_rules! __aws_personalize_Solution_HpoResourceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Personalize::Solution.HpoResourceConfig"
+            stratosphere::generator::construct_property_type!("AWS::Personalize::Solution.HpoResourceConfig"
             $($field $value)*)
         };
     }
@@ -329,7 +329,7 @@ pub mod solution {
     #[macro_export]
     macro_rules! __aws_personalize_Solution_IntegerHyperParameterRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Personalize::Solution.IntegerHyperParameterRange"
+            stratosphere::generator::construct_property_type!("AWS::Personalize::Solution.IntegerHyperParameterRange"
             $($field $value)*)
         };
     }
@@ -369,7 +369,7 @@ pub mod solution {
     #[macro_export]
     macro_rules! __aws_personalize_Solution_SolutionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Personalize::Solution.SolutionConfig"
+            stratosphere::generator::construct_property_type!("AWS::Personalize::Solution.SolutionConfig"
             $($field $value)*)
         };
     }
@@ -423,7 +423,7 @@ pub struct Dataset_ {
 #[macro_export]
 macro_rules! __aws_personalize_Dataset {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Personalize::Dataset"
+        stratosphere::generator::construct_resource_type!("AWS::Personalize::Dataset"
         $($field $value)*)
     };
 }
@@ -475,7 +475,7 @@ pub struct DatasetGroup_ {
 #[macro_export]
 macro_rules! __aws_personalize_DatasetGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Personalize::DatasetGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Personalize::DatasetGroup"
         $($field $value)*)
     };
 }
@@ -523,7 +523,7 @@ pub struct Schema_ {
 #[macro_export]
 macro_rules! __aws_personalize_Schema {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Personalize::Schema"
+        stratosphere::generator::construct_resource_type!("AWS::Personalize::Schema"
         $($field $value)*)
     };
 }
@@ -567,7 +567,7 @@ pub struct Solution_ {
 #[macro_export]
 macro_rules! __aws_personalize_Solution {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Personalize::Solution"
+        stratosphere::generator::construct_resource_type!("AWS::Personalize::Solution"
         $($field $value)*)
     };
 }

@@ -8,7 +8,7 @@ pub mod repository {
     #[macro_export]
     macro_rules! __aws_codecommit_Repository_Code {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeCommit::Repository.Code"
+            stratosphere::generator::construct_property_type!("AWS::CodeCommit::Repository.Code"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod repository {
     #[macro_export]
     macro_rules! __aws_codecommit_Repository_RepositoryTrigger {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeCommit::Repository.RepositoryTrigger"
+            stratosphere::generator::construct_property_type!("AWS::CodeCommit::Repository.RepositoryTrigger"
             $($field $value)*)
         };
     }
@@ -83,7 +83,7 @@ pub mod repository {
     #[macro_export]
     macro_rules! __aws_codecommit_Repository_S3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeCommit::Repository.S3"
+            stratosphere::generator::construct_property_type!("AWS::CodeCommit::Repository.S3"
             $($field $value)*)
         };
     }
@@ -122,7 +122,7 @@ pub struct Repository_ {
 #[macro_export]
 macro_rules! __aws_codecommit_Repository {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeCommit::Repository"
+        stratosphere::generator::construct_resource_type!("AWS::CodeCommit::Repository"
         $($field $value)*)
     };
 }

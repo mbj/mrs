@@ -8,7 +8,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_acmpca_Certificate_ApiPassthrough {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::Certificate.ApiPassthrough"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::Certificate.ApiPassthrough"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_acmpca_Certificate_CustomAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::Certificate.CustomAttribute"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::Certificate.CustomAttribute"
             $($field $value)*)
         };
     }
@@ -69,7 +69,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_acmpca_Certificate_CustomExtension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::Certificate.CustomExtension"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::Certificate.CustomExtension"
             $($field $value)*)
         };
     }
@@ -103,7 +103,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_acmpca_Certificate_EdiPartyName {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::Certificate.EdiPartyName"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::Certificate.EdiPartyName"
             $($field $value)*)
         };
     }
@@ -131,7 +131,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_acmpca_Certificate_ExtendedKeyUsage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::Certificate.ExtendedKeyUsage"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::Certificate.ExtendedKeyUsage"
             $($field $value)*)
         };
     }
@@ -166,7 +166,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_acmpca_Certificate_Extensions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::Certificate.Extensions"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::Certificate.Extensions"
             $($field $value)*)
         };
     }
@@ -222,7 +222,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_acmpca_Certificate_GeneralName {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::Certificate.GeneralName"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::Certificate.GeneralName"
             $($field $value)*)
         };
     }
@@ -297,7 +297,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_acmpca_Certificate_KeyUsage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::Certificate.KeyUsage"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::Certificate.KeyUsage"
             $($field $value)*)
         };
     }
@@ -371,7 +371,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_acmpca_Certificate_OtherName {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::Certificate.OtherName"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::Certificate.OtherName"
             $($field $value)*)
         };
     }
@@ -399,7 +399,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_acmpca_Certificate_PolicyInformation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::Certificate.PolicyInformation"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::Certificate.PolicyInformation"
             $($field $value)*)
         };
     }
@@ -429,7 +429,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_acmpca_Certificate_PolicyQualifierInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::Certificate.PolicyQualifierInfo"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::Certificate.PolicyQualifierInfo"
             $($field $value)*)
         };
     }
@@ -456,7 +456,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_acmpca_Certificate_Qualifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::Certificate.Qualifier"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::Certificate.Qualifier"
             $($field $value)*)
         };
     }
@@ -493,7 +493,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_acmpca_Certificate_Subject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::Certificate.Subject"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::Certificate.Subject"
             $($field $value)*)
         };
     }
@@ -597,7 +597,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_acmpca_Certificate_Validity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::Certificate.Validity"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::Certificate.Validity"
             $($field $value)*)
         };
     }
@@ -627,7 +627,7 @@ pub mod certificateauthority {
     #[macro_export]
     macro_rules! __aws_acmpca_CertificateAuthority_AccessDescription {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.AccessDescription"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.AccessDescription"
             $($field $value)*)
         };
     }
@@ -655,7 +655,7 @@ pub mod certificateauthority {
     #[macro_export]
     macro_rules! __aws_acmpca_CertificateAuthority_AccessMethod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.AccessMethod"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.AccessMethod"
             $($field $value)*)
         };
     }
@@ -694,7 +694,7 @@ pub mod certificateauthority {
     #[macro_export]
     macro_rules! __aws_acmpca_CertificateAuthority_CrlConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.CrlConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.CrlConfiguration"
             $($field $value)*)
         };
     }
@@ -759,7 +759,7 @@ pub mod certificateauthority {
     #[macro_export]
     macro_rules! __aws_acmpca_CertificateAuthority_CrlDistributionPointExtensionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.CrlDistributionPointExtensionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.CrlDistributionPointExtensionConfiguration"
             $($field $value)*)
         };
     }
@@ -783,7 +783,7 @@ pub mod certificateauthority {
     #[macro_export]
     macro_rules! __aws_acmpca_CertificateAuthority_CsrExtensions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.CsrExtensions"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.CsrExtensions"
             $($field $value)*)
         };
     }
@@ -815,7 +815,7 @@ pub mod certificateauthority {
     #[macro_export]
     macro_rules! __aws_acmpca_CertificateAuthority_CustomAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.CustomAttribute"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.CustomAttribute"
             $($field $value)*)
         };
     }
@@ -843,7 +843,7 @@ pub mod certificateauthority {
     #[macro_export]
     macro_rules! __aws_acmpca_CertificateAuthority_EdiPartyName {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.EdiPartyName"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.EdiPartyName"
             $($field $value)*)
         };
     }
@@ -879,7 +879,7 @@ pub mod certificateauthority {
     #[macro_export]
     macro_rules! __aws_acmpca_CertificateAuthority_GeneralName {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.GeneralName"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.GeneralName"
             $($field $value)*)
         };
     }
@@ -954,7 +954,7 @@ pub mod certificateauthority {
     #[macro_export]
     macro_rules! __aws_acmpca_CertificateAuthority_KeyUsage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.KeyUsage"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.KeyUsage"
             $($field $value)*)
         };
     }
@@ -1028,7 +1028,7 @@ pub mod certificateauthority {
     #[macro_export]
     macro_rules! __aws_acmpca_CertificateAuthority_OcspConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.OcspConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.OcspConfiguration"
             $($field $value)*)
         };
     }
@@ -1058,7 +1058,7 @@ pub mod certificateauthority {
     #[macro_export]
     macro_rules! __aws_acmpca_CertificateAuthority_OtherName {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.OtherName"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.OtherName"
             $($field $value)*)
         };
     }
@@ -1086,7 +1086,7 @@ pub mod certificateauthority {
     #[macro_export]
     macro_rules! __aws_acmpca_CertificateAuthority_RevocationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.RevocationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.RevocationConfiguration"
             $($field $value)*)
         };
     }
@@ -1131,7 +1131,7 @@ pub mod certificateauthority {
     #[macro_export]
     macro_rules! __aws_acmpca_CertificateAuthority_Subject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.Subject"
+            stratosphere::generator::construct_property_type!("AWS::ACMPCA::CertificateAuthority.Subject"
             $($field $value)*)
         };
     }
@@ -1241,7 +1241,7 @@ pub struct Certificate_ {
 #[macro_export]
 macro_rules! __aws_acmpca_Certificate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ACMPCA::Certificate"
+        stratosphere::generator::construct_resource_type!("AWS::ACMPCA::Certificate"
         $($field $value)*)
     };
 }
@@ -1311,7 +1311,7 @@ pub struct CertificateAuthority_ {
 #[macro_export]
 macro_rules! __aws_acmpca_CertificateAuthority {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ACMPCA::CertificateAuthority"
+        stratosphere::generator::construct_resource_type!("AWS::ACMPCA::CertificateAuthority"
         $($field $value)*)
     };
 }
@@ -1384,7 +1384,7 @@ pub struct CertificateAuthorityActivation_ {
 #[macro_export]
 macro_rules! __aws_acmpca_CertificateAuthorityActivation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ACMPCA::CertificateAuthorityActivation"
+        stratosphere::generator::construct_resource_type!("AWS::ACMPCA::CertificateAuthorityActivation"
         $($field $value)*)
     };
 }
@@ -1433,7 +1433,7 @@ pub struct Permission_ {
 #[macro_export]
 macro_rules! __aws_acmpca_Permission {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ACMPCA::Permission"
+        stratosphere::generator::construct_resource_type!("AWS::ACMPCA::Permission"
         $($field $value)*)
     };
 }

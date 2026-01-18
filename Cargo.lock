@@ -3245,7 +3245,7 @@ dependencies = [
 
 [[package]]
 name = "stratosphere"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "chrono",
  "pretty_assertions",
@@ -3257,7 +3257,7 @@ dependencies = [
 
 [[package]]
 name = "stratosphere-core"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "chrono",
  "clap",
@@ -3273,7 +3273,7 @@ dependencies = [
 
 [[package]]
 name = "stratosphere-generator"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "pretty_assertions",
  "prettyplease",

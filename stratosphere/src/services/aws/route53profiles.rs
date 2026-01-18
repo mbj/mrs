@@ -7,7 +7,7 @@ pub struct Profile_ {
 #[macro_export]
 macro_rules! __aws_route53profiles_Profile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53Profiles::Profile"
+        stratosphere::generator::construct_resource_type!("AWS::Route53Profiles::Profile"
         $($field $value)*)
     };
 }
@@ -45,7 +45,7 @@ pub struct ProfileAssociation_ {
 #[macro_export]
 macro_rules! __aws_route53profiles_ProfileAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53Profiles::ProfileAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::Route53Profiles::ProfileAssociation"
         $($field $value)*)
     };
 }
@@ -93,7 +93,7 @@ pub struct ProfileResourceAssociation_ {
 #[macro_export]
 macro_rules! __aws_route53profiles_ProfileResourceAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53Profiles::ProfileResourceAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::Route53Profiles::ProfileResourceAssociation"
         $($field $value)*)
     };
 }

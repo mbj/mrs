@@ -12,7 +12,7 @@ pub mod emailcontact {
     #[macro_export]
     macro_rules! __aws_notificationscontacts_EmailContact_EmailContact {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NotificationsContacts::EmailContact.EmailContact"
+            stratosphere::generator::construct_property_type!("AWS::NotificationsContacts::EmailContact.EmailContact"
             $($field $value)*)
         };
     }
@@ -58,7 +58,7 @@ pub struct EmailContact_ {
 #[macro_export]
 macro_rules! __aws_notificationscontacts_EmailContact {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NotificationsContacts::EmailContact"
+        stratosphere::generator::construct_resource_type!("AWS::NotificationsContacts::EmailContact"
         $($field $value)*)
     };
 }

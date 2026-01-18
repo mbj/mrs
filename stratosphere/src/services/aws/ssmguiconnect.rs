@@ -8,7 +8,7 @@ pub mod preferences {
     #[macro_export]
     macro_rules! __aws_ssmguiconnect_Preferences_ConnectionRecordingPreferences {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMGuiConnect::Preferences.ConnectionRecordingPreferences"
+            stratosphere::generator::construct_property_type!("AWS::SSMGuiConnect::Preferences.ConnectionRecordingPreferences"
             $($field $value)*)
         };
     }
@@ -35,7 +35,7 @@ pub mod preferences {
     #[macro_export]
     macro_rules! __aws_ssmguiconnect_Preferences_RecordingDestinations {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMGuiConnect::Preferences.RecordingDestinations"
+            stratosphere::generator::construct_property_type!("AWS::SSMGuiConnect::Preferences.RecordingDestinations"
             $($field $value)*)
         };
     }
@@ -59,7 +59,7 @@ pub mod preferences {
     #[macro_export]
     macro_rules! __aws_ssmguiconnect_Preferences_S3Bucket {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMGuiConnect::Preferences.S3Bucket"
+            stratosphere::generator::construct_property_type!("AWS::SSMGuiConnect::Preferences.S3Bucket"
             $($field $value)*)
         };
     }
@@ -88,7 +88,7 @@ pub struct Preferences_ {
 #[macro_export]
 macro_rules! __aws_ssmguiconnect_Preferences {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSMGuiConnect::Preferences"
+        stratosphere::generator::construct_resource_type!("AWS::SSMGuiConnect::Preferences"
         $($field $value)*)
     };
 }

@@ -7,7 +7,7 @@ pub mod executionplan {
     #[macro_export]
     macro_rules! __aws_kendraranking_ExecutionPlan_CapacityUnitsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KendraRanking::ExecutionPlan.CapacityUnitsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KendraRanking::ExecutionPlan.CapacityUnitsConfiguration"
             $($field $value)*)
         };
     }
@@ -34,7 +34,7 @@ pub struct ExecutionPlan_ {
 #[macro_export]
 macro_rules! __aws_kendraranking_ExecutionPlan {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::KendraRanking::ExecutionPlan"
+        stratosphere::generator::construct_resource_type!("AWS::KendraRanking::ExecutionPlan"
         $($field $value)*)
     };
 }

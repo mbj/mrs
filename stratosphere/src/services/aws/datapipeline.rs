@@ -9,7 +9,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_datapipeline_Pipeline_Field {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataPipeline::Pipeline.Field"
+            stratosphere::generator::construct_property_type!("AWS::DataPipeline::Pipeline.Field"
             $($field $value)*)
         };
     }
@@ -45,7 +45,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_datapipeline_Pipeline_ParameterAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataPipeline::Pipeline.ParameterAttribute"
+            stratosphere::generator::construct_property_type!("AWS::DataPipeline::Pipeline.ParameterAttribute"
             $($field $value)*)
         };
     }
@@ -73,7 +73,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_datapipeline_Pipeline_ParameterObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataPipeline::Pipeline.ParameterObject"
+            stratosphere::generator::construct_property_type!("AWS::DataPipeline::Pipeline.ParameterObject"
             $($field $value)*)
         };
     }
@@ -98,7 +98,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_datapipeline_Pipeline_ParameterValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataPipeline::Pipeline.ParameterValue"
+            stratosphere::generator::construct_property_type!("AWS::DataPipeline::Pipeline.ParameterValue"
             $($field $value)*)
         };
     }
@@ -124,7 +124,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_datapipeline_Pipeline_PipelineObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataPipeline::Pipeline.PipelineObject"
+            stratosphere::generator::construct_property_type!("AWS::DataPipeline::Pipeline.PipelineObject"
             $($field $value)*)
         };
     }
@@ -153,7 +153,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_datapipeline_Pipeline_PipelineTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataPipeline::Pipeline.PipelineTag"
+            stratosphere::generator::construct_property_type!("AWS::DataPipeline::Pipeline.PipelineTag"
             $($field $value)*)
         };
     }
@@ -187,7 +187,7 @@ pub struct Pipeline_ {
 #[macro_export]
 macro_rules! __aws_datapipeline_Pipeline {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataPipeline::Pipeline"
+        stratosphere::generator::construct_resource_type!("AWS::DataPipeline::Pipeline"
         $($field $value)*)
     };
 }

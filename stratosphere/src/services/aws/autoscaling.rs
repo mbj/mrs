@@ -8,7 +8,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_AcceleratorCountRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.AcceleratorCountRequest"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.AcceleratorCountRequest"
             $($field $value)*)
         };
     }
@@ -34,7 +34,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_AcceleratorTotalMemoryMiBRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.AcceleratorTotalMemoryMiBRequest"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.AcceleratorTotalMemoryMiBRequest"
             $($field $value)*)
         };
     }
@@ -59,7 +59,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_AvailabilityZoneDistribution {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.AvailabilityZoneDistribution"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.AvailabilityZoneDistribution"
             $($field $value)*)
         };
     }
@@ -85,7 +85,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_AvailabilityZoneImpairmentPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.AvailabilityZoneImpairmentPolicy"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.AvailabilityZoneImpairmentPolicy"
             $($field $value)*)
         };
     }
@@ -113,7 +113,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_BaselineEbsBandwidthMbpsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.BaselineEbsBandwidthMbpsRequest"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.BaselineEbsBandwidthMbpsRequest"
             $($field $value)*)
         };
     }
@@ -138,7 +138,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_BaselinePerformanceFactorsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.BaselinePerformanceFactorsRequest"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.BaselinePerformanceFactorsRequest"
             $($field $value)*)
         };
     }
@@ -161,7 +161,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_CapacityReservationSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.CapacityReservationSpecification"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.CapacityReservationSpecification"
             $($field $value)*)
         };
     }
@@ -191,7 +191,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_CapacityReservationTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.CapacityReservationTarget"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.CapacityReservationTarget"
             $($field $value)*)
         };
     }
@@ -222,7 +222,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_CpuPerformanceFactorRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.CpuPerformanceFactorRequest"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.CpuPerformanceFactorRequest"
             $($field $value)*)
         };
     }
@@ -248,7 +248,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_InstanceMaintenancePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.InstanceMaintenancePolicy"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.InstanceMaintenancePolicy"
             $($field $value)*)
         };
     }
@@ -303,7 +303,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_InstanceRequirements {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.InstanceRequirements"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.InstanceRequirements"
             $($field $value)*)
         };
     }
@@ -473,7 +473,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_InstancesDistribution {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.InstancesDistribution"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.InstancesDistribution"
             $($field $value)*)
         };
     }
@@ -529,7 +529,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_LaunchTemplate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.LaunchTemplate"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.LaunchTemplate"
             $($field $value)*)
         };
     }
@@ -561,7 +561,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_LaunchTemplateOverrides {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.LaunchTemplateOverrides"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.LaunchTemplateOverrides"
             $($field $value)*)
         };
     }
@@ -606,7 +606,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_LaunchTemplateSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.LaunchTemplateSpecification"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.LaunchTemplateSpecification"
             $($field $value)*)
         };
     }
@@ -647,7 +647,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_LifecycleHookSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.LifecycleHookSpecification"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.LifecycleHookSpecification"
             $($field $value)*)
         };
     }
@@ -705,7 +705,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_MemoryGiBPerVCpuRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.MemoryGiBPerVCpuRequest"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.MemoryGiBPerVCpuRequest"
             $($field $value)*)
         };
     }
@@ -731,7 +731,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_MemoryMiBRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.MemoryMiBRequest"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.MemoryMiBRequest"
             $($field $value)*)
         };
     }
@@ -757,7 +757,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_MetricsCollection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.MetricsCollection"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.MetricsCollection"
             $($field $value)*)
         };
     }
@@ -787,7 +787,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_MixedInstancesPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.MixedInstancesPolicy"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.MixedInstancesPolicy"
             $($field $value)*)
         };
     }
@@ -817,7 +817,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_NetworkBandwidthGbpsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.NetworkBandwidthGbpsRequest"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.NetworkBandwidthGbpsRequest"
             $($field $value)*)
         };
     }
@@ -843,7 +843,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_NetworkInterfaceCountRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.NetworkInterfaceCountRequest"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.NetworkInterfaceCountRequest"
             $($field $value)*)
         };
     }
@@ -869,7 +869,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_NotificationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.NotificationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.NotificationConfiguration"
             $($field $value)*)
         };
     }
@@ -898,7 +898,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_PerformanceFactorReferenceRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.PerformanceFactorReferenceRequest"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.PerformanceFactorReferenceRequest"
             $($field $value)*)
         };
     }
@@ -925,7 +925,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_TagProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.TagProperty"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.TagProperty"
             $($field $value)*)
         };
     }
@@ -957,7 +957,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_TotalLocalStorageGBRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.TotalLocalStorageGBRequest"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.TotalLocalStorageGBRequest"
             $($field $value)*)
         };
     }
@@ -983,7 +983,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_TrafficSourceIdentifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.TrafficSourceIdentifier"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.TrafficSourceIdentifier"
             $($field $value)*)
         };
     }
@@ -1011,7 +1011,7 @@ pub mod autoscalinggroup {
     #[macro_export]
     macro_rules! __aws_autoscaling_AutoScalingGroup_VCpuCountRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.VCpuCountRequest"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.VCpuCountRequest"
             $($field $value)*)
         };
     }
@@ -1044,7 +1044,7 @@ pub mod launchconfiguration {
     #[macro_export]
     macro_rules! __aws_autoscaling_LaunchConfiguration_BlockDevice {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::LaunchConfiguration.BlockDevice"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::LaunchConfiguration.BlockDevice"
             $($field $value)*)
         };
     }
@@ -1105,7 +1105,7 @@ pub mod launchconfiguration {
     #[macro_export]
     macro_rules! __aws_autoscaling_LaunchConfiguration_BlockDeviceMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::LaunchConfiguration.BlockDeviceMapping"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::LaunchConfiguration.BlockDeviceMapping"
             $($field $value)*)
         };
     }
@@ -1145,7 +1145,7 @@ pub mod launchconfiguration {
     #[macro_export]
     macro_rules! __aws_autoscaling_LaunchConfiguration_MetadataOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::LaunchConfiguration.MetadataOptions"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::LaunchConfiguration.MetadataOptions"
             $($field $value)*)
         };
     }
@@ -1190,7 +1190,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_CustomizedMetricSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.CustomizedMetricSpecification"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.CustomizedMetricSpecification"
             $($field $value)*)
         };
     }
@@ -1247,7 +1247,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_Metric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.Metric"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.Metric"
             $($field $value)*)
         };
     }
@@ -1284,7 +1284,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_MetricDataQuery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.MetricDataQuery"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.MetricDataQuery"
             $($field $value)*)
         };
     }
@@ -1326,7 +1326,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_MetricDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.MetricDimension"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.MetricDimension"
             $($field $value)*)
         };
     }
@@ -1355,7 +1355,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_MetricStat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.MetricStat"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.MetricStat"
             $($field $value)*)
         };
     }
@@ -1386,7 +1386,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_PredefinedMetricSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredefinedMetricSpecification"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredefinedMetricSpecification"
             $($field $value)*)
         };
     }
@@ -1419,7 +1419,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_PredictiveScalingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingConfiguration"
             $($field $value)*)
         };
     }
@@ -1463,7 +1463,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_PredictiveScalingCustomizedCapacityMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingCustomizedCapacityMetric"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingCustomizedCapacityMetric"
             $($field $value)*)
         };
     }
@@ -1486,7 +1486,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_PredictiveScalingCustomizedLoadMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingCustomizedLoadMetric"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingCustomizedLoadMetric"
             $($field $value)*)
         };
     }
@@ -1509,7 +1509,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_PredictiveScalingCustomizedScalingMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingCustomizedScalingMetric"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingCustomizedScalingMetric"
             $($field $value)*)
         };
     }
@@ -1544,7 +1544,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_PredictiveScalingMetricSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingMetricSpecification"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingMetricSpecification"
             $($field $value)*)
         };
     }
@@ -1604,7 +1604,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_PredictiveScalingPredefinedLoadMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingPredefinedLoadMetric"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingPredefinedLoadMetric"
             $($field $value)*)
         };
     }
@@ -1634,7 +1634,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_PredictiveScalingPredefinedMetricPair {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingPredefinedMetricPair"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingPredefinedMetricPair"
             $($field $value)*)
         };
     }
@@ -1664,7 +1664,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_PredictiveScalingPredefinedScalingMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingPredefinedScalingMetric"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.PredictiveScalingPredefinedScalingMetric"
             $($field $value)*)
         };
     }
@@ -1695,7 +1695,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_StepAdjustment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.StepAdjustment"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.StepAdjustment"
             $($field $value)*)
         };
     }
@@ -1733,7 +1733,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_TargetTrackingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.TargetTrackingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.TargetTrackingConfiguration"
             $($field $value)*)
         };
     }
@@ -1779,7 +1779,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_TargetTrackingMetricDataQuery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.TargetTrackingMetricDataQuery"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.TargetTrackingMetricDataQuery"
             $($field $value)*)
         };
     }
@@ -1826,7 +1826,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_autoscaling_ScalingPolicy_TargetTrackingMetricStat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.TargetTrackingMetricStat"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::ScalingPolicy.TargetTrackingMetricStat"
             $($field $value)*)
         };
     }
@@ -1861,7 +1861,7 @@ pub mod warmpool {
     #[macro_export]
     macro_rules! __aws_autoscaling_WarmPool_InstanceReusePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScaling::WarmPool.InstanceReusePolicy"
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::WarmPool.InstanceReusePolicy"
             $($field $value)*)
         };
     }
@@ -1927,7 +1927,7 @@ pub struct AutoScalingGroup_ {
 #[macro_export]
 macro_rules! __aws_autoscaling_AutoScalingGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AutoScaling::AutoScalingGroup"
+        stratosphere::generator::construct_resource_type!("AWS::AutoScaling::AutoScalingGroup"
         $($field $value)*)
     };
 }
@@ -2170,7 +2170,7 @@ pub struct LaunchConfiguration_ {
 #[macro_export]
 macro_rules! __aws_autoscaling_LaunchConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AutoScaling::LaunchConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::AutoScaling::LaunchConfiguration"
         $($field $value)*)
     };
 }
@@ -2314,7 +2314,7 @@ pub struct LifecycleHook_ {
 #[macro_export]
 macro_rules! __aws_autoscaling_LifecycleHook {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AutoScaling::LifecycleHook"
+        stratosphere::generator::construct_resource_type!("AWS::AutoScaling::LifecycleHook"
         $($field $value)*)
     };
 }
@@ -2397,7 +2397,7 @@ pub struct ScalingPolicy_ {
 #[macro_export]
 macro_rules! __aws_autoscaling_ScalingPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AutoScaling::ScalingPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::AutoScaling::ScalingPolicy"
         $($field $value)*)
     };
 }
@@ -2495,7 +2495,7 @@ pub struct ScheduledAction_ {
 #[macro_export]
 macro_rules! __aws_autoscaling_ScheduledAction {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AutoScaling::ScheduledAction"
+        stratosphere::generator::construct_resource_type!("AWS::AutoScaling::ScheduledAction"
         $($field $value)*)
     };
 }
@@ -2572,7 +2572,7 @@ pub struct WarmPool_ {
 #[macro_export]
 macro_rules! __aws_autoscaling_WarmPool {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AutoScaling::WarmPool"
+        stratosphere::generator::construct_resource_type!("AWS::AutoScaling::WarmPool"
         $($field $value)*)
     };
 }

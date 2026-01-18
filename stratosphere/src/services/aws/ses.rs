@@ -7,7 +7,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_ses_ConfigurationSet_DashboardOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ConfigurationSet.DashboardOptions"
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSet.DashboardOptions"
             $($field $value)*)
         };
     }
@@ -32,7 +32,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_ses_ConfigurationSet_DeliveryOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ConfigurationSet.DeliveryOptions"
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSet.DeliveryOptions"
             $($field $value)*)
         };
     }
@@ -69,7 +69,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_ses_ConfigurationSet_GuardianOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ConfigurationSet.GuardianOptions"
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSet.GuardianOptions"
             $($field $value)*)
         };
     }
@@ -92,7 +92,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_ses_ConfigurationSet_ReputationOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ConfigurationSet.ReputationOptions"
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSet.ReputationOptions"
             $($field $value)*)
         };
     }
@@ -117,7 +117,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_ses_ConfigurationSet_SendingOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ConfigurationSet.SendingOptions"
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSet.SendingOptions"
             $($field $value)*)
         };
     }
@@ -142,7 +142,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_ses_ConfigurationSet_SuppressionOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ConfigurationSet.SuppressionOptions"
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSet.SuppressionOptions"
             $($field $value)*)
         };
     }
@@ -168,7 +168,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_ses_ConfigurationSet_TrackingOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ConfigurationSet.TrackingOptions"
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSet.TrackingOptions"
             $($field $value)*)
         };
     }
@@ -200,7 +200,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_ses_ConfigurationSet_VdmOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ConfigurationSet.VdmOptions"
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSet.VdmOptions"
             $($field $value)*)
         };
     }
@@ -233,7 +233,7 @@ pub mod configurationseteventdestination {
     #[macro_export]
     macro_rules! __aws_ses_ConfigurationSetEventDestination_CloudWatchDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ConfigurationSetEventDestination.CloudWatchDestination"
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSetEventDestination.CloudWatchDestination"
             $($field $value)*)
         };
     }
@@ -260,7 +260,7 @@ pub mod configurationseteventdestination {
     #[macro_export]
     macro_rules! __aws_ses_ConfigurationSetEventDestination_DimensionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ConfigurationSetEventDestination.DimensionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSetEventDestination.DimensionConfiguration"
             $($field $value)*)
         };
     }
@@ -291,7 +291,7 @@ pub mod configurationseteventdestination {
     #[macro_export]
     macro_rules! __aws_ses_ConfigurationSetEventDestination_EventBridgeDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ConfigurationSetEventDestination.EventBridgeDestination"
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSetEventDestination.EventBridgeDestination"
             $($field $value)*)
         };
     }
@@ -320,7 +320,7 @@ pub mod configurationseteventdestination {
     #[macro_export]
     macro_rules! __aws_ses_ConfigurationSetEventDestination_EventDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ConfigurationSetEventDestination.EventDestination"
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSetEventDestination.EventDestination"
             $($field $value)*)
         };
     }
@@ -377,7 +377,7 @@ pub mod configurationseteventdestination {
     #[macro_export]
     macro_rules! __aws_ses_ConfigurationSetEventDestination_KinesisFirehoseDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ConfigurationSetEventDestination.KinesisFirehoseDestination"
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSetEventDestination.KinesisFirehoseDestination"
             $($field $value)*)
         };
     }
@@ -404,7 +404,7 @@ pub mod configurationseteventdestination {
     #[macro_export]
     macro_rules! __aws_ses_ConfigurationSetEventDestination_SnsDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ConfigurationSetEventDestination.SnsDestination"
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSetEventDestination.SnsDestination"
             $($field $value)*)
         };
     }
@@ -432,7 +432,7 @@ pub mod contactlist {
     #[macro_export]
     macro_rules! __aws_ses_ContactList_Topic {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ContactList.Topic"
+            stratosphere::generator::construct_property_type!("AWS::SES::ContactList.Topic"
             $($field $value)*)
         };
     }
@@ -471,7 +471,7 @@ pub mod emailidentity {
     #[macro_export]
     macro_rules! __aws_ses_EmailIdentity_ConfigurationSetAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::EmailIdentity.ConfigurationSetAttributes"
+            stratosphere::generator::construct_property_type!("AWS::SES::EmailIdentity.ConfigurationSetAttributes"
             $($field $value)*)
         };
     }
@@ -496,7 +496,7 @@ pub mod emailidentity {
     #[macro_export]
     macro_rules! __aws_ses_EmailIdentity_DkimAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::EmailIdentity.DkimAttributes"
+            stratosphere::generator::construct_property_type!("AWS::SES::EmailIdentity.DkimAttributes"
             $($field $value)*)
         };
     }
@@ -523,7 +523,7 @@ pub mod emailidentity {
     #[macro_export]
     macro_rules! __aws_ses_EmailIdentity_DkimSigningAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::EmailIdentity.DkimSigningAttributes"
+            stratosphere::generator::construct_property_type!("AWS::SES::EmailIdentity.DkimSigningAttributes"
             $($field $value)*)
         };
     }
@@ -560,7 +560,7 @@ pub mod emailidentity {
     #[macro_export]
     macro_rules! __aws_ses_EmailIdentity_FeedbackAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::EmailIdentity.FeedbackAttributes"
+            stratosphere::generator::construct_property_type!("AWS::SES::EmailIdentity.FeedbackAttributes"
             $($field $value)*)
         };
     }
@@ -586,7 +586,7 @@ pub mod emailidentity {
     #[macro_export]
     macro_rules! __aws_ses_EmailIdentity_MailFromAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::EmailIdentity.MailFromAttributes"
+            stratosphere::generator::construct_property_type!("AWS::SES::EmailIdentity.MailFromAttributes"
             $($field $value)*)
         };
     }
@@ -619,7 +619,7 @@ pub mod mailmanagerarchive {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerArchive_ArchiveRetention {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerArchive.ArchiveRetention"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerArchive.ArchiveRetention"
             $($field $value)*)
         };
     }
@@ -645,7 +645,7 @@ pub mod mailmanageringresspoint {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerIngressPoint_IngressPointConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerIngressPoint.IngressPointConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerIngressPoint.IngressPointConfiguration"
             $($field $value)*)
         };
     }
@@ -677,7 +677,7 @@ pub mod mailmanageringresspoint {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerIngressPoint_NetworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerIngressPoint.NetworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerIngressPoint.NetworkConfiguration"
             $($field $value)*)
         };
     }
@@ -708,7 +708,7 @@ pub mod mailmanageringresspoint {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerIngressPoint_PrivateNetworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerIngressPoint.PrivateNetworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerIngressPoint.PrivateNetworkConfiguration"
             $($field $value)*)
         };
     }
@@ -731,7 +731,7 @@ pub mod mailmanageringresspoint {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerIngressPoint_PublicNetworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerIngressPoint.PublicNetworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerIngressPoint.PublicNetworkConfiguration"
             $($field $value)*)
         };
     }
@@ -757,7 +757,7 @@ pub mod mailmanagerrelay {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRelay_RelayAuthentication {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRelay.RelayAuthentication"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRelay.RelayAuthentication"
             $($field $value)*)
         };
     }
@@ -791,7 +791,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_AddHeaderAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.AddHeaderAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.AddHeaderAction"
             $($field $value)*)
         };
     }
@@ -819,7 +819,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_Analysis {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.Analysis"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.Analysis"
             $($field $value)*)
         };
     }
@@ -847,7 +847,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_ArchiveAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.ArchiveAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.ArchiveAction"
             $($field $value)*)
         };
     }
@@ -878,7 +878,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_DeliverToMailboxAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.DeliverToMailboxAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.DeliverToMailboxAction"
             $($field $value)*)
         };
     }
@@ -914,7 +914,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_DeliverToQBusinessAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.DeliverToQBusinessAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.DeliverToQBusinessAction"
             $($field $value)*)
         };
     }
@@ -953,7 +953,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RelayAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RelayAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RelayAction"
             $($field $value)*)
         };
     }
@@ -988,7 +988,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_ReplaceRecipientAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.ReplaceRecipientAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.ReplaceRecipientAction"
             $($field $value)*)
         };
     }
@@ -1016,7 +1016,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.Rule"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.Rule"
             $($field $value)*)
         };
     }
@@ -1060,7 +1060,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RuleAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleAction"
             $($field $value)*)
         };
     }
@@ -1131,7 +1131,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RuleBooleanExpression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleBooleanExpression"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleBooleanExpression"
             $($field $value)*)
         };
     }
@@ -1160,7 +1160,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RuleBooleanToEvaluate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleBooleanToEvaluate"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleBooleanToEvaluate"
             $($field $value)*)
         };
     }
@@ -1202,7 +1202,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RuleCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleCondition"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleCondition"
             $($field $value)*)
         };
     }
@@ -1258,7 +1258,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RuleDmarcExpression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleDmarcExpression"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleDmarcExpression"
             $($field $value)*)
         };
     }
@@ -1287,7 +1287,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RuleIpExpression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleIpExpression"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleIpExpression"
             $($field $value)*)
         };
     }
@@ -1318,7 +1318,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RuleIpToEvaluate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleIpToEvaluate"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleIpToEvaluate"
             $($field $value)*)
         };
     }
@@ -1342,7 +1342,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RuleIsInAddressList {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleIsInAddressList"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleIsInAddressList"
             $($field $value)*)
         };
     }
@@ -1371,7 +1371,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RuleNumberExpression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleNumberExpression"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleNumberExpression"
             $($field $value)*)
         };
     }
@@ -1402,7 +1402,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RuleNumberToEvaluate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleNumberToEvaluate"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleNumberToEvaluate"
             $($field $value)*)
         };
     }
@@ -1427,7 +1427,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RuleStringExpression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleStringExpression"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleStringExpression"
             $($field $value)*)
         };
     }
@@ -1460,7 +1460,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RuleStringToEvaluate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleStringToEvaluate"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleStringToEvaluate"
             $($field $value)*)
         };
     }
@@ -1499,7 +1499,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RuleVerdictExpression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleVerdictExpression"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleVerdictExpression"
             $($field $value)*)
         };
     }
@@ -1531,7 +1531,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_RuleVerdictToEvaluate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleVerdictToEvaluate"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.RuleVerdictToEvaluate"
             $($field $value)*)
         };
     }
@@ -1566,7 +1566,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_S3Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.S3Action"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.S3Action"
             $($field $value)*)
         };
     }
@@ -1612,7 +1612,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_SendAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.SendAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.SendAction"
             $($field $value)*)
         };
     }
@@ -1645,7 +1645,7 @@ pub mod mailmanagerruleset {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerRuleSet_SnsAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerRuleSet.SnsAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerRuleSet.SnsAction"
             $($field $value)*)
         };
     }
@@ -1693,7 +1693,7 @@ pub mod mailmanagertrafficpolicy {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerTrafficPolicy_IngressAnalysis {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressAnalysis"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressAnalysis"
             $($field $value)*)
         };
     }
@@ -1721,7 +1721,7 @@ pub mod mailmanagertrafficpolicy {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerTrafficPolicy_IngressBooleanExpression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressBooleanExpression"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressBooleanExpression"
             $($field $value)*)
         };
     }
@@ -1749,7 +1749,7 @@ pub mod mailmanagertrafficpolicy {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerTrafficPolicy_IngressBooleanToEvaluate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressBooleanToEvaluate"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressBooleanToEvaluate"
             $($field $value)*)
         };
     }
@@ -1780,7 +1780,7 @@ pub mod mailmanagertrafficpolicy {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerTrafficPolicy_IngressIpToEvaluate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressIpToEvaluate"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressIpToEvaluate"
             $($field $value)*)
         };
     }
@@ -1805,7 +1805,7 @@ pub mod mailmanagertrafficpolicy {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerTrafficPolicy_IngressIpv4Expression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressIpv4Expression"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressIpv4Expression"
             $($field $value)*)
         };
     }
@@ -1838,7 +1838,7 @@ pub mod mailmanagertrafficpolicy {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerTrafficPolicy_IngressIpv6Expression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressIpv6Expression"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressIpv6Expression"
             $($field $value)*)
         };
     }
@@ -1869,7 +1869,7 @@ pub mod mailmanagertrafficpolicy {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerTrafficPolicy_IngressIpv6ToEvaluate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressIpv6ToEvaluate"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressIpv6ToEvaluate"
             $($field $value)*)
         };
     }
@@ -1893,7 +1893,7 @@ pub mod mailmanagertrafficpolicy {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerTrafficPolicy_IngressIsInAddressList {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressIsInAddressList"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressIsInAddressList"
             $($field $value)*)
         };
     }
@@ -1922,7 +1922,7 @@ pub mod mailmanagertrafficpolicy {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerTrafficPolicy_IngressStringExpression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressStringExpression"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressStringExpression"
             $($field $value)*)
         };
     }
@@ -1954,7 +1954,7 @@ pub mod mailmanagertrafficpolicy {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerTrafficPolicy_IngressStringToEvaluate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressStringToEvaluate"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressStringToEvaluate"
             $($field $value)*)
         };
     }
@@ -1987,7 +1987,7 @@ pub mod mailmanagertrafficpolicy {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerTrafficPolicy_IngressTlsProtocolExpression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressTlsProtocolExpression"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressTlsProtocolExpression"
             $($field $value)*)
         };
     }
@@ -2018,7 +2018,7 @@ pub mod mailmanagertrafficpolicy {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerTrafficPolicy_IngressTlsProtocolToEvaluate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressTlsProtocolToEvaluate"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.IngressTlsProtocolToEvaluate"
             $($field $value)*)
         };
     }
@@ -2045,7 +2045,7 @@ pub mod mailmanagertrafficpolicy {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerTrafficPolicy_PolicyCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.PolicyCondition"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.PolicyCondition"
             $($field $value)*)
         };
     }
@@ -2095,7 +2095,7 @@ pub mod mailmanagertrafficpolicy {
     #[macro_export]
     macro_rules! __aws_ses_MailManagerTrafficPolicy_PolicyStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.PolicyStatement"
+            stratosphere::generator::construct_property_type!("AWS::SES::MailManagerTrafficPolicy.PolicyStatement"
             $($field $value)*)
         };
     }
@@ -2125,7 +2125,7 @@ pub mod receiptfilter {
     #[macro_export]
     macro_rules! __aws_ses_ReceiptFilter_Filter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ReceiptFilter.Filter"
+            stratosphere::generator::construct_property_type!("AWS::SES::ReceiptFilter.Filter"
             $($field $value)*)
         };
     }
@@ -2152,7 +2152,7 @@ pub mod receiptfilter {
     #[macro_export]
     macro_rules! __aws_ses_ReceiptFilter_IpFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ReceiptFilter.IpFilter"
+            stratosphere::generator::construct_property_type!("AWS::SES::ReceiptFilter.IpFilter"
             $($field $value)*)
         };
     }
@@ -2188,7 +2188,7 @@ pub mod receiptrule {
     #[macro_export]
     macro_rules! __aws_ses_ReceiptRule_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ReceiptRule.Action"
+            stratosphere::generator::construct_property_type!("AWS::SES::ReceiptRule.Action"
             $($field $value)*)
         };
     }
@@ -2256,7 +2256,7 @@ pub mod receiptrule {
     #[macro_export]
     macro_rules! __aws_ses_ReceiptRule_AddHeaderAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ReceiptRule.AddHeaderAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::ReceiptRule.AddHeaderAction"
             $($field $value)*)
         };
     }
@@ -2287,7 +2287,7 @@ pub mod receiptrule {
     #[macro_export]
     macro_rules! __aws_ses_ReceiptRule_BounceAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ReceiptRule.BounceAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::ReceiptRule.BounceAction"
             $($field $value)*)
         };
     }
@@ -2331,7 +2331,7 @@ pub mod receiptrule {
     #[macro_export]
     macro_rules! __aws_ses_ReceiptRule_ConnectAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ReceiptRule.ConnectAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::ReceiptRule.ConnectAction"
             $($field $value)*)
         };
     }
@@ -2360,7 +2360,7 @@ pub mod receiptrule {
     #[macro_export]
     macro_rules! __aws_ses_ReceiptRule_LambdaAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ReceiptRule.LambdaAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::ReceiptRule.LambdaAction"
             $($field $value)*)
         };
     }
@@ -2400,7 +2400,7 @@ pub mod receiptrule {
     #[macro_export]
     macro_rules! __aws_ses_ReceiptRule_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ReceiptRule.Rule"
+            stratosphere::generator::construct_property_type!("AWS::SES::ReceiptRule.Rule"
             $($field $value)*)
         };
     }
@@ -2456,7 +2456,7 @@ pub mod receiptrule {
     #[macro_export]
     macro_rules! __aws_ses_ReceiptRule_S3Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ReceiptRule.S3Action"
+            stratosphere::generator::construct_property_type!("AWS::SES::ReceiptRule.S3Action"
             $($field $value)*)
         };
     }
@@ -2504,7 +2504,7 @@ pub mod receiptrule {
     #[macro_export]
     macro_rules! __aws_ses_ReceiptRule_SNSAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ReceiptRule.SNSAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::ReceiptRule.SNSAction"
             $($field $value)*)
         };
     }
@@ -2536,7 +2536,7 @@ pub mod receiptrule {
     #[macro_export]
     macro_rules! __aws_ses_ReceiptRule_StopAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ReceiptRule.StopAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::ReceiptRule.StopAction"
             $($field $value)*)
         };
     }
@@ -2566,7 +2566,7 @@ pub mod receiptrule {
     #[macro_export]
     macro_rules! __aws_ses_ReceiptRule_WorkmailAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::ReceiptRule.WorkmailAction"
+            stratosphere::generator::construct_property_type!("AWS::SES::ReceiptRule.WorkmailAction"
             $($field $value)*)
         };
     }
@@ -2600,7 +2600,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_ses_Template_Template {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::Template.Template"
+            stratosphere::generator::construct_property_type!("AWS::SES::Template.Template"
             $($field $value)*)
         };
     }
@@ -2643,7 +2643,7 @@ pub mod vdmattributes {
     #[macro_export]
     macro_rules! __aws_ses_VdmAttributes_DashboardAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::VdmAttributes.DashboardAttributes"
+            stratosphere::generator::construct_property_type!("AWS::SES::VdmAttributes.DashboardAttributes"
             $($field $value)*)
         };
     }
@@ -2668,7 +2668,7 @@ pub mod vdmattributes {
     #[macro_export]
     macro_rules! __aws_ses_VdmAttributes_GuardianAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SES::VdmAttributes.GuardianAttributes"
+            stratosphere::generator::construct_property_type!("AWS::SES::VdmAttributes.GuardianAttributes"
             $($field $value)*)
         };
     }
@@ -2701,7 +2701,7 @@ pub struct ConfigurationSet_ {
 #[macro_export]
 macro_rules! __aws_ses_ConfigurationSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::ConfigurationSet"
+        stratosphere::generator::construct_resource_type!("AWS::SES::ConfigurationSet"
         $($field $value)*)
     };
 }
@@ -2771,7 +2771,7 @@ pub struct ConfigurationSetEventDestination_ {
 #[macro_export]
 macro_rules! __aws_ses_ConfigurationSetEventDestination {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::ConfigurationSetEventDestination"
+        stratosphere::generator::construct_resource_type!("AWS::SES::ConfigurationSetEventDestination"
         $($field $value)*)
     };
 }
@@ -2811,8 +2811,8 @@ pub struct ContactList_ {
 #[macro_export]
 macro_rules! __aws_ses_ContactList {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::ContactList" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::SES::ContactList"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_ses_ContactList as ContactList;
@@ -2858,7 +2858,7 @@ pub struct DedicatedIpPool_ {
 #[macro_export]
 macro_rules! __aws_ses_DedicatedIpPool {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::DedicatedIpPool"
+        stratosphere::generator::construct_resource_type!("AWS::SES::DedicatedIpPool"
         $($field $value)*)
     };
 }
@@ -2907,7 +2907,7 @@ pub struct EmailIdentity_ {
 #[macro_export]
 macro_rules! __aws_ses_EmailIdentity {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::EmailIdentity"
+        stratosphere::generator::construct_resource_type!("AWS::SES::EmailIdentity"
         $($field $value)*)
     };
 }
@@ -2972,7 +2972,7 @@ pub struct MailManagerAddonInstance_ {
 #[macro_export]
 macro_rules! __aws_ses_MailManagerAddonInstance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::MailManagerAddonInstance"
+        stratosphere::generator::construct_resource_type!("AWS::SES::MailManagerAddonInstance"
         $($field $value)*)
     };
 }
@@ -3007,7 +3007,7 @@ pub struct MailManagerAddonSubscription_ {
 #[macro_export]
 macro_rules! __aws_ses_MailManagerAddonSubscription {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::MailManagerAddonSubscription"
+        stratosphere::generator::construct_resource_type!("AWS::SES::MailManagerAddonSubscription"
         $($field $value)*)
     };
 }
@@ -3044,7 +3044,7 @@ pub struct MailManagerAddressList_ {
 #[macro_export]
 macro_rules! __aws_ses_MailManagerAddressList {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::MailManagerAddressList"
+        stratosphere::generator::construct_resource_type!("AWS::SES::MailManagerAddressList"
         $($field $value)*)
     };
 }
@@ -3083,7 +3083,7 @@ pub struct MailManagerArchive_ {
 #[macro_export]
 macro_rules! __aws_ses_MailManagerArchive {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::MailManagerArchive"
+        stratosphere::generator::construct_resource_type!("AWS::SES::MailManagerArchive"
         $($field $value)*)
     };
 }
@@ -3139,7 +3139,7 @@ pub struct MailManagerIngressPoint_ {
 #[macro_export]
 macro_rules! __aws_ses_MailManagerIngressPoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::MailManagerIngressPoint"
+        stratosphere::generator::construct_resource_type!("AWS::SES::MailManagerIngressPoint"
         $($field $value)*)
     };
 }
@@ -3209,7 +3209,7 @@ pub struct MailManagerRelay_ {
 #[macro_export]
 macro_rules! __aws_ses_MailManagerRelay {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::MailManagerRelay"
+        stratosphere::generator::construct_resource_type!("AWS::SES::MailManagerRelay"
         $($field $value)*)
     };
 }
@@ -3259,7 +3259,7 @@ pub struct MailManagerRuleSet_ {
 #[macro_export]
 macro_rules! __aws_ses_MailManagerRuleSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::MailManagerRuleSet"
+        stratosphere::generator::construct_resource_type!("AWS::SES::MailManagerRuleSet"
         $($field $value)*)
     };
 }
@@ -3303,7 +3303,7 @@ pub struct MailManagerTrafficPolicy_ {
 #[macro_export]
 macro_rules! __aws_ses_MailManagerTrafficPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::MailManagerTrafficPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::SES::MailManagerTrafficPolicy"
         $($field $value)*)
     };
 }
@@ -3353,7 +3353,7 @@ pub struct ReceiptFilter_ {
 #[macro_export]
 macro_rules! __aws_ses_ReceiptFilter {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::ReceiptFilter"
+        stratosphere::generator::construct_resource_type!("AWS::SES::ReceiptFilter"
         $($field $value)*)
     };
 }
@@ -3386,8 +3386,8 @@ pub struct ReceiptRule_ {
 #[macro_export]
 macro_rules! __aws_ses_ReceiptRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::ReceiptRule" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::SES::ReceiptRule"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_ses_ReceiptRule as ReceiptRule;
@@ -3424,7 +3424,7 @@ pub struct ReceiptRuleSet_ {
 #[macro_export]
 macro_rules! __aws_ses_ReceiptRuleSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::ReceiptRuleSet"
+        stratosphere::generator::construct_resource_type!("AWS::SES::ReceiptRuleSet"
         $($field $value)*)
     };
 }
@@ -3457,7 +3457,7 @@ pub struct Template_ {
 #[macro_export]
 macro_rules! __aws_ses_Template {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::Template" $($field
+        stratosphere::generator::construct_resource_type!("AWS::SES::Template" $($field
         $value)*)
     };
 }
@@ -3491,7 +3491,7 @@ pub struct VdmAttributes_ {
 #[macro_export]
 macro_rules! __aws_ses_VdmAttributes {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SES::VdmAttributes"
+        stratosphere::generator::construct_resource_type!("AWS::SES::VdmAttributes"
         $($field $value)*)
     };
 }

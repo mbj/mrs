@@ -7,7 +7,7 @@ pub mod githubrepository {
     #[macro_export]
     macro_rules! __aws_codestar_GitHubRepository_Code {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeStar::GitHubRepository.Code"
+            stratosphere::generator::construct_property_type!("AWS::CodeStar::GitHubRepository.Code"
             $($field $value)*)
         };
     }
@@ -29,7 +29,7 @@ pub mod githubrepository {
     #[macro_export]
     macro_rules! __aws_codestar_GitHubRepository_S3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeStar::GitHubRepository.S3"
+            stratosphere::generator::construct_property_type!("AWS::CodeStar::GitHubRepository.S3"
             $($field $value)*)
         };
     }
@@ -70,7 +70,7 @@ pub struct GitHubRepository_ {
 #[macro_export]
 macro_rules! __aws_codestar_GitHubRepository {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeStar::GitHubRepository"
+        stratosphere::generator::construct_resource_type!("AWS::CodeStar::GitHubRepository"
         $($field $value)*)
     };
 }

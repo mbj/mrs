@@ -11,7 +11,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_mwaa_Environment_LoggingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MWAA::Environment.LoggingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MWAA::Environment.LoggingConfiguration"
             $($field $value)*)
         };
     }
@@ -62,7 +62,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_mwaa_Environment_ModuleLoggingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MWAA::Environment.ModuleLoggingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MWAA::Environment.ModuleLoggingConfiguration"
             $($field $value)*)
         };
     }
@@ -100,7 +100,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_mwaa_Environment_NetworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MWAA::Environment.NetworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MWAA::Environment.NetworkConfiguration"
             $($field $value)*)
         };
     }
@@ -157,7 +157,7 @@ pub struct Environment_ {
 #[macro_export]
 macro_rules! __aws_mwaa_Environment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MWAA::Environment"
+        stratosphere::generator::construct_resource_type!("AWS::MWAA::Environment"
         $($field $value)*)
     };
 }

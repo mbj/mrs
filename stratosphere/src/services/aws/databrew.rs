@@ -8,7 +8,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_CsvOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.CsvOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.CsvOptions"
             $($field $value)*)
         };
     }
@@ -42,7 +42,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_DataCatalogInputDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.DataCatalogInputDefinition"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.DataCatalogInputDefinition"
             $($field $value)*)
         };
     }
@@ -88,7 +88,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_DatabaseInputDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.DatabaseInputDefinition"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.DatabaseInputDefinition"
             $($field $value)*)
         };
     }
@@ -133,7 +133,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_DatasetParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.DatasetParameter"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.DatasetParameter"
             $($field $value)*)
         };
     }
@@ -177,7 +177,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_DatetimeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.DatetimeOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.DatetimeOptions"
             $($field $value)*)
         };
     }
@@ -214,7 +214,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_ExcelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.ExcelOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.ExcelOptions"
             $($field $value)*)
         };
     }
@@ -253,7 +253,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_FilesLimit {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.FilesLimit"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.FilesLimit"
             $($field $value)*)
         };
     }
@@ -286,7 +286,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_FilterExpression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.FilterExpression"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.FilterExpression"
             $($field $value)*)
         };
     }
@@ -314,7 +314,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_FilterValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.FilterValue"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.FilterValue"
             $($field $value)*)
         };
     }
@@ -343,7 +343,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_FormatOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.FormatOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.FormatOptions"
             $($field $value)*)
         };
     }
@@ -374,7 +374,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_Input {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.Input"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.Input"
             $($field $value)*)
         };
     }
@@ -417,7 +417,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_JsonOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.JsonOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.JsonOptions"
             $($field $value)*)
         };
     }
@@ -442,7 +442,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_Metadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.Metadata"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.Metadata"
             $($field $value)*)
         };
     }
@@ -469,7 +469,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_PathOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.PathOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.PathOptions"
             $($field $value)*)
         };
     }
@@ -507,7 +507,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_PathParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.PathParameter"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.PathParameter"
             $($field $value)*)
         };
     }
@@ -536,7 +536,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_databrew_Dataset_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Dataset.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Dataset.S3Location"
             $($field $value)*)
         };
     }
@@ -570,7 +570,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_AllowedStatistics {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.AllowedStatistics"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.AllowedStatistics"
             $($field $value)*)
         };
     }
@@ -594,7 +594,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_ColumnSelector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.ColumnSelector"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.ColumnSelector"
             $($field $value)*)
         };
     }
@@ -620,7 +620,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_ColumnStatisticsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.ColumnStatisticsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.ColumnStatisticsConfiguration"
             $($field $value)*)
         };
     }
@@ -649,7 +649,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_CsvOutputOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.CsvOutputOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.CsvOutputOptions"
             $($field $value)*)
         };
     }
@@ -679,7 +679,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_DataCatalogOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.DataCatalogOutput"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.DataCatalogOutput"
             $($field $value)*)
         };
     }
@@ -732,7 +732,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_DatabaseOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.DatabaseOutput"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.DatabaseOutput"
             $($field $value)*)
         };
     }
@@ -766,7 +766,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_DatabaseTableOutputOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.DatabaseTableOutputOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.DatabaseTableOutputOptions"
             $($field $value)*)
         };
     }
@@ -796,7 +796,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_EntityDetectorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.EntityDetectorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.EntityDetectorConfiguration"
             $($field $value)*)
         };
     }
@@ -826,7 +826,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_JobSample {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.JobSample"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.JobSample"
             $($field $value)*)
         };
     }
@@ -857,7 +857,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_Output {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.Output"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.Output"
             $($field $value)*)
         };
     }
@@ -913,7 +913,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_OutputFormatOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.OutputFormatOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.OutputFormatOptions"
             $($field $value)*)
         };
     }
@@ -937,7 +937,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_OutputLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.OutputLocation"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.OutputLocation"
             $($field $value)*)
         };
     }
@@ -972,7 +972,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_ProfileConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.ProfileConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.ProfileConfiguration"
             $($field $value)*)
         };
     }
@@ -1016,7 +1016,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_Recipe {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.Recipe"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.Recipe"
             $($field $value)*)
         };
     }
@@ -1047,7 +1047,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.S3Location"
             $($field $value)*)
         };
     }
@@ -1079,7 +1079,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_S3TableOutputOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.S3TableOutputOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.S3TableOutputOptions"
             $($field $value)*)
         };
     }
@@ -1103,7 +1103,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_StatisticOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.StatisticOverride"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.StatisticOverride"
             $($field $value)*)
         };
     }
@@ -1131,7 +1131,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_StatisticsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.StatisticsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.StatisticsConfiguration"
             $($field $value)*)
         };
     }
@@ -1163,7 +1163,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_databrew_Job_ValidationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Job.ValidationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Job.ValidationConfiguration"
             $($field $value)*)
         };
     }
@@ -1195,7 +1195,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_databrew_Project_Sample {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Project.Sample"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Project.Sample"
             $($field $value)*)
         };
     }
@@ -1224,7 +1224,7 @@ pub mod recipe {
     #[macro_export]
     macro_rules! __aws_databrew_Recipe_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Recipe.Action"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Recipe.Action"
             $($field $value)*)
         };
     }
@@ -1255,7 +1255,7 @@ pub mod recipe {
     #[macro_export]
     macro_rules! __aws_databrew_Recipe_ConditionExpression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Recipe.ConditionExpression"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Recipe.ConditionExpression"
             $($field $value)*)
         };
     }
@@ -1288,7 +1288,7 @@ pub mod recipe {
     #[macro_export]
     macro_rules! __aws_databrew_Recipe_DataCatalogInputDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Recipe.DataCatalogInputDefinition"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Recipe.DataCatalogInputDefinition"
             $($field $value)*)
         };
     }
@@ -1332,7 +1332,7 @@ pub mod recipe {
     #[macro_export]
     macro_rules! __aws_databrew_Recipe_Input {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Recipe.Input"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Recipe.Input"
             $($field $value)*)
         };
     }
@@ -1463,7 +1463,7 @@ pub mod recipe {
     #[macro_export]
     macro_rules! __aws_databrew_Recipe_RecipeParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Recipe.RecipeParameters"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Recipe.RecipeParameters"
             $($field $value)*)
         };
     }
@@ -2056,7 +2056,7 @@ pub mod recipe {
     #[macro_export]
     macro_rules! __aws_databrew_Recipe_RecipeStep {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Recipe.RecipeStep"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Recipe.RecipeStep"
             $($field $value)*)
         };
     }
@@ -2086,7 +2086,7 @@ pub mod recipe {
     #[macro_export]
     macro_rules! __aws_databrew_Recipe_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Recipe.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Recipe.S3Location"
             $($field $value)*)
         };
     }
@@ -2113,7 +2113,7 @@ pub mod recipe {
     #[macro_export]
     macro_rules! __aws_databrew_Recipe_SecondaryInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Recipe.SecondaryInput"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Recipe.SecondaryInput"
             $($field $value)*)
         };
     }
@@ -2147,7 +2147,7 @@ pub mod ruleset {
     #[macro_export]
     macro_rules! __aws_databrew_Ruleset_ColumnSelector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Ruleset.ColumnSelector"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Ruleset.ColumnSelector"
             $($field $value)*)
         };
     }
@@ -2177,7 +2177,7 @@ pub mod ruleset {
     #[macro_export]
     macro_rules! __aws_databrew_Ruleset_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Ruleset.Rule"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Ruleset.Rule"
             $($field $value)*)
         };
     }
@@ -2229,7 +2229,7 @@ pub mod ruleset {
     #[macro_export]
     macro_rules! __aws_databrew_Ruleset_SubstitutionValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Ruleset.SubstitutionValue"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Ruleset.SubstitutionValue"
             $($field $value)*)
         };
     }
@@ -2258,7 +2258,7 @@ pub mod ruleset {
     #[macro_export]
     macro_rules! __aws_databrew_Ruleset_Threshold {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataBrew::Ruleset.Threshold"
+            stratosphere::generator::construct_property_type!("AWS::DataBrew::Ruleset.Threshold"
             $($field $value)*)
         };
     }
@@ -2294,7 +2294,7 @@ pub struct Dataset_ {
 #[macro_export]
 macro_rules! __aws_databrew_Dataset {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataBrew::Dataset"
+        stratosphere::generator::construct_resource_type!("AWS::DataBrew::Dataset"
         $($field $value)*)
     };
 }
@@ -2369,7 +2369,7 @@ pub struct Job_ {
 #[macro_export]
 macro_rules! __aws_databrew_Job {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataBrew::Job" $($field
+        stratosphere::generator::construct_resource_type!("AWS::DataBrew::Job" $($field
         $value)*)
     };
 }
@@ -2509,7 +2509,7 @@ pub struct Project_ {
 #[macro_export]
 macro_rules! __aws_databrew_Project {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataBrew::Project"
+        stratosphere::generator::construct_resource_type!("AWS::DataBrew::Project"
         $($field $value)*)
     };
 }
@@ -2561,8 +2561,8 @@ pub struct Recipe_ {
 #[macro_export]
 macro_rules! __aws_databrew_Recipe {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataBrew::Recipe" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::DataBrew::Recipe"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_databrew_Recipe as Recipe;
@@ -2609,7 +2609,7 @@ pub struct Ruleset_ {
 #[macro_export]
 macro_rules! __aws_databrew_Ruleset {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataBrew::Ruleset"
+        stratosphere::generator::construct_resource_type!("AWS::DataBrew::Ruleset"
         $($field $value)*)
     };
 }
@@ -2660,7 +2660,7 @@ pub struct Schedule_ {
 #[macro_export]
 macro_rules! __aws_databrew_Schedule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataBrew::Schedule"
+        stratosphere::generator::construct_resource_type!("AWS::DataBrew::Schedule"
         $($field $value)*)
     };
 }

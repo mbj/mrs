@@ -8,7 +8,7 @@ pub mod cisscanconfiguration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CisScanConfiguration_CisTargets {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CisScanConfiguration.CisTargets"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CisScanConfiguration.CisTargets"
             $($field $value)*)
         };
     }
@@ -35,7 +35,7 @@ pub mod cisscanconfiguration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CisScanConfiguration_DailySchedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CisScanConfiguration.DailySchedule"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CisScanConfiguration.DailySchedule"
             $($field $value)*)
         };
     }
@@ -59,7 +59,7 @@ pub mod cisscanconfiguration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CisScanConfiguration_MonthlySchedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CisScanConfiguration.MonthlySchedule"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CisScanConfiguration.MonthlySchedule"
             $($field $value)*)
         };
     }
@@ -89,7 +89,7 @@ pub mod cisscanconfiguration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CisScanConfiguration_Schedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CisScanConfiguration.Schedule"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CisScanConfiguration.Schedule"
             $($field $value)*)
         };
     }
@@ -127,7 +127,7 @@ pub mod cisscanconfiguration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CisScanConfiguration_Time {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CisScanConfiguration.Time"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CisScanConfiguration.Time"
             $($field $value)*)
         };
     }
@@ -155,7 +155,7 @@ pub mod cisscanconfiguration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CisScanConfiguration_WeeklySchedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CisScanConfiguration.WeeklySchedule"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CisScanConfiguration.WeeklySchedule"
             $($field $value)*)
         };
     }
@@ -184,7 +184,7 @@ pub mod codesecurityintegration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CodeSecurityIntegration_CreateDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CodeSecurityIntegration.CreateDetails"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CodeSecurityIntegration.CreateDetails"
             $($field $value)*)
         };
     }
@@ -208,7 +208,7 @@ pub mod codesecurityintegration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CodeSecurityIntegration_CreateGitLabSelfManagedIntegrationDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CodeSecurityIntegration.CreateGitLabSelfManagedIntegrationDetail"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CodeSecurityIntegration.CreateGitLabSelfManagedIntegrationDetail"
             $($field $value)*)
         };
     }
@@ -236,7 +236,7 @@ pub mod codesecurityintegration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CodeSecurityIntegration_UpdateDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CodeSecurityIntegration.UpdateDetails"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CodeSecurityIntegration.UpdateDetails"
             $($field $value)*)
         };
     }
@@ -265,7 +265,7 @@ pub mod codesecurityintegration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CodeSecurityIntegration_UpdateGitHubIntegrationDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CodeSecurityIntegration.UpdateGitHubIntegrationDetail"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CodeSecurityIntegration.UpdateGitHubIntegrationDetail"
             $($field $value)*)
         };
     }
@@ -292,7 +292,7 @@ pub mod codesecurityintegration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CodeSecurityIntegration_UpdateGitLabSelfManagedIntegrationDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CodeSecurityIntegration.UpdateGitLabSelfManagedIntegrationDetail"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CodeSecurityIntegration.UpdateGitLabSelfManagedIntegrationDetail"
             $($field $value)*)
         };
     }
@@ -320,7 +320,7 @@ pub mod codesecurityscanconfiguration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CodeSecurityScanConfiguration_CodeSecurityScanConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CodeSecurityScanConfiguration.CodeSecurityScanConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CodeSecurityScanConfiguration.CodeSecurityScanConfiguration"
             $($field $value)*)
         };
     }
@@ -355,7 +355,7 @@ pub mod codesecurityscanconfiguration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CodeSecurityScanConfiguration_ContinuousIntegrationScanConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CodeSecurityScanConfiguration.ContinuousIntegrationScanConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CodeSecurityScanConfiguration.ContinuousIntegrationScanConfiguration"
             $($field $value)*)
         };
     }
@@ -379,7 +379,7 @@ pub mod codesecurityscanconfiguration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CodeSecurityScanConfiguration_PeriodicScanConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CodeSecurityScanConfiguration.PeriodicScanConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CodeSecurityScanConfiguration.PeriodicScanConfiguration"
             $($field $value)*)
         };
     }
@@ -410,7 +410,7 @@ pub mod codesecurityscanconfiguration {
     #[macro_export]
     macro_rules! __aws_inspectorv2_CodeSecurityScanConfiguration_ScopeSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::CodeSecurityScanConfiguration.ScopeSettings"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::CodeSecurityScanConfiguration.ScopeSettings"
             $($field $value)*)
         };
     }
@@ -438,7 +438,7 @@ pub mod filter {
     #[macro_export]
     macro_rules! __aws_inspectorv2_Filter_DateFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::Filter.DateFilter"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::Filter.DateFilter"
             $($field $value)*)
         };
     }
@@ -510,7 +510,7 @@ pub mod filter {
     #[macro_export]
     macro_rules! __aws_inspectorv2_Filter_FilterCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::Filter.FilterCriteria"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::Filter.FilterCriteria"
             $($field $value)*)
         };
     }
@@ -780,7 +780,7 @@ pub mod filter {
     #[macro_export]
     macro_rules! __aws_inspectorv2_Filter_MapFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::Filter.MapFilter"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::Filter.MapFilter"
             $($field $value)*)
         };
     }
@@ -810,7 +810,7 @@ pub mod filter {
     #[macro_export]
     macro_rules! __aws_inspectorv2_Filter_NumberFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::Filter.NumberFilter"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::Filter.NumberFilter"
             $($field $value)*)
         };
     }
@@ -848,7 +848,7 @@ pub mod filter {
     #[macro_export]
     macro_rules! __aws_inspectorv2_Filter_PackageFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::Filter.PackageFilter"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::Filter.PackageFilter"
             $($field $value)*)
         };
     }
@@ -910,7 +910,7 @@ pub mod filter {
     #[macro_export]
     macro_rules! __aws_inspectorv2_Filter_PortRangeFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::Filter.PortRangeFilter"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::Filter.PortRangeFilter"
             $($field $value)*)
         };
     }
@@ -942,7 +942,7 @@ pub mod filter {
     #[macro_export]
     macro_rules! __aws_inspectorv2_Filter_StringFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::InspectorV2::Filter.StringFilter"
+            stratosphere::generator::construct_property_type!("AWS::InspectorV2::Filter.StringFilter"
             $($field $value)*)
         };
     }
@@ -974,7 +974,7 @@ pub struct CisScanConfiguration_ {
 #[macro_export]
 macro_rules! __aws_inspectorv2_CisScanConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::InspectorV2::CisScanConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::InspectorV2::CisScanConfiguration"
         $($field $value)*)
     };
 }
@@ -1026,7 +1026,7 @@ pub struct CodeSecurityIntegration_ {
 #[macro_export]
 macro_rules! __aws_inspectorv2_CodeSecurityIntegration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::InspectorV2::CodeSecurityIntegration"
+        stratosphere::generator::construct_resource_type!("AWS::InspectorV2::CodeSecurityIntegration"
         $($field $value)*)
     };
 }
@@ -1079,7 +1079,7 @@ pub struct CodeSecurityScanConfiguration_ {
 #[macro_export]
 macro_rules! __aws_inspectorv2_CodeSecurityScanConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::InspectorV2::CodeSecurityScanConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::InspectorV2::CodeSecurityScanConfiguration"
         $($field $value)*)
     };
 }
@@ -1133,7 +1133,7 @@ pub struct Filter_ {
 #[macro_export]
 macro_rules! __aws_inspectorv2_Filter {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::InspectorV2::Filter"
+        stratosphere::generator::construct_resource_type!("AWS::InspectorV2::Filter"
         $($field $value)*)
     };
 }

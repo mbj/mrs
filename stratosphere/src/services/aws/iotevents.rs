@@ -7,7 +7,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_AcknowledgeFlow {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AcknowledgeFlow"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AcknowledgeFlow"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_AlarmAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AlarmAction"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AlarmAction"
             $($field $value)*)
         };
     }
@@ -105,7 +105,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_AlarmCapabilities {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AlarmCapabilities"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AlarmCapabilities"
             $($field $value)*)
         };
     }
@@ -136,7 +136,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_AlarmEventActions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AlarmEventActions"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AlarmEventActions"
             $($field $value)*)
         };
     }
@@ -161,7 +161,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_AlarmRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AlarmRule"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AlarmRule"
             $($field $value)*)
         };
     }
@@ -187,7 +187,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_AssetPropertyTimestamp {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AssetPropertyTimestamp"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AssetPropertyTimestamp"
             $($field $value)*)
         };
     }
@@ -218,7 +218,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_AssetPropertyValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AssetPropertyValue"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AssetPropertyValue"
             $($field $value)*)
         };
     }
@@ -256,7 +256,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_AssetPropertyVariant {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AssetPropertyVariant"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.AssetPropertyVariant"
             $($field $value)*)
         };
     }
@@ -308,7 +308,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_DynamoDB {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.DynamoDB"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.DynamoDB"
             $($field $value)*)
         };
     }
@@ -382,7 +382,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_DynamoDBv2 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.DynamoDBv2"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.DynamoDBv2"
             $($field $value)*)
         };
     }
@@ -413,7 +413,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_Firehose {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.Firehose"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.Firehose"
             $($field $value)*)
         };
     }
@@ -448,7 +448,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_InitializationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.InitializationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.InitializationConfiguration"
             $($field $value)*)
         };
     }
@@ -472,7 +472,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_IotEvents {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.IotEvents"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.IotEvents"
             $($field $value)*)
         };
     }
@@ -505,7 +505,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_IotSiteWise {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.IotSiteWise"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.IotSiteWise"
             $($field $value)*)
         };
     }
@@ -555,7 +555,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_IotTopicPublish {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.IotTopicPublish"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.IotTopicPublish"
             $($field $value)*)
         };
     }
@@ -585,7 +585,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_Lambda {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.Lambda"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.Lambda"
             $($field $value)*)
         };
     }
@@ -615,7 +615,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_Payload {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.Payload"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.Payload"
             $($field $value)*)
         };
     }
@@ -644,7 +644,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_SimpleRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.SimpleRule"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.SimpleRule"
             $($field $value)*)
         };
     }
@@ -676,7 +676,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_Sns {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.Sns"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.Sns"
             $($field $value)*)
         };
     }
@@ -707,7 +707,7 @@ pub mod alarmmodel {
     #[macro_export]
     macro_rules! __aws_iotevents_AlarmModel_Sqs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::AlarmModel.Sqs"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::AlarmModel.Sqs"
             $($field $value)*)
         };
     }
@@ -756,7 +756,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.Action"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.Action"
             $($field $value)*)
         };
     }
@@ -845,7 +845,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_AssetPropertyTimestamp {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.AssetPropertyTimestamp"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.AssetPropertyTimestamp"
             $($field $value)*)
         };
     }
@@ -876,7 +876,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_AssetPropertyValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.AssetPropertyValue"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.AssetPropertyValue"
             $($field $value)*)
         };
     }
@@ -914,7 +914,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_AssetPropertyVariant {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.AssetPropertyVariant"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.AssetPropertyVariant"
             $($field $value)*)
         };
     }
@@ -957,7 +957,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_ClearTimer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.ClearTimer"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.ClearTimer"
             $($field $value)*)
         };
     }
@@ -981,7 +981,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_DetectorModelDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.DetectorModelDefinition"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.DetectorModelDefinition"
             $($field $value)*)
         };
     }
@@ -1017,7 +1017,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_DynamoDB {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.DynamoDB"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.DynamoDB"
             $($field $value)*)
         };
     }
@@ -1091,7 +1091,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_DynamoDBv2 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.DynamoDBv2"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.DynamoDBv2"
             $($field $value)*)
         };
     }
@@ -1122,7 +1122,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_Event {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.Event"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.Event"
             $($field $value)*)
         };
     }
@@ -1159,7 +1159,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_Firehose {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.Firehose"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.Firehose"
             $($field $value)*)
         };
     }
@@ -1195,7 +1195,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_IotEvents {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.IotEvents"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.IotEvents"
             $($field $value)*)
         };
     }
@@ -1228,7 +1228,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_IotSiteWise {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.IotSiteWise"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.IotSiteWise"
             $($field $value)*)
         };
     }
@@ -1276,7 +1276,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_IotTopicPublish {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.IotTopicPublish"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.IotTopicPublish"
             $($field $value)*)
         };
     }
@@ -1306,7 +1306,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_Lambda {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.Lambda"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.Lambda"
             $($field $value)*)
         };
     }
@@ -1335,7 +1335,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_OnEnter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.OnEnter"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.OnEnter"
             $($field $value)*)
         };
     }
@@ -1357,7 +1357,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_OnExit {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.OnExit"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.OnExit"
             $($field $value)*)
         };
     }
@@ -1380,7 +1380,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_OnInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.OnInput"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.OnInput"
             $($field $value)*)
         };
     }
@@ -1409,7 +1409,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_Payload {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.Payload"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.Payload"
             $($field $value)*)
         };
     }
@@ -1436,7 +1436,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_ResetTimer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.ResetTimer"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.ResetTimer"
             $($field $value)*)
         };
     }
@@ -1461,7 +1461,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_SetTimer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.SetTimer"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.SetTimer"
             $($field $value)*)
         };
     }
@@ -1497,7 +1497,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_SetVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.SetVariable"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.SetVariable"
             $($field $value)*)
         };
     }
@@ -1525,7 +1525,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_Sns {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.Sns"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.Sns"
             $($field $value)*)
         };
     }
@@ -1556,7 +1556,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_Sqs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.Sqs"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.Sqs"
             $($field $value)*)
         };
     }
@@ -1594,7 +1594,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_State {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.State"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.State"
             $($field $value)*)
         };
     }
@@ -1635,7 +1635,7 @@ pub mod detectormodel {
     #[macro_export]
     macro_rules! __aws_iotevents_DetectorModel_TransitionEvent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::DetectorModel.TransitionEvent"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::DetectorModel.TransitionEvent"
             $($field $value)*)
         };
     }
@@ -1674,7 +1674,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_iotevents_Input_Attribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::Input.Attribute"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::Input.Attribute"
             $($field $value)*)
         };
     }
@@ -1697,7 +1697,7 @@ pub mod input {
     #[macro_export]
     macro_rules! __aws_iotevents_Input_InputDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTEvents::Input.InputDefinition"
+            stratosphere::generator::construct_property_type!("AWS::IoTEvents::Input.InputDefinition"
             $($field $value)*)
         };
     }
@@ -1729,7 +1729,7 @@ pub struct AlarmModel_ {
 #[macro_export]
 macro_rules! __aws_iotevents_AlarmModel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTEvents::AlarmModel"
+        stratosphere::generator::construct_resource_type!("AWS::IoTEvents::AlarmModel"
         $($field $value)*)
     };
 }
@@ -1806,7 +1806,7 @@ pub struct DetectorModel_ {
 #[macro_export]
 macro_rules! __aws_iotevents_DetectorModel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTEvents::DetectorModel"
+        stratosphere::generator::construct_resource_type!("AWS::IoTEvents::DetectorModel"
         $($field $value)*)
     };
 }
@@ -1868,8 +1868,8 @@ pub struct Input_ {
 #[macro_export]
 macro_rules! __aws_iotevents_Input {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTEvents::Input" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::IoTEvents::Input"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_iotevents_Input as Input;

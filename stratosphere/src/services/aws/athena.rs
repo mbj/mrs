@@ -7,7 +7,7 @@ pub mod capacityreservation {
     #[macro_export]
     macro_rules! __aws_athena_CapacityReservation_CapacityAssignment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Athena::CapacityReservation.CapacityAssignment"
+            stratosphere::generator::construct_property_type!("AWS::Athena::CapacityReservation.CapacityAssignment"
             $($field $value)*)
         };
     }
@@ -30,7 +30,7 @@ pub mod capacityreservation {
     #[macro_export]
     macro_rules! __aws_athena_CapacityReservation_CapacityAssignmentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Athena::CapacityReservation.CapacityAssignmentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Athena::CapacityReservation.CapacityAssignmentConfiguration"
             $($field $value)*)
         };
     }
@@ -55,7 +55,7 @@ pub mod workgroup {
     #[macro_export]
     macro_rules! __aws_athena_WorkGroup_AclConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Athena::WorkGroup.AclConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Athena::WorkGroup.AclConfiguration"
             $($field $value)*)
         };
     }
@@ -78,7 +78,7 @@ pub mod workgroup {
     #[macro_export]
     macro_rules! __aws_athena_WorkGroup_CustomerContentEncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Athena::WorkGroup.CustomerContentEncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Athena::WorkGroup.CustomerContentEncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -102,7 +102,7 @@ pub mod workgroup {
     #[macro_export]
     macro_rules! __aws_athena_WorkGroup_EncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Athena::WorkGroup.EncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Athena::WorkGroup.EncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -129,7 +129,7 @@ pub mod workgroup {
     #[macro_export]
     macro_rules! __aws_athena_WorkGroup_EngineVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Athena::WorkGroup.EngineVersion"
+            stratosphere::generator::construct_property_type!("AWS::Athena::WorkGroup.EngineVersion"
             $($field $value)*)
         };
     }
@@ -161,7 +161,7 @@ pub mod workgroup {
     #[macro_export]
     macro_rules! __aws_athena_WorkGroup_ManagedQueryResultsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Athena::WorkGroup.ManagedQueryResultsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Athena::WorkGroup.ManagedQueryResultsConfiguration"
             $($field $value)*)
         };
     }
@@ -192,7 +192,7 @@ pub mod workgroup {
     #[macro_export]
     macro_rules! __aws_athena_WorkGroup_ManagedStorageEncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Athena::WorkGroup.ManagedStorageEncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Athena::WorkGroup.ManagedStorageEncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -217,7 +217,7 @@ pub mod workgroup {
     #[macro_export]
     macro_rules! __aws_athena_WorkGroup_ResultConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Athena::WorkGroup.ResultConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Athena::WorkGroup.ResultConfiguration"
             $($field $value)*)
         };
     }
@@ -270,7 +270,7 @@ pub mod workgroup {
     #[macro_export]
     macro_rules! __aws_athena_WorkGroup_WorkGroupConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Athena::WorkGroup.WorkGroupConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Athena::WorkGroup.WorkGroupConfiguration"
             $($field $value)*)
         };
     }
@@ -354,7 +354,7 @@ pub struct CapacityReservation_ {
 #[macro_export]
 macro_rules! __aws_athena_CapacityReservation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Athena::CapacityReservation"
+        stratosphere::generator::construct_resource_type!("AWS::Athena::CapacityReservation"
         $($field $value)*)
     };
 }
@@ -405,7 +405,7 @@ pub struct DataCatalog_ {
 #[macro_export]
 macro_rules! __aws_athena_DataCatalog {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Athena::DataCatalog"
+        stratosphere::generator::construct_resource_type!("AWS::Athena::DataCatalog"
         $($field $value)*)
     };
 }
@@ -471,7 +471,7 @@ pub struct NamedQuery_ {
 #[macro_export]
 macro_rules! __aws_athena_NamedQuery {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Athena::NamedQuery"
+        stratosphere::generator::construct_resource_type!("AWS::Athena::NamedQuery"
         $($field $value)*)
     };
 }
@@ -524,7 +524,7 @@ pub struct PreparedStatement_ {
 #[macro_export]
 macro_rules! __aws_athena_PreparedStatement {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Athena::PreparedStatement"
+        stratosphere::generator::construct_resource_type!("AWS::Athena::PreparedStatement"
         $($field $value)*)
     };
 }
@@ -574,7 +574,7 @@ pub struct WorkGroup_ {
 #[macro_export]
 macro_rules! __aws_athena_WorkGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Athena::WorkGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Athena::WorkGroup"
         $($field $value)*)
     };
 }

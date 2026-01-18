@@ -7,7 +7,7 @@ pub mod profilinggroup {
     #[macro_export]
     macro_rules! __aws_codeguruprofiler_ProfilingGroup_AgentPermissions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeGuruProfiler::ProfilingGroup.AgentPermissions"
+            stratosphere::generator::construct_property_type!("AWS::CodeGuruProfiler::ProfilingGroup.AgentPermissions"
             $($field $value)*)
         };
     }
@@ -31,7 +31,7 @@ pub mod profilinggroup {
     #[macro_export]
     macro_rules! __aws_codeguruprofiler_ProfilingGroup_Channel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeGuruProfiler::ProfilingGroup.Channel"
+            stratosphere::generator::construct_property_type!("AWS::CodeGuruProfiler::ProfilingGroup.Channel"
             $($field $value)*)
         };
     }
@@ -66,7 +66,7 @@ pub struct ProfilingGroup_ {
 #[macro_export]
 macro_rules! __aws_codeguruprofiler_ProfilingGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeGuruProfiler::ProfilingGroup"
+        stratosphere::generator::construct_resource_type!("AWS::CodeGuruProfiler::ProfilingGroup"
         $($field $value)*)
     };
 }

@@ -9,7 +9,7 @@ pub struct Permission_ {
 #[macro_export]
 macro_rules! __aws_ram_Permission {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RAM::Permission" $($field
+        stratosphere::generator::construct_resource_type!("AWS::RAM::Permission" $($field
         $value)*)
     };
 }
@@ -57,7 +57,7 @@ pub struct ResourceShare_ {
 #[macro_export]
 macro_rules! __aws_ram_ResourceShare {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RAM::ResourceShare"
+        stratosphere::generator::construct_resource_type!("AWS::RAM::ResourceShare"
         $($field $value)*)
     };
 }

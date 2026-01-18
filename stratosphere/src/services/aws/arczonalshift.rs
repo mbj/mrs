@@ -8,7 +8,7 @@ pub mod zonalautoshiftconfiguration {
     #[macro_export]
     macro_rules! __aws_arczonalshift_ZonalAutoshiftConfiguration_ControlCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCZonalShift::ZonalAutoshiftConfiguration.ControlCondition"
+            stratosphere::generator::construct_property_type!("AWS::ARCZonalShift::ZonalAutoshiftConfiguration.ControlCondition"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod zonalautoshiftconfiguration {
     #[macro_export]
     macro_rules! __aws_arczonalshift_ZonalAutoshiftConfiguration_PracticeRunConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ARCZonalShift::ZonalAutoshiftConfiguration.PracticeRunConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ARCZonalShift::ZonalAutoshiftConfiguration.PracticeRunConfiguration"
             $($field $value)*)
         };
     }
@@ -80,7 +80,7 @@ pub struct AutoshiftObserverNotificationStatus_ {
 #[macro_export]
 macro_rules! __aws_arczonalshift_AutoshiftObserverNotificationStatus {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ARCZonalShift::AutoshiftObserverNotificationStatus"
+        stratosphere::generator::construct_resource_type!("AWS::ARCZonalShift::AutoshiftObserverNotificationStatus"
         $($field $value)*)
     };
 }
@@ -116,7 +116,7 @@ pub struct ZonalAutoshiftConfiguration_ {
 #[macro_export]
 macro_rules! __aws_arczonalshift_ZonalAutoshiftConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ARCZonalShift::ZonalAutoshiftConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::ARCZonalShift::ZonalAutoshiftConfiguration"
         $($field $value)*)
     };
 }

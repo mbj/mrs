@@ -10,7 +10,7 @@ pub mod organizationtelemetryrule {
     #[macro_export]
     macro_rules! __aws_observabilityadmin_OrganizationTelemetryRule_TelemetryDestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ObservabilityAdmin::OrganizationTelemetryRule.TelemetryDestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ObservabilityAdmin::OrganizationTelemetryRule.TelemetryDestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -57,7 +57,7 @@ pub mod organizationtelemetryrule {
     #[macro_export]
     macro_rules! __aws_observabilityadmin_OrganizationTelemetryRule_TelemetryRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ObservabilityAdmin::OrganizationTelemetryRule.TelemetryRule"
+            stratosphere::generator::construct_property_type!("AWS::ObservabilityAdmin::OrganizationTelemetryRule.TelemetryRule"
             $($field $value)*)
         };
     }
@@ -101,7 +101,7 @@ pub mod organizationtelemetryrule {
     #[macro_export]
     macro_rules! __aws_observabilityadmin_OrganizationTelemetryRule_VPCFlowLogParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ObservabilityAdmin::OrganizationTelemetryRule.VPCFlowLogParameters"
+            stratosphere::generator::construct_property_type!("AWS::ObservabilityAdmin::OrganizationTelemetryRule.VPCFlowLogParameters"
             $($field $value)*)
         };
     }
@@ -143,7 +143,7 @@ pub mod telemetryrule {
     #[macro_export]
     macro_rules! __aws_observabilityadmin_TelemetryRule_TelemetryDestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ObservabilityAdmin::TelemetryRule.TelemetryDestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ObservabilityAdmin::TelemetryRule.TelemetryDestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -189,7 +189,7 @@ pub mod telemetryrule {
     #[macro_export]
     macro_rules! __aws_observabilityadmin_TelemetryRule_TelemetryRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ObservabilityAdmin::TelemetryRule.TelemetryRule"
+            stratosphere::generator::construct_property_type!("AWS::ObservabilityAdmin::TelemetryRule.TelemetryRule"
             $($field $value)*)
         };
     }
@@ -230,7 +230,7 @@ pub mod telemetryrule {
     #[macro_export]
     macro_rules! __aws_observabilityadmin_TelemetryRule_VPCFlowLogParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ObservabilityAdmin::TelemetryRule.VPCFlowLogParameters"
+            stratosphere::generator::construct_property_type!("AWS::ObservabilityAdmin::TelemetryRule.VPCFlowLogParameters"
             $($field $value)*)
         };
     }
@@ -270,7 +270,7 @@ pub struct OrganizationTelemetryRule_ {
 #[macro_export]
 macro_rules! __aws_observabilityadmin_OrganizationTelemetryRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ObservabilityAdmin::OrganizationTelemetryRule"
+        stratosphere::generator::construct_resource_type!("AWS::ObservabilityAdmin::OrganizationTelemetryRule"
         $($field $value)*)
     };
 }
@@ -310,7 +310,7 @@ pub struct TelemetryRule_ {
 #[macro_export]
 macro_rules! __aws_observabilityadmin_TelemetryRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ObservabilityAdmin::TelemetryRule"
+        stratosphere::generator::construct_resource_type!("AWS::ObservabilityAdmin::TelemetryRule"
         $($field $value)*)
     };
 }

@@ -9,7 +9,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_opsworks_App_DataSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::App.DataSource"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::App.DataSource"
             $($field $value)*)
         };
     }
@@ -42,7 +42,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_opsworks_App_EnvironmentVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::App.EnvironmentVariable"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::App.EnvironmentVariable"
             $($field $value)*)
         };
     }
@@ -77,7 +77,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_opsworks_App_Source {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::App.Source"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::App.Source"
             $($field $value)*)
         };
     }
@@ -125,7 +125,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_opsworks_App_SslConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::App.SslConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::App.SslConfiguration"
             $($field $value)*)
         };
     }
@@ -164,7 +164,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_opsworks_Instance_BlockDeviceMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::Instance.BlockDeviceMapping"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::Instance.BlockDeviceMapping"
             $($field $value)*)
         };
     }
@@ -208,7 +208,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_opsworks_Instance_EbsBlockDevice {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::Instance.EbsBlockDevice"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::Instance.EbsBlockDevice"
             $($field $value)*)
         };
     }
@@ -260,7 +260,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_opsworks_Instance_TimeBasedAutoScaling {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::Instance.TimeBasedAutoScaling"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::Instance.TimeBasedAutoScaling"
             $($field $value)*)
         };
     }
@@ -319,7 +319,7 @@ pub mod layer {
     #[macro_export]
     macro_rules! __aws_opsworks_Layer_AutoScalingThresholds {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::Layer.AutoScalingThresholds"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::Layer.AutoScalingThresholds"
             $($field $value)*)
         };
     }
@@ -374,7 +374,7 @@ pub mod layer {
     #[macro_export]
     macro_rules! __aws_opsworks_Layer_LifecycleEventConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::Layer.LifecycleEventConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::Layer.LifecycleEventConfiguration"
             $($field $value)*)
         };
     }
@@ -401,7 +401,7 @@ pub mod layer {
     #[macro_export]
     macro_rules! __aws_opsworks_Layer_LoadBasedAutoScaling {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::Layer.LoadBasedAutoScaling"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::Layer.LoadBasedAutoScaling"
             $($field $value)*)
         };
     }
@@ -439,7 +439,7 @@ pub mod layer {
     #[macro_export]
     macro_rules! __aws_opsworks_Layer_Recipes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::Layer.Recipes"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::Layer.Recipes"
             $($field $value)*)
         };
     }
@@ -483,7 +483,7 @@ pub mod layer {
     #[macro_export]
     macro_rules! __aws_opsworks_Layer_ShutdownEventConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::Layer.ShutdownEventConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::Layer.ShutdownEventConfiguration"
             $($field $value)*)
         };
     }
@@ -520,7 +520,7 @@ pub mod layer {
     #[macro_export]
     macro_rules! __aws_opsworks_Layer_VolumeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::Layer.VolumeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::Layer.VolumeConfiguration"
             $($field $value)*)
         };
     }
@@ -578,7 +578,7 @@ pub mod stack {
     #[macro_export]
     macro_rules! __aws_opsworks_Stack_ChefConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::Stack.ChefConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::Stack.ChefConfiguration"
             $($field $value)*)
         };
     }
@@ -610,7 +610,7 @@ pub mod stack {
     #[macro_export]
     macro_rules! __aws_opsworks_Stack_ElasticIp {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::Stack.ElasticIp"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::Stack.ElasticIp"
             $($field $value)*)
         };
     }
@@ -635,7 +635,7 @@ pub mod stack {
     #[macro_export]
     macro_rules! __aws_opsworks_Stack_RdsDbInstance {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::Stack.RdsDbInstance"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::Stack.RdsDbInstance"
             $($field $value)*)
         };
     }
@@ -671,7 +671,7 @@ pub mod stack {
     #[macro_export]
     macro_rules! __aws_opsworks_Stack_Source {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::Stack.Source"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::Stack.Source"
             $($field $value)*)
         };
     }
@@ -718,7 +718,7 @@ pub mod stack {
     #[macro_export]
     macro_rules! __aws_opsworks_Stack_StackConfigurationManager {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorks::Stack.StackConfigurationManager"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorks::Stack.StackConfigurationManager"
             $($field $value)*)
         };
     }
@@ -758,7 +758,7 @@ pub struct App_ {
 #[macro_export]
 macro_rules! __aws_opsworks_App {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpsWorks::App" $($field
+        stratosphere::generator::construct_resource_type!("AWS::OpsWorks::App" $($field
         $value)*)
     };
 }
@@ -852,7 +852,7 @@ pub struct ElasticLoadBalancerAttachment_ {
 #[macro_export]
 macro_rules! __aws_opsworks_ElasticLoadBalancerAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpsWorks::ElasticLoadBalancerAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::OpsWorks::ElasticLoadBalancerAttachment"
         $($field $value)*)
     };
 }
@@ -909,7 +909,7 @@ pub struct Instance_ {
 #[macro_export]
 macro_rules! __aws_opsworks_Instance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpsWorks::Instance"
+        stratosphere::generator::construct_resource_type!("AWS::OpsWorks::Instance"
         $($field $value)*)
     };
 }
@@ -1068,7 +1068,7 @@ pub struct Layer_ {
 #[macro_export]
 macro_rules! __aws_opsworks_Layer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpsWorks::Layer" $($field
+        stratosphere::generator::construct_resource_type!("AWS::OpsWorks::Layer" $($field
         $value)*)
     };
 }
@@ -1216,7 +1216,7 @@ pub struct Stack_ {
 #[macro_export]
 macro_rules! __aws_opsworks_Stack {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpsWorks::Stack" $($field
+        stratosphere::generator::construct_resource_type!("AWS::OpsWorks::Stack" $($field
         $value)*)
     };
 }
@@ -1384,7 +1384,7 @@ pub struct UserProfile_ {
 #[macro_export]
 macro_rules! __aws_opsworks_UserProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpsWorks::UserProfile"
+        stratosphere::generator::construct_resource_type!("AWS::OpsWorks::UserProfile"
         $($field $value)*)
     };
 }
@@ -1436,8 +1436,8 @@ pub struct Volume_ {
 #[macro_export]
 macro_rules! __aws_opsworks_Volume {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpsWorks::Volume" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::OpsWorks::Volume"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_opsworks_Volume as Volume;

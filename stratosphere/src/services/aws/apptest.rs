@@ -10,7 +10,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_Batch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.Batch"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.Batch"
             $($field $value)*)
         };
     }
@@ -46,7 +46,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_CloudFormationAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.CloudFormationAction"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.CloudFormationAction"
             $($field $value)*)
         };
     }
@@ -76,7 +76,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_CompareAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.CompareAction"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.CompareAction"
             $($field $value)*)
         };
     }
@@ -106,7 +106,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_DataSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.DataSet"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.DataSet"
             $($field $value)*)
         };
     }
@@ -146,7 +146,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_DatabaseCDC {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.DatabaseCDC"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.DatabaseCDC"
             $($field $value)*)
         };
     }
@@ -174,7 +174,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_FileMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.FileMetadata"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.FileMetadata"
             $($field $value)*)
         };
     }
@@ -205,7 +205,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_Input {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.Input"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.Input"
             $($field $value)*)
         };
     }
@@ -230,7 +230,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_InputFile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.InputFile"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.InputFile"
             $($field $value)*)
         };
     }
@@ -262,7 +262,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_M2ManagedActionProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.M2ManagedActionProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.M2ManagedActionProperties"
             $($field $value)*)
         };
     }
@@ -295,7 +295,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_M2ManagedApplicationAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.M2ManagedApplicationAction"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.M2ManagedApplicationAction"
             $($field $value)*)
         };
     }
@@ -329,7 +329,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_M2NonManagedApplicationAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.M2NonManagedApplicationAction"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.M2NonManagedApplicationAction"
             $($field $value)*)
         };
     }
@@ -358,7 +358,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_MainframeAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.MainframeAction"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.MainframeAction"
             $($field $value)*)
         };
     }
@@ -391,7 +391,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_MainframeActionProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.MainframeActionProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.MainframeActionProperties"
             $($field $value)*)
         };
     }
@@ -417,7 +417,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_MainframeActionType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.MainframeActionType"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.MainframeActionType"
             $($field $value)*)
         };
     }
@@ -442,7 +442,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_Output {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.Output"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.Output"
             $($field $value)*)
         };
     }
@@ -465,7 +465,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_OutputFile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.OutputFile"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.OutputFile"
             $($field $value)*)
         };
     }
@@ -492,7 +492,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_ResourceAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.ResourceAction"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.ResourceAction"
             $($field $value)*)
         };
     }
@@ -530,7 +530,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_Script {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.Script"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.Script"
             $($field $value)*)
         };
     }
@@ -558,7 +558,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_SourceDatabaseMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.SourceDatabaseMetadata"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.SourceDatabaseMetadata"
             $($field $value)*)
         };
     }
@@ -587,7 +587,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_Step {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.Step"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.Step"
             $($field $value)*)
         };
     }
@@ -622,7 +622,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_StepAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.StepAction"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.StepAction"
             $($field $value)*)
         };
     }
@@ -660,7 +660,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_TN3270 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.TN3270"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.TN3270"
             $($field $value)*)
         };
     }
@@ -690,7 +690,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_TargetDatabaseMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.TargetDatabaseMetadata"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.TargetDatabaseMetadata"
             $($field $value)*)
         };
     }
@@ -718,7 +718,7 @@ pub mod testcase {
     #[macro_export]
     macro_rules! __aws_apptest_TestCase_TestCaseLatestVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppTest::TestCase.TestCaseLatestVersion"
+            stratosphere::generator::construct_property_type!("AWS::AppTest::TestCase.TestCaseLatestVersion"
             $($field $value)*)
         };
     }
@@ -749,7 +749,7 @@ pub struct TestCase_ {
 #[macro_export]
 macro_rules! __aws_apptest_TestCase {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppTest::TestCase"
+        stratosphere::generator::construct_resource_type!("AWS::AppTest::TestCase"
         $($field $value)*)
     };
 }

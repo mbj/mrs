@@ -7,7 +7,7 @@ pub mod view {
     #[macro_export]
     macro_rules! __aws_resourceexplorer2_View_IncludedProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ResourceExplorer2::View.IncludedProperty"
+            stratosphere::generator::construct_property_type!("AWS::ResourceExplorer2::View.IncludedProperty"
             $($field $value)*)
         };
     }
@@ -30,7 +30,7 @@ pub mod view {
     #[macro_export]
     macro_rules! __aws_resourceexplorer2_View_SearchFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ResourceExplorer2::View.SearchFilter"
+            stratosphere::generator::construct_property_type!("AWS::ResourceExplorer2::View.SearchFilter"
             $($field $value)*)
         };
     }
@@ -54,7 +54,7 @@ pub struct DefaultViewAssociation_ {
 #[macro_export]
 macro_rules! __aws_resourceexplorer2_DefaultViewAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ResourceExplorer2::DefaultViewAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::ResourceExplorer2::DefaultViewAssociation"
         $($field $value)*)
     };
 }
@@ -86,7 +86,7 @@ pub struct Index_ {
 #[macro_export]
 macro_rules! __aws_resourceexplorer2_Index {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ResourceExplorer2::Index"
+        stratosphere::generator::construct_resource_type!("AWS::ResourceExplorer2::Index"
         $($field $value)*)
     };
 }
@@ -124,7 +124,7 @@ pub struct View_ {
 #[macro_export]
 macro_rules! __aws_resourceexplorer2_View {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ResourceExplorer2::View"
+        stratosphere::generator::construct_resource_type!("AWS::ResourceExplorer2::View"
         $($field $value)*)
     };
 }

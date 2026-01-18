@@ -10,7 +10,7 @@ pub mod key {
     #[macro_export]
     macro_rules! __aws_paymentcryptography_Key_KeyAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PaymentCryptography::Key.KeyAttributes"
+            stratosphere::generator::construct_property_type!("AWS::PaymentCryptography::Key.KeyAttributes"
             $($field $value)*)
         };
     }
@@ -53,7 +53,7 @@ pub mod key {
     #[macro_export]
     macro_rules! __aws_paymentcryptography_Key_KeyModesOfUse {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PaymentCryptography::Key.KeyModesOfUse"
+            stratosphere::generator::construct_property_type!("AWS::PaymentCryptography::Key.KeyModesOfUse"
             $($field $value)*)
         };
     }
@@ -116,7 +116,7 @@ pub struct Alias_ {
 #[macro_export]
 macro_rules! __aws_paymentcryptography_Alias {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PaymentCryptography::Alias"
+        stratosphere::generator::construct_resource_type!("AWS::PaymentCryptography::Alias"
         $($field $value)*)
     };
 }
@@ -155,7 +155,7 @@ pub struct Key_ {
 #[macro_export]
 macro_rules! __aws_paymentcryptography_Key {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PaymentCryptography::Key"
+        stratosphere::generator::construct_resource_type!("AWS::PaymentCryptography::Key"
         $($field $value)*)
     };
 }

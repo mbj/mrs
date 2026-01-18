@@ -8,7 +8,7 @@ pub mod export {
     #[macro_export]
     macro_rules! __aws_bcmdataexports_Export_DataQuery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BCMDataExports::Export.DataQuery"
+            stratosphere::generator::construct_property_type!("AWS::BCMDataExports::Export.DataQuery"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub mod export {
     #[macro_export]
     macro_rules! __aws_bcmdataexports_Export_DestinationConfigurations {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BCMDataExports::Export.DestinationConfigurations"
+            stratosphere::generator::construct_property_type!("AWS::BCMDataExports::Export.DestinationConfigurations"
             $($field $value)*)
         };
     }
@@ -65,7 +65,7 @@ pub mod export {
     #[macro_export]
     macro_rules! __aws_bcmdataexports_Export_Export {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BCMDataExports::Export.Export"
+            stratosphere::generator::construct_property_type!("AWS::BCMDataExports::Export.Export"
             $($field $value)*)
         };
     }
@@ -112,7 +112,7 @@ pub mod export {
     #[macro_export]
     macro_rules! __aws_bcmdataexports_Export_RefreshCadence {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BCMDataExports::Export.RefreshCadence"
+            stratosphere::generator::construct_property_type!("AWS::BCMDataExports::Export.RefreshCadence"
             $($field $value)*)
         };
     }
@@ -136,7 +136,7 @@ pub mod export {
     #[macro_export]
     macro_rules! __aws_bcmdataexports_Export_ResourceTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BCMDataExports::Export.ResourceTag"
+            stratosphere::generator::construct_property_type!("AWS::BCMDataExports::Export.ResourceTag"
             $($field $value)*)
         };
     }
@@ -166,7 +166,7 @@ pub mod export {
     #[macro_export]
     macro_rules! __aws_bcmdataexports_Export_S3Destination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BCMDataExports::Export.S3Destination"
+            stratosphere::generator::construct_property_type!("AWS::BCMDataExports::Export.S3Destination"
             $($field $value)*)
         };
     }
@@ -204,7 +204,7 @@ pub mod export {
     #[macro_export]
     macro_rules! __aws_bcmdataexports_Export_S3OutputConfigurations {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BCMDataExports::Export.S3OutputConfigurations"
+            stratosphere::generator::construct_property_type!("AWS::BCMDataExports::Export.S3OutputConfigurations"
             $($field $value)*)
         };
     }
@@ -241,7 +241,7 @@ pub struct Export_ {
 #[macro_export]
 macro_rules! __aws_bcmdataexports_Export {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::BCMDataExports::Export"
+        stratosphere::generator::construct_resource_type!("AWS::BCMDataExports::Export"
         $($field $value)*)
     };
 }

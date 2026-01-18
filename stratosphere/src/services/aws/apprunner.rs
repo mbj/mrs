@@ -7,7 +7,7 @@ pub mod observabilityconfiguration {
     #[macro_export]
     macro_rules! __aws_apprunner_ObservabilityConfiguration_TraceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::ObservabilityConfiguration.TraceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::ObservabilityConfiguration.TraceConfiguration"
             $($field $value)*)
         };
     }
@@ -33,7 +33,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_AuthenticationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.AuthenticationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.AuthenticationConfiguration"
             $($field $value)*)
         };
     }
@@ -65,7 +65,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_CodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.CodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.CodeConfiguration"
             $($field $value)*)
         };
     }
@@ -99,7 +99,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_CodeConfigurationValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.CodeConfigurationValues"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.CodeConfigurationValues"
             $($field $value)*)
         };
     }
@@ -152,7 +152,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_CodeRepository {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.CodeRepository"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.CodeRepository"
             $($field $value)*)
         };
     }
@@ -192,7 +192,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_EgressConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.EgressConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.EgressConfiguration"
             $($field $value)*)
         };
     }
@@ -221,7 +221,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_EncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.EncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.EncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -249,7 +249,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_HealthCheckConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.HealthCheckConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.HealthCheckConfiguration"
             $($field $value)*)
         };
     }
@@ -304,7 +304,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_ImageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.ImageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.ImageConfiguration"
             $($field $value)*)
         };
     }
@@ -346,7 +346,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_ImageRepository {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.ImageRepository"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.ImageRepository"
             $($field $value)*)
         };
     }
@@ -379,7 +379,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_IngressConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.IngressConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.IngressConfiguration"
             $($field $value)*)
         };
     }
@@ -404,7 +404,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_InstanceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.InstanceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.InstanceConfiguration"
             $($field $value)*)
         };
     }
@@ -436,7 +436,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_KeyValuePair {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.KeyValuePair"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.KeyValuePair"
             $($field $value)*)
         };
     }
@@ -463,7 +463,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_NetworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.NetworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.NetworkConfiguration"
             $($field $value)*)
         };
     }
@@ -501,7 +501,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_ServiceObservabilityConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.ServiceObservabilityConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.ServiceObservabilityConfiguration"
             $($field $value)*)
         };
     }
@@ -531,7 +531,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_SourceCodeVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.SourceCodeVersion"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.SourceCodeVersion"
             $($field $value)*)
         };
     }
@@ -561,7 +561,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_apprunner_Service_SourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::Service.SourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::Service.SourceConfiguration"
             $($field $value)*)
         };
     }
@@ -607,7 +607,7 @@ pub mod vpcingressconnection {
     #[macro_export]
     macro_rules! __aws_apprunner_VpcIngressConnection_IngressVpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppRunner::VpcIngressConnection.IngressVpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AppRunner::VpcIngressConnection.IngressVpcConfiguration"
             $($field $value)*)
         };
     }
@@ -639,7 +639,7 @@ pub struct AutoScalingConfiguration_ {
 #[macro_export]
 macro_rules! __aws_apprunner_AutoScalingConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppRunner::AutoScalingConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::AppRunner::AutoScalingConfiguration"
         $($field $value)*)
     };
 }
@@ -696,7 +696,7 @@ pub struct ObservabilityConfiguration_ {
 #[macro_export]
 macro_rules! __aws_apprunner_ObservabilityConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppRunner::ObservabilityConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::AppRunner::ObservabilityConfiguration"
         $($field $value)*)
     };
 }
@@ -749,7 +749,7 @@ pub struct Service_ {
 #[macro_export]
 macro_rules! __aws_apprunner_Service {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppRunner::Service"
+        stratosphere::generator::construct_resource_type!("AWS::AppRunner::Service"
         $($field $value)*)
     };
 }
@@ -828,7 +828,7 @@ pub struct VpcConnector_ {
 #[macro_export]
 macro_rules! __aws_apprunner_VpcConnector {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppRunner::VpcConnector"
+        stratosphere::generator::construct_resource_type!("AWS::AppRunner::VpcConnector"
         $($field $value)*)
     };
 }
@@ -877,7 +877,7 @@ pub struct VpcIngressConnection_ {
 #[macro_export]
 macro_rules! __aws_apprunner_VpcIngressConnection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppRunner::VpcIngressConnection"
+        stratosphere::generator::construct_resource_type!("AWS::AppRunner::VpcIngressConnection"
         $($field $value)*)
     };
 }

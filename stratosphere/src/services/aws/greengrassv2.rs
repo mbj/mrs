@@ -8,7 +8,7 @@ pub mod componentversion {
     #[macro_export]
     macro_rules! __aws_greengrassv2_ComponentVersion_ComponentDependencyRequirement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.ComponentDependencyRequirement"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.ComponentDependencyRequirement"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod componentversion {
     #[macro_export]
     macro_rules! __aws_greengrassv2_ComponentVersion_ComponentPlatform {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.ComponentPlatform"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.ComponentPlatform"
             $($field $value)*)
         };
     }
@@ -71,7 +71,7 @@ pub mod componentversion {
     #[macro_export]
     macro_rules! __aws_greengrassv2_ComponentVersion_LambdaContainerParams {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.LambdaContainerParams"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.LambdaContainerParams"
             $($field $value)*)
         };
     }
@@ -116,7 +116,7 @@ pub mod componentversion {
     #[macro_export]
     macro_rules! __aws_greengrassv2_ComponentVersion_LambdaDeviceMount {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.LambdaDeviceMount"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.LambdaDeviceMount"
             $($field $value)*)
         };
     }
@@ -151,7 +151,7 @@ pub mod componentversion {
     #[macro_export]
     macro_rules! __aws_greengrassv2_ComponentVersion_LambdaEventSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.LambdaEventSource"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.LambdaEventSource"
             $($field $value)*)
         };
     }
@@ -187,7 +187,7 @@ pub mod componentversion {
     #[macro_export]
     macro_rules! __aws_greengrassv2_ComponentVersion_LambdaExecutionParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.LambdaExecutionParameters"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.LambdaExecutionParameters"
             $($field $value)*)
         };
     }
@@ -275,7 +275,7 @@ pub mod componentversion {
     #[macro_export]
     macro_rules! __aws_greengrassv2_ComponentVersion_LambdaFunctionRecipeSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.LambdaFunctionRecipeSource"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.LambdaFunctionRecipeSource"
             $($field $value)*)
         };
     }
@@ -331,7 +331,7 @@ pub mod componentversion {
     #[macro_export]
     macro_rules! __aws_greengrassv2_ComponentVersion_LambdaLinuxProcessParams {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.LambdaLinuxProcessParams"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.LambdaLinuxProcessParams"
             $($field $value)*)
         };
     }
@@ -365,7 +365,7 @@ pub mod componentversion {
     #[macro_export]
     macro_rules! __aws_greengrassv2_ComponentVersion_LambdaVolumeMount {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.LambdaVolumeMount"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::ComponentVersion.LambdaVolumeMount"
             $($field $value)*)
         };
     }
@@ -411,7 +411,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_greengrassv2_Deployment_ComponentConfigurationUpdate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::Deployment.ComponentConfigurationUpdate"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::Deployment.ComponentConfigurationUpdate"
             $($field $value)*)
         };
     }
@@ -438,7 +438,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_greengrassv2_Deployment_ComponentDeploymentSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::Deployment.ComponentDeploymentSpecification"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::Deployment.ComponentDeploymentSpecification"
             $($field $value)*)
         };
     }
@@ -477,7 +477,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_greengrassv2_Deployment_ComponentRunWith {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::Deployment.ComponentRunWith"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::Deployment.ComponentRunWith"
             $($field $value)*)
         };
     }
@@ -515,7 +515,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_greengrassv2_Deployment_DeploymentComponentUpdatePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::Deployment.DeploymentComponentUpdatePolicy"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::Deployment.DeploymentComponentUpdatePolicy"
             $($field $value)*)
         };
     }
@@ -543,7 +543,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_greengrassv2_Deployment_DeploymentConfigurationValidationPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::Deployment.DeploymentConfigurationValidationPolicy"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::Deployment.DeploymentConfigurationValidationPolicy"
             $($field $value)*)
         };
     }
@@ -570,7 +570,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_greengrassv2_Deployment_DeploymentIoTJobConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::Deployment.DeploymentIoTJobConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::Deployment.DeploymentIoTJobConfiguration"
             $($field $value)*)
         };
     }
@@ -609,7 +609,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_greengrassv2_Deployment_DeploymentPolicies {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::Deployment.DeploymentPolicies"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::Deployment.DeploymentPolicies"
             $($field $value)*)
         };
     }
@@ -646,7 +646,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_greengrassv2_Deployment_IoTJobAbortConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::Deployment.IoTJobAbortConfig"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::Deployment.IoTJobAbortConfig"
             $($field $value)*)
         };
     }
@@ -672,7 +672,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_greengrassv2_Deployment_IoTJobAbortCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::Deployment.IoTJobAbortCriteria"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::Deployment.IoTJobAbortCriteria"
             $($field $value)*)
         };
     }
@@ -708,7 +708,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_greengrassv2_Deployment_IoTJobExecutionsRolloutConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::Deployment.IoTJobExecutionsRolloutConfig"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::Deployment.IoTJobExecutionsRolloutConfig"
             $($field $value)*)
         };
     }
@@ -741,7 +741,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_greengrassv2_Deployment_IoTJobExponentialRolloutRate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::Deployment.IoTJobExponentialRolloutRate"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::Deployment.IoTJobExponentialRolloutRate"
             $($field $value)*)
         };
     }
@@ -773,7 +773,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_greengrassv2_Deployment_IoTJobRateIncreaseCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::Deployment.IoTJobRateIncreaseCriteria"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::Deployment.IoTJobRateIncreaseCriteria"
             $($field $value)*)
         };
     }
@@ -804,7 +804,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_greengrassv2_Deployment_IoTJobTimeoutConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::Deployment.IoTJobTimeoutConfig"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::Deployment.IoTJobTimeoutConfig"
             $($field $value)*)
         };
     }
@@ -830,7 +830,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_greengrassv2_Deployment_SystemResourceLimits {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GreengrassV2::Deployment.SystemResourceLimits"
+            stratosphere::generator::construct_property_type!("AWS::GreengrassV2::Deployment.SystemResourceLimits"
             $($field $value)*)
         };
     }
@@ -858,7 +858,7 @@ pub struct ComponentVersion_ {
 #[macro_export]
 macro_rules! __aws_greengrassv2_ComponentVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GreengrassV2::ComponentVersion"
+        stratosphere::generator::construct_resource_type!("AWS::GreengrassV2::ComponentVersion"
         $($field $value)*)
     };
 }
@@ -912,7 +912,7 @@ pub struct Deployment_ {
 #[macro_export]
 macro_rules! __aws_greengrassv2_Deployment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GreengrassV2::Deployment"
+        stratosphere::generator::construct_resource_type!("AWS::GreengrassV2::Deployment"
         $($field $value)*)
     };
 }

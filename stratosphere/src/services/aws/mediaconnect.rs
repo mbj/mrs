@@ -9,7 +9,7 @@ pub mod bridge {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Bridge_BridgeFlowSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Bridge.BridgeFlowSource"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Bridge.BridgeFlowSource"
             $($field $value)*)
         };
     }
@@ -47,7 +47,7 @@ pub mod bridge {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Bridge_BridgeNetworkOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Bridge.BridgeNetworkOutput"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Bridge.BridgeNetworkOutput"
             $($field $value)*)
         };
     }
@@ -95,7 +95,7 @@ pub mod bridge {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Bridge_BridgeNetworkSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Bridge.BridgeNetworkSource"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Bridge.BridgeNetworkSource"
             $($field $value)*)
         };
     }
@@ -140,7 +140,7 @@ pub mod bridge {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Bridge_BridgeOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Bridge.BridgeOutput"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Bridge.BridgeOutput"
             $($field $value)*)
         };
     }
@@ -166,7 +166,7 @@ pub mod bridge {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Bridge_BridgeSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Bridge.BridgeSource"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Bridge.BridgeSource"
             $($field $value)*)
         };
     }
@@ -197,7 +197,7 @@ pub mod bridge {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Bridge_EgressGatewayBridge {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Bridge.EgressGatewayBridge"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Bridge.EgressGatewayBridge"
             $($field $value)*)
         };
     }
@@ -222,7 +222,7 @@ pub mod bridge {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Bridge_FailoverConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Bridge.FailoverConfig"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Bridge.FailoverConfig"
             $($field $value)*)
         };
     }
@@ -255,7 +255,7 @@ pub mod bridge {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Bridge_IngressGatewayBridge {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Bridge.IngressGatewayBridge"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Bridge.IngressGatewayBridge"
             $($field $value)*)
         };
     }
@@ -282,7 +282,7 @@ pub mod bridge {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Bridge_MulticastSourceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Bridge.MulticastSourceSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Bridge.MulticastSourceSettings"
             $($field $value)*)
         };
     }
@@ -307,7 +307,7 @@ pub mod bridge {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Bridge_SourcePriority {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Bridge.SourcePriority"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Bridge.SourcePriority"
             $($field $value)*)
         };
     }
@@ -332,7 +332,7 @@ pub mod bridge {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Bridge_VpcInterfaceAttachment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Bridge.VpcInterfaceAttachment"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Bridge.VpcInterfaceAttachment"
             $($field $value)*)
         };
     }
@@ -363,7 +363,7 @@ pub mod bridgeoutput {
     #[macro_export]
     macro_rules! __aws_mediaconnect_BridgeOutput_BridgeNetworkOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::BridgeOutput.BridgeNetworkOutput"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::BridgeOutput.BridgeNetworkOutput"
             $($field $value)*)
         };
     }
@@ -405,7 +405,7 @@ pub mod bridgesource {
     #[macro_export]
     macro_rules! __aws_mediaconnect_BridgeSource_BridgeFlowSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::BridgeSource.BridgeFlowSource"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::BridgeSource.BridgeFlowSource"
             $($field $value)*)
         };
     }
@@ -438,7 +438,7 @@ pub mod bridgesource {
     #[macro_export]
     macro_rules! __aws_mediaconnect_BridgeSource_BridgeNetworkSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::BridgeSource.BridgeNetworkSource"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::BridgeSource.BridgeNetworkSource"
             $($field $value)*)
         };
     }
@@ -479,7 +479,7 @@ pub mod bridgesource {
     #[macro_export]
     macro_rules! __aws_mediaconnect_BridgeSource_MulticastSourceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::BridgeSource.MulticastSourceSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::BridgeSource.MulticastSourceSettings"
             $($field $value)*)
         };
     }
@@ -504,7 +504,7 @@ pub mod bridgesource {
     #[macro_export]
     macro_rules! __aws_mediaconnect_BridgeSource_VpcInterfaceAttachment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::BridgeSource.VpcInterfaceAttachment"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::BridgeSource.VpcInterfaceAttachment"
             $($field $value)*)
         };
     }
@@ -531,7 +531,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_AudioMonitoringSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.AudioMonitoringSetting"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.AudioMonitoringSetting"
             $($field $value)*)
         };
     }
@@ -557,7 +557,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_BlackFrames {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.BlackFrames"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.BlackFrames"
             $($field $value)*)
         };
     }
@@ -593,7 +593,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_Encryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.Encryption"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.Encryption"
             $($field $value)*)
         };
     }
@@ -661,7 +661,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_FailoverConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.FailoverConfig"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.FailoverConfig"
             $($field $value)*)
         };
     }
@@ -707,7 +707,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_Fmtp {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.Fmtp"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.Fmtp"
             $($field $value)*)
         };
     }
@@ -760,7 +760,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_FrozenFrames {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.FrozenFrames"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.FrozenFrames"
             $($field $value)*)
         };
     }
@@ -789,7 +789,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_GatewayBridgeSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.GatewayBridgeSource"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.GatewayBridgeSource"
             $($field $value)*)
         };
     }
@@ -819,7 +819,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_InputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.InputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.InputConfiguration"
             $($field $value)*)
         };
     }
@@ -846,7 +846,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_Interface {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.Interface"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.Interface"
             $($field $value)*)
         };
     }
@@ -870,7 +870,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_Maintenance {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.Maintenance"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.Maintenance"
             $($field $value)*)
         };
     }
@@ -904,7 +904,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_MediaStream {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.MediaStream"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.MediaStream"
             $($field $value)*)
         };
     }
@@ -963,7 +963,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_MediaStreamAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.MediaStreamAttributes"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.MediaStreamAttributes"
             $($field $value)*)
         };
     }
@@ -990,7 +990,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_MediaStreamSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.MediaStreamSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.MediaStreamSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -1025,7 +1025,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_NdiConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.NdiConfig"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.NdiConfig"
             $($field $value)*)
         };
     }
@@ -1064,7 +1064,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_NdiDiscoveryServerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.NdiDiscoveryServerConfig"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.NdiDiscoveryServerConfig"
             $($field $value)*)
         };
     }
@@ -1098,7 +1098,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_SilentAudio {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.SilentAudio"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.SilentAudio"
             $($field $value)*)
         };
     }
@@ -1147,7 +1147,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_Source {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.Source"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.Source"
             $($field $value)*)
         };
     }
@@ -1298,7 +1298,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_SourceMonitoringConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.SourceMonitoringConfig"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.SourceMonitoringConfig"
             $($field $value)*)
         };
     }
@@ -1341,7 +1341,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_SourcePriority {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.SourcePriority"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.SourcePriority"
             $($field $value)*)
         };
     }
@@ -1365,7 +1365,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_VideoMonitoringSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.VideoMonitoringSetting"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.VideoMonitoringSetting"
             $($field $value)*)
         };
     }
@@ -1401,7 +1401,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_VpcInterface {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.VpcInterface"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.VpcInterface"
             $($field $value)*)
         };
     }
@@ -1448,7 +1448,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Flow_VpcInterfaceAttachment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Flow.VpcInterfaceAttachment"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.VpcInterfaceAttachment"
             $($field $value)*)
         };
     }
@@ -1483,7 +1483,7 @@ pub mod flowentitlement {
     #[macro_export]
     macro_rules! __aws_mediaconnect_FlowEntitlement_Encryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::FlowEntitlement.Encryption"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::FlowEntitlement.Encryption"
             $($field $value)*)
         };
     }
@@ -1550,7 +1550,7 @@ pub mod flowoutput {
     #[macro_export]
     macro_rules! __aws_mediaconnect_FlowOutput_DestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::FlowOutput.DestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::FlowOutput.DestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -1582,7 +1582,7 @@ pub mod flowoutput {
     #[macro_export]
     macro_rules! __aws_mediaconnect_FlowOutput_EncodingParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::FlowOutput.EncodingParameters"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::FlowOutput.EncodingParameters"
             $($field $value)*)
         };
     }
@@ -1614,7 +1614,7 @@ pub mod flowoutput {
     #[macro_export]
     macro_rules! __aws_mediaconnect_FlowOutput_Encryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::FlowOutput.Encryption"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::FlowOutput.Encryption"
             $($field $value)*)
         };
     }
@@ -1653,7 +1653,7 @@ pub mod flowoutput {
     #[macro_export]
     macro_rules! __aws_mediaconnect_FlowOutput_Interface {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::FlowOutput.Interface"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::FlowOutput.Interface"
             $($field $value)*)
         };
     }
@@ -1679,7 +1679,7 @@ pub mod flowoutput {
     #[macro_export]
     macro_rules! __aws_mediaconnect_FlowOutput_MediaStreamOutputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::FlowOutput.MediaStreamOutputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::FlowOutput.MediaStreamOutputConfiguration"
             $($field $value)*)
         };
     }
@@ -1718,7 +1718,7 @@ pub mod flowoutput {
     #[macro_export]
     macro_rules! __aws_mediaconnect_FlowOutput_VpcInterfaceAttachment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::FlowOutput.VpcInterfaceAttachment"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::FlowOutput.VpcInterfaceAttachment"
             $($field $value)*)
         };
     }
@@ -1753,7 +1753,7 @@ pub mod flowsource {
     #[macro_export]
     macro_rules! __aws_mediaconnect_FlowSource_Encryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::FlowSource.Encryption"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::FlowSource.Encryption"
             $($field $value)*)
         };
     }
@@ -1819,7 +1819,7 @@ pub mod flowsource {
     #[macro_export]
     macro_rules! __aws_mediaconnect_FlowSource_GatewayBridgeSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::FlowSource.GatewayBridgeSource"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::FlowSource.GatewayBridgeSource"
             $($field $value)*)
         };
     }
@@ -1848,7 +1848,7 @@ pub mod flowsource {
     #[macro_export]
     macro_rules! __aws_mediaconnect_FlowSource_VpcInterfaceAttachment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::FlowSource.VpcInterfaceAttachment"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::FlowSource.VpcInterfaceAttachment"
             $($field $value)*)
         };
     }
@@ -1876,7 +1876,7 @@ pub mod gateway {
     #[macro_export]
     macro_rules! __aws_mediaconnect_Gateway_GatewayNetwork {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConnect::Gateway.GatewayNetwork"
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Gateway.GatewayNetwork"
             $($field $value)*)
         };
     }
@@ -1910,7 +1910,7 @@ pub struct Bridge_ {
 #[macro_export]
 macro_rules! __aws_mediaconnect_Bridge {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaConnect::Bridge"
+        stratosphere::generator::construct_resource_type!("AWS::MediaConnect::Bridge"
         $($field $value)*)
     };
 }
@@ -1975,7 +1975,7 @@ pub struct BridgeOutput_ {
 #[macro_export]
 macro_rules! __aws_mediaconnect_BridgeOutput {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaConnect::BridgeOutput"
+        stratosphere::generator::construct_resource_type!("AWS::MediaConnect::BridgeOutput"
         $($field $value)*)
     };
 }
@@ -2017,7 +2017,7 @@ pub struct BridgeSource_ {
 #[macro_export]
 macro_rules! __aws_mediaconnect_BridgeSource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaConnect::BridgeSource"
+        stratosphere::generator::construct_resource_type!("AWS::MediaConnect::BridgeSource"
         $($field $value)*)
     };
 }
@@ -2073,7 +2073,7 @@ pub struct Flow_ {
 #[macro_export]
 macro_rules! __aws_mediaconnect_Flow {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaConnect::Flow"
+        stratosphere::generator::construct_resource_type!("AWS::MediaConnect::Flow"
         $($field $value)*)
     };
 }
@@ -2162,7 +2162,7 @@ pub struct FlowEntitlement_ {
 #[macro_export]
 macro_rules! __aws_mediaconnect_FlowEntitlement {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaConnect::FlowEntitlement"
+        stratosphere::generator::construct_resource_type!("AWS::MediaConnect::FlowEntitlement"
         $($field $value)*)
     };
 }
@@ -2241,7 +2241,7 @@ pub struct FlowOutput_ {
 #[macro_export]
 macro_rules! __aws_mediaconnect_FlowOutput {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaConnect::FlowOutput"
+        stratosphere::generator::construct_resource_type!("AWS::MediaConnect::FlowOutput"
         $($field $value)*)
     };
 }
@@ -2383,7 +2383,7 @@ pub struct FlowSource_ {
 #[macro_export]
 macro_rules! __aws_mediaconnect_FlowSource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaConnect::FlowSource"
+        stratosphere::generator::construct_resource_type!("AWS::MediaConnect::FlowSource"
         $($field $value)*)
     };
 }
@@ -2518,7 +2518,7 @@ pub struct FlowVpcInterface_ {
 #[macro_export]
 macro_rules! __aws_mediaconnect_FlowVpcInterface {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaConnect::FlowVpcInterface"
+        stratosphere::generator::construct_resource_type!("AWS::MediaConnect::FlowVpcInterface"
         $($field $value)*)
     };
 }
@@ -2567,7 +2567,7 @@ pub struct Gateway_ {
 #[macro_export]
 macro_rules! __aws_mediaconnect_Gateway {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaConnect::Gateway"
+        stratosphere::generator::construct_resource_type!("AWS::MediaConnect::Gateway"
         $($field $value)*)
     };
 }

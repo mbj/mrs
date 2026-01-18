@@ -8,7 +8,7 @@ pub mod license {
     #[macro_export]
     macro_rules! __aws_licensemanager_License_BorrowConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LicenseManager::License.BorrowConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::LicenseManager::License.BorrowConfiguration"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub mod license {
     #[macro_export]
     macro_rules! __aws_licensemanager_License_ConsumptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LicenseManager::License.ConsumptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::LicenseManager::License.ConsumptionConfiguration"
             $($field $value)*)
         };
     }
@@ -79,7 +79,7 @@ pub mod license {
     #[macro_export]
     macro_rules! __aws_licensemanager_License_Entitlement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LicenseManager::License.Entitlement"
+            stratosphere::generator::construct_property_type!("AWS::LicenseManager::License.Entitlement"
             $($field $value)*)
         };
     }
@@ -128,7 +128,7 @@ pub mod license {
     #[macro_export]
     macro_rules! __aws_licensemanager_License_IssuerData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LicenseManager::License.IssuerData"
+            stratosphere::generator::construct_property_type!("AWS::LicenseManager::License.IssuerData"
             $($field $value)*)
         };
     }
@@ -158,7 +158,7 @@ pub mod license {
     #[macro_export]
     macro_rules! __aws_licensemanager_License_Metadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LicenseManager::License.Metadata"
+            stratosphere::generator::construct_property_type!("AWS::LicenseManager::License.Metadata"
             $($field $value)*)
         };
     }
@@ -185,7 +185,7 @@ pub mod license {
     #[macro_export]
     macro_rules! __aws_licensemanager_License_ProvisionalConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LicenseManager::License.ProvisionalConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::LicenseManager::License.ProvisionalConfiguration"
             $($field $value)*)
         };
     }
@@ -209,7 +209,7 @@ pub mod license {
     #[macro_export]
     macro_rules! __aws_licensemanager_License_ValidityDateFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LicenseManager::License.ValidityDateFormat"
+            stratosphere::generator::construct_property_type!("AWS::LicenseManager::License.ValidityDateFormat"
             $($field $value)*)
         };
     }
@@ -242,7 +242,7 @@ pub struct Grant_ {
 #[macro_export]
 macro_rules! __aws_licensemanager_Grant {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::LicenseManager::Grant"
+        stratosphere::generator::construct_resource_type!("AWS::LicenseManager::Grant"
         $($field $value)*)
     };
 }
@@ -312,7 +312,7 @@ pub struct License_ {
 #[macro_export]
 macro_rules! __aws_licensemanager_License {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::LicenseManager::License"
+        stratosphere::generator::construct_resource_type!("AWS::LicenseManager::License"
         $($field $value)*)
     };
 }

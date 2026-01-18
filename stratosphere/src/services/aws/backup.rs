@@ -8,7 +8,7 @@ pub mod backupplan {
     #[macro_export]
     macro_rules! __aws_backup_BackupPlan_AdvancedBackupSettingResourceType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::BackupPlan.AdvancedBackupSettingResourceType"
+            stratosphere::generator::construct_property_type!("AWS::Backup::BackupPlan.AdvancedBackupSettingResourceType"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub mod backupplan {
     #[macro_export]
     macro_rules! __aws_backup_BackupPlan_BackupPlanResourceType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::BackupPlan.BackupPlanResourceType"
+            stratosphere::generator::construct_property_type!("AWS::Backup::BackupPlan.BackupPlanResourceType"
             $($field $value)*)
         };
     }
@@ -81,7 +81,7 @@ pub mod backupplan {
     #[macro_export]
     macro_rules! __aws_backup_BackupPlan_BackupRuleResourceType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::BackupPlan.BackupRuleResourceType"
+            stratosphere::generator::construct_property_type!("AWS::Backup::BackupPlan.BackupRuleResourceType"
             $($field $value)*)
         };
     }
@@ -163,7 +163,7 @@ pub mod backupplan {
     #[macro_export]
     macro_rules! __aws_backup_BackupPlan_CopyActionResourceType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::BackupPlan.CopyActionResourceType"
+            stratosphere::generator::construct_property_type!("AWS::Backup::BackupPlan.CopyActionResourceType"
             $($field $value)*)
         };
     }
@@ -192,7 +192,7 @@ pub mod backupplan {
     #[macro_export]
     macro_rules! __aws_backup_BackupPlan_IndexActionsResourceType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::BackupPlan.IndexActionsResourceType"
+            stratosphere::generator::construct_property_type!("AWS::Backup::BackupPlan.IndexActionsResourceType"
             $($field $value)*)
         };
     }
@@ -219,7 +219,7 @@ pub mod backupplan {
     #[macro_export]
     macro_rules! __aws_backup_BackupPlan_LifecycleResourceType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::BackupPlan.LifecycleResourceType"
+            stratosphere::generator::construct_property_type!("AWS::Backup::BackupPlan.LifecycleResourceType"
             $($field $value)*)
         };
     }
@@ -263,7 +263,7 @@ pub mod backupselection {
     #[macro_export]
     macro_rules! __aws_backup_BackupSelection_BackupSelectionResourceType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::BackupSelection.BackupSelectionResourceType"
+            stratosphere::generator::construct_property_type!("AWS::Backup::BackupSelection.BackupSelectionResourceType"
             $($field $value)*)
         };
     }
@@ -315,7 +315,7 @@ pub mod backupselection {
     #[macro_export]
     macro_rules! __aws_backup_BackupSelection_ConditionParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::BackupSelection.ConditionParameter"
+            stratosphere::generator::construct_property_type!("AWS::Backup::BackupSelection.ConditionParameter"
             $($field $value)*)
         };
     }
@@ -348,7 +348,7 @@ pub mod backupselection {
     #[macro_export]
     macro_rules! __aws_backup_BackupSelection_ConditionResourceType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::BackupSelection.ConditionResourceType"
+            stratosphere::generator::construct_property_type!("AWS::Backup::BackupSelection.ConditionResourceType"
             $($field $value)*)
         };
     }
@@ -382,7 +382,7 @@ pub mod backupselection {
     #[macro_export]
     macro_rules! __aws_backup_BackupSelection_Conditions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::BackupSelection.Conditions"
+            stratosphere::generator::construct_property_type!("AWS::Backup::BackupSelection.Conditions"
             $($field $value)*)
         };
     }
@@ -429,7 +429,7 @@ pub mod backupvault {
     #[macro_export]
     macro_rules! __aws_backup_BackupVault_LockConfigurationType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::BackupVault.LockConfigurationType"
+            stratosphere::generator::construct_property_type!("AWS::Backup::BackupVault.LockConfigurationType"
             $($field $value)*)
         };
     }
@@ -465,7 +465,7 @@ pub mod backupvault {
     #[macro_export]
     macro_rules! __aws_backup_BackupVault_NotificationObjectType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::BackupVault.NotificationObjectType"
+            stratosphere::generator::construct_property_type!("AWS::Backup::BackupVault.NotificationObjectType"
             $($field $value)*)
         };
     }
@@ -495,7 +495,7 @@ pub mod framework {
     #[macro_export]
     macro_rules! __aws_backup_Framework_ControlInputParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::Framework.ControlInputParameter"
+            stratosphere::generator::construct_property_type!("AWS::Backup::Framework.ControlInputParameter"
             $($field $value)*)
         };
     }
@@ -524,7 +524,7 @@ pub mod framework {
     #[macro_export]
     macro_rules! __aws_backup_Framework_ControlScope {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::Framework.ControlScope"
+            stratosphere::generator::construct_property_type!("AWS::Backup::Framework.ControlScope"
             $($field $value)*)
         };
     }
@@ -560,7 +560,7 @@ pub mod framework {
     #[macro_export]
     macro_rules! __aws_backup_Framework_FrameworkControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::Framework.FrameworkControl"
+            stratosphere::generator::construct_property_type!("AWS::Backup::Framework.FrameworkControl"
             $($field $value)*)
         };
     }
@@ -598,7 +598,7 @@ pub mod logicallyairgappedbackupvault {
     #[macro_export]
     macro_rules! __aws_backup_LogicallyAirGappedBackupVault_NotificationObjectType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::LogicallyAirGappedBackupVault.NotificationObjectType"
+            stratosphere::generator::construct_property_type!("AWS::Backup::LogicallyAirGappedBackupVault.NotificationObjectType"
             $($field $value)*)
         };
     }
@@ -629,7 +629,7 @@ pub mod reportplan {
     #[macro_export]
     macro_rules! __aws_backup_ReportPlan_ReportDeliveryChannel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::ReportPlan.ReportDeliveryChannel"
+            stratosphere::generator::construct_property_type!("AWS::Backup::ReportPlan.ReportDeliveryChannel"
             $($field $value)*)
         };
     }
@@ -668,7 +668,7 @@ pub mod reportplan {
     #[macro_export]
     macro_rules! __aws_backup_ReportPlan_ReportSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::ReportPlan.ReportSetting"
+            stratosphere::generator::construct_property_type!("AWS::Backup::ReportPlan.ReportSetting"
             $($field $value)*)
         };
     }
@@ -721,7 +721,7 @@ pub mod restoretestingplan {
     #[macro_export]
     macro_rules! __aws_backup_RestoreTestingPlan_RestoreTestingRecoveryPointSelection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::RestoreTestingPlan.RestoreTestingRecoveryPointSelection"
+            stratosphere::generator::construct_property_type!("AWS::Backup::RestoreTestingPlan.RestoreTestingRecoveryPointSelection"
             $($field $value)*)
         };
     }
@@ -767,7 +767,7 @@ pub mod restoretestingselection {
     #[macro_export]
     macro_rules! __aws_backup_RestoreTestingSelection_KeyValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::RestoreTestingSelection.KeyValue"
+            stratosphere::generator::construct_property_type!("AWS::Backup::RestoreTestingSelection.KeyValue"
             $($field $value)*)
         };
     }
@@ -795,7 +795,7 @@ pub mod restoretestingselection {
     #[macro_export]
     macro_rules! __aws_backup_RestoreTestingSelection_ProtectedResourceConditions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Backup::RestoreTestingSelection.ProtectedResourceConditions"
+            stratosphere::generator::construct_property_type!("AWS::Backup::RestoreTestingSelection.ProtectedResourceConditions"
             $($field $value)*)
         };
     }
@@ -828,7 +828,7 @@ pub struct BackupPlan_ {
 #[macro_export]
 macro_rules! __aws_backup_BackupPlan {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Backup::BackupPlan"
+        stratosphere::generator::construct_resource_type!("AWS::Backup::BackupPlan"
         $($field $value)*)
     };
 }
@@ -866,7 +866,7 @@ pub struct BackupSelection_ {
 #[macro_export]
 macro_rules! __aws_backup_BackupSelection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Backup::BackupSelection"
+        stratosphere::generator::construct_resource_type!("AWS::Backup::BackupSelection"
         $($field $value)*)
     };
 }
@@ -906,7 +906,7 @@ pub struct BackupVault_ {
 #[macro_export]
 macro_rules! __aws_backup_BackupVault {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Backup::BackupVault"
+        stratosphere::generator::construct_resource_type!("AWS::Backup::BackupVault"
         $($field $value)*)
     };
 }
@@ -970,7 +970,7 @@ pub struct Framework_ {
 #[macro_export]
 macro_rules! __aws_backup_Framework {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Backup::Framework"
+        stratosphere::generator::construct_resource_type!("AWS::Backup::Framework"
         $($field $value)*)
     };
 }
@@ -1025,7 +1025,7 @@ pub struct LogicallyAirGappedBackupVault_ {
 #[macro_export]
 macro_rules! __aws_backup_LogicallyAirGappedBackupVault {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Backup::LogicallyAirGappedBackupVault"
+        stratosphere::generator::construct_resource_type!("AWS::Backup::LogicallyAirGappedBackupVault"
         $($field $value)*)
     };
 }
@@ -1088,7 +1088,7 @@ pub struct ReportPlan_ {
 #[macro_export]
 macro_rules! __aws_backup_ReportPlan {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Backup::ReportPlan"
+        stratosphere::generator::construct_resource_type!("AWS::Backup::ReportPlan"
         $($field $value)*)
     };
 }
@@ -1147,7 +1147,7 @@ pub struct RestoreTestingPlan_ {
 #[macro_export]
 macro_rules! __aws_backup_RestoreTestingPlan {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Backup::RestoreTestingPlan"
+        stratosphere::generator::construct_resource_type!("AWS::Backup::RestoreTestingPlan"
         $($field $value)*)
     };
 }
@@ -1210,7 +1210,7 @@ pub struct RestoreTestingSelection_ {
 #[macro_export]
 macro_rules! __aws_backup_RestoreTestingSelection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Backup::RestoreTestingSelection"
+        stratosphere::generator::construct_resource_type!("AWS::Backup::RestoreTestingSelection"
         $($field $value)*)
     };
 }

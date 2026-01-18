@@ -8,7 +8,7 @@ pub mod group {
     #[macro_export]
     macro_rules! __aws_resourcegroups_Group_ConfigurationItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ResourceGroups::Group.ConfigurationItem"
+            stratosphere::generator::construct_property_type!("AWS::ResourceGroups::Group.ConfigurationItem"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub mod group {
     #[macro_export]
     macro_rules! __aws_resourcegroups_Group_ConfigurationParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ResourceGroups::Group.ConfigurationParameter"
+            stratosphere::generator::construct_property_type!("AWS::ResourceGroups::Group.ConfigurationParameter"
             $($field $value)*)
         };
     }
@@ -64,7 +64,7 @@ pub mod group {
     #[macro_export]
     macro_rules! __aws_resourcegroups_Group_Query {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ResourceGroups::Group.Query"
+            stratosphere::generator::construct_property_type!("AWS::ResourceGroups::Group.Query"
             $($field $value)*)
         };
     }
@@ -102,7 +102,7 @@ pub mod group {
     #[macro_export]
     macro_rules! __aws_resourcegroups_Group_ResourceQuery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ResourceGroups::Group.ResourceQuery"
+            stratosphere::generator::construct_property_type!("AWS::ResourceGroups::Group.ResourceQuery"
             $($field $value)*)
         };
     }
@@ -128,7 +128,7 @@ pub mod group {
     #[macro_export]
     macro_rules! __aws_resourcegroups_Group_TagFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ResourceGroups::Group.TagFilter"
+            stratosphere::generator::construct_property_type!("AWS::ResourceGroups::Group.TagFilter"
             $($field $value)*)
         };
     }
@@ -159,7 +159,7 @@ pub struct Group_ {
 #[macro_export]
 macro_rules! __aws_resourcegroups_Group {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ResourceGroups::Group"
+        stratosphere::generator::construct_resource_type!("AWS::ResourceGroups::Group"
         $($field $value)*)
     };
 }
@@ -220,7 +220,7 @@ pub struct TagSyncTask_ {
 #[macro_export]
 macro_rules! __aws_resourcegroups_TagSyncTask {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ResourceGroups::TagSyncTask"
+        stratosphere::generator::construct_resource_type!("AWS::ResourceGroups::TagSyncTask"
         $($field $value)*)
     };
 }

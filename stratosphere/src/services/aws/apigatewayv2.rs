@@ -10,7 +10,7 @@ pub mod api {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_Api_BodyS3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::Api.BodyS3Location"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::Api.BodyS3Location"
             $($field $value)*)
         };
     }
@@ -49,7 +49,7 @@ pub mod api {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_Api_Cors {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::Api.Cors"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::Api.Cors"
             $($field $value)*)
         };
     }
@@ -104,7 +104,7 @@ pub mod apigatewaymanagedoverrides {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_ApiGatewayManagedOverrides_AccessLogSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::ApiGatewayManagedOverrides.AccessLogSettings"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::ApiGatewayManagedOverrides.AccessLogSettings"
             $($field $value)*)
         };
     }
@@ -135,7 +135,7 @@ pub mod apigatewaymanagedoverrides {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_ApiGatewayManagedOverrides_IntegrationOverrides {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::ApiGatewayManagedOverrides.IntegrationOverrides"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::ApiGatewayManagedOverrides.IntegrationOverrides"
             $($field $value)*)
         };
     }
@@ -182,7 +182,7 @@ pub mod apigatewaymanagedoverrides {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_ApiGatewayManagedOverrides_RouteOverrides {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::ApiGatewayManagedOverrides.RouteOverrides"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::ApiGatewayManagedOverrides.RouteOverrides"
             $($field $value)*)
         };
     }
@@ -232,7 +232,7 @@ pub mod apigatewaymanagedoverrides {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_ApiGatewayManagedOverrides_RouteSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::ApiGatewayManagedOverrides.RouteSettings"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::ApiGatewayManagedOverrides.RouteSettings"
             $($field $value)*)
         };
     }
@@ -286,7 +286,7 @@ pub mod apigatewaymanagedoverrides {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_ApiGatewayManagedOverrides_StageOverrides {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::ApiGatewayManagedOverrides.StageOverrides"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::ApiGatewayManagedOverrides.StageOverrides"
             $($field $value)*)
         };
     }
@@ -344,7 +344,7 @@ pub mod authorizer {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_Authorizer_JWTConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::Authorizer.JWTConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::Authorizer.JWTConfiguration"
             $($field $value)*)
         };
     }
@@ -379,7 +379,7 @@ pub mod domainname {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_DomainName_DomainNameConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::DomainName.DomainNameConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::DomainName.DomainNameConfiguration"
             $($field $value)*)
         };
     }
@@ -435,7 +435,7 @@ pub mod domainname {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_DomainName_MutualTlsAuthentication {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::DomainName.MutualTlsAuthentication"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::DomainName.MutualTlsAuthentication"
             $($field $value)*)
         };
     }
@@ -469,7 +469,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_Integration_ResponseParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::Integration.ResponseParameter"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::Integration.ResponseParameter"
             $($field $value)*)
         };
     }
@@ -497,7 +497,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_Integration_ResponseParameterMap {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::Integration.ResponseParameterMap"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::Integration.ResponseParameterMap"
             $($field $value)*)
         };
     }
@@ -522,7 +522,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_Integration_TlsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::Integration.TlsConfig"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::Integration.TlsConfig"
             $($field $value)*)
         };
     }
@@ -549,7 +549,7 @@ pub mod routeresponse {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_RouteResponse_ParameterConstraints {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::RouteResponse.ParameterConstraints"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::RouteResponse.ParameterConstraints"
             $($field $value)*)
         };
     }
@@ -574,7 +574,7 @@ pub mod routingrule {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_RoutingRule_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::RoutingRule.Action"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::RoutingRule.Action"
             $($field $value)*)
         };
     }
@@ -599,7 +599,7 @@ pub mod routingrule {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_RoutingRule_ActionInvokeApi {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::RoutingRule.ActionInvokeApi"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::RoutingRule.ActionInvokeApi"
             $($field $value)*)
         };
     }
@@ -633,7 +633,7 @@ pub mod routingrule {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_RoutingRule_Condition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::RoutingRule.Condition"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::RoutingRule.Condition"
             $($field $value)*)
         };
     }
@@ -664,7 +664,7 @@ pub mod routingrule {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_RoutingRule_MatchBasePaths {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::RoutingRule.MatchBasePaths"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::RoutingRule.MatchBasePaths"
             $($field $value)*)
         };
     }
@@ -688,7 +688,7 @@ pub mod routingrule {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_RoutingRule_MatchHeaderValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::RoutingRule.MatchHeaderValue"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::RoutingRule.MatchHeaderValue"
             $($field $value)*)
         };
     }
@@ -715,7 +715,7 @@ pub mod routingrule {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_RoutingRule_MatchHeaders {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::RoutingRule.MatchHeaders"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::RoutingRule.MatchHeaders"
             $($field $value)*)
         };
     }
@@ -741,7 +741,7 @@ pub mod stage {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_Stage_AccessLogSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::Stage.AccessLogSettings"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::Stage.AccessLogSettings"
             $($field $value)*)
         };
     }
@@ -773,7 +773,7 @@ pub mod stage {
     #[macro_export]
     macro_rules! __aws_apigatewayv2_Stage_RouteSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApiGatewayV2::Stage.RouteSettings"
+            stratosphere::generator::construct_property_type!("AWS::ApiGatewayV2::Stage.RouteSettings"
             $($field $value)*)
         };
     }
@@ -840,7 +840,7 @@ pub struct Api_ {
 #[macro_export]
 macro_rules! __aws_apigatewayv2_Api {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApiGatewayV2::Api"
+        stratosphere::generator::construct_resource_type!("AWS::ApiGatewayV2::Api"
         $($field $value)*)
     };
 }
@@ -966,7 +966,7 @@ pub struct ApiGatewayManagedOverrides_ {
 #[macro_export]
 macro_rules! __aws_apigatewayv2_ApiGatewayManagedOverrides {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApiGatewayV2::ApiGatewayManagedOverrides"
+        stratosphere::generator::construct_resource_type!("AWS::ApiGatewayV2::ApiGatewayManagedOverrides"
         $($field $value)*)
     };
 }
@@ -1014,7 +1014,7 @@ pub struct ApiMapping_ {
 #[macro_export]
 macro_rules! __aws_apigatewayv2_ApiMapping {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApiGatewayV2::ApiMapping"
+        stratosphere::generator::construct_resource_type!("AWS::ApiGatewayV2::ApiMapping"
         $($field $value)*)
     };
 }
@@ -1069,7 +1069,7 @@ pub struct Authorizer_ {
 #[macro_export]
 macro_rules! __aws_apigatewayv2_Authorizer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApiGatewayV2::Authorizer"
+        stratosphere::generator::construct_resource_type!("AWS::ApiGatewayV2::Authorizer"
         $($field $value)*)
     };
 }
@@ -1158,7 +1158,7 @@ pub struct Deployment_ {
 #[macro_export]
 macro_rules! __aws_apigatewayv2_Deployment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApiGatewayV2::Deployment"
+        stratosphere::generator::construct_resource_type!("AWS::ApiGatewayV2::Deployment"
         $($field $value)*)
     };
 }
@@ -1207,7 +1207,7 @@ pub struct DomainName_ {
 #[macro_export]
 macro_rules! __aws_apigatewayv2_DomainName {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApiGatewayV2::DomainName"
+        stratosphere::generator::construct_resource_type!("AWS::ApiGatewayV2::DomainName"
         $($field $value)*)
     };
 }
@@ -1278,7 +1278,7 @@ pub struct Integration_ {
 #[macro_export]
 macro_rules! __aws_apigatewayv2_Integration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApiGatewayV2::Integration"
+        stratosphere::generator::construct_resource_type!("AWS::ApiGatewayV2::Integration"
         $($field $value)*)
     };
 }
@@ -1415,7 +1415,7 @@ pub struct IntegrationResponse_ {
 #[macro_export]
 macro_rules! __aws_apigatewayv2_IntegrationResponse {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApiGatewayV2::IntegrationResponse"
+        stratosphere::generator::construct_resource_type!("AWS::ApiGatewayV2::IntegrationResponse"
         $($field $value)*)
     };
 }
@@ -1482,7 +1482,7 @@ pub struct Model_ {
 #[macro_export]
 macro_rules! __aws_apigatewayv2_Model {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApiGatewayV2::Model"
+        stratosphere::generator::construct_resource_type!("AWS::ApiGatewayV2::Model"
         $($field $value)*)
     };
 }
@@ -1544,7 +1544,7 @@ pub struct Route_ {
 #[macro_export]
 macro_rules! __aws_apigatewayv2_Route {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApiGatewayV2::Route"
+        stratosphere::generator::construct_resource_type!("AWS::ApiGatewayV2::Route"
         $($field $value)*)
     };
 }
@@ -1646,7 +1646,7 @@ pub struct RouteResponse_ {
 #[macro_export]
 macro_rules! __aws_apigatewayv2_RouteResponse {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApiGatewayV2::RouteResponse"
+        stratosphere::generator::construct_resource_type!("AWS::ApiGatewayV2::RouteResponse"
         $($field $value)*)
     };
 }
@@ -1706,7 +1706,7 @@ pub struct RoutingRule_ {
 #[macro_export]
 macro_rules! __aws_apigatewayv2_RoutingRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApiGatewayV2::RoutingRule"
+        stratosphere::generator::construct_resource_type!("AWS::ApiGatewayV2::RoutingRule"
         $($field $value)*)
     };
 }
@@ -1760,7 +1760,7 @@ pub struct Stage_ {
 #[macro_export]
 macro_rules! __aws_apigatewayv2_Stage {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApiGatewayV2::Stage"
+        stratosphere::generator::construct_resource_type!("AWS::ApiGatewayV2::Stage"
         $($field $value)*)
     };
 }
@@ -1855,7 +1855,7 @@ pub struct VpcLink_ {
 #[macro_export]
 macro_rules! __aws_apigatewayv2_VpcLink {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApiGatewayV2::VpcLink"
+        stratosphere::generator::construct_resource_type!("AWS::ApiGatewayV2::VpcLink"
         $($field $value)*)
     };
 }

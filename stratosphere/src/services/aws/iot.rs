@@ -7,7 +7,7 @@ pub mod accountauditconfiguration {
     #[macro_export]
     macro_rules! __aws_iot_AccountAuditConfiguration_AuditCheckConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.AuditCheckConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.AuditCheckConfiguration"
             $($field $value)*)
         };
     }
@@ -53,7 +53,7 @@ pub mod accountauditconfiguration {
     #[macro_export]
     macro_rules! __aws_iot_AccountAuditConfiguration_AuditCheckConfigurations {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.AuditCheckConfigurations"
+            stratosphere::generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.AuditCheckConfigurations"
             $($field $value)*)
         };
     }
@@ -178,7 +178,7 @@ pub mod accountauditconfiguration {
     #[macro_export]
     macro_rules! __aws_iot_AccountAuditConfiguration_AuditNotificationTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.AuditNotificationTarget"
+            stratosphere::generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.AuditNotificationTarget"
             $($field $value)*)
         };
     }
@@ -215,7 +215,7 @@ pub mod accountauditconfiguration {
     #[macro_export]
     macro_rules! __aws_iot_AccountAuditConfiguration_AuditNotificationTargetConfigurations {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.AuditNotificationTargetConfigurations"
+            stratosphere::generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.AuditNotificationTargetConfigurations"
             $($field $value)*)
         };
     }
@@ -237,7 +237,7 @@ pub mod accountauditconfiguration {
     #[macro_export]
     macro_rules! __aws_iot_AccountAuditConfiguration_CertAgeCheckCustomConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.CertAgeCheckCustomConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.CertAgeCheckCustomConfiguration"
             $($field $value)*)
         };
     }
@@ -262,7 +262,7 @@ pub mod accountauditconfiguration {
     #[macro_export]
     macro_rules! __aws_iot_AccountAuditConfiguration_CertExpirationCheckCustomConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.CertExpirationCheckCustomConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.CertExpirationCheckCustomConfiguration"
             $($field $value)*)
         };
     }
@@ -288,7 +288,7 @@ pub mod accountauditconfiguration {
     #[macro_export]
     macro_rules! __aws_iot_AccountAuditConfiguration_DeviceCertAgeAuditCheckConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.DeviceCertAgeAuditCheckConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.DeviceCertAgeAuditCheckConfiguration"
             $($field $value)*)
         };
     }
@@ -320,7 +320,7 @@ pub mod accountauditconfiguration {
     #[macro_export]
     macro_rules! __aws_iot_AccountAuditConfiguration_DeviceCertExpirationAuditCheckConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.DeviceCertExpirationAuditCheckConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoT::AccountAuditConfiguration.DeviceCertExpirationAuditCheckConfiguration"
             $($field $value)*)
         };
     }
@@ -353,7 +353,7 @@ pub mod billinggroup {
     #[macro_export]
     macro_rules! __aws_iot_BillingGroup_BillingGroupProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::BillingGroup.BillingGroupProperties"
+            stratosphere::generator::construct_property_type!("AWS::IoT::BillingGroup.BillingGroupProperties"
             $($field $value)*)
         };
     }
@@ -382,7 +382,7 @@ pub mod cacertificate {
     #[macro_export]
     macro_rules! __aws_iot_CACertificate_RegistrationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::CACertificate.RegistrationConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoT::CACertificate.RegistrationConfig"
             $($field $value)*)
         };
     }
@@ -424,7 +424,7 @@ pub mod command {
     #[macro_export]
     macro_rules! __aws_iot_Command_CommandParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::Command.CommandParameter"
+            stratosphere::generator::construct_property_type!("AWS::IoT::Command.CommandParameter"
             $($field $value)*)
         };
     }
@@ -468,7 +468,7 @@ pub mod command {
     #[macro_export]
     macro_rules! __aws_iot_Command_CommandParameterValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::Command.CommandParameterValue"
+            stratosphere::generator::construct_property_type!("AWS::IoT::Command.CommandParameterValue"
             $($field $value)*)
         };
     }
@@ -509,7 +509,7 @@ pub mod command {
     #[macro_export]
     macro_rules! __aws_iot_Command_CommandPayload {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::Command.CommandPayload"
+            stratosphere::generator::construct_property_type!("AWS::IoT::Command.CommandPayload"
             $($field $value)*)
         };
     }
@@ -543,7 +543,7 @@ pub mod domainconfiguration {
     #[macro_export]
     macro_rules! __aws_iot_DomainConfiguration_AuthorizerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::DomainConfiguration.AuthorizerConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoT::DomainConfiguration.AuthorizerConfig"
             $($field $value)*)
         };
     }
@@ -574,7 +574,7 @@ pub mod domainconfiguration {
     #[macro_export]
     macro_rules! __aws_iot_DomainConfiguration_ClientCertificateConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::DomainConfiguration.ClientCertificateConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoT::DomainConfiguration.ClientCertificateConfig"
             $($field $value)*)
         };
     }
@@ -601,7 +601,7 @@ pub mod domainconfiguration {
     #[macro_export]
     macro_rules! __aws_iot_DomainConfiguration_ServerCertificateConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::DomainConfiguration.ServerCertificateConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoT::DomainConfiguration.ServerCertificateConfig"
             $($field $value)*)
         };
     }
@@ -640,7 +640,7 @@ pub mod domainconfiguration {
     #[macro_export]
     macro_rules! __aws_iot_DomainConfiguration_ServerCertificateSummary {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::DomainConfiguration.ServerCertificateSummary"
+            stratosphere::generator::construct_property_type!("AWS::IoT::DomainConfiguration.ServerCertificateSummary"
             $($field $value)*)
         };
     }
@@ -677,7 +677,7 @@ pub mod domainconfiguration {
     #[macro_export]
     macro_rules! __aws_iot_DomainConfiguration_TlsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::DomainConfiguration.TlsConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoT::DomainConfiguration.TlsConfig"
             $($field $value)*)
         };
     }
@@ -706,7 +706,7 @@ pub mod encryptionconfiguration {
     #[macro_export]
     macro_rules! __aws_iot_EncryptionConfiguration_ConfigurationDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::EncryptionConfiguration.ConfigurationDetails"
+            stratosphere::generator::construct_property_type!("AWS::IoT::EncryptionConfiguration.ConfigurationDetails"
             $($field $value)*)
         };
     }
@@ -746,7 +746,7 @@ pub mod fleetmetric {
     #[macro_export]
     macro_rules! __aws_iot_FleetMetric_AggregationType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::FleetMetric.AggregationType"
+            stratosphere::generator::construct_property_type!("AWS::IoT::FleetMetric.AggregationType"
             $($field $value)*)
         };
     }
@@ -775,7 +775,7 @@ pub mod jobtemplate {
     #[macro_export]
     macro_rules! __aws_iot_JobTemplate_AbortConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::JobTemplate.AbortConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoT::JobTemplate.AbortConfig"
             $($field $value)*)
         };
     }
@@ -801,7 +801,7 @@ pub mod jobtemplate {
     #[macro_export]
     macro_rules! __aws_iot_JobTemplate_AbortCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::JobTemplate.AbortCriteria"
+            stratosphere::generator::construct_property_type!("AWS::IoT::JobTemplate.AbortCriteria"
             $($field $value)*)
         };
     }
@@ -838,7 +838,7 @@ pub mod jobtemplate {
     #[macro_export]
     macro_rules! __aws_iot_JobTemplate_ExponentialRolloutRate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::JobTemplate.ExponentialRolloutRate"
+            stratosphere::generator::construct_property_type!("AWS::IoT::JobTemplate.ExponentialRolloutRate"
             $($field $value)*)
         };
     }
@@ -869,7 +869,7 @@ pub mod jobtemplate {
     #[macro_export]
     macro_rules! __aws_iot_JobTemplate_JobExecutionsRetryConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::JobTemplate.JobExecutionsRetryConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoT::JobTemplate.JobExecutionsRetryConfig"
             $($field $value)*)
         };
     }
@@ -895,7 +895,7 @@ pub mod jobtemplate {
     #[macro_export]
     macro_rules! __aws_iot_JobTemplate_JobExecutionsRolloutConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::JobTemplate.JobExecutionsRolloutConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoT::JobTemplate.JobExecutionsRolloutConfig"
             $($field $value)*)
         };
     }
@@ -927,7 +927,7 @@ pub mod jobtemplate {
     #[macro_export]
     macro_rules! __aws_iot_JobTemplate_MaintenanceWindow {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::JobTemplate.MaintenanceWindow"
+            stratosphere::generator::construct_property_type!("AWS::IoT::JobTemplate.MaintenanceWindow"
             $($field $value)*)
         };
     }
@@ -959,7 +959,7 @@ pub mod jobtemplate {
     #[macro_export]
     macro_rules! __aws_iot_JobTemplate_PresignedUrlConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::JobTemplate.PresignedUrlConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoT::JobTemplate.PresignedUrlConfig"
             $($field $value)*)
         };
     }
@@ -989,7 +989,7 @@ pub mod jobtemplate {
     #[macro_export]
     macro_rules! __aws_iot_JobTemplate_RateIncreaseCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::JobTemplate.RateIncreaseCriteria"
+            stratosphere::generator::construct_property_type!("AWS::IoT::JobTemplate.RateIncreaseCriteria"
             $($field $value)*)
         };
     }
@@ -1021,7 +1021,7 @@ pub mod jobtemplate {
     #[macro_export]
     macro_rules! __aws_iot_JobTemplate_RetryCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::JobTemplate.RetryCriteria"
+            stratosphere::generator::construct_property_type!("AWS::IoT::JobTemplate.RetryCriteria"
             $($field $value)*)
         };
     }
@@ -1052,7 +1052,7 @@ pub mod jobtemplate {
     #[macro_export]
     macro_rules! __aws_iot_JobTemplate_TimeoutConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::JobTemplate.TimeoutConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoT::JobTemplate.TimeoutConfig"
             $($field $value)*)
         };
     }
@@ -1082,7 +1082,7 @@ pub mod mitigationaction {
     #[macro_export]
     macro_rules! __aws_iot_MitigationAction_ActionParams {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::MitigationAction.ActionParams"
+            stratosphere::generator::construct_property_type!("AWS::IoT::MitigationAction.ActionParams"
             $($field $value)*)
         };
     }
@@ -1138,7 +1138,7 @@ pub mod mitigationaction {
     #[macro_export]
     macro_rules! __aws_iot_MitigationAction_AddThingsToThingGroupParams {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::MitigationAction.AddThingsToThingGroupParams"
+            stratosphere::generator::construct_property_type!("AWS::IoT::MitigationAction.AddThingsToThingGroupParams"
             $($field $value)*)
         };
     }
@@ -1168,7 +1168,7 @@ pub mod mitigationaction {
     #[macro_export]
     macro_rules! __aws_iot_MitigationAction_EnableIoTLoggingParams {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::MitigationAction.EnableIoTLoggingParams"
+            stratosphere::generator::construct_property_type!("AWS::IoT::MitigationAction.EnableIoTLoggingParams"
             $($field $value)*)
         };
     }
@@ -1195,7 +1195,7 @@ pub mod mitigationaction {
     #[macro_export]
     macro_rules! __aws_iot_MitigationAction_PublishFindingToSnsParams {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::MitigationAction.PublishFindingToSnsParams"
+            stratosphere::generator::construct_property_type!("AWS::IoT::MitigationAction.PublishFindingToSnsParams"
             $($field $value)*)
         };
     }
@@ -1218,7 +1218,7 @@ pub mod mitigationaction {
     #[macro_export]
     macro_rules! __aws_iot_MitigationAction_ReplaceDefaultPolicyVersionParams {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::MitigationAction.ReplaceDefaultPolicyVersionParams"
+            stratosphere::generator::construct_property_type!("AWS::IoT::MitigationAction.ReplaceDefaultPolicyVersionParams"
             $($field $value)*)
         };
     }
@@ -1241,7 +1241,7 @@ pub mod mitigationaction {
     #[macro_export]
     macro_rules! __aws_iot_MitigationAction_UpdateCACertificateParams {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::MitigationAction.UpdateCACertificateParams"
+            stratosphere::generator::construct_property_type!("AWS::IoT::MitigationAction.UpdateCACertificateParams"
             $($field $value)*)
         };
     }
@@ -1264,7 +1264,7 @@ pub mod mitigationaction {
     #[macro_export]
     macro_rules! __aws_iot_MitigationAction_UpdateDeviceCertificateParams {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::MitigationAction.UpdateDeviceCertificateParams"
+            stratosphere::generator::construct_property_type!("AWS::IoT::MitigationAction.UpdateDeviceCertificateParams"
             $($field $value)*)
         };
     }
@@ -1290,7 +1290,7 @@ pub mod provisioningtemplate {
     #[macro_export]
     macro_rules! __aws_iot_ProvisioningTemplate_ProvisioningHook {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::ProvisioningTemplate.ProvisioningHook"
+            stratosphere::generator::construct_property_type!("AWS::IoT::ProvisioningTemplate.ProvisioningHook"
             $($field $value)*)
         };
     }
@@ -1324,7 +1324,7 @@ pub mod securityprofile {
     #[macro_export]
     macro_rules! __aws_iot_SecurityProfile_AlertTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::SecurityProfile.AlertTarget"
+            stratosphere::generator::construct_property_type!("AWS::IoT::SecurityProfile.AlertTarget"
             $($field $value)*)
         };
     }
@@ -1356,7 +1356,7 @@ pub mod securityprofile {
     #[macro_export]
     macro_rules! __aws_iot_SecurityProfile_Behavior {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::SecurityProfile.Behavior"
+            stratosphere::generator::construct_property_type!("AWS::IoT::SecurityProfile.Behavior"
             $($field $value)*)
         };
     }
@@ -1412,7 +1412,7 @@ pub mod securityprofile {
     #[macro_export]
     macro_rules! __aws_iot_SecurityProfile_BehaviorCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::SecurityProfile.BehaviorCriteria"
+            stratosphere::generator::construct_property_type!("AWS::IoT::SecurityProfile.BehaviorCriteria"
             $($field $value)*)
         };
     }
@@ -1470,7 +1470,7 @@ pub mod securityprofile {
     #[macro_export]
     macro_rules! __aws_iot_SecurityProfile_MachineLearningDetectionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::SecurityProfile.MachineLearningDetectionConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoT::SecurityProfile.MachineLearningDetectionConfig"
             $($field $value)*)
         };
     }
@@ -1496,7 +1496,7 @@ pub mod securityprofile {
     #[macro_export]
     macro_rules! __aws_iot_SecurityProfile_MetricDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::SecurityProfile.MetricDimension"
+            stratosphere::generator::construct_property_type!("AWS::IoT::SecurityProfile.MetricDimension"
             $($field $value)*)
         };
     }
@@ -1527,7 +1527,7 @@ pub mod securityprofile {
     #[macro_export]
     macro_rules! __aws_iot_SecurityProfile_MetricToRetain {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::SecurityProfile.MetricToRetain"
+            stratosphere::generator::construct_property_type!("AWS::IoT::SecurityProfile.MetricToRetain"
             $($field $value)*)
         };
     }
@@ -1567,7 +1567,7 @@ pub mod securityprofile {
     #[macro_export]
     macro_rules! __aws_iot_SecurityProfile_MetricValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::SecurityProfile.MetricValue"
+            stratosphere::generator::construct_property_type!("AWS::IoT::SecurityProfile.MetricValue"
             $($field $value)*)
         };
     }
@@ -1611,7 +1611,7 @@ pub mod securityprofile {
     #[macro_export]
     macro_rules! __aws_iot_SecurityProfile_MetricsExportConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::SecurityProfile.MetricsExportConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoT::SecurityProfile.MetricsExportConfig"
             $($field $value)*)
         };
     }
@@ -1638,7 +1638,7 @@ pub mod securityprofile {
     #[macro_export]
     macro_rules! __aws_iot_SecurityProfile_StatisticalThreshold {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::SecurityProfile.StatisticalThreshold"
+            stratosphere::generator::construct_property_type!("AWS::IoT::SecurityProfile.StatisticalThreshold"
             $($field $value)*)
         };
     }
@@ -1665,7 +1665,7 @@ pub mod softwarepackageversion {
     #[macro_export]
     macro_rules! __aws_iot_SoftwarePackageVersion_PackageVersionArtifact {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::SoftwarePackageVersion.PackageVersionArtifact"
+            stratosphere::generator::construct_property_type!("AWS::IoT::SoftwarePackageVersion.PackageVersionArtifact"
             $($field $value)*)
         };
     }
@@ -1690,7 +1690,7 @@ pub mod softwarepackageversion {
     #[macro_export]
     macro_rules! __aws_iot_SoftwarePackageVersion_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::SoftwarePackageVersion.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::IoT::SoftwarePackageVersion.S3Location"
             $($field $value)*)
         };
     }
@@ -1721,7 +1721,7 @@ pub mod softwarepackageversion {
     #[macro_export]
     macro_rules! __aws_iot_SoftwarePackageVersion_Sbom {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::SoftwarePackageVersion.Sbom"
+            stratosphere::generator::construct_property_type!("AWS::IoT::SoftwarePackageVersion.Sbom"
             $($field $value)*)
         };
     }
@@ -1746,7 +1746,7 @@ pub mod thing {
     #[macro_export]
     macro_rules! __aws_iot_Thing_AttributePayload {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::Thing.AttributePayload"
+            stratosphere::generator::construct_property_type!("AWS::IoT::Thing.AttributePayload"
             $($field $value)*)
         };
     }
@@ -1773,7 +1773,7 @@ pub mod thinggroup {
     #[macro_export]
     macro_rules! __aws_iot_ThingGroup_AttributePayload {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::ThingGroup.AttributePayload"
+            stratosphere::generator::construct_property_type!("AWS::IoT::ThingGroup.AttributePayload"
             $($field $value)*)
         };
     }
@@ -1799,7 +1799,7 @@ pub mod thinggroup {
     #[macro_export]
     macro_rules! __aws_iot_ThingGroup_ThingGroupProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::ThingGroup.ThingGroupProperties"
+            stratosphere::generator::construct_property_type!("AWS::IoT::ThingGroup.ThingGroupProperties"
             $($field $value)*)
         };
     }
@@ -1832,7 +1832,7 @@ pub mod thingtype {
     #[macro_export]
     macro_rules! __aws_iot_ThingType_Mqtt5Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::ThingType.Mqtt5Configuration"
+            stratosphere::generator::construct_property_type!("AWS::IoT::ThingType.Mqtt5Configuration"
             $($field $value)*)
         };
     }
@@ -1859,7 +1859,7 @@ pub mod thingtype {
     #[macro_export]
     macro_rules! __aws_iot_ThingType_PropagatingAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::ThingType.PropagatingAttribute"
+            stratosphere::generator::construct_property_type!("AWS::IoT::ThingType.PropagatingAttribute"
             $($field $value)*)
         };
     }
@@ -1896,7 +1896,7 @@ pub mod thingtype {
     #[macro_export]
     macro_rules! __aws_iot_ThingType_ThingTypeProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::ThingType.ThingTypeProperties"
+            stratosphere::generator::construct_property_type!("AWS::IoT::ThingType.ThingTypeProperties"
             $($field $value)*)
         };
     }
@@ -1956,7 +1956,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.Action"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.Action"
             $($field $value)*)
         };
     }
@@ -2090,7 +2090,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_AssetPropertyTimestamp {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.AssetPropertyTimestamp"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.AssetPropertyTimestamp"
             $($field $value)*)
         };
     }
@@ -2121,7 +2121,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_AssetPropertyValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.AssetPropertyValue"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.AssetPropertyValue"
             $($field $value)*)
         };
     }
@@ -2157,7 +2157,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_AssetPropertyVariant {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.AssetPropertyVariant"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.AssetPropertyVariant"
             $($field $value)*)
         };
     }
@@ -2203,7 +2203,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_CloudwatchAlarmAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.CloudwatchAlarmAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.CloudwatchAlarmAction"
             $($field $value)*)
         };
     }
@@ -2240,7 +2240,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_CloudwatchLogsAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.CloudwatchLogsAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.CloudwatchLogsAction"
             $($field $value)*)
         };
     }
@@ -2278,7 +2278,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_CloudwatchMetricAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.CloudwatchMetricAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.CloudwatchMetricAction"
             $($field $value)*)
         };
     }
@@ -2331,7 +2331,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_DynamoDBAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.DynamoDBAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.DynamoDBAction"
             $($field $value)*)
         };
     }
@@ -2397,7 +2397,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_DynamoDBv2Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.DynamoDBv2Action"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.DynamoDBv2Action"
             $($field $value)*)
         };
     }
@@ -2432,7 +2432,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_ElasticsearchAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.ElasticsearchAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.ElasticsearchAction"
             $($field $value)*)
         };
     }
@@ -2471,7 +2471,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_FirehoseAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.FirehoseAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.FirehoseAction"
             $($field $value)*)
         };
     }
@@ -2513,7 +2513,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_HttpAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.HttpAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.HttpAction"
             $($field $value)*)
         };
     }
@@ -2552,7 +2552,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_HttpActionHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.HttpActionHeader"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.HttpActionHeader"
             $($field $value)*)
         };
     }
@@ -2579,7 +2579,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_HttpAuthorization {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.HttpAuthorization"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.HttpAuthorization"
             $($field $value)*)
         };
     }
@@ -2603,7 +2603,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_IotAnalyticsAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.IotAnalyticsAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.IotAnalyticsAction"
             $($field $value)*)
         };
     }
@@ -2639,7 +2639,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_IotEventsAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.IotEventsAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.IotEventsAction"
             $($field $value)*)
         };
     }
@@ -2679,7 +2679,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_IotSiteWiseAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.IotSiteWiseAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.IotSiteWiseAction"
             $($field $value)*)
         };
     }
@@ -2711,7 +2711,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_KafkaAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.KafkaAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.KafkaAction"
             $($field $value)*)
         };
     }
@@ -2758,7 +2758,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_KafkaActionHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.KafkaActionHeader"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.KafkaActionHeader"
             $($field $value)*)
         };
     }
@@ -2787,7 +2787,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_KinesisAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.KinesisAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.KinesisAction"
             $($field $value)*)
         };
     }
@@ -2820,7 +2820,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_LambdaAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.LambdaAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.LambdaAction"
             $($field $value)*)
         };
     }
@@ -2850,7 +2850,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_LocationAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.LocationAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.LocationAction"
             $($field $value)*)
         };
     }
@@ -2899,7 +2899,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_OpenSearchAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.OpenSearchAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.OpenSearchAction"
             $($field $value)*)
         };
     }
@@ -2939,7 +2939,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_PutAssetPropertyValueEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.PutAssetPropertyValueEntry"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.PutAssetPropertyValueEntry"
             $($field $value)*)
         };
     }
@@ -2986,7 +2986,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_PutItemInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.PutItemInput"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.PutItemInput"
             $($field $value)*)
         };
     }
@@ -3012,7 +3012,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_RepublishAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.RepublishAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.RepublishAction"
             $($field $value)*)
         };
     }
@@ -3053,7 +3053,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_RepublishActionHeaders {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.RepublishActionHeaders"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.RepublishActionHeaders"
             $($field $value)*)
         };
     }
@@ -3111,7 +3111,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_S3Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.S3Action"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.S3Action"
             $($field $value)*)
         };
     }
@@ -3150,7 +3150,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_SigV4Authorization {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.SigV4Authorization"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.SigV4Authorization"
             $($field $value)*)
         };
     }
@@ -3183,7 +3183,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_SnsAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.SnsAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.SnsAction"
             $($field $value)*)
         };
     }
@@ -3218,7 +3218,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_SqsAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.SqsAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.SqsAction"
             $($field $value)*)
         };
     }
@@ -3253,7 +3253,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_StepFunctionsAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.StepFunctionsAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.StepFunctionsAction"
             $($field $value)*)
         };
     }
@@ -3287,7 +3287,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_Timestamp {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.Timestamp"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.Timestamp"
             $($field $value)*)
         };
     }
@@ -3317,7 +3317,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_TimestreamAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.TimestreamAction"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.TimestreamAction"
             $($field $value)*)
         };
     }
@@ -3359,7 +3359,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_TimestreamDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.TimestreamDimension"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.TimestreamDimension"
             $($field $value)*)
         };
     }
@@ -3387,7 +3387,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_TimestreamTimestamp {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.TimestreamTimestamp"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.TimestreamTimestamp"
             $($field $value)*)
         };
     }
@@ -3419,7 +3419,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_TopicRulePayload {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.TopicRulePayload"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.TopicRulePayload"
             $($field $value)*)
         };
     }
@@ -3471,7 +3471,7 @@ pub mod topicrule {
     #[macro_export]
     macro_rules! __aws_iot_TopicRule_UserProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRule.UserProperty"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.UserProperty"
             $($field $value)*)
         };
     }
@@ -3500,7 +3500,7 @@ pub mod topicruledestination {
     #[macro_export]
     macro_rules! __aws_iot_TopicRuleDestination_HttpUrlDestinationSummary {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRuleDestination.HttpUrlDestinationSummary"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRuleDestination.HttpUrlDestinationSummary"
             $($field $value)*)
         };
     }
@@ -3528,7 +3528,7 @@ pub mod topicruledestination {
     #[macro_export]
     macro_rules! __aws_iot_TopicRuleDestination_VpcDestinationProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoT::TopicRuleDestination.VpcDestinationProperties"
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRuleDestination.VpcDestinationProperties"
             $($field $value)*)
         };
     }
@@ -3574,7 +3574,7 @@ pub struct AccountAuditConfiguration_ {
 #[macro_export]
 macro_rules! __aws_iot_AccountAuditConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::AccountAuditConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::AccountAuditConfiguration"
         $($field $value)*)
     };
 }
@@ -3627,7 +3627,7 @@ pub struct Authorizer_ {
 #[macro_export]
 macro_rules! __aws_iot_Authorizer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::Authorizer" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IoT::Authorizer" $($field
         $value)*)
     };
 }
@@ -3696,7 +3696,7 @@ pub struct BillingGroup_ {
 #[macro_export]
 macro_rules! __aws_iot_BillingGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::BillingGroup"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::BillingGroup"
         $($field $value)*)
     };
 }
@@ -3745,7 +3745,7 @@ pub struct CACertificate_ {
 #[macro_export]
 macro_rules! __aws_iot_CACertificate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::CACertificate"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::CACertificate"
         $($field $value)*)
     };
 }
@@ -3817,8 +3817,8 @@ pub struct Certificate_ {
 #[macro_export]
 macro_rules! __aws_iot_Certificate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::Certificate" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::IoT::Certificate"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_iot_Certificate as Certificate;
@@ -3875,7 +3875,7 @@ pub struct CertificateProvider_ {
 #[macro_export]
 macro_rules! __aws_iot_CertificateProvider {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::CertificateProvider"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::CertificateProvider"
         $($field $value)*)
     };
 }
@@ -3930,7 +3930,7 @@ pub struct Command_ {
 #[macro_export]
 macro_rules! __aws_iot_Command {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::Command" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IoT::Command" $($field
         $value)*)
     };
 }
@@ -4027,7 +4027,7 @@ pub struct CustomMetric_ {
 #[macro_export]
 macro_rules! __aws_iot_CustomMetric {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::CustomMetric"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::CustomMetric"
         $($field $value)*)
     };
 }
@@ -4076,7 +4076,7 @@ pub struct Dimension_ {
 #[macro_export]
 macro_rules! __aws_iot_Dimension {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::Dimension" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IoT::Dimension" $($field
         $value)*)
     };
 }
@@ -4131,7 +4131,7 @@ pub struct DomainConfiguration_ {
 #[macro_export]
 macro_rules! __aws_iot_DomainConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::DomainConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::DomainConfiguration"
         $($field $value)*)
     };
 }
@@ -4235,7 +4235,7 @@ pub struct EncryptionConfiguration_ {
 #[macro_export]
 macro_rules! __aws_iot_EncryptionConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::EncryptionConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::EncryptionConfiguration"
         $($field $value)*)
     };
 }
@@ -4287,8 +4287,8 @@ pub struct FleetMetric_ {
 #[macro_export]
 macro_rules! __aws_iot_FleetMetric {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::FleetMetric" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::IoT::FleetMetric"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_iot_FleetMetric as FleetMetric;
@@ -4375,8 +4375,8 @@ pub struct JobTemplate_ {
 #[macro_export]
 macro_rules! __aws_iot_JobTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::JobTemplate" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::IoT::JobTemplate"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_iot_JobTemplate as JobTemplate;
@@ -4472,7 +4472,7 @@ pub struct Logging_ {
 #[macro_export]
 macro_rules! __aws_iot_Logging {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::Logging" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IoT::Logging" $($field
         $value)*)
     };
 }
@@ -4514,7 +4514,7 @@ pub struct MitigationAction_ {
 #[macro_export]
 macro_rules! __aws_iot_MitigationAction {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::MitigationAction"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::MitigationAction"
         $($field $value)*)
     };
 }
@@ -4560,7 +4560,7 @@ pub struct Policy_ {
 #[macro_export]
 macro_rules! __aws_iot_Policy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::Policy" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IoT::Policy" $($field
         $value)*)
     };
 }
@@ -4601,7 +4601,7 @@ pub struct PolicyPrincipalAttachment_ {
 #[macro_export]
 macro_rules! __aws_iot_PolicyPrincipalAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::PolicyPrincipalAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::PolicyPrincipalAttachment"
         $($field $value)*)
     };
 }
@@ -4643,7 +4643,7 @@ pub struct ProvisioningTemplate_ {
 #[macro_export]
 macro_rules! __aws_iot_ProvisioningTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::ProvisioningTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::ProvisioningTemplate"
         $($field $value)*)
     };
 }
@@ -4713,7 +4713,7 @@ pub struct ResourceSpecificLogging_ {
 #[macro_export]
 macro_rules! __aws_iot_ResourceSpecificLogging {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::ResourceSpecificLogging"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::ResourceSpecificLogging"
         $($field $value)*)
     };
 }
@@ -4755,7 +4755,7 @@ pub struct RoleAlias_ {
 #[macro_export]
 macro_rules! __aws_iot_RoleAlias {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::RoleAlias" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IoT::RoleAlias" $($field
         $value)*)
     };
 }
@@ -4806,7 +4806,7 @@ pub struct ScheduledAudit_ {
 #[macro_export]
 macro_rules! __aws_iot_ScheduledAudit {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::ScheduledAudit"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::ScheduledAudit"
         $($field $value)*)
     };
 }
@@ -4870,7 +4870,7 @@ pub struct SecurityProfile_ {
 #[macro_export]
 macro_rules! __aws_iot_SecurityProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::SecurityProfile"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::SecurityProfile"
         $($field $value)*)
     };
 }
@@ -4944,7 +4944,7 @@ pub struct SoftwarePackage_ {
 #[macro_export]
 macro_rules! __aws_iot_SoftwarePackage {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::SoftwarePackage"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::SoftwarePackage"
         $($field $value)*)
     };
 }
@@ -4993,7 +4993,7 @@ pub struct SoftwarePackageVersion_ {
 #[macro_export]
 macro_rules! __aws_iot_SoftwarePackageVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::SoftwarePackageVersion"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::SoftwarePackageVersion"
         $($field $value)*)
     };
 }
@@ -5058,7 +5058,7 @@ pub struct Thing_ {
 #[macro_export]
 macro_rules! __aws_iot_Thing {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::Thing" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IoT::Thing" $($field
         $value)*)
     };
 }
@@ -5101,7 +5101,7 @@ pub struct ThingGroup_ {
 #[macro_export]
 macro_rules! __aws_iot_ThingGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::ThingGroup" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IoT::ThingGroup" $($field
         $value)*)
     };
 }
@@ -5157,7 +5157,7 @@ pub struct ThingPrincipalAttachment_ {
 #[macro_export]
 macro_rules! __aws_iot_ThingPrincipalAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::ThingPrincipalAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::ThingPrincipalAttachment"
         $($field $value)*)
     };
 }
@@ -5201,7 +5201,7 @@ pub struct ThingType_ {
 #[macro_export]
 macro_rules! __aws_iot_ThingType {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::ThingType" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IoT::ThingType" $($field
         $value)*)
     };
 }
@@ -5251,7 +5251,7 @@ pub struct TopicRule_ {
 #[macro_export]
 macro_rules! __aws_iot_TopicRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::TopicRule" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IoT::TopicRule" $($field
         $value)*)
     };
 }
@@ -5293,7 +5293,7 @@ pub struct TopicRuleDestination_ {
 #[macro_export]
 macro_rules! __aws_iot_TopicRuleDestination {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoT::TopicRuleDestination"
+        stratosphere::generator::construct_resource_type!("AWS::IoT::TopicRuleDestination"
         $($field $value)*)
     };
 }

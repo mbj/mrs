@@ -7,7 +7,7 @@ pub mod componenttype {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_ComponentType_CompositeComponentType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.CompositeComponentType"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.CompositeComponentType"
             $($field $value)*)
         };
     }
@@ -33,7 +33,7 @@ pub mod componenttype {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_ComponentType_DataConnector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.DataConnector"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.DataConnector"
             $($field $value)*)
         };
     }
@@ -65,7 +65,7 @@ pub mod componenttype {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_ComponentType_DataType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.DataType"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.DataType"
             $($field $value)*)
         };
     }
@@ -120,7 +120,7 @@ pub mod componenttype {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_ComponentType_DataValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.DataValue"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.DataValue"
             $($field $value)*)
         };
     }
@@ -194,7 +194,7 @@ pub mod componenttype {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_ComponentType_Error {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.Error"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.Error"
             $($field $value)*)
         };
     }
@@ -224,7 +224,7 @@ pub mod componenttype {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_ComponentType_Function {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.Function"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.Function"
             $($field $value)*)
         };
     }
@@ -258,7 +258,7 @@ pub mod componenttype {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_ComponentType_LambdaFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.LambdaFunction"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.LambdaFunction"
             $($field $value)*)
         };
     }
@@ -287,7 +287,7 @@ pub mod componenttype {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_ComponentType_PropertyDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.PropertyDefinition"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.PropertyDefinition"
             $($field $value)*)
         };
     }
@@ -349,7 +349,7 @@ pub mod componenttype {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_ComponentType_PropertyGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.PropertyGroup"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.PropertyGroup"
             $($field $value)*)
         };
     }
@@ -381,7 +381,7 @@ pub mod componenttype {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_ComponentType_Relationship {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.Relationship"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.Relationship"
             $($field $value)*)
         };
     }
@@ -413,7 +413,7 @@ pub mod componenttype {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_ComponentType_RelationshipValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.RelationshipValue"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.RelationshipValue"
             $($field $value)*)
         };
     }
@@ -445,7 +445,7 @@ pub mod componenttype {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_ComponentType_Status {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.Status"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::ComponentType.Status"
             $($field $value)*)
         };
     }
@@ -478,7 +478,7 @@ pub mod entity {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_Entity_Component {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::Entity.Component"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::Entity.Component"
             $($field $value)*)
         };
     }
@@ -542,7 +542,7 @@ pub mod entity {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_Entity_CompositeComponent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::Entity.CompositeComponent"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::Entity.CompositeComponent"
             $($field $value)*)
         };
     }
@@ -604,7 +604,7 @@ pub mod entity {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_Entity_DataType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::Entity.DataType"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::Entity.DataType"
             $($field $value)*)
         };
     }
@@ -658,7 +658,7 @@ pub mod entity {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_Entity_DataValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::Entity.DataValue"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::Entity.DataValue"
             $($field $value)*)
         };
     }
@@ -740,7 +740,7 @@ pub mod entity {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_Entity_Definition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::Entity.Definition"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::Entity.Definition"
             $($field $value)*)
         };
     }
@@ -820,7 +820,7 @@ pub mod entity {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_Entity_Error {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::Entity.Error"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::Entity.Error"
             $($field $value)*)
         };
     }
@@ -849,7 +849,7 @@ pub mod entity {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_Entity_Property {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::Entity.Property"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::Entity.Property"
             $($field $value)*)
         };
     }
@@ -878,7 +878,7 @@ pub mod entity {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_Entity_PropertyGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::Entity.PropertyGroup"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::Entity.PropertyGroup"
             $($field $value)*)
         };
     }
@@ -910,7 +910,7 @@ pub mod entity {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_Entity_Relationship {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::Entity.Relationship"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::Entity.Relationship"
             $($field $value)*)
         };
     }
@@ -942,7 +942,7 @@ pub mod entity {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_Entity_RelationshipValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::Entity.RelationshipValue"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::Entity.RelationshipValue"
             $($field $value)*)
         };
     }
@@ -974,7 +974,7 @@ pub mod entity {
     #[macro_export]
     macro_rules! __aws_iottwinmaker_Entity_Status {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTTwinMaker::Entity.Status"
+            stratosphere::generator::construct_property_type!("AWS::IoTTwinMaker::Entity.Status"
             $($field $value)*)
         };
     }
@@ -1019,7 +1019,7 @@ pub struct ComponentType_ {
 #[macro_export]
 macro_rules! __aws_iottwinmaker_ComponentType {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTTwinMaker::ComponentType"
+        stratosphere::generator::construct_resource_type!("AWS::IoTTwinMaker::ComponentType"
         $($field $value)*)
     };
 }
@@ -1109,7 +1109,7 @@ pub struct Entity_ {
 #[macro_export]
 macro_rules! __aws_iottwinmaker_Entity {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTTwinMaker::Entity"
+        stratosphere::generator::construct_resource_type!("AWS::IoTTwinMaker::Entity"
         $($field $value)*)
     };
 }
@@ -1183,7 +1183,7 @@ pub struct Scene_ {
 #[macro_export]
 macro_rules! __aws_iottwinmaker_Scene {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTTwinMaker::Scene"
+        stratosphere::generator::construct_resource_type!("AWS::IoTTwinMaker::Scene"
         $($field $value)*)
     };
 }
@@ -1246,7 +1246,7 @@ pub struct SyncJob_ {
 #[macro_export]
 macro_rules! __aws_iottwinmaker_SyncJob {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTTwinMaker::SyncJob"
+        stratosphere::generator::construct_resource_type!("AWS::IoTTwinMaker::SyncJob"
         $($field $value)*)
     };
 }
@@ -1292,7 +1292,7 @@ pub struct Workspace_ {
 #[macro_export]
 macro_rules! __aws_iottwinmaker_Workspace {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTTwinMaker::Workspace"
+        stratosphere::generator::construct_resource_type!("AWS::IoTTwinMaker::Workspace"
         $($field $value)*)
     };
 }

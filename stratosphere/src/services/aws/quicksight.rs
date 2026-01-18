@@ -10,7 +10,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AggregationFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AggregationFunction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AggregationFunction"
             $($field $value)*)
         };
     }
@@ -55,7 +55,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AggregationSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AggregationSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AggregationSortConfiguration"
             $($field $value)*)
         };
     }
@@ -88,7 +88,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AnalysisDefaults {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AnalysisDefaults"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AnalysisDefaults"
             $($field $value)*)
         };
     }
@@ -120,7 +120,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AnalysisDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AnalysisDefinition"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AnalysisDefinition"
             $($field $value)*)
         };
     }
@@ -196,7 +196,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AnalysisError {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AnalysisError"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AnalysisError"
             $($field $value)*)
         };
     }
@@ -230,7 +230,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AnalysisSourceEntity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AnalysisSourceEntity"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AnalysisSourceEntity"
             $($field $value)*)
         };
     }
@@ -256,7 +256,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AnalysisSourceTemplate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AnalysisSourceTemplate"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AnalysisSourceTemplate"
             $($field $value)*)
         };
     }
@@ -284,7 +284,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AnchorDateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AnchorDateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AnchorDateConfiguration"
             $($field $value)*)
         };
     }
@@ -316,7 +316,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ArcAxisConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ArcAxisConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ArcAxisConfiguration"
             $($field $value)*)
         };
     }
@@ -345,7 +345,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ArcAxisDisplayRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ArcAxisDisplayRange"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ArcAxisDisplayRange"
             $($field $value)*)
         };
     }
@@ -371,7 +371,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ArcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ArcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ArcConfiguration"
             $($field $value)*)
         };
     }
@@ -402,7 +402,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ArcOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ArcOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ArcOptions"
             $($field $value)*)
         };
     }
@@ -428,7 +428,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AssetOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AssetOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AssetOptions"
             $($field $value)*)
         };
     }
@@ -460,7 +460,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AttributeAggregationFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AttributeAggregationFunction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AttributeAggregationFunction"
             $($field $value)*)
         };
     }
@@ -492,7 +492,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AxisDataOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AxisDataOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AxisDataOptions"
             $($field $value)*)
         };
     }
@@ -524,7 +524,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AxisDisplayMinMaxRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AxisDisplayMinMaxRange"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AxisDisplayMinMaxRange"
             $($field $value)*)
         };
     }
@@ -560,7 +560,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AxisDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AxisDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AxisDisplayOptions"
             $($field $value)*)
         };
     }
@@ -616,7 +616,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AxisDisplayRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AxisDisplayRange"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AxisDisplayRange"
             $($field $value)*)
         };
     }
@@ -646,7 +646,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AxisLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AxisLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AxisLabelOptions"
             $($field $value)*)
         };
     }
@@ -684,7 +684,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AxisLabelReferenceOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AxisLabelReferenceOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AxisLabelReferenceOptions"
             $($field $value)*)
         };
     }
@@ -712,7 +712,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AxisLinearScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AxisLinearScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AxisLinearScale"
             $($field $value)*)
         };
     }
@@ -743,7 +743,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AxisLogarithmicScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AxisLogarithmicScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AxisLogarithmicScale"
             $($field $value)*)
         };
     }
@@ -766,7 +766,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AxisScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AxisScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AxisScale"
             $($field $value)*)
         };
     }
@@ -795,7 +795,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_AxisTickLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.AxisTickLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.AxisTickLabelOptions"
             $($field $value)*)
         };
     }
@@ -829,7 +829,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BarChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BarChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BarChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -882,7 +882,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BarChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BarChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BarChartConfiguration"
             $($field $value)*)
         };
     }
@@ -1000,7 +1000,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BarChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BarChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BarChartFieldWells"
             $($field $value)*)
         };
     }
@@ -1030,7 +1030,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BarChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BarChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BarChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -1091,7 +1091,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BarChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BarChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BarChartVisual"
             $($field $value)*)
         };
     }
@@ -1147,7 +1147,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BinCountOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BinCountOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BinCountOptions"
             $($field $value)*)
         };
     }
@@ -1170,7 +1170,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BinWidthOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BinWidthOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BinWidthOptions"
             $($field $value)*)
         };
     }
@@ -1202,7 +1202,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BodySectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BodySectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BodySectionConfiguration"
             $($field $value)*)
         };
     }
@@ -1244,7 +1244,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BodySectionContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BodySectionContent"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BodySectionContent"
             $($field $value)*)
         };
     }
@@ -1268,7 +1268,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BodySectionDynamicCategoryDimensionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BodySectionDynamicCategoryDimensionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BodySectionDynamicCategoryDimensionConfiguration"
             $($field $value)*)
         };
     }
@@ -1302,7 +1302,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BodySectionDynamicNumericDimensionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BodySectionDynamicNumericDimensionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BodySectionDynamicNumericDimensionConfiguration"
             $($field $value)*)
         };
     }
@@ -1336,7 +1336,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BodySectionRepeatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BodySectionRepeatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BodySectionRepeatConfiguration"
             $($field $value)*)
         };
     }
@@ -1376,7 +1376,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BodySectionRepeatDimensionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BodySectionRepeatDimensionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BodySectionRepeatDimensionConfiguration"
             $($field $value)*)
         };
     }
@@ -1407,7 +1407,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BodySectionRepeatPageBreakConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BodySectionRepeatPageBreakConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BodySectionRepeatPageBreakConfiguration"
             $($field $value)*)
         };
     }
@@ -1430,7 +1430,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BoxPlotAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BoxPlotAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BoxPlotAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -1469,7 +1469,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BoxPlotChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BoxPlotChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BoxPlotChartConfiguration"
             $($field $value)*)
         };
     }
@@ -1557,7 +1557,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BoxPlotFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BoxPlotFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BoxPlotFieldWells"
             $($field $value)*)
         };
     }
@@ -1584,7 +1584,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BoxPlotOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BoxPlotOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BoxPlotOptions"
             $($field $value)*)
         };
     }
@@ -1622,7 +1622,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BoxPlotSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BoxPlotSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BoxPlotSortConfiguration"
             $($field $value)*)
         };
     }
@@ -1653,7 +1653,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BoxPlotStyleOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BoxPlotStyleOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BoxPlotStyleOptions"
             $($field $value)*)
         };
     }
@@ -1684,7 +1684,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_BoxPlotVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.BoxPlotVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.BoxPlotVisual"
             $($field $value)*)
         };
     }
@@ -1742,7 +1742,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CalculatedField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CalculatedField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CalculatedField"
             $($field $value)*)
         };
     }
@@ -1774,7 +1774,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CalculatedMeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CalculatedMeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CalculatedMeasureField"
             $($field $value)*)
         };
     }
@@ -1801,7 +1801,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CascadingControlConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CascadingControlConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CascadingControlConfiguration"
             $($field $value)*)
         };
     }
@@ -1827,7 +1827,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CascadingControlSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CascadingControlSource"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CascadingControlSource"
             $($field $value)*)
         };
     }
@@ -1861,7 +1861,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CategoricalDimensionField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CategoricalDimensionField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CategoricalDimensionField"
             $($field $value)*)
         };
     }
@@ -1903,7 +1903,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CategoricalMeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CategoricalMeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CategoricalMeasureField"
             $($field $value)*)
         };
     }
@@ -1943,7 +1943,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CategoryDrillDownFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CategoryDrillDownFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CategoryDrillDownFilter"
             $($field $value)*)
         };
     }
@@ -1973,7 +1973,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CategoryFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CategoryFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CategoryFilter"
             $($field $value)*)
         };
     }
@@ -2012,7 +2012,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CategoryFilterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CategoryFilterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CategoryFilterConfiguration"
             $($field $value)*)
         };
     }
@@ -2051,7 +2051,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CategoryInnerFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CategoryInnerFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CategoryInnerFilter"
             $($field $value)*)
         };
     }
@@ -2086,7 +2086,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ChartAxisLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ChartAxisLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ChartAxisLabelOptions"
             $($field $value)*)
         };
     }
@@ -2123,7 +2123,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ClusterMarker {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ClusterMarker"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ClusterMarker"
             $($field $value)*)
         };
     }
@@ -2148,7 +2148,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ClusterMarkerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ClusterMarkerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ClusterMarkerConfiguration"
             $($field $value)*)
         };
     }
@@ -2175,7 +2175,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ColorScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ColorScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ColorScale"
             $($field $value)*)
         };
     }
@@ -2208,7 +2208,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ColorsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ColorsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ColorsConfiguration"
             $($field $value)*)
         };
     }
@@ -2236,7 +2236,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ColumnConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ColumnConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ColumnConfiguration"
             $($field $value)*)
         };
     }
@@ -2276,7 +2276,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ColumnHierarchy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ColumnHierarchy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ColumnHierarchy"
             $($field $value)*)
         };
     }
@@ -2314,7 +2314,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ColumnIdentifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ColumnIdentifier"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ColumnIdentifier"
             $($field $value)*)
         };
     }
@@ -2343,7 +2343,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ColumnSort {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ColumnSort"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ColumnSort"
             $($field $value)*)
         };
     }
@@ -2380,7 +2380,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ColumnTooltipItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ColumnTooltipItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ColumnTooltipItem"
             $($field $value)*)
         };
     }
@@ -2427,7 +2427,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ComboChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ComboChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ComboChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -2484,7 +2484,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ComboChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ComboChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ComboChartConfiguration"
             $($field $value)*)
         };
     }
@@ -2608,7 +2608,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ComboChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ComboChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ComboChartFieldWells"
             $($field $value)*)
         };
     }
@@ -2636,7 +2636,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ComboChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ComboChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ComboChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -2685,7 +2685,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ComboChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ComboChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ComboChartVisual"
             $($field $value)*)
         };
     }
@@ -2742,7 +2742,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ComparisonConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ComparisonConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ComparisonConfiguration"
             $($field $value)*)
         };
     }
@@ -2775,7 +2775,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ComparisonFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ComparisonFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ComparisonFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -2815,7 +2815,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_Computation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.Computation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.Computation"
             $($field $value)*)
         };
     }
@@ -2895,7 +2895,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ConditionalFormattingColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingColor"
             $($field $value)*)
         };
     }
@@ -2926,7 +2926,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ConditionalFormattingCustomIconCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingCustomIconCondition"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingCustomIconCondition"
             $($field $value)*)
         };
     }
@@ -2963,7 +2963,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ConditionalFormattingCustomIconOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingCustomIconOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingCustomIconOptions"
             $($field $value)*)
         };
     }
@@ -2992,7 +2992,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ConditionalFormattingGradientColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingGradientColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingGradientColor"
             $($field $value)*)
         };
     }
@@ -3020,7 +3020,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ConditionalFormattingIcon {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingIcon"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingIcon"
             $($field $value)*)
         };
     }
@@ -3051,7 +3051,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ConditionalFormattingIconDisplayConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingIconDisplayConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingIconDisplayConfiguration"
             $($field $value)*)
         };
     }
@@ -3077,7 +3077,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ConditionalFormattingIconSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingIconSet"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingIconSet"
             $($field $value)*)
         };
     }
@@ -3107,7 +3107,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ConditionalFormattingSolidColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingSolidColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ConditionalFormattingSolidColor"
             $($field $value)*)
         };
     }
@@ -3133,7 +3133,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ContextMenuOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ContextMenuOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ContextMenuOption"
             $($field $value)*)
         };
     }
@@ -3159,7 +3159,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ContributionAnalysisDefault {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ContributionAnalysisDefault"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ContributionAnalysisDefault"
             $($field $value)*)
         };
     }
@@ -3193,7 +3193,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CurrencyDisplayFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CurrencyDisplayFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CurrencyDisplayFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -3252,7 +3252,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CustomActionFilterOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CustomActionFilterOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CustomActionFilterOperation"
             $($field $value)*)
         };
     }
@@ -3279,7 +3279,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CustomActionNavigationOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CustomActionNavigationOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CustomActionNavigationOperation"
             $($field $value)*)
         };
     }
@@ -3304,7 +3304,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CustomActionSetParametersOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CustomActionSetParametersOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CustomActionSetParametersOperation"
             $($field $value)*)
         };
     }
@@ -3328,7 +3328,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CustomActionURLOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CustomActionURLOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CustomActionURLOperation"
             $($field $value)*)
         };
     }
@@ -3357,7 +3357,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CustomColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CustomColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CustomColor"
             $($field $value)*)
         };
     }
@@ -3395,7 +3395,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CustomContentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CustomContentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CustomContentConfiguration"
             $($field $value)*)
         };
     }
@@ -3444,7 +3444,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CustomContentVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CustomContentVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CustomContentVisual"
             $($field $value)*)
         };
     }
@@ -3502,7 +3502,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CustomFilterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CustomFilterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CustomFilterConfiguration"
             $($field $value)*)
         };
     }
@@ -3550,7 +3550,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CustomFilterListConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CustomFilterListConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CustomFilterListConfiguration"
             $($field $value)*)
         };
     }
@@ -3589,7 +3589,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CustomNarrativeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CustomNarrativeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CustomNarrativeOptions"
             $($field $value)*)
         };
     }
@@ -3615,7 +3615,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CustomParameterValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CustomParameterValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CustomParameterValues"
             $($field $value)*)
         };
     }
@@ -3659,7 +3659,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_CustomValuesConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.CustomValuesConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.CustomValuesConfiguration"
             $($field $value)*)
         };
     }
@@ -3690,7 +3690,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DataBarsOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DataBarsOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DataBarsOptions"
             $($field $value)*)
         };
     }
@@ -3726,7 +3726,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DataColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DataColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DataColor"
             $($field $value)*)
         };
     }
@@ -3757,7 +3757,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DataFieldSeriesItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DataFieldSeriesItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DataFieldSeriesItem"
             $($field $value)*)
         };
     }
@@ -3805,7 +3805,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DataLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DataLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DataLabelOptions"
             $($field $value)*)
         };
     }
@@ -3888,7 +3888,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DataLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DataLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DataLabelType"
             $($field $value)*)
         };
     }
@@ -3939,7 +3939,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DataPathColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DataPathColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DataPathColor"
             $($field $value)*)
         };
     }
@@ -3974,7 +3974,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DataPathLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DataPathLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DataPathLabelType"
             $($field $value)*)
         };
     }
@@ -4012,7 +4012,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DataPathSort {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DataPathSort"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DataPathSort"
             $($field $value)*)
         };
     }
@@ -4039,7 +4039,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DataPathType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DataPathType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DataPathType"
             $($field $value)*)
         };
     }
@@ -4066,7 +4066,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DataPathValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DataPathValue"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DataPathValue"
             $($field $value)*)
         };
     }
@@ -4104,7 +4104,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DataSetIdentifierDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DataSetIdentifierDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DataSetIdentifierDeclaration"
             $($field $value)*)
         };
     }
@@ -4132,7 +4132,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DataSetReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DataSetReference"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DataSetReference"
             $($field $value)*)
         };
     }
@@ -4159,7 +4159,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DateAxisOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DateAxisOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DateAxisOptions"
             $($field $value)*)
         };
     }
@@ -4188,7 +4188,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DateDimensionField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DateDimensionField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DateDimensionField"
             $($field $value)*)
         };
     }
@@ -4236,7 +4236,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DateMeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DateMeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DateMeasureField"
             $($field $value)*)
         };
     }
@@ -4277,7 +4277,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DateTimeDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DateTimeDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DateTimeDefaultValues"
             $($field $value)*)
         };
     }
@@ -4316,7 +4316,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DateTimeFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DateTimeFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DateTimeFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -4354,7 +4354,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DateTimeHierarchy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DateTimeHierarchy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DateTimeHierarchy"
             $($field $value)*)
         };
     }
@@ -4384,7 +4384,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DateTimeParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DateTimeParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DateTimeParameter"
             $($field $value)*)
         };
     }
@@ -4415,7 +4415,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DateTimeParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DateTimeParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DateTimeParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -4466,7 +4466,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DateTimePickerControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DateTimePickerControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DateTimePickerControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -4516,7 +4516,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DateTimeValueWhenUnsetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DateTimeValueWhenUnsetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DateTimeValueWhenUnsetConfiguration"
             $($field $value)*)
         };
     }
@@ -4548,7 +4548,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DecimalDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DecimalDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DecimalDefaultValues"
             $($field $value)*)
         };
     }
@@ -4580,7 +4580,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DecimalParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DecimalParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DecimalParameter"
             $($field $value)*)
         };
     }
@@ -4611,7 +4611,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DecimalParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DecimalParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DecimalParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -4656,7 +4656,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DecimalPlacesConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DecimalPlacesConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DecimalPlacesConfiguration"
             $($field $value)*)
         };
     }
@@ -4680,7 +4680,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DecimalValueWhenUnsetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DecimalValueWhenUnsetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DecimalValueWhenUnsetConfiguration"
             $($field $value)*)
         };
     }
@@ -4713,7 +4713,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultDateTimePickerControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultDateTimePickerControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultDateTimePickerControlOptions"
             $($field $value)*)
         };
     }
@@ -4748,7 +4748,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultFilterControlConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultFilterControlConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultFilterControlConfiguration"
             $($field $value)*)
         };
     }
@@ -4781,7 +4781,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultFilterControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultFilterControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultFilterControlOptions"
             $($field $value)*)
         };
     }
@@ -4845,7 +4845,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultFilterDropDownControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultFilterDropDownControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultFilterDropDownControlOptions"
             $($field $value)*)
         };
     }
@@ -4887,7 +4887,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultFilterListControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultFilterListControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultFilterListControlOptions"
             $($field $value)*)
         };
     }
@@ -4921,7 +4921,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultFreeFormLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultFreeFormLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultFreeFormLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -4944,7 +4944,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultGridLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultGridLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultGridLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -4968,7 +4968,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultInteractiveLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultInteractiveLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultInteractiveLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -4998,7 +4998,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultNewSheetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultNewSheetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultNewSheetConfiguration"
             $($field $value)*)
         };
     }
@@ -5035,7 +5035,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultPaginatedLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultPaginatedLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultPaginatedLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -5061,7 +5061,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultRelativeDateTimeControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultRelativeDateTimeControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultRelativeDateTimeControlOptions"
             $($field $value)*)
         };
     }
@@ -5092,7 +5092,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultSectionBasedLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultSectionBasedLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultSectionBasedLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -5119,7 +5119,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultSliderControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultSliderControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultSliderControlOptions"
             $($field $value)*)
         };
     }
@@ -5160,7 +5160,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultTextAreaControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultTextAreaControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultTextAreaControlOptions"
             $($field $value)*)
         };
     }
@@ -5191,7 +5191,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DefaultTextFieldControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultTextFieldControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DefaultTextFieldControlOptions"
             $($field $value)*)
         };
     }
@@ -5220,7 +5220,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DestinationParameterValueConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DestinationParameterValueConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DestinationParameterValueConfiguration"
             $($field $value)*)
         };
     }
@@ -5271,7 +5271,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DimensionField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DimensionField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DimensionField"
             $($field $value)*)
         };
     }
@@ -5308,7 +5308,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DonutCenterOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DonutCenterOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DonutCenterOptions"
             $($field $value)*)
         };
     }
@@ -5334,7 +5334,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DonutOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DonutOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DonutOptions"
             $($field $value)*)
         };
     }
@@ -5367,7 +5367,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DrillDownFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DrillDownFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DrillDownFilter"
             $($field $value)*)
         };
     }
@@ -5406,7 +5406,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DropDownControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DropDownControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DropDownControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -5445,7 +5445,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_DynamicDefaultValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.DynamicDefaultValue"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.DynamicDefaultValue"
             $($field $value)*)
         };
     }
@@ -5482,7 +5482,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_EmptyVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.EmptyVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.EmptyVisual"
             $($field $value)*)
         };
     }
@@ -5515,7 +5515,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_Entity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.Entity"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.Entity"
             $($field $value)*)
         };
     }
@@ -5539,7 +5539,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ExcludePeriodConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ExcludePeriodConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ExcludePeriodConfiguration"
             $($field $value)*)
         };
     }
@@ -5571,7 +5571,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ExplicitHierarchy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ExplicitHierarchy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ExplicitHierarchy"
             $($field $value)*)
         };
     }
@@ -5606,7 +5606,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FieldBasedTooltip {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FieldBasedTooltip"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FieldBasedTooltip"
             $($field $value)*)
         };
     }
@@ -5644,7 +5644,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FieldLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FieldLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FieldLabelType"
             $($field $value)*)
         };
     }
@@ -5677,7 +5677,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FieldSeriesItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FieldSeriesItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FieldSeriesItem"
             $($field $value)*)
         };
     }
@@ -5711,7 +5711,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FieldSort {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FieldSort"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FieldSort"
             $($field $value)*)
         };
     }
@@ -5739,7 +5739,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FieldSortOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FieldSortOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FieldSortOptions"
             $($field $value)*)
         };
     }
@@ -5773,7 +5773,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FieldTooltipItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FieldTooltipItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FieldTooltipItem"
             $($field $value)*)
         };
     }
@@ -5812,7 +5812,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilledMapAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -5840,7 +5840,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilledMapConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -5863,7 +5863,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilledMapConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -5892,7 +5892,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilledMapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapConfiguration"
             $($field $value)*)
         };
     }
@@ -5950,7 +5950,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilledMapFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapFieldWells"
             $($field $value)*)
         };
     }
@@ -5976,7 +5976,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilledMapShapeConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapShapeConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapShapeConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -6002,7 +6002,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilledMapSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapSortConfiguration"
             $($field $value)*)
         };
     }
@@ -6034,7 +6034,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilledMapVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilledMapVisual"
             $($field $value)*)
         };
     }
@@ -6103,7 +6103,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_Filter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.Filter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.Filter"
             $($field $value)*)
         };
     }
@@ -6177,7 +6177,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterControl"
             $($field $value)*)
         };
     }
@@ -6240,7 +6240,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterCrossSheetControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterCrossSheetControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterCrossSheetControl"
             $($field $value)*)
         };
     }
@@ -6278,7 +6278,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterDateTimePickerControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterDateTimePickerControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterDateTimePickerControl"
             $($field $value)*)
         };
     }
@@ -6331,7 +6331,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterDropDownControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterDropDownControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterDropDownControl"
             $($field $value)*)
         };
     }
@@ -6393,7 +6393,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterGroup"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterGroup"
             $($field $value)*)
         };
     }
@@ -6434,7 +6434,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterListConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterListConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterListConfiguration"
             $($field $value)*)
         };
     }
@@ -6481,7 +6481,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterListControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterListControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterListControl"
             $($field $value)*)
         };
     }
@@ -6535,7 +6535,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterOperationSelectedFieldsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterOperationSelectedFieldsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterOperationSelectedFieldsConfiguration"
             $($field $value)*)
         };
     }
@@ -6573,7 +6573,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterOperationTargetVisualsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterOperationTargetVisualsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterOperationTargetVisualsConfiguration"
             $($field $value)*)
         };
     }
@@ -6602,7 +6602,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterRelativeDateTimeControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterRelativeDateTimeControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterRelativeDateTimeControl"
             $($field $value)*)
         };
     }
@@ -6646,7 +6646,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterScopeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterScopeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterScopeConfiguration"
             $($field $value)*)
         };
     }
@@ -6677,7 +6677,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterSelectableValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterSelectableValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterSelectableValues"
             $($field $value)*)
         };
     }
@@ -6706,7 +6706,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterSliderControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterSliderControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterSliderControl"
             $($field $value)*)
         };
     }
@@ -6762,7 +6762,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterTextAreaControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterTextAreaControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterTextAreaControl"
             $($field $value)*)
         };
     }
@@ -6808,7 +6808,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FilterTextFieldControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FilterTextFieldControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FilterTextFieldControl"
             $($field $value)*)
         };
     }
@@ -6850,7 +6850,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FontConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FontConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FontConfiguration"
             $($field $value)*)
         };
     }
@@ -6906,7 +6906,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FontSize {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FontSize"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FontSize"
             $($field $value)*)
         };
     }
@@ -6937,7 +6937,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FontWeight {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FontWeight"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FontWeight"
             $($field $value)*)
         };
     }
@@ -6969,7 +6969,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ForecastComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ForecastComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ForecastComputation"
             $($field $value)*)
         };
     }
@@ -7044,7 +7044,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ForecastConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ForecastConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ForecastConfiguration"
             $($field $value)*)
         };
     }
@@ -7076,7 +7076,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ForecastScenario {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ForecastScenario"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ForecastScenario"
             $($field $value)*)
         };
     }
@@ -7109,7 +7109,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FormatConfiguration"
             $($field $value)*)
         };
     }
@@ -7146,7 +7146,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FreeFormLayoutCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FreeFormLayoutCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FreeFormLayoutCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -7172,7 +7172,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FreeFormLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FreeFormLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FreeFormLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -7212,7 +7212,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FreeFormLayoutElement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FreeFormLayoutElement"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FreeFormLayoutElement"
             $($field $value)*)
         };
     }
@@ -7292,7 +7292,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FreeFormLayoutElementBackgroundStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FreeFormLayoutElementBackgroundStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FreeFormLayoutElementBackgroundStyle"
             $($field $value)*)
         };
     }
@@ -7321,7 +7321,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FreeFormLayoutElementBorderStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FreeFormLayoutElementBorderStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FreeFormLayoutElementBorderStyle"
             $($field $value)*)
         };
     }
@@ -7349,7 +7349,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FreeFormLayoutScreenCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FreeFormLayoutScreenCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FreeFormLayoutScreenCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -7372,7 +7372,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FreeFormSectionLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FreeFormSectionLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FreeFormSectionLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -7396,7 +7396,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FunnelChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FunnelChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FunnelChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -7431,7 +7431,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FunnelChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FunnelChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FunnelChartConfiguration"
             $($field $value)*)
         };
     }
@@ -7504,7 +7504,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FunnelChartDataLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FunnelChartDataLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FunnelChartDataLabelOptions"
             $($field $value)*)
         };
     }
@@ -7565,7 +7565,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FunnelChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FunnelChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FunnelChartFieldWells"
             $($field $value)*)
         };
     }
@@ -7591,7 +7591,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FunnelChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FunnelChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FunnelChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -7628,7 +7628,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_FunnelChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.FunnelChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.FunnelChartVisual"
             $($field $value)*)
         };
     }
@@ -7684,7 +7684,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GaugeChartArcConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartArcConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartArcConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -7710,7 +7710,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GaugeChartColorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartColorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartColorConfiguration"
             $($field $value)*)
         };
     }
@@ -7741,7 +7741,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GaugeChartConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -7767,7 +7767,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GaugeChartConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -7801,7 +7801,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GaugeChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartConfiguration"
             $($field $value)*)
         };
     }
@@ -7863,7 +7863,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GaugeChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartFieldWells"
             $($field $value)*)
         };
     }
@@ -7895,7 +7895,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GaugeChartOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartOptions"
             $($field $value)*)
         };
     }
@@ -7942,7 +7942,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GaugeChartPrimaryValueConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartPrimaryValueConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartPrimaryValueConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -7976,7 +7976,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GaugeChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GaugeChartVisual"
             $($field $value)*)
         };
     }
@@ -8035,7 +8035,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialCategoricalColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialCategoricalColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialCategoricalColor"
             $($field $value)*)
         };
     }
@@ -8077,7 +8077,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialCategoricalDataColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialCategoricalDataColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialCategoricalDataColor"
             $($field $value)*)
         };
     }
@@ -8104,7 +8104,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialCircleRadius {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialCircleRadius"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialCircleRadius"
             $($field $value)*)
         };
     }
@@ -8129,7 +8129,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialCircleSymbolStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialCircleSymbolStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialCircleSymbolStyle"
             $($field $value)*)
         };
     }
@@ -8174,7 +8174,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialColor"
             $($field $value)*)
         };
     }
@@ -8211,7 +8211,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialCoordinateBounds {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialCoordinateBounds"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialCoordinateBounds"
             $($field $value)*)
         };
     }
@@ -8246,7 +8246,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialDataSourceItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialDataSourceItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialDataSourceItem"
             $($field $value)*)
         };
     }
@@ -8274,7 +8274,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialGradientColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialGradientColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialGradientColor"
             $($field $value)*)
         };
     }
@@ -8316,7 +8316,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialGradientStepColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialGradientStepColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialGradientStepColor"
             $($field $value)*)
         };
     }
@@ -8343,7 +8343,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialHeatmapColorScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialHeatmapColorScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialHeatmapColorScale"
             $($field $value)*)
         };
     }
@@ -8365,7 +8365,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialHeatmapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialHeatmapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialHeatmapConfiguration"
             $($field $value)*)
         };
     }
@@ -8390,7 +8390,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialHeatmapDataColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialHeatmapDataColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialHeatmapDataColor"
             $($field $value)*)
         };
     }
@@ -8414,7 +8414,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialLayerColorField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLayerColorField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLayerColorField"
             $($field $value)*)
         };
     }
@@ -8447,7 +8447,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialLayerDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLayerDefinition"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLayerDefinition"
             $($field $value)*)
         };
     }
@@ -8492,7 +8492,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialLayerItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLayerItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLayerItem"
             $($field $value)*)
         };
     }
@@ -8562,7 +8562,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialLayerJoinDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLayerJoinDefinition"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLayerJoinDefinition"
             $($field $value)*)
         };
     }
@@ -8603,7 +8603,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialLayerMapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLayerMapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLayerMapConfiguration"
             $($field $value)*)
         };
     }
@@ -8649,7 +8649,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialLineLayer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLineLayer"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLineLayer"
             $($field $value)*)
         };
     }
@@ -8672,7 +8672,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialLineStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLineStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLineStyle"
             $($field $value)*)
         };
     }
@@ -8698,7 +8698,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialLineSymbolStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLineSymbolStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLineSymbolStyle"
             $($field $value)*)
         };
     }
@@ -8729,7 +8729,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialLineWidth {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLineWidth"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialLineWidth"
             $($field $value)*)
         };
     }
@@ -8756,7 +8756,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialMapAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialMapAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialMapAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -8794,7 +8794,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialMapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialMapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialMapConfiguration"
             $($field $value)*)
         };
     }
@@ -8858,7 +8858,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialMapFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialMapFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialMapFieldWells"
             $($field $value)*)
         };
     }
@@ -8884,7 +8884,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialMapState {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialMapState"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialMapState"
             $($field $value)*)
         };
     }
@@ -8914,7 +8914,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialMapStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialMapStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialMapStyle"
             $($field $value)*)
         };
     }
@@ -8951,7 +8951,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialMapStyleOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialMapStyleOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialMapStyleOptions"
             $($field $value)*)
         };
     }
@@ -8982,7 +8982,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialMapVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialMapVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialMapVisual"
             $($field $value)*)
         };
     }
@@ -9038,7 +9038,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialNullDataSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialNullDataSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialNullDataSettings"
             $($field $value)*)
         };
     }
@@ -9063,7 +9063,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialNullSymbolStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialNullSymbolStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialNullSymbolStyle"
             $($field $value)*)
         };
     }
@@ -9100,7 +9100,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialPointLayer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialPointLayer"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialPointLayer"
             $($field $value)*)
         };
     }
@@ -9123,7 +9123,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialPointStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialPointStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialPointStyle"
             $($field $value)*)
         };
     }
@@ -9150,7 +9150,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialPointStyleOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialPointStyleOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialPointStyleOptions"
             $($field $value)*)
         };
     }
@@ -9187,7 +9187,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialPolygonLayer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialPolygonLayer"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialPolygonLayer"
             $($field $value)*)
         };
     }
@@ -9210,7 +9210,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialPolygonStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialPolygonStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialPolygonStyle"
             $($field $value)*)
         };
     }
@@ -9237,7 +9237,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialPolygonSymbolStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialPolygonSymbolStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialPolygonSymbolStyle"
             $($field $value)*)
         };
     }
@@ -9275,7 +9275,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialSolidColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialSolidColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialSolidColor"
             $($field $value)*)
         };
     }
@@ -9301,7 +9301,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialStaticFileSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialStaticFileSource"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialStaticFileSource"
             $($field $value)*)
         };
     }
@@ -9325,7 +9325,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GeospatialWindowOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialWindowOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GeospatialWindowOptions"
             $($field $value)*)
         };
     }
@@ -9354,7 +9354,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GlobalTableBorderOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GlobalTableBorderOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GlobalTableBorderOptions"
             $($field $value)*)
         };
     }
@@ -9385,7 +9385,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GradientColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GradientColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GradientColor"
             $($field $value)*)
         };
     }
@@ -9409,7 +9409,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GradientStop {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GradientStop"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GradientStop"
             $($field $value)*)
         };
     }
@@ -9441,7 +9441,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GridLayoutCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GridLayoutCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GridLayoutCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -9467,7 +9467,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GridLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GridLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GridLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -9501,7 +9501,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GridLayoutElement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GridLayoutElement"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GridLayoutElement"
             $($field $value)*)
         };
     }
@@ -9549,7 +9549,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GridLayoutScreenCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GridLayoutScreenCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GridLayoutScreenCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -9582,7 +9582,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_GrowthRateComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.GrowthRateComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.GrowthRateComputation"
             $($field $value)*)
         };
     }
@@ -9622,7 +9622,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_HeaderFooterSectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.HeaderFooterSectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.HeaderFooterSectionConfiguration"
             $($field $value)*)
         };
     }
@@ -9654,7 +9654,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_HeatMapAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.HeatMapAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.HeatMapAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -9693,7 +9693,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_HeatMapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.HeatMapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.HeatMapConfiguration"
             $($field $value)*)
         };
     }
@@ -9763,7 +9763,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_HeatMapFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.HeatMapFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.HeatMapFieldWells"
             $($field $value)*)
         };
     }
@@ -9791,7 +9791,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_HeatMapSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.HeatMapSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.HeatMapSortConfiguration"
             $($field $value)*)
         };
     }
@@ -9840,7 +9840,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_HeatMapVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.HeatMapVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.HeatMapVisual"
             $($field $value)*)
         };
     }
@@ -9896,7 +9896,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_HistogramAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.HistogramAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.HistogramAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -9921,7 +9921,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_HistogramBinOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.HistogramBinOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.HistogramBinOptions"
             $($field $value)*)
         };
     }
@@ -9972,7 +9972,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_HistogramConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.HistogramConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.HistogramConfiguration"
             $($field $value)*)
         };
     }
@@ -10045,7 +10045,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_HistogramFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.HistogramFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.HistogramFieldWells"
             $($field $value)*)
         };
     }
@@ -10075,7 +10075,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_HistogramVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.HistogramVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.HistogramVisual"
             $($field $value)*)
         };
     }
@@ -10129,7 +10129,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ImageCustomAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ImageCustomAction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ImageCustomAction"
             $($field $value)*)
         };
     }
@@ -10169,7 +10169,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ImageCustomActionOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ImageCustomActionOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ImageCustomActionOperation"
             $($field $value)*)
         };
     }
@@ -10206,7 +10206,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ImageInteractionOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ImageInteractionOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ImageInteractionOptions"
             $($field $value)*)
         };
     }
@@ -10231,7 +10231,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ImageMenuOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ImageMenuOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ImageMenuOption"
             $($field $value)*)
         };
     }
@@ -10257,7 +10257,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ImageStaticFile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ImageStaticFile"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ImageStaticFile"
             $($field $value)*)
         };
     }
@@ -10283,7 +10283,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_InnerFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.InnerFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.InnerFilter"
             $($field $value)*)
         };
     }
@@ -10310,7 +10310,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_InsightConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.InsightConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.InsightConfiguration"
             $($field $value)*)
         };
     }
@@ -10353,7 +10353,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_InsightVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.InsightVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.InsightVisual"
             $($field $value)*)
         };
     }
@@ -10408,7 +10408,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_IntegerDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.IntegerDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.IntegerDefaultValues"
             $($field $value)*)
         };
     }
@@ -10440,7 +10440,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_IntegerParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.IntegerParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.IntegerParameter"
             $($field $value)*)
         };
     }
@@ -10471,7 +10471,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_IntegerParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.IntegerParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.IntegerParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -10517,7 +10517,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_IntegerValueWhenUnsetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.IntegerValueWhenUnsetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.IntegerValueWhenUnsetConfiguration"
             $($field $value)*)
         };
     }
@@ -10549,7 +10549,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ItemsLimitConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ItemsLimitConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ItemsLimitConfiguration"
             $($field $value)*)
         };
     }
@@ -10581,7 +10581,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_KPIActualValueConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.KPIActualValueConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.KPIActualValueConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -10610,7 +10610,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_KPIComparisonValueConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.KPIComparisonValueConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.KPIComparisonValueConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -10638,7 +10638,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_KPIConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.KPIConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.KPIConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -10666,7 +10666,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_KPIConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.KPIConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.KPIConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -10712,7 +10712,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_KPIConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.KPIConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.KPIConfiguration"
             $($field $value)*)
         };
     }
@@ -10757,7 +10757,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_KPIFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.KPIFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.KPIFieldWells"
             $($field $value)*)
         };
     }
@@ -10799,7 +10799,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_KPIOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.KPIOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.KPIOptions"
             $($field $value)*)
         };
     }
@@ -10873,7 +10873,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_KPIPrimaryValueConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.KPIPrimaryValueConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.KPIPrimaryValueConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -10901,7 +10901,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_KPIProgressBarConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.KPIProgressBarConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.KPIProgressBarConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -10926,7 +10926,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_KPISortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.KPISortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.KPISortConfiguration"
             $($field $value)*)
         };
     }
@@ -10954,7 +10954,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_KPISparklineOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.KPISparklineOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.KPISparklineOptions"
             $($field $value)*)
         };
     }
@@ -10999,7 +10999,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_KPIVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.KPIVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.KPIVisual"
             $($field $value)*)
         };
     }
@@ -11061,7 +11061,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_KPIVisualLayoutOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.KPIVisualLayoutOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.KPIVisualLayoutOptions"
             $($field $value)*)
         };
     }
@@ -11086,7 +11086,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_KPIVisualStandardLayout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.KPIVisualStandardLayout"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.KPIVisualStandardLayout"
             $($field $value)*)
         };
     }
@@ -11111,7 +11111,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LabelOptions"
             $($field $value)*)
         };
     }
@@ -11152,7 +11152,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LayerCustomAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LayerCustomAction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LayerCustomAction"
             $($field $value)*)
         };
     }
@@ -11193,7 +11193,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LayerCustomActionOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LayerCustomActionOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LayerCustomActionOperation"
             $($field $value)*)
         };
     }
@@ -11241,7 +11241,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LayerMapVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LayerMapVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LayerMapVisual"
             $($field $value)*)
         };
     }
@@ -11289,7 +11289,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_Layout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.Layout"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.Layout"
             $($field $value)*)
         };
     }
@@ -11314,7 +11314,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -11356,7 +11356,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LegendOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LegendOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LegendOptions"
             $($field $value)*)
         };
     }
@@ -11405,7 +11405,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LineChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -11462,7 +11462,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LineChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartConfiguration"
             $($field $value)*)
         };
     }
@@ -11600,7 +11600,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LineChartDefaultSeriesSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartDefaultSeriesSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartDefaultSeriesSettings"
             $($field $value)*)
         };
     }
@@ -11637,7 +11637,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LineChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartFieldWells"
             $($field $value)*)
         };
     }
@@ -11665,7 +11665,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LineChartLineStyleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartLineStyleSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartLineStyleSettings"
             $($field $value)*)
         };
     }
@@ -11711,7 +11711,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LineChartMarkerStyleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartMarkerStyleSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartMarkerStyleSettings"
             $($field $value)*)
         };
     }
@@ -11755,7 +11755,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LineChartSeriesSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartSeriesSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartSeriesSettings"
             $($field $value)*)
         };
     }
@@ -11790,7 +11790,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LineChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -11845,7 +11845,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LineChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LineChartVisual"
             $($field $value)*)
         };
     }
@@ -11902,7 +11902,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LineSeriesAxisDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LineSeriesAxisDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LineSeriesAxisDisplayOptions"
             $($field $value)*)
         };
     }
@@ -11936,7 +11936,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ListControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ListControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ListControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -11979,7 +11979,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ListControlSearchOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ListControlSearchOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ListControlSearchOptions"
             $($field $value)*)
         };
     }
@@ -12004,7 +12004,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ListControlSelectAllOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ListControlSelectAllOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ListControlSelectAllOptions"
             $($field $value)*)
         };
     }
@@ -12029,7 +12029,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LoadingAnimation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LoadingAnimation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LoadingAnimation"
             $($field $value)*)
         };
     }
@@ -12054,7 +12054,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LocalNavigationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LocalNavigationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LocalNavigationConfiguration"
             $($field $value)*)
         };
     }
@@ -12078,7 +12078,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_LongFormatText {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.LongFormatText"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.LongFormatText"
             $($field $value)*)
         };
     }
@@ -12110,7 +12110,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_MappedDataSetParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.MappedDataSetParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.MappedDataSetParameter"
             $($field $value)*)
         };
     }
@@ -12137,7 +12137,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_MaximumLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.MaximumLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.MaximumLabelType"
             $($field $value)*)
         };
     }
@@ -12166,7 +12166,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_MaximumMinimumComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.MaximumMinimumComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.MaximumMinimumComputation"
             $($field $value)*)
         };
     }
@@ -12205,7 +12205,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_MeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.MeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.MeasureField"
             $($field $value)*)
         };
     }
@@ -12252,7 +12252,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_MetricComparisonComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.MetricComparisonComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.MetricComparisonComputation"
             $($field $value)*)
         };
     }
@@ -12293,7 +12293,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_MinimumLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.MinimumLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.MinimumLabelType"
             $($field $value)*)
         };
     }
@@ -12318,7 +12318,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_MissingDataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.MissingDataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.MissingDataConfiguration"
             $($field $value)*)
         };
     }
@@ -12343,7 +12343,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NegativeValueConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NegativeValueConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NegativeValueConfiguration"
             $($field $value)*)
         };
     }
@@ -12369,7 +12369,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NestedFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NestedFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NestedFilter"
             $($field $value)*)
         };
     }
@@ -12404,7 +12404,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NullValueFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NullValueFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NullValueFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -12433,7 +12433,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NumberDisplayFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NumberDisplayFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NumberDisplayFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -12488,7 +12488,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NumberFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NumberFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NumberFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -12514,7 +12514,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NumericAxisOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NumericAxisOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NumericAxisOptions"
             $($field $value)*)
         };
     }
@@ -12540,7 +12540,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NumericEqualityDrillDownFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NumericEqualityDrillDownFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NumericEqualityDrillDownFilter"
             $($field $value)*)
         };
     }
@@ -12575,7 +12575,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NumericEqualityFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NumericEqualityFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NumericEqualityFilter"
             $($field $value)*)
         };
     }
@@ -12640,7 +12640,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NumericFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NumericFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NumericFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -12686,7 +12686,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NumericRangeFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NumericRangeFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NumericRangeFilter"
             $($field $value)*)
         };
     }
@@ -12760,7 +12760,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NumericRangeFilterValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NumericRangeFilterValue"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NumericRangeFilterValue"
             $($field $value)*)
         };
     }
@@ -12792,7 +12792,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NumericSeparatorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NumericSeparatorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NumericSeparatorConfiguration"
             $($field $value)*)
         };
     }
@@ -12824,7 +12824,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NumericalAggregationFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NumericalAggregationFunction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NumericalAggregationFunction"
             $($field $value)*)
         };
     }
@@ -12858,7 +12858,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NumericalDimensionField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NumericalDimensionField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NumericalDimensionField"
             $($field $value)*)
         };
     }
@@ -12900,7 +12900,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_NumericalMeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.NumericalMeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.NumericalMeasureField"
             $($field $value)*)
         };
     }
@@ -12940,7 +12940,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PaginationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PaginationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PaginationConfiguration"
             $($field $value)*)
         };
     }
@@ -12975,7 +12975,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PanelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PanelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PanelConfiguration"
             $($field $value)*)
         };
     }
@@ -13047,7 +13047,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PanelTitleOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PanelTitleOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PanelTitleOptions"
             $($field $value)*)
         };
     }
@@ -13089,7 +13089,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ParameterControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterControl"
             $($field $value)*)
         };
     }
@@ -13141,7 +13141,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ParameterDateTimePickerControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterDateTimePickerControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterDateTimePickerControl"
             $($field $value)*)
         };
     }
@@ -13181,7 +13181,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -13231,7 +13231,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ParameterDropDownControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterDropDownControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterDropDownControl"
             $($field $value)*)
         };
     }
@@ -13295,7 +13295,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ParameterListControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterListControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterListControl"
             $($field $value)*)
         };
     }
@@ -13348,7 +13348,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ParameterSelectableValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterSelectableValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterSelectableValues"
             $($field $value)*)
         };
     }
@@ -13382,7 +13382,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ParameterSliderControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterSliderControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterSliderControl"
             $($field $value)*)
         };
     }
@@ -13435,7 +13435,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ParameterTextAreaControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterTextAreaControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterTextAreaControl"
             $($field $value)*)
         };
     }
@@ -13481,7 +13481,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ParameterTextFieldControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterTextFieldControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ParameterTextFieldControl"
             $($field $value)*)
         };
     }
@@ -13521,7 +13521,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_Parameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.Parameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.Parameters"
             $($field $value)*)
         };
     }
@@ -13565,7 +13565,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PercentVisibleRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PercentVisibleRange"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PercentVisibleRange"
             $($field $value)*)
         };
     }
@@ -13595,7 +13595,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PercentageDisplayFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PercentageDisplayFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PercentageDisplayFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -13644,7 +13644,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PercentileAggregation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PercentileAggregation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PercentileAggregation"
             $($field $value)*)
         };
     }
@@ -13672,7 +13672,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PeriodOverPeriodComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PeriodOverPeriodComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PeriodOverPeriodComputation"
             $($field $value)*)
         };
     }
@@ -13708,7 +13708,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PeriodToDateComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PeriodToDateComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PeriodToDateComputation"
             $($field $value)*)
         };
     }
@@ -13748,7 +13748,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PieChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PieChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PieChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -13793,7 +13793,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PieChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PieChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PieChartConfiguration"
             $($field $value)*)
         };
     }
@@ -13881,7 +13881,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PieChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PieChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PieChartFieldWells"
             $($field $value)*)
         };
     }
@@ -13909,7 +13909,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PieChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PieChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PieChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -13958,7 +13958,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PieChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PieChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PieChartVisual"
             $($field $value)*)
         };
     }
@@ -14015,7 +14015,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotFieldSortOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotFieldSortOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotFieldSortOptions"
             $($field $value)*)
         };
     }
@@ -14044,7 +14044,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -14078,7 +14078,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableCellConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableCellConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableCellConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -14113,7 +14113,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -14138,7 +14138,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -14160,7 +14160,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableConditionalFormattingScope {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableConditionalFormattingScope"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableConditionalFormattingScope"
             $($field $value)*)
         };
     }
@@ -14188,7 +14188,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableConfiguration"
             $($field $value)*)
         };
     }
@@ -14250,7 +14250,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableDataPathOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableDataPathOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableDataPathOption"
             $($field $value)*)
         };
     }
@@ -14277,7 +14277,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableFieldCollapseStateOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableFieldCollapseStateOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableFieldCollapseStateOption"
             $($field $value)*)
         };
     }
@@ -14304,7 +14304,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableFieldCollapseStateTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableFieldCollapseStateTarget"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableFieldCollapseStateTarget"
             $($field $value)*)
         };
     }
@@ -14337,7 +14337,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableFieldOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableFieldOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableFieldOption"
             $($field $value)*)
         };
     }
@@ -14374,7 +14374,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableFieldOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableFieldOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableFieldOptions"
             $($field $value)*)
         };
     }
@@ -14411,7 +14411,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableFieldSubtotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableFieldSubtotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableFieldSubtotalOptions"
             $($field $value)*)
         };
     }
@@ -14436,7 +14436,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableFieldWells"
             $($field $value)*)
         };
     }
@@ -14473,7 +14473,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableOptions"
             $($field $value)*)
         };
     }
@@ -14571,7 +14571,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTablePaginatedReportOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTablePaginatedReportOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTablePaginatedReportOptions"
             $($field $value)*)
         };
     }
@@ -14603,7 +14603,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableRowsLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableRowsLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableRowsLabelOptions"
             $($field $value)*)
         };
     }
@@ -14636,7 +14636,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableSortBy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableSortBy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableSortBy"
             $($field $value)*)
         };
     }
@@ -14667,7 +14667,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableSortConfiguration"
             $($field $value)*)
         };
     }
@@ -14695,7 +14695,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableTotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableTotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableTotalOptions"
             $($field $value)*)
         };
     }
@@ -14744,7 +14744,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTableVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTableVisual"
             $($field $value)*)
         };
     }
@@ -14807,7 +14807,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PivotTotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PivotTotalOptions"
             $($field $value)*)
         };
     }
@@ -14879,7 +14879,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PluginVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisual"
             $($field $value)*)
         };
     }
@@ -14929,7 +14929,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PluginVisualConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisualConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisualConfiguration"
             $($field $value)*)
         };
     }
@@ -14969,7 +14969,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PluginVisualFieldWell {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisualFieldWell"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisualFieldWell"
             $($field $value)*)
         };
     }
@@ -15012,7 +15012,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PluginVisualItemsLimitConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisualItemsLimitConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisualItemsLimitConfiguration"
             $($field $value)*)
         };
     }
@@ -15037,7 +15037,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PluginVisualOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisualOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisualOptions"
             $($field $value)*)
         };
     }
@@ -15063,7 +15063,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PluginVisualProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisualProperty"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisualProperty"
             $($field $value)*)
         };
     }
@@ -15088,7 +15088,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PluginVisualSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisualSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisualSortConfiguration"
             $($field $value)*)
         };
     }
@@ -15114,7 +15114,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PluginVisualTableQuerySort {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisualTableQuerySort"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PluginVisualTableQuerySort"
             $($field $value)*)
         };
     }
@@ -15147,7 +15147,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_PredefinedHierarchy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.PredefinedHierarchy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.PredefinedHierarchy"
             $($field $value)*)
         };
     }
@@ -15180,7 +15180,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ProgressBarOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ProgressBarOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ProgressBarOptions"
             $($field $value)*)
         };
     }
@@ -15205,7 +15205,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_QueryExecutionOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.QueryExecutionOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.QueryExecutionOptions"
             $($field $value)*)
         };
     }
@@ -15232,7 +15232,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_RadarChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.RadarChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.RadarChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -15263,7 +15263,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_RadarChartAreaStyleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.RadarChartAreaStyleSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.RadarChartAreaStyleSettings"
             $($field $value)*)
         };
     }
@@ -15303,7 +15303,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_RadarChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.RadarChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.RadarChartConfiguration"
             $($field $value)*)
         };
     }
@@ -15412,7 +15412,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_RadarChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.RadarChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.RadarChartFieldWells"
             $($field $value)*)
         };
     }
@@ -15437,7 +15437,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_RadarChartSeriesSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.RadarChartSeriesSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.RadarChartSeriesSettings"
             $($field $value)*)
         };
     }
@@ -15465,7 +15465,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_RadarChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.RadarChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.RadarChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -15514,7 +15514,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_RadarChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.RadarChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.RadarChartVisual"
             $($field $value)*)
         };
     }
@@ -15570,7 +15570,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_RangeEndsLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.RangeEndsLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.RangeEndsLabelType"
             $($field $value)*)
         };
     }
@@ -15598,7 +15598,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ReferenceLine {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLine"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLine"
             $($field $value)*)
         };
     }
@@ -15636,7 +15636,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ReferenceLineCustomLabelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLineCustomLabelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLineCustomLabelConfiguration"
             $($field $value)*)
         };
     }
@@ -15662,7 +15662,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ReferenceLineDataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLineDataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLineDataConfiguration"
             $($field $value)*)
         };
     }
@@ -15707,7 +15707,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ReferenceLineDynamicDataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLineDynamicDataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLineDynamicDataConfiguration"
             $($field $value)*)
         };
     }
@@ -15745,7 +15745,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ReferenceLineLabelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLineLabelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLineLabelConfiguration"
             $($field $value)*)
         };
     }
@@ -15800,7 +15800,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ReferenceLineStaticDataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLineStaticDataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLineStaticDataConfiguration"
             $($field $value)*)
         };
     }
@@ -15824,7 +15824,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ReferenceLineStyleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLineStyleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLineStyleConfiguration"
             $($field $value)*)
         };
     }
@@ -15853,7 +15853,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ReferenceLineValueLabelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLineValueLabelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ReferenceLineValueLabelConfiguration"
             $($field $value)*)
         };
     }
@@ -15886,7 +15886,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_RelativeDateTimeControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.RelativeDateTimeControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.RelativeDateTimeControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -15933,7 +15933,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_RelativeDatesFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.RelativeDatesFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.RelativeDatesFilter"
             $($field $value)*)
         };
     }
@@ -16007,7 +16007,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ResourcePermission {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ResourcePermission"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ResourcePermission"
             $($field $value)*)
         };
     }
@@ -16035,7 +16035,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_RollingDateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.RollingDateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.RollingDateConfiguration"
             $($field $value)*)
         };
     }
@@ -16066,7 +16066,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_RowAlternateColorOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.RowAlternateColorOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.RowAlternateColorOptions"
             $($field $value)*)
         };
     }
@@ -16101,7 +16101,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SameSheetTargetVisualConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SameSheetTargetVisualConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SameSheetTargetVisualConfiguration"
             $($field $value)*)
         };
     }
@@ -16134,7 +16134,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SankeyDiagramAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SankeyDiagramAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SankeyDiagramAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -16168,7 +16168,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SankeyDiagramChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SankeyDiagramChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SankeyDiagramChartConfiguration"
             $($field $value)*)
         };
     }
@@ -16211,7 +16211,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SankeyDiagramFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SankeyDiagramFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SankeyDiagramFieldWells"
             $($field $value)*)
         };
     }
@@ -16238,7 +16238,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SankeyDiagramSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SankeyDiagramSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SankeyDiagramSortConfiguration"
             $($field $value)*)
         };
     }
@@ -16280,7 +16280,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SankeyDiagramVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SankeyDiagramVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SankeyDiagramVisual"
             $($field $value)*)
         };
     }
@@ -16334,7 +16334,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ScatterPlotCategoricallyAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ScatterPlotCategoricallyAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ScatterPlotCategoricallyAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -16381,7 +16381,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ScatterPlotConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ScatterPlotConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ScatterPlotConfiguration"
             $($field $value)*)
         };
     }
@@ -16465,7 +16465,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ScatterPlotFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ScatterPlotFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ScatterPlotFieldWells"
             $($field $value)*)
         };
     }
@@ -16496,7 +16496,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ScatterPlotSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ScatterPlotSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ScatterPlotSortConfiguration"
             $($field $value)*)
         };
     }
@@ -16525,7 +16525,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ScatterPlotUnaggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ScatterPlotUnaggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ScatterPlotUnaggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -16568,7 +16568,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ScatterPlotVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ScatterPlotVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ScatterPlotVisual"
             $($field $value)*)
         };
     }
@@ -16625,7 +16625,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ScrollBarOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ScrollBarOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ScrollBarOptions"
             $($field $value)*)
         };
     }
@@ -16656,7 +16656,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SecondaryValueOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SecondaryValueOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SecondaryValueOptions"
             $($field $value)*)
         };
     }
@@ -16681,7 +16681,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SectionAfterPageBreak {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SectionAfterPageBreak"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SectionAfterPageBreak"
             $($field $value)*)
         };
     }
@@ -16703,7 +16703,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SectionBasedLayoutCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SectionBasedLayoutCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SectionBasedLayoutCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -16731,7 +16731,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SectionBasedLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SectionBasedLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SectionBasedLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -16768,7 +16768,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SectionBasedLayoutPaperCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SectionBasedLayoutPaperCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SectionBasedLayoutPaperCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -16805,7 +16805,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SectionLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SectionLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SectionLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -16828,7 +16828,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SectionPageBreakConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SectionPageBreakConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SectionPageBreakConfiguration"
             $($field $value)*)
         };
     }
@@ -16851,7 +16851,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SectionStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SectionStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SectionStyle"
             $($field $value)*)
         };
     }
@@ -16879,7 +16879,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SelectedSheetsFilterScopeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SelectedSheetsFilterScopeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SelectedSheetsFilterScopeConfiguration"
             $($field $value)*)
         };
     }
@@ -16905,7 +16905,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SeriesItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SeriesItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SeriesItem"
             $($field $value)*)
         };
     }
@@ -16937,7 +16937,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SetParameterValueConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SetParameterValueConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SetParameterValueConfiguration"
             $($field $value)*)
         };
     }
@@ -16964,7 +16964,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ShapeConditionalFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ShapeConditionalFormat"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ShapeConditionalFormat"
             $($field $value)*)
         };
     }
@@ -16988,7 +16988,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_Sheet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.Sheet"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.Sheet"
             $($field $value)*)
         };
     }
@@ -17017,7 +17017,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SheetControlInfoIconLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SheetControlInfoIconLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SheetControlInfoIconLabelOptions"
             $($field $value)*)
         };
     }
@@ -17048,7 +17048,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SheetControlLayout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SheetControlLayout"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SheetControlLayout"
             $($field $value)*)
         };
     }
@@ -17071,7 +17071,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SheetControlLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SheetControlLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SheetControlLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -17107,7 +17107,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SheetDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SheetDefinition"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SheetDefinition"
             $($field $value)*)
         };
     }
@@ -17187,7 +17187,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SheetElementConfigurationOverrides {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SheetElementConfigurationOverrides"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SheetElementConfigurationOverrides"
             $($field $value)*)
         };
     }
@@ -17213,7 +17213,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SheetElementRenderingRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SheetElementRenderingRule"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SheetElementRenderingRule"
             $($field $value)*)
         };
     }
@@ -17246,7 +17246,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SheetImage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SheetImage"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SheetImage"
             $($field $value)*)
         };
     }
@@ -17303,7 +17303,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SheetImageScalingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SheetImageScalingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SheetImageScalingConfiguration"
             $($field $value)*)
         };
     }
@@ -17328,7 +17328,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SheetImageSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SheetImageSource"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SheetImageSource"
             $($field $value)*)
         };
     }
@@ -17353,7 +17353,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SheetImageStaticFileSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SheetImageStaticFileSource"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SheetImageStaticFileSource"
             $($field $value)*)
         };
     }
@@ -17377,7 +17377,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SheetImageTooltipConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SheetImageTooltipConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SheetImageTooltipConfiguration"
             $($field $value)*)
         };
     }
@@ -17408,7 +17408,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SheetImageTooltipText {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SheetImageTooltipText"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SheetImageTooltipText"
             $($field $value)*)
         };
     }
@@ -17434,7 +17434,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SheetTextBox {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SheetTextBox"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SheetTextBox"
             $($field $value)*)
         };
     }
@@ -17465,7 +17465,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SheetVisualScopingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SheetVisualScopingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SheetVisualScopingConfiguration"
             $($field $value)*)
         };
     }
@@ -17499,7 +17499,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ShortFormatText {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ShortFormatText"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ShortFormatText"
             $($field $value)*)
         };
     }
@@ -17530,7 +17530,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SimpleClusterMarker {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SimpleClusterMarker"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SimpleClusterMarker"
             $($field $value)*)
         };
     }
@@ -17552,7 +17552,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SingleAxisOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SingleAxisOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SingleAxisOptions"
             $($field $value)*)
         };
     }
@@ -17578,7 +17578,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SliderControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SliderControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SliderControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -17610,7 +17610,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SmallMultiplesAxisProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SmallMultiplesAxisProperties"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SmallMultiplesAxisProperties"
             $($field $value)*)
         };
     }
@@ -17642,7 +17642,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SmallMultiplesOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SmallMultiplesOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SmallMultiplesOptions"
             $($field $value)*)
         };
     }
@@ -17688,7 +17688,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_Spacing {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.Spacing"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.Spacing"
             $($field $value)*)
         };
     }
@@ -17720,7 +17720,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SpatialStaticFile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SpatialStaticFile"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SpatialStaticFile"
             $($field $value)*)
         };
     }
@@ -17747,7 +17747,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_StaticFile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.StaticFile"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.StaticFile"
             $($field $value)*)
         };
     }
@@ -17780,7 +17780,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_StaticFileS3SourceOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.StaticFileS3SourceOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.StaticFileS3SourceOptions"
             $($field $value)*)
         };
     }
@@ -17812,7 +17812,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_StaticFileSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.StaticFileSource"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.StaticFileSource"
             $($field $value)*)
         };
     }
@@ -17843,7 +17843,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_StaticFileUrlSourceOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.StaticFileUrlSourceOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.StaticFileUrlSourceOptions"
             $($field $value)*)
         };
     }
@@ -17867,7 +17867,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_StringDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.StringDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.StringDefaultValues"
             $($field $value)*)
         };
     }
@@ -17899,7 +17899,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_StringFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.StringFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.StringFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -17931,7 +17931,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_StringParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.StringParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.StringParameter"
             $($field $value)*)
         };
     }
@@ -17962,7 +17962,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_StringParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.StringParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.StringParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -18008,7 +18008,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_StringValueWhenUnsetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.StringValueWhenUnsetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.StringValueWhenUnsetConfiguration"
             $($field $value)*)
         };
     }
@@ -18046,7 +18046,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_SubtotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.SubtotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.SubtotalOptions"
             $($field $value)*)
         };
     }
@@ -18114,7 +18114,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -18144,7 +18144,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableBorderOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableBorderOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableBorderOptions"
             $($field $value)*)
         };
     }
@@ -18176,7 +18176,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableCellConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableCellConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableCellConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -18205,7 +18205,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableCellImageSizingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableCellImageSizingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableCellImageSizingConfiguration"
             $($field $value)*)
         };
     }
@@ -18237,7 +18237,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableCellStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableCellStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableCellStyle"
             $($field $value)*)
         };
     }
@@ -18298,7 +18298,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -18324,7 +18324,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -18356,7 +18356,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableConfiguration"
             $($field $value)*)
         };
     }
@@ -18423,7 +18423,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableFieldCustomIconContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldCustomIconContent"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldCustomIconContent"
             $($field $value)*)
         };
     }
@@ -18446,7 +18446,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableFieldCustomTextContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldCustomTextContent"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldCustomTextContent"
             $($field $value)*)
         };
     }
@@ -18472,7 +18472,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableFieldImageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldImageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldImageConfiguration"
             $($field $value)*)
         };
     }
@@ -18498,7 +18498,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableFieldLinkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldLinkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldLinkConfiguration"
             $($field $value)*)
         };
     }
@@ -18526,7 +18526,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableFieldLinkContentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldLinkContentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldLinkContentConfiguration"
             $($field $value)*)
         };
     }
@@ -18561,7 +18561,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableFieldOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldOption"
             $($field $value)*)
         };
     }
@@ -18608,7 +18608,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableFieldOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldOptions"
             $($field $value)*)
         };
     }
@@ -18649,7 +18649,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableFieldURLConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldURLConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldURLConfiguration"
             $($field $value)*)
         };
     }
@@ -18681,7 +18681,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableFieldWells"
             $($field $value)*)
         };
     }
@@ -18712,7 +18712,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableInlineVisualization {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableInlineVisualization"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableInlineVisualization"
             $($field $value)*)
         };
     }
@@ -18740,7 +18740,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableOptions"
             $($field $value)*)
         };
     }
@@ -18784,7 +18784,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TablePaginatedReportOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TablePaginatedReportOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TablePaginatedReportOptions"
             $($field $value)*)
         };
     }
@@ -18815,7 +18815,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TablePinnedFieldOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TablePinnedFieldOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TablePinnedFieldOptions"
             $($field $value)*)
         };
     }
@@ -18841,7 +18841,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableRowConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableRowConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableRowConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -18877,7 +18877,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableSideBorderOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableSideBorderOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableSideBorderOptions"
             $($field $value)*)
         };
     }
@@ -18921,7 +18921,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableSortConfiguration"
             $($field $value)*)
         };
     }
@@ -18952,7 +18952,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableStyleTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableStyleTarget"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableStyleTarget"
             $($field $value)*)
         };
     }
@@ -18975,7 +18975,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableUnaggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableUnaggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableUnaggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -19003,7 +19003,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TableVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TableVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TableVisual"
             $($field $value)*)
         };
     }
@@ -19061,7 +19061,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TextAreaControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TextAreaControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TextAreaControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -19100,7 +19100,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TextConditionalFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TextConditionalFormat"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TextConditionalFormat"
             $($field $value)*)
         };
     }
@@ -19134,7 +19134,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TextControlPlaceholderOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TextControlPlaceholderOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TextControlPlaceholderOptions"
             $($field $value)*)
         };
     }
@@ -19161,7 +19161,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TextFieldControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TextFieldControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TextFieldControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -19200,7 +19200,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ThousandSeparatorOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ThousandSeparatorOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ThousandSeparatorOptions"
             $($field $value)*)
         };
     }
@@ -19239,7 +19239,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TimeBasedForecastProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TimeBasedForecastProperties"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TimeBasedForecastProperties"
             $($field $value)*)
         };
     }
@@ -19300,7 +19300,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TimeEqualityFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TimeEqualityFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TimeEqualityFilter"
             $($field $value)*)
         };
     }
@@ -19357,7 +19357,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TimeRangeDrillDownFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TimeRangeDrillDownFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TimeRangeDrillDownFilter"
             $($field $value)*)
         };
     }
@@ -19401,7 +19401,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TimeRangeFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TimeRangeFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TimeRangeFilter"
             $($field $value)*)
         };
     }
@@ -19476,7 +19476,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TimeRangeFilterValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TimeRangeFilterValue"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TimeRangeFilterValue"
             $($field $value)*)
         };
     }
@@ -19514,7 +19514,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TooltipItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TooltipItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TooltipItem"
             $($field $value)*)
         };
     }
@@ -19547,7 +19547,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TooltipOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TooltipOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TooltipOptions"
             $($field $value)*)
         };
     }
@@ -19590,7 +19590,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TopBottomFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TopBottomFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TopBottomFilter"
             $($field $value)*)
         };
     }
@@ -19649,7 +19649,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TopBottomMoversComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TopBottomMoversComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TopBottomMoversComputation"
             $($field $value)*)
         };
     }
@@ -19708,7 +19708,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TopBottomRankedComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TopBottomRankedComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TopBottomRankedComputation"
             $($field $value)*)
         };
     }
@@ -19755,7 +19755,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TotalAggregationComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TotalAggregationComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TotalAggregationComputation"
             $($field $value)*)
         };
     }
@@ -19784,7 +19784,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TotalAggregationFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TotalAggregationFunction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TotalAggregationFunction"
             $($field $value)*)
         };
     }
@@ -19810,7 +19810,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TotalAggregationOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TotalAggregationOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TotalAggregationOption"
             $($field $value)*)
         };
     }
@@ -19842,7 +19842,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TotalOptions"
             $($field $value)*)
         };
     }
@@ -19899,7 +19899,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TransposedTableOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TransposedTableOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TransposedTableOption"
             $($field $value)*)
         };
     }
@@ -19936,7 +19936,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TreeMapAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TreeMapAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TreeMapAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -19973,7 +19973,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TreeMapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TreeMapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TreeMapConfiguration"
             $($field $value)*)
         };
     }
@@ -20049,7 +20049,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TreeMapFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TreeMapFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TreeMapFieldWells"
             $($field $value)*)
         };
     }
@@ -20075,7 +20075,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TreeMapSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TreeMapSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TreeMapSortConfiguration"
             $($field $value)*)
         };
     }
@@ -20112,7 +20112,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TreeMapVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TreeMapVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TreeMapVisual"
             $($field $value)*)
         };
     }
@@ -20168,7 +20168,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_TrendArrowOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.TrendArrowOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.TrendArrowOptions"
             $($field $value)*)
         };
     }
@@ -20195,7 +20195,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_UnaggregatedField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.UnaggregatedField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.UnaggregatedField"
             $($field $value)*)
         };
     }
@@ -20230,7 +20230,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_UniqueValuesComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.UniqueValuesComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.UniqueValuesComputation"
             $($field $value)*)
         };
     }
@@ -20262,7 +20262,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_ValidationStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.ValidationStrategy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.ValidationStrategy"
             $($field $value)*)
         };
     }
@@ -20285,7 +20285,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_VisibleRangeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.VisibleRangeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.VisibleRangeOptions"
             $($field $value)*)
         };
     }
@@ -20334,7 +20334,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_Visual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.Visual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.Visual"
             $($field $value)*)
         };
     }
@@ -20507,7 +20507,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_VisualCustomAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.VisualCustomAction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.VisualCustomAction"
             $($field $value)*)
         };
     }
@@ -20548,7 +20548,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_VisualCustomActionOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.VisualCustomActionOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.VisualCustomActionOperation"
             $($field $value)*)
         };
     }
@@ -20592,7 +20592,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_VisualInteractionOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.VisualInteractionOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.VisualInteractionOptions"
             $($field $value)*)
         };
     }
@@ -20623,7 +20623,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_VisualMenuOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.VisualMenuOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.VisualMenuOption"
             $($field $value)*)
         };
     }
@@ -20649,7 +20649,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_VisualPalette {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.VisualPalette"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.VisualPalette"
             $($field $value)*)
         };
     }
@@ -20681,7 +20681,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_VisualSubtitleLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.VisualSubtitleLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.VisualSubtitleLabelOptions"
             $($field $value)*)
         };
     }
@@ -20713,7 +20713,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_VisualTitleLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.VisualTitleLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.VisualTitleLabelOptions"
             $($field $value)*)
         };
     }
@@ -20746,7 +20746,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WaterfallChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -20780,7 +20780,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WaterfallChartColorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallChartColorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallChartColorConfiguration"
             $($field $value)*)
         };
     }
@@ -20816,7 +20816,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WaterfallChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallChartConfiguration"
             $($field $value)*)
         };
     }
@@ -20905,7 +20905,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WaterfallChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallChartFieldWells"
             $($field $value)*)
         };
     }
@@ -20932,7 +20932,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WaterfallChartGroupColorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallChartGroupColorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallChartGroupColorConfiguration"
             $($field $value)*)
         };
     }
@@ -20969,7 +20969,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WaterfallChartOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallChartOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallChartOptions"
             $($field $value)*)
         };
     }
@@ -20995,7 +20995,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WaterfallChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -21032,7 +21032,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WaterfallVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WaterfallVisual"
             $($field $value)*)
         };
     }
@@ -21089,7 +21089,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WhatIfPointScenario {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WhatIfPointScenario"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WhatIfPointScenario"
             $($field $value)*)
         };
     }
@@ -21118,7 +21118,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WhatIfRangeScenario {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WhatIfRangeScenario"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WhatIfRangeScenario"
             $($field $value)*)
         };
     }
@@ -21150,7 +21150,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WordCloudAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WordCloudAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WordCloudAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -21182,7 +21182,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WordCloudChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WordCloudChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WordCloudChartConfiguration"
             $($field $value)*)
         };
     }
@@ -21231,7 +21231,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WordCloudFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WordCloudFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WordCloudFieldWells"
             $($field $value)*)
         };
     }
@@ -21261,7 +21261,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WordCloudOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WordCloudOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WordCloudOptions"
             $($field $value)*)
         };
     }
@@ -21317,7 +21317,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WordCloudSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WordCloudSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WordCloudSortConfiguration"
             $($field $value)*)
         };
     }
@@ -21354,7 +21354,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_WordCloudVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.WordCloudVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.WordCloudVisual"
             $($field $value)*)
         };
     }
@@ -21410,7 +21410,7 @@ pub mod analysis {
     #[macro_export]
     macro_rules! __aws_quicksight_Analysis_YAxisOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Analysis.YAxisOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Analysis.YAxisOptions"
             $($field $value)*)
         };
     }
@@ -21457,7 +21457,7 @@ pub mod custompermissions {
     #[macro_export]
     macro_rules! __aws_quicksight_CustomPermissions_Capabilities {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::CustomPermissions.Capabilities"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::CustomPermissions.Capabilities"
             $($field $value)*)
         };
     }
@@ -21616,7 +21616,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AdHocFilteringOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AdHocFilteringOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AdHocFilteringOption"
             $($field $value)*)
         };
     }
@@ -21644,7 +21644,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AggregationFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AggregationFunction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AggregationFunction"
             $($field $value)*)
         };
     }
@@ -21689,7 +21689,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AggregationSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AggregationSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AggregationSortConfiguration"
             $($field $value)*)
         };
     }
@@ -21722,7 +21722,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AnalysisDefaults {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AnalysisDefaults"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AnalysisDefaults"
             $($field $value)*)
         };
     }
@@ -21746,7 +21746,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AnchorDateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AnchorDateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AnchorDateConfiguration"
             $($field $value)*)
         };
     }
@@ -21778,7 +21778,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ArcAxisConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ArcAxisConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ArcAxisConfiguration"
             $($field $value)*)
         };
     }
@@ -21807,7 +21807,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ArcAxisDisplayRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ArcAxisDisplayRange"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ArcAxisDisplayRange"
             $($field $value)*)
         };
     }
@@ -21833,7 +21833,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ArcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ArcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ArcConfiguration"
             $($field $value)*)
         };
     }
@@ -21864,7 +21864,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ArcOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ArcOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ArcOptions"
             $($field $value)*)
         };
     }
@@ -21892,7 +21892,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AssetOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AssetOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AssetOptions"
             $($field $value)*)
         };
     }
@@ -21936,7 +21936,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AttributeAggregationFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AttributeAggregationFunction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AttributeAggregationFunction"
             $($field $value)*)
         };
     }
@@ -21968,7 +21968,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AxisDataOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisDataOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisDataOptions"
             $($field $value)*)
         };
     }
@@ -22000,7 +22000,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AxisDisplayMinMaxRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisDisplayMinMaxRange"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisDisplayMinMaxRange"
             $($field $value)*)
         };
     }
@@ -22036,7 +22036,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AxisDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisDisplayOptions"
             $($field $value)*)
         };
     }
@@ -22092,7 +22092,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AxisDisplayRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisDisplayRange"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisDisplayRange"
             $($field $value)*)
         };
     }
@@ -22122,7 +22122,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AxisLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisLabelOptions"
             $($field $value)*)
         };
     }
@@ -22160,7 +22160,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AxisLabelReferenceOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisLabelReferenceOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisLabelReferenceOptions"
             $($field $value)*)
         };
     }
@@ -22188,7 +22188,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AxisLinearScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisLinearScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisLinearScale"
             $($field $value)*)
         };
     }
@@ -22219,7 +22219,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AxisLogarithmicScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisLogarithmicScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisLogarithmicScale"
             $($field $value)*)
         };
     }
@@ -22242,7 +22242,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AxisScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisScale"
             $($field $value)*)
         };
     }
@@ -22271,7 +22271,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_AxisTickLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisTickLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.AxisTickLabelOptions"
             $($field $value)*)
         };
     }
@@ -22305,7 +22305,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BarChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BarChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BarChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -22358,7 +22358,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BarChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BarChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BarChartConfiguration"
             $($field $value)*)
         };
     }
@@ -22476,7 +22476,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BarChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BarChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BarChartFieldWells"
             $($field $value)*)
         };
     }
@@ -22506,7 +22506,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BarChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BarChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BarChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -22567,7 +22567,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BarChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BarChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BarChartVisual"
             $($field $value)*)
         };
     }
@@ -22623,7 +22623,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BinCountOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BinCountOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BinCountOptions"
             $($field $value)*)
         };
     }
@@ -22646,7 +22646,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BinWidthOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BinWidthOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BinWidthOptions"
             $($field $value)*)
         };
     }
@@ -22678,7 +22678,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BodySectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BodySectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BodySectionConfiguration"
             $($field $value)*)
         };
     }
@@ -22720,7 +22720,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BodySectionContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BodySectionContent"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BodySectionContent"
             $($field $value)*)
         };
     }
@@ -22744,7 +22744,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BodySectionDynamicCategoryDimensionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BodySectionDynamicCategoryDimensionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BodySectionDynamicCategoryDimensionConfiguration"
             $($field $value)*)
         };
     }
@@ -22778,7 +22778,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BodySectionDynamicNumericDimensionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BodySectionDynamicNumericDimensionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BodySectionDynamicNumericDimensionConfiguration"
             $($field $value)*)
         };
     }
@@ -22812,7 +22812,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BodySectionRepeatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BodySectionRepeatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BodySectionRepeatConfiguration"
             $($field $value)*)
         };
     }
@@ -22852,7 +22852,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BodySectionRepeatDimensionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BodySectionRepeatDimensionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BodySectionRepeatDimensionConfiguration"
             $($field $value)*)
         };
     }
@@ -22883,7 +22883,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BodySectionRepeatPageBreakConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BodySectionRepeatPageBreakConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BodySectionRepeatPageBreakConfiguration"
             $($field $value)*)
         };
     }
@@ -22906,7 +22906,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BoxPlotAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BoxPlotAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BoxPlotAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -22945,7 +22945,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BoxPlotChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BoxPlotChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BoxPlotChartConfiguration"
             $($field $value)*)
         };
     }
@@ -23033,7 +23033,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BoxPlotFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BoxPlotFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BoxPlotFieldWells"
             $($field $value)*)
         };
     }
@@ -23060,7 +23060,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BoxPlotOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BoxPlotOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BoxPlotOptions"
             $($field $value)*)
         };
     }
@@ -23098,7 +23098,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BoxPlotSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BoxPlotSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BoxPlotSortConfiguration"
             $($field $value)*)
         };
     }
@@ -23129,7 +23129,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BoxPlotStyleOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BoxPlotStyleOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BoxPlotStyleOptions"
             $($field $value)*)
         };
     }
@@ -23160,7 +23160,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_BoxPlotVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.BoxPlotVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.BoxPlotVisual"
             $($field $value)*)
         };
     }
@@ -23218,7 +23218,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CalculatedField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CalculatedField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CalculatedField"
             $($field $value)*)
         };
     }
@@ -23250,7 +23250,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CalculatedMeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CalculatedMeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CalculatedMeasureField"
             $($field $value)*)
         };
     }
@@ -23277,7 +23277,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CascadingControlConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CascadingControlConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CascadingControlConfiguration"
             $($field $value)*)
         };
     }
@@ -23303,7 +23303,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CascadingControlSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CascadingControlSource"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CascadingControlSource"
             $($field $value)*)
         };
     }
@@ -23337,7 +23337,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CategoricalDimensionField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CategoricalDimensionField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CategoricalDimensionField"
             $($field $value)*)
         };
     }
@@ -23379,7 +23379,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CategoricalMeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CategoricalMeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CategoricalMeasureField"
             $($field $value)*)
         };
     }
@@ -23419,7 +23419,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CategoryDrillDownFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CategoryDrillDownFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CategoryDrillDownFilter"
             $($field $value)*)
         };
     }
@@ -23449,7 +23449,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CategoryFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CategoryFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CategoryFilter"
             $($field $value)*)
         };
     }
@@ -23488,7 +23488,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CategoryFilterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CategoryFilterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CategoryFilterConfiguration"
             $($field $value)*)
         };
     }
@@ -23527,7 +23527,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CategoryInnerFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CategoryInnerFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CategoryInnerFilter"
             $($field $value)*)
         };
     }
@@ -23562,7 +23562,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ChartAxisLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ChartAxisLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ChartAxisLabelOptions"
             $($field $value)*)
         };
     }
@@ -23599,7 +23599,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ClusterMarker {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ClusterMarker"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ClusterMarker"
             $($field $value)*)
         };
     }
@@ -23624,7 +23624,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ClusterMarkerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ClusterMarkerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ClusterMarkerConfiguration"
             $($field $value)*)
         };
     }
@@ -23651,7 +23651,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ColorScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ColorScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ColorScale"
             $($field $value)*)
         };
     }
@@ -23684,7 +23684,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ColorsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ColorsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ColorsConfiguration"
             $($field $value)*)
         };
     }
@@ -23712,7 +23712,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ColumnConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ColumnConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ColumnConfiguration"
             $($field $value)*)
         };
     }
@@ -23752,7 +23752,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ColumnHierarchy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ColumnHierarchy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ColumnHierarchy"
             $($field $value)*)
         };
     }
@@ -23790,7 +23790,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ColumnIdentifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ColumnIdentifier"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ColumnIdentifier"
             $($field $value)*)
         };
     }
@@ -23819,7 +23819,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ColumnSort {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ColumnSort"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ColumnSort"
             $($field $value)*)
         };
     }
@@ -23856,7 +23856,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ColumnTooltipItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ColumnTooltipItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ColumnTooltipItem"
             $($field $value)*)
         };
     }
@@ -23903,7 +23903,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ComboChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ComboChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ComboChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -23960,7 +23960,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ComboChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ComboChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ComboChartConfiguration"
             $($field $value)*)
         };
     }
@@ -24084,7 +24084,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ComboChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ComboChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ComboChartFieldWells"
             $($field $value)*)
         };
     }
@@ -24112,7 +24112,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ComboChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ComboChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ComboChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -24161,7 +24161,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ComboChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ComboChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ComboChartVisual"
             $($field $value)*)
         };
     }
@@ -24218,7 +24218,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ComparisonConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ComparisonConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ComparisonConfiguration"
             $($field $value)*)
         };
     }
@@ -24251,7 +24251,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ComparisonFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ComparisonFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ComparisonFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -24291,7 +24291,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_Computation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.Computation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.Computation"
             $($field $value)*)
         };
     }
@@ -24371,7 +24371,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ConditionalFormattingColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingColor"
             $($field $value)*)
         };
     }
@@ -24402,7 +24402,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ConditionalFormattingCustomIconCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingCustomIconCondition"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingCustomIconCondition"
             $($field $value)*)
         };
     }
@@ -24439,7 +24439,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ConditionalFormattingCustomIconOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingCustomIconOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingCustomIconOptions"
             $($field $value)*)
         };
     }
@@ -24468,7 +24468,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ConditionalFormattingGradientColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingGradientColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingGradientColor"
             $($field $value)*)
         };
     }
@@ -24496,7 +24496,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ConditionalFormattingIcon {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingIcon"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingIcon"
             $($field $value)*)
         };
     }
@@ -24527,7 +24527,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ConditionalFormattingIconDisplayConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingIconDisplayConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingIconDisplayConfiguration"
             $($field $value)*)
         };
     }
@@ -24553,7 +24553,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ConditionalFormattingIconSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingIconSet"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingIconSet"
             $($field $value)*)
         };
     }
@@ -24583,7 +24583,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ConditionalFormattingSolidColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingSolidColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ConditionalFormattingSolidColor"
             $($field $value)*)
         };
     }
@@ -24609,7 +24609,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ContextMenuOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ContextMenuOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ContextMenuOption"
             $($field $value)*)
         };
     }
@@ -24635,7 +24635,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ContributionAnalysisDefault {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ContributionAnalysisDefault"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ContributionAnalysisDefault"
             $($field $value)*)
         };
     }
@@ -24669,7 +24669,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CurrencyDisplayFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CurrencyDisplayFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CurrencyDisplayFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -24728,7 +24728,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CustomActionFilterOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomActionFilterOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomActionFilterOperation"
             $($field $value)*)
         };
     }
@@ -24755,7 +24755,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CustomActionNavigationOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomActionNavigationOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomActionNavigationOperation"
             $($field $value)*)
         };
     }
@@ -24780,7 +24780,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CustomActionSetParametersOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomActionSetParametersOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomActionSetParametersOperation"
             $($field $value)*)
         };
     }
@@ -24804,7 +24804,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CustomActionURLOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomActionURLOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomActionURLOperation"
             $($field $value)*)
         };
     }
@@ -24833,7 +24833,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CustomColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomColor"
             $($field $value)*)
         };
     }
@@ -24871,7 +24871,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CustomContentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomContentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomContentConfiguration"
             $($field $value)*)
         };
     }
@@ -24920,7 +24920,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CustomContentVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomContentVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomContentVisual"
             $($field $value)*)
         };
     }
@@ -24978,7 +24978,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CustomFilterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomFilterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomFilterConfiguration"
             $($field $value)*)
         };
     }
@@ -25026,7 +25026,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CustomFilterListConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomFilterListConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomFilterListConfiguration"
             $($field $value)*)
         };
     }
@@ -25065,7 +25065,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CustomNarrativeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomNarrativeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomNarrativeOptions"
             $($field $value)*)
         };
     }
@@ -25091,7 +25091,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CustomParameterValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomParameterValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomParameterValues"
             $($field $value)*)
         };
     }
@@ -25135,7 +25135,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_CustomValuesConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomValuesConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.CustomValuesConfiguration"
             $($field $value)*)
         };
     }
@@ -25166,7 +25166,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DashboardError {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DashboardError"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DashboardError"
             $($field $value)*)
         };
     }
@@ -25212,7 +25212,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DashboardPublishOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DashboardPublishOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DashboardPublishOptions"
             $($field $value)*)
         };
     }
@@ -25303,7 +25303,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DashboardSourceEntity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DashboardSourceEntity"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DashboardSourceEntity"
             $($field $value)*)
         };
     }
@@ -25329,7 +25329,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DashboardSourceTemplate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DashboardSourceTemplate"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DashboardSourceTemplate"
             $($field $value)*)
         };
     }
@@ -25365,7 +25365,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DashboardVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DashboardVersion"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DashboardVersion"
             $($field $value)*)
         };
     }
@@ -25440,7 +25440,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DashboardVersionDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DashboardVersionDefinition"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DashboardVersionDefinition"
             $($field $value)*)
         };
     }
@@ -25508,7 +25508,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DashboardVisualPublishOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DashboardVisualPublishOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DashboardVisualPublishOptions"
             $($field $value)*)
         };
     }
@@ -25535,7 +25535,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataBarsOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataBarsOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataBarsOptions"
             $($field $value)*)
         };
     }
@@ -25571,7 +25571,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataColor"
             $($field $value)*)
         };
     }
@@ -25602,7 +25602,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataFieldSeriesItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataFieldSeriesItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataFieldSeriesItem"
             $($field $value)*)
         };
     }
@@ -25650,7 +25650,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataLabelOptions"
             $($field $value)*)
         };
     }
@@ -25733,7 +25733,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataLabelType"
             $($field $value)*)
         };
     }
@@ -25784,7 +25784,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataPathColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPathColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPathColor"
             $($field $value)*)
         };
     }
@@ -25819,7 +25819,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataPathLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPathLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPathLabelType"
             $($field $value)*)
         };
     }
@@ -25857,7 +25857,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataPathSort {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPathSort"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPathSort"
             $($field $value)*)
         };
     }
@@ -25884,7 +25884,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataPathType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPathType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPathType"
             $($field $value)*)
         };
     }
@@ -25911,7 +25911,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataPathValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPathValue"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPathValue"
             $($field $value)*)
         };
     }
@@ -25948,7 +25948,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataPointDrillUpDownOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPointDrillUpDownOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPointDrillUpDownOption"
             $($field $value)*)
         };
     }
@@ -25973,7 +25973,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataPointMenuLabelOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPointMenuLabelOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPointMenuLabelOption"
             $($field $value)*)
         };
     }
@@ -25998,7 +25998,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataPointTooltipOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPointTooltipOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataPointTooltipOption"
             $($field $value)*)
         };
     }
@@ -26023,7 +26023,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataQAEnabledOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataQAEnabledOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataQAEnabledOption"
             $($field $value)*)
         };
     }
@@ -26049,7 +26049,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataSetIdentifierDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataSetIdentifierDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataSetIdentifierDeclaration"
             $($field $value)*)
         };
     }
@@ -26077,7 +26077,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DataSetReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DataSetReference"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataSetReference"
             $($field $value)*)
         };
     }
@@ -26104,7 +26104,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DateAxisOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DateAxisOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DateAxisOptions"
             $($field $value)*)
         };
     }
@@ -26133,7 +26133,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DateDimensionField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DateDimensionField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DateDimensionField"
             $($field $value)*)
         };
     }
@@ -26181,7 +26181,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DateMeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DateMeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DateMeasureField"
             $($field $value)*)
         };
     }
@@ -26222,7 +26222,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DateTimeDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DateTimeDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DateTimeDefaultValues"
             $($field $value)*)
         };
     }
@@ -26261,7 +26261,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DateTimeFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DateTimeFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DateTimeFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -26299,7 +26299,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DateTimeHierarchy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DateTimeHierarchy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DateTimeHierarchy"
             $($field $value)*)
         };
     }
@@ -26329,7 +26329,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DateTimeParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DateTimeParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DateTimeParameter"
             $($field $value)*)
         };
     }
@@ -26360,7 +26360,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DateTimeParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DateTimeParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DateTimeParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -26411,7 +26411,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DateTimePickerControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DateTimePickerControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DateTimePickerControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -26461,7 +26461,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DateTimeValueWhenUnsetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DateTimeValueWhenUnsetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DateTimeValueWhenUnsetConfiguration"
             $($field $value)*)
         };
     }
@@ -26493,7 +26493,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DecimalDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DecimalDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DecimalDefaultValues"
             $($field $value)*)
         };
     }
@@ -26525,7 +26525,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DecimalParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DecimalParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DecimalParameter"
             $($field $value)*)
         };
     }
@@ -26556,7 +26556,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DecimalParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DecimalParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DecimalParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -26601,7 +26601,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DecimalPlacesConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DecimalPlacesConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DecimalPlacesConfiguration"
             $($field $value)*)
         };
     }
@@ -26625,7 +26625,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DecimalValueWhenUnsetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DecimalValueWhenUnsetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DecimalValueWhenUnsetConfiguration"
             $($field $value)*)
         };
     }
@@ -26658,7 +26658,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultDateTimePickerControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultDateTimePickerControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultDateTimePickerControlOptions"
             $($field $value)*)
         };
     }
@@ -26693,7 +26693,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultFilterControlConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultFilterControlConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultFilterControlConfiguration"
             $($field $value)*)
         };
     }
@@ -26726,7 +26726,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultFilterControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultFilterControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultFilterControlOptions"
             $($field $value)*)
         };
     }
@@ -26790,7 +26790,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultFilterDropDownControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultFilterDropDownControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultFilterDropDownControlOptions"
             $($field $value)*)
         };
     }
@@ -26832,7 +26832,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultFilterListControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultFilterListControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultFilterListControlOptions"
             $($field $value)*)
         };
     }
@@ -26866,7 +26866,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultFreeFormLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultFreeFormLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultFreeFormLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -26889,7 +26889,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultGridLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultGridLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultGridLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -26913,7 +26913,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultInteractiveLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultInteractiveLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultInteractiveLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -26943,7 +26943,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultNewSheetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultNewSheetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultNewSheetConfiguration"
             $($field $value)*)
         };
     }
@@ -26980,7 +26980,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultPaginatedLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultPaginatedLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultPaginatedLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -27006,7 +27006,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultRelativeDateTimeControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultRelativeDateTimeControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultRelativeDateTimeControlOptions"
             $($field $value)*)
         };
     }
@@ -27037,7 +27037,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultSectionBasedLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultSectionBasedLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultSectionBasedLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -27064,7 +27064,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultSliderControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultSliderControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultSliderControlOptions"
             $($field $value)*)
         };
     }
@@ -27105,7 +27105,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultTextAreaControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultTextAreaControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultTextAreaControlOptions"
             $($field $value)*)
         };
     }
@@ -27136,7 +27136,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DefaultTextFieldControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultTextFieldControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DefaultTextFieldControlOptions"
             $($field $value)*)
         };
     }
@@ -27165,7 +27165,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DestinationParameterValueConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DestinationParameterValueConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DestinationParameterValueConfiguration"
             $($field $value)*)
         };
     }
@@ -27216,7 +27216,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DimensionField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DimensionField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DimensionField"
             $($field $value)*)
         };
     }
@@ -27253,7 +27253,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DonutCenterOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DonutCenterOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DonutCenterOptions"
             $($field $value)*)
         };
     }
@@ -27279,7 +27279,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DonutOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DonutOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DonutOptions"
             $($field $value)*)
         };
     }
@@ -27312,7 +27312,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DrillDownFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DrillDownFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DrillDownFilter"
             $($field $value)*)
         };
     }
@@ -27351,7 +27351,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DropDownControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DropDownControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DropDownControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -27390,7 +27390,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_DynamicDefaultValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.DynamicDefaultValue"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DynamicDefaultValue"
             $($field $value)*)
         };
     }
@@ -27427,7 +27427,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_EmptyVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.EmptyVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.EmptyVisual"
             $($field $value)*)
         };
     }
@@ -27460,7 +27460,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_Entity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.Entity"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.Entity"
             $($field $value)*)
         };
     }
@@ -27484,7 +27484,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ExcludePeriodConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ExcludePeriodConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ExcludePeriodConfiguration"
             $($field $value)*)
         };
     }
@@ -27516,7 +27516,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ExplicitHierarchy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ExplicitHierarchy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ExplicitHierarchy"
             $($field $value)*)
         };
     }
@@ -27549,7 +27549,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ExportHiddenFieldsOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ExportHiddenFieldsOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ExportHiddenFieldsOption"
             $($field $value)*)
         };
     }
@@ -27574,7 +27574,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ExportToCSVOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ExportToCSVOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ExportToCSVOption"
             $($field $value)*)
         };
     }
@@ -27599,7 +27599,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ExportWithHiddenFieldsOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ExportWithHiddenFieldsOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ExportWithHiddenFieldsOption"
             $($field $value)*)
         };
     }
@@ -27626,7 +27626,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FieldBasedTooltip {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FieldBasedTooltip"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FieldBasedTooltip"
             $($field $value)*)
         };
     }
@@ -27664,7 +27664,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FieldLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FieldLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FieldLabelType"
             $($field $value)*)
         };
     }
@@ -27697,7 +27697,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FieldSeriesItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FieldSeriesItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FieldSeriesItem"
             $($field $value)*)
         };
     }
@@ -27731,7 +27731,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FieldSort {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FieldSort"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FieldSort"
             $($field $value)*)
         };
     }
@@ -27759,7 +27759,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FieldSortOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FieldSortOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FieldSortOptions"
             $($field $value)*)
         };
     }
@@ -27793,7 +27793,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FieldTooltipItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FieldTooltipItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FieldTooltipItem"
             $($field $value)*)
         };
     }
@@ -27832,7 +27832,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilledMapAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -27860,7 +27860,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilledMapConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -27883,7 +27883,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilledMapConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -27912,7 +27912,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilledMapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapConfiguration"
             $($field $value)*)
         };
     }
@@ -27970,7 +27970,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilledMapFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapFieldWells"
             $($field $value)*)
         };
     }
@@ -27996,7 +27996,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilledMapShapeConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapShapeConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapShapeConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -28022,7 +28022,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilledMapSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapSortConfiguration"
             $($field $value)*)
         };
     }
@@ -28054,7 +28054,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilledMapVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilledMapVisual"
             $($field $value)*)
         };
     }
@@ -28123,7 +28123,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_Filter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.Filter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.Filter"
             $($field $value)*)
         };
     }
@@ -28197,7 +28197,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterControl"
             $($field $value)*)
         };
     }
@@ -28260,7 +28260,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterCrossSheetControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterCrossSheetControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterCrossSheetControl"
             $($field $value)*)
         };
     }
@@ -28298,7 +28298,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterDateTimePickerControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterDateTimePickerControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterDateTimePickerControl"
             $($field $value)*)
         };
     }
@@ -28351,7 +28351,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterDropDownControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterDropDownControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterDropDownControl"
             $($field $value)*)
         };
     }
@@ -28413,7 +28413,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterGroup"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterGroup"
             $($field $value)*)
         };
     }
@@ -28454,7 +28454,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterListConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterListConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterListConfiguration"
             $($field $value)*)
         };
     }
@@ -28501,7 +28501,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterListControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterListControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterListControl"
             $($field $value)*)
         };
     }
@@ -28555,7 +28555,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterOperationSelectedFieldsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterOperationSelectedFieldsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterOperationSelectedFieldsConfiguration"
             $($field $value)*)
         };
     }
@@ -28593,7 +28593,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterOperationTargetVisualsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterOperationTargetVisualsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterOperationTargetVisualsConfiguration"
             $($field $value)*)
         };
     }
@@ -28622,7 +28622,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterRelativeDateTimeControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterRelativeDateTimeControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterRelativeDateTimeControl"
             $($field $value)*)
         };
     }
@@ -28666,7 +28666,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterScopeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterScopeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterScopeConfiguration"
             $($field $value)*)
         };
     }
@@ -28697,7 +28697,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterSelectableValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterSelectableValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterSelectableValues"
             $($field $value)*)
         };
     }
@@ -28726,7 +28726,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterSliderControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterSliderControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterSliderControl"
             $($field $value)*)
         };
     }
@@ -28782,7 +28782,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterTextAreaControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterTextAreaControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterTextAreaControl"
             $($field $value)*)
         };
     }
@@ -28828,7 +28828,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FilterTextFieldControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterTextFieldControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FilterTextFieldControl"
             $($field $value)*)
         };
     }
@@ -28870,7 +28870,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FontConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FontConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FontConfiguration"
             $($field $value)*)
         };
     }
@@ -28926,7 +28926,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FontSize {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FontSize"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FontSize"
             $($field $value)*)
         };
     }
@@ -28957,7 +28957,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FontWeight {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FontWeight"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FontWeight"
             $($field $value)*)
         };
     }
@@ -28989,7 +28989,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ForecastComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ForecastComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ForecastComputation"
             $($field $value)*)
         };
     }
@@ -29064,7 +29064,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ForecastConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ForecastConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ForecastConfiguration"
             $($field $value)*)
         };
     }
@@ -29096,7 +29096,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ForecastScenario {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ForecastScenario"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ForecastScenario"
             $($field $value)*)
         };
     }
@@ -29129,7 +29129,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FormatConfiguration"
             $($field $value)*)
         };
     }
@@ -29166,7 +29166,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FreeFormLayoutCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FreeFormLayoutCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FreeFormLayoutCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -29192,7 +29192,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FreeFormLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FreeFormLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FreeFormLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -29232,7 +29232,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FreeFormLayoutElement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FreeFormLayoutElement"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FreeFormLayoutElement"
             $($field $value)*)
         };
     }
@@ -29312,7 +29312,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FreeFormLayoutElementBackgroundStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FreeFormLayoutElementBackgroundStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FreeFormLayoutElementBackgroundStyle"
             $($field $value)*)
         };
     }
@@ -29341,7 +29341,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FreeFormLayoutElementBorderStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FreeFormLayoutElementBorderStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FreeFormLayoutElementBorderStyle"
             $($field $value)*)
         };
     }
@@ -29369,7 +29369,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FreeFormLayoutScreenCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FreeFormLayoutScreenCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FreeFormLayoutScreenCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -29392,7 +29392,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FreeFormSectionLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FreeFormSectionLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FreeFormSectionLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -29416,7 +29416,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FunnelChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FunnelChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FunnelChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -29451,7 +29451,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FunnelChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FunnelChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FunnelChartConfiguration"
             $($field $value)*)
         };
     }
@@ -29524,7 +29524,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FunnelChartDataLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FunnelChartDataLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FunnelChartDataLabelOptions"
             $($field $value)*)
         };
     }
@@ -29585,7 +29585,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FunnelChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FunnelChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FunnelChartFieldWells"
             $($field $value)*)
         };
     }
@@ -29611,7 +29611,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FunnelChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FunnelChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FunnelChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -29648,7 +29648,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_FunnelChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.FunnelChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.FunnelChartVisual"
             $($field $value)*)
         };
     }
@@ -29704,7 +29704,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GaugeChartArcConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartArcConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartArcConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -29730,7 +29730,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GaugeChartColorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartColorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartColorConfiguration"
             $($field $value)*)
         };
     }
@@ -29761,7 +29761,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GaugeChartConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -29787,7 +29787,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GaugeChartConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -29821,7 +29821,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GaugeChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartConfiguration"
             $($field $value)*)
         };
     }
@@ -29883,7 +29883,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GaugeChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartFieldWells"
             $($field $value)*)
         };
     }
@@ -29915,7 +29915,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GaugeChartOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartOptions"
             $($field $value)*)
         };
     }
@@ -29962,7 +29962,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GaugeChartPrimaryValueConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartPrimaryValueConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartPrimaryValueConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -29996,7 +29996,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GaugeChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GaugeChartVisual"
             $($field $value)*)
         };
     }
@@ -30055,7 +30055,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialCategoricalColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialCategoricalColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialCategoricalColor"
             $($field $value)*)
         };
     }
@@ -30097,7 +30097,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialCategoricalDataColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialCategoricalDataColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialCategoricalDataColor"
             $($field $value)*)
         };
     }
@@ -30124,7 +30124,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialCircleRadius {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialCircleRadius"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialCircleRadius"
             $($field $value)*)
         };
     }
@@ -30149,7 +30149,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialCircleSymbolStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialCircleSymbolStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialCircleSymbolStyle"
             $($field $value)*)
         };
     }
@@ -30194,7 +30194,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialColor"
             $($field $value)*)
         };
     }
@@ -30231,7 +30231,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialCoordinateBounds {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialCoordinateBounds"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialCoordinateBounds"
             $($field $value)*)
         };
     }
@@ -30266,7 +30266,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialDataSourceItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialDataSourceItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialDataSourceItem"
             $($field $value)*)
         };
     }
@@ -30294,7 +30294,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialGradientColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialGradientColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialGradientColor"
             $($field $value)*)
         };
     }
@@ -30336,7 +30336,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialGradientStepColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialGradientStepColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialGradientStepColor"
             $($field $value)*)
         };
     }
@@ -30363,7 +30363,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialHeatmapColorScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialHeatmapColorScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialHeatmapColorScale"
             $($field $value)*)
         };
     }
@@ -30385,7 +30385,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialHeatmapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialHeatmapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialHeatmapConfiguration"
             $($field $value)*)
         };
     }
@@ -30410,7 +30410,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialHeatmapDataColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialHeatmapDataColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialHeatmapDataColor"
             $($field $value)*)
         };
     }
@@ -30434,7 +30434,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialLayerColorField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLayerColorField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLayerColorField"
             $($field $value)*)
         };
     }
@@ -30467,7 +30467,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialLayerDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLayerDefinition"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLayerDefinition"
             $($field $value)*)
         };
     }
@@ -30512,7 +30512,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialLayerItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLayerItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLayerItem"
             $($field $value)*)
         };
     }
@@ -30582,7 +30582,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialLayerJoinDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLayerJoinDefinition"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLayerJoinDefinition"
             $($field $value)*)
         };
     }
@@ -30623,7 +30623,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialLayerMapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLayerMapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLayerMapConfiguration"
             $($field $value)*)
         };
     }
@@ -30669,7 +30669,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialLineLayer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLineLayer"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLineLayer"
             $($field $value)*)
         };
     }
@@ -30692,7 +30692,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialLineStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLineStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLineStyle"
             $($field $value)*)
         };
     }
@@ -30718,7 +30718,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialLineSymbolStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLineSymbolStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLineSymbolStyle"
             $($field $value)*)
         };
     }
@@ -30749,7 +30749,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialLineWidth {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLineWidth"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialLineWidth"
             $($field $value)*)
         };
     }
@@ -30776,7 +30776,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialMapAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialMapAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialMapAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -30814,7 +30814,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialMapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialMapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialMapConfiguration"
             $($field $value)*)
         };
     }
@@ -30878,7 +30878,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialMapFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialMapFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialMapFieldWells"
             $($field $value)*)
         };
     }
@@ -30904,7 +30904,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialMapState {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialMapState"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialMapState"
             $($field $value)*)
         };
     }
@@ -30934,7 +30934,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialMapStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialMapStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialMapStyle"
             $($field $value)*)
         };
     }
@@ -30971,7 +30971,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialMapStyleOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialMapStyleOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialMapStyleOptions"
             $($field $value)*)
         };
     }
@@ -31002,7 +31002,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialMapVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialMapVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialMapVisual"
             $($field $value)*)
         };
     }
@@ -31058,7 +31058,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialNullDataSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialNullDataSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialNullDataSettings"
             $($field $value)*)
         };
     }
@@ -31083,7 +31083,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialNullSymbolStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialNullSymbolStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialNullSymbolStyle"
             $($field $value)*)
         };
     }
@@ -31120,7 +31120,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialPointLayer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialPointLayer"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialPointLayer"
             $($field $value)*)
         };
     }
@@ -31143,7 +31143,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialPointStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialPointStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialPointStyle"
             $($field $value)*)
         };
     }
@@ -31170,7 +31170,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialPointStyleOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialPointStyleOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialPointStyleOptions"
             $($field $value)*)
         };
     }
@@ -31207,7 +31207,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialPolygonLayer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialPolygonLayer"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialPolygonLayer"
             $($field $value)*)
         };
     }
@@ -31230,7 +31230,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialPolygonStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialPolygonStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialPolygonStyle"
             $($field $value)*)
         };
     }
@@ -31257,7 +31257,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialPolygonSymbolStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialPolygonSymbolStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialPolygonSymbolStyle"
             $($field $value)*)
         };
     }
@@ -31295,7 +31295,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialSolidColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialSolidColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialSolidColor"
             $($field $value)*)
         };
     }
@@ -31321,7 +31321,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialStaticFileSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialStaticFileSource"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialStaticFileSource"
             $($field $value)*)
         };
     }
@@ -31345,7 +31345,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GeospatialWindowOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialWindowOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GeospatialWindowOptions"
             $($field $value)*)
         };
     }
@@ -31374,7 +31374,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GlobalTableBorderOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GlobalTableBorderOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GlobalTableBorderOptions"
             $($field $value)*)
         };
     }
@@ -31405,7 +31405,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GradientColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GradientColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GradientColor"
             $($field $value)*)
         };
     }
@@ -31429,7 +31429,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GradientStop {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GradientStop"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GradientStop"
             $($field $value)*)
         };
     }
@@ -31461,7 +31461,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GridLayoutCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GridLayoutCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GridLayoutCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -31487,7 +31487,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GridLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GridLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GridLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -31521,7 +31521,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GridLayoutElement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GridLayoutElement"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GridLayoutElement"
             $($field $value)*)
         };
     }
@@ -31569,7 +31569,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GridLayoutScreenCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GridLayoutScreenCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GridLayoutScreenCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -31602,7 +31602,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_GrowthRateComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.GrowthRateComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GrowthRateComputation"
             $($field $value)*)
         };
     }
@@ -31642,7 +31642,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_HeaderFooterSectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.HeaderFooterSectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.HeaderFooterSectionConfiguration"
             $($field $value)*)
         };
     }
@@ -31674,7 +31674,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_HeatMapAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.HeatMapAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.HeatMapAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -31713,7 +31713,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_HeatMapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.HeatMapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.HeatMapConfiguration"
             $($field $value)*)
         };
     }
@@ -31783,7 +31783,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_HeatMapFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.HeatMapFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.HeatMapFieldWells"
             $($field $value)*)
         };
     }
@@ -31811,7 +31811,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_HeatMapSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.HeatMapSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.HeatMapSortConfiguration"
             $($field $value)*)
         };
     }
@@ -31860,7 +31860,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_HeatMapVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.HeatMapVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.HeatMapVisual"
             $($field $value)*)
         };
     }
@@ -31916,7 +31916,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_HistogramAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.HistogramAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.HistogramAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -31941,7 +31941,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_HistogramBinOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.HistogramBinOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.HistogramBinOptions"
             $($field $value)*)
         };
     }
@@ -31992,7 +31992,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_HistogramConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.HistogramConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.HistogramConfiguration"
             $($field $value)*)
         };
     }
@@ -32065,7 +32065,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_HistogramFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.HistogramFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.HistogramFieldWells"
             $($field $value)*)
         };
     }
@@ -32095,7 +32095,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_HistogramVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.HistogramVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.HistogramVisual"
             $($field $value)*)
         };
     }
@@ -32149,7 +32149,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ImageCustomAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ImageCustomAction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ImageCustomAction"
             $($field $value)*)
         };
     }
@@ -32189,7 +32189,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ImageCustomActionOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ImageCustomActionOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ImageCustomActionOperation"
             $($field $value)*)
         };
     }
@@ -32226,7 +32226,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ImageInteractionOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ImageInteractionOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ImageInteractionOptions"
             $($field $value)*)
         };
     }
@@ -32251,7 +32251,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ImageMenuOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ImageMenuOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ImageMenuOption"
             $($field $value)*)
         };
     }
@@ -32277,7 +32277,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ImageStaticFile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ImageStaticFile"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ImageStaticFile"
             $($field $value)*)
         };
     }
@@ -32303,7 +32303,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_InnerFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.InnerFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.InnerFilter"
             $($field $value)*)
         };
     }
@@ -32330,7 +32330,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_InsightConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.InsightConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.InsightConfiguration"
             $($field $value)*)
         };
     }
@@ -32373,7 +32373,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_InsightVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.InsightVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.InsightVisual"
             $($field $value)*)
         };
     }
@@ -32428,7 +32428,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_IntegerDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.IntegerDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.IntegerDefaultValues"
             $($field $value)*)
         };
     }
@@ -32460,7 +32460,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_IntegerParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.IntegerParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.IntegerParameter"
             $($field $value)*)
         };
     }
@@ -32491,7 +32491,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_IntegerParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.IntegerParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.IntegerParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -32537,7 +32537,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_IntegerValueWhenUnsetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.IntegerValueWhenUnsetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.IntegerValueWhenUnsetConfiguration"
             $($field $value)*)
         };
     }
@@ -32569,7 +32569,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ItemsLimitConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ItemsLimitConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ItemsLimitConfiguration"
             $($field $value)*)
         };
     }
@@ -32601,7 +32601,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_KPIActualValueConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIActualValueConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIActualValueConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -32630,7 +32630,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_KPIComparisonValueConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIComparisonValueConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIComparisonValueConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -32658,7 +32658,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_KPIConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -32686,7 +32686,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_KPIConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -32732,7 +32732,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_KPIConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIConfiguration"
             $($field $value)*)
         };
     }
@@ -32777,7 +32777,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_KPIFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIFieldWells"
             $($field $value)*)
         };
     }
@@ -32819,7 +32819,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_KPIOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIOptions"
             $($field $value)*)
         };
     }
@@ -32893,7 +32893,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_KPIPrimaryValueConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIPrimaryValueConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIPrimaryValueConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -32921,7 +32921,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_KPIProgressBarConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIProgressBarConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIProgressBarConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -32946,7 +32946,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_KPISortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.KPISortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.KPISortConfiguration"
             $($field $value)*)
         };
     }
@@ -32974,7 +32974,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_KPISparklineOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.KPISparklineOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.KPISparklineOptions"
             $($field $value)*)
         };
     }
@@ -33019,7 +33019,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_KPIVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIVisual"
             $($field $value)*)
         };
     }
@@ -33081,7 +33081,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_KPIVisualLayoutOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIVisualLayoutOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIVisualLayoutOptions"
             $($field $value)*)
         };
     }
@@ -33106,7 +33106,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_KPIVisualStandardLayout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIVisualStandardLayout"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.KPIVisualStandardLayout"
             $($field $value)*)
         };
     }
@@ -33131,7 +33131,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LabelOptions"
             $($field $value)*)
         };
     }
@@ -33172,7 +33172,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LayerCustomAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LayerCustomAction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LayerCustomAction"
             $($field $value)*)
         };
     }
@@ -33213,7 +33213,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LayerCustomActionOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LayerCustomActionOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LayerCustomActionOperation"
             $($field $value)*)
         };
     }
@@ -33261,7 +33261,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LayerMapVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LayerMapVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LayerMapVisual"
             $($field $value)*)
         };
     }
@@ -33309,7 +33309,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_Layout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.Layout"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.Layout"
             $($field $value)*)
         };
     }
@@ -33334,7 +33334,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -33376,7 +33376,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LegendOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LegendOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LegendOptions"
             $($field $value)*)
         };
     }
@@ -33425,7 +33425,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LineChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -33482,7 +33482,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LineChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartConfiguration"
             $($field $value)*)
         };
     }
@@ -33620,7 +33620,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LineChartDefaultSeriesSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartDefaultSeriesSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartDefaultSeriesSettings"
             $($field $value)*)
         };
     }
@@ -33657,7 +33657,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LineChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartFieldWells"
             $($field $value)*)
         };
     }
@@ -33685,7 +33685,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LineChartLineStyleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartLineStyleSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartLineStyleSettings"
             $($field $value)*)
         };
     }
@@ -33731,7 +33731,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LineChartMarkerStyleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartMarkerStyleSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartMarkerStyleSettings"
             $($field $value)*)
         };
     }
@@ -33775,7 +33775,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LineChartSeriesSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartSeriesSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartSeriesSettings"
             $($field $value)*)
         };
     }
@@ -33810,7 +33810,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LineChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -33865,7 +33865,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LineChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LineChartVisual"
             $($field $value)*)
         };
     }
@@ -33922,7 +33922,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LineSeriesAxisDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LineSeriesAxisDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LineSeriesAxisDisplayOptions"
             $($field $value)*)
         };
     }
@@ -33953,7 +33953,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LinkSharingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LinkSharingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LinkSharingConfiguration"
             $($field $value)*)
         };
     }
@@ -33981,7 +33981,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ListControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ListControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ListControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -34024,7 +34024,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ListControlSearchOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ListControlSearchOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ListControlSearchOptions"
             $($field $value)*)
         };
     }
@@ -34049,7 +34049,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ListControlSelectAllOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ListControlSelectAllOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ListControlSelectAllOptions"
             $($field $value)*)
         };
     }
@@ -34074,7 +34074,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LoadingAnimation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LoadingAnimation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LoadingAnimation"
             $($field $value)*)
         };
     }
@@ -34099,7 +34099,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LocalNavigationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LocalNavigationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LocalNavigationConfiguration"
             $($field $value)*)
         };
     }
@@ -34123,7 +34123,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_LongFormatText {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.LongFormatText"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.LongFormatText"
             $($field $value)*)
         };
     }
@@ -34155,7 +34155,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_MappedDataSetParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.MappedDataSetParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.MappedDataSetParameter"
             $($field $value)*)
         };
     }
@@ -34182,7 +34182,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_MaximumLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.MaximumLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.MaximumLabelType"
             $($field $value)*)
         };
     }
@@ -34211,7 +34211,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_MaximumMinimumComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.MaximumMinimumComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.MaximumMinimumComputation"
             $($field $value)*)
         };
     }
@@ -34250,7 +34250,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_MeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.MeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.MeasureField"
             $($field $value)*)
         };
     }
@@ -34297,7 +34297,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_MetricComparisonComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.MetricComparisonComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.MetricComparisonComputation"
             $($field $value)*)
         };
     }
@@ -34338,7 +34338,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_MinimumLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.MinimumLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.MinimumLabelType"
             $($field $value)*)
         };
     }
@@ -34363,7 +34363,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_MissingDataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.MissingDataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.MissingDataConfiguration"
             $($field $value)*)
         };
     }
@@ -34388,7 +34388,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NegativeValueConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NegativeValueConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NegativeValueConfiguration"
             $($field $value)*)
         };
     }
@@ -34414,7 +34414,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NestedFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NestedFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NestedFilter"
             $($field $value)*)
         };
     }
@@ -34449,7 +34449,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NullValueFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NullValueFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NullValueFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -34478,7 +34478,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NumberDisplayFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NumberDisplayFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NumberDisplayFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -34533,7 +34533,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NumberFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NumberFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NumberFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -34559,7 +34559,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NumericAxisOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericAxisOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericAxisOptions"
             $($field $value)*)
         };
     }
@@ -34585,7 +34585,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NumericEqualityDrillDownFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericEqualityDrillDownFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericEqualityDrillDownFilter"
             $($field $value)*)
         };
     }
@@ -34620,7 +34620,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NumericEqualityFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericEqualityFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericEqualityFilter"
             $($field $value)*)
         };
     }
@@ -34685,7 +34685,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NumericFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -34731,7 +34731,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NumericRangeFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericRangeFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericRangeFilter"
             $($field $value)*)
         };
     }
@@ -34805,7 +34805,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NumericRangeFilterValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericRangeFilterValue"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericRangeFilterValue"
             $($field $value)*)
         };
     }
@@ -34837,7 +34837,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NumericSeparatorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericSeparatorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericSeparatorConfiguration"
             $($field $value)*)
         };
     }
@@ -34869,7 +34869,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NumericalAggregationFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericalAggregationFunction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericalAggregationFunction"
             $($field $value)*)
         };
     }
@@ -34903,7 +34903,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NumericalDimensionField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericalDimensionField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericalDimensionField"
             $($field $value)*)
         };
     }
@@ -34945,7 +34945,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_NumericalMeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericalMeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.NumericalMeasureField"
             $($field $value)*)
         };
     }
@@ -34985,7 +34985,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PaginationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PaginationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PaginationConfiguration"
             $($field $value)*)
         };
     }
@@ -35020,7 +35020,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PanelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PanelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PanelConfiguration"
             $($field $value)*)
         };
     }
@@ -35092,7 +35092,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PanelTitleOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PanelTitleOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PanelTitleOptions"
             $($field $value)*)
         };
     }
@@ -35134,7 +35134,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ParameterControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterControl"
             $($field $value)*)
         };
     }
@@ -35186,7 +35186,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ParameterDateTimePickerControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterDateTimePickerControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterDateTimePickerControl"
             $($field $value)*)
         };
     }
@@ -35226,7 +35226,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -35276,7 +35276,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ParameterDropDownControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterDropDownControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterDropDownControl"
             $($field $value)*)
         };
     }
@@ -35340,7 +35340,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ParameterListControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterListControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterListControl"
             $($field $value)*)
         };
     }
@@ -35393,7 +35393,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ParameterSelectableValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterSelectableValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterSelectableValues"
             $($field $value)*)
         };
     }
@@ -35427,7 +35427,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ParameterSliderControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterSliderControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterSliderControl"
             $($field $value)*)
         };
     }
@@ -35480,7 +35480,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ParameterTextAreaControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterTextAreaControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterTextAreaControl"
             $($field $value)*)
         };
     }
@@ -35526,7 +35526,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ParameterTextFieldControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterTextFieldControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ParameterTextFieldControl"
             $($field $value)*)
         };
     }
@@ -35566,7 +35566,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_Parameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.Parameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.Parameters"
             $($field $value)*)
         };
     }
@@ -35610,7 +35610,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PercentVisibleRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PercentVisibleRange"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PercentVisibleRange"
             $($field $value)*)
         };
     }
@@ -35640,7 +35640,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PercentageDisplayFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PercentageDisplayFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PercentageDisplayFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -35689,7 +35689,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PercentileAggregation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PercentileAggregation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PercentileAggregation"
             $($field $value)*)
         };
     }
@@ -35717,7 +35717,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PeriodOverPeriodComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PeriodOverPeriodComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PeriodOverPeriodComputation"
             $($field $value)*)
         };
     }
@@ -35753,7 +35753,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PeriodToDateComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PeriodToDateComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PeriodToDateComputation"
             $($field $value)*)
         };
     }
@@ -35793,7 +35793,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PieChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PieChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PieChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -35838,7 +35838,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PieChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PieChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PieChartConfiguration"
             $($field $value)*)
         };
     }
@@ -35926,7 +35926,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PieChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PieChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PieChartFieldWells"
             $($field $value)*)
         };
     }
@@ -35954,7 +35954,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PieChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PieChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PieChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -36003,7 +36003,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PieChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PieChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PieChartVisual"
             $($field $value)*)
         };
     }
@@ -36060,7 +36060,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotFieldSortOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotFieldSortOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotFieldSortOptions"
             $($field $value)*)
         };
     }
@@ -36089,7 +36089,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -36123,7 +36123,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableCellConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableCellConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableCellConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -36158,7 +36158,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -36183,7 +36183,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -36205,7 +36205,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableConditionalFormattingScope {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableConditionalFormattingScope"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableConditionalFormattingScope"
             $($field $value)*)
         };
     }
@@ -36233,7 +36233,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableConfiguration"
             $($field $value)*)
         };
     }
@@ -36295,7 +36295,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableDataPathOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableDataPathOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableDataPathOption"
             $($field $value)*)
         };
     }
@@ -36322,7 +36322,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableFieldCollapseStateOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableFieldCollapseStateOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableFieldCollapseStateOption"
             $($field $value)*)
         };
     }
@@ -36349,7 +36349,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableFieldCollapseStateTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableFieldCollapseStateTarget"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableFieldCollapseStateTarget"
             $($field $value)*)
         };
     }
@@ -36382,7 +36382,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableFieldOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableFieldOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableFieldOption"
             $($field $value)*)
         };
     }
@@ -36419,7 +36419,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableFieldOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableFieldOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableFieldOptions"
             $($field $value)*)
         };
     }
@@ -36456,7 +36456,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableFieldSubtotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableFieldSubtotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableFieldSubtotalOptions"
             $($field $value)*)
         };
     }
@@ -36481,7 +36481,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableFieldWells"
             $($field $value)*)
         };
     }
@@ -36518,7 +36518,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableOptions"
             $($field $value)*)
         };
     }
@@ -36616,7 +36616,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTablePaginatedReportOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTablePaginatedReportOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTablePaginatedReportOptions"
             $($field $value)*)
         };
     }
@@ -36648,7 +36648,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableRowsLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableRowsLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableRowsLabelOptions"
             $($field $value)*)
         };
     }
@@ -36681,7 +36681,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableSortBy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableSortBy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableSortBy"
             $($field $value)*)
         };
     }
@@ -36712,7 +36712,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableSortConfiguration"
             $($field $value)*)
         };
     }
@@ -36740,7 +36740,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableTotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableTotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableTotalOptions"
             $($field $value)*)
         };
     }
@@ -36789,7 +36789,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTableVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTableVisual"
             $($field $value)*)
         };
     }
@@ -36852,7 +36852,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PivotTotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PivotTotalOptions"
             $($field $value)*)
         };
     }
@@ -36924,7 +36924,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PluginVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisual"
             $($field $value)*)
         };
     }
@@ -36974,7 +36974,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PluginVisualConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisualConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisualConfiguration"
             $($field $value)*)
         };
     }
@@ -37014,7 +37014,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PluginVisualFieldWell {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisualFieldWell"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisualFieldWell"
             $($field $value)*)
         };
     }
@@ -37057,7 +37057,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PluginVisualItemsLimitConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisualItemsLimitConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisualItemsLimitConfiguration"
             $($field $value)*)
         };
     }
@@ -37082,7 +37082,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PluginVisualOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisualOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisualOptions"
             $($field $value)*)
         };
     }
@@ -37108,7 +37108,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PluginVisualProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisualProperty"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisualProperty"
             $($field $value)*)
         };
     }
@@ -37133,7 +37133,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PluginVisualSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisualSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisualSortConfiguration"
             $($field $value)*)
         };
     }
@@ -37159,7 +37159,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PluginVisualTableQuerySort {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisualTableQuerySort"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PluginVisualTableQuerySort"
             $($field $value)*)
         };
     }
@@ -37192,7 +37192,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_PredefinedHierarchy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.PredefinedHierarchy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.PredefinedHierarchy"
             $($field $value)*)
         };
     }
@@ -37225,7 +37225,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ProgressBarOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ProgressBarOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ProgressBarOptions"
             $($field $value)*)
         };
     }
@@ -37252,7 +37252,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_RadarChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.RadarChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.RadarChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -37283,7 +37283,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_RadarChartAreaStyleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.RadarChartAreaStyleSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.RadarChartAreaStyleSettings"
             $($field $value)*)
         };
     }
@@ -37323,7 +37323,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_RadarChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.RadarChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.RadarChartConfiguration"
             $($field $value)*)
         };
     }
@@ -37432,7 +37432,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_RadarChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.RadarChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.RadarChartFieldWells"
             $($field $value)*)
         };
     }
@@ -37457,7 +37457,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_RadarChartSeriesSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.RadarChartSeriesSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.RadarChartSeriesSettings"
             $($field $value)*)
         };
     }
@@ -37485,7 +37485,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_RadarChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.RadarChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.RadarChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -37534,7 +37534,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_RadarChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.RadarChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.RadarChartVisual"
             $($field $value)*)
         };
     }
@@ -37590,7 +37590,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_RangeEndsLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.RangeEndsLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.RangeEndsLabelType"
             $($field $value)*)
         };
     }
@@ -37618,7 +37618,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ReferenceLine {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLine"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLine"
             $($field $value)*)
         };
     }
@@ -37656,7 +37656,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ReferenceLineCustomLabelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLineCustomLabelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLineCustomLabelConfiguration"
             $($field $value)*)
         };
     }
@@ -37682,7 +37682,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ReferenceLineDataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLineDataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLineDataConfiguration"
             $($field $value)*)
         };
     }
@@ -37727,7 +37727,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ReferenceLineDynamicDataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLineDynamicDataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLineDynamicDataConfiguration"
             $($field $value)*)
         };
     }
@@ -37765,7 +37765,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ReferenceLineLabelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLineLabelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLineLabelConfiguration"
             $($field $value)*)
         };
     }
@@ -37820,7 +37820,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ReferenceLineStaticDataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLineStaticDataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLineStaticDataConfiguration"
             $($field $value)*)
         };
     }
@@ -37844,7 +37844,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ReferenceLineStyleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLineStyleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLineStyleConfiguration"
             $($field $value)*)
         };
     }
@@ -37873,7 +37873,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ReferenceLineValueLabelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLineValueLabelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ReferenceLineValueLabelConfiguration"
             $($field $value)*)
         };
     }
@@ -37906,7 +37906,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_RelativeDateTimeControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.RelativeDateTimeControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.RelativeDateTimeControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -37953,7 +37953,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_RelativeDatesFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.RelativeDatesFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.RelativeDatesFilter"
             $($field $value)*)
         };
     }
@@ -38027,7 +38027,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ResourcePermission {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ResourcePermission"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ResourcePermission"
             $($field $value)*)
         };
     }
@@ -38055,7 +38055,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_RollingDateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.RollingDateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.RollingDateConfiguration"
             $($field $value)*)
         };
     }
@@ -38086,7 +38086,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_RowAlternateColorOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.RowAlternateColorOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.RowAlternateColorOptions"
             $($field $value)*)
         };
     }
@@ -38121,7 +38121,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SameSheetTargetVisualConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SameSheetTargetVisualConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SameSheetTargetVisualConfiguration"
             $($field $value)*)
         };
     }
@@ -38154,7 +38154,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SankeyDiagramAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SankeyDiagramAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SankeyDiagramAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -38188,7 +38188,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SankeyDiagramChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SankeyDiagramChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SankeyDiagramChartConfiguration"
             $($field $value)*)
         };
     }
@@ -38231,7 +38231,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SankeyDiagramFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SankeyDiagramFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SankeyDiagramFieldWells"
             $($field $value)*)
         };
     }
@@ -38258,7 +38258,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SankeyDiagramSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SankeyDiagramSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SankeyDiagramSortConfiguration"
             $($field $value)*)
         };
     }
@@ -38300,7 +38300,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SankeyDiagramVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SankeyDiagramVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SankeyDiagramVisual"
             $($field $value)*)
         };
     }
@@ -38354,7 +38354,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ScatterPlotCategoricallyAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ScatterPlotCategoricallyAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ScatterPlotCategoricallyAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -38401,7 +38401,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ScatterPlotConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ScatterPlotConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ScatterPlotConfiguration"
             $($field $value)*)
         };
     }
@@ -38485,7 +38485,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ScatterPlotFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ScatterPlotFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ScatterPlotFieldWells"
             $($field $value)*)
         };
     }
@@ -38516,7 +38516,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ScatterPlotSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ScatterPlotSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ScatterPlotSortConfiguration"
             $($field $value)*)
         };
     }
@@ -38545,7 +38545,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ScatterPlotUnaggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ScatterPlotUnaggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ScatterPlotUnaggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -38588,7 +38588,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ScatterPlotVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ScatterPlotVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ScatterPlotVisual"
             $($field $value)*)
         };
     }
@@ -38645,7 +38645,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ScrollBarOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ScrollBarOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ScrollBarOptions"
             $($field $value)*)
         };
     }
@@ -38676,7 +38676,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SecondaryValueOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SecondaryValueOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SecondaryValueOptions"
             $($field $value)*)
         };
     }
@@ -38701,7 +38701,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SectionAfterPageBreak {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SectionAfterPageBreak"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SectionAfterPageBreak"
             $($field $value)*)
         };
     }
@@ -38723,7 +38723,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SectionBasedLayoutCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SectionBasedLayoutCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SectionBasedLayoutCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -38751,7 +38751,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SectionBasedLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SectionBasedLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SectionBasedLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -38788,7 +38788,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SectionBasedLayoutPaperCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SectionBasedLayoutPaperCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SectionBasedLayoutPaperCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -38825,7 +38825,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SectionLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SectionLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SectionLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -38848,7 +38848,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SectionPageBreakConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SectionPageBreakConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SectionPageBreakConfiguration"
             $($field $value)*)
         };
     }
@@ -38871,7 +38871,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SectionStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SectionStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SectionStyle"
             $($field $value)*)
         };
     }
@@ -38899,7 +38899,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SelectedSheetsFilterScopeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SelectedSheetsFilterScopeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SelectedSheetsFilterScopeConfiguration"
             $($field $value)*)
         };
     }
@@ -38925,7 +38925,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SeriesItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SeriesItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SeriesItem"
             $($field $value)*)
         };
     }
@@ -38957,7 +38957,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SetParameterValueConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SetParameterValueConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SetParameterValueConfiguration"
             $($field $value)*)
         };
     }
@@ -38984,7 +38984,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ShapeConditionalFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ShapeConditionalFormat"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ShapeConditionalFormat"
             $($field $value)*)
         };
     }
@@ -39008,7 +39008,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_Sheet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.Sheet"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.Sheet"
             $($field $value)*)
         };
     }
@@ -39037,7 +39037,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetControlInfoIconLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetControlInfoIconLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetControlInfoIconLabelOptions"
             $($field $value)*)
         };
     }
@@ -39068,7 +39068,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetControlLayout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetControlLayout"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetControlLayout"
             $($field $value)*)
         };
     }
@@ -39091,7 +39091,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetControlLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetControlLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetControlLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -39116,7 +39116,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetControlsOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetControlsOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetControlsOption"
             $($field $value)*)
         };
     }
@@ -39152,7 +39152,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetDefinition"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetDefinition"
             $($field $value)*)
         };
     }
@@ -39232,7 +39232,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetElementConfigurationOverrides {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetElementConfigurationOverrides"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetElementConfigurationOverrides"
             $($field $value)*)
         };
     }
@@ -39258,7 +39258,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetElementRenderingRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetElementRenderingRule"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetElementRenderingRule"
             $($field $value)*)
         };
     }
@@ -39291,7 +39291,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetImage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetImage"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetImage"
             $($field $value)*)
         };
     }
@@ -39348,7 +39348,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetImageScalingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetImageScalingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetImageScalingConfiguration"
             $($field $value)*)
         };
     }
@@ -39373,7 +39373,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetImageSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetImageSource"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetImageSource"
             $($field $value)*)
         };
     }
@@ -39398,7 +39398,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetImageStaticFileSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetImageStaticFileSource"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetImageStaticFileSource"
             $($field $value)*)
         };
     }
@@ -39422,7 +39422,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetImageTooltipConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetImageTooltipConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetImageTooltipConfiguration"
             $($field $value)*)
         };
     }
@@ -39453,7 +39453,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetImageTooltipText {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetImageTooltipText"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetImageTooltipText"
             $($field $value)*)
         };
     }
@@ -39478,7 +39478,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetLayoutElementMaximizationOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetLayoutElementMaximizationOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetLayoutElementMaximizationOption"
             $($field $value)*)
         };
     }
@@ -39504,7 +39504,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetTextBox {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetTextBox"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetTextBox"
             $($field $value)*)
         };
     }
@@ -39535,7 +39535,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SheetVisualScopingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetVisualScopingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SheetVisualScopingConfiguration"
             $($field $value)*)
         };
     }
@@ -39569,7 +39569,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ShortFormatText {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ShortFormatText"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ShortFormatText"
             $($field $value)*)
         };
     }
@@ -39600,7 +39600,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SimpleClusterMarker {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SimpleClusterMarker"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SimpleClusterMarker"
             $($field $value)*)
         };
     }
@@ -39622,7 +39622,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SingleAxisOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SingleAxisOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SingleAxisOptions"
             $($field $value)*)
         };
     }
@@ -39648,7 +39648,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SliderControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SliderControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SliderControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -39680,7 +39680,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SmallMultiplesAxisProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SmallMultiplesAxisProperties"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SmallMultiplesAxisProperties"
             $($field $value)*)
         };
     }
@@ -39712,7 +39712,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SmallMultiplesOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SmallMultiplesOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SmallMultiplesOptions"
             $($field $value)*)
         };
     }
@@ -39758,7 +39758,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_Spacing {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.Spacing"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.Spacing"
             $($field $value)*)
         };
     }
@@ -39790,7 +39790,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SpatialStaticFile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SpatialStaticFile"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SpatialStaticFile"
             $($field $value)*)
         };
     }
@@ -39817,7 +39817,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_StaticFile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.StaticFile"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.StaticFile"
             $($field $value)*)
         };
     }
@@ -39850,7 +39850,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_StaticFileS3SourceOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.StaticFileS3SourceOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.StaticFileS3SourceOptions"
             $($field $value)*)
         };
     }
@@ -39882,7 +39882,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_StaticFileSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.StaticFileSource"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.StaticFileSource"
             $($field $value)*)
         };
     }
@@ -39913,7 +39913,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_StaticFileUrlSourceOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.StaticFileUrlSourceOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.StaticFileUrlSourceOptions"
             $($field $value)*)
         };
     }
@@ -39937,7 +39937,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_StringDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.StringDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.StringDefaultValues"
             $($field $value)*)
         };
     }
@@ -39969,7 +39969,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_StringFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.StringFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.StringFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -40001,7 +40001,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_StringParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.StringParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.StringParameter"
             $($field $value)*)
         };
     }
@@ -40032,7 +40032,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_StringParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.StringParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.StringParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -40078,7 +40078,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_StringValueWhenUnsetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.StringValueWhenUnsetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.StringValueWhenUnsetConfiguration"
             $($field $value)*)
         };
     }
@@ -40116,7 +40116,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_SubtotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.SubtotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.SubtotalOptions"
             $($field $value)*)
         };
     }
@@ -40184,7 +40184,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -40214,7 +40214,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableBorderOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableBorderOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableBorderOptions"
             $($field $value)*)
         };
     }
@@ -40246,7 +40246,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableCellConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableCellConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableCellConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -40275,7 +40275,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableCellImageSizingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableCellImageSizingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableCellImageSizingConfiguration"
             $($field $value)*)
         };
     }
@@ -40307,7 +40307,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableCellStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableCellStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableCellStyle"
             $($field $value)*)
         };
     }
@@ -40368,7 +40368,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -40394,7 +40394,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -40426,7 +40426,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableConfiguration"
             $($field $value)*)
         };
     }
@@ -40493,7 +40493,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableFieldCustomIconContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldCustomIconContent"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldCustomIconContent"
             $($field $value)*)
         };
     }
@@ -40516,7 +40516,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableFieldCustomTextContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldCustomTextContent"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldCustomTextContent"
             $($field $value)*)
         };
     }
@@ -40542,7 +40542,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableFieldImageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldImageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldImageConfiguration"
             $($field $value)*)
         };
     }
@@ -40568,7 +40568,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableFieldLinkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldLinkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldLinkConfiguration"
             $($field $value)*)
         };
     }
@@ -40596,7 +40596,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableFieldLinkContentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldLinkContentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldLinkContentConfiguration"
             $($field $value)*)
         };
     }
@@ -40631,7 +40631,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableFieldOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldOption"
             $($field $value)*)
         };
     }
@@ -40678,7 +40678,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableFieldOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldOptions"
             $($field $value)*)
         };
     }
@@ -40719,7 +40719,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableFieldURLConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldURLConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldURLConfiguration"
             $($field $value)*)
         };
     }
@@ -40751,7 +40751,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableFieldWells"
             $($field $value)*)
         };
     }
@@ -40782,7 +40782,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableInlineVisualization {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableInlineVisualization"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableInlineVisualization"
             $($field $value)*)
         };
     }
@@ -40810,7 +40810,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableOptions"
             $($field $value)*)
         };
     }
@@ -40854,7 +40854,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TablePaginatedReportOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TablePaginatedReportOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TablePaginatedReportOptions"
             $($field $value)*)
         };
     }
@@ -40885,7 +40885,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TablePinnedFieldOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TablePinnedFieldOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TablePinnedFieldOptions"
             $($field $value)*)
         };
     }
@@ -40911,7 +40911,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableRowConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableRowConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableRowConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -40947,7 +40947,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableSideBorderOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableSideBorderOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableSideBorderOptions"
             $($field $value)*)
         };
     }
@@ -40991,7 +40991,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableSortConfiguration"
             $($field $value)*)
         };
     }
@@ -41022,7 +41022,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableStyleTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableStyleTarget"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableStyleTarget"
             $($field $value)*)
         };
     }
@@ -41045,7 +41045,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableUnaggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableUnaggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableUnaggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -41073,7 +41073,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TableVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TableVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TableVisual"
             $($field $value)*)
         };
     }
@@ -41131,7 +41131,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TextAreaControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TextAreaControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TextAreaControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -41170,7 +41170,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TextConditionalFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TextConditionalFormat"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TextConditionalFormat"
             $($field $value)*)
         };
     }
@@ -41204,7 +41204,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TextControlPlaceholderOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TextControlPlaceholderOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TextControlPlaceholderOptions"
             $($field $value)*)
         };
     }
@@ -41231,7 +41231,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TextFieldControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TextFieldControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TextFieldControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -41270,7 +41270,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ThousandSeparatorOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ThousandSeparatorOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ThousandSeparatorOptions"
             $($field $value)*)
         };
     }
@@ -41309,7 +41309,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TimeBasedForecastProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TimeBasedForecastProperties"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TimeBasedForecastProperties"
             $($field $value)*)
         };
     }
@@ -41370,7 +41370,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TimeEqualityFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TimeEqualityFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TimeEqualityFilter"
             $($field $value)*)
         };
     }
@@ -41427,7 +41427,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TimeRangeDrillDownFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TimeRangeDrillDownFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TimeRangeDrillDownFilter"
             $($field $value)*)
         };
     }
@@ -41471,7 +41471,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TimeRangeFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TimeRangeFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TimeRangeFilter"
             $($field $value)*)
         };
     }
@@ -41546,7 +41546,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TimeRangeFilterValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TimeRangeFilterValue"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TimeRangeFilterValue"
             $($field $value)*)
         };
     }
@@ -41584,7 +41584,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TooltipItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TooltipItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TooltipItem"
             $($field $value)*)
         };
     }
@@ -41617,7 +41617,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TooltipOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TooltipOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TooltipOptions"
             $($field $value)*)
         };
     }
@@ -41660,7 +41660,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TopBottomFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TopBottomFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TopBottomFilter"
             $($field $value)*)
         };
     }
@@ -41719,7 +41719,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TopBottomMoversComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TopBottomMoversComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TopBottomMoversComputation"
             $($field $value)*)
         };
     }
@@ -41778,7 +41778,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TopBottomRankedComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TopBottomRankedComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TopBottomRankedComputation"
             $($field $value)*)
         };
     }
@@ -41825,7 +41825,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TotalAggregationComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TotalAggregationComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TotalAggregationComputation"
             $($field $value)*)
         };
     }
@@ -41854,7 +41854,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TotalAggregationFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TotalAggregationFunction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TotalAggregationFunction"
             $($field $value)*)
         };
     }
@@ -41880,7 +41880,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TotalAggregationOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TotalAggregationOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TotalAggregationOption"
             $($field $value)*)
         };
     }
@@ -41912,7 +41912,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TotalOptions"
             $($field $value)*)
         };
     }
@@ -41969,7 +41969,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TransposedTableOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TransposedTableOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TransposedTableOption"
             $($field $value)*)
         };
     }
@@ -42006,7 +42006,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TreeMapAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TreeMapAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TreeMapAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -42043,7 +42043,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TreeMapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TreeMapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TreeMapConfiguration"
             $($field $value)*)
         };
     }
@@ -42119,7 +42119,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TreeMapFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TreeMapFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TreeMapFieldWells"
             $($field $value)*)
         };
     }
@@ -42145,7 +42145,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TreeMapSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TreeMapSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TreeMapSortConfiguration"
             $($field $value)*)
         };
     }
@@ -42182,7 +42182,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TreeMapVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TreeMapVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TreeMapVisual"
             $($field $value)*)
         };
     }
@@ -42238,7 +42238,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_TrendArrowOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.TrendArrowOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.TrendArrowOptions"
             $($field $value)*)
         };
     }
@@ -42265,7 +42265,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_UnaggregatedField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.UnaggregatedField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.UnaggregatedField"
             $($field $value)*)
         };
     }
@@ -42300,7 +42300,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_UniqueValuesComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.UniqueValuesComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.UniqueValuesComputation"
             $($field $value)*)
         };
     }
@@ -42332,7 +42332,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_ValidationStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.ValidationStrategy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ValidationStrategy"
             $($field $value)*)
         };
     }
@@ -42355,7 +42355,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_VisibleRangeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.VisibleRangeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.VisibleRangeOptions"
             $($field $value)*)
         };
     }
@@ -42404,7 +42404,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_Visual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.Visual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.Visual"
             $($field $value)*)
         };
     }
@@ -42573,7 +42573,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_VisualAxisSortOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualAxisSortOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualAxisSortOption"
             $($field $value)*)
         };
     }
@@ -42602,7 +42602,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_VisualCustomAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualCustomAction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualCustomAction"
             $($field $value)*)
         };
     }
@@ -42643,7 +42643,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_VisualCustomActionOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualCustomActionOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualCustomActionOperation"
             $($field $value)*)
         };
     }
@@ -42687,7 +42687,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_VisualInteractionOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualInteractionOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualInteractionOptions"
             $($field $value)*)
         };
     }
@@ -42718,7 +42718,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_VisualMenuOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualMenuOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualMenuOption"
             $($field $value)*)
         };
     }
@@ -42744,7 +42744,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_VisualPalette {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualPalette"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualPalette"
             $($field $value)*)
         };
     }
@@ -42776,7 +42776,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_VisualSubtitleLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualSubtitleLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualSubtitleLabelOptions"
             $($field $value)*)
         };
     }
@@ -42808,7 +42808,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_VisualTitleLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualTitleLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.VisualTitleLabelOptions"
             $($field $value)*)
         };
     }
@@ -42841,7 +42841,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WaterfallChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -42875,7 +42875,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WaterfallChartColorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallChartColorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallChartColorConfiguration"
             $($field $value)*)
         };
     }
@@ -42911,7 +42911,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WaterfallChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallChartConfiguration"
             $($field $value)*)
         };
     }
@@ -43000,7 +43000,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WaterfallChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallChartFieldWells"
             $($field $value)*)
         };
     }
@@ -43027,7 +43027,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WaterfallChartGroupColorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallChartGroupColorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallChartGroupColorConfiguration"
             $($field $value)*)
         };
     }
@@ -43064,7 +43064,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WaterfallChartOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallChartOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallChartOptions"
             $($field $value)*)
         };
     }
@@ -43090,7 +43090,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WaterfallChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -43127,7 +43127,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WaterfallVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WaterfallVisual"
             $($field $value)*)
         };
     }
@@ -43184,7 +43184,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WhatIfPointScenario {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WhatIfPointScenario"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WhatIfPointScenario"
             $($field $value)*)
         };
     }
@@ -43213,7 +43213,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WhatIfRangeScenario {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WhatIfRangeScenario"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WhatIfRangeScenario"
             $($field $value)*)
         };
     }
@@ -43245,7 +43245,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WordCloudAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WordCloudAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WordCloudAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -43277,7 +43277,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WordCloudChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WordCloudChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WordCloudChartConfiguration"
             $($field $value)*)
         };
     }
@@ -43326,7 +43326,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WordCloudFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WordCloudFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WordCloudFieldWells"
             $($field $value)*)
         };
     }
@@ -43356,7 +43356,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WordCloudOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WordCloudOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WordCloudOptions"
             $($field $value)*)
         };
     }
@@ -43412,7 +43412,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WordCloudSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WordCloudSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WordCloudSortConfiguration"
             $($field $value)*)
         };
     }
@@ -43449,7 +43449,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_WordCloudVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.WordCloudVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.WordCloudVisual"
             $($field $value)*)
         };
     }
@@ -43505,7 +43505,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_quicksight_Dashboard_YAxisOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Dashboard.YAxisOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.YAxisOptions"
             $($field $value)*)
         };
     }
@@ -43532,7 +43532,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_CalculatedColumn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.CalculatedColumn"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.CalculatedColumn"
             $($field $value)*)
         };
     }
@@ -43566,7 +43566,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_CastColumnTypeOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.CastColumnTypeOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.CastColumnTypeOperation"
             $($field $value)*)
         };
     }
@@ -43604,7 +43604,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_ColumnDescription {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.ColumnDescription"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.ColumnDescription"
             $($field $value)*)
         };
     }
@@ -43626,7 +43626,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_ColumnGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.ColumnGroup"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.ColumnGroup"
             $($field $value)*)
         };
     }
@@ -43652,7 +43652,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_ColumnLevelPermissionRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.ColumnLevelPermissionRule"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.ColumnLevelPermissionRule"
             $($field $value)*)
         };
     }
@@ -43684,7 +43684,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_ColumnTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.ColumnTag"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.ColumnTag"
             $($field $value)*)
         };
     }
@@ -43715,7 +43715,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_CreateColumnsOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.CreateColumnsOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.CreateColumnsOperation"
             $($field $value)*)
         };
     }
@@ -43743,7 +43743,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_CustomSql {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.CustomSql"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.CustomSql"
             $($field $value)*)
         };
     }
@@ -43781,7 +43781,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_DataSetRefreshProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetRefreshProperties"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetRefreshProperties"
             $($field $value)*)
         };
     }
@@ -43813,7 +43813,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_DataSetUsageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetUsageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetUsageConfiguration"
             $($field $value)*)
         };
     }
@@ -43847,7 +43847,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_DatasetParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.DatasetParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DatasetParameter"
             $($field $value)*)
         };
     }
@@ -43894,7 +43894,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_DateTimeDatasetParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.DateTimeDatasetParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DateTimeDatasetParameter"
             $($field $value)*)
         };
     }
@@ -43934,7 +43934,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_DateTimeDatasetParameterDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.DateTimeDatasetParameterDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DateTimeDatasetParameterDefaultValues"
             $($field $value)*)
         };
     }
@@ -43962,7 +43962,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_DecimalDatasetParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.DecimalDatasetParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DecimalDatasetParameter"
             $($field $value)*)
         };
     }
@@ -43996,7 +43996,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_DecimalDatasetParameterDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.DecimalDatasetParameterDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DecimalDatasetParameterDefaultValues"
             $($field $value)*)
         };
     }
@@ -44022,7 +44022,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_FieldFolder {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.FieldFolder"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.FieldFolder"
             $($field $value)*)
         };
     }
@@ -44053,7 +44053,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_FilterOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.FilterOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.FilterOperation"
             $($field $value)*)
         };
     }
@@ -44080,7 +44080,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_GeoSpatialColumnGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.GeoSpatialColumnGroup"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.GeoSpatialColumnGroup"
             $($field $value)*)
         };
     }
@@ -44113,7 +44113,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_IncrementalRefresh {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.IncrementalRefresh"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.IncrementalRefresh"
             $($field $value)*)
         };
     }
@@ -44137,7 +44137,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_IngestionWaitPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.IngestionWaitPolicy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.IngestionWaitPolicy"
             $($field $value)*)
         };
     }
@@ -44170,7 +44170,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_InputColumn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.InputColumn"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.InputColumn"
             $($field $value)*)
         };
     }
@@ -44206,7 +44206,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_IntegerDatasetParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.IntegerDatasetParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.IntegerDatasetParameter"
             $($field $value)*)
         };
     }
@@ -44240,7 +44240,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_IntegerDatasetParameterDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.IntegerDatasetParameterDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.IntegerDatasetParameterDefaultValues"
             $($field $value)*)
         };
     }
@@ -44270,7 +44270,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_JoinInstruction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.JoinInstruction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.JoinInstruction"
             $($field $value)*)
         };
     }
@@ -44317,7 +44317,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_JoinKeyProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.JoinKeyProperties"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.JoinKeyProperties"
             $($field $value)*)
         };
     }
@@ -44344,7 +44344,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_LogicalTable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.LogicalTable"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.LogicalTable"
             $($field $value)*)
         };
     }
@@ -44378,7 +44378,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_LogicalTableSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.LogicalTableSource"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.LogicalTableSource"
             $($field $value)*)
         };
     }
@@ -44417,7 +44417,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_LookbackWindow {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.LookbackWindow"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.LookbackWindow"
             $($field $value)*)
         };
     }
@@ -44451,7 +44451,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_NewDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.NewDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.NewDefaultValues"
             $($field $value)*)
         };
     }
@@ -44497,7 +44497,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_OutputColumn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.OutputColumn"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.OutputColumn"
             $($field $value)*)
         };
     }
@@ -44536,7 +44536,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_OverrideDatasetParameterOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.OverrideDatasetParameterOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.OverrideDatasetParameterOperation"
             $($field $value)*)
         };
     }
@@ -44571,7 +44571,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_PerformanceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.PerformanceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.PerformanceConfiguration"
             $($field $value)*)
         };
     }
@@ -44598,7 +44598,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_PhysicalTable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.PhysicalTable"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.PhysicalTable"
             $($field $value)*)
         };
     }
@@ -44635,7 +44635,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_ProjectOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.ProjectOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.ProjectOperation"
             $($field $value)*)
         };
     }
@@ -44660,7 +44660,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_RefreshConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.RefreshConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.RefreshConfiguration"
             $($field $value)*)
         };
     }
@@ -44683,7 +44683,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_RefreshFailureConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.RefreshFailureConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.RefreshFailureConfiguration"
             $($field $value)*)
         };
     }
@@ -44708,7 +44708,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_RefreshFailureEmailAlert {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.RefreshFailureEmailAlert"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.RefreshFailureEmailAlert"
             $($field $value)*)
         };
     }
@@ -44737,7 +44737,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_RelationalTable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.RelationalTable"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.RelationalTable"
             $($field $value)*)
         };
     }
@@ -44780,7 +44780,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_RenameColumnOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.RenameColumnOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.RenameColumnOperation"
             $($field $value)*)
         };
     }
@@ -44812,7 +44812,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_ResourcePermission {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.ResourcePermission"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.ResourcePermission"
             $($field $value)*)
         };
     }
@@ -44843,7 +44843,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_RowLevelPermissionDataSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.RowLevelPermissionDataSet"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.RowLevelPermissionDataSet"
             $($field $value)*)
         };
     }
@@ -44887,7 +44887,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_RowLevelPermissionTagConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.RowLevelPermissionTagConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.RowLevelPermissionTagConfiguration"
             $($field $value)*)
         };
     }
@@ -44922,7 +44922,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_RowLevelPermissionTagRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.RowLevelPermissionTagRule"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.RowLevelPermissionTagRule"
             $($field $value)*)
         };
     }
@@ -44965,7 +44965,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_S3Source {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.S3Source"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.S3Source"
             $($field $value)*)
         };
     }
@@ -45003,7 +45003,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_StringDatasetParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.StringDatasetParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.StringDatasetParameter"
             $($field $value)*)
         };
     }
@@ -45037,7 +45037,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_StringDatasetParameterDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.StringDatasetParameterDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.StringDatasetParameterDefaultValues"
             $($field $value)*)
         };
     }
@@ -45063,7 +45063,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_TagColumnOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.TagColumnOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.TagColumnOperation"
             $($field $value)*)
         };
     }
@@ -45097,7 +45097,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_TransformOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.TransformOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.TransformOperation"
             $($field $value)*)
         };
     }
@@ -45164,7 +45164,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_UniqueKey {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.UniqueKey"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.UniqueKey"
             $($field $value)*)
         };
     }
@@ -45190,7 +45190,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_UntagColumnOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.UntagColumnOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.UntagColumnOperation"
             $($field $value)*)
         };
     }
@@ -45221,7 +45221,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSet_UploadSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSet.UploadSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.UploadSettings"
             $($field $value)*)
         };
     }
@@ -45269,7 +45269,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_AmazonElasticsearchParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.AmazonElasticsearchParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.AmazonElasticsearchParameters"
             $($field $value)*)
         };
     }
@@ -45292,7 +45292,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_AmazonOpenSearchParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.AmazonOpenSearchParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.AmazonOpenSearchParameters"
             $($field $value)*)
         };
     }
@@ -45317,7 +45317,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_AthenaParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.AthenaParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.AthenaParameters"
             $($field $value)*)
         };
     }
@@ -45356,7 +45356,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_AuroraParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.AuroraParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.AuroraParameters"
             $($field $value)*)
         };
     }
@@ -45389,7 +45389,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_AuroraPostgreSqlParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.AuroraPostgreSqlParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.AuroraPostgreSqlParameters"
             $($field $value)*)
         };
     }
@@ -45422,7 +45422,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_CredentialPair {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.CredentialPair"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.CredentialPair"
             $($field $value)*)
         };
     }
@@ -45457,7 +45457,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_DataSourceCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.DataSourceCredentials"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.DataSourceCredentials"
             $($field $value)*)
         };
     }
@@ -45495,7 +45495,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_DataSourceErrorInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.DataSourceErrorInfo"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.DataSourceErrorInfo"
             $($field $value)*)
         };
     }
@@ -45542,7 +45542,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_DataSourceParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.DataSourceParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.DataSourceParameters"
             $($field $value)*)
         };
     }
@@ -45683,7 +45683,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_DatabricksParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.DatabricksParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.DatabricksParameters"
             $($field $value)*)
         };
     }
@@ -45714,7 +45714,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_IdentityCenterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.IdentityCenterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.IdentityCenterConfiguration"
             $($field $value)*)
         };
     }
@@ -45740,7 +45740,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_ManifestFileLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.ManifestFileLocation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.ManifestFileLocation"
             $($field $value)*)
         };
     }
@@ -45769,7 +45769,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_MariaDbParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.MariaDbParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.MariaDbParameters"
             $($field $value)*)
         };
     }
@@ -45802,7 +45802,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_MySqlParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.MySqlParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.MySqlParameters"
             $($field $value)*)
         };
     }
@@ -45836,7 +45836,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_OAuthParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.OAuthParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.OAuthParameters"
             $($field $value)*)
         };
     }
@@ -45880,7 +45880,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_OracleParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.OracleParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.OracleParameters"
             $($field $value)*)
         };
     }
@@ -45919,7 +45919,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_PostgreSqlParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.PostgreSqlParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.PostgreSqlParameters"
             $($field $value)*)
         };
     }
@@ -45952,7 +45952,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_PrestoParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.PrestoParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.PrestoParameters"
             $($field $value)*)
         };
     }
@@ -45984,7 +45984,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_RdsParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.RdsParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.RdsParameters"
             $($field $value)*)
         };
     }
@@ -46014,7 +46014,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_RedshiftIAMParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.RedshiftIAMParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.RedshiftIAMParameters"
             $($field $value)*)
         };
     }
@@ -46060,7 +46060,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_RedshiftParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.RedshiftParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.RedshiftParameters"
             $($field $value)*)
         };
     }
@@ -46109,7 +46109,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_ResourcePermission {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.ResourcePermission"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.ResourcePermission"
             $($field $value)*)
         };
     }
@@ -46143,7 +46143,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_S3Parameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.S3Parameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.S3Parameters"
             $($field $value)*)
         };
     }
@@ -46177,7 +46177,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_SnowflakeParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.SnowflakeParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.SnowflakeParameters"
             $($field $value)*)
         };
     }
@@ -46227,7 +46227,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_SparkParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.SparkParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.SparkParameters"
             $($field $value)*)
         };
     }
@@ -46256,7 +46256,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_SqlServerParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.SqlServerParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.SqlServerParameters"
             $($field $value)*)
         };
     }
@@ -46287,7 +46287,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_SslProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.SslProperties"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.SslProperties"
             $($field $value)*)
         };
     }
@@ -46318,7 +46318,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_StarburstParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.StarburstParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.StarburstParameters"
             $($field $value)*)
         };
     }
@@ -46375,7 +46375,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_TeradataParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.TeradataParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.TeradataParameters"
             $($field $value)*)
         };
     }
@@ -46408,7 +46408,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_TrinoParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.TrinoParameters"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.TrinoParameters"
             $($field $value)*)
         };
     }
@@ -46439,7 +46439,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_quicksight_DataSource_VpcConnectionProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::DataSource.VpcConnectionProperties"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.VpcConnectionProperties"
             $($field $value)*)
         };
     }
@@ -46465,7 +46465,7 @@ pub mod folder {
     #[macro_export]
     macro_rules! __aws_quicksight_Folder_ResourcePermission {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Folder.ResourcePermission"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Folder.ResourcePermission"
             $($field $value)*)
         };
     }
@@ -46495,7 +46495,7 @@ pub mod refreshschedule {
     #[macro_export]
     macro_rules! __aws_quicksight_RefreshSchedule_RefreshOnDay {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::RefreshSchedule.RefreshOnDay"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::RefreshSchedule.RefreshOnDay"
             $($field $value)*)
         };
     }
@@ -46529,7 +46529,7 @@ pub mod refreshschedule {
     #[macro_export]
     macro_rules! __aws_quicksight_RefreshSchedule_RefreshScheduleMap {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::RefreshSchedule.RefreshScheduleMap"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::RefreshSchedule.RefreshScheduleMap"
             $($field $value)*)
         };
     }
@@ -46575,7 +46575,7 @@ pub mod refreshschedule {
     #[macro_export]
     macro_rules! __aws_quicksight_RefreshSchedule_ScheduleFrequency {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::RefreshSchedule.ScheduleFrequency"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::RefreshSchedule.ScheduleFrequency"
             $($field $value)*)
         };
     }
@@ -46623,7 +46623,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AggregationFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AggregationFunction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AggregationFunction"
             $($field $value)*)
         };
     }
@@ -46668,7 +46668,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AggregationSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AggregationSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AggregationSortConfiguration"
             $($field $value)*)
         };
     }
@@ -46701,7 +46701,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AnalysisDefaults {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AnalysisDefaults"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AnalysisDefaults"
             $($field $value)*)
         };
     }
@@ -46725,7 +46725,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AnchorDateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AnchorDateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AnchorDateConfiguration"
             $($field $value)*)
         };
     }
@@ -46757,7 +46757,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ArcAxisConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ArcAxisConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ArcAxisConfiguration"
             $($field $value)*)
         };
     }
@@ -46786,7 +46786,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ArcAxisDisplayRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ArcAxisDisplayRange"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ArcAxisDisplayRange"
             $($field $value)*)
         };
     }
@@ -46812,7 +46812,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ArcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ArcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ArcConfiguration"
             $($field $value)*)
         };
     }
@@ -46843,7 +46843,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ArcOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ArcOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ArcOptions"
             $($field $value)*)
         };
     }
@@ -46869,7 +46869,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AssetOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AssetOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AssetOptions"
             $($field $value)*)
         };
     }
@@ -46901,7 +46901,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AttributeAggregationFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AttributeAggregationFunction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AttributeAggregationFunction"
             $($field $value)*)
         };
     }
@@ -46933,7 +46933,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AxisDataOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AxisDataOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AxisDataOptions"
             $($field $value)*)
         };
     }
@@ -46965,7 +46965,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AxisDisplayMinMaxRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AxisDisplayMinMaxRange"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AxisDisplayMinMaxRange"
             $($field $value)*)
         };
     }
@@ -47001,7 +47001,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AxisDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AxisDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AxisDisplayOptions"
             $($field $value)*)
         };
     }
@@ -47057,7 +47057,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AxisDisplayRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AxisDisplayRange"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AxisDisplayRange"
             $($field $value)*)
         };
     }
@@ -47087,7 +47087,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AxisLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AxisLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AxisLabelOptions"
             $($field $value)*)
         };
     }
@@ -47125,7 +47125,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AxisLabelReferenceOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AxisLabelReferenceOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AxisLabelReferenceOptions"
             $($field $value)*)
         };
     }
@@ -47153,7 +47153,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AxisLinearScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AxisLinearScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AxisLinearScale"
             $($field $value)*)
         };
     }
@@ -47184,7 +47184,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AxisLogarithmicScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AxisLogarithmicScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AxisLogarithmicScale"
             $($field $value)*)
         };
     }
@@ -47207,7 +47207,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AxisScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AxisScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AxisScale"
             $($field $value)*)
         };
     }
@@ -47236,7 +47236,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_AxisTickLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.AxisTickLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.AxisTickLabelOptions"
             $($field $value)*)
         };
     }
@@ -47270,7 +47270,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BarChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BarChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BarChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -47323,7 +47323,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BarChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BarChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BarChartConfiguration"
             $($field $value)*)
         };
     }
@@ -47441,7 +47441,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BarChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BarChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BarChartFieldWells"
             $($field $value)*)
         };
     }
@@ -47471,7 +47471,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BarChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BarChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BarChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -47532,7 +47532,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BarChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BarChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BarChartVisual"
             $($field $value)*)
         };
     }
@@ -47588,7 +47588,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BinCountOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BinCountOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BinCountOptions"
             $($field $value)*)
         };
     }
@@ -47611,7 +47611,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BinWidthOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BinWidthOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BinWidthOptions"
             $($field $value)*)
         };
     }
@@ -47643,7 +47643,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BodySectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BodySectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BodySectionConfiguration"
             $($field $value)*)
         };
     }
@@ -47685,7 +47685,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BodySectionContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BodySectionContent"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BodySectionContent"
             $($field $value)*)
         };
     }
@@ -47709,7 +47709,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BodySectionDynamicCategoryDimensionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BodySectionDynamicCategoryDimensionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BodySectionDynamicCategoryDimensionConfiguration"
             $($field $value)*)
         };
     }
@@ -47743,7 +47743,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BodySectionDynamicNumericDimensionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BodySectionDynamicNumericDimensionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BodySectionDynamicNumericDimensionConfiguration"
             $($field $value)*)
         };
     }
@@ -47777,7 +47777,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BodySectionRepeatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BodySectionRepeatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BodySectionRepeatConfiguration"
             $($field $value)*)
         };
     }
@@ -47817,7 +47817,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BodySectionRepeatDimensionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BodySectionRepeatDimensionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BodySectionRepeatDimensionConfiguration"
             $($field $value)*)
         };
     }
@@ -47848,7 +47848,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BodySectionRepeatPageBreakConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BodySectionRepeatPageBreakConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BodySectionRepeatPageBreakConfiguration"
             $($field $value)*)
         };
     }
@@ -47871,7 +47871,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BoxPlotAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BoxPlotAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BoxPlotAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -47910,7 +47910,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BoxPlotChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BoxPlotChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BoxPlotChartConfiguration"
             $($field $value)*)
         };
     }
@@ -47998,7 +47998,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BoxPlotFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BoxPlotFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BoxPlotFieldWells"
             $($field $value)*)
         };
     }
@@ -48025,7 +48025,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BoxPlotOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BoxPlotOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BoxPlotOptions"
             $($field $value)*)
         };
     }
@@ -48063,7 +48063,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BoxPlotSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BoxPlotSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BoxPlotSortConfiguration"
             $($field $value)*)
         };
     }
@@ -48094,7 +48094,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BoxPlotStyleOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BoxPlotStyleOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BoxPlotStyleOptions"
             $($field $value)*)
         };
     }
@@ -48125,7 +48125,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_BoxPlotVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.BoxPlotVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.BoxPlotVisual"
             $($field $value)*)
         };
     }
@@ -48183,7 +48183,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CalculatedField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CalculatedField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CalculatedField"
             $($field $value)*)
         };
     }
@@ -48215,7 +48215,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CalculatedMeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CalculatedMeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CalculatedMeasureField"
             $($field $value)*)
         };
     }
@@ -48242,7 +48242,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CascadingControlConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CascadingControlConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CascadingControlConfiguration"
             $($field $value)*)
         };
     }
@@ -48268,7 +48268,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CascadingControlSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CascadingControlSource"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CascadingControlSource"
             $($field $value)*)
         };
     }
@@ -48302,7 +48302,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CategoricalDimensionField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CategoricalDimensionField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CategoricalDimensionField"
             $($field $value)*)
         };
     }
@@ -48344,7 +48344,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CategoricalMeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CategoricalMeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CategoricalMeasureField"
             $($field $value)*)
         };
     }
@@ -48384,7 +48384,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CategoryDrillDownFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CategoryDrillDownFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CategoryDrillDownFilter"
             $($field $value)*)
         };
     }
@@ -48414,7 +48414,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CategoryFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CategoryFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CategoryFilter"
             $($field $value)*)
         };
     }
@@ -48453,7 +48453,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CategoryFilterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CategoryFilterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CategoryFilterConfiguration"
             $($field $value)*)
         };
     }
@@ -48492,7 +48492,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CategoryInnerFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CategoryInnerFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CategoryInnerFilter"
             $($field $value)*)
         };
     }
@@ -48527,7 +48527,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ChartAxisLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ChartAxisLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ChartAxisLabelOptions"
             $($field $value)*)
         };
     }
@@ -48564,7 +48564,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ClusterMarker {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ClusterMarker"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ClusterMarker"
             $($field $value)*)
         };
     }
@@ -48589,7 +48589,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ClusterMarkerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ClusterMarkerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ClusterMarkerConfiguration"
             $($field $value)*)
         };
     }
@@ -48616,7 +48616,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ColorScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ColorScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ColorScale"
             $($field $value)*)
         };
     }
@@ -48649,7 +48649,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ColorsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ColorsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ColorsConfiguration"
             $($field $value)*)
         };
     }
@@ -48677,7 +48677,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ColumnConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ColumnConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ColumnConfiguration"
             $($field $value)*)
         };
     }
@@ -48715,7 +48715,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ColumnGroupColumnSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ColumnGroupColumnSchema"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ColumnGroupColumnSchema"
             $($field $value)*)
         };
     }
@@ -48738,7 +48738,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ColumnGroupSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ColumnGroupSchema"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ColumnGroupSchema"
             $($field $value)*)
         };
     }
@@ -48768,7 +48768,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ColumnHierarchy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ColumnHierarchy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ColumnHierarchy"
             $($field $value)*)
         };
     }
@@ -48806,7 +48806,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ColumnIdentifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ColumnIdentifier"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ColumnIdentifier"
             $($field $value)*)
         };
     }
@@ -48835,7 +48835,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ColumnSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ColumnSchema"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ColumnSchema"
             $($field $value)*)
         };
     }
@@ -48871,7 +48871,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ColumnSort {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ColumnSort"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ColumnSort"
             $($field $value)*)
         };
     }
@@ -48908,7 +48908,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ColumnTooltipItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ColumnTooltipItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ColumnTooltipItem"
             $($field $value)*)
         };
     }
@@ -48955,7 +48955,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ComboChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ComboChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ComboChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -49012,7 +49012,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ComboChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ComboChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ComboChartConfiguration"
             $($field $value)*)
         };
     }
@@ -49136,7 +49136,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ComboChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ComboChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ComboChartFieldWells"
             $($field $value)*)
         };
     }
@@ -49164,7 +49164,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ComboChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ComboChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ComboChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -49213,7 +49213,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ComboChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ComboChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ComboChartVisual"
             $($field $value)*)
         };
     }
@@ -49270,7 +49270,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ComparisonConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ComparisonConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ComparisonConfiguration"
             $($field $value)*)
         };
     }
@@ -49303,7 +49303,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ComparisonFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ComparisonFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ComparisonFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -49343,7 +49343,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_Computation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.Computation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.Computation"
             $($field $value)*)
         };
     }
@@ -49423,7 +49423,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ConditionalFormattingColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingColor"
             $($field $value)*)
         };
     }
@@ -49454,7 +49454,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ConditionalFormattingCustomIconCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingCustomIconCondition"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingCustomIconCondition"
             $($field $value)*)
         };
     }
@@ -49491,7 +49491,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ConditionalFormattingCustomIconOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingCustomIconOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingCustomIconOptions"
             $($field $value)*)
         };
     }
@@ -49520,7 +49520,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ConditionalFormattingGradientColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingGradientColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingGradientColor"
             $($field $value)*)
         };
     }
@@ -49548,7 +49548,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ConditionalFormattingIcon {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingIcon"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingIcon"
             $($field $value)*)
         };
     }
@@ -49579,7 +49579,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ConditionalFormattingIconDisplayConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingIconDisplayConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingIconDisplayConfiguration"
             $($field $value)*)
         };
     }
@@ -49605,7 +49605,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ConditionalFormattingIconSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingIconSet"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingIconSet"
             $($field $value)*)
         };
     }
@@ -49635,7 +49635,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ConditionalFormattingSolidColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingSolidColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ConditionalFormattingSolidColor"
             $($field $value)*)
         };
     }
@@ -49661,7 +49661,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ContextMenuOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ContextMenuOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ContextMenuOption"
             $($field $value)*)
         };
     }
@@ -49687,7 +49687,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ContributionAnalysisDefault {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ContributionAnalysisDefault"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ContributionAnalysisDefault"
             $($field $value)*)
         };
     }
@@ -49721,7 +49721,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CurrencyDisplayFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CurrencyDisplayFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CurrencyDisplayFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -49780,7 +49780,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CustomActionFilterOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CustomActionFilterOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CustomActionFilterOperation"
             $($field $value)*)
         };
     }
@@ -49807,7 +49807,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CustomActionNavigationOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CustomActionNavigationOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CustomActionNavigationOperation"
             $($field $value)*)
         };
     }
@@ -49832,7 +49832,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CustomActionSetParametersOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CustomActionSetParametersOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CustomActionSetParametersOperation"
             $($field $value)*)
         };
     }
@@ -49856,7 +49856,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CustomActionURLOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CustomActionURLOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CustomActionURLOperation"
             $($field $value)*)
         };
     }
@@ -49885,7 +49885,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CustomColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CustomColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CustomColor"
             $($field $value)*)
         };
     }
@@ -49923,7 +49923,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CustomContentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CustomContentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CustomContentConfiguration"
             $($field $value)*)
         };
     }
@@ -49972,7 +49972,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CustomContentVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CustomContentVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CustomContentVisual"
             $($field $value)*)
         };
     }
@@ -50030,7 +50030,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CustomFilterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CustomFilterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CustomFilterConfiguration"
             $($field $value)*)
         };
     }
@@ -50078,7 +50078,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CustomFilterListConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CustomFilterListConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CustomFilterListConfiguration"
             $($field $value)*)
         };
     }
@@ -50117,7 +50117,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CustomNarrativeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CustomNarrativeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CustomNarrativeOptions"
             $($field $value)*)
         };
     }
@@ -50143,7 +50143,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CustomParameterValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CustomParameterValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CustomParameterValues"
             $($field $value)*)
         };
     }
@@ -50187,7 +50187,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_CustomValuesConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.CustomValuesConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.CustomValuesConfiguration"
             $($field $value)*)
         };
     }
@@ -50218,7 +50218,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DataBarsOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DataBarsOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DataBarsOptions"
             $($field $value)*)
         };
     }
@@ -50254,7 +50254,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DataColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DataColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DataColor"
             $($field $value)*)
         };
     }
@@ -50285,7 +50285,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DataFieldSeriesItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DataFieldSeriesItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DataFieldSeriesItem"
             $($field $value)*)
         };
     }
@@ -50333,7 +50333,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DataLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DataLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DataLabelOptions"
             $($field $value)*)
         };
     }
@@ -50416,7 +50416,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DataLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DataLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DataLabelType"
             $($field $value)*)
         };
     }
@@ -50467,7 +50467,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DataPathColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DataPathColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DataPathColor"
             $($field $value)*)
         };
     }
@@ -50502,7 +50502,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DataPathLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DataPathLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DataPathLabelType"
             $($field $value)*)
         };
     }
@@ -50540,7 +50540,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DataPathSort {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DataPathSort"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DataPathSort"
             $($field $value)*)
         };
     }
@@ -50567,7 +50567,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DataPathType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DataPathType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DataPathType"
             $($field $value)*)
         };
     }
@@ -50594,7 +50594,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DataPathValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DataPathValue"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DataPathValue"
             $($field $value)*)
         };
     }
@@ -50633,7 +50633,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DataSetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DataSetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DataSetConfiguration"
             $($field $value)*)
         };
     }
@@ -50671,7 +50671,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DataSetReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DataSetReference"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DataSetReference"
             $($field $value)*)
         };
     }
@@ -50698,7 +50698,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DataSetSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DataSetSchema"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DataSetSchema"
             $($field $value)*)
         };
     }
@@ -50723,7 +50723,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DateAxisOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DateAxisOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DateAxisOptions"
             $($field $value)*)
         };
     }
@@ -50752,7 +50752,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DateDimensionField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DateDimensionField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DateDimensionField"
             $($field $value)*)
         };
     }
@@ -50800,7 +50800,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DateMeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DateMeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DateMeasureField"
             $($field $value)*)
         };
     }
@@ -50841,7 +50841,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DateTimeDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DateTimeDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DateTimeDefaultValues"
             $($field $value)*)
         };
     }
@@ -50880,7 +50880,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DateTimeFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DateTimeFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DateTimeFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -50918,7 +50918,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DateTimeHierarchy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DateTimeHierarchy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DateTimeHierarchy"
             $($field $value)*)
         };
     }
@@ -50951,7 +50951,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DateTimeParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DateTimeParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DateTimeParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -51002,7 +51002,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DateTimePickerControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DateTimePickerControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DateTimePickerControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -51052,7 +51052,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DateTimeValueWhenUnsetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DateTimeValueWhenUnsetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DateTimeValueWhenUnsetConfiguration"
             $($field $value)*)
         };
     }
@@ -51084,7 +51084,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DecimalDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DecimalDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DecimalDefaultValues"
             $($field $value)*)
         };
     }
@@ -51119,7 +51119,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DecimalParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DecimalParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DecimalParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -51164,7 +51164,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DecimalPlacesConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DecimalPlacesConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DecimalPlacesConfiguration"
             $($field $value)*)
         };
     }
@@ -51188,7 +51188,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DecimalValueWhenUnsetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DecimalValueWhenUnsetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DecimalValueWhenUnsetConfiguration"
             $($field $value)*)
         };
     }
@@ -51221,7 +51221,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultDateTimePickerControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultDateTimePickerControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultDateTimePickerControlOptions"
             $($field $value)*)
         };
     }
@@ -51256,7 +51256,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultFilterControlConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultFilterControlConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultFilterControlConfiguration"
             $($field $value)*)
         };
     }
@@ -51289,7 +51289,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultFilterControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultFilterControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultFilterControlOptions"
             $($field $value)*)
         };
     }
@@ -51353,7 +51353,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultFilterDropDownControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultFilterDropDownControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultFilterDropDownControlOptions"
             $($field $value)*)
         };
     }
@@ -51395,7 +51395,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultFilterListControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultFilterListControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultFilterListControlOptions"
             $($field $value)*)
         };
     }
@@ -51429,7 +51429,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultFreeFormLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultFreeFormLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultFreeFormLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -51452,7 +51452,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultGridLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultGridLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultGridLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -51476,7 +51476,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultInteractiveLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultInteractiveLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultInteractiveLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -51506,7 +51506,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultNewSheetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultNewSheetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultNewSheetConfiguration"
             $($field $value)*)
         };
     }
@@ -51543,7 +51543,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultPaginatedLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultPaginatedLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultPaginatedLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -51569,7 +51569,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultRelativeDateTimeControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultRelativeDateTimeControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultRelativeDateTimeControlOptions"
             $($field $value)*)
         };
     }
@@ -51600,7 +51600,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultSectionBasedLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultSectionBasedLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultSectionBasedLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -51627,7 +51627,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultSliderControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultSliderControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultSliderControlOptions"
             $($field $value)*)
         };
     }
@@ -51668,7 +51668,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultTextAreaControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultTextAreaControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultTextAreaControlOptions"
             $($field $value)*)
         };
     }
@@ -51699,7 +51699,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DefaultTextFieldControlOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DefaultTextFieldControlOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DefaultTextFieldControlOptions"
             $($field $value)*)
         };
     }
@@ -51728,7 +51728,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DestinationParameterValueConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DestinationParameterValueConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DestinationParameterValueConfiguration"
             $($field $value)*)
         };
     }
@@ -51779,7 +51779,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DimensionField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DimensionField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DimensionField"
             $($field $value)*)
         };
     }
@@ -51816,7 +51816,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DonutCenterOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DonutCenterOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DonutCenterOptions"
             $($field $value)*)
         };
     }
@@ -51842,7 +51842,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DonutOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DonutOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DonutOptions"
             $($field $value)*)
         };
     }
@@ -51875,7 +51875,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DrillDownFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DrillDownFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DrillDownFilter"
             $($field $value)*)
         };
     }
@@ -51914,7 +51914,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DropDownControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DropDownControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DropDownControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -51953,7 +51953,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_DynamicDefaultValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.DynamicDefaultValue"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.DynamicDefaultValue"
             $($field $value)*)
         };
     }
@@ -51990,7 +51990,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_EmptyVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.EmptyVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.EmptyVisual"
             $($field $value)*)
         };
     }
@@ -52023,7 +52023,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_Entity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.Entity"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.Entity"
             $($field $value)*)
         };
     }
@@ -52047,7 +52047,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ExcludePeriodConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ExcludePeriodConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ExcludePeriodConfiguration"
             $($field $value)*)
         };
     }
@@ -52079,7 +52079,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ExplicitHierarchy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ExplicitHierarchy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ExplicitHierarchy"
             $($field $value)*)
         };
     }
@@ -52114,7 +52114,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FieldBasedTooltip {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FieldBasedTooltip"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FieldBasedTooltip"
             $($field $value)*)
         };
     }
@@ -52152,7 +52152,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FieldLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FieldLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FieldLabelType"
             $($field $value)*)
         };
     }
@@ -52185,7 +52185,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FieldSeriesItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FieldSeriesItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FieldSeriesItem"
             $($field $value)*)
         };
     }
@@ -52219,7 +52219,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FieldSort {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FieldSort"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FieldSort"
             $($field $value)*)
         };
     }
@@ -52247,7 +52247,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FieldSortOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FieldSortOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FieldSortOptions"
             $($field $value)*)
         };
     }
@@ -52281,7 +52281,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FieldTooltipItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FieldTooltipItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FieldTooltipItem"
             $($field $value)*)
         };
     }
@@ -52320,7 +52320,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilledMapAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilledMapAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilledMapAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -52348,7 +52348,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilledMapConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilledMapConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilledMapConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -52371,7 +52371,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilledMapConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilledMapConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilledMapConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -52400,7 +52400,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilledMapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilledMapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilledMapConfiguration"
             $($field $value)*)
         };
     }
@@ -52458,7 +52458,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilledMapFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilledMapFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilledMapFieldWells"
             $($field $value)*)
         };
     }
@@ -52484,7 +52484,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilledMapShapeConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilledMapShapeConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilledMapShapeConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -52510,7 +52510,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilledMapSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilledMapSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilledMapSortConfiguration"
             $($field $value)*)
         };
     }
@@ -52542,7 +52542,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilledMapVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilledMapVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilledMapVisual"
             $($field $value)*)
         };
     }
@@ -52611,7 +52611,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_Filter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.Filter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.Filter"
             $($field $value)*)
         };
     }
@@ -52685,7 +52685,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterControl"
             $($field $value)*)
         };
     }
@@ -52748,7 +52748,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterCrossSheetControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterCrossSheetControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterCrossSheetControl"
             $($field $value)*)
         };
     }
@@ -52786,7 +52786,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterDateTimePickerControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterDateTimePickerControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterDateTimePickerControl"
             $($field $value)*)
         };
     }
@@ -52839,7 +52839,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterDropDownControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterDropDownControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterDropDownControl"
             $($field $value)*)
         };
     }
@@ -52901,7 +52901,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterGroup"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterGroup"
             $($field $value)*)
         };
     }
@@ -52942,7 +52942,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterListConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterListConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterListConfiguration"
             $($field $value)*)
         };
     }
@@ -52989,7 +52989,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterListControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterListControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterListControl"
             $($field $value)*)
         };
     }
@@ -53043,7 +53043,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterOperationSelectedFieldsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterOperationSelectedFieldsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterOperationSelectedFieldsConfiguration"
             $($field $value)*)
         };
     }
@@ -53081,7 +53081,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterOperationTargetVisualsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterOperationTargetVisualsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterOperationTargetVisualsConfiguration"
             $($field $value)*)
         };
     }
@@ -53110,7 +53110,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterRelativeDateTimeControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterRelativeDateTimeControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterRelativeDateTimeControl"
             $($field $value)*)
         };
     }
@@ -53154,7 +53154,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterScopeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterScopeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterScopeConfiguration"
             $($field $value)*)
         };
     }
@@ -53185,7 +53185,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterSelectableValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterSelectableValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterSelectableValues"
             $($field $value)*)
         };
     }
@@ -53214,7 +53214,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterSliderControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterSliderControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterSliderControl"
             $($field $value)*)
         };
     }
@@ -53270,7 +53270,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterTextAreaControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterTextAreaControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterTextAreaControl"
             $($field $value)*)
         };
     }
@@ -53316,7 +53316,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FilterTextFieldControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FilterTextFieldControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FilterTextFieldControl"
             $($field $value)*)
         };
     }
@@ -53358,7 +53358,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FontConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FontConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FontConfiguration"
             $($field $value)*)
         };
     }
@@ -53414,7 +53414,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FontSize {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FontSize"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FontSize"
             $($field $value)*)
         };
     }
@@ -53445,7 +53445,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FontWeight {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FontWeight"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FontWeight"
             $($field $value)*)
         };
     }
@@ -53477,7 +53477,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ForecastComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ForecastComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ForecastComputation"
             $($field $value)*)
         };
     }
@@ -53552,7 +53552,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ForecastConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ForecastConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ForecastConfiguration"
             $($field $value)*)
         };
     }
@@ -53584,7 +53584,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ForecastScenario {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ForecastScenario"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ForecastScenario"
             $($field $value)*)
         };
     }
@@ -53617,7 +53617,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FormatConfiguration"
             $($field $value)*)
         };
     }
@@ -53654,7 +53654,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FreeFormLayoutCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FreeFormLayoutCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FreeFormLayoutCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -53680,7 +53680,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FreeFormLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FreeFormLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FreeFormLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -53720,7 +53720,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FreeFormLayoutElement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FreeFormLayoutElement"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FreeFormLayoutElement"
             $($field $value)*)
         };
     }
@@ -53800,7 +53800,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FreeFormLayoutElementBackgroundStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FreeFormLayoutElementBackgroundStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FreeFormLayoutElementBackgroundStyle"
             $($field $value)*)
         };
     }
@@ -53829,7 +53829,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FreeFormLayoutElementBorderStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FreeFormLayoutElementBorderStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FreeFormLayoutElementBorderStyle"
             $($field $value)*)
         };
     }
@@ -53857,7 +53857,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FreeFormLayoutScreenCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FreeFormLayoutScreenCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FreeFormLayoutScreenCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -53880,7 +53880,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FreeFormSectionLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FreeFormSectionLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FreeFormSectionLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -53904,7 +53904,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FunnelChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FunnelChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FunnelChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -53939,7 +53939,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FunnelChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FunnelChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FunnelChartConfiguration"
             $($field $value)*)
         };
     }
@@ -54012,7 +54012,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FunnelChartDataLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FunnelChartDataLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FunnelChartDataLabelOptions"
             $($field $value)*)
         };
     }
@@ -54073,7 +54073,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FunnelChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FunnelChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FunnelChartFieldWells"
             $($field $value)*)
         };
     }
@@ -54099,7 +54099,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FunnelChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FunnelChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FunnelChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -54136,7 +54136,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_FunnelChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.FunnelChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.FunnelChartVisual"
             $($field $value)*)
         };
     }
@@ -54192,7 +54192,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GaugeChartArcConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartArcConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartArcConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -54218,7 +54218,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GaugeChartColorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartColorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartColorConfiguration"
             $($field $value)*)
         };
     }
@@ -54249,7 +54249,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GaugeChartConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -54275,7 +54275,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GaugeChartConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -54309,7 +54309,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GaugeChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartConfiguration"
             $($field $value)*)
         };
     }
@@ -54371,7 +54371,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GaugeChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartFieldWells"
             $($field $value)*)
         };
     }
@@ -54403,7 +54403,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GaugeChartOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartOptions"
             $($field $value)*)
         };
     }
@@ -54450,7 +54450,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GaugeChartPrimaryValueConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartPrimaryValueConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartPrimaryValueConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -54484,7 +54484,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GaugeChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GaugeChartVisual"
             $($field $value)*)
         };
     }
@@ -54543,7 +54543,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GeospatialCoordinateBounds {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GeospatialCoordinateBounds"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GeospatialCoordinateBounds"
             $($field $value)*)
         };
     }
@@ -54578,7 +54578,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GeospatialHeatmapColorScale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GeospatialHeatmapColorScale"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GeospatialHeatmapColorScale"
             $($field $value)*)
         };
     }
@@ -54600,7 +54600,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GeospatialHeatmapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GeospatialHeatmapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GeospatialHeatmapConfiguration"
             $($field $value)*)
         };
     }
@@ -54625,7 +54625,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GeospatialHeatmapDataColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GeospatialHeatmapDataColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GeospatialHeatmapDataColor"
             $($field $value)*)
         };
     }
@@ -54650,7 +54650,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GeospatialMapAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GeospatialMapAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GeospatialMapAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -54687,7 +54687,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GeospatialMapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GeospatialMapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GeospatialMapConfiguration"
             $($field $value)*)
         };
     }
@@ -54745,7 +54745,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GeospatialMapFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GeospatialMapFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GeospatialMapFieldWells"
             $($field $value)*)
         };
     }
@@ -54770,7 +54770,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GeospatialMapStyleOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GeospatialMapStyleOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GeospatialMapStyleOptions"
             $($field $value)*)
         };
     }
@@ -54801,7 +54801,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GeospatialMapVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GeospatialMapVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GeospatialMapVisual"
             $($field $value)*)
         };
     }
@@ -54859,7 +54859,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GeospatialPointStyleOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GeospatialPointStyleOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GeospatialPointStyleOptions"
             $($field $value)*)
         };
     }
@@ -54897,7 +54897,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GeospatialWindowOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GeospatialWindowOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GeospatialWindowOptions"
             $($field $value)*)
         };
     }
@@ -54926,7 +54926,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GlobalTableBorderOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GlobalTableBorderOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GlobalTableBorderOptions"
             $($field $value)*)
         };
     }
@@ -54957,7 +54957,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GradientColor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GradientColor"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GradientColor"
             $($field $value)*)
         };
     }
@@ -54981,7 +54981,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GradientStop {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GradientStop"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GradientStop"
             $($field $value)*)
         };
     }
@@ -55013,7 +55013,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GridLayoutCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GridLayoutCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GridLayoutCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -55039,7 +55039,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GridLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GridLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GridLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -55073,7 +55073,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GridLayoutElement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GridLayoutElement"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GridLayoutElement"
             $($field $value)*)
         };
     }
@@ -55121,7 +55121,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GridLayoutScreenCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GridLayoutScreenCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GridLayoutScreenCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -55154,7 +55154,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_GrowthRateComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.GrowthRateComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.GrowthRateComputation"
             $($field $value)*)
         };
     }
@@ -55194,7 +55194,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_HeaderFooterSectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.HeaderFooterSectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.HeaderFooterSectionConfiguration"
             $($field $value)*)
         };
     }
@@ -55226,7 +55226,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_HeatMapAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.HeatMapAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.HeatMapAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -55265,7 +55265,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_HeatMapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.HeatMapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.HeatMapConfiguration"
             $($field $value)*)
         };
     }
@@ -55335,7 +55335,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_HeatMapFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.HeatMapFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.HeatMapFieldWells"
             $($field $value)*)
         };
     }
@@ -55363,7 +55363,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_HeatMapSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.HeatMapSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.HeatMapSortConfiguration"
             $($field $value)*)
         };
     }
@@ -55412,7 +55412,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_HeatMapVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.HeatMapVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.HeatMapVisual"
             $($field $value)*)
         };
     }
@@ -55468,7 +55468,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_HistogramAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.HistogramAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.HistogramAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -55493,7 +55493,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_HistogramBinOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.HistogramBinOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.HistogramBinOptions"
             $($field $value)*)
         };
     }
@@ -55544,7 +55544,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_HistogramConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.HistogramConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.HistogramConfiguration"
             $($field $value)*)
         };
     }
@@ -55617,7 +55617,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_HistogramFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.HistogramFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.HistogramFieldWells"
             $($field $value)*)
         };
     }
@@ -55647,7 +55647,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_HistogramVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.HistogramVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.HistogramVisual"
             $($field $value)*)
         };
     }
@@ -55701,7 +55701,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ImageCustomAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ImageCustomAction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ImageCustomAction"
             $($field $value)*)
         };
     }
@@ -55741,7 +55741,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ImageCustomActionOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ImageCustomActionOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ImageCustomActionOperation"
             $($field $value)*)
         };
     }
@@ -55778,7 +55778,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ImageInteractionOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ImageInteractionOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ImageInteractionOptions"
             $($field $value)*)
         };
     }
@@ -55803,7 +55803,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ImageMenuOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ImageMenuOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ImageMenuOption"
             $($field $value)*)
         };
     }
@@ -55828,7 +55828,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_InnerFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.InnerFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.InnerFilter"
             $($field $value)*)
         };
     }
@@ -55855,7 +55855,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_InsightConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.InsightConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.InsightConfiguration"
             $($field $value)*)
         };
     }
@@ -55898,7 +55898,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_InsightVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.InsightVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.InsightVisual"
             $($field $value)*)
         };
     }
@@ -55953,7 +55953,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_IntegerDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.IntegerDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.IntegerDefaultValues"
             $($field $value)*)
         };
     }
@@ -55988,7 +55988,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_IntegerParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.IntegerParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.IntegerParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -56034,7 +56034,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_IntegerValueWhenUnsetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.IntegerValueWhenUnsetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.IntegerValueWhenUnsetConfiguration"
             $($field $value)*)
         };
     }
@@ -56066,7 +56066,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ItemsLimitConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ItemsLimitConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ItemsLimitConfiguration"
             $($field $value)*)
         };
     }
@@ -56098,7 +56098,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_KPIActualValueConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.KPIActualValueConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.KPIActualValueConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -56127,7 +56127,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_KPIComparisonValueConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.KPIComparisonValueConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.KPIComparisonValueConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -56155,7 +56155,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_KPIConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.KPIConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.KPIConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -56183,7 +56183,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_KPIConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.KPIConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.KPIConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -56229,7 +56229,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_KPIConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.KPIConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.KPIConfiguration"
             $($field $value)*)
         };
     }
@@ -56274,7 +56274,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_KPIFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.KPIFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.KPIFieldWells"
             $($field $value)*)
         };
     }
@@ -56316,7 +56316,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_KPIOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.KPIOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.KPIOptions"
             $($field $value)*)
         };
     }
@@ -56390,7 +56390,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_KPIPrimaryValueConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.KPIPrimaryValueConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.KPIPrimaryValueConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -56418,7 +56418,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_KPIProgressBarConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.KPIProgressBarConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.KPIProgressBarConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -56443,7 +56443,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_KPISortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.KPISortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.KPISortConfiguration"
             $($field $value)*)
         };
     }
@@ -56471,7 +56471,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_KPISparklineOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.KPISparklineOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.KPISparklineOptions"
             $($field $value)*)
         };
     }
@@ -56516,7 +56516,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_KPIVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.KPIVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.KPIVisual"
             $($field $value)*)
         };
     }
@@ -56578,7 +56578,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_KPIVisualLayoutOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.KPIVisualLayoutOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.KPIVisualLayoutOptions"
             $($field $value)*)
         };
     }
@@ -56603,7 +56603,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_KPIVisualStandardLayout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.KPIVisualStandardLayout"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.KPIVisualStandardLayout"
             $($field $value)*)
         };
     }
@@ -56628,7 +56628,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LabelOptions"
             $($field $value)*)
         };
     }
@@ -56665,7 +56665,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_Layout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.Layout"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.Layout"
             $($field $value)*)
         };
     }
@@ -56690,7 +56690,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -56732,7 +56732,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LegendOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LegendOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LegendOptions"
             $($field $value)*)
         };
     }
@@ -56781,7 +56781,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LineChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LineChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LineChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -56838,7 +56838,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LineChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LineChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LineChartConfiguration"
             $($field $value)*)
         };
     }
@@ -56976,7 +56976,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LineChartDefaultSeriesSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LineChartDefaultSeriesSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LineChartDefaultSeriesSettings"
             $($field $value)*)
         };
     }
@@ -57013,7 +57013,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LineChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LineChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LineChartFieldWells"
             $($field $value)*)
         };
     }
@@ -57041,7 +57041,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LineChartLineStyleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LineChartLineStyleSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LineChartLineStyleSettings"
             $($field $value)*)
         };
     }
@@ -57087,7 +57087,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LineChartMarkerStyleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LineChartMarkerStyleSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LineChartMarkerStyleSettings"
             $($field $value)*)
         };
     }
@@ -57131,7 +57131,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LineChartSeriesSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LineChartSeriesSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LineChartSeriesSettings"
             $($field $value)*)
         };
     }
@@ -57166,7 +57166,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LineChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LineChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LineChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -57221,7 +57221,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LineChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LineChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LineChartVisual"
             $($field $value)*)
         };
     }
@@ -57278,7 +57278,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LineSeriesAxisDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LineSeriesAxisDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LineSeriesAxisDisplayOptions"
             $($field $value)*)
         };
     }
@@ -57312,7 +57312,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ListControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ListControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ListControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -57355,7 +57355,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ListControlSearchOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ListControlSearchOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ListControlSearchOptions"
             $($field $value)*)
         };
     }
@@ -57380,7 +57380,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ListControlSelectAllOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ListControlSelectAllOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ListControlSelectAllOptions"
             $($field $value)*)
         };
     }
@@ -57405,7 +57405,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LoadingAnimation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LoadingAnimation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LoadingAnimation"
             $($field $value)*)
         };
     }
@@ -57430,7 +57430,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LocalNavigationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LocalNavigationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LocalNavigationConfiguration"
             $($field $value)*)
         };
     }
@@ -57454,7 +57454,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_LongFormatText {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.LongFormatText"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.LongFormatText"
             $($field $value)*)
         };
     }
@@ -57486,7 +57486,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_MappedDataSetParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.MappedDataSetParameter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.MappedDataSetParameter"
             $($field $value)*)
         };
     }
@@ -57513,7 +57513,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_MaximumLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.MaximumLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.MaximumLabelType"
             $($field $value)*)
         };
     }
@@ -57542,7 +57542,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_MaximumMinimumComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.MaximumMinimumComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.MaximumMinimumComputation"
             $($field $value)*)
         };
     }
@@ -57581,7 +57581,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_MeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.MeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.MeasureField"
             $($field $value)*)
         };
     }
@@ -57628,7 +57628,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_MetricComparisonComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.MetricComparisonComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.MetricComparisonComputation"
             $($field $value)*)
         };
     }
@@ -57669,7 +57669,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_MinimumLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.MinimumLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.MinimumLabelType"
             $($field $value)*)
         };
     }
@@ -57694,7 +57694,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_MissingDataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.MissingDataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.MissingDataConfiguration"
             $($field $value)*)
         };
     }
@@ -57719,7 +57719,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NegativeValueConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NegativeValueConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NegativeValueConfiguration"
             $($field $value)*)
         };
     }
@@ -57745,7 +57745,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NestedFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NestedFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NestedFilter"
             $($field $value)*)
         };
     }
@@ -57780,7 +57780,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NullValueFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NullValueFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NullValueFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -57809,7 +57809,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NumberDisplayFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NumberDisplayFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NumberDisplayFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -57864,7 +57864,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NumberFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NumberFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NumberFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -57890,7 +57890,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NumericAxisOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NumericAxisOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NumericAxisOptions"
             $($field $value)*)
         };
     }
@@ -57916,7 +57916,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NumericEqualityDrillDownFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NumericEqualityDrillDownFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NumericEqualityDrillDownFilter"
             $($field $value)*)
         };
     }
@@ -57951,7 +57951,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NumericEqualityFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NumericEqualityFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NumericEqualityFilter"
             $($field $value)*)
         };
     }
@@ -58016,7 +58016,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NumericFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NumericFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NumericFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -58062,7 +58062,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NumericRangeFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NumericRangeFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NumericRangeFilter"
             $($field $value)*)
         };
     }
@@ -58136,7 +58136,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NumericRangeFilterValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NumericRangeFilterValue"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NumericRangeFilterValue"
             $($field $value)*)
         };
     }
@@ -58168,7 +58168,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NumericSeparatorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NumericSeparatorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NumericSeparatorConfiguration"
             $($field $value)*)
         };
     }
@@ -58200,7 +58200,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NumericalAggregationFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NumericalAggregationFunction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NumericalAggregationFunction"
             $($field $value)*)
         };
     }
@@ -58234,7 +58234,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NumericalDimensionField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NumericalDimensionField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NumericalDimensionField"
             $($field $value)*)
         };
     }
@@ -58276,7 +58276,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_NumericalMeasureField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.NumericalMeasureField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.NumericalMeasureField"
             $($field $value)*)
         };
     }
@@ -58316,7 +58316,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PaginationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PaginationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PaginationConfiguration"
             $($field $value)*)
         };
     }
@@ -58351,7 +58351,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PanelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PanelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PanelConfiguration"
             $($field $value)*)
         };
     }
@@ -58423,7 +58423,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PanelTitleOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PanelTitleOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PanelTitleOptions"
             $($field $value)*)
         };
     }
@@ -58465,7 +58465,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ParameterControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ParameterControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ParameterControl"
             $($field $value)*)
         };
     }
@@ -58517,7 +58517,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ParameterDateTimePickerControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ParameterDateTimePickerControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ParameterDateTimePickerControl"
             $($field $value)*)
         };
     }
@@ -58557,7 +58557,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -58607,7 +58607,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ParameterDropDownControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ParameterDropDownControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ParameterDropDownControl"
             $($field $value)*)
         };
     }
@@ -58671,7 +58671,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ParameterListControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ParameterListControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ParameterListControl"
             $($field $value)*)
         };
     }
@@ -58724,7 +58724,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ParameterSelectableValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ParameterSelectableValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ParameterSelectableValues"
             $($field $value)*)
         };
     }
@@ -58758,7 +58758,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ParameterSliderControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ParameterSliderControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ParameterSliderControl"
             $($field $value)*)
         };
     }
@@ -58811,7 +58811,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ParameterTextAreaControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ParameterTextAreaControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ParameterTextAreaControl"
             $($field $value)*)
         };
     }
@@ -58857,7 +58857,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ParameterTextFieldControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ParameterTextFieldControl"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ParameterTextFieldControl"
             $($field $value)*)
         };
     }
@@ -58895,7 +58895,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PercentVisibleRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PercentVisibleRange"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PercentVisibleRange"
             $($field $value)*)
         };
     }
@@ -58925,7 +58925,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PercentageDisplayFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PercentageDisplayFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PercentageDisplayFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -58974,7 +58974,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PercentileAggregation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PercentileAggregation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PercentileAggregation"
             $($field $value)*)
         };
     }
@@ -59002,7 +59002,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PeriodOverPeriodComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PeriodOverPeriodComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PeriodOverPeriodComputation"
             $($field $value)*)
         };
     }
@@ -59038,7 +59038,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PeriodToDateComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PeriodToDateComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PeriodToDateComputation"
             $($field $value)*)
         };
     }
@@ -59078,7 +59078,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PieChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PieChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PieChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -59123,7 +59123,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PieChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PieChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PieChartConfiguration"
             $($field $value)*)
         };
     }
@@ -59211,7 +59211,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PieChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PieChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PieChartFieldWells"
             $($field $value)*)
         };
     }
@@ -59239,7 +59239,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PieChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PieChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PieChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -59288,7 +59288,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PieChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PieChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PieChartVisual"
             $($field $value)*)
         };
     }
@@ -59345,7 +59345,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotFieldSortOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotFieldSortOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotFieldSortOptions"
             $($field $value)*)
         };
     }
@@ -59374,7 +59374,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -59408,7 +59408,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableCellConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableCellConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableCellConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -59443,7 +59443,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -59468,7 +59468,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -59490,7 +59490,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableConditionalFormattingScope {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableConditionalFormattingScope"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableConditionalFormattingScope"
             $($field $value)*)
         };
     }
@@ -59518,7 +59518,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableConfiguration"
             $($field $value)*)
         };
     }
@@ -59580,7 +59580,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableDataPathOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableDataPathOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableDataPathOption"
             $($field $value)*)
         };
     }
@@ -59607,7 +59607,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableFieldCollapseStateOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableFieldCollapseStateOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableFieldCollapseStateOption"
             $($field $value)*)
         };
     }
@@ -59634,7 +59634,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableFieldCollapseStateTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableFieldCollapseStateTarget"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableFieldCollapseStateTarget"
             $($field $value)*)
         };
     }
@@ -59667,7 +59667,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableFieldOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableFieldOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableFieldOption"
             $($field $value)*)
         };
     }
@@ -59704,7 +59704,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableFieldOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableFieldOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableFieldOptions"
             $($field $value)*)
         };
     }
@@ -59741,7 +59741,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableFieldSubtotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableFieldSubtotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableFieldSubtotalOptions"
             $($field $value)*)
         };
     }
@@ -59766,7 +59766,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableFieldWells"
             $($field $value)*)
         };
     }
@@ -59803,7 +59803,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableOptions"
             $($field $value)*)
         };
     }
@@ -59901,7 +59901,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTablePaginatedReportOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTablePaginatedReportOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTablePaginatedReportOptions"
             $($field $value)*)
         };
     }
@@ -59933,7 +59933,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableRowsLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableRowsLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableRowsLabelOptions"
             $($field $value)*)
         };
     }
@@ -59966,7 +59966,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableSortBy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableSortBy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableSortBy"
             $($field $value)*)
         };
     }
@@ -59997,7 +59997,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableSortConfiguration"
             $($field $value)*)
         };
     }
@@ -60025,7 +60025,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableTotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableTotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableTotalOptions"
             $($field $value)*)
         };
     }
@@ -60074,7 +60074,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTableVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTableVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTableVisual"
             $($field $value)*)
         };
     }
@@ -60137,7 +60137,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PivotTotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PivotTotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PivotTotalOptions"
             $($field $value)*)
         };
     }
@@ -60209,7 +60209,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PluginVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PluginVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PluginVisual"
             $($field $value)*)
         };
     }
@@ -60259,7 +60259,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PluginVisualConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PluginVisualConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PluginVisualConfiguration"
             $($field $value)*)
         };
     }
@@ -60299,7 +60299,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PluginVisualFieldWell {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PluginVisualFieldWell"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PluginVisualFieldWell"
             $($field $value)*)
         };
     }
@@ -60342,7 +60342,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PluginVisualItemsLimitConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PluginVisualItemsLimitConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PluginVisualItemsLimitConfiguration"
             $($field $value)*)
         };
     }
@@ -60367,7 +60367,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PluginVisualOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PluginVisualOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PluginVisualOptions"
             $($field $value)*)
         };
     }
@@ -60393,7 +60393,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PluginVisualProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PluginVisualProperty"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PluginVisualProperty"
             $($field $value)*)
         };
     }
@@ -60418,7 +60418,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PluginVisualSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PluginVisualSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PluginVisualSortConfiguration"
             $($field $value)*)
         };
     }
@@ -60444,7 +60444,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PluginVisualTableQuerySort {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PluginVisualTableQuerySort"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PluginVisualTableQuerySort"
             $($field $value)*)
         };
     }
@@ -60477,7 +60477,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_PredefinedHierarchy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.PredefinedHierarchy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.PredefinedHierarchy"
             $($field $value)*)
         };
     }
@@ -60510,7 +60510,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ProgressBarOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ProgressBarOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ProgressBarOptions"
             $($field $value)*)
         };
     }
@@ -60535,7 +60535,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_QueryExecutionOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.QueryExecutionOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.QueryExecutionOptions"
             $($field $value)*)
         };
     }
@@ -60562,7 +60562,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_RadarChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.RadarChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.RadarChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -60593,7 +60593,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_RadarChartAreaStyleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.RadarChartAreaStyleSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.RadarChartAreaStyleSettings"
             $($field $value)*)
         };
     }
@@ -60633,7 +60633,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_RadarChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.RadarChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.RadarChartConfiguration"
             $($field $value)*)
         };
     }
@@ -60742,7 +60742,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_RadarChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.RadarChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.RadarChartFieldWells"
             $($field $value)*)
         };
     }
@@ -60767,7 +60767,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_RadarChartSeriesSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.RadarChartSeriesSettings"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.RadarChartSeriesSettings"
             $($field $value)*)
         };
     }
@@ -60795,7 +60795,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_RadarChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.RadarChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.RadarChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -60844,7 +60844,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_RadarChartVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.RadarChartVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.RadarChartVisual"
             $($field $value)*)
         };
     }
@@ -60900,7 +60900,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_RangeEndsLabelType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.RangeEndsLabelType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.RangeEndsLabelType"
             $($field $value)*)
         };
     }
@@ -60928,7 +60928,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ReferenceLine {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLine"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLine"
             $($field $value)*)
         };
     }
@@ -60966,7 +60966,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ReferenceLineCustomLabelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLineCustomLabelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLineCustomLabelConfiguration"
             $($field $value)*)
         };
     }
@@ -60992,7 +60992,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ReferenceLineDataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLineDataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLineDataConfiguration"
             $($field $value)*)
         };
     }
@@ -61037,7 +61037,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ReferenceLineDynamicDataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLineDynamicDataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLineDynamicDataConfiguration"
             $($field $value)*)
         };
     }
@@ -61075,7 +61075,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ReferenceLineLabelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLineLabelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLineLabelConfiguration"
             $($field $value)*)
         };
     }
@@ -61130,7 +61130,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ReferenceLineStaticDataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLineStaticDataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLineStaticDataConfiguration"
             $($field $value)*)
         };
     }
@@ -61154,7 +61154,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ReferenceLineStyleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLineStyleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLineStyleConfiguration"
             $($field $value)*)
         };
     }
@@ -61183,7 +61183,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ReferenceLineValueLabelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLineValueLabelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ReferenceLineValueLabelConfiguration"
             $($field $value)*)
         };
     }
@@ -61216,7 +61216,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_RelativeDateTimeControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.RelativeDateTimeControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.RelativeDateTimeControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -61263,7 +61263,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_RelativeDatesFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.RelativeDatesFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.RelativeDatesFilter"
             $($field $value)*)
         };
     }
@@ -61337,7 +61337,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ResourcePermission {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ResourcePermission"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ResourcePermission"
             $($field $value)*)
         };
     }
@@ -61365,7 +61365,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_RollingDateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.RollingDateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.RollingDateConfiguration"
             $($field $value)*)
         };
     }
@@ -61396,7 +61396,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_RowAlternateColorOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.RowAlternateColorOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.RowAlternateColorOptions"
             $($field $value)*)
         };
     }
@@ -61431,7 +61431,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SameSheetTargetVisualConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SameSheetTargetVisualConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SameSheetTargetVisualConfiguration"
             $($field $value)*)
         };
     }
@@ -61464,7 +61464,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SankeyDiagramAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SankeyDiagramAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SankeyDiagramAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -61498,7 +61498,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SankeyDiagramChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SankeyDiagramChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SankeyDiagramChartConfiguration"
             $($field $value)*)
         };
     }
@@ -61541,7 +61541,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SankeyDiagramFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SankeyDiagramFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SankeyDiagramFieldWells"
             $($field $value)*)
         };
     }
@@ -61568,7 +61568,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SankeyDiagramSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SankeyDiagramSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SankeyDiagramSortConfiguration"
             $($field $value)*)
         };
     }
@@ -61610,7 +61610,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SankeyDiagramVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SankeyDiagramVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SankeyDiagramVisual"
             $($field $value)*)
         };
     }
@@ -61664,7 +61664,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ScatterPlotCategoricallyAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ScatterPlotCategoricallyAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ScatterPlotCategoricallyAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -61711,7 +61711,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ScatterPlotConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ScatterPlotConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ScatterPlotConfiguration"
             $($field $value)*)
         };
     }
@@ -61795,7 +61795,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ScatterPlotFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ScatterPlotFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ScatterPlotFieldWells"
             $($field $value)*)
         };
     }
@@ -61826,7 +61826,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ScatterPlotSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ScatterPlotSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ScatterPlotSortConfiguration"
             $($field $value)*)
         };
     }
@@ -61855,7 +61855,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ScatterPlotUnaggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ScatterPlotUnaggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ScatterPlotUnaggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -61898,7 +61898,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ScatterPlotVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ScatterPlotVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ScatterPlotVisual"
             $($field $value)*)
         };
     }
@@ -61955,7 +61955,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ScrollBarOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ScrollBarOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ScrollBarOptions"
             $($field $value)*)
         };
     }
@@ -61986,7 +61986,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SecondaryValueOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SecondaryValueOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SecondaryValueOptions"
             $($field $value)*)
         };
     }
@@ -62011,7 +62011,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SectionAfterPageBreak {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SectionAfterPageBreak"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SectionAfterPageBreak"
             $($field $value)*)
         };
     }
@@ -62033,7 +62033,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SectionBasedLayoutCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SectionBasedLayoutCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SectionBasedLayoutCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -62061,7 +62061,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SectionBasedLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SectionBasedLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SectionBasedLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -62098,7 +62098,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SectionBasedLayoutPaperCanvasSizeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SectionBasedLayoutPaperCanvasSizeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SectionBasedLayoutPaperCanvasSizeOptions"
             $($field $value)*)
         };
     }
@@ -62135,7 +62135,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SectionLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SectionLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SectionLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -62158,7 +62158,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SectionPageBreakConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SectionPageBreakConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SectionPageBreakConfiguration"
             $($field $value)*)
         };
     }
@@ -62181,7 +62181,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SectionStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SectionStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SectionStyle"
             $($field $value)*)
         };
     }
@@ -62209,7 +62209,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SelectedSheetsFilterScopeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SelectedSheetsFilterScopeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SelectedSheetsFilterScopeConfiguration"
             $($field $value)*)
         };
     }
@@ -62235,7 +62235,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SeriesItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SeriesItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SeriesItem"
             $($field $value)*)
         };
     }
@@ -62267,7 +62267,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SetParameterValueConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SetParameterValueConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SetParameterValueConfiguration"
             $($field $value)*)
         };
     }
@@ -62294,7 +62294,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ShapeConditionalFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ShapeConditionalFormat"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ShapeConditionalFormat"
             $($field $value)*)
         };
     }
@@ -62318,7 +62318,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_Sheet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.Sheet"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.Sheet"
             $($field $value)*)
         };
     }
@@ -62347,7 +62347,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SheetControlInfoIconLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SheetControlInfoIconLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SheetControlInfoIconLabelOptions"
             $($field $value)*)
         };
     }
@@ -62378,7 +62378,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SheetControlLayout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SheetControlLayout"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SheetControlLayout"
             $($field $value)*)
         };
     }
@@ -62401,7 +62401,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SheetControlLayoutConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SheetControlLayoutConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SheetControlLayoutConfiguration"
             $($field $value)*)
         };
     }
@@ -62437,7 +62437,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SheetDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SheetDefinition"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SheetDefinition"
             $($field $value)*)
         };
     }
@@ -62517,7 +62517,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SheetElementConfigurationOverrides {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SheetElementConfigurationOverrides"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SheetElementConfigurationOverrides"
             $($field $value)*)
         };
     }
@@ -62543,7 +62543,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SheetElementRenderingRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SheetElementRenderingRule"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SheetElementRenderingRule"
             $($field $value)*)
         };
     }
@@ -62576,7 +62576,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SheetImage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SheetImage"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SheetImage"
             $($field $value)*)
         };
     }
@@ -62633,7 +62633,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SheetImageScalingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SheetImageScalingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SheetImageScalingConfiguration"
             $($field $value)*)
         };
     }
@@ -62658,7 +62658,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SheetImageSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SheetImageSource"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SheetImageSource"
             $($field $value)*)
         };
     }
@@ -62683,7 +62683,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SheetImageStaticFileSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SheetImageStaticFileSource"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SheetImageStaticFileSource"
             $($field $value)*)
         };
     }
@@ -62707,7 +62707,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SheetImageTooltipConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SheetImageTooltipConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SheetImageTooltipConfiguration"
             $($field $value)*)
         };
     }
@@ -62738,7 +62738,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SheetImageTooltipText {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SheetImageTooltipText"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SheetImageTooltipText"
             $($field $value)*)
         };
     }
@@ -62764,7 +62764,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SheetTextBox {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SheetTextBox"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SheetTextBox"
             $($field $value)*)
         };
     }
@@ -62795,7 +62795,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SheetVisualScopingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SheetVisualScopingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SheetVisualScopingConfiguration"
             $($field $value)*)
         };
     }
@@ -62829,7 +62829,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ShortFormatText {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ShortFormatText"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ShortFormatText"
             $($field $value)*)
         };
     }
@@ -62860,7 +62860,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SimpleClusterMarker {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SimpleClusterMarker"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SimpleClusterMarker"
             $($field $value)*)
         };
     }
@@ -62882,7 +62882,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SingleAxisOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SingleAxisOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SingleAxisOptions"
             $($field $value)*)
         };
     }
@@ -62908,7 +62908,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SliderControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SliderControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SliderControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -62940,7 +62940,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SmallMultiplesAxisProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SmallMultiplesAxisProperties"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SmallMultiplesAxisProperties"
             $($field $value)*)
         };
     }
@@ -62972,7 +62972,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SmallMultiplesOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SmallMultiplesOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SmallMultiplesOptions"
             $($field $value)*)
         };
     }
@@ -63018,7 +63018,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_Spacing {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.Spacing"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.Spacing"
             $($field $value)*)
         };
     }
@@ -63050,7 +63050,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_StringDefaultValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.StringDefaultValues"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.StringDefaultValues"
             $($field $value)*)
         };
     }
@@ -63082,7 +63082,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_StringFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.StringFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.StringFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -63117,7 +63117,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_StringParameterDeclaration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.StringParameterDeclaration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.StringParameterDeclaration"
             $($field $value)*)
         };
     }
@@ -63163,7 +63163,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_StringValueWhenUnsetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.StringValueWhenUnsetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.StringValueWhenUnsetConfiguration"
             $($field $value)*)
         };
     }
@@ -63201,7 +63201,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_SubtotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.SubtotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.SubtotalOptions"
             $($field $value)*)
         };
     }
@@ -63269,7 +63269,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -63299,7 +63299,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableBorderOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableBorderOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableBorderOptions"
             $($field $value)*)
         };
     }
@@ -63331,7 +63331,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableCellConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableCellConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableCellConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -63360,7 +63360,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableCellImageSizingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableCellImageSizingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableCellImageSizingConfiguration"
             $($field $value)*)
         };
     }
@@ -63392,7 +63392,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableCellStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableCellStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableCellStyle"
             $($field $value)*)
         };
     }
@@ -63453,7 +63453,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -63479,7 +63479,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableConditionalFormattingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableConditionalFormattingOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableConditionalFormattingOption"
             $($field $value)*)
         };
     }
@@ -63511,7 +63511,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableConfiguration"
             $($field $value)*)
         };
     }
@@ -63578,7 +63578,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableFieldCustomIconContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableFieldCustomIconContent"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableFieldCustomIconContent"
             $($field $value)*)
         };
     }
@@ -63601,7 +63601,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableFieldCustomTextContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableFieldCustomTextContent"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableFieldCustomTextContent"
             $($field $value)*)
         };
     }
@@ -63627,7 +63627,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableFieldImageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableFieldImageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableFieldImageConfiguration"
             $($field $value)*)
         };
     }
@@ -63653,7 +63653,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableFieldLinkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableFieldLinkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableFieldLinkConfiguration"
             $($field $value)*)
         };
     }
@@ -63681,7 +63681,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableFieldLinkContentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableFieldLinkContentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableFieldLinkContentConfiguration"
             $($field $value)*)
         };
     }
@@ -63716,7 +63716,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableFieldOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableFieldOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableFieldOption"
             $($field $value)*)
         };
     }
@@ -63763,7 +63763,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableFieldOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableFieldOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableFieldOptions"
             $($field $value)*)
         };
     }
@@ -63804,7 +63804,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableFieldURLConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableFieldURLConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableFieldURLConfiguration"
             $($field $value)*)
         };
     }
@@ -63836,7 +63836,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableFieldWells"
             $($field $value)*)
         };
     }
@@ -63867,7 +63867,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableInlineVisualization {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableInlineVisualization"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableInlineVisualization"
             $($field $value)*)
         };
     }
@@ -63895,7 +63895,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableOptions"
             $($field $value)*)
         };
     }
@@ -63939,7 +63939,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TablePaginatedReportOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TablePaginatedReportOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TablePaginatedReportOptions"
             $($field $value)*)
         };
     }
@@ -63970,7 +63970,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TablePinnedFieldOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TablePinnedFieldOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TablePinnedFieldOptions"
             $($field $value)*)
         };
     }
@@ -63996,7 +63996,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableRowConditionalFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableRowConditionalFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableRowConditionalFormatting"
             $($field $value)*)
         };
     }
@@ -64032,7 +64032,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableSideBorderOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableSideBorderOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableSideBorderOptions"
             $($field $value)*)
         };
     }
@@ -64076,7 +64076,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableSortConfiguration"
             $($field $value)*)
         };
     }
@@ -64107,7 +64107,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableStyleTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableStyleTarget"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableStyleTarget"
             $($field $value)*)
         };
     }
@@ -64130,7 +64130,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableUnaggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableUnaggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableUnaggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -64158,7 +64158,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TableVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TableVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TableVisual"
             $($field $value)*)
         };
     }
@@ -64216,7 +64216,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TemplateError {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TemplateError"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TemplateError"
             $($field $value)*)
         };
     }
@@ -64251,7 +64251,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TemplateSourceAnalysis {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TemplateSourceAnalysis"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TemplateSourceAnalysis"
             $($field $value)*)
         };
     }
@@ -64279,7 +64279,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TemplateSourceEntity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TemplateSourceEntity"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TemplateSourceEntity"
             $($field $value)*)
         };
     }
@@ -64310,7 +64310,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TemplateSourceTemplate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TemplateSourceTemplate"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TemplateSourceTemplate"
             $($field $value)*)
         };
     }
@@ -64341,7 +64341,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TemplateVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TemplateVersion"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TemplateVersion"
             $($field $value)*)
         };
     }
@@ -64413,7 +64413,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TemplateVersionDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TemplateVersionDefinition"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TemplateVersionDefinition"
             $($field $value)*)
         };
     }
@@ -64483,7 +64483,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TextAreaControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TextAreaControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TextAreaControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -64522,7 +64522,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TextConditionalFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TextConditionalFormat"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TextConditionalFormat"
             $($field $value)*)
         };
     }
@@ -64556,7 +64556,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TextControlPlaceholderOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TextControlPlaceholderOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TextControlPlaceholderOptions"
             $($field $value)*)
         };
     }
@@ -64583,7 +64583,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TextFieldControlDisplayOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TextFieldControlDisplayOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TextFieldControlDisplayOptions"
             $($field $value)*)
         };
     }
@@ -64622,7 +64622,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ThousandSeparatorOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ThousandSeparatorOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ThousandSeparatorOptions"
             $($field $value)*)
         };
     }
@@ -64661,7 +64661,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TimeBasedForecastProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TimeBasedForecastProperties"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TimeBasedForecastProperties"
             $($field $value)*)
         };
     }
@@ -64722,7 +64722,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TimeEqualityFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TimeEqualityFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TimeEqualityFilter"
             $($field $value)*)
         };
     }
@@ -64779,7 +64779,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TimeRangeDrillDownFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TimeRangeDrillDownFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TimeRangeDrillDownFilter"
             $($field $value)*)
         };
     }
@@ -64823,7 +64823,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TimeRangeFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TimeRangeFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TimeRangeFilter"
             $($field $value)*)
         };
     }
@@ -64898,7 +64898,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TimeRangeFilterValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TimeRangeFilterValue"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TimeRangeFilterValue"
             $($field $value)*)
         };
     }
@@ -64936,7 +64936,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TooltipItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TooltipItem"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TooltipItem"
             $($field $value)*)
         };
     }
@@ -64969,7 +64969,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TooltipOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TooltipOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TooltipOptions"
             $($field $value)*)
         };
     }
@@ -65012,7 +65012,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TopBottomFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TopBottomFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TopBottomFilter"
             $($field $value)*)
         };
     }
@@ -65071,7 +65071,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TopBottomMoversComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TopBottomMoversComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TopBottomMoversComputation"
             $($field $value)*)
         };
     }
@@ -65130,7 +65130,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TopBottomRankedComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TopBottomRankedComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TopBottomRankedComputation"
             $($field $value)*)
         };
     }
@@ -65177,7 +65177,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TotalAggregationComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TotalAggregationComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TotalAggregationComputation"
             $($field $value)*)
         };
     }
@@ -65206,7 +65206,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TotalAggregationFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TotalAggregationFunction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TotalAggregationFunction"
             $($field $value)*)
         };
     }
@@ -65232,7 +65232,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TotalAggregationOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TotalAggregationOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TotalAggregationOption"
             $($field $value)*)
         };
     }
@@ -65264,7 +65264,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TotalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TotalOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TotalOptions"
             $($field $value)*)
         };
     }
@@ -65321,7 +65321,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TransposedTableOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TransposedTableOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TransposedTableOption"
             $($field $value)*)
         };
     }
@@ -65358,7 +65358,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TreeMapAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TreeMapAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TreeMapAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -65395,7 +65395,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TreeMapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TreeMapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TreeMapConfiguration"
             $($field $value)*)
         };
     }
@@ -65471,7 +65471,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TreeMapFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TreeMapFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TreeMapFieldWells"
             $($field $value)*)
         };
     }
@@ -65497,7 +65497,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TreeMapSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TreeMapSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TreeMapSortConfiguration"
             $($field $value)*)
         };
     }
@@ -65534,7 +65534,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TreeMapVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TreeMapVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TreeMapVisual"
             $($field $value)*)
         };
     }
@@ -65590,7 +65590,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_TrendArrowOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.TrendArrowOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.TrendArrowOptions"
             $($field $value)*)
         };
     }
@@ -65617,7 +65617,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_UnaggregatedField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.UnaggregatedField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.UnaggregatedField"
             $($field $value)*)
         };
     }
@@ -65652,7 +65652,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_UniqueValuesComputation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.UniqueValuesComputation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.UniqueValuesComputation"
             $($field $value)*)
         };
     }
@@ -65684,7 +65684,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_ValidationStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.ValidationStrategy"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.ValidationStrategy"
             $($field $value)*)
         };
     }
@@ -65707,7 +65707,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_VisibleRangeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.VisibleRangeOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.VisibleRangeOptions"
             $($field $value)*)
         };
     }
@@ -65755,7 +65755,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_Visual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.Visual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.Visual"
             $($field $value)*)
         };
     }
@@ -65922,7 +65922,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_VisualCustomAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.VisualCustomAction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.VisualCustomAction"
             $($field $value)*)
         };
     }
@@ -65963,7 +65963,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_VisualCustomActionOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.VisualCustomActionOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.VisualCustomActionOperation"
             $($field $value)*)
         };
     }
@@ -66007,7 +66007,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_VisualInteractionOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.VisualInteractionOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.VisualInteractionOptions"
             $($field $value)*)
         };
     }
@@ -66038,7 +66038,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_VisualMenuOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.VisualMenuOption"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.VisualMenuOption"
             $($field $value)*)
         };
     }
@@ -66064,7 +66064,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_VisualPalette {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.VisualPalette"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.VisualPalette"
             $($field $value)*)
         };
     }
@@ -66096,7 +66096,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_VisualSubtitleLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.VisualSubtitleLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.VisualSubtitleLabelOptions"
             $($field $value)*)
         };
     }
@@ -66128,7 +66128,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_VisualTitleLabelOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.VisualTitleLabelOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.VisualTitleLabelOptions"
             $($field $value)*)
         };
     }
@@ -66161,7 +66161,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WaterfallChartAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WaterfallChartAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WaterfallChartAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -66195,7 +66195,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WaterfallChartColorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WaterfallChartColorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WaterfallChartColorConfiguration"
             $($field $value)*)
         };
     }
@@ -66231,7 +66231,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WaterfallChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WaterfallChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WaterfallChartConfiguration"
             $($field $value)*)
         };
     }
@@ -66320,7 +66320,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WaterfallChartFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WaterfallChartFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WaterfallChartFieldWells"
             $($field $value)*)
         };
     }
@@ -66347,7 +66347,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WaterfallChartGroupColorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WaterfallChartGroupColorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WaterfallChartGroupColorConfiguration"
             $($field $value)*)
         };
     }
@@ -66384,7 +66384,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WaterfallChartOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WaterfallChartOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WaterfallChartOptions"
             $($field $value)*)
         };
     }
@@ -66410,7 +66410,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WaterfallChartSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WaterfallChartSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WaterfallChartSortConfiguration"
             $($field $value)*)
         };
     }
@@ -66447,7 +66447,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WaterfallVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WaterfallVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WaterfallVisual"
             $($field $value)*)
         };
     }
@@ -66504,7 +66504,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WhatIfPointScenario {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WhatIfPointScenario"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WhatIfPointScenario"
             $($field $value)*)
         };
     }
@@ -66533,7 +66533,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WhatIfRangeScenario {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WhatIfRangeScenario"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WhatIfRangeScenario"
             $($field $value)*)
         };
     }
@@ -66565,7 +66565,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WordCloudAggregatedFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WordCloudAggregatedFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WordCloudAggregatedFieldWells"
             $($field $value)*)
         };
     }
@@ -66597,7 +66597,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WordCloudChartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WordCloudChartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WordCloudChartConfiguration"
             $($field $value)*)
         };
     }
@@ -66646,7 +66646,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WordCloudFieldWells {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WordCloudFieldWells"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WordCloudFieldWells"
             $($field $value)*)
         };
     }
@@ -66676,7 +66676,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WordCloudOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WordCloudOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WordCloudOptions"
             $($field $value)*)
         };
     }
@@ -66732,7 +66732,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WordCloudSortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WordCloudSortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WordCloudSortConfiguration"
             $($field $value)*)
         };
     }
@@ -66769,7 +66769,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_WordCloudVisual {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.WordCloudVisual"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.WordCloudVisual"
             $($field $value)*)
         };
     }
@@ -66825,7 +66825,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_quicksight_Template_YAxisOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Template.YAxisOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Template.YAxisOptions"
             $($field $value)*)
         };
     }
@@ -66850,7 +66850,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_quicksight_Theme_BorderStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Theme.BorderStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Theme.BorderStyle"
             $($field $value)*)
         };
     }
@@ -66874,7 +66874,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_quicksight_Theme_DataColorPalette {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Theme.DataColorPalette"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Theme.DataColorPalette"
             $($field $value)*)
         };
     }
@@ -66908,7 +66908,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_quicksight_Theme_Font {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Theme.Font"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Theme.Font"
             $($field $value)*)
         };
     }
@@ -66933,7 +66933,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_quicksight_Theme_GutterStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Theme.GutterStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Theme.GutterStyle"
             $($field $value)*)
         };
     }
@@ -66955,7 +66955,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_quicksight_Theme_MarginStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Theme.MarginStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Theme.MarginStyle"
             $($field $value)*)
         };
     }
@@ -66978,7 +66978,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_quicksight_Theme_ResourcePermission {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Theme.ResourcePermission"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Theme.ResourcePermission"
             $($field $value)*)
         };
     }
@@ -67006,7 +67006,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_quicksight_Theme_SheetStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Theme.SheetStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Theme.SheetStyle"
             $($field $value)*)
         };
     }
@@ -67037,7 +67037,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_quicksight_Theme_ThemeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Theme.ThemeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Theme.ThemeConfiguration"
             $($field $value)*)
         };
     }
@@ -67078,7 +67078,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_quicksight_Theme_ThemeError {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Theme.ThemeError"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Theme.ThemeError"
             $($field $value)*)
         };
     }
@@ -67113,7 +67113,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_quicksight_Theme_ThemeVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Theme.ThemeVersion"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Theme.ThemeVersion"
             $($field $value)*)
         };
     }
@@ -67172,7 +67172,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_quicksight_Theme_TileLayoutStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Theme.TileLayoutStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Theme.TileLayoutStyle"
             $($field $value)*)
         };
     }
@@ -67197,7 +67197,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_quicksight_Theme_TileStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Theme.TileStyle"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Theme.TileStyle"
             $($field $value)*)
         };
     }
@@ -67219,7 +67219,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_quicksight_Theme_Typography {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Theme.Typography"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Theme.Typography"
             $($field $value)*)
         };
     }
@@ -67259,7 +67259,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_quicksight_Theme_UIColorPalette {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Theme.UIColorPalette"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Theme.UIColorPalette"
             $($field $value)*)
         };
     }
@@ -67371,7 +67371,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_CellValueSynonym {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.CellValueSynonym"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.CellValueSynonym"
             $($field $value)*)
         };
     }
@@ -67402,7 +67402,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_CollectiveConstant {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.CollectiveConstant"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.CollectiveConstant"
             $($field $value)*)
         };
     }
@@ -67429,7 +67429,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_ComparativeOrder {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.ComparativeOrder"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.ComparativeOrder"
             $($field $value)*)
         };
     }
@@ -67466,7 +67466,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_CustomInstructions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.CustomInstructions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.CustomInstructions"
             $($field $value)*)
         };
     }
@@ -67490,7 +67490,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_DataAggregation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.DataAggregation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.DataAggregation"
             $($field $value)*)
         };
     }
@@ -67528,7 +67528,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_DatasetMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.DatasetMetadata"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.DatasetMetadata"
             $($field $value)*)
         };
     }
@@ -67594,7 +67594,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_DefaultFormatting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.DefaultFormatting"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.DefaultFormatting"
             $($field $value)*)
         };
     }
@@ -67636,7 +67636,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_DisplayFormatOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.DisplayFormatOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.DisplayFormatOptions"
             $($field $value)*)
         };
     }
@@ -67725,7 +67725,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_NamedEntityDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.NamedEntityDefinition"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.NamedEntityDefinition"
             $($field $value)*)
         };
     }
@@ -67773,7 +67773,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_NamedEntityDefinitionMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.NamedEntityDefinitionMetric"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.NamedEntityDefinitionMetric"
             $($field $value)*)
         };
     }
@@ -67805,7 +67805,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_NegativeFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.NegativeFormat"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.NegativeFormat"
             $($field $value)*)
         };
     }
@@ -67831,7 +67831,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_RangeConstant {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.RangeConstant"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.RangeConstant"
             $($field $value)*)
         };
     }
@@ -67864,7 +67864,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_SemanticEntityType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.SemanticEntityType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.SemanticEntityType"
             $($field $value)*)
         };
     }
@@ -67907,7 +67907,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_SemanticType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.SemanticType"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.SemanticType"
             $($field $value)*)
         };
     }
@@ -67984,7 +67984,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_TopicCalculatedField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.TopicCalculatedField"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.TopicCalculatedField"
             $($field $value)*)
         };
     }
@@ -68104,7 +68104,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_TopicCategoryFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.TopicCategoryFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.TopicCategoryFilter"
             $($field $value)*)
         };
     }
@@ -68149,7 +68149,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_TopicCategoryFilterConstant {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.TopicCategoryFilterConstant"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.TopicCategoryFilterConstant"
             $($field $value)*)
         };
     }
@@ -68202,7 +68202,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_TopicColumn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.TopicColumn"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.TopicColumn"
             $($field $value)*)
         };
     }
@@ -68321,7 +68321,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_TopicConfigOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.TopicConfigOptions"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.TopicConfigOptions"
             $($field $value)*)
         };
     }
@@ -68347,7 +68347,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_TopicDateRangeFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.TopicDateRangeFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.TopicDateRangeFilter"
             $($field $value)*)
         };
     }
@@ -68388,7 +68388,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_TopicFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.TopicFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.TopicFilter"
             $($field $value)*)
         };
     }
@@ -68473,7 +68473,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_TopicNamedEntity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.TopicNamedEntity"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.TopicNamedEntity"
             $($field $value)*)
         };
     }
@@ -68521,7 +68521,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_TopicNumericEqualityFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.TopicNumericEqualityFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.TopicNumericEqualityFilter"
             $($field $value)*)
         };
     }
@@ -68554,7 +68554,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_TopicNumericRangeFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.TopicNumericRangeFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.TopicNumericRangeFilter"
             $($field $value)*)
         };
     }
@@ -68592,7 +68592,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_TopicRangeFilterConstant {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.TopicRangeFilterConstant"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.TopicRangeFilterConstant"
             $($field $value)*)
         };
     }
@@ -68625,7 +68625,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_TopicRelativeDateFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.TopicRelativeDateFilter"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.TopicRelativeDateFilter"
             $($field $value)*)
         };
     }
@@ -68663,7 +68663,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_quicksight_Topic_TopicSingularFilterConstant {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::Topic.TopicSingularFilterConstant"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Topic.TopicSingularFilterConstant"
             $($field $value)*)
         };
     }
@@ -68700,7 +68700,7 @@ pub mod vpcconnection {
     #[macro_export]
     macro_rules! __aws_quicksight_VPCConnection_NetworkInterface {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QuickSight::VPCConnection.NetworkInterface"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::VPCConnection.NetworkInterface"
             $($field $value)*)
         };
     }
@@ -68760,7 +68760,7 @@ pub struct Analysis_ {
 #[macro_export]
 macro_rules! __aws_quicksight_Analysis {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QuickSight::Analysis"
+        stratosphere::generator::construct_resource_type!("AWS::QuickSight::Analysis"
         $($field $value)*)
     };
 }
@@ -68856,7 +68856,7 @@ pub struct CustomPermissions_ {
 #[macro_export]
 macro_rules! __aws_quicksight_CustomPermissions {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QuickSight::CustomPermissions"
+        stratosphere::generator::construct_resource_type!("AWS::QuickSight::CustomPermissions"
         $($field $value)*)
     };
 }
@@ -68914,7 +68914,7 @@ pub struct Dashboard_ {
 #[macro_export]
 macro_rules! __aws_quicksight_Dashboard {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QuickSight::Dashboard"
+        stratosphere::generator::construct_resource_type!("AWS::QuickSight::Dashboard"
         $($field $value)*)
     };
 }
@@ -69048,7 +69048,7 @@ pub struct DataSet_ {
 #[macro_export]
 macro_rules! __aws_quicksight_DataSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QuickSight::DataSet"
+        stratosphere::generator::construct_resource_type!("AWS::QuickSight::DataSet"
         $($field $value)*)
     };
 }
@@ -69199,7 +69199,7 @@ pub struct DataSource_ {
 #[macro_export]
 macro_rules! __aws_quicksight_DataSource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QuickSight::DataSource"
+        stratosphere::generator::construct_resource_type!("AWS::QuickSight::DataSource"
         $($field $value)*)
     };
 }
@@ -69304,7 +69304,7 @@ pub struct Folder_ {
 #[macro_export]
 macro_rules! __aws_quicksight_Folder {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QuickSight::Folder"
+        stratosphere::generator::construct_resource_type!("AWS::QuickSight::Folder"
         $($field $value)*)
     };
 }
@@ -69375,7 +69375,7 @@ pub struct RefreshSchedule_ {
 #[macro_export]
 macro_rules! __aws_quicksight_RefreshSchedule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QuickSight::RefreshSchedule"
+        stratosphere::generator::construct_resource_type!("AWS::QuickSight::RefreshSchedule"
         $($field $value)*)
     };
 }
@@ -69428,7 +69428,7 @@ pub struct Template_ {
 #[macro_export]
 macro_rules! __aws_quicksight_Template {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QuickSight::Template"
+        stratosphere::generator::construct_resource_type!("AWS::QuickSight::Template"
         $($field $value)*)
     };
 }
@@ -69506,7 +69506,7 @@ pub struct Theme_ {
 #[macro_export]
 macro_rules! __aws_quicksight_Theme {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QuickSight::Theme"
+        stratosphere::generator::construct_resource_type!("AWS::QuickSight::Theme"
         $($field $value)*)
     };
 }
@@ -69577,7 +69577,7 @@ pub struct Topic_ {
 #[macro_export]
 macro_rules! __aws_quicksight_Topic {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QuickSight::Topic"
+        stratosphere::generator::construct_resource_type!("AWS::QuickSight::Topic"
         $($field $value)*)
     };
 }
@@ -69666,7 +69666,7 @@ pub struct VPCConnection_ {
 #[macro_export]
 macro_rules! __aws_quicksight_VPCConnection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QuickSight::VPCConnection"
+        stratosphere::generator::construct_resource_type!("AWS::QuickSight::VPCConnection"
         $($field $value)*)
     };
 }

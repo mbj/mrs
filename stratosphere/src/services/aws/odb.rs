@@ -12,7 +12,7 @@ pub mod cloudautonomousvmcluster {
     #[macro_export]
     macro_rules! __aws_odb_CloudAutonomousVmCluster_MaintenanceWindow {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ODB::CloudAutonomousVmCluster.MaintenanceWindow"
+            stratosphere::generator::construct_property_type!("AWS::ODB::CloudAutonomousVmCluster.MaintenanceWindow"
             $($field $value)*)
         };
     }
@@ -66,7 +66,7 @@ pub mod cloudexadatainfrastructure {
     #[macro_export]
     macro_rules! __aws_odb_CloudExadataInfrastructure_CustomerContact {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ODB::CloudExadataInfrastructure.CustomerContact"
+            stratosphere::generator::construct_property_type!("AWS::ODB::CloudExadataInfrastructure.CustomerContact"
             $($field $value)*)
         };
     }
@@ -96,7 +96,7 @@ pub mod cloudexadatainfrastructure {
     #[macro_export]
     macro_rules! __aws_odb_CloudExadataInfrastructure_MaintenanceWindow {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ODB::CloudExadataInfrastructure.MaintenanceWindow"
+            stratosphere::generator::construct_property_type!("AWS::ODB::CloudExadataInfrastructure.MaintenanceWindow"
             $($field $value)*)
         };
     }
@@ -170,7 +170,7 @@ pub mod cloudvmcluster {
     #[macro_export]
     macro_rules! __aws_odb_CloudVmCluster_DataCollectionOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ODB::CloudVmCluster.DataCollectionOptions"
+            stratosphere::generator::construct_property_type!("AWS::ODB::CloudVmCluster.DataCollectionOptions"
             $($field $value)*)
         };
     }
@@ -222,7 +222,7 @@ pub mod cloudvmcluster {
     #[macro_export]
     macro_rules! __aws_odb_CloudVmCluster_DbNode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ODB::CloudVmCluster.DbNode"
+            stratosphere::generator::construct_property_type!("AWS::ODB::CloudVmCluster.DbNode"
             $($field $value)*)
         };
     }
@@ -326,7 +326,7 @@ pub mod odbnetwork {
     #[macro_export]
     macro_rules! __aws_odb_OdbNetwork_ManagedS3BackupAccess {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ODB::OdbNetwork.ManagedS3BackupAccess"
+            stratosphere::generator::construct_property_type!("AWS::ODB::OdbNetwork.ManagedS3BackupAccess"
             $($field $value)*)
         };
     }
@@ -360,7 +360,7 @@ pub mod odbnetwork {
     #[macro_export]
     macro_rules! __aws_odb_OdbNetwork_ManagedServices {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ODB::OdbNetwork.ManagedServices"
+            stratosphere::generator::construct_property_type!("AWS::ODB::OdbNetwork.ManagedServices"
             $($field $value)*)
         };
     }
@@ -424,7 +424,7 @@ pub mod odbnetwork {
     #[macro_export]
     macro_rules! __aws_odb_OdbNetwork_S3Access {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ODB::OdbNetwork.S3Access"
+            stratosphere::generator::construct_property_type!("AWS::ODB::OdbNetwork.S3Access"
             $($field $value)*)
         };
     }
@@ -465,7 +465,7 @@ pub mod odbnetwork {
     #[macro_export]
     macro_rules! __aws_odb_OdbNetwork_ServiceNetworkEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ODB::OdbNetwork.ServiceNetworkEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::ODB::OdbNetwork.ServiceNetworkEndpoint"
             $($field $value)*)
         };
     }
@@ -497,7 +497,7 @@ pub mod odbnetwork {
     #[macro_export]
     macro_rules! __aws_odb_OdbNetwork_ZeroEtlAccess {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ODB::OdbNetwork.ZeroEtlAccess"
+            stratosphere::generator::construct_property_type!("AWS::ODB::OdbNetwork.ZeroEtlAccess"
             $($field $value)*)
         };
     }
@@ -538,7 +538,7 @@ pub struct CloudAutonomousVmCluster_ {
 #[macro_export]
 macro_rules! __aws_odb_CloudAutonomousVmCluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ODB::CloudAutonomousVmCluster"
+        stratosphere::generator::construct_resource_type!("AWS::ODB::CloudAutonomousVmCluster"
         $($field $value)*)
     };
 }
@@ -669,7 +669,7 @@ pub struct CloudExadataInfrastructure_ {
 #[macro_export]
 macro_rules! __aws_odb_CloudExadataInfrastructure {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ODB::CloudExadataInfrastructure"
+        stratosphere::generator::construct_resource_type!("AWS::ODB::CloudExadataInfrastructure"
         $($field $value)*)
     };
 }
@@ -778,7 +778,7 @@ pub struct CloudVmCluster_ {
 #[macro_export]
 macro_rules! __aws_odb_CloudVmCluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ODB::CloudVmCluster"
+        stratosphere::generator::construct_resource_type!("AWS::ODB::CloudVmCluster"
         $($field $value)*)
     };
 }
@@ -939,7 +939,7 @@ pub struct OdbNetwork_ {
 #[macro_export]
 macro_rules! __aws_odb_OdbNetwork {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ODB::OdbNetwork" $($field
+        stratosphere::generator::construct_resource_type!("AWS::ODB::OdbNetwork" $($field
         $value)*)
     };
 }
@@ -1038,7 +1038,7 @@ pub struct OdbPeeringConnection_ {
 #[macro_export]
 macro_rules! __aws_odb_OdbPeeringConnection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ODB::OdbPeeringConnection"
+        stratosphere::generator::construct_resource_type!("AWS::ODB::OdbPeeringConnection"
         $($field $value)*)
     };
 }

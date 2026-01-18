@@ -10,7 +10,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_sagemaker_App_ResourceSpec {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::App.ResourceSpec"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::App.ResourceSpec"
             $($field $value)*)
         };
     }
@@ -55,7 +55,7 @@ pub mod appimageconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_AppImageConfig_CodeEditorAppImageConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::AppImageConfig.CodeEditorAppImageConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::AppImageConfig.CodeEditorAppImageConfig"
             $($field $value)*)
         };
     }
@@ -82,7 +82,7 @@ pub mod appimageconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_AppImageConfig_ContainerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::AppImageConfig.ContainerConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::AppImageConfig.ContainerConfig"
             $($field $value)*)
         };
     }
@@ -120,7 +120,7 @@ pub mod appimageconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_AppImageConfig_CustomImageContainerEnvironmentVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::AppImageConfig.CustomImageContainerEnvironmentVariable"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::AppImageConfig.CustomImageContainerEnvironmentVariable"
             $($field $value)*)
         };
     }
@@ -149,7 +149,7 @@ pub mod appimageconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_AppImageConfig_FileSystemConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::AppImageConfig.FileSystemConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::AppImageConfig.FileSystemConfig"
             $($field $value)*)
         };
     }
@@ -186,7 +186,7 @@ pub mod appimageconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_AppImageConfig_JupyterLabAppImageConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::AppImageConfig.JupyterLabAppImageConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::AppImageConfig.JupyterLabAppImageConfig"
             $($field $value)*)
         };
     }
@@ -212,7 +212,7 @@ pub mod appimageconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_AppImageConfig_KernelGatewayImageConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::AppImageConfig.KernelGatewayImageConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::AppImageConfig.KernelGatewayImageConfig"
             $($field $value)*)
         };
     }
@@ -242,7 +242,7 @@ pub mod appimageconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_AppImageConfig_KernelSpec {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::AppImageConfig.KernelSpec"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::AppImageConfig.KernelSpec"
             $($field $value)*)
         };
     }
@@ -273,7 +273,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_AlarmDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.AlarmDetails"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.AlarmDetails"
             $($field $value)*)
         };
     }
@@ -297,7 +297,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_CapacitySizeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.CapacitySizeConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.CapacitySizeConfig"
             $($field $value)*)
         };
     }
@@ -325,7 +325,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_ClusterAutoScalingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterAutoScalingConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterAutoScalingConfig"
             $($field $value)*)
         };
     }
@@ -356,7 +356,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_ClusterEbsVolumeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterEbsVolumeConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterEbsVolumeConfig"
             $($field $value)*)
         };
     }
@@ -405,7 +405,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_ClusterInstanceGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterInstanceGroup"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterInstanceGroup"
             $($field $value)*)
         };
     }
@@ -492,7 +492,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_ClusterInstanceStorageConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterInstanceStorageConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterInstanceStorageConfig"
             $($field $value)*)
         };
     }
@@ -518,7 +518,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_ClusterLifeCycleConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterLifeCycleConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterLifeCycleConfig"
             $($field $value)*)
         };
     }
@@ -545,7 +545,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_ClusterOrchestratorEksConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterOrchestratorEksConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterOrchestratorEksConfig"
             $($field $value)*)
         };
     }
@@ -578,7 +578,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_ClusterRestrictedInstanceGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterRestrictedInstanceGroup"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterRestrictedInstanceGroup"
             $($field $value)*)
         };
     }
@@ -655,7 +655,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_DeploymentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.DeploymentConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.DeploymentConfig"
             $($field $value)*)
         };
     }
@@ -692,7 +692,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_EnvironmentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.EnvironmentConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.EnvironmentConfig"
             $($field $value)*)
         };
     }
@@ -718,7 +718,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_FSxLustreConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.FSxLustreConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.FSxLustreConfig"
             $($field $value)*)
         };
     }
@@ -745,7 +745,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_Orchestrator {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.Orchestrator"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.Orchestrator"
             $($field $value)*)
         };
     }
@@ -769,7 +769,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_RollingUpdatePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.RollingUpdatePolicy"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.RollingUpdatePolicy"
             $($field $value)*)
         };
     }
@@ -799,7 +799,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_ScheduledUpdateConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.ScheduledUpdateConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.ScheduledUpdateConfig"
             $($field $value)*)
         };
     }
@@ -829,7 +829,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_sagemaker_Cluster_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Cluster.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.VpcConfig"
             $($field $value)*)
         };
     }
@@ -860,7 +860,7 @@ pub mod coderepository {
     #[macro_export]
     macro_rules! __aws_sagemaker_CodeRepository_GitConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::CodeRepository.GitConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::CodeRepository.GitConfig"
             $($field $value)*)
         };
     }
@@ -899,7 +899,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_BatchTransformInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.BatchTransformInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.BatchTransformInput"
             $($field $value)*)
         };
     }
@@ -951,7 +951,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_ClusterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.ClusterConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.ClusterConfig"
             $($field $value)*)
         };
     }
@@ -988,7 +988,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_ConstraintsResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.ConstraintsResource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.ConstraintsResource"
             $($field $value)*)
         };
     }
@@ -1010,7 +1010,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_Csv {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.Csv"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.Csv"
             $($field $value)*)
         };
     }
@@ -1037,7 +1037,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_DataQualityAppSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.DataQualityAppSpecification"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.DataQualityAppSpecification"
             $($field $value)*)
         };
     }
@@ -1092,7 +1092,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_DataQualityBaselineConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.DataQualityBaselineConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.DataQualityBaselineConfig"
             $($field $value)*)
         };
     }
@@ -1130,7 +1130,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_DataQualityJobInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.DataQualityJobInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.DataQualityJobInput"
             $($field $value)*)
         };
     }
@@ -1163,7 +1163,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_DatasetFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.DatasetFormat"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.DatasetFormat"
             $($field $value)*)
         };
     }
@@ -1198,7 +1198,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_EndpointInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.EndpointInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.EndpointInput"
             $($field $value)*)
         };
     }
@@ -1243,7 +1243,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_Json {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.Json"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.Json"
             $($field $value)*)
         };
     }
@@ -1265,7 +1265,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_MonitoringOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.MonitoringOutput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.MonitoringOutput"
             $($field $value)*)
         };
     }
@@ -1289,7 +1289,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_MonitoringOutputConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.MonitoringOutputConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.MonitoringOutputConfig"
             $($field $value)*)
         };
     }
@@ -1318,7 +1318,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_MonitoringResources {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.MonitoringResources"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.MonitoringResources"
             $($field $value)*)
         };
     }
@@ -1343,7 +1343,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_NetworkConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.NetworkConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.NetworkConfig"
             $($field $value)*)
         };
     }
@@ -1382,7 +1382,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_S3Output {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.S3Output"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.S3Output"
             $($field $value)*)
         };
     }
@@ -1415,7 +1415,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_StatisticsResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.StatisticsResource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.StatisticsResource"
             $($field $value)*)
         };
     }
@@ -1437,7 +1437,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_StoppingCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.StoppingCondition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.StoppingCondition"
             $($field $value)*)
         };
     }
@@ -1461,7 +1461,7 @@ pub mod dataqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_DataQualityJobDefinition_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DataQualityJobDefinition.VpcConfig"
             $($field $value)*)
         };
     }
@@ -1492,7 +1492,7 @@ pub mod device {
     #[macro_export]
     macro_rules! __aws_sagemaker_Device_Device {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Device.Device"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Device.Device"
             $($field $value)*)
         };
     }
@@ -1530,7 +1530,7 @@ pub mod devicefleet {
     #[macro_export]
     macro_rules! __aws_sagemaker_DeviceFleet_EdgeOutputConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::DeviceFleet.EdgeOutputConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::DeviceFleet.EdgeOutputConfig"
             $($field $value)*)
         };
     }
@@ -1561,7 +1561,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_AppLifecycleManagement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.AppLifecycleManagement"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.AppLifecycleManagement"
             $($field $value)*)
         };
     }
@@ -1590,7 +1590,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_CodeEditorAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.CodeEditorAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.CodeEditorAppSettings"
             $($field $value)*)
         };
     }
@@ -1639,7 +1639,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_CodeRepository {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.CodeRepository"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.CodeRepository"
             $($field $value)*)
         };
     }
@@ -1664,7 +1664,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_CustomFileSystemConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.CustomFileSystemConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.CustomFileSystemConfig"
             $($field $value)*)
         };
     }
@@ -1703,7 +1703,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_CustomImage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.CustomImage"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.CustomImage"
             $($field $value)*)
         };
     }
@@ -1737,7 +1737,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_CustomPosixUserConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.CustomPosixUserConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.CustomPosixUserConfig"
             $($field $value)*)
         };
     }
@@ -1765,7 +1765,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_DefaultEbsStorageSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.DefaultEbsStorageSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.DefaultEbsStorageSettings"
             $($field $value)*)
         };
     }
@@ -1799,7 +1799,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_DefaultSpaceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.DefaultSpaceSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.DefaultSpaceSettings"
             $($field $value)*)
         };
     }
@@ -1864,7 +1864,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_DefaultSpaceStorageSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.DefaultSpaceStorageSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.DefaultSpaceStorageSettings"
             $($field $value)*)
         };
     }
@@ -1890,7 +1890,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_DockerSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.DockerSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.DockerSettings"
             $($field $value)*)
         };
     }
@@ -1925,7 +1925,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_DomainSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.DomainSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.DomainSettings"
             $($field $value)*)
         };
     }
@@ -1975,7 +1975,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_EFSFileSystemConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.EFSFileSystemConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.EFSFileSystemConfig"
             $($field $value)*)
         };
     }
@@ -2005,7 +2005,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_FSxLustreFileSystemConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.FSxLustreFileSystemConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.FSxLustreFileSystemConfig"
             $($field $value)*)
         };
     }
@@ -2035,7 +2035,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_HiddenSageMakerImage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.HiddenSageMakerImage"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.HiddenSageMakerImage"
             $($field $value)*)
         };
     }
@@ -2069,7 +2069,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_IdleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.IdleSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.IdleSettings"
             $($field $value)*)
         };
     }
@@ -2117,7 +2117,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_JupyterLabAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.JupyterLabAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.JupyterLabAppSettings"
             $($field $value)*)
         };
     }
@@ -2173,7 +2173,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_JupyterServerAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.JupyterServerAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.JupyterServerAppSettings"
             $($field $value)*)
         };
     }
@@ -2206,7 +2206,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_KernelGatewayAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.KernelGatewayAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.KernelGatewayAppSettings"
             $($field $value)*)
         };
     }
@@ -2244,7 +2244,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_RSessionAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.RSessionAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.RSessionAppSettings"
             $($field $value)*)
         };
     }
@@ -2276,7 +2276,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_RStudioServerProAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.RStudioServerProAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.RStudioServerProAppSettings"
             $($field $value)*)
         };
     }
@@ -2310,7 +2310,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_RStudioServerProDomainSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.RStudioServerProDomainSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.RStudioServerProDomainSettings"
             $($field $value)*)
         };
     }
@@ -2354,7 +2354,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_ResourceSpec {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.ResourceSpec"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.ResourceSpec"
             $($field $value)*)
         };
     }
@@ -2398,7 +2398,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_S3FileSystemConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.S3FileSystemConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.S3FileSystemConfig"
             $($field $value)*)
         };
     }
@@ -2428,7 +2428,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_SharingSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.SharingSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.SharingSettings"
             $($field $value)*)
         };
     }
@@ -2468,7 +2468,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_StudioWebPortalSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.StudioWebPortalSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.StudioWebPortalSettings"
             $($field $value)*)
         };
     }
@@ -2517,7 +2517,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_UnifiedStudioSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.UnifiedStudioSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.UnifiedStudioSettings"
             $($field $value)*)
         };
     }
@@ -2593,7 +2593,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_sagemaker_Domain_UserSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Domain.UserSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Domain.UserSettings"
             $($field $value)*)
         };
     }
@@ -2708,7 +2708,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_sagemaker_Endpoint_Alarm {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Endpoint.Alarm"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Endpoint.Alarm"
             $($field $value)*)
         };
     }
@@ -2731,7 +2731,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_sagemaker_Endpoint_AutoRollbackConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Endpoint.AutoRollbackConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Endpoint.AutoRollbackConfig"
             $($field $value)*)
         };
     }
@@ -2756,7 +2756,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_sagemaker_Endpoint_BlueGreenUpdatePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Endpoint.BlueGreenUpdatePolicy"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Endpoint.BlueGreenUpdatePolicy"
             $($field $value)*)
         };
     }
@@ -2792,7 +2792,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_sagemaker_Endpoint_CapacitySize {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Endpoint.CapacitySize"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Endpoint.CapacitySize"
             $($field $value)*)
         };
     }
@@ -2821,7 +2821,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_sagemaker_Endpoint_DeploymentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Endpoint.DeploymentConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Endpoint.DeploymentConfig"
             $($field $value)*)
         };
     }
@@ -2861,7 +2861,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_sagemaker_Endpoint_RollingUpdatePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Endpoint.RollingUpdatePolicy"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Endpoint.RollingUpdatePolicy"
             $($field $value)*)
         };
     }
@@ -2903,7 +2903,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_sagemaker_Endpoint_TrafficRoutingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Endpoint.TrafficRoutingConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Endpoint.TrafficRoutingConfig"
             $($field $value)*)
         };
     }
@@ -2944,7 +2944,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_sagemaker_Endpoint_VariantProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Endpoint.VariantProperty"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Endpoint.VariantProperty"
             $($field $value)*)
         };
     }
@@ -2971,7 +2971,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_AsyncInferenceClientConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.AsyncInferenceClientConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.AsyncInferenceClientConfig"
             $($field $value)*)
         };
     }
@@ -2997,7 +2997,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_AsyncInferenceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.AsyncInferenceConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.AsyncInferenceConfig"
             $($field $value)*)
         };
     }
@@ -3028,7 +3028,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_AsyncInferenceNotificationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.AsyncInferenceNotificationConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.AsyncInferenceNotificationConfig"
             $($field $value)*)
         };
     }
@@ -3068,7 +3068,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_AsyncInferenceOutputConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.AsyncInferenceOutputConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.AsyncInferenceOutputConfig"
             $($field $value)*)
         };
     }
@@ -3112,7 +3112,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_CapacityReservationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.CapacityReservationConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.CapacityReservationConfig"
             $($field $value)*)
         };
     }
@@ -3144,7 +3144,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_CaptureContentTypeHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.CaptureContentTypeHeader"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.CaptureContentTypeHeader"
             $($field $value)*)
         };
     }
@@ -3175,7 +3175,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_CaptureOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.CaptureOption"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.CaptureOption"
             $($field $value)*)
         };
     }
@@ -3200,7 +3200,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_ClarifyExplainerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ClarifyExplainerConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ClarifyExplainerConfig"
             $($field $value)*)
         };
     }
@@ -3233,7 +3233,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_ClarifyFeatureType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ClarifyFeatureType"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ClarifyFeatureType"
             $($field $value)*)
         };
     }
@@ -3249,7 +3249,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_ClarifyHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ClarifyHeader"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ClarifyHeader"
             $($field $value)*)
         };
     }
@@ -3277,7 +3277,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_ClarifyInferenceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ClarifyInferenceConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ClarifyInferenceConfig"
             $($field $value)*)
         };
     }
@@ -3364,7 +3364,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_ClarifyShapBaselineConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ClarifyShapBaselineConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ClarifyShapBaselineConfig"
             $($field $value)*)
         };
     }
@@ -3405,7 +3405,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_ClarifyShapConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ClarifyShapConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ClarifyShapConfig"
             $($field $value)*)
         };
     }
@@ -3450,7 +3450,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_ClarifyTextConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ClarifyTextConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ClarifyTextConfig"
             $($field $value)*)
         };
     }
@@ -3482,7 +3482,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_DataCaptureConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.DataCaptureConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.DataCaptureConfig"
             $($field $value)*)
         };
     }
@@ -3531,7 +3531,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_ExplainerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ExplainerConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ExplainerConfig"
             $($field $value)*)
         };
     }
@@ -3558,7 +3558,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_ManagedInstanceScaling {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ManagedInstanceScaling"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ManagedInstanceScaling"
             $($field $value)*)
         };
     }
@@ -3605,7 +3605,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_ProductionVariant {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ProductionVariant"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ProductionVariant"
             $($field $value)*)
         };
     }
@@ -3706,7 +3706,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_RoutingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.RoutingConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.RoutingConfig"
             $($field $value)*)
         };
     }
@@ -3733,7 +3733,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_ServerlessConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ServerlessConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.ServerlessConfig"
             $($field $value)*)
         };
     }
@@ -3767,7 +3767,7 @@ pub mod endpointconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_EndpointConfig_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::EndpointConfig.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::EndpointConfig.VpcConfig"
             $($field $value)*)
         };
     }
@@ -3798,7 +3798,7 @@ pub mod featuregroup {
     #[macro_export]
     macro_rules! __aws_sagemaker_FeatureGroup_DataCatalogConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::FeatureGroup.DataCatalogConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::FeatureGroup.DataCatalogConfig"
             $($field $value)*)
         };
     }
@@ -3830,7 +3830,7 @@ pub mod featuregroup {
     #[macro_export]
     macro_rules! __aws_sagemaker_FeatureGroup_FeatureDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::FeatureGroup.FeatureDefinition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::FeatureGroup.FeatureDefinition"
             $($field $value)*)
         };
     }
@@ -3860,7 +3860,7 @@ pub mod featuregroup {
     #[macro_export]
     macro_rules! __aws_sagemaker_FeatureGroup_OfflineStoreConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::FeatureGroup.OfflineStoreConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::FeatureGroup.OfflineStoreConfig"
             $($field $value)*)
         };
     }
@@ -3904,7 +3904,7 @@ pub mod featuregroup {
     #[macro_export]
     macro_rules! __aws_sagemaker_FeatureGroup_OnlineStoreConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::FeatureGroup.OnlineStoreConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::FeatureGroup.OnlineStoreConfig"
             $($field $value)*)
         };
     }
@@ -3947,7 +3947,7 @@ pub mod featuregroup {
     #[macro_export]
     macro_rules! __aws_sagemaker_FeatureGroup_OnlineStoreSecurityConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::FeatureGroup.OnlineStoreSecurityConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::FeatureGroup.OnlineStoreSecurityConfig"
             $($field $value)*)
         };
     }
@@ -3973,7 +3973,7 @@ pub mod featuregroup {
     #[macro_export]
     macro_rules! __aws_sagemaker_FeatureGroup_S3StorageConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::FeatureGroup.S3StorageConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::FeatureGroup.S3StorageConfig"
             $($field $value)*)
         };
     }
@@ -4004,7 +4004,7 @@ pub mod featuregroup {
     #[macro_export]
     macro_rules! __aws_sagemaker_FeatureGroup_ThroughputConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::FeatureGroup.ThroughputConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::FeatureGroup.ThroughputConfig"
             $($field $value)*)
         };
     }
@@ -4040,7 +4040,7 @@ pub mod featuregroup {
     #[macro_export]
     macro_rules! __aws_sagemaker_FeatureGroup_TtlDuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::FeatureGroup.TtlDuration"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::FeatureGroup.TtlDuration"
             $($field $value)*)
         };
     }
@@ -4067,7 +4067,7 @@ pub mod inferencecomponent {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceComponent_Alarm {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceComponent.Alarm"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceComponent.Alarm"
             $($field $value)*)
         };
     }
@@ -4090,7 +4090,7 @@ pub mod inferencecomponent {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceComponent_AutoRollbackConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceComponent.AutoRollbackConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceComponent.AutoRollbackConfiguration"
             $($field $value)*)
         };
     }
@@ -4115,7 +4115,7 @@ pub mod inferencecomponent {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceComponent_DeployedImage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceComponent.DeployedImage"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceComponent.DeployedImage"
             $($field $value)*)
         };
     }
@@ -4153,7 +4153,7 @@ pub mod inferencecomponent {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceComponent_InferenceComponentCapacitySize {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentCapacitySize"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentCapacitySize"
             $($field $value)*)
         };
     }
@@ -4183,7 +4183,7 @@ pub mod inferencecomponent {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceComponent_InferenceComponentComputeResourceRequirements {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentComputeResourceRequirements"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentComputeResourceRequirements"
             $($field $value)*)
         };
     }
@@ -4229,7 +4229,7 @@ pub mod inferencecomponent {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceComponent_InferenceComponentContainerSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentContainerSpecification"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentContainerSpecification"
             $($field $value)*)
         };
     }
@@ -4270,7 +4270,7 @@ pub mod inferencecomponent {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceComponent_InferenceComponentDeploymentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentDeploymentConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentDeploymentConfig"
             $($field $value)*)
         };
     }
@@ -4304,7 +4304,7 @@ pub mod inferencecomponent {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceComponent_InferenceComponentRollingUpdatePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentRollingUpdatePolicy"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentRollingUpdatePolicy"
             $($field $value)*)
         };
     }
@@ -4349,7 +4349,7 @@ pub mod inferencecomponent {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceComponent_InferenceComponentRuntimeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentRuntimeConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentRuntimeConfig"
             $($field $value)*)
         };
     }
@@ -4391,7 +4391,7 @@ pub mod inferencecomponent {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceComponent_InferenceComponentSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentSpecification"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentSpecification"
             $($field $value)*)
         };
     }
@@ -4441,7 +4441,7 @@ pub mod inferencecomponent {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceComponent_InferenceComponentStartupParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentStartupParameters"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceComponent.InferenceComponentStartupParameters"
             $($field $value)*)
         };
     }
@@ -4475,7 +4475,7 @@ pub mod inferenceexperiment {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceExperiment_CaptureContentTypeHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.CaptureContentTypeHeader"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.CaptureContentTypeHeader"
             $($field $value)*)
         };
     }
@@ -4508,7 +4508,7 @@ pub mod inferenceexperiment {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceExperiment_DataStorageConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.DataStorageConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.DataStorageConfig"
             $($field $value)*)
         };
     }
@@ -4542,7 +4542,7 @@ pub mod inferenceexperiment {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceExperiment_EndpointMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.EndpointMetadata"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.EndpointMetadata"
             $($field $value)*)
         };
     }
@@ -4578,7 +4578,7 @@ pub mod inferenceexperiment {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceExperiment_InferenceExperimentSchedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.InferenceExperimentSchedule"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.InferenceExperimentSchedule"
             $($field $value)*)
         };
     }
@@ -4610,7 +4610,7 @@ pub mod inferenceexperiment {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceExperiment_ModelInfrastructureConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.ModelInfrastructureConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.ModelInfrastructureConfig"
             $($field $value)*)
         };
     }
@@ -4639,7 +4639,7 @@ pub mod inferenceexperiment {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceExperiment_ModelVariantConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.ModelVariantConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.ModelVariantConfig"
             $($field $value)*)
         };
     }
@@ -4671,7 +4671,7 @@ pub mod inferenceexperiment {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceExperiment_RealTimeInferenceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.RealTimeInferenceConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.RealTimeInferenceConfig"
             $($field $value)*)
         };
     }
@@ -4699,7 +4699,7 @@ pub mod inferenceexperiment {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceExperiment_ShadowModeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.ShadowModeConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.ShadowModeConfig"
             $($field $value)*)
         };
     }
@@ -4727,7 +4727,7 @@ pub mod inferenceexperiment {
     #[macro_export]
     macro_rules! __aws_sagemaker_InferenceExperiment_ShadowModelVariantConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.ShadowModelVariantConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::InferenceExperiment.ShadowModelVariantConfig"
             $($field $value)*)
         };
     }
@@ -4757,7 +4757,7 @@ pub mod model {
     #[macro_export]
     macro_rules! __aws_sagemaker_Model_AdditionalModelDataSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Model.AdditionalModelDataSource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Model.AdditionalModelDataSource"
             $($field $value)*)
         };
     }
@@ -4793,7 +4793,7 @@ pub mod model {
     #[macro_export]
     macro_rules! __aws_sagemaker_Model_ContainerDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Model.ContainerDefinition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Model.ContainerDefinition"
             $($field $value)*)
         };
     }
@@ -4866,7 +4866,7 @@ pub mod model {
     #[macro_export]
     macro_rules! __aws_sagemaker_Model_HubAccessConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Model.HubAccessConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Model.HubAccessConfig"
             $($field $value)*)
         };
     }
@@ -4890,7 +4890,7 @@ pub mod model {
     #[macro_export]
     macro_rules! __aws_sagemaker_Model_ImageConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Model.ImageConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Model.ImageConfig"
             $($field $value)*)
         };
     }
@@ -4919,7 +4919,7 @@ pub mod model {
     #[macro_export]
     macro_rules! __aws_sagemaker_Model_InferenceExecutionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Model.InferenceExecutionConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Model.InferenceExecutionConfig"
             $($field $value)*)
         };
     }
@@ -4942,7 +4942,7 @@ pub mod model {
     #[macro_export]
     macro_rules! __aws_sagemaker_Model_ModelAccessConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Model.ModelAccessConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Model.ModelAccessConfig"
             $($field $value)*)
         };
     }
@@ -4965,7 +4965,7 @@ pub mod model {
     #[macro_export]
     macro_rules! __aws_sagemaker_Model_ModelDataSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Model.ModelDataSource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Model.ModelDataSource"
             $($field $value)*)
         };
     }
@@ -4988,7 +4988,7 @@ pub mod model {
     #[macro_export]
     macro_rules! __aws_sagemaker_Model_MultiModelConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Model.MultiModelConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Model.MultiModelConfig"
             $($field $value)*)
         };
     }
@@ -5013,7 +5013,7 @@ pub mod model {
     #[macro_export]
     macro_rules! __aws_sagemaker_Model_RepositoryAuthConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Model.RepositoryAuthConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Model.RepositoryAuthConfig"
             $($field $value)*)
         };
     }
@@ -5040,7 +5040,7 @@ pub mod model {
     #[macro_export]
     macro_rules! __aws_sagemaker_Model_S3DataSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Model.S3DataSource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Model.S3DataSource"
             $($field $value)*)
         };
     }
@@ -5084,7 +5084,7 @@ pub mod model {
     #[macro_export]
     macro_rules! __aws_sagemaker_Model_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Model.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Model.VpcConfig"
             $($field $value)*)
         };
     }
@@ -5123,7 +5123,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_BatchTransformInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.BatchTransformInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.BatchTransformInput"
             $($field $value)*)
         };
     }
@@ -5205,7 +5205,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_ClusterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.ClusterConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.ClusterConfig"
             $($field $value)*)
         };
     }
@@ -5242,7 +5242,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_ConstraintsResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.ConstraintsResource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.ConstraintsResource"
             $($field $value)*)
         };
     }
@@ -5264,7 +5264,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_Csv {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.Csv"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.Csv"
             $($field $value)*)
         };
     }
@@ -5288,7 +5288,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_DatasetFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.DatasetFormat"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.DatasetFormat"
             $($field $value)*)
         };
     }
@@ -5328,7 +5328,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_EndpointInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.EndpointInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.EndpointInput"
             $($field $value)*)
         };
     }
@@ -5403,7 +5403,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_Json {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.Json"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.Json"
             $($field $value)*)
         };
     }
@@ -5427,7 +5427,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_ModelBiasAppSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.ModelBiasAppSpecification"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.ModelBiasAppSpecification"
             $($field $value)*)
         };
     }
@@ -5461,7 +5461,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_ModelBiasBaselineConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.ModelBiasBaselineConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.ModelBiasBaselineConfig"
             $($field $value)*)
         };
     }
@@ -5494,7 +5494,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_ModelBiasJobInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.ModelBiasJobInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.ModelBiasJobInput"
             $($field $value)*)
         };
     }
@@ -5529,7 +5529,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_MonitoringGroundTruthS3Input {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.MonitoringGroundTruthS3Input"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.MonitoringGroundTruthS3Input"
             $($field $value)*)
         };
     }
@@ -5552,7 +5552,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_MonitoringOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.MonitoringOutput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.MonitoringOutput"
             $($field $value)*)
         };
     }
@@ -5576,7 +5576,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_MonitoringOutputConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.MonitoringOutputConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.MonitoringOutputConfig"
             $($field $value)*)
         };
     }
@@ -5605,7 +5605,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_MonitoringResources {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.MonitoringResources"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.MonitoringResources"
             $($field $value)*)
         };
     }
@@ -5630,7 +5630,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_NetworkConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.NetworkConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.NetworkConfig"
             $($field $value)*)
         };
     }
@@ -5669,7 +5669,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_S3Output {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.S3Output"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.S3Output"
             $($field $value)*)
         };
     }
@@ -5702,7 +5702,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_StoppingCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.StoppingCondition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.StoppingCondition"
             $($field $value)*)
         };
     }
@@ -5726,7 +5726,7 @@ pub mod modelbiasjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelBiasJobDefinition_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelBiasJobDefinition.VpcConfig"
             $($field $value)*)
         };
     }
@@ -5757,7 +5757,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_AdditionalInformation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.AdditionalInformation"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.AdditionalInformation"
             $($field $value)*)
         };
     }
@@ -5796,7 +5796,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_BusinessDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.BusinessDetails"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.BusinessDetails"
             $($field $value)*)
         };
     }
@@ -5835,7 +5835,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_Container {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.Container"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.Container"
             $($field $value)*)
         };
     }
@@ -5876,7 +5876,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_Content {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.Content"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.Content"
             $($field $value)*)
         };
     }
@@ -5942,7 +5942,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_EvaluationDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.EvaluationDetail"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.EvaluationDetail"
             $($field $value)*)
         };
     }
@@ -5997,7 +5997,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_Function {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.Function"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.Function"
             $($field $value)*)
         };
     }
@@ -6031,7 +6031,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_InferenceEnvironment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.InferenceEnvironment"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.InferenceEnvironment"
             $($field $value)*)
         };
     }
@@ -6056,7 +6056,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_InferenceSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.InferenceSpecification"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.InferenceSpecification"
             $($field $value)*)
         };
     }
@@ -6083,7 +6083,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_IntendedUses {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.IntendedUses"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.IntendedUses"
             $($field $value)*)
         };
     }
@@ -6137,7 +6137,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_MetricDataItems {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.MetricDataItems"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.MetricDataItems"
             $($field $value)*)
         };
     }
@@ -6184,7 +6184,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_MetricGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.MetricGroup"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.MetricGroup"
             $($field $value)*)
         };
     }
@@ -6220,7 +6220,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_ModelOverview {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.ModelOverview"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.ModelOverview"
             $($field $value)*)
         };
     }
@@ -6299,7 +6299,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_ModelPackageCreator {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.ModelPackageCreator"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.ModelPackageCreator"
             $($field $value)*)
         };
     }
@@ -6336,7 +6336,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_ModelPackageDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.ModelPackageDetails"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.ModelPackageDetails"
             $($field $value)*)
         };
     }
@@ -6428,7 +6428,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_ObjectiveFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.ObjectiveFunction"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.ObjectiveFunction"
             $($field $value)*)
         };
     }
@@ -6456,7 +6456,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_SecurityConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.SecurityConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.SecurityConfig"
             $($field $value)*)
         };
     }
@@ -6482,7 +6482,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_SourceAlgorithm {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.SourceAlgorithm"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.SourceAlgorithm"
             $($field $value)*)
         };
     }
@@ -6513,7 +6513,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_TrainingDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.TrainingDetails"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.TrainingDetails"
             $($field $value)*)
         };
     }
@@ -6550,7 +6550,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_TrainingEnvironment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.TrainingEnvironment"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.TrainingEnvironment"
             $($field $value)*)
         };
     }
@@ -6576,7 +6576,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_TrainingHyperParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.TrainingHyperParameter"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.TrainingHyperParameter"
             $($field $value)*)
         };
     }
@@ -6609,7 +6609,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_TrainingJobDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.TrainingJobDetails"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.TrainingJobDetails"
             $($field $value)*)
         };
     }
@@ -6672,7 +6672,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_TrainingMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.TrainingMetric"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.TrainingMetric"
             $($field $value)*)
         };
     }
@@ -6704,7 +6704,7 @@ pub mod modelcard {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelCard_UserContext {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelCard.UserContext"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelCard.UserContext"
             $($field $value)*)
         };
     }
@@ -6750,7 +6750,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_BatchTransformInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.BatchTransformInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.BatchTransformInput"
             $($field $value)*)
         };
     }
@@ -6814,7 +6814,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_ClusterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.ClusterConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.ClusterConfig"
             $($field $value)*)
         };
     }
@@ -6851,7 +6851,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_ConstraintsResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.ConstraintsResource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.ConstraintsResource"
             $($field $value)*)
         };
     }
@@ -6873,7 +6873,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_Csv {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.Csv"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.Csv"
             $($field $value)*)
         };
     }
@@ -6897,7 +6897,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_DatasetFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.DatasetFormat"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.DatasetFormat"
             $($field $value)*)
         };
     }
@@ -6934,7 +6934,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_EndpointInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.EndpointInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.EndpointInput"
             $($field $value)*)
         };
     }
@@ -6991,7 +6991,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_Json {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.Json"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.Json"
             $($field $value)*)
         };
     }
@@ -7015,7 +7015,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_ModelExplainabilityAppSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.ModelExplainabilityAppSpecification"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.ModelExplainabilityAppSpecification"
             $($field $value)*)
         };
     }
@@ -7049,7 +7049,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_ModelExplainabilityBaselineConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.ModelExplainabilityBaselineConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.ModelExplainabilityBaselineConfig"
             $($field $value)*)
         };
     }
@@ -7081,7 +7081,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_ModelExplainabilityJobInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.ModelExplainabilityJobInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.ModelExplainabilityJobInput"
             $($field $value)*)
         };
     }
@@ -7112,7 +7112,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_MonitoringOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.MonitoringOutput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.MonitoringOutput"
             $($field $value)*)
         };
     }
@@ -7136,7 +7136,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_MonitoringOutputConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.MonitoringOutputConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.MonitoringOutputConfig"
             $($field $value)*)
         };
     }
@@ -7165,7 +7165,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_MonitoringResources {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.MonitoringResources"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.MonitoringResources"
             $($field $value)*)
         };
     }
@@ -7190,7 +7190,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_NetworkConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.NetworkConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.NetworkConfig"
             $($field $value)*)
         };
     }
@@ -7229,7 +7229,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_S3Output {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.S3Output"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.S3Output"
             $($field $value)*)
         };
     }
@@ -7262,7 +7262,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_StoppingCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.StoppingCondition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.StoppingCondition"
             $($field $value)*)
         };
     }
@@ -7286,7 +7286,7 @@ pub mod modelexplainabilityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelExplainabilityJobDefinition.VpcConfig"
             $($field $value)*)
         };
     }
@@ -7321,7 +7321,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_AdditionalInferenceSpecificationDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.AdditionalInferenceSpecificationDefinition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.AdditionalInferenceSpecificationDefinition"
             $($field $value)*)
         };
     }
@@ -7380,7 +7380,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_Bias {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.Bias"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.Bias"
             $($field $value)*)
         };
     }
@@ -7414,7 +7414,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_DataSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.DataSource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.DataSource"
             $($field $value)*)
         };
     }
@@ -7440,7 +7440,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_DriftCheckBaselines {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.DriftCheckBaselines"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.DriftCheckBaselines"
             $($field $value)*)
         };
     }
@@ -7482,7 +7482,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_DriftCheckBias {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.DriftCheckBias"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.DriftCheckBias"
             $($field $value)*)
         };
     }
@@ -7520,7 +7520,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_DriftCheckExplainability {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.DriftCheckExplainability"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.DriftCheckExplainability"
             $($field $value)*)
         };
     }
@@ -7552,7 +7552,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_DriftCheckModelDataQuality {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.DriftCheckModelDataQuality"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.DriftCheckModelDataQuality"
             $($field $value)*)
         };
     }
@@ -7584,7 +7584,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_DriftCheckModelQuality {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.DriftCheckModelQuality"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.DriftCheckModelQuality"
             $($field $value)*)
         };
     }
@@ -7615,7 +7615,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_Explainability {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.Explainability"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.Explainability"
             $($field $value)*)
         };
     }
@@ -7639,7 +7639,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_FileSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.FileSource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.FileSource"
             $($field $value)*)
         };
     }
@@ -7678,7 +7678,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_InferenceSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.InferenceSpecification"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.InferenceSpecification"
             $($field $value)*)
         };
     }
@@ -7724,7 +7724,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_MetadataProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.MetadataProperties"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.MetadataProperties"
             $($field $value)*)
         };
     }
@@ -7769,7 +7769,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_MetricsSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.MetricsSource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.MetricsSource"
             $($field $value)*)
         };
     }
@@ -7802,7 +7802,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_ModelAccessConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelAccessConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelAccessConfig"
             $($field $value)*)
         };
     }
@@ -7826,7 +7826,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_ModelCard {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelCard"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelCard"
             $($field $value)*)
         };
     }
@@ -7854,7 +7854,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_ModelDataQuality {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelDataQuality"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelDataQuality"
             $($field $value)*)
         };
     }
@@ -7885,7 +7885,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_ModelDataSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelDataSource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelDataSource"
             $($field $value)*)
         };
     }
@@ -7910,7 +7910,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_ModelInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelInput"
             $($field $value)*)
         };
     }
@@ -7936,7 +7936,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_ModelMetrics {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelMetrics"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelMetrics"
             $($field $value)*)
         };
     }
@@ -7985,7 +7985,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_ModelPackageContainerDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelPackageContainerDefinition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelPackageContainerDefinition"
             $($field $value)*)
         };
     }
@@ -8062,7 +8062,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_ModelPackageStatusDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelPackageStatusDetails"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelPackageStatusDetails"
             $($field $value)*)
         };
     }
@@ -8089,7 +8089,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_ModelPackageStatusItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelPackageStatusItem"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelPackageStatusItem"
             $($field $value)*)
         };
     }
@@ -8123,7 +8123,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_ModelQuality {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelQuality"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.ModelQuality"
             $($field $value)*)
         };
     }
@@ -8155,7 +8155,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_S3DataSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.S3DataSource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.S3DataSource"
             $($field $value)*)
         };
     }
@@ -8185,7 +8185,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_S3ModelDataSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.S3ModelDataSource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.S3ModelDataSource"
             $($field $value)*)
         };
     }
@@ -8222,7 +8222,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_SecurityConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.SecurityConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.SecurityConfig"
             $($field $value)*)
         };
     }
@@ -8246,7 +8246,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_SourceAlgorithm {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.SourceAlgorithm"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.SourceAlgorithm"
             $($field $value)*)
         };
     }
@@ -8275,7 +8275,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_SourceAlgorithmSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.SourceAlgorithmSpecification"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.SourceAlgorithmSpecification"
             $($field $value)*)
         };
     }
@@ -8301,7 +8301,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_TransformInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.TransformInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.TransformInput"
             $($field $value)*)
         };
     }
@@ -8348,7 +8348,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_TransformJobDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.TransformJobDefinition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.TransformJobDefinition"
             $($field $value)*)
         };
     }
@@ -8406,7 +8406,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_TransformOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.TransformOutput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.TransformOutput"
             $($field $value)*)
         };
     }
@@ -8446,7 +8446,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_TransformResources {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.TransformResources"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.TransformResources"
             $($field $value)*)
         };
     }
@@ -8480,7 +8480,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_ValidationProfile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.ValidationProfile"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.ValidationProfile"
             $($field $value)*)
         };
     }
@@ -8508,7 +8508,7 @@ pub mod modelpackage {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelPackage_ValidationSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelPackage.ValidationSpecification"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelPackage.ValidationSpecification"
             $($field $value)*)
         };
     }
@@ -8546,7 +8546,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_BatchTransformInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.BatchTransformInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.BatchTransformInput"
             $($field $value)*)
         };
     }
@@ -8622,7 +8622,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_ClusterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.ClusterConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.ClusterConfig"
             $($field $value)*)
         };
     }
@@ -8659,7 +8659,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_ConstraintsResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.ConstraintsResource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.ConstraintsResource"
             $($field $value)*)
         };
     }
@@ -8681,7 +8681,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_Csv {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.Csv"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.Csv"
             $($field $value)*)
         };
     }
@@ -8705,7 +8705,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_DatasetFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.DatasetFormat"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.DatasetFormat"
             $($field $value)*)
         };
     }
@@ -8744,7 +8744,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_EndpointInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.EndpointInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.EndpointInput"
             $($field $value)*)
         };
     }
@@ -8813,7 +8813,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_Json {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.Json"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.Json"
             $($field $value)*)
         };
     }
@@ -8841,7 +8841,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_ModelQualityAppSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.ModelQualityAppSpecification"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.ModelQualityAppSpecification"
             $($field $value)*)
         };
     }
@@ -8899,7 +8899,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_ModelQualityBaselineConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.ModelQualityBaselineConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.ModelQualityBaselineConfig"
             $($field $value)*)
         };
     }
@@ -8932,7 +8932,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_ModelQualityJobInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.ModelQualityJobInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.ModelQualityJobInput"
             $($field $value)*)
         };
     }
@@ -8967,7 +8967,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_MonitoringGroundTruthS3Input {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.MonitoringGroundTruthS3Input"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.MonitoringGroundTruthS3Input"
             $($field $value)*)
         };
     }
@@ -8990,7 +8990,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_MonitoringOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.MonitoringOutput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.MonitoringOutput"
             $($field $value)*)
         };
     }
@@ -9014,7 +9014,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_MonitoringOutputConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.MonitoringOutputConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.MonitoringOutputConfig"
             $($field $value)*)
         };
     }
@@ -9043,7 +9043,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_MonitoringResources {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.MonitoringResources"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.MonitoringResources"
             $($field $value)*)
         };
     }
@@ -9068,7 +9068,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_NetworkConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.NetworkConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.NetworkConfig"
             $($field $value)*)
         };
     }
@@ -9107,7 +9107,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_S3Output {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.S3Output"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.S3Output"
             $($field $value)*)
         };
     }
@@ -9140,7 +9140,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_StoppingCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.StoppingCondition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.StoppingCondition"
             $($field $value)*)
         };
     }
@@ -9164,7 +9164,7 @@ pub mod modelqualityjobdefinition {
     #[macro_export]
     macro_rules! __aws_sagemaker_ModelQualityJobDefinition_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ModelQualityJobDefinition.VpcConfig"
             $($field $value)*)
         };
     }
@@ -9194,7 +9194,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_BaselineConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.BaselineConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.BaselineConfig"
             $($field $value)*)
         };
     }
@@ -9230,7 +9230,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_BatchTransformInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.BatchTransformInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.BatchTransformInput"
             $($field $value)*)
         };
     }
@@ -9282,7 +9282,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_ClusterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.ClusterConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.ClusterConfig"
             $($field $value)*)
         };
     }
@@ -9319,7 +9319,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_ConstraintsResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.ConstraintsResource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.ConstraintsResource"
             $($field $value)*)
         };
     }
@@ -9341,7 +9341,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_Csv {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.Csv"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.Csv"
             $($field $value)*)
         };
     }
@@ -9365,7 +9365,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_DatasetFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.DatasetFormat"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.DatasetFormat"
             $($field $value)*)
         };
     }
@@ -9400,7 +9400,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_EndpointInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.EndpointInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.EndpointInput"
             $($field $value)*)
         };
     }
@@ -9445,7 +9445,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_Json {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.Json"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.Json"
             $($field $value)*)
         };
     }
@@ -9471,7 +9471,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_MonitoringAppSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringAppSpecification"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringAppSpecification"
             $($field $value)*)
         };
     }
@@ -9525,7 +9525,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_MonitoringExecutionSummary {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringExecutionSummary"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringExecutionSummary"
             $($field $value)*)
         };
     }
@@ -9583,7 +9583,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_MonitoringInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringInput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringInput"
             $($field $value)*)
         };
     }
@@ -9622,7 +9622,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_MonitoringJobDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringJobDefinition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringJobDefinition"
             $($field $value)*)
         };
     }
@@ -9685,7 +9685,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_MonitoringOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringOutput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringOutput"
             $($field $value)*)
         };
     }
@@ -9709,7 +9709,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_MonitoringOutputConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringOutputConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringOutputConfig"
             $($field $value)*)
         };
     }
@@ -9738,7 +9738,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_MonitoringResources {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringResources"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringResources"
             $($field $value)*)
         };
     }
@@ -9764,7 +9764,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_MonitoringScheduleConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringScheduleConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.MonitoringScheduleConfig"
             $($field $value)*)
         };
     }
@@ -9809,7 +9809,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_NetworkConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.NetworkConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.NetworkConfig"
             $($field $value)*)
         };
     }
@@ -9848,7 +9848,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_S3Output {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.S3Output"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.S3Output"
             $($field $value)*)
         };
     }
@@ -9883,7 +9883,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_ScheduleConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.ScheduleConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.ScheduleConfig"
             $($field $value)*)
         };
     }
@@ -9918,7 +9918,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_StatisticsResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.StatisticsResource"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.StatisticsResource"
             $($field $value)*)
         };
     }
@@ -9940,7 +9940,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_StoppingCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.StoppingCondition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.StoppingCondition"
             $($field $value)*)
         };
     }
@@ -9964,7 +9964,7 @@ pub mod monitoringschedule {
     #[macro_export]
     macro_rules! __aws_sagemaker_MonitoringSchedule_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::MonitoringSchedule.VpcConfig"
             $($field $value)*)
         };
     }
@@ -9993,7 +9993,7 @@ pub mod notebookinstance {
     #[macro_export]
     macro_rules! __aws_sagemaker_NotebookInstance_InstanceMetadataServiceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::NotebookInstance.InstanceMetadataServiceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::NotebookInstance.InstanceMetadataServiceConfiguration"
             $($field $value)*)
         };
     }
@@ -10018,7 +10018,7 @@ pub mod notebookinstancelifecycleconfig {
     #[macro_export]
     macro_rules! __aws_sagemaker_NotebookInstanceLifecycleConfig_NotebookInstanceLifecycleHook {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::NotebookInstanceLifecycleConfig.NotebookInstanceLifecycleHook"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::NotebookInstanceLifecycleConfig.NotebookInstanceLifecycleHook"
             $($field $value)*)
         };
     }
@@ -10046,7 +10046,7 @@ pub mod partnerapp {
     #[macro_export]
     macro_rules! __aws_sagemaker_PartnerApp_PartnerAppConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::PartnerApp.PartnerAppConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::PartnerApp.PartnerAppConfig"
             $($field $value)*)
         };
     }
@@ -10077,7 +10077,7 @@ pub mod partnerapp {
     #[macro_export]
     macro_rules! __aws_sagemaker_PartnerApp_PartnerAppMaintenanceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::PartnerApp.PartnerAppMaintenanceConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::PartnerApp.PartnerAppMaintenanceConfig"
             $($field $value)*)
         };
     }
@@ -10102,7 +10102,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_sagemaker_Pipeline_ParallelismConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Pipeline.ParallelismConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Pipeline.ParallelismConfiguration"
             $($field $value)*)
         };
     }
@@ -10126,7 +10126,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_sagemaker_Pipeline_PipelineDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Pipeline.PipelineDefinition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Pipeline.PipelineDefinition"
             $($field $value)*)
         };
     }
@@ -10160,7 +10160,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_sagemaker_Pipeline_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Pipeline.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Pipeline.S3Location"
             $($field $value)*)
         };
     }
@@ -10200,7 +10200,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_AppSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.AppSpecification"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.AppSpecification"
             $($field $value)*)
         };
     }
@@ -10242,7 +10242,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_AthenaDatasetDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.AthenaDatasetDefinition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.AthenaDatasetDefinition"
             $($field $value)*)
         };
     }
@@ -10302,7 +10302,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_ClusterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.ClusterConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.ClusterConfig"
             $($field $value)*)
         };
     }
@@ -10343,7 +10343,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_DatasetDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.DatasetDefinition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.DatasetDefinition"
             $($field $value)*)
         };
     }
@@ -10395,7 +10395,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_ExperimentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.ExperimentConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.ExperimentConfig"
             $($field $value)*)
         };
     }
@@ -10438,7 +10438,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_FeatureStoreOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.FeatureStoreOutput"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.FeatureStoreOutput"
             $($field $value)*)
         };
     }
@@ -10463,7 +10463,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_NetworkConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.NetworkConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.NetworkConfig"
             $($field $value)*)
         };
     }
@@ -10503,7 +10503,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_ProcessingInputsObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.ProcessingInputsObject"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.ProcessingInputsObject"
             $($field $value)*)
         };
     }
@@ -10545,7 +10545,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_ProcessingOutputConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.ProcessingOutputConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.ProcessingOutputConfig"
             $($field $value)*)
         };
     }
@@ -10577,7 +10577,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_ProcessingOutputsObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.ProcessingOutputsObject"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.ProcessingOutputsObject"
             $($field $value)*)
         };
     }
@@ -10618,7 +10618,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_ProcessingResources {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.ProcessingResources"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.ProcessingResources"
             $($field $value)*)
         };
     }
@@ -10649,7 +10649,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_RedshiftDatasetDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.RedshiftDatasetDefinition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.RedshiftDatasetDefinition"
             $($field $value)*)
         };
     }
@@ -10713,7 +10713,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_S3Input {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.S3Input"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.S3Input"
             $($field $value)*)
         };
     }
@@ -10766,7 +10766,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_S3Output {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.S3Output"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.S3Output"
             $($field $value)*)
         };
     }
@@ -10799,7 +10799,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_StoppingCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.StoppingCondition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.StoppingCondition"
             $($field $value)*)
         };
     }
@@ -10823,7 +10823,7 @@ pub mod processingjob {
     #[macro_export]
     macro_rules! __aws_sagemaker_ProcessingJob_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::ProcessingJob.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::ProcessingJob.VpcConfig"
             $($field $value)*)
         };
     }
@@ -10853,7 +10853,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_sagemaker_Project_CfnStackParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Project.CfnStackParameter"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Project.CfnStackParameter"
             $($field $value)*)
         };
     }
@@ -10883,7 +10883,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_sagemaker_Project_CfnTemplateProviderDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Project.CfnTemplateProviderDetail"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Project.CfnTemplateProviderDetail"
             $($field $value)*)
         };
     }
@@ -10923,7 +10923,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_sagemaker_Project_ProvisioningParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Project.ProvisioningParameter"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Project.ProvisioningParameter"
             $($field $value)*)
         };
     }
@@ -10951,7 +10951,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_sagemaker_Project_ServiceCatalogProvisionedProductDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Project.ServiceCatalogProvisionedProductDetails"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Project.ServiceCatalogProvisionedProductDetails"
             $($field $value)*)
         };
     }
@@ -10985,7 +10985,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_sagemaker_Project_ServiceCatalogProvisioningDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Project.ServiceCatalogProvisioningDetails"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Project.ServiceCatalogProvisioningDetails"
             $($field $value)*)
         };
     }
@@ -11023,7 +11023,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_sagemaker_Project_TemplateProviderDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Project.TemplateProviderDetail"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Project.TemplateProviderDetail"
             $($field $value)*)
         };
     }
@@ -11048,7 +11048,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_CodeRepository {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.CodeRepository"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.CodeRepository"
             $($field $value)*)
         };
     }
@@ -11073,7 +11073,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_CustomFileSystem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.CustomFileSystem"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.CustomFileSystem"
             $($field $value)*)
         };
     }
@@ -11112,7 +11112,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_CustomImage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.CustomImage"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.CustomImage"
             $($field $value)*)
         };
     }
@@ -11145,7 +11145,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_EFSFileSystem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.EFSFileSystem"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.EFSFileSystem"
             $($field $value)*)
         };
     }
@@ -11168,7 +11168,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_EbsStorageSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.EbsStorageSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.EbsStorageSettings"
             $($field $value)*)
         };
     }
@@ -11191,7 +11191,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_FSxLustreFileSystem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.FSxLustreFileSystem"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.FSxLustreFileSystem"
             $($field $value)*)
         };
     }
@@ -11215,7 +11215,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_JupyterServerAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.JupyterServerAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.JupyterServerAppSettings"
             $($field $value)*)
         };
     }
@@ -11248,7 +11248,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_KernelGatewayAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.KernelGatewayAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.KernelGatewayAppSettings"
             $($field $value)*)
         };
     }
@@ -11285,7 +11285,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_OwnershipSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.OwnershipSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.OwnershipSettings"
             $($field $value)*)
         };
     }
@@ -11311,7 +11311,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_ResourceSpec {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.ResourceSpec"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.ResourceSpec"
             $($field $value)*)
         };
     }
@@ -11354,7 +11354,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_S3FileSystem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.S3FileSystem"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.S3FileSystem"
             $($field $value)*)
         };
     }
@@ -11376,7 +11376,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_SpaceAppLifecycleManagement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.SpaceAppLifecycleManagement"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.SpaceAppLifecycleManagement"
             $($field $value)*)
         };
     }
@@ -11402,7 +11402,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_SpaceCodeEditorAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.SpaceCodeEditorAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.SpaceCodeEditorAppSettings"
             $($field $value)*)
         };
     }
@@ -11433,7 +11433,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_SpaceIdleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.SpaceIdleSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.SpaceIdleSettings"
             $($field $value)*)
         };
     }
@@ -11460,7 +11460,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_SpaceJupyterLabAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.SpaceJupyterLabAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.SpaceJupyterLabAppSettings"
             $($field $value)*)
         };
     }
@@ -11505,7 +11505,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_SpaceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.SpaceSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.SpaceSettings"
             $($field $value)*)
         };
     }
@@ -11578,7 +11578,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_SpaceSharingSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.SpaceSharingSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.SpaceSharingSettings"
             $($field $value)*)
         };
     }
@@ -11601,7 +11601,7 @@ pub mod space {
     #[macro_export]
     macro_rules! __aws_sagemaker_Space_SpaceStorageSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Space.SpaceStorageSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Space.SpaceStorageSettings"
             $($field $value)*)
         };
     }
@@ -11628,7 +11628,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_AppLifecycleManagement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.AppLifecycleManagement"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.AppLifecycleManagement"
             $($field $value)*)
         };
     }
@@ -11657,7 +11657,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_CodeEditorAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.CodeEditorAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.CodeEditorAppSettings"
             $($field $value)*)
         };
     }
@@ -11706,7 +11706,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_CodeRepository {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.CodeRepository"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.CodeRepository"
             $($field $value)*)
         };
     }
@@ -11731,7 +11731,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_CustomFileSystemConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.CustomFileSystemConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.CustomFileSystemConfig"
             $($field $value)*)
         };
     }
@@ -11770,7 +11770,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_CustomImage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.CustomImage"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.CustomImage"
             $($field $value)*)
         };
     }
@@ -11804,7 +11804,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_CustomPosixUserConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.CustomPosixUserConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.CustomPosixUserConfig"
             $($field $value)*)
         };
     }
@@ -11832,7 +11832,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_DefaultEbsStorageSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.DefaultEbsStorageSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.DefaultEbsStorageSettings"
             $($field $value)*)
         };
     }
@@ -11859,7 +11859,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_DefaultSpaceStorageSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.DefaultSpaceStorageSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.DefaultSpaceStorageSettings"
             $($field $value)*)
         };
     }
@@ -11885,7 +11885,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_EFSFileSystemConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.EFSFileSystemConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.EFSFileSystemConfig"
             $($field $value)*)
         };
     }
@@ -11915,7 +11915,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_FSxLustreFileSystemConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.FSxLustreFileSystemConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.FSxLustreFileSystemConfig"
             $($field $value)*)
         };
     }
@@ -11945,7 +11945,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_HiddenSageMakerImage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.HiddenSageMakerImage"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.HiddenSageMakerImage"
             $($field $value)*)
         };
     }
@@ -11979,7 +11979,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_IdleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.IdleSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.IdleSettings"
             $($field $value)*)
         };
     }
@@ -12027,7 +12027,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_JupyterLabAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.JupyterLabAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.JupyterLabAppSettings"
             $($field $value)*)
         };
     }
@@ -12083,7 +12083,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_JupyterServerAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.JupyterServerAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.JupyterServerAppSettings"
             $($field $value)*)
         };
     }
@@ -12116,7 +12116,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_KernelGatewayAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.KernelGatewayAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.KernelGatewayAppSettings"
             $($field $value)*)
         };
     }
@@ -12154,7 +12154,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_RStudioServerProAppSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.RStudioServerProAppSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.RStudioServerProAppSettings"
             $($field $value)*)
         };
     }
@@ -12188,7 +12188,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_ResourceSpec {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.ResourceSpec"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.ResourceSpec"
             $($field $value)*)
         };
     }
@@ -12232,7 +12232,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_S3FileSystemConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.S3FileSystemConfig"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.S3FileSystemConfig"
             $($field $value)*)
         };
     }
@@ -12262,7 +12262,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_SharingSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.SharingSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.SharingSettings"
             $($field $value)*)
         };
     }
@@ -12302,7 +12302,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_StudioWebPortalSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.StudioWebPortalSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.StudioWebPortalSettings"
             $($field $value)*)
         };
     }
@@ -12359,7 +12359,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_sagemaker_UserProfile_UserSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::UserProfile.UserSettings"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::UserProfile.UserSettings"
             $($field $value)*)
         };
     }
@@ -12472,7 +12472,7 @@ pub mod workteam {
     #[macro_export]
     macro_rules! __aws_sagemaker_Workteam_CognitoMemberDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Workteam.CognitoMemberDefinition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Workteam.CognitoMemberDefinition"
             $($field $value)*)
         };
     }
@@ -12504,7 +12504,7 @@ pub mod workteam {
     #[macro_export]
     macro_rules! __aws_sagemaker_Workteam_MemberDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Workteam.MemberDefinition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Workteam.MemberDefinition"
             $($field $value)*)
         };
     }
@@ -12535,7 +12535,7 @@ pub mod workteam {
     #[macro_export]
     macro_rules! __aws_sagemaker_Workteam_NotificationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Workteam.NotificationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Workteam.NotificationConfiguration"
             $($field $value)*)
         };
     }
@@ -12558,7 +12558,7 @@ pub mod workteam {
     #[macro_export]
     macro_rules! __aws_sagemaker_Workteam_OidcMemberDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SageMaker::Workteam.OidcMemberDefinition"
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Workteam.OidcMemberDefinition"
             $($field $value)*)
         };
     }
@@ -12588,7 +12588,7 @@ pub struct App_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_App {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::App" $($field
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::App" $($field
         $value)*)
     };
 }
@@ -12653,7 +12653,7 @@ pub struct AppImageConfig_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_AppImageConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::AppImageConfig"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::AppImageConfig"
         $($field $value)*)
     };
 }
@@ -12715,7 +12715,7 @@ pub struct Cluster_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_Cluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::Cluster"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::Cluster"
         $($field $value)*)
     };
 }
@@ -12801,7 +12801,7 @@ pub struct CodeRepository_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_CodeRepository {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::CodeRepository"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::CodeRepository"
         $($field $value)*)
     };
 }
@@ -12854,7 +12854,7 @@ pub struct DataQualityJobDefinition_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_DataQualityJobDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::DataQualityJobDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::DataQualityJobDefinition"
         $($field $value)*)
     };
 }
@@ -12936,7 +12936,7 @@ pub struct Device_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_Device {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::Device"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::Device"
         $($field $value)*)
     };
 }
@@ -12977,7 +12977,7 @@ pub struct DeviceFleet_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_DeviceFleet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::DeviceFleet"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::DeviceFleet"
         $($field $value)*)
     };
 }
@@ -13036,7 +13036,7 @@ pub struct Domain_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_Domain {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::Domain"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::Domain"
         $($field $value)*)
     };
 }
@@ -13130,7 +13130,7 @@ pub struct Endpoint_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_Endpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::Endpoint"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::Endpoint"
         $($field $value)*)
     };
 }
@@ -13205,7 +13205,7 @@ pub struct EndpointConfig_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_EndpointConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::EndpointConfig"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::EndpointConfig"
         $($field $value)*)
     };
 }
@@ -13302,7 +13302,7 @@ pub struct FeatureGroup_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_FeatureGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::FeatureGroup"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::FeatureGroup"
         $($field $value)*)
     };
 }
@@ -13382,8 +13382,8 @@ pub struct Image_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_Image {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::Image" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::Image"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_sagemaker_Image as Image;
@@ -13442,7 +13442,7 @@ pub struct ImageVersion_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_ImageVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::ImageVersion"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::ImageVersion"
         $($field $value)*)
     };
 }
@@ -13537,7 +13537,7 @@ pub struct InferenceComponent_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_InferenceComponent {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::InferenceComponent"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::InferenceComponent"
         $($field $value)*)
     };
 }
@@ -13617,7 +13617,7 @@ pub struct InferenceExperiment_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_InferenceExperiment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::InferenceExperiment"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::InferenceExperiment"
         $($field $value)*)
     };
 }
@@ -13713,7 +13713,7 @@ pub struct MlflowTrackingServer_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_MlflowTrackingServer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::MlflowTrackingServer"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::MlflowTrackingServer"
         $($field $value)*)
     };
 }
@@ -13786,8 +13786,8 @@ pub struct Model_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_Model {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::Model" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::Model"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_sagemaker_Model as Model;
@@ -13871,7 +13871,7 @@ pub struct ModelBiasJobDefinition_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_ModelBiasJobDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::ModelBiasJobDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::ModelBiasJobDefinition"
         $($field $value)*)
     };
 }
@@ -13957,7 +13957,7 @@ pub struct ModelCard_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_ModelCard {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::ModelCard"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::ModelCard"
         $($field $value)*)
     };
 }
@@ -14033,7 +14033,7 @@ pub struct ModelExplainabilityJobDefinition_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_ModelExplainabilityJobDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::ModelExplainabilityJobDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::ModelExplainabilityJobDefinition"
         $($field $value)*)
     };
 }
@@ -14146,7 +14146,7 @@ pub struct ModelPackage_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_ModelPackage {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::ModelPackage"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::ModelPackage"
         $($field $value)*)
     };
 }
@@ -14329,7 +14329,7 @@ pub struct ModelPackageGroup_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_ModelPackageGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::ModelPackageGroup"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::ModelPackageGroup"
         $($field $value)*)
     };
 }
@@ -14388,7 +14388,7 @@ pub struct ModelQualityJobDefinition_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_ModelQualityJobDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::ModelQualityJobDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::ModelQualityJobDefinition"
         $($field $value)*)
     };
 }
@@ -14475,7 +14475,7 @@ pub struct MonitoringSchedule_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_MonitoringSchedule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::MonitoringSchedule"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::MonitoringSchedule"
         $($field $value)*)
     };
 }
@@ -14553,7 +14553,7 @@ pub struct NotebookInstance_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_NotebookInstance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::NotebookInstance"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::NotebookInstance"
         $($field $value)*)
     };
 }
@@ -14675,7 +14675,7 @@ pub struct NotebookInstanceLifecycleConfig_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_NotebookInstanceLifecycleConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::NotebookInstanceLifecycleConfig"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::NotebookInstanceLifecycleConfig"
         $($field $value)*)
     };
 }
@@ -14731,7 +14731,7 @@ pub struct PartnerApp_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_PartnerApp {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::PartnerApp"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::PartnerApp"
         $($field $value)*)
     };
 }
@@ -14811,7 +14811,7 @@ pub struct Pipeline_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_Pipeline {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::Pipeline"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::Pipeline"
         $($field $value)*)
     };
 }
@@ -14881,7 +14881,7 @@ pub struct ProcessingJob_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_ProcessingJob {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::ProcessingJob"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::ProcessingJob"
         $($field $value)*)
     };
 }
@@ -14972,7 +14972,7 @@ pub struct Project_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_Project {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::Project"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::Project"
         $($field $value)*)
     };
 }
@@ -15036,8 +15036,8 @@ pub struct Space_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_Space {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::Space" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::Space"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_sagemaker_Space as Space;
@@ -15101,7 +15101,7 @@ pub struct StudioLifecycleConfig_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_StudioLifecycleConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::StudioLifecycleConfig"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::StudioLifecycleConfig"
         $($field $value)*)
     };
 }
@@ -15148,7 +15148,7 @@ pub struct UserProfile_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_UserProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::UserProfile"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::UserProfile"
         $($field $value)*)
     };
 }
@@ -15209,7 +15209,7 @@ pub struct Workteam_ {
 #[macro_export]
 macro_rules! __aws_sagemaker_Workteam {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SageMaker::Workteam"
+        stratosphere::generator::construct_resource_type!("AWS::SageMaker::Workteam"
         $($field $value)*)
     };
 }

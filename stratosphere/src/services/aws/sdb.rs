@@ -6,7 +6,7 @@ pub struct Domain_ {
 #[macro_export]
 macro_rules! __aws_sdb_Domain {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SDB::Domain" $($field
+        stratosphere::generator::construct_resource_type!("AWS::SDB::Domain" $($field
         $value)*)
     };
 }

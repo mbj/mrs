@@ -8,7 +8,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_events_Connection_ApiKeyAuthParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Connection.ApiKeyAuthParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Connection.ApiKeyAuthParameters"
             $($field $value)*)
         };
     }
@@ -39,7 +39,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_events_Connection_AuthParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Connection.AuthParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Connection.AuthParameters"
             $($field $value)*)
         };
     }
@@ -89,7 +89,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_events_Connection_BasicAuthParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Connection.BasicAuthParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Connection.BasicAuthParameters"
             $($field $value)*)
         };
     }
@@ -117,7 +117,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_events_Connection_ClientParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Connection.ClientParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Connection.ClientParameters"
             $($field $value)*)
         };
     }
@@ -146,7 +146,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_events_Connection_ConnectionHttpParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Connection.ConnectionHttpParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Connection.ConnectionHttpParameters"
             $($field $value)*)
         };
     }
@@ -183,7 +183,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_events_Connection_ConnectivityParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Connection.ConnectivityParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Connection.ConnectivityParameters"
             $($field $value)*)
         };
     }
@@ -206,7 +206,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_events_Connection_InvocationConnectivityParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Connection.InvocationConnectivityParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Connection.InvocationConnectivityParameters"
             $($field $value)*)
         };
     }
@@ -232,7 +232,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_events_Connection_OAuthParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Connection.OAuthParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Connection.OAuthParameters"
             $($field $value)*)
         };
     }
@@ -271,7 +271,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_events_Connection_Parameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Connection.Parameter"
+            stratosphere::generator::construct_property_type!("AWS::Events::Connection.Parameter"
             $($field $value)*)
         };
     }
@@ -305,7 +305,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_events_Connection_ResourceParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Connection.ResourceParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Connection.ResourceParameters"
             $($field $value)*)
         };
     }
@@ -336,7 +336,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_events_Endpoint_EndpointEventBus {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Endpoint.EndpointEventBus"
+            stratosphere::generator::construct_property_type!("AWS::Events::Endpoint.EndpointEventBus"
             $($field $value)*)
         };
     }
@@ -360,7 +360,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_events_Endpoint_FailoverConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Endpoint.FailoverConfig"
+            stratosphere::generator::construct_property_type!("AWS::Events::Endpoint.FailoverConfig"
             $($field $value)*)
         };
     }
@@ -387,7 +387,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_events_Endpoint_Primary {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Endpoint.Primary"
+            stratosphere::generator::construct_property_type!("AWS::Events::Endpoint.Primary"
             $($field $value)*)
         };
     }
@@ -410,7 +410,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_events_Endpoint_ReplicationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Endpoint.ReplicationConfig"
+            stratosphere::generator::construct_property_type!("AWS::Events::Endpoint.ReplicationConfig"
             $($field $value)*)
         };
     }
@@ -433,7 +433,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_events_Endpoint_RoutingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Endpoint.RoutingConfig"
+            stratosphere::generator::construct_property_type!("AWS::Events::Endpoint.RoutingConfig"
             $($field $value)*)
         };
     }
@@ -456,7 +456,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_events_Endpoint_Secondary {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Endpoint.Secondary"
+            stratosphere::generator::construct_property_type!("AWS::Events::Endpoint.Secondary"
             $($field $value)*)
         };
     }
@@ -481,7 +481,7 @@ pub mod eventbus {
     #[macro_export]
     macro_rules! __aws_events_EventBus_DeadLetterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::EventBus.DeadLetterConfig"
+            stratosphere::generator::construct_property_type!("AWS::Events::EventBus.DeadLetterConfig"
             $($field $value)*)
         };
     }
@@ -504,7 +504,7 @@ pub mod eventbus {
     #[macro_export]
     macro_rules! __aws_events_EventBus_LogConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::EventBus.LogConfig"
+            stratosphere::generator::construct_property_type!("AWS::Events::EventBus.LogConfig"
             $($field $value)*)
         };
     }
@@ -536,7 +536,7 @@ pub mod eventbuspolicy {
     #[macro_export]
     macro_rules! __aws_events_EventBusPolicy_Condition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::EventBusPolicy.Condition"
+            stratosphere::generator::construct_property_type!("AWS::Events::EventBusPolicy.Condition"
             $($field $value)*)
         };
     }
@@ -566,7 +566,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_AppSyncParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.AppSyncParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.AppSyncParameters"
             $($field $value)*)
         };
     }
@@ -591,7 +591,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_AwsVpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.AwsVpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.AwsVpcConfiguration"
             $($field $value)*)
         };
     }
@@ -626,7 +626,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_BatchArrayProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.BatchArrayProperties"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.BatchArrayProperties"
             $($field $value)*)
         };
     }
@@ -651,7 +651,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_BatchParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.BatchParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.BatchParameters"
             $($field $value)*)
         };
     }
@@ -690,7 +690,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_BatchRetryStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.BatchRetryStrategy"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.BatchRetryStrategy"
             $($field $value)*)
         };
     }
@@ -717,7 +717,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_CapacityProviderStrategyItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.CapacityProviderStrategyItem"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.CapacityProviderStrategyItem"
             $($field $value)*)
         };
     }
@@ -746,7 +746,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_DeadLetterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.DeadLetterConfig"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.DeadLetterConfig"
             $($field $value)*)
         };
     }
@@ -781,7 +781,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_EcsParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.EcsParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.EcsParameters"
             $($field $value)*)
         };
     }
@@ -882,7 +882,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_HttpParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.HttpParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.HttpParameters"
             $($field $value)*)
         };
     }
@@ -920,7 +920,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_InputTransformer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.InputTransformer"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.InputTransformer"
             $($field $value)*)
         };
     }
@@ -949,7 +949,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_KinesisParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.KinesisParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.KinesisParameters"
             $($field $value)*)
         };
     }
@@ -972,7 +972,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_NetworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.NetworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.NetworkConfiguration"
             $($field $value)*)
         };
     }
@@ -998,7 +998,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_PlacementConstraint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.PlacementConstraint"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.PlacementConstraint"
             $($field $value)*)
         };
     }
@@ -1027,7 +1027,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_PlacementStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.PlacementStrategy"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.PlacementStrategy"
             $($field $value)*)
         };
     }
@@ -1058,7 +1058,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_RedshiftDataParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.RedshiftDataParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.RedshiftDataParameters"
             $($field $value)*)
         };
     }
@@ -1109,7 +1109,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_RetryPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.RetryPolicy"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.RetryPolicy"
             $($field $value)*)
         };
     }
@@ -1140,7 +1140,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_RunCommandParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.RunCommandParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.RunCommandParameters"
             $($field $value)*)
         };
     }
@@ -1164,7 +1164,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_RunCommandTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.RunCommandTarget"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.RunCommandTarget"
             $($field $value)*)
         };
     }
@@ -1192,7 +1192,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_SageMakerPipelineParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.SageMakerPipelineParameter"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.SageMakerPipelineParameter"
             $($field $value)*)
         };
     }
@@ -1219,7 +1219,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_SageMakerPipelineParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.SageMakerPipelineParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.SageMakerPipelineParameters"
             $($field $value)*)
         };
     }
@@ -1244,7 +1244,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_SqsParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.SqsParameters"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.SqsParameters"
             $($field $value)*)
         };
     }
@@ -1283,7 +1283,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_events_Rule_Target {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Events::Rule.Target"
+            stratosphere::generator::construct_property_type!("AWS::Events::Rule.Target"
             $($field $value)*)
         };
     }
@@ -1400,7 +1400,7 @@ pub struct ApiDestination_ {
 #[macro_export]
 macro_rules! __aws_events_ApiDestination {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Events::ApiDestination"
+        stratosphere::generator::construct_resource_type!("AWS::Events::ApiDestination"
         $($field $value)*)
     };
 }
@@ -1459,7 +1459,7 @@ pub struct Archive_ {
 #[macro_export]
 macro_rules! __aws_events_Archive {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Events::Archive" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Events::Archive" $($field
         $value)*)
     };
 }
@@ -1526,7 +1526,7 @@ pub struct Connection_ {
 #[macro_export]
 macro_rules! __aws_events_Connection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Events::Connection"
+        stratosphere::generator::construct_resource_type!("AWS::Events::Connection"
         $($field $value)*)
     };
 }
@@ -1591,8 +1591,8 @@ pub struct Endpoint_ {
 #[macro_export]
 macro_rules! __aws_events_Endpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Events::Endpoint" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::Events::Endpoint"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_events_Endpoint as Endpoint;
@@ -1654,8 +1654,8 @@ pub struct EventBus_ {
 #[macro_export]
 macro_rules! __aws_events_EventBus {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Events::EventBus" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::Events::EventBus"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_events_EventBus as EventBus;
@@ -1726,7 +1726,7 @@ pub struct EventBusPolicy_ {
 #[macro_export]
 macro_rules! __aws_events_EventBusPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Events::EventBusPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::Events::EventBusPolicy"
         $($field $value)*)
     };
 }
@@ -1792,7 +1792,7 @@ pub struct Rule_ {
 #[macro_export]
 macro_rules! __aws_events_Rule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Events::Rule" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Events::Rule" $($field
         $value)*)
     };
 }

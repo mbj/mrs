@@ -11,7 +11,7 @@ pub mod bytematchset {
     #[macro_export]
     macro_rules! __aws_wafregional_ByteMatchSet_ByteMatchTuple {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFRegional::ByteMatchSet.ByteMatchTuple"
+            stratosphere::generator::construct_property_type!("AWS::WAFRegional::ByteMatchSet.ByteMatchTuple"
             $($field $value)*)
         };
     }
@@ -55,7 +55,7 @@ pub mod bytematchset {
     #[macro_export]
     macro_rules! __aws_wafregional_ByteMatchSet_FieldToMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFRegional::ByteMatchSet.FieldToMatch"
+            stratosphere::generator::construct_property_type!("AWS::WAFRegional::ByteMatchSet.FieldToMatch"
             $($field $value)*)
         };
     }
@@ -84,7 +84,7 @@ pub mod geomatchset {
     #[macro_export]
     macro_rules! __aws_wafregional_GeoMatchSet_GeoMatchConstraint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFRegional::GeoMatchSet.GeoMatchConstraint"
+            stratosphere::generator::construct_property_type!("AWS::WAFRegional::GeoMatchSet.GeoMatchConstraint"
             $($field $value)*)
         };
     }
@@ -114,7 +114,7 @@ pub mod ipset {
     #[macro_export]
     macro_rules! __aws_wafregional_IPSet_IPSetDescriptor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFRegional::IPSet.IPSetDescriptor"
+            stratosphere::generator::construct_property_type!("AWS::WAFRegional::IPSet.IPSetDescriptor"
             $($field $value)*)
         };
     }
@@ -145,7 +145,7 @@ pub mod ratebasedrule {
     #[macro_export]
     macro_rules! __aws_wafregional_RateBasedRule_Predicate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFRegional::RateBasedRule.Predicate"
+            stratosphere::generator::construct_property_type!("AWS::WAFRegional::RateBasedRule.Predicate"
             $($field $value)*)
         };
     }
@@ -180,7 +180,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_wafregional_Rule_Predicate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFRegional::Rule.Predicate"
+            stratosphere::generator::construct_property_type!("AWS::WAFRegional::Rule.Predicate"
             $($field $value)*)
         };
     }
@@ -214,7 +214,7 @@ pub mod sizeconstraintset {
     #[macro_export]
     macro_rules! __aws_wafregional_SizeConstraintSet_FieldToMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFRegional::SizeConstraintSet.FieldToMatch"
+            stratosphere::generator::construct_property_type!("AWS::WAFRegional::SizeConstraintSet.FieldToMatch"
             $($field $value)*)
         };
     }
@@ -243,7 +243,7 @@ pub mod sizeconstraintset {
     #[macro_export]
     macro_rules! __aws_wafregional_SizeConstraintSet_SizeConstraint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFRegional::SizeConstraintSet.SizeConstraint"
+            stratosphere::generator::construct_property_type!("AWS::WAFRegional::SizeConstraintSet.SizeConstraint"
             $($field $value)*)
         };
     }
@@ -281,7 +281,7 @@ pub mod sqlinjectionmatchset {
     #[macro_export]
     macro_rules! __aws_wafregional_SqlInjectionMatchSet_FieldToMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFRegional::SqlInjectionMatchSet.FieldToMatch"
+            stratosphere::generator::construct_property_type!("AWS::WAFRegional::SqlInjectionMatchSet.FieldToMatch"
             $($field $value)*)
         };
     }
@@ -308,7 +308,7 @@ pub mod sqlinjectionmatchset {
     #[macro_export]
     macro_rules! __aws_wafregional_SqlInjectionMatchSet_SqlInjectionMatchTuple {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFRegional::SqlInjectionMatchSet.SqlInjectionMatchTuple"
+            stratosphere::generator::construct_property_type!("AWS::WAFRegional::SqlInjectionMatchSet.SqlInjectionMatchTuple"
             $($field $value)*)
         };
     }
@@ -337,7 +337,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafregional_WebACL_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFRegional::WebACL.Action"
+            stratosphere::generator::construct_property_type!("AWS::WAFRegional::WebACL.Action"
             $($field $value)*)
         };
     }
@@ -362,7 +362,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafregional_WebACL_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFRegional::WebACL.Rule"
+            stratosphere::generator::construct_property_type!("AWS::WAFRegional::WebACL.Rule"
             $($field $value)*)
         };
     }
@@ -396,7 +396,7 @@ pub mod xssmatchset {
     #[macro_export]
     macro_rules! __aws_wafregional_XssMatchSet_FieldToMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFRegional::XssMatchSet.FieldToMatch"
+            stratosphere::generator::construct_property_type!("AWS::WAFRegional::XssMatchSet.FieldToMatch"
             $($field $value)*)
         };
     }
@@ -423,7 +423,7 @@ pub mod xssmatchset {
     #[macro_export]
     macro_rules! __aws_wafregional_XssMatchSet_XssMatchTuple {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFRegional::XssMatchSet.XssMatchTuple"
+            stratosphere::generator::construct_property_type!("AWS::WAFRegional::XssMatchSet.XssMatchTuple"
             $($field $value)*)
         };
     }
@@ -452,7 +452,7 @@ pub struct ByteMatchSet_ {
 #[macro_export]
 macro_rules! __aws_wafregional_ByteMatchSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFRegional::ByteMatchSet"
+        stratosphere::generator::construct_resource_type!("AWS::WAFRegional::ByteMatchSet"
         $($field $value)*)
     };
 }
@@ -490,7 +490,7 @@ pub struct GeoMatchSet_ {
 #[macro_export]
 macro_rules! __aws_wafregional_GeoMatchSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFRegional::GeoMatchSet"
+        stratosphere::generator::construct_resource_type!("AWS::WAFRegional::GeoMatchSet"
         $($field $value)*)
     };
 }
@@ -528,7 +528,7 @@ pub struct IPSet_ {
 #[macro_export]
 macro_rules! __aws_wafregional_IPSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFRegional::IPSet"
+        stratosphere::generator::construct_resource_type!("AWS::WAFRegional::IPSet"
         $($field $value)*)
     };
 }
@@ -569,7 +569,7 @@ pub struct RateBasedRule_ {
 #[macro_export]
 macro_rules! __aws_wafregional_RateBasedRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFRegional::RateBasedRule"
+        stratosphere::generator::construct_resource_type!("AWS::WAFRegional::RateBasedRule"
         $($field $value)*)
     };
 }
@@ -619,7 +619,7 @@ pub struct RegexPatternSet_ {
 #[macro_export]
 macro_rules! __aws_wafregional_RegexPatternSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFRegional::RegexPatternSet"
+        stratosphere::generator::construct_resource_type!("AWS::WAFRegional::RegexPatternSet"
         $($field $value)*)
     };
 }
@@ -656,7 +656,7 @@ pub struct Rule_ {
 #[macro_export]
 macro_rules! __aws_wafregional_Rule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFRegional::Rule"
+        stratosphere::generator::construct_resource_type!("AWS::WAFRegional::Rule"
         $($field $value)*)
     };
 }
@@ -698,7 +698,7 @@ pub struct SizeConstraintSet_ {
 #[macro_export]
 macro_rules! __aws_wafregional_SizeConstraintSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFRegional::SizeConstraintSet"
+        stratosphere::generator::construct_resource_type!("AWS::WAFRegional::SizeConstraintSet"
         $($field $value)*)
     };
 }
@@ -737,7 +737,7 @@ pub struct SqlInjectionMatchSet_ {
 #[macro_export]
 macro_rules! __aws_wafregional_SqlInjectionMatchSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFRegional::SqlInjectionMatchSet"
+        stratosphere::generator::construct_resource_type!("AWS::WAFRegional::SqlInjectionMatchSet"
         $($field $value)*)
     };
 }
@@ -777,7 +777,7 @@ pub struct WebACL_ {
 #[macro_export]
 macro_rules! __aws_wafregional_WebACL {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFRegional::WebACL"
+        stratosphere::generator::construct_resource_type!("AWS::WAFRegional::WebACL"
         $($field $value)*)
     };
 }
@@ -820,7 +820,7 @@ pub struct WebACLAssociation_ {
 #[macro_export]
 macro_rules! __aws_wafregional_WebACLAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFRegional::WebACLAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::WAFRegional::WebACLAssociation"
         $($field $value)*)
     };
 }
@@ -856,7 +856,7 @@ pub struct XssMatchSet_ {
 #[macro_export]
 macro_rules! __aws_wafregional_XssMatchSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFRegional::XssMatchSet"
+        stratosphere::generator::construct_resource_type!("AWS::WAFRegional::XssMatchSet"
         $($field $value)*)
     };
 }

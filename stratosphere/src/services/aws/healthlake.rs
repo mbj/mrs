@@ -8,7 +8,7 @@ pub mod fhirdatastore {
     #[macro_export]
     macro_rules! __aws_healthlake_FHIRDatastore_CreatedAt {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::HealthLake::FHIRDatastore.CreatedAt"
+            stratosphere::generator::construct_property_type!("AWS::HealthLake::FHIRDatastore.CreatedAt"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod fhirdatastore {
     #[macro_export]
     macro_rules! __aws_healthlake_FHIRDatastore_IdentityProviderConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::HealthLake::FHIRDatastore.IdentityProviderConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::HealthLake::FHIRDatastore.IdentityProviderConfiguration"
             $($field $value)*)
         };
     }
@@ -80,7 +80,7 @@ pub mod fhirdatastore {
     #[macro_export]
     macro_rules! __aws_healthlake_FHIRDatastore_KmsEncryptionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::HealthLake::FHIRDatastore.KmsEncryptionConfig"
+            stratosphere::generator::construct_property_type!("AWS::HealthLake::FHIRDatastore.KmsEncryptionConfig"
             $($field $value)*)
         };
     }
@@ -109,7 +109,7 @@ pub mod fhirdatastore {
     #[macro_export]
     macro_rules! __aws_healthlake_FHIRDatastore_PreloadDataConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::HealthLake::FHIRDatastore.PreloadDataConfig"
+            stratosphere::generator::construct_property_type!("AWS::HealthLake::FHIRDatastore.PreloadDataConfig"
             $($field $value)*)
         };
     }
@@ -132,7 +132,7 @@ pub mod fhirdatastore {
     #[macro_export]
     macro_rules! __aws_healthlake_FHIRDatastore_SseConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::HealthLake::FHIRDatastore.SseConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::HealthLake::FHIRDatastore.SseConfiguration"
             $($field $value)*)
         };
     }
@@ -162,7 +162,7 @@ pub struct FHIRDatastore_ {
 #[macro_export]
 macro_rules! __aws_healthlake_FHIRDatastore {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::HealthLake::FHIRDatastore"
+        stratosphere::generator::construct_resource_type!("AWS::HealthLake::FHIRDatastore"
         $($field $value)*)
     };
 }

@@ -8,7 +8,7 @@ pub mod discoverer {
     #[macro_export]
     macro_rules! __aws_eventschemas_Discoverer_TagsEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EventSchemas::Discoverer.TagsEntry"
+            stratosphere::generator::construct_property_type!("AWS::EventSchemas::Discoverer.TagsEntry"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod registry {
     #[macro_export]
     macro_rules! __aws_eventschemas_Registry_TagsEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EventSchemas::Registry.TagsEntry"
+            stratosphere::generator::construct_property_type!("AWS::EventSchemas::Registry.TagsEntry"
             $($field $value)*)
         };
     }
@@ -68,7 +68,7 @@ pub mod schema {
     #[macro_export]
     macro_rules! __aws_eventschemas_Schema_TagsEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EventSchemas::Schema.TagsEntry"
+            stratosphere::generator::construct_property_type!("AWS::EventSchemas::Schema.TagsEntry"
             $($field $value)*)
         };
     }
@@ -99,7 +99,7 @@ pub struct Discoverer_ {
 #[macro_export]
 macro_rules! __aws_eventschemas_Discoverer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EventSchemas::Discoverer"
+        stratosphere::generator::construct_resource_type!("AWS::EventSchemas::Discoverer"
         $($field $value)*)
     };
 }
@@ -147,7 +147,7 @@ pub struct Registry_ {
 #[macro_export]
 macro_rules! __aws_eventschemas_Registry {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EventSchemas::Registry"
+        stratosphere::generator::construct_resource_type!("AWS::EventSchemas::Registry"
         $($field $value)*)
     };
 }
@@ -191,7 +191,7 @@ pub struct RegistryPolicy_ {
 #[macro_export]
 macro_rules! __aws_eventschemas_RegistryPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EventSchemas::RegistryPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::EventSchemas::RegistryPolicy"
         $($field $value)*)
     };
 }
@@ -237,7 +237,7 @@ pub struct Schema_ {
 #[macro_export]
 macro_rules! __aws_eventschemas_Schema {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EventSchemas::Schema"
+        stratosphere::generator::construct_resource_type!("AWS::EventSchemas::Schema"
         $($field $value)*)
     };
 }

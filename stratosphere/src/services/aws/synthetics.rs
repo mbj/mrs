@@ -7,7 +7,7 @@ pub mod canary {
     #[macro_export]
     macro_rules! __aws_synthetics_Canary_ArtifactConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Synthetics::Canary.ArtifactConfig"
+            stratosphere::generator::construct_property_type!("AWS::Synthetics::Canary.ArtifactConfig"
             $($field $value)*)
         };
     }
@@ -33,7 +33,7 @@ pub mod canary {
     #[macro_export]
     macro_rules! __aws_synthetics_Canary_BaseScreenshot {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Synthetics::Canary.BaseScreenshot"
+            stratosphere::generator::construct_property_type!("AWS::Synthetics::Canary.BaseScreenshot"
             $($field $value)*)
         };
     }
@@ -62,7 +62,7 @@ pub mod canary {
     #[macro_export]
     macro_rules! __aws_synthetics_Canary_BrowserConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Synthetics::Canary.BrowserConfig"
+            stratosphere::generator::construct_property_type!("AWS::Synthetics::Canary.BrowserConfig"
             $($field $value)*)
         };
     }
@@ -91,7 +91,7 @@ pub mod canary {
     #[macro_export]
     macro_rules! __aws_synthetics_Canary_Code {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Synthetics::Canary.Code"
+            stratosphere::generator::construct_property_type!("AWS::Synthetics::Canary.Code"
             $($field $value)*)
         };
     }
@@ -145,7 +145,7 @@ pub mod canary {
     #[macro_export]
     macro_rules! __aws_synthetics_Canary_Dependency {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Synthetics::Canary.Dependency"
+            stratosphere::generator::construct_property_type!("AWS::Synthetics::Canary.Dependency"
             $($field $value)*)
         };
     }
@@ -171,7 +171,7 @@ pub mod canary {
     #[macro_export]
     macro_rules! __aws_synthetics_Canary_RetryConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Synthetics::Canary.RetryConfig"
+            stratosphere::generator::construct_property_type!("AWS::Synthetics::Canary.RetryConfig"
             $($field $value)*)
         };
     }
@@ -199,7 +199,7 @@ pub mod canary {
     #[macro_export]
     macro_rules! __aws_synthetics_Canary_RunConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Synthetics::Canary.RunConfig"
+            stratosphere::generator::construct_property_type!("AWS::Synthetics::Canary.RunConfig"
             $($field $value)*)
         };
     }
@@ -249,7 +249,7 @@ pub mod canary {
     #[macro_export]
     macro_rules! __aws_synthetics_Canary_S3Encryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Synthetics::Canary.S3Encryption"
+            stratosphere::generator::construct_property_type!("AWS::Synthetics::Canary.S3Encryption"
             $($field $value)*)
         };
     }
@@ -282,7 +282,7 @@ pub mod canary {
     #[macro_export]
     macro_rules! __aws_synthetics_Canary_Schedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Synthetics::Canary.Schedule"
+            stratosphere::generator::construct_property_type!("AWS::Synthetics::Canary.Schedule"
             $($field $value)*)
         };
     }
@@ -320,7 +320,7 @@ pub mod canary {
     #[macro_export]
     macro_rules! __aws_synthetics_Canary_VPCConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Synthetics::Canary.VPCConfig"
+            stratosphere::generator::construct_property_type!("AWS::Synthetics::Canary.VPCConfig"
             $($field $value)*)
         };
     }
@@ -358,7 +358,7 @@ pub mod canary {
     #[macro_export]
     macro_rules! __aws_synthetics_Canary_VisualReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Synthetics::Canary.VisualReference"
+            stratosphere::generator::construct_property_type!("AWS::Synthetics::Canary.VisualReference"
             $($field $value)*)
         };
     }
@@ -411,7 +411,7 @@ pub struct Canary_ {
 #[macro_export]
 macro_rules! __aws_synthetics_Canary {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Synthetics::Canary"
+        stratosphere::generator::construct_resource_type!("AWS::Synthetics::Canary"
         $($field $value)*)
     };
 }
@@ -533,7 +533,7 @@ pub struct Group_ {
 #[macro_export]
 macro_rules! __aws_synthetics_Group {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Synthetics::Group"
+        stratosphere::generator::construct_resource_type!("AWS::Synthetics::Group"
         $($field $value)*)
     };
 }

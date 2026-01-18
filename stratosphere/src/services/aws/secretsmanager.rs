@@ -17,7 +17,7 @@ pub mod rotationschedule {
     #[macro_export]
     macro_rules! __aws_secretsmanager_RotationSchedule_HostedRotationLambda {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecretsManager::RotationSchedule.HostedRotationLambda"
+            stratosphere::generator::construct_property_type!("AWS::SecretsManager::RotationSchedule.HostedRotationLambda"
             $($field $value)*)
         };
     }
@@ -102,7 +102,7 @@ pub mod rotationschedule {
     #[macro_export]
     macro_rules! __aws_secretsmanager_RotationSchedule_RotationRules {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecretsManager::RotationSchedule.RotationRules"
+            stratosphere::generator::construct_property_type!("AWS::SecretsManager::RotationSchedule.RotationRules"
             $($field $value)*)
         };
     }
@@ -150,7 +150,7 @@ pub mod secret {
     #[macro_export]
     macro_rules! __aws_secretsmanager_Secret_GenerateSecretString {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecretsManager::Secret.GenerateSecretString"
+            stratosphere::generator::construct_property_type!("AWS::SecretsManager::Secret.GenerateSecretString"
             $($field $value)*)
         };
     }
@@ -230,7 +230,7 @@ pub mod secret {
     #[macro_export]
     macro_rules! __aws_secretsmanager_Secret_ReplicaRegion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecretsManager::Secret.ReplicaRegion"
+            stratosphere::generator::construct_property_type!("AWS::SecretsManager::Secret.ReplicaRegion"
             $($field $value)*)
         };
     }
@@ -262,7 +262,7 @@ pub struct ResourcePolicy_ {
 #[macro_export]
 macro_rules! __aws_secretsmanager_ResourcePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecretsManager::ResourcePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::SecretsManager::ResourcePolicy"
         $($field $value)*)
     };
 }
@@ -308,7 +308,7 @@ pub struct RotationSchedule_ {
 #[macro_export]
 macro_rules! __aws_secretsmanager_RotationSchedule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecretsManager::RotationSchedule"
+        stratosphere::generator::construct_resource_type!("AWS::SecretsManager::RotationSchedule"
         $($field $value)*)
     };
 }
@@ -369,7 +369,7 @@ pub struct Secret_ {
 #[macro_export]
 macro_rules! __aws_secretsmanager_Secret {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecretsManager::Secret"
+        stratosphere::generator::construct_resource_type!("AWS::SecretsManager::Secret"
         $($field $value)*)
     };
 }
@@ -434,7 +434,7 @@ pub struct SecretTargetAttachment_ {
 #[macro_export]
 macro_rules! __aws_secretsmanager_SecretTargetAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecretsManager::SecretTargetAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::SecretsManager::SecretTargetAttachment"
         $($field $value)*)
     };
 }

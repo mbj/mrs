@@ -9,7 +9,7 @@ pub mod alias {
     #[macro_export]
     macro_rules! __aws_gamelift_Alias_RoutingStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::Alias.RoutingStrategy"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Alias.RoutingStrategy"
             $($field $value)*)
         };
     }
@@ -49,7 +49,7 @@ pub mod build {
     #[macro_export]
     macro_rules! __aws_gamelift_Build_StorageLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::Build.StorageLocation"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Build.StorageLocation"
             $($field $value)*)
         };
     }
@@ -89,7 +89,7 @@ pub mod containerfleet {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerFleet_ConnectionPortRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerFleet.ConnectionPortRange"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerFleet.ConnectionPortRange"
             $($field $value)*)
         };
     }
@@ -118,7 +118,7 @@ pub mod containerfleet {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerFleet_DeploymentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerFleet.DeploymentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerFleet.DeploymentConfiguration"
             $($field $value)*)
         };
     }
@@ -155,7 +155,7 @@ pub mod containerfleet {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerFleet_DeploymentDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerFleet.DeploymentDetails"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerFleet.DeploymentDetails"
             $($field $value)*)
         };
     }
@@ -181,7 +181,7 @@ pub mod containerfleet {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerFleet_GameSessionCreationLimitPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerFleet.GameSessionCreationLimitPolicy"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerFleet.GameSessionCreationLimitPolicy"
             $($field $value)*)
         };
     }
@@ -215,7 +215,7 @@ pub mod containerfleet {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerFleet_IpPermission {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerFleet.IpPermission"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerFleet.IpPermission"
             $($field $value)*)
         };
     }
@@ -252,7 +252,7 @@ pub mod containerfleet {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerFleet_LocationCapacity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerFleet.LocationCapacity"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerFleet.LocationCapacity"
             $($field $value)*)
         };
     }
@@ -285,7 +285,7 @@ pub mod containerfleet {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerFleet_LocationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerFleet.LocationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerFleet.LocationConfiguration"
             $($field $value)*)
         };
     }
@@ -322,7 +322,7 @@ pub mod containerfleet {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerFleet_LogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerFleet.LogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerFleet.LogConfiguration"
             $($field $value)*)
         };
     }
@@ -367,7 +367,7 @@ pub mod containerfleet {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerFleet_ScalingPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerFleet.ScalingPolicy"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerFleet.ScalingPolicy"
             $($field $value)*)
         };
     }
@@ -436,7 +436,7 @@ pub mod containerfleet {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerFleet_TargetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerFleet.TargetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerFleet.TargetConfiguration"
             $($field $value)*)
         };
     }
@@ -462,7 +462,7 @@ pub mod containergroupdefinition {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerGroupDefinition_ContainerDependency {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.ContainerDependency"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.ContainerDependency"
             $($field $value)*)
         };
     }
@@ -490,7 +490,7 @@ pub mod containergroupdefinition {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerGroupDefinition_ContainerEnvironment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.ContainerEnvironment"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.ContainerEnvironment"
             $($field $value)*)
         };
     }
@@ -521,7 +521,7 @@ pub mod containergroupdefinition {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerGroupDefinition_ContainerHealthCheck {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.ContainerHealthCheck"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.ContainerHealthCheck"
             $($field $value)*)
         };
     }
@@ -570,7 +570,7 @@ pub mod containergroupdefinition {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerGroupDefinition_ContainerMountPoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.ContainerMountPoint"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.ContainerMountPoint"
             $($field $value)*)
         };
     }
@@ -607,7 +607,7 @@ pub mod containergroupdefinition {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerGroupDefinition_ContainerPortRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.ContainerPortRange"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.ContainerPortRange"
             $($field $value)*)
         };
     }
@@ -645,7 +645,7 @@ pub mod containergroupdefinition {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerGroupDefinition_GameServerContainerDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.GameServerContainerDefinition"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.GameServerContainerDefinition"
             $($field $value)*)
         };
     }
@@ -706,7 +706,7 @@ pub mod containergroupdefinition {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerGroupDefinition_PortConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.PortConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.PortConfiguration"
             $($field $value)*)
         };
     }
@@ -739,7 +739,7 @@ pub mod containergroupdefinition {
     #[macro_export]
     macro_rules! __aws_gamelift_ContainerGroupDefinition_SupportContainerDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.SupportContainerDefinition"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerGroupDefinition.SupportContainerDefinition"
             $($field $value)*)
         };
     }
@@ -819,7 +819,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_gamelift_Fleet_AnywhereConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::Fleet.AnywhereConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Fleet.AnywhereConfiguration"
             $($field $value)*)
         };
     }
@@ -842,7 +842,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_gamelift_Fleet_CertificateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::Fleet.CertificateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Fleet.CertificateConfiguration"
             $($field $value)*)
         };
     }
@@ -868,7 +868,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_gamelift_Fleet_IpPermission {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::Fleet.IpPermission"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Fleet.IpPermission"
             $($field $value)*)
         };
     }
@@ -905,7 +905,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_gamelift_Fleet_LocationCapacity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::Fleet.LocationCapacity"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Fleet.LocationCapacity"
             $($field $value)*)
         };
     }
@@ -937,7 +937,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_gamelift_Fleet_LocationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::Fleet.LocationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Fleet.LocationConfiguration"
             $($field $value)*)
         };
     }
@@ -967,7 +967,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_gamelift_Fleet_ResourceCreationLimitPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::Fleet.ResourceCreationLimitPolicy"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Fleet.ResourceCreationLimitPolicy"
             $($field $value)*)
         };
     }
@@ -1000,7 +1000,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_gamelift_Fleet_RuntimeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::Fleet.RuntimeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Fleet.RuntimeConfiguration"
             $($field $value)*)
         };
     }
@@ -1048,7 +1048,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_gamelift_Fleet_ScalingPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::Fleet.ScalingPolicy"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Fleet.ScalingPolicy"
             $($field $value)*)
         };
     }
@@ -1134,7 +1134,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_gamelift_Fleet_ServerProcess {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::Fleet.ServerProcess"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Fleet.ServerProcess"
             $($field $value)*)
         };
     }
@@ -1167,7 +1167,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_gamelift_Fleet_TargetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::Fleet.TargetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Fleet.TargetConfiguration"
             $($field $value)*)
         };
     }
@@ -1193,7 +1193,7 @@ pub mod gameservergroup {
     #[macro_export]
     macro_rules! __aws_gamelift_GameServerGroup_AutoScalingPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::GameServerGroup.AutoScalingPolicy"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::GameServerGroup.AutoScalingPolicy"
             $($field $value)*)
         };
     }
@@ -1223,7 +1223,7 @@ pub mod gameservergroup {
     #[macro_export]
     macro_rules! __aws_gamelift_GameServerGroup_InstanceDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::GameServerGroup.InstanceDefinition"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::GameServerGroup.InstanceDefinition"
             $($field $value)*)
         };
     }
@@ -1254,7 +1254,7 @@ pub mod gameservergroup {
     #[macro_export]
     macro_rules! __aws_gamelift_GameServerGroup_LaunchTemplate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::GameServerGroup.LaunchTemplate"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::GameServerGroup.LaunchTemplate"
             $($field $value)*)
         };
     }
@@ -1291,7 +1291,7 @@ pub mod gameservergroup {
     #[macro_export]
     macro_rules! __aws_gamelift_GameServerGroup_TargetTrackingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::GameServerGroup.TargetTrackingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::GameServerGroup.TargetTrackingConfiguration"
             $($field $value)*)
         };
     }
@@ -1316,7 +1316,7 @@ pub mod gamesessionqueue {
     #[macro_export]
     macro_rules! __aws_gamelift_GameSessionQueue_FilterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::GameSessionQueue.FilterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::GameSessionQueue.FilterConfiguration"
             $($field $value)*)
         };
     }
@@ -1341,7 +1341,7 @@ pub mod gamesessionqueue {
     #[macro_export]
     macro_rules! __aws_gamelift_GameSessionQueue_GameSessionQueueDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::GameSessionQueue.GameSessionQueueDestination"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::GameSessionQueue.GameSessionQueueDestination"
             $($field $value)*)
         };
     }
@@ -1367,7 +1367,7 @@ pub mod gamesessionqueue {
     #[macro_export]
     macro_rules! __aws_gamelift_GameSessionQueue_PlayerLatencyPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::GameSessionQueue.PlayerLatencyPolicy"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::GameSessionQueue.PlayerLatencyPolicy"
             $($field $value)*)
         };
     }
@@ -1399,7 +1399,7 @@ pub mod gamesessionqueue {
     #[macro_export]
     macro_rules! __aws_gamelift_GameSessionQueue_PriorityConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::GameSessionQueue.PriorityConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::GameSessionQueue.PriorityConfiguration"
             $($field $value)*)
         };
     }
@@ -1433,7 +1433,7 @@ pub mod matchmakingconfiguration {
     #[macro_export]
     macro_rules! __aws_gamelift_MatchmakingConfiguration_GameProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::MatchmakingConfiguration.GameProperty"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::MatchmakingConfiguration.GameProperty"
             $($field $value)*)
         };
     }
@@ -1465,7 +1465,7 @@ pub mod script {
     #[macro_export]
     macro_rules! __aws_gamelift_Script_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GameLift::Script.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Script.S3Location"
             $($field $value)*)
         };
     }
@@ -1506,7 +1506,7 @@ pub struct Alias_ {
 #[macro_export]
 macro_rules! __aws_gamelift_Alias {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GameLift::Alias" $($field
+        stratosphere::generator::construct_resource_type!("AWS::GameLift::Alias" $($field
         $value)*)
     };
 }
@@ -1555,7 +1555,7 @@ pub struct Build_ {
 #[macro_export]
 macro_rules! __aws_gamelift_Build {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GameLift::Build" $($field
+        stratosphere::generator::construct_resource_type!("AWS::GameLift::Build" $($field
         $value)*)
     };
 }
@@ -1630,7 +1630,7 @@ pub struct ContainerFleet_ {
 #[macro_export]
 macro_rules! __aws_gamelift_ContainerFleet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GameLift::ContainerFleet"
+        stratosphere::generator::construct_resource_type!("AWS::GameLift::ContainerFleet"
         $($field $value)*)
     };
 }
@@ -1765,7 +1765,7 @@ pub struct ContainerGroupDefinition_ {
 #[macro_export]
 macro_rules! __aws_gamelift_ContainerGroupDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GameLift::ContainerGroupDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::GameLift::ContainerGroupDefinition"
         $($field $value)*)
     };
 }
@@ -1863,7 +1863,7 @@ pub struct Fleet_ {
 #[macro_export]
 macro_rules! __aws_gamelift_Fleet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GameLift::Fleet" $($field
+        stratosphere::generator::construct_resource_type!("AWS::GameLift::Fleet" $($field
         $value)*)
     };
 }
@@ -2028,7 +2028,7 @@ pub struct GameServerGroup_ {
 #[macro_export]
 macro_rules! __aws_gamelift_GameServerGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GameLift::GameServerGroup"
+        stratosphere::generator::construct_resource_type!("AWS::GameLift::GameServerGroup"
         $($field $value)*)
     };
 }
@@ -2127,7 +2127,7 @@ pub struct GameSessionQueue_ {
 #[macro_export]
 macro_rules! __aws_gamelift_GameSessionQueue {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GameLift::GameSessionQueue"
+        stratosphere::generator::construct_resource_type!("AWS::GameLift::GameSessionQueue"
         $($field $value)*)
     };
 }
@@ -2204,7 +2204,7 @@ pub struct Location_ {
 #[macro_export]
 macro_rules! __aws_gamelift_Location {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GameLift::Location"
+        stratosphere::generator::construct_resource_type!("AWS::GameLift::Location"
         $($field $value)*)
     };
 }
@@ -2254,7 +2254,7 @@ pub struct MatchmakingConfiguration_ {
 #[macro_export]
 macro_rules! __aws_gamelift_MatchmakingConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GameLift::MatchmakingConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::GameLift::MatchmakingConfiguration"
         $($field $value)*)
     };
 }
@@ -2374,7 +2374,7 @@ pub struct MatchmakingRuleSet_ {
 #[macro_export]
 macro_rules! __aws_gamelift_MatchmakingRuleSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GameLift::MatchmakingRuleSet"
+        stratosphere::generator::construct_resource_type!("AWS::GameLift::MatchmakingRuleSet"
         $($field $value)*)
     };
 }
@@ -2415,8 +2415,8 @@ pub struct Script_ {
 #[macro_export]
 macro_rules! __aws_gamelift_Script {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GameLift::Script" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::GameLift::Script"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_gamelift_Script as Script;

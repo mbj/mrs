@@ -11,7 +11,7 @@ pub mod publicrepository {
     #[macro_export]
     macro_rules! __aws_ecr_PublicRepository_RepositoryCatalogData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECR::PublicRepository.RepositoryCatalogData"
+            stratosphere::generator::construct_property_type!("AWS::ECR::PublicRepository.RepositoryCatalogData"
             $($field $value)*)
         };
     }
@@ -63,7 +63,7 @@ pub mod registryscanningconfiguration {
     #[macro_export]
     macro_rules! __aws_ecr_RegistryScanningConfiguration_RepositoryFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECR::RegistryScanningConfiguration.RepositoryFilter"
+            stratosphere::generator::construct_property_type!("AWS::ECR::RegistryScanningConfiguration.RepositoryFilter"
             $($field $value)*)
         };
     }
@@ -91,7 +91,7 @@ pub mod registryscanningconfiguration {
     #[macro_export]
     macro_rules! __aws_ecr_RegistryScanningConfiguration_ScanningRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECR::RegistryScanningConfiguration.ScanningRule"
+            stratosphere::generator::construct_property_type!("AWS::ECR::RegistryScanningConfiguration.ScanningRule"
             $($field $value)*)
         };
     }
@@ -120,7 +120,7 @@ pub mod replicationconfiguration {
     #[macro_export]
     macro_rules! __aws_ecr_ReplicationConfiguration_ReplicationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECR::ReplicationConfiguration.ReplicationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECR::ReplicationConfiguration.ReplicationConfiguration"
             $($field $value)*)
         };
     }
@@ -144,7 +144,7 @@ pub mod replicationconfiguration {
     #[macro_export]
     macro_rules! __aws_ecr_ReplicationConfiguration_ReplicationDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECR::ReplicationConfiguration.ReplicationDestination"
+            stratosphere::generator::construct_property_type!("AWS::ECR::ReplicationConfiguration.ReplicationDestination"
             $($field $value)*)
         };
     }
@@ -172,7 +172,7 @@ pub mod replicationconfiguration {
     #[macro_export]
     macro_rules! __aws_ecr_ReplicationConfiguration_ReplicationRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECR::ReplicationConfiguration.ReplicationRule"
+            stratosphere::generator::construct_property_type!("AWS::ECR::ReplicationConfiguration.ReplicationRule"
             $($field $value)*)
         };
     }
@@ -202,7 +202,7 @@ pub mod replicationconfiguration {
     #[macro_export]
     macro_rules! __aws_ecr_ReplicationConfiguration_RepositoryFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECR::ReplicationConfiguration.RepositoryFilter"
+            stratosphere::generator::construct_property_type!("AWS::ECR::ReplicationConfiguration.RepositoryFilter"
             $($field $value)*)
         };
     }
@@ -232,7 +232,7 @@ pub mod repository {
     #[macro_export]
     macro_rules! __aws_ecr_Repository_EncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECR::Repository.EncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECR::Repository.EncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -258,7 +258,7 @@ pub mod repository {
     #[macro_export]
     macro_rules! __aws_ecr_Repository_ImageScanningConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECR::Repository.ImageScanningConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECR::Repository.ImageScanningConfiguration"
             $($field $value)*)
         };
     }
@@ -284,7 +284,7 @@ pub mod repository {
     #[macro_export]
     macro_rules! __aws_ecr_Repository_ImageTagMutabilityExclusionFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECR::Repository.ImageTagMutabilityExclusionFilter"
+            stratosphere::generator::construct_property_type!("AWS::ECR::Repository.ImageTagMutabilityExclusionFilter"
             $($field $value)*)
         };
     }
@@ -312,7 +312,7 @@ pub mod repository {
     #[macro_export]
     macro_rules! __aws_ecr_Repository_LifecyclePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECR::Repository.LifecyclePolicy"
+            stratosphere::generator::construct_property_type!("AWS::ECR::Repository.LifecyclePolicy"
             $($field $value)*)
         };
     }
@@ -346,7 +346,7 @@ pub mod repositorycreationtemplate {
     #[macro_export]
     macro_rules! __aws_ecr_RepositoryCreationTemplate_EncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECR::RepositoryCreationTemplate.EncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ECR::RepositoryCreationTemplate.EncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -373,7 +373,7 @@ pub mod repositorycreationtemplate {
     #[macro_export]
     macro_rules! __aws_ecr_RepositoryCreationTemplate_ImageTagMutabilityExclusionFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ECR::RepositoryCreationTemplate.ImageTagMutabilityExclusionFilter"
+            stratosphere::generator::construct_property_type!("AWS::ECR::RepositoryCreationTemplate.ImageTagMutabilityExclusionFilter"
             $($field $value)*)
         };
     }
@@ -404,7 +404,7 @@ pub struct PublicRepository_ {
 #[macro_export]
 macro_rules! __aws_ecr_PublicRepository {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ECR::PublicRepository"
+        stratosphere::generator::construct_resource_type!("AWS::ECR::PublicRepository"
         $($field $value)*)
     };
 }
@@ -457,7 +457,7 @@ pub struct PullThroughCacheRule_ {
 #[macro_export]
 macro_rules! __aws_ecr_PullThroughCacheRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ECR::PullThroughCacheRule"
+        stratosphere::generator::construct_resource_type!("AWS::ECR::PullThroughCacheRule"
         $($field $value)*)
     };
 }
@@ -520,7 +520,7 @@ pub struct RegistryPolicy_ {
 #[macro_export]
 macro_rules! __aws_ecr_RegistryPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ECR::RegistryPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::ECR::RegistryPolicy"
         $($field $value)*)
     };
 }
@@ -552,7 +552,7 @@ pub struct RegistryScanningConfiguration_ {
 #[macro_export]
 macro_rules! __aws_ecr_RegistryScanningConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ECR::RegistryScanningConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::ECR::RegistryScanningConfiguration"
         $($field $value)*)
     };
 }
@@ -589,7 +589,7 @@ pub struct ReplicationConfiguration_ {
 #[macro_export]
 macro_rules! __aws_ecr_ReplicationConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ECR::ReplicationConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::ECR::ReplicationConfiguration"
         $($field $value)*)
     };
 }
@@ -629,7 +629,7 @@ pub struct Repository_ {
 #[macro_export]
 macro_rules! __aws_ecr_Repository {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ECR::Repository" $($field
+        stratosphere::generator::construct_resource_type!("AWS::ECR::Repository" $($field
         $value)*)
     };
 }
@@ -718,7 +718,7 @@ pub struct RepositoryCreationTemplate_ {
 #[macro_export]
 macro_rules! __aws_ecr_RepositoryCreationTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ECR::RepositoryCreationTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::ECR::RepositoryCreationTemplate"
         $($field $value)*)
     };
 }

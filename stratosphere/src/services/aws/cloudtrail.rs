@@ -8,7 +8,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_cloudtrail_Channel_Destination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudTrail::Channel.Destination"
+            stratosphere::generator::construct_property_type!("AWS::CloudTrail::Channel.Destination"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_cloudtrail_Dashboard_Frequency {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudTrail::Dashboard.Frequency"
+            stratosphere::generator::construct_property_type!("AWS::CloudTrail::Dashboard.Frequency"
             $($field $value)*)
         };
     }
@@ -67,7 +67,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_cloudtrail_Dashboard_RefreshSchedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudTrail::Dashboard.RefreshSchedule"
+            stratosphere::generator::construct_property_type!("AWS::CloudTrail::Dashboard.RefreshSchedule"
             $($field $value)*)
         };
     }
@@ -103,7 +103,7 @@ pub mod dashboard {
     #[macro_export]
     macro_rules! __aws_cloudtrail_Dashboard_Widget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudTrail::Dashboard.Widget"
+            stratosphere::generator::construct_property_type!("AWS::CloudTrail::Dashboard.Widget"
             $($field $value)*)
         };
     }
@@ -141,7 +141,7 @@ pub mod eventdatastore {
     #[macro_export]
     macro_rules! __aws_cloudtrail_EventDataStore_AdvancedEventSelector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudTrail::EventDataStore.AdvancedEventSelector"
+            stratosphere::generator::construct_property_type!("AWS::CloudTrail::EventDataStore.AdvancedEventSelector"
             $($field $value)*)
         };
     }
@@ -173,7 +173,7 @@ pub mod eventdatastore {
     #[macro_export]
     macro_rules! __aws_cloudtrail_EventDataStore_AdvancedFieldSelector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudTrail::EventDataStore.AdvancedFieldSelector"
+            stratosphere::generator::construct_property_type!("AWS::CloudTrail::EventDataStore.AdvancedFieldSelector"
             $($field $value)*)
         };
     }
@@ -230,7 +230,7 @@ pub mod eventdatastore {
     #[macro_export]
     macro_rules! __aws_cloudtrail_EventDataStore_ContextKeySelector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudTrail::EventDataStore.ContextKeySelector"
+            stratosphere::generator::construct_property_type!("AWS::CloudTrail::EventDataStore.ContextKeySelector"
             $($field $value)*)
         };
     }
@@ -257,7 +257,7 @@ pub mod eventdatastore {
     #[macro_export]
     macro_rules! __aws_cloudtrail_EventDataStore_InsightSelector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudTrail::EventDataStore.InsightSelector"
+            stratosphere::generator::construct_property_type!("AWS::CloudTrail::EventDataStore.InsightSelector"
             $($field $value)*)
         };
     }
@@ -285,7 +285,7 @@ pub mod trail {
     #[macro_export]
     macro_rules! __aws_cloudtrail_Trail_AdvancedEventSelector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudTrail::Trail.AdvancedEventSelector"
+            stratosphere::generator::construct_property_type!("AWS::CloudTrail::Trail.AdvancedEventSelector"
             $($field $value)*)
         };
     }
@@ -317,7 +317,7 @@ pub mod trail {
     #[macro_export]
     macro_rules! __aws_cloudtrail_Trail_AdvancedFieldSelector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudTrail::Trail.AdvancedFieldSelector"
+            stratosphere::generator::construct_property_type!("AWS::CloudTrail::Trail.AdvancedFieldSelector"
             $($field $value)*)
         };
     }
@@ -374,7 +374,7 @@ pub mod trail {
     #[macro_export]
     macro_rules! __aws_cloudtrail_Trail_DataResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudTrail::Trail.DataResource"
+            stratosphere::generator::construct_property_type!("AWS::CloudTrail::Trail.DataResource"
             $($field $value)*)
         };
     }
@@ -403,7 +403,7 @@ pub mod trail {
     #[macro_export]
     macro_rules! __aws_cloudtrail_Trail_EventSelector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudTrail::Trail.EventSelector"
+            stratosphere::generator::construct_property_type!("AWS::CloudTrail::Trail.EventSelector"
             $($field $value)*)
         };
     }
@@ -446,7 +446,7 @@ pub mod trail {
     #[macro_export]
     macro_rules! __aws_cloudtrail_Trail_InsightSelector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudTrail::Trail.InsightSelector"
+            stratosphere::generator::construct_property_type!("AWS::CloudTrail::Trail.InsightSelector"
             $($field $value)*)
         };
     }
@@ -475,7 +475,7 @@ pub struct Channel_ {
 #[macro_export]
 macro_rules! __aws_cloudtrail_Channel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudTrail::Channel"
+        stratosphere::generator::construct_resource_type!("AWS::CloudTrail::Channel"
         $($field $value)*)
     };
 }
@@ -521,7 +521,7 @@ pub struct Dashboard_ {
 #[macro_export]
 macro_rules! __aws_cloudtrail_Dashboard {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudTrail::Dashboard"
+        stratosphere::generator::construct_resource_type!("AWS::CloudTrail::Dashboard"
         $($field $value)*)
     };
 }
@@ -588,7 +588,7 @@ pub struct EventDataStore_ {
 #[macro_export]
 macro_rules! __aws_cloudtrail_EventDataStore {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudTrail::EventDataStore"
+        stratosphere::generator::construct_resource_type!("AWS::CloudTrail::EventDataStore"
         $($field $value)*)
     };
 }
@@ -706,7 +706,7 @@ pub struct ResourcePolicy_ {
 #[macro_export]
 macro_rules! __aws_cloudtrail_ResourcePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudTrail::ResourcePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::CloudTrail::ResourcePolicy"
         $($field $value)*)
     };
 }
@@ -756,7 +756,7 @@ pub struct Trail_ {
 #[macro_export]
 macro_rules! __aws_cloudtrail_Trail {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudTrail::Trail"
+        stratosphere::generator::construct_resource_type!("AWS::CloudTrail::Trail"
         $($field $value)*)
     };
 }

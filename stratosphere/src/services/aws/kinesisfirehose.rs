@@ -8,7 +8,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_AmazonOpenSearchServerlessBufferingHints {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.AmazonOpenSearchServerlessBufferingHints"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.AmazonOpenSearchServerlessBufferingHints"
             $($field $value)*)
         };
     }
@@ -48,7 +48,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_AmazonOpenSearchServerlessDestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.AmazonOpenSearchServerlessDestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.AmazonOpenSearchServerlessDestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -121,7 +121,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_AmazonOpenSearchServerlessRetryOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.AmazonOpenSearchServerlessRetryOptions"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.AmazonOpenSearchServerlessRetryOptions"
             $($field $value)*)
         };
     }
@@ -147,7 +147,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_AmazonopensearchserviceBufferingHints {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.AmazonopensearchserviceBufferingHints"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.AmazonopensearchserviceBufferingHints"
             $($field $value)*)
         };
     }
@@ -191,7 +191,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_AmazonopensearchserviceDestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.AmazonopensearchserviceDestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.AmazonopensearchserviceDestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -288,7 +288,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_AmazonopensearchserviceRetryOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.AmazonopensearchserviceRetryOptions"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.AmazonopensearchserviceRetryOptions"
             $($field $value)*)
         };
     }
@@ -314,7 +314,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_AuthenticationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.AuthenticationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.AuthenticationConfiguration"
             $($field $value)*)
         };
     }
@@ -342,7 +342,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_BufferingHints {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.BufferingHints"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.BufferingHints"
             $($field $value)*)
         };
     }
@@ -374,7 +374,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_CatalogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.CatalogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.CatalogConfiguration"
             $($field $value)*)
         };
     }
@@ -407,7 +407,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_CloudWatchLoggingOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.CloudWatchLoggingOptions"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.CloudWatchLoggingOptions"
             $($field $value)*)
         };
     }
@@ -446,7 +446,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_CopyCommand {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.CopyCommand"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.CopyCommand"
             $($field $value)*)
         };
     }
@@ -484,7 +484,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_DataFormatConversionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DataFormatConversionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DataFormatConversionConfiguration"
             $($field $value)*)
         };
     }
@@ -528,7 +528,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_DatabaseColumns {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DatabaseColumns"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DatabaseColumns"
             $($field $value)*)
         };
     }
@@ -559,7 +559,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_DatabaseSourceAuthenticationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DatabaseSourceAuthenticationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DatabaseSourceAuthenticationConfiguration"
             $($field $value)*)
         };
     }
@@ -595,7 +595,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_DatabaseSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DatabaseSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DatabaseSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -673,7 +673,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_DatabaseSourceVPCConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DatabaseSourceVPCConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DatabaseSourceVPCConfiguration"
             $($field $value)*)
         };
     }
@@ -697,7 +697,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_DatabaseTables {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DatabaseTables"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DatabaseTables"
             $($field $value)*)
         };
     }
@@ -729,7 +729,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_Databases {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.Databases"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.Databases"
             $($field $value)*)
         };
     }
@@ -761,7 +761,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_DeliveryStreamEncryptionConfigurationInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DeliveryStreamEncryptionConfigurationInput"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DeliveryStreamEncryptionConfigurationInput"
             $($field $value)*)
         };
     }
@@ -788,7 +788,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_Deserializer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.Deserializer"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.Deserializer"
             $($field $value)*)
         };
     }
@@ -823,7 +823,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_DestinationTableConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DestinationTableConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DestinationTableConfiguration"
             $($field $value)*)
         };
     }
@@ -868,7 +868,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_DirectPutSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DirectPutSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DirectPutSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -893,7 +893,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_DocumentIdOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DocumentIdOptions"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DocumentIdOptions"
             $($field $value)*)
         };
     }
@@ -917,7 +917,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_DynamicPartitioningConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DynamicPartitioningConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.DynamicPartitioningConfiguration"
             $($field $value)*)
         };
     }
@@ -949,7 +949,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_ElasticsearchBufferingHints {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.ElasticsearchBufferingHints"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.ElasticsearchBufferingHints"
             $($field $value)*)
         };
     }
@@ -993,7 +993,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_ElasticsearchDestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.ElasticsearchDestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.ElasticsearchDestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -1090,7 +1090,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_ElasticsearchRetryOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.ElasticsearchRetryOptions"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.ElasticsearchRetryOptions"
             $($field $value)*)
         };
     }
@@ -1116,7 +1116,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_EncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.EncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.EncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -1161,7 +1161,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_ExtendedS3DestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.ExtendedS3DestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.ExtendedS3DestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -1263,7 +1263,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_HiveJsonSerDe {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.HiveJsonSerDe"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.HiveJsonSerDe"
             $($field $value)*)
         };
     }
@@ -1289,7 +1289,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_HttpEndpointCommonAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.HttpEndpointCommonAttribute"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.HttpEndpointCommonAttribute"
             $($field $value)*)
         };
     }
@@ -1318,7 +1318,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_HttpEndpointConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.HttpEndpointConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.HttpEndpointConfiguration"
             $($field $value)*)
         };
     }
@@ -1359,7 +1359,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_HttpEndpointDestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.HttpEndpointDestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.HttpEndpointDestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -1435,7 +1435,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_HttpEndpointRequestConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.HttpEndpointRequestConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.HttpEndpointRequestConfiguration"
             $($field $value)*)
         };
     }
@@ -1477,7 +1477,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_IcebergDestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.IcebergDestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.IcebergDestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -1562,7 +1562,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_InputFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.InputFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.InputFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -1587,7 +1587,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_KMSEncryptionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.KMSEncryptionConfig"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.KMSEncryptionConfig"
             $($field $value)*)
         };
     }
@@ -1611,7 +1611,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_KinesisStreamSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.KinesisStreamSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.KinesisStreamSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -1641,7 +1641,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_MSKSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.MSKSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.MSKSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -1681,7 +1681,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_OpenXJsonSerDe {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.OpenXJsonSerDe"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.OpenXJsonSerDe"
             $($field $value)*)
         };
     }
@@ -1727,7 +1727,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_OrcSerDe {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.OrcSerDe"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.OrcSerDe"
             $($field $value)*)
         };
     }
@@ -1806,7 +1806,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_OutputFormatConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.OutputFormatConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.OutputFormatConfiguration"
             $($field $value)*)
         };
     }
@@ -1836,7 +1836,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_ParquetSerDe {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.ParquetSerDe"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.ParquetSerDe"
             $($field $value)*)
         };
     }
@@ -1891,7 +1891,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_PartitionField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.PartitionField"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.PartitionField"
             $($field $value)*)
         };
     }
@@ -1914,7 +1914,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_PartitionSpec {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.PartitionSpec"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.PartitionSpec"
             $($field $value)*)
         };
     }
@@ -1940,7 +1940,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_ProcessingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.ProcessingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.ProcessingConfiguration"
             $($field $value)*)
         };
     }
@@ -1972,7 +1972,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_Processor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.Processor"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.Processor"
             $($field $value)*)
         };
     }
@@ -2002,7 +2002,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_ProcessorParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.ProcessorParameter"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.ProcessorParameter"
             $($field $value)*)
         };
     }
@@ -2040,7 +2040,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_RedshiftDestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.RedshiftDestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.RedshiftDestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -2123,7 +2123,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_RedshiftRetryOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.RedshiftRetryOptions"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.RedshiftRetryOptions"
             $($field $value)*)
         };
     }
@@ -2148,7 +2148,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_RetryOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.RetryOptions"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.RetryOptions"
             $($field $value)*)
         };
     }
@@ -2180,7 +2180,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_S3DestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.S3DestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.S3DestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -2245,7 +2245,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_SchemaConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SchemaConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SchemaConfiguration"
             $($field $value)*)
         };
     }
@@ -2297,7 +2297,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_SchemaEvolutionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SchemaEvolutionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SchemaEvolutionConfiguration"
             $($field $value)*)
         };
     }
@@ -2324,7 +2324,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_SecretsManagerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SecretsManagerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SecretsManagerConfiguration"
             $($field $value)*)
         };
     }
@@ -2360,7 +2360,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_Serializer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.Serializer"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.Serializer"
             $($field $value)*)
         };
     }
@@ -2392,7 +2392,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_SnowflakeBufferingHints {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SnowflakeBufferingHints"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SnowflakeBufferingHints"
             $($field $value)*)
         };
     }
@@ -2442,7 +2442,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_SnowflakeDestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SnowflakeDestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SnowflakeDestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -2566,7 +2566,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_SnowflakeRetryOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SnowflakeRetryOptions"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SnowflakeRetryOptions"
             $($field $value)*)
         };
     }
@@ -2592,7 +2592,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_SnowflakeRoleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SnowflakeRoleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SnowflakeRoleConfiguration"
             $($field $value)*)
         };
     }
@@ -2623,7 +2623,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_SnowflakeVpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SnowflakeVpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SnowflakeVpcConfiguration"
             $($field $value)*)
         };
     }
@@ -2647,7 +2647,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_SplunkBufferingHints {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SplunkBufferingHints"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SplunkBufferingHints"
             $($field $value)*)
         };
     }
@@ -2688,7 +2688,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_SplunkDestinationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SplunkDestinationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SplunkDestinationConfiguration"
             $($field $value)*)
         };
     }
@@ -2767,7 +2767,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_SplunkRetryOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SplunkRetryOptions"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.SplunkRetryOptions"
             $($field $value)*)
         };
     }
@@ -2792,7 +2792,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_TableCreationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.TableCreationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.TableCreationConfiguration"
             $($field $value)*)
         };
     }
@@ -2819,7 +2819,7 @@ pub mod deliverystream {
     #[macro_export]
     macro_rules! __aws_kinesisfirehose_DeliveryStream_VpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.VpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KinesisFirehose::DeliveryStream.VpcConfiguration"
             $($field $value)*)
         };
     }
@@ -2885,7 +2885,7 @@ pub struct DeliveryStream_ {
 #[macro_export]
 macro_rules! __aws_kinesisfirehose_DeliveryStream {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::KinesisFirehose::DeliveryStream"
+        stratosphere::generator::construct_resource_type!("AWS::KinesisFirehose::DeliveryStream"
         $($field $value)*)
     };
 }

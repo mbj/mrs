@@ -7,7 +7,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_AutoStartConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.AutoStartConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.AutoStartConfiguration"
             $($field $value)*)
         };
     }
@@ -33,7 +33,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_AutoStopConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.AutoStopConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.AutoStopConfiguration"
             $($field $value)*)
         };
     }
@@ -68,7 +68,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_CloudWatchLoggingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.CloudWatchLoggingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.CloudWatchLoggingConfiguration"
             $($field $value)*)
         };
     }
@@ -119,7 +119,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_ConfigurationObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.ConfigurationObject"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.ConfigurationObject"
             $($field $value)*)
         };
     }
@@ -154,7 +154,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_IdentityCenterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.IdentityCenterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.IdentityCenterConfiguration"
             $($field $value)*)
         };
     }
@@ -179,7 +179,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_ImageConfigurationInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.ImageConfigurationInput"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.ImageConfigurationInput"
             $($field $value)*)
         };
     }
@@ -205,7 +205,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_InitialCapacityConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.InitialCapacityConfig"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.InitialCapacityConfig"
             $($field $value)*)
         };
     }
@@ -233,7 +233,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_InitialCapacityConfigKeyValuePair {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.InitialCapacityConfigKeyValuePair"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.InitialCapacityConfigKeyValuePair"
             $($field $value)*)
         };
     }
@@ -261,7 +261,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_InteractiveConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.InteractiveConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.InteractiveConfiguration"
             $($field $value)*)
         };
     }
@@ -293,7 +293,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_LogTypeMapKeyValuePair {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.LogTypeMapKeyValuePair"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.LogTypeMapKeyValuePair"
             $($field $value)*)
         };
     }
@@ -321,7 +321,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_ManagedPersistenceMonitoringConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.ManagedPersistenceMonitoringConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.ManagedPersistenceMonitoringConfiguration"
             $($field $value)*)
         };
     }
@@ -354,7 +354,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_MaximumAllowedResources {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.MaximumAllowedResources"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.MaximumAllowedResources"
             $($field $value)*)
         };
     }
@@ -388,7 +388,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_MonitoringConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.MonitoringConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.MonitoringConfiguration"
             $($field $value)*)
         };
     }
@@ -432,7 +432,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_NetworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.NetworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.NetworkConfiguration"
             $($field $value)*)
         };
     }
@@ -463,7 +463,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_PrometheusMonitoringConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.PrometheusMonitoringConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.PrometheusMonitoringConfiguration"
             $($field $value)*)
         };
     }
@@ -489,7 +489,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_S3MonitoringConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.S3MonitoringConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.S3MonitoringConfiguration"
             $($field $value)*)
         };
     }
@@ -518,7 +518,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_SchedulerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.SchedulerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.SchedulerConfiguration"
             $($field $value)*)
         };
     }
@@ -552,7 +552,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_WorkerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.WorkerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.WorkerConfiguration"
             $($field $value)*)
         };
     }
@@ -588,7 +588,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_emrserverless_Application_WorkerTypeSpecificationInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EMRServerless::Application.WorkerTypeSpecificationInput"
+            stratosphere::generator::construct_property_type!("AWS::EMRServerless::Application.WorkerTypeSpecificationInput"
             $($field $value)*)
         };
     }
@@ -640,7 +640,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_emrserverless_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EMRServerless::Application"
+        stratosphere::generator::construct_resource_type!("AWS::EMRServerless::Application"
         $($field $value)*)
     };
 }

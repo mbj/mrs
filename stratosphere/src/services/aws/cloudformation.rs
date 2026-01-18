@@ -9,7 +9,7 @@ pub mod guardhook {
     #[macro_export]
     macro_rules! __aws_cloudformation_GuardHook_HookTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::GuardHook.HookTarget"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::GuardHook.HookTarget"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod guardhook {
     #[macro_export]
     macro_rules! __aws_cloudformation_GuardHook_Options {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::GuardHook.Options"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::GuardHook.Options"
             $($field $value)*)
         };
     }
@@ -66,7 +66,7 @@ pub mod guardhook {
     #[macro_export]
     macro_rules! __aws_cloudformation_GuardHook_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::GuardHook.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::GuardHook.S3Location"
             $($field $value)*)
         };
     }
@@ -97,7 +97,7 @@ pub mod guardhook {
     #[macro_export]
     macro_rules! __aws_cloudformation_GuardHook_StackFilters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::GuardHook.StackFilters"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::GuardHook.StackFilters"
             $($field $value)*)
         };
     }
@@ -133,7 +133,7 @@ pub mod guardhook {
     #[macro_export]
     macro_rules! __aws_cloudformation_GuardHook_StackNames {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::GuardHook.StackNames"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::GuardHook.StackNames"
             $($field $value)*)
         };
     }
@@ -165,7 +165,7 @@ pub mod guardhook {
     #[macro_export]
     macro_rules! __aws_cloudformation_GuardHook_StackRoles {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::GuardHook.StackRoles"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::GuardHook.StackRoles"
             $($field $value)*)
         };
     }
@@ -199,7 +199,7 @@ pub mod guardhook {
     #[macro_export]
     macro_rules! __aws_cloudformation_GuardHook_TargetFilters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::GuardHook.TargetFilters"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::GuardHook.TargetFilters"
             $($field $value)*)
         };
     }
@@ -245,7 +245,7 @@ pub mod hookversion {
     #[macro_export]
     macro_rules! __aws_cloudformation_HookVersion_LoggingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::HookVersion.LoggingConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::HookVersion.LoggingConfig"
             $($field $value)*)
         };
     }
@@ -280,7 +280,7 @@ pub mod lambdahook {
     #[macro_export]
     macro_rules! __aws_cloudformation_LambdaHook_HookTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::LambdaHook.HookTarget"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::LambdaHook.HookTarget"
             $($field $value)*)
         };
     }
@@ -313,7 +313,7 @@ pub mod lambdahook {
     #[macro_export]
     macro_rules! __aws_cloudformation_LambdaHook_StackFilters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::LambdaHook.StackFilters"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::LambdaHook.StackFilters"
             $($field $value)*)
         };
     }
@@ -349,7 +349,7 @@ pub mod lambdahook {
     #[macro_export]
     macro_rules! __aws_cloudformation_LambdaHook_StackNames {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::LambdaHook.StackNames"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::LambdaHook.StackNames"
             $($field $value)*)
         };
     }
@@ -381,7 +381,7 @@ pub mod lambdahook {
     #[macro_export]
     macro_rules! __aws_cloudformation_LambdaHook_StackRoles {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::LambdaHook.StackRoles"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::LambdaHook.StackRoles"
             $($field $value)*)
         };
     }
@@ -415,7 +415,7 @@ pub mod lambdahook {
     #[macro_export]
     macro_rules! __aws_cloudformation_LambdaHook_TargetFilters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::LambdaHook.TargetFilters"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::LambdaHook.TargetFilters"
             $($field $value)*)
         };
     }
@@ -461,7 +461,7 @@ pub mod resourceversion {
     #[macro_export]
     macro_rules! __aws_cloudformation_ResourceVersion_LoggingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::ResourceVersion.LoggingConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::ResourceVersion.LoggingConfig"
             $($field $value)*)
         };
     }
@@ -495,7 +495,7 @@ pub mod stackset {
     #[macro_export]
     macro_rules! __aws_cloudformation_StackSet_AutoDeployment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::StackSet.AutoDeployment"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::StackSet.AutoDeployment"
             $($field $value)*)
         };
     }
@@ -529,7 +529,7 @@ pub mod stackset {
     #[macro_export]
     macro_rules! __aws_cloudformation_StackSet_DeploymentTargets {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::StackSet.DeploymentTargets"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::StackSet.DeploymentTargets"
             $($field $value)*)
         };
     }
@@ -572,7 +572,7 @@ pub mod stackset {
     #[macro_export]
     macro_rules! __aws_cloudformation_StackSet_ManagedExecution {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::StackSet.ManagedExecution"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::StackSet.ManagedExecution"
             $($field $value)*)
         };
     }
@@ -600,7 +600,7 @@ pub mod stackset {
     #[macro_export]
     macro_rules! __aws_cloudformation_StackSet_OperationPreferences {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::StackSet.OperationPreferences"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::StackSet.OperationPreferences"
             $($field $value)*)
         };
     }
@@ -662,7 +662,7 @@ pub mod stackset {
     #[macro_export]
     macro_rules! __aws_cloudformation_StackSet_Parameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::StackSet.Parameter"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::StackSet.Parameter"
             $($field $value)*)
         };
     }
@@ -691,7 +691,7 @@ pub mod stackset {
     #[macro_export]
     macro_rules! __aws_cloudformation_StackSet_StackInstances {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::StackSet.StackInstances"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::StackSet.StackInstances"
             $($field $value)*)
         };
     }
@@ -727,7 +727,7 @@ pub mod typeactivation {
     #[macro_export]
     macro_rules! __aws_cloudformation_TypeActivation_LoggingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFormation::TypeActivation.LoggingConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFormation::TypeActivation.LoggingConfig"
             $($field $value)*)
         };
     }
@@ -760,7 +760,7 @@ pub struct CustomResource_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_CustomResource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::CustomResource"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::CustomResource"
         $($field $value)*)
     };
 }
@@ -806,7 +806,7 @@ pub struct GuardHook_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_GuardHook {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::GuardHook"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::GuardHook"
         $($field $value)*)
     };
 }
@@ -883,7 +883,7 @@ pub struct HookDefaultVersion_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_HookDefaultVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::HookDefaultVersion"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::HookDefaultVersion"
         $($field $value)*)
     };
 }
@@ -931,7 +931,7 @@ pub struct HookTypeConfig_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_HookTypeConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::HookTypeConfig"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::HookTypeConfig"
         $($field $value)*)
     };
 }
@@ -983,7 +983,7 @@ pub struct HookVersion_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_HookVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::HookVersion"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::HookVersion"
         $($field $value)*)
     };
 }
@@ -1037,7 +1037,7 @@ pub struct LambdaHook_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_LambdaHook {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::LambdaHook"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::LambdaHook"
         $($field $value)*)
     };
 }
@@ -1104,7 +1104,7 @@ pub struct Macro_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_Macro {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::Macro"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::Macro"
         $($field $value)*)
     };
 }
@@ -1159,7 +1159,7 @@ pub struct ModuleDefaultVersion_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_ModuleDefaultVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::ModuleDefaultVersion"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::ModuleDefaultVersion"
         $($field $value)*)
     };
 }
@@ -1202,7 +1202,7 @@ pub struct ModuleVersion_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_ModuleVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::ModuleVersion"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::ModuleVersion"
         $($field $value)*)
     };
 }
@@ -1241,7 +1241,7 @@ pub struct PublicTypeVersion_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_PublicTypeVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::PublicTypeVersion"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::PublicTypeVersion"
         $($field $value)*)
     };
 }
@@ -1293,7 +1293,7 @@ pub struct Publisher_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_Publisher {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::Publisher"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::Publisher"
         $($field $value)*)
     };
 }
@@ -1332,7 +1332,7 @@ pub struct ResourceDefaultVersion_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_ResourceDefaultVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::ResourceDefaultVersion"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::ResourceDefaultVersion"
         $($field $value)*)
     };
 }
@@ -1380,7 +1380,7 @@ pub struct ResourceVersion_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_ResourceVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::ResourceVersion"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::ResourceVersion"
         $($field $value)*)
     };
 }
@@ -1431,7 +1431,7 @@ pub struct Stack_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_Stack {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::Stack"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::Stack"
         $($field $value)*)
     };
 }
@@ -1497,7 +1497,7 @@ pub struct StackSet_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_StackSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::StackSet"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::StackSet"
         $($field $value)*)
     };
 }
@@ -1613,7 +1613,7 @@ pub struct TypeActivation_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_TypeActivation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::TypeActivation"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::TypeActivation"
         $($field $value)*)
     };
 }
@@ -1699,7 +1699,7 @@ pub struct WaitCondition_ {
 #[macro_export]
 macro_rules! __aws_cloudformation_WaitCondition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::WaitCondition"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::WaitCondition"
         $($field $value)*)
     };
 }
@@ -1736,7 +1736,7 @@ pub struct WaitConditionHandle_ {}
 #[macro_export]
 macro_rules! __aws_cloudformation_WaitConditionHandle {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFormation::WaitConditionHandle"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFormation::WaitConditionHandle"
         $($field $value)*)
     };
 }

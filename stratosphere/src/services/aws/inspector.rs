@@ -7,7 +7,7 @@ pub struct AssessmentTarget_ {
 #[macro_export]
 macro_rules! __aws_inspector_AssessmentTarget {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Inspector::AssessmentTarget"
+        stratosphere::generator::construct_resource_type!("AWS::Inspector::AssessmentTarget"
         $($field $value)*)
     };
 }
@@ -50,7 +50,7 @@ pub struct AssessmentTemplate_ {
 #[macro_export]
 macro_rules! __aws_inspector_AssessmentTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Inspector::AssessmentTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::Inspector::AssessmentTemplate"
         $($field $value)*)
     };
 }
@@ -101,7 +101,7 @@ pub struct ResourceGroup_ {
 #[macro_export]
 macro_rules! __aws_inspector_ResourceGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Inspector::ResourceGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Inspector::ResourceGroup"
         $($field $value)*)
     };
 }

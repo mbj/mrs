@@ -7,7 +7,7 @@ pub mod capability {
     #[macro_export]
     macro_rules! __aws_b2bi_Capability_CapabilityConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Capability.CapabilityConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Capability.CapabilityConfiguration"
             $($field $value)*)
         };
     }
@@ -34,7 +34,7 @@ pub mod capability {
     #[macro_export]
     macro_rules! __aws_b2bi_Capability_EdiConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Capability.EdiConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Capability.EdiConfiguration"
             $($field $value)*)
         };
     }
@@ -75,7 +75,7 @@ pub mod capability {
     #[macro_export]
     macro_rules! __aws_b2bi_Capability_EdiType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Capability.EdiType"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Capability.EdiType"
             $($field $value)*)
         };
     }
@@ -99,7 +99,7 @@ pub mod capability {
     #[macro_export]
     macro_rules! __aws_b2bi_Capability_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Capability.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Capability.S3Location"
             $($field $value)*)
         };
     }
@@ -128,7 +128,7 @@ pub mod capability {
     #[macro_export]
     macro_rules! __aws_b2bi_Capability_X12Details {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Capability.X12Details"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Capability.X12Details"
             $($field $value)*)
         };
     }
@@ -162,7 +162,7 @@ pub mod partnership {
     #[macro_export]
     macro_rules! __aws_b2bi_Partnership_CapabilityOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Partnership.CapabilityOptions"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Partnership.CapabilityOptions"
             $($field $value)*)
         };
     }
@@ -193,7 +193,7 @@ pub mod partnership {
     #[macro_export]
     macro_rules! __aws_b2bi_Partnership_InboundEdiOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Partnership.InboundEdiOptions"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Partnership.InboundEdiOptions"
             $($field $value)*)
         };
     }
@@ -215,7 +215,7 @@ pub mod partnership {
     #[macro_export]
     macro_rules! __aws_b2bi_Partnership_OutboundEdiOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Partnership.OutboundEdiOptions"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Partnership.OutboundEdiOptions"
             $($field $value)*)
         };
     }
@@ -240,7 +240,7 @@ pub mod partnership {
     #[macro_export]
     macro_rules! __aws_b2bi_Partnership_WrapOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Partnership.WrapOptions"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Partnership.WrapOptions"
             $($field $value)*)
         };
     }
@@ -275,7 +275,7 @@ pub mod partnership {
     #[macro_export]
     macro_rules! __aws_b2bi_Partnership_X12AcknowledgmentOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Partnership.X12AcknowledgmentOptions"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Partnership.X12AcknowledgmentOptions"
             $($field $value)*)
         };
     }
@@ -304,7 +304,7 @@ pub mod partnership {
     #[macro_export]
     macro_rules! __aws_b2bi_Partnership_X12ControlNumbers {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Partnership.X12ControlNumbers"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Partnership.X12ControlNumbers"
             $($field $value)*)
         };
     }
@@ -343,7 +343,7 @@ pub mod partnership {
     #[macro_export]
     macro_rules! __aws_b2bi_Partnership_X12Delimiters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Partnership.X12Delimiters"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Partnership.X12Delimiters"
             $($field $value)*)
         };
     }
@@ -381,7 +381,7 @@ pub mod partnership {
     #[macro_export]
     macro_rules! __aws_b2bi_Partnership_X12Envelope {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Partnership.X12Envelope"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Partnership.X12Envelope"
             $($field $value)*)
         };
     }
@@ -411,7 +411,7 @@ pub mod partnership {
     #[macro_export]
     macro_rules! __aws_b2bi_Partnership_X12FunctionalGroupHeaders {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Partnership.X12FunctionalGroupHeaders"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Partnership.X12FunctionalGroupHeaders"
             $($field $value)*)
         };
     }
@@ -448,7 +448,7 @@ pub mod partnership {
     #[macro_export]
     macro_rules! __aws_b2bi_Partnership_X12InboundEdiOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Partnership.X12InboundEdiOptions"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Partnership.X12InboundEdiOptions"
             $($field $value)*)
         };
     }
@@ -479,7 +479,7 @@ pub mod partnership {
     #[macro_export]
     macro_rules! __aws_b2bi_Partnership_X12InterchangeControlHeaders {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Partnership.X12InterchangeControlHeaders"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Partnership.X12InterchangeControlHeaders"
             $($field $value)*)
         };
     }
@@ -545,7 +545,7 @@ pub mod partnership {
     #[macro_export]
     macro_rules! __aws_b2bi_Partnership_X12OutboundEdiHeaders {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Partnership.X12OutboundEdiHeaders"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Partnership.X12OutboundEdiHeaders"
             $($field $value)*)
         };
     }
@@ -602,7 +602,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_AdvancedOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.AdvancedOptions"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.AdvancedOptions"
             $($field $value)*)
         };
     }
@@ -624,7 +624,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_FormatOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.FormatOptions"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.FormatOptions"
             $($field $value)*)
         };
     }
@@ -649,7 +649,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_InputConversion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.InputConversion"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.InputConversion"
             $($field $value)*)
         };
     }
@@ -685,7 +685,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_Mapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.Mapping"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.Mapping"
             $($field $value)*)
         };
     }
@@ -716,7 +716,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_OutputConversion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.OutputConversion"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.OutputConversion"
             $($field $value)*)
         };
     }
@@ -752,7 +752,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_SampleDocumentKeys {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.SampleDocumentKeys"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.SampleDocumentKeys"
             $($field $value)*)
         };
     }
@@ -778,7 +778,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_SampleDocuments {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.SampleDocuments"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.SampleDocuments"
             $($field $value)*)
         };
     }
@@ -806,7 +806,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_X12AdvancedOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.X12AdvancedOptions"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.X12AdvancedOptions"
             $($field $value)*)
         };
     }
@@ -839,7 +839,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_X12CodeListValidationRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.X12CodeListValidationRule"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.X12CodeListValidationRule"
             $($field $value)*)
         };
     }
@@ -875,7 +875,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_X12Details {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.X12Details"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.X12Details"
             $($field $value)*)
         };
     }
@@ -908,7 +908,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_X12ElementLengthValidationRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.X12ElementLengthValidationRule"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.X12ElementLengthValidationRule"
             $($field $value)*)
         };
     }
@@ -940,7 +940,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_X12ElementRequirementValidationRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.X12ElementRequirementValidationRule"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.X12ElementRequirementValidationRule"
             $($field $value)*)
         };
     }
@@ -967,7 +967,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_X12SplitOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.X12SplitOptions"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.X12SplitOptions"
             $($field $value)*)
         };
     }
@@ -992,7 +992,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_X12ValidationOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.X12ValidationOptions"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.X12ValidationOptions"
             $($field $value)*)
         };
     }
@@ -1019,7 +1019,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_b2bi_Transformer_X12ValidationRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::B2BI::Transformer.X12ValidationRule"
+            stratosphere::generator::construct_property_type!("AWS::B2BI::Transformer.X12ValidationRule"
             $($field $value)*)
         };
     }
@@ -1061,8 +1061,8 @@ pub struct Capability_ {
 #[macro_export]
 macro_rules! __aws_b2bi_Capability {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::B2BI::Capability" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::B2BI::Capability"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_b2bi_Capability as Capability;
@@ -1115,7 +1115,7 @@ pub struct Partnership_ {
 #[macro_export]
 macro_rules! __aws_b2bi_Partnership {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::B2BI::Partnership"
+        stratosphere::generator::construct_resource_type!("AWS::B2BI::Partnership"
         $($field $value)*)
     };
 }
@@ -1175,7 +1175,7 @@ pub struct Profile_ {
 #[macro_export]
 macro_rules! __aws_b2bi_Profile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::B2BI::Profile" $($field
+        stratosphere::generator::construct_resource_type!("AWS::B2BI::Profile" $($field
         $value)*)
     };
 }
@@ -1230,7 +1230,7 @@ pub struct Transformer_ {
 #[macro_export]
 macro_rules! __aws_b2bi_Transformer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::B2BI::Transformer"
+        stratosphere::generator::construct_resource_type!("AWS::B2BI::Transformer"
         $($field $value)*)
     };
 }

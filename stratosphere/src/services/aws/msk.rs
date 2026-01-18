@@ -9,7 +9,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_BrokerLogs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.BrokerLogs"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.BrokerLogs"
             $($field $value)*)
         };
     }
@@ -48,7 +48,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_BrokerNodeGroupInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.BrokerNodeGroupInfo"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.BrokerNodeGroupInfo"
             $($field $value)*)
         };
     }
@@ -101,7 +101,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_ClientAuthentication {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.ClientAuthentication"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.ClientAuthentication"
             $($field $value)*)
         };
     }
@@ -133,7 +133,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_CloudWatchLogs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.CloudWatchLogs"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.CloudWatchLogs"
             $($field $value)*)
         };
     }
@@ -163,7 +163,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_ConfigurationInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.ConfigurationInfo"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.ConfigurationInfo"
             $($field $value)*)
         };
     }
@@ -191,7 +191,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_ConnectivityInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.ConnectivityInfo"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.ConnectivityInfo"
             $($field $value)*)
         };
     }
@@ -223,7 +223,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_EBSStorageInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.EBSStorageInfo"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.EBSStorageInfo"
             $($field $value)*)
         };
     }
@@ -254,7 +254,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_EncryptionAtRest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.EncryptionAtRest"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.EncryptionAtRest"
             $($field $value)*)
         };
     }
@@ -278,7 +278,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_EncryptionInTransit {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.EncryptionInTransit"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.EncryptionInTransit"
             $($field $value)*)
         };
     }
@@ -310,7 +310,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_EncryptionInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.EncryptionInfo"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.EncryptionInfo"
             $($field $value)*)
         };
     }
@@ -342,7 +342,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_Firehose {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.Firehose"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.Firehose"
             $($field $value)*)
         };
     }
@@ -371,7 +371,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_Iam {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.Iam"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.Iam"
             $($field $value)*)
         };
     }
@@ -394,7 +394,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_JmxExporter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.JmxExporter"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.JmxExporter"
             $($field $value)*)
         };
     }
@@ -417,7 +417,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_LoggingInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.LoggingInfo"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.LoggingInfo"
             $($field $value)*)
         };
     }
@@ -440,7 +440,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_NodeExporter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.NodeExporter"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.NodeExporter"
             $($field $value)*)
         };
     }
@@ -463,7 +463,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_OpenMonitoring {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.OpenMonitoring"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.OpenMonitoring"
             $($field $value)*)
         };
     }
@@ -487,7 +487,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_Prometheus {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.Prometheus"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.Prometheus"
             $($field $value)*)
         };
     }
@@ -519,7 +519,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_ProvisionedThroughput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.ProvisionedThroughput"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.ProvisionedThroughput"
             $($field $value)*)
         };
     }
@@ -550,7 +550,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_PublicAccess {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.PublicAccess"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.PublicAccess"
             $($field $value)*)
         };
     }
@@ -574,7 +574,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_S3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.S3"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.S3"
             $($field $value)*)
         };
     }
@@ -604,7 +604,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_Sasl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.Sasl"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.Sasl"
             $($field $value)*)
         };
     }
@@ -629,7 +629,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_Scram {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.Scram"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.Scram"
             $($field $value)*)
         };
     }
@@ -652,7 +652,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_StorageInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.StorageInfo"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.StorageInfo"
             $($field $value)*)
         };
     }
@@ -678,7 +678,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_Tls {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.Tls"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.Tls"
             $($field $value)*)
         };
     }
@@ -709,7 +709,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_Unauthenticated {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.Unauthenticated"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.Unauthenticated"
             $($field $value)*)
         };
     }
@@ -732,7 +732,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_VpcConnectivity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.VpcConnectivity"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.VpcConnectivity"
             $($field $value)*)
         };
     }
@@ -758,7 +758,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_VpcConnectivityClientAuthentication {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.VpcConnectivityClientAuthentication"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.VpcConnectivityClientAuthentication"
             $($field $value)*)
         };
     }
@@ -783,7 +783,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_VpcConnectivityIam {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.VpcConnectivityIam"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.VpcConnectivityIam"
             $($field $value)*)
         };
     }
@@ -807,7 +807,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_VpcConnectivitySasl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.VpcConnectivitySasl"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.VpcConnectivitySasl"
             $($field $value)*)
         };
     }
@@ -832,7 +832,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_VpcConnectivityScram {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.VpcConnectivityScram"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.VpcConnectivityScram"
             $($field $value)*)
         };
     }
@@ -855,7 +855,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_msk_Cluster_VpcConnectivityTls {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Cluster.VpcConnectivityTls"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.VpcConnectivityTls"
             $($field $value)*)
         };
     }
@@ -882,7 +882,7 @@ pub mod configuration {
     #[macro_export]
     macro_rules! __aws_msk_Configuration_LatestRevision {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Configuration.LatestRevision"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Configuration.LatestRevision"
             $($field $value)*)
         };
     }
@@ -921,7 +921,7 @@ pub mod replicator {
     #[macro_export]
     macro_rules! __aws_msk_Replicator_AmazonMskCluster {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Replicator.AmazonMskCluster"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Replicator.AmazonMskCluster"
             $($field $value)*)
         };
     }
@@ -947,7 +947,7 @@ pub mod replicator {
     #[macro_export]
     macro_rules! __aws_msk_Replicator_ConsumerGroupReplication {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Replicator.ConsumerGroupReplication"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Replicator.ConsumerGroupReplication"
             $($field $value)*)
         };
     }
@@ -989,7 +989,7 @@ pub mod replicator {
     #[macro_export]
     macro_rules! __aws_msk_Replicator_KafkaCluster {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Replicator.KafkaCluster"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Replicator.KafkaCluster"
             $($field $value)*)
         };
     }
@@ -1017,7 +1017,7 @@ pub mod replicator {
     #[macro_export]
     macro_rules! __aws_msk_Replicator_KafkaClusterClientVpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Replicator.KafkaClusterClientVpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Replicator.KafkaClusterClientVpcConfig"
             $($field $value)*)
         };
     }
@@ -1050,7 +1050,7 @@ pub mod replicator {
     #[macro_export]
     macro_rules! __aws_msk_Replicator_ReplicationInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Replicator.ReplicationInfo"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Replicator.ReplicationInfo"
             $($field $value)*)
         };
     }
@@ -1089,7 +1089,7 @@ pub mod replicator {
     #[macro_export]
     macro_rules! __aws_msk_Replicator_ReplicationStartingPosition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Replicator.ReplicationStartingPosition"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Replicator.ReplicationStartingPosition"
             $($field $value)*)
         };
     }
@@ -1111,7 +1111,7 @@ pub mod replicator {
     #[macro_export]
     macro_rules! __aws_msk_Replicator_ReplicationTopicNameConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Replicator.ReplicationTopicNameConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Replicator.ReplicationTopicNameConfiguration"
             $($field $value)*)
         };
     }
@@ -1139,7 +1139,7 @@ pub mod replicator {
     #[macro_export]
     macro_rules! __aws_msk_Replicator_TopicReplication {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::Replicator.TopicReplication"
+            stratosphere::generator::construct_property_type!("AWS::MSK::Replicator.TopicReplication"
             $($field $value)*)
         };
     }
@@ -1200,7 +1200,7 @@ pub mod serverlesscluster {
     #[macro_export]
     macro_rules! __aws_msk_ServerlessCluster_ClientAuthentication {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::ServerlessCluster.ClientAuthentication"
+            stratosphere::generator::construct_property_type!("AWS::MSK::ServerlessCluster.ClientAuthentication"
             $($field $value)*)
         };
     }
@@ -1223,7 +1223,7 @@ pub mod serverlesscluster {
     #[macro_export]
     macro_rules! __aws_msk_ServerlessCluster_Iam {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::ServerlessCluster.Iam"
+            stratosphere::generator::construct_property_type!("AWS::MSK::ServerlessCluster.Iam"
             $($field $value)*)
         };
     }
@@ -1246,7 +1246,7 @@ pub mod serverlesscluster {
     #[macro_export]
     macro_rules! __aws_msk_ServerlessCluster_Sasl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::ServerlessCluster.Sasl"
+            stratosphere::generator::construct_property_type!("AWS::MSK::ServerlessCluster.Sasl"
             $($field $value)*)
         };
     }
@@ -1270,7 +1270,7 @@ pub mod serverlesscluster {
     #[macro_export]
     macro_rules! __aws_msk_ServerlessCluster_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MSK::ServerlessCluster.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::MSK::ServerlessCluster.VpcConfig"
             $($field $value)*)
         };
     }
@@ -1301,7 +1301,7 @@ pub struct BatchScramSecret_ {
 #[macro_export]
 macro_rules! __aws_msk_BatchScramSecret {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MSK::BatchScramSecret"
+        stratosphere::generator::construct_resource_type!("AWS::MSK::BatchScramSecret"
         $($field $value)*)
     };
 }
@@ -1350,7 +1350,7 @@ pub struct Cluster_ {
 #[macro_export]
 macro_rules! __aws_msk_Cluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MSK::Cluster" $($field
+        stratosphere::generator::construct_resource_type!("AWS::MSK::Cluster" $($field
         $value)*)
     };
 }
@@ -1445,7 +1445,7 @@ pub struct ClusterPolicy_ {
 #[macro_export]
 macro_rules! __aws_msk_ClusterPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MSK::ClusterPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::MSK::ClusterPolicy"
         $($field $value)*)
     };
 }
@@ -1484,7 +1484,7 @@ pub struct Configuration_ {
 #[macro_export]
 macro_rules! __aws_msk_Configuration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MSK::Configuration"
+        stratosphere::generator::construct_resource_type!("AWS::MSK::Configuration"
         $($field $value)*)
     };
 }
@@ -1542,7 +1542,7 @@ pub struct Replicator_ {
 #[macro_export]
 macro_rules! __aws_msk_Replicator {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MSK::Replicator" $($field
+        stratosphere::generator::construct_resource_type!("AWS::MSK::Replicator" $($field
         $value)*)
     };
 }
@@ -1597,7 +1597,7 @@ pub struct ServerlessCluster_ {
 #[macro_export]
 macro_rules! __aws_msk_ServerlessCluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MSK::ServerlessCluster"
+        stratosphere::generator::construct_resource_type!("AWS::MSK::ServerlessCluster"
         $($field $value)*)
     };
 }
@@ -1644,7 +1644,7 @@ pub struct VpcConnection_ {
 #[macro_export]
 macro_rules! __aws_msk_VpcConnection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MSK::VpcConnection"
+        stratosphere::generator::construct_resource_type!("AWS::MSK::VpcConnection"
         $($field $value)*)
     };
 }

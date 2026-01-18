@@ -10,7 +10,7 @@ pub mod customaction {
     #[macro_export]
     macro_rules! __aws_chatbot_CustomAction_CustomActionAttachment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Chatbot::CustomAction.CustomActionAttachment"
+            stratosphere::generator::construct_property_type!("AWS::Chatbot::CustomAction.CustomActionAttachment"
             $($field $value)*)
         };
     }
@@ -55,7 +55,7 @@ pub mod customaction {
     #[macro_export]
     macro_rules! __aws_chatbot_CustomAction_CustomActionAttachmentCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Chatbot::CustomAction.CustomActionAttachmentCriteria"
+            stratosphere::generator::construct_property_type!("AWS::Chatbot::CustomAction.CustomActionAttachmentCriteria"
             $($field $value)*)
         };
     }
@@ -85,7 +85,7 @@ pub mod customaction {
     #[macro_export]
     macro_rules! __aws_chatbot_CustomAction_CustomActionDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Chatbot::CustomAction.CustomActionDefinition"
+            stratosphere::generator::construct_property_type!("AWS::Chatbot::CustomAction.CustomActionDefinition"
             $($field $value)*)
         };
     }
@@ -113,7 +113,7 @@ pub struct CustomAction_ {
 #[macro_export]
 macro_rules! __aws_chatbot_CustomAction {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Chatbot::CustomAction"
+        stratosphere::generator::construct_resource_type!("AWS::Chatbot::CustomAction"
         $($field $value)*)
     };
 }
@@ -174,7 +174,7 @@ pub struct MicrosoftTeamsChannelConfiguration_ {
 #[macro_export]
 macro_rules! __aws_chatbot_MicrosoftTeamsChannelConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Chatbot::MicrosoftTeamsChannelConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::Chatbot::MicrosoftTeamsChannelConfiguration"
         $($field $value)*)
     };
 }
@@ -271,7 +271,7 @@ pub struct SlackChannelConfiguration_ {
 #[macro_export]
 macro_rules! __aws_chatbot_SlackChannelConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Chatbot::SlackChannelConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::Chatbot::SlackChannelConfiguration"
         $($field $value)*)
     };
 }

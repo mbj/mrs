@@ -9,7 +9,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_resiliencehub_App_EventSubscription {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ResilienceHub::App.EventSubscription"
+            stratosphere::generator::construct_property_type!("AWS::ResilienceHub::App.EventSubscription"
             $($field $value)*)
         };
     }
@@ -44,7 +44,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_resiliencehub_App_PermissionModel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ResilienceHub::App.PermissionModel"
+            stratosphere::generator::construct_property_type!("AWS::ResilienceHub::App.PermissionModel"
             $($field $value)*)
         };
     }
@@ -82,7 +82,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_resiliencehub_App_PhysicalResourceId {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ResilienceHub::App.PhysicalResourceId"
+            stratosphere::generator::construct_property_type!("AWS::ResilienceHub::App.PhysicalResourceId"
             $($field $value)*)
         };
     }
@@ -126,7 +126,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_resiliencehub_App_ResourceMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ResilienceHub::App.ResourceMapping"
+            stratosphere::generator::construct_property_type!("AWS::ResilienceHub::App.ResourceMapping"
             $($field $value)*)
         };
     }
@@ -180,7 +180,7 @@ pub mod resiliencypolicy {
     #[macro_export]
     macro_rules! __aws_resiliencehub_ResiliencyPolicy_FailurePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ResilienceHub::ResiliencyPolicy.FailurePolicy"
+            stratosphere::generator::construct_property_type!("AWS::ResilienceHub::ResiliencyPolicy.FailurePolicy"
             $($field $value)*)
         };
     }
@@ -210,7 +210,7 @@ pub mod resiliencypolicy {
     #[macro_export]
     macro_rules! __aws_resiliencehub_ResiliencyPolicy_PolicyMap {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ResilienceHub::ResiliencyPolicy.PolicyMap"
+            stratosphere::generator::construct_property_type!("AWS::ResilienceHub::ResiliencyPolicy.PolicyMap"
             $($field $value)*)
         };
     }
@@ -250,7 +250,7 @@ pub struct App_ {
 #[macro_export]
 macro_rules! __aws_resiliencehub_App {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ResilienceHub::App"
+        stratosphere::generator::construct_resource_type!("AWS::ResilienceHub::App"
         $($field $value)*)
     };
 }
@@ -327,7 +327,7 @@ pub struct ResiliencyPolicy_ {
 #[macro_export]
 macro_rules! __aws_resiliencehub_ResiliencyPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ResilienceHub::ResiliencyPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::ResilienceHub::ResiliencyPolicy"
         $($field $value)*)
     };
 }

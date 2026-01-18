@@ -7,7 +7,7 @@ pub mod packagegroup {
     #[macro_export]
     macro_rules! __aws_codeartifact_PackageGroup_OriginConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeArtifact::PackageGroup.OriginConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CodeArtifact::PackageGroup.OriginConfiguration"
             $($field $value)*)
         };
     }
@@ -31,7 +31,7 @@ pub mod packagegroup {
     #[macro_export]
     macro_rules! __aws_codeartifact_PackageGroup_RestrictionType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeArtifact::PackageGroup.RestrictionType"
+            stratosphere::generator::construct_property_type!("AWS::CodeArtifact::PackageGroup.RestrictionType"
             $($field $value)*)
         };
     }
@@ -62,7 +62,7 @@ pub mod packagegroup {
     #[macro_export]
     macro_rules! __aws_codeartifact_PackageGroup_Restrictions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeArtifact::PackageGroup.Restrictions"
+            stratosphere::generator::construct_property_type!("AWS::CodeArtifact::PackageGroup.Restrictions"
             $($field $value)*)
         };
     }
@@ -103,7 +103,7 @@ pub struct Domain_ {
 #[macro_export]
 macro_rules! __aws_codeartifact_Domain {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeArtifact::Domain"
+        stratosphere::generator::construct_resource_type!("AWS::CodeArtifact::Domain"
         $($field $value)*)
     };
 }
@@ -155,7 +155,7 @@ pub struct PackageGroup_ {
 #[macro_export]
 macro_rules! __aws_codeartifact_PackageGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeArtifact::PackageGroup"
+        stratosphere::generator::construct_resource_type!("AWS::CodeArtifact::PackageGroup"
         $($field $value)*)
     };
 }
@@ -224,7 +224,7 @@ pub struct Repository_ {
 #[macro_export]
 macro_rules! __aws_codeartifact_Repository {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeArtifact::Repository"
+        stratosphere::generator::construct_resource_type!("AWS::CodeArtifact::Repository"
         $($field $value)*)
     };
 }

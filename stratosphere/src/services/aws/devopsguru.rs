@@ -8,7 +8,7 @@ pub mod notificationchannel {
     #[macro_export]
     macro_rules! __aws_devopsguru_NotificationChannel_NotificationChannelConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DevOpsGuru::NotificationChannel.NotificationChannelConfig"
+            stratosphere::generator::construct_property_type!("AWS::DevOpsGuru::NotificationChannel.NotificationChannelConfig"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub mod notificationchannel {
     #[macro_export]
     macro_rules! __aws_devopsguru_NotificationChannel_NotificationFilterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DevOpsGuru::NotificationChannel.NotificationFilterConfig"
+            stratosphere::generator::construct_property_type!("AWS::DevOpsGuru::NotificationChannel.NotificationFilterConfig"
             $($field $value)*)
         };
     }
@@ -68,7 +68,7 @@ pub mod notificationchannel {
     #[macro_export]
     macro_rules! __aws_devopsguru_NotificationChannel_SnsChannelConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DevOpsGuru::NotificationChannel.SnsChannelConfig"
+            stratosphere::generator::construct_property_type!("AWS::DevOpsGuru::NotificationChannel.SnsChannelConfig"
             $($field $value)*)
         };
     }
@@ -95,7 +95,7 @@ pub mod resourcecollection {
     #[macro_export]
     macro_rules! __aws_devopsguru_ResourceCollection_CloudFormationCollectionFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DevOpsGuru::ResourceCollection.CloudFormationCollectionFilter"
+            stratosphere::generator::construct_property_type!("AWS::DevOpsGuru::ResourceCollection.CloudFormationCollectionFilter"
             $($field $value)*)
         };
     }
@@ -121,7 +121,7 @@ pub mod resourcecollection {
     #[macro_export]
     macro_rules! __aws_devopsguru_ResourceCollection_ResourceCollectionFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DevOpsGuru::ResourceCollection.ResourceCollectionFilter"
+            stratosphere::generator::construct_property_type!("AWS::DevOpsGuru::ResourceCollection.ResourceCollectionFilter"
             $($field $value)*)
         };
     }
@@ -150,7 +150,7 @@ pub mod resourcecollection {
     #[macro_export]
     macro_rules! __aws_devopsguru_ResourceCollection_TagCollection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DevOpsGuru::ResourceCollection.TagCollection"
+            stratosphere::generator::construct_property_type!("AWS::DevOpsGuru::ResourceCollection.TagCollection"
             $($field $value)*)
         };
     }
@@ -180,7 +180,7 @@ pub struct LogAnomalyDetectionIntegration_ {}
 #[macro_export]
 macro_rules! __aws_devopsguru_LogAnomalyDetectionIntegration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DevOpsGuru::LogAnomalyDetectionIntegration"
+        stratosphere::generator::construct_resource_type!("AWS::DevOpsGuru::LogAnomalyDetectionIntegration"
         $($field $value)*)
     };
 }
@@ -208,7 +208,7 @@ pub struct NotificationChannel_ {
 #[macro_export]
 macro_rules! __aws_devopsguru_NotificationChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DevOpsGuru::NotificationChannel"
+        stratosphere::generator::construct_resource_type!("AWS::DevOpsGuru::NotificationChannel"
         $($field $value)*)
     };
 }
@@ -240,7 +240,7 @@ pub struct ResourceCollection_ {
 #[macro_export]
 macro_rules! __aws_devopsguru_ResourceCollection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DevOpsGuru::ResourceCollection"
+        stratosphere::generator::construct_resource_type!("AWS::DevOpsGuru::ResourceCollection"
         $($field $value)*)
     };
 }

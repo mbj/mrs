@@ -8,7 +8,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_fms_Policy_IEMap {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FMS::Policy.IEMap"
+            stratosphere::generator::construct_property_type!("AWS::FMS::Policy.IEMap"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_fms_Policy_IcmpTypeCode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FMS::Policy.IcmpTypeCode"
+            stratosphere::generator::construct_property_type!("AWS::FMS::Policy.IcmpTypeCode"
             $($field $value)*)
         };
     }
@@ -67,7 +67,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_fms_Policy_NetworkAclCommonPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FMS::Policy.NetworkAclCommonPolicy"
+            stratosphere::generator::construct_property_type!("AWS::FMS::Policy.NetworkAclCommonPolicy"
             $($field $value)*)
         };
     }
@@ -96,7 +96,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_fms_Policy_NetworkAclEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FMS::Policy.NetworkAclEntry"
+            stratosphere::generator::construct_property_type!("AWS::FMS::Policy.NetworkAclEntry"
             $($field $value)*)
         };
     }
@@ -154,7 +154,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_fms_Policy_NetworkAclEntrySet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FMS::Policy.NetworkAclEntrySet"
+            stratosphere::generator::construct_property_type!("AWS::FMS::Policy.NetworkAclEntrySet"
             $($field $value)*)
         };
     }
@@ -193,7 +193,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_fms_Policy_NetworkFirewallPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FMS::Policy.NetworkFirewallPolicy"
+            stratosphere::generator::construct_property_type!("AWS::FMS::Policy.NetworkFirewallPolicy"
             $($field $value)*)
         };
     }
@@ -218,7 +218,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_fms_Policy_PolicyOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FMS::Policy.PolicyOption"
+            stratosphere::generator::construct_property_type!("AWS::FMS::Policy.PolicyOption"
             $($field $value)*)
         };
     }
@@ -256,7 +256,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_fms_Policy_PolicyTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FMS::Policy.PolicyTag"
+            stratosphere::generator::construct_property_type!("AWS::FMS::Policy.PolicyTag"
             $($field $value)*)
         };
     }
@@ -284,7 +284,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_fms_Policy_PortRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FMS::Policy.PortRange"
+            stratosphere::generator::construct_property_type!("AWS::FMS::Policy.PortRange"
             $($field $value)*)
         };
     }
@@ -309,7 +309,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_fms_Policy_ResourceTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FMS::Policy.ResourceTag"
+            stratosphere::generator::construct_property_type!("AWS::FMS::Policy.ResourceTag"
             $($field $value)*)
         };
     }
@@ -337,7 +337,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_fms_Policy_SecurityServicePolicyData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FMS::Policy.SecurityServicePolicyData"
+            stratosphere::generator::construct_property_type!("AWS::FMS::Policy.SecurityServicePolicyData"
             $($field $value)*)
         };
     }
@@ -372,7 +372,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_fms_Policy_ThirdPartyFirewallPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FMS::Policy.ThirdPartyFirewallPolicy"
+            stratosphere::generator::construct_property_type!("AWS::FMS::Policy.ThirdPartyFirewallPolicy"
             $($field $value)*)
         };
     }
@@ -397,7 +397,7 @@ pub struct NotificationChannel_ {
 #[macro_export]
 macro_rules! __aws_fms_NotificationChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FMS::NotificationChannel"
+        stratosphere::generator::construct_resource_type!("AWS::FMS::NotificationChannel"
         $($field $value)*)
     };
 }
@@ -446,7 +446,7 @@ pub struct Policy_ {
 #[macro_export]
 macro_rules! __aws_fms_Policy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FMS::Policy" $($field
+        stratosphere::generator::construct_resource_type!("AWS::FMS::Policy" $($field
         $value)*)
     };
 }
@@ -556,8 +556,8 @@ pub struct ResourceSet_ {
 #[macro_export]
 macro_rules! __aws_fms_ResourceSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FMS::ResourceSet" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::FMS::ResourceSet"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_fms_ResourceSet as ResourceSet;

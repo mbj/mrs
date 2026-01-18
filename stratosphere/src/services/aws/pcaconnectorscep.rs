@@ -8,7 +8,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_pcaconnectorscep_Connector_IntuneConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorSCEP::Connector.IntuneConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorSCEP::Connector.IntuneConfiguration"
             $($field $value)*)
         };
     }
@@ -35,7 +35,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_pcaconnectorscep_Connector_MobileDeviceManagement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorSCEP::Connector.MobileDeviceManagement"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorSCEP::Connector.MobileDeviceManagement"
             $($field $value)*)
         };
     }
@@ -60,7 +60,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_pcaconnectorscep_Connector_OpenIdConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorSCEP::Connector.OpenIdConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorSCEP::Connector.OpenIdConfiguration"
             $($field $value)*)
         };
     }
@@ -96,7 +96,7 @@ pub struct Challenge_ {
 #[macro_export]
 macro_rules! __aws_pcaconnectorscep_Challenge {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PCAConnectorSCEP::Challenge"
+        stratosphere::generator::construct_resource_type!("AWS::PCAConnectorSCEP::Challenge"
         $($field $value)*)
     };
 }
@@ -133,7 +133,7 @@ pub struct Connector_ {
 #[macro_export]
 macro_rules! __aws_pcaconnectorscep_Connector {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PCAConnectorSCEP::Connector"
+        stratosphere::generator::construct_resource_type!("AWS::PCAConnectorSCEP::Connector"
         $($field $value)*)
     };
 }

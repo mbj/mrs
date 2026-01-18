@@ -7,8 +7,8 @@ pub struct Graph_ {
 #[macro_export]
 macro_rules! __aws_detective_Graph {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Detective::Graph" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::Detective::Graph"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_detective_Graph as Graph;
@@ -47,7 +47,7 @@ pub struct MemberInvitation_ {
 #[macro_export]
 macro_rules! __aws_detective_MemberInvitation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Detective::MemberInvitation"
+        stratosphere::generator::construct_resource_type!("AWS::Detective::MemberInvitation"
         $($field $value)*)
     };
 }
@@ -98,7 +98,7 @@ pub struct OrganizationAdmin_ {
 #[macro_export]
 macro_rules! __aws_detective_OrganizationAdmin {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Detective::OrganizationAdmin"
+        stratosphere::generator::construct_resource_type!("AWS::Detective::OrganizationAdmin"
         $($field $value)*)
     };
 }

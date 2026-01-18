@@ -8,7 +8,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_CollectionScheme {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.CollectionScheme"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.CollectionScheme"
             $($field $value)*)
         };
     }
@@ -42,7 +42,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_ConditionBasedCollectionScheme {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.ConditionBasedCollectionScheme"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.ConditionBasedCollectionScheme"
             $($field $value)*)
         };
     }
@@ -84,7 +84,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_ConditionBasedSignalFetchConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.ConditionBasedSignalFetchConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.ConditionBasedSignalFetchConfig"
             $($field $value)*)
         };
     }
@@ -113,7 +113,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_DataDestinationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.DataDestinationConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.DataDestinationConfig"
             $($field $value)*)
         };
     }
@@ -152,7 +152,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_DataPartition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.DataPartition"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.DataPartition"
             $($field $value)*)
         };
     }
@@ -184,7 +184,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_DataPartitionStorageOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.DataPartitionStorageOptions"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.DataPartitionStorageOptions"
             $($field $value)*)
         };
     }
@@ -216,7 +216,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_DataPartitionUploadOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.DataPartitionUploadOptions"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.DataPartitionUploadOptions"
             $($field $value)*)
         };
     }
@@ -246,7 +246,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_MqttTopicConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.MqttTopicConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.MqttTopicConfig"
             $($field $value)*)
         };
     }
@@ -276,7 +276,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_S3Config {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.S3Config"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.S3Config"
             $($field $value)*)
         };
     }
@@ -315,7 +315,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_SignalFetchConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.SignalFetchConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.SignalFetchConfig"
             $($field $value)*)
         };
     }
@@ -349,7 +349,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_SignalFetchInformation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.SignalFetchInformation"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.SignalFetchInformation"
             $($field $value)*)
         };
     }
@@ -389,7 +389,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_SignalInformation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.SignalInformation"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.SignalInformation"
             $($field $value)*)
         };
     }
@@ -431,7 +431,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_StorageMaximumSize {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.StorageMaximumSize"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.StorageMaximumSize"
             $($field $value)*)
         };
     }
@@ -459,7 +459,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_StorageMinimumTimeToLive {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.StorageMinimumTimeToLive"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.StorageMinimumTimeToLive"
             $($field $value)*)
         };
     }
@@ -486,7 +486,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_TimeBasedCollectionScheme {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.TimeBasedCollectionScheme"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.TimeBasedCollectionScheme"
             $($field $value)*)
         };
     }
@@ -509,7 +509,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_TimeBasedSignalFetchConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.TimeBasedSignalFetchConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.TimeBasedSignalFetchConfig"
             $($field $value)*)
         };
     }
@@ -533,7 +533,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Campaign_TimestreamConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Campaign.TimestreamConfig"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Campaign.TimestreamConfig"
             $($field $value)*)
         };
     }
@@ -564,7 +564,7 @@ pub mod decodermanifest {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_DecoderManifest_CanInterface {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.CanInterface"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.CanInterface"
             $($field $value)*)
         };
     }
@@ -607,7 +607,7 @@ pub mod decodermanifest {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_DecoderManifest_CanSignal {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.CanSignal"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.CanSignal"
             $($field $value)*)
         };
     }
@@ -663,7 +663,7 @@ pub mod decodermanifest {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_DecoderManifest_CustomDecodingInterface {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.CustomDecodingInterface"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.CustomDecodingInterface"
             $($field $value)*)
         };
     }
@@ -686,7 +686,7 @@ pub mod decodermanifest {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_DecoderManifest_CustomDecodingSignal {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.CustomDecodingSignal"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.CustomDecodingSignal"
             $($field $value)*)
         };
     }
@@ -710,7 +710,7 @@ pub mod decodermanifest {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_DecoderManifest_NetworkInterfacesItems {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.NetworkInterfacesItems"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.NetworkInterfacesItems"
             $($field $value)*)
         };
     }
@@ -761,7 +761,7 @@ pub mod decodermanifest {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_DecoderManifest_ObdInterface {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.ObdInterface"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.ObdInterface"
             $($field $value)*)
         };
     }
@@ -828,7 +828,7 @@ pub mod decodermanifest {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_DecoderManifest_ObdSignal {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.ObdSignal"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.ObdSignal"
             $($field $value)*)
         };
     }
@@ -904,7 +904,7 @@ pub mod decodermanifest {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_DecoderManifest_SignalDecodersItems {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.SignalDecodersItems"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::DecoderManifest.SignalDecodersItems"
             $($field $value)*)
         };
     }
@@ -962,7 +962,7 @@ pub mod signalcatalog {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_SignalCatalog_Actuator {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::SignalCatalog.Actuator"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::SignalCatalog.Actuator"
             $($field $value)*)
         };
     }
@@ -1024,7 +1024,7 @@ pub mod signalcatalog {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_SignalCatalog_Attribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::SignalCatalog.Attribute"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::SignalCatalog.Attribute"
             $($field $value)*)
         };
     }
@@ -1085,7 +1085,7 @@ pub mod signalcatalog {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_SignalCatalog_Branch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::SignalCatalog.Branch"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::SignalCatalog.Branch"
             $($field $value)*)
         };
     }
@@ -1117,7 +1117,7 @@ pub mod signalcatalog {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_SignalCatalog_Node {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::SignalCatalog.Node"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::SignalCatalog.Node"
             $($field $value)*)
         };
     }
@@ -1158,7 +1158,7 @@ pub mod signalcatalog {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_SignalCatalog_NodeCounts {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::SignalCatalog.NodeCounts"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::SignalCatalog.NodeCounts"
             $($field $value)*)
         };
     }
@@ -1213,7 +1213,7 @@ pub mod signalcatalog {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_SignalCatalog_Sensor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::SignalCatalog.Sensor"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::SignalCatalog.Sensor"
             $($field $value)*)
         };
     }
@@ -1263,7 +1263,7 @@ pub mod vehicle {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Vehicle_PeriodicStateTemplateUpdateStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Vehicle.PeriodicStateTemplateUpdateStrategy"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Vehicle.PeriodicStateTemplateUpdateStrategy"
             $($field $value)*)
         };
     }
@@ -1287,7 +1287,7 @@ pub mod vehicle {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Vehicle_StateTemplateAssociation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Vehicle.StateTemplateAssociation"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Vehicle.StateTemplateAssociation"
             $($field $value)*)
         };
     }
@@ -1315,7 +1315,7 @@ pub mod vehicle {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Vehicle_StateTemplateUpdateStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Vehicle.StateTemplateUpdateStrategy"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Vehicle.StateTemplateUpdateStrategy"
             $($field $value)*)
         };
     }
@@ -1347,7 +1347,7 @@ pub mod vehicle {
     #[macro_export]
     macro_rules! __aws_iotfleetwise_Vehicle_TimePeriod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTFleetWise::Vehicle.TimePeriod"
+            stratosphere::generator::construct_property_type!("AWS::IoTFleetWise::Vehicle.TimePeriod"
             $($field $value)*)
         };
     }
@@ -1394,7 +1394,7 @@ pub struct Campaign_ {
 #[macro_export]
 macro_rules! __aws_iotfleetwise_Campaign {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTFleetWise::Campaign"
+        stratosphere::generator::construct_resource_type!("AWS::IoTFleetWise::Campaign"
         $($field $value)*)
     };
 }
@@ -1529,7 +1529,7 @@ pub struct DecoderManifest_ {
 #[macro_export]
 macro_rules! __aws_iotfleetwise_DecoderManifest {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTFleetWise::DecoderManifest"
+        stratosphere::generator::construct_resource_type!("AWS::IoTFleetWise::DecoderManifest"
         $($field $value)*)
     };
 }
@@ -1597,7 +1597,7 @@ pub struct Fleet_ {
 #[macro_export]
 macro_rules! __aws_iotfleetwise_Fleet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTFleetWise::Fleet"
+        stratosphere::generator::construct_resource_type!("AWS::IoTFleetWise::Fleet"
         $($field $value)*)
     };
 }
@@ -1643,7 +1643,7 @@ pub struct ModelManifest_ {
 #[macro_export]
 macro_rules! __aws_iotfleetwise_ModelManifest {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTFleetWise::ModelManifest"
+        stratosphere::generator::construct_resource_type!("AWS::IoTFleetWise::ModelManifest"
         $($field $value)*)
     };
 }
@@ -1697,7 +1697,7 @@ pub struct SignalCatalog_ {
 #[macro_export]
 macro_rules! __aws_iotfleetwise_SignalCatalog {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTFleetWise::SignalCatalog"
+        stratosphere::generator::construct_resource_type!("AWS::IoTFleetWise::SignalCatalog"
         $($field $value)*)
     };
 }
@@ -1751,7 +1751,7 @@ pub struct StateTemplate_ {
 #[macro_export]
 macro_rules! __aws_iotfleetwise_StateTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTFleetWise::StateTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::IoTFleetWise::StateTemplate"
         $($field $value)*)
     };
 }
@@ -1817,7 +1817,7 @@ pub struct Vehicle_ {
 #[macro_export]
 macro_rules! __aws_iotfleetwise_Vehicle {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTFleetWise::Vehicle"
+        stratosphere::generator::construct_resource_type!("AWS::IoTFleetWise::Vehicle"
         $($field $value)*)
     };
 }

@@ -8,7 +8,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_Alarm {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.Alarm"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.Alarm"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_AlarmMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.AlarmMetric"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.AlarmMetric"
             $($field $value)*)
         };
     }
@@ -61,7 +61,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_ComponentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.ComponentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.ComponentConfiguration"
             $($field $value)*)
         };
     }
@@ -97,7 +97,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_ComponentMonitoringSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.ComponentMonitoringSetting"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.ComponentMonitoringSetting"
             $($field $value)*)
         };
     }
@@ -157,7 +157,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_ConfigurationDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.ConfigurationDetails"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.ConfigurationDetails"
             $($field $value)*)
         };
     }
@@ -231,7 +231,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_CustomComponent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.CustomComponent"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.CustomComponent"
             $($field $value)*)
         };
     }
@@ -258,7 +258,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_HAClusterPrometheusExporter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.HAClusterPrometheusExporter"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.HAClusterPrometheusExporter"
             $($field $value)*)
         };
     }
@@ -287,7 +287,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_HANAPrometheusExporter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.HANAPrometheusExporter"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.HANAPrometheusExporter"
             $($field $value)*)
         };
     }
@@ -330,7 +330,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_JMXPrometheusExporter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.JMXPrometheusExporter"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.JMXPrometheusExporter"
             $($field $value)*)
         };
     }
@@ -368,7 +368,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_Log {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.Log"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.Log"
             $($field $value)*)
         };
     }
@@ -417,7 +417,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_LogPattern {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.LogPattern"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.LogPattern"
             $($field $value)*)
         };
     }
@@ -449,7 +449,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_LogPatternSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.LogPatternSet"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.LogPatternSet"
             $($field $value)*)
         };
     }
@@ -478,7 +478,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_NetWeaverPrometheusExporter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.NetWeaverPrometheusExporter"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.NetWeaverPrometheusExporter"
             $($field $value)*)
         };
     }
@@ -512,7 +512,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_Process {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.Process"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.Process"
             $($field $value)*)
         };
     }
@@ -540,7 +540,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_SQLServerPrometheusExporter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.SQLServerPrometheusExporter"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.SQLServerPrometheusExporter"
             $($field $value)*)
         };
     }
@@ -570,7 +570,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_SubComponentConfigurationDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.SubComponentConfigurationDetails"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.SubComponentConfigurationDetails"
             $($field $value)*)
         };
     }
@@ -611,7 +611,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_SubComponentTypeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.SubComponentTypeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.SubComponentTypeConfiguration"
             $($field $value)*)
         };
     }
@@ -641,7 +641,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_applicationinsights_Application_WindowsEvent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationInsights::Application.WindowsEvent"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationInsights::Application.WindowsEvent"
             $($field $value)*)
         };
     }
@@ -691,7 +691,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_applicationinsights_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApplicationInsights::Application"
+        stratosphere::generator::construct_resource_type!("AWS::ApplicationInsights::Application"
         $($field $value)*)
     };
 }

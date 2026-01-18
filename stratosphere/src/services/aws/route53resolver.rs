@@ -18,7 +18,7 @@ pub mod firewallrulegroup {
     #[macro_export]
     macro_rules! __aws_route53resolver_FirewallRuleGroup_FirewallRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53Resolver::FirewallRuleGroup.FirewallRule"
+            stratosphere::generator::construct_property_type!("AWS::Route53Resolver::FirewallRuleGroup.FirewallRule"
             $($field $value)*)
         };
     }
@@ -106,7 +106,7 @@ pub mod resolverendpoint {
     #[macro_export]
     macro_rules! __aws_route53resolver_ResolverEndpoint_IpAddressRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53Resolver::ResolverEndpoint.IpAddressRequest"
+            stratosphere::generator::construct_property_type!("AWS::Route53Resolver::ResolverEndpoint.IpAddressRequest"
             $($field $value)*)
         };
     }
@@ -141,7 +141,7 @@ pub mod resolverrule {
     #[macro_export]
     macro_rules! __aws_route53resolver_ResolverRule_TargetAddress {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53Resolver::ResolverRule.TargetAddress"
+            stratosphere::generator::construct_property_type!("AWS::Route53Resolver::ResolverRule.TargetAddress"
             $($field $value)*)
         };
     }
@@ -185,7 +185,7 @@ pub struct FirewallDomainList_ {
 #[macro_export]
 macro_rules! __aws_route53resolver_FirewallDomainList {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53Resolver::FirewallDomainList"
+        stratosphere::generator::construct_resource_type!("AWS::Route53Resolver::FirewallDomainList"
         $($field $value)*)
     };
 }
@@ -232,7 +232,7 @@ pub struct FirewallRuleGroup_ {
 #[macro_export]
 macro_rules! __aws_route53resolver_FirewallRuleGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53Resolver::FirewallRuleGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Route53Resolver::FirewallRuleGroup"
         $($field $value)*)
     };
 }
@@ -276,7 +276,7 @@ pub struct FirewallRuleGroupAssociation_ {
 #[macro_export]
 macro_rules! __aws_route53resolver_FirewallRuleGroupAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53Resolver::FirewallRuleGroupAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::Route53Resolver::FirewallRuleGroupAssociation"
         $($field $value)*)
     };
 }
@@ -333,7 +333,7 @@ pub struct OutpostResolver_ {
 #[macro_export]
 macro_rules! __aws_route53resolver_OutpostResolver {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53Resolver::OutpostResolver"
+        stratosphere::generator::construct_resource_type!("AWS::Route53Resolver::OutpostResolver"
         $($field $value)*)
     };
 }
@@ -382,7 +382,7 @@ pub struct ResolverConfig_ {
 #[macro_export]
 macro_rules! __aws_route53resolver_ResolverConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53Resolver::ResolverConfig"
+        stratosphere::generator::construct_resource_type!("AWS::Route53Resolver::ResolverConfig"
         $($field $value)*)
     };
 }
@@ -417,7 +417,7 @@ pub struct ResolverDNSSECConfig_ {
 #[macro_export]
 macro_rules! __aws_route53resolver_ResolverDNSSECConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53Resolver::ResolverDNSSECConfig"
+        stratosphere::generator::construct_resource_type!("AWS::Route53Resolver::ResolverDNSSECConfig"
         $($field $value)*)
     };
 }
@@ -458,7 +458,7 @@ pub struct ResolverEndpoint_ {
 #[macro_export]
 macro_rules! __aws_route53resolver_ResolverEndpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53Resolver::ResolverEndpoint"
+        stratosphere::generator::construct_resource_type!("AWS::Route53Resolver::ResolverEndpoint"
         $($field $value)*)
     };
 }
@@ -529,7 +529,7 @@ pub struct ResolverQueryLoggingConfig_ {
 #[macro_export]
 macro_rules! __aws_route53resolver_ResolverQueryLoggingConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53Resolver::ResolverQueryLoggingConfig"
+        stratosphere::generator::construct_resource_type!("AWS::Route53Resolver::ResolverQueryLoggingConfig"
         $($field $value)*)
     };
 }
@@ -571,7 +571,7 @@ pub struct ResolverQueryLoggingConfigAssociation_ {
 #[macro_export]
 macro_rules! __aws_route53resolver_ResolverQueryLoggingConfigAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53Resolver::ResolverQueryLoggingConfigAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::Route53Resolver::ResolverQueryLoggingConfigAssociation"
         $($field $value)*)
     };
 }
@@ -618,7 +618,7 @@ pub struct ResolverRule_ {
 #[macro_export]
 macro_rules! __aws_route53resolver_ResolverRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53Resolver::ResolverRule"
+        stratosphere::generator::construct_resource_type!("AWS::Route53Resolver::ResolverRule"
         $($field $value)*)
     };
 }
@@ -681,7 +681,7 @@ pub struct ResolverRuleAssociation_ {
 #[macro_export]
 macro_rules! __aws_route53resolver_ResolverRuleAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53Resolver::ResolverRuleAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::Route53Resolver::ResolverRuleAssociation"
         $($field $value)*)
     };
 }

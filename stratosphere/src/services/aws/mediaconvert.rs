@@ -7,7 +7,7 @@ pub mod jobtemplate {
     #[macro_export]
     macro_rules! __aws_mediaconvert_JobTemplate_AccelerationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConvert::JobTemplate.AccelerationSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaConvert::JobTemplate.AccelerationSettings"
             $($field $value)*)
         };
     }
@@ -32,7 +32,7 @@ pub mod jobtemplate {
     #[macro_export]
     macro_rules! __aws_mediaconvert_JobTemplate_HopDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaConvert::JobTemplate.HopDestination"
+            stratosphere::generator::construct_property_type!("AWS::MediaConvert::JobTemplate.HopDestination"
             $($field $value)*)
         };
     }
@@ -76,7 +76,7 @@ pub struct JobTemplate_ {
 #[macro_export]
 macro_rules! __aws_mediaconvert_JobTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaConvert::JobTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::MediaConvert::JobTemplate"
         $($field $value)*)
     };
 }
@@ -156,7 +156,7 @@ pub struct Preset_ {
 #[macro_export]
 macro_rules! __aws_mediaconvert_Preset {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaConvert::Preset"
+        stratosphere::generator::construct_resource_type!("AWS::MediaConvert::Preset"
         $($field $value)*)
     };
 }
@@ -210,7 +210,7 @@ pub struct Queue_ {
 #[macro_export]
 macro_rules! __aws_mediaconvert_Queue {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaConvert::Queue"
+        stratosphere::generator::construct_resource_type!("AWS::MediaConvert::Queue"
         $($field $value)*)
     };
 }

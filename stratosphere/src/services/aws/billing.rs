@@ -8,7 +8,7 @@ pub mod billingview {
     #[macro_export]
     macro_rules! __aws_billing_BillingView_DataFilterExpression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Billing::BillingView.DataFilterExpression"
+            stratosphere::generator::construct_property_type!("AWS::Billing::BillingView.DataFilterExpression"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub mod billingview {
     #[macro_export]
     macro_rules! __aws_billing_BillingView_Dimensions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Billing::BillingView.Dimensions"
+            stratosphere::generator::construct_property_type!("AWS::Billing::BillingView.Dimensions"
             $($field $value)*)
         };
     }
@@ -63,7 +63,7 @@ pub mod billingview {
     #[macro_export]
     macro_rules! __aws_billing_BillingView_Tags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Billing::BillingView.Tags"
+            stratosphere::generator::construct_property_type!("AWS::Billing::BillingView.Tags"
             $($field $value)*)
         };
     }
@@ -93,7 +93,7 @@ pub struct BillingView_ {
 #[macro_export]
 macro_rules! __aws_billing_BillingView {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Billing::BillingView"
+        stratosphere::generator::construct_resource_type!("AWS::Billing::BillingView"
         $($field $value)*)
     };
 }

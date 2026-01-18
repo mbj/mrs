@@ -25,7 +25,7 @@ pub mod deviceprofile {
     #[macro_export]
     macro_rules! __aws_iotwireless_DeviceProfile_LoRaWANDeviceProfile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::DeviceProfile.LoRaWANDeviceProfile"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::DeviceProfile.LoRaWANDeviceProfile"
             $($field $value)*)
         };
     }
@@ -161,7 +161,7 @@ pub mod fuotatask {
     #[macro_export]
     macro_rules! __aws_iotwireless_FuotaTask_LoRaWAN {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::FuotaTask.LoRaWAN"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::FuotaTask.LoRaWAN"
             $($field $value)*)
         };
     }
@@ -195,7 +195,7 @@ pub mod multicastgroup {
     #[macro_export]
     macro_rules! __aws_iotwireless_MulticastGroup_LoRaWAN {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::MulticastGroup.LoRaWAN"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::MulticastGroup.LoRaWAN"
             $($field $value)*)
         };
     }
@@ -237,7 +237,7 @@ pub mod networkanalyzerconfiguration {
     #[macro_export]
     macro_rules! __aws_iotwireless_NetworkAnalyzerConfiguration_TraceContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::NetworkAnalyzerConfiguration.TraceContent"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::NetworkAnalyzerConfiguration.TraceContent"
             $($field $value)*)
         };
     }
@@ -270,7 +270,7 @@ pub mod partneraccount {
     #[macro_export]
     macro_rules! __aws_iotwireless_PartnerAccount_SidewalkAccountInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::PartnerAccount.SidewalkAccountInfo"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::PartnerAccount.SidewalkAccountInfo"
             $($field $value)*)
         };
     }
@@ -295,7 +295,7 @@ pub mod partneraccount {
     #[macro_export]
     macro_rules! __aws_iotwireless_PartnerAccount_SidewalkAccountInfoWithFingerprint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::PartnerAccount.SidewalkAccountInfoWithFingerprint"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::PartnerAccount.SidewalkAccountInfoWithFingerprint"
             $($field $value)*)
         };
     }
@@ -329,7 +329,7 @@ pub mod partneraccount {
     #[macro_export]
     macro_rules! __aws_iotwireless_PartnerAccount_SidewalkUpdateAccount {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::PartnerAccount.SidewalkUpdateAccount"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::PartnerAccount.SidewalkUpdateAccount"
             $($field $value)*)
         };
     }
@@ -374,7 +374,7 @@ pub mod serviceprofile {
     #[macro_export]
     macro_rules! __aws_iotwireless_ServiceProfile_LoRaWANServiceProfile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::ServiceProfile.LoRaWANServiceProfile"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::ServiceProfile.LoRaWANServiceProfile"
             $($field $value)*)
         };
     }
@@ -499,7 +499,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_iotwireless_TaskDefinition_LoRaWANGatewayVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::TaskDefinition.LoRaWANGatewayVersion"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::TaskDefinition.LoRaWANGatewayVersion"
             $($field $value)*)
         };
     }
@@ -536,7 +536,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_iotwireless_TaskDefinition_LoRaWANUpdateGatewayTaskCreate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::TaskDefinition.LoRaWANUpdateGatewayTaskCreate"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::TaskDefinition.LoRaWANUpdateGatewayTaskCreate"
             $($field $value)*)
         };
     }
@@ -580,7 +580,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_iotwireless_TaskDefinition_LoRaWANUpdateGatewayTaskEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::TaskDefinition.LoRaWANUpdateGatewayTaskEntry"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::TaskDefinition.LoRaWANUpdateGatewayTaskEntry"
             $($field $value)*)
         };
     }
@@ -613,7 +613,7 @@ pub mod taskdefinition {
     #[macro_export]
     macro_rules! __aws_iotwireless_TaskDefinition_UpdateWirelessGatewayTaskCreate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::TaskDefinition.UpdateWirelessGatewayTaskCreate"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::TaskDefinition.UpdateWirelessGatewayTaskCreate"
             $($field $value)*)
         };
     }
@@ -653,7 +653,7 @@ pub mod wirelessdevice {
     #[macro_export]
     macro_rules! __aws_iotwireless_WirelessDevice_AbpV10x {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.AbpV10x"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.AbpV10x"
             $($field $value)*)
         };
     }
@@ -681,7 +681,7 @@ pub mod wirelessdevice {
     #[macro_export]
     macro_rules! __aws_iotwireless_WirelessDevice_AbpV11 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.AbpV11"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.AbpV11"
             $($field $value)*)
         };
     }
@@ -710,7 +710,7 @@ pub mod wirelessdevice {
     #[macro_export]
     macro_rules! __aws_iotwireless_WirelessDevice_Application {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.Application"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.Application"
             $($field $value)*)
         };
     }
@@ -741,7 +741,7 @@ pub mod wirelessdevice {
     #[macro_export]
     macro_rules! __aws_iotwireless_WirelessDevice_FPorts {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.FPorts"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.FPorts"
             $($field $value)*)
         };
     }
@@ -773,7 +773,7 @@ pub mod wirelessdevice {
     #[macro_export]
     macro_rules! __aws_iotwireless_WirelessDevice_LoRaWANDevice {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.LoRaWANDevice"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.LoRaWANDevice"
             $($field $value)*)
         };
     }
@@ -832,7 +832,7 @@ pub mod wirelessdevice {
     #[macro_export]
     macro_rules! __aws_iotwireless_WirelessDevice_OtaaV10x {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.OtaaV10x"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.OtaaV10x"
             $($field $value)*)
         };
     }
@@ -861,7 +861,7 @@ pub mod wirelessdevice {
     #[macro_export]
     macro_rules! __aws_iotwireless_WirelessDevice_OtaaV11 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.OtaaV11"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.OtaaV11"
             $($field $value)*)
         };
     }
@@ -893,7 +893,7 @@ pub mod wirelessdevice {
     #[macro_export]
     macro_rules! __aws_iotwireless_WirelessDevice_SessionKeysAbpV10x {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.SessionKeysAbpV10x"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.SessionKeysAbpV10x"
             $($field $value)*)
         };
     }
@@ -923,7 +923,7 @@ pub mod wirelessdevice {
     #[macro_export]
     macro_rules! __aws_iotwireless_WirelessDevice_SessionKeysAbpV11 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.SessionKeysAbpV11"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::WirelessDevice.SessionKeysAbpV11"
             $($field $value)*)
         };
     }
@@ -963,7 +963,7 @@ pub mod wirelessdeviceimporttask {
     #[macro_export]
     macro_rules! __aws_iotwireless_WirelessDeviceImportTask_Sidewalk {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::WirelessDeviceImportTask.Sidewalk"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::WirelessDeviceImportTask.Sidewalk"
             $($field $value)*)
         };
     }
@@ -1006,7 +1006,7 @@ pub mod wirelessgateway {
     #[macro_export]
     macro_rules! __aws_iotwireless_WirelessGateway_LoRaWANGateway {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTWireless::WirelessGateway.LoRaWANGateway"
+            stratosphere::generator::construct_property_type!("AWS::IoTWireless::WirelessGateway.LoRaWANGateway"
             $($field $value)*)
         };
     }
@@ -1039,7 +1039,7 @@ pub struct Destination_ {
 #[macro_export]
 macro_rules! __aws_iotwireless_Destination {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTWireless::Destination"
+        stratosphere::generator::construct_resource_type!("AWS::IoTWireless::Destination"
         $($field $value)*)
     };
 }
@@ -1095,7 +1095,7 @@ pub struct DeviceProfile_ {
 #[macro_export]
 macro_rules! __aws_iotwireless_DeviceProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTWireless::DeviceProfile"
+        stratosphere::generator::construct_resource_type!("AWS::IoTWireless::DeviceProfile"
         $($field $value)*)
     };
 }
@@ -1143,7 +1143,7 @@ pub struct FuotaTask_ {
 #[macro_export]
 macro_rules! __aws_iotwireless_FuotaTask {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTWireless::FuotaTask"
+        stratosphere::generator::construct_resource_type!("AWS::IoTWireless::FuotaTask"
         $($field $value)*)
     };
 }
@@ -1223,7 +1223,7 @@ pub struct MulticastGroup_ {
 #[macro_export]
 macro_rules! __aws_iotwireless_MulticastGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTWireless::MulticastGroup"
+        stratosphere::generator::construct_resource_type!("AWS::IoTWireless::MulticastGroup"
         $($field $value)*)
     };
 }
@@ -1283,7 +1283,7 @@ pub struct NetworkAnalyzerConfiguration_ {
 #[macro_export]
 macro_rules! __aws_iotwireless_NetworkAnalyzerConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTWireless::NetworkAnalyzerConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::IoTWireless::NetworkAnalyzerConfiguration"
         $($field $value)*)
     };
 }
@@ -1350,7 +1350,7 @@ pub struct PartnerAccount_ {
 #[macro_export]
 macro_rules! __aws_iotwireless_PartnerAccount {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTWireless::PartnerAccount"
+        stratosphere::generator::construct_resource_type!("AWS::IoTWireless::PartnerAccount"
         $($field $value)*)
     };
 }
@@ -1418,7 +1418,7 @@ pub struct ServiceProfile_ {
 #[macro_export]
 macro_rules! __aws_iotwireless_ServiceProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTWireless::ServiceProfile"
+        stratosphere::generator::construct_resource_type!("AWS::IoTWireless::ServiceProfile"
         $($field $value)*)
     };
 }
@@ -1463,7 +1463,7 @@ pub struct TaskDefinition_ {
 #[macro_export]
 macro_rules! __aws_iotwireless_TaskDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTWireless::TaskDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::IoTWireless::TaskDefinition"
         $($field $value)*)
     };
 }
@@ -1523,7 +1523,7 @@ pub struct WirelessDevice_ {
 #[macro_export]
 macro_rules! __aws_iotwireless_WirelessDevice {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTWireless::WirelessDevice"
+        stratosphere::generator::construct_resource_type!("AWS::IoTWireless::WirelessDevice"
         $($field $value)*)
     };
 }
@@ -1596,7 +1596,7 @@ pub struct WirelessDeviceImportTask_ {
 #[macro_export]
 macro_rules! __aws_iotwireless_WirelessDeviceImportTask {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTWireless::WirelessDeviceImportTask"
+        stratosphere::generator::construct_resource_type!("AWS::IoTWireless::WirelessDeviceImportTask"
         $($field $value)*)
     };
 }
@@ -1640,7 +1640,7 @@ pub struct WirelessGateway_ {
 #[macro_export]
 macro_rules! __aws_iotwireless_WirelessGateway {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTWireless::WirelessGateway"
+        stratosphere::generator::construct_resource_type!("AWS::IoTWireless::WirelessGateway"
         $($field $value)*)
     };
 }

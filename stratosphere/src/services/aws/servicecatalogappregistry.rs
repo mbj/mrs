@@ -8,7 +8,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_servicecatalogappregistry_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalogAppRegistry::Application"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalogAppRegistry::Application"
         $($field $value)*)
     };
 }
@@ -53,7 +53,7 @@ pub struct AttributeGroup_ {
 #[macro_export]
 macro_rules! __aws_servicecatalogappregistry_AttributeGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalogAppRegistry::AttributeGroup"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalogAppRegistry::AttributeGroup"
         $($field $value)*)
     };
 }
@@ -100,7 +100,7 @@ pub struct AttributeGroupAssociation_ {
 #[macro_export]
 macro_rules! __aws_servicecatalogappregistry_AttributeGroupAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalogAppRegistry::AttributeGroupAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalogAppRegistry::AttributeGroupAssociation"
         $($field $value)*)
     };
 }
@@ -139,7 +139,7 @@ pub struct ResourceAssociation_ {
 #[macro_export]
 macro_rules! __aws_servicecatalogappregistry_ResourceAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalogAppRegistry::ResourceAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalogAppRegistry::ResourceAssociation"
         $($field $value)*)
     };
 }

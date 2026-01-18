@@ -8,7 +8,7 @@ pub mod eventrule {
     #[macro_export]
     macro_rules! __aws_notifications_EventRule_EventRuleStatusSummary {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Notifications::EventRule.EventRuleStatusSummary"
+            stratosphere::generator::construct_property_type!("AWS::Notifications::EventRule.EventRuleStatusSummary"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod notificationhub {
     #[macro_export]
     macro_rules! __aws_notifications_NotificationHub_NotificationHubStatusSummary {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Notifications::NotificationHub.NotificationHubStatusSummary"
+            stratosphere::generator::construct_property_type!("AWS::Notifications::NotificationHub.NotificationHubStatusSummary"
             $($field $value)*)
         };
     }
@@ -67,7 +67,7 @@ pub struct ChannelAssociation_ {
 #[macro_export]
 macro_rules! __aws_notifications_ChannelAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Notifications::ChannelAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::Notifications::ChannelAssociation"
         $($field $value)*)
     };
 }
@@ -106,7 +106,7 @@ pub struct EventRule_ {
 #[macro_export]
 macro_rules! __aws_notifications_EventRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Notifications::EventRule"
+        stratosphere::generator::construct_resource_type!("AWS::Notifications::EventRule"
         $($field $value)*)
     };
 }
@@ -156,7 +156,7 @@ pub struct ManagedNotificationAccountContactAssociation_ {
 #[macro_export]
 macro_rules! __aws_notifications_ManagedNotificationAccountContactAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Notifications::ManagedNotificationAccountContactAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::Notifications::ManagedNotificationAccountContactAssociation"
         $($field $value)*)
     };
 }
@@ -194,7 +194,7 @@ pub struct ManagedNotificationAdditionalChannelAssociation_ {
 #[macro_export]
 macro_rules! __aws_notifications_ManagedNotificationAdditionalChannelAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Notifications::ManagedNotificationAdditionalChannelAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::Notifications::ManagedNotificationAdditionalChannelAssociation"
         $($field $value)*)
     };
 }
@@ -234,7 +234,7 @@ pub struct NotificationConfiguration_ {
 #[macro_export]
 macro_rules! __aws_notifications_NotificationConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Notifications::NotificationConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::Notifications::NotificationConfiguration"
         $($field $value)*)
     };
 }
@@ -278,7 +278,7 @@ pub struct NotificationHub_ {
 #[macro_export]
 macro_rules! __aws_notifications_NotificationHub {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Notifications::NotificationHub"
+        stratosphere::generator::construct_resource_type!("AWS::Notifications::NotificationHub"
         $($field $value)*)
     };
 }
@@ -310,7 +310,7 @@ pub struct OrganizationalUnitAssociation_ {
 #[macro_export]
 macro_rules! __aws_notifications_OrganizationalUnitAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Notifications::OrganizationalUnitAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::Notifications::OrganizationalUnitAssociation"
         $($field $value)*)
     };
 }

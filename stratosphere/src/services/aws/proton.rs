@@ -12,7 +12,7 @@ pub struct EnvironmentAccountConnection_ {
 #[macro_export]
 macro_rules! __aws_proton_EnvironmentAccountConnection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Proton::EnvironmentAccountConnection"
+        stratosphere::generator::construct_resource_type!("AWS::Proton::EnvironmentAccountConnection"
         $($field $value)*)
     };
 }
@@ -85,7 +85,7 @@ pub struct EnvironmentTemplate_ {
 #[macro_export]
 macro_rules! __aws_proton_EnvironmentTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Proton::EnvironmentTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::Proton::EnvironmentTemplate"
         $($field $value)*)
     };
 }
@@ -147,7 +147,7 @@ pub struct ServiceTemplate_ {
 #[macro_export]
 macro_rules! __aws_proton_ServiceTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Proton::ServiceTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::Proton::ServiceTemplate"
         $($field $value)*)
     };
 }

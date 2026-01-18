@@ -10,7 +10,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_s3express_AccessPoint_PublicAccessBlockConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Express::AccessPoint.PublicAccessBlockConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3Express::AccessPoint.PublicAccessBlockConfiguration"
             $($field $value)*)
         };
     }
@@ -54,7 +54,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_s3express_AccessPoint_Scope {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Express::AccessPoint.Scope"
+            stratosphere::generator::construct_property_type!("AWS::S3Express::AccessPoint.Scope"
             $($field $value)*)
         };
     }
@@ -85,7 +85,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_s3express_AccessPoint_VpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Express::AccessPoint.VpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3Express::AccessPoint.VpcConfiguration"
             $($field $value)*)
         };
     }
@@ -109,7 +109,7 @@ pub mod directorybucket {
     #[macro_export]
     macro_rules! __aws_s3express_DirectoryBucket_AbortIncompleteMultipartUpload {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Express::DirectoryBucket.AbortIncompleteMultipartUpload"
+            stratosphere::generator::construct_property_type!("AWS::S3Express::DirectoryBucket.AbortIncompleteMultipartUpload"
             $($field $value)*)
         };
     }
@@ -132,7 +132,7 @@ pub mod directorybucket {
     #[macro_export]
     macro_rules! __aws_s3express_DirectoryBucket_BucketEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Express::DirectoryBucket.BucketEncryption"
+            stratosphere::generator::construct_property_type!("AWS::S3Express::DirectoryBucket.BucketEncryption"
             $($field $value)*)
         };
     }
@@ -155,7 +155,7 @@ pub mod directorybucket {
     #[macro_export]
     macro_rules! __aws_s3express_DirectoryBucket_LifecycleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Express::DirectoryBucket.LifecycleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3Express::DirectoryBucket.LifecycleConfiguration"
             $($field $value)*)
         };
     }
@@ -184,7 +184,7 @@ pub mod directorybucket {
     #[macro_export]
     macro_rules! __aws_s3express_DirectoryBucket_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Express::DirectoryBucket.Rule"
+            stratosphere::generator::construct_property_type!("AWS::S3Express::DirectoryBucket.Rule"
             $($field $value)*)
         };
     }
@@ -238,7 +238,7 @@ pub mod directorybucket {
     #[macro_export]
     macro_rules! __aws_s3express_DirectoryBucket_ServerSideEncryptionByDefault {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Express::DirectoryBucket.ServerSideEncryptionByDefault"
+            stratosphere::generator::construct_property_type!("AWS::S3Express::DirectoryBucket.ServerSideEncryptionByDefault"
             $($field $value)*)
         };
     }
@@ -268,7 +268,7 @@ pub mod directorybucket {
     #[macro_export]
     macro_rules! __aws_s3express_DirectoryBucket_ServerSideEncryptionRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Express::DirectoryBucket.ServerSideEncryptionRule"
+            stratosphere::generator::construct_property_type!("AWS::S3Express::DirectoryBucket.ServerSideEncryptionRule"
             $($field $value)*)
         };
     }
@@ -308,7 +308,7 @@ pub struct AccessPoint_ {
 #[macro_export]
 macro_rules! __aws_s3express_AccessPoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3Express::AccessPoint"
+        stratosphere::generator::construct_resource_type!("AWS::S3Express::AccessPoint"
         $($field $value)*)
     };
 }
@@ -370,7 +370,7 @@ pub struct BucketPolicy_ {
 #[macro_export]
 macro_rules! __aws_s3express_BucketPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3Express::BucketPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::S3Express::BucketPolicy"
         $($field $value)*)
     };
 }
@@ -410,7 +410,7 @@ pub struct DirectoryBucket_ {
 #[macro_export]
 macro_rules! __aws_s3express_DirectoryBucket {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3Express::DirectoryBucket"
+        stratosphere::generator::construct_resource_type!("AWS::S3Express::DirectoryBucket"
         $($field $value)*)
     };
 }

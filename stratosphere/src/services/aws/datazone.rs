@@ -7,7 +7,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_AthenaPropertiesInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.AthenaPropertiesInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.AthenaPropertiesInput"
             $($field $value)*)
         };
     }
@@ -36,7 +36,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_AuthenticationConfigurationInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.AuthenticationConfigurationInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.AuthenticationConfigurationInput"
             $($field $value)*)
         };
     }
@@ -92,7 +92,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_AuthorizationCodeProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.AuthorizationCodeProperties"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.AuthorizationCodeProperties"
             $($field $value)*)
         };
     }
@@ -126,7 +126,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_AwsLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.AwsLocation"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.AwsLocation"
             $($field $value)*)
         };
     }
@@ -170,7 +170,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_BasicAuthenticationCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.BasicAuthenticationCredentials"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.BasicAuthenticationCredentials"
             $($field $value)*)
         };
     }
@@ -207,7 +207,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_ConnectionPropertiesInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.ConnectionPropertiesInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.ConnectionPropertiesInput"
             $($field $value)*)
         };
     }
@@ -280,7 +280,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_GlueConnectionInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.GlueConnectionInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.GlueConnectionInput"
             $($field $value)*)
         };
     }
@@ -371,7 +371,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_GlueOAuth2Credentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.GlueOAuth2Credentials"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.GlueOAuth2Credentials"
             $($field $value)*)
         };
     }
@@ -414,7 +414,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_GluePropertiesInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.GluePropertiesInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.GluePropertiesInput"
             $($field $value)*)
         };
     }
@@ -439,7 +439,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_HyperPodPropertiesInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.HyperPodPropertiesInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.HyperPodPropertiesInput"
             $($field $value)*)
         };
     }
@@ -462,7 +462,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_IamPropertiesInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.IamPropertiesInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.IamPropertiesInput"
             $($field $value)*)
         };
     }
@@ -487,7 +487,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_LineageSyncSchedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.LineageSyncSchedule"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.LineageSyncSchedule"
             $($field $value)*)
         };
     }
@@ -513,7 +513,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_OAuth2ClientApplication {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.OAuth2ClientApplication"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.OAuth2ClientApplication"
             $($field $value)*)
         };
     }
@@ -550,7 +550,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_OAuth2Properties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.OAuth2Properties"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.OAuth2Properties"
             $($field $value)*)
         };
     }
@@ -608,7 +608,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_PhysicalConnectionRequirements {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.PhysicalConnectionRequirements"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.PhysicalConnectionRequirements"
             $($field $value)*)
         };
     }
@@ -652,7 +652,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_RedshiftCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.RedshiftCredentials"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.RedshiftCredentials"
             $($field $value)*)
         };
     }
@@ -684,7 +684,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_RedshiftLineageSyncConfigurationInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.RedshiftLineageSyncConfigurationInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.RedshiftLineageSyncConfigurationInput"
             $($field $value)*)
         };
     }
@@ -720,7 +720,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_RedshiftPropertiesInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.RedshiftPropertiesInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.RedshiftPropertiesInput"
             $($field $value)*)
         };
     }
@@ -770,7 +770,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_RedshiftStorageProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.RedshiftStorageProperties"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.RedshiftStorageProperties"
             $($field $value)*)
         };
     }
@@ -807,7 +807,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_SparkEmrPropertiesInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.SparkEmrPropertiesInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.SparkEmrPropertiesInput"
             $($field $value)*)
         };
     }
@@ -865,7 +865,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_SparkGlueArgs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.SparkGlueArgs"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.SparkGlueArgs"
             $($field $value)*)
         };
     }
@@ -897,7 +897,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_SparkGluePropertiesInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.SparkGluePropertiesInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.SparkGluePropertiesInput"
             $($field $value)*)
         };
     }
@@ -965,7 +965,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_datazone_Connection_UsernamePassword {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Connection.UsernamePassword"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.UsernamePassword"
             $($field $value)*)
         };
     }
@@ -996,7 +996,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_datazone_DataSource_DataSourceConfigurationInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::DataSource.DataSourceConfigurationInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::DataSource.DataSourceConfigurationInput"
             $($field $value)*)
         };
     }
@@ -1034,7 +1034,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_datazone_DataSource_FilterExpression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::DataSource.FilterExpression"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::DataSource.FilterExpression"
             $($field $value)*)
         };
     }
@@ -1064,7 +1064,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_datazone_DataSource_FormInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::DataSource.FormInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::DataSource.FormInput"
             $($field $value)*)
         };
     }
@@ -1108,7 +1108,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_datazone_DataSource_GlueRunConfigurationInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::DataSource.GlueRunConfigurationInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::DataSource.GlueRunConfigurationInput"
             $($field $value)*)
         };
     }
@@ -1149,7 +1149,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_datazone_DataSource_RecommendationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::DataSource.RecommendationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::DataSource.RecommendationConfiguration"
             $($field $value)*)
         };
     }
@@ -1174,7 +1174,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_datazone_DataSource_RedshiftClusterStorage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::DataSource.RedshiftClusterStorage"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::DataSource.RedshiftClusterStorage"
             $($field $value)*)
         };
     }
@@ -1197,7 +1197,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_datazone_DataSource_RedshiftCredentialConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::DataSource.RedshiftCredentialConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::DataSource.RedshiftCredentialConfiguration"
             $($field $value)*)
         };
     }
@@ -1223,7 +1223,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_datazone_DataSource_RedshiftRunConfigurationInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::DataSource.RedshiftRunConfigurationInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::DataSource.RedshiftRunConfigurationInput"
             $($field $value)*)
         };
     }
@@ -1264,7 +1264,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_datazone_DataSource_RedshiftServerlessStorage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::DataSource.RedshiftServerlessStorage"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::DataSource.RedshiftServerlessStorage"
             $($field $value)*)
         };
     }
@@ -1288,7 +1288,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_datazone_DataSource_RedshiftStorage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::DataSource.RedshiftStorage"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::DataSource.RedshiftStorage"
             $($field $value)*)
         };
     }
@@ -1321,7 +1321,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_datazone_DataSource_RelationalFilterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::DataSource.RelationalFilterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::DataSource.RelationalFilterConfiguration"
             $($field $value)*)
         };
     }
@@ -1356,7 +1356,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_datazone_DataSource_SageMakerRunConfigurationInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::DataSource.SageMakerRunConfigurationInput"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::DataSource.SageMakerRunConfigurationInput"
             $($field $value)*)
         };
     }
@@ -1380,7 +1380,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_datazone_DataSource_ScheduleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::DataSource.ScheduleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::DataSource.ScheduleConfiguration"
             $($field $value)*)
         };
     }
@@ -1415,7 +1415,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_datazone_Domain_SingleSignOn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Domain.SingleSignOn"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Domain.SingleSignOn"
             $($field $value)*)
         };
     }
@@ -1452,7 +1452,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_datazone_Environment_EnvironmentParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Environment.EnvironmentParameter"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Environment.EnvironmentParameter"
             $($field $value)*)
         };
     }
@@ -1479,7 +1479,7 @@ pub mod environmentactions {
     #[macro_export]
     macro_rules! __aws_datazone_EnvironmentActions_AwsConsoleLinkParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::EnvironmentActions.AwsConsoleLinkParameters"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::EnvironmentActions.AwsConsoleLinkParameters"
             $($field $value)*)
         };
     }
@@ -1504,7 +1504,7 @@ pub mod environmentblueprintconfiguration {
     #[macro_export]
     macro_rules! __aws_datazone_EnvironmentBlueprintConfiguration_LakeFormationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::EnvironmentBlueprintConfiguration.LakeFormationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::EnvironmentBlueprintConfiguration.LakeFormationConfiguration"
             $($field $value)*)
         };
     }
@@ -1535,7 +1535,7 @@ pub mod environmentblueprintconfiguration {
     #[macro_export]
     macro_rules! __aws_datazone_EnvironmentBlueprintConfiguration_ProvisioningConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::EnvironmentBlueprintConfiguration.ProvisioningConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::EnvironmentBlueprintConfiguration.ProvisioningConfiguration"
             $($field $value)*)
         };
     }
@@ -1559,7 +1559,7 @@ pub mod environmentblueprintconfiguration {
     #[macro_export]
     macro_rules! __aws_datazone_EnvironmentBlueprintConfiguration_RegionalParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::EnvironmentBlueprintConfiguration.RegionalParameter"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::EnvironmentBlueprintConfiguration.RegionalParameter"
             $($field $value)*)
         };
     }
@@ -1590,7 +1590,7 @@ pub mod environmentprofile {
     #[macro_export]
     macro_rules! __aws_datazone_EnvironmentProfile_EnvironmentParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::EnvironmentProfile.EnvironmentParameter"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::EnvironmentProfile.EnvironmentParameter"
             $($field $value)*)
         };
     }
@@ -1617,7 +1617,7 @@ pub mod owner {
     #[macro_export]
     macro_rules! __aws_datazone_Owner_OwnerGroupProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Owner.OwnerGroupProperties"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Owner.OwnerGroupProperties"
             $($field $value)*)
         };
     }
@@ -1643,7 +1643,7 @@ pub mod owner {
     #[macro_export]
     macro_rules! __aws_datazone_Owner_OwnerProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Owner.OwnerProperties"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Owner.OwnerProperties"
             $($field $value)*)
         };
     }
@@ -1668,7 +1668,7 @@ pub mod owner {
     #[macro_export]
     macro_rules! __aws_datazone_Owner_OwnerUserProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Owner.OwnerUserProperties"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Owner.OwnerUserProperties"
             $($field $value)*)
         };
     }
@@ -1695,7 +1695,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_AddToProjectMemberPoolPolicyGrantDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.AddToProjectMemberPoolPolicyGrantDetail"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.AddToProjectMemberPoolPolicyGrantDetail"
             $($field $value)*)
         };
     }
@@ -1720,7 +1720,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_CreateAssetTypePolicyGrantDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.CreateAssetTypePolicyGrantDetail"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.CreateAssetTypePolicyGrantDetail"
             $($field $value)*)
         };
     }
@@ -1745,7 +1745,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_CreateDomainUnitPolicyGrantDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.CreateDomainUnitPolicyGrantDetail"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.CreateDomainUnitPolicyGrantDetail"
             $($field $value)*)
         };
     }
@@ -1770,7 +1770,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_CreateEnvironmentProfilePolicyGrantDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.CreateEnvironmentProfilePolicyGrantDetail"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.CreateEnvironmentProfilePolicyGrantDetail"
             $($field $value)*)
         };
     }
@@ -1795,7 +1795,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_CreateFormTypePolicyGrantDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.CreateFormTypePolicyGrantDetail"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.CreateFormTypePolicyGrantDetail"
             $($field $value)*)
         };
     }
@@ -1820,7 +1820,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_CreateGlossaryPolicyGrantDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.CreateGlossaryPolicyGrantDetail"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.CreateGlossaryPolicyGrantDetail"
             $($field $value)*)
         };
     }
@@ -1846,7 +1846,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_CreateProjectFromProjectProfilePolicyGrantDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.CreateProjectFromProjectProfilePolicyGrantDetail"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.CreateProjectFromProjectProfilePolicyGrantDetail"
             $($field $value)*)
         };
     }
@@ -1877,7 +1877,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_CreateProjectPolicyGrantDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.CreateProjectPolicyGrantDetail"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.CreateProjectPolicyGrantDetail"
             $($field $value)*)
         };
     }
@@ -1903,7 +1903,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_DomainUnitFilterForProject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.DomainUnitFilterForProject"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.DomainUnitFilterForProject"
             $($field $value)*)
         };
     }
@@ -1932,7 +1932,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_DomainUnitGrantFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.DomainUnitGrantFilter"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.DomainUnitGrantFilter"
             $($field $value)*)
         };
     }
@@ -1957,7 +1957,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_DomainUnitPolicyGrantPrincipal {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.DomainUnitPolicyGrantPrincipal"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.DomainUnitPolicyGrantPrincipal"
             $($field $value)*)
         };
     }
@@ -1994,7 +1994,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_GroupPolicyGrantPrincipal {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.GroupPolicyGrantPrincipal"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.GroupPolicyGrantPrincipal"
             $($field $value)*)
         };
     }
@@ -2017,7 +2017,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_OverrideDomainUnitOwnersPolicyGrantDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.OverrideDomainUnitOwnersPolicyGrantDetail"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.OverrideDomainUnitOwnersPolicyGrantDetail"
             $($field $value)*)
         };
     }
@@ -2042,7 +2042,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_OverrideProjectOwnersPolicyGrantDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.OverrideProjectOwnersPolicyGrantDetail"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.OverrideProjectOwnersPolicyGrantDetail"
             $($field $value)*)
         };
     }
@@ -2080,7 +2080,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_PolicyGrantDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.PolicyGrantDetail"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.PolicyGrantDetail"
             $($field $value)*)
         };
     }
@@ -2180,7 +2180,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_PolicyGrantPrincipal {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.PolicyGrantPrincipal"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.PolicyGrantPrincipal"
             $($field $value)*)
         };
     }
@@ -2217,7 +2217,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_ProjectGrantFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.ProjectGrantFilter"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.ProjectGrantFilter"
             $($field $value)*)
         };
     }
@@ -2242,7 +2242,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_ProjectPolicyGrantPrincipal {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.ProjectPolicyGrantPrincipal"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.ProjectPolicyGrantPrincipal"
             $($field $value)*)
         };
     }
@@ -2280,7 +2280,7 @@ pub mod policygrant {
     #[macro_export]
     macro_rules! __aws_datazone_PolicyGrant_UserPolicyGrantPrincipal {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::PolicyGrant.UserPolicyGrantPrincipal"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::PolicyGrant.UserPolicyGrantPrincipal"
             $($field $value)*)
         };
     }
@@ -2315,7 +2315,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_datazone_Project_EnvironmentConfigurationUserParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Project.EnvironmentConfigurationUserParameter"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Project.EnvironmentConfigurationUserParameter"
             $($field $value)*)
         };
     }
@@ -2353,7 +2353,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_datazone_Project_EnvironmentParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::Project.EnvironmentParameter"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Project.EnvironmentParameter"
             $($field $value)*)
         };
     }
@@ -2381,7 +2381,7 @@ pub mod projectmembership {
     #[macro_export]
     macro_rules! __aws_datazone_ProjectMembership_Member {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::ProjectMembership.Member"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::ProjectMembership.Member"
             $($field $value)*)
         };
     }
@@ -2414,7 +2414,7 @@ pub mod projectprofile {
     #[macro_export]
     macro_rules! __aws_datazone_ProjectProfile_AwsAccount {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::ProjectProfile.AwsAccount"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::ProjectProfile.AwsAccount"
             $($field $value)*)
         };
     }
@@ -2445,7 +2445,7 @@ pub mod projectprofile {
     #[macro_export]
     macro_rules! __aws_datazone_ProjectProfile_EnvironmentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::ProjectProfile.EnvironmentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::ProjectProfile.EnvironmentConfiguration"
             $($field $value)*)
         };
     }
@@ -2511,7 +2511,7 @@ pub mod projectprofile {
     #[macro_export]
     macro_rules! __aws_datazone_ProjectProfile_EnvironmentConfigurationParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::ProjectProfile.EnvironmentConfigurationParameter"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::ProjectProfile.EnvironmentConfigurationParameter"
             $($field $value)*)
         };
     }
@@ -2544,7 +2544,7 @@ pub mod projectprofile {
     #[macro_export]
     macro_rules! __aws_datazone_ProjectProfile_EnvironmentConfigurationParametersDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::ProjectProfile.EnvironmentConfigurationParametersDetails"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::ProjectProfile.EnvironmentConfigurationParametersDetails"
             $($field $value)*)
         };
     }
@@ -2581,7 +2581,7 @@ pub mod projectprofile {
     #[macro_export]
     macro_rules! __aws_datazone_ProjectProfile_Region {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::ProjectProfile.Region"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::ProjectProfile.Region"
             $($field $value)*)
         };
     }
@@ -2607,7 +2607,7 @@ pub mod subscriptiontarget {
     #[macro_export]
     macro_rules! __aws_datazone_SubscriptionTarget_SubscriptionTargetForm {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::SubscriptionTarget.SubscriptionTargetForm"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::SubscriptionTarget.SubscriptionTargetForm"
             $($field $value)*)
         };
     }
@@ -2636,7 +2636,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_datazone_UserProfile_IamUserProfileDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::UserProfile.IamUserProfileDetails"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::UserProfile.IamUserProfileDetails"
             $($field $value)*)
         };
     }
@@ -2660,7 +2660,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_datazone_UserProfile_SsoUserProfileDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::UserProfile.SsoUserProfileDetails"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::UserProfile.SsoUserProfileDetails"
             $($field $value)*)
         };
     }
@@ -2698,7 +2698,7 @@ pub mod userprofile {
     #[macro_export]
     macro_rules! __aws_datazone_UserProfile_UserProfileDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataZone::UserProfile.UserProfileDetails"
+            stratosphere::generator::construct_property_type!("AWS::DataZone::UserProfile.UserProfileDetails"
             $($field $value)*)
         };
     }
@@ -2729,7 +2729,7 @@ pub struct Connection_ {
 #[macro_export]
 macro_rules! __aws_datazone_Connection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::Connection"
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::Connection"
         $($field $value)*)
     };
 }
@@ -2795,7 +2795,7 @@ pub struct DataSource_ {
 #[macro_export]
 macro_rules! __aws_datazone_DataSource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::DataSource"
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::DataSource"
         $($field $value)*)
     };
 }
@@ -2899,8 +2899,8 @@ pub struct Domain_ {
 #[macro_export]
 macro_rules! __aws_datazone_Domain {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::Domain" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::Domain"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_datazone_Domain as Domain;
@@ -2970,7 +2970,7 @@ pub struct DomainUnit_ {
 #[macro_export]
 macro_rules! __aws_datazone_DomainUnit {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::DomainUnit"
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::DomainUnit"
         $($field $value)*)
     };
 }
@@ -3024,7 +3024,7 @@ pub struct Environment_ {
 #[macro_export]
 macro_rules! __aws_datazone_Environment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::Environment"
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::Environment"
         $($field $value)*)
     };
 }
@@ -3110,7 +3110,7 @@ pub struct EnvironmentActions_ {
 #[macro_export]
 macro_rules! __aws_datazone_EnvironmentActions {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::EnvironmentActions"
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::EnvironmentActions"
         $($field $value)*)
     };
 }
@@ -3180,7 +3180,7 @@ pub struct EnvironmentBlueprintConfiguration_ {
 #[macro_export]
 macro_rules! __aws_datazone_EnvironmentBlueprintConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::EnvironmentBlueprintConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::EnvironmentBlueprintConfiguration"
         $($field $value)*)
     };
 }
@@ -3258,7 +3258,7 @@ pub struct EnvironmentProfile_ {
 #[macro_export]
 macro_rules! __aws_datazone_EnvironmentProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::EnvironmentProfile"
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::EnvironmentProfile"
         $($field $value)*)
     };
 }
@@ -3323,7 +3323,7 @@ pub struct GroupProfile_ {
 #[macro_export]
 macro_rules! __aws_datazone_GroupProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::GroupProfile"
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::GroupProfile"
         $($field $value)*)
     };
 }
@@ -3364,7 +3364,7 @@ pub struct Owner_ {
 #[macro_export]
 macro_rules! __aws_datazone_Owner {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::Owner" $($field
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::Owner" $($field
         $value)*)
     };
 }
@@ -3412,7 +3412,7 @@ pub struct PolicyGrant_ {
 #[macro_export]
 macro_rules! __aws_datazone_PolicyGrant {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::PolicyGrant"
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::PolicyGrant"
         $($field $value)*)
     };
 }
@@ -3472,7 +3472,7 @@ pub struct Project_ {
 #[macro_export]
 macro_rules! __aws_datazone_Project {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::Project"
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::Project"
         $($field $value)*)
     };
 }
@@ -3546,7 +3546,7 @@ pub struct ProjectMembership_ {
 #[macro_export]
 macro_rules! __aws_datazone_ProjectMembership {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::ProjectMembership"
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::ProjectMembership"
         $($field $value)*)
     };
 }
@@ -3595,7 +3595,7 @@ pub struct ProjectProfile_ {
 #[macro_export]
 macro_rules! __aws_datazone_ProjectProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::ProjectProfile"
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::ProjectProfile"
         $($field $value)*)
     };
 }
@@ -3662,7 +3662,7 @@ pub struct SubscriptionTarget_ {
 #[macro_export]
 macro_rules! __aws_datazone_SubscriptionTarget {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::SubscriptionTarget"
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::SubscriptionTarget"
         $($field $value)*)
     };
 }
@@ -3732,7 +3732,7 @@ pub struct UserProfile_ {
 #[macro_export]
 macro_rules! __aws_datazone_UserProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataZone::UserProfile"
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::UserProfile"
         $($field $value)*)
     };
 }

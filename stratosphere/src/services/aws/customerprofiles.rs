@@ -8,7 +8,7 @@ pub mod calculatedattributedefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_CalculatedAttributeDefinition_AttributeDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition.AttributeDetails"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition.AttributeDetails"
             $($field $value)*)
         };
     }
@@ -35,7 +35,7 @@ pub mod calculatedattributedefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_CalculatedAttributeDefinition_AttributeItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition.AttributeItem"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition.AttributeItem"
             $($field $value)*)
         };
     }
@@ -60,7 +60,7 @@ pub mod calculatedattributedefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_CalculatedAttributeDefinition_Conditions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition.Conditions"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition.Conditions"
             $($field $value)*)
         };
     }
@@ -98,7 +98,7 @@ pub mod calculatedattributedefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_CalculatedAttributeDefinition_Range {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition.Range"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition.Range"
             $($field $value)*)
         };
     }
@@ -143,7 +143,7 @@ pub mod calculatedattributedefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_CalculatedAttributeDefinition_Readiness {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition.Readiness"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition.Readiness"
             $($field $value)*)
         };
     }
@@ -175,7 +175,7 @@ pub mod calculatedattributedefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_CalculatedAttributeDefinition_Threshold {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition.Threshold"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition.Threshold"
             $($field $value)*)
         };
     }
@@ -203,7 +203,7 @@ pub mod calculatedattributedefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_CalculatedAttributeDefinition_ValueRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition.ValueRange"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition.ValueRange"
             $($field $value)*)
         };
     }
@@ -235,7 +235,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Domain_AttributeTypesSelector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Domain.AttributeTypesSelector"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.AttributeTypesSelector"
             $($field $value)*)
         };
     }
@@ -279,7 +279,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Domain_AutoMerging {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Domain.AutoMerging"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.AutoMerging"
             $($field $value)*)
         };
     }
@@ -321,7 +321,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Domain_ConflictResolution {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Domain.ConflictResolution"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.ConflictResolution"
             $($field $value)*)
         };
     }
@@ -350,7 +350,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Domain_Consolidation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Domain.Consolidation"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.Consolidation"
             $($field $value)*)
         };
     }
@@ -376,7 +376,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Domain_DomainStats {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Domain.DomainStats"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.DomainStats"
             $($field $value)*)
         };
     }
@@ -419,7 +419,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Domain_ExportingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Domain.ExportingConfig"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.ExportingConfig"
             $($field $value)*)
         };
     }
@@ -445,7 +445,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Domain_JobSchedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Domain.JobSchedule"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.JobSchedule"
             $($field $value)*)
         };
     }
@@ -475,7 +475,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Domain_Matching {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Domain.Matching"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.Matching"
             $($field $value)*)
         };
     }
@@ -516,7 +516,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Domain_MatchingRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Domain.MatchingRule"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.MatchingRule"
             $($field $value)*)
         };
     }
@@ -546,7 +546,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Domain_RuleBasedMatching {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Domain.RuleBasedMatching"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.RuleBasedMatching"
             $($field $value)*)
         };
     }
@@ -609,7 +609,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Domain_S3ExportingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Domain.S3ExportingConfig"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.S3ExportingConfig"
             $($field $value)*)
         };
     }
@@ -641,7 +641,7 @@ pub mod eventstream {
     #[macro_export]
     macro_rules! __aws_customerprofiles_EventStream_DestinationDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::EventStream.DestinationDetails"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::EventStream.DestinationDetails"
             $($field $value)*)
         };
     }
@@ -671,7 +671,7 @@ pub mod eventtrigger {
     #[macro_export]
     macro_rules! __aws_customerprofiles_EventTrigger_EventTriggerCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::EventTrigger.EventTriggerCondition"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::EventTrigger.EventTriggerCondition"
             $($field $value)*)
         };
     }
@@ -698,7 +698,7 @@ pub mod eventtrigger {
     #[macro_export]
     macro_rules! __aws_customerprofiles_EventTrigger_EventTriggerDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::EventTrigger.EventTriggerDimension"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::EventTrigger.EventTriggerDimension"
             $($field $value)*)
         };
     }
@@ -722,7 +722,7 @@ pub mod eventtrigger {
     #[macro_export]
     macro_rules! __aws_customerprofiles_EventTrigger_EventTriggerLimits {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::EventTrigger.EventTriggerLimits"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::EventTrigger.EventTriggerLimits"
             $($field $value)*)
         };
     }
@@ -756,7 +756,7 @@ pub mod eventtrigger {
     #[macro_export]
     macro_rules! __aws_customerprofiles_EventTrigger_ObjectAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::EventTrigger.ObjectAttribute"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::EventTrigger.ObjectAttribute"
             $($field $value)*)
         };
     }
@@ -795,7 +795,7 @@ pub mod eventtrigger {
     #[macro_export]
     macro_rules! __aws_customerprofiles_EventTrigger_Period {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::EventTrigger.Period"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::EventTrigger.Period"
             $($field $value)*)
         };
     }
@@ -840,7 +840,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_ConnectorOperator {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.ConnectorOperator"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.ConnectorOperator"
             $($field $value)*)
         };
     }
@@ -891,7 +891,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_FlowDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.FlowDefinition"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.FlowDefinition"
             $($field $value)*)
         };
     }
@@ -936,7 +936,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_IncrementalPullConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.IncrementalPullConfig"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.IncrementalPullConfig"
             $($field $value)*)
         };
     }
@@ -961,7 +961,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_MarketoSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.MarketoSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.MarketoSourceProperties"
             $($field $value)*)
         };
     }
@@ -985,7 +985,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_ObjectTypeMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.ObjectTypeMapping"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.ObjectTypeMapping"
             $($field $value)*)
         };
     }
@@ -1013,7 +1013,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_S3SourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.S3SourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.S3SourceProperties"
             $($field $value)*)
         };
     }
@@ -1044,7 +1044,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_SalesforceSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.SalesforceSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.SalesforceSourceProperties"
             $($field $value)*)
         };
     }
@@ -1085,7 +1085,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_ScheduledTriggerProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.ScheduledTriggerProperties"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.ScheduledTriggerProperties"
             $($field $value)*)
         };
     }
@@ -1144,7 +1144,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_ServiceNowSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.ServiceNowSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.ServiceNowSourceProperties"
             $($field $value)*)
         };
     }
@@ -1171,7 +1171,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_SourceConnectorProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.SourceConnectorProperties"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.SourceConnectorProperties"
             $($field $value)*)
         };
     }
@@ -1220,7 +1220,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_SourceFlowConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.SourceFlowConfig"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.SourceFlowConfig"
             $($field $value)*)
         };
     }
@@ -1263,7 +1263,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_Task {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.Task"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.Task"
             $($field $value)*)
         };
     }
@@ -1309,7 +1309,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_TaskPropertiesMap {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.TaskPropertiesMap"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.TaskPropertiesMap"
             $($field $value)*)
         };
     }
@@ -1337,7 +1337,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_TriggerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.TriggerConfig"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.TriggerConfig"
             $($field $value)*)
         };
     }
@@ -1366,7 +1366,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_TriggerProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.TriggerProperties"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.TriggerProperties"
             $($field $value)*)
         };
     }
@@ -1391,7 +1391,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_customerprofiles_Integration_ZendeskSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::Integration.ZendeskSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Integration.ZendeskSourceProperties"
             $($field $value)*)
         };
     }
@@ -1417,7 +1417,7 @@ pub mod objecttype {
     #[macro_export]
     macro_rules! __aws_customerprofiles_ObjectType_FieldMap {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::ObjectType.FieldMap"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::ObjectType.FieldMap"
             $($field $value)*)
         };
     }
@@ -1446,7 +1446,7 @@ pub mod objecttype {
     #[macro_export]
     macro_rules! __aws_customerprofiles_ObjectType_KeyMap {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::ObjectType.KeyMap"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::ObjectType.KeyMap"
             $($field $value)*)
         };
     }
@@ -1476,7 +1476,7 @@ pub mod objecttype {
     #[macro_export]
     macro_rules! __aws_customerprofiles_ObjectType_ObjectTypeField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::ObjectType.ObjectTypeField"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::ObjectType.ObjectTypeField"
             $($field $value)*)
         };
     }
@@ -1508,7 +1508,7 @@ pub mod objecttype {
     #[macro_export]
     macro_rules! __aws_customerprofiles_ObjectType_ObjectTypeKey {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::ObjectType.ObjectTypeKey"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::ObjectType.ObjectTypeKey"
             $($field $value)*)
         };
     }
@@ -1546,7 +1546,7 @@ pub mod segmentdefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_SegmentDefinition_AddressDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.AddressDimension"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.AddressDimension"
             $($field $value)*)
         };
     }
@@ -1593,7 +1593,7 @@ pub mod segmentdefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_SegmentDefinition_AttributeDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.AttributeDimension"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.AttributeDimension"
             $($field $value)*)
         };
     }
@@ -1622,7 +1622,7 @@ pub mod segmentdefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_SegmentDefinition_CalculatedAttributeDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.CalculatedAttributeDimension"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.CalculatedAttributeDimension"
             $($field $value)*)
         };
     }
@@ -1655,7 +1655,7 @@ pub mod segmentdefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_SegmentDefinition_ConditionOverrides {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.ConditionOverrides"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.ConditionOverrides"
             $($field $value)*)
         };
     }
@@ -1678,7 +1678,7 @@ pub mod segmentdefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_SegmentDefinition_DateDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.DateDimension"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.DateDimension"
             $($field $value)*)
         };
     }
@@ -1707,7 +1707,7 @@ pub mod segmentdefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_SegmentDefinition_Dimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.Dimension"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.Dimension"
             $($field $value)*)
         };
     }
@@ -1739,7 +1739,7 @@ pub mod segmentdefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_SegmentDefinition_ExtraLengthValueProfileDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.ExtraLengthValueProfileDimension"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.ExtraLengthValueProfileDimension"
             $($field $value)*)
         };
     }
@@ -1769,7 +1769,7 @@ pub mod segmentdefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_SegmentDefinition_Group {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.Group"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.Group"
             $($field $value)*)
         };
     }
@@ -1830,7 +1830,7 @@ pub mod segmentdefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_SegmentDefinition_ProfileAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.ProfileAttributes"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.ProfileAttributes"
             $($field $value)*)
         };
     }
@@ -1982,7 +1982,7 @@ pub mod segmentdefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_SegmentDefinition_ProfileDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.ProfileDimension"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.ProfileDimension"
             $($field $value)*)
         };
     }
@@ -2010,7 +2010,7 @@ pub mod segmentdefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_SegmentDefinition_ProfileTypeDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.ProfileTypeDimension"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.ProfileTypeDimension"
             $($field $value)*)
         };
     }
@@ -2039,7 +2039,7 @@ pub mod segmentdefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_SegmentDefinition_RangeOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.RangeOverride"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.RangeOverride"
             $($field $value)*)
         };
     }
@@ -2070,7 +2070,7 @@ pub mod segmentdefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_SegmentDefinition_SegmentGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.SegmentGroup"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.SegmentGroup"
             $($field $value)*)
         };
     }
@@ -2098,7 +2098,7 @@ pub mod segmentdefinition {
     #[macro_export]
     macro_rules! __aws_customerprofiles_SegmentDefinition_SourceSegment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.SourceSegment"
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::SegmentDefinition.SourceSegment"
             $($field $value)*)
         };
     }
@@ -2133,7 +2133,7 @@ pub struct CalculatedAttributeDefinition_ {
 #[macro_export]
 macro_rules! __aws_customerprofiles_CalculatedAttributeDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::CustomerProfiles::CalculatedAttributeDefinition"
         $($field $value)*)
     };
 }
@@ -2211,7 +2211,7 @@ pub struct Domain_ {
 #[macro_export]
 macro_rules! __aws_customerprofiles_Domain {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CustomerProfiles::Domain"
+        stratosphere::generator::construct_resource_type!("AWS::CustomerProfiles::Domain"
         $($field $value)*)
     };
 }
@@ -2276,7 +2276,7 @@ pub struct EventStream_ {
 #[macro_export]
 macro_rules! __aws_customerprofiles_EventStream {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CustomerProfiles::EventStream"
+        stratosphere::generator::construct_resource_type!("AWS::CustomerProfiles::EventStream"
         $($field $value)*)
     };
 }
@@ -2326,7 +2326,7 @@ pub struct EventTrigger_ {
 #[macro_export]
 macro_rules! __aws_customerprofiles_EventTrigger {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CustomerProfiles::EventTrigger"
+        stratosphere::generator::construct_resource_type!("AWS::CustomerProfiles::EventTrigger"
         $($field $value)*)
     };
 }
@@ -2396,7 +2396,7 @@ pub struct Integration_ {
 #[macro_export]
 macro_rules! __aws_customerprofiles_Integration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CustomerProfiles::Integration"
+        stratosphere::generator::construct_resource_type!("AWS::CustomerProfiles::Integration"
         $($field $value)*)
     };
 }
@@ -2468,7 +2468,7 @@ pub struct ObjectType_ {
 #[macro_export]
 macro_rules! __aws_customerprofiles_ObjectType {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CustomerProfiles::ObjectType"
+        stratosphere::generator::construct_resource_type!("AWS::CustomerProfiles::ObjectType"
         $($field $value)*)
     };
 }
@@ -2557,7 +2557,7 @@ pub struct SegmentDefinition_ {
 #[macro_export]
 macro_rules! __aws_customerprofiles_SegmentDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CustomerProfiles::SegmentDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::CustomerProfiles::SegmentDefinition"
         $($field $value)*)
     };
 }

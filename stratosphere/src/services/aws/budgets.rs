@@ -8,7 +8,7 @@ pub mod budget {
     #[macro_export]
     macro_rules! __aws_budgets_Budget_AutoAdjustData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::Budget.AutoAdjustData"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::Budget.AutoAdjustData"
             $($field $value)*)
         };
     }
@@ -48,7 +48,7 @@ pub mod budget {
     #[macro_export]
     macro_rules! __aws_budgets_Budget_BudgetData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::Budget.BudgetData"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::Budget.BudgetData"
             $($field $value)*)
         };
     }
@@ -137,7 +137,7 @@ pub mod budget {
     #[macro_export]
     macro_rules! __aws_budgets_Budget_CostCategoryValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::Budget.CostCategoryValues"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::Budget.CostCategoryValues"
             $($field $value)*)
         };
     }
@@ -178,7 +178,7 @@ pub mod budget {
     #[macro_export]
     macro_rules! __aws_budgets_Budget_CostTypes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::Budget.CostTypes"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::Budget.CostTypes"
             $($field $value)*)
         };
     }
@@ -268,7 +268,7 @@ pub mod budget {
     #[macro_export]
     macro_rules! __aws_budgets_Budget_Expression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::Budget.Expression"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::Budget.Expression"
             $($field $value)*)
         };
     }
@@ -313,7 +313,7 @@ pub mod budget {
     #[macro_export]
     macro_rules! __aws_budgets_Budget_ExpressionDimensionValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::Budget.ExpressionDimensionValues"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::Budget.ExpressionDimensionValues"
             $($field $value)*)
         };
     }
@@ -344,7 +344,7 @@ pub mod budget {
     #[macro_export]
     macro_rules! __aws_budgets_Budget_HistoricalOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::Budget.HistoricalOptions"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::Budget.HistoricalOptions"
             $($field $value)*)
         };
     }
@@ -370,7 +370,7 @@ pub mod budget {
     #[macro_export]
     macro_rules! __aws_budgets_Budget_Notification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::Budget.Notification"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::Budget.Notification"
             $($field $value)*)
         };
     }
@@ -408,7 +408,7 @@ pub mod budget {
     #[macro_export]
     macro_rules! __aws_budgets_Budget_NotificationWithSubscribers {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::Budget.NotificationWithSubscribers"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::Budget.NotificationWithSubscribers"
             $($field $value)*)
         };
     }
@@ -436,7 +436,7 @@ pub mod budget {
     #[macro_export]
     macro_rules! __aws_budgets_Budget_ResourceTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::Budget.ResourceTag"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::Budget.ResourceTag"
             $($field $value)*)
         };
     }
@@ -463,7 +463,7 @@ pub mod budget {
     #[macro_export]
     macro_rules! __aws_budgets_Budget_Spend {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::Budget.Spend"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::Budget.Spend"
             $($field $value)*)
         };
     }
@@ -491,7 +491,7 @@ pub mod budget {
     #[macro_export]
     macro_rules! __aws_budgets_Budget_Subscriber {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::Budget.Subscriber"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::Budget.Subscriber"
             $($field $value)*)
         };
     }
@@ -520,7 +520,7 @@ pub mod budget {
     #[macro_export]
     macro_rules! __aws_budgets_Budget_TagValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::Budget.TagValues"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::Budget.TagValues"
             $($field $value)*)
         };
     }
@@ -552,7 +552,7 @@ pub mod budget {
     #[macro_export]
     macro_rules! __aws_budgets_Budget_TimePeriod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::Budget.TimePeriod"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::Budget.TimePeriod"
             $($field $value)*)
         };
     }
@@ -580,7 +580,7 @@ pub mod budgetsaction {
     #[macro_export]
     macro_rules! __aws_budgets_BudgetsAction_ActionThreshold {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::BudgetsAction.ActionThreshold"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::BudgetsAction.ActionThreshold"
             $($field $value)*)
         };
     }
@@ -609,7 +609,7 @@ pub mod budgetsaction {
     #[macro_export]
     macro_rules! __aws_budgets_BudgetsAction_Definition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::BudgetsAction.Definition"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::BudgetsAction.Definition"
             $($field $value)*)
         };
     }
@@ -649,7 +649,7 @@ pub mod budgetsaction {
     #[macro_export]
     macro_rules! __aws_budgets_BudgetsAction_IamActionDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::BudgetsAction.IamActionDefinition"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::BudgetsAction.IamActionDefinition"
             $($field $value)*)
         };
     }
@@ -682,7 +682,7 @@ pub mod budgetsaction {
     #[macro_export]
     macro_rules! __aws_budgets_BudgetsAction_ResourceTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::BudgetsAction.ResourceTag"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::BudgetsAction.ResourceTag"
             $($field $value)*)
         };
     }
@@ -710,7 +710,7 @@ pub mod budgetsaction {
     #[macro_export]
     macro_rules! __aws_budgets_BudgetsAction_ScpActionDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::BudgetsAction.ScpActionDefinition"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::BudgetsAction.ScpActionDefinition"
             $($field $value)*)
         };
     }
@@ -739,7 +739,7 @@ pub mod budgetsaction {
     #[macro_export]
     macro_rules! __aws_budgets_BudgetsAction_SsmActionDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::BudgetsAction.SsmActionDefinition"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::BudgetsAction.SsmActionDefinition"
             $($field $value)*)
         };
     }
@@ -771,7 +771,7 @@ pub mod budgetsaction {
     #[macro_export]
     macro_rules! __aws_budgets_BudgetsAction_Subscriber {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Budgets::BudgetsAction.Subscriber"
+            stratosphere::generator::construct_property_type!("AWS::Budgets::BudgetsAction.Subscriber"
             $($field $value)*)
         };
     }
@@ -802,7 +802,7 @@ pub struct Budget_ {
 #[macro_export]
 macro_rules! __aws_budgets_Budget {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Budgets::Budget" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Budgets::Budget" $($field
         $value)*)
     };
 }
@@ -853,7 +853,7 @@ pub struct BudgetsAction_ {
 #[macro_export]
 macro_rules! __aws_budgets_BudgetsAction {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Budgets::BudgetsAction"
+        stratosphere::generator::construct_resource_type!("AWS::Budgets::BudgetsAction"
         $($field $value)*)
     };
 }

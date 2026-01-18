@@ -9,7 +9,7 @@ pub struct Connection_ {
 #[macro_export]
 macro_rules! __aws_codestarconnections_Connection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeStarConnections::Connection"
+        stratosphere::generator::construct_resource_type!("AWS::CodeStarConnections::Connection"
         $($field $value)*)
     };
 }
@@ -59,7 +59,7 @@ pub struct RepositoryLink_ {
 #[macro_export]
 macro_rules! __aws_codestarconnections_RepositoryLink {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeStarConnections::RepositoryLink"
+        stratosphere::generator::construct_resource_type!("AWS::CodeStarConnections::RepositoryLink"
         $($field $value)*)
     };
 }
@@ -114,7 +114,7 @@ pub struct SyncConfiguration_ {
 #[macro_export]
 macro_rules! __aws_codestarconnections_SyncConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeStarConnections::SyncConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::CodeStarConnections::SyncConfiguration"
         $($field $value)*)
     };
 }

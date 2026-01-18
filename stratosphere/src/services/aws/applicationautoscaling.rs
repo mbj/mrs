@@ -8,7 +8,7 @@ pub mod scalabletarget {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalableTarget_ScalableTargetAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalableTarget.ScalableTargetAction"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalableTarget.ScalableTargetAction"
             $($field $value)*)
         };
     }
@@ -44,7 +44,7 @@ pub mod scalabletarget {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalableTarget_ScheduledAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalableTarget.ScheduledAction"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalableTarget.ScheduledAction"
             $($field $value)*)
         };
     }
@@ -97,7 +97,7 @@ pub mod scalabletarget {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalableTarget_SuspendedState {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalableTarget.SuspendedState"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalableTarget.SuspendedState"
             $($field $value)*)
         };
     }
@@ -141,7 +141,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_CustomizedMetricSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.CustomizedMetricSpecification"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.CustomizedMetricSpecification"
             $($field $value)*)
         };
     }
@@ -194,7 +194,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_MetricDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.MetricDimension"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.MetricDimension"
             $($field $value)*)
         };
     }
@@ -222,7 +222,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_PredefinedMetricSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredefinedMetricSpecification"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredefinedMetricSpecification"
             $($field $value)*)
         };
     }
@@ -251,7 +251,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_PredictiveScalingCustomizedCapacityMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingCustomizedCapacityMetric"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingCustomizedCapacityMetric"
             $($field $value)*)
         };
     }
@@ -274,7 +274,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_PredictiveScalingCustomizedLoadMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingCustomizedLoadMetric"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingCustomizedLoadMetric"
             $($field $value)*)
         };
     }
@@ -297,7 +297,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_PredictiveScalingCustomizedScalingMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingCustomizedScalingMetric"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingCustomizedScalingMetric"
             $($field $value)*)
         };
     }
@@ -322,7 +322,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_PredictiveScalingMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingMetric"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingMetric"
             $($field $value)*)
         };
     }
@@ -363,7 +363,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_PredictiveScalingMetricDataQuery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingMetricDataQuery"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingMetricDataQuery"
             $($field $value)*)
         };
     }
@@ -407,7 +407,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_PredictiveScalingMetricDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingMetricDimension"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingMetricDimension"
             $($field $value)*)
         };
     }
@@ -444,7 +444,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_PredictiveScalingMetricSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingMetricSpecification"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingMetricSpecification"
             $($field $value)*)
         };
     }
@@ -505,7 +505,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_PredictiveScalingMetricStat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingMetricStat"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingMetricStat"
             $($field $value)*)
         };
     }
@@ -537,7 +537,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_PredictiveScalingPolicyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingPolicyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingPolicyConfiguration"
             $($field $value)*)
         };
     }
@@ -582,7 +582,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_PredictiveScalingPredefinedLoadMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingPredefinedLoadMetric"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingPredefinedLoadMetric"
             $($field $value)*)
         };
     }
@@ -612,7 +612,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_PredictiveScalingPredefinedMetricPair {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingPredefinedMetricPair"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingPredefinedMetricPair"
             $($field $value)*)
         };
     }
@@ -642,7 +642,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_PredictiveScalingPredefinedScalingMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingPredefinedScalingMetric"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.PredictiveScalingPredefinedScalingMetric"
             $($field $value)*)
         };
     }
@@ -673,7 +673,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_StepAdjustment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.StepAdjustment"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.StepAdjustment"
             $($field $value)*)
         };
     }
@@ -712,7 +712,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_StepScalingPolicyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.StepScalingPolicyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.StepScalingPolicyConfiguration"
             $($field $value)*)
         };
     }
@@ -763,7 +763,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_TargetTrackingMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingMetric"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingMetric"
             $($field $value)*)
         };
     }
@@ -804,7 +804,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_TargetTrackingMetricDataQuery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingMetricDataQuery"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingMetricDataQuery"
             $($field $value)*)
         };
     }
@@ -848,7 +848,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_TargetTrackingMetricDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingMetricDimension"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingMetricDimension"
             $($field $value)*)
         };
     }
@@ -875,7 +875,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_TargetTrackingMetricStat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingMetricStat"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingMetricStat"
             $($field $value)*)
         };
     }
@@ -908,7 +908,7 @@ pub mod scalingpolicy {
     #[macro_export]
     macro_rules! __aws_applicationautoscaling_ScalingPolicy_TargetTrackingScalingPolicyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingScalingPolicyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingScalingPolicyConfiguration"
             $($field $value)*)
         };
     }
@@ -970,7 +970,7 @@ pub struct ScalableTarget_ {
 #[macro_export]
 macro_rules! __aws_applicationautoscaling_ScalableTarget {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApplicationAutoScaling::ScalableTarget"
+        stratosphere::generator::construct_resource_type!("AWS::ApplicationAutoScaling::ScalableTarget"
         $($field $value)*)
     };
 }
@@ -1047,7 +1047,7 @@ pub struct ScalingPolicy_ {
 #[macro_export]
 macro_rules! __aws_applicationautoscaling_ScalingPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApplicationAutoScaling::ScalingPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::ApplicationAutoScaling::ScalingPolicy"
         $($field $value)*)
     };
 }

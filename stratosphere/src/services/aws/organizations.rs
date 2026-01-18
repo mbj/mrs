@@ -10,7 +10,7 @@ pub struct Account_ {
 #[macro_export]
 macro_rules! __aws_organizations_Account {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Organizations::Account"
+        stratosphere::generator::construct_resource_type!("AWS::Organizations::Account"
         $($field $value)*)
     };
 }
@@ -60,7 +60,7 @@ pub struct Organization_ {
 #[macro_export]
 macro_rules! __aws_organizations_Organization {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Organizations::Organization"
+        stratosphere::generator::construct_resource_type!("AWS::Organizations::Organization"
         $($field $value)*)
     };
 }
@@ -95,7 +95,7 @@ pub struct OrganizationalUnit_ {
 #[macro_export]
 macro_rules! __aws_organizations_OrganizationalUnit {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Organizations::OrganizationalUnit"
+        stratosphere::generator::construct_resource_type!("AWS::Organizations::OrganizationalUnit"
         $($field $value)*)
     };
 }
@@ -138,7 +138,7 @@ pub struct Policy_ {
 #[macro_export]
 macro_rules! __aws_organizations_Policy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Organizations::Policy"
+        stratosphere::generator::construct_resource_type!("AWS::Organizations::Policy"
         $($field $value)*)
     };
 }
@@ -193,7 +193,7 @@ pub struct ResourcePolicy_ {
 #[macro_export]
 macro_rules! __aws_organizations_ResourcePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Organizations::ResourcePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::Organizations::ResourcePolicy"
         $($field $value)*)
     };
 }

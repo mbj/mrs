@@ -11,7 +11,7 @@ pub mod bytematchset {
     #[macro_export]
     macro_rules! __aws_waf_ByteMatchSet_ByteMatchTuple {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAF::ByteMatchSet.ByteMatchTuple"
+            stratosphere::generator::construct_property_type!("AWS::WAF::ByteMatchSet.ByteMatchTuple"
             $($field $value)*)
         };
     }
@@ -55,7 +55,7 @@ pub mod bytematchset {
     #[macro_export]
     macro_rules! __aws_waf_ByteMatchSet_FieldToMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAF::ByteMatchSet.FieldToMatch"
+            stratosphere::generator::construct_property_type!("AWS::WAF::ByteMatchSet.FieldToMatch"
             $($field $value)*)
         };
     }
@@ -84,7 +84,7 @@ pub mod ipset {
     #[macro_export]
     macro_rules! __aws_waf_IPSet_IPSetDescriptor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAF::IPSet.IPSetDescriptor"
+            stratosphere::generator::construct_property_type!("AWS::WAF::IPSet.IPSetDescriptor"
             $($field $value)*)
         };
     }
@@ -115,7 +115,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_waf_Rule_Predicate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAF::Rule.Predicate"
+            stratosphere::generator::construct_property_type!("AWS::WAF::Rule.Predicate"
             $($field $value)*)
         };
     }
@@ -149,7 +149,7 @@ pub mod sizeconstraintset {
     #[macro_export]
     macro_rules! __aws_waf_SizeConstraintSet_FieldToMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAF::SizeConstraintSet.FieldToMatch"
+            stratosphere::generator::construct_property_type!("AWS::WAF::SizeConstraintSet.FieldToMatch"
             $($field $value)*)
         };
     }
@@ -178,7 +178,7 @@ pub mod sizeconstraintset {
     #[macro_export]
     macro_rules! __aws_waf_SizeConstraintSet_SizeConstraint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAF::SizeConstraintSet.SizeConstraint"
+            stratosphere::generator::construct_property_type!("AWS::WAF::SizeConstraintSet.SizeConstraint"
             $($field $value)*)
         };
     }
@@ -216,7 +216,7 @@ pub mod sqlinjectionmatchset {
     #[macro_export]
     macro_rules! __aws_waf_SqlInjectionMatchSet_FieldToMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAF::SqlInjectionMatchSet.FieldToMatch"
+            stratosphere::generator::construct_property_type!("AWS::WAF::SqlInjectionMatchSet.FieldToMatch"
             $($field $value)*)
         };
     }
@@ -243,7 +243,7 @@ pub mod sqlinjectionmatchset {
     #[macro_export]
     macro_rules! __aws_waf_SqlInjectionMatchSet_SqlInjectionMatchTuple {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAF::SqlInjectionMatchSet.SqlInjectionMatchTuple"
+            stratosphere::generator::construct_property_type!("AWS::WAF::SqlInjectionMatchSet.SqlInjectionMatchTuple"
             $($field $value)*)
         };
     }
@@ -274,7 +274,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_waf_WebACL_ActivatedRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAF::WebACL.ActivatedRule"
+            stratosphere::generator::construct_property_type!("AWS::WAF::WebACL.ActivatedRule"
             $($field $value)*)
         };
     }
@@ -304,7 +304,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_waf_WebACL_WafAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAF::WebACL.WafAction"
+            stratosphere::generator::construct_property_type!("AWS::WAF::WebACL.WafAction"
             $($field $value)*)
         };
     }
@@ -330,7 +330,7 @@ pub mod xssmatchset {
     #[macro_export]
     macro_rules! __aws_waf_XssMatchSet_FieldToMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAF::XssMatchSet.FieldToMatch"
+            stratosphere::generator::construct_property_type!("AWS::WAF::XssMatchSet.FieldToMatch"
             $($field $value)*)
         };
     }
@@ -357,7 +357,7 @@ pub mod xssmatchset {
     #[macro_export]
     macro_rules! __aws_waf_XssMatchSet_XssMatchTuple {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAF::XssMatchSet.XssMatchTuple"
+            stratosphere::generator::construct_property_type!("AWS::WAF::XssMatchSet.XssMatchTuple"
             $($field $value)*)
         };
     }
@@ -386,7 +386,7 @@ pub struct ByteMatchSet_ {
 #[macro_export]
 macro_rules! __aws_waf_ByteMatchSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAF::ByteMatchSet"
+        stratosphere::generator::construct_resource_type!("AWS::WAF::ByteMatchSet"
         $($field $value)*)
     };
 }
@@ -424,7 +424,7 @@ pub struct IPSet_ {
 #[macro_export]
 macro_rules! __aws_waf_IPSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAF::IPSet" $($field
+        stratosphere::generator::construct_resource_type!("AWS::WAF::IPSet" $($field
         $value)*)
     };
 }
@@ -463,7 +463,7 @@ pub struct Rule_ {
 #[macro_export]
 macro_rules! __aws_waf_Rule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAF::Rule" $($field
+        stratosphere::generator::construct_resource_type!("AWS::WAF::Rule" $($field
         $value)*)
     };
 }
@@ -505,7 +505,7 @@ pub struct SizeConstraintSet_ {
 #[macro_export]
 macro_rules! __aws_waf_SizeConstraintSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAF::SizeConstraintSet"
+        stratosphere::generator::construct_resource_type!("AWS::WAF::SizeConstraintSet"
         $($field $value)*)
     };
 }
@@ -542,7 +542,7 @@ pub struct SqlInjectionMatchSet_ {
 #[macro_export]
 macro_rules! __aws_waf_SqlInjectionMatchSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAF::SqlInjectionMatchSet"
+        stratosphere::generator::construct_resource_type!("AWS::WAF::SqlInjectionMatchSet"
         $($field $value)*)
     };
 }
@@ -582,7 +582,7 @@ pub struct WebACL_ {
 #[macro_export]
 macro_rules! __aws_waf_WebACL {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAF::WebACL" $($field
+        stratosphere::generator::construct_resource_type!("AWS::WAF::WebACL" $($field
         $value)*)
     };
 }
@@ -625,8 +625,8 @@ pub struct XssMatchSet_ {
 #[macro_export]
 macro_rules! __aws_waf_XssMatchSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAF::XssMatchSet" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::WAF::XssMatchSet"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_waf_XssMatchSet as XssMatchSet;

@@ -12,7 +12,7 @@ pub mod configurationmanager {
     #[macro_export]
     macro_rules! __aws_ssmquicksetup_ConfigurationManager_ConfigurationDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMQuickSetup::ConfigurationManager.ConfigurationDefinition"
+            stratosphere::generator::construct_property_type!("AWS::SSMQuickSetup::ConfigurationManager.ConfigurationDefinition"
             $($field $value)*)
         };
     }
@@ -64,7 +64,7 @@ pub mod configurationmanager {
     #[macro_export]
     macro_rules! __aws_ssmquicksetup_ConfigurationManager_StatusSummary {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMQuickSetup::ConfigurationManager.StatusSummary"
+            stratosphere::generator::construct_property_type!("AWS::SSMQuickSetup::ConfigurationManager.StatusSummary"
             $($field $value)*)
         };
     }
@@ -111,7 +111,7 @@ pub struct ConfigurationManager_ {
 #[macro_export]
 macro_rules! __aws_ssmquicksetup_ConfigurationManager {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSMQuickSetup::ConfigurationManager"
+        stratosphere::generator::construct_resource_type!("AWS::SSMQuickSetup::ConfigurationManager"
         $($field $value)*)
     };
 }

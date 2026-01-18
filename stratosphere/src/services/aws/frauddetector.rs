@@ -13,7 +13,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_frauddetector_Detector_EntityType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FraudDetector::Detector.EntityType"
+            stratosphere::generator::construct_property_type!("AWS::FraudDetector::Detector.EntityType"
             $($field $value)*)
         };
     }
@@ -71,7 +71,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_frauddetector_Detector_EventType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FraudDetector::Detector.EventType"
+            stratosphere::generator::construct_property_type!("AWS::FraudDetector::Detector.EventType"
             $($field $value)*)
         };
     }
@@ -145,7 +145,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_frauddetector_Detector_EventVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FraudDetector::Detector.EventVariable"
+            stratosphere::generator::construct_property_type!("AWS::FraudDetector::Detector.EventVariable"
             $($field $value)*)
         };
     }
@@ -224,7 +224,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_frauddetector_Detector_Label {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FraudDetector::Detector.Label"
+            stratosphere::generator::construct_property_type!("AWS::FraudDetector::Detector.Label"
             $($field $value)*)
         };
     }
@@ -273,7 +273,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_frauddetector_Detector_Model {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FraudDetector::Detector.Model"
+            stratosphere::generator::construct_property_type!("AWS::FraudDetector::Detector.Model"
             $($field $value)*)
         };
     }
@@ -301,7 +301,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_frauddetector_Detector_Outcome {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FraudDetector::Detector.Outcome"
+            stratosphere::generator::construct_property_type!("AWS::FraudDetector::Detector.Outcome"
             $($field $value)*)
         };
     }
@@ -360,7 +360,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_frauddetector_Detector_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FraudDetector::Detector.Rule"
+            stratosphere::generator::construct_property_type!("AWS::FraudDetector::Detector.Rule"
             $($field $value)*)
         };
     }
@@ -444,7 +444,7 @@ pub mod eventtype {
     #[macro_export]
     macro_rules! __aws_frauddetector_EventType_EntityType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FraudDetector::EventType.EntityType"
+            stratosphere::generator::construct_property_type!("AWS::FraudDetector::EventType.EntityType"
             $($field $value)*)
         };
     }
@@ -503,7 +503,7 @@ pub mod eventtype {
     #[macro_export]
     macro_rules! __aws_frauddetector_EventType_EventVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FraudDetector::EventType.EventVariable"
+            stratosphere::generator::construct_property_type!("AWS::FraudDetector::EventType.EventVariable"
             $($field $value)*)
         };
     }
@@ -582,7 +582,7 @@ pub mod eventtype {
     #[macro_export]
     macro_rules! __aws_frauddetector_EventType_Label {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FraudDetector::EventType.Label"
+            stratosphere::generator::construct_property_type!("AWS::FraudDetector::EventType.Label"
             $($field $value)*)
         };
     }
@@ -639,7 +639,7 @@ pub struct Detector_ {
 #[macro_export]
 macro_rules! __aws_frauddetector_Detector {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FraudDetector::Detector"
+        stratosphere::generator::construct_resource_type!("AWS::FraudDetector::Detector"
         $($field $value)*)
     };
 }
@@ -707,7 +707,7 @@ pub struct EntityType_ {
 #[macro_export]
 macro_rules! __aws_frauddetector_EntityType {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FraudDetector::EntityType"
+        stratosphere::generator::construct_resource_type!("AWS::FraudDetector::EntityType"
         $($field $value)*)
     };
 }
@@ -752,7 +752,7 @@ pub struct EventType_ {
 #[macro_export]
 macro_rules! __aws_frauddetector_EventType {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FraudDetector::EventType"
+        stratosphere::generator::construct_resource_type!("AWS::FraudDetector::EventType"
         $($field $value)*)
     };
 }
@@ -806,7 +806,7 @@ pub struct Label_ {
 #[macro_export]
 macro_rules! __aws_frauddetector_Label {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FraudDetector::Label"
+        stratosphere::generator::construct_resource_type!("AWS::FraudDetector::Label"
         $($field $value)*)
     };
 }
@@ -850,7 +850,7 @@ pub struct List_ {
 #[macro_export]
 macro_rules! __aws_frauddetector_List {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FraudDetector::List"
+        stratosphere::generator::construct_resource_type!("AWS::FraudDetector::List"
         $($field $value)*)
     };
 }
@@ -904,7 +904,7 @@ pub struct Outcome_ {
 #[macro_export]
 macro_rules! __aws_frauddetector_Outcome {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FraudDetector::Outcome"
+        stratosphere::generator::construct_resource_type!("AWS::FraudDetector::Outcome"
         $($field $value)*)
     };
 }
@@ -950,7 +950,7 @@ pub struct Variable_ {
 #[macro_export]
 macro_rules! __aws_frauddetector_Variable {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FraudDetector::Variable"
+        stratosphere::generator::construct_resource_type!("AWS::FraudDetector::Variable"
         $($field $value)*)
     };
 }

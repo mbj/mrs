@@ -7,7 +7,7 @@ pub mod locationazureblob {
     #[macro_export]
     macro_rules! __aws_datasync_LocationAzureBlob_AzureBlobSasConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationAzureBlob.AzureBlobSasConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationAzureBlob.AzureBlobSasConfiguration"
             $($field $value)*)
         };
     }
@@ -31,7 +31,7 @@ pub mod locationazureblob {
     #[macro_export]
     macro_rules! __aws_datasync_LocationAzureBlob_CmkSecretConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationAzureBlob.CmkSecretConfig"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationAzureBlob.CmkSecretConfig"
             $($field $value)*)
         };
     }
@@ -63,7 +63,7 @@ pub mod locationazureblob {
     #[macro_export]
     macro_rules! __aws_datasync_LocationAzureBlob_CustomSecretConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationAzureBlob.CustomSecretConfig"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationAzureBlob.CustomSecretConfig"
             $($field $value)*)
         };
     }
@@ -90,7 +90,7 @@ pub mod locationazureblob {
     #[macro_export]
     macro_rules! __aws_datasync_LocationAzureBlob_ManagedSecretConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationAzureBlob.ManagedSecretConfig"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationAzureBlob.ManagedSecretConfig"
             $($field $value)*)
         };
     }
@@ -116,7 +116,7 @@ pub mod locationefs {
     #[macro_export]
     macro_rules! __aws_datasync_LocationEFS_Ec2Config {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationEFS.Ec2Config"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationEFS.Ec2Config"
             $($field $value)*)
         };
     }
@@ -145,7 +145,7 @@ pub mod locationfsxontap {
     #[macro_export]
     macro_rules! __aws_datasync_LocationFSxONTAP_NFS {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationFSxONTAP.NFS"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationFSxONTAP.NFS"
             $($field $value)*)
         };
     }
@@ -168,7 +168,7 @@ pub mod locationfsxontap {
     #[macro_export]
     macro_rules! __aws_datasync_LocationFSxONTAP_NfsMountOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationFSxONTAP.NfsMountOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationFSxONTAP.NfsMountOptions"
             $($field $value)*)
         };
     }
@@ -194,7 +194,7 @@ pub mod locationfsxontap {
     #[macro_export]
     macro_rules! __aws_datasync_LocationFSxONTAP_Protocol {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationFSxONTAP.Protocol"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationFSxONTAP.Protocol"
             $($field $value)*)
         };
     }
@@ -222,7 +222,7 @@ pub mod locationfsxontap {
     #[macro_export]
     macro_rules! __aws_datasync_LocationFSxONTAP_SMB {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationFSxONTAP.SMB"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationFSxONTAP.SMB"
             $($field $value)*)
         };
     }
@@ -256,7 +256,7 @@ pub mod locationfsxontap {
     #[macro_export]
     macro_rules! __aws_datasync_LocationFSxONTAP_SmbMountOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationFSxONTAP.SmbMountOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationFSxONTAP.SmbMountOptions"
             $($field $value)*)
         };
     }
@@ -283,7 +283,7 @@ pub mod locationfsxopenzfs {
     #[macro_export]
     macro_rules! __aws_datasync_LocationFSxOpenZFS_MountOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationFSxOpenZFS.MountOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationFSxOpenZFS.MountOptions"
             $($field $value)*)
         };
     }
@@ -308,7 +308,7 @@ pub mod locationfsxopenzfs {
     #[macro_export]
     macro_rules! __aws_datasync_LocationFSxOpenZFS_NFS {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationFSxOpenZFS.NFS"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationFSxOpenZFS.NFS"
             $($field $value)*)
         };
     }
@@ -331,7 +331,7 @@ pub mod locationfsxopenzfs {
     #[macro_export]
     macro_rules! __aws_datasync_LocationFSxOpenZFS_Protocol {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationFSxOpenZFS.Protocol"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationFSxOpenZFS.Protocol"
             $($field $value)*)
         };
     }
@@ -356,7 +356,7 @@ pub mod locationhdfs {
     #[macro_export]
     macro_rules! __aws_datasync_LocationHDFS_NameNode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationHDFS.NameNode"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationHDFS.NameNode"
             $($field $value)*)
         };
     }
@@ -384,7 +384,7 @@ pub mod locationhdfs {
     #[macro_export]
     macro_rules! __aws_datasync_LocationHDFS_QopConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationHDFS.QopConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationHDFS.QopConfiguration"
             $($field $value)*)
         };
     }
@@ -417,7 +417,7 @@ pub mod locationnfs {
     #[macro_export]
     macro_rules! __aws_datasync_LocationNFS_MountOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationNFS.MountOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationNFS.MountOptions"
             $($field $value)*)
         };
     }
@@ -442,7 +442,7 @@ pub mod locationnfs {
     #[macro_export]
     macro_rules! __aws_datasync_LocationNFS_OnPremConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationNFS.OnPremConfig"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationNFS.OnPremConfig"
             $($field $value)*)
         };
     }
@@ -468,7 +468,7 @@ pub mod locationobjectstorage {
     #[macro_export]
     macro_rules! __aws_datasync_LocationObjectStorage_CmkSecretConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationObjectStorage.CmkSecretConfig"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationObjectStorage.CmkSecretConfig"
             $($field $value)*)
         };
     }
@@ -500,7 +500,7 @@ pub mod locationobjectstorage {
     #[macro_export]
     macro_rules! __aws_datasync_LocationObjectStorage_CustomSecretConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationObjectStorage.CustomSecretConfig"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationObjectStorage.CustomSecretConfig"
             $($field $value)*)
         };
     }
@@ -527,7 +527,7 @@ pub mod locationobjectstorage {
     #[macro_export]
     macro_rules! __aws_datasync_LocationObjectStorage_ManagedSecretConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationObjectStorage.ManagedSecretConfig"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationObjectStorage.ManagedSecretConfig"
             $($field $value)*)
         };
     }
@@ -552,7 +552,7 @@ pub mod locations3 {
     #[macro_export]
     macro_rules! __aws_datasync_LocationS3_S3Config {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationS3.S3Config"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationS3.S3Config"
             $($field $value)*)
         };
     }
@@ -577,7 +577,7 @@ pub mod locationsmb {
     #[macro_export]
     macro_rules! __aws_datasync_LocationSMB_MountOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::LocationSMB.MountOptions"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationSMB.MountOptions"
             $($field $value)*)
         };
     }
@@ -604,7 +604,7 @@ pub mod task {
     #[macro_export]
     macro_rules! __aws_datasync_Task_Deleted {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::Task.Deleted"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::Task.Deleted"
             $($field $value)*)
         };
     }
@@ -629,7 +629,7 @@ pub mod task {
     #[macro_export]
     macro_rules! __aws_datasync_Task_Destination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::Task.Destination"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::Task.Destination"
             $($field $value)*)
         };
     }
@@ -652,7 +652,7 @@ pub mod task {
     #[macro_export]
     macro_rules! __aws_datasync_Task_FilterRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::Task.FilterRule"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::Task.FilterRule"
             $($field $value)*)
         };
     }
@@ -682,7 +682,7 @@ pub mod task {
     #[macro_export]
     macro_rules! __aws_datasync_Task_ManifestConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::Task.ManifestConfig"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::Task.ManifestConfig"
             $($field $value)*)
         };
     }
@@ -714,7 +714,7 @@ pub mod task {
     #[macro_export]
     macro_rules! __aws_datasync_Task_ManifestConfigSourceS3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::Task.ManifestConfigSourceS3"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::Task.ManifestConfigSourceS3"
             $($field $value)*)
         };
     }
@@ -771,7 +771,7 @@ pub mod task {
     #[macro_export]
     macro_rules! __aws_datasync_Task_Options {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::Task.Options"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::Task.Options"
             $($field $value)*)
         };
     }
@@ -871,7 +871,7 @@ pub mod task {
     #[macro_export]
     macro_rules! __aws_datasync_Task_Overrides {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::Task.Overrides"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::Task.Overrides"
             $($field $value)*)
         };
     }
@@ -914,7 +914,7 @@ pub mod task {
     #[macro_export]
     macro_rules! __aws_datasync_Task_Skipped {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::Task.Skipped"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::Task.Skipped"
             $($field $value)*)
         };
     }
@@ -939,7 +939,7 @@ pub mod task {
     #[macro_export]
     macro_rules! __aws_datasync_Task_Source {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::Task.Source"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::Task.Source"
             $($field $value)*)
         };
     }
@@ -965,7 +965,7 @@ pub mod task {
     #[macro_export]
     macro_rules! __aws_datasync_Task_TaskReportConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::Task.TaskReportConfig"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::Task.TaskReportConfig"
             $($field $value)*)
         };
     }
@@ -1012,7 +1012,7 @@ pub mod task {
     #[macro_export]
     macro_rules! __aws_datasync_Task_TaskReportConfigDestinationS3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::Task.TaskReportConfigDestinationS3"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::Task.TaskReportConfigDestinationS3"
             $($field $value)*)
         };
     }
@@ -1050,7 +1050,7 @@ pub mod task {
     #[macro_export]
     macro_rules! __aws_datasync_Task_TaskSchedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::Task.TaskSchedule"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::Task.TaskSchedule"
             $($field $value)*)
         };
     }
@@ -1078,7 +1078,7 @@ pub mod task {
     #[macro_export]
     macro_rules! __aws_datasync_Task_Transferred {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::Task.Transferred"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::Task.Transferred"
             $($field $value)*)
         };
     }
@@ -1103,7 +1103,7 @@ pub mod task {
     #[macro_export]
     macro_rules! __aws_datasync_Task_Verified {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DataSync::Task.Verified"
+            stratosphere::generator::construct_property_type!("AWS::DataSync::Task.Verified"
             $($field $value)*)
         };
     }
@@ -1134,7 +1134,7 @@ pub struct Agent_ {
 #[macro_export]
 macro_rules! __aws_datasync_Agent {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataSync::Agent" $($field
+        stratosphere::generator::construct_resource_type!("AWS::DataSync::Agent" $($field
         $value)*)
     };
 }
@@ -1204,7 +1204,7 @@ pub struct LocationAzureBlob_ {
 #[macro_export]
 macro_rules! __aws_datasync_LocationAzureBlob {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataSync::LocationAzureBlob"
+        stratosphere::generator::construct_resource_type!("AWS::DataSync::LocationAzureBlob"
         $($field $value)*)
     };
 }
@@ -1292,7 +1292,7 @@ pub struct LocationEFS_ {
 #[macro_export]
 macro_rules! __aws_datasync_LocationEFS {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataSync::LocationEFS"
+        stratosphere::generator::construct_resource_type!("AWS::DataSync::LocationEFS"
         $($field $value)*)
     };
 }
@@ -1359,7 +1359,7 @@ pub struct LocationFSxLustre_ {
 #[macro_export]
 macro_rules! __aws_datasync_LocationFSxLustre {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataSync::LocationFSxLustre"
+        stratosphere::generator::construct_resource_type!("AWS::DataSync::LocationFSxLustre"
         $($field $value)*)
     };
 }
@@ -1409,7 +1409,7 @@ pub struct LocationFSxONTAP_ {
 #[macro_export]
 macro_rules! __aws_datasync_LocationFSxONTAP {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataSync::LocationFSxONTAP"
+        stratosphere::generator::construct_resource_type!("AWS::DataSync::LocationFSxONTAP"
         $($field $value)*)
     };
 }
@@ -1463,7 +1463,7 @@ pub struct LocationFSxOpenZFS_ {
 #[macro_export]
 macro_rules! __aws_datasync_LocationFSxOpenZFS {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataSync::LocationFSxOpenZFS"
+        stratosphere::generator::construct_resource_type!("AWS::DataSync::LocationFSxOpenZFS"
         $($field $value)*)
     };
 }
@@ -1519,7 +1519,7 @@ pub struct LocationFSxWindows_ {
 #[macro_export]
 macro_rules! __aws_datasync_LocationFSxWindows {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataSync::LocationFSxWindows"
+        stratosphere::generator::construct_resource_type!("AWS::DataSync::LocationFSxWindows"
         $($field $value)*)
     };
 }
@@ -1590,7 +1590,7 @@ pub struct LocationHDFS_ {
 #[macro_export]
 macro_rules! __aws_datasync_LocationHDFS {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataSync::LocationHDFS"
+        stratosphere::generator::construct_resource_type!("AWS::DataSync::LocationHDFS"
         $($field $value)*)
     };
 }
@@ -1690,7 +1690,7 @@ pub struct LocationNFS_ {
 #[macro_export]
 macro_rules! __aws_datasync_LocationNFS {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataSync::LocationNFS"
+        stratosphere::generator::construct_resource_type!("AWS::DataSync::LocationNFS"
         $($field $value)*)
     };
 }
@@ -1753,7 +1753,7 @@ pub struct LocationObjectStorage_ {
 #[macro_export]
 macro_rules! __aws_datasync_LocationObjectStorage {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataSync::LocationObjectStorage"
+        stratosphere::generator::construct_resource_type!("AWS::DataSync::LocationObjectStorage"
         $($field $value)*)
     };
 }
@@ -1853,7 +1853,7 @@ pub struct LocationS3_ {
 #[macro_export]
 macro_rules! __aws_datasync_LocationS3 {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataSync::LocationS3"
+        stratosphere::generator::construct_resource_type!("AWS::DataSync::LocationS3"
         $($field $value)*)
     };
 }
@@ -1917,7 +1917,7 @@ pub struct LocationSMB_ {
 #[macro_export]
 macro_rules! __aws_datasync_LocationSMB {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataSync::LocationSMB"
+        stratosphere::generator::construct_resource_type!("AWS::DataSync::LocationSMB"
         $($field $value)*)
     };
 }
@@ -2022,7 +2022,7 @@ pub struct Task_ {
 #[macro_export]
 macro_rules! __aws_datasync_Task {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DataSync::Task" $($field
+        stratosphere::generator::construct_resource_type!("AWS::DataSync::Task" $($field
         $value)*)
     };
 }

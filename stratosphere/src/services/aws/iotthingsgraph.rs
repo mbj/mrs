@@ -8,7 +8,7 @@ pub mod flowtemplate {
     #[macro_export]
     macro_rules! __aws_iotthingsgraph_FlowTemplate_DefinitionDocument {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTThingsGraph::FlowTemplate.DefinitionDocument"
+            stratosphere::generator::construct_property_type!("AWS::IoTThingsGraph::FlowTemplate.DefinitionDocument"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub struct FlowTemplate_ {
 #[macro_export]
 macro_rules! __aws_iotthingsgraph_FlowTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTThingsGraph::FlowTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::IoTThingsGraph::FlowTemplate"
         $($field $value)*)
     };
 }

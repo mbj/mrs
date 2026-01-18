@@ -8,7 +8,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_AnswerMachineDetectionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.AnswerMachineDetectionConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.AnswerMachineDetectionConfig"
             $($field $value)*)
         };
     }
@@ -39,7 +39,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_ChannelSubtypeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.ChannelSubtypeConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.ChannelSubtypeConfig"
             $($field $value)*)
         };
     }
@@ -72,7 +72,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_CommunicationLimit {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.CommunicationLimit"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.CommunicationLimit"
             $($field $value)*)
         };
     }
@@ -103,7 +103,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_CommunicationLimits {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.CommunicationLimits"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.CommunicationLimits"
             $($field $value)*)
         };
     }
@@ -129,7 +129,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_CommunicationLimitsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.CommunicationLimitsConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.CommunicationLimitsConfig"
             $($field $value)*)
         };
     }
@@ -163,7 +163,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_CommunicationTimeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.CommunicationTimeConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.CommunicationTimeConfig"
             $($field $value)*)
         };
     }
@@ -199,7 +199,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_DailyHour {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.DailyHour"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.DailyHour"
             $($field $value)*)
         };
     }
@@ -226,7 +226,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_EmailChannelSubtypeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.EmailChannelSubtypeConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.EmailChannelSubtypeConfig"
             $($field $value)*)
         };
     }
@@ -261,7 +261,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_EmailOutboundConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.EmailOutboundConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.EmailOutboundConfig"
             $($field $value)*)
         };
     }
@@ -294,7 +294,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_EmailOutboundMode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.EmailOutboundMode"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.EmailOutboundMode"
             $($field $value)*)
         };
     }
@@ -319,7 +319,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_EventTrigger {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.EventTrigger"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.EventTrigger"
             $($field $value)*)
         };
     }
@@ -345,7 +345,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_LocalTimeZoneConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.LocalTimeZoneConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.LocalTimeZoneConfig"
             $($field $value)*)
         };
     }
@@ -376,7 +376,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_OpenHours {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.OpenHours"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.OpenHours"
             $($field $value)*)
         };
     }
@@ -399,7 +399,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_PredictiveConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.PredictiveConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.PredictiveConfig"
             $($field $value)*)
         };
     }
@@ -422,7 +422,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_ProgressiveConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.ProgressiveConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.ProgressiveConfig"
             $($field $value)*)
         };
     }
@@ -447,7 +447,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_RestrictedPeriod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.RestrictedPeriod"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.RestrictedPeriod"
             $($field $value)*)
         };
     }
@@ -477,7 +477,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_RestrictedPeriods {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.RestrictedPeriods"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.RestrictedPeriods"
             $($field $value)*)
         };
     }
@@ -502,7 +502,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_Schedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.Schedule"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.Schedule"
             $($field $value)*)
         };
     }
@@ -537,7 +537,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_SmsChannelSubtypeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.SmsChannelSubtypeConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.SmsChannelSubtypeConfig"
             $($field $value)*)
         };
     }
@@ -571,7 +571,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_SmsOutboundConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.SmsOutboundConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.SmsOutboundConfig"
             $($field $value)*)
         };
     }
@@ -598,7 +598,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_SmsOutboundMode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.SmsOutboundMode"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.SmsOutboundMode"
             $($field $value)*)
         };
     }
@@ -624,7 +624,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_Source {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.Source"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.Source"
             $($field $value)*)
         };
     }
@@ -658,7 +658,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_TelephonyChannelSubtypeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.TelephonyChannelSubtypeConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.TelephonyChannelSubtypeConfig"
             $($field $value)*)
         };
     }
@@ -699,7 +699,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_TelephonyOutboundConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.TelephonyOutboundConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.TelephonyOutboundConfig"
             $($field $value)*)
         };
     }
@@ -736,7 +736,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_TelephonyOutboundMode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.TelephonyOutboundMode"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.TelephonyOutboundMode"
             $($field $value)*)
         };
     }
@@ -774,7 +774,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_TimeRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.TimeRange"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.TimeRange"
             $($field $value)*)
         };
     }
@@ -802,7 +802,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaignsv2_Campaign_TimeWindow {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.TimeWindow"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.TimeWindow"
             $($field $value)*)
         };
     }
@@ -842,7 +842,7 @@ pub struct Campaign_ {
 #[macro_export]
 macro_rules! __aws_connectcampaignsv2_Campaign {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ConnectCampaignsV2::Campaign"
+        stratosphere::generator::construct_resource_type!("AWS::ConnectCampaignsV2::Campaign"
         $($field $value)*)
     };
 }

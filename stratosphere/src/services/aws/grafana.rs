@@ -12,7 +12,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_grafana_Workspace_AssertionAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Grafana::Workspace.AssertionAttributes"
+            stratosphere::generator::construct_property_type!("AWS::Grafana::Workspace.AssertionAttributes"
             $($field $value)*)
         };
     }
@@ -50,7 +50,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_grafana_Workspace_IdpMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Grafana::Workspace.IdpMetadata"
+            stratosphere::generator::construct_property_type!("AWS::Grafana::Workspace.IdpMetadata"
             $($field $value)*)
         };
     }
@@ -76,7 +76,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_grafana_Workspace_NetworkAccessControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Grafana::Workspace.NetworkAccessControl"
+            stratosphere::generator::construct_property_type!("AWS::Grafana::Workspace.NetworkAccessControl"
             $($field $value)*)
         };
     }
@@ -108,7 +108,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_grafana_Workspace_RoleValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Grafana::Workspace.RoleValues"
+            stratosphere::generator::construct_property_type!("AWS::Grafana::Workspace.RoleValues"
             $($field $value)*)
         };
     }
@@ -137,7 +137,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_grafana_Workspace_SamlConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Grafana::Workspace.SamlConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Grafana::Workspace.SamlConfiguration"
             $($field $value)*)
         };
     }
@@ -185,7 +185,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_grafana_Workspace_VpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Grafana::Workspace.VpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Grafana::Workspace.VpcConfiguration"
             $($field $value)*)
         };
     }
@@ -229,7 +229,7 @@ pub struct Workspace_ {
 #[macro_export]
 macro_rules! __aws_grafana_Workspace {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Grafana::Workspace"
+        stratosphere::generator::construct_resource_type!("AWS::Grafana::Workspace"
         $($field $value)*)
     };
 }

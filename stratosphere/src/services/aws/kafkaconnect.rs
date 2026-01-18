@@ -8,7 +8,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_ApacheKafkaCluster {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.ApacheKafkaCluster"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.ApacheKafkaCluster"
             $($field $value)*)
         };
     }
@@ -39,7 +39,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_AutoScaling {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.AutoScaling"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.AutoScaling"
             $($field $value)*)
         };
     }
@@ -79,7 +79,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_Capacity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.Capacity"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.Capacity"
             $($field $value)*)
         };
     }
@@ -111,7 +111,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_CloudWatchLogsLogDelivery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.CloudWatchLogsLogDelivery"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.CloudWatchLogsLogDelivery"
             $($field $value)*)
         };
     }
@@ -141,7 +141,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_CustomPlugin {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.CustomPlugin"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.CustomPlugin"
             $($field $value)*)
         };
     }
@@ -169,7 +169,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_FirehoseLogDelivery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.FirehoseLogDelivery"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.FirehoseLogDelivery"
             $($field $value)*)
         };
     }
@@ -198,7 +198,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_KafkaCluster {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.KafkaCluster"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.KafkaCluster"
             $($field $value)*)
         };
     }
@@ -221,7 +221,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_KafkaClusterClientAuthentication {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.KafkaClusterClientAuthentication"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.KafkaClusterClientAuthentication"
             $($field $value)*)
         };
     }
@@ -244,7 +244,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_KafkaClusterEncryptionInTransit {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.KafkaClusterEncryptionInTransit"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.KafkaClusterEncryptionInTransit"
             $($field $value)*)
         };
     }
@@ -267,7 +267,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_LogDelivery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.LogDelivery"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.LogDelivery"
             $($field $value)*)
         };
     }
@@ -290,7 +290,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_Plugin {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.Plugin"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.Plugin"
             $($field $value)*)
         };
     }
@@ -314,7 +314,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_ProvisionedCapacity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.ProvisionedCapacity"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.ProvisionedCapacity"
             $($field $value)*)
         };
     }
@@ -345,7 +345,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_S3LogDelivery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.S3LogDelivery"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.S3LogDelivery"
             $($field $value)*)
         };
     }
@@ -374,7 +374,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_ScaleInPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.ScaleInPolicy"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.ScaleInPolicy"
             $($field $value)*)
         };
     }
@@ -397,7 +397,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_ScaleOutPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.ScaleOutPolicy"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.ScaleOutPolicy"
             $($field $value)*)
         };
     }
@@ -421,7 +421,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_Vpc {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.Vpc"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.Vpc"
             $($field $value)*)
         };
     }
@@ -449,7 +449,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_WorkerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.WorkerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.WorkerConfiguration"
             $($field $value)*)
         };
     }
@@ -478,7 +478,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_Connector_WorkerLogDelivery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::Connector.WorkerLogDelivery"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::Connector.WorkerLogDelivery"
             $($field $value)*)
         };
     }
@@ -515,7 +515,7 @@ pub mod customplugin {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_CustomPlugin_CustomPluginFileDescription {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::CustomPlugin.CustomPluginFileDescription"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::CustomPlugin.CustomPluginFileDescription"
             $($field $value)*)
         };
     }
@@ -546,7 +546,7 @@ pub mod customplugin {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_CustomPlugin_CustomPluginLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::CustomPlugin.CustomPluginLocation"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::CustomPlugin.CustomPluginLocation"
             $($field $value)*)
         };
     }
@@ -571,7 +571,7 @@ pub mod customplugin {
     #[macro_export]
     macro_rules! __aws_kafkaconnect_CustomPlugin_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::KafkaConnect::CustomPlugin.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::KafkaConnect::CustomPlugin.S3Location"
             $($field $value)*)
         };
     }
@@ -619,7 +619,7 @@ pub struct Connector_ {
 #[macro_export]
 macro_rules! __aws_kafkaconnect_Connector {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::KafkaConnect::Connector"
+        stratosphere::generator::construct_resource_type!("AWS::KafkaConnect::Connector"
         $($field $value)*)
     };
 }
@@ -707,7 +707,7 @@ pub struct CustomPlugin_ {
 #[macro_export]
 macro_rules! __aws_kafkaconnect_CustomPlugin {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::KafkaConnect::CustomPlugin"
+        stratosphere::generator::construct_resource_type!("AWS::KafkaConnect::CustomPlugin"
         $($field $value)*)
     };
 }
@@ -758,7 +758,7 @@ pub struct WorkerConfiguration_ {
 #[macro_export]
 macro_rules! __aws_kafkaconnect_WorkerConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::KafkaConnect::WorkerConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::KafkaConnect::WorkerConfiguration"
         $($field $value)*)
     };
 }

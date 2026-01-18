@@ -7,7 +7,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_BurnRateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.BurnRateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.BurnRateConfiguration"
             $($field $value)*)
         };
     }
@@ -32,7 +32,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_CalendarInterval {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.CalendarInterval"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.CalendarInterval"
             $($field $value)*)
         };
     }
@@ -64,7 +64,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_DependencyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.DependencyConfig"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.DependencyConfig"
             $($field $value)*)
         };
     }
@@ -92,7 +92,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_Dimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.Dimension"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.Dimension"
             $($field $value)*)
         };
     }
@@ -122,7 +122,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_ExclusionWindow {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.ExclusionWindow"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.ExclusionWindow"
             $($field $value)*)
         };
     }
@@ -162,7 +162,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_Goal {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.Goal"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.Goal"
             $($field $value)*)
         };
     }
@@ -200,7 +200,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_Interval {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.Interval"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.Interval"
             $($field $value)*)
         };
     }
@@ -233,7 +233,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_Metric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.Metric"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.Metric"
             $($field $value)*)
         };
     }
@@ -274,7 +274,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_MetricDataQuery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.MetricDataQuery"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.MetricDataQuery"
             $($field $value)*)
         };
     }
@@ -321,7 +321,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_MetricStat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.MetricStat"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.MetricStat"
             $($field $value)*)
         };
     }
@@ -356,7 +356,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_MonitoredRequestCountMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.MonitoredRequestCountMetric"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.MonitoredRequestCountMetric"
             $($field $value)*)
         };
     }
@@ -387,7 +387,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_RecurrenceRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.RecurrenceRule"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.RecurrenceRule"
             $($field $value)*)
         };
     }
@@ -412,7 +412,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_RequestBasedSli {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.RequestBasedSli"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.RequestBasedSli"
             $($field $value)*)
         };
     }
@@ -452,7 +452,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_RequestBasedSliMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.RequestBasedSliMetric"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.RequestBasedSliMetric"
             $($field $value)*)
         };
     }
@@ -508,7 +508,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_RollingInterval {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.RollingInterval"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.RollingInterval"
             $($field $value)*)
         };
     }
@@ -537,7 +537,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_Sli {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.Sli"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.Sli"
             $($field $value)*)
         };
     }
@@ -574,7 +574,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_SliMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.SliMetric"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.SliMetric"
             $($field $value)*)
         };
     }
@@ -636,7 +636,7 @@ pub mod servicelevelobjective {
     #[macro_export]
     macro_rules! __aws_applicationsignals_ServiceLevelObjective_Window {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.Window"
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::ServiceLevelObjective.Window"
             $($field $value)*)
         };
     }
@@ -662,7 +662,7 @@ pub struct Discovery_ {}
 #[macro_export]
 macro_rules! __aws_applicationsignals_Discovery {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApplicationSignals::Discovery"
+        stratosphere::generator::construct_resource_type!("AWS::ApplicationSignals::Discovery"
         $($field $value)*)
     };
 }
@@ -698,7 +698,7 @@ pub struct ServiceLevelObjective_ {
 #[macro_export]
 macro_rules! __aws_applicationsignals_ServiceLevelObjective {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ApplicationSignals::ServiceLevelObjective"
+        stratosphere::generator::construct_resource_type!("AWS::ApplicationSignals::ServiceLevelObjective"
         $($field $value)*)
     };
 }

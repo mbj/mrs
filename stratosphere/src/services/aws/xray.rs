@@ -8,7 +8,7 @@ pub mod group {
     #[macro_export]
     macro_rules! __aws_xray_Group_InsightsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::XRay::Group.InsightsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::XRay::Group.InsightsConfiguration"
             $($field $value)*)
         };
     }
@@ -53,7 +53,7 @@ pub mod samplingrule {
     #[macro_export]
     macro_rules! __aws_xray_SamplingRule_SamplingRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::XRay::SamplingRule.SamplingRule"
+            stratosphere::generator::construct_property_type!("AWS::XRay::SamplingRule.SamplingRule"
             $($field $value)*)
         };
     }
@@ -136,7 +136,7 @@ pub struct Group_ {
 #[macro_export]
 macro_rules! __aws_xray_Group {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::XRay::Group" $($field
+        stratosphere::generator::construct_resource_type!("AWS::XRay::Group" $($field
         $value)*)
     };
 }
@@ -184,7 +184,7 @@ pub struct ResourcePolicy_ {
 #[macro_export]
 macro_rules! __aws_xray_ResourcePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::XRay::ResourcePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::XRay::ResourcePolicy"
         $($field $value)*)
     };
 }
@@ -226,7 +226,7 @@ pub struct SamplingRule_ {
 #[macro_export]
 macro_rules! __aws_xray_SamplingRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::XRay::SamplingRule"
+        stratosphere::generator::construct_resource_type!("AWS::XRay::SamplingRule"
         $($field $value)*)
     };
 }
@@ -262,7 +262,7 @@ pub struct TransactionSearchConfig_ {
 #[macro_export]
 macro_rules! __aws_xray_TransactionSearchConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::XRay::TransactionSearchConfig"
+        stratosphere::generator::construct_resource_type!("AWS::XRay::TransactionSearchConfig"
         $($field $value)*)
     };
 }

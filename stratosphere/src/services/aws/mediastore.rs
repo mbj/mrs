@@ -11,7 +11,7 @@ pub mod container {
     #[macro_export]
     macro_rules! __aws_mediastore_Container_CorsRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaStore::Container.CorsRule"
+            stratosphere::generator::construct_property_type!("AWS::MediaStore::Container.CorsRule"
             $($field $value)*)
         };
     }
@@ -61,7 +61,7 @@ pub mod container {
     #[macro_export]
     macro_rules! __aws_mediastore_Container_MetricPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaStore::Container.MetricPolicy"
+            stratosphere::generator::construct_property_type!("AWS::MediaStore::Container.MetricPolicy"
             $($field $value)*)
         };
     }
@@ -91,7 +91,7 @@ pub mod container {
     #[macro_export]
     macro_rules! __aws_mediastore_Container_MetricPolicyRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaStore::Container.MetricPolicyRule"
+            stratosphere::generator::construct_property_type!("AWS::MediaStore::Container.MetricPolicyRule"
             $($field $value)*)
         };
     }
@@ -125,7 +125,7 @@ pub struct Container_ {
 #[macro_export]
 macro_rules! __aws_mediastore_Container {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaStore::Container"
+        stratosphere::generator::construct_resource_type!("AWS::MediaStore::Container"
         $($field $value)*)
     };
 }

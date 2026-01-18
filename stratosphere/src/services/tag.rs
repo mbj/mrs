@@ -7,7 +7,7 @@ pub struct Tag_ {
 #[macro_export]
 macro_rules! __Tag {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_property_type!("Tag" $($field $value)*)
+        stratosphere::generator::construct_property_type!("Tag" $($field $value)*)
     };
 }
 pub use crate::__Tag as Tag;

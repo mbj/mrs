@@ -10,7 +10,7 @@ pub mod loadbalancer {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancing_LoadBalancer_AccessLoggingPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.AccessLoggingPolicy"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.AccessLoggingPolicy"
             $($field $value)*)
         };
     }
@@ -50,7 +50,7 @@ pub mod loadbalancer {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancing_LoadBalancer_AppCookieStickinessPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.AppCookieStickinessPolicy"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.AppCookieStickinessPolicy"
             $($field $value)*)
         };
     }
@@ -78,7 +78,7 @@ pub mod loadbalancer {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancing_LoadBalancer_ConnectionDrainingPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.ConnectionDrainingPolicy"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.ConnectionDrainingPolicy"
             $($field $value)*)
         };
     }
@@ -107,7 +107,7 @@ pub mod loadbalancer {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancing_LoadBalancer_ConnectionSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.ConnectionSettings"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.ConnectionSettings"
             $($field $value)*)
         };
     }
@@ -134,7 +134,7 @@ pub mod loadbalancer {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancing_LoadBalancer_HealthCheck {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.HealthCheck"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.HealthCheck"
             $($field $value)*)
         };
     }
@@ -174,7 +174,7 @@ pub mod loadbalancer {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancing_LoadBalancer_LBCookieStickinessPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.LBCookieStickinessPolicy"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.LBCookieStickinessPolicy"
             $($field $value)*)
         };
     }
@@ -210,7 +210,7 @@ pub mod loadbalancer {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancing_LoadBalancer_Listeners {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.Listeners"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.Listeners"
             $($field $value)*)
         };
     }
@@ -263,7 +263,7 @@ pub mod loadbalancer {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancing_LoadBalancer_Policies {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.Policies"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancing::LoadBalancer.Policies"
             $($field $value)*)
         };
     }
@@ -326,7 +326,7 @@ pub struct LoadBalancer_ {
 #[macro_export]
 macro_rules! __aws_elasticloadbalancing_LoadBalancer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElasticLoadBalancing::LoadBalancer"
+        stratosphere::generator::construct_resource_type!("AWS::ElasticLoadBalancing::LoadBalancer"
         $($field $value)*)
     };
 }

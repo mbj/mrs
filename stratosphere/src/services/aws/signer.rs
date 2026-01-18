@@ -8,7 +8,7 @@ pub mod signingprofile {
     #[macro_export]
     macro_rules! __aws_signer_SigningProfile_SignatureValidityPeriod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Signer::SigningProfile.SignatureValidityPeriod"
+            stratosphere::generator::construct_property_type!("AWS::Signer::SigningProfile.SignatureValidityPeriod"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub struct ProfilePermission_ {
 #[macro_export]
 macro_rules! __aws_signer_ProfilePermission {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Signer::ProfilePermission"
+        stratosphere::generator::construct_resource_type!("AWS::Signer::ProfilePermission"
         $($field $value)*)
     };
 }
@@ -89,7 +89,7 @@ pub struct SigningProfile_ {
 #[macro_export]
 macro_rules! __aws_signer_SigningProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Signer::SigningProfile"
+        stratosphere::generator::construct_resource_type!("AWS::Signer::SigningProfile"
         $($field $value)*)
     };
 }

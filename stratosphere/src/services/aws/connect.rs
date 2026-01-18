@@ -7,7 +7,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_AutoEvaluationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.AutoEvaluationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.AutoEvaluationConfiguration"
             $($field $value)*)
         };
     }
@@ -32,7 +32,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_EvaluationFormBaseItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormBaseItem"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormBaseItem"
             $($field $value)*)
         };
     }
@@ -56,7 +56,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_EvaluationFormItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormItem"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormItem"
             $($field $value)*)
         };
     }
@@ -88,7 +88,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_EvaluationFormNumericQuestionAutomation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormNumericQuestionAutomation"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormNumericQuestionAutomation"
             $($field $value)*)
         };
     }
@@ -122,7 +122,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_EvaluationFormNumericQuestionOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormNumericQuestionOption"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormNumericQuestionOption"
             $($field $value)*)
         };
     }
@@ -161,7 +161,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_EvaluationFormNumericQuestionProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormNumericQuestionProperties"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormNumericQuestionProperties"
             $($field $value)*)
         };
     }
@@ -206,7 +206,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_EvaluationFormQuestion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormQuestion"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormQuestion"
             $($field $value)*)
         };
     }
@@ -259,7 +259,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_EvaluationFormQuestionTypeProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormQuestionTypeProperties"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormQuestionTypeProperties"
             $($field $value)*)
         };
     }
@@ -294,7 +294,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_EvaluationFormSection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormSection"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormSection"
             $($field $value)*)
         };
     }
@@ -334,7 +334,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_EvaluationFormSingleSelectQuestionAutomation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormSingleSelectQuestionAutomation"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormSingleSelectQuestionAutomation"
             $($field $value)*)
         };
     }
@@ -363,7 +363,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_EvaluationFormSingleSelectQuestionAutomationOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormSingleSelectQuestionAutomationOption"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormSingleSelectQuestionAutomationOption"
             $($field $value)*)
         };
     }
@@ -389,7 +389,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_EvaluationFormSingleSelectQuestionOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormSingleSelectQuestionOption"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormSingleSelectQuestionOption"
             $($field $value)*)
         };
     }
@@ -427,7 +427,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_EvaluationFormSingleSelectQuestionProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormSingleSelectQuestionProperties"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormSingleSelectQuestionProperties"
             $($field $value)*)
         };
     }
@@ -462,7 +462,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_NumericQuestionPropertyValueAutomation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.NumericQuestionPropertyValueAutomation"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.NumericQuestionPropertyValueAutomation"
             $($field $value)*)
         };
     }
@@ -486,7 +486,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_ScoringStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.ScoringStrategy"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.ScoringStrategy"
             $($field $value)*)
         };
     }
@@ -515,7 +515,7 @@ pub mod evaluationform {
     #[macro_export]
     macro_rules! __aws_connect_EvaluationForm_SingleSelectQuestionRuleCategoryAutomation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::EvaluationForm.SingleSelectQuestionRuleCategoryAutomation"
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.SingleSelectQuestionRuleCategoryAutomation"
             $($field $value)*)
         };
     }
@@ -550,7 +550,7 @@ pub mod hoursofoperation {
     #[macro_export]
     macro_rules! __aws_connect_HoursOfOperation_HoursOfOperationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::HoursOfOperation.HoursOfOperationConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::HoursOfOperation.HoursOfOperationConfig"
             $($field $value)*)
         };
     }
@@ -586,7 +586,7 @@ pub mod hoursofoperation {
     #[macro_export]
     macro_rules! __aws_connect_HoursOfOperation_HoursOfOperationOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::HoursOfOperation.HoursOfOperationOverride"
+            stratosphere::generator::construct_property_type!("AWS::Connect::HoursOfOperation.HoursOfOperationOverride"
             $($field $value)*)
         };
     }
@@ -635,7 +635,7 @@ pub mod hoursofoperation {
     #[macro_export]
     macro_rules! __aws_connect_HoursOfOperation_HoursOfOperationOverrideConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::HoursOfOperation.HoursOfOperationOverrideConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::HoursOfOperation.HoursOfOperationOverrideConfig"
             $($field $value)*)
         };
     }
@@ -667,7 +667,7 @@ pub mod hoursofoperation {
     #[macro_export]
     macro_rules! __aws_connect_HoursOfOperation_HoursOfOperationTimeSlice {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::HoursOfOperation.HoursOfOperationTimeSlice"
+            stratosphere::generator::construct_property_type!("AWS::Connect::HoursOfOperation.HoursOfOperationTimeSlice"
             $($field $value)*)
         };
     }
@@ -695,7 +695,7 @@ pub mod hoursofoperation {
     #[macro_export]
     macro_rules! __aws_connect_HoursOfOperation_OverrideTimeSlice {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::HoursOfOperation.OverrideTimeSlice"
+            stratosphere::generator::construct_property_type!("AWS::Connect::HoursOfOperation.OverrideTimeSlice"
             $($field $value)*)
         };
     }
@@ -735,7 +735,7 @@ pub mod instance {
     #[macro_export]
     macro_rules! __aws_connect_Instance_Attributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Instance.Attributes"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Instance.Attributes"
             $($field $value)*)
         };
     }
@@ -825,7 +825,7 @@ pub mod instancestorageconfig {
     #[macro_export]
     macro_rules! __aws_connect_InstanceStorageConfig_EncryptionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::InstanceStorageConfig.EncryptionConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::InstanceStorageConfig.EncryptionConfig"
             $($field $value)*)
         };
     }
@@ -852,7 +852,7 @@ pub mod instancestorageconfig {
     #[macro_export]
     macro_rules! __aws_connect_InstanceStorageConfig_KinesisFirehoseConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::InstanceStorageConfig.KinesisFirehoseConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::InstanceStorageConfig.KinesisFirehoseConfig"
             $($field $value)*)
         };
     }
@@ -875,7 +875,7 @@ pub mod instancestorageconfig {
     #[macro_export]
     macro_rules! __aws_connect_InstanceStorageConfig_KinesisStreamConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::InstanceStorageConfig.KinesisStreamConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::InstanceStorageConfig.KinesisStreamConfig"
             $($field $value)*)
         };
     }
@@ -900,7 +900,7 @@ pub mod instancestorageconfig {
     #[macro_export]
     macro_rules! __aws_connect_InstanceStorageConfig_KinesisVideoStreamConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::InstanceStorageConfig.KinesisVideoStreamConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::InstanceStorageConfig.KinesisVideoStreamConfig"
             $($field $value)*)
         };
     }
@@ -933,7 +933,7 @@ pub mod instancestorageconfig {
     #[macro_export]
     macro_rules! __aws_connect_InstanceStorageConfig_S3Config {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::InstanceStorageConfig.S3Config"
+            stratosphere::generator::construct_property_type!("AWS::Connect::InstanceStorageConfig.S3Config"
             $($field $value)*)
         };
     }
@@ -969,7 +969,7 @@ pub mod predefinedattribute {
     #[macro_export]
     macro_rules! __aws_connect_PredefinedAttribute_AttributeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::PredefinedAttribute.AttributeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Connect::PredefinedAttribute.AttributeConfiguration"
             $($field $value)*)
         };
     }
@@ -1000,7 +1000,7 @@ pub mod predefinedattribute {
     #[macro_export]
     macro_rules! __aws_connect_PredefinedAttribute_Values {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::PredefinedAttribute.Values"
+            stratosphere::generator::construct_property_type!("AWS::Connect::PredefinedAttribute.Values"
             $($field $value)*)
         };
     }
@@ -1029,7 +1029,7 @@ pub mod queue {
     #[macro_export]
     macro_rules! __aws_connect_Queue_OutboundCallerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Queue.OutboundCallerConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Queue.OutboundCallerConfig"
             $($field $value)*)
         };
     }
@@ -1066,7 +1066,7 @@ pub mod queue {
     #[macro_export]
     macro_rules! __aws_connect_Queue_OutboundEmailConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Queue.OutboundEmailConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Queue.OutboundEmailConfig"
             $($field $value)*)
         };
     }
@@ -1093,7 +1093,7 @@ pub mod quickconnect {
     #[macro_export]
     macro_rules! __aws_connect_QuickConnect_PhoneNumberQuickConnectConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::QuickConnect.PhoneNumberQuickConnectConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::QuickConnect.PhoneNumberQuickConnectConfig"
             $($field $value)*)
         };
     }
@@ -1117,7 +1117,7 @@ pub mod quickconnect {
     #[macro_export]
     macro_rules! __aws_connect_QuickConnect_QueueQuickConnectConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::QuickConnect.QueueQuickConnectConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::QuickConnect.QueueQuickConnectConfig"
             $($field $value)*)
         };
     }
@@ -1147,7 +1147,7 @@ pub mod quickconnect {
     #[macro_export]
     macro_rules! __aws_connect_QuickConnect_QuickConnectConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::QuickConnect.QuickConnectConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::QuickConnect.QuickConnectConfig"
             $($field $value)*)
         };
     }
@@ -1189,7 +1189,7 @@ pub mod quickconnect {
     #[macro_export]
     macro_rules! __aws_connect_QuickConnect_UserQuickConnectConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::QuickConnect.UserQuickConnectConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::QuickConnect.UserQuickConnectConfig"
             $($field $value)*)
         };
     }
@@ -1218,7 +1218,7 @@ pub mod routingprofile {
     #[macro_export]
     macro_rules! __aws_connect_RoutingProfile_CrossChannelBehavior {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::RoutingProfile.CrossChannelBehavior"
+            stratosphere::generator::construct_property_type!("AWS::Connect::RoutingProfile.CrossChannelBehavior"
             $($field $value)*)
         };
     }
@@ -1243,7 +1243,7 @@ pub mod routingprofile {
     #[macro_export]
     macro_rules! __aws_connect_RoutingProfile_MediaConcurrency {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::RoutingProfile.MediaConcurrency"
+            stratosphere::generator::construct_property_type!("AWS::Connect::RoutingProfile.MediaConcurrency"
             $($field $value)*)
         };
     }
@@ -1276,7 +1276,7 @@ pub mod routingprofile {
     #[macro_export]
     macro_rules! __aws_connect_RoutingProfile_RoutingProfileManualAssignmentQueueConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::RoutingProfile.RoutingProfileManualAssignmentQueueConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::RoutingProfile.RoutingProfileManualAssignmentQueueConfig"
             $($field $value)*)
         };
     }
@@ -1301,7 +1301,7 @@ pub mod routingprofile {
     #[macro_export]
     macro_rules! __aws_connect_RoutingProfile_RoutingProfileQueueConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::RoutingProfile.RoutingProfileQueueConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::RoutingProfile.RoutingProfileQueueConfig"
             $($field $value)*)
         };
     }
@@ -1333,7 +1333,7 @@ pub mod routingprofile {
     #[macro_export]
     macro_rules! __aws_connect_RoutingProfile_RoutingProfileQueueReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::RoutingProfile.RoutingProfileQueueReference"
+            stratosphere::generator::construct_property_type!("AWS::Connect::RoutingProfile.RoutingProfileQueueReference"
             $($field $value)*)
         };
     }
@@ -1369,7 +1369,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_connect_Rule_Actions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Rule.Actions"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Rule.Actions"
             $($field $value)*)
         };
     }
@@ -1437,7 +1437,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_connect_Rule_CreateCaseAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Rule.CreateCaseAction"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Rule.CreateCaseAction"
             $($field $value)*)
         };
     }
@@ -1464,7 +1464,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_connect_Rule_EventBridgeAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Rule.EventBridgeAction"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Rule.EventBridgeAction"
             $($field $value)*)
         };
     }
@@ -1488,7 +1488,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_connect_Rule_Field {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Rule.Field"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Rule.Field"
             $($field $value)*)
         };
     }
@@ -1515,7 +1515,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_connect_Rule_FieldValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Rule.FieldValue"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Rule.FieldValue"
             $($field $value)*)
         };
     }
@@ -1559,7 +1559,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_connect_Rule_NotificationRecipientType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Rule.NotificationRecipientType"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Rule.NotificationRecipientType"
             $($field $value)*)
         };
     }
@@ -1591,7 +1591,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_connect_Rule_Reference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Rule.Reference"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Rule.Reference"
             $($field $value)*)
         };
     }
@@ -1619,7 +1619,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_connect_Rule_RuleTriggerEventSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Rule.RuleTriggerEventSource"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Rule.RuleTriggerEventSource"
             $($field $value)*)
         };
     }
@@ -1652,7 +1652,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_connect_Rule_SendNotificationAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Rule.SendNotificationAction"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Rule.SendNotificationAction"
             $($field $value)*)
         };
     }
@@ -1693,7 +1693,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_connect_Rule_SubmitAutoEvaluationAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Rule.SubmitAutoEvaluationAction"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Rule.SubmitAutoEvaluationAction"
             $($field $value)*)
         };
     }
@@ -1719,7 +1719,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_connect_Rule_TaskAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Rule.TaskAction"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Rule.TaskAction"
             $($field $value)*)
         };
     }
@@ -1758,7 +1758,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_connect_Rule_UpdateCaseAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::Rule.UpdateCaseAction"
+            stratosphere::generator::construct_property_type!("AWS::Connect::Rule.UpdateCaseAction"
             $($field $value)*)
         };
     }
@@ -1784,7 +1784,7 @@ pub mod securityprofile {
     #[macro_export]
     macro_rules! __aws_connect_SecurityProfile_Application {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::SecurityProfile.Application"
+            stratosphere::generator::construct_property_type!("AWS::Connect::SecurityProfile.Application"
             $($field $value)*)
         };
     }
@@ -1815,7 +1815,7 @@ pub mod tasktemplate {
     #[macro_export]
     macro_rules! __aws_connect_TaskTemplate_Constraints {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::TaskTemplate.Constraints"
+            stratosphere::generator::construct_property_type!("AWS::Connect::TaskTemplate.Constraints"
             $($field $value)*)
         };
     }
@@ -1853,7 +1853,7 @@ pub mod tasktemplate {
     #[macro_export]
     macro_rules! __aws_connect_TaskTemplate_DefaultFieldValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::TaskTemplate.DefaultFieldValue"
+            stratosphere::generator::construct_property_type!("AWS::Connect::TaskTemplate.DefaultFieldValue"
             $($field $value)*)
         };
     }
@@ -1880,7 +1880,7 @@ pub mod tasktemplate {
     #[macro_export]
     macro_rules! __aws_connect_TaskTemplate_Field {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::TaskTemplate.Field"
+            stratosphere::generator::construct_property_type!("AWS::Connect::TaskTemplate.Field"
             $($field $value)*)
         };
     }
@@ -1916,7 +1916,7 @@ pub mod tasktemplate {
     #[macro_export]
     macro_rules! __aws_connect_TaskTemplate_FieldIdentifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::TaskTemplate.FieldIdentifier"
+            stratosphere::generator::construct_property_type!("AWS::Connect::TaskTemplate.FieldIdentifier"
             $($field $value)*)
         };
     }
@@ -1939,7 +1939,7 @@ pub mod tasktemplate {
     #[macro_export]
     macro_rules! __aws_connect_TaskTemplate_InvisibleFieldInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::TaskTemplate.InvisibleFieldInfo"
+            stratosphere::generator::construct_property_type!("AWS::Connect::TaskTemplate.InvisibleFieldInfo"
             $($field $value)*)
         };
     }
@@ -1959,7 +1959,7 @@ pub mod tasktemplate {
     #[macro_export]
     macro_rules! __aws_connect_TaskTemplate_ReadOnlyFieldInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::TaskTemplate.ReadOnlyFieldInfo"
+            stratosphere::generator::construct_property_type!("AWS::Connect::TaskTemplate.ReadOnlyFieldInfo"
             $($field $value)*)
         };
     }
@@ -1979,7 +1979,7 @@ pub mod tasktemplate {
     #[macro_export]
     macro_rules! __aws_connect_TaskTemplate_RequiredFieldInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::TaskTemplate.RequiredFieldInfo"
+            stratosphere::generator::construct_property_type!("AWS::Connect::TaskTemplate.RequiredFieldInfo"
             $($field $value)*)
         };
     }
@@ -2005,7 +2005,7 @@ pub mod user {
     #[macro_export]
     macro_rules! __aws_connect_User_UserIdentityInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::User.UserIdentityInfo"
+            stratosphere::generator::construct_property_type!("AWS::Connect::User.UserIdentityInfo"
             $($field $value)*)
         };
     }
@@ -2052,7 +2052,7 @@ pub mod user {
     #[macro_export]
     macro_rules! __aws_connect_User_UserPhoneConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::User.UserPhoneConfig"
+            stratosphere::generator::construct_property_type!("AWS::Connect::User.UserPhoneConfig"
             $($field $value)*)
         };
     }
@@ -2101,7 +2101,7 @@ pub mod user {
     #[macro_export]
     macro_rules! __aws_connect_User_UserProficiency {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::User.UserProficiency"
+            stratosphere::generator::construct_property_type!("AWS::Connect::User.UserProficiency"
             $($field $value)*)
         };
     }
@@ -2136,7 +2136,7 @@ pub mod userhierarchystructure {
     #[macro_export]
     macro_rules! __aws_connect_UserHierarchyStructure_LevelFive {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::UserHierarchyStructure.LevelFive"
+            stratosphere::generator::construct_property_type!("AWS::Connect::UserHierarchyStructure.LevelFive"
             $($field $value)*)
         };
     }
@@ -2173,7 +2173,7 @@ pub mod userhierarchystructure {
     #[macro_export]
     macro_rules! __aws_connect_UserHierarchyStructure_LevelFour {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::UserHierarchyStructure.LevelFour"
+            stratosphere::generator::construct_property_type!("AWS::Connect::UserHierarchyStructure.LevelFour"
             $($field $value)*)
         };
     }
@@ -2210,7 +2210,7 @@ pub mod userhierarchystructure {
     #[macro_export]
     macro_rules! __aws_connect_UserHierarchyStructure_LevelOne {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::UserHierarchyStructure.LevelOne"
+            stratosphere::generator::construct_property_type!("AWS::Connect::UserHierarchyStructure.LevelOne"
             $($field $value)*)
         };
     }
@@ -2247,7 +2247,7 @@ pub mod userhierarchystructure {
     #[macro_export]
     macro_rules! __aws_connect_UserHierarchyStructure_LevelThree {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::UserHierarchyStructure.LevelThree"
+            stratosphere::generator::construct_property_type!("AWS::Connect::UserHierarchyStructure.LevelThree"
             $($field $value)*)
         };
     }
@@ -2284,7 +2284,7 @@ pub mod userhierarchystructure {
     #[macro_export]
     macro_rules! __aws_connect_UserHierarchyStructure_LevelTwo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::UserHierarchyStructure.LevelTwo"
+            stratosphere::generator::construct_property_type!("AWS::Connect::UserHierarchyStructure.LevelTwo"
             $($field $value)*)
         };
     }
@@ -2323,7 +2323,7 @@ pub mod userhierarchystructure {
     #[macro_export]
     macro_rules! __aws_connect_UserHierarchyStructure_UserHierarchyStructure {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Connect::UserHierarchyStructure.UserHierarchyStructure"
+            stratosphere::generator::construct_property_type!("AWS::Connect::UserHierarchyStructure.UserHierarchyStructure"
             $($field $value)*)
         };
     }
@@ -2380,7 +2380,7 @@ pub struct AgentStatus_ {
 #[macro_export]
 macro_rules! __aws_connect_AgentStatus {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::AgentStatus"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::AgentStatus"
         $($field $value)*)
     };
 }
@@ -2444,7 +2444,7 @@ pub struct ApprovedOrigin_ {
 #[macro_export]
 macro_rules! __aws_connect_ApprovedOrigin {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::ApprovedOrigin"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::ApprovedOrigin"
         $($field $value)*)
     };
 }
@@ -2485,7 +2485,7 @@ pub struct ContactFlow_ {
 #[macro_export]
 macro_rules! __aws_connect_ContactFlow {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::ContactFlow"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::ContactFlow"
         $($field $value)*)
     };
 }
@@ -2545,7 +2545,7 @@ pub struct ContactFlowModule_ {
 #[macro_export]
 macro_rules! __aws_connect_ContactFlowModule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::ContactFlowModule"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::ContactFlowModule"
         $($field $value)*)
     };
 }
@@ -2597,7 +2597,7 @@ pub struct ContactFlowVersion_ {
 #[macro_export]
 macro_rules! __aws_connect_ContactFlowVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::ContactFlowVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::ContactFlowVersion"
         $($field $value)*)
     };
 }
@@ -2638,7 +2638,7 @@ pub struct EmailAddress_ {
 #[macro_export]
 macro_rules! __aws_connect_EmailAddress {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::EmailAddress"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::EmailAddress"
         $($field $value)*)
     };
 }
@@ -2696,7 +2696,7 @@ pub struct EvaluationForm_ {
 #[macro_export]
 macro_rules! __aws_connect_EvaluationForm {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::EvaluationForm"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::EvaluationForm"
         $($field $value)*)
     };
 }
@@ -2767,7 +2767,7 @@ pub struct HoursOfOperation_ {
 #[macro_export]
 macro_rules! __aws_connect_HoursOfOperation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::HoursOfOperation"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::HoursOfOperation"
         $($field $value)*)
     };
 }
@@ -2829,7 +2829,7 @@ pub struct Instance_ {
 #[macro_export]
 macro_rules! __aws_connect_Instance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::Instance"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::Instance"
         $($field $value)*)
     };
 }
@@ -2887,7 +2887,7 @@ pub struct InstanceStorageConfig_ {
 #[macro_export]
 macro_rules! __aws_connect_InstanceStorageConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::InstanceStorageConfig"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::InstanceStorageConfig"
         $($field $value)*)
     };
 }
@@ -2952,7 +2952,7 @@ pub struct IntegrationAssociation_ {
 #[macro_export]
 macro_rules! __aws_connect_IntegrationAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::IntegrationAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::IntegrationAssociation"
         $($field $value)*)
     };
 }
@@ -2997,7 +2997,7 @@ pub struct PhoneNumber_ {
 #[macro_export]
 macro_rules! __aws_connect_PhoneNumber {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::PhoneNumber"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::PhoneNumber"
         $($field $value)*)
     };
 }
@@ -3060,7 +3060,7 @@ pub struct PredefinedAttribute_ {
 #[macro_export]
 macro_rules! __aws_connect_PredefinedAttribute {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::PredefinedAttribute"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::PredefinedAttribute"
         $($field $value)*)
     };
 }
@@ -3114,7 +3114,7 @@ pub struct Prompt_ {
 #[macro_export]
 macro_rules! __aws_connect_Prompt {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::Prompt" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Connect::Prompt" $($field
         $value)*)
     };
 }
@@ -3170,7 +3170,7 @@ pub struct Queue_ {
 #[macro_export]
 macro_rules! __aws_connect_Queue {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::Queue" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Connect::Queue" $($field
         $value)*)
     };
 }
@@ -3249,7 +3249,7 @@ pub struct QuickConnect_ {
 #[macro_export]
 macro_rules! __aws_connect_QuickConnect {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::QuickConnect"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::QuickConnect"
         $($field $value)*)
     };
 }
@@ -3306,7 +3306,7 @@ pub struct RoutingProfile_ {
 #[macro_export]
 macro_rules! __aws_connect_RoutingProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::RoutingProfile"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::RoutingProfile"
         $($field $value)*)
     };
 }
@@ -3380,7 +3380,7 @@ pub struct Rule_ {
 #[macro_export]
 macro_rules! __aws_connect_Rule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::Rule" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Connect::Rule" $($field
         $value)*)
     };
 }
@@ -3435,7 +3435,7 @@ pub struct SecurityKey_ {
 #[macro_export]
 macro_rules! __aws_connect_SecurityKey {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::SecurityKey"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::SecurityKey"
         $($field $value)*)
     };
 }
@@ -3479,7 +3479,7 @@ pub struct SecurityProfile_ {
 #[macro_export]
 macro_rules! __aws_connect_SecurityProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::SecurityProfile"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::SecurityProfile"
         $($field $value)*)
     };
 }
@@ -3569,7 +3569,7 @@ pub struct TaskTemplate_ {
 #[macro_export]
 macro_rules! __aws_connect_TaskTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::TaskTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::TaskTemplate"
         $($field $value)*)
     };
 }
@@ -3651,7 +3651,7 @@ pub struct TrafficDistributionGroup_ {
 #[macro_export]
 macro_rules! __aws_connect_TrafficDistributionGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::TrafficDistributionGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::TrafficDistributionGroup"
         $($field $value)*)
     };
 }
@@ -3705,7 +3705,7 @@ pub struct User_ {
 #[macro_export]
 macro_rules! __aws_connect_User {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::User" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Connect::User" $($field
         $value)*)
     };
 }
@@ -3788,7 +3788,7 @@ pub struct UserHierarchyGroup_ {
 #[macro_export]
 macro_rules! __aws_connect_UserHierarchyGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::UserHierarchyGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::UserHierarchyGroup"
         $($field $value)*)
     };
 }
@@ -3834,7 +3834,7 @@ pub struct UserHierarchyStructure_ {
 #[macro_export]
 macro_rules! __aws_connect_UserHierarchyStructure {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::UserHierarchyStructure"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::UserHierarchyStructure"
         $($field $value)*)
     };
 }
@@ -3876,7 +3876,7 @@ pub struct View_ {
 #[macro_export]
 macro_rules! __aws_connect_View {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::View" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Connect::View" $($field
         $value)*)
     };
 }
@@ -3930,7 +3930,7 @@ pub struct ViewVersion_ {
 #[macro_export]
 macro_rules! __aws_connect_ViewVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Connect::ViewVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Connect::ViewVersion"
         $($field $value)*)
     };
 }

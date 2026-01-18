@@ -8,7 +8,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Connector_VpcInformation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Connector.VpcInformation"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Connector.VpcInformation"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_ApplicationPolicies {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.ApplicationPolicies"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.ApplicationPolicies"
             $($field $value)*)
         };
     }
@@ -70,7 +70,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_ApplicationPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.ApplicationPolicy"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.ApplicationPolicy"
             $($field $value)*)
         };
     }
@@ -102,7 +102,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_CertificateValidity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.CertificateValidity"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.CertificateValidity"
             $($field $value)*)
         };
     }
@@ -133,7 +133,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_EnrollmentFlagsV2 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.EnrollmentFlagsV2"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.EnrollmentFlagsV2"
             $($field $value)*)
         };
     }
@@ -186,7 +186,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_EnrollmentFlagsV3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.EnrollmentFlagsV3"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.EnrollmentFlagsV3"
             $($field $value)*)
         };
     }
@@ -239,7 +239,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_EnrollmentFlagsV4 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.EnrollmentFlagsV4"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.EnrollmentFlagsV4"
             $($field $value)*)
         };
     }
@@ -289,7 +289,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_ExtensionsV2 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.ExtensionsV2"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.ExtensionsV2"
             $($field $value)*)
         };
     }
@@ -319,7 +319,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_ExtensionsV3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.ExtensionsV3"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.ExtensionsV3"
             $($field $value)*)
         };
     }
@@ -349,7 +349,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_ExtensionsV4 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.ExtensionsV4"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.ExtensionsV4"
             $($field $value)*)
         };
     }
@@ -379,7 +379,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_GeneralFlagsV2 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.GeneralFlagsV2"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.GeneralFlagsV2"
             $($field $value)*)
         };
     }
@@ -411,7 +411,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_GeneralFlagsV3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.GeneralFlagsV3"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.GeneralFlagsV3"
             $($field $value)*)
         };
     }
@@ -443,7 +443,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_GeneralFlagsV4 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.GeneralFlagsV4"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.GeneralFlagsV4"
             $($field $value)*)
         };
     }
@@ -475,7 +475,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_KeyUsage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.KeyUsage"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.KeyUsage"
             $($field $value)*)
         };
     }
@@ -508,7 +508,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_KeyUsageFlags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.KeyUsageFlags"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.KeyUsageFlags"
             $($field $value)*)
         };
     }
@@ -558,7 +558,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_KeyUsageProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.KeyUsageProperty"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.KeyUsageProperty"
             $($field $value)*)
         };
     }
@@ -591,7 +591,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_KeyUsagePropertyFlags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.KeyUsagePropertyFlags"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.KeyUsagePropertyFlags"
             $($field $value)*)
         };
     }
@@ -627,7 +627,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_PrivateKeyAttributesV2 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.PrivateKeyAttributesV2"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.PrivateKeyAttributesV2"
             $($field $value)*)
         };
     }
@@ -664,7 +664,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_PrivateKeyAttributesV3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.PrivateKeyAttributesV3"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.PrivateKeyAttributesV3"
             $($field $value)*)
         };
     }
@@ -709,7 +709,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_PrivateKeyAttributesV4 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.PrivateKeyAttributesV4"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.PrivateKeyAttributesV4"
             $($field $value)*)
         };
     }
@@ -756,7 +756,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_PrivateKeyFlagsV2 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.PrivateKeyFlagsV2"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.PrivateKeyFlagsV2"
             $($field $value)*)
         };
     }
@@ -794,7 +794,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_PrivateKeyFlagsV3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.PrivateKeyFlagsV3"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.PrivateKeyFlagsV3"
             $($field $value)*)
         };
     }
@@ -840,7 +840,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_PrivateKeyFlagsV4 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.PrivateKeyFlagsV4"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.PrivateKeyFlagsV4"
             $($field $value)*)
         };
     }
@@ -902,7 +902,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_SubjectNameFlagsV2 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.SubjectNameFlagsV2"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.SubjectNameFlagsV2"
             $($field $value)*)
         };
     }
@@ -990,7 +990,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_SubjectNameFlagsV3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.SubjectNameFlagsV3"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.SubjectNameFlagsV3"
             $($field $value)*)
         };
     }
@@ -1078,7 +1078,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_SubjectNameFlagsV4 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.SubjectNameFlagsV4"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.SubjectNameFlagsV4"
             $($field $value)*)
         };
     }
@@ -1159,7 +1159,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_TemplateDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.TemplateDefinition"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.TemplateDefinition"
             $($field $value)*)
         };
     }
@@ -1203,7 +1203,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_TemplateV2 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.TemplateV2"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.TemplateV2"
             $($field $value)*)
         };
     }
@@ -1264,7 +1264,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_TemplateV3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.TemplateV3"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.TemplateV3"
             $($field $value)*)
         };
     }
@@ -1329,7 +1329,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_TemplateV4 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.TemplateV4"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.TemplateV4"
             $($field $value)*)
         };
     }
@@ -1389,7 +1389,7 @@ pub mod template {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_Template_ValidityPeriod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::Template.ValidityPeriod"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::Template.ValidityPeriod"
             $($field $value)*)
         };
     }
@@ -1419,7 +1419,7 @@ pub mod templategroupaccesscontrolentry {
     #[macro_export]
     macro_rules! __aws_pcaconnectorad_TemplateGroupAccessControlEntry_AccessRights {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PCAConnectorAD::TemplateGroupAccessControlEntry.AccessRights"
+            stratosphere::generator::construct_property_type!("AWS::PCAConnectorAD::TemplateGroupAccessControlEntry.AccessRights"
             $($field $value)*)
         };
     }
@@ -1451,7 +1451,7 @@ pub struct Connector_ {
 #[macro_export]
 macro_rules! __aws_pcaconnectorad_Connector {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PCAConnectorAD::Connector"
+        stratosphere::generator::construct_resource_type!("AWS::PCAConnectorAD::Connector"
         $($field $value)*)
     };
 }
@@ -1494,7 +1494,7 @@ pub struct DirectoryRegistration_ {
 #[macro_export]
 macro_rules! __aws_pcaconnectorad_DirectoryRegistration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PCAConnectorAD::DirectoryRegistration"
+        stratosphere::generator::construct_resource_type!("AWS::PCAConnectorAD::DirectoryRegistration"
         $($field $value)*)
     };
 }
@@ -1529,7 +1529,7 @@ pub struct ServicePrincipalName_ {
 #[macro_export]
 macro_rules! __aws_pcaconnectorad_ServicePrincipalName {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PCAConnectorAD::ServicePrincipalName"
+        stratosphere::generator::construct_resource_type!("AWS::PCAConnectorAD::ServicePrincipalName"
         $($field $value)*)
     };
 }
@@ -1572,7 +1572,7 @@ pub struct Template_ {
 #[macro_export]
 macro_rules! __aws_pcaconnectorad_Template {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PCAConnectorAD::Template"
+        stratosphere::generator::construct_resource_type!("AWS::PCAConnectorAD::Template"
         $($field $value)*)
     };
 }
@@ -1623,7 +1623,7 @@ pub struct TemplateGroupAccessControlEntry_ {
 #[macro_export]
 macro_rules! __aws_pcaconnectorad_TemplateGroupAccessControlEntry {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PCAConnectorAD::TemplateGroupAccessControlEntry"
+        stratosphere::generator::construct_resource_type!("AWS::PCAConnectorAD::TemplateGroupAccessControlEntry"
         $($field $value)*)
     };
 }

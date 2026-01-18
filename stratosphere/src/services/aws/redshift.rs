@@ -8,7 +8,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_redshift_Cluster_Endpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Redshift::Cluster.Endpoint"
+            stratosphere::generator::construct_property_type!("AWS::Redshift::Cluster.Endpoint"
             $($field $value)*)
         };
     }
@@ -39,7 +39,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_redshift_Cluster_LoggingProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Redshift::Cluster.LoggingProperties"
+            stratosphere::generator::construct_property_type!("AWS::Redshift::Cluster.LoggingProperties"
             $($field $value)*)
         };
     }
@@ -85,7 +85,7 @@ pub mod clusterparametergroup {
     #[macro_export]
     macro_rules! __aws_redshift_ClusterParameterGroup_Parameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Redshift::ClusterParameterGroup.Parameter"
+            stratosphere::generator::construct_property_type!("AWS::Redshift::ClusterParameterGroup.Parameter"
             $($field $value)*)
         };
     }
@@ -117,7 +117,7 @@ pub mod endpointaccess {
     #[macro_export]
     macro_rules! __aws_redshift_EndpointAccess_NetworkInterface {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Redshift::EndpointAccess.NetworkInterface"
+            stratosphere::generator::construct_property_type!("AWS::Redshift::EndpointAccess.NetworkInterface"
             $($field $value)*)
         };
     }
@@ -162,7 +162,7 @@ pub mod endpointaccess {
     #[macro_export]
     macro_rules! __aws_redshift_EndpointAccess_VpcEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Redshift::EndpointAccess.VpcEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::Redshift::EndpointAccess.VpcEndpoint"
             $($field $value)*)
         };
     }
@@ -197,7 +197,7 @@ pub mod endpointaccess {
     #[macro_export]
     macro_rules! __aws_redshift_EndpointAccess_VpcSecurityGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Redshift::EndpointAccess.VpcSecurityGroup"
+            stratosphere::generator::construct_property_type!("AWS::Redshift::EndpointAccess.VpcSecurityGroup"
             $($field $value)*)
         };
     }
@@ -227,7 +227,7 @@ pub mod scheduledaction {
     #[macro_export]
     macro_rules! __aws_redshift_ScheduledAction_PauseClusterMessage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Redshift::ScheduledAction.PauseClusterMessage"
+            stratosphere::generator::construct_property_type!("AWS::Redshift::ScheduledAction.PauseClusterMessage"
             $($field $value)*)
         };
     }
@@ -254,7 +254,7 @@ pub mod scheduledaction {
     #[macro_export]
     macro_rules! __aws_redshift_ScheduledAction_ResizeClusterMessage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Redshift::ScheduledAction.ResizeClusterMessage"
+            stratosphere::generator::construct_property_type!("AWS::Redshift::ScheduledAction.ResizeClusterMessage"
             $($field $value)*)
         };
     }
@@ -301,7 +301,7 @@ pub mod scheduledaction {
     #[macro_export]
     macro_rules! __aws_redshift_ScheduledAction_ResumeClusterMessage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Redshift::ScheduledAction.ResumeClusterMessage"
+            stratosphere::generator::construct_property_type!("AWS::Redshift::ScheduledAction.ResumeClusterMessage"
             $($field $value)*)
         };
     }
@@ -326,7 +326,7 @@ pub mod scheduledaction {
     #[macro_export]
     macro_rules! __aws_redshift_ScheduledAction_ScheduledActionType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Redshift::ScheduledAction.ScheduledActionType"
+            stratosphere::generator::construct_property_type!("AWS::Redshift::ScheduledAction.ScheduledActionType"
             $($field $value)*)
         };
     }
@@ -415,7 +415,7 @@ pub struct Cluster_ {
 #[macro_export]
 macro_rules! __aws_redshift_Cluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Redshift::Cluster"
+        stratosphere::generator::construct_resource_type!("AWS::Redshift::Cluster"
         $($field $value)*)
     };
 }
@@ -744,7 +744,7 @@ pub struct ClusterParameterGroup_ {
 #[macro_export]
 macro_rules! __aws_redshift_ClusterParameterGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Redshift::ClusterParameterGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Redshift::ClusterParameterGroup"
         $($field $value)*)
     };
 }
@@ -795,7 +795,7 @@ pub struct ClusterSecurityGroup_ {
 #[macro_export]
 macro_rules! __aws_redshift_ClusterSecurityGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Redshift::ClusterSecurityGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Redshift::ClusterSecurityGroup"
         $($field $value)*)
     };
 }
@@ -832,7 +832,7 @@ pub struct ClusterSecurityGroupIngress_ {
 #[macro_export]
 macro_rules! __aws_redshift_ClusterSecurityGroupIngress {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Redshift::ClusterSecurityGroupIngress"
+        stratosphere::generator::construct_resource_type!("AWS::Redshift::ClusterSecurityGroupIngress"
         $($field $value)*)
     };
 }
@@ -882,7 +882,7 @@ pub struct ClusterSubnetGroup_ {
 #[macro_export]
 macro_rules! __aws_redshift_ClusterSubnetGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Redshift::ClusterSubnetGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Redshift::ClusterSubnetGroup"
         $($field $value)*)
     };
 }
@@ -924,7 +924,7 @@ pub struct EndpointAccess_ {
 #[macro_export]
 macro_rules! __aws_redshift_EndpointAccess {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Redshift::EndpointAccess"
+        stratosphere::generator::construct_resource_type!("AWS::Redshift::EndpointAccess"
         $($field $value)*)
     };
 }
@@ -976,7 +976,7 @@ pub struct EndpointAuthorization_ {
 #[macro_export]
 macro_rules! __aws_redshift_EndpointAuthorization {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Redshift::EndpointAuthorization"
+        stratosphere::generator::construct_resource_type!("AWS::Redshift::EndpointAuthorization"
         $($field $value)*)
     };
 }
@@ -1024,7 +1024,7 @@ pub struct EventSubscription_ {
 #[macro_export]
 macro_rules! __aws_redshift_EventSubscription {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Redshift::EventSubscription"
+        stratosphere::generator::construct_resource_type!("AWS::Redshift::EventSubscription"
         $($field $value)*)
     };
 }
@@ -1100,7 +1100,7 @@ pub struct Integration_ {
 #[macro_export]
 macro_rules! __aws_redshift_Integration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Redshift::Integration"
+        stratosphere::generator::construct_resource_type!("AWS::Redshift::Integration"
         $($field $value)*)
     };
 }
@@ -1163,7 +1163,7 @@ pub struct ScheduledAction_ {
 #[macro_export]
 macro_rules! __aws_redshift_ScheduledAction {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Redshift::ScheduledAction"
+        stratosphere::generator::construct_resource_type!("AWS::Redshift::ScheduledAction"
         $($field $value)*)
     };
 }

@@ -7,7 +7,7 @@ pub mod configrule {
     #[macro_export]
     macro_rules! __aws_config_ConfigRule_Compliance {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConfigRule.Compliance"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConfigRule.Compliance"
             $($field $value)*)
         };
     }
@@ -31,7 +31,7 @@ pub mod configrule {
     #[macro_export]
     macro_rules! __aws_config_ConfigRule_CustomPolicyDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConfigRule.CustomPolicyDetails"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConfigRule.CustomPolicyDetails"
             $($field $value)*)
         };
     }
@@ -68,7 +68,7 @@ pub mod configrule {
     #[macro_export]
     macro_rules! __aws_config_ConfigRule_EvaluationModeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConfigRule.EvaluationModeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConfigRule.EvaluationModeConfiguration"
             $($field $value)*)
         };
     }
@@ -93,7 +93,7 @@ pub mod configrule {
     #[macro_export]
     macro_rules! __aws_config_ConfigRule_Scope {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConfigRule.Scope"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConfigRule.Scope"
             $($field $value)*)
         };
     }
@@ -136,7 +136,7 @@ pub mod configrule {
     #[macro_export]
     macro_rules! __aws_config_ConfigRule_Source {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConfigRule.Source"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConfigRule.Source"
             $($field $value)*)
         };
     }
@@ -179,7 +179,7 @@ pub mod configrule {
     #[macro_export]
     macro_rules! __aws_config_ConfigRule_SourceDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConfigRule.SourceDetail"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConfigRule.SourceDetail"
             $($field $value)*)
         };
     }
@@ -216,7 +216,7 @@ pub mod configurationaggregator {
     #[macro_export]
     macro_rules! __aws_config_ConfigurationAggregator_AccountAggregationSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConfigurationAggregator.AccountAggregationSource"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConfigurationAggregator.AccountAggregationSource"
             $($field $value)*)
         };
     }
@@ -253,7 +253,7 @@ pub mod configurationaggregator {
     #[macro_export]
     macro_rules! __aws_config_ConfigurationAggregator_OrganizationAggregationSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConfigurationAggregator.OrganizationAggregationSource"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConfigurationAggregator.OrganizationAggregationSource"
             $($field $value)*)
         };
     }
@@ -290,7 +290,7 @@ pub mod configurationrecorder {
     #[macro_export]
     macro_rules! __aws_config_ConfigurationRecorder_ExclusionByResourceTypes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConfigurationRecorder.ExclusionByResourceTypes"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConfigurationRecorder.ExclusionByResourceTypes"
             $($field $value)*)
         };
     }
@@ -317,7 +317,7 @@ pub mod configurationrecorder {
     #[macro_export]
     macro_rules! __aws_config_ConfigurationRecorder_RecordingGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConfigurationRecorder.RecordingGroup"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConfigurationRecorder.RecordingGroup"
             $($field $value)*)
         };
     }
@@ -367,7 +367,7 @@ pub mod configurationrecorder {
     #[macro_export]
     macro_rules! __aws_config_ConfigurationRecorder_RecordingMode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConfigurationRecorder.RecordingMode"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConfigurationRecorder.RecordingMode"
             $($field $value)*)
         };
     }
@@ -398,7 +398,7 @@ pub mod configurationrecorder {
     #[macro_export]
     macro_rules! __aws_config_ConfigurationRecorder_RecordingModeOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConfigurationRecorder.RecordingModeOverride"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConfigurationRecorder.RecordingModeOverride"
             $($field $value)*)
         };
     }
@@ -431,7 +431,7 @@ pub mod configurationrecorder {
     #[macro_export]
     macro_rules! __aws_config_ConfigurationRecorder_RecordingStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConfigurationRecorder.RecordingStrategy"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConfigurationRecorder.RecordingStrategy"
             $($field $value)*)
         };
     }
@@ -457,7 +457,7 @@ pub mod conformancepack {
     #[macro_export]
     macro_rules! __aws_config_ConformancePack_ConformancePackInputParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConformancePack.ConformancePackInputParameter"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConformancePack.ConformancePackInputParameter"
             $($field $value)*)
         };
     }
@@ -485,7 +485,7 @@ pub mod conformancepack {
     #[macro_export]
     macro_rules! __aws_config_ConformancePack_TemplateSSMDocumentDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::ConformancePack.TemplateSSMDocumentDetails"
+            stratosphere::generator::construct_property_type!("AWS::Config::ConformancePack.TemplateSSMDocumentDetails"
             $($field $value)*)
         };
     }
@@ -518,7 +518,7 @@ pub mod deliverychannel {
     #[macro_export]
     macro_rules! __aws_config_DeliveryChannel_ConfigSnapshotDeliveryProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::DeliveryChannel.ConfigSnapshotDeliveryProperties"
+            stratosphere::generator::construct_property_type!("AWS::Config::DeliveryChannel.ConfigSnapshotDeliveryProperties"
             $($field $value)*)
         };
     }
@@ -555,7 +555,7 @@ pub mod organizationconfigrule {
     #[macro_export]
     macro_rules! __aws_config_OrganizationConfigRule_OrganizationCustomPolicyRuleMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::OrganizationConfigRule.OrganizationCustomPolicyRuleMetadata"
+            stratosphere::generator::construct_property_type!("AWS::Config::OrganizationConfigRule.OrganizationCustomPolicyRuleMetadata"
             $($field $value)*)
         };
     }
@@ -644,7 +644,7 @@ pub mod organizationconfigrule {
     #[macro_export]
     macro_rules! __aws_config_OrganizationConfigRule_OrganizationCustomRuleMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::OrganizationConfigRule.OrganizationCustomRuleMetadata"
+            stratosphere::generator::construct_property_type!("AWS::Config::OrganizationConfigRule.OrganizationCustomRuleMetadata"
             $($field $value)*)
         };
     }
@@ -720,7 +720,7 @@ pub mod organizationconfigrule {
     #[macro_export]
     macro_rules! __aws_config_OrganizationConfigRule_OrganizationManagedRuleMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::OrganizationConfigRule.OrganizationManagedRuleMetadata"
+            stratosphere::generator::construct_property_type!("AWS::Config::OrganizationConfigRule.OrganizationManagedRuleMetadata"
             $($field $value)*)
         };
     }
@@ -788,7 +788,7 @@ pub mod organizationconformancepack {
     #[macro_export]
     macro_rules! __aws_config_OrganizationConformancePack_ConformancePackInputParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::OrganizationConformancePack.ConformancePackInputParameter"
+            stratosphere::generator::construct_property_type!("AWS::Config::OrganizationConformancePack.ConformancePackInputParameter"
             $($field $value)*)
         };
     }
@@ -817,7 +817,7 @@ pub mod remediationconfiguration {
     #[macro_export]
     macro_rules! __aws_config_RemediationConfiguration_ExecutionControls {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::RemediationConfiguration.ExecutionControls"
+            stratosphere::generator::construct_property_type!("AWS::Config::RemediationConfiguration.ExecutionControls"
             $($field $value)*)
         };
     }
@@ -843,7 +843,7 @@ pub mod remediationconfiguration {
     #[macro_export]
     macro_rules! __aws_config_RemediationConfiguration_RemediationParameterValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::RemediationConfiguration.RemediationParameterValue"
+            stratosphere::generator::construct_property_type!("AWS::Config::RemediationConfiguration.RemediationParameterValue"
             $($field $value)*)
         };
     }
@@ -874,7 +874,7 @@ pub mod remediationconfiguration {
     #[macro_export]
     macro_rules! __aws_config_RemediationConfiguration_ResourceValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::RemediationConfiguration.ResourceValue"
+            stratosphere::generator::construct_property_type!("AWS::Config::RemediationConfiguration.ResourceValue"
             $($field $value)*)
         };
     }
@@ -897,7 +897,7 @@ pub mod remediationconfiguration {
     #[macro_export]
     macro_rules! __aws_config_RemediationConfiguration_SsmControls {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::RemediationConfiguration.SsmControls"
+            stratosphere::generator::construct_property_type!("AWS::Config::RemediationConfiguration.SsmControls"
             $($field $value)*)
         };
     }
@@ -928,7 +928,7 @@ pub mod remediationconfiguration {
     #[macro_export]
     macro_rules! __aws_config_RemediationConfiguration_StaticValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Config::RemediationConfiguration.StaticValue"
+            stratosphere::generator::construct_property_type!("AWS::Config::RemediationConfiguration.StaticValue"
             $($field $value)*)
         };
     }
@@ -953,7 +953,7 @@ pub struct AggregationAuthorization_ {
 #[macro_export]
 macro_rules! __aws_config_AggregationAuthorization {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Config::AggregationAuthorization"
+        stratosphere::generator::construct_resource_type!("AWS::Config::AggregationAuthorization"
         $($field $value)*)
     };
 }
@@ -998,7 +998,7 @@ pub struct ConfigRule_ {
 #[macro_export]
 macro_rules! __aws_config_ConfigRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Config::ConfigRule"
+        stratosphere::generator::construct_resource_type!("AWS::Config::ConfigRule"
         $($field $value)*)
     };
 }
@@ -1073,7 +1073,7 @@ pub struct ConfigurationAggregator_ {
 #[macro_export]
 macro_rules! __aws_config_ConfigurationAggregator {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Config::ConfigurationAggregator"
+        stratosphere::generator::construct_resource_type!("AWS::Config::ConfigurationAggregator"
         $($field $value)*)
     };
 }
@@ -1124,7 +1124,7 @@ pub struct ConfigurationRecorder_ {
 #[macro_export]
 macro_rules! __aws_config_ConfigurationRecorder {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Config::ConfigurationRecorder"
+        stratosphere::generator::construct_resource_type!("AWS::Config::ConfigurationRecorder"
         $($field $value)*)
     };
 }
@@ -1178,7 +1178,7 @@ pub struct ConformancePack_ {
 #[macro_export]
 macro_rules! __aws_config_ConformancePack {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Config::ConformancePack"
+        stratosphere::generator::construct_resource_type!("AWS::Config::ConformancePack"
         $($field $value)*)
     };
 }
@@ -1251,7 +1251,7 @@ pub struct DeliveryChannel_ {
 #[macro_export]
 macro_rules! __aws_config_DeliveryChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Config::DeliveryChannel"
+        stratosphere::generator::construct_resource_type!("AWS::Config::DeliveryChannel"
         $($field $value)*)
     };
 }
@@ -1316,7 +1316,7 @@ pub struct OrganizationConfigRule_ {
 #[macro_export]
 macro_rules! __aws_config_OrganizationConfigRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Config::OrganizationConfigRule"
+        stratosphere::generator::construct_resource_type!("AWS::Config::OrganizationConfigRule"
         $($field $value)*)
     };
 }
@@ -1378,7 +1378,7 @@ pub struct OrganizationConformancePack_ {
 #[macro_export]
 macro_rules! __aws_config_OrganizationConformancePack {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Config::OrganizationConformancePack"
+        stratosphere::generator::construct_resource_type!("AWS::Config::OrganizationConformancePack"
         $($field $value)*)
     };
 }
@@ -1456,7 +1456,7 @@ pub struct RemediationConfiguration_ {
 #[macro_export]
 macro_rules! __aws_config_RemediationConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Config::RemediationConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::Config::RemediationConfiguration"
         $($field $value)*)
     };
 }
@@ -1540,7 +1540,7 @@ pub struct StoredQuery_ {
 #[macro_export]
 macro_rules! __aws_config_StoredQuery {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Config::StoredQuery"
+        stratosphere::generator::construct_resource_type!("AWS::Config::StoredQuery"
         $($field $value)*)
     };
 }
