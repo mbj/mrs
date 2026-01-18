@@ -8,7 +8,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_GatewayRouteHostnameMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GatewayRouteHostnameMatch"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GatewayRouteHostnameMatch"
             $($field $value)*)
         };
     }
@@ -33,7 +33,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_GatewayRouteHostnameRewrite {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GatewayRouteHostnameRewrite"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GatewayRouteHostnameRewrite"
             $($field $value)*)
         };
     }
@@ -62,7 +62,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_GatewayRouteMetadataMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GatewayRouteMetadataMatch"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GatewayRouteMetadataMatch"
             $($field $value)*)
         };
     }
@@ -97,7 +97,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_GatewayRouteRangeMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GatewayRouteRangeMatch"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GatewayRouteRangeMatch"
             $($field $value)*)
         };
     }
@@ -127,7 +127,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_GatewayRouteSpec {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GatewayRouteSpec"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GatewayRouteSpec"
             $($field $value)*)
         };
     }
@@ -171,7 +171,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_GatewayRouteTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GatewayRouteTarget"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GatewayRouteTarget"
             $($field $value)*)
         };
     }
@@ -197,7 +197,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_GatewayRouteVirtualService {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GatewayRouteVirtualService"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GatewayRouteVirtualService"
             $($field $value)*)
         };
     }
@@ -221,7 +221,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_GrpcGatewayRoute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GrpcGatewayRoute"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GrpcGatewayRoute"
             $($field $value)*)
         };
     }
@@ -249,7 +249,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_GrpcGatewayRouteAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GrpcGatewayRouteAction"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GrpcGatewayRouteAction"
             $($field $value)*)
         };
     }
@@ -281,7 +281,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_GrpcGatewayRouteMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GrpcGatewayRouteMatch"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GrpcGatewayRouteMatch"
             $($field $value)*)
         };
     }
@@ -323,7 +323,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_GrpcGatewayRouteMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GrpcGatewayRouteMetadata"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GrpcGatewayRouteMetadata"
             $($field $value)*)
         };
     }
@@ -352,7 +352,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_GrpcGatewayRouteRewrite {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GrpcGatewayRouteRewrite"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.GrpcGatewayRouteRewrite"
             $($field $value)*)
         };
     }
@@ -378,7 +378,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_HttpGatewayRoute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRoute"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRoute"
             $($field $value)*)
         };
     }
@@ -406,7 +406,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_HttpGatewayRouteAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRouteAction"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRouteAction"
             $($field $value)*)
         };
     }
@@ -437,7 +437,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_HttpGatewayRouteHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRouteHeader"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRouteHeader"
             $($field $value)*)
         };
     }
@@ -470,7 +470,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_HttpGatewayRouteHeaderMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRouteHeaderMatch"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRouteHeaderMatch"
             $($field $value)*)
         };
     }
@@ -510,7 +510,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_HttpGatewayRouteMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRouteMatch"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRouteMatch"
             $($field $value)*)
         };
     }
@@ -559,7 +559,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_HttpGatewayRoutePathRewrite {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRoutePathRewrite"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRoutePathRewrite"
             $($field $value)*)
         };
     }
@@ -582,7 +582,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_HttpGatewayRoutePrefixRewrite {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRoutePrefixRewrite"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRoutePrefixRewrite"
             $($field $value)*)
         };
     }
@@ -612,7 +612,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_HttpGatewayRouteRewrite {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRouteRewrite"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpGatewayRouteRewrite"
             $($field $value)*)
         };
     }
@@ -644,7 +644,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_HttpPathMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpPathMatch"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpPathMatch"
             $($field $value)*)
         };
     }
@@ -669,7 +669,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_HttpQueryParameterMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpQueryParameterMatch"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.HttpQueryParameterMatch"
             $($field $value)*)
         };
     }
@@ -692,7 +692,7 @@ pub mod gatewayroute {
     #[macro_export]
     macro_rules! __aws_appmesh_GatewayRoute_QueryParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::GatewayRoute.QueryParameter"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::GatewayRoute.QueryParameter"
             $($field $value)*)
         };
     }
@@ -720,7 +720,7 @@ pub mod mesh {
     #[macro_export]
     macro_rules! __aws_appmesh_Mesh_EgressFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Mesh.EgressFilter"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Mesh.EgressFilter"
             $($field $value)*)
         };
     }
@@ -743,7 +743,7 @@ pub mod mesh {
     #[macro_export]
     macro_rules! __aws_appmesh_Mesh_MeshServiceDiscovery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Mesh.MeshServiceDiscovery"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Mesh.MeshServiceDiscovery"
             $($field $value)*)
         };
     }
@@ -769,7 +769,7 @@ pub mod mesh {
     #[macro_export]
     macro_rules! __aws_appmesh_Mesh_MeshSpec {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Mesh.MeshSpec"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Mesh.MeshSpec"
             $($field $value)*)
         };
     }
@@ -803,7 +803,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_Duration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.Duration"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.Duration"
             $($field $value)*)
         };
     }
@@ -834,7 +834,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_GrpcRetryPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.GrpcRetryPolicy"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.GrpcRetryPolicy"
             $($field $value)*)
         };
     }
@@ -882,7 +882,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_GrpcRoute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.GrpcRoute"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.GrpcRoute"
             $($field $value)*)
         };
     }
@@ -921,7 +921,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_GrpcRouteAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.GrpcRouteAction"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.GrpcRouteAction"
             $($field $value)*)
         };
     }
@@ -947,7 +947,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_GrpcRouteMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.GrpcRouteMatch"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.GrpcRouteMatch"
             $($field $value)*)
         };
     }
@@ -989,7 +989,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_GrpcRouteMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.GrpcRouteMetadata"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.GrpcRouteMetadata"
             $($field $value)*)
         };
     }
@@ -1022,7 +1022,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_GrpcRouteMetadataMatchMethod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.GrpcRouteMetadataMatchMethod"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.GrpcRouteMetadataMatchMethod"
             $($field $value)*)
         };
     }
@@ -1057,7 +1057,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_GrpcTimeout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.GrpcTimeout"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.GrpcTimeout"
             $($field $value)*)
         };
     }
@@ -1089,7 +1089,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_HeaderMatchMethod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.HeaderMatchMethod"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.HeaderMatchMethod"
             $($field $value)*)
         };
     }
@@ -1124,7 +1124,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_HttpPathMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.HttpPathMatch"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.HttpPathMatch"
             $($field $value)*)
         };
     }
@@ -1149,7 +1149,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_HttpQueryParameterMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.HttpQueryParameterMatch"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.HttpQueryParameterMatch"
             $($field $value)*)
         };
     }
@@ -1174,7 +1174,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_HttpRetryPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.HttpRetryPolicy"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.HttpRetryPolicy"
             $($field $value)*)
         };
     }
@@ -1216,7 +1216,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_HttpRoute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.HttpRoute"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.HttpRoute"
             $($field $value)*)
         };
     }
@@ -1255,7 +1255,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_HttpRouteAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.HttpRouteAction"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.HttpRouteAction"
             $($field $value)*)
         };
     }
@@ -1280,7 +1280,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_HttpRouteHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.HttpRouteHeader"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.HttpRouteHeader"
             $($field $value)*)
         };
     }
@@ -1315,7 +1315,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_HttpRouteMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.HttpRouteMatch"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.HttpRouteMatch"
             $($field $value)*)
         };
     }
@@ -1362,7 +1362,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_HttpTimeout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.HttpTimeout"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.HttpTimeout"
             $($field $value)*)
         };
     }
@@ -1391,7 +1391,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_MatchRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.MatchRange"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.MatchRange"
             $($field $value)*)
         };
     }
@@ -1419,7 +1419,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_QueryParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.QueryParameter"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.QueryParameter"
             $($field $value)*)
         };
     }
@@ -1449,7 +1449,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_RouteSpec {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.RouteSpec"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.RouteSpec"
             $($field $value)*)
         };
     }
@@ -1500,7 +1500,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_TcpRoute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.TcpRoute"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.TcpRoute"
             $($field $value)*)
         };
     }
@@ -1532,7 +1532,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_TcpRouteAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.TcpRouteAction"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.TcpRouteAction"
             $($field $value)*)
         };
     }
@@ -1555,7 +1555,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_TcpRouteMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.TcpRouteMatch"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.TcpRouteMatch"
             $($field $value)*)
         };
     }
@@ -1577,7 +1577,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_TcpTimeout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.TcpTimeout"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.TcpTimeout"
             $($field $value)*)
         };
     }
@@ -1601,7 +1601,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_appmesh_Route_WeightedTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::Route.WeightedTarget"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::Route.WeightedTarget"
             $($field $value)*)
         };
     }
@@ -1634,7 +1634,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_JsonFormatRef {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.JsonFormatRef"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.JsonFormatRef"
             $($field $value)*)
         };
     }
@@ -1662,7 +1662,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_LoggingFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.LoggingFormat"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.LoggingFormat"
             $($field $value)*)
         };
     }
@@ -1687,7 +1687,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_SubjectAlternativeNameMatchers {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.SubjectAlternativeNameMatchers"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.SubjectAlternativeNameMatchers"
             $($field $value)*)
         };
     }
@@ -1709,7 +1709,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_SubjectAlternativeNames {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.SubjectAlternativeNames"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.SubjectAlternativeNames"
             $($field $value)*)
         };
     }
@@ -1732,7 +1732,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayAccessLog {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayAccessLog"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayAccessLog"
             $($field $value)*)
         };
     }
@@ -1754,7 +1754,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayBackendDefaults {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayBackendDefaults"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayBackendDefaults"
             $($field $value)*)
         };
     }
@@ -1779,7 +1779,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayClientPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayClientPolicy"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayClientPolicy"
             $($field $value)*)
         };
     }
@@ -1804,7 +1804,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayClientPolicyTls {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayClientPolicyTls"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayClientPolicyTls"
             $($field $value)*)
         };
     }
@@ -1843,7 +1843,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayClientTlsCertificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayClientTlsCertificate"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayClientTlsCertificate"
             $($field $value)*)
         };
     }
@@ -1870,7 +1870,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayConnectionPool {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayConnectionPool"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayConnectionPool"
             $($field $value)*)
         };
     }
@@ -1899,7 +1899,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayFileAccessLog {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayFileAccessLog"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayFileAccessLog"
             $($field $value)*)
         };
     }
@@ -1925,7 +1925,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayGrpcConnectionPool {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayGrpcConnectionPool"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayGrpcConnectionPool"
             $($field $value)*)
         };
     }
@@ -1954,7 +1954,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayHealthCheckPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayHealthCheckPolicy"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayHealthCheckPolicy"
             $($field $value)*)
         };
     }
@@ -1999,7 +1999,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayHttp2ConnectionPool {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayHttp2ConnectionPool"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayHttp2ConnectionPool"
             $($field $value)*)
         };
     }
@@ -2023,7 +2023,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayHttpConnectionPool {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayHttpConnectionPool"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayHttpConnectionPool"
             $($field $value)*)
         };
     }
@@ -2055,7 +2055,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayListener {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListener"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListener"
             $($field $value)*)
         };
     }
@@ -2095,7 +2095,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayListenerTls {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListenerTls"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListenerTls"
             $($field $value)*)
         };
     }
@@ -2128,7 +2128,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayListenerTlsAcmCertificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListenerTlsAcmCertificate"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListenerTlsAcmCertificate"
             $($field $value)*)
         };
     }
@@ -2153,7 +2153,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayListenerTlsCertificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListenerTlsCertificate"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListenerTlsCertificate"
             $($field $value)*)
         };
     }
@@ -2182,7 +2182,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayListenerTlsFileCertificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListenerTlsFileCertificate"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListenerTlsFileCertificate"
             $($field $value)*)
         };
     }
@@ -2209,7 +2209,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayListenerTlsSdsCertificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListenerTlsSdsCertificate"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListenerTlsSdsCertificate"
             $($field $value)*)
         };
     }
@@ -2233,7 +2233,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayListenerTlsValidationContext {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListenerTlsValidationContext"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListenerTlsValidationContext"
             $($field $value)*)
         };
     }
@@ -2263,7 +2263,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayListenerTlsValidationContextTrust {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListenerTlsValidationContextTrust"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayListenerTlsValidationContextTrust"
             $($field $value)*)
         };
     }
@@ -2288,7 +2288,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayLogging {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayLogging"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayLogging"
             $($field $value)*)
         };
     }
@@ -2314,7 +2314,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayPortMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayPortMapping"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayPortMapping"
             $($field $value)*)
         };
     }
@@ -2343,7 +2343,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewaySpec {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewaySpec"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewaySpec"
             $($field $value)*)
         };
     }
@@ -2379,7 +2379,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayTlsValidationContext {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayTlsValidationContext"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayTlsValidationContext"
             $($field $value)*)
         };
     }
@@ -2408,7 +2408,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayTlsValidationContextAcmTrust {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayTlsValidationContextAcmTrust"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayTlsValidationContextAcmTrust"
             $($field $value)*)
         };
     }
@@ -2431,7 +2431,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayTlsValidationContextFileTrust {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayTlsValidationContextFileTrust"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayTlsValidationContextFileTrust"
             $($field $value)*)
         };
     }
@@ -2454,7 +2454,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayTlsValidationContextSdsTrust {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayTlsValidationContextSdsTrust"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayTlsValidationContextSdsTrust"
             $($field $value)*)
         };
     }
@@ -2479,7 +2479,7 @@ pub mod virtualgateway {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualGateway_VirtualGatewayTlsValidationContextTrust {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayTlsValidationContextTrust"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualGateway.VirtualGatewayTlsValidationContextTrust"
             $($field $value)*)
         };
     }
@@ -2509,7 +2509,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_AccessLog {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.AccessLog"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.AccessLog"
             $($field $value)*)
         };
     }
@@ -2532,7 +2532,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_AwsCloudMapInstanceAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.AwsCloudMapInstanceAttribute"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.AwsCloudMapInstanceAttribute"
             $($field $value)*)
         };
     }
@@ -2562,7 +2562,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_AwsCloudMapServiceDiscovery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.AwsCloudMapServiceDiscovery"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.AwsCloudMapServiceDiscovery"
             $($field $value)*)
         };
     }
@@ -2601,7 +2601,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_Backend {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.Backend"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.Backend"
             $($field $value)*)
         };
     }
@@ -2626,7 +2626,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_BackendDefaults {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.BackendDefaults"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.BackendDefaults"
             $($field $value)*)
         };
     }
@@ -2651,7 +2651,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_ClientPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.ClientPolicy"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.ClientPolicy"
             $($field $value)*)
         };
     }
@@ -2676,7 +2676,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_ClientPolicyTls {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.ClientPolicyTls"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.ClientPolicyTls"
             $($field $value)*)
         };
     }
@@ -2715,7 +2715,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_ClientTlsCertificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.ClientTlsCertificate"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.ClientTlsCertificate"
             $($field $value)*)
         };
     }
@@ -2742,7 +2742,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_DnsServiceDiscovery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.DnsServiceDiscovery"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.DnsServiceDiscovery"
             $($field $value)*)
         };
     }
@@ -2778,7 +2778,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_Duration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.Duration"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.Duration"
             $($field $value)*)
         };
     }
@@ -2806,7 +2806,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_FileAccessLog {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.FileAccessLog"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.FileAccessLog"
             $($field $value)*)
         };
     }
@@ -2833,7 +2833,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_GrpcTimeout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.GrpcTimeout"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.GrpcTimeout"
             $($field $value)*)
         };
     }
@@ -2867,7 +2867,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_HealthCheck {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.HealthCheck"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.HealthCheck"
             $($field $value)*)
         };
     }
@@ -2913,7 +2913,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_HttpTimeout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.HttpTimeout"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.HttpTimeout"
             $($field $value)*)
         };
     }
@@ -2942,7 +2942,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_JsonFormatRef {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.JsonFormatRef"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.JsonFormatRef"
             $($field $value)*)
         };
     }
@@ -2974,7 +2974,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_Listener {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.Listener"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.Listener"
             $($field $value)*)
         };
     }
@@ -3027,7 +3027,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_ListenerTimeout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTimeout"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTimeout"
             $($field $value)*)
         };
     }
@@ -3060,7 +3060,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_ListenerTls {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTls"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTls"
             $($field $value)*)
         };
     }
@@ -3093,7 +3093,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_ListenerTlsAcmCertificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTlsAcmCertificate"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTlsAcmCertificate"
             $($field $value)*)
         };
     }
@@ -3118,7 +3118,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_ListenerTlsCertificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTlsCertificate"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTlsCertificate"
             $($field $value)*)
         };
     }
@@ -3147,7 +3147,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_ListenerTlsFileCertificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTlsFileCertificate"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTlsFileCertificate"
             $($field $value)*)
         };
     }
@@ -3174,7 +3174,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_ListenerTlsSdsCertificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTlsSdsCertificate"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTlsSdsCertificate"
             $($field $value)*)
         };
     }
@@ -3198,7 +3198,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_ListenerTlsValidationContext {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTlsValidationContext"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTlsValidationContext"
             $($field $value)*)
         };
     }
@@ -3228,7 +3228,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_ListenerTlsValidationContextTrust {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTlsValidationContextTrust"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.ListenerTlsValidationContextTrust"
             $($field $value)*)
         };
     }
@@ -3253,7 +3253,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_Logging {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.Logging"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.Logging"
             $($field $value)*)
         };
     }
@@ -3279,7 +3279,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_LoggingFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.LoggingFormat"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.LoggingFormat"
             $($field $value)*)
         };
     }
@@ -3307,7 +3307,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_OutlierDetection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.OutlierDetection"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.OutlierDetection"
             $($field $value)*)
         };
     }
@@ -3343,7 +3343,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_PortMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.PortMapping"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.PortMapping"
             $($field $value)*)
         };
     }
@@ -3371,7 +3371,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_ServiceDiscovery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.ServiceDiscovery"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.ServiceDiscovery"
             $($field $value)*)
         };
     }
@@ -3399,7 +3399,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_SubjectAlternativeNameMatchers {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.SubjectAlternativeNameMatchers"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.SubjectAlternativeNameMatchers"
             $($field $value)*)
         };
     }
@@ -3421,7 +3421,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_SubjectAlternativeNames {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.SubjectAlternativeNames"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.SubjectAlternativeNames"
             $($field $value)*)
         };
     }
@@ -3444,7 +3444,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_TcpTimeout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.TcpTimeout"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.TcpTimeout"
             $($field $value)*)
         };
     }
@@ -3467,7 +3467,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_TlsValidationContext {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.TlsValidationContext"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.TlsValidationContext"
             $($field $value)*)
         };
     }
@@ -3496,7 +3496,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_TlsValidationContextAcmTrust {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.TlsValidationContextAcmTrust"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.TlsValidationContextAcmTrust"
             $($field $value)*)
         };
     }
@@ -3519,7 +3519,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_TlsValidationContextFileTrust {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.TlsValidationContextFileTrust"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.TlsValidationContextFileTrust"
             $($field $value)*)
         };
     }
@@ -3542,7 +3542,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_TlsValidationContextSdsTrust {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.TlsValidationContextSdsTrust"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.TlsValidationContextSdsTrust"
             $($field $value)*)
         };
     }
@@ -3567,7 +3567,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_TlsValidationContextTrust {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.TlsValidationContextTrust"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.TlsValidationContextTrust"
             $($field $value)*)
         };
     }
@@ -3598,7 +3598,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_VirtualNodeConnectionPool {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.VirtualNodeConnectionPool"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.VirtualNodeConnectionPool"
             $($field $value)*)
         };
     }
@@ -3629,7 +3629,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_VirtualNodeGrpcConnectionPool {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.VirtualNodeGrpcConnectionPool"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.VirtualNodeGrpcConnectionPool"
             $($field $value)*)
         };
     }
@@ -3652,7 +3652,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_VirtualNodeHttp2ConnectionPool {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.VirtualNodeHttp2ConnectionPool"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.VirtualNodeHttp2ConnectionPool"
             $($field $value)*)
         };
     }
@@ -3676,7 +3676,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_VirtualNodeHttpConnectionPool {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.VirtualNodeHttpConnectionPool"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.VirtualNodeHttpConnectionPool"
             $($field $value)*)
         };
     }
@@ -3709,7 +3709,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_VirtualNodeSpec {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.VirtualNodeSpec"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.VirtualNodeSpec"
             $($field $value)*)
         };
     }
@@ -3758,7 +3758,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_VirtualNodeTcpConnectionPool {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.VirtualNodeTcpConnectionPool"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.VirtualNodeTcpConnectionPool"
             $($field $value)*)
         };
     }
@@ -3782,7 +3782,7 @@ pub mod virtualnode {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualNode_VirtualServiceBackend {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualNode.VirtualServiceBackend"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualNode.VirtualServiceBackend"
             $($field $value)*)
         };
     }
@@ -3814,7 +3814,7 @@ pub mod virtualrouter {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualRouter_PortMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualRouter.PortMapping"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualRouter.PortMapping"
             $($field $value)*)
         };
     }
@@ -3841,7 +3841,7 @@ pub mod virtualrouter {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualRouter_VirtualRouterListener {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualRouter.VirtualRouterListener"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualRouter.VirtualRouterListener"
             $($field $value)*)
         };
     }
@@ -3864,7 +3864,7 @@ pub mod virtualrouter {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualRouter_VirtualRouterSpec {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualRouter.VirtualRouterSpec"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualRouter.VirtualRouterSpec"
             $($field $value)*)
         };
     }
@@ -3889,7 +3889,7 @@ pub mod virtualservice {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualService_VirtualNodeServiceProvider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualService.VirtualNodeServiceProvider"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualService.VirtualNodeServiceProvider"
             $($field $value)*)
         };
     }
@@ -3912,7 +3912,7 @@ pub mod virtualservice {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualService_VirtualRouterServiceProvider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualService.VirtualRouterServiceProvider"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualService.VirtualRouterServiceProvider"
             $($field $value)*)
         };
     }
@@ -3936,7 +3936,7 @@ pub mod virtualservice {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualService_VirtualServiceProvider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualService.VirtualServiceProvider"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualService.VirtualServiceProvider"
             $($field $value)*)
         };
     }
@@ -3967,7 +3967,7 @@ pub mod virtualservice {
     #[macro_export]
     macro_rules! __aws_appmesh_VirtualService_VirtualServiceSpec {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppMesh::VirtualService.VirtualServiceSpec"
+            stratosphere::generator::construct_property_type!("AWS::AppMesh::VirtualService.VirtualServiceSpec"
             $($field $value)*)
         };
     }
@@ -3998,7 +3998,7 @@ pub struct GatewayRoute_ {
 #[macro_export]
 macro_rules! __aws_appmesh_GatewayRoute {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppMesh::GatewayRoute"
+        stratosphere::generator::construct_resource_type!("AWS::AppMesh::GatewayRoute"
         $($field $value)*)
     };
 }
@@ -4054,7 +4054,7 @@ pub struct Mesh_ {
 #[macro_export]
 macro_rules! __aws_appmesh_Mesh {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppMesh::Mesh" $($field
+        stratosphere::generator::construct_resource_type!("AWS::AppMesh::Mesh" $($field
         $value)*)
     };
 }
@@ -4098,7 +4098,7 @@ pub struct Route_ {
 #[macro_export]
 macro_rules! __aws_appmesh_Route {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppMesh::Route" $($field
+        stratosphere::generator::construct_resource_type!("AWS::AppMesh::Route" $($field
         $value)*)
     };
 }
@@ -4156,7 +4156,7 @@ pub struct VirtualGateway_ {
 #[macro_export]
 macro_rules! __aws_appmesh_VirtualGateway {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppMesh::VirtualGateway"
+        stratosphere::generator::construct_resource_type!("AWS::AppMesh::VirtualGateway"
         $($field $value)*)
     };
 }
@@ -4210,7 +4210,7 @@ pub struct VirtualNode_ {
 #[macro_export]
 macro_rules! __aws_appmesh_VirtualNode {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppMesh::VirtualNode"
+        stratosphere::generator::construct_resource_type!("AWS::AppMesh::VirtualNode"
         $($field $value)*)
     };
 }
@@ -4264,7 +4264,7 @@ pub struct VirtualRouter_ {
 #[macro_export]
 macro_rules! __aws_appmesh_VirtualRouter {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppMesh::VirtualRouter"
+        stratosphere::generator::construct_resource_type!("AWS::AppMesh::VirtualRouter"
         $($field $value)*)
     };
 }
@@ -4318,7 +4318,7 @@ pub struct VirtualService_ {
 #[macro_export]
 macro_rules! __aws_appmesh_VirtualService {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppMesh::VirtualService"
+        stratosphere::generator::construct_resource_type!("AWS::AppMesh::VirtualService"
         $($field $value)*)
     };
 }

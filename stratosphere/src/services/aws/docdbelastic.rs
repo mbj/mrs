@@ -19,7 +19,7 @@ pub struct Cluster_ {
 #[macro_export]
 macro_rules! __aws_docdbelastic_Cluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DocDBElastic::Cluster"
+        stratosphere::generator::construct_resource_type!("AWS::DocDBElastic::Cluster"
         $($field $value)*)
     };
 }

@@ -8,7 +8,7 @@ pub mod notificationrule {
     #[macro_export]
     macro_rules! __aws_codestarnotifications_NotificationRule_Target {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeStarNotifications::NotificationRule.Target"
+            stratosphere::generator::construct_property_type!("AWS::CodeStarNotifications::NotificationRule.Target"
             $($field $value)*)
         };
     }
@@ -45,7 +45,7 @@ pub struct NotificationRule_ {
 #[macro_export]
 macro_rules! __aws_codestarnotifications_NotificationRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeStarNotifications::NotificationRule"
+        stratosphere::generator::construct_resource_type!("AWS::CodeStarNotifications::NotificationRule"
         $($field $value)*)
     };
 }

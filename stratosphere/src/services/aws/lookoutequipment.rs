@@ -9,7 +9,7 @@ pub mod inferencescheduler {
     #[macro_export]
     macro_rules! __aws_lookoutequipment_InferenceScheduler_DataInputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutEquipment::InferenceScheduler.DataInputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::LookoutEquipment::InferenceScheduler.DataInputConfiguration"
             $($field $value)*)
         };
     }
@@ -45,7 +45,7 @@ pub mod inferencescheduler {
     #[macro_export]
     macro_rules! __aws_lookoutequipment_InferenceScheduler_DataOutputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutEquipment::InferenceScheduler.DataOutputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::LookoutEquipment::InferenceScheduler.DataOutputConfiguration"
             $($field $value)*)
         };
     }
@@ -75,7 +75,7 @@ pub mod inferencescheduler {
     #[macro_export]
     macro_rules! __aws_lookoutequipment_InferenceScheduler_InputNameConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutEquipment::InferenceScheduler.InputNameConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::LookoutEquipment::InferenceScheduler.InputNameConfiguration"
             $($field $value)*)
         };
     }
@@ -107,7 +107,7 @@ pub mod inferencescheduler {
     #[macro_export]
     macro_rules! __aws_lookoutequipment_InferenceScheduler_S3InputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutEquipment::InferenceScheduler.S3InputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::LookoutEquipment::InferenceScheduler.S3InputConfiguration"
             $($field $value)*)
         };
     }
@@ -134,7 +134,7 @@ pub mod inferencescheduler {
     #[macro_export]
     macro_rules! __aws_lookoutequipment_InferenceScheduler_S3OutputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LookoutEquipment::InferenceScheduler.S3OutputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::LookoutEquipment::InferenceScheduler.S3OutputConfiguration"
             $($field $value)*)
         };
     }
@@ -171,7 +171,7 @@ pub struct InferenceScheduler_ {
 #[macro_export]
 macro_rules! __aws_lookoutequipment_InferenceScheduler {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::LookoutEquipment::InferenceScheduler"
+        stratosphere::generator::construct_resource_type!("AWS::LookoutEquipment::InferenceScheduler"
         $($field $value)*)
     };
 }

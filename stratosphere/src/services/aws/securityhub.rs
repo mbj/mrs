@@ -8,7 +8,7 @@ pub mod automationrule {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRule_AutomationRulesAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRule.AutomationRulesAction"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRule.AutomationRulesAction"
             $($field $value)*)
         };
     }
@@ -44,7 +44,7 @@ pub mod automationrule {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRule_AutomationRulesFindingFieldsUpdate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRule.AutomationRulesFindingFieldsUpdate"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRule.AutomationRulesFindingFieldsUpdate"
             $($field $value)*)
         };
     }
@@ -145,7 +145,7 @@ pub mod automationrule {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRule_AutomationRulesFindingFilters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRule.AutomationRulesFindingFilters"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRule.AutomationRulesFindingFilters"
             $($field $value)*)
         };
     }
@@ -367,7 +367,7 @@ pub mod automationrule {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRule_DateFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRule.DateFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRule.DateFilter"
             $($field $value)*)
         };
     }
@@ -399,7 +399,7 @@ pub mod automationrule {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRule_DateRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRule.DateRange"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRule.DateRange"
             $($field $value)*)
         };
     }
@@ -428,7 +428,7 @@ pub mod automationrule {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRule_MapFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRule.MapFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRule.MapFilter"
             $($field $value)*)
         };
     }
@@ -460,7 +460,7 @@ pub mod automationrule {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRule_NoteUpdate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRule.NoteUpdate"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRule.NoteUpdate"
             $($field $value)*)
         };
     }
@@ -489,7 +489,7 @@ pub mod automationrule {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRule_NumberFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRule.NumberFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRule.NumberFilter"
             $($field $value)*)
         };
     }
@@ -518,7 +518,7 @@ pub mod automationrule {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRule_RelatedFinding {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRule.RelatedFinding"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRule.RelatedFinding"
             $($field $value)*)
         };
     }
@@ -544,7 +544,7 @@ pub mod automationrule {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRule_SeverityUpdate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRule.SeverityUpdate"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRule.SeverityUpdate"
             $($field $value)*)
         };
     }
@@ -579,7 +579,7 @@ pub mod automationrule {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRule_StringFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRule.StringFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRule.StringFilter"
             $($field $value)*)
         };
     }
@@ -606,7 +606,7 @@ pub mod automationrule {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRule_WorkflowUpdate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRule.WorkflowUpdate"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRule.WorkflowUpdate"
             $($field $value)*)
         };
     }
@@ -633,7 +633,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_AutomationRulesActionV2 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.AutomationRulesActionV2"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.AutomationRulesActionV2"
             $($field $value)*)
         };
     }
@@ -670,7 +670,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_AutomationRulesFindingFieldsUpdateV2 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.AutomationRulesFindingFieldsUpdateV2"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.AutomationRulesFindingFieldsUpdateV2"
             $($field $value)*)
         };
     }
@@ -707,7 +707,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_BooleanFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.BooleanFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.BooleanFilter"
             $($field $value)*)
         };
     }
@@ -735,7 +735,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_CompositeFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.CompositeFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.CompositeFilter"
             $($field $value)*)
         };
     }
@@ -790,7 +790,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_Criteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.Criteria"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.Criteria"
             $($field $value)*)
         };
     }
@@ -817,7 +817,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_DateFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.DateFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.DateFilter"
             $($field $value)*)
         };
     }
@@ -849,7 +849,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_DateRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.DateRange"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.DateRange"
             $($field $value)*)
         };
     }
@@ -876,7 +876,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_ExternalIntegrationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.ExternalIntegrationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.ExternalIntegrationConfiguration"
             $($field $value)*)
         };
     }
@@ -903,7 +903,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_MapFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.MapFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.MapFilter"
             $($field $value)*)
         };
     }
@@ -936,7 +936,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_NumberFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.NumberFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.NumberFilter"
             $($field $value)*)
         };
     }
@@ -965,7 +965,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_OcsfBooleanFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.OcsfBooleanFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.OcsfBooleanFilter"
             $($field $value)*)
         };
     }
@@ -993,7 +993,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_OcsfDateFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.OcsfDateFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.OcsfDateFilter"
             $($field $value)*)
         };
     }
@@ -1021,7 +1021,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_OcsfFindingFilters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.OcsfFindingFilters"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.OcsfFindingFilters"
             $($field $value)*)
         };
     }
@@ -1053,7 +1053,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_OcsfMapFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.OcsfMapFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.OcsfMapFilter"
             $($field $value)*)
         };
     }
@@ -1081,7 +1081,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_OcsfNumberFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.OcsfNumberFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.OcsfNumberFilter"
             $($field $value)*)
         };
     }
@@ -1109,7 +1109,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_OcsfStringFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.OcsfStringFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.OcsfStringFilter"
             $($field $value)*)
         };
     }
@@ -1137,7 +1137,7 @@ pub mod automationrulev2 {
     #[macro_export]
     macro_rules! __aws_securityhub_AutomationRuleV2_StringFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.StringFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::AutomationRuleV2.StringFilter"
             $($field $value)*)
         };
     }
@@ -1167,7 +1167,7 @@ pub mod configurationpolicy {
     #[macro_export]
     macro_rules! __aws_securityhub_ConfigurationPolicy_ParameterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::ConfigurationPolicy.ParameterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::ConfigurationPolicy.ParameterConfiguration"
             $($field $value)*)
         };
     }
@@ -1200,7 +1200,7 @@ pub mod configurationpolicy {
     #[macro_export]
     macro_rules! __aws_securityhub_ConfigurationPolicy_ParameterValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::ConfigurationPolicy.ParameterValue"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::ConfigurationPolicy.ParameterValue"
             $($field $value)*)
         };
     }
@@ -1258,7 +1258,7 @@ pub mod configurationpolicy {
     #[macro_export]
     macro_rules! __aws_securityhub_ConfigurationPolicy_Policy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::ConfigurationPolicy.Policy"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::ConfigurationPolicy.Policy"
             $($field $value)*)
         };
     }
@@ -1284,7 +1284,7 @@ pub mod configurationpolicy {
     #[macro_export]
     macro_rules! __aws_securityhub_ConfigurationPolicy_SecurityControlCustomParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::ConfigurationPolicy.SecurityControlCustomParameter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::ConfigurationPolicy.SecurityControlCustomParameter"
             $($field $value)*)
         };
     }
@@ -1317,7 +1317,7 @@ pub mod configurationpolicy {
     #[macro_export]
     macro_rules! __aws_securityhub_ConfigurationPolicy_SecurityControlsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::ConfigurationPolicy.SecurityControlsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::ConfigurationPolicy.SecurityControlsConfiguration"
             $($field $value)*)
         };
     }
@@ -1356,7 +1356,7 @@ pub mod configurationpolicy {
     #[macro_export]
     macro_rules! __aws_securityhub_ConfigurationPolicy_SecurityHubPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::ConfigurationPolicy.SecurityHubPolicy"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::ConfigurationPolicy.SecurityHubPolicy"
             $($field $value)*)
         };
     }
@@ -1494,7 +1494,7 @@ pub mod insight {
     #[macro_export]
     macro_rules! __aws_securityhub_Insight_AwsSecurityFindingFilters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::Insight.AwsSecurityFindingFilters"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::Insight.AwsSecurityFindingFilters"
             $($field $value)*)
         };
     }
@@ -2098,7 +2098,7 @@ pub mod insight {
     #[macro_export]
     macro_rules! __aws_securityhub_Insight_BooleanFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::Insight.BooleanFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::Insight.BooleanFilter"
             $($field $value)*)
         };
     }
@@ -2123,7 +2123,7 @@ pub mod insight {
     #[macro_export]
     macro_rules! __aws_securityhub_Insight_DateFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::Insight.DateFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::Insight.DateFilter"
             $($field $value)*)
         };
     }
@@ -2155,7 +2155,7 @@ pub mod insight {
     #[macro_export]
     macro_rules! __aws_securityhub_Insight_DateRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::Insight.DateRange"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::Insight.DateRange"
             $($field $value)*)
         };
     }
@@ -2182,7 +2182,7 @@ pub mod insight {
     #[macro_export]
     macro_rules! __aws_securityhub_Insight_IpFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::Insight.IpFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::Insight.IpFilter"
             $($field $value)*)
         };
     }
@@ -2207,7 +2207,7 @@ pub mod insight {
     #[macro_export]
     macro_rules! __aws_securityhub_Insight_MapFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::Insight.MapFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::Insight.MapFilter"
             $($field $value)*)
         };
     }
@@ -2240,7 +2240,7 @@ pub mod insight {
     #[macro_export]
     macro_rules! __aws_securityhub_Insight_NumberFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::Insight.NumberFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::Insight.NumberFilter"
             $($field $value)*)
         };
     }
@@ -2269,7 +2269,7 @@ pub mod insight {
     #[macro_export]
     macro_rules! __aws_securityhub_Insight_StringFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::Insight.StringFilter"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::Insight.StringFilter"
             $($field $value)*)
         };
     }
@@ -2299,7 +2299,7 @@ pub mod securitycontrol {
     #[macro_export]
     macro_rules! __aws_securityhub_SecurityControl_ParameterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::SecurityControl.ParameterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::SecurityControl.ParameterConfiguration"
             $($field $value)*)
         };
     }
@@ -2332,7 +2332,7 @@ pub mod securitycontrol {
     #[macro_export]
     macro_rules! __aws_securityhub_SecurityControl_ParameterValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::SecurityControl.ParameterValue"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::SecurityControl.ParameterValue"
             $($field $value)*)
         };
     }
@@ -2393,7 +2393,7 @@ pub mod standard {
     #[macro_export]
     macro_rules! __aws_securityhub_Standard_StandardsControl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityHub::Standard.StandardsControl"
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::Standard.StandardsControl"
             $($field $value)*)
         };
     }
@@ -2422,7 +2422,7 @@ pub struct AggregatorV2_ {
 #[macro_export]
 macro_rules! __aws_securityhub_AggregatorV2 {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityHub::AggregatorV2"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::AggregatorV2"
         $($field $value)*)
     };
 }
@@ -2467,7 +2467,7 @@ pub struct AutomationRule_ {
 #[macro_export]
 macro_rules! __aws_securityhub_AutomationRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityHub::AutomationRule"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::AutomationRule"
         $($field $value)*)
     };
 }
@@ -2535,7 +2535,7 @@ pub struct AutomationRuleV2_ {
 #[macro_export]
 macro_rules! __aws_securityhub_AutomationRuleV2 {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityHub::AutomationRuleV2"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::AutomationRuleV2"
         $($field $value)*)
     };
 }
@@ -2594,7 +2594,7 @@ pub struct ConfigurationPolicy_ {
 #[macro_export]
 macro_rules! __aws_securityhub_ConfigurationPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityHub::ConfigurationPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::ConfigurationPolicy"
         $($field $value)*)
     };
 }
@@ -2638,7 +2638,7 @@ pub struct DelegatedAdmin_ {
 #[macro_export]
 macro_rules! __aws_securityhub_DelegatedAdmin {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityHub::DelegatedAdmin"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::DelegatedAdmin"
         $($field $value)*)
     };
 }
@@ -2670,7 +2670,7 @@ pub struct FindingAggregator_ {
 #[macro_export]
 macro_rules! __aws_securityhub_FindingAggregator {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityHub::FindingAggregator"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::FindingAggregator"
         $($field $value)*)
     };
 }
@@ -2710,8 +2710,8 @@ pub struct Hub_ {
 #[macro_export]
 macro_rules! __aws_securityhub_Hub {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityHub::Hub" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::Hub"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_securityhub_Hub as Hub;
@@ -2758,7 +2758,7 @@ pub struct HubV2_ {
 #[macro_export]
 macro_rules! __aws_securityhub_HubV2 {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityHub::HubV2"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::HubV2"
         $($field $value)*)
     };
 }
@@ -2790,7 +2790,7 @@ pub struct Insight_ {
 #[macro_export]
 macro_rules! __aws_securityhub_Insight {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityHub::Insight"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::Insight"
         $($field $value)*)
     };
 }
@@ -2831,7 +2831,7 @@ pub struct OrganizationConfiguration_ {
 #[macro_export]
 macro_rules! __aws_securityhub_OrganizationConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityHub::OrganizationConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::OrganizationConfiguration"
         $($field $value)*)
     };
 }
@@ -2876,7 +2876,7 @@ pub struct PolicyAssociation_ {
 #[macro_export]
 macro_rules! __aws_securityhub_PolicyAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityHub::PolicyAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::PolicyAssociation"
         $($field $value)*)
     };
 }
@@ -2915,7 +2915,7 @@ pub struct ProductSubscription_ {
 #[macro_export]
 macro_rules! __aws_securityhub_ProductSubscription {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityHub::ProductSubscription"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::ProductSubscription"
         $($field $value)*)
     };
 }
@@ -2952,7 +2952,7 @@ pub struct SecurityControl_ {
 #[macro_export]
 macro_rules! __aws_securityhub_SecurityControl {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityHub::SecurityControl"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::SecurityControl"
         $($field $value)*)
     };
 }
@@ -3002,7 +3002,7 @@ pub struct Standard_ {
 #[macro_export]
 macro_rules! __aws_securityhub_Standard {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityHub::Standard"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::Standard"
         $($field $value)*)
     };
 }

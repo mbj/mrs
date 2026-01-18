@@ -24,7 +24,7 @@ pub mod computeenvironment {
     #[macro_export]
     macro_rules! __aws_batch_ComputeEnvironment_ComputeResources {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::ComputeEnvironment.ComputeResources"
+            stratosphere::generator::construct_property_type!("AWS::Batch::ComputeEnvironment.ComputeResources"
             $($field $value)*)
         };
     }
@@ -144,7 +144,7 @@ pub mod computeenvironment {
     #[macro_export]
     macro_rules! __aws_batch_ComputeEnvironment_Ec2ConfigurationObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::ComputeEnvironment.Ec2ConfigurationObject"
+            stratosphere::generator::construct_property_type!("AWS::Batch::ComputeEnvironment.Ec2ConfigurationObject"
             $($field $value)*)
         };
     }
@@ -180,7 +180,7 @@ pub mod computeenvironment {
     #[macro_export]
     macro_rules! __aws_batch_ComputeEnvironment_EksConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::ComputeEnvironment.EksConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Batch::ComputeEnvironment.EksConfiguration"
             $($field $value)*)
         };
     }
@@ -211,7 +211,7 @@ pub mod computeenvironment {
     #[macro_export]
     macro_rules! __aws_batch_ComputeEnvironment_LaunchTemplateSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::ComputeEnvironment.LaunchTemplateSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Batch::ComputeEnvironment.LaunchTemplateSpecification"
             $($field $value)*)
         };
     }
@@ -264,7 +264,7 @@ pub mod computeenvironment {
     #[macro_export]
     macro_rules! __aws_batch_ComputeEnvironment_LaunchTemplateSpecificationOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::ComputeEnvironment.LaunchTemplateSpecificationOverride"
+            stratosphere::generator::construct_property_type!("AWS::Batch::ComputeEnvironment.LaunchTemplateSpecificationOverride"
             $($field $value)*)
         };
     }
@@ -314,7 +314,7 @@ pub mod computeenvironment {
     #[macro_export]
     macro_rules! __aws_batch_ComputeEnvironment_UpdatePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::ComputeEnvironment.UpdatePolicy"
+            stratosphere::generator::construct_property_type!("AWS::Batch::ComputeEnvironment.UpdatePolicy"
             $($field $value)*)
         };
     }
@@ -347,7 +347,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_ConsumableResourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.ConsumableResourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.ConsumableResourceProperties"
             $($field $value)*)
         };
     }
@@ -371,7 +371,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_ConsumableResourceRequirement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.ConsumableResourceRequirement"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.ConsumableResourceRequirement"
             $($field $value)*)
         };
     }
@@ -420,7 +420,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_ContainerProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.ContainerProperties"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.ContainerProperties"
             $($field $value)*)
         };
     }
@@ -568,7 +568,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_Device {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.Device"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.Device"
             $($field $value)*)
         };
     }
@@ -606,7 +606,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EFSAuthorizationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EFSAuthorizationConfig"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EFSAuthorizationConfig"
             $($field $value)*)
         };
     }
@@ -638,7 +638,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EFSVolumeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EFSVolumeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EFSVolumeConfiguration"
             $($field $value)*)
         };
     }
@@ -685,7 +685,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EcsProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EcsProperties"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EcsProperties"
             $($field $value)*)
         };
     }
@@ -718,7 +718,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EcsTaskProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EcsTaskProperties"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EcsTaskProperties"
             $($field $value)*)
         };
     }
@@ -811,7 +811,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EksContainer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EksContainer"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EksContainer"
             $($field $value)*)
         };
     }
@@ -874,7 +874,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EksContainerEnvironmentVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EksContainerEnvironmentVariable"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EksContainerEnvironmentVariable"
             $($field $value)*)
         };
     }
@@ -901,7 +901,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EksContainerResourceRequirements {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EksContainerResourceRequirements"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EksContainerResourceRequirements"
             $($field $value)*)
         };
     }
@@ -934,7 +934,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EksContainerSecurityContext {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EksContainerSecurityContext"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EksContainerSecurityContext"
             $($field $value)*)
         };
     }
@@ -992,7 +992,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EksContainerVolumeMount {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EksContainerVolumeMount"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EksContainerVolumeMount"
             $($field $value)*)
         };
     }
@@ -1033,7 +1033,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EksEmptyDir {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EksEmptyDir"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EksEmptyDir"
             $($field $value)*)
         };
     }
@@ -1061,7 +1061,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EksHostPath {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EksHostPath"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EksHostPath"
             $($field $value)*)
         };
     }
@@ -1085,7 +1085,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EksMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EksMetadata"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EksMetadata"
             $($field $value)*)
         };
     }
@@ -1120,7 +1120,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EksPersistentVolumeClaim {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EksPersistentVolumeClaim"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EksPersistentVolumeClaim"
             $($field $value)*)
         };
     }
@@ -1157,7 +1157,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EksPodProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EksPodProperties"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EksPodProperties"
             $($field $value)*)
         };
     }
@@ -1230,7 +1230,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EksProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EksProperties"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EksProperties"
             $($field $value)*)
         };
     }
@@ -1256,7 +1256,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EksSecret {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EksSecret"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EksSecret"
             $($field $value)*)
         };
     }
@@ -1289,7 +1289,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EksVolume {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EksVolume"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EksVolume"
             $($field $value)*)
         };
     }
@@ -1334,7 +1334,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_Environment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.Environment"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.Environment"
             $($field $value)*)
         };
     }
@@ -1359,7 +1359,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EphemeralStorage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EphemeralStorage"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EphemeralStorage"
             $($field $value)*)
         };
     }
@@ -1385,7 +1385,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_EvaluateOnExit {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.EvaluateOnExit"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.EvaluateOnExit"
             $($field $value)*)
         };
     }
@@ -1426,7 +1426,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_FargatePlatformConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.FargatePlatformConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.FargatePlatformConfiguration"
             $($field $value)*)
         };
     }
@@ -1452,7 +1452,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_FirelensConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.FirelensConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.FirelensConfiguration"
             $($field $value)*)
         };
     }
@@ -1481,7 +1481,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_Host {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.Host"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.Host"
             $($field $value)*)
         };
     }
@@ -1506,7 +1506,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_ImagePullSecret {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.ImagePullSecret"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.ImagePullSecret"
             $($field $value)*)
         };
     }
@@ -1528,7 +1528,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_JobTimeout {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.JobTimeout"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.JobTimeout"
             $($field $value)*)
         };
     }
@@ -1558,7 +1558,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_LinuxParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.LinuxParameters"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.LinuxParameters"
             $($field $value)*)
         };
     }
@@ -1612,7 +1612,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_LogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.LogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.LogConfiguration"
             $($field $value)*)
         };
     }
@@ -1649,7 +1649,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_MountPoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.MountPoint"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.MountPoint"
             $($field $value)*)
         };
     }
@@ -1707,7 +1707,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_MultiNodeContainerProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.MultiNodeContainerProperties"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.MultiNodeContainerProperties"
             $($field $value)*)
         };
     }
@@ -1847,7 +1847,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_MultiNodeEcsProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.MultiNodeEcsProperties"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.MultiNodeEcsProperties"
             $($field $value)*)
         };
     }
@@ -1876,7 +1876,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_MultiNodeEcsTaskProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.MultiNodeEcsTaskProperties"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.MultiNodeEcsTaskProperties"
             $($field $value)*)
         };
     }
@@ -1937,7 +1937,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_NetworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.NetworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.NetworkConfiguration"
             $($field $value)*)
         };
     }
@@ -1964,7 +1964,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_NodeProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.NodeProperties"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.NodeProperties"
             $($field $value)*)
         };
     }
@@ -2000,7 +2000,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_NodeRangeProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.NodeRangeProperty"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.NodeRangeProperty"
             $($field $value)*)
         };
     }
@@ -2053,7 +2053,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_RepositoryCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.RepositoryCredentials"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.RepositoryCredentials"
             $($field $value)*)
         };
     }
@@ -2077,7 +2077,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_ResourceRequirement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.ResourceRequirement"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.ResourceRequirement"
             $($field $value)*)
         };
     }
@@ -2103,7 +2103,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_RetryStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.RetryStrategy"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.RetryStrategy"
             $($field $value)*)
         };
     }
@@ -2135,7 +2135,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_RuntimePlatform {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.RuntimePlatform"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.RuntimePlatform"
             $($field $value)*)
         };
     }
@@ -2167,7 +2167,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_Secret {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.Secret"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.Secret"
             $($field $value)*)
         };
     }
@@ -2195,7 +2195,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_TaskContainerDependency {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.TaskContainerDependency"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.TaskContainerDependency"
             $($field $value)*)
         };
     }
@@ -2238,7 +2238,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_TaskContainerProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.TaskContainerProperties"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.TaskContainerProperties"
             $($field $value)*)
         };
     }
@@ -2353,7 +2353,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_Tmpfs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.Tmpfs"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.Tmpfs"
             $($field $value)*)
         };
     }
@@ -2388,7 +2388,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_Ulimit {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.Ulimit"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.Ulimit"
             $($field $value)*)
         };
     }
@@ -2421,7 +2421,7 @@ pub mod jobdefinition {
     #[macro_export]
     macro_rules! __aws_batch_JobDefinition_Volume {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobDefinition.Volume"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.Volume"
             $($field $value)*)
         };
     }
@@ -2455,7 +2455,7 @@ pub mod jobqueue {
     #[macro_export]
     macro_rules! __aws_batch_JobQueue_ComputeEnvironmentOrder {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobQueue.ComputeEnvironmentOrder"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobQueue.ComputeEnvironmentOrder"
             $($field $value)*)
         };
     }
@@ -2485,7 +2485,7 @@ pub mod jobqueue {
     #[macro_export]
     macro_rules! __aws_batch_JobQueue_JobStateTimeLimitAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobQueue.JobStateTimeLimitAction"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobQueue.JobStateTimeLimitAction"
             $($field $value)*)
         };
     }
@@ -2521,7 +2521,7 @@ pub mod jobqueue {
     #[macro_export]
     macro_rules! __aws_batch_JobQueue_ServiceEnvironmentOrder {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::JobQueue.ServiceEnvironmentOrder"
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobQueue.ServiceEnvironmentOrder"
             $($field $value)*)
         };
     }
@@ -2552,7 +2552,7 @@ pub mod schedulingpolicy {
     #[macro_export]
     macro_rules! __aws_batch_SchedulingPolicy_FairsharePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::SchedulingPolicy.FairsharePolicy"
+            stratosphere::generator::construct_property_type!("AWS::Batch::SchedulingPolicy.FairsharePolicy"
             $($field $value)*)
         };
     }
@@ -2590,7 +2590,7 @@ pub mod schedulingpolicy {
     #[macro_export]
     macro_rules! __aws_batch_SchedulingPolicy_ShareAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::SchedulingPolicy.ShareAttributes"
+            stratosphere::generator::construct_property_type!("AWS::Batch::SchedulingPolicy.ShareAttributes"
             $($field $value)*)
         };
     }
@@ -2624,7 +2624,7 @@ pub mod serviceenvironment {
     #[macro_export]
     macro_rules! __aws_batch_ServiceEnvironment_CapacityLimit {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Batch::ServiceEnvironment.CapacityLimit"
+            stratosphere::generator::construct_property_type!("AWS::Batch::ServiceEnvironment.CapacityLimit"
             $($field $value)*)
         };
     }
@@ -2666,7 +2666,7 @@ pub struct ComputeEnvironment_ {
 #[macro_export]
 macro_rules! __aws_batch_ComputeEnvironment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Batch::ComputeEnvironment"
+        stratosphere::generator::construct_resource_type!("AWS::Batch::ComputeEnvironment"
         $($field $value)*)
     };
 }
@@ -2754,7 +2754,7 @@ pub struct ConsumableResource_ {
 #[macro_export]
 macro_rules! __aws_batch_ConsumableResource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Batch::ConsumableResource"
+        stratosphere::generator::construct_resource_type!("AWS::Batch::ConsumableResource"
         $($field $value)*)
     };
 }
@@ -2812,7 +2812,7 @@ pub struct JobDefinition_ {
 #[macro_export]
 macro_rules! __aws_batch_JobDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Batch::JobDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::Batch::JobDefinition"
         $($field $value)*)
     };
 }
@@ -2926,7 +2926,7 @@ pub struct JobQueue_ {
 #[macro_export]
 macro_rules! __aws_batch_JobQueue {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Batch::JobQueue" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Batch::JobQueue" $($field
         $value)*)
     };
 }
@@ -3001,7 +3001,7 @@ pub struct SchedulingPolicy_ {
 #[macro_export]
 macro_rules! __aws_batch_SchedulingPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Batch::SchedulingPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::Batch::SchedulingPolicy"
         $($field $value)*)
     };
 }
@@ -3044,7 +3044,7 @@ pub struct ServiceEnvironment_ {
 #[macro_export]
 macro_rules! __aws_batch_ServiceEnvironment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Batch::ServiceEnvironment"
+        stratosphere::generator::construct_resource_type!("AWS::Batch::ServiceEnvironment"
         $($field $value)*)
     };
 }

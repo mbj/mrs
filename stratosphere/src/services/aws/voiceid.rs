@@ -7,7 +7,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_voiceid_Domain_ServerSideEncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VoiceID::Domain.ServerSideEncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::VoiceID::Domain.ServerSideEncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -35,7 +35,7 @@ pub struct Domain_ {
 #[macro_export]
 macro_rules! __aws_voiceid_Domain {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VoiceID::Domain" $($field
+        stratosphere::generator::construct_resource_type!("AWS::VoiceID::Domain" $($field
         $value)*)
     };
 }

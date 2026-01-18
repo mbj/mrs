@@ -9,7 +9,7 @@ pub mod analysistemplate {
     #[macro_export]
     macro_rules! __aws_cleanrooms_AnalysisTemplate_AnalysisParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.AnalysisParameter"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.AnalysisParameter"
             $($field $value)*)
         };
     }
@@ -42,7 +42,7 @@ pub mod analysistemplate {
     #[macro_export]
     macro_rules! __aws_cleanrooms_AnalysisTemplate_AnalysisSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.AnalysisSchema"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.AnalysisSchema"
             $($field $value)*)
         };
     }
@@ -66,7 +66,7 @@ pub mod analysistemplate {
     #[macro_export]
     macro_rules! __aws_cleanrooms_AnalysisTemplate_AnalysisSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.AnalysisSource"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.AnalysisSource"
             $($field $value)*)
         };
     }
@@ -94,7 +94,7 @@ pub mod analysistemplate {
     #[macro_export]
     macro_rules! __aws_cleanrooms_AnalysisTemplate_AnalysisSourceMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.AnalysisSourceMetadata"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.AnalysisSourceMetadata"
             $($field $value)*)
         };
     }
@@ -117,7 +117,7 @@ pub mod analysistemplate {
     #[macro_export]
     macro_rules! __aws_cleanrooms_AnalysisTemplate_AnalysisTemplateArtifact {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.AnalysisTemplateArtifact"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.AnalysisTemplateArtifact"
             $($field $value)*)
         };
     }
@@ -141,7 +141,7 @@ pub mod analysistemplate {
     #[macro_export]
     macro_rules! __aws_cleanrooms_AnalysisTemplate_AnalysisTemplateArtifactMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.AnalysisTemplateArtifactMetadata"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.AnalysisTemplateArtifactMetadata"
             $($field $value)*)
         };
     }
@@ -172,7 +172,7 @@ pub mod analysistemplate {
     #[macro_export]
     macro_rules! __aws_cleanrooms_AnalysisTemplate_AnalysisTemplateArtifacts {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.AnalysisTemplateArtifacts"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.AnalysisTemplateArtifacts"
             $($field $value)*)
         };
     }
@@ -205,7 +205,7 @@ pub mod analysistemplate {
     #[macro_export]
     macro_rules! __aws_cleanrooms_AnalysisTemplate_ErrorMessageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.ErrorMessageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.ErrorMessageConfiguration"
             $($field $value)*)
         };
     }
@@ -228,7 +228,7 @@ pub mod analysistemplate {
     #[macro_export]
     macro_rules! __aws_cleanrooms_AnalysisTemplate_Hash {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.Hash"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.Hash"
             $($field $value)*)
         };
     }
@@ -251,7 +251,7 @@ pub mod analysistemplate {
     #[macro_export]
     macro_rules! __aws_cleanrooms_AnalysisTemplate_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.S3Location"
             $($field $value)*)
         };
     }
@@ -283,7 +283,7 @@ pub mod collaboration {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Collaboration_DataEncryptionMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Collaboration.DataEncryptionMetadata"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Collaboration.DataEncryptionMetadata"
             $($field $value)*)
         };
     }
@@ -318,7 +318,7 @@ pub mod collaboration {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Collaboration_JobComputePaymentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Collaboration.JobComputePaymentConfig"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Collaboration.JobComputePaymentConfig"
             $($field $value)*)
         };
     }
@@ -341,7 +341,7 @@ pub mod collaboration {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Collaboration_MLMemberAbilities {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Collaboration.MLMemberAbilities"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Collaboration.MLMemberAbilities"
             $($field $value)*)
         };
     }
@@ -365,7 +365,7 @@ pub mod collaboration {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Collaboration_MLPaymentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Collaboration.MLPaymentConfig"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Collaboration.MLPaymentConfig"
             $($field $value)*)
         };
     }
@@ -400,7 +400,7 @@ pub mod collaboration {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Collaboration_MemberSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Collaboration.MemberSpecification"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Collaboration.MemberSpecification"
             $($field $value)*)
         };
     }
@@ -445,7 +445,7 @@ pub mod collaboration {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Collaboration_ModelInferencePaymentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Collaboration.ModelInferencePaymentConfig"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Collaboration.ModelInferencePaymentConfig"
             $($field $value)*)
         };
     }
@@ -468,7 +468,7 @@ pub mod collaboration {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Collaboration_ModelTrainingPaymentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Collaboration.ModelTrainingPaymentConfig"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Collaboration.ModelTrainingPaymentConfig"
             $($field $value)*)
         };
     }
@@ -493,7 +493,7 @@ pub mod collaboration {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Collaboration_PaymentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Collaboration.PaymentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Collaboration.PaymentConfiguration"
             $($field $value)*)
         };
     }
@@ -528,7 +528,7 @@ pub mod collaboration {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Collaboration_QueryComputePaymentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Collaboration.QueryComputePaymentConfig"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Collaboration.QueryComputePaymentConfig"
             $($field $value)*)
         };
     }
@@ -554,7 +554,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_AggregateColumn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.AggregateColumn"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.AggregateColumn"
             $($field $value)*)
         };
     }
@@ -583,7 +583,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_AggregationConstraint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.AggregationConstraint"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.AggregationConstraint"
             $($field $value)*)
         };
     }
@@ -615,7 +615,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_AnalysisRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.AnalysisRule"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.AnalysisRule"
             $($field $value)*)
         };
     }
@@ -649,7 +649,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_AnalysisRuleAggregation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.AnalysisRuleAggregation"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.AnalysisRuleAggregation"
             $($field $value)*)
         };
     }
@@ -710,7 +710,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_AnalysisRuleCustom {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.AnalysisRuleCustom"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.AnalysisRuleCustom"
             $($field $value)*)
         };
     }
@@ -760,7 +760,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_AnalysisRuleList {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.AnalysisRuleList"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.AnalysisRuleList"
             $($field $value)*)
         };
     }
@@ -802,7 +802,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_AthenaTableReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.AthenaTableReference"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.AthenaTableReference"
             $($field $value)*)
         };
     }
@@ -839,7 +839,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_ConfiguredTableAnalysisRulePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.ConfiguredTableAnalysisRulePolicy"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.ConfiguredTableAnalysisRulePolicy"
             $($field $value)*)
         };
     }
@@ -861,7 +861,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_ConfiguredTableAnalysisRulePolicyV1 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.ConfiguredTableAnalysisRulePolicyV1"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.ConfiguredTableAnalysisRulePolicyV1"
             $($field $value)*)
         };
     }
@@ -892,7 +892,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_DifferentialPrivacy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.DifferentialPrivacy"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.DifferentialPrivacy"
             $($field $value)*)
         };
     }
@@ -915,7 +915,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_DifferentialPrivacyColumn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.DifferentialPrivacyColumn"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.DifferentialPrivacyColumn"
             $($field $value)*)
         };
     }
@@ -939,7 +939,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_GlueTableReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.GlueTableReference"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.GlueTableReference"
             $($field $value)*)
         };
     }
@@ -971,7 +971,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_SnowflakeTableReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.SnowflakeTableReference"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.SnowflakeTableReference"
             $($field $value)*)
         };
     }
@@ -1014,7 +1014,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_SnowflakeTableSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.SnowflakeTableSchema"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.SnowflakeTableSchema"
             $($field $value)*)
         };
     }
@@ -1035,7 +1035,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_SnowflakeTableSchemaV1 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.SnowflakeTableSchemaV1"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.SnowflakeTableSchemaV1"
             $($field $value)*)
         };
     }
@@ -1064,7 +1064,7 @@ pub mod configuredtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTable_TableReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.TableReference"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTable.TableReference"
             $($field $value)*)
         };
     }
@@ -1098,7 +1098,7 @@ pub mod configuredtableassociation {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTableAssociation_ConfiguredTableAssociationAnalysisRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTableAssociation.ConfiguredTableAssociationAnalysisRule"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTableAssociation.ConfiguredTableAssociationAnalysisRule"
             $($field $value)*)
         };
     }
@@ -1126,7 +1126,7 @@ pub mod configuredtableassociation {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTableAssociation_ConfiguredTableAssociationAnalysisRuleAggregation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTableAssociation.ConfiguredTableAssociationAnalysisRuleAggregation"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTableAssociation.ConfiguredTableAssociationAnalysisRuleAggregation"
             $($field $value)*)
         };
     }
@@ -1158,7 +1158,7 @@ pub mod configuredtableassociation {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTableAssociation_ConfiguredTableAssociationAnalysisRuleCustom {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTableAssociation.ConfiguredTableAssociationAnalysisRuleCustom"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTableAssociation.ConfiguredTableAssociationAnalysisRuleCustom"
             $($field $value)*)
         };
     }
@@ -1190,7 +1190,7 @@ pub mod configuredtableassociation {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTableAssociation_ConfiguredTableAssociationAnalysisRuleList {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTableAssociation.ConfiguredTableAssociationAnalysisRuleList"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTableAssociation.ConfiguredTableAssociationAnalysisRuleList"
             $($field $value)*)
         };
     }
@@ -1221,7 +1221,7 @@ pub mod configuredtableassociation {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTableAssociation_ConfiguredTableAssociationAnalysisRulePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTableAssociation.ConfiguredTableAssociationAnalysisRulePolicy"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTableAssociation.ConfiguredTableAssociationAnalysisRulePolicy"
             $($field $value)*)
         };
     }
@@ -1243,7 +1243,7 @@ pub mod configuredtableassociation {
     #[macro_export]
     macro_rules! __aws_cleanrooms_ConfiguredTableAssociation_ConfiguredTableAssociationAnalysisRulePolicyV1 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::ConfiguredTableAssociation.ConfiguredTableAssociationAnalysisRulePolicyV1"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::ConfiguredTableAssociation.ConfiguredTableAssociationAnalysisRulePolicyV1"
             $($field $value)*)
         };
     }
@@ -1277,7 +1277,7 @@ pub mod idmappingtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_IdMappingTable_IdMappingTableInputReferenceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::IdMappingTable.IdMappingTableInputReferenceConfig"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::IdMappingTable.IdMappingTableInputReferenceConfig"
             $($field $value)*)
         };
     }
@@ -1304,7 +1304,7 @@ pub mod idmappingtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_IdMappingTable_IdMappingTableInputReferenceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::IdMappingTable.IdMappingTableInputReferenceProperties"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::IdMappingTable.IdMappingTableInputReferenceProperties"
             $($field $value)*)
         };
     }
@@ -1328,7 +1328,7 @@ pub mod idmappingtable {
     #[macro_export]
     macro_rules! __aws_cleanrooms_IdMappingTable_IdMappingTableInputSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::IdMappingTable.IdMappingTableInputSource"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::IdMappingTable.IdMappingTableInputSource"
             $($field $value)*)
         };
     }
@@ -1357,7 +1357,7 @@ pub mod idnamespaceassociation {
     #[macro_export]
     macro_rules! __aws_cleanrooms_IdNamespaceAssociation_IdMappingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::IdNamespaceAssociation.IdMappingConfig"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::IdNamespaceAssociation.IdMappingConfig"
             $($field $value)*)
         };
     }
@@ -1381,7 +1381,7 @@ pub mod idnamespaceassociation {
     #[macro_export]
     macro_rules! __aws_cleanrooms_IdNamespaceAssociation_IdNamespaceAssociationInputReferenceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::IdNamespaceAssociation.IdNamespaceAssociationInputReferenceConfig"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::IdNamespaceAssociation.IdNamespaceAssociationInputReferenceConfig"
             $($field $value)*)
         };
     }
@@ -1409,7 +1409,7 @@ pub mod idnamespaceassociation {
     #[macro_export]
     macro_rules! __aws_cleanrooms_IdNamespaceAssociation_IdNamespaceAssociationInputReferenceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::IdNamespaceAssociation.IdNamespaceAssociationInputReferenceProperties"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::IdNamespaceAssociation.IdNamespaceAssociationInputReferenceProperties"
             $($field $value)*)
         };
     }
@@ -1442,7 +1442,7 @@ pub mod membership {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Membership_MembershipJobComputePaymentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipJobComputePaymentConfig"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipJobComputePaymentConfig"
             $($field $value)*)
         };
     }
@@ -1466,7 +1466,7 @@ pub mod membership {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Membership_MembershipMLPaymentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipMLPaymentConfig"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipMLPaymentConfig"
             $($field $value)*)
         };
     }
@@ -1497,7 +1497,7 @@ pub mod membership {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Membership_MembershipModelInferencePaymentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipModelInferencePaymentConfig"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipModelInferencePaymentConfig"
             $($field $value)*)
         };
     }
@@ -1520,7 +1520,7 @@ pub mod membership {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Membership_MembershipModelTrainingPaymentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipModelTrainingPaymentConfig"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipModelTrainingPaymentConfig"
             $($field $value)*)
         };
     }
@@ -1545,7 +1545,7 @@ pub mod membership {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Membership_MembershipPaymentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipPaymentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipPaymentConfiguration"
             $($field $value)*)
         };
     }
@@ -1580,7 +1580,7 @@ pub mod membership {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Membership_MembershipProtectedJobOutputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipProtectedJobOutputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipProtectedJobOutputConfiguration"
             $($field $value)*)
         };
     }
@@ -1601,7 +1601,7 @@ pub mod membership {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Membership_MembershipProtectedJobResultConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipProtectedJobResultConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipProtectedJobResultConfiguration"
             $($field $value)*)
         };
     }
@@ -1628,7 +1628,7 @@ pub mod membership {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Membership_MembershipProtectedQueryOutputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipProtectedQueryOutputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipProtectedQueryOutputConfiguration"
             $($field $value)*)
         };
     }
@@ -1649,7 +1649,7 @@ pub mod membership {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Membership_MembershipProtectedQueryResultConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipProtectedQueryResultConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipProtectedQueryResultConfiguration"
             $($field $value)*)
         };
     }
@@ -1678,7 +1678,7 @@ pub mod membership {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Membership_MembershipQueryComputePaymentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipQueryComputePaymentConfig"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipQueryComputePaymentConfig"
             $($field $value)*)
         };
     }
@@ -1702,7 +1702,7 @@ pub mod membership {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Membership_ProtectedJobS3OutputConfigurationInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Membership.ProtectedJobS3OutputConfigurationInput"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Membership.ProtectedJobS3OutputConfigurationInput"
             $($field $value)*)
         };
     }
@@ -1734,7 +1734,7 @@ pub mod membership {
     #[macro_export]
     macro_rules! __aws_cleanrooms_Membership_ProtectedQueryS3OutputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::Membership.ProtectedQueryS3OutputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Membership.ProtectedQueryS3OutputConfiguration"
             $($field $value)*)
         };
     }
@@ -1776,7 +1776,7 @@ pub mod privacybudgettemplate {
     #[macro_export]
     macro_rules! __aws_cleanrooms_PrivacyBudgetTemplate_Parameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRooms::PrivacyBudgetTemplate.Parameters"
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::PrivacyBudgetTemplate.Parameters"
             $($field $value)*)
         };
     }
@@ -1814,7 +1814,7 @@ pub struct AnalysisTemplate_ {
 #[macro_export]
 macro_rules! __aws_cleanrooms_AnalysisTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CleanRooms::AnalysisTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::CleanRooms::AnalysisTemplate"
         $($field $value)*)
     };
 }
@@ -1900,7 +1900,7 @@ pub struct Collaboration_ {
 #[macro_export]
 macro_rules! __aws_cleanrooms_Collaboration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CleanRooms::Collaboration"
+        stratosphere::generator::construct_resource_type!("AWS::CleanRooms::Collaboration"
         $($field $value)*)
     };
 }
@@ -2001,7 +2001,7 @@ pub struct ConfiguredTable_ {
 #[macro_export]
 macro_rules! __aws_cleanrooms_ConfiguredTable {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CleanRooms::ConfiguredTable"
+        stratosphere::generator::construct_resource_type!("AWS::CleanRooms::ConfiguredTable"
         $($field $value)*)
     };
 }
@@ -2073,7 +2073,7 @@ pub struct ConfiguredTableAssociation_ {
 #[macro_export]
 macro_rules! __aws_cleanrooms_ConfiguredTableAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CleanRooms::ConfiguredTableAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::CleanRooms::ConfiguredTableAssociation"
         $($field $value)*)
     };
 }
@@ -2139,7 +2139,7 @@ pub struct IdMappingTable_ {
 #[macro_export]
 macro_rules! __aws_cleanrooms_IdMappingTable {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CleanRooms::IdMappingTable"
+        stratosphere::generator::construct_resource_type!("AWS::CleanRooms::IdMappingTable"
         $($field $value)*)
     };
 }
@@ -2199,7 +2199,7 @@ pub struct IdNamespaceAssociation_ {
 #[macro_export]
 macro_rules! __aws_cleanrooms_IdNamespaceAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CleanRooms::IdNamespaceAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::CleanRooms::IdNamespaceAssociation"
         $($field $value)*)
     };
 }
@@ -2262,7 +2262,7 @@ pub struct Membership_ {
 #[macro_export]
 macro_rules! __aws_cleanrooms_Membership {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CleanRooms::Membership"
+        stratosphere::generator::construct_resource_type!("AWS::CleanRooms::Membership"
         $($field $value)*)
     };
 }
@@ -2328,7 +2328,7 @@ pub struct PrivacyBudgetTemplate_ {
 #[macro_export]
 macro_rules! __aws_cleanrooms_PrivacyBudgetTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CleanRooms::PrivacyBudgetTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::CleanRooms::PrivacyBudgetTemplate"
         $($field $value)*)
     };
 }

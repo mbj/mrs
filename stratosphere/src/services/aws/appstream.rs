@@ -8,7 +8,7 @@ pub mod appblock {
     #[macro_export]
     macro_rules! __aws_appstream_AppBlock_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::AppBlock.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::AppBlock.S3Location"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub mod appblock {
     #[macro_export]
     macro_rules! __aws_appstream_AppBlock_ScriptDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::AppBlock.ScriptDetails"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::AppBlock.ScriptDetails"
             $($field $value)*)
         };
     }
@@ -77,7 +77,7 @@ pub mod appblockbuilder {
     #[macro_export]
     macro_rules! __aws_appstream_AppBlockBuilder_AccessEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::AppBlockBuilder.AccessEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::AppBlockBuilder.AccessEndpoint"
             $($field $value)*)
         };
     }
@@ -105,7 +105,7 @@ pub mod appblockbuilder {
     #[macro_export]
     macro_rules! __aws_appstream_AppBlockBuilder_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::AppBlockBuilder.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::AppBlockBuilder.VpcConfig"
             $($field $value)*)
         };
     }
@@ -139,7 +139,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_appstream_Application_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::Application.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::Application.S3Location"
             $($field $value)*)
         };
     }
@@ -169,7 +169,7 @@ pub mod directoryconfig {
     #[macro_export]
     macro_rules! __aws_appstream_DirectoryConfig_CertificateBasedAuthProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::DirectoryConfig.CertificateBasedAuthProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::DirectoryConfig.CertificateBasedAuthProperties"
             $($field $value)*)
         };
     }
@@ -198,7 +198,7 @@ pub mod directoryconfig {
     #[macro_export]
     macro_rules! __aws_appstream_DirectoryConfig_ServiceAccountCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::DirectoryConfig.ServiceAccountCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::DirectoryConfig.ServiceAccountCredentials"
             $($field $value)*)
         };
     }
@@ -228,7 +228,7 @@ pub mod entitlement {
     #[macro_export]
     macro_rules! __aws_appstream_Entitlement_Attribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::Entitlement.Attribute"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::Entitlement.Attribute"
             $($field $value)*)
         };
     }
@@ -258,7 +258,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_appstream_Fleet_ComputeCapacity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::Fleet.ComputeCapacity"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::Fleet.ComputeCapacity"
             $($field $value)*)
         };
     }
@@ -290,7 +290,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_appstream_Fleet_DomainJoinInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::Fleet.DomainJoinInfo"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::Fleet.DomainJoinInfo"
             $($field $value)*)
         };
     }
@@ -322,7 +322,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_appstream_Fleet_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::Fleet.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::Fleet.S3Location"
             $($field $value)*)
         };
     }
@@ -350,7 +350,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_appstream_Fleet_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::Fleet.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::Fleet.VpcConfig"
             $($field $value)*)
         };
     }
@@ -384,7 +384,7 @@ pub mod imagebuilder {
     #[macro_export]
     macro_rules! __aws_appstream_ImageBuilder_AccessEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::ImageBuilder.AccessEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::ImageBuilder.AccessEndpoint"
             $($field $value)*)
         };
     }
@@ -412,7 +412,7 @@ pub mod imagebuilder {
     #[macro_export]
     macro_rules! __aws_appstream_ImageBuilder_DomainJoinInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::ImageBuilder.DomainJoinInfo"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::ImageBuilder.DomainJoinInfo"
             $($field $value)*)
         };
     }
@@ -444,7 +444,7 @@ pub mod imagebuilder {
     #[macro_export]
     macro_rules! __aws_appstream_ImageBuilder_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::ImageBuilder.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::ImageBuilder.VpcConfig"
             $($field $value)*)
         };
     }
@@ -478,7 +478,7 @@ pub mod stack {
     #[macro_export]
     macro_rules! __aws_appstream_Stack_AccessEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::Stack.AccessEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::Stack.AccessEndpoint"
             $($field $value)*)
         };
     }
@@ -506,7 +506,7 @@ pub mod stack {
     #[macro_export]
     macro_rules! __aws_appstream_Stack_ApplicationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::Stack.ApplicationSettings"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::Stack.ApplicationSettings"
             $($field $value)*)
         };
     }
@@ -537,7 +537,7 @@ pub mod stack {
     #[macro_export]
     macro_rules! __aws_appstream_Stack_StorageConnector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::Stack.StorageConnector"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::Stack.StorageConnector"
             $($field $value)*)
         };
     }
@@ -572,7 +572,7 @@ pub mod stack {
     #[macro_export]
     macro_rules! __aws_appstream_Stack_StreamingExperienceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::Stack.StreamingExperienceSettings"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::Stack.StreamingExperienceSettings"
             $($field $value)*)
         };
     }
@@ -599,7 +599,7 @@ pub mod stack {
     #[macro_export]
     macro_rules! __aws_appstream_Stack_UserSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppStream::Stack.UserSetting"
+            stratosphere::generator::construct_property_type!("AWS::AppStream::Stack.UserSetting"
             $($field $value)*)
         };
     }
@@ -640,7 +640,7 @@ pub struct AppBlock_ {
 #[macro_export]
 macro_rules! __aws_appstream_AppBlock {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppStream::AppBlock"
+        stratosphere::generator::construct_resource_type!("AWS::AppStream::AppBlock"
         $($field $value)*)
     };
 }
@@ -718,7 +718,7 @@ pub struct AppBlockBuilder_ {
 #[macro_export]
 macro_rules! __aws_appstream_AppBlockBuilder {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppStream::AppBlockBuilder"
+        stratosphere::generator::construct_resource_type!("AWS::AppStream::AppBlockBuilder"
         $($field $value)*)
     };
 }
@@ -811,7 +811,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_appstream_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppStream::Application"
+        stratosphere::generator::construct_resource_type!("AWS::AppStream::Application"
         $($field $value)*)
     };
 }
@@ -897,7 +897,7 @@ pub struct ApplicationEntitlementAssociation_ {
 #[macro_export]
 macro_rules! __aws_appstream_ApplicationEntitlementAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppStream::ApplicationEntitlementAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::AppStream::ApplicationEntitlementAssociation"
         $($field $value)*)
     };
 }
@@ -939,7 +939,7 @@ pub struct ApplicationFleetAssociation_ {
 #[macro_export]
 macro_rules! __aws_appstream_ApplicationFleetAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppStream::ApplicationFleetAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::AppStream::ApplicationFleetAssociation"
         $($field $value)*)
     };
 }
@@ -980,7 +980,7 @@ pub struct DirectoryConfig_ {
 #[macro_export]
 macro_rules! __aws_appstream_DirectoryConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppStream::DirectoryConfig"
+        stratosphere::generator::construct_resource_type!("AWS::AppStream::DirectoryConfig"
         $($field $value)*)
     };
 }
@@ -1029,7 +1029,7 @@ pub struct Entitlement_ {
 #[macro_export]
 macro_rules! __aws_appstream_Entitlement {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppStream::Entitlement"
+        stratosphere::generator::construct_resource_type!("AWS::AppStream::Entitlement"
         $($field $value)*)
     };
 }
@@ -1099,8 +1099,8 @@ pub struct Fleet_ {
 #[macro_export]
 macro_rules! __aws_appstream_Fleet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppStream::Fleet" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::AppStream::Fleet"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_appstream_Fleet as Fleet;
@@ -1263,7 +1263,7 @@ pub struct ImageBuilder_ {
 #[macro_export]
 macro_rules! __aws_appstream_ImageBuilder {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppStream::ImageBuilder"
+        stratosphere::generator::construct_resource_type!("AWS::AppStream::ImageBuilder"
         $($field $value)*)
     };
 }
@@ -1375,8 +1375,8 @@ pub struct Stack_ {
 #[macro_export]
 macro_rules! __aws_appstream_Stack {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppStream::Stack" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::AppStream::Stack"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_appstream_Stack as Stack;
@@ -1481,7 +1481,7 @@ pub struct StackFleetAssociation_ {
 #[macro_export]
 macro_rules! __aws_appstream_StackFleetAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppStream::StackFleetAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::AppStream::StackFleetAssociation"
         $($field $value)*)
     };
 }
@@ -1519,7 +1519,7 @@ pub struct StackUserAssociation_ {
 #[macro_export]
 macro_rules! __aws_appstream_StackUserAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppStream::StackUserAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::AppStream::StackUserAssociation"
         $($field $value)*)
     };
 }
@@ -1568,7 +1568,7 @@ pub struct User_ {
 #[macro_export]
 macro_rules! __aws_appstream_User {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppStream::User" $($field
+        stratosphere::generator::construct_resource_type!("AWS::AppStream::User" $($field
         $value)*)
     };
 }

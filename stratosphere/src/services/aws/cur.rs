@@ -17,7 +17,7 @@ pub struct ReportDefinition_ {
 #[macro_export]
 macro_rules! __aws_cur_ReportDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CUR::ReportDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::CUR::ReportDefinition"
         $($field $value)*)
     };
 }

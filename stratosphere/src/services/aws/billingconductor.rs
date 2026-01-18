@@ -8,7 +8,7 @@ pub mod billinggroup {
     #[macro_export]
     macro_rules! __aws_billingconductor_BillingGroup_AccountGrouping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BillingConductor::BillingGroup.AccountGrouping"
+            stratosphere::generator::construct_property_type!("AWS::BillingConductor::BillingGroup.AccountGrouping"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub mod billinggroup {
     #[macro_export]
     macro_rules! __aws_billingconductor_BillingGroup_ComputationPreference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BillingConductor::BillingGroup.ComputationPreference"
+            stratosphere::generator::construct_property_type!("AWS::BillingConductor::BillingGroup.ComputationPreference"
             $($field $value)*)
         };
     }
@@ -63,7 +63,7 @@ pub mod customlineitem {
     #[macro_export]
     macro_rules! __aws_billingconductor_CustomLineItem_BillingPeriodRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BillingConductor::CustomLineItem.BillingPeriodRange"
+            stratosphere::generator::construct_property_type!("AWS::BillingConductor::CustomLineItem.BillingPeriodRange"
             $($field $value)*)
         };
     }
@@ -97,7 +97,7 @@ pub mod customlineitem {
     #[macro_export]
     macro_rules! __aws_billingconductor_CustomLineItem_CustomLineItemChargeDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BillingConductor::CustomLineItem.CustomLineItemChargeDetails"
+            stratosphere::generator::construct_property_type!("AWS::BillingConductor::CustomLineItem.CustomLineItemChargeDetails"
             $($field $value)*)
         };
     }
@@ -135,7 +135,7 @@ pub mod customlineitem {
     #[macro_export]
     macro_rules! __aws_billingconductor_CustomLineItem_CustomLineItemFlatChargeDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BillingConductor::CustomLineItem.CustomLineItemFlatChargeDetails"
+            stratosphere::generator::construct_property_type!("AWS::BillingConductor::CustomLineItem.CustomLineItemFlatChargeDetails"
             $($field $value)*)
         };
     }
@@ -159,7 +159,7 @@ pub mod customlineitem {
     #[macro_export]
     macro_rules! __aws_billingconductor_CustomLineItem_CustomLineItemPercentageChargeDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BillingConductor::CustomLineItem.CustomLineItemPercentageChargeDetails"
+            stratosphere::generator::construct_property_type!("AWS::BillingConductor::CustomLineItem.CustomLineItemPercentageChargeDetails"
             $($field $value)*)
         };
     }
@@ -190,7 +190,7 @@ pub mod customlineitem {
     #[macro_export]
     macro_rules! __aws_billingconductor_CustomLineItem_LineItemFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BillingConductor::CustomLineItem.LineItemFilter"
+            stratosphere::generator::construct_property_type!("AWS::BillingConductor::CustomLineItem.LineItemFilter"
             $($field $value)*)
         };
     }
@@ -223,7 +223,7 @@ pub mod pricingrule {
     #[macro_export]
     macro_rules! __aws_billingconductor_PricingRule_FreeTier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BillingConductor::PricingRule.FreeTier"
+            stratosphere::generator::construct_property_type!("AWS::BillingConductor::PricingRule.FreeTier"
             $($field $value)*)
         };
     }
@@ -246,7 +246,7 @@ pub mod pricingrule {
     #[macro_export]
     macro_rules! __aws_billingconductor_PricingRule_Tiering {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::BillingConductor::PricingRule.Tiering"
+            stratosphere::generator::construct_property_type!("AWS::BillingConductor::PricingRule.Tiering"
             $($field $value)*)
         };
     }
@@ -277,7 +277,7 @@ pub struct BillingGroup_ {
 #[macro_export]
 macro_rules! __aws_billingconductor_BillingGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::BillingConductor::BillingGroup"
+        stratosphere::generator::construct_resource_type!("AWS::BillingConductor::BillingGroup"
         $($field $value)*)
     };
 }
@@ -336,7 +336,7 @@ pub struct CustomLineItem_ {
 #[macro_export]
 macro_rules! __aws_billingconductor_CustomLineItem {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::BillingConductor::CustomLineItem"
+        stratosphere::generator::construct_resource_type!("AWS::BillingConductor::CustomLineItem"
         $($field $value)*)
     };
 }
@@ -401,7 +401,7 @@ pub struct PricingPlan_ {
 #[macro_export]
 macro_rules! __aws_billingconductor_PricingPlan {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::BillingConductor::PricingPlan"
+        stratosphere::generator::construct_resource_type!("AWS::BillingConductor::PricingPlan"
         $($field $value)*)
     };
 }
@@ -457,7 +457,7 @@ pub struct PricingRule_ {
 #[macro_export]
 macro_rules! __aws_billingconductor_PricingRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::BillingConductor::PricingRule"
+        stratosphere::generator::construct_resource_type!("AWS::BillingConductor::PricingRule"
         $($field $value)*)
     };
 }

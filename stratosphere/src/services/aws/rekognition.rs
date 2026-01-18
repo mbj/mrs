@@ -10,7 +10,7 @@ pub mod streamprocessor {
     #[macro_export]
     macro_rules! __aws_rekognition_StreamProcessor_BoundingBox {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Rekognition::StreamProcessor.BoundingBox"
+            stratosphere::generator::construct_property_type!("AWS::Rekognition::StreamProcessor.BoundingBox"
             $($field $value)*)
         };
     }
@@ -46,7 +46,7 @@ pub mod streamprocessor {
     #[macro_export]
     macro_rules! __aws_rekognition_StreamProcessor_ConnectedHomeSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Rekognition::StreamProcessor.ConnectedHomeSettings"
+            stratosphere::generator::construct_property_type!("AWS::Rekognition::StreamProcessor.ConnectedHomeSettings"
             $($field $value)*)
         };
     }
@@ -75,7 +75,7 @@ pub mod streamprocessor {
     #[macro_export]
     macro_rules! __aws_rekognition_StreamProcessor_DataSharingPreference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Rekognition::StreamProcessor.DataSharingPreference"
+            stratosphere::generator::construct_property_type!("AWS::Rekognition::StreamProcessor.DataSharingPreference"
             $($field $value)*)
         };
     }
@@ -99,7 +99,7 @@ pub mod streamprocessor {
     #[macro_export]
     macro_rules! __aws_rekognition_StreamProcessor_FaceSearchSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Rekognition::StreamProcessor.FaceSearchSettings"
+            stratosphere::generator::construct_property_type!("AWS::Rekognition::StreamProcessor.FaceSearchSettings"
             $($field $value)*)
         };
     }
@@ -128,7 +128,7 @@ pub mod streamprocessor {
     #[macro_export]
     macro_rules! __aws_rekognition_StreamProcessor_KinesisDataStream {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Rekognition::StreamProcessor.KinesisDataStream"
+            stratosphere::generator::construct_property_type!("AWS::Rekognition::StreamProcessor.KinesisDataStream"
             $($field $value)*)
         };
     }
@@ -151,7 +151,7 @@ pub mod streamprocessor {
     #[macro_export]
     macro_rules! __aws_rekognition_StreamProcessor_KinesisVideoStream {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Rekognition::StreamProcessor.KinesisVideoStream"
+            stratosphere::generator::construct_property_type!("AWS::Rekognition::StreamProcessor.KinesisVideoStream"
             $($field $value)*)
         };
     }
@@ -174,7 +174,7 @@ pub mod streamprocessor {
     #[macro_export]
     macro_rules! __aws_rekognition_StreamProcessor_NotificationChannel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Rekognition::StreamProcessor.NotificationChannel"
+            stratosphere::generator::construct_property_type!("AWS::Rekognition::StreamProcessor.NotificationChannel"
             $($field $value)*)
         };
     }
@@ -198,7 +198,7 @@ pub mod streamprocessor {
     #[macro_export]
     macro_rules! __aws_rekognition_StreamProcessor_S3Destination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Rekognition::StreamProcessor.S3Destination"
+            stratosphere::generator::construct_property_type!("AWS::Rekognition::StreamProcessor.S3Destination"
             $($field $value)*)
         };
     }
@@ -229,7 +229,7 @@ pub struct Collection_ {
 #[macro_export]
 macro_rules! __aws_rekognition_Collection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Rekognition::Collection"
+        stratosphere::generator::construct_resource_type!("AWS::Rekognition::Collection"
         $($field $value)*)
     };
 }
@@ -263,7 +263,7 @@ pub struct Project_ {
 #[macro_export]
 macro_rules! __aws_rekognition_Project {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Rekognition::Project"
+        stratosphere::generator::construct_resource_type!("AWS::Rekognition::Project"
         $($field $value)*)
     };
 }
@@ -309,7 +309,7 @@ pub struct StreamProcessor_ {
 #[macro_export]
 macro_rules! __aws_rekognition_StreamProcessor {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Rekognition::StreamProcessor"
+        stratosphere::generator::construct_resource_type!("AWS::Rekognition::StreamProcessor"
         $($field $value)*)
     };
 }

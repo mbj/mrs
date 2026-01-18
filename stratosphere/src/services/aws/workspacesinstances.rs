@@ -8,7 +8,7 @@ pub mod volume {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_Volume_TagSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::Volume.TagSpecification"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::Volume.TagSpecification"
             $($field $value)*)
         };
     }
@@ -41,7 +41,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_BlockDeviceMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.BlockDeviceMapping"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.BlockDeviceMapping"
             $($field $value)*)
         };
     }
@@ -82,7 +82,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_CapacityReservationSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.CapacityReservationSpecification"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.CapacityReservationSpecification"
             $($field $value)*)
         };
     }
@@ -114,7 +114,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_CapacityReservationTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.CapacityReservationTarget"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.CapacityReservationTarget"
             $($field $value)*)
         };
     }
@@ -146,7 +146,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_CpuOptionsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.CpuOptionsRequest"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.CpuOptionsRequest"
             $($field $value)*)
         };
     }
@@ -177,7 +177,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_CreditSpecificationRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.CreditSpecificationRequest"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.CreditSpecificationRequest"
             $($field $value)*)
         };
     }
@@ -202,7 +202,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_EC2ManagedInstance {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.EC2ManagedInstance"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.EC2ManagedInstance"
             $($field $value)*)
         };
     }
@@ -232,7 +232,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_EbsBlockDevice {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.EbsBlockDevice"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.EbsBlockDevice"
             $($field $value)*)
         };
     }
@@ -284,7 +284,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_EnclaveOptionsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.EnclaveOptionsRequest"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.EnclaveOptionsRequest"
             $($field $value)*)
         };
     }
@@ -309,7 +309,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_HibernationOptionsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.HibernationOptionsRequest"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.HibernationOptionsRequest"
             $($field $value)*)
         };
     }
@@ -335,7 +335,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_IamInstanceProfileSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.IamInstanceProfileSpecification"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.IamInstanceProfileSpecification"
             $($field $value)*)
         };
     }
@@ -360,7 +360,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_InstanceMaintenanceOptionsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.InstanceMaintenanceOptionsRequest"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.InstanceMaintenanceOptionsRequest"
             $($field $value)*)
         };
     }
@@ -386,7 +386,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_InstanceMarketOptionsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.InstanceMarketOptionsRequest"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.InstanceMarketOptionsRequest"
             $($field $value)*)
         };
     }
@@ -421,7 +421,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_InstanceMetadataOptionsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.InstanceMetadataOptionsRequest"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.InstanceMetadataOptionsRequest"
             $($field $value)*)
         };
     }
@@ -473,7 +473,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_InstanceNetworkInterfaceSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.InstanceNetworkInterfaceSpecification"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.InstanceNetworkInterfaceSpecification"
             $($field $value)*)
         };
     }
@@ -513,7 +513,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_InstanceNetworkPerformanceOptionsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.InstanceNetworkPerformanceOptionsRequest"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.InstanceNetworkPerformanceOptionsRequest"
             $($field $value)*)
         };
     }
@@ -538,7 +538,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_LicenseConfigurationRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.LicenseConfigurationRequest"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.LicenseConfigurationRequest"
             $($field $value)*)
         };
     }
@@ -588,7 +588,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_ManagedInstance {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.ManagedInstance"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.ManagedInstance"
             $($field $value)*)
         };
     }
@@ -763,7 +763,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_Placement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.Placement"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.Placement"
             $($field $value)*)
         };
     }
@@ -814,7 +814,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_PrivateDnsNameOptionsRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.PrivateDnsNameOptionsRequest"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.PrivateDnsNameOptionsRequest"
             $($field $value)*)
         };
     }
@@ -851,7 +851,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_RunInstancesMonitoringEnabled {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.RunInstancesMonitoringEnabled"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.RunInstancesMonitoringEnabled"
             $($field $value)*)
         };
     }
@@ -879,7 +879,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_SpotMarketOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.SpotMarketOptions"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.SpotMarketOptions"
             $($field $value)*)
         };
     }
@@ -923,7 +923,7 @@ pub mod workspaceinstance {
     #[macro_export]
     macro_rules! __aws_workspacesinstances_WorkspaceInstance_TagSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.TagSpecification"
+            stratosphere::generator::construct_property_type!("AWS::WorkspacesInstances::WorkspaceInstance.TagSpecification"
             $($field $value)*)
         };
     }
@@ -960,7 +960,7 @@ pub struct Volume_ {
 #[macro_export]
 macro_rules! __aws_workspacesinstances_Volume {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkspacesInstances::Volume"
+        stratosphere::generator::construct_resource_type!("AWS::WorkspacesInstances::Volume"
         $($field $value)*)
     };
 }
@@ -1039,7 +1039,7 @@ pub struct VolumeAssociation_ {
 #[macro_export]
 macro_rules! __aws_workspacesinstances_VolumeAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkspacesInstances::VolumeAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::WorkspacesInstances::VolumeAssociation"
         $($field $value)*)
     };
 }
@@ -1085,7 +1085,7 @@ pub struct WorkspaceInstance_ {
 #[macro_export]
 macro_rules! __aws_workspacesinstances_WorkspaceInstance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkspacesInstances::WorkspaceInstance"
+        stratosphere::generator::construct_resource_type!("AWS::WorkspacesInstances::WorkspaceInstance"
         $($field $value)*)
     };
 }

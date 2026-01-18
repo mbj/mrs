@@ -7,7 +7,7 @@ pub mod datacellsfilter {
     #[macro_export]
     macro_rules! __aws_lakeformation_DataCellsFilter_ColumnWildcard {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::DataCellsFilter.ColumnWildcard"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::DataCellsFilter.ColumnWildcard"
             $($field $value)*)
         };
     }
@@ -33,7 +33,7 @@ pub mod datacellsfilter {
     #[macro_export]
     macro_rules! __aws_lakeformation_DataCellsFilter_RowFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::DataCellsFilter.RowFilter"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::DataCellsFilter.RowFilter"
             $($field $value)*)
         };
     }
@@ -64,7 +64,7 @@ pub mod datalakesettings {
     #[macro_export]
     macro_rules! __aws_lakeformation_DataLakeSettings_Admins {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::DataLakeSettings.Admins"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::DataLakeSettings.Admins"
             $($field $value)*)
         };
     }
@@ -80,7 +80,7 @@ pub mod datalakesettings {
     #[macro_export]
     macro_rules! __aws_lakeformation_DataLakeSettings_CreateDatabaseDefaultPermissions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::DataLakeSettings.CreateDatabaseDefaultPermissions"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::DataLakeSettings.CreateDatabaseDefaultPermissions"
             $($field $value)*)
         };
     }
@@ -96,7 +96,7 @@ pub mod datalakesettings {
     #[macro_export]
     macro_rules! __aws_lakeformation_DataLakeSettings_CreateTableDefaultPermissions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::DataLakeSettings.CreateTableDefaultPermissions"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::DataLakeSettings.CreateTableDefaultPermissions"
             $($field $value)*)
         };
     }
@@ -114,7 +114,7 @@ pub mod datalakesettings {
     #[macro_export]
     macro_rules! __aws_lakeformation_DataLakeSettings_DataLakePrincipal {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::DataLakeSettings.DataLakePrincipal"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::DataLakeSettings.DataLakePrincipal"
             $($field $value)*)
         };
     }
@@ -135,7 +135,7 @@ pub mod datalakesettings {
     #[macro_export]
     macro_rules! __aws_lakeformation_DataLakeSettings_ExternalDataFilteringAllowList {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::DataLakeSettings.ExternalDataFilteringAllowList"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::DataLakeSettings.ExternalDataFilteringAllowList"
             $($field $value)*)
         };
     }
@@ -154,7 +154,7 @@ pub mod datalakesettings {
     #[macro_export]
     macro_rules! __aws_lakeformation_DataLakeSettings_PrincipalPermissions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::DataLakeSettings.PrincipalPermissions"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::DataLakeSettings.PrincipalPermissions"
             $($field $value)*)
         };
     }
@@ -183,7 +183,7 @@ pub mod permissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_Permissions_ColumnWildcard {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::Permissions.ColumnWildcard"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::Permissions.ColumnWildcard"
             $($field $value)*)
         };
     }
@@ -208,7 +208,7 @@ pub mod permissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_Permissions_DataLakePrincipal {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::Permissions.DataLakePrincipal"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::Permissions.DataLakePrincipal"
             $($field $value)*)
         };
     }
@@ -234,7 +234,7 @@ pub mod permissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_Permissions_DataLocationResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::Permissions.DataLocationResource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::Permissions.DataLocationResource"
             $($field $value)*)
         };
     }
@@ -266,7 +266,7 @@ pub mod permissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_Permissions_DatabaseResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::Permissions.DatabaseResource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::Permissions.DatabaseResource"
             $($field $value)*)
         };
     }
@@ -297,7 +297,7 @@ pub mod permissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_Permissions_Resource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::Permissions.Resource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::Permissions.Resource"
             $($field $value)*)
         };
     }
@@ -343,7 +343,7 @@ pub mod permissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_Permissions_TableResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::Permissions.TableResource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::Permissions.TableResource"
             $($field $value)*)
         };
     }
@@ -381,7 +381,7 @@ pub mod permissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_Permissions_TableWildcard {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::Permissions.TableWildcard"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::Permissions.TableWildcard"
             $($field $value)*)
         };
     }
@@ -403,7 +403,7 @@ pub mod permissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_Permissions_TableWithColumnsResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::Permissions.TableWithColumnsResource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::Permissions.TableWithColumnsResource"
             $($field $value)*)
         };
     }
@@ -451,7 +451,7 @@ pub mod principalpermissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_PrincipalPermissions_ColumnWildcard {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.ColumnWildcard"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.ColumnWildcard"
             $($field $value)*)
         };
     }
@@ -479,7 +479,7 @@ pub mod principalpermissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_PrincipalPermissions_DataCellsFilterResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.DataCellsFilterResource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.DataCellsFilterResource"
             $($field $value)*)
         };
     }
@@ -514,7 +514,7 @@ pub mod principalpermissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_PrincipalPermissions_DataLakePrincipal {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.DataLakePrincipal"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.DataLakePrincipal"
             $($field $value)*)
         };
     }
@@ -540,7 +540,7 @@ pub mod principalpermissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_PrincipalPermissions_DataLocationResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.DataLocationResource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.DataLocationResource"
             $($field $value)*)
         };
     }
@@ -568,7 +568,7 @@ pub mod principalpermissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_PrincipalPermissions_DatabaseResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.DatabaseResource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.DatabaseResource"
             $($field $value)*)
         };
     }
@@ -596,7 +596,7 @@ pub mod principalpermissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_PrincipalPermissions_LFTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.LFTag"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.LFTag"
             $($field $value)*)
         };
     }
@@ -626,7 +626,7 @@ pub mod principalpermissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_PrincipalPermissions_LFTagKeyResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.LFTagKeyResource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.LFTagKeyResource"
             $($field $value)*)
         };
     }
@@ -659,7 +659,7 @@ pub mod principalpermissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_PrincipalPermissions_LFTagPolicyResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.LFTagPolicyResource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.LFTagPolicyResource"
             $($field $value)*)
         };
     }
@@ -697,7 +697,7 @@ pub mod principalpermissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_PrincipalPermissions_Resource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.Resource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.Resource"
             $($field $value)*)
         };
     }
@@ -761,7 +761,7 @@ pub mod principalpermissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_PrincipalPermissions_TableResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.TableResource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.TableResource"
             $($field $value)*)
         };
     }
@@ -801,7 +801,7 @@ pub mod principalpermissions {
     #[macro_export]
     macro_rules! __aws_lakeformation_PrincipalPermissions_TableWithColumnsResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.TableWithColumnsResource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::PrincipalPermissions.TableWithColumnsResource"
             $($field $value)*)
         };
     }
@@ -847,7 +847,7 @@ pub mod tagassociation {
     #[macro_export]
     macro_rules! __aws_lakeformation_TagAssociation_DatabaseResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::TagAssociation.DatabaseResource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::TagAssociation.DatabaseResource"
             $($field $value)*)
         };
     }
@@ -876,7 +876,7 @@ pub mod tagassociation {
     #[macro_export]
     macro_rules! __aws_lakeformation_TagAssociation_LFTagPair {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::TagAssociation.LFTagPair"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::TagAssociation.LFTagPair"
             $($field $value)*)
         };
     }
@@ -910,7 +910,7 @@ pub mod tagassociation {
     #[macro_export]
     macro_rules! __aws_lakeformation_TagAssociation_Resource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::TagAssociation.Resource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::TagAssociation.Resource"
             $($field $value)*)
         };
     }
@@ -953,7 +953,7 @@ pub mod tagassociation {
     #[macro_export]
     macro_rules! __aws_lakeformation_TagAssociation_TableResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::TagAssociation.TableResource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::TagAssociation.TableResource"
             $($field $value)*)
         };
     }
@@ -992,7 +992,7 @@ pub mod tagassociation {
     #[macro_export]
     macro_rules! __aws_lakeformation_TagAssociation_TableWithColumnsResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LakeFormation::TagAssociation.TableWithColumnsResource"
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::TagAssociation.TableWithColumnsResource"
             $($field $value)*)
         };
     }
@@ -1034,7 +1034,7 @@ pub struct DataCellsFilter_ {
 #[macro_export]
 macro_rules! __aws_lakeformation_DataCellsFilter {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::LakeFormation::DataCellsFilter"
+        stratosphere::generator::construct_resource_type!("AWS::LakeFormation::DataCellsFilter"
         $($field $value)*)
     };
 }
@@ -1107,7 +1107,7 @@ pub struct DataLakeSettings_ {
 #[macro_export]
 macro_rules! __aws_lakeformation_DataLakeSettings {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::LakeFormation::DataLakeSettings"
+        stratosphere::generator::construct_resource_type!("AWS::LakeFormation::DataLakeSettings"
         $($field $value)*)
     };
 }
@@ -1194,7 +1194,7 @@ pub struct Permissions_ {
 #[macro_export]
 macro_rules! __aws_lakeformation_Permissions {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::LakeFormation::Permissions"
+        stratosphere::generator::construct_resource_type!("AWS::LakeFormation::Permissions"
         $($field $value)*)
     };
 }
@@ -1245,7 +1245,7 @@ pub struct PrincipalPermissions_ {
 #[macro_export]
 macro_rules! __aws_lakeformation_PrincipalPermissions {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::LakeFormation::PrincipalPermissions"
+        stratosphere::generator::construct_resource_type!("AWS::LakeFormation::PrincipalPermissions"
         $($field $value)*)
     };
 }
@@ -1298,7 +1298,7 @@ pub struct Resource_ {
 #[macro_export]
 macro_rules! __aws_lakeformation_Resource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::LakeFormation::Resource"
+        stratosphere::generator::construct_resource_type!("AWS::LakeFormation::Resource"
         $($field $value)*)
     };
 }
@@ -1353,7 +1353,7 @@ pub struct Tag_ {
 #[macro_export]
 macro_rules! __aws_lakeformation_Tag {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::LakeFormation::Tag"
+        stratosphere::generator::construct_resource_type!("AWS::LakeFormation::Tag"
         $($field $value)*)
     };
 }
@@ -1395,7 +1395,7 @@ pub struct TagAssociation_ {
 #[macro_export]
 macro_rules! __aws_lakeformation_TagAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::LakeFormation::TagAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::LakeFormation::TagAssociation"
         $($field $value)*)
     };
 }

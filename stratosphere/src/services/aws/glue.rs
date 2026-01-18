@@ -15,7 +15,7 @@ pub mod classifier {
     #[macro_export]
     macro_rules! __aws_glue_Classifier_CsvClassifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Classifier.CsvClassifier"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Classifier.CsvClassifier"
             $($field $value)*)
         };
     }
@@ -85,7 +85,7 @@ pub mod classifier {
     #[macro_export]
     macro_rules! __aws_glue_Classifier_GrokClassifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Classifier.GrokClassifier"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Classifier.GrokClassifier"
             $($field $value)*)
         };
     }
@@ -122,7 +122,7 @@ pub mod classifier {
     #[macro_export]
     macro_rules! __aws_glue_Classifier_JsonClassifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Classifier.JsonClassifier"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Classifier.JsonClassifier"
             $($field $value)*)
         };
     }
@@ -150,7 +150,7 @@ pub mod classifier {
     #[macro_export]
     macro_rules! __aws_glue_Classifier_XMLClassifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Classifier.XMLClassifier"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Classifier.XMLClassifier"
             $($field $value)*)
         };
     }
@@ -187,7 +187,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_glue_Connection_AuthenticationConfigurationInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Connection.AuthenticationConfigurationInput"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Connection.AuthenticationConfigurationInput"
             $($field $value)*)
         };
     }
@@ -241,7 +241,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_glue_Connection_AuthorizationCodeProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Connection.AuthorizationCodeProperties"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Connection.AuthorizationCodeProperties"
             $($field $value)*)
         };
     }
@@ -273,7 +273,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_glue_Connection_BasicAuthenticationCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Connection.BasicAuthenticationCredentials"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Connection.BasicAuthenticationCredentials"
             $($field $value)*)
         };
     }
@@ -315,7 +315,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_glue_Connection_ConnectionInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Connection.ConnectionInput"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Connection.ConnectionInput"
             $($field $value)*)
         };
     }
@@ -402,7 +402,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_glue_Connection_OAuth2ClientApplication {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Connection.OAuth2ClientApplication"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Connection.OAuth2ClientApplication"
             $($field $value)*)
         };
     }
@@ -436,7 +436,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_glue_Connection_OAuth2Credentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Connection.OAuth2Credentials"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Connection.OAuth2Credentials"
             $($field $value)*)
         };
     }
@@ -484,7 +484,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_glue_Connection_OAuth2PropertiesInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Connection.OAuth2PropertiesInput"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Connection.OAuth2PropertiesInput"
             $($field $value)*)
         };
     }
@@ -541,7 +541,7 @@ pub mod connection {
     #[macro_export]
     macro_rules! __aws_glue_Connection_PhysicalConnectionRequirements {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Connection.PhysicalConnectionRequirements"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Connection.PhysicalConnectionRequirements"
             $($field $value)*)
         };
     }
@@ -584,7 +584,7 @@ pub mod crawler {
     #[macro_export]
     macro_rules! __aws_glue_Crawler_CatalogTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Crawler.CatalogTarget"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Crawler.CatalogTarget"
             $($field $value)*)
         };
     }
@@ -633,7 +633,7 @@ pub mod crawler {
     #[macro_export]
     macro_rules! __aws_glue_Crawler_DeltaTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Crawler.DeltaTarget"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Crawler.DeltaTarget"
             $($field $value)*)
         };
     }
@@ -678,7 +678,7 @@ pub mod crawler {
     #[macro_export]
     macro_rules! __aws_glue_Crawler_DynamoDBTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Crawler.DynamoDBTarget"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Crawler.DynamoDBTarget"
             $($field $value)*)
         };
     }
@@ -715,7 +715,7 @@ pub mod crawler {
     #[macro_export]
     macro_rules! __aws_glue_Crawler_HudiTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Crawler.HudiTarget"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Crawler.HudiTarget"
             $($field $value)*)
         };
     }
@@ -758,7 +758,7 @@ pub mod crawler {
     #[macro_export]
     macro_rules! __aws_glue_Crawler_IcebergTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Crawler.IcebergTarget"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Crawler.IcebergTarget"
             $($field $value)*)
         };
     }
@@ -801,7 +801,7 @@ pub mod crawler {
     #[macro_export]
     macro_rules! __aws_glue_Crawler_JdbcTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Crawler.JdbcTarget"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Crawler.JdbcTarget"
             $($field $value)*)
         };
     }
@@ -842,7 +842,7 @@ pub mod crawler {
     #[macro_export]
     macro_rules! __aws_glue_Crawler_LakeFormationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Crawler.LakeFormationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Crawler.LakeFormationConfiguration"
             $($field $value)*)
         };
     }
@@ -874,7 +874,7 @@ pub mod crawler {
     #[macro_export]
     macro_rules! __aws_glue_Crawler_MongoDBTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Crawler.MongoDBTarget"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Crawler.MongoDBTarget"
             $($field $value)*)
         };
     }
@@ -902,7 +902,7 @@ pub mod crawler {
     #[macro_export]
     macro_rules! __aws_glue_Crawler_RecrawlPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Crawler.RecrawlPolicy"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Crawler.RecrawlPolicy"
             $($field $value)*)
         };
     }
@@ -932,7 +932,7 @@ pub mod crawler {
     #[macro_export]
     macro_rules! __aws_glue_Crawler_S3Target {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Crawler.S3Target"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Crawler.S3Target"
             $($field $value)*)
         };
     }
@@ -984,7 +984,7 @@ pub mod crawler {
     #[macro_export]
     macro_rules! __aws_glue_Crawler_Schedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Crawler.Schedule"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Crawler.Schedule"
             $($field $value)*)
         };
     }
@@ -1010,7 +1010,7 @@ pub mod crawler {
     #[macro_export]
     macro_rules! __aws_glue_Crawler_SchemaChangePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Crawler.SchemaChangePolicy"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Crawler.SchemaChangePolicy"
             $($field $value)*)
         };
     }
@@ -1048,7 +1048,7 @@ pub mod crawler {
     #[macro_export]
     macro_rules! __aws_glue_Crawler_Targets {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Crawler.Targets"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Crawler.Targets"
             $($field $value)*)
         };
     }
@@ -1118,7 +1118,7 @@ pub mod datacatalogencryptionsettings {
     #[macro_export]
     macro_rules! __aws_glue_DataCatalogEncryptionSettings_ConnectionPasswordEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::DataCatalogEncryptionSettings.ConnectionPasswordEncryption"
+            stratosphere::generator::construct_property_type!("AWS::Glue::DataCatalogEncryptionSettings.ConnectionPasswordEncryption"
             $($field $value)*)
         };
     }
@@ -1150,7 +1150,7 @@ pub mod datacatalogencryptionsettings {
     #[macro_export]
     macro_rules! __aws_glue_DataCatalogEncryptionSettings_DataCatalogEncryptionSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::DataCatalogEncryptionSettings.DataCatalogEncryptionSettings"
+            stratosphere::generator::construct_property_type!("AWS::Glue::DataCatalogEncryptionSettings.DataCatalogEncryptionSettings"
             $($field $value)*)
         };
     }
@@ -1183,7 +1183,7 @@ pub mod datacatalogencryptionsettings {
     #[macro_export]
     macro_rules! __aws_glue_DataCatalogEncryptionSettings_EncryptionAtRest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::DataCatalogEncryptionSettings.EncryptionAtRest"
+            stratosphere::generator::construct_property_type!("AWS::Glue::DataCatalogEncryptionSettings.EncryptionAtRest"
             $($field $value)*)
         };
     }
@@ -1223,7 +1223,7 @@ pub mod dataqualityruleset {
     #[macro_export]
     macro_rules! __aws_glue_DataQualityRuleset_DataQualityTargetTable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::DataQualityRuleset.DataQualityTargetTable"
+            stratosphere::generator::construct_property_type!("AWS::Glue::DataQualityRuleset.DataQualityTargetTable"
             $($field $value)*)
         };
     }
@@ -1256,7 +1256,7 @@ pub mod database {
     #[macro_export]
     macro_rules! __aws_glue_Database_DataLakePrincipal {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Database.DataLakePrincipal"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Database.DataLakePrincipal"
             $($field $value)*)
         };
     }
@@ -1283,7 +1283,7 @@ pub mod database {
     #[macro_export]
     macro_rules! __aws_glue_Database_DatabaseIdentifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Database.DatabaseIdentifier"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Database.DatabaseIdentifier"
             $($field $value)*)
         };
     }
@@ -1323,7 +1323,7 @@ pub mod database {
     #[macro_export]
     macro_rules! __aws_glue_Database_DatabaseInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Database.DatabaseInput"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Database.DatabaseInput"
             $($field $value)*)
         };
     }
@@ -1382,7 +1382,7 @@ pub mod database {
     #[macro_export]
     macro_rules! __aws_glue_Database_FederatedDatabase {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Database.FederatedDatabase"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Database.FederatedDatabase"
             $($field $value)*)
         };
     }
@@ -1414,7 +1414,7 @@ pub mod database {
     #[macro_export]
     macro_rules! __aws_glue_Database_PrincipalPrivileges {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Database.PrincipalPrivileges"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Database.PrincipalPrivileges"
             $($field $value)*)
         };
     }
@@ -1447,7 +1447,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_glue_Job_ConnectionsList {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Job.ConnectionsList"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Job.ConnectionsList"
             $($field $value)*)
         };
     }
@@ -1472,7 +1472,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_glue_Job_ExecutionProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Job.ExecutionProperty"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Job.ExecutionProperty"
             $($field $value)*)
         };
     }
@@ -1500,7 +1500,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_glue_Job_JobCommand {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Job.JobCommand"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Job.JobCommand"
             $($field $value)*)
         };
     }
@@ -1540,7 +1540,7 @@ pub mod job {
     #[macro_export]
     macro_rules! __aws_glue_Job_NotificationProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Job.NotificationProperty"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Job.NotificationProperty"
             $($field $value)*)
         };
     }
@@ -1570,7 +1570,7 @@ pub mod mltransform {
     #[macro_export]
     macro_rules! __aws_glue_MLTransform_FindMatchesParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::MLTransform.FindMatchesParameters"
+            stratosphere::generator::construct_property_type!("AWS::Glue::MLTransform.FindMatchesParameters"
             $($field $value)*)
         };
     }
@@ -1614,7 +1614,7 @@ pub mod mltransform {
     #[macro_export]
     macro_rules! __aws_glue_MLTransform_GlueTables {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::MLTransform.GlueTables"
+            stratosphere::generator::construct_property_type!("AWS::Glue::MLTransform.GlueTables"
             $($field $value)*)
         };
     }
@@ -1653,7 +1653,7 @@ pub mod mltransform {
     #[macro_export]
     macro_rules! __aws_glue_MLTransform_InputRecordTables {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::MLTransform.InputRecordTables"
+            stratosphere::generator::construct_property_type!("AWS::Glue::MLTransform.InputRecordTables"
             $($field $value)*)
         };
     }
@@ -1679,7 +1679,7 @@ pub mod mltransform {
     #[macro_export]
     macro_rules! __aws_glue_MLTransform_MLUserDataEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::MLTransform.MLUserDataEncryption"
+            stratosphere::generator::construct_property_type!("AWS::Glue::MLTransform.MLUserDataEncryption"
             $($field $value)*)
         };
     }
@@ -1709,7 +1709,7 @@ pub mod mltransform {
     #[macro_export]
     macro_rules! __aws_glue_MLTransform_TransformEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::MLTransform.TransformEncryption"
+            stratosphere::generator::construct_property_type!("AWS::Glue::MLTransform.TransformEncryption"
             $($field $value)*)
         };
     }
@@ -1741,7 +1741,7 @@ pub mod mltransform {
     #[macro_export]
     macro_rules! __aws_glue_MLTransform_TransformParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::MLTransform.TransformParameters"
+            stratosphere::generator::construct_property_type!("AWS::Glue::MLTransform.TransformParameters"
             $($field $value)*)
         };
     }
@@ -1774,7 +1774,7 @@ pub mod partition {
     #[macro_export]
     macro_rules! __aws_glue_Partition_Column {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Partition.Column"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Partition.Column"
             $($field $value)*)
         };
     }
@@ -1807,7 +1807,7 @@ pub mod partition {
     #[macro_export]
     macro_rules! __aws_glue_Partition_Order {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Partition.Order"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Partition.Order"
             $($field $value)*)
         };
     }
@@ -1838,7 +1838,7 @@ pub mod partition {
     #[macro_export]
     macro_rules! __aws_glue_Partition_PartitionInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Partition.PartitionInput"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Partition.PartitionInput"
             $($field $value)*)
         };
     }
@@ -1875,7 +1875,7 @@ pub mod partition {
     #[macro_export]
     macro_rules! __aws_glue_Partition_SchemaId {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Partition.SchemaId"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Partition.SchemaId"
             $($field $value)*)
         };
     }
@@ -1914,7 +1914,7 @@ pub mod partition {
     #[macro_export]
     macro_rules! __aws_glue_Partition_SchemaReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Partition.SchemaReference"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Partition.SchemaReference"
             $($field $value)*)
         };
     }
@@ -1953,7 +1953,7 @@ pub mod partition {
     #[macro_export]
     macro_rules! __aws_glue_Partition_SerdeInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Partition.SerdeInfo"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Partition.SerdeInfo"
             $($field $value)*)
         };
     }
@@ -1989,7 +1989,7 @@ pub mod partition {
     #[macro_export]
     macro_rules! __aws_glue_Partition_SkewedInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Partition.SkewedInfo"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Partition.SkewedInfo"
             $($field $value)*)
         };
     }
@@ -2038,7 +2038,7 @@ pub mod partition {
     #[macro_export]
     macro_rules! __aws_glue_Partition_StorageDescriptor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Partition.StorageDescriptor"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Partition.StorageDescriptor"
             $($field $value)*)
         };
     }
@@ -2138,7 +2138,7 @@ pub mod schema {
     #[macro_export]
     macro_rules! __aws_glue_Schema_Registry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Schema.Registry"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Schema.Registry"
             $($field $value)*)
         };
     }
@@ -2164,7 +2164,7 @@ pub mod schema {
     #[macro_export]
     macro_rules! __aws_glue_Schema_SchemaVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Schema.SchemaVersion"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Schema.SchemaVersion"
             $($field $value)*)
         };
     }
@@ -2199,7 +2199,7 @@ pub mod schemaversion {
     #[macro_export]
     macro_rules! __aws_glue_SchemaVersion_Schema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::SchemaVersion.Schema"
+            stratosphere::generator::construct_property_type!("AWS::Glue::SchemaVersion.Schema"
             $($field $value)*)
         };
     }
@@ -2239,7 +2239,7 @@ pub mod securityconfiguration {
     #[macro_export]
     macro_rules! __aws_glue_SecurityConfiguration_CloudWatchEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::SecurityConfiguration.CloudWatchEncryption"
+            stratosphere::generator::construct_property_type!("AWS::Glue::SecurityConfiguration.CloudWatchEncryption"
             $($field $value)*)
         };
     }
@@ -2272,7 +2272,7 @@ pub mod securityconfiguration {
     #[macro_export]
     macro_rules! __aws_glue_SecurityConfiguration_EncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::SecurityConfiguration.EncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Glue::SecurityConfiguration.EncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -2310,7 +2310,7 @@ pub mod securityconfiguration {
     #[macro_export]
     macro_rules! __aws_glue_SecurityConfiguration_JobBookmarksEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::SecurityConfiguration.JobBookmarksEncryption"
+            stratosphere::generator::construct_property_type!("AWS::Glue::SecurityConfiguration.JobBookmarksEncryption"
             $($field $value)*)
         };
     }
@@ -2342,7 +2342,7 @@ pub mod securityconfiguration {
     #[macro_export]
     macro_rules! __aws_glue_SecurityConfiguration_S3Encryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::SecurityConfiguration.S3Encryption"
+            stratosphere::generator::construct_property_type!("AWS::Glue::SecurityConfiguration.S3Encryption"
             $($field $value)*)
         };
     }
@@ -2371,7 +2371,7 @@ pub mod securityconfiguration {
     #[macro_export]
     macro_rules! __aws_glue_SecurityConfiguration_S3Encryptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::SecurityConfiguration.S3Encryptions"
+            stratosphere::generator::construct_property_type!("AWS::Glue::SecurityConfiguration.S3Encryptions"
             $($field $value)*)
         };
     }
@@ -2393,7 +2393,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_glue_Table_Column {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Table.Column"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Table.Column"
             $($field $value)*)
         };
     }
@@ -2426,7 +2426,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_glue_Table_IcebergInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Table.IcebergInput"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Table.IcebergInput"
             $($field $value)*)
         };
     }
@@ -2455,7 +2455,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_glue_Table_MetadataOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Table.MetadataOperation"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Table.MetadataOperation"
             $($field $value)*)
         };
     }
@@ -2473,7 +2473,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_glue_Table_OpenTableFormatInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Table.OpenTableFormatInput"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Table.OpenTableFormatInput"
             $($field $value)*)
         };
     }
@@ -2499,7 +2499,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_glue_Table_Order {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Table.Order"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Table.Order"
             $($field $value)*)
         };
     }
@@ -2528,7 +2528,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_glue_Table_SchemaId {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Table.SchemaId"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Table.SchemaId"
             $($field $value)*)
         };
     }
@@ -2567,7 +2567,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_glue_Table_SchemaReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Table.SchemaReference"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Table.SchemaReference"
             $($field $value)*)
         };
     }
@@ -2606,7 +2606,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_glue_Table_SerdeInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Table.SerdeInfo"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Table.SerdeInfo"
             $($field $value)*)
         };
     }
@@ -2642,7 +2642,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_glue_Table_SkewedInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Table.SkewedInfo"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Table.SkewedInfo"
             $($field $value)*)
         };
     }
@@ -2691,7 +2691,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_glue_Table_StorageDescriptor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Table.StorageDescriptor"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Table.StorageDescriptor"
             $($field $value)*)
         };
     }
@@ -2791,7 +2791,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_glue_Table_TableIdentifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Table.TableIdentifier"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Table.TableIdentifier"
             $($field $value)*)
         };
     }
@@ -2838,7 +2838,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_glue_Table_TableInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Table.TableInput"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Table.TableInput"
             $($field $value)*)
         };
     }
@@ -2920,7 +2920,7 @@ pub mod tableoptimizer {
     #[macro_export]
     macro_rules! __aws_glue_TableOptimizer_IcebergConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::TableOptimizer.IcebergConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Glue::TableOptimizer.IcebergConfiguration"
             $($field $value)*)
         };
     }
@@ -2953,7 +2953,7 @@ pub mod tableoptimizer {
     #[macro_export]
     macro_rules! __aws_glue_TableOptimizer_IcebergRetentionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::TableOptimizer.IcebergRetentionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Glue::TableOptimizer.IcebergRetentionConfiguration"
             $($field $value)*)
         };
     }
@@ -2990,7 +2990,7 @@ pub mod tableoptimizer {
     #[macro_export]
     macro_rules! __aws_glue_TableOptimizer_OrphanFileDeletionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::TableOptimizer.OrphanFileDeletionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Glue::TableOptimizer.OrphanFileDeletionConfiguration"
             $($field $value)*)
         };
     }
@@ -3015,7 +3015,7 @@ pub mod tableoptimizer {
     #[macro_export]
     macro_rules! __aws_glue_TableOptimizer_RetentionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::TableOptimizer.RetentionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Glue::TableOptimizer.RetentionConfiguration"
             $($field $value)*)
         };
     }
@@ -3044,7 +3044,7 @@ pub mod tableoptimizer {
     #[macro_export]
     macro_rules! __aws_glue_TableOptimizer_TableOptimizerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::TableOptimizer.TableOptimizerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Glue::TableOptimizer.TableOptimizerConfiguration"
             $($field $value)*)
         };
     }
@@ -3089,7 +3089,7 @@ pub mod tableoptimizer {
     #[macro_export]
     macro_rules! __aws_glue_TableOptimizer_VpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::TableOptimizer.VpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Glue::TableOptimizer.VpcConfiguration"
             $($field $value)*)
         };
     }
@@ -3121,7 +3121,7 @@ pub mod trigger {
     #[macro_export]
     macro_rules! __aws_glue_Trigger_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Trigger.Action"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Trigger.Action"
             $($field $value)*)
         };
     }
@@ -3180,7 +3180,7 @@ pub mod trigger {
     #[macro_export]
     macro_rules! __aws_glue_Trigger_Condition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Trigger.Condition"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Trigger.Condition"
             $($field $value)*)
         };
     }
@@ -3227,7 +3227,7 @@ pub mod trigger {
     #[macro_export]
     macro_rules! __aws_glue_Trigger_EventBatchingCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Trigger.EventBatchingCondition"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Trigger.EventBatchingCondition"
             $($field $value)*)
         };
     }
@@ -3256,7 +3256,7 @@ pub mod trigger {
     #[macro_export]
     macro_rules! __aws_glue_Trigger_NotificationProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Trigger.NotificationProperty"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Trigger.NotificationProperty"
             $($field $value)*)
         };
     }
@@ -3282,7 +3282,7 @@ pub mod trigger {
     #[macro_export]
     macro_rules! __aws_glue_Trigger_Predicate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::Trigger.Predicate"
+            stratosphere::generator::construct_property_type!("AWS::Glue::Trigger.Predicate"
             $($field $value)*)
         };
     }
@@ -3318,7 +3318,7 @@ pub mod usageprofile {
     #[macro_export]
     macro_rules! __aws_glue_UsageProfile_ConfigurationObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::UsageProfile.ConfigurationObject"
+            stratosphere::generator::construct_property_type!("AWS::Glue::UsageProfile.ConfigurationObject"
             $($field $value)*)
         };
     }
@@ -3362,7 +3362,7 @@ pub mod usageprofile {
     #[macro_export]
     macro_rules! __aws_glue_UsageProfile_ProfileConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Glue::UsageProfile.ProfileConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Glue::UsageProfile.ProfileConfiguration"
             $($field $value)*)
         };
     }
@@ -3397,8 +3397,8 @@ pub struct Classifier_ {
 #[macro_export]
 macro_rules! __aws_glue_Classifier {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::Classifier" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::Glue::Classifier"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_glue_Classifier as Classifier;
@@ -3449,8 +3449,8 @@ pub struct Connection_ {
 #[macro_export]
 macro_rules! __aws_glue_Connection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::Connection" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::Glue::Connection"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_glue_Connection as Connection;
@@ -3497,7 +3497,7 @@ pub struct Crawler_ {
 #[macro_export]
 macro_rules! __aws_glue_Crawler {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::Crawler" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Glue::Crawler" $($field
         $value)*)
     };
 }
@@ -3601,7 +3601,7 @@ pub struct CustomEntityType_ {
 #[macro_export]
 macro_rules! __aws_glue_CustomEntityType {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::CustomEntityType"
+        stratosphere::generator::construct_resource_type!("AWS::Glue::CustomEntityType"
         $($field $value)*)
     };
 }
@@ -3648,7 +3648,7 @@ pub struct DataCatalogEncryptionSettings_ {
 #[macro_export]
 macro_rules! __aws_glue_DataCatalogEncryptionSettings {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::DataCatalogEncryptionSettings"
+        stratosphere::generator::construct_resource_type!("AWS::Glue::DataCatalogEncryptionSettings"
         $($field $value)*)
     };
 }
@@ -3690,7 +3690,7 @@ pub struct DataQualityRuleset_ {
 #[macro_export]
 macro_rules! __aws_glue_DataQualityRuleset {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::DataQualityRuleset"
+        stratosphere::generator::construct_resource_type!("AWS::Glue::DataQualityRuleset"
         $($field $value)*)
     };
 }
@@ -3749,7 +3749,7 @@ pub struct Database_ {
 #[macro_export]
 macro_rules! __aws_glue_Database {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::Database" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Glue::Database" $($field
         $value)*)
     };
 }
@@ -3804,7 +3804,7 @@ pub struct DevEndpoint_ {
 #[macro_export]
 macro_rules! __aws_glue_DevEndpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::DevEndpoint"
+        stratosphere::generator::construct_resource_type!("AWS::Glue::DevEndpoint"
         $($field $value)*)
     };
 }
@@ -3938,7 +3938,7 @@ pub struct Job_ {
 #[macro_export]
 macro_rules! __aws_glue_Job {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::Job" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Glue::Job" $($field
         $value)*)
     };
 }
@@ -4102,7 +4102,7 @@ pub struct MLTransform_ {
 #[macro_export]
 macro_rules! __aws_glue_MLTransform {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::MLTransform"
+        stratosphere::generator::construct_resource_type!("AWS::Glue::MLTransform"
         $($field $value)*)
     };
 }
@@ -4198,7 +4198,7 @@ pub struct Partition_ {
 #[macro_export]
 macro_rules! __aws_glue_Partition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::Partition" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Glue::Partition" $($field
         $value)*)
     };
 }
@@ -4243,7 +4243,7 @@ pub struct Registry_ {
 #[macro_export]
 macro_rules! __aws_glue_Registry {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::Registry" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Glue::Registry" $($field
         $value)*)
     };
 }
@@ -4290,7 +4290,7 @@ pub struct Schema_ {
 #[macro_export]
 macro_rules! __aws_glue_Schema {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::Schema" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Glue::Schema" $($field
         $value)*)
     };
 }
@@ -4357,7 +4357,7 @@ pub struct SchemaVersion_ {
 #[macro_export]
 macro_rules! __aws_glue_SchemaVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::SchemaVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Glue::SchemaVersion"
         $($field $value)*)
     };
 }
@@ -4394,7 +4394,7 @@ pub struct SchemaVersionMetadata_ {
 #[macro_export]
 macro_rules! __aws_glue_SchemaVersionMetadata {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::SchemaVersionMetadata"
+        stratosphere::generator::construct_resource_type!("AWS::Glue::SchemaVersionMetadata"
         $($field $value)*)
     };
 }
@@ -4434,7 +4434,7 @@ pub struct SecurityConfiguration_ {
 #[macro_export]
 macro_rules! __aws_glue_SecurityConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::SecurityConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::Glue::SecurityConfiguration"
         $($field $value)*)
     };
 }
@@ -4472,7 +4472,7 @@ pub struct Table_ {
 #[macro_export]
 macro_rules! __aws_glue_Table {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::Table" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Glue::Table" $($field
         $value)*)
     };
 }
@@ -4521,7 +4521,7 @@ pub struct TableOptimizer_ {
 #[macro_export]
 macro_rules! __aws_glue_TableOptimizer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::TableOptimizer"
+        stratosphere::generator::construct_resource_type!("AWS::Glue::TableOptimizer"
         $($field $value)*)
     };
 }
@@ -4577,7 +4577,7 @@ pub struct Trigger_ {
 #[macro_export]
 macro_rules! __aws_glue_Trigger {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::Trigger" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Glue::Trigger" $($field
         $value)*)
     };
 }
@@ -4657,7 +4657,7 @@ pub struct UsageProfile_ {
 #[macro_export]
 macro_rules! __aws_glue_UsageProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::UsageProfile"
+        stratosphere::generator::construct_resource_type!("AWS::Glue::UsageProfile"
         $($field $value)*)
     };
 }
@@ -4707,7 +4707,7 @@ pub struct Workflow_ {
 #[macro_export]
 macro_rules! __aws_glue_Workflow {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Glue::Workflow" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Glue::Workflow" $($field
         $value)*)
     };
 }

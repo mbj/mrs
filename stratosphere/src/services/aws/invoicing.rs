@@ -8,7 +8,7 @@ pub mod invoiceunit {
     #[macro_export]
     macro_rules! __aws_invoicing_InvoiceUnit_ResourceTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Invoicing::InvoiceUnit.ResourceTag"
+            stratosphere::generator::construct_property_type!("AWS::Invoicing::InvoiceUnit.ResourceTag"
             $($field $value)*)
         };
     }
@@ -35,7 +35,7 @@ pub mod invoiceunit {
     #[macro_export]
     macro_rules! __aws_invoicing_InvoiceUnit_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Invoicing::InvoiceUnit.Rule"
+            stratosphere::generator::construct_property_type!("AWS::Invoicing::InvoiceUnit.Rule"
             $($field $value)*)
         };
     }
@@ -64,7 +64,7 @@ pub struct InvoiceUnit_ {
 #[macro_export]
 macro_rules! __aws_invoicing_InvoiceUnit {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Invoicing::InvoiceUnit"
+        stratosphere::generator::construct_resource_type!("AWS::Invoicing::InvoiceUnit"
         $($field $value)*)
     };
 }

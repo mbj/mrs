@@ -19,6 +19,7 @@ pub mod token {
 pub use crate::services::tag::Tag;
 pub use crate::services::tag::Tag_;
 pub use crate::template::Template;
+pub use stratosphere_generator as generator;
 
 pub mod lambda;
 pub mod logs;

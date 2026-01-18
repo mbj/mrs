@@ -7,7 +7,7 @@ pub mod experimenttemplate {
     #[macro_export]
     macro_rules! __aws_fis_ExperimentTemplate_CloudWatchDashboard {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FIS::ExperimentTemplate.CloudWatchDashboard"
+            stratosphere::generator::construct_property_type!("AWS::FIS::ExperimentTemplate.CloudWatchDashboard"
             $($field $value)*)
         };
     }
@@ -30,7 +30,7 @@ pub mod experimenttemplate {
     #[macro_export]
     macro_rules! __aws_fis_ExperimentTemplate_CloudWatchLogsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FIS::ExperimentTemplate.CloudWatchLogsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FIS::ExperimentTemplate.CloudWatchLogsConfiguration"
             $($field $value)*)
         };
     }
@@ -53,7 +53,7 @@ pub mod experimenttemplate {
     #[macro_export]
     macro_rules! __aws_fis_ExperimentTemplate_DataSources {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FIS::ExperimentTemplate.DataSources"
+            stratosphere::generator::construct_property_type!("AWS::FIS::ExperimentTemplate.DataSources"
             $($field $value)*)
         };
     }
@@ -79,7 +79,7 @@ pub mod experimenttemplate {
     #[macro_export]
     macro_rules! __aws_fis_ExperimentTemplate_ExperimentReportS3Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentReportS3Configuration"
+            stratosphere::generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentReportS3Configuration"
             $($field $value)*)
         };
     }
@@ -109,7 +109,7 @@ pub mod experimenttemplate {
     #[macro_export]
     macro_rules! __aws_fis_ExperimentTemplate_ExperimentTemplateAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentTemplateAction"
+            stratosphere::generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentTemplateAction"
             $($field $value)*)
         };
     }
@@ -157,7 +157,7 @@ pub mod experimenttemplate {
     #[macro_export]
     macro_rules! __aws_fis_ExperimentTemplate_ExperimentTemplateExperimentOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentTemplateExperimentOptions"
+            stratosphere::generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentTemplateExperimentOptions"
             $($field $value)*)
         };
     }
@@ -191,7 +191,7 @@ pub mod experimenttemplate {
     #[macro_export]
     macro_rules! __aws_fis_ExperimentTemplate_ExperimentTemplateExperimentReportConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentTemplateExperimentReportConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentTemplateExperimentReportConfiguration"
             $($field $value)*)
         };
     }
@@ -234,7 +234,7 @@ pub mod experimenttemplate {
     #[macro_export]
     macro_rules! __aws_fis_ExperimentTemplate_ExperimentTemplateLogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentTemplateLogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentTemplateLogConfiguration"
             $($field $value)*)
         };
     }
@@ -270,7 +270,7 @@ pub mod experimenttemplate {
     #[macro_export]
     macro_rules! __aws_fis_ExperimentTemplate_ExperimentTemplateStopCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentTemplateStopCondition"
+            stratosphere::generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentTemplateStopCondition"
             $($field $value)*)
         };
     }
@@ -301,7 +301,7 @@ pub mod experimenttemplate {
     #[macro_export]
     macro_rules! __aws_fis_ExperimentTemplate_ExperimentTemplateTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentTemplateTarget"
+            stratosphere::generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentTemplateTarget"
             $($field $value)*)
         };
     }
@@ -353,7 +353,7 @@ pub mod experimenttemplate {
     #[macro_export]
     macro_rules! __aws_fis_ExperimentTemplate_ExperimentTemplateTargetFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentTemplateTargetFilter"
+            stratosphere::generator::construct_property_type!("AWS::FIS::ExperimentTemplate.ExperimentTemplateTargetFilter"
             $($field $value)*)
         };
     }
@@ -380,7 +380,7 @@ pub mod experimenttemplate {
     #[macro_export]
     macro_rules! __aws_fis_ExperimentTemplate_Outputs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FIS::ExperimentTemplate.Outputs"
+            stratosphere::generator::construct_property_type!("AWS::FIS::ExperimentTemplate.Outputs"
             $($field $value)*)
         };
     }
@@ -404,7 +404,7 @@ pub mod experimenttemplate {
     #[macro_export]
     macro_rules! __aws_fis_ExperimentTemplate_S3Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FIS::ExperimentTemplate.S3Configuration"
+            stratosphere::generator::construct_property_type!("AWS::FIS::ExperimentTemplate.S3Configuration"
             $($field $value)*)
         };
     }
@@ -450,7 +450,7 @@ pub struct ExperimentTemplate_ {
 #[macro_export]
 macro_rules! __aws_fis_ExperimentTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FIS::ExperimentTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::FIS::ExperimentTemplate"
         $($field $value)*)
     };
 }
@@ -523,7 +523,7 @@ pub struct TargetAccountConfiguration_ {
 #[macro_export]
 macro_rules! __aws_fis_TargetAccountConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FIS::TargetAccountConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::FIS::TargetAccountConfiguration"
         $($field $value)*)
     };
 }

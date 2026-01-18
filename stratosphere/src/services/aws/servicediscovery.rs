@@ -7,7 +7,7 @@ pub mod privatednsnamespace {
     #[macro_export]
     macro_rules! __aws_servicediscovery_PrivateDnsNamespace_PrivateDnsPropertiesMutable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceDiscovery::PrivateDnsNamespace.PrivateDnsPropertiesMutable"
+            stratosphere::generator::construct_property_type!("AWS::ServiceDiscovery::PrivateDnsNamespace.PrivateDnsPropertiesMutable"
             $($field $value)*)
         };
     }
@@ -29,7 +29,7 @@ pub mod privatednsnamespace {
     #[macro_export]
     macro_rules! __aws_servicediscovery_PrivateDnsNamespace_Properties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceDiscovery::PrivateDnsNamespace.Properties"
+            stratosphere::generator::construct_property_type!("AWS::ServiceDiscovery::PrivateDnsNamespace.Properties"
             $($field $value)*)
         };
     }
@@ -54,7 +54,7 @@ pub mod privatednsnamespace {
     #[macro_export]
     macro_rules! __aws_servicediscovery_PrivateDnsNamespace_SOA {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceDiscovery::PrivateDnsNamespace.SOA"
+            stratosphere::generator::construct_property_type!("AWS::ServiceDiscovery::PrivateDnsNamespace.SOA"
             $($field $value)*)
         };
     }
@@ -78,7 +78,7 @@ pub mod publicdnsnamespace {
     #[macro_export]
     macro_rules! __aws_servicediscovery_PublicDnsNamespace_Properties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceDiscovery::PublicDnsNamespace.Properties"
+            stratosphere::generator::construct_property_type!("AWS::ServiceDiscovery::PublicDnsNamespace.Properties"
             $($field $value)*)
         };
     }
@@ -103,7 +103,7 @@ pub mod publicdnsnamespace {
     #[macro_export]
     macro_rules! __aws_servicediscovery_PublicDnsNamespace_PublicDnsPropertiesMutable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceDiscovery::PublicDnsNamespace.PublicDnsPropertiesMutable"
+            stratosphere::generator::construct_property_type!("AWS::ServiceDiscovery::PublicDnsNamespace.PublicDnsPropertiesMutable"
             $($field $value)*)
         };
     }
@@ -125,7 +125,7 @@ pub mod publicdnsnamespace {
     #[macro_export]
     macro_rules! __aws_servicediscovery_PublicDnsNamespace_SOA {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceDiscovery::PublicDnsNamespace.SOA"
+            stratosphere::generator::construct_property_type!("AWS::ServiceDiscovery::PublicDnsNamespace.SOA"
             $($field $value)*)
         };
     }
@@ -151,7 +151,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_servicediscovery_Service_DnsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceDiscovery::Service.DnsConfig"
+            stratosphere::generator::construct_property_type!("AWS::ServiceDiscovery::Service.DnsConfig"
             $($field $value)*)
         };
     }
@@ -187,7 +187,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_servicediscovery_Service_DnsRecord {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceDiscovery::Service.DnsRecord"
+            stratosphere::generator::construct_property_type!("AWS::ServiceDiscovery::Service.DnsRecord"
             $($field $value)*)
         };
     }
@@ -216,7 +216,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_servicediscovery_Service_HealthCheckConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceDiscovery::Service.HealthCheckConfig"
+            stratosphere::generator::construct_property_type!("AWS::ServiceDiscovery::Service.HealthCheckConfig"
             $($field $value)*)
         };
     }
@@ -251,7 +251,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_servicediscovery_Service_HealthCheckCustomConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceDiscovery::Service.HealthCheckCustomConfig"
+            stratosphere::generator::construct_property_type!("AWS::ServiceDiscovery::Service.HealthCheckCustomConfig"
             $($field $value)*)
         };
     }
@@ -279,7 +279,7 @@ pub struct HttpNamespace_ {
 #[macro_export]
 macro_rules! __aws_servicediscovery_HttpNamespace {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceDiscovery::HttpNamespace"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceDiscovery::HttpNamespace"
         $($field $value)*)
     };
 }
@@ -321,7 +321,7 @@ pub struct Instance_ {
 #[macro_export]
 macro_rules! __aws_servicediscovery_Instance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceDiscovery::Instance"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceDiscovery::Instance"
         $($field $value)*)
     };
 }
@@ -366,7 +366,7 @@ pub struct PrivateDnsNamespace_ {
 #[macro_export]
 macro_rules! __aws_servicediscovery_PrivateDnsNamespace {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceDiscovery::PrivateDnsNamespace"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceDiscovery::PrivateDnsNamespace"
         $($field $value)*)
     };
 }
@@ -419,7 +419,7 @@ pub struct PublicDnsNamespace_ {
 #[macro_export]
 macro_rules! __aws_servicediscovery_PublicDnsNamespace {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceDiscovery::PublicDnsNamespace"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceDiscovery::PublicDnsNamespace"
         $($field $value)*)
     };
 }
@@ -474,7 +474,7 @@ pub struct Service_ {
 #[macro_export]
 macro_rules! __aws_servicediscovery_Service {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceDiscovery::Service"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceDiscovery::Service"
         $($field $value)*)
     };
 }

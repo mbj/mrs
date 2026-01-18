@@ -9,7 +9,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_systemsmanagersap_Application_ComponentInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SystemsManagerSAP::Application.ComponentInfo"
+            stratosphere::generator::construct_property_type!("AWS::SystemsManagerSAP::Application.ComponentInfo"
             $($field $value)*)
         };
     }
@@ -45,7 +45,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_systemsmanagersap_Application_Credential {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SystemsManagerSAP::Application.Credential"
+            stratosphere::generator::construct_property_type!("AWS::SystemsManagerSAP::Application.Credential"
             $($field $value)*)
         };
     }
@@ -91,7 +91,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_systemsmanagersap_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SystemsManagerSAP::Application"
+        stratosphere::generator::construct_resource_type!("AWS::SystemsManagerSAP::Application"
         $($field $value)*)
     };
 }

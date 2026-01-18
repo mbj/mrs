@@ -8,7 +8,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Application_AppConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Application.AppConfig"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Application.AppConfig"
             $($field $value)*)
         };
     }
@@ -36,7 +36,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Application_DataSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Application.DataSource"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Application.DataSource"
             $($field $value)*)
         };
     }
@@ -67,7 +67,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Application_IamIdentityCenterOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Application.IamIdentityCenterOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Application.IamIdentityCenterOptions"
             $($field $value)*)
         };
     }
@@ -113,7 +113,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_AdvancedSecurityOptionsInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.AdvancedSecurityOptionsInput"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.AdvancedSecurityOptionsInput"
             $($field $value)*)
         };
     }
@@ -192,7 +192,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_ClusterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.ClusterConfig"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.ClusterConfig"
             $($field $value)*)
         };
     }
@@ -292,7 +292,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_CognitoOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.CognitoOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.CognitoOptions"
             $($field $value)*)
         };
     }
@@ -335,7 +335,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_ColdStorageOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.ColdStorageOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.ColdStorageOptions"
             $($field $value)*)
         };
     }
@@ -364,7 +364,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_DomainEndpointOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.DomainEndpointOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.DomainEndpointOptions"
             $($field $value)*)
         };
     }
@@ -417,7 +417,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_EBSOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.EBSOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.EBSOptions"
             $($field $value)*)
         };
     }
@@ -464,7 +464,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_EncryptionAtRestOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.EncryptionAtRestOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.EncryptionAtRestOptions"
             $($field $value)*)
         };
     }
@@ -497,7 +497,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_IAMFederationOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.IAMFederationOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.IAMFederationOptions"
             $($field $value)*)
         };
     }
@@ -539,7 +539,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_IdentityCenterOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.IdentityCenterOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.IdentityCenterOptions"
             $($field $value)*)
         };
     }
@@ -595,7 +595,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_Idp {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.Idp"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.Idp"
             $($field $value)*)
         };
     }
@@ -625,7 +625,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_JWTOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.JWTOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.JWTOptions"
             $($field $value)*)
         };
     }
@@ -669,7 +669,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_LogPublishingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.LogPublishingOption"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.LogPublishingOption"
             $($field $value)*)
         };
     }
@@ -702,7 +702,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_MasterUserOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.MasterUserOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.MasterUserOptions"
             $($field $value)*)
         };
     }
@@ -741,7 +741,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_NodeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.NodeConfig"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.NodeConfig"
             $($field $value)*)
         };
     }
@@ -773,7 +773,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_NodeOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.NodeOption"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.NodeOption"
             $($field $value)*)
         };
     }
@@ -804,7 +804,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_NodeToNodeEncryptionOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.NodeToNodeEncryptionOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.NodeToNodeEncryptionOptions"
             $($field $value)*)
         };
     }
@@ -829,7 +829,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_OffPeakWindow {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.OffPeakWindow"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.OffPeakWindow"
             $($field $value)*)
         };
     }
@@ -855,7 +855,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_OffPeakWindowOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.OffPeakWindowOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.OffPeakWindowOptions"
             $($field $value)*)
         };
     }
@@ -892,7 +892,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_SAMLOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.SAMLOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.SAMLOptions"
             $($field $value)*)
         };
     }
@@ -957,7 +957,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_ServiceSoftwareOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.ServiceSoftwareOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.ServiceSoftwareOptions"
             $($field $value)*)
         };
     }
@@ -1024,7 +1024,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_SnapshotOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.SnapshotOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.SnapshotOptions"
             $($field $value)*)
         };
     }
@@ -1049,7 +1049,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_SoftwareUpdateOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.SoftwareUpdateOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.SoftwareUpdateOptions"
             $($field $value)*)
         };
     }
@@ -1075,7 +1075,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_VPCOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.VPCOptions"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.VPCOptions"
             $($field $value)*)
         };
     }
@@ -1107,7 +1107,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_WindowStartTime {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.WindowStartTime"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.WindowStartTime"
             $($field $value)*)
         };
     }
@@ -1134,7 +1134,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_opensearchservice_Domain_ZoneAwarenessConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpenSearchService::Domain.ZoneAwarenessConfig"
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.ZoneAwarenessConfig"
             $($field $value)*)
         };
     }
@@ -1166,7 +1166,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_opensearchservice_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpenSearchService::Application"
+        stratosphere::generator::construct_resource_type!("AWS::OpenSearchService::Application"
         $($field $value)*)
     };
 }
@@ -1248,7 +1248,7 @@ pub struct Domain_ {
 #[macro_export]
 macro_rules! __aws_opensearchservice_Domain {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpenSearchService::Domain"
+        stratosphere::generator::construct_resource_type!("AWS::OpenSearchService::Domain"
         $($field $value)*)
     };
 }

@@ -8,7 +8,7 @@ pub mod cidrcollection {
     #[macro_export]
     macro_rules! __aws_route53_CidrCollection_Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::CidrCollection.Location"
+            stratosphere::generator::construct_property_type!("AWS::Route53::CidrCollection.Location"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod healthcheck {
     #[macro_export]
     macro_rules! __aws_route53_HealthCheck_AlarmIdentifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::HealthCheck.AlarmIdentifier"
+            stratosphere::generator::construct_property_type!("AWS::Route53::HealthCheck.AlarmIdentifier"
             $($field $value)*)
         };
     }
@@ -81,7 +81,7 @@ pub mod healthcheck {
     #[macro_export]
     macro_rules! __aws_route53_HealthCheck_HealthCheckConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::HealthCheck.HealthCheckConfig"
+            stratosphere::generator::construct_property_type!("AWS::Route53::HealthCheck.HealthCheckConfig"
             $($field $value)*)
         };
     }
@@ -198,7 +198,7 @@ pub mod healthcheck {
     #[macro_export]
     macro_rules! __aws_route53_HealthCheck_HealthCheckTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::HealthCheck.HealthCheckTag"
+            stratosphere::generator::construct_property_type!("AWS::Route53::HealthCheck.HealthCheckTag"
             $($field $value)*)
         };
     }
@@ -227,7 +227,7 @@ pub mod hostedzone {
     #[macro_export]
     macro_rules! __aws_route53_HostedZone_HostedZoneConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::HostedZone.HostedZoneConfig"
+            stratosphere::generator::construct_property_type!("AWS::Route53::HostedZone.HostedZoneConfig"
             $($field $value)*)
         };
     }
@@ -253,7 +253,7 @@ pub mod hostedzone {
     #[macro_export]
     macro_rules! __aws_route53_HostedZone_HostedZoneTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::HostedZone.HostedZoneTag"
+            stratosphere::generator::construct_property_type!("AWS::Route53::HostedZone.HostedZoneTag"
             $($field $value)*)
         };
     }
@@ -280,7 +280,7 @@ pub mod hostedzone {
     #[macro_export]
     macro_rules! __aws_route53_HostedZone_QueryLoggingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::HostedZone.QueryLoggingConfig"
+            stratosphere::generator::construct_property_type!("AWS::Route53::HostedZone.QueryLoggingConfig"
             $($field $value)*)
         };
     }
@@ -304,7 +304,7 @@ pub mod hostedzone {
     #[macro_export]
     macro_rules! __aws_route53_HostedZone_VPC {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::HostedZone.VPC"
+            stratosphere::generator::construct_property_type!("AWS::Route53::HostedZone.VPC"
             $($field $value)*)
         };
     }
@@ -335,7 +335,7 @@ pub mod recordset {
     #[macro_export]
     macro_rules! __aws_route53_RecordSet_AliasTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::RecordSet.AliasTarget"
+            stratosphere::generator::construct_property_type!("AWS::Route53::RecordSet.AliasTarget"
             $($field $value)*)
         };
     }
@@ -369,7 +369,7 @@ pub mod recordset {
     #[macro_export]
     macro_rules! __aws_route53_RecordSet_CidrRoutingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::RecordSet.CidrRoutingConfig"
+            stratosphere::generator::construct_property_type!("AWS::Route53::RecordSet.CidrRoutingConfig"
             $($field $value)*)
         };
     }
@@ -397,7 +397,7 @@ pub mod recordset {
     #[macro_export]
     macro_rules! __aws_route53_RecordSet_Coordinates {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::RecordSet.Coordinates"
+            stratosphere::generator::construct_property_type!("AWS::Route53::RecordSet.Coordinates"
             $($field $value)*)
         };
     }
@@ -426,7 +426,7 @@ pub mod recordset {
     #[macro_export]
     macro_rules! __aws_route53_RecordSet_GeoLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::RecordSet.GeoLocation"
+            stratosphere::generator::construct_property_type!("AWS::Route53::RecordSet.GeoLocation"
             $($field $value)*)
         };
     }
@@ -466,7 +466,7 @@ pub mod recordset {
     #[macro_export]
     macro_rules! __aws_route53_RecordSet_GeoProximityLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::RecordSet.GeoProximityLocation"
+            stratosphere::generator::construct_property_type!("AWS::Route53::RecordSet.GeoProximityLocation"
             $($field $value)*)
         };
     }
@@ -510,7 +510,7 @@ pub mod recordsetgroup {
     #[macro_export]
     macro_rules! __aws_route53_RecordSetGroup_AliasTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::RecordSetGroup.AliasTarget"
+            stratosphere::generator::construct_property_type!("AWS::Route53::RecordSetGroup.AliasTarget"
             $($field $value)*)
         };
     }
@@ -544,7 +544,7 @@ pub mod recordsetgroup {
     #[macro_export]
     macro_rules! __aws_route53_RecordSetGroup_CidrRoutingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::RecordSetGroup.CidrRoutingConfig"
+            stratosphere::generator::construct_property_type!("AWS::Route53::RecordSetGroup.CidrRoutingConfig"
             $($field $value)*)
         };
     }
@@ -572,7 +572,7 @@ pub mod recordsetgroup {
     #[macro_export]
     macro_rules! __aws_route53_RecordSetGroup_Coordinates {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::RecordSetGroup.Coordinates"
+            stratosphere::generator::construct_property_type!("AWS::Route53::RecordSetGroup.Coordinates"
             $($field $value)*)
         };
     }
@@ -601,7 +601,7 @@ pub mod recordsetgroup {
     #[macro_export]
     macro_rules! __aws_route53_RecordSetGroup_GeoLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::RecordSetGroup.GeoLocation"
+            stratosphere::generator::construct_property_type!("AWS::Route53::RecordSetGroup.GeoLocation"
             $($field $value)*)
         };
     }
@@ -641,7 +641,7 @@ pub mod recordsetgroup {
     #[macro_export]
     macro_rules! __aws_route53_RecordSetGroup_GeoProximityLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::RecordSetGroup.GeoProximityLocation"
+            stratosphere::generator::construct_property_type!("AWS::Route53::RecordSetGroup.GeoProximityLocation"
             $($field $value)*)
         };
     }
@@ -696,7 +696,7 @@ pub mod recordsetgroup {
     #[macro_export]
     macro_rules! __aws_route53_RecordSetGroup_RecordSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53::RecordSetGroup.RecordSet"
+            stratosphere::generator::construct_property_type!("AWS::Route53::RecordSetGroup.RecordSet"
             $($field $value)*)
         };
     }
@@ -800,7 +800,7 @@ pub struct CidrCollection_ {
 #[macro_export]
 macro_rules! __aws_route53_CidrCollection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53::CidrCollection"
+        stratosphere::generator::construct_resource_type!("AWS::Route53::CidrCollection"
         $($field $value)*)
     };
 }
@@ -837,7 +837,7 @@ pub struct DNSSEC_ {
 #[macro_export]
 macro_rules! __aws_route53_DNSSEC {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53::DNSSEC" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Route53::DNSSEC" $($field
         $value)*)
     };
 }
@@ -869,7 +869,7 @@ pub struct HealthCheck_ {
 #[macro_export]
 macro_rules! __aws_route53_HealthCheck {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53::HealthCheck"
+        stratosphere::generator::construct_resource_type!("AWS::Route53::HealthCheck"
         $($field $value)*)
     };
 }
@@ -910,7 +910,7 @@ pub struct HostedZone_ {
 #[macro_export]
 macro_rules! __aws_route53_HostedZone {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53::HostedZone"
+        stratosphere::generator::construct_resource_type!("AWS::Route53::HostedZone"
         $($field $value)*)
     };
 }
@@ -964,7 +964,7 @@ pub struct KeySigningKey_ {
 #[macro_export]
 macro_rules! __aws_route53_KeySigningKey {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53::KeySigningKey"
+        stratosphere::generator::construct_resource_type!("AWS::Route53::KeySigningKey"
         $($field $value)*)
     };
 }
@@ -1023,7 +1023,7 @@ pub struct RecordSet_ {
 #[macro_export]
 macro_rules! __aws_route53_RecordSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53::RecordSet"
+        stratosphere::generator::construct_resource_type!("AWS::Route53::RecordSet"
         $($field $value)*)
     };
 }
@@ -1142,7 +1142,7 @@ pub struct RecordSetGroup_ {
 #[macro_export]
 macro_rules! __aws_route53_RecordSetGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53::RecordSetGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Route53::RecordSetGroup"
         $($field $value)*)
     };
 }

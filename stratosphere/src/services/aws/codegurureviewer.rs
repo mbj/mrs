@@ -11,7 +11,7 @@ pub struct RepositoryAssociation_ {
 #[macro_export]
 macro_rules! __aws_codegurureviewer_RepositoryAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeGuruReviewer::RepositoryAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::CodeGuruReviewer::RepositoryAssociation"
         $($field $value)*)
     };
 }

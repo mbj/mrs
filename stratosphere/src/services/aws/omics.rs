@@ -7,7 +7,7 @@ pub mod annotationstore {
     #[macro_export]
     macro_rules! __aws_omics_AnnotationStore_ReferenceItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Omics::AnnotationStore.ReferenceItem"
+            stratosphere::generator::construct_property_type!("AWS::Omics::AnnotationStore.ReferenceItem"
             $($field $value)*)
         };
     }
@@ -31,7 +31,7 @@ pub mod annotationstore {
     #[macro_export]
     macro_rules! __aws_omics_AnnotationStore_SseConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Omics::AnnotationStore.SseConfig"
+            stratosphere::generator::construct_property_type!("AWS::Omics::AnnotationStore.SseConfig"
             $($field $value)*)
         };
     }
@@ -57,7 +57,7 @@ pub mod annotationstore {
     #[macro_export]
     macro_rules! __aws_omics_AnnotationStore_StoreOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Omics::AnnotationStore.StoreOptions"
+            stratosphere::generator::construct_property_type!("AWS::Omics::AnnotationStore.StoreOptions"
             $($field $value)*)
         };
     }
@@ -82,7 +82,7 @@ pub mod annotationstore {
     #[macro_export]
     macro_rules! __aws_omics_AnnotationStore_TsvStoreOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Omics::AnnotationStore.TsvStoreOptions"
+            stratosphere::generator::construct_property_type!("AWS::Omics::AnnotationStore.TsvStoreOptions"
             $($field $value)*)
         };
     }
@@ -119,7 +119,7 @@ pub mod referencestore {
     #[macro_export]
     macro_rules! __aws_omics_ReferenceStore_SseConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Omics::ReferenceStore.SseConfig"
+            stratosphere::generator::construct_property_type!("AWS::Omics::ReferenceStore.SseConfig"
             $($field $value)*)
         };
     }
@@ -148,7 +148,7 @@ pub mod sequencestore {
     #[macro_export]
     macro_rules! __aws_omics_SequenceStore_SseConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Omics::SequenceStore.SseConfig"
+            stratosphere::generator::construct_property_type!("AWS::Omics::SequenceStore.SseConfig"
             $($field $value)*)
         };
     }
@@ -176,7 +176,7 @@ pub mod variantstore {
     #[macro_export]
     macro_rules! __aws_omics_VariantStore_ReferenceItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Omics::VariantStore.ReferenceItem"
+            stratosphere::generator::construct_property_type!("AWS::Omics::VariantStore.ReferenceItem"
             $($field $value)*)
         };
     }
@@ -200,7 +200,7 @@ pub mod variantstore {
     #[macro_export]
     macro_rules! __aws_omics_VariantStore_SseConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Omics::VariantStore.SseConfig"
+            stratosphere::generator::construct_property_type!("AWS::Omics::VariantStore.SseConfig"
             $($field $value)*)
         };
     }
@@ -231,7 +231,7 @@ pub mod workflow {
     #[macro_export]
     macro_rules! __aws_omics_Workflow_DefinitionRepository {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Omics::Workflow.DefinitionRepository"
+            stratosphere::generator::construct_property_type!("AWS::Omics::Workflow.DefinitionRepository"
             $($field $value)*)
         };
     }
@@ -275,7 +275,7 @@ pub mod workflow {
     #[macro_export]
     macro_rules! __aws_omics_Workflow_SourceReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Omics::Workflow.SourceReference"
+            stratosphere::generator::construct_property_type!("AWS::Omics::Workflow.SourceReference"
             $($field $value)*)
         };
     }
@@ -301,7 +301,7 @@ pub mod workflow {
     #[macro_export]
     macro_rules! __aws_omics_Workflow_WorkflowParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Omics::Workflow.WorkflowParameter"
+            stratosphere::generator::construct_property_type!("AWS::Omics::Workflow.WorkflowParameter"
             $($field $value)*)
         };
     }
@@ -337,7 +337,7 @@ pub mod workflowversion {
     #[macro_export]
     macro_rules! __aws_omics_WorkflowVersion_DefinitionRepository {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Omics::WorkflowVersion.DefinitionRepository"
+            stratosphere::generator::construct_property_type!("AWS::Omics::WorkflowVersion.DefinitionRepository"
             $($field $value)*)
         };
     }
@@ -381,7 +381,7 @@ pub mod workflowversion {
     #[macro_export]
     macro_rules! __aws_omics_WorkflowVersion_SourceReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Omics::WorkflowVersion.SourceReference"
+            stratosphere::generator::construct_property_type!("AWS::Omics::WorkflowVersion.SourceReference"
             $($field $value)*)
         };
     }
@@ -407,7 +407,7 @@ pub mod workflowversion {
     #[macro_export]
     macro_rules! __aws_omics_WorkflowVersion_WorkflowParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Omics::WorkflowVersion.WorkflowParameter"
+            stratosphere::generator::construct_property_type!("AWS::Omics::WorkflowVersion.WorkflowParameter"
             $($field $value)*)
         };
     }
@@ -445,7 +445,7 @@ pub struct AnnotationStore_ {
 #[macro_export]
 macro_rules! __aws_omics_AnnotationStore {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Omics::AnnotationStore"
+        stratosphere::generator::construct_resource_type!("AWS::Omics::AnnotationStore"
         $($field $value)*)
     };
 }
@@ -510,7 +510,7 @@ pub struct ReferenceStore_ {
 #[macro_export]
 macro_rules! __aws_omics_ReferenceStore {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Omics::ReferenceStore"
+        stratosphere::generator::construct_resource_type!("AWS::Omics::ReferenceStore"
         $($field $value)*)
     };
 }
@@ -561,7 +561,7 @@ pub struct RunGroup_ {
 #[macro_export]
 macro_rules! __aws_omics_RunGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Omics::RunGroup" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Omics::RunGroup" $($field
         $value)*)
     };
 }
@@ -626,7 +626,7 @@ pub struct SequenceStore_ {
 #[macro_export]
 macro_rules! __aws_omics_SequenceStore {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Omics::SequenceStore"
+        stratosphere::generator::construct_resource_type!("AWS::Omics::SequenceStore"
         $($field $value)*)
     };
 }
@@ -706,7 +706,7 @@ pub struct VariantStore_ {
 #[macro_export]
 macro_rules! __aws_omics_VariantStore {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Omics::VariantStore"
+        stratosphere::generator::construct_resource_type!("AWS::Omics::VariantStore"
         $($field $value)*)
     };
 }
@@ -772,7 +772,7 @@ pub struct Workflow_ {
 #[macro_export]
 macro_rules! __aws_omics_Workflow {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Omics::Workflow" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Omics::Workflow" $($field
         $value)*)
     };
 }
@@ -901,7 +901,7 @@ pub struct WorkflowVersion_ {
 #[macro_export]
 macro_rules! __aws_omics_WorkflowVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Omics::WorkflowVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Omics::WorkflowVersion"
         $($field $value)*)
     };
 }

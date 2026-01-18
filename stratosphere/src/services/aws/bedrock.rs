@@ -8,7 +8,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_APISchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.APISchema"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.APISchema"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_ActionGroupExecutor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.ActionGroupExecutor"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.ActionGroupExecutor"
             $($field $value)*)
         };
     }
@@ -72,7 +72,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_AgentActionGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.AgentActionGroup"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.AgentActionGroup"
             $($field $value)*)
         };
     }
@@ -140,7 +140,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_AgentCollaborator {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.AgentCollaborator"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.AgentCollaborator"
             $($field $value)*)
         };
     }
@@ -177,7 +177,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_AgentDescriptor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.AgentDescriptor"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.AgentDescriptor"
             $($field $value)*)
         };
     }
@@ -204,7 +204,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_AgentKnowledgeBase {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.AgentKnowledgeBase"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.AgentKnowledgeBase"
             $($field $value)*)
         };
     }
@@ -237,7 +237,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_CustomOrchestration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.CustomOrchestration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.CustomOrchestration"
             $($field $value)*)
         };
     }
@@ -265,7 +265,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_Function {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.Function"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.Function"
             $($field $value)*)
         };
     }
@@ -306,7 +306,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_FunctionSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.FunctionSchema"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.FunctionSchema"
             $($field $value)*)
         };
     }
@@ -330,7 +330,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_GuardrailConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.GuardrailConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.GuardrailConfiguration"
             $($field $value)*)
         };
     }
@@ -365,7 +365,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_InferenceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.InferenceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.InferenceConfiguration"
             $($field $value)*)
         };
     }
@@ -410,7 +410,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_MemoryConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.MemoryConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.MemoryConfiguration"
             $($field $value)*)
         };
     }
@@ -447,7 +447,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_OrchestrationExecutor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.OrchestrationExecutor"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.OrchestrationExecutor"
             $($field $value)*)
         };
     }
@@ -472,7 +472,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_ParameterDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.ParameterDetail"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.ParameterDetail"
             $($field $value)*)
         };
     }
@@ -514,7 +514,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_PromptConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.PromptConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.PromptConfiguration"
             $($field $value)*)
         };
     }
@@ -582,7 +582,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_PromptOverrideConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.PromptOverrideConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.PromptOverrideConfiguration"
             $($field $value)*)
         };
     }
@@ -612,7 +612,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_S3Identifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.S3Identifier"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.S3Identifier"
             $($field $value)*)
         };
     }
@@ -643,7 +643,7 @@ pub mod agent {
     #[macro_export]
     macro_rules! __aws_bedrock_Agent_SessionSummaryConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Agent.SessionSummaryConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Agent.SessionSummaryConfiguration"
             $($field $value)*)
         };
     }
@@ -672,7 +672,7 @@ pub mod agentalias {
     #[macro_export]
     macro_rules! __aws_bedrock_AgentAlias_AgentAliasHistoryEvent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::AgentAlias.AgentAliasHistoryEvent"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::AgentAlias.AgentAliasHistoryEvent"
             $($field $value)*)
         };
     }
@@ -709,7 +709,7 @@ pub mod agentalias {
     #[macro_export]
     macro_rules! __aws_bedrock_AgentAlias_AgentAliasRoutingConfigurationListItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::AgentAlias.AgentAliasRoutingConfigurationListItem"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::AgentAlias.AgentAliasRoutingConfigurationListItem"
             $($field $value)*)
         };
     }
@@ -734,7 +734,7 @@ pub mod applicationinferenceprofile {
     #[macro_export]
     macro_rules! __aws_bedrock_ApplicationInferenceProfile_InferenceProfileModel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::ApplicationInferenceProfile.InferenceProfileModel"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::ApplicationInferenceProfile.InferenceProfileModel"
             $($field $value)*)
         };
     }
@@ -759,7 +759,7 @@ pub mod applicationinferenceprofile {
     #[macro_export]
     macro_rules! __aws_bedrock_ApplicationInferenceProfile_InferenceProfileModelSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::ApplicationInferenceProfile.InferenceProfileModelSource"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::ApplicationInferenceProfile.InferenceProfileModelSource"
             $($field $value)*)
         };
     }
@@ -787,7 +787,7 @@ pub mod automatedreasoningpolicy {
     #[macro_export]
     macro_rules! __aws_bedrock_AutomatedReasoningPolicy_PolicyDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::AutomatedReasoningPolicy.PolicyDefinition"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::AutomatedReasoningPolicy.PolicyDefinition"
             $($field $value)*)
         };
     }
@@ -826,7 +826,7 @@ pub mod automatedreasoningpolicy {
     #[macro_export]
     macro_rules! __aws_bedrock_AutomatedReasoningPolicy_PolicyDefinitionRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::AutomatedReasoningPolicy.PolicyDefinitionRule"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::AutomatedReasoningPolicy.PolicyDefinitionRule"
             $($field $value)*)
         };
     }
@@ -858,7 +858,7 @@ pub mod automatedreasoningpolicy {
     #[macro_export]
     macro_rules! __aws_bedrock_AutomatedReasoningPolicy_PolicyDefinitionType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::AutomatedReasoningPolicy.PolicyDefinitionType"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::AutomatedReasoningPolicy.PolicyDefinitionType"
             $($field $value)*)
         };
     }
@@ -892,7 +892,7 @@ pub mod automatedreasoningpolicy {
     #[macro_export]
     macro_rules! __aws_bedrock_AutomatedReasoningPolicy_PolicyDefinitionTypeValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::AutomatedReasoningPolicy.PolicyDefinitionTypeValue"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::AutomatedReasoningPolicy.PolicyDefinitionTypeValue"
             $($field $value)*)
         };
     }
@@ -923,7 +923,7 @@ pub mod automatedreasoningpolicy {
     #[macro_export]
     macro_rules! __aws_bedrock_AutomatedReasoningPolicy_PolicyDefinitionVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::AutomatedReasoningPolicy.PolicyDefinitionVariable"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::AutomatedReasoningPolicy.PolicyDefinitionVariable"
             $($field $value)*)
         };
     }
@@ -957,7 +957,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_AudioExtractionCategory {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.AudioExtractionCategory"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.AudioExtractionCategory"
             $($field $value)*)
         };
     }
@@ -983,7 +983,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_AudioOverrideConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.AudioOverrideConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.AudioOverrideConfiguration"
             $($field $value)*)
         };
     }
@@ -1008,7 +1008,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_AudioStandardExtraction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.AudioStandardExtraction"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.AudioStandardExtraction"
             $($field $value)*)
         };
     }
@@ -1032,7 +1032,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_AudioStandardGenerativeField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.AudioStandardGenerativeField"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.AudioStandardGenerativeField"
             $($field $value)*)
         };
     }
@@ -1059,7 +1059,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_AudioStandardOutputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.AudioStandardOutputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.AudioStandardOutputConfiguration"
             $($field $value)*)
         };
     }
@@ -1092,7 +1092,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_BlueprintItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.BlueprintItem"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.BlueprintItem"
             $($field $value)*)
         };
     }
@@ -1127,7 +1127,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_CustomOutputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.CustomOutputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.CustomOutputConfiguration"
             $($field $value)*)
         };
     }
@@ -1152,7 +1152,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_DocumentBoundingBox {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentBoundingBox"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentBoundingBox"
             $($field $value)*)
         };
     }
@@ -1175,7 +1175,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_DocumentExtractionGranularity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentExtractionGranularity"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentExtractionGranularity"
             $($field $value)*)
         };
     }
@@ -1197,7 +1197,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_DocumentOutputAdditionalFileFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentOutputAdditionalFileFormat"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentOutputAdditionalFileFormat"
             $($field $value)*)
         };
     }
@@ -1221,7 +1221,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_DocumentOutputFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentOutputFormat"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentOutputFormat"
             $($field $value)*)
         };
     }
@@ -1248,7 +1248,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_DocumentOutputTextFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentOutputTextFormat"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentOutputTextFormat"
             $($field $value)*)
         };
     }
@@ -1271,7 +1271,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_DocumentOverrideConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentOverrideConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentOverrideConfiguration"
             $($field $value)*)
         };
     }
@@ -1303,7 +1303,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_DocumentStandardExtraction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentStandardExtraction"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentStandardExtraction"
             $($field $value)*)
         };
     }
@@ -1330,7 +1330,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_DocumentStandardGenerativeField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentStandardGenerativeField"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentStandardGenerativeField"
             $($field $value)*)
         };
     }
@@ -1355,7 +1355,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_DocumentStandardOutputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentStandardOutputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.DocumentStandardOutputConfiguration"
             $($field $value)*)
         };
     }
@@ -1392,7 +1392,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_ImageBoundingBox {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ImageBoundingBox"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ImageBoundingBox"
             $($field $value)*)
         };
     }
@@ -1416,7 +1416,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_ImageExtractionCategory {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ImageExtractionCategory"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ImageExtractionCategory"
             $($field $value)*)
         };
     }
@@ -1442,7 +1442,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_ImageOverrideConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ImageOverrideConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ImageOverrideConfiguration"
             $($field $value)*)
         };
     }
@@ -1468,7 +1468,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_ImageStandardExtraction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ImageStandardExtraction"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ImageStandardExtraction"
             $($field $value)*)
         };
     }
@@ -1496,7 +1496,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_ImageStandardGenerativeField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ImageStandardGenerativeField"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ImageStandardGenerativeField"
             $($field $value)*)
         };
     }
@@ -1523,7 +1523,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_ImageStandardOutputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ImageStandardOutputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ImageStandardOutputConfiguration"
             $($field $value)*)
         };
     }
@@ -1554,7 +1554,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_ModalityProcessingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ModalityProcessingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ModalityProcessingConfiguration"
             $($field $value)*)
         };
     }
@@ -1579,7 +1579,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_ModalityRoutingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ModalityRoutingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ModalityRoutingConfiguration"
             $($field $value)*)
         };
     }
@@ -1614,7 +1614,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_OverrideConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.OverrideConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.OverrideConfiguration"
             $($field $value)*)
         };
     }
@@ -1654,7 +1654,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_SplitterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.SplitterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.SplitterConfiguration"
             $($field $value)*)
         };
     }
@@ -1679,7 +1679,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_StandardOutputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.StandardOutputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.StandardOutputConfiguration"
             $($field $value)*)
         };
     }
@@ -1713,7 +1713,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_VideoBoundingBox {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.VideoBoundingBox"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.VideoBoundingBox"
             $($field $value)*)
         };
     }
@@ -1737,7 +1737,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_VideoExtractionCategory {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.VideoExtractionCategory"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.VideoExtractionCategory"
             $($field $value)*)
         };
     }
@@ -1763,7 +1763,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_VideoOverrideConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.VideoOverrideConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.VideoOverrideConfiguration"
             $($field $value)*)
         };
     }
@@ -1789,7 +1789,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_VideoStandardExtraction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.VideoStandardExtraction"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.VideoStandardExtraction"
             $($field $value)*)
         };
     }
@@ -1817,7 +1817,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_VideoStandardGenerativeField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.VideoStandardGenerativeField"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.VideoStandardGenerativeField"
             $($field $value)*)
         };
     }
@@ -1844,7 +1844,7 @@ pub mod dataautomationproject {
     #[macro_export]
     macro_rules! __aws_bedrock_DataAutomationProject_VideoStandardOutputConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.VideoStandardOutputConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.VideoStandardOutputConfiguration"
             $($field $value)*)
         };
     }
@@ -1877,7 +1877,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_BedrockDataAutomationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.BedrockDataAutomationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.BedrockDataAutomationConfiguration"
             $($field $value)*)
         };
     }
@@ -1904,7 +1904,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_BedrockFoundationModelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.BedrockFoundationModelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.BedrockFoundationModelConfiguration"
             $($field $value)*)
         };
     }
@@ -1940,7 +1940,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_BedrockFoundationModelContextEnrichmentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.BedrockFoundationModelContextEnrichmentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.BedrockFoundationModelContextEnrichmentConfiguration"
             $($field $value)*)
         };
     }
@@ -1970,7 +1970,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_ChunkingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.ChunkingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.ChunkingConfiguration"
             $($field $value)*)
         };
     }
@@ -2011,7 +2011,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_ConfluenceCrawlerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.ConfluenceCrawlerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.ConfluenceCrawlerConfiguration"
             $($field $value)*)
         };
     }
@@ -2037,7 +2037,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_ConfluenceDataSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.ConfluenceDataSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.ConfluenceDataSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -2069,7 +2069,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_ConfluenceSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.ConfluenceSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.ConfluenceSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -2106,7 +2106,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_ContextEnrichmentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.ContextEnrichmentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.ContextEnrichmentConfiguration"
             $($field $value)*)
         };
     }
@@ -2136,7 +2136,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_CrawlFilterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.CrawlFilterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.CrawlFilterConfiguration"
             $($field $value)*)
         };
     }
@@ -2166,7 +2166,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_CustomTransformationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.CustomTransformationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.CustomTransformationConfiguration"
             $($field $value)*)
         };
     }
@@ -2198,7 +2198,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_DataSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.DataSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.DataSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -2251,7 +2251,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_EnrichmentStrategyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.EnrichmentStrategyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.EnrichmentStrategyConfiguration"
             $($field $value)*)
         };
     }
@@ -2275,7 +2275,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_FixedSizeChunkingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.FixedSizeChunkingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.FixedSizeChunkingConfiguration"
             $($field $value)*)
         };
     }
@@ -2303,7 +2303,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_HierarchicalChunkingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.HierarchicalChunkingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.HierarchicalChunkingConfiguration"
             $($field $value)*)
         };
     }
@@ -2330,7 +2330,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_HierarchicalChunkingLevelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.HierarchicalChunkingLevelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.HierarchicalChunkingLevelConfiguration"
             $($field $value)*)
         };
     }
@@ -2353,7 +2353,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_IntermediateStorage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.IntermediateStorage"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.IntermediateStorage"
             $($field $value)*)
         };
     }
@@ -2379,7 +2379,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_ParsingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.ParsingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.ParsingConfiguration"
             $($field $value)*)
         };
     }
@@ -2414,7 +2414,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_ParsingPrompt {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.ParsingPrompt"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.ParsingPrompt"
             $($field $value)*)
         };
     }
@@ -2439,7 +2439,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_PatternObjectFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.PatternObjectFilter"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.PatternObjectFilter"
             $($field $value)*)
         };
     }
@@ -2474,7 +2474,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_PatternObjectFilterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.PatternObjectFilterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.PatternObjectFilterConfiguration"
             $($field $value)*)
         };
     }
@@ -2499,7 +2499,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_S3DataSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.S3DataSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.S3DataSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -2534,7 +2534,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.S3Location"
             $($field $value)*)
         };
     }
@@ -2557,7 +2557,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_SalesforceCrawlerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.SalesforceCrawlerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.SalesforceCrawlerConfiguration"
             $($field $value)*)
         };
     }
@@ -2583,7 +2583,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_SalesforceDataSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.SalesforceDataSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.SalesforceDataSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -2614,7 +2614,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_SalesforceSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.SalesforceSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.SalesforceSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -2645,7 +2645,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_SeedUrl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.SeedUrl"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.SeedUrl"
             $($field $value)*)
         };
     }
@@ -2670,7 +2670,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_SemanticChunkingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.SemanticChunkingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.SemanticChunkingConfiguration"
             $($field $value)*)
         };
     }
@@ -2701,7 +2701,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_ServerSideEncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.ServerSideEncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.ServerSideEncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -2726,7 +2726,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_SharePointCrawlerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.SharePointCrawlerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.SharePointCrawlerConfiguration"
             $($field $value)*)
         };
     }
@@ -2752,7 +2752,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_SharePointDataSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.SharePointDataSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.SharePointDataSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -2786,7 +2786,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_SharePointSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.SharePointSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.SharePointSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -2832,7 +2832,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_Transformation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.Transformation"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.Transformation"
             $($field $value)*)
         };
     }
@@ -2859,7 +2859,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_TransformationFunction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.TransformationFunction"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.TransformationFunction"
             $($field $value)*)
         };
     }
@@ -2882,7 +2882,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_TransformationLambdaConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.TransformationLambdaConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.TransformationLambdaConfiguration"
             $($field $value)*)
         };
     }
@@ -2905,7 +2905,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_UrlConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.UrlConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.UrlConfiguration"
             $($field $value)*)
         };
     }
@@ -2931,7 +2931,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_VectorIngestionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.VectorIngestionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.VectorIngestionConfiguration"
             $($field $value)*)
         };
     }
@@ -2979,7 +2979,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_WebCrawlerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.WebCrawlerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.WebCrawlerConfiguration"
             $($field $value)*)
         };
     }
@@ -3032,7 +3032,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_WebCrawlerLimits {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.WebCrawlerLimits"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.WebCrawlerLimits"
             $($field $value)*)
         };
     }
@@ -3064,7 +3064,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_WebDataSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.WebDataSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.WebDataSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -3093,7 +3093,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_bedrock_DataSource_WebSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::DataSource.WebSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataSource.WebSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -3118,7 +3118,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_AgentFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.AgentFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.AgentFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -3141,7 +3141,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_ConditionFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.ConditionFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.ConditionFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -3164,7 +3164,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_FieldForReranking {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.FieldForReranking"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.FieldForReranking"
             $($field $value)*)
         };
     }
@@ -3188,7 +3188,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_FlowCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.FlowCondition"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.FlowCondition"
             $($field $value)*)
         };
     }
@@ -3217,7 +3217,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_FlowConditionalConnectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.FlowConditionalConnectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.FlowConditionalConnectionConfiguration"
             $($field $value)*)
         };
     }
@@ -3244,7 +3244,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_FlowConnection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.FlowConnection"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.FlowConnection"
             $($field $value)*)
         };
     }
@@ -3286,7 +3286,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_FlowConnectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.FlowConnectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.FlowConnectionConfiguration"
             $($field $value)*)
         };
     }
@@ -3315,7 +3315,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_FlowDataConnectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.FlowDataConnectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.FlowDataConnectionConfiguration"
             $($field $value)*)
         };
     }
@@ -3343,7 +3343,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_FlowDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.FlowDefinition"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.FlowDefinition"
             $($field $value)*)
         };
     }
@@ -3375,7 +3375,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_FlowNode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.FlowNode"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.FlowNode"
             $($field $value)*)
         };
     }
@@ -3432,7 +3432,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_FlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.FlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.FlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -3532,7 +3532,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_FlowNodeInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.FlowNodeInput"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.FlowNodeInput"
             $($field $value)*)
         };
     }
@@ -3570,7 +3570,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_FlowNodeOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.FlowNodeOutput"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.FlowNodeOutput"
             $($field $value)*)
         };
     }
@@ -3597,7 +3597,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_FlowValidation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.FlowValidation"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.FlowValidation"
             $($field $value)*)
         };
     }
@@ -3621,7 +3621,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_GuardrailConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.GuardrailConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.GuardrailConfiguration"
             $($field $value)*)
         };
     }
@@ -3653,7 +3653,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_InlineCodeFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.InlineCodeFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.InlineCodeFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -3687,7 +3687,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_KnowledgeBaseFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.KnowledgeBaseFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.KnowledgeBaseFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -3755,7 +3755,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_KnowledgeBaseOrchestrationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.KnowledgeBaseOrchestrationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.KnowledgeBaseOrchestrationConfiguration"
             $($field $value)*)
         };
     }
@@ -3798,7 +3798,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_KnowledgeBasePromptTemplate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.KnowledgeBasePromptTemplate"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.KnowledgeBasePromptTemplate"
             $($field $value)*)
         };
     }
@@ -3821,7 +3821,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_LambdaFunctionFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.LambdaFunctionFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.LambdaFunctionFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -3845,7 +3845,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_LexFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.LexFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.LexFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -3873,7 +3873,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_LoopControllerFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.LoopControllerFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.LoopControllerFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -3902,7 +3902,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_LoopFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.LoopFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.LoopFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -3926,7 +3926,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_MetadataConfigurationForReranking {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.MetadataConfigurationForReranking"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.MetadataConfigurationForReranking"
             $($field $value)*)
         };
     }
@@ -3955,7 +3955,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_PerformanceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.PerformanceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.PerformanceConfiguration"
             $($field $value)*)
         };
     }
@@ -3981,7 +3981,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_PromptFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.PromptFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.PromptFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -4013,7 +4013,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_PromptFlowNodeInlineConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.PromptFlowNodeInlineConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.PromptFlowNodeInlineConfiguration"
             $($field $value)*)
         };
     }
@@ -4050,7 +4050,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_PromptFlowNodeResourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.PromptFlowNodeResourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.PromptFlowNodeResourceConfiguration"
             $($field $value)*)
         };
     }
@@ -4074,7 +4074,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_PromptFlowNodeSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.PromptFlowNodeSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.PromptFlowNodeSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -4102,7 +4102,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_PromptInferenceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.PromptInferenceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.PromptInferenceConfiguration"
             $($field $value)*)
         };
     }
@@ -4125,7 +4125,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_PromptInputVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.PromptInputVariable"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.PromptInputVariable"
             $($field $value)*)
         };
     }
@@ -4150,7 +4150,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_PromptModelInferenceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.PromptModelInferenceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.PromptModelInferenceConfiguration"
             $($field $value)*)
         };
     }
@@ -4190,7 +4190,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_PromptTemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.PromptTemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.PromptTemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -4214,7 +4214,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_RerankingMetadataSelectiveModeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.RerankingMetadataSelectiveModeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.RerankingMetadataSelectiveModeConfiguration"
             $($field $value)*)
         };
     }
@@ -4245,7 +4245,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_RetrievalFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.RetrievalFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.RetrievalFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -4268,7 +4268,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_RetrievalFlowNodeS3Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.RetrievalFlowNodeS3Configuration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.RetrievalFlowNodeS3Configuration"
             $($field $value)*)
         };
     }
@@ -4291,7 +4291,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_RetrievalFlowNodeServiceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.RetrievalFlowNodeServiceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.RetrievalFlowNodeServiceConfiguration"
             $($field $value)*)
         };
     }
@@ -4315,7 +4315,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.S3Location"
             $($field $value)*)
         };
     }
@@ -4348,7 +4348,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_StorageFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.StorageFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.StorageFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -4371,7 +4371,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_StorageFlowNodeS3Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.StorageFlowNodeS3Configuration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.StorageFlowNodeS3Configuration"
             $($field $value)*)
         };
     }
@@ -4394,7 +4394,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_StorageFlowNodeServiceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.StorageFlowNodeServiceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.StorageFlowNodeServiceConfiguration"
             $($field $value)*)
         };
     }
@@ -4417,7 +4417,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_TextPromptTemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.TextPromptTemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.TextPromptTemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -4448,7 +4448,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_VectorSearchBedrockRerankingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.VectorSearchBedrockRerankingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.VectorSearchBedrockRerankingConfiguration"
             $($field $value)*)
         };
     }
@@ -4484,7 +4484,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_VectorSearchBedrockRerankingModelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.VectorSearchBedrockRerankingModelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.VectorSearchBedrockRerankingModelConfiguration"
             $($field $value)*)
         };
     }
@@ -4515,7 +4515,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_bedrock_Flow_VectorSearchRerankingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Flow.VectorSearchRerankingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Flow.VectorSearchRerankingConfiguration"
             $($field $value)*)
         };
     }
@@ -4547,7 +4547,7 @@ pub mod flowalias {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowAlias_FlowAliasConcurrencyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowAlias.FlowAliasConcurrencyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowAlias.FlowAliasConcurrencyConfiguration"
             $($field $value)*)
         };
     }
@@ -4576,7 +4576,7 @@ pub mod flowalias {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowAlias_FlowAliasRoutingConfigurationListItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowAlias.FlowAliasRoutingConfigurationListItem"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowAlias.FlowAliasRoutingConfigurationListItem"
             $($field $value)*)
         };
     }
@@ -4603,7 +4603,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_AgentFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.AgentFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.AgentFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -4626,7 +4626,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_ConditionFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.ConditionFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.ConditionFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -4649,7 +4649,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_FieldForReranking {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.FieldForReranking"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.FieldForReranking"
             $($field $value)*)
         };
     }
@@ -4673,7 +4673,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_FlowCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowCondition"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowCondition"
             $($field $value)*)
         };
     }
@@ -4702,7 +4702,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_FlowConditionalConnectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowConditionalConnectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowConditionalConnectionConfiguration"
             $($field $value)*)
         };
     }
@@ -4729,7 +4729,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_FlowConnection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowConnection"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowConnection"
             $($field $value)*)
         };
     }
@@ -4771,7 +4771,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_FlowConnectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowConnectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowConnectionConfiguration"
             $($field $value)*)
         };
     }
@@ -4800,7 +4800,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_FlowDataConnectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowDataConnectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowDataConnectionConfiguration"
             $($field $value)*)
         };
     }
@@ -4828,7 +4828,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_FlowDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowDefinition"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowDefinition"
             $($field $value)*)
         };
     }
@@ -4860,7 +4860,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_FlowNode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowNode"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowNode"
             $($field $value)*)
         };
     }
@@ -4917,7 +4917,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_FlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -5016,7 +5016,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_FlowNodeInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowNodeInput"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowNodeInput"
             $($field $value)*)
         };
     }
@@ -5048,7 +5048,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_FlowNodeOutput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowNodeOutput"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.FlowNodeOutput"
             $($field $value)*)
         };
     }
@@ -5076,7 +5076,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_GuardrailConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.GuardrailConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.GuardrailConfiguration"
             $($field $value)*)
         };
     }
@@ -5108,7 +5108,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_InlineCodeFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.InlineCodeFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.InlineCodeFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -5142,7 +5142,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_KnowledgeBaseFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.KnowledgeBaseFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.KnowledgeBaseFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -5210,7 +5210,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_KnowledgeBaseOrchestrationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.KnowledgeBaseOrchestrationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.KnowledgeBaseOrchestrationConfiguration"
             $($field $value)*)
         };
     }
@@ -5253,7 +5253,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_KnowledgeBasePromptTemplate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.KnowledgeBasePromptTemplate"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.KnowledgeBasePromptTemplate"
             $($field $value)*)
         };
     }
@@ -5276,7 +5276,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_LambdaFunctionFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.LambdaFunctionFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.LambdaFunctionFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -5300,7 +5300,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_LexFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.LexFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.LexFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -5328,7 +5328,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_LoopControllerFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.LoopControllerFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.LoopControllerFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -5357,7 +5357,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_LoopFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.LoopFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.LoopFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -5381,7 +5381,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_MetadataConfigurationForReranking {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.MetadataConfigurationForReranking"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.MetadataConfigurationForReranking"
             $($field $value)*)
         };
     }
@@ -5410,7 +5410,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_PerformanceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.PerformanceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.PerformanceConfiguration"
             $($field $value)*)
         };
     }
@@ -5436,7 +5436,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_PromptFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -5468,7 +5468,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_PromptFlowNodeInlineConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptFlowNodeInlineConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptFlowNodeInlineConfiguration"
             $($field $value)*)
         };
     }
@@ -5505,7 +5505,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_PromptFlowNodeResourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptFlowNodeResourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptFlowNodeResourceConfiguration"
             $($field $value)*)
         };
     }
@@ -5529,7 +5529,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_PromptFlowNodeSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptFlowNodeSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptFlowNodeSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -5557,7 +5557,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_PromptInferenceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptInferenceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptInferenceConfiguration"
             $($field $value)*)
         };
     }
@@ -5580,7 +5580,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_PromptInputVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptInputVariable"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptInputVariable"
             $($field $value)*)
         };
     }
@@ -5605,7 +5605,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_PromptModelInferenceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptModelInferenceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptModelInferenceConfiguration"
             $($field $value)*)
         };
     }
@@ -5645,7 +5645,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_PromptTemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptTemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.PromptTemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -5669,7 +5669,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_RerankingMetadataSelectiveModeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.RerankingMetadataSelectiveModeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.RerankingMetadataSelectiveModeConfiguration"
             $($field $value)*)
         };
     }
@@ -5700,7 +5700,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_RetrievalFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.RetrievalFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.RetrievalFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -5723,7 +5723,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_RetrievalFlowNodeS3Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.RetrievalFlowNodeS3Configuration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.RetrievalFlowNodeS3Configuration"
             $($field $value)*)
         };
     }
@@ -5746,7 +5746,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_RetrievalFlowNodeServiceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.RetrievalFlowNodeServiceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.RetrievalFlowNodeServiceConfiguration"
             $($field $value)*)
         };
     }
@@ -5768,7 +5768,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_StorageFlowNodeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.StorageFlowNodeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.StorageFlowNodeConfiguration"
             $($field $value)*)
         };
     }
@@ -5791,7 +5791,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_StorageFlowNodeS3Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.StorageFlowNodeS3Configuration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.StorageFlowNodeS3Configuration"
             $($field $value)*)
         };
     }
@@ -5814,7 +5814,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_StorageFlowNodeServiceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.StorageFlowNodeServiceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.StorageFlowNodeServiceConfiguration"
             $($field $value)*)
         };
     }
@@ -5837,7 +5837,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_TextPromptTemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.TextPromptTemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.TextPromptTemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -5868,7 +5868,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_VectorSearchBedrockRerankingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.VectorSearchBedrockRerankingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.VectorSearchBedrockRerankingConfiguration"
             $($field $value)*)
         };
     }
@@ -5904,7 +5904,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_VectorSearchBedrockRerankingModelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.VectorSearchBedrockRerankingModelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.VectorSearchBedrockRerankingModelConfiguration"
             $($field $value)*)
         };
     }
@@ -5935,7 +5935,7 @@ pub mod flowversion {
     #[macro_export]
     macro_rules! __aws_bedrock_FlowVersion_VectorSearchRerankingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::FlowVersion.VectorSearchRerankingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::FlowVersion.VectorSearchRerankingConfiguration"
             $($field $value)*)
         };
     }
@@ -5967,7 +5967,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_AutomatedReasoningPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.AutomatedReasoningPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.AutomatedReasoningPolicyConfig"
             $($field $value)*)
         };
     }
@@ -6004,7 +6004,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_ContentFilterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.ContentFilterConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.ContentFilterConfig"
             $($field $value)*)
         };
     }
@@ -6071,7 +6071,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_ContentFiltersTierConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.ContentFiltersTierConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.ContentFiltersTierConfig"
             $($field $value)*)
         };
     }
@@ -6095,7 +6095,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_ContentPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.ContentPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.ContentPolicyConfig"
             $($field $value)*)
         };
     }
@@ -6127,7 +6127,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_ContextualGroundingFilterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.ContextualGroundingFilterConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.ContextualGroundingFilterConfig"
             $($field $value)*)
         };
     }
@@ -6163,7 +6163,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_ContextualGroundingPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.ContextualGroundingPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.ContextualGroundingPolicyConfig"
             $($field $value)*)
         };
     }
@@ -6186,7 +6186,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_GuardrailCrossRegionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.GuardrailCrossRegionConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.GuardrailCrossRegionConfig"
             $($field $value)*)
         };
     }
@@ -6213,7 +6213,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_ManagedWordsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.ManagedWordsConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.ManagedWordsConfig"
             $($field $value)*)
         };
     }
@@ -6265,7 +6265,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_PiiEntityConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.PiiEntityConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.PiiEntityConfig"
             $($field $value)*)
         };
     }
@@ -6323,7 +6323,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_RegexConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.RegexConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.RegexConfig"
             $($field $value)*)
         };
     }
@@ -6385,7 +6385,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_SensitiveInformationPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.SensitiveInformationPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.SensitiveInformationPolicyConfig"
             $($field $value)*)
         };
     }
@@ -6423,7 +6423,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_TopicConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.TopicConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.TopicConfig"
             $($field $value)*)
         };
     }
@@ -6485,7 +6485,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_TopicPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.TopicPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.TopicPolicyConfig"
             $($field $value)*)
         };
     }
@@ -6514,7 +6514,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_TopicsTierConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.TopicsTierConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.TopicsTierConfig"
             $($field $value)*)
         };
     }
@@ -6541,7 +6541,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_WordConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.WordConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.WordConfig"
             $($field $value)*)
         };
     }
@@ -6589,7 +6589,7 @@ pub mod guardrail {
     #[macro_export]
     macro_rules! __aws_bedrock_Guardrail_WordPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Guardrail.WordPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Guardrail.WordPolicyConfig"
             $($field $value)*)
         };
     }
@@ -6622,7 +6622,7 @@ pub mod intelligentpromptrouter {
     #[macro_export]
     macro_rules! __aws_bedrock_IntelligentPromptRouter_PromptRouterTargetModel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::IntelligentPromptRouter.PromptRouterTargetModel"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::IntelligentPromptRouter.PromptRouterTargetModel"
             $($field $value)*)
         };
     }
@@ -6645,7 +6645,7 @@ pub mod intelligentpromptrouter {
     #[macro_export]
     macro_rules! __aws_bedrock_IntelligentPromptRouter_RoutingCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::IntelligentPromptRouter.RoutingCriteria"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::IntelligentPromptRouter.RoutingCriteria"
             $($field $value)*)
         };
     }
@@ -6671,7 +6671,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_BedrockEmbeddingModelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.BedrockEmbeddingModelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.BedrockEmbeddingModelConfiguration"
             $($field $value)*)
         };
     }
@@ -6703,7 +6703,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_CuratedQuery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.CuratedQuery"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.CuratedQuery"
             $($field $value)*)
         };
     }
@@ -6730,7 +6730,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_EmbeddingModelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.EmbeddingModelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.EmbeddingModelConfiguration"
             $($field $value)*)
         };
     }
@@ -6755,7 +6755,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_KendraKnowledgeBaseConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.KendraKnowledgeBaseConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.KendraKnowledgeBaseConfiguration"
             $($field $value)*)
         };
     }
@@ -6781,7 +6781,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_KnowledgeBaseConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.KnowledgeBaseConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.KnowledgeBaseConfiguration"
             $($field $value)*)
         };
     }
@@ -6829,7 +6829,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_MongoDbAtlasConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.MongoDbAtlasConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.MongoDbAtlasConfiguration"
             $($field $value)*)
         };
     }
@@ -6886,7 +6886,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_MongoDbAtlasFieldMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.MongoDbAtlasFieldMapping"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.MongoDbAtlasFieldMapping"
             $($field $value)*)
         };
     }
@@ -6918,7 +6918,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_NeptuneAnalyticsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.NeptuneAnalyticsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.NeptuneAnalyticsConfiguration"
             $($field $value)*)
         };
     }
@@ -6946,7 +6946,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_NeptuneAnalyticsFieldMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.NeptuneAnalyticsFieldMapping"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.NeptuneAnalyticsFieldMapping"
             $($field $value)*)
         };
     }
@@ -6976,7 +6976,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_OpenSearchManagedClusterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.OpenSearchManagedClusterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.OpenSearchManagedClusterConfiguration"
             $($field $value)*)
         };
     }
@@ -7013,7 +7013,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_OpenSearchManagedClusterFieldMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.OpenSearchManagedClusterFieldMapping"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.OpenSearchManagedClusterFieldMapping"
             $($field $value)*)
         };
     }
@@ -7046,7 +7046,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_OpenSearchServerlessConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.OpenSearchServerlessConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.OpenSearchServerlessConfiguration"
             $($field $value)*)
         };
     }
@@ -7079,7 +7079,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_OpenSearchServerlessFieldMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.OpenSearchServerlessFieldMapping"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.OpenSearchServerlessFieldMapping"
             $($field $value)*)
         };
     }
@@ -7113,7 +7113,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_PineconeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.PineconeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.PineconeConfiguration"
             $($field $value)*)
         };
     }
@@ -7151,7 +7151,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_PineconeFieldMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.PineconeFieldMapping"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.PineconeFieldMapping"
             $($field $value)*)
         };
     }
@@ -7180,7 +7180,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_QueryGenerationColumn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.QueryGenerationColumn"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.QueryGenerationColumn"
             $($field $value)*)
         };
     }
@@ -7215,7 +7215,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_QueryGenerationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.QueryGenerationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.QueryGenerationConfiguration"
             $($field $value)*)
         };
     }
@@ -7247,7 +7247,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_QueryGenerationContext {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.QueryGenerationContext"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.QueryGenerationContext"
             $($field $value)*)
         };
     }
@@ -7278,7 +7278,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_QueryGenerationTable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.QueryGenerationTable"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.QueryGenerationTable"
             $($field $value)*)
         };
     }
@@ -7323,7 +7323,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_RdsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RdsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RdsConfiguration"
             $($field $value)*)
         };
     }
@@ -7366,7 +7366,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_RdsFieldMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RdsFieldMapping"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RdsFieldMapping"
             $($field $value)*)
         };
     }
@@ -7409,7 +7409,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_RedshiftConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftConfiguration"
             $($field $value)*)
         };
     }
@@ -7444,7 +7444,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_RedshiftProvisionedAuthConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftProvisionedAuthConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftProvisionedAuthConfiguration"
             $($field $value)*)
         };
     }
@@ -7480,7 +7480,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_RedshiftProvisionedConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftProvisionedConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftProvisionedConfiguration"
             $($field $value)*)
         };
     }
@@ -7507,7 +7507,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_RedshiftQueryEngineAwsDataCatalogStorageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftQueryEngineAwsDataCatalogStorageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftQueryEngineAwsDataCatalogStorageConfiguration"
             $($field $value)*)
         };
     }
@@ -7532,7 +7532,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_RedshiftQueryEngineConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftQueryEngineConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftQueryEngineConfiguration"
             $($field $value)*)
         };
     }
@@ -7567,7 +7567,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_RedshiftQueryEngineRedshiftStorageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftQueryEngineRedshiftStorageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftQueryEngineRedshiftStorageConfiguration"
             $($field $value)*)
         };
     }
@@ -7593,7 +7593,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_RedshiftQueryEngineStorageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftQueryEngineStorageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftQueryEngineStorageConfiguration"
             $($field $value)*)
         };
     }
@@ -7629,7 +7629,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_RedshiftServerlessAuthConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftServerlessAuthConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftServerlessAuthConfiguration"
             $($field $value)*)
         };
     }
@@ -7659,7 +7659,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_RedshiftServerlessConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftServerlessConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.RedshiftServerlessConfiguration"
             $($field $value)*)
         };
     }
@@ -7686,7 +7686,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.S3Location"
             $($field $value)*)
         };
     }
@@ -7710,7 +7710,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_SqlKnowledgeBaseConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.SqlKnowledgeBaseConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.SqlKnowledgeBaseConfiguration"
             $($field $value)*)
         };
     }
@@ -7746,7 +7746,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_StorageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.StorageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.StorageConfiguration"
             $($field $value)*)
         };
     }
@@ -7805,7 +7805,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_SupplementalDataStorageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.SupplementalDataStorageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.SupplementalDataStorageConfiguration"
             $($field $value)*)
         };
     }
@@ -7829,7 +7829,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_SupplementalDataStorageLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.SupplementalDataStorageLocation"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.SupplementalDataStorageLocation"
             $($field $value)*)
         };
     }
@@ -7861,7 +7861,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_bedrock_KnowledgeBase_VectorKnowledgeBaseConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.VectorKnowledgeBaseConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.VectorKnowledgeBaseConfiguration"
             $($field $value)*)
         };
     }
@@ -7898,7 +7898,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_CachePointBlock {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.CachePointBlock"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.CachePointBlock"
             $($field $value)*)
         };
     }
@@ -7924,7 +7924,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_ChatPromptTemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.ChatPromptTemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.ChatPromptTemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -7963,7 +7963,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_ContentBlock {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.ContentBlock"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.ContentBlock"
             $($field $value)*)
         };
     }
@@ -7992,7 +7992,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_Message {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.Message"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.Message"
             $($field $value)*)
         };
     }
@@ -8019,7 +8019,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_PromptAgentResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.PromptAgentResource"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.PromptAgentResource"
             $($field $value)*)
         };
     }
@@ -8042,7 +8042,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_PromptGenAiResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.PromptGenAiResource"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.PromptGenAiResource"
             $($field $value)*)
         };
     }
@@ -8065,7 +8065,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_PromptInferenceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.PromptInferenceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.PromptInferenceConfiguration"
             $($field $value)*)
         };
     }
@@ -8088,7 +8088,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_PromptInputVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.PromptInputVariable"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.PromptInputVariable"
             $($field $value)*)
         };
     }
@@ -8111,7 +8111,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_PromptMetadataEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.PromptMetadataEntry"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.PromptMetadataEntry"
             $($field $value)*)
         };
     }
@@ -8141,7 +8141,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_PromptModelInferenceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.PromptModelInferenceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.PromptModelInferenceConfiguration"
             $($field $value)*)
         };
     }
@@ -8182,7 +8182,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_PromptTemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.PromptTemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.PromptTemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -8214,7 +8214,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_PromptVariant {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.PromptVariant"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.PromptVariant"
             $($field $value)*)
         };
     }
@@ -8275,7 +8275,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_SpecificToolChoice {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.SpecificToolChoice"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.SpecificToolChoice"
             $($field $value)*)
         };
     }
@@ -8299,7 +8299,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_SystemContentBlock {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.SystemContentBlock"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.SystemContentBlock"
             $($field $value)*)
         };
     }
@@ -8330,7 +8330,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_TextPromptTemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.TextPromptTemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.TextPromptTemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -8372,7 +8372,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_TextS3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.TextS3Location"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.TextS3Location"
             $($field $value)*)
         };
     }
@@ -8406,7 +8406,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_Tool {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.Tool"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.Tool"
             $($field $value)*)
         };
     }
@@ -8439,7 +8439,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_ToolChoice {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.ToolChoice"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.ToolChoice"
             $($field $value)*)
         };
     }
@@ -8468,7 +8468,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_ToolConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.ToolConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.ToolConfiguration"
             $($field $value)*)
         };
     }
@@ -8497,7 +8497,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_ToolInputSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.ToolInputSchema"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.ToolInputSchema"
             $($field $value)*)
         };
     }
@@ -8522,7 +8522,7 @@ pub mod prompt {
     #[macro_export]
     macro_rules! __aws_bedrock_Prompt_ToolSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::Prompt.ToolSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::Prompt.ToolSpecification"
             $($field $value)*)
         };
     }
@@ -8557,7 +8557,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_CachePointBlock {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.CachePointBlock"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.CachePointBlock"
             $($field $value)*)
         };
     }
@@ -8583,7 +8583,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_ChatPromptTemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.ChatPromptTemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.ChatPromptTemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -8622,7 +8622,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_ContentBlock {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.ContentBlock"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.ContentBlock"
             $($field $value)*)
         };
     }
@@ -8651,7 +8651,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_Message {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.Message"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.Message"
             $($field $value)*)
         };
     }
@@ -8678,7 +8678,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_PromptAgentResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptAgentResource"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptAgentResource"
             $($field $value)*)
         };
     }
@@ -8701,7 +8701,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_PromptGenAiResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptGenAiResource"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptGenAiResource"
             $($field $value)*)
         };
     }
@@ -8724,7 +8724,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_PromptInferenceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptInferenceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptInferenceConfiguration"
             $($field $value)*)
         };
     }
@@ -8747,7 +8747,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_PromptInputVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptInputVariable"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptInputVariable"
             $($field $value)*)
         };
     }
@@ -8770,7 +8770,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_PromptMetadataEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptMetadataEntry"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptMetadataEntry"
             $($field $value)*)
         };
     }
@@ -8800,7 +8800,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_PromptModelInferenceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptModelInferenceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptModelInferenceConfiguration"
             $($field $value)*)
         };
     }
@@ -8841,7 +8841,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_PromptTemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptTemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptTemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -8873,7 +8873,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_PromptVariant {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptVariant"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.PromptVariant"
             $($field $value)*)
         };
     }
@@ -8934,7 +8934,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_SpecificToolChoice {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.SpecificToolChoice"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.SpecificToolChoice"
             $($field $value)*)
         };
     }
@@ -8958,7 +8958,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_SystemContentBlock {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.SystemContentBlock"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.SystemContentBlock"
             $($field $value)*)
         };
     }
@@ -8988,7 +8988,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_TextPromptTemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.TextPromptTemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.TextPromptTemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -9024,7 +9024,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_Tool {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.Tool"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.Tool"
             $($field $value)*)
         };
     }
@@ -9057,7 +9057,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_ToolChoice {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.ToolChoice"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.ToolChoice"
             $($field $value)*)
         };
     }
@@ -9086,7 +9086,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_ToolConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.ToolConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.ToolConfiguration"
             $($field $value)*)
         };
     }
@@ -9115,7 +9115,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_ToolInputSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.ToolInputSchema"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.ToolInputSchema"
             $($field $value)*)
         };
     }
@@ -9140,7 +9140,7 @@ pub mod promptversion {
     #[macro_export]
     macro_rules! __aws_bedrock_PromptVersion_ToolSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Bedrock::PromptVersion.ToolSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::PromptVersion.ToolSpecification"
             $($field $value)*)
         };
     }
@@ -9193,7 +9193,7 @@ pub struct Agent_ {
 #[macro_export]
 macro_rules! __aws_bedrock_Agent {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::Agent" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::Agent" $($field
         $value)*)
     };
 }
@@ -9340,7 +9340,7 @@ pub struct AgentAlias_ {
 #[macro_export]
 macro_rules! __aws_bedrock_AgentAlias {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::AgentAlias"
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::AgentAlias"
         $($field $value)*)
     };
 }
@@ -9394,7 +9394,7 @@ pub struct ApplicationInferenceProfile_ {
 #[macro_export]
 macro_rules! __aws_bedrock_ApplicationInferenceProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::ApplicationInferenceProfile"
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::ApplicationInferenceProfile"
         $($field $value)*)
     };
 }
@@ -9445,7 +9445,7 @@ pub struct AutomatedReasoningPolicy_ {
 #[macro_export]
 macro_rules! __aws_bedrock_AutomatedReasoningPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::AutomatedReasoningPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::AutomatedReasoningPolicy"
         $($field $value)*)
     };
 }
@@ -9493,7 +9493,7 @@ pub struct AutomatedReasoningPolicyVersion_ {
 #[macro_export]
 macro_rules! __aws_bedrock_AutomatedReasoningPolicyVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::AutomatedReasoningPolicyVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::AutomatedReasoningPolicyVersion"
         $($field $value)*)
     };
 }
@@ -9540,7 +9540,7 @@ pub struct Blueprint_ {
 #[macro_export]
 macro_rules! __aws_bedrock_Blueprint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::Blueprint"
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::Blueprint"
         $($field $value)*)
     };
 }
@@ -9604,7 +9604,7 @@ pub struct DataAutomationProject_ {
 #[macro_export]
 macro_rules! __aws_bedrock_DataAutomationProject {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::DataAutomationProject"
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::DataAutomationProject"
         $($field $value)*)
     };
 }
@@ -9682,7 +9682,7 @@ pub struct DataSource_ {
 #[macro_export]
 macro_rules! __aws_bedrock_DataSource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::DataSource"
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::DataSource"
         $($field $value)*)
     };
 }
@@ -9754,7 +9754,7 @@ pub struct Flow_ {
 #[macro_export]
 macro_rules! __aws_bedrock_Flow {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::Flow" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::Flow" $($field
         $value)*)
     };
 }
@@ -9841,7 +9841,7 @@ pub struct FlowAlias_ {
 #[macro_export]
 macro_rules! __aws_bedrock_FlowAlias {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::FlowAlias"
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::FlowAlias"
         $($field $value)*)
     };
 }
@@ -9896,7 +9896,7 @@ pub struct FlowVersion_ {
 #[macro_export]
 macro_rules! __aws_bedrock_FlowVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::FlowVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::FlowVersion"
         $($field $value)*)
     };
 }
@@ -9948,7 +9948,7 @@ pub struct Guardrail_ {
 #[macro_export]
 macro_rules! __aws_bedrock_Guardrail {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::Guardrail"
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::Guardrail"
         $($field $value)*)
     };
 }
@@ -10045,7 +10045,7 @@ pub struct GuardrailVersion_ {
 #[macro_export]
 macro_rules! __aws_bedrock_GuardrailVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::GuardrailVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::GuardrailVersion"
         $($field $value)*)
     };
 }
@@ -10087,7 +10087,7 @@ pub struct IntelligentPromptRouter_ {
 #[macro_export]
 macro_rules! __aws_bedrock_IntelligentPromptRouter {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::IntelligentPromptRouter"
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::IntelligentPromptRouter"
         $($field $value)*)
     };
 }
@@ -10144,7 +10144,7 @@ pub struct KnowledgeBase_ {
 #[macro_export]
 macro_rules! __aws_bedrock_KnowledgeBase {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::KnowledgeBase"
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::KnowledgeBase"
         $($field $value)*)
     };
 }
@@ -10203,7 +10203,7 @@ pub struct Prompt_ {
 #[macro_export]
 macro_rules! __aws_bedrock_Prompt {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::Prompt" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::Prompt" $($field
         $value)*)
     };
 }
@@ -10263,7 +10263,7 @@ pub struct PromptVersion_ {
 #[macro_export]
 macro_rules! __aws_bedrock_PromptVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Bedrock::PromptVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Bedrock::PromptVersion"
         $($field $value)*)
     };
 }

@@ -8,7 +8,7 @@ pub mod link {
     #[macro_export]
     macro_rules! __aws_oam_Link_LinkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Oam::Link.LinkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Oam::Link.LinkConfiguration"
             $($field $value)*)
         };
     }
@@ -39,7 +39,7 @@ pub mod link {
     #[macro_export]
     macro_rules! __aws_oam_Link_LinkFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Oam::Link.LinkFilter"
+            stratosphere::generator::construct_property_type!("AWS::Oam::Link.LinkFilter"
             $($field $value)*)
         };
     }
@@ -67,7 +67,7 @@ pub struct Link_ {
 #[macro_export]
 macro_rules! __aws_oam_Link {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Oam::Link" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Oam::Link" $($field
         $value)*)
     };
 }
@@ -119,7 +119,7 @@ pub struct Sink_ {
 #[macro_export]
 macro_rules! __aws_oam_Sink {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Oam::Sink" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Oam::Sink" $($field
         $value)*)
     };
 }

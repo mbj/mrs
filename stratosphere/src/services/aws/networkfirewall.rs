@@ -7,7 +7,7 @@ pub mod firewall {
     #[macro_export]
     macro_rules! __aws_networkfirewall_Firewall_AvailabilityZoneMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::Firewall.AvailabilityZoneMapping"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::Firewall.AvailabilityZoneMapping"
             $($field $value)*)
         };
     }
@@ -31,7 +31,7 @@ pub mod firewall {
     #[macro_export]
     macro_rules! __aws_networkfirewall_Firewall_SubnetMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::Firewall.SubnetMapping"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::Firewall.SubnetMapping"
             $($field $value)*)
         };
     }
@@ -62,7 +62,7 @@ pub mod firewallpolicy {
     #[macro_export]
     macro_rules! __aws_networkfirewall_FirewallPolicy_ActionDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.ActionDefinition"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.ActionDefinition"
             $($field $value)*)
         };
     }
@@ -88,7 +88,7 @@ pub mod firewallpolicy {
     #[macro_export]
     macro_rules! __aws_networkfirewall_FirewallPolicy_CustomAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.CustomAction"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.CustomAction"
             $($field $value)*)
         };
     }
@@ -115,7 +115,7 @@ pub mod firewallpolicy {
     #[macro_export]
     macro_rules! __aws_networkfirewall_FirewallPolicy_Dimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.Dimension"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.Dimension"
             $($field $value)*)
         };
     }
@@ -146,7 +146,7 @@ pub mod firewallpolicy {
     #[macro_export]
     macro_rules! __aws_networkfirewall_FirewallPolicy_FirewallPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.FirewallPolicy"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.FirewallPolicy"
             $($field $value)*)
         };
     }
@@ -215,7 +215,7 @@ pub mod firewallpolicy {
     #[macro_export]
     macro_rules! __aws_networkfirewall_FirewallPolicy_FlowTimeouts {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.FlowTimeouts"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.FlowTimeouts"
             $($field $value)*)
         };
     }
@@ -240,7 +240,7 @@ pub mod firewallpolicy {
     #[macro_export]
     macro_rules! __aws_networkfirewall_FirewallPolicy_IPSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.IPSet"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.IPSet"
             $($field $value)*)
         };
     }
@@ -265,7 +265,7 @@ pub mod firewallpolicy {
     #[macro_export]
     macro_rules! __aws_networkfirewall_FirewallPolicy_PolicyVariables {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.PolicyVariables"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.PolicyVariables"
             $($field $value)*)
         };
     }
@@ -290,7 +290,7 @@ pub mod firewallpolicy {
     #[macro_export]
     macro_rules! __aws_networkfirewall_FirewallPolicy_PublishMetricAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.PublishMetricAction"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.PublishMetricAction"
             $($field $value)*)
         };
     }
@@ -315,7 +315,7 @@ pub mod firewallpolicy {
     #[macro_export]
     macro_rules! __aws_networkfirewall_FirewallPolicy_StatefulEngineOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.StatefulEngineOptions"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.StatefulEngineOptions"
             $($field $value)*)
         };
     }
@@ -352,7 +352,7 @@ pub mod firewallpolicy {
     #[macro_export]
     macro_rules! __aws_networkfirewall_FirewallPolicy_StatefulRuleGroupOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.StatefulRuleGroupOverride"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.StatefulRuleGroupOverride"
             $($field $value)*)
         };
     }
@@ -377,7 +377,7 @@ pub mod firewallpolicy {
     #[macro_export]
     macro_rules! __aws_networkfirewall_FirewallPolicy_StatefulRuleGroupReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.StatefulRuleGroupReference"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.StatefulRuleGroupReference"
             $($field $value)*)
         };
     }
@@ -419,7 +419,7 @@ pub mod firewallpolicy {
     #[macro_export]
     macro_rules! __aws_networkfirewall_FirewallPolicy_StatelessRuleGroupReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.StatelessRuleGroupReference"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::FirewallPolicy.StatelessRuleGroupReference"
             $($field $value)*)
         };
     }
@@ -450,7 +450,7 @@ pub mod loggingconfiguration {
     #[macro_export]
     macro_rules! __aws_networkfirewall_LoggingConfiguration_LogDestinationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::LoggingConfiguration.LogDestinationConfig"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::LoggingConfiguration.LogDestinationConfig"
             $($field $value)*)
         };
     }
@@ -481,7 +481,7 @@ pub mod loggingconfiguration {
     #[macro_export]
     macro_rules! __aws_networkfirewall_LoggingConfiguration_LoggingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::LoggingConfiguration.LoggingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::LoggingConfiguration.LoggingConfiguration"
             $($field $value)*)
         };
     }
@@ -506,7 +506,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_ActionDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.ActionDefinition"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.ActionDefinition"
             $($field $value)*)
         };
     }
@@ -531,7 +531,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_Address {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.Address"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.Address"
             $($field $value)*)
         };
     }
@@ -555,7 +555,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_CustomAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.CustomAction"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.CustomAction"
             $($field $value)*)
         };
     }
@@ -582,7 +582,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_Dimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.Dimension"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.Dimension"
             $($field $value)*)
         };
     }
@@ -610,7 +610,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_Header {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.Header"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.Header"
             $($field $value)*)
         };
     }
@@ -653,7 +653,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_IPSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.IPSet"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.IPSet"
             $($field $value)*)
         };
     }
@@ -678,7 +678,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_IPSetReference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.IPSetReference"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.IPSetReference"
             $($field $value)*)
         };
     }
@@ -708,7 +708,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_MatchAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.MatchAttributes"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.MatchAttributes"
             $($field $value)*)
         };
     }
@@ -764,7 +764,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_PortRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.PortRange"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.PortRange"
             $($field $value)*)
         };
     }
@@ -791,7 +791,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_PortSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.PortSet"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.PortSet"
             $($field $value)*)
         };
     }
@@ -816,7 +816,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_PublishMetricAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.PublishMetricAction"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.PublishMetricAction"
             $($field $value)*)
         };
     }
@@ -839,7 +839,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_ReferenceSets {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.ReferenceSets"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.ReferenceSets"
             $($field $value)*)
         };
     }
@@ -865,7 +865,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_RuleDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.RuleDefinition"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.RuleDefinition"
             $($field $value)*)
         };
     }
@@ -895,7 +895,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_RuleGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.RuleGroup"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.RuleGroup"
             $($field $value)*)
         };
     }
@@ -937,7 +937,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_RuleOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.RuleOption"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.RuleOption"
             $($field $value)*)
         };
     }
@@ -967,7 +967,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_RuleVariables {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.RuleVariables"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.RuleVariables"
             $($field $value)*)
         };
     }
@@ -998,7 +998,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_RulesSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.RulesSource"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.RulesSource"
             $($field $value)*)
         };
     }
@@ -1043,7 +1043,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_RulesSourceList {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.RulesSourceList"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.RulesSourceList"
             $($field $value)*)
         };
     }
@@ -1076,7 +1076,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_StatefulRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.StatefulRule"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.StatefulRule"
             $($field $value)*)
         };
     }
@@ -1107,7 +1107,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_StatefulRuleOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.StatefulRuleOptions"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.StatefulRuleOptions"
             $($field $value)*)
         };
     }
@@ -1133,7 +1133,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_StatelessRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.StatelessRule"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.StatelessRule"
             $($field $value)*)
         };
     }
@@ -1161,7 +1161,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_StatelessRulesAndCustomActions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.StatelessRulesAndCustomActions"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.StatelessRulesAndCustomActions"
             $($field $value)*)
         };
     }
@@ -1190,7 +1190,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_SummaryConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.SummaryConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.SummaryConfiguration"
             $($field $value)*)
         };
     }
@@ -1216,7 +1216,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_networkfirewall_RuleGroup_TCPFlagField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.TCPFlagField"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::RuleGroup.TCPFlagField"
             $($field $value)*)
         };
     }
@@ -1244,7 +1244,7 @@ pub mod tlsinspectionconfiguration {
     #[macro_export]
     macro_rules! __aws_networkfirewall_TLSInspectionConfiguration_Address {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::TLSInspectionConfiguration.Address"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::TLSInspectionConfiguration.Address"
             $($field $value)*)
         };
     }
@@ -1268,7 +1268,7 @@ pub mod tlsinspectionconfiguration {
     #[macro_export]
     macro_rules! __aws_networkfirewall_TLSInspectionConfiguration_CheckCertificateRevocationStatus {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::TLSInspectionConfiguration.CheckCertificateRevocationStatus"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::TLSInspectionConfiguration.CheckCertificateRevocationStatus"
             $($field $value)*)
         };
     }
@@ -1300,7 +1300,7 @@ pub mod tlsinspectionconfiguration {
     #[macro_export]
     macro_rules! __aws_networkfirewall_TLSInspectionConfiguration_PortRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::TLSInspectionConfiguration.PortRange"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::TLSInspectionConfiguration.PortRange"
             $($field $value)*)
         };
     }
@@ -1327,7 +1327,7 @@ pub mod tlsinspectionconfiguration {
     #[macro_export]
     macro_rules! __aws_networkfirewall_TLSInspectionConfiguration_ServerCertificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::TLSInspectionConfiguration.ServerCertificate"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::TLSInspectionConfiguration.ServerCertificate"
             $($field $value)*)
         };
     }
@@ -1355,7 +1355,7 @@ pub mod tlsinspectionconfiguration {
     #[macro_export]
     macro_rules! __aws_networkfirewall_TLSInspectionConfiguration_ServerCertificateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::TLSInspectionConfiguration.ServerCertificateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::TLSInspectionConfiguration.ServerCertificateConfiguration"
             $($field $value)*)
         };
     }
@@ -1399,7 +1399,7 @@ pub mod tlsinspectionconfiguration {
     #[macro_export]
     macro_rules! __aws_networkfirewall_TLSInspectionConfiguration_ServerCertificateScope {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::TLSInspectionConfiguration.ServerCertificateScope"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::TLSInspectionConfiguration.ServerCertificateScope"
             $($field $value)*)
         };
     }
@@ -1448,7 +1448,7 @@ pub mod tlsinspectionconfiguration {
     #[macro_export]
     macro_rules! __aws_networkfirewall_TLSInspectionConfiguration_TLSInspectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::TLSInspectionConfiguration.TLSInspectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::TLSInspectionConfiguration.TLSInspectionConfiguration"
             $($field $value)*)
         };
     }
@@ -1476,7 +1476,7 @@ pub mod vpcendpointassociation {
     #[macro_export]
     macro_rules! __aws_networkfirewall_VpcEndpointAssociation_SubnetMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkFirewall::VpcEndpointAssociation.SubnetMapping"
+            stratosphere::generator::construct_property_type!("AWS::NetworkFirewall::VpcEndpointAssociation.SubnetMapping"
             $($field $value)*)
         };
     }
@@ -1519,7 +1519,7 @@ pub struct Firewall_ {
 #[macro_export]
 macro_rules! __aws_networkfirewall_Firewall {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkFirewall::Firewall"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkFirewall::Firewall"
         $($field $value)*)
     };
 }
@@ -1617,7 +1617,7 @@ pub struct FirewallPolicy_ {
 #[macro_export]
 macro_rules! __aws_networkfirewall_FirewallPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkFirewall::FirewallPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkFirewall::FirewallPolicy"
         $($field $value)*)
     };
 }
@@ -1664,7 +1664,7 @@ pub struct LoggingConfiguration_ {
 #[macro_export]
 macro_rules! __aws_networkfirewall_LoggingConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkFirewall::LoggingConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkFirewall::LoggingConfiguration"
         $($field $value)*)
     };
 }
@@ -1717,7 +1717,7 @@ pub struct RuleGroup_ {
 #[macro_export]
 macro_rules! __aws_networkfirewall_RuleGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkFirewall::RuleGroup"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkFirewall::RuleGroup"
         $($field $value)*)
     };
 }
@@ -1781,7 +1781,7 @@ pub struct TLSInspectionConfiguration_ {
 #[macro_export]
 macro_rules! __aws_networkfirewall_TLSInspectionConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkFirewall::TLSInspectionConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkFirewall::TLSInspectionConfiguration"
         $($field $value)*)
     };
 }
@@ -1831,7 +1831,7 @@ pub struct VpcEndpointAssociation_ {
 #[macro_export]
 macro_rules! __aws_networkfirewall_VpcEndpointAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkFirewall::VpcEndpointAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkFirewall::VpcEndpointAssociation"
         $($field $value)*)
     };
 }

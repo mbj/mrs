@@ -14,7 +14,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_Listener_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.Action"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.Action"
             $($field $value)*)
         };
     }
@@ -84,7 +84,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_Listener_AuthenticateCognitoConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.AuthenticateCognitoConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.AuthenticateCognitoConfig"
             $($field $value)*)
         };
     }
@@ -154,7 +154,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_Listener_AuthenticateOidcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.AuthenticateOidcConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.AuthenticateOidcConfig"
             $($field $value)*)
         };
     }
@@ -232,7 +232,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_Listener_Certificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.Certificate"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.Certificate"
             $($field $value)*)
         };
     }
@@ -259,7 +259,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_Listener_FixedResponseConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.FixedResponseConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.FixedResponseConfig"
             $($field $value)*)
         };
     }
@@ -295,7 +295,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_Listener_ForwardConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.ForwardConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.ForwardConfig"
             $($field $value)*)
         };
     }
@@ -327,7 +327,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_Listener_ListenerAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.ListenerAttribute"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.ListenerAttribute"
             $($field $value)*)
         };
     }
@@ -355,7 +355,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_Listener_MutualAuthentication {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.MutualAuthentication"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.MutualAuthentication"
             $($field $value)*)
         };
     }
@@ -400,7 +400,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_Listener_RedirectConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.RedirectConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.RedirectConfig"
             $($field $value)*)
         };
     }
@@ -442,7 +442,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_Listener_TargetGroupStickinessConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.TargetGroupStickinessConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.TargetGroupStickinessConfig"
             $($field $value)*)
         };
     }
@@ -474,7 +474,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_Listener_TargetGroupTuple {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.TargetGroupTuple"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.TargetGroupTuple"
             $($field $value)*)
         };
     }
@@ -504,7 +504,7 @@ pub mod listenercertificate {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerCertificate_Certificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerCertificate.Certificate"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerCertificate.Certificate"
             $($field $value)*)
         };
     }
@@ -538,7 +538,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.Action"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.Action"
             $($field $value)*)
         };
     }
@@ -608,7 +608,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_AuthenticateCognitoConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.AuthenticateCognitoConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.AuthenticateCognitoConfig"
             $($field $value)*)
         };
     }
@@ -678,7 +678,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_AuthenticateOidcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.AuthenticateOidcConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.AuthenticateOidcConfig"
             $($field $value)*)
         };
     }
@@ -758,7 +758,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_FixedResponseConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.FixedResponseConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.FixedResponseConfig"
             $($field $value)*)
         };
     }
@@ -794,7 +794,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_ForwardConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.ForwardConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.ForwardConfig"
             $($field $value)*)
         };
     }
@@ -825,7 +825,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_HostHeaderConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.HostHeaderConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.HostHeaderConfig"
             $($field $value)*)
         };
     }
@@ -848,7 +848,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_HttpHeaderConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.HttpHeaderConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.HttpHeaderConfig"
             $($field $value)*)
         };
     }
@@ -876,7 +876,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_HttpRequestMethodConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.HttpRequestMethodConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.HttpRequestMethodConfig"
             $($field $value)*)
         };
     }
@@ -898,7 +898,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_PathPatternConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.PathPatternConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.PathPatternConfig"
             $($field $value)*)
         };
     }
@@ -920,7 +920,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_QueryStringConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.QueryStringConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.QueryStringConfig"
             $($field $value)*)
         };
     }
@@ -943,7 +943,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_QueryStringKeyValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.QueryStringKeyValue"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.QueryStringKeyValue"
             $($field $value)*)
         };
     }
@@ -973,7 +973,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_RedirectConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.RedirectConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.RedirectConfig"
             $($field $value)*)
         };
     }
@@ -1021,7 +1021,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_RuleCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.RuleCondition"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.RuleCondition"
             $($field $value)*)
         };
     }
@@ -1082,7 +1082,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_SourceIpConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.SourceIpConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.SourceIpConfig"
             $($field $value)*)
         };
     }
@@ -1105,7 +1105,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_TargetGroupStickinessConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.TargetGroupStickinessConfig"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.TargetGroupStickinessConfig"
             $($field $value)*)
         };
     }
@@ -1137,7 +1137,7 @@ pub mod listenerrule {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_ListenerRule_TargetGroupTuple {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.TargetGroupTuple"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.TargetGroupTuple"
             $($field $value)*)
         };
     }
@@ -1168,7 +1168,7 @@ pub mod loadbalancer {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_LoadBalancer_LoadBalancerAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::LoadBalancer.LoadBalancerAttribute"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::LoadBalancer.LoadBalancerAttribute"
             $($field $value)*)
         };
     }
@@ -1193,7 +1193,7 @@ pub mod loadbalancer {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_LoadBalancer_MinimumLoadBalancerCapacity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::LoadBalancer.MinimumLoadBalancerCapacity"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::LoadBalancer.MinimumLoadBalancerCapacity"
             $($field $value)*)
         };
     }
@@ -1220,7 +1220,7 @@ pub mod loadbalancer {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_LoadBalancer_SubnetMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::LoadBalancer.SubnetMapping"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::LoadBalancer.SubnetMapping"
             $($field $value)*)
         };
     }
@@ -1270,7 +1270,7 @@ pub mod targetgroup {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_TargetGroup_Matcher {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::TargetGroup.Matcher"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::TargetGroup.Matcher"
             $($field $value)*)
         };
     }
@@ -1303,7 +1303,7 @@ pub mod targetgroup {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_TargetGroup_TargetDescription {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::TargetGroup.TargetDescription"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::TargetGroup.TargetDescription"
             $($field $value)*)
         };
     }
@@ -1333,7 +1333,7 @@ pub mod targetgroup {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_TargetGroup_TargetGroupAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::TargetGroup.TargetGroupAttribute"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::TargetGroup.TargetGroupAttribute"
             $($field $value)*)
         };
     }
@@ -1363,7 +1363,7 @@ pub mod truststorerevocation {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_TrustStoreRevocation_RevocationContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::TrustStoreRevocation.RevocationContent"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::TrustStoreRevocation.RevocationContent"
             $($field $value)*)
         };
     }
@@ -1406,7 +1406,7 @@ pub mod truststorerevocation {
     #[macro_export]
     macro_rules! __aws_elasticloadbalancingv2_TrustStoreRevocation_TrustStoreRevocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ElasticLoadBalancingV2::TrustStoreRevocation.TrustStoreRevocation"
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::TrustStoreRevocation.TrustStoreRevocation"
             $($field $value)*)
         };
     }
@@ -1460,7 +1460,7 @@ pub struct Listener_ {
 #[macro_export]
 macro_rules! __aws_elasticloadbalancingv2_Listener {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElasticLoadBalancingV2::Listener"
+        stratosphere::generator::construct_resource_type!("AWS::ElasticLoadBalancingV2::Listener"
         $($field $value)*)
     };
 }
@@ -1535,7 +1535,7 @@ pub struct ListenerCertificate_ {
 #[macro_export]
 macro_rules! __aws_elasticloadbalancingv2_ListenerCertificate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElasticLoadBalancingV2::ListenerCertificate"
+        stratosphere::generator::construct_resource_type!("AWS::ElasticLoadBalancingV2::ListenerCertificate"
         $($field $value)*)
     };
 }
@@ -1573,7 +1573,7 @@ pub struct ListenerRule_ {
 #[macro_export]
 macro_rules! __aws_elasticloadbalancingv2_ListenerRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElasticLoadBalancingV2::ListenerRule"
+        stratosphere::generator::construct_resource_type!("AWS::ElasticLoadBalancingV2::ListenerRule"
         $($field $value)*)
     };
 }
@@ -1634,7 +1634,7 @@ pub struct LoadBalancer_ {
 #[macro_export]
 macro_rules! __aws_elasticloadbalancingv2_LoadBalancer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElasticLoadBalancingV2::LoadBalancer"
+        stratosphere::generator::construct_resource_type!("AWS::ElasticLoadBalancingV2::LoadBalancer"
         $($field $value)*)
     };
 }
@@ -1752,7 +1752,7 @@ pub struct TargetGroup_ {
 #[macro_export]
 macro_rules! __aws_elasticloadbalancingv2_TargetGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElasticLoadBalancingV2::TargetGroup"
+        stratosphere::generator::construct_resource_type!("AWS::ElasticLoadBalancingV2::TargetGroup"
         $($field $value)*)
     };
 }
@@ -1885,7 +1885,7 @@ pub struct TrustStore_ {
 #[macro_export]
 macro_rules! __aws_elasticloadbalancingv2_TrustStore {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElasticLoadBalancingV2::TrustStore"
+        stratosphere::generator::construct_resource_type!("AWS::ElasticLoadBalancingV2::TrustStore"
         $($field $value)*)
     };
 }
@@ -1938,7 +1938,7 @@ pub struct TrustStoreRevocation_ {
 #[macro_export]
 macro_rules! __aws_elasticloadbalancingv2_TrustStoreRevocation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ElasticLoadBalancingV2::TrustStoreRevocation"
+        stratosphere::generator::construct_resource_type!("AWS::ElasticLoadBalancingV2::TrustStoreRevocation"
         $($field $value)*)
     };
 }

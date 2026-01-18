@@ -7,7 +7,7 @@ pub mod scraper {
     #[macro_export]
     macro_rules! __aws_aps_Scraper_AmpConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Scraper.AmpConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::APS::Scraper.AmpConfiguration"
             $($field $value)*)
         };
     }
@@ -30,7 +30,7 @@ pub mod scraper {
     #[macro_export]
     macro_rules! __aws_aps_Scraper_CloudWatchLogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Scraper.CloudWatchLogDestination"
+            stratosphere::generator::construct_property_type!("AWS::APS::Scraper.CloudWatchLogDestination"
             $($field $value)*)
         };
     }
@@ -55,7 +55,7 @@ pub mod scraper {
     #[macro_export]
     macro_rules! __aws_aps_Scraper_ComponentConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Scraper.ComponentConfig"
+            stratosphere::generator::construct_property_type!("AWS::APS::Scraper.ComponentConfig"
             $($field $value)*)
         };
     }
@@ -80,7 +80,7 @@ pub mod scraper {
     #[macro_export]
     macro_rules! __aws_aps_Scraper_Destination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Scraper.Destination"
+            stratosphere::generator::construct_property_type!("AWS::APS::Scraper.Destination"
             $($field $value)*)
         };
     }
@@ -105,7 +105,7 @@ pub mod scraper {
     #[macro_export]
     macro_rules! __aws_aps_Scraper_EksConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Scraper.EksConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::APS::Scraper.EksConfiguration"
             $($field $value)*)
         };
     }
@@ -139,7 +139,7 @@ pub mod scraper {
     #[macro_export]
     macro_rules! __aws_aps_Scraper_RoleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Scraper.RoleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::APS::Scraper.RoleConfiguration"
             $($field $value)*)
         };
     }
@@ -170,7 +170,7 @@ pub mod scraper {
     #[macro_export]
     macro_rules! __aws_aps_Scraper_ScrapeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Scraper.ScrapeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::APS::Scraper.ScrapeConfiguration"
             $($field $value)*)
         };
     }
@@ -194,7 +194,7 @@ pub mod scraper {
     #[macro_export]
     macro_rules! __aws_aps_Scraper_ScraperComponent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Scraper.ScraperComponent"
+            stratosphere::generator::construct_property_type!("AWS::APS::Scraper.ScraperComponent"
             $($field $value)*)
         };
     }
@@ -221,7 +221,7 @@ pub mod scraper {
     #[macro_export]
     macro_rules! __aws_aps_Scraper_ScraperLoggingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Scraper.ScraperLoggingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::APS::Scraper.ScraperLoggingConfiguration"
             $($field $value)*)
         };
     }
@@ -248,7 +248,7 @@ pub mod scraper {
     #[macro_export]
     macro_rules! __aws_aps_Scraper_ScraperLoggingDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Scraper.ScraperLoggingDestination"
+            stratosphere::generator::construct_property_type!("AWS::APS::Scraper.ScraperLoggingDestination"
             $($field $value)*)
         };
     }
@@ -273,7 +273,7 @@ pub mod scraper {
     #[macro_export]
     macro_rules! __aws_aps_Scraper_Source {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Scraper.Source"
+            stratosphere::generator::construct_property_type!("AWS::APS::Scraper.Source"
             $($field $value)*)
         };
     }
@@ -298,7 +298,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_aps_Workspace_CloudWatchLogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Workspace.CloudWatchLogDestination"
+            stratosphere::generator::construct_property_type!("AWS::APS::Workspace.CloudWatchLogDestination"
             $($field $value)*)
         };
     }
@@ -322,7 +322,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_aps_Workspace_Label {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Workspace.Label"
+            stratosphere::generator::construct_property_type!("AWS::APS::Workspace.Label"
             $($field $value)*)
         };
     }
@@ -350,7 +350,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_aps_Workspace_LimitsPerLabelSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Workspace.LimitsPerLabelSet"
+            stratosphere::generator::construct_property_type!("AWS::APS::Workspace.LimitsPerLabelSet"
             $($field $value)*)
         };
     }
@@ -377,7 +377,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_aps_Workspace_LimitsPerLabelSetEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Workspace.LimitsPerLabelSetEntry"
+            stratosphere::generator::construct_property_type!("AWS::APS::Workspace.LimitsPerLabelSetEntry"
             $($field $value)*)
         };
     }
@@ -402,7 +402,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_aps_Workspace_LoggingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Workspace.LoggingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::APS::Workspace.LoggingConfiguration"
             $($field $value)*)
         };
     }
@@ -428,7 +428,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_aps_Workspace_LoggingDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Workspace.LoggingDestination"
+            stratosphere::generator::construct_property_type!("AWS::APS::Workspace.LoggingDestination"
             $($field $value)*)
         };
     }
@@ -455,7 +455,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_aps_Workspace_LoggingFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Workspace.LoggingFilter"
+            stratosphere::generator::construct_property_type!("AWS::APS::Workspace.LoggingFilter"
             $($field $value)*)
         };
     }
@@ -478,7 +478,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_aps_Workspace_QueryLoggingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Workspace.QueryLoggingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::APS::Workspace.QueryLoggingConfiguration"
             $($field $value)*)
         };
     }
@@ -502,7 +502,7 @@ pub mod workspace {
     #[macro_export]
     macro_rules! __aws_aps_Workspace_WorkspaceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::APS::Workspace.WorkspaceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::APS::Workspace.WorkspaceConfiguration"
             $($field $value)*)
         };
     }
@@ -535,7 +535,7 @@ pub struct ResourcePolicy_ {
 #[macro_export]
 macro_rules! __aws_aps_ResourcePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::APS::ResourcePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::APS::ResourcePolicy"
         $($field $value)*)
     };
 }
@@ -573,7 +573,7 @@ pub struct RuleGroupsNamespace_ {
 #[macro_export]
 macro_rules! __aws_aps_RuleGroupsNamespace {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::APS::RuleGroupsNamespace"
+        stratosphere::generator::construct_resource_type!("AWS::APS::RuleGroupsNamespace"
         $($field $value)*)
     };
 }
@@ -621,7 +621,7 @@ pub struct Scraper_ {
 #[macro_export]
 macro_rules! __aws_aps_Scraper {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::APS::Scraper" $($field
+        stratosphere::generator::construct_resource_type!("AWS::APS::Scraper" $($field
         $value)*)
     };
 }
@@ -684,7 +684,7 @@ pub struct Workspace_ {
 #[macro_export]
 macro_rules! __aws_aps_Workspace {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::APS::Workspace" $($field
+        stratosphere::generator::construct_resource_type!("AWS::APS::Workspace" $($field
         $value)*)
     };
 }

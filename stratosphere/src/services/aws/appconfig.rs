@@ -8,7 +8,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_appconfig_Application_Tags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppConfig::Application.Tags"
+            stratosphere::generator::construct_property_type!("AWS::AppConfig::Application.Tags"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod configurationprofile {
     #[macro_export]
     macro_rules! __aws_appconfig_ConfigurationProfile_Tags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppConfig::ConfigurationProfile.Tags"
+            stratosphere::generator::construct_property_type!("AWS::AppConfig::ConfigurationProfile.Tags"
             $($field $value)*)
         };
     }
@@ -64,7 +64,7 @@ pub mod configurationprofile {
     #[macro_export]
     macro_rules! __aws_appconfig_ConfigurationProfile_Validators {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppConfig::ConfigurationProfile.Validators"
+            stratosphere::generator::construct_property_type!("AWS::AppConfig::ConfigurationProfile.Validators"
             $($field $value)*)
         };
     }
@@ -96,7 +96,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_appconfig_Deployment_DynamicExtensionParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppConfig::Deployment.DynamicExtensionParameters"
+            stratosphere::generator::construct_property_type!("AWS::AppConfig::Deployment.DynamicExtensionParameters"
             $($field $value)*)
         };
     }
@@ -136,7 +136,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_appconfig_Environment_Monitor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppConfig::Environment.Monitor"
+            stratosphere::generator::construct_property_type!("AWS::AppConfig::Environment.Monitor"
             $($field $value)*)
         };
     }
@@ -169,7 +169,7 @@ pub mod extension {
     #[macro_export]
     macro_rules! __aws_appconfig_Extension_Parameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppConfig::Extension.Parameter"
+            stratosphere::generator::construct_property_type!("AWS::AppConfig::Extension.Parameter"
             $($field $value)*)
         };
     }
@@ -207,7 +207,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_appconfig_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppConfig::Application"
+        stratosphere::generator::construct_resource_type!("AWS::AppConfig::Application"
         $($field $value)*)
     };
 }
@@ -256,7 +256,7 @@ pub struct ConfigurationProfile_ {
 #[macro_export]
 macro_rules! __aws_appconfig_ConfigurationProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppConfig::ConfigurationProfile"
+        stratosphere::generator::construct_resource_type!("AWS::AppConfig::ConfigurationProfile"
         $($field $value)*)
     };
 }
@@ -340,7 +340,7 @@ pub struct Deployment_ {
 #[macro_export]
 macro_rules! __aws_appconfig_Deployment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppConfig::Deployment"
+        stratosphere::generator::construct_resource_type!("AWS::AppConfig::Deployment"
         $($field $value)*)
     };
 }
@@ -415,7 +415,7 @@ pub struct DeploymentStrategy_ {
 #[macro_export]
 macro_rules! __aws_appconfig_DeploymentStrategy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppConfig::DeploymentStrategy"
+        stratosphere::generator::construct_resource_type!("AWS::AppConfig::DeploymentStrategy"
         $($field $value)*)
     };
 }
@@ -484,7 +484,7 @@ pub struct Environment_ {
 #[macro_export]
 macro_rules! __aws_appconfig_Environment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppConfig::Environment"
+        stratosphere::generator::construct_resource_type!("AWS::AppConfig::Environment"
         $($field $value)*)
     };
 }
@@ -546,7 +546,7 @@ pub struct Extension_ {
 #[macro_export]
 macro_rules! __aws_appconfig_Extension {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppConfig::Extension"
+        stratosphere::generator::construct_resource_type!("AWS::AppConfig::Extension"
         $($field $value)*)
     };
 }
@@ -606,7 +606,7 @@ pub struct ExtensionAssociation_ {
 #[macro_export]
 macro_rules! __aws_appconfig_ExtensionAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppConfig::ExtensionAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::AppConfig::ExtensionAssociation"
         $($field $value)*)
     };
 }
@@ -666,7 +666,7 @@ pub struct HostedConfigurationVersion_ {
 #[macro_export]
 macro_rules! __aws_appconfig_HostedConfigurationVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppConfig::HostedConfigurationVersion"
+        stratosphere::generator::construct_resource_type!("AWS::AppConfig::HostedConfigurationVersion"
         $($field $value)*)
     };
 }
