@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.4
+
+### Changed
+
+- Update generated macro paths from `stratosphere_generator::` to `stratosphere::generator::`
+
 ## 0.0.3
 
 ### Added

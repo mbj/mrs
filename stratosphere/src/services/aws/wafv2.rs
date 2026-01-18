@@ -7,7 +7,7 @@ pub mod loggingconfiguration {
     #[macro_export]
     macro_rules! __aws_wafv2_LoggingConfiguration_ActionCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::LoggingConfiguration.ActionCondition"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::LoggingConfiguration.ActionCondition"
             $($field $value)*)
         };
     }
@@ -31,7 +31,7 @@ pub mod loggingconfiguration {
     #[macro_export]
     macro_rules! __aws_wafv2_LoggingConfiguration_Condition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::LoggingConfiguration.Condition"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::LoggingConfiguration.Condition"
             $($field $value)*)
         };
     }
@@ -65,7 +65,7 @@ pub mod loggingconfiguration {
     #[macro_export]
     macro_rules! __aws_wafv2_LoggingConfiguration_FieldToMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::LoggingConfiguration.FieldToMatch"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::LoggingConfiguration.FieldToMatch"
             $($field $value)*)
         };
     }
@@ -107,7 +107,7 @@ pub mod loggingconfiguration {
     #[macro_export]
     macro_rules! __aws_wafv2_LoggingConfiguration_Filter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::LoggingConfiguration.Filter"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::LoggingConfiguration.Filter"
             $($field $value)*)
         };
     }
@@ -138,7 +138,7 @@ pub mod loggingconfiguration {
     #[macro_export]
     macro_rules! __aws_wafv2_LoggingConfiguration_LabelNameCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::LoggingConfiguration.LabelNameCondition"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::LoggingConfiguration.LabelNameCondition"
             $($field $value)*)
         };
     }
@@ -162,7 +162,7 @@ pub mod loggingconfiguration {
     #[macro_export]
     macro_rules! __aws_wafv2_LoggingConfiguration_LoggingFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::LoggingConfiguration.LoggingFilter"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::LoggingConfiguration.LoggingFilter"
             $($field $value)*)
         };
     }
@@ -189,7 +189,7 @@ pub mod loggingconfiguration {
     #[macro_export]
     macro_rules! __aws_wafv2_LoggingConfiguration_SingleHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::LoggingConfiguration.SingleHeader"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::LoggingConfiguration.SingleHeader"
             $($field $value)*)
         };
     }
@@ -214,7 +214,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_AllowAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.AllowAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.AllowAction"
             $($field $value)*)
         };
     }
@@ -239,7 +239,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_AndStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.AndStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.AndStatement"
             $($field $value)*)
         };
     }
@@ -263,7 +263,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_AsnMatchStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.AsnMatchStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.AsnMatchStatement"
             $($field $value)*)
         };
     }
@@ -294,7 +294,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_BlockAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.BlockAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.BlockAction"
             $($field $value)*)
         };
     }
@@ -319,7 +319,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_Body {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.Body"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.Body"
             $($field $value)*)
         };
     }
@@ -348,7 +348,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_ByteMatchStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.ByteMatchStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.ByteMatchStatement"
             $($field $value)*)
         };
     }
@@ -391,7 +391,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_CaptchaAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.CaptchaAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.CaptchaAction"
             $($field $value)*)
         };
     }
@@ -416,7 +416,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_CaptchaConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.CaptchaConfig"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.CaptchaConfig"
             $($field $value)*)
         };
     }
@@ -441,7 +441,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_ChallengeAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.ChallengeAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.ChallengeAction"
             $($field $value)*)
         };
     }
@@ -466,7 +466,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_ChallengeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.ChallengeConfig"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.ChallengeConfig"
             $($field $value)*)
         };
     }
@@ -493,7 +493,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_CookieMatchPattern {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.CookieMatchPattern"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.CookieMatchPattern"
             $($field $value)*)
         };
     }
@@ -529,7 +529,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_Cookies {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.Cookies"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.Cookies"
             $($field $value)*)
         };
     }
@@ -560,7 +560,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_CountAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.CountAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.CountAction"
             $($field $value)*)
         };
     }
@@ -586,7 +586,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_CustomHTTPHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.CustomHTTPHeader"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.CustomHTTPHeader"
             $($field $value)*)
         };
     }
@@ -613,7 +613,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_CustomRequestHandling {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.CustomRequestHandling"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.CustomRequestHandling"
             $($field $value)*)
         };
     }
@@ -638,7 +638,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_CustomResponse {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.CustomResponse"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.CustomResponse"
             $($field $value)*)
         };
     }
@@ -674,7 +674,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_CustomResponseBody {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.CustomResponseBody"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.CustomResponseBody"
             $($field $value)*)
         };
     }
@@ -713,7 +713,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_FieldToMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.FieldToMatch"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.FieldToMatch"
             $($field $value)*)
         };
     }
@@ -805,7 +805,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_ForwardedIPConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.ForwardedIPConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.ForwardedIPConfiguration"
             $($field $value)*)
         };
     }
@@ -833,7 +833,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_GeoMatchStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.GeoMatchStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.GeoMatchStatement"
             $($field $value)*)
         };
     }
@@ -866,7 +866,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_HeaderMatchPattern {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.HeaderMatchPattern"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.HeaderMatchPattern"
             $($field $value)*)
         };
     }
@@ -902,7 +902,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_Headers {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.Headers"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.Headers"
             $($field $value)*)
         };
     }
@@ -935,7 +935,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_IPSetForwardedIPConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.IPSetForwardedIPConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.IPSetForwardedIPConfiguration"
             $($field $value)*)
         };
     }
@@ -967,7 +967,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_IPSetReferenceStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.IPSetReferenceStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.IPSetReferenceStatement"
             $($field $value)*)
         };
     }
@@ -996,7 +996,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_ImmunityTimeProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.ImmunityTimeProperty"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.ImmunityTimeProperty"
             $($field $value)*)
         };
     }
@@ -1019,7 +1019,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_JA3Fingerprint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.JA3Fingerprint"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.JA3Fingerprint"
             $($field $value)*)
         };
     }
@@ -1042,7 +1042,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_JA4Fingerprint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.JA4Fingerprint"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.JA4Fingerprint"
             $($field $value)*)
         };
     }
@@ -1068,7 +1068,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_JsonBody {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.JsonBody"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.JsonBody"
             $($field $value)*)
         };
     }
@@ -1108,7 +1108,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_JsonMatchPattern {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.JsonMatchPattern"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.JsonMatchPattern"
             $($field $value)*)
         };
     }
@@ -1136,7 +1136,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_Label {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.Label"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.Label"
             $($field $value)*)
         };
     }
@@ -1160,7 +1160,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_LabelMatchStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.LabelMatchStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.LabelMatchStatement"
             $($field $value)*)
         };
     }
@@ -1187,7 +1187,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_LabelSummary {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.LabelSummary"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.LabelSummary"
             $($field $value)*)
         };
     }
@@ -1209,7 +1209,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_NotStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.NotStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.NotStatement"
             $($field $value)*)
         };
     }
@@ -1232,7 +1232,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_OrStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.OrStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.OrStatement"
             $($field $value)*)
         };
     }
@@ -1260,7 +1260,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_RateBasedStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateBasedStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateBasedStatement"
             $($field $value)*)
         };
     }
@@ -1322,7 +1322,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_RateBasedStatementCustomKey {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateBasedStatementCustomKey"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateBasedStatementCustomKey"
             $($field $value)*)
         };
     }
@@ -1402,7 +1402,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_RateLimitCookie {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitCookie"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitCookie"
             $($field $value)*)
         };
     }
@@ -1430,7 +1430,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_RateLimitHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitHeader"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitHeader"
             $($field $value)*)
         };
     }
@@ -1457,7 +1457,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_RateLimitJA3Fingerprint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitJA3Fingerprint"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitJA3Fingerprint"
             $($field $value)*)
         };
     }
@@ -1480,7 +1480,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_RateLimitJA4Fingerprint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitJA4Fingerprint"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitJA4Fingerprint"
             $($field $value)*)
         };
     }
@@ -1503,7 +1503,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_RateLimitLabelNamespace {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitLabelNamespace"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitLabelNamespace"
             $($field $value)*)
         };
     }
@@ -1527,7 +1527,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_RateLimitQueryArgument {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitQueryArgument"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitQueryArgument"
             $($field $value)*)
         };
     }
@@ -1554,7 +1554,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_RateLimitQueryString {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitQueryString"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitQueryString"
             $($field $value)*)
         };
     }
@@ -1577,7 +1577,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_RateLimitUriPath {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitUriPath"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.RateLimitUriPath"
             $($field $value)*)
         };
     }
@@ -1602,7 +1602,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_RegexMatchStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.RegexMatchStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.RegexMatchStatement"
             $($field $value)*)
         };
     }
@@ -1635,7 +1635,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_RegexPatternSetReferenceStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.RegexPatternSetReferenceStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.RegexPatternSetReferenceStatement"
             $($field $value)*)
         };
     }
@@ -1673,7 +1673,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.Rule"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.Rule"
             $($field $value)*)
         };
     }
@@ -1733,7 +1733,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_RuleAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.RuleAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.RuleAction"
             $($field $value)*)
         };
     }
@@ -1773,7 +1773,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_SingleHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.SingleHeader"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.SingleHeader"
             $($field $value)*)
         };
     }
@@ -1796,7 +1796,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_SingleQueryArgument {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.SingleQueryArgument"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.SingleQueryArgument"
             $($field $value)*)
         };
     }
@@ -1822,7 +1822,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_SizeConstraintStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.SizeConstraintStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.SizeConstraintStatement"
             $($field $value)*)
         };
     }
@@ -1859,7 +1859,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_SqliMatchStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.SqliMatchStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.SqliMatchStatement"
             $($field $value)*)
         };
     }
@@ -1905,7 +1905,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_Statement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.Statement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.Statement"
             $($field $value)*)
         };
     }
@@ -2009,7 +2009,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_TextTransformation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.TextTransformation"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.TextTransformation"
             $($field $value)*)
         };
     }
@@ -2036,7 +2036,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_UriFragment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.UriFragment"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.UriFragment"
             $($field $value)*)
         };
     }
@@ -2063,7 +2063,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_VisibilityConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.VisibilityConfig"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.VisibilityConfig"
             $($field $value)*)
         };
     }
@@ -2095,7 +2095,7 @@ pub mod rulegroup {
     #[macro_export]
     macro_rules! __aws_wafv2_RuleGroup_XssMatchStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::RuleGroup.XssMatchStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.XssMatchStatement"
             $($field $value)*)
         };
     }
@@ -2128,7 +2128,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_AWSManagedRulesACFPRuleSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.AWSManagedRulesACFPRuleSet"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.AWSManagedRulesACFPRuleSet"
             $($field $value)*)
         };
     }
@@ -2174,7 +2174,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_AWSManagedRulesATPRuleSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.AWSManagedRulesATPRuleSet"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.AWSManagedRulesATPRuleSet"
             $($field $value)*)
         };
     }
@@ -2216,7 +2216,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_AWSManagedRulesAntiDDoSRuleSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.AWSManagedRulesAntiDDoSRuleSet"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.AWSManagedRulesAntiDDoSRuleSet"
             $($field $value)*)
         };
     }
@@ -2246,7 +2246,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_AWSManagedRulesBotControlRuleSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.AWSManagedRulesBotControlRuleSet"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.AWSManagedRulesBotControlRuleSet"
             $($field $value)*)
         };
     }
@@ -2275,7 +2275,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_AllowAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.AllowAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.AllowAction"
             $($field $value)*)
         };
     }
@@ -2300,7 +2300,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_AndStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.AndStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.AndStatement"
             $($field $value)*)
         };
     }
@@ -2324,7 +2324,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_AsnMatchStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.AsnMatchStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.AsnMatchStatement"
             $($field $value)*)
         };
     }
@@ -2356,7 +2356,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_AssociationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.AssociationConfig"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.AssociationConfig"
             $($field $value)*)
         };
     }
@@ -2381,7 +2381,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_BlockAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.BlockAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.BlockAction"
             $($field $value)*)
         };
     }
@@ -2406,7 +2406,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_Body {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.Body"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.Body"
             $($field $value)*)
         };
     }
@@ -2435,7 +2435,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ByteMatchStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ByteMatchStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ByteMatchStatement"
             $($field $value)*)
         };
     }
@@ -2478,7 +2478,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_CaptchaAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.CaptchaAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.CaptchaAction"
             $($field $value)*)
         };
     }
@@ -2503,7 +2503,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_CaptchaConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.CaptchaConfig"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.CaptchaConfig"
             $($field $value)*)
         };
     }
@@ -2528,7 +2528,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ChallengeAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ChallengeAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ChallengeAction"
             $($field $value)*)
         };
     }
@@ -2553,7 +2553,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ChallengeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ChallengeConfig"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ChallengeConfig"
             $($field $value)*)
         };
     }
@@ -2580,7 +2580,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ClientSideAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ClientSideAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ClientSideAction"
             $($field $value)*)
         };
     }
@@ -2615,7 +2615,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ClientSideActionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ClientSideActionConfig"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ClientSideActionConfig"
             $($field $value)*)
         };
     }
@@ -2640,7 +2640,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_CookieMatchPattern {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.CookieMatchPattern"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.CookieMatchPattern"
             $($field $value)*)
         };
     }
@@ -2676,7 +2676,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_Cookies {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.Cookies"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.Cookies"
             $($field $value)*)
         };
     }
@@ -2707,7 +2707,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_CountAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.CountAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.CountAction"
             $($field $value)*)
         };
     }
@@ -2733,7 +2733,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_CustomHTTPHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.CustomHTTPHeader"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.CustomHTTPHeader"
             $($field $value)*)
         };
     }
@@ -2760,7 +2760,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_CustomRequestHandling {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.CustomRequestHandling"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.CustomRequestHandling"
             $($field $value)*)
         };
     }
@@ -2785,7 +2785,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_CustomResponse {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.CustomResponse"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.CustomResponse"
             $($field $value)*)
         };
     }
@@ -2821,7 +2821,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_CustomResponseBody {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.CustomResponseBody"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.CustomResponseBody"
             $($field $value)*)
         };
     }
@@ -2851,7 +2851,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_DataProtect {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.DataProtect"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.DataProtect"
             $($field $value)*)
         };
     }
@@ -2890,7 +2890,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_DataProtectionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.DataProtectionConfig"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.DataProtectionConfig"
             $($field $value)*)
         };
     }
@@ -2914,7 +2914,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_DefaultAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.DefaultAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.DefaultAction"
             $($field $value)*)
         };
     }
@@ -2939,7 +2939,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ExcludedRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ExcludedRule"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ExcludedRule"
             $($field $value)*)
         };
     }
@@ -2962,7 +2962,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_FieldIdentifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.FieldIdentifier"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.FieldIdentifier"
             $($field $value)*)
         };
     }
@@ -2997,7 +2997,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_FieldToMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.FieldToMatch"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.FieldToMatch"
             $($field $value)*)
         };
     }
@@ -3089,7 +3089,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_FieldToProtect {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.FieldToProtect"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.FieldToProtect"
             $($field $value)*)
         };
     }
@@ -3119,7 +3119,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ForwardedIPConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ForwardedIPConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ForwardedIPConfiguration"
             $($field $value)*)
         };
     }
@@ -3147,7 +3147,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_GeoMatchStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.GeoMatchStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.GeoMatchStatement"
             $($field $value)*)
         };
     }
@@ -3180,7 +3180,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_HeaderMatchPattern {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.HeaderMatchPattern"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.HeaderMatchPattern"
             $($field $value)*)
         };
     }
@@ -3216,7 +3216,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_Headers {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.Headers"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.Headers"
             $($field $value)*)
         };
     }
@@ -3249,7 +3249,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_IPSetForwardedIPConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.IPSetForwardedIPConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.IPSetForwardedIPConfiguration"
             $($field $value)*)
         };
     }
@@ -3281,7 +3281,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_IPSetReferenceStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.IPSetReferenceStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.IPSetReferenceStatement"
             $($field $value)*)
         };
     }
@@ -3310,7 +3310,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ImmunityTimeProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ImmunityTimeProperty"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ImmunityTimeProperty"
             $($field $value)*)
         };
     }
@@ -3333,7 +3333,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_JA3Fingerprint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.JA3Fingerprint"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.JA3Fingerprint"
             $($field $value)*)
         };
     }
@@ -3356,7 +3356,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_JA4Fingerprint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.JA4Fingerprint"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.JA4Fingerprint"
             $($field $value)*)
         };
     }
@@ -3382,7 +3382,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_JsonBody {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.JsonBody"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.JsonBody"
             $($field $value)*)
         };
     }
@@ -3422,7 +3422,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_JsonMatchPattern {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.JsonMatchPattern"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.JsonMatchPattern"
             $($field $value)*)
         };
     }
@@ -3450,7 +3450,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_Label {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.Label"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.Label"
             $($field $value)*)
         };
     }
@@ -3474,7 +3474,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_LabelMatchStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.LabelMatchStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.LabelMatchStatement"
             $($field $value)*)
         };
     }
@@ -3508,7 +3508,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ManagedRuleGroupConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ManagedRuleGroupConfig"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ManagedRuleGroupConfig"
             $($field $value)*)
         };
     }
@@ -3581,7 +3581,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ManagedRuleGroupStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ManagedRuleGroupStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ManagedRuleGroupStatement"
             $($field $value)*)
         };
     }
@@ -3638,7 +3638,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_NotStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.NotStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.NotStatement"
             $($field $value)*)
         };
     }
@@ -3661,7 +3661,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_OnSourceDDoSProtectionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.OnSourceDDoSProtectionConfig"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.OnSourceDDoSProtectionConfig"
             $($field $value)*)
         };
     }
@@ -3684,7 +3684,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_OrStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.OrStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.OrStatement"
             $($field $value)*)
         };
     }
@@ -3708,7 +3708,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_OverrideAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.OverrideAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.OverrideAction"
             $($field $value)*)
         };
     }
@@ -3738,7 +3738,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RateBasedStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RateBasedStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RateBasedStatement"
             $($field $value)*)
         };
     }
@@ -3800,7 +3800,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RateBasedStatementCustomKey {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RateBasedStatementCustomKey"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RateBasedStatementCustomKey"
             $($field $value)*)
         };
     }
@@ -3880,7 +3880,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RateLimitCookie {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitCookie"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitCookie"
             $($field $value)*)
         };
     }
@@ -3908,7 +3908,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RateLimitHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitHeader"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitHeader"
             $($field $value)*)
         };
     }
@@ -3935,7 +3935,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RateLimitJA3Fingerprint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitJA3Fingerprint"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitJA3Fingerprint"
             $($field $value)*)
         };
     }
@@ -3958,7 +3958,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RateLimitJA4Fingerprint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitJA4Fingerprint"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitJA4Fingerprint"
             $($field $value)*)
         };
     }
@@ -3981,7 +3981,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RateLimitLabelNamespace {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitLabelNamespace"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitLabelNamespace"
             $($field $value)*)
         };
     }
@@ -4005,7 +4005,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RateLimitQueryArgument {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitQueryArgument"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitQueryArgument"
             $($field $value)*)
         };
     }
@@ -4032,7 +4032,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RateLimitQueryString {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitQueryString"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitQueryString"
             $($field $value)*)
         };
     }
@@ -4055,7 +4055,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RateLimitUriPath {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitUriPath"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RateLimitUriPath"
             $($field $value)*)
         };
     }
@@ -4078,7 +4078,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_Regex {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.Regex"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.Regex"
             $($field $value)*)
         };
     }
@@ -4105,7 +4105,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RegexMatchStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RegexMatchStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RegexMatchStatement"
             $($field $value)*)
         };
     }
@@ -4138,7 +4138,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RegexPatternSetReferenceStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RegexPatternSetReferenceStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RegexPatternSetReferenceStatement"
             $($field $value)*)
         };
     }
@@ -4169,7 +4169,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RequestBodyAssociatedResourceTypeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RequestBodyAssociatedResourceTypeConfig"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RequestBodyAssociatedResourceTypeConfig"
             $($field $value)*)
         };
     }
@@ -4194,7 +4194,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RequestInspection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RequestInspection"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RequestInspection"
             $($field $value)*)
         };
     }
@@ -4230,7 +4230,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RequestInspectionACFP {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RequestInspectionACFP"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RequestInspectionACFP"
             $($field $value)*)
         };
     }
@@ -4286,7 +4286,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ResponseInspection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ResponseInspection"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ResponseInspection"
             $($field $value)*)
         };
     }
@@ -4324,7 +4324,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ResponseInspectionBodyContains {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ResponseInspectionBodyContains"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ResponseInspectionBodyContains"
             $($field $value)*)
         };
     }
@@ -4353,7 +4353,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ResponseInspectionHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ResponseInspectionHeader"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ResponseInspectionHeader"
             $($field $value)*)
         };
     }
@@ -4386,7 +4386,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ResponseInspectionJson {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ResponseInspectionJson"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ResponseInspectionJson"
             $($field $value)*)
         };
     }
@@ -4418,7 +4418,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_ResponseInspectionStatusCode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.ResponseInspectionStatusCode"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ResponseInspectionStatusCode"
             $($field $value)*)
         };
     }
@@ -4453,7 +4453,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.Rule"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.Rule"
             $($field $value)*)
         };
     }
@@ -4519,7 +4519,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RuleAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RuleAction"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RuleAction"
             $($field $value)*)
         };
     }
@@ -4560,7 +4560,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RuleActionOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RuleActionOverride"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RuleActionOverride"
             $($field $value)*)
         };
     }
@@ -4589,7 +4589,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_RuleGroupReferenceStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.RuleGroupReferenceStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.RuleGroupReferenceStatement"
             $($field $value)*)
         };
     }
@@ -4624,7 +4624,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_SingleHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.SingleHeader"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.SingleHeader"
             $($field $value)*)
         };
     }
@@ -4647,7 +4647,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_SingleQueryArgument {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.SingleQueryArgument"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.SingleQueryArgument"
             $($field $value)*)
         };
     }
@@ -4673,7 +4673,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_SizeConstraintStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.SizeConstraintStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.SizeConstraintStatement"
             $($field $value)*)
         };
     }
@@ -4710,7 +4710,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_SqliMatchStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.SqliMatchStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.SqliMatchStatement"
             $($field $value)*)
         };
     }
@@ -4758,7 +4758,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_Statement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.Statement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.Statement"
             $($field $value)*)
         };
     }
@@ -4874,7 +4874,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_TextTransformation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.TextTransformation"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.TextTransformation"
             $($field $value)*)
         };
     }
@@ -4901,7 +4901,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_UriFragment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.UriFragment"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.UriFragment"
             $($field $value)*)
         };
     }
@@ -4928,7 +4928,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_VisibilityConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.VisibilityConfig"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.VisibilityConfig"
             $($field $value)*)
         };
     }
@@ -4960,7 +4960,7 @@ pub mod webacl {
     #[macro_export]
     macro_rules! __aws_wafv2_WebACL_XssMatchStatement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WAFv2::WebACL.XssMatchStatement"
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.XssMatchStatement"
             $($field $value)*)
         };
     }
@@ -4993,7 +4993,7 @@ pub struct IPSet_ {
 #[macro_export]
 macro_rules! __aws_wafv2_IPSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFv2::IPSet" $($field
+        stratosphere::generator::construct_resource_type!("AWS::WAFv2::IPSet" $($field
         $value)*)
     };
 }
@@ -5047,7 +5047,7 @@ pub struct LoggingConfiguration_ {
 #[macro_export]
 macro_rules! __aws_wafv2_LoggingConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFv2::LoggingConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::WAFv2::LoggingConfiguration"
         $($field $value)*)
     };
 }
@@ -5098,7 +5098,7 @@ pub struct RegexPatternSet_ {
 #[macro_export]
 macro_rules! __aws_wafv2_RegexPatternSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFv2::RegexPatternSet"
+        stratosphere::generator::construct_resource_type!("AWS::WAFv2::RegexPatternSet"
         $($field $value)*)
     };
 }
@@ -5155,8 +5155,8 @@ pub struct RuleGroup_ {
 #[macro_export]
 macro_rules! __aws_wafv2_RuleGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFv2::RuleGroup" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::WAFv2::RuleGroup"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_wafv2_RuleGroup as RuleGroup;
@@ -5242,7 +5242,7 @@ pub struct WebACL_ {
 #[macro_export]
 macro_rules! __aws_wafv2_WebACL {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFv2::WebACL" $($field
+        stratosphere::generator::construct_resource_type!("AWS::WAFv2::WebACL" $($field
         $value)*)
     };
 }
@@ -5339,7 +5339,7 @@ pub struct WebACLAssociation_ {
 #[macro_export]
 macro_rules! __aws_wafv2_WebACLAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WAFv2::WebACLAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::WAFv2::WebACLAssociation"
         $($field $value)*)
     };
 }

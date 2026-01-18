@@ -6,7 +6,7 @@ pub struct Project_ {
 #[macro_export]
 macro_rules! __aws_lookoutvision_Project {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::LookoutVision::Project"
+        stratosphere::generator::construct_resource_type!("AWS::LookoutVision::Project"
         $($field $value)*)
     };
 }

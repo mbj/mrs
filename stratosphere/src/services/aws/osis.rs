@@ -7,7 +7,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_osis_Pipeline_BufferOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OSIS::Pipeline.BufferOptions"
+            stratosphere::generator::construct_property_type!("AWS::OSIS::Pipeline.BufferOptions"
             $($field $value)*)
         };
     }
@@ -30,7 +30,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_osis_Pipeline_CloudWatchLogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OSIS::Pipeline.CloudWatchLogDestination"
+            stratosphere::generator::construct_property_type!("AWS::OSIS::Pipeline.CloudWatchLogDestination"
             $($field $value)*)
         };
     }
@@ -53,7 +53,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_osis_Pipeline_EncryptionAtRestOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OSIS::Pipeline.EncryptionAtRestOptions"
+            stratosphere::generator::construct_property_type!("AWS::OSIS::Pipeline.EncryptionAtRestOptions"
             $($field $value)*)
         };
     }
@@ -77,7 +77,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_osis_Pipeline_LogPublishingOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OSIS::Pipeline.LogPublishingOptions"
+            stratosphere::generator::construct_property_type!("AWS::OSIS::Pipeline.LogPublishingOptions"
             $($field $value)*)
         };
     }
@@ -109,7 +109,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_osis_Pipeline_VpcAttachmentOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OSIS::Pipeline.VpcAttachmentOptions"
+            stratosphere::generator::construct_property_type!("AWS::OSIS::Pipeline.VpcAttachmentOptions"
             $($field $value)*)
         };
     }
@@ -138,7 +138,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_osis_Pipeline_VpcEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OSIS::Pipeline.VpcEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::OSIS::Pipeline.VpcEndpoint"
             $($field $value)*)
         };
     }
@@ -175,7 +175,7 @@ pub mod pipeline {
     #[macro_export]
     macro_rules! __aws_osis_Pipeline_VpcOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OSIS::Pipeline.VpcOptions"
+            stratosphere::generator::construct_property_type!("AWS::OSIS::Pipeline.VpcOptions"
             $($field $value)*)
         };
     }
@@ -225,7 +225,7 @@ pub struct Pipeline_ {
 #[macro_export]
 macro_rules! __aws_osis_Pipeline {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OSIS::Pipeline" $($field
+        stratosphere::generator::construct_resource_type!("AWS::OSIS::Pipeline" $($field
         $value)*)
     };
 }

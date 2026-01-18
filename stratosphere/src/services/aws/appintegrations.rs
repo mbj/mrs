@@ -7,7 +7,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_appintegrations_Application_ApplicationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppIntegrations::Application.ApplicationConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppIntegrations::Application.ApplicationConfig"
             $($field $value)*)
         };
     }
@@ -32,7 +32,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_appintegrations_Application_ApplicationSourceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppIntegrations::Application.ApplicationSourceConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppIntegrations::Application.ApplicationSourceConfig"
             $($field $value)*)
         };
     }
@@ -55,7 +55,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_appintegrations_Application_ContactHandling {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppIntegrations::Application.ContactHandling"
+            stratosphere::generator::construct_property_type!("AWS::AppIntegrations::Application.ContactHandling"
             $($field $value)*)
         };
     }
@@ -79,7 +79,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_appintegrations_Application_ExternalUrlConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppIntegrations::Application.ExternalUrlConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppIntegrations::Application.ExternalUrlConfig"
             $($field $value)*)
         };
     }
@@ -109,7 +109,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_appintegrations_Application_IframeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppIntegrations::Application.IframeConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppIntegrations::Application.IframeConfig"
             $($field $value)*)
         };
     }
@@ -140,7 +140,7 @@ pub mod dataintegration {
     #[macro_export]
     macro_rules! __aws_appintegrations_DataIntegration_FileConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppIntegrations::DataIntegration.FileConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AppIntegrations::DataIntegration.FileConfiguration"
             $($field $value)*)
         };
     }
@@ -171,7 +171,7 @@ pub mod dataintegration {
     #[macro_export]
     macro_rules! __aws_appintegrations_DataIntegration_ScheduleConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppIntegrations::DataIntegration.ScheduleConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppIntegrations::DataIntegration.ScheduleConfig"
             $($field $value)*)
         };
     }
@@ -205,7 +205,7 @@ pub mod eventintegration {
     #[macro_export]
     macro_rules! __aws_appintegrations_EventIntegration_EventFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppIntegrations::EventIntegration.EventFilter"
+            stratosphere::generator::construct_property_type!("AWS::AppIntegrations::EventIntegration.EventFilter"
             $($field $value)*)
         };
     }
@@ -238,7 +238,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_appintegrations_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppIntegrations::Application"
+        stratosphere::generator::construct_resource_type!("AWS::AppIntegrations::Application"
         $($field $value)*)
     };
 }
@@ -321,7 +321,7 @@ pub struct DataIntegration_ {
 #[macro_export]
 macro_rules! __aws_appintegrations_DataIntegration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppIntegrations::DataIntegration"
+        stratosphere::generator::construct_resource_type!("AWS::AppIntegrations::DataIntegration"
         $($field $value)*)
     };
 }
@@ -391,7 +391,7 @@ pub struct EventIntegration_ {
 #[macro_export]
 macro_rules! __aws_appintegrations_EventIntegration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppIntegrations::EventIntegration"
+        stratosphere::generator::construct_resource_type!("AWS::AppIntegrations::EventIntegration"
         $($field $value)*)
     };
 }

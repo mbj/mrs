@@ -9,7 +9,7 @@ pub mod applicationsettings {
     #[macro_export]
     macro_rules! __aws_pinpoint_ApplicationSettings_CampaignHook {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::ApplicationSettings.CampaignHook"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::ApplicationSettings.CampaignHook"
             $($field $value)*)
         };
     }
@@ -43,7 +43,7 @@ pub mod applicationsettings {
     #[macro_export]
     macro_rules! __aws_pinpoint_ApplicationSettings_Limits {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::ApplicationSettings.Limits"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::ApplicationSettings.Limits"
             $($field $value)*)
         };
     }
@@ -81,7 +81,7 @@ pub mod applicationsettings {
     #[macro_export]
     macro_rules! __aws_pinpoint_ApplicationSettings_QuietTime {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::ApplicationSettings.QuietTime"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::ApplicationSettings.QuietTime"
             $($field $value)*)
         };
     }
@@ -111,7 +111,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_AttributeDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.AttributeDimension"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.AttributeDimension"
             $($field $value)*)
         };
     }
@@ -139,7 +139,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_CampaignCustomMessage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.CampaignCustomMessage"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.CampaignCustomMessage"
             $($field $value)*)
         };
     }
@@ -164,7 +164,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_CampaignEmailMessage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.CampaignEmailMessage"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.CampaignEmailMessage"
             $($field $value)*)
         };
     }
@@ -202,7 +202,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_CampaignEventFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.CampaignEventFilter"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.CampaignEventFilter"
             $($field $value)*)
         };
     }
@@ -235,7 +235,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_CampaignHook {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.CampaignHook"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.CampaignHook"
             $($field $value)*)
         };
     }
@@ -268,7 +268,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_CampaignInAppMessage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.CampaignInAppMessage"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.CampaignInAppMessage"
             $($field $value)*)
         };
     }
@@ -307,7 +307,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_CampaignSmsMessage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.CampaignSmsMessage"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.CampaignSmsMessage"
             $($field $value)*)
         };
     }
@@ -360,7 +360,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_CustomDeliveryConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.CustomDeliveryConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.CustomDeliveryConfiguration"
             $($field $value)*)
         };
     }
@@ -396,7 +396,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_DefaultButtonConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.DefaultButtonConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.DefaultButtonConfiguration"
             $($field $value)*)
         };
     }
@@ -447,7 +447,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_EventDimensions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.EventDimensions"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.EventDimensions"
             $($field $value)*)
         };
     }
@@ -486,7 +486,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_InAppMessageBodyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.InAppMessageBodyConfig"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.InAppMessageBodyConfig"
             $($field $value)*)
         };
     }
@@ -523,7 +523,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_InAppMessageButton {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.InAppMessageButton"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.InAppMessageButton"
             $($field $value)*)
         };
     }
@@ -565,7 +565,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_InAppMessageContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.InAppMessageContent"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.InAppMessageContent"
             $($field $value)*)
         };
     }
@@ -622,7 +622,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_InAppMessageHeaderConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.InAppMessageHeaderConfig"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.InAppMessageHeaderConfig"
             $($field $value)*)
         };
     }
@@ -660,7 +660,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_Limits {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.Limits"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.Limits"
             $($field $value)*)
         };
     }
@@ -714,7 +714,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_Message {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.Message"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.Message"
             $($field $value)*)
         };
     }
@@ -801,7 +801,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_MessageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.MessageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.MessageConfiguration"
             $($field $value)*)
         };
     }
@@ -875,7 +875,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_MetricDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.MetricDimension"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.MetricDimension"
             $($field $value)*)
         };
     }
@@ -904,7 +904,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_OverrideButtonConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.OverrideButtonConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.OverrideButtonConfiguration"
             $($field $value)*)
         };
     }
@@ -933,7 +933,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_QuietTime {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.QuietTime"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.QuietTime"
             $($field $value)*)
         };
     }
@@ -966,7 +966,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_Schedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.Schedule"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.Schedule"
             $($field $value)*)
         };
     }
@@ -1028,7 +1028,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_SetDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.SetDimension"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.SetDimension"
             $($field $value)*)
         };
     }
@@ -1057,7 +1057,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_Template {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.Template"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.Template"
             $($field $value)*)
         };
     }
@@ -1088,7 +1088,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_TemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.TemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.TemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -1137,7 +1137,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_pinpoint_Campaign_WriteTreatmentResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Campaign.WriteTreatmentResource"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Campaign.WriteTreatmentResource"
             $($field $value)*)
         };
     }
@@ -1202,7 +1202,7 @@ pub mod inapptemplate {
     #[macro_export]
     macro_rules! __aws_pinpoint_InAppTemplate_BodyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::InAppTemplate.BodyConfig"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::InAppTemplate.BodyConfig"
             $($field $value)*)
         };
     }
@@ -1239,7 +1239,7 @@ pub mod inapptemplate {
     #[macro_export]
     macro_rules! __aws_pinpoint_InAppTemplate_ButtonConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::InAppTemplate.ButtonConfig"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::InAppTemplate.ButtonConfig"
             $($field $value)*)
         };
     }
@@ -1281,7 +1281,7 @@ pub mod inapptemplate {
     #[macro_export]
     macro_rules! __aws_pinpoint_InAppTemplate_DefaultButtonConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::InAppTemplate.DefaultButtonConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::InAppTemplate.DefaultButtonConfiguration"
             $($field $value)*)
         };
     }
@@ -1332,7 +1332,7 @@ pub mod inapptemplate {
     #[macro_export]
     macro_rules! __aws_pinpoint_InAppTemplate_HeaderConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::InAppTemplate.HeaderConfig"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::InAppTemplate.HeaderConfig"
             $($field $value)*)
         };
     }
@@ -1371,7 +1371,7 @@ pub mod inapptemplate {
     #[macro_export]
     macro_rules! __aws_pinpoint_InAppTemplate_InAppMessageContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::InAppTemplate.InAppMessageContent"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::InAppTemplate.InAppMessageContent"
             $($field $value)*)
         };
     }
@@ -1427,7 +1427,7 @@ pub mod inapptemplate {
     #[macro_export]
     macro_rules! __aws_pinpoint_InAppTemplate_OverrideButtonConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::InAppTemplate.OverrideButtonConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::InAppTemplate.OverrideButtonConfiguration"
             $($field $value)*)
         };
     }
@@ -1462,7 +1462,7 @@ pub mod pushtemplate {
     #[macro_export]
     macro_rules! __aws_pinpoint_PushTemplate_APNSPushNotificationTemplate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::PushTemplate.APNSPushNotificationTemplate"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::PushTemplate.APNSPushNotificationTemplate"
             $($field $value)*)
         };
     }
@@ -1509,7 +1509,7 @@ pub mod pushtemplate {
     #[macro_export]
     macro_rules! __aws_pinpoint_PushTemplate_AndroidPushNotificationTemplate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::PushTemplate.AndroidPushNotificationTemplate"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::PushTemplate.AndroidPushNotificationTemplate"
             $($field $value)*)
         };
     }
@@ -1565,7 +1565,7 @@ pub mod pushtemplate {
     #[macro_export]
     macro_rules! __aws_pinpoint_PushTemplate_DefaultPushNotificationTemplate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::PushTemplate.DefaultPushNotificationTemplate"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::PushTemplate.DefaultPushNotificationTemplate"
             $($field $value)*)
         };
     }
@@ -1602,7 +1602,7 @@ pub mod segment {
     #[macro_export]
     macro_rules! __aws_pinpoint_Segment_AttributeDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Segment.AttributeDimension"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Segment.AttributeDimension"
             $($field $value)*)
         };
     }
@@ -1630,7 +1630,7 @@ pub mod segment {
     #[macro_export]
     macro_rules! __aws_pinpoint_Segment_Behavior {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Segment.Behavior"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Segment.Behavior"
             $($field $value)*)
         };
     }
@@ -1656,7 +1656,7 @@ pub mod segment {
     #[macro_export]
     macro_rules! __aws_pinpoint_Segment_Coordinates {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Segment.Coordinates"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Segment.Coordinates"
             $($field $value)*)
         };
     }
@@ -1688,7 +1688,7 @@ pub mod segment {
     #[macro_export]
     macro_rules! __aws_pinpoint_Segment_Demographic {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Segment.Demographic"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Segment.Demographic"
             $($field $value)*)
         };
     }
@@ -1738,7 +1738,7 @@ pub mod segment {
     #[macro_export]
     macro_rules! __aws_pinpoint_Segment_GPSPoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Segment.GPSPoint"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Segment.GPSPoint"
             $($field $value)*)
         };
     }
@@ -1768,7 +1768,7 @@ pub mod segment {
     #[macro_export]
     macro_rules! __aws_pinpoint_Segment_Groups {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Segment.Groups"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Segment.Groups"
             $($field $value)*)
         };
     }
@@ -1809,7 +1809,7 @@ pub mod segment {
     #[macro_export]
     macro_rules! __aws_pinpoint_Segment_Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Segment.Location"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Segment.Location"
             $($field $value)*)
         };
     }
@@ -1841,7 +1841,7 @@ pub mod segment {
     #[macro_export]
     macro_rules! __aws_pinpoint_Segment_Recency {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Segment.Recency"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Segment.Recency"
             $($field $value)*)
         };
     }
@@ -1873,7 +1873,7 @@ pub mod segment {
     #[macro_export]
     macro_rules! __aws_pinpoint_Segment_SegmentDimensions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Segment.SegmentDimensions"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Segment.SegmentDimensions"
             $($field $value)*)
         };
     }
@@ -1929,7 +1929,7 @@ pub mod segment {
     #[macro_export]
     macro_rules! __aws_pinpoint_Segment_SegmentGroups {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Segment.SegmentGroups"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Segment.SegmentGroups"
             $($field $value)*)
         };
     }
@@ -1958,7 +1958,7 @@ pub mod segment {
     #[macro_export]
     macro_rules! __aws_pinpoint_Segment_SetDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Segment.SetDimension"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Segment.SetDimension"
             $($field $value)*)
         };
     }
@@ -1987,7 +1987,7 @@ pub mod segment {
     #[macro_export]
     macro_rules! __aws_pinpoint_Segment_SourceSegments {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Pinpoint::Segment.SourceSegments"
+            stratosphere::generator::construct_property_type!("AWS::Pinpoint::Segment.SourceSegments"
             $($field $value)*)
         };
     }
@@ -2017,7 +2017,7 @@ pub struct ADMChannel_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_ADMChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::ADMChannel"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::ADMChannel"
         $($field $value)*)
     };
 }
@@ -2070,7 +2070,7 @@ pub struct APNSChannel_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_APNSChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::APNSChannel"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::APNSChannel"
         $($field $value)*)
     };
 }
@@ -2154,7 +2154,7 @@ pub struct APNSSandboxChannel_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_APNSSandboxChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::APNSSandboxChannel"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::APNSSandboxChannel"
         $($field $value)*)
     };
 }
@@ -2238,7 +2238,7 @@ pub struct APNSVoipChannel_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_APNSVoipChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::APNSVoipChannel"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::APNSVoipChannel"
         $($field $value)*)
     };
 }
@@ -2322,7 +2322,7 @@ pub struct APNSVoipSandboxChannel_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_APNSVoipSandboxChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::APNSVoipSandboxChannel"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::APNSVoipSandboxChannel"
         $($field $value)*)
     };
 }
@@ -2399,7 +2399,7 @@ pub struct App_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_App {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::App" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::App" $($field
         $value)*)
     };
 }
@@ -2437,7 +2437,7 @@ pub struct ApplicationSettings_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_ApplicationSettings {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::ApplicationSettings"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::ApplicationSettings"
         $($field $value)*)
     };
 }
@@ -2492,7 +2492,7 @@ pub struct BaiduChannel_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_BaiduChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::BaiduChannel"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::BaiduChannel"
         $($field $value)*)
     };
 }
@@ -2555,7 +2555,7 @@ pub struct Campaign_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_Campaign {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::Campaign"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::Campaign"
         $($field $value)*)
     };
 }
@@ -2682,7 +2682,7 @@ pub struct EmailChannel_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_EmailChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::EmailChannel"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::EmailChannel"
         $($field $value)*)
     };
 }
@@ -2751,7 +2751,7 @@ pub struct EmailTemplate_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_EmailTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::EmailTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::EmailTemplate"
         $($field $value)*)
     };
 }
@@ -2815,7 +2815,7 @@ pub struct EventStream_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_EventStream {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::EventStream"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::EventStream"
         $($field $value)*)
     };
 }
@@ -2858,7 +2858,7 @@ pub struct GCMChannel_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_GCMChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::GCMChannel"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::GCMChannel"
         $($field $value)*)
     };
 }
@@ -2915,7 +2915,7 @@ pub struct InAppTemplate_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_InAppTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::InAppTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::InAppTemplate"
         $($field $value)*)
     };
 }
@@ -2978,7 +2978,7 @@ pub struct PushTemplate_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_PushTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::PushTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::PushTemplate"
         $($field $value)*)
     };
 }
@@ -3045,7 +3045,7 @@ pub struct SMSChannel_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_SMSChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::SMSChannel"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::SMSChannel"
         $($field $value)*)
     };
 }
@@ -3098,7 +3098,7 @@ pub struct Segment_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_Segment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::Segment"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::Segment"
         $($field $value)*)
     };
 }
@@ -3152,7 +3152,7 @@ pub struct SmsTemplate_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_SmsTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::SmsTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::SmsTemplate"
         $($field $value)*)
     };
 }
@@ -3203,7 +3203,7 @@ pub struct VoiceChannel_ {
 #[macro_export]
 macro_rules! __aws_pinpoint_VoiceChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Pinpoint::VoiceChannel"
+        stratosphere::generator::construct_resource_type!("AWS::Pinpoint::VoiceChannel"
         $($field $value)*)
     };
 }

@@ -9,7 +9,7 @@ pub mod identitypool {
     #[macro_export]
     macro_rules! __aws_cognito_IdentityPool_CognitoIdentityProvider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::IdentityPool.CognitoIdentityProvider"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::IdentityPool.CognitoIdentityProvider"
             $($field $value)*)
         };
     }
@@ -44,7 +44,7 @@ pub mod identitypool {
     #[macro_export]
     macro_rules! __aws_cognito_IdentityPool_CognitoStreams {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::IdentityPool.CognitoStreams"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::IdentityPool.CognitoStreams"
             $($field $value)*)
         };
     }
@@ -82,7 +82,7 @@ pub mod identitypool {
     #[macro_export]
     macro_rules! __aws_cognito_IdentityPool_PushSync {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::IdentityPool.PushSync"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::IdentityPool.PushSync"
             $($field $value)*)
         };
     }
@@ -118,7 +118,7 @@ pub mod identitypoolroleattachment {
     #[macro_export]
     macro_rules! __aws_cognito_IdentityPoolRoleAttachment_MappingRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::IdentityPoolRoleAttachment.MappingRule"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::IdentityPoolRoleAttachment.MappingRule"
             $($field $value)*)
         };
     }
@@ -156,7 +156,7 @@ pub mod identitypoolroleattachment {
     #[macro_export]
     macro_rules! __aws_cognito_IdentityPoolRoleAttachment_RoleMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::IdentityPoolRoleAttachment.RoleMapping"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::IdentityPoolRoleAttachment.RoleMapping"
             $($field $value)*)
         };
     }
@@ -197,7 +197,7 @@ pub mod identitypoolroleattachment {
     #[macro_export]
     macro_rules! __aws_cognito_IdentityPoolRoleAttachment_RulesConfigurationType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::IdentityPoolRoleAttachment.RulesConfigurationType"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::IdentityPoolRoleAttachment.RulesConfigurationType"
             $($field $value)*)
         };
     }
@@ -222,7 +222,7 @@ pub mod logdeliveryconfiguration {
     #[macro_export]
     macro_rules! __aws_cognito_LogDeliveryConfiguration_CloudWatchLogsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::LogDeliveryConfiguration.CloudWatchLogsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::LogDeliveryConfiguration.CloudWatchLogsConfiguration"
             $($field $value)*)
         };
     }
@@ -247,7 +247,7 @@ pub mod logdeliveryconfiguration {
     #[macro_export]
     macro_rules! __aws_cognito_LogDeliveryConfiguration_FirehoseConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::LogDeliveryConfiguration.FirehoseConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::LogDeliveryConfiguration.FirehoseConfiguration"
             $($field $value)*)
         };
     }
@@ -276,7 +276,7 @@ pub mod logdeliveryconfiguration {
     #[macro_export]
     macro_rules! __aws_cognito_LogDeliveryConfiguration_LogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::LogDeliveryConfiguration.LogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::LogDeliveryConfiguration.LogConfiguration"
             $($field $value)*)
         };
     }
@@ -325,7 +325,7 @@ pub mod logdeliveryconfiguration {
     #[macro_export]
     macro_rules! __aws_cognito_LogDeliveryConfiguration_S3Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::LogDeliveryConfiguration.S3Configuration"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::LogDeliveryConfiguration.S3Configuration"
             $($field $value)*)
         };
     }
@@ -356,7 +356,7 @@ pub mod managedloginbranding {
     #[macro_export]
     macro_rules! __aws_cognito_ManagedLoginBranding_AssetType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::ManagedLoginBranding.AssetType"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::ManagedLoginBranding.AssetType"
             $($field $value)*)
         };
     }
@@ -398,7 +398,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_AccountRecoverySetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.AccountRecoverySetting"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.AccountRecoverySetting"
             $($field $value)*)
         };
     }
@@ -425,7 +425,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_AdminCreateUserConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.AdminCreateUserConfig"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.AdminCreateUserConfig"
             $($field $value)*)
         };
     }
@@ -462,7 +462,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_AdvancedSecurityAdditionalFlows {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.AdvancedSecurityAdditionalFlows"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.AdvancedSecurityAdditionalFlows"
             $($field $value)*)
         };
     }
@@ -488,7 +488,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_CustomEmailSender {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.CustomEmailSender"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.CustomEmailSender"
             $($field $value)*)
         };
     }
@@ -520,7 +520,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_CustomSMSSender {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.CustomSMSSender"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.CustomSMSSender"
             $($field $value)*)
         };
     }
@@ -552,7 +552,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_DeviceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.DeviceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.DeviceConfiguration"
             $($field $value)*)
         };
     }
@@ -587,7 +587,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_EmailConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.EmailConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.EmailConfiguration"
             $($field $value)*)
         };
     }
@@ -635,7 +635,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_InviteMessageTemplate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.InviteMessageTemplate"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.InviteMessageTemplate"
             $($field $value)*)
         };
     }
@@ -685,7 +685,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_LambdaConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.LambdaConfig"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.LambdaConfig"
             $($field $value)*)
         };
     }
@@ -789,7 +789,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_NumberAttributeConstraints {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.NumberAttributeConstraints"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.NumberAttributeConstraints"
             $($field $value)*)
         };
     }
@@ -826,7 +826,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_PasswordPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.PasswordPolicy"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.PasswordPolicy"
             $($field $value)*)
         };
     }
@@ -888,7 +888,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_Policies {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.Policies"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.Policies"
             $($field $value)*)
         };
     }
@@ -920,7 +920,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_PreTokenGenerationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.PreTokenGenerationConfig"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.PreTokenGenerationConfig"
             $($field $value)*)
         };
     }
@@ -952,7 +952,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_RecoveryOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.RecoveryOption"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.RecoveryOption"
             $($field $value)*)
         };
     }
@@ -986,7 +986,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_SchemaAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.SchemaAttribute"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.SchemaAttribute"
             $($field $value)*)
         };
     }
@@ -1044,7 +1044,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_SignInPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.SignInPolicy"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.SignInPolicy"
             $($field $value)*)
         };
     }
@@ -1071,7 +1071,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_SmsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.SmsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.SmsConfiguration"
             $($field $value)*)
         };
     }
@@ -1109,7 +1109,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_StringAttributeConstraints {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.StringAttributeConstraints"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.StringAttributeConstraints"
             $($field $value)*)
         };
     }
@@ -1140,7 +1140,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_UserAttributeUpdateSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.UserAttributeUpdateSettings"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.UserAttributeUpdateSettings"
             $($field $value)*)
         };
     }
@@ -1166,7 +1166,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_UserPoolAddOns {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.UserPoolAddOns"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.UserPoolAddOns"
             $($field $value)*)
         };
     }
@@ -1197,7 +1197,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_UsernameConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.UsernameConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.UsernameConfiguration"
             $($field $value)*)
         };
     }
@@ -1227,7 +1227,7 @@ pub mod userpool {
     #[macro_export]
     macro_rules! __aws_cognito_UserPool_VerificationMessageTemplate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPool.VerificationMessageTemplate"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.VerificationMessageTemplate"
             $($field $value)*)
         };
     }
@@ -1288,7 +1288,7 @@ pub mod userpoolclient {
     #[macro_export]
     macro_rules! __aws_cognito_UserPoolClient_AnalyticsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPoolClient.AnalyticsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPoolClient.AnalyticsConfiguration"
             $($field $value)*)
         };
     }
@@ -1338,7 +1338,7 @@ pub mod userpoolclient {
     #[macro_export]
     macro_rules! __aws_cognito_UserPoolClient_RefreshTokenRotation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPoolClient.RefreshTokenRotation"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPoolClient.RefreshTokenRotation"
             $($field $value)*)
         };
     }
@@ -1371,7 +1371,7 @@ pub mod userpoolclient {
     #[macro_export]
     macro_rules! __aws_cognito_UserPoolClient_TokenValidityUnits {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPoolClient.TokenValidityUnits"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPoolClient.TokenValidityUnits"
             $($field $value)*)
         };
     }
@@ -1410,7 +1410,7 @@ pub mod userpooldomain {
     #[macro_export]
     macro_rules! __aws_cognito_UserPoolDomain_CustomDomainConfigType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPoolDomain.CustomDomainConfigType"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPoolDomain.CustomDomainConfigType"
             $($field $value)*)
         };
     }
@@ -1438,7 +1438,7 @@ pub mod userpoolresourceserver {
     #[macro_export]
     macro_rules! __aws_cognito_UserPoolResourceServer_ResourceServerScopeType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPoolResourceServer.ResourceServerScopeType"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPoolResourceServer.ResourceServerScopeType"
             $($field $value)*)
         };
     }
@@ -1468,7 +1468,7 @@ pub mod userpoolriskconfigurationattachment {
     #[macro_export]
     macro_rules! __aws_cognito_UserPoolRiskConfigurationAttachment_AccountTakeoverActionType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.AccountTakeoverActionType"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.AccountTakeoverActionType"
             $($field $value)*)
         };
     }
@@ -1497,7 +1497,7 @@ pub mod userpoolriskconfigurationattachment {
     #[macro_export]
     macro_rules! __aws_cognito_UserPoolRiskConfigurationAttachment_AccountTakeoverActionsType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.AccountTakeoverActionsType"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.AccountTakeoverActionsType"
             $($field $value)*)
         };
     }
@@ -1535,7 +1535,7 @@ pub mod userpoolriskconfigurationattachment {
     #[macro_export]
     macro_rules! __aws_cognito_UserPoolRiskConfigurationAttachment_AccountTakeoverRiskConfigurationType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.AccountTakeoverRiskConfigurationType"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.AccountTakeoverRiskConfigurationType"
             $($field $value)*)
         };
     }
@@ -1564,7 +1564,7 @@ pub mod userpoolriskconfigurationattachment {
     #[macro_export]
     macro_rules! __aws_cognito_UserPoolRiskConfigurationAttachment_CompromisedCredentialsActionsType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.CompromisedCredentialsActionsType"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.CompromisedCredentialsActionsType"
             $($field $value)*)
         };
     }
@@ -1588,7 +1588,7 @@ pub mod userpoolriskconfigurationattachment {
     #[macro_export]
     macro_rules! __aws_cognito_UserPoolRiskConfigurationAttachment_CompromisedCredentialsRiskConfigurationType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.CompromisedCredentialsRiskConfigurationType"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.CompromisedCredentialsRiskConfigurationType"
             $($field $value)*)
         };
     }
@@ -1622,7 +1622,7 @@ pub mod userpoolriskconfigurationattachment {
     #[macro_export]
     macro_rules! __aws_cognito_UserPoolRiskConfigurationAttachment_NotifyConfigurationType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.NotifyConfigurationType"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.NotifyConfigurationType"
             $($field $value)*)
         };
     }
@@ -1674,7 +1674,7 @@ pub mod userpoolriskconfigurationattachment {
     #[macro_export]
     macro_rules! __aws_cognito_UserPoolRiskConfigurationAttachment_NotifyEmailType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.NotifyEmailType"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.NotifyEmailType"
             $($field $value)*)
         };
     }
@@ -1710,7 +1710,7 @@ pub mod userpoolriskconfigurationattachment {
     #[macro_export]
     macro_rules! __aws_cognito_UserPoolRiskConfigurationAttachment_RiskExceptionConfigurationType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.RiskExceptionConfigurationType"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment.RiskExceptionConfigurationType"
             $($field $value)*)
         };
     }
@@ -1744,7 +1744,7 @@ pub mod userpooluser {
     #[macro_export]
     macro_rules! __aws_cognito_UserPoolUser_AttributeType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cognito::UserPoolUser.AttributeType"
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPoolUser.AttributeType"
             $($field $value)*)
         };
     }
@@ -1782,7 +1782,7 @@ pub struct IdentityPool_ {
 #[macro_export]
 macro_rules! __aws_cognito_IdentityPool {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::IdentityPool"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::IdentityPool"
         $($field $value)*)
     };
 }
@@ -1882,7 +1882,7 @@ pub struct IdentityPoolPrincipalTag_ {
 #[macro_export]
 macro_rules! __aws_cognito_IdentityPoolPrincipalTag {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::IdentityPoolPrincipalTag"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::IdentityPoolPrincipalTag"
         $($field $value)*)
     };
 }
@@ -1936,7 +1936,7 @@ pub struct IdentityPoolRoleAttachment_ {
 #[macro_export]
 macro_rules! __aws_cognito_IdentityPoolRoleAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::IdentityPoolRoleAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::IdentityPoolRoleAttachment"
         $($field $value)*)
     };
 }
@@ -1980,7 +1980,7 @@ pub struct LogDeliveryConfiguration_ {
 #[macro_export]
 macro_rules! __aws_cognito_LogDeliveryConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::LogDeliveryConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::LogDeliveryConfiguration"
         $($field $value)*)
     };
 }
@@ -2022,7 +2022,7 @@ pub struct ManagedLoginBranding_ {
 #[macro_export]
 macro_rules! __aws_cognito_ManagedLoginBranding {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::ManagedLoginBranding"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::ManagedLoginBranding"
         $($field $value)*)
     };
 }
@@ -2110,7 +2110,7 @@ pub struct UserPool_ {
 #[macro_export]
 macro_rules! __aws_cognito_UserPool {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::UserPool"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::UserPool"
         $($field $value)*)
     };
 }
@@ -2330,7 +2330,7 @@ pub struct UserPoolClient_ {
 #[macro_export]
 macro_rules! __aws_cognito_UserPoolClient {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::UserPoolClient"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::UserPoolClient"
         $($field $value)*)
     };
 }
@@ -2496,7 +2496,7 @@ pub struct UserPoolDomain_ {
 #[macro_export]
 macro_rules! __aws_cognito_UserPoolDomain {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::UserPoolDomain"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::UserPoolDomain"
         $($field $value)*)
     };
 }
@@ -2547,7 +2547,7 @@ pub struct UserPoolGroup_ {
 #[macro_export]
 macro_rules! __aws_cognito_UserPoolGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::UserPoolGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::UserPoolGroup"
         $($field $value)*)
     };
 }
@@ -2607,7 +2607,7 @@ pub struct UserPoolIdentityProvider_ {
 #[macro_export]
 macro_rules! __aws_cognito_UserPoolIdentityProvider {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::UserPoolIdentityProvider"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::UserPoolIdentityProvider"
         $($field $value)*)
     };
 }
@@ -2665,7 +2665,7 @@ pub struct UserPoolResourceServer_ {
 #[macro_export]
 macro_rules! __aws_cognito_UserPoolResourceServer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::UserPoolResourceServer"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::UserPoolResourceServer"
         $($field $value)*)
     };
 }
@@ -2717,7 +2717,7 @@ pub struct UserPoolRiskConfigurationAttachment_ {
 #[macro_export]
 macro_rules! __aws_cognito_UserPoolRiskConfigurationAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::UserPoolRiskConfigurationAttachment"
         $($field $value)*)
     };
 }
@@ -2774,7 +2774,7 @@ pub struct UserPoolUICustomizationAttachment_ {
 #[macro_export]
 macro_rules! __aws_cognito_UserPoolUICustomizationAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::UserPoolUICustomizationAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::UserPoolUICustomizationAttachment"
         $($field $value)*)
     };
 }
@@ -2821,7 +2821,7 @@ pub struct UserPoolUser_ {
 #[macro_export]
 macro_rules! __aws_cognito_UserPoolUser {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::UserPoolUser"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::UserPoolUser"
         $($field $value)*)
     };
 }
@@ -2896,7 +2896,7 @@ pub struct UserPoolUserToGroupAttachment_ {
 #[macro_export]
 macro_rules! __aws_cognito_UserPoolUserToGroupAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cognito::UserPoolUserToGroupAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::UserPoolUserToGroupAttachment"
         $($field $value)*)
     };
 }

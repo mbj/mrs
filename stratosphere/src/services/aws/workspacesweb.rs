@@ -10,7 +10,7 @@ pub mod dataprotectionsettings {
     #[macro_export]
     macro_rules! __aws_workspacesweb_DataProtectionSettings_CustomPattern {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpacesWeb::DataProtectionSettings.CustomPattern"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::DataProtectionSettings.CustomPattern"
             $($field $value)*)
         };
     }
@@ -52,7 +52,7 @@ pub mod dataprotectionsettings {
     #[macro_export]
     macro_rules! __aws_workspacesweb_DataProtectionSettings_InlineRedactionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpacesWeb::DataProtectionSettings.InlineRedactionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::DataProtectionSettings.InlineRedactionConfiguration"
             $($field $value)*)
         };
     }
@@ -98,7 +98,7 @@ pub mod dataprotectionsettings {
     #[macro_export]
     macro_rules! __aws_workspacesweb_DataProtectionSettings_InlineRedactionPattern {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpacesWeb::DataProtectionSettings.InlineRedactionPattern"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::DataProtectionSettings.InlineRedactionPattern"
             $($field $value)*)
         };
     }
@@ -152,7 +152,7 @@ pub mod dataprotectionsettings {
     #[macro_export]
     macro_rules! __aws_workspacesweb_DataProtectionSettings_RedactionPlaceHolder {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpacesWeb::DataProtectionSettings.RedactionPlaceHolder"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::DataProtectionSettings.RedactionPlaceHolder"
             $($field $value)*)
         };
     }
@@ -184,7 +184,7 @@ pub mod ipaccesssettings {
     #[macro_export]
     macro_rules! __aws_workspacesweb_IpAccessSettings_IpRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpacesWeb::IpAccessSettings.IpRule"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::IpAccessSettings.IpRule"
             $($field $value)*)
         };
     }
@@ -216,7 +216,7 @@ pub mod sessionlogger {
     #[macro_export]
     macro_rules! __aws_workspacesweb_SessionLogger_EventFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpacesWeb::SessionLogger.EventFilter"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::SessionLogger.EventFilter"
             $($field $value)*)
         };
     }
@@ -244,7 +244,7 @@ pub mod sessionlogger {
     #[macro_export]
     macro_rules! __aws_workspacesweb_SessionLogger_LogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpacesWeb::SessionLogger.LogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::SessionLogger.LogConfiguration"
             $($field $value)*)
         };
     }
@@ -270,7 +270,7 @@ pub mod sessionlogger {
     #[macro_export]
     macro_rules! __aws_workspacesweb_SessionLogger_S3LogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpacesWeb::SessionLogger.S3LogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::SessionLogger.S3LogConfiguration"
             $($field $value)*)
         };
     }
@@ -317,7 +317,7 @@ pub mod usersettings {
     #[macro_export]
     macro_rules! __aws_workspacesweb_UserSettings_CookieSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpacesWeb::UserSettings.CookieSpecification"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::UserSettings.CookieSpecification"
             $($field $value)*)
         };
     }
@@ -347,7 +347,7 @@ pub mod usersettings {
     #[macro_export]
     macro_rules! __aws_workspacesweb_UserSettings_CookieSynchronizationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpacesWeb::UserSettings.CookieSynchronizationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::UserSettings.CookieSynchronizationConfiguration"
             $($field $value)*)
         };
     }
@@ -379,7 +379,7 @@ pub mod usersettings {
     #[macro_export]
     macro_rules! __aws_workspacesweb_UserSettings_ToolbarConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpacesWeb::UserSettings.ToolbarConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::UserSettings.ToolbarConfiguration"
             $($field $value)*)
         };
     }
@@ -427,7 +427,7 @@ pub struct BrowserSettings_ {
 #[macro_export]
 macro_rules! __aws_workspacesweb_BrowserSettings {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkSpacesWeb::BrowserSettings"
+        stratosphere::generator::construct_resource_type!("AWS::WorkSpacesWeb::BrowserSettings"
         $($field $value)*)
     };
 }
@@ -482,7 +482,7 @@ pub struct DataProtectionSettings_ {
 #[macro_export]
 macro_rules! __aws_workspacesweb_DataProtectionSettings {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkSpacesWeb::DataProtectionSettings"
+        stratosphere::generator::construct_resource_type!("AWS::WorkSpacesWeb::DataProtectionSettings"
         $($field $value)*)
     };
 }
@@ -546,7 +546,7 @@ pub struct IdentityProvider_ {
 #[macro_export]
 macro_rules! __aws_workspacesweb_IdentityProvider {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkSpacesWeb::IdentityProvider"
+        stratosphere::generator::construct_resource_type!("AWS::WorkSpacesWeb::IdentityProvider"
         $($field $value)*)
     };
 }
@@ -600,7 +600,7 @@ pub struct IpAccessSettings_ {
 #[macro_export]
 macro_rules! __aws_workspacesweb_IpAccessSettings {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkSpacesWeb::IpAccessSettings"
+        stratosphere::generator::construct_resource_type!("AWS::WorkSpacesWeb::IpAccessSettings"
         $($field $value)*)
     };
 }
@@ -661,7 +661,7 @@ pub struct NetworkSettings_ {
 #[macro_export]
 macro_rules! __aws_workspacesweb_NetworkSettings {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkSpacesWeb::NetworkSettings"
+        stratosphere::generator::construct_resource_type!("AWS::WorkSpacesWeb::NetworkSettings"
         $($field $value)*)
     };
 }
@@ -718,7 +718,7 @@ pub struct Portal_ {
 #[macro_export]
 macro_rules! __aws_workspacesweb_Portal {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkSpacesWeb::Portal"
+        stratosphere::generator::construct_resource_type!("AWS::WorkSpacesWeb::Portal"
         $($field $value)*)
     };
 }
@@ -838,7 +838,7 @@ pub struct SessionLogger_ {
 #[macro_export]
 macro_rules! __aws_workspacesweb_SessionLogger {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkSpacesWeb::SessionLogger"
+        stratosphere::generator::construct_resource_type!("AWS::WorkSpacesWeb::SessionLogger"
         $($field $value)*)
     };
 }
@@ -895,7 +895,7 @@ pub struct TrustStore_ {
 #[macro_export]
 macro_rules! __aws_workspacesweb_TrustStore {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkSpacesWeb::TrustStore"
+        stratosphere::generator::construct_resource_type!("AWS::WorkSpacesWeb::TrustStore"
         $($field $value)*)
     };
 }
@@ -930,7 +930,7 @@ pub struct UserAccessLoggingSettings_ {
 #[macro_export]
 macro_rules! __aws_workspacesweb_UserAccessLoggingSettings {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkSpacesWeb::UserAccessLoggingSettings"
+        stratosphere::generator::construct_resource_type!("AWS::WorkSpacesWeb::UserAccessLoggingSettings"
         $($field $value)*)
     };
 }
@@ -978,7 +978,7 @@ pub struct UserSettings_ {
 #[macro_export]
 macro_rules! __aws_workspacesweb_UserSettings {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkSpacesWeb::UserSettings"
+        stratosphere::generator::construct_resource_type!("AWS::WorkSpacesWeb::UserSettings"
         $($field $value)*)
     };
 }

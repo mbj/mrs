@@ -7,7 +7,7 @@ pub mod accessgrant {
     #[macro_export]
     macro_rules! __aws_s3_AccessGrant_AccessGrantsLocationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::AccessGrant.AccessGrantsLocationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::AccessGrant.AccessGrantsLocationConfiguration"
             $($field $value)*)
         };
     }
@@ -31,7 +31,7 @@ pub mod accessgrant {
     #[macro_export]
     macro_rules! __aws_s3_AccessGrant_Grantee {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::AccessGrant.Grantee"
+            stratosphere::generator::construct_property_type!("AWS::S3::AccessGrant.Grantee"
             $($field $value)*)
         };
     }
@@ -63,7 +63,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_s3_AccessPoint_PublicAccessBlockConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::AccessPoint.PublicAccessBlockConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::AccessPoint.PublicAccessBlockConfiguration"
             $($field $value)*)
         };
     }
@@ -106,7 +106,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_s3_AccessPoint_VpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::AccessPoint.VpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::AccessPoint.VpcConfiguration"
             $($field $value)*)
         };
     }
@@ -130,7 +130,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_AbortIncompleteMultipartUpload {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.AbortIncompleteMultipartUpload"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.AbortIncompleteMultipartUpload"
             $($field $value)*)
         };
     }
@@ -153,7 +153,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_AccelerateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.AccelerateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.AccelerateConfiguration"
             $($field $value)*)
         };
     }
@@ -176,7 +176,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_AccessControlTranslation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.AccessControlTranslation"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.AccessControlTranslation"
             $($field $value)*)
         };
     }
@@ -202,7 +202,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_AnalyticsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.AnalyticsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.AnalyticsConfiguration"
             $($field $value)*)
         };
     }
@@ -235,7 +235,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_BucketEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.BucketEncryption"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.BucketEncryption"
             $($field $value)*)
         };
     }
@@ -258,7 +258,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_CorsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.CorsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.CorsConfiguration"
             $($field $value)*)
         };
     }
@@ -286,7 +286,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_CorsRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.CorsRule"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.CorsRule"
             $($field $value)*)
         };
     }
@@ -332,7 +332,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_DataExport {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.DataExport"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.DataExport"
             $($field $value)*)
         };
     }
@@ -361,7 +361,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_DefaultRetention {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.DefaultRetention"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.DefaultRetention"
             $($field $value)*)
         };
     }
@@ -389,7 +389,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_DeleteMarkerReplication {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.DeleteMarkerReplication"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.DeleteMarkerReplication"
             $($field $value)*)
         };
     }
@@ -414,7 +414,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_Destination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.Destination"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.Destination"
             $($field $value)*)
         };
     }
@@ -450,7 +450,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_EncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.EncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.EncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -473,7 +473,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_EventBridgeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.EventBridgeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.EventBridgeConfiguration"
             $($field $value)*)
         };
     }
@@ -497,7 +497,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_FilterRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.FilterRule"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.FilterRule"
             $($field $value)*)
         };
     }
@@ -528,7 +528,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_IntelligentTieringConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.IntelligentTieringConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.IntelligentTieringConfiguration"
             $($field $value)*)
         };
     }
@@ -571,7 +571,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_InventoryConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.InventoryConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.InventoryConfiguration"
             $($field $value)*)
         };
     }
@@ -619,7 +619,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_InventoryTableConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.InventoryTableConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.InventoryTableConfiguration"
             $($field $value)*)
         };
     }
@@ -663,7 +663,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_JournalTableConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.JournalTableConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.JournalTableConfiguration"
             $($field $value)*)
         };
     }
@@ -706,7 +706,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_LambdaConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.LambdaConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.LambdaConfiguration"
             $($field $value)*)
         };
     }
@@ -737,7 +737,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_LifecycleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.LifecycleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.LifecycleConfiguration"
             $($field $value)*)
         };
     }
@@ -768,7 +768,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_LoggingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.LoggingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.LoggingConfiguration"
             $($field $value)*)
         };
     }
@@ -807,7 +807,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_MetadataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.MetadataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.MetadataConfiguration"
             $($field $value)*)
         };
     }
@@ -844,7 +844,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_MetadataDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.MetadataDestination"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.MetadataDestination"
             $($field $value)*)
         };
     }
@@ -879,7 +879,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_MetadataTableConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.MetadataTableConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.MetadataTableConfiguration"
             $($field $value)*)
         };
     }
@@ -903,7 +903,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_MetadataTableEncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.MetadataTableEncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.MetadataTableEncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -933,7 +933,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_Metrics {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.Metrics"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.Metrics"
             $($field $value)*)
         };
     }
@@ -965,7 +965,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_MetricsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.MetricsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.MetricsConfiguration"
             $($field $value)*)
         };
     }
@@ -1001,7 +1001,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_NoncurrentVersionExpiration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.NoncurrentVersionExpiration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.NoncurrentVersionExpiration"
             $($field $value)*)
         };
     }
@@ -1032,7 +1032,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_NoncurrentVersionTransition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.NoncurrentVersionTransition"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.NoncurrentVersionTransition"
             $($field $value)*)
         };
     }
@@ -1068,7 +1068,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_NotificationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.NotificationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.NotificationConfiguration"
             $($field $value)*)
         };
     }
@@ -1111,7 +1111,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_NotificationFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.NotificationFilter"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.NotificationFilter"
             $($field $value)*)
         };
     }
@@ -1135,7 +1135,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_ObjectLockConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.ObjectLockConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.ObjectLockConfiguration"
             $($field $value)*)
         };
     }
@@ -1163,7 +1163,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_ObjectLockRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.ObjectLockRule"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.ObjectLockRule"
             $($field $value)*)
         };
     }
@@ -1188,7 +1188,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_OwnershipControls {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.OwnershipControls"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.OwnershipControls"
             $($field $value)*)
         };
     }
@@ -1211,7 +1211,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_OwnershipControlsRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.OwnershipControlsRule"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.OwnershipControlsRule"
             $($field $value)*)
         };
     }
@@ -1236,7 +1236,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_PartitionedPrefix {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.PartitionedPrefix"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.PartitionedPrefix"
             $($field $value)*)
         };
     }
@@ -1264,7 +1264,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_PublicAccessBlockConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.PublicAccessBlockConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.PublicAccessBlockConfiguration"
             $($field $value)*)
         };
     }
@@ -1309,7 +1309,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_QueueConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.QueueConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.QueueConfiguration"
             $($field $value)*)
         };
     }
@@ -1340,7 +1340,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_RecordExpiration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.RecordExpiration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.RecordExpiration"
             $($field $value)*)
         };
     }
@@ -1367,7 +1367,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_RedirectAllRequestsTo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.RedirectAllRequestsTo"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.RedirectAllRequestsTo"
             $($field $value)*)
         };
     }
@@ -1400,7 +1400,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_RedirectRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.RedirectRule"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.RedirectRule"
             $($field $value)*)
         };
     }
@@ -1449,7 +1449,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_ReplicaModifications {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.ReplicaModifications"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.ReplicaModifications"
             $($field $value)*)
         };
     }
@@ -1473,7 +1473,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_ReplicationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.ReplicationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.ReplicationConfiguration"
             $($field $value)*)
         };
     }
@@ -1506,7 +1506,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_ReplicationDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.ReplicationDestination"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.ReplicationDestination"
             $($field $value)*)
         };
     }
@@ -1572,7 +1572,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_ReplicationRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.ReplicationRule"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.ReplicationRule"
             $($field $value)*)
         };
     }
@@ -1627,7 +1627,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_ReplicationRuleAndOperator {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.ReplicationRuleAndOperator"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.ReplicationRuleAndOperator"
             $($field $value)*)
         };
     }
@@ -1657,7 +1657,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_ReplicationRuleFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.ReplicationRuleFilter"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.ReplicationRuleFilter"
             $($field $value)*)
         };
     }
@@ -1689,7 +1689,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_ReplicationTime {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.ReplicationTime"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.ReplicationTime"
             $($field $value)*)
         };
     }
@@ -1716,7 +1716,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_ReplicationTimeValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.ReplicationTimeValue"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.ReplicationTimeValue"
             $($field $value)*)
         };
     }
@@ -1740,7 +1740,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_RoutingRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.RoutingRule"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.RoutingRule"
             $($field $value)*)
         };
     }
@@ -1770,7 +1770,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_RoutingRuleCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.RoutingRuleCondition"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.RoutingRuleCondition"
             $($field $value)*)
         };
     }
@@ -1816,7 +1816,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.Rule"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.Rule"
             $($field $value)*)
         };
     }
@@ -1923,7 +1923,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_S3KeyFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.S3KeyFilter"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.S3KeyFilter"
             $($field $value)*)
         };
     }
@@ -1949,7 +1949,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_S3TablesDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.S3TablesDestination"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.S3TablesDestination"
             $($field $value)*)
         };
     }
@@ -1989,7 +1989,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_ServerSideEncryptionByDefault {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.ServerSideEncryptionByDefault"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.ServerSideEncryptionByDefault"
             $($field $value)*)
         };
     }
@@ -2019,7 +2019,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_ServerSideEncryptionRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.ServerSideEncryptionRule"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.ServerSideEncryptionRule"
             $($field $value)*)
         };
     }
@@ -2051,7 +2051,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_SourceSelectionCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.SourceSelectionCriteria"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.SourceSelectionCriteria"
             $($field $value)*)
         };
     }
@@ -2082,7 +2082,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_SseKmsEncryptedObjects {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.SseKmsEncryptedObjects"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.SseKmsEncryptedObjects"
             $($field $value)*)
         };
     }
@@ -2105,7 +2105,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_StorageClassAnalysis {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.StorageClassAnalysis"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.StorageClassAnalysis"
             $($field $value)*)
         };
     }
@@ -2131,7 +2131,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_TagFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.TagFilter"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.TagFilter"
             $($field $value)*)
         };
     }
@@ -2159,7 +2159,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_TargetObjectKeyFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.TargetObjectKeyFormat"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.TargetObjectKeyFormat"
             $($field $value)*)
         };
     }
@@ -2191,7 +2191,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_Tiering {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.Tiering"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.Tiering"
             $($field $value)*)
         };
     }
@@ -2220,7 +2220,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_TopicConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.TopicConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.TopicConfiguration"
             $($field $value)*)
         };
     }
@@ -2252,7 +2252,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_Transition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.Transition"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.Transition"
             $($field $value)*)
         };
     }
@@ -2287,7 +2287,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_VersioningConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.VersioningConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.VersioningConfiguration"
             $($field $value)*)
         };
     }
@@ -2313,7 +2313,7 @@ pub mod bucket {
     #[macro_export]
     macro_rules! __aws_s3_Bucket_WebsiteConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::Bucket.WebsiteConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.WebsiteConfiguration"
             $($field $value)*)
         };
     }
@@ -2361,7 +2361,7 @@ pub mod multiregionaccesspoint {
     #[macro_export]
     macro_rules! __aws_s3_MultiRegionAccessPoint_PublicAccessBlockConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::MultiRegionAccessPoint.PublicAccessBlockConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::MultiRegionAccessPoint.PublicAccessBlockConfiguration"
             $($field $value)*)
         };
     }
@@ -2405,7 +2405,7 @@ pub mod multiregionaccesspoint {
     #[macro_export]
     macro_rules! __aws_s3_MultiRegionAccessPoint_Region {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::MultiRegionAccessPoint.Region"
+            stratosphere::generator::construct_property_type!("AWS::S3::MultiRegionAccessPoint.Region"
             $($field $value)*)
         };
     }
@@ -2436,7 +2436,7 @@ pub mod multiregionaccesspointpolicy {
     #[macro_export]
     macro_rules! __aws_s3_MultiRegionAccessPointPolicy_PolicyStatus {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::MultiRegionAccessPointPolicy.PolicyStatus"
+            stratosphere::generator::construct_property_type!("AWS::S3::MultiRegionAccessPointPolicy.PolicyStatus"
             $($field $value)*)
         };
     }
@@ -2466,7 +2466,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_AccountLevel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.AccountLevel"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.AccountLevel"
             $($field $value)*)
         };
     }
@@ -2519,7 +2519,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_ActivityMetrics {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.ActivityMetrics"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.ActivityMetrics"
             $($field $value)*)
         };
     }
@@ -2544,7 +2544,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_AdvancedCostOptimizationMetrics {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.AdvancedCostOptimizationMetrics"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.AdvancedCostOptimizationMetrics"
             $($field $value)*)
         };
     }
@@ -2569,7 +2569,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_AdvancedDataProtectionMetrics {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.AdvancedDataProtectionMetrics"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.AdvancedDataProtectionMetrics"
             $($field $value)*)
         };
     }
@@ -2594,7 +2594,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_AwsOrg {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.AwsOrg"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.AwsOrg"
             $($field $value)*)
         };
     }
@@ -2621,7 +2621,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_BucketLevel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.BucketLevel"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.BucketLevel"
             $($field $value)*)
         };
     }
@@ -2671,7 +2671,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_BucketsAndRegions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.BucketsAndRegions"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.BucketsAndRegions"
             $($field $value)*)
         };
     }
@@ -2702,7 +2702,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_CloudWatchMetrics {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.CloudWatchMetrics"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.CloudWatchMetrics"
             $($field $value)*)
         };
     }
@@ -2726,7 +2726,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_DataExport {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.DataExport"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.DataExport"
             $($field $value)*)
         };
     }
@@ -2757,7 +2757,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_DetailedStatusCodesMetrics {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.DetailedStatusCodesMetrics"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.DetailedStatusCodesMetrics"
             $($field $value)*)
         };
     }
@@ -2783,7 +2783,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_Encryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.Encryption"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.Encryption"
             $($field $value)*)
         };
     }
@@ -2808,7 +2808,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_PrefixLevel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.PrefixLevel"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.PrefixLevel"
             $($field $value)*)
         };
     }
@@ -2832,7 +2832,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_PrefixLevelStorageMetrics {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.PrefixLevelStorageMetrics"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.PrefixLevelStorageMetrics"
             $($field $value)*)
         };
     }
@@ -2868,7 +2868,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_S3BucketDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.S3BucketDestination"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.S3BucketDestination"
             $($field $value)*)
         };
     }
@@ -2912,7 +2912,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_SSEKMS {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.SSEKMS"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.SSEKMS"
             $($field $value)*)
         };
     }
@@ -2937,7 +2937,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_SelectionCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.SelectionCriteria"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.SelectionCriteria"
             $($field $value)*)
         };
     }
@@ -2981,7 +2981,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_StorageLensConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.StorageLensConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.StorageLensConfiguration"
             $($field $value)*)
         };
     }
@@ -3036,7 +3036,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_StorageLensGroupLevel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.StorageLensGroupLevel"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.StorageLensGroupLevel"
             $($field $value)*)
         };
     }
@@ -3062,7 +3062,7 @@ pub mod storagelens {
     #[macro_export]
     macro_rules! __aws_s3_StorageLens_StorageLensGroupSelectionCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLens.StorageLensGroupSelectionCriteria"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.StorageLensGroupSelectionCriteria"
             $($field $value)*)
         };
     }
@@ -3099,7 +3099,7 @@ pub mod storagelensgroup {
     #[macro_export]
     macro_rules! __aws_s3_StorageLensGroup_And {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLensGroup.And"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLensGroup.And"
             $($field $value)*)
         };
     }
@@ -3154,7 +3154,7 @@ pub mod storagelensgroup {
     #[macro_export]
     macro_rules! __aws_s3_StorageLensGroup_Filter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLensGroup.Filter"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLensGroup.Filter"
             $($field $value)*)
         };
     }
@@ -3210,7 +3210,7 @@ pub mod storagelensgroup {
     #[macro_export]
     macro_rules! __aws_s3_StorageLensGroup_MatchObjectAge {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLensGroup.MatchObjectAge"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLensGroup.MatchObjectAge"
             $($field $value)*)
         };
     }
@@ -3242,7 +3242,7 @@ pub mod storagelensgroup {
     #[macro_export]
     macro_rules! __aws_s3_StorageLensGroup_MatchObjectSize {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLensGroup.MatchObjectSize"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLensGroup.MatchObjectSize"
             $($field $value)*)
         };
     }
@@ -3277,7 +3277,7 @@ pub mod storagelensgroup {
     #[macro_export]
     macro_rules! __aws_s3_StorageLensGroup_Or {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3::StorageLensGroup.Or"
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLensGroup.Or"
             $($field $value)*)
         };
     }
@@ -3334,7 +3334,7 @@ pub struct AccessGrant_ {
 #[macro_export]
 macro_rules! __aws_s3_AccessGrant {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3::AccessGrant" $($field
+        stratosphere::generator::construct_resource_type!("AWS::S3::AccessGrant" $($field
         $value)*)
     };
 }
@@ -3395,7 +3395,7 @@ pub struct AccessGrantsInstance_ {
 #[macro_export]
 macro_rules! __aws_s3_AccessGrantsInstance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3::AccessGrantsInstance"
+        stratosphere::generator::construct_resource_type!("AWS::S3::AccessGrantsInstance"
         $($field $value)*)
     };
 }
@@ -3433,7 +3433,7 @@ pub struct AccessGrantsLocation_ {
 #[macro_export]
 macro_rules! __aws_s3_AccessGrantsLocation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3::AccessGrantsLocation"
+        stratosphere::generator::construct_resource_type!("AWS::S3::AccessGrantsLocation"
         $($field $value)*)
     };
 }
@@ -3482,7 +3482,7 @@ pub struct AccessPoint_ {
 #[macro_export]
 macro_rules! __aws_s3_AccessPoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3::AccessPoint" $($field
+        stratosphere::generator::construct_resource_type!("AWS::S3::AccessPoint" $($field
         $value)*)
     };
 }
@@ -3563,7 +3563,7 @@ pub struct Bucket_ {
 #[macro_export]
 macro_rules! __aws_s3_Bucket {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3::Bucket" $($field
+        stratosphere::generator::construct_resource_type!("AWS::S3::Bucket" $($field
         $value)*)
     };
 }
@@ -3720,8 +3720,8 @@ pub struct BucketPolicy_ {
 #[macro_export]
 macro_rules! __aws_s3_BucketPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3::BucketPolicy" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::S3::BucketPolicy"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_s3_BucketPolicy as BucketPolicy;
@@ -3758,7 +3758,7 @@ pub struct MultiRegionAccessPoint_ {
 #[macro_export]
 macro_rules! __aws_s3_MultiRegionAccessPoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3::MultiRegionAccessPoint"
+        stratosphere::generator::construct_resource_type!("AWS::S3::MultiRegionAccessPoint"
         $($field $value)*)
     };
 }
@@ -3799,7 +3799,7 @@ pub struct MultiRegionAccessPointPolicy_ {
 #[macro_export]
 macro_rules! __aws_s3_MultiRegionAccessPointPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3::MultiRegionAccessPointPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::S3::MultiRegionAccessPointPolicy"
         $($field $value)*)
     };
 }
@@ -3837,7 +3837,7 @@ pub struct StorageLens_ {
 #[macro_export]
 macro_rules! __aws_s3_StorageLens {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3::StorageLens" $($field
+        stratosphere::generator::construct_resource_type!("AWS::S3::StorageLens" $($field
         $value)*)
     };
 }
@@ -3873,7 +3873,7 @@ pub struct StorageLensGroup_ {
 #[macro_export]
 macro_rules! __aws_s3_StorageLensGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3::StorageLensGroup"
+        stratosphere::generator::construct_resource_type!("AWS::S3::StorageLensGroup"
         $($field $value)*)
     };
 }

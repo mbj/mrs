@@ -8,7 +8,7 @@ pub mod robotapplication {
     #[macro_export]
     macro_rules! __aws_robomaker_RobotApplication_RobotSoftwareSuite {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RoboMaker::RobotApplication.RobotSoftwareSuite"
+            stratosphere::generator::construct_property_type!("AWS::RoboMaker::RobotApplication.RobotSoftwareSuite"
             $($field $value)*)
         };
     }
@@ -39,7 +39,7 @@ pub mod robotapplication {
     #[macro_export]
     macro_rules! __aws_robomaker_RobotApplication_SourceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RoboMaker::RobotApplication.SourceConfig"
+            stratosphere::generator::construct_property_type!("AWS::RoboMaker::RobotApplication.SourceConfig"
             $($field $value)*)
         };
     }
@@ -73,7 +73,7 @@ pub mod simulationapplication {
     #[macro_export]
     macro_rules! __aws_robomaker_SimulationApplication_RenderingEngine {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RoboMaker::SimulationApplication.RenderingEngine"
+            stratosphere::generator::construct_property_type!("AWS::RoboMaker::SimulationApplication.RenderingEngine"
             $($field $value)*)
         };
     }
@@ -101,7 +101,7 @@ pub mod simulationapplication {
     #[macro_export]
     macro_rules! __aws_robomaker_SimulationApplication_RobotSoftwareSuite {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RoboMaker::SimulationApplication.RobotSoftwareSuite"
+            stratosphere::generator::construct_property_type!("AWS::RoboMaker::SimulationApplication.RobotSoftwareSuite"
             $($field $value)*)
         };
     }
@@ -131,7 +131,7 @@ pub mod simulationapplication {
     #[macro_export]
     macro_rules! __aws_robomaker_SimulationApplication_SimulationSoftwareSuite {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RoboMaker::SimulationApplication.SimulationSoftwareSuite"
+            stratosphere::generator::construct_property_type!("AWS::RoboMaker::SimulationApplication.SimulationSoftwareSuite"
             $($field $value)*)
         };
     }
@@ -162,7 +162,7 @@ pub mod simulationapplication {
     #[macro_export]
     macro_rules! __aws_robomaker_SimulationApplication_SourceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RoboMaker::SimulationApplication.SourceConfig"
+            stratosphere::generator::construct_property_type!("AWS::RoboMaker::SimulationApplication.SourceConfig"
             $($field $value)*)
         };
     }
@@ -195,8 +195,8 @@ pub struct Fleet_ {
 #[macro_export]
 macro_rules! __aws_robomaker_Fleet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RoboMaker::Fleet" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::RoboMaker::Fleet"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_robomaker_Fleet as Fleet;
@@ -232,8 +232,8 @@ pub struct Robot_ {
 #[macro_export]
 macro_rules! __aws_robomaker_Robot {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RoboMaker::Robot" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::RoboMaker::Robot"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_robomaker_Robot as Robot;
@@ -281,7 +281,7 @@ pub struct RobotApplication_ {
 #[macro_export]
 macro_rules! __aws_robomaker_RobotApplication {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RoboMaker::RobotApplication"
+        stratosphere::generator::construct_resource_type!("AWS::RoboMaker::RobotApplication"
         $($field $value)*)
     };
 }
@@ -337,7 +337,7 @@ pub struct RobotApplicationVersion_ {
 #[macro_export]
 macro_rules! __aws_robomaker_RobotApplicationVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RoboMaker::RobotApplicationVersion"
+        stratosphere::generator::construct_resource_type!("AWS::RoboMaker::RobotApplicationVersion"
         $($field $value)*)
     };
 }
@@ -382,7 +382,7 @@ pub struct SimulationApplication_ {
 #[macro_export]
 macro_rules! __aws_robomaker_SimulationApplication {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RoboMaker::SimulationApplication"
+        stratosphere::generator::construct_resource_type!("AWS::RoboMaker::SimulationApplication"
         $($field $value)*)
     };
 }
@@ -448,7 +448,7 @@ pub struct SimulationApplicationVersion_ {
 #[macro_export]
 macro_rules! __aws_robomaker_SimulationApplicationVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RoboMaker::SimulationApplicationVersion"
+        stratosphere::generator::construct_resource_type!("AWS::RoboMaker::SimulationApplicationVersion"
         $($field $value)*)
     };
 }

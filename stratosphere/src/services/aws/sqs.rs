@@ -21,7 +21,7 @@ pub struct Queue_ {
 #[macro_export]
 macro_rules! __aws_sqs_Queue {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SQS::Queue" $($field
+        stratosphere::generator::construct_resource_type!("AWS::SQS::Queue" $($field
         $value)*)
     };
 }
@@ -142,7 +142,7 @@ pub struct QueueInlinePolicy_ {
 #[macro_export]
 macro_rules! __aws_sqs_QueueInlinePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SQS::QueueInlinePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::SQS::QueueInlinePolicy"
         $($field $value)*)
     };
 }
@@ -178,8 +178,8 @@ pub struct QueuePolicy_ {
 #[macro_export]
 macro_rules! __aws_sqs_QueuePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SQS::QueuePolicy" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::SQS::QueuePolicy"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_sqs_QueuePolicy as QueuePolicy;

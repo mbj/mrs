@@ -7,7 +7,7 @@ pub mod approvalteam {
     #[macro_export]
     macro_rules! __aws_mpa_ApprovalTeam_ApprovalStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MPA::ApprovalTeam.ApprovalStrategy"
+            stratosphere::generator::construct_property_type!("AWS::MPA::ApprovalTeam.ApprovalStrategy"
             $($field $value)*)
         };
     }
@@ -34,7 +34,7 @@ pub mod approvalteam {
     #[macro_export]
     macro_rules! __aws_mpa_ApprovalTeam_Approver {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MPA::ApprovalTeam.Approver"
+            stratosphere::generator::construct_property_type!("AWS::MPA::ApprovalTeam.Approver"
             $($field $value)*)
         };
     }
@@ -79,7 +79,7 @@ pub mod approvalteam {
     #[macro_export]
     macro_rules! __aws_mpa_ApprovalTeam_MofNApprovalStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MPA::ApprovalTeam.MofNApprovalStrategy"
+            stratosphere::generator::construct_property_type!("AWS::MPA::ApprovalTeam.MofNApprovalStrategy"
             $($field $value)*)
         };
     }
@@ -102,7 +102,7 @@ pub mod approvalteam {
     #[macro_export]
     macro_rules! __aws_mpa_ApprovalTeam_Policy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MPA::ApprovalTeam.Policy"
+            stratosphere::generator::construct_property_type!("AWS::MPA::ApprovalTeam.Policy"
             $($field $value)*)
         };
     }
@@ -129,7 +129,7 @@ pub mod identitysource {
     #[macro_export]
     macro_rules! __aws_mpa_IdentitySource_IamIdentityCenter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MPA::IdentitySource.IamIdentityCenter"
+            stratosphere::generator::construct_property_type!("AWS::MPA::IdentitySource.IamIdentityCenter"
             $($field $value)*)
         };
     }
@@ -162,7 +162,7 @@ pub mod identitysource {
     #[macro_export]
     macro_rules! __aws_mpa_IdentitySource_IdentitySourceParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MPA::IdentitySource.IdentitySourceParameters"
+            stratosphere::generator::construct_property_type!("AWS::MPA::IdentitySource.IdentitySourceParameters"
             $($field $value)*)
         };
     }
@@ -191,7 +191,7 @@ pub struct ApprovalTeam_ {
 #[macro_export]
 macro_rules! __aws_mpa_ApprovalTeam {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MPA::ApprovalTeam"
+        stratosphere::generator::construct_resource_type!("AWS::MPA::ApprovalTeam"
         $($field $value)*)
     };
 }
@@ -242,7 +242,7 @@ pub struct IdentitySource_ {
 #[macro_export]
 macro_rules! __aws_mpa_IdentitySource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MPA::IdentitySource"
+        stratosphere::generator::construct_resource_type!("AWS::MPA::IdentitySource"
         $($field $value)*)
     };
 }

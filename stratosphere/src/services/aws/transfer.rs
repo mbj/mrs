@@ -11,7 +11,7 @@ pub mod agreement {
     #[macro_export]
     macro_rules! __aws_transfer_Agreement_CustomDirectories {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Agreement.CustomDirectories"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Agreement.CustomDirectories"
             $($field $value)*)
         };
     }
@@ -61,7 +61,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_transfer_Connector_As2Config {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Connector.As2Config"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Connector.As2Config"
             $($field $value)*)
         };
     }
@@ -142,7 +142,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_transfer_Connector_SftpConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Connector.SftpConfig"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Connector.SftpConfig"
             $($field $value)*)
         };
     }
@@ -185,7 +185,7 @@ pub mod server {
     #[macro_export]
     macro_rules! __aws_transfer_Server_EndpointDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Server.EndpointDetails"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Server.EndpointDetails"
             $($field $value)*)
         };
     }
@@ -235,7 +235,7 @@ pub mod server {
     #[macro_export]
     macro_rules! __aws_transfer_Server_IdentityProviderDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Server.IdentityProviderDetails"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Server.IdentityProviderDetails"
             $($field $value)*)
         };
     }
@@ -284,7 +284,7 @@ pub mod server {
     #[macro_export]
     macro_rules! __aws_transfer_Server_ProtocolDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Server.ProtocolDetails"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Server.ProtocolDetails"
             $($field $value)*)
         };
     }
@@ -327,7 +327,7 @@ pub mod server {
     #[macro_export]
     macro_rules! __aws_transfer_Server_S3StorageOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Server.S3StorageOptions"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Server.S3StorageOptions"
             $($field $value)*)
         };
     }
@@ -353,7 +353,7 @@ pub mod server {
     #[macro_export]
     macro_rules! __aws_transfer_Server_WorkflowDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Server.WorkflowDetail"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Server.WorkflowDetail"
             $($field $value)*)
         };
     }
@@ -381,7 +381,7 @@ pub mod server {
     #[macro_export]
     macro_rules! __aws_transfer_Server_WorkflowDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Server.WorkflowDetails"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Server.WorkflowDetails"
             $($field $value)*)
         };
     }
@@ -416,7 +416,7 @@ pub mod user {
     #[macro_export]
     macro_rules! __aws_transfer_User_HomeDirectoryMapEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::User.HomeDirectoryMapEntry"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::User.HomeDirectoryMapEntry"
             $($field $value)*)
         };
     }
@@ -448,7 +448,7 @@ pub mod user {
     #[macro_export]
     macro_rules! __aws_transfer_User_PosixProfile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::User.PosixProfile"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::User.PosixProfile"
             $($field $value)*)
         };
     }
@@ -485,7 +485,7 @@ pub mod webapp {
     #[macro_export]
     macro_rules! __aws_transfer_WebApp_IdentityProviderDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::WebApp.IdentityProviderDetails"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::WebApp.IdentityProviderDetails"
             $($field $value)*)
         };
     }
@@ -521,7 +521,7 @@ pub mod webapp {
     #[macro_export]
     macro_rules! __aws_transfer_WebApp_WebAppCustomization {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::WebApp.WebAppCustomization"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::WebApp.WebAppCustomization"
             $($field $value)*)
         };
     }
@@ -555,7 +555,7 @@ pub mod webapp {
     #[macro_export]
     macro_rules! __aws_transfer_WebApp_WebAppUnits {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::WebApp.WebAppUnits"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::WebApp.WebAppUnits"
             $($field $value)*)
         };
     }
@@ -583,7 +583,7 @@ pub mod workflow {
     #[macro_export]
     macro_rules! __aws_transfer_Workflow_CopyStepDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Workflow.CopyStepDetails"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Workflow.CopyStepDetails"
             $($field $value)*)
         };
     }
@@ -626,7 +626,7 @@ pub mod workflow {
     #[macro_export]
     macro_rules! __aws_transfer_Workflow_CustomStepDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Workflow.CustomStepDetails"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Workflow.CustomStepDetails"
             $($field $value)*)
         };
     }
@@ -667,7 +667,7 @@ pub mod workflow {
     #[macro_export]
     macro_rules! __aws_transfer_Workflow_DecryptStepDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Workflow.DecryptStepDetails"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Workflow.DecryptStepDetails"
             $($field $value)*)
         };
     }
@@ -710,7 +710,7 @@ pub mod workflow {
     #[macro_export]
     macro_rules! __aws_transfer_Workflow_DeleteStepDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Workflow.DeleteStepDetails"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Workflow.DeleteStepDetails"
             $($field $value)*)
         };
     }
@@ -739,7 +739,7 @@ pub mod workflow {
     #[macro_export]
     macro_rules! __aws_transfer_Workflow_EfsInputFileLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Workflow.EfsInputFileLocation"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Workflow.EfsInputFileLocation"
             $($field $value)*)
         };
     }
@@ -768,7 +768,7 @@ pub mod workflow {
     #[macro_export]
     macro_rules! __aws_transfer_Workflow_InputFileLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Workflow.InputFileLocation"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Workflow.InputFileLocation"
             $($field $value)*)
         };
     }
@@ -799,7 +799,7 @@ pub mod workflow {
     #[macro_export]
     macro_rules! __aws_transfer_Workflow_S3FileLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Workflow.S3FileLocation"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Workflow.S3FileLocation"
             $($field $value)*)
         };
     }
@@ -825,7 +825,7 @@ pub mod workflow {
     #[macro_export]
     macro_rules! __aws_transfer_Workflow_S3InputFileLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Workflow.S3InputFileLocation"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Workflow.S3InputFileLocation"
             $($field $value)*)
         };
     }
@@ -851,7 +851,7 @@ pub mod workflow {
     #[macro_export]
     macro_rules! __aws_transfer_Workflow_S3Tag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Workflow.S3Tag"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Workflow.S3Tag"
             $($field $value)*)
         };
     }
@@ -880,7 +880,7 @@ pub mod workflow {
     #[macro_export]
     macro_rules! __aws_transfer_Workflow_TagStepDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Workflow.TagStepDetails"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Workflow.TagStepDetails"
             $($field $value)*)
         };
     }
@@ -916,7 +916,7 @@ pub mod workflow {
     #[macro_export]
     macro_rules! __aws_transfer_Workflow_WorkflowStep {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Transfer::Workflow.WorkflowStep"
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Workflow.WorkflowStep"
             $($field $value)*)
         };
     }
@@ -979,7 +979,7 @@ pub struct Agreement_ {
 #[macro_export]
 macro_rules! __aws_transfer_Agreement {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Transfer::Agreement"
+        stratosphere::generator::construct_resource_type!("AWS::Transfer::Agreement"
         $($field $value)*)
     };
 }
@@ -1065,7 +1065,7 @@ pub struct Certificate_ {
 #[macro_export]
 macro_rules! __aws_transfer_Certificate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Transfer::Certificate"
+        stratosphere::generator::construct_resource_type!("AWS::Transfer::Certificate"
         $($field $value)*)
     };
 }
@@ -1139,7 +1139,7 @@ pub struct Connector_ {
 #[macro_export]
 macro_rules! __aws_transfer_Connector {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Transfer::Connector"
+        stratosphere::generator::construct_resource_type!("AWS::Transfer::Connector"
         $($field $value)*)
     };
 }
@@ -1204,7 +1204,7 @@ pub struct Profile_ {
 #[macro_export]
 macro_rules! __aws_transfer_Profile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Transfer::Profile"
+        stratosphere::generator::construct_resource_type!("AWS::Transfer::Profile"
         $($field $value)*)
     };
 }
@@ -1264,8 +1264,8 @@ pub struct Server_ {
 #[macro_export]
 macro_rules! __aws_transfer_Server {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Transfer::Server" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::Transfer::Server"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_transfer_Server as Server;
@@ -1396,7 +1396,7 @@ pub struct User_ {
 #[macro_export]
 macro_rules! __aws_transfer_User {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Transfer::User" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Transfer::User" $($field
         $value)*)
     };
 }
@@ -1476,8 +1476,8 @@ pub struct WebApp_ {
 #[macro_export]
 macro_rules! __aws_transfer_WebApp {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Transfer::WebApp" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::Transfer::WebApp"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_transfer_WebApp as WebApp;
@@ -1537,7 +1537,7 @@ pub struct Workflow_ {
 #[macro_export]
 macro_rules! __aws_transfer_Workflow {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Transfer::Workflow"
+        stratosphere::generator::construct_resource_type!("AWS::Transfer::Workflow"
         $($field $value)*)
     };
 }

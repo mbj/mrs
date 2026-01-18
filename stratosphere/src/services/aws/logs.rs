@@ -8,7 +8,7 @@ pub mod deliverydestination {
     #[macro_export]
     macro_rules! __aws_logs_DeliveryDestination_DestinationPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::DeliveryDestination.DestinationPolicy"
+            stratosphere::generator::construct_property_type!("AWS::Logs::DeliveryDestination.DestinationPolicy"
             $($field $value)*)
         };
     }
@@ -45,7 +45,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_logs_Integration_OpenSearchResourceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Integration.OpenSearchResourceConfig"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Integration.OpenSearchResourceConfig"
             $($field $value)*)
         };
     }
@@ -90,7 +90,7 @@ pub mod integration {
     #[macro_export]
     macro_rules! __aws_logs_Integration_ResourceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Integration.ResourceConfig"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Integration.ResourceConfig"
             $($field $value)*)
         };
     }
@@ -118,7 +118,7 @@ pub mod metricfilter {
     #[macro_export]
     macro_rules! __aws_logs_MetricFilter_Dimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::MetricFilter.Dimension"
+            stratosphere::generator::construct_property_type!("AWS::Logs::MetricFilter.Dimension"
             $($field $value)*)
         };
     }
@@ -150,7 +150,7 @@ pub mod metricfilter {
     #[macro_export]
     macro_rules! __aws_logs_MetricFilter_MetricTransformation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::MetricFilter.MetricTransformation"
+            stratosphere::generator::construct_property_type!("AWS::Logs::MetricFilter.MetricTransformation"
             $($field $value)*)
         };
     }
@@ -200,7 +200,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_AddKeyEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.AddKeyEntry"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.AddKeyEntry"
             $($field $value)*)
         };
     }
@@ -233,7 +233,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_AddKeys {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.AddKeys"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.AddKeys"
             $($field $value)*)
         };
     }
@@ -256,7 +256,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_CopyValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.CopyValue"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.CopyValue"
             $($field $value)*)
         };
     }
@@ -281,7 +281,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_CopyValueEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.CopyValueEntry"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.CopyValueEntry"
             $($field $value)*)
         };
     }
@@ -317,7 +317,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_Csv {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.Csv"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.Csv"
             $($field $value)*)
         };
     }
@@ -363,7 +363,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_DateTimeConverter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.DateTimeConverter"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.DateTimeConverter"
             $($field $value)*)
         };
     }
@@ -415,7 +415,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_DeleteKeys {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.DeleteKeys"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.DeleteKeys"
             $($field $value)*)
         };
     }
@@ -439,7 +439,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_Grok {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.Grok"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.Grok"
             $($field $value)*)
         };
     }
@@ -470,7 +470,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_ListToMap {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.ListToMap"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.ListToMap"
             $($field $value)*)
         };
     }
@@ -518,7 +518,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_LowerCaseString {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.LowerCaseString"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.LowerCaseString"
             $($field $value)*)
         };
     }
@@ -543,7 +543,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_MoveKeyEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.MoveKeyEntry"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.MoveKeyEntry"
             $($field $value)*)
         };
     }
@@ -576,7 +576,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_MoveKeys {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.MoveKeys"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.MoveKeys"
             $($field $value)*)
         };
     }
@@ -599,7 +599,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_ParseCloudfront {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.ParseCloudfront"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.ParseCloudfront"
             $($field $value)*)
         };
     }
@@ -622,7 +622,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_ParseJSON {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.ParseJSON"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.ParseJSON"
             $($field $value)*)
         };
     }
@@ -656,7 +656,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_ParseKeyValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.ParseKeyValue"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.ParseKeyValue"
             $($field $value)*)
         };
     }
@@ -714,7 +714,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_ParsePostgres {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.ParsePostgres"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.ParsePostgres"
             $($field $value)*)
         };
     }
@@ -736,7 +736,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_ParseRoute53 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.ParseRoute53"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.ParseRoute53"
             $($field $value)*)
         };
     }
@@ -760,7 +760,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_ParseToOCSF {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.ParseToOCSF"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.ParseToOCSF"
             $($field $value)*)
         };
     }
@@ -790,7 +790,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_ParseVPC {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.ParseVPC"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.ParseVPC"
             $($field $value)*)
         };
     }
@@ -812,7 +812,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_ParseWAF {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.ParseWAF"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.ParseWAF"
             $($field $value)*)
         };
     }
@@ -856,7 +856,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_Processor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.Processor"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.Processor"
             $($field $value)*)
         };
     }
@@ -1009,7 +1009,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_RenameKeyEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.RenameKeyEntry"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.RenameKeyEntry"
             $($field $value)*)
         };
     }
@@ -1042,7 +1042,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_RenameKeys {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.RenameKeys"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.RenameKeys"
             $($field $value)*)
         };
     }
@@ -1065,7 +1065,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_SplitString {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.SplitString"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.SplitString"
             $($field $value)*)
         };
     }
@@ -1089,7 +1089,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_SplitStringEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.SplitStringEntry"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.SplitStringEntry"
             $($field $value)*)
         };
     }
@@ -1116,7 +1116,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_SubstituteString {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.SubstituteString"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.SubstituteString"
             $($field $value)*)
         };
     }
@@ -1141,7 +1141,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_SubstituteStringEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.SubstituteStringEntry"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.SubstituteStringEntry"
             $($field $value)*)
         };
     }
@@ -1169,7 +1169,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_TrimString {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.TrimString"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.TrimString"
             $($field $value)*)
         };
     }
@@ -1192,7 +1192,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_TypeConverter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.TypeConverter"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.TypeConverter"
             $($field $value)*)
         };
     }
@@ -1216,7 +1216,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_TypeConverterEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.TypeConverterEntry"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.TypeConverterEntry"
             $($field $value)*)
         };
     }
@@ -1243,7 +1243,7 @@ pub mod transformer {
     #[macro_export]
     macro_rules! __aws_logs_Transformer_UpperCaseString {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Logs::Transformer.UpperCaseString"
+            stratosphere::generator::construct_property_type!("AWS::Logs::Transformer.UpperCaseString"
             $($field $value)*)
         };
     }
@@ -1271,7 +1271,7 @@ pub struct AccountPolicy_ {
 #[macro_export]
 macro_rules! __aws_logs_AccountPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Logs::AccountPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::Logs::AccountPolicy"
         $($field $value)*)
     };
 }
@@ -1325,7 +1325,7 @@ pub struct Delivery_ {
 #[macro_export]
 macro_rules! __aws_logs_Delivery {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Logs::Delivery" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Logs::Delivery" $($field
         $value)*)
     };
 }
@@ -1391,7 +1391,7 @@ pub struct DeliveryDestination_ {
 #[macro_export]
 macro_rules! __aws_logs_DeliveryDestination {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Logs::DeliveryDestination"
+        stratosphere::generator::construct_resource_type!("AWS::Logs::DeliveryDestination"
         $($field $value)*)
     };
 }
@@ -1446,7 +1446,7 @@ pub struct DeliverySource_ {
 #[macro_export]
 macro_rules! __aws_logs_DeliverySource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Logs::DeliverySource"
+        stratosphere::generator::construct_resource_type!("AWS::Logs::DeliverySource"
         $($field $value)*)
     };
 }
@@ -1496,7 +1496,7 @@ pub struct Destination_ {
 #[macro_export]
 macro_rules! __aws_logs_Destination {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Logs::Destination"
+        stratosphere::generator::construct_resource_type!("AWS::Logs::Destination"
         $($field $value)*)
     };
 }
@@ -1546,7 +1546,7 @@ pub struct Integration_ {
 #[macro_export]
 macro_rules! __aws_logs_Integration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Logs::Integration"
+        stratosphere::generator::construct_resource_type!("AWS::Logs::Integration"
         $($field $value)*)
     };
 }
@@ -1591,7 +1591,7 @@ pub struct LogAnomalyDetector_ {
 #[macro_export]
 macro_rules! __aws_logs_LogAnomalyDetector {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Logs::LogAnomalyDetector"
+        stratosphere::generator::construct_resource_type!("AWS::Logs::LogAnomalyDetector"
         $($field $value)*)
     };
 }
@@ -1667,7 +1667,7 @@ pub struct LogGroup_ {
 #[macro_export]
 macro_rules! __aws_logs_LogGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Logs::LogGroup" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Logs::LogGroup" $($field
         $value)*)
     };
 }
@@ -1740,7 +1740,7 @@ pub struct LogStream_ {
 #[macro_export]
 macro_rules! __aws_logs_LogStream {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Logs::LogStream" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Logs::LogStream" $($field
         $value)*)
     };
 }
@@ -1781,7 +1781,7 @@ pub struct MetricFilter_ {
 #[macro_export]
 macro_rules! __aws_logs_MetricFilter {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Logs::MetricFilter"
+        stratosphere::generator::construct_resource_type!("AWS::Logs::MetricFilter"
         $($field $value)*)
     };
 }
@@ -1835,7 +1835,7 @@ pub struct QueryDefinition_ {
 #[macro_export]
 macro_rules! __aws_logs_QueryDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Logs::QueryDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::Logs::QueryDefinition"
         $($field $value)*)
     };
 }
@@ -1883,7 +1883,7 @@ pub struct ResourcePolicy_ {
 #[macro_export]
 macro_rules! __aws_logs_ResourcePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Logs::ResourcePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::Logs::ResourcePolicy"
         $($field $value)*)
     };
 }
@@ -1924,7 +1924,7 @@ pub struct SubscriptionFilter_ {
 #[macro_export]
 macro_rules! __aws_logs_SubscriptionFilter {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Logs::SubscriptionFilter"
+        stratosphere::generator::construct_resource_type!("AWS::Logs::SubscriptionFilter"
         $($field $value)*)
     };
 }
@@ -1988,7 +1988,7 @@ pub struct Transformer_ {
 #[macro_export]
 macro_rules! __aws_logs_Transformer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Logs::Transformer"
+        stratosphere::generator::construct_resource_type!("AWS::Logs::Transformer"
         $($field $value)*)
     };
 }

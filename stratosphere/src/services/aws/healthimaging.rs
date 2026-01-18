@@ -8,7 +8,7 @@ pub struct Datastore_ {
 #[macro_export]
 macro_rules! __aws_healthimaging_Datastore {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::HealthImaging::Datastore"
+        stratosphere::generator::construct_resource_type!("AWS::HealthImaging::Datastore"
         $($field $value)*)
     };
 }

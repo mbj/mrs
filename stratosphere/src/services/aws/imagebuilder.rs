@@ -8,7 +8,7 @@ pub mod containerrecipe {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ContainerRecipe_ComponentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ContainerRecipe.ComponentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ContainerRecipe.ComponentConfiguration"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod containerrecipe {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ContainerRecipe_ComponentParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ContainerRecipe.ComponentParameter"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ContainerRecipe.ComponentParameter"
             $($field $value)*)
         };
     }
@@ -74,7 +74,7 @@ pub mod containerrecipe {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ContainerRecipe_EbsInstanceBlockDeviceSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ContainerRecipe.EbsInstanceBlockDeviceSpecification"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ContainerRecipe.EbsInstanceBlockDeviceSpecification"
             $($field $value)*)
         };
     }
@@ -141,7 +141,7 @@ pub mod containerrecipe {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ContainerRecipe_InstanceBlockDeviceMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ContainerRecipe.InstanceBlockDeviceMapping"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ContainerRecipe.InstanceBlockDeviceMapping"
             $($field $value)*)
         };
     }
@@ -182,7 +182,7 @@ pub mod containerrecipe {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ContainerRecipe_InstanceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ContainerRecipe.InstanceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ContainerRecipe.InstanceConfiguration"
             $($field $value)*)
         };
     }
@@ -211,7 +211,7 @@ pub mod containerrecipe {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ContainerRecipe_TargetContainerRepository {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ContainerRecipe.TargetContainerRepository"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ContainerRecipe.TargetContainerRepository"
             $($field $value)*)
         };
     }
@@ -249,7 +249,7 @@ pub mod distributionconfiguration {
     #[macro_export]
     macro_rules! __aws_imagebuilder_DistributionConfiguration_AmiDistributionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.AmiDistributionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.AmiDistributionConfiguration"
             $($field $value)*)
         };
     }
@@ -303,7 +303,7 @@ pub mod distributionconfiguration {
     #[macro_export]
     macro_rules! __aws_imagebuilder_DistributionConfiguration_ContainerDistributionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.ContainerDistributionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.ContainerDistributionConfiguration"
             $($field $value)*)
         };
     }
@@ -346,7 +346,7 @@ pub mod distributionconfiguration {
     #[macro_export]
     macro_rules! __aws_imagebuilder_DistributionConfiguration_Distribution {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.Distribution"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.Distribution"
             $($field $value)*)
         };
     }
@@ -409,7 +409,7 @@ pub mod distributionconfiguration {
     #[macro_export]
     macro_rules! __aws_imagebuilder_DistributionConfiguration_FastLaunchConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.FastLaunchConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.FastLaunchConfiguration"
             $($field $value)*)
         };
     }
@@ -460,7 +460,7 @@ pub mod distributionconfiguration {
     #[macro_export]
     macro_rules! __aws_imagebuilder_DistributionConfiguration_FastLaunchLaunchTemplateSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.FastLaunchLaunchTemplateSpecification"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.FastLaunchLaunchTemplateSpecification"
             $($field $value)*)
         };
     }
@@ -497,7 +497,7 @@ pub mod distributionconfiguration {
     #[macro_export]
     macro_rules! __aws_imagebuilder_DistributionConfiguration_FastLaunchSnapshotConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.FastLaunchSnapshotConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.FastLaunchSnapshotConfiguration"
             $($field $value)*)
         };
     }
@@ -525,7 +525,7 @@ pub mod distributionconfiguration {
     #[macro_export]
     macro_rules! __aws_imagebuilder_DistributionConfiguration_LaunchPermissionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.LaunchPermissionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.LaunchPermissionConfiguration"
             $($field $value)*)
         };
     }
@@ -570,7 +570,7 @@ pub mod distributionconfiguration {
     #[macro_export]
     macro_rules! __aws_imagebuilder_DistributionConfiguration_LaunchTemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.LaunchTemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.LaunchTemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -609,7 +609,7 @@ pub mod distributionconfiguration {
     #[macro_export]
     macro_rules! __aws_imagebuilder_DistributionConfiguration_SsmParameterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.SsmParameterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.SsmParameterConfiguration"
             $($field $value)*)
         };
     }
@@ -645,7 +645,7 @@ pub mod distributionconfiguration {
     #[macro_export]
     macro_rules! __aws_imagebuilder_DistributionConfiguration_TargetContainerRepository {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.TargetContainerRepository"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::DistributionConfiguration.TargetContainerRepository"
             $($field $value)*)
         };
     }
@@ -679,7 +679,7 @@ pub mod image {
     #[macro_export]
     macro_rules! __aws_imagebuilder_Image_EcrConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::Image.EcrConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::Image.EcrConfiguration"
             $($field $value)*)
         };
     }
@@ -711,7 +711,7 @@ pub mod image {
     #[macro_export]
     macro_rules! __aws_imagebuilder_Image_ImageScanningConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::Image.ImageScanningConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::Image.ImageScanningConfiguration"
             $($field $value)*)
         };
     }
@@ -743,7 +743,7 @@ pub mod image {
     #[macro_export]
     macro_rules! __aws_imagebuilder_Image_ImageTestsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::Image.ImageTestsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::Image.ImageTestsConfiguration"
             $($field $value)*)
         };
     }
@@ -777,7 +777,7 @@ pub mod image {
     #[macro_export]
     macro_rules! __aws_imagebuilder_Image_WorkflowConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::Image.WorkflowConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::Image.WorkflowConfiguration"
             $($field $value)*)
         };
     }
@@ -821,7 +821,7 @@ pub mod image {
     #[macro_export]
     macro_rules! __aws_imagebuilder_Image_WorkflowParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::Image.WorkflowParameter"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::Image.WorkflowParameter"
             $($field $value)*)
         };
     }
@@ -849,7 +849,7 @@ pub mod imagepipeline {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ImagePipeline_EcrConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ImagePipeline.EcrConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImagePipeline.EcrConfiguration"
             $($field $value)*)
         };
     }
@@ -881,7 +881,7 @@ pub mod imagepipeline {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ImagePipeline_ImageScanningConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ImagePipeline.ImageScanningConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImagePipeline.ImageScanningConfiguration"
             $($field $value)*)
         };
     }
@@ -913,7 +913,7 @@ pub mod imagepipeline {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ImagePipeline_ImageTestsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ImagePipeline.ImageTestsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImagePipeline.ImageTestsConfiguration"
             $($field $value)*)
         };
     }
@@ -945,7 +945,7 @@ pub mod imagepipeline {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ImagePipeline_Schedule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ImagePipeline.Schedule"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImagePipeline.Schedule"
             $($field $value)*)
         };
     }
@@ -979,7 +979,7 @@ pub mod imagepipeline {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ImagePipeline_WorkflowConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ImagePipeline.WorkflowConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImagePipeline.WorkflowConfiguration"
             $($field $value)*)
         };
     }
@@ -1023,7 +1023,7 @@ pub mod imagepipeline {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ImagePipeline_WorkflowParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ImagePipeline.WorkflowParameter"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImagePipeline.WorkflowParameter"
             $($field $value)*)
         };
     }
@@ -1051,7 +1051,7 @@ pub mod imagerecipe {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ImageRecipe_AdditionalInstanceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ImageRecipe.AdditionalInstanceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImageRecipe.AdditionalInstanceConfiguration"
             $($field $value)*)
         };
     }
@@ -1083,7 +1083,7 @@ pub mod imagerecipe {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ImageRecipe_ComponentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ImageRecipe.ComponentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImageRecipe.ComponentConfiguration"
             $($field $value)*)
         };
     }
@@ -1115,7 +1115,7 @@ pub mod imagerecipe {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ImageRecipe_ComponentParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ImageRecipe.ComponentParameter"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImageRecipe.ComponentParameter"
             $($field $value)*)
         };
     }
@@ -1149,7 +1149,7 @@ pub mod imagerecipe {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ImageRecipe_EbsInstanceBlockDeviceSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ImageRecipe.EbsInstanceBlockDeviceSpecification"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImageRecipe.EbsInstanceBlockDeviceSpecification"
             $($field $value)*)
         };
     }
@@ -1216,7 +1216,7 @@ pub mod imagerecipe {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ImageRecipe_InstanceBlockDeviceMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ImageRecipe.InstanceBlockDeviceMapping"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImageRecipe.InstanceBlockDeviceMapping"
             $($field $value)*)
         };
     }
@@ -1256,7 +1256,7 @@ pub mod imagerecipe {
     #[macro_export]
     macro_rules! __aws_imagebuilder_ImageRecipe_SystemsManagerAgent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::ImageRecipe.SystemsManagerAgent"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImageRecipe.SystemsManagerAgent"
             $($field $value)*)
         };
     }
@@ -1284,7 +1284,7 @@ pub mod infrastructureconfiguration {
     #[macro_export]
     macro_rules! __aws_imagebuilder_InfrastructureConfiguration_InstanceMetadataOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::InfrastructureConfiguration.InstanceMetadataOptions"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::InfrastructureConfiguration.InstanceMetadataOptions"
             $($field $value)*)
         };
     }
@@ -1315,7 +1315,7 @@ pub mod infrastructureconfiguration {
     #[macro_export]
     macro_rules! __aws_imagebuilder_InfrastructureConfiguration_Logging {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::InfrastructureConfiguration.Logging"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::InfrastructureConfiguration.Logging"
             $($field $value)*)
         };
     }
@@ -1340,7 +1340,7 @@ pub mod infrastructureconfiguration {
     #[macro_export]
     macro_rules! __aws_imagebuilder_InfrastructureConfiguration_Placement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::InfrastructureConfiguration.Placement"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::InfrastructureConfiguration.Placement"
             $($field $value)*)
         };
     }
@@ -1381,7 +1381,7 @@ pub mod infrastructureconfiguration {
     #[macro_export]
     macro_rules! __aws_imagebuilder_InfrastructureConfiguration_S3Logs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::InfrastructureConfiguration.S3Logs"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::InfrastructureConfiguration.S3Logs"
             $($field $value)*)
         };
     }
@@ -1415,7 +1415,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_imagebuilder_LifecyclePolicy_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.Action"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.Action"
             $($field $value)*)
         };
     }
@@ -1448,7 +1448,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_imagebuilder_LifecyclePolicy_AmiExclusionRules {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.AmiExclusionRules"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.AmiExclusionRules"
             $($field $value)*)
         };
     }
@@ -1495,7 +1495,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_imagebuilder_LifecyclePolicy_ExclusionRules {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.ExclusionRules"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.ExclusionRules"
             $($field $value)*)
         };
     }
@@ -1523,7 +1523,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_imagebuilder_LifecyclePolicy_Filter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.Filter"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.Filter"
             $($field $value)*)
         };
     }
@@ -1561,7 +1561,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_imagebuilder_LifecyclePolicy_IncludeResources {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.IncludeResources"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.IncludeResources"
             $($field $value)*)
         };
     }
@@ -1596,7 +1596,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_imagebuilder_LifecyclePolicy_LastLaunched {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.LastLaunched"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.LastLaunched"
             $($field $value)*)
         };
     }
@@ -1625,7 +1625,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_imagebuilder_LifecyclePolicy_PolicyDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.PolicyDetail"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.PolicyDetail"
             $($field $value)*)
         };
     }
@@ -1659,7 +1659,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_imagebuilder_LifecyclePolicy_RecipeSelection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.RecipeSelection"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.RecipeSelection"
             $($field $value)*)
         };
     }
@@ -1687,7 +1687,7 @@ pub mod lifecyclepolicy {
     #[macro_export]
     macro_rules! __aws_imagebuilder_LifecyclePolicy_ResourceSelection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.ResourceSelection"
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::LifecyclePolicy.ResourceSelection"
             $($field $value)*)
         };
     }
@@ -1725,7 +1725,7 @@ pub struct Component_ {
 #[macro_export]
 macro_rules! __aws_imagebuilder_Component {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ImageBuilder::Component"
+        stratosphere::generator::construct_resource_type!("AWS::ImageBuilder::Component"
         $($field $value)*)
     };
 }
@@ -1812,7 +1812,7 @@ pub struct ContainerRecipe_ {
 #[macro_export]
 macro_rules! __aws_imagebuilder_ContainerRecipe {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ImageBuilder::ContainerRecipe"
+        stratosphere::generator::construct_resource_type!("AWS::ImageBuilder::ContainerRecipe"
         $($field $value)*)
     };
 }
@@ -1917,7 +1917,7 @@ pub struct DistributionConfiguration_ {
 #[macro_export]
 macro_rules! __aws_imagebuilder_DistributionConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ImageBuilder::DistributionConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::ImageBuilder::DistributionConfiguration"
         $($field $value)*)
     };
 }
@@ -1971,7 +1971,7 @@ pub struct Image_ {
 #[macro_export]
 macro_rules! __aws_imagebuilder_Image {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ImageBuilder::Image"
+        stratosphere::generator::construct_resource_type!("AWS::ImageBuilder::Image"
         $($field $value)*)
     };
 }
@@ -2070,7 +2070,7 @@ pub struct ImagePipeline_ {
 #[macro_export]
 macro_rules! __aws_imagebuilder_ImagePipeline {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ImageBuilder::ImagePipeline"
+        stratosphere::generator::construct_resource_type!("AWS::ImageBuilder::ImagePipeline"
         $($field $value)*)
     };
 }
@@ -2181,7 +2181,7 @@ pub struct ImageRecipe_ {
 #[macro_export]
 macro_rules! __aws_imagebuilder_ImageRecipe {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ImageBuilder::ImageRecipe"
+        stratosphere::generator::construct_resource_type!("AWS::ImageBuilder::ImageRecipe"
         $($field $value)*)
     };
 }
@@ -2265,7 +2265,7 @@ pub struct InfrastructureConfiguration_ {
 #[macro_export]
 macro_rules! __aws_imagebuilder_InfrastructureConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ImageBuilder::InfrastructureConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::ImageBuilder::InfrastructureConfiguration"
         $($field $value)*)
     };
 }
@@ -2378,7 +2378,7 @@ pub struct LifecyclePolicy_ {
 #[macro_export]
 macro_rules! __aws_imagebuilder_LifecyclePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ImageBuilder::LifecyclePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::ImageBuilder::LifecyclePolicy"
         $($field $value)*)
     };
 }
@@ -2445,7 +2445,7 @@ pub struct Workflow_ {
 #[macro_export]
 macro_rules! __aws_imagebuilder_Workflow {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ImageBuilder::Workflow"
+        stratosphere::generator::construct_resource_type!("AWS::ImageBuilder::Workflow"
         $($field $value)*)
     };
 }

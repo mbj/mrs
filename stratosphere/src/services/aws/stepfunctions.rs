@@ -9,7 +9,7 @@ pub mod activity {
     #[macro_export]
     macro_rules! __aws_stepfunctions_Activity_EncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::StepFunctions::Activity.EncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::StepFunctions::Activity.EncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -45,7 +45,7 @@ pub mod activity {
     #[macro_export]
     macro_rules! __aws_stepfunctions_Activity_TagsEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::StepFunctions::Activity.TagsEntry"
+            stratosphere::generator::construct_property_type!("AWS::StepFunctions::Activity.TagsEntry"
             $($field $value)*)
         };
     }
@@ -74,7 +74,7 @@ pub mod statemachine {
     #[macro_export]
     macro_rules! __aws_stepfunctions_StateMachine_CloudWatchLogsLogGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::StepFunctions::StateMachine.CloudWatchLogsLogGroup"
+            stratosphere::generator::construct_property_type!("AWS::StepFunctions::StateMachine.CloudWatchLogsLogGroup"
             $($field $value)*)
         };
     }
@@ -101,7 +101,7 @@ pub mod statemachine {
     #[macro_export]
     macro_rules! __aws_stepfunctions_StateMachine_EncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::StepFunctions::StateMachine.EncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::StepFunctions::StateMachine.EncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -136,7 +136,7 @@ pub mod statemachine {
     #[macro_export]
     macro_rules! __aws_stepfunctions_StateMachine_LogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::StepFunctions::StateMachine.LogDestination"
+            stratosphere::generator::construct_property_type!("AWS::StepFunctions::StateMachine.LogDestination"
             $($field $value)*)
         };
     }
@@ -163,7 +163,7 @@ pub mod statemachine {
     #[macro_export]
     macro_rules! __aws_stepfunctions_StateMachine_LoggingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::StepFunctions::StateMachine.LoggingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::StepFunctions::StateMachine.LoggingConfiguration"
             $($field $value)*)
         };
     }
@@ -199,7 +199,7 @@ pub mod statemachine {
     #[macro_export]
     macro_rules! __aws_stepfunctions_StateMachine_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::StepFunctions::StateMachine.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::StepFunctions::StateMachine.S3Location"
             $($field $value)*)
         };
     }
@@ -233,7 +233,7 @@ pub mod statemachine {
     #[macro_export]
     macro_rules! __aws_stepfunctions_StateMachine_TagsEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::StepFunctions::StateMachine.TagsEntry"
+            stratosphere::generator::construct_property_type!("AWS::StepFunctions::StateMachine.TagsEntry"
             $($field $value)*)
         };
     }
@@ -260,7 +260,7 @@ pub mod statemachine {
     #[macro_export]
     macro_rules! __aws_stepfunctions_StateMachine_TracingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::StepFunctions::StateMachine.TracingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::StepFunctions::StateMachine.TracingConfiguration"
             $($field $value)*)
         };
     }
@@ -291,7 +291,7 @@ pub mod statemachinealias {
     #[macro_export]
     macro_rules! __aws_stepfunctions_StateMachineAlias_DeploymentPreference {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::StepFunctions::StateMachineAlias.DeploymentPreference"
+            stratosphere::generator::construct_property_type!("AWS::StepFunctions::StateMachineAlias.DeploymentPreference"
             $($field $value)*)
         };
     }
@@ -334,7 +334,7 @@ pub mod statemachinealias {
     #[macro_export]
     macro_rules! __aws_stepfunctions_StateMachineAlias_RoutingConfigurationVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::StepFunctions::StateMachineAlias.RoutingConfigurationVersion"
+            stratosphere::generator::construct_property_type!("AWS::StepFunctions::StateMachineAlias.RoutingConfigurationVersion"
             $($field $value)*)
         };
     }
@@ -364,7 +364,7 @@ pub struct Activity_ {
 #[macro_export]
 macro_rules! __aws_stepfunctions_Activity {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::StepFunctions::Activity"
+        stratosphere::generator::construct_resource_type!("AWS::StepFunctions::Activity"
         $($field $value)*)
     };
 }
@@ -415,7 +415,7 @@ pub struct StateMachine_ {
 #[macro_export]
 macro_rules! __aws_stepfunctions_StateMachine {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::StepFunctions::StateMachine"
+        stratosphere::generator::construct_resource_type!("AWS::StepFunctions::StateMachine"
         $($field $value)*)
     };
 }
@@ -508,7 +508,7 @@ pub struct StateMachineAlias_ {
 #[macro_export]
 macro_rules! __aws_stepfunctions_StateMachineAlias {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::StepFunctions::StateMachineAlias"
+        stratosphere::generator::construct_resource_type!("AWS::StepFunctions::StateMachineAlias"
         $($field $value)*)
     };
 }
@@ -558,7 +558,7 @@ pub struct StateMachineVersion_ {
 #[macro_export]
 macro_rules! __aws_stepfunctions_StateMachineVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::StepFunctions::StateMachineVersion"
+        stratosphere::generator::construct_resource_type!("AWS::StepFunctions::StateMachineVersion"
         $($field $value)*)
     };
 }

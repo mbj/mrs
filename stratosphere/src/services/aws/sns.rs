@@ -10,7 +10,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_sns_Topic_LoggingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SNS::Topic.LoggingConfig"
+            stratosphere::generator::construct_property_type!("AWS::SNS::Topic.LoggingConfig"
             $($field $value)*)
         };
     }
@@ -52,7 +52,7 @@ pub mod topic {
     #[macro_export]
     macro_rules! __aws_sns_Topic_Subscription {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SNS::Topic.Subscription"
+            stratosphere::generator::construct_property_type!("AWS::SNS::Topic.Subscription"
             $($field $value)*)
         };
     }
@@ -90,7 +90,7 @@ pub struct Subscription_ {
 #[macro_export]
 macro_rules! __aws_sns_Subscription {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SNS::Subscription"
+        stratosphere::generator::construct_resource_type!("AWS::SNS::Subscription"
         $($field $value)*)
     };
 }
@@ -188,7 +188,7 @@ pub struct Topic_ {
 #[macro_export]
 macro_rules! __aws_sns_Topic {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SNS::Topic" $($field
+        stratosphere::generator::construct_resource_type!("AWS::SNS::Topic" $($field
         $value)*)
     };
 }
@@ -291,7 +291,7 @@ pub struct TopicInlinePolicy_ {
 #[macro_export]
 macro_rules! __aws_sns_TopicInlinePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SNS::TopicInlinePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::SNS::TopicInlinePolicy"
         $($field $value)*)
     };
 }
@@ -327,8 +327,8 @@ pub struct TopicPolicy_ {
 #[macro_export]
 macro_rules! __aws_sns_TopicPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SNS::TopicPolicy" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::SNS::TopicPolicy"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_sns_TopicPolicy as TopicPolicy;

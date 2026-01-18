@@ -7,7 +7,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_AntennaDownlinkConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.AntennaDownlinkConfig"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.AntennaDownlinkConfig"
             $($field $value)*)
         };
     }
@@ -34,7 +34,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_AntennaDownlinkDemodDecodeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.AntennaDownlinkDemodDecodeConfig"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.AntennaDownlinkDemodDecodeConfig"
             $($field $value)*)
         };
     }
@@ -73,7 +73,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_AntennaUplinkConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.AntennaUplinkConfig"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.AntennaUplinkConfig"
             $($field $value)*)
         };
     }
@@ -116,7 +116,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_ConfigData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.ConfigData"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.ConfigData"
             $($field $value)*)
         };
     }
@@ -178,7 +178,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_DataflowEndpointConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.DataflowEndpointConfig"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.DataflowEndpointConfig"
             $($field $value)*)
         };
     }
@@ -209,7 +209,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_DecodeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.DecodeConfig"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.DecodeConfig"
             $($field $value)*)
         };
     }
@@ -234,7 +234,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_DemodulationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.DemodulationConfig"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.DemodulationConfig"
             $($field $value)*)
         };
     }
@@ -260,7 +260,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_Eirp {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.Eirp"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.Eirp"
             $($field $value)*)
         };
     }
@@ -286,7 +286,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_Frequency {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.Frequency"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.Frequency"
             $($field $value)*)
         };
     }
@@ -312,7 +312,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_FrequencyBandwidth {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.FrequencyBandwidth"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.FrequencyBandwidth"
             $($field $value)*)
         };
     }
@@ -339,7 +339,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_S3RecordingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.S3RecordingConfig"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.S3RecordingConfig"
             $($field $value)*)
         };
     }
@@ -375,7 +375,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_SpectrumConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.SpectrumConfig"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.SpectrumConfig"
             $($field $value)*)
         };
     }
@@ -412,7 +412,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_TrackingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.TrackingConfig"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.TrackingConfig"
             $($field $value)*)
         };
     }
@@ -438,7 +438,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_UplinkEchoConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.UplinkEchoConfig"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.UplinkEchoConfig"
             $($field $value)*)
         };
     }
@@ -470,7 +470,7 @@ pub mod config {
     #[macro_export]
     macro_rules! __aws_groundstation_Config_UplinkSpectrumConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::Config.UplinkSpectrumConfig"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.UplinkSpectrumConfig"
             $($field $value)*)
         };
     }
@@ -507,7 +507,7 @@ pub mod dataflowendpointgroup {
     #[macro_export]
     macro_rules! __aws_groundstation_DataflowEndpointGroup_AwsGroundStationAgentEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.AwsGroundStationAgentEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.AwsGroundStationAgentEndpoint"
             $($field $value)*)
         };
     }
@@ -554,7 +554,7 @@ pub mod dataflowendpointgroup {
     #[macro_export]
     macro_rules! __aws_groundstation_DataflowEndpointGroup_ConnectionDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.ConnectionDetails"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.ConnectionDetails"
             $($field $value)*)
         };
     }
@@ -584,7 +584,7 @@ pub mod dataflowendpointgroup {
     #[macro_export]
     macro_rules! __aws_groundstation_DataflowEndpointGroup_DataflowEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.DataflowEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.DataflowEndpoint"
             $($field $value)*)
         };
     }
@@ -617,7 +617,7 @@ pub mod dataflowendpointgroup {
     #[macro_export]
     macro_rules! __aws_groundstation_DataflowEndpointGroup_EndpointDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.EndpointDetails"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.EndpointDetails"
             $($field $value)*)
         };
     }
@@ -655,7 +655,7 @@ pub mod dataflowendpointgroup {
     #[macro_export]
     macro_rules! __aws_groundstation_DataflowEndpointGroup_IntegerRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.IntegerRange"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.IntegerRange"
             $($field $value)*)
         };
     }
@@ -687,7 +687,7 @@ pub mod dataflowendpointgroup {
     #[macro_export]
     macro_rules! __aws_groundstation_DataflowEndpointGroup_RangedConnectionDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.RangedConnectionDetails"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.RangedConnectionDetails"
             $($field $value)*)
         };
     }
@@ -716,7 +716,7 @@ pub mod dataflowendpointgroup {
     #[macro_export]
     macro_rules! __aws_groundstation_DataflowEndpointGroup_RangedSocketAddress {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.RangedSocketAddress"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.RangedSocketAddress"
             $($field $value)*)
         };
     }
@@ -746,7 +746,7 @@ pub mod dataflowendpointgroup {
     #[macro_export]
     macro_rules! __aws_groundstation_DataflowEndpointGroup_SecurityDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.SecurityDetails"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.SecurityDetails"
             $($field $value)*)
         };
     }
@@ -784,7 +784,7 @@ pub mod dataflowendpointgroup {
     #[macro_export]
     macro_rules! __aws_groundstation_DataflowEndpointGroup_SocketAddress {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.SocketAddress"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroup.SocketAddress"
             $($field $value)*)
         };
     }
@@ -812,7 +812,7 @@ pub mod missionprofile {
     #[macro_export]
     macro_rules! __aws_groundstation_MissionProfile_DataflowEdge {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::MissionProfile.DataflowEdge"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::MissionProfile.DataflowEdge"
             $($field $value)*)
         };
     }
@@ -842,7 +842,7 @@ pub mod missionprofile {
     #[macro_export]
     macro_rules! __aws_groundstation_MissionProfile_StreamsKmsKey {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GroundStation::MissionProfile.StreamsKmsKey"
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::MissionProfile.StreamsKmsKey"
             $($field $value)*)
         };
     }
@@ -882,7 +882,7 @@ pub struct Config_ {
 #[macro_export]
 macro_rules! __aws_groundstation_Config {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GroundStation::Config"
+        stratosphere::generator::construct_resource_type!("AWS::GroundStation::Config"
         $($field $value)*)
     };
 }
@@ -923,7 +923,7 @@ pub struct DataflowEndpointGroup_ {
 #[macro_export]
 macro_rules! __aws_groundstation_DataflowEndpointGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GroundStation::DataflowEndpointGroup"
+        stratosphere::generator::construct_resource_type!("AWS::GroundStation::DataflowEndpointGroup"
         $($field $value)*)
     };
 }
@@ -977,7 +977,7 @@ pub struct MissionProfile_ {
 #[macro_export]
 macro_rules! __aws_groundstation_MissionProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GroundStation::MissionProfile"
+        stratosphere::generator::construct_resource_type!("AWS::GroundStation::MissionProfile"
         $($field $value)*)
     };
 }

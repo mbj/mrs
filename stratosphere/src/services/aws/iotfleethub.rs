@@ -9,7 +9,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_iotfleethub_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTFleetHub::Application"
+        stratosphere::generator::construct_resource_type!("AWS::IoTFleetHub::Application"
         $($field $value)*)
     };
 }

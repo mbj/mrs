@@ -8,7 +8,7 @@ pub mod scalingplan {
     #[macro_export]
     macro_rules! __aws_autoscalingplans_ScalingPlan_ApplicationSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.ApplicationSource"
+            stratosphere::generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.ApplicationSource"
             $($field $value)*)
         };
     }
@@ -43,7 +43,7 @@ pub mod scalingplan {
     #[macro_export]
     macro_rules! __aws_autoscalingplans_ScalingPlan_CustomizedLoadMetricSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.CustomizedLoadMetricSpecification"
+            stratosphere::generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.CustomizedLoadMetricSpecification"
             $($field $value)*)
         };
     }
@@ -87,7 +87,7 @@ pub mod scalingplan {
     #[macro_export]
     macro_rules! __aws_autoscalingplans_ScalingPlan_CustomizedScalingMetricSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.CustomizedScalingMetricSpecification"
+            stratosphere::generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.CustomizedScalingMetricSpecification"
             $($field $value)*)
         };
     }
@@ -128,7 +128,7 @@ pub mod scalingplan {
     #[macro_export]
     macro_rules! __aws_autoscalingplans_ScalingPlan_MetricDimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.MetricDimension"
+            stratosphere::generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.MetricDimension"
             $($field $value)*)
         };
     }
@@ -156,7 +156,7 @@ pub mod scalingplan {
     #[macro_export]
     macro_rules! __aws_autoscalingplans_ScalingPlan_PredefinedLoadMetricSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.PredefinedLoadMetricSpecification"
+            stratosphere::generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.PredefinedLoadMetricSpecification"
             $($field $value)*)
         };
     }
@@ -186,7 +186,7 @@ pub mod scalingplan {
     #[macro_export]
     macro_rules! __aws_autoscalingplans_ScalingPlan_PredefinedScalingMetricSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.PredefinedScalingMetricSpecification"
+            stratosphere::generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.PredefinedScalingMetricSpecification"
             $($field $value)*)
         };
     }
@@ -228,7 +228,7 @@ pub mod scalingplan {
     #[macro_export]
     macro_rules! __aws_autoscalingplans_ScalingPlan_ScalingInstruction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.ScalingInstruction"
+            stratosphere::generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.ScalingInstruction"
             $($field $value)*)
         };
     }
@@ -320,7 +320,7 @@ pub mod scalingplan {
     #[macro_export]
     macro_rules! __aws_autoscalingplans_ScalingPlan_TagFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.TagFilter"
+            stratosphere::generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.TagFilter"
             $($field $value)*)
         };
     }
@@ -354,7 +354,7 @@ pub mod scalingplan {
     #[macro_export]
     macro_rules! __aws_autoscalingplans_ScalingPlan_TargetTrackingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.TargetTrackingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AutoScalingPlans::ScalingPlan.TargetTrackingConfiguration"
             $($field $value)*)
         };
     }
@@ -415,7 +415,7 @@ pub struct ScalingPlan_ {
 #[macro_export]
 macro_rules! __aws_autoscalingplans_ScalingPlan {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AutoScalingPlans::ScalingPlan"
+        stratosphere::generator::construct_resource_type!("AWS::AutoScalingPlans::ScalingPlan"
         $($field $value)*)
     };
 }

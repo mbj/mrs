@@ -7,7 +7,7 @@ pub mod idmappingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_IdMappingWorkflow_IdMappingIncrementalRunConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.IdMappingIncrementalRunConfig"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.IdMappingIncrementalRunConfig"
             $($field $value)*)
         };
     }
@@ -33,7 +33,7 @@ pub mod idmappingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_IdMappingWorkflow_IdMappingRuleBasedProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.IdMappingRuleBasedProperties"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.IdMappingRuleBasedProperties"
             $($field $value)*)
         };
     }
@@ -71,7 +71,7 @@ pub mod idmappingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_IdMappingWorkflow_IdMappingTechniques {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.IdMappingTechniques"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.IdMappingTechniques"
             $($field $value)*)
         };
     }
@@ -110,7 +110,7 @@ pub mod idmappingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_IdMappingWorkflow_IdMappingWorkflowInputSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.IdMappingWorkflowInputSource"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.IdMappingWorkflowInputSource"
             $($field $value)*)
         };
     }
@@ -143,7 +143,7 @@ pub mod idmappingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_IdMappingWorkflow_IdMappingWorkflowOutputSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.IdMappingWorkflowOutputSource"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.IdMappingWorkflowOutputSource"
             $($field $value)*)
         };
     }
@@ -169,7 +169,7 @@ pub mod idmappingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_IdMappingWorkflow_IntermediateSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.IntermediateSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.IntermediateSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -195,7 +195,7 @@ pub mod idmappingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_IdMappingWorkflow_ProviderProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.ProviderProperties"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.ProviderProperties"
             $($field $value)*)
         };
     }
@@ -231,7 +231,7 @@ pub mod idmappingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_IdMappingWorkflow_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.Rule"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::IdMappingWorkflow.Rule"
             $($field $value)*)
         };
     }
@@ -262,7 +262,7 @@ pub mod idnamespace {
     #[macro_export]
     macro_rules! __aws_entityresolution_IdNamespace_IdNamespaceIdMappingWorkflowProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::IdNamespace.IdNamespaceIdMappingWorkflowProperties"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::IdNamespace.IdNamespaceIdMappingWorkflowProperties"
             $($field $value)*)
         };
     }
@@ -298,7 +298,7 @@ pub mod idnamespace {
     #[macro_export]
     macro_rules! __aws_entityresolution_IdNamespace_IdNamespaceInputSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::IdNamespace.IdNamespaceInputSource"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::IdNamespace.IdNamespaceInputSource"
             $($field $value)*)
         };
     }
@@ -329,7 +329,7 @@ pub mod idnamespace {
     #[macro_export]
     macro_rules! __aws_entityresolution_IdNamespace_NamespaceProviderProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::IdNamespace.NamespaceProviderProperties"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::IdNamespace.NamespaceProviderProperties"
             $($field $value)*)
         };
     }
@@ -361,7 +361,7 @@ pub mod idnamespace {
     #[macro_export]
     macro_rules! __aws_entityresolution_IdNamespace_NamespaceRuleBasedProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::IdNamespace.NamespaceRuleBasedProperties"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::IdNamespace.NamespaceRuleBasedProperties"
             $($field $value)*)
         };
     }
@@ -402,7 +402,7 @@ pub mod idnamespace {
     #[macro_export]
     macro_rules! __aws_entityresolution_IdNamespace_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::IdNamespace.Rule"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::IdNamespace.Rule"
             $($field $value)*)
         };
     }
@@ -431,7 +431,7 @@ pub mod matchingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_MatchingWorkflow_IncrementalRunConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.IncrementalRunConfig"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.IncrementalRunConfig"
             $($field $value)*)
         };
     }
@@ -456,7 +456,7 @@ pub mod matchingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_MatchingWorkflow_InputSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.InputSource"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.InputSource"
             $($field $value)*)
         };
     }
@@ -489,7 +489,7 @@ pub mod matchingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_MatchingWorkflow_IntermediateSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.IntermediateSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.IntermediateSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -513,7 +513,7 @@ pub mod matchingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_MatchingWorkflow_OutputAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.OutputAttribute"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.OutputAttribute"
             $($field $value)*)
         };
     }
@@ -542,7 +542,7 @@ pub mod matchingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_MatchingWorkflow_OutputSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.OutputSource"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.OutputSource"
             $($field $value)*)
         };
     }
@@ -581,7 +581,7 @@ pub mod matchingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_MatchingWorkflow_ProviderProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.ProviderProperties"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.ProviderProperties"
             $($field $value)*)
         };
     }
@@ -619,7 +619,7 @@ pub mod matchingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_MatchingWorkflow_ResolutionTechniques {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.ResolutionTechniques"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.ResolutionTechniques"
             $($field $value)*)
         };
     }
@@ -663,7 +663,7 @@ pub mod matchingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_MatchingWorkflow_Rule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.Rule"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.Rule"
             $($field $value)*)
         };
     }
@@ -692,7 +692,7 @@ pub mod matchingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_MatchingWorkflow_RuleBasedProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.RuleBasedProperties"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.RuleBasedProperties"
             $($field $value)*)
         };
     }
@@ -726,7 +726,7 @@ pub mod matchingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_MatchingWorkflow_RuleCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.RuleCondition"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.RuleCondition"
             $($field $value)*)
         };
     }
@@ -757,7 +757,7 @@ pub mod matchingworkflow {
     #[macro_export]
     macro_rules! __aws_entityresolution_MatchingWorkflow_RuleConditionProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.RuleConditionProperties"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.RuleConditionProperties"
             $($field $value)*)
         };
     }
@@ -787,7 +787,7 @@ pub mod schemamapping {
     #[macro_export]
     macro_rules! __aws_entityresolution_SchemaMapping_SchemaInputAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EntityResolution::SchemaMapping.SchemaInputAttribute"
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::SchemaMapping.SchemaInputAttribute"
             $($field $value)*)
         };
     }
@@ -846,7 +846,7 @@ pub struct IdMappingWorkflow_ {
 #[macro_export]
 macro_rules! __aws_entityresolution_IdMappingWorkflow {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EntityResolution::IdMappingWorkflow"
+        stratosphere::generator::construct_resource_type!("AWS::EntityResolution::IdMappingWorkflow"
         $($field $value)*)
     };
 }
@@ -918,7 +918,7 @@ pub struct IdNamespace_ {
 #[macro_export]
 macro_rules! __aws_entityresolution_IdNamespace {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EntityResolution::IdNamespace"
+        stratosphere::generator::construct_resource_type!("AWS::EntityResolution::IdNamespace"
         $($field $value)*)
     };
 }
@@ -988,7 +988,7 @@ pub struct MatchingWorkflow_ {
 #[macro_export]
 macro_rules! __aws_entityresolution_MatchingWorkflow {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EntityResolution::MatchingWorkflow"
+        stratosphere::generator::construct_resource_type!("AWS::EntityResolution::MatchingWorkflow"
         $($field $value)*)
     };
 }
@@ -1055,7 +1055,7 @@ pub struct PolicyStatement_ {
 #[macro_export]
 macro_rules! __aws_entityresolution_PolicyStatement {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EntityResolution::PolicyStatement"
+        stratosphere::generator::construct_resource_type!("AWS::EntityResolution::PolicyStatement"
         $($field $value)*)
     };
 }
@@ -1111,7 +1111,7 @@ pub struct SchemaMapping_ {
 #[macro_export]
 macro_rules! __aws_entityresolution_SchemaMapping {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EntityResolution::SchemaMapping"
+        stratosphere::generator::construct_resource_type!("AWS::EntityResolution::SchemaMapping"
         $($field $value)*)
     };
 }

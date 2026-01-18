@@ -8,7 +8,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_finspace_Environment_AttributeMapItems {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FinSpace::Environment.AttributeMapItems"
+            stratosphere::generator::construct_property_type!("AWS::FinSpace::Environment.AttributeMapItems"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_finspace_Environment_FederationParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FinSpace::Environment.FederationParameters"
+            stratosphere::generator::construct_property_type!("AWS::FinSpace::Environment.FederationParameters"
             $($field $value)*)
         };
     }
@@ -95,7 +95,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_finspace_Environment_SuperuserParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FinSpace::Environment.SuperuserParameters"
+            stratosphere::generator::construct_property_type!("AWS::FinSpace::Environment.SuperuserParameters"
             $($field $value)*)
         };
     }
@@ -139,7 +139,7 @@ pub struct Environment_ {
 #[macro_export]
 macro_rules! __aws_finspace_Environment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FinSpace::Environment"
+        stratosphere::generator::construct_resource_type!("AWS::FinSpace::Environment"
         $($field $value)*)
     };
 }

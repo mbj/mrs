@@ -13,7 +13,7 @@ pub mod anycastiplist {
     #[macro_export]
     macro_rules! __aws_cloudfront_AnycastIpList_AnycastIpList {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::AnycastIpList.AnycastIpList"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::AnycastIpList.AnycastIpList"
             $($field $value)*)
         };
     }
@@ -57,7 +57,7 @@ pub mod anycastiplist {
     #[macro_export]
     macro_rules! __aws_cloudfront_AnycastIpList_Tags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::AnycastIpList.Tags"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::AnycastIpList.Tags"
             $($field $value)*)
         };
     }
@@ -87,7 +87,7 @@ pub mod cachepolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_CachePolicy_CachePolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::CachePolicy.CachePolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::CachePolicy.CachePolicyConfig"
             $($field $value)*)
         };
     }
@@ -135,7 +135,7 @@ pub mod cachepolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_CachePolicy_CookiesConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::CachePolicy.CookiesConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::CachePolicy.CookiesConfig"
             $($field $value)*)
         };
     }
@@ -165,7 +165,7 @@ pub mod cachepolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_CachePolicy_HeadersConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::CachePolicy.HeadersConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::CachePolicy.HeadersConfig"
             $($field $value)*)
         };
     }
@@ -198,7 +198,7 @@ pub mod cachepolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_CachePolicy_ParametersInCacheKeyAndForwardedToOrigin {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::CachePolicy.ParametersInCacheKeyAndForwardedToOrigin"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::CachePolicy.ParametersInCacheKeyAndForwardedToOrigin"
             $($field $value)*)
         };
     }
@@ -240,7 +240,7 @@ pub mod cachepolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_CachePolicy_QueryStringsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::CachePolicy.QueryStringsConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::CachePolicy.QueryStringsConfig"
             $($field $value)*)
         };
     }
@@ -271,7 +271,7 @@ pub mod cloudfrontoriginaccessidentity {
     #[macro_export]
     macro_rules! __aws_cloudfront_CloudFrontOriginAccessIdentity_CloudFrontOriginAccessIdentityConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::CloudFrontOriginAccessIdentity.CloudFrontOriginAccessIdentityConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::CloudFrontOriginAccessIdentity.CloudFrontOriginAccessIdentityConfig"
             $($field $value)*)
         };
     }
@@ -301,7 +301,7 @@ pub mod continuousdeploymentpolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ContinuousDeploymentPolicy_ContinuousDeploymentPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ContinuousDeploymentPolicy.ContinuousDeploymentPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ContinuousDeploymentPolicy.ContinuousDeploymentPolicyConfig"
             $($field $value)*)
         };
     }
@@ -350,7 +350,7 @@ pub mod continuousdeploymentpolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ContinuousDeploymentPolicy_SessionStickinessConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ContinuousDeploymentPolicy.SessionStickinessConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ContinuousDeploymentPolicy.SessionStickinessConfig"
             $($field $value)*)
         };
     }
@@ -378,7 +378,7 @@ pub mod continuousdeploymentpolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ContinuousDeploymentPolicy_SingleHeaderConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ContinuousDeploymentPolicy.SingleHeaderConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ContinuousDeploymentPolicy.SingleHeaderConfig"
             $($field $value)*)
         };
     }
@@ -406,7 +406,7 @@ pub mod continuousdeploymentpolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ContinuousDeploymentPolicy_SingleHeaderPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ContinuousDeploymentPolicy.SingleHeaderPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ContinuousDeploymentPolicy.SingleHeaderPolicyConfig"
             $($field $value)*)
         };
     }
@@ -434,7 +434,7 @@ pub mod continuousdeploymentpolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ContinuousDeploymentPolicy_SingleWeightConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ContinuousDeploymentPolicy.SingleWeightConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ContinuousDeploymentPolicy.SingleWeightConfig"
             $($field $value)*)
         };
     }
@@ -464,7 +464,7 @@ pub mod continuousdeploymentpolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ContinuousDeploymentPolicy_SingleWeightPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ContinuousDeploymentPolicy.SingleWeightPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ContinuousDeploymentPolicy.SingleWeightPolicyConfig"
             $($field $value)*)
         };
     }
@@ -495,7 +495,7 @@ pub mod continuousdeploymentpolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ContinuousDeploymentPolicy_TrafficConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ContinuousDeploymentPolicy.TrafficConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ContinuousDeploymentPolicy.TrafficConfig"
             $($field $value)*)
         };
     }
@@ -552,7 +552,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_CacheBehavior {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.CacheBehavior"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.CacheBehavior"
             $($field $value)*)
         };
     }
@@ -686,7 +686,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_Cookies {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.Cookies"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.Cookies"
             $($field $value)*)
         };
     }
@@ -718,7 +718,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_CustomErrorResponse {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.CustomErrorResponse"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.CustomErrorResponse"
             $($field $value)*)
         };
     }
@@ -765,7 +765,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_CustomOriginConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.CustomOriginConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.CustomOriginConfig"
             $($field $value)*)
         };
     }
@@ -843,7 +843,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_DefaultCacheBehavior {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.DefaultCacheBehavior"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.DefaultCacheBehavior"
             $($field $value)*)
         };
     }
@@ -972,7 +972,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_Definition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.Definition"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.Definition"
             $($field $value)*)
         };
     }
@@ -1020,7 +1020,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_DistributionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.DistributionConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.DistributionConfig"
             $($field $value)*)
         };
     }
@@ -1179,7 +1179,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_ForwardedValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.ForwardedValues"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.ForwardedValues"
             $($field $value)*)
         };
     }
@@ -1221,7 +1221,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_FunctionAssociation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.FunctionAssociation"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.FunctionAssociation"
             $($field $value)*)
         };
     }
@@ -1253,7 +1253,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_GeoRestriction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.GeoRestriction"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.GeoRestriction"
             $($field $value)*)
         };
     }
@@ -1282,7 +1282,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_GrpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.GrpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.GrpcConfig"
             $($field $value)*)
         };
     }
@@ -1307,7 +1307,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_LambdaFunctionAssociation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.LambdaFunctionAssociation"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.LambdaFunctionAssociation"
             $($field $value)*)
         };
     }
@@ -1348,7 +1348,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_LegacyCustomOrigin {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.LegacyCustomOrigin"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.LegacyCustomOrigin"
             $($field $value)*)
         };
     }
@@ -1392,7 +1392,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_LegacyS3Origin {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.LegacyS3Origin"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.LegacyS3Origin"
             $($field $value)*)
         };
     }
@@ -1423,7 +1423,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_Logging {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.Logging"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.Logging"
             $($field $value)*)
         };
     }
@@ -1465,7 +1465,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_Origin {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.Origin"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.Origin"
             $($field $value)*)
         };
     }
@@ -1550,7 +1550,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_OriginCustomHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.OriginCustomHeader"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.OriginCustomHeader"
             $($field $value)*)
         };
     }
@@ -1580,7 +1580,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_OriginGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.OriginGroup"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.OriginGroup"
             $($field $value)*)
         };
     }
@@ -1614,7 +1614,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_OriginGroupFailoverCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.OriginGroupFailoverCriteria"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.OriginGroupFailoverCriteria"
             $($field $value)*)
         };
     }
@@ -1637,7 +1637,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_OriginGroupMember {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.OriginGroupMember"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.OriginGroupMember"
             $($field $value)*)
         };
     }
@@ -1661,7 +1661,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_OriginGroupMembers {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.OriginGroupMembers"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.OriginGroupMembers"
             $($field $value)*)
         };
     }
@@ -1689,7 +1689,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_OriginGroups {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.OriginGroups"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.OriginGroups"
             $($field $value)*)
         };
     }
@@ -1716,7 +1716,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_OriginShield {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.OriginShield"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.OriginShield"
             $($field $value)*)
         };
     }
@@ -1748,7 +1748,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_ParameterDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.ParameterDefinition"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.ParameterDefinition"
             $($field $value)*)
         };
     }
@@ -1775,7 +1775,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_Restrictions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.Restrictions"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.Restrictions"
             $($field $value)*)
         };
     }
@@ -1799,7 +1799,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_S3OriginConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.S3OriginConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.S3OriginConfig"
             $($field $value)*)
         };
     }
@@ -1831,7 +1831,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_StatusCodes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.StatusCodes"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.StatusCodes"
             $($field $value)*)
         };
     }
@@ -1860,7 +1860,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_StringSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.StringSchema"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.StringSchema"
             $($field $value)*)
         };
     }
@@ -1895,7 +1895,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_TenantConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.TenantConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.TenantConfig"
             $($field $value)*)
         };
     }
@@ -1924,7 +1924,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_ViewerCertificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.ViewerCertificate"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.ViewerCertificate"
             $($field $value)*)
         };
     }
@@ -1975,7 +1975,7 @@ pub mod distribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_Distribution_VpcOriginConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Distribution.VpcOriginConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.VpcOriginConfig"
             $($field $value)*)
         };
     }
@@ -2012,7 +2012,7 @@ pub mod distributiontenant {
     #[macro_export]
     macro_rules! __aws_cloudfront_DistributionTenant_Certificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::DistributionTenant.Certificate"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::DistributionTenant.Certificate"
             $($field $value)*)
         };
     }
@@ -2036,7 +2036,7 @@ pub mod distributiontenant {
     #[macro_export]
     macro_rules! __aws_cloudfront_DistributionTenant_Customizations {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::DistributionTenant.Customizations"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::DistributionTenant.Customizations"
             $($field $value)*)
         };
     }
@@ -2071,7 +2071,7 @@ pub mod distributiontenant {
     #[macro_export]
     macro_rules! __aws_cloudfront_DistributionTenant_DomainResult {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::DistributionTenant.DomainResult"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::DistributionTenant.DomainResult"
             $($field $value)*)
         };
     }
@@ -2097,7 +2097,7 @@ pub mod distributiontenant {
     #[macro_export]
     macro_rules! __aws_cloudfront_DistributionTenant_GeoRestrictionCustomization {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::DistributionTenant.GeoRestrictionCustomization"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::DistributionTenant.GeoRestrictionCustomization"
             $($field $value)*)
         };
     }
@@ -2130,7 +2130,7 @@ pub mod distributiontenant {
     #[macro_export]
     macro_rules! __aws_cloudfront_DistributionTenant_ManagedCertificateRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::DistributionTenant.ManagedCertificateRequest"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::DistributionTenant.ManagedCertificateRequest"
             $($field $value)*)
         };
     }
@@ -2168,7 +2168,7 @@ pub mod distributiontenant {
     #[macro_export]
     macro_rules! __aws_cloudfront_DistributionTenant_Parameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::DistributionTenant.Parameter"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::DistributionTenant.Parameter"
             $($field $value)*)
         };
     }
@@ -2194,7 +2194,7 @@ pub mod distributiontenant {
     #[macro_export]
     macro_rules! __aws_cloudfront_DistributionTenant_WebAclCustomization {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::DistributionTenant.WebAclCustomization"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::DistributionTenant.WebAclCustomization"
             $($field $value)*)
         };
     }
@@ -2223,7 +2223,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_cloudfront_Function_FunctionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Function.FunctionConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Function.FunctionConfig"
             $($field $value)*)
         };
     }
@@ -2256,7 +2256,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_cloudfront_Function_FunctionMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Function.FunctionMetadata"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Function.FunctionMetadata"
             $($field $value)*)
         };
     }
@@ -2281,7 +2281,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_cloudfront_Function_KeyValueStoreAssociation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::Function.KeyValueStoreAssociation"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Function.KeyValueStoreAssociation"
             $($field $value)*)
         };
     }
@@ -2308,7 +2308,7 @@ pub mod keygroup {
     #[macro_export]
     macro_rules! __aws_cloudfront_KeyGroup_KeyGroupConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::KeyGroup.KeyGroupConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::KeyGroup.KeyGroupConfig"
             $($field $value)*)
         };
     }
@@ -2344,7 +2344,7 @@ pub mod keyvaluestore {
     #[macro_export]
     macro_rules! __aws_cloudfront_KeyValueStore_ImportSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::KeyValueStore.ImportSource"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::KeyValueStore.ImportSource"
             $($field $value)*)
         };
     }
@@ -2373,7 +2373,7 @@ pub mod monitoringsubscription {
     #[macro_export]
     macro_rules! __aws_cloudfront_MonitoringSubscription_MonitoringSubscription {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::MonitoringSubscription.MonitoringSubscription"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::MonitoringSubscription.MonitoringSubscription"
             $($field $value)*)
         };
     }
@@ -2398,7 +2398,7 @@ pub mod monitoringsubscription {
     #[macro_export]
     macro_rules! __aws_cloudfront_MonitoringSubscription_RealtimeMetricsSubscriptionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::MonitoringSubscription.RealtimeMetricsSubscriptionConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::MonitoringSubscription.RealtimeMetricsSubscriptionConfig"
             $($field $value)*)
         };
     }
@@ -2427,7 +2427,7 @@ pub mod originaccesscontrol {
     #[macro_export]
     macro_rules! __aws_cloudfront_OriginAccessControl_OriginAccessControlConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::OriginAccessControl.OriginAccessControlConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::OriginAccessControl.OriginAccessControlConfig"
             $($field $value)*)
         };
     }
@@ -2471,7 +2471,7 @@ pub mod originrequestpolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_OriginRequestPolicy_CookiesConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::OriginRequestPolicy.CookiesConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::OriginRequestPolicy.CookiesConfig"
             $($field $value)*)
         };
     }
@@ -2501,7 +2501,7 @@ pub mod originrequestpolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_OriginRequestPolicy_HeadersConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::OriginRequestPolicy.HeadersConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::OriginRequestPolicy.HeadersConfig"
             $($field $value)*)
         };
     }
@@ -2534,7 +2534,7 @@ pub mod originrequestpolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_OriginRequestPolicy_OriginRequestPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::OriginRequestPolicy.OriginRequestPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::OriginRequestPolicy.OriginRequestPolicyConfig"
             $($field $value)*)
         };
     }
@@ -2576,7 +2576,7 @@ pub mod originrequestpolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_OriginRequestPolicy_QueryStringsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::OriginRequestPolicy.QueryStringsConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::OriginRequestPolicy.QueryStringsConfig"
             $($field $value)*)
         };
     }
@@ -2610,7 +2610,7 @@ pub mod publickey {
     #[macro_export]
     macro_rules! __aws_cloudfront_PublicKey_PublicKeyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::PublicKey.PublicKeyConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::PublicKey.PublicKeyConfig"
             $($field $value)*)
         };
     }
@@ -2650,7 +2650,7 @@ pub mod realtimelogconfig {
     #[macro_export]
     macro_rules! __aws_cloudfront_RealtimeLogConfig_EndPoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::RealtimeLogConfig.EndPoint"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::RealtimeLogConfig.EndPoint"
             $($field $value)*)
         };
     }
@@ -2678,7 +2678,7 @@ pub mod realtimelogconfig {
     #[macro_export]
     macro_rules! __aws_cloudfront_RealtimeLogConfig_KinesisStreamConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::RealtimeLogConfig.KinesisStreamConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::RealtimeLogConfig.KinesisStreamConfig"
             $($field $value)*)
         };
     }
@@ -2707,7 +2707,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_AccessControlAllowHeaders {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.AccessControlAllowHeaders"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.AccessControlAllowHeaders"
             $($field $value)*)
         };
     }
@@ -2730,7 +2730,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_AccessControlAllowMethods {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.AccessControlAllowMethods"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.AccessControlAllowMethods"
             $($field $value)*)
         };
     }
@@ -2753,7 +2753,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_AccessControlAllowOrigins {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.AccessControlAllowOrigins"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.AccessControlAllowOrigins"
             $($field $value)*)
         };
     }
@@ -2776,7 +2776,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_AccessControlExposeHeaders {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.AccessControlExposeHeaders"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.AccessControlExposeHeaders"
             $($field $value)*)
         };
     }
@@ -2800,7 +2800,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_ContentSecurityPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.ContentSecurityPolicy"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.ContentSecurityPolicy"
             $($field $value)*)
         };
     }
@@ -2827,7 +2827,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_ContentTypeOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.ContentTypeOptions"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.ContentTypeOptions"
             $($field $value)*)
         };
     }
@@ -2856,7 +2856,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_CorsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.CorsConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.CorsConfig"
             $($field $value)*)
         };
     }
@@ -2909,7 +2909,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_CustomHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.CustomHeader"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.CustomHeader"
             $($field $value)*)
         };
     }
@@ -2940,7 +2940,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_CustomHeadersConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.CustomHeadersConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.CustomHeadersConfig"
             $($field $value)*)
         };
     }
@@ -2964,7 +2964,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_FrameOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.FrameOptions"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.FrameOptions"
             $($field $value)*)
         };
     }
@@ -2992,7 +2992,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_ReferrerPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.ReferrerPolicy"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.ReferrerPolicy"
             $($field $value)*)
         };
     }
@@ -3019,7 +3019,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_RemoveHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.RemoveHeader"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.RemoveHeader"
             $($field $value)*)
         };
     }
@@ -3042,7 +3042,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_RemoveHeadersConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.RemoveHeadersConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.RemoveHeadersConfig"
             $($field $value)*)
         };
     }
@@ -3071,7 +3071,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_ResponseHeadersPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.ResponseHeadersPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.ResponseHeadersPolicyConfig"
             $($field $value)*)
         };
     }
@@ -3135,7 +3135,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_SecurityHeadersConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.SecurityHeadersConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.SecurityHeadersConfig"
             $($field $value)*)
         };
     }
@@ -3191,7 +3191,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_ServerTimingHeadersConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.ServerTimingHeadersConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.ServerTimingHeadersConfig"
             $($field $value)*)
         };
     }
@@ -3223,7 +3223,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_StrictTransportSecurity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.StrictTransportSecurity"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.StrictTransportSecurity"
             $($field $value)*)
         };
     }
@@ -3265,7 +3265,7 @@ pub mod responseheaderspolicy {
     #[macro_export]
     macro_rules! __aws_cloudfront_ResponseHeadersPolicy_XSSProtection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.XSSProtection"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ResponseHeadersPolicy.XSSProtection"
             $($field $value)*)
         };
     }
@@ -3308,7 +3308,7 @@ pub mod streamingdistribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_StreamingDistribution_Logging {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::StreamingDistribution.Logging"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::StreamingDistribution.Logging"
             $($field $value)*)
         };
     }
@@ -3340,7 +3340,7 @@ pub mod streamingdistribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_StreamingDistribution_S3Origin {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::StreamingDistribution.S3Origin"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::StreamingDistribution.S3Origin"
             $($field $value)*)
         };
     }
@@ -3373,7 +3373,7 @@ pub mod streamingdistribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_StreamingDistribution_StreamingDistributionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::StreamingDistribution.StreamingDistributionConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::StreamingDistribution.StreamingDistributionConfig"
             $($field $value)*)
         };
     }
@@ -3427,7 +3427,7 @@ pub mod streamingdistribution {
     #[macro_export]
     macro_rules! __aws_cloudfront_StreamingDistribution_TrustedSigners {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::StreamingDistribution.TrustedSigners"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::StreamingDistribution.TrustedSigners"
             $($field $value)*)
         };
     }
@@ -3463,7 +3463,7 @@ pub mod vpcorigin {
     #[macro_export]
     macro_rules! __aws_cloudfront_VpcOrigin_VpcOriginEndpointConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudFront::VpcOrigin.VpcOriginEndpointConfig"
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::VpcOrigin.VpcOriginEndpointConfig"
             $($field $value)*)
         };
     }
@@ -3517,7 +3517,7 @@ pub struct AnycastIpList_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_AnycastIpList {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::AnycastIpList"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::AnycastIpList"
         $($field $value)*)
     };
 }
@@ -3555,7 +3555,7 @@ pub struct CachePolicy_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_CachePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::CachePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::CachePolicy"
         $($field $value)*)
     };
 }
@@ -3587,7 +3587,7 @@ pub struct CloudFrontOriginAccessIdentity_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_CloudFrontOriginAccessIdentity {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::CloudFrontOriginAccessIdentity"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::CloudFrontOriginAccessIdentity"
         $($field $value)*)
     };
 }
@@ -3624,7 +3624,7 @@ pub struct ConnectionGroup_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_ConnectionGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::ConnectionGroup"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::ConnectionGroup"
         $($field $value)*)
     };
 }
@@ -3677,7 +3677,7 @@ pub struct ContinuousDeploymentPolicy_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_ContinuousDeploymentPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::ContinuousDeploymentPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::ContinuousDeploymentPolicy"
         $($field $value)*)
     };
 }
@@ -3711,7 +3711,7 @@ pub struct Distribution_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_Distribution {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::Distribution"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::Distribution"
         $($field $value)*)
     };
 }
@@ -3754,7 +3754,7 @@ pub struct DistributionTenant_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_DistributionTenant {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::DistributionTenant"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::DistributionTenant"
         $($field $value)*)
     };
 }
@@ -3830,7 +3830,7 @@ pub struct Function_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_Function {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::Function"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::Function"
         $($field $value)*)
     };
 }
@@ -3881,7 +3881,7 @@ pub struct KeyGroup_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_KeyGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::KeyGroup"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::KeyGroup"
         $($field $value)*)
     };
 }
@@ -3914,7 +3914,7 @@ pub struct KeyValueStore_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_KeyValueStore {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::KeyValueStore"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::KeyValueStore"
         $($field $value)*)
     };
 }
@@ -3958,7 +3958,7 @@ pub struct MonitoringSubscription_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_MonitoringSubscription {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::MonitoringSubscription"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::MonitoringSubscription"
         $($field $value)*)
     };
 }
@@ -3994,7 +3994,7 @@ pub struct OriginAccessControl_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_OriginAccessControl {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::OriginAccessControl"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::OriginAccessControl"
         $($field $value)*)
     };
 }
@@ -4026,7 +4026,7 @@ pub struct OriginRequestPolicy_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_OriginRequestPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::OriginRequestPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::OriginRequestPolicy"
         $($field $value)*)
     };
 }
@@ -4057,7 +4057,7 @@ pub struct PublicKey_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_PublicKey {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::PublicKey"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::PublicKey"
         $($field $value)*)
     };
 }
@@ -4091,7 +4091,7 @@ pub struct RealtimeLogConfig_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_RealtimeLogConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::RealtimeLogConfig"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::RealtimeLogConfig"
         $($field $value)*)
     };
 }
@@ -4135,7 +4135,7 @@ pub struct ResponseHeadersPolicy_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_ResponseHeadersPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::ResponseHeadersPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::ResponseHeadersPolicy"
         $($field $value)*)
     };
 }
@@ -4168,7 +4168,7 @@ pub struct StreamingDistribution_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_StreamingDistribution {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::StreamingDistribution"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::StreamingDistribution"
         $($field $value)*)
     };
 }
@@ -4204,7 +4204,7 @@ pub struct VpcOrigin_ {
 #[macro_export]
 macro_rules! __aws_cloudfront_VpcOrigin {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudFront::VpcOrigin"
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::VpcOrigin"
         $($field $value)*)
     };
 }

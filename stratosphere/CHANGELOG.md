@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.4
+
+### Changed
+
+- Users no longer need to add `stratosphere-generator` as a direct dependency for macros to work
+- Re-export `stratosphere_generator` as `stratosphere::generator`
+- Update generated macros to use `stratosphere::generator::construct_*` instead of `stratosphere_generator::construct_*`
+- Bump stratosphere-core and stratosphere-generator dependencies to 0.0.4
+
 ## 0.0.3
 
 ### Changed

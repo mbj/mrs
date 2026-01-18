@@ -9,7 +9,7 @@ pub mod skill {
     #[macro_export]
     macro_rules! __alexa_ask_Skill_AuthenticationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("Alexa::ASK::Skill.AuthenticationConfiguration"
+            stratosphere::generator::construct_property_type!("Alexa::ASK::Skill.AuthenticationConfiguration"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod skill {
     #[macro_export]
     macro_rules! __alexa_ask_Skill_Overrides {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("Alexa::ASK::Skill.Overrides"
+            stratosphere::generator::construct_property_type!("Alexa::ASK::Skill.Overrides"
             $($field $value)*)
         };
     }
@@ -69,7 +69,7 @@ pub mod skill {
     #[macro_export]
     macro_rules! __alexa_ask_Skill_SkillPackage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("Alexa::ASK::Skill.SkillPackage"
+            stratosphere::generator::construct_property_type!("Alexa::ASK::Skill.SkillPackage"
             $($field $value)*)
         };
     }
@@ -117,7 +117,7 @@ pub struct Skill_ {
 #[macro_export]
 macro_rules! __alexa_ask_Skill {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("Alexa::ASK::Skill" $($field
+        stratosphere::generator::construct_resource_type!("Alexa::ASK::Skill" $($field
         $value)*)
     };
 }

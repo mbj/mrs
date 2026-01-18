@@ -8,7 +8,7 @@ pub mod trainingdataset {
     #[macro_export]
     macro_rules! __aws_cleanroomsml_TrainingDataset_ColumnSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRoomsML::TrainingDataset.ColumnSchema"
+            stratosphere::generator::construct_property_type!("AWS::CleanRoomsML::TrainingDataset.ColumnSchema"
             $($field $value)*)
         };
     }
@@ -35,7 +35,7 @@ pub mod trainingdataset {
     #[macro_export]
     macro_rules! __aws_cleanroomsml_TrainingDataset_DataSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRoomsML::TrainingDataset.DataSource"
+            stratosphere::generator::construct_property_type!("AWS::CleanRoomsML::TrainingDataset.DataSource"
             $($field $value)*)
         };
     }
@@ -59,7 +59,7 @@ pub mod trainingdataset {
     #[macro_export]
     macro_rules! __aws_cleanroomsml_TrainingDataset_Dataset {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRoomsML::TrainingDataset.Dataset"
+            stratosphere::generator::construct_property_type!("AWS::CleanRoomsML::TrainingDataset.Dataset"
             $($field $value)*)
         };
     }
@@ -87,7 +87,7 @@ pub mod trainingdataset {
     #[macro_export]
     macro_rules! __aws_cleanroomsml_TrainingDataset_DatasetInputConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRoomsML::TrainingDataset.DatasetInputConfig"
+            stratosphere::generator::construct_property_type!("AWS::CleanRoomsML::TrainingDataset.DatasetInputConfig"
             $($field $value)*)
         };
     }
@@ -116,7 +116,7 @@ pub mod trainingdataset {
     #[macro_export]
     macro_rules! __aws_cleanroomsml_TrainingDataset_GlueDataSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CleanRoomsML::TrainingDataset.GlueDataSource"
+            stratosphere::generator::construct_property_type!("AWS::CleanRoomsML::TrainingDataset.GlueDataSource"
             $($field $value)*)
         };
     }
@@ -154,7 +154,7 @@ pub struct TrainingDataset_ {
 #[macro_export]
 macro_rules! __aws_cleanroomsml_TrainingDataset {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CleanRoomsML::TrainingDataset"
+        stratosphere::generator::construct_resource_type!("AWS::CleanRoomsML::TrainingDataset"
         $($field $value)*)
     };
 }

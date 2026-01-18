@@ -8,7 +8,7 @@ pub mod stream {
     #[macro_export]
     macro_rules! __aws_qldb_Stream_KinesisConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QLDB::Stream.KinesisConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QLDB::Stream.KinesisConfiguration"
             $($field $value)*)
         };
     }
@@ -44,7 +44,7 @@ pub struct Ledger_ {
 #[macro_export]
 macro_rules! __aws_qldb_Ledger {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QLDB::Ledger" $($field
+        stratosphere::generator::construct_resource_type!("AWS::QLDB::Ledger" $($field
         $value)*)
     };
 }
@@ -96,7 +96,7 @@ pub struct Stream_ {
 #[macro_export]
 macro_rules! __aws_qldb_Stream {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QLDB::Stream" $($field
+        stratosphere::generator::construct_resource_type!("AWS::QLDB::Stream" $($field
         $value)*)
     };
 }

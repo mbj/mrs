@@ -7,7 +7,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_appflow_Connector_ConnectorProvisioningConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Connector.ConnectorProvisioningConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Connector.ConnectorProvisioningConfig"
             $($field $value)*)
         };
     }
@@ -29,7 +29,7 @@ pub mod connector {
     #[macro_export]
     macro_rules! __aws_appflow_Connector_LambdaConnectorProvisioningConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Connector.LambdaConnectorProvisioningConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Connector.LambdaConnectorProvisioningConfig"
             $($field $value)*)
         };
     }
@@ -55,7 +55,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_AmplitudeConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.AmplitudeConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.AmplitudeConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -83,7 +83,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_ApiKeyCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ApiKeyCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ApiKeyCredentials"
             $($field $value)*)
         };
     }
@@ -113,7 +113,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_BasicAuthCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.BasicAuthCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.BasicAuthCredentials"
             $($field $value)*)
         };
     }
@@ -141,7 +141,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_ConnectorOAuthRequest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ConnectorOAuthRequest"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ConnectorOAuthRequest"
             $($field $value)*)
         };
     }
@@ -173,7 +173,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_ConnectorProfileConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ConnectorProfileConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ConnectorProfileConfig"
             $($field $value)*)
         };
     }
@@ -221,7 +221,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_ConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -352,7 +352,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_ConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -447,7 +447,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_CustomAuthCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.CustomAuthCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.CustomAuthCredentials"
             $($field $value)*)
         };
     }
@@ -480,7 +480,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_CustomConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.CustomConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.CustomConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -516,7 +516,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_CustomConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.CustomConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.CustomConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -548,7 +548,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_DatadogConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.DatadogConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.DatadogConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -575,7 +575,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_DatadogConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.DatadogConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.DatadogConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -598,7 +598,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_DynatraceConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.DynatraceConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.DynatraceConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -621,7 +621,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_DynatraceConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.DynatraceConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.DynatraceConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -648,7 +648,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_GoogleAnalyticsConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.GoogleAnalyticsConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.GoogleAnalyticsConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -696,7 +696,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_InforNexusConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.InforNexusConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.InforNexusConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -731,7 +731,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_InforNexusConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.InforNexusConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.InforNexusConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -757,7 +757,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_MarketoConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.MarketoConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.MarketoConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -796,7 +796,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_MarketoConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.MarketoConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.MarketoConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -823,7 +823,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_OAuth2Credentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.OAuth2Credentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.OAuth2Credentials"
             $($field $value)*)
         };
     }
@@ -875,7 +875,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_OAuth2Properties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.OAuth2Properties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.OAuth2Properties"
             $($field $value)*)
         };
     }
@@ -916,7 +916,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_OAuthCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.OAuthCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.OAuthCredentials"
             $($field $value)*)
         };
     }
@@ -967,7 +967,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_OAuthProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.OAuthProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.OAuthProperties"
             $($field $value)*)
         };
     }
@@ -1007,7 +1007,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_PardotConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.PardotConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.PardotConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -1052,7 +1052,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_PardotConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.PardotConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.PardotConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -1088,7 +1088,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_RedshiftConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.RedshiftConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.RedshiftConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -1127,7 +1127,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_RedshiftConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.RedshiftConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.RedshiftConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -1197,7 +1197,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_SAPODataConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SAPODataConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SAPODataConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -1235,7 +1235,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_SAPODataConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SAPODataConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SAPODataConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -1307,7 +1307,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_SalesforceConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SalesforceConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SalesforceConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -1364,7 +1364,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_SalesforceConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SalesforceConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SalesforceConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -1403,7 +1403,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_ServiceNowConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ServiceNowConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ServiceNowConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -1440,7 +1440,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_ServiceNowConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ServiceNowConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ServiceNowConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -1463,7 +1463,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_SingularConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SingularConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SingularConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -1489,7 +1489,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_SlackConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SlackConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SlackConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -1528,7 +1528,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_SlackConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SlackConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SlackConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -1552,7 +1552,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_SnowflakeConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SnowflakeConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SnowflakeConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -1585,7 +1585,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_SnowflakeConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SnowflakeConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.SnowflakeConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -1637,7 +1637,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_TrendmicroConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.TrendmicroConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.TrendmicroConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -1661,7 +1661,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_VeevaConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.VeevaConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.VeevaConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -1688,7 +1688,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_VeevaConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.VeevaConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.VeevaConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -1714,7 +1714,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_ZendeskConnectorProfileCredentials {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ZendeskConnectorProfileCredentials"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ZendeskConnectorProfileCredentials"
             $($field $value)*)
         };
     }
@@ -1753,7 +1753,7 @@ pub mod connectorprofile {
     #[macro_export]
     macro_rules! __aws_appflow_ConnectorProfile_ZendeskConnectorProfileProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ZendeskConnectorProfileProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::ConnectorProfile.ZendeskConnectorProfileProperties"
             $($field $value)*)
         };
     }
@@ -1779,7 +1779,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_AggregationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.AggregationConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.AggregationConfig"
             $($field $value)*)
         };
     }
@@ -1810,7 +1810,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_AmplitudeSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.AmplitudeSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.AmplitudeSourceProperties"
             $($field $value)*)
         };
     }
@@ -1849,7 +1849,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_ConnectorOperator {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.ConnectorOperator"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.ConnectorOperator"
             $($field $value)*)
         };
     }
@@ -1962,7 +1962,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_CustomConnectorDestinationProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.CustomConnectorDestinationProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.CustomConnectorDestinationProperties"
             $($field $value)*)
         };
     }
@@ -2011,7 +2011,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_CustomConnectorSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.CustomConnectorSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.CustomConnectorSourceProperties"
             $($field $value)*)
         };
     }
@@ -2047,7 +2047,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_DataTransferApi {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.DataTransferApi"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.DataTransferApi"
             $($field $value)*)
         };
     }
@@ -2074,7 +2074,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_DatadogSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.DatadogSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.DatadogSourceProperties"
             $($field $value)*)
         };
     }
@@ -2107,7 +2107,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_DestinationConnectorProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.DestinationConnectorProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.DestinationConnectorProperties"
             $($field $value)*)
         };
     }
@@ -2192,7 +2192,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_DestinationFlowConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.DestinationFlowConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.DestinationFlowConfig"
             $($field $value)*)
         };
     }
@@ -2231,7 +2231,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_DynatraceSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.DynatraceSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.DynatraceSourceProperties"
             $($field $value)*)
         };
     }
@@ -2256,7 +2256,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_ErrorHandlingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.ErrorHandlingConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.ErrorHandlingConfig"
             $($field $value)*)
         };
     }
@@ -2294,7 +2294,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_EventBridgeDestinationProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.EventBridgeDestinationProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.EventBridgeDestinationProperties"
             $($field $value)*)
         };
     }
@@ -2325,7 +2325,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_GlueDataCatalog {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.GlueDataCatalog"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.GlueDataCatalog"
             $($field $value)*)
         };
     }
@@ -2356,7 +2356,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_GoogleAnalyticsSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.GoogleAnalyticsSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.GoogleAnalyticsSourceProperties"
             $($field $value)*)
         };
     }
@@ -2379,7 +2379,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_IncrementalPullConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.IncrementalPullConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.IncrementalPullConfig"
             $($field $value)*)
         };
     }
@@ -2404,7 +2404,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_InforNexusSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.InforNexusSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.InforNexusSourceProperties"
             $($field $value)*)
         };
     }
@@ -2427,7 +2427,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_LookoutMetricsDestinationProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.LookoutMetricsDestinationProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.LookoutMetricsDestinationProperties"
             $($field $value)*)
         };
     }
@@ -2450,7 +2450,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_MarketoDestinationProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.MarketoDestinationProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.MarketoDestinationProperties"
             $($field $value)*)
         };
     }
@@ -2479,7 +2479,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_MarketoSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.MarketoSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.MarketoSourceProperties"
             $($field $value)*)
         };
     }
@@ -2502,7 +2502,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_MetadataCatalogConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.MetadataCatalogConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.MetadataCatalogConfig"
             $($field $value)*)
         };
     }
@@ -2527,7 +2527,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_PardotSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.PardotSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.PardotSourceProperties"
             $($field $value)*)
         };
     }
@@ -2552,7 +2552,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_PrefixConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.PrefixConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.PrefixConfig"
             $($field $value)*)
         };
     }
@@ -2592,7 +2592,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_RedshiftDestinationProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.RedshiftDestinationProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.RedshiftDestinationProperties"
             $($field $value)*)
         };
     }
@@ -2633,7 +2633,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_S3DestinationProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.S3DestinationProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.S3DestinationProperties"
             $($field $value)*)
         };
     }
@@ -2668,7 +2668,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_S3InputFormatConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.S3InputFormatConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.S3InputFormatConfig"
             $($field $value)*)
         };
     }
@@ -2696,7 +2696,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_S3OutputFormatConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.S3OutputFormatConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.S3OutputFormatConfig"
             $($field $value)*)
         };
     }
@@ -2741,7 +2741,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_S3SourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.S3SourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.S3SourceProperties"
             $($field $value)*)
         };
     }
@@ -2778,7 +2778,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_SAPODataDestinationProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.SAPODataDestinationProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.SAPODataDestinationProperties"
             $($field $value)*)
         };
     }
@@ -2825,7 +2825,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_SAPODataPaginationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.SAPODataPaginationConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.SAPODataPaginationConfig"
             $($field $value)*)
         };
     }
@@ -2848,7 +2848,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_SAPODataParallelismConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.SAPODataParallelismConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.SAPODataParallelismConfig"
             $($field $value)*)
         };
     }
@@ -2873,7 +2873,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_SAPODataSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.SAPODataSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.SAPODataSourceProperties"
             $($field $value)*)
         };
     }
@@ -2912,7 +2912,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_SalesforceDestinationProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.SalesforceDestinationProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.SalesforceDestinationProperties"
             $($field $value)*)
         };
     }
@@ -2962,7 +2962,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_SalesforceSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.SalesforceSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.SalesforceSourceProperties"
             $($field $value)*)
         };
     }
@@ -3010,7 +3010,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_ScheduledTriggerProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.ScheduledTriggerProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.ScheduledTriggerProperties"
             $($field $value)*)
         };
     }
@@ -3075,7 +3075,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_ServiceNowSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.ServiceNowSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.ServiceNowSourceProperties"
             $($field $value)*)
         };
     }
@@ -3098,7 +3098,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_SingularSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.SingularSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.SingularSourceProperties"
             $($field $value)*)
         };
     }
@@ -3121,7 +3121,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_SlackSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.SlackSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.SlackSourceProperties"
             $($field $value)*)
         };
     }
@@ -3147,7 +3147,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_SnowflakeDestinationProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.SnowflakeDestinationProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.SnowflakeDestinationProperties"
             $($field $value)*)
         };
     }
@@ -3202,7 +3202,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_SourceConnectorProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.SourceConnectorProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.SourceConnectorProperties"
             $($field $value)*)
         };
     }
@@ -3315,7 +3315,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_SourceFlowConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.SourceFlowConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.SourceFlowConfig"
             $($field $value)*)
         };
     }
@@ -3361,7 +3361,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_SuccessResponseHandlingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.SuccessResponseHandlingConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.SuccessResponseHandlingConfig"
             $($field $value)*)
         };
     }
@@ -3396,7 +3396,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_Task {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.Task"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.Task"
             $($field $value)*)
         };
     }
@@ -3442,7 +3442,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_TaskPropertiesObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.TaskPropertiesObject"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.TaskPropertiesObject"
             $($field $value)*)
         };
     }
@@ -3469,7 +3469,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_TrendmicroSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.TrendmicroSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.TrendmicroSourceProperties"
             $($field $value)*)
         };
     }
@@ -3493,7 +3493,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_TriggerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.TriggerConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.TriggerConfig"
             $($field $value)*)
         };
     }
@@ -3524,7 +3524,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_UpsolverDestinationProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.UpsolverDestinationProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.UpsolverDestinationProperties"
             $($field $value)*)
         };
     }
@@ -3559,7 +3559,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_UpsolverS3OutputFormatConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.UpsolverS3OutputFormatConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.UpsolverS3OutputFormatConfig"
             $($field $value)*)
         };
     }
@@ -3598,7 +3598,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_VeevaSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.VeevaSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.VeevaSourceProperties"
             $($field $value)*)
         };
     }
@@ -3648,7 +3648,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_ZendeskDestinationProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.ZendeskDestinationProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.ZendeskDestinationProperties"
             $($field $value)*)
         };
     }
@@ -3689,7 +3689,7 @@ pub mod flow {
     #[macro_export]
     macro_rules! __aws_appflow_Flow_ZendeskSourceProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppFlow::Flow.ZendeskSourceProperties"
+            stratosphere::generator::construct_property_type!("AWS::AppFlow::Flow.ZendeskSourceProperties"
             $($field $value)*)
         };
     }
@@ -3716,7 +3716,7 @@ pub struct Connector_ {
 #[macro_export]
 macro_rules! __aws_appflow_Connector {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppFlow::Connector"
+        stratosphere::generator::construct_resource_type!("AWS::AppFlow::Connector"
         $($field $value)*)
     };
 }
@@ -3768,7 +3768,7 @@ pub struct ConnectorProfile_ {
 #[macro_export]
 macro_rules! __aws_appflow_ConnectorProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppFlow::ConnectorProfile"
+        stratosphere::generator::construct_resource_type!("AWS::AppFlow::ConnectorProfile"
         $($field $value)*)
     };
 }
@@ -3831,7 +3831,7 @@ pub struct Flow_ {
 #[macro_export]
 macro_rules! __aws_appflow_Flow {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppFlow::Flow" $($field
+        stratosphere::generator::construct_resource_type!("AWS::AppFlow::Flow" $($field
         $value)*)
     };
 }

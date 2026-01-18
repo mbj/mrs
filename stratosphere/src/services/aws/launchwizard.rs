@@ -8,7 +8,7 @@ pub mod deployment {
     #[macro_export]
     macro_rules! __aws_launchwizard_Deployment_Tags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::LaunchWizard::Deployment.Tags"
+            stratosphere::generator::construct_property_type!("AWS::LaunchWizard::Deployment.Tags"
             $($field $value)*)
         };
     }
@@ -39,7 +39,7 @@ pub struct Deployment_ {
 #[macro_export]
 macro_rules! __aws_launchwizard_Deployment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::LaunchWizard::Deployment"
+        stratosphere::generator::construct_resource_type!("AWS::LaunchWizard::Deployment"
         $($field $value)*)
     };
 }

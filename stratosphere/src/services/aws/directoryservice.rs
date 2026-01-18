@@ -8,7 +8,7 @@ pub mod microsoftad {
     #[macro_export]
     macro_rules! __aws_directoryservice_MicrosoftAD_VpcSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DirectoryService::MicrosoftAD.VpcSettings"
+            stratosphere::generator::construct_property_type!("AWS::DirectoryService::MicrosoftAD.VpcSettings"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod simplead {
     #[macro_export]
     macro_rules! __aws_directoryservice_SimpleAD_VpcSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DirectoryService::SimpleAD.VpcSettings"
+            stratosphere::generator::construct_property_type!("AWS::DirectoryService::SimpleAD.VpcSettings"
             $($field $value)*)
         };
     }
@@ -72,7 +72,7 @@ pub struct MicrosoftAD_ {
 #[macro_export]
 macro_rules! __aws_directoryservice_MicrosoftAD {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DirectoryService::MicrosoftAD"
+        stratosphere::generator::construct_resource_type!("AWS::DirectoryService::MicrosoftAD"
         $($field $value)*)
     };
 }
@@ -142,7 +142,7 @@ pub struct SimpleAD_ {
 #[macro_export]
 macro_rules! __aws_directoryservice_SimpleAD {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DirectoryService::SimpleAD"
+        stratosphere::generator::construct_resource_type!("AWS::DirectoryService::SimpleAD"
         $($field $value)*)
     };
 }

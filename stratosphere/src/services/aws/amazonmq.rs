@@ -8,7 +8,7 @@ pub mod broker {
     #[macro_export]
     macro_rules! __aws_amazonmq_Broker_ConfigurationId {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmazonMQ::Broker.ConfigurationId"
+            stratosphere::generator::construct_property_type!("AWS::AmazonMQ::Broker.ConfigurationId"
             $($field $value)*)
         };
     }
@@ -33,7 +33,7 @@ pub mod broker {
     #[macro_export]
     macro_rules! __aws_amazonmq_Broker_EncryptionOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmazonMQ::Broker.EncryptionOptions"
+            stratosphere::generator::construct_property_type!("AWS::AmazonMQ::Broker.EncryptionOptions"
             $($field $value)*)
         };
     }
@@ -72,7 +72,7 @@ pub mod broker {
     #[macro_export]
     macro_rules! __aws_amazonmq_Broker_LdapServerMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmazonMQ::Broker.LdapServerMetadata"
+            stratosphere::generator::construct_property_type!("AWS::AmazonMQ::Broker.LdapServerMetadata"
             $($field $value)*)
         };
     }
@@ -144,7 +144,7 @@ pub mod broker {
     #[macro_export]
     macro_rules! __aws_amazonmq_Broker_LogList {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmazonMQ::Broker.LogList"
+            stratosphere::generator::construct_property_type!("AWS::AmazonMQ::Broker.LogList"
             $($field $value)*)
         };
     }
@@ -174,7 +174,7 @@ pub mod broker {
     #[macro_export]
     macro_rules! __aws_amazonmq_Broker_MaintenanceWindow {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmazonMQ::Broker.MaintenanceWindow"
+            stratosphere::generator::construct_property_type!("AWS::AmazonMQ::Broker.MaintenanceWindow"
             $($field $value)*)
         };
     }
@@ -206,7 +206,7 @@ pub mod broker {
     #[macro_export]
     macro_rules! __aws_amazonmq_Broker_TagsEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmazonMQ::Broker.TagsEntry"
+            stratosphere::generator::construct_property_type!("AWS::AmazonMQ::Broker.TagsEntry"
             $($field $value)*)
         };
     }
@@ -237,7 +237,7 @@ pub mod broker {
     #[macro_export]
     macro_rules! __aws_amazonmq_Broker_User {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmazonMQ::Broker.User"
+            stratosphere::generator::construct_property_type!("AWS::AmazonMQ::Broker.User"
             $($field $value)*)
         };
     }
@@ -282,7 +282,7 @@ pub mod configuration {
     #[macro_export]
     macro_rules! __aws_amazonmq_Configuration_TagsEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmazonMQ::Configuration.TagsEntry"
+            stratosphere::generator::construct_property_type!("AWS::AmazonMQ::Configuration.TagsEntry"
             $($field $value)*)
         };
     }
@@ -312,7 +312,7 @@ pub mod configurationassociation {
     #[macro_export]
     macro_rules! __aws_amazonmq_ConfigurationAssociation_ConfigurationId {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmazonMQ::ConfigurationAssociation.ConfigurationId"
+            stratosphere::generator::construct_property_type!("AWS::AmazonMQ::ConfigurationAssociation.ConfigurationId"
             $($field $value)*)
         };
     }
@@ -356,8 +356,8 @@ pub struct Broker_ {
 #[macro_export]
 macro_rules! __aws_amazonmq_Broker {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AmazonMQ::Broker" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::AmazonMQ::Broker"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_amazonmq_Broker as Broker;
@@ -491,7 +491,7 @@ pub struct Configuration_ {
 #[macro_export]
 macro_rules! __aws_amazonmq_Configuration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AmazonMQ::Configuration"
+        stratosphere::generator::construct_resource_type!("AWS::AmazonMQ::Configuration"
         $($field $value)*)
     };
 }
@@ -551,7 +551,7 @@ pub struct ConfigurationAssociation_ {
 #[macro_export]
 macro_rules! __aws_amazonmq_ConfigurationAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AmazonMQ::ConfigurationAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::AmazonMQ::ConfigurationAssociation"
         $($field $value)*)
     };
 }

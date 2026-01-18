@@ -8,7 +8,7 @@ pub mod alarm {
     #[macro_export]
     macro_rules! __aws_cloudwatch_Alarm_Dimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::Alarm.Dimension"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::Alarm.Dimension"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub mod alarm {
     #[macro_export]
     macro_rules! __aws_cloudwatch_Alarm_Metric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::Alarm.Metric"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::Alarm.Metric"
             $($field $value)*)
         };
     }
@@ -80,7 +80,7 @@ pub mod alarm {
     #[macro_export]
     macro_rules! __aws_cloudwatch_Alarm_MetricDataQuery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::Alarm.MetricDataQuery"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::Alarm.MetricDataQuery"
             $($field $value)*)
         };
     }
@@ -133,7 +133,7 @@ pub mod alarm {
     #[macro_export]
     macro_rules! __aws_cloudwatch_Alarm_MetricStat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::Alarm.MetricStat"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::Alarm.MetricStat"
             $($field $value)*)
         };
     }
@@ -170,7 +170,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_cloudwatch_AnomalyDetector_Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.Configuration"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.Configuration"
             $($field $value)*)
         };
     }
@@ -202,7 +202,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_cloudwatch_AnomalyDetector_Dimension {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.Dimension"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.Dimension"
             $($field $value)*)
         };
     }
@@ -231,7 +231,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_cloudwatch_AnomalyDetector_Metric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.Metric"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.Metric"
             $($field $value)*)
         };
     }
@@ -264,7 +264,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_cloudwatch_AnomalyDetector_MetricCharacteristics {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.MetricCharacteristics"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.MetricCharacteristics"
             $($field $value)*)
         };
     }
@@ -287,7 +287,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_cloudwatch_AnomalyDetector_MetricDataQueries {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.MetricDataQueries"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.MetricDataQueries"
             $($field $value)*)
         };
     }
@@ -311,7 +311,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_cloudwatch_AnomalyDetector_MetricDataQuery {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.MetricDataQuery"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.MetricDataQuery"
             $($field $value)*)
         };
     }
@@ -361,7 +361,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_cloudwatch_AnomalyDetector_MetricMathAnomalyDetector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.MetricMathAnomalyDetector"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.MetricMathAnomalyDetector"
             $($field $value)*)
         };
     }
@@ -389,7 +389,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_cloudwatch_AnomalyDetector_MetricStat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.MetricStat"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.MetricStat"
             $($field $value)*)
         };
     }
@@ -424,7 +424,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_cloudwatch_AnomalyDetector_Range {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.Range"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.Range"
             $($field $value)*)
         };
     }
@@ -455,7 +455,7 @@ pub mod anomalydetector {
     #[macro_export]
     macro_rules! __aws_cloudwatch_AnomalyDetector_SingleMetricAnomalyDetector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.SingleMetricAnomalyDetector"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::AnomalyDetector.SingleMetricAnomalyDetector"
             $($field $value)*)
         };
     }
@@ -501,7 +501,7 @@ pub mod insightrule {
     #[macro_export]
     macro_rules! __aws_cloudwatch_InsightRule_Tags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::InsightRule.Tags"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::InsightRule.Tags"
             $($field $value)*)
         };
     }
@@ -522,7 +522,7 @@ pub mod metricstream {
     #[macro_export]
     macro_rules! __aws_cloudwatch_MetricStream_MetricStreamFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::MetricStream.MetricStreamFilter"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::MetricStream.MetricStreamFilter"
             $($field $value)*)
         };
     }
@@ -552,7 +552,7 @@ pub mod metricstream {
     #[macro_export]
     macro_rules! __aws_cloudwatch_MetricStream_MetricStreamStatisticsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::MetricStream.MetricStreamStatisticsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::MetricStream.MetricStreamStatisticsConfiguration"
             $($field $value)*)
         };
     }
@@ -580,7 +580,7 @@ pub mod metricstream {
     #[macro_export]
     macro_rules! __aws_cloudwatch_MetricStream_MetricStreamStatisticsMetric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CloudWatch::MetricStream.MetricStreamStatisticsMetric"
+            stratosphere::generator::construct_property_type!("AWS::CloudWatch::MetricStream.MetricStreamStatisticsMetric"
             $($field $value)*)
         };
     }
@@ -629,7 +629,7 @@ pub struct Alarm_ {
 #[macro_export]
 macro_rules! __aws_cloudwatch_Alarm {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudWatch::Alarm"
+        stratosphere::generator::construct_resource_type!("AWS::CloudWatch::Alarm"
         $($field $value)*)
     };
 }
@@ -784,7 +784,7 @@ pub struct AnomalyDetector_ {
 #[macro_export]
 macro_rules! __aws_cloudwatch_AnomalyDetector {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudWatch::AnomalyDetector"
+        stratosphere::generator::construct_resource_type!("AWS::CloudWatch::AnomalyDetector"
         $($field $value)*)
     };
 }
@@ -866,7 +866,7 @@ pub struct CompositeAlarm_ {
 #[macro_export]
 macro_rules! __aws_cloudwatch_CompositeAlarm {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudWatch::CompositeAlarm"
+        stratosphere::generator::construct_resource_type!("AWS::CloudWatch::CompositeAlarm"
         $($field $value)*)
     };
 }
@@ -955,7 +955,7 @@ pub struct Dashboard_ {
 #[macro_export]
 macro_rules! __aws_cloudwatch_Dashboard {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudWatch::Dashboard"
+        stratosphere::generator::construct_resource_type!("AWS::CloudWatch::Dashboard"
         $($field $value)*)
     };
 }
@@ -996,7 +996,7 @@ pub struct InsightRule_ {
 #[macro_export]
 macro_rules! __aws_cloudwatch_InsightRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudWatch::InsightRule"
+        stratosphere::generator::construct_resource_type!("AWS::CloudWatch::InsightRule"
         $($field $value)*)
     };
 }
@@ -1053,7 +1053,7 @@ pub struct MetricStream_ {
 #[macro_export]
 macro_rules! __aws_cloudwatch_MetricStream {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CloudWatch::MetricStream"
+        stratosphere::generator::construct_resource_type!("AWS::CloudWatch::MetricStream"
         $($field $value)*)
     };
 }
