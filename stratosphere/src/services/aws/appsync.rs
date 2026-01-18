@@ -7,7 +7,7 @@ pub mod api {
     #[macro_export]
     macro_rules! __aws_appsync_Api_AuthMode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::Api.AuthMode"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::Api.AuthMode"
             $($field $value)*)
         };
     }
@@ -35,7 +35,7 @@ pub mod api {
     #[macro_export]
     macro_rules! __aws_appsync_Api_AuthProvider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::Api.AuthProvider"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::Api.AuthProvider"
             $($field $value)*)
         };
     }
@@ -78,7 +78,7 @@ pub mod api {
     #[macro_export]
     macro_rules! __aws_appsync_Api_CognitoConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::Api.CognitoConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::Api.CognitoConfig"
             $($field $value)*)
         };
     }
@@ -112,7 +112,7 @@ pub mod api {
     #[macro_export]
     macro_rules! __aws_appsync_Api_DnsMap {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::Api.DnsMap"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::Api.DnsMap"
             $($field $value)*)
         };
     }
@@ -144,7 +144,7 @@ pub mod api {
     #[macro_export]
     macro_rules! __aws_appsync_Api_EventConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::Api.EventConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::Api.EventConfig"
             $($field $value)*)
         };
     }
@@ -186,7 +186,7 @@ pub mod api {
     #[macro_export]
     macro_rules! __aws_appsync_Api_EventLogConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::Api.EventLogConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::Api.EventLogConfig"
             $($field $value)*)
         };
     }
@@ -215,7 +215,7 @@ pub mod api {
     #[macro_export]
     macro_rules! __aws_appsync_Api_LambdaAuthorizerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::Api.LambdaAuthorizerConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::Api.LambdaAuthorizerConfig"
             $($field $value)*)
         };
     }
@@ -253,7 +253,7 @@ pub mod api {
     #[macro_export]
     macro_rules! __aws_appsync_Api_OpenIDConnectConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::Api.OpenIDConnectConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::Api.OpenIDConnectConfig"
             $($field $value)*)
         };
     }
@@ -293,7 +293,7 @@ pub mod channelnamespace {
     #[macro_export]
     macro_rules! __aws_appsync_ChannelNamespace_AuthMode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::ChannelNamespace.AuthMode"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::ChannelNamespace.AuthMode"
             $($field $value)*)
         };
     }
@@ -319,7 +319,7 @@ pub mod channelnamespace {
     #[macro_export]
     macro_rules! __aws_appsync_ChannelNamespace_HandlerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::ChannelNamespace.HandlerConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::ChannelNamespace.HandlerConfig"
             $($field $value)*)
         };
     }
@@ -347,7 +347,7 @@ pub mod channelnamespace {
     #[macro_export]
     macro_rules! __aws_appsync_ChannelNamespace_HandlerConfigs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::ChannelNamespace.HandlerConfigs"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::ChannelNamespace.HandlerConfigs"
             $($field $value)*)
         };
     }
@@ -379,7 +379,7 @@ pub mod channelnamespace {
     #[macro_export]
     macro_rules! __aws_appsync_ChannelNamespace_Integration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::ChannelNamespace.Integration"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::ChannelNamespace.Integration"
             $($field $value)*)
         };
     }
@@ -408,7 +408,7 @@ pub mod channelnamespace {
     #[macro_export]
     macro_rules! __aws_appsync_ChannelNamespace_LambdaConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::ChannelNamespace.LambdaConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::ChannelNamespace.LambdaConfig"
             $($field $value)*)
         };
     }
@@ -434,7 +434,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_appsync_DataSource_AuthorizationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::DataSource.AuthorizationConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::DataSource.AuthorizationConfig"
             $($field $value)*)
         };
     }
@@ -464,7 +464,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_appsync_DataSource_AwsIamConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::DataSource.AwsIamConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::DataSource.AwsIamConfig"
             $($field $value)*)
         };
     }
@@ -497,7 +497,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_appsync_DataSource_DeltaSyncConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::DataSource.DeltaSyncConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::DataSource.DeltaSyncConfig"
             $($field $value)*)
         };
     }
@@ -532,7 +532,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_appsync_DataSource_DynamoDBConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::DataSource.DynamoDBConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::DataSource.DynamoDBConfig"
             $($field $value)*)
         };
     }
@@ -578,7 +578,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_appsync_DataSource_ElasticsearchConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::DataSource.ElasticsearchConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::DataSource.ElasticsearchConfig"
             $($field $value)*)
         };
     }
@@ -605,7 +605,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_appsync_DataSource_EventBridgeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::DataSource.EventBridgeConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::DataSource.EventBridgeConfig"
             $($field $value)*)
         };
     }
@@ -629,7 +629,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_appsync_DataSource_HttpConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::DataSource.HttpConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::DataSource.HttpConfig"
             $($field $value)*)
         };
     }
@@ -658,7 +658,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_appsync_DataSource_LambdaConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::DataSource.LambdaConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::DataSource.LambdaConfig"
             $($field $value)*)
         };
     }
@@ -682,7 +682,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_appsync_DataSource_OpenSearchServiceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::DataSource.OpenSearchServiceConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::DataSource.OpenSearchServiceConfig"
             $($field $value)*)
         };
     }
@@ -713,7 +713,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_appsync_DataSource_RdsHttpEndpointConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::DataSource.RdsHttpEndpointConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::DataSource.RdsHttpEndpointConfig"
             $($field $value)*)
         };
     }
@@ -754,7 +754,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_appsync_DataSource_RelationalDatabaseConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::DataSource.RelationalDatabaseConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::DataSource.RelationalDatabaseConfig"
             $($field $value)*)
         };
     }
@@ -786,7 +786,7 @@ pub mod functionconfiguration {
     #[macro_export]
     macro_rules! __aws_appsync_FunctionConfiguration_AppSyncRuntime {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::FunctionConfiguration.AppSyncRuntime"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::FunctionConfiguration.AppSyncRuntime"
             $($field $value)*)
         };
     }
@@ -813,7 +813,7 @@ pub mod functionconfiguration {
     #[macro_export]
     macro_rules! __aws_appsync_FunctionConfiguration_LambdaConflictHandlerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::FunctionConfiguration.LambdaConflictHandlerConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::FunctionConfiguration.LambdaConflictHandlerConfig"
             $($field $value)*)
         };
     }
@@ -840,7 +840,7 @@ pub mod functionconfiguration {
     #[macro_export]
     macro_rules! __aws_appsync_FunctionConfiguration_SyncConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::FunctionConfiguration.SyncConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::FunctionConfiguration.SyncConfig"
             $($field $value)*)
         };
     }
@@ -880,7 +880,7 @@ pub mod graphqlapi {
     #[macro_export]
     macro_rules! __aws_appsync_GraphQLApi_AdditionalAuthenticationProvider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::GraphQLApi.AdditionalAuthenticationProvider"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::GraphQLApi.AdditionalAuthenticationProvider"
             $($field $value)*)
         };
     }
@@ -923,7 +923,7 @@ pub mod graphqlapi {
     #[macro_export]
     macro_rules! __aws_appsync_GraphQLApi_CognitoUserPoolConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::GraphQLApi.CognitoUserPoolConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::GraphQLApi.CognitoUserPoolConfig"
             $($field $value)*)
         };
     }
@@ -962,7 +962,7 @@ pub mod graphqlapi {
     #[macro_export]
     macro_rules! __aws_appsync_GraphQLApi_EnhancedMetricsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::GraphQLApi.EnhancedMetricsConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::GraphQLApi.EnhancedMetricsConfig"
             $($field $value)*)
         };
     }
@@ -995,7 +995,7 @@ pub mod graphqlapi {
     #[macro_export]
     macro_rules! __aws_appsync_GraphQLApi_LambdaAuthorizerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::GraphQLApi.LambdaAuthorizerConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::GraphQLApi.LambdaAuthorizerConfig"
             $($field $value)*)
         };
     }
@@ -1034,7 +1034,7 @@ pub mod graphqlapi {
     #[macro_export]
     macro_rules! __aws_appsync_GraphQLApi_LogConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::GraphQLApi.LogConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::GraphQLApi.LogConfig"
             $($field $value)*)
         };
     }
@@ -1074,7 +1074,7 @@ pub mod graphqlapi {
     #[macro_export]
     macro_rules! __aws_appsync_GraphQLApi_OpenIDConnectConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::GraphQLApi.OpenIDConnectConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::GraphQLApi.OpenIDConnectConfig"
             $($field $value)*)
         };
     }
@@ -1114,7 +1114,7 @@ pub mod graphqlapi {
     #[macro_export]
     macro_rules! __aws_appsync_GraphQLApi_UserPoolConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::GraphQLApi.UserPoolConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::GraphQLApi.UserPoolConfig"
             $($field $value)*)
         };
     }
@@ -1160,7 +1160,7 @@ pub mod resolver {
     #[macro_export]
     macro_rules! __aws_appsync_Resolver_AppSyncRuntime {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::Resolver.AppSyncRuntime"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::Resolver.AppSyncRuntime"
             $($field $value)*)
         };
     }
@@ -1188,7 +1188,7 @@ pub mod resolver {
     #[macro_export]
     macro_rules! __aws_appsync_Resolver_CachingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::Resolver.CachingConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::Resolver.CachingConfig"
             $($field $value)*)
         };
     }
@@ -1217,7 +1217,7 @@ pub mod resolver {
     #[macro_export]
     macro_rules! __aws_appsync_Resolver_LambdaConflictHandlerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::Resolver.LambdaConflictHandlerConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::Resolver.LambdaConflictHandlerConfig"
             $($field $value)*)
         };
     }
@@ -1242,7 +1242,7 @@ pub mod resolver {
     #[macro_export]
     macro_rules! __aws_appsync_Resolver_PipelineConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::Resolver.PipelineConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::Resolver.PipelineConfig"
             $($field $value)*)
         };
     }
@@ -1269,7 +1269,7 @@ pub mod resolver {
     #[macro_export]
     macro_rules! __aws_appsync_Resolver_SyncConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::Resolver.SyncConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::Resolver.SyncConfig"
             $($field $value)*)
         };
     }
@@ -1306,7 +1306,7 @@ pub mod sourceapiassociation {
     #[macro_export]
     macro_rules! __aws_appsync_SourceApiAssociation_SourceApiAssociationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AppSync::SourceApiAssociation.SourceApiAssociationConfig"
+            stratosphere::generator::construct_property_type!("AWS::AppSync::SourceApiAssociation.SourceApiAssociationConfig"
             $($field $value)*)
         };
     }
@@ -1335,7 +1335,7 @@ pub struct Api_ {
 #[macro_export]
 macro_rules! __aws_appsync_Api {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppSync::Api" $($field
+        stratosphere::generator::construct_resource_type!("AWS::AppSync::Api" $($field
         $value)*)
     };
 }
@@ -1387,7 +1387,7 @@ pub struct ApiCache_ {
 #[macro_export]
 macro_rules! __aws_appsync_ApiCache {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppSync::ApiCache"
+        stratosphere::generator::construct_resource_type!("AWS::AppSync::ApiCache"
         $($field $value)*)
     };
 }
@@ -1451,7 +1451,7 @@ pub struct ApiKey_ {
 #[macro_export]
 macro_rules! __aws_appsync_ApiKey {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppSync::ApiKey" $($field
+        stratosphere::generator::construct_resource_type!("AWS::AppSync::ApiKey" $($field
         $value)*)
     };
 }
@@ -1507,7 +1507,7 @@ pub struct ChannelNamespace_ {
 #[macro_export]
 macro_rules! __aws_appsync_ChannelNamespace {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppSync::ChannelNamespace"
+        stratosphere::generator::construct_resource_type!("AWS::AppSync::ChannelNamespace"
         $($field $value)*)
     };
 }
@@ -1587,7 +1587,7 @@ pub struct DataSource_ {
 #[macro_export]
 macro_rules! __aws_appsync_DataSource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppSync::DataSource"
+        stratosphere::generator::construct_resource_type!("AWS::AppSync::DataSource"
         $($field $value)*)
     };
 }
@@ -1689,7 +1689,7 @@ pub struct DomainName_ {
 #[macro_export]
 macro_rules! __aws_appsync_DomainName {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppSync::DomainName"
+        stratosphere::generator::construct_resource_type!("AWS::AppSync::DomainName"
         $($field $value)*)
     };
 }
@@ -1734,7 +1734,7 @@ pub struct DomainNameApiAssociation_ {
 #[macro_export]
 macro_rules! __aws_appsync_DomainNameApiAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppSync::DomainNameApiAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::AppSync::DomainNameApiAssociation"
         $($field $value)*)
     };
 }
@@ -1782,7 +1782,7 @@ pub struct FunctionConfiguration_ {
 #[macro_export]
 macro_rules! __aws_appsync_FunctionConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppSync::FunctionConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::AppSync::FunctionConfiguration"
         $($field $value)*)
     };
 }
@@ -1902,7 +1902,7 @@ pub struct GraphQLApi_ {
 #[macro_export]
 macro_rules! __aws_appsync_GraphQLApi {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppSync::GraphQLApi"
+        stratosphere::generator::construct_resource_type!("AWS::AppSync::GraphQLApi"
         $($field $value)*)
     };
 }
@@ -2032,7 +2032,7 @@ pub struct GraphQLSchema_ {
 #[macro_export]
 macro_rules! __aws_appsync_GraphQLSchema {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppSync::GraphQLSchema"
+        stratosphere::generator::construct_resource_type!("AWS::AppSync::GraphQLSchema"
         $($field $value)*)
     };
 }
@@ -2091,7 +2091,7 @@ pub struct Resolver_ {
 #[macro_export]
 macro_rules! __aws_appsync_Resolver {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppSync::Resolver"
+        stratosphere::generator::construct_resource_type!("AWS::AppSync::Resolver"
         $($field $value)*)
     };
 }
@@ -2212,7 +2212,7 @@ pub struct SourceApiAssociation_ {
 #[macro_export]
 macro_rules! __aws_appsync_SourceApiAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AppSync::SourceApiAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::AppSync::SourceApiAssociation"
         $($field $value)*)
     };
 }

@@ -9,7 +9,7 @@ pub mod proactiveengagement {
     #[macro_export]
     macro_rules! __aws_shield_ProactiveEngagement_EmergencyContact {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Shield::ProactiveEngagement.EmergencyContact"
+            stratosphere::generator::construct_property_type!("AWS::Shield::ProactiveEngagement.EmergencyContact"
             $($field $value)*)
         };
     }
@@ -47,7 +47,7 @@ pub mod protection {
     #[macro_export]
     macro_rules! __aws_shield_Protection_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Shield::Protection.Action"
+            stratosphere::generator::construct_property_type!("AWS::Shield::Protection.Action"
             $($field $value)*)
         };
     }
@@ -73,7 +73,7 @@ pub mod protection {
     #[macro_export]
     macro_rules! __aws_shield_Protection_ApplicationLayerAutomaticResponseConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Shield::Protection.ApplicationLayerAutomaticResponseConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Shield::Protection.ApplicationLayerAutomaticResponseConfiguration"
             $($field $value)*)
         };
     }
@@ -102,7 +102,7 @@ pub struct DRTAccess_ {
 #[macro_export]
 macro_rules! __aws_shield_DRTAccess {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Shield::DRTAccess"
+        stratosphere::generator::construct_resource_type!("AWS::Shield::DRTAccess"
         $($field $value)*)
     };
 }
@@ -140,7 +140,7 @@ pub struct ProactiveEngagement_ {
 #[macro_export]
 macro_rules! __aws_shield_ProactiveEngagement {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Shield::ProactiveEngagement"
+        stratosphere::generator::construct_resource_type!("AWS::Shield::ProactiveEngagement"
         $($field $value)*)
     };
 }
@@ -180,7 +180,7 @@ pub struct Protection_ {
 #[macro_export]
 macro_rules! __aws_shield_Protection {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Shield::Protection"
+        stratosphere::generator::construct_resource_type!("AWS::Shield::Protection"
         $($field $value)*)
     };
 }
@@ -235,7 +235,7 @@ pub struct ProtectionGroup_ {
 #[macro_export]
 macro_rules! __aws_shield_ProtectionGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Shield::ProtectionGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Shield::ProtectionGroup"
         $($field $value)*)
     };
 }

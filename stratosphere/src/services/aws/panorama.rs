@@ -7,7 +7,7 @@ pub mod applicationinstance {
     #[macro_export]
     macro_rules! __aws_panorama_ApplicationInstance_ManifestOverridesPayload {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Panorama::ApplicationInstance.ManifestOverridesPayload"
+            stratosphere::generator::construct_property_type!("AWS::Panorama::ApplicationInstance.ManifestOverridesPayload"
             $($field $value)*)
         };
     }
@@ -32,7 +32,7 @@ pub mod applicationinstance {
     #[macro_export]
     macro_rules! __aws_panorama_ApplicationInstance_ManifestPayload {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Panorama::ApplicationInstance.ManifestPayload"
+            stratosphere::generator::construct_property_type!("AWS::Panorama::ApplicationInstance.ManifestPayload"
             $($field $value)*)
         };
     }
@@ -63,7 +63,7 @@ pub mod package {
     #[macro_export]
     macro_rules! __aws_panorama_Package_StorageLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Panorama::Package.StorageLocation"
+            stratosphere::generator::construct_property_type!("AWS::Panorama::Package.StorageLocation"
             $($field $value)*)
         };
     }
@@ -118,7 +118,7 @@ pub struct ApplicationInstance_ {
 #[macro_export]
 macro_rules! __aws_panorama_ApplicationInstance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Panorama::ApplicationInstance"
+        stratosphere::generator::construct_resource_type!("AWS::Panorama::ApplicationInstance"
         $($field $value)*)
     };
 }
@@ -185,7 +185,7 @@ pub struct Package_ {
 #[macro_export]
 macro_rules! __aws_panorama_Package {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Panorama::Package"
+        stratosphere::generator::construct_resource_type!("AWS::Panorama::Package"
         $($field $value)*)
     };
 }
@@ -230,7 +230,7 @@ pub struct PackageVersion_ {
 #[macro_export]
 macro_rules! __aws_panorama_PackageVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Panorama::PackageVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Panorama::PackageVersion"
         $($field $value)*)
     };
 }

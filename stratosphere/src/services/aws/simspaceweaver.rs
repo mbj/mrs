@@ -8,7 +8,7 @@ pub mod simulation {
     #[macro_export]
     macro_rules! __aws_simspaceweaver_Simulation_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SimSpaceWeaver::Simulation.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::SimSpaceWeaver::Simulation.S3Location"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub struct Simulation_ {
 #[macro_export]
 macro_rules! __aws_simspaceweaver_Simulation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SimSpaceWeaver::Simulation"
+        stratosphere::generator::construct_resource_type!("AWS::SimSpaceWeaver::Simulation"
         $($field $value)*)
     };
 }

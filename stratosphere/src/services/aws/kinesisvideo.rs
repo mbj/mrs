@@ -9,7 +9,7 @@ pub struct SignalingChannel_ {
 #[macro_export]
 macro_rules! __aws_kinesisvideo_SignalingChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::KinesisVideo::SignalingChannel"
+        stratosphere::generator::construct_resource_type!("AWS::KinesisVideo::SignalingChannel"
         $($field $value)*)
     };
 }
@@ -56,7 +56,7 @@ pub struct Stream_ {
 #[macro_export]
 macro_rules! __aws_kinesisvideo_Stream {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::KinesisVideo::Stream"
+        stratosphere::generator::construct_resource_type!("AWS::KinesisVideo::Stream"
         $($field $value)*)
     };
 }

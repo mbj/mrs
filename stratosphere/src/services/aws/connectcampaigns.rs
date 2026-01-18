@@ -7,7 +7,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaigns_Campaign_AgentlessDialerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaigns::Campaign.AgentlessDialerConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaigns::Campaign.AgentlessDialerConfig"
             $($field $value)*)
         };
     }
@@ -33,7 +33,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaigns_Campaign_AnswerMachineDetectionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaigns::Campaign.AnswerMachineDetectionConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaigns::Campaign.AnswerMachineDetectionConfig"
             $($field $value)*)
         };
     }
@@ -64,7 +64,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaigns_Campaign_DialerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaigns::Campaign.DialerConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaigns::Campaign.DialerConfig"
             $($field $value)*)
         };
     }
@@ -104,7 +104,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaigns_Campaign_OutboundCallConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaigns::Campaign.OutboundCallConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaigns::Campaign.OutboundCallConfig"
             $($field $value)*)
         };
     }
@@ -146,7 +146,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaigns_Campaign_PredictiveDialerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaigns::Campaign.PredictiveDialerConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaigns::Campaign.PredictiveDialerConfig"
             $($field $value)*)
         };
     }
@@ -176,7 +176,7 @@ pub mod campaign {
     #[macro_export]
     macro_rules! __aws_connectcampaigns_Campaign_ProgressiveDialerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ConnectCampaigns::Campaign.ProgressiveDialerConfig"
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaigns::Campaign.ProgressiveDialerConfig"
             $($field $value)*)
         };
     }
@@ -210,7 +210,7 @@ pub struct Campaign_ {
 #[macro_export]
 macro_rules! __aws_connectcampaigns_Campaign {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ConnectCampaigns::Campaign"
+        stratosphere::generator::construct_resource_type!("AWS::ConnectCampaigns::Campaign"
         $($field $value)*)
     };
 }

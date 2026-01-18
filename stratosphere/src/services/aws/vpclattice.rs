@@ -8,7 +8,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_vpclattice_Listener_DefaultAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Listener.DefaultAction"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Listener.DefaultAction"
             $($field $value)*)
         };
     }
@@ -39,7 +39,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_vpclattice_Listener_FixedResponse {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Listener.FixedResponse"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Listener.FixedResponse"
             $($field $value)*)
         };
     }
@@ -62,7 +62,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_vpclattice_Listener_Forward {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Listener.Forward"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Listener.Forward"
             $($field $value)*)
         };
     }
@@ -86,7 +86,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_vpclattice_Listener_WeightedTargetGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Listener.WeightedTargetGroup"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Listener.WeightedTargetGroup"
             $($field $value)*)
         };
     }
@@ -115,7 +115,7 @@ pub mod resourceconfiguration {
     #[macro_export]
     macro_rules! __aws_vpclattice_ResourceConfiguration_DnsResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::ResourceConfiguration.DnsResource"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::ResourceConfiguration.DnsResource"
             $($field $value)*)
         };
     }
@@ -144,7 +144,7 @@ pub mod resourceconfiguration {
     #[macro_export]
     macro_rules! __aws_vpclattice_ResourceConfiguration_ResourceConfigurationDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::ResourceConfiguration.ResourceConfigurationDefinition"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::ResourceConfiguration.ResourceConfigurationDefinition"
             $($field $value)*)
         };
     }
@@ -184,7 +184,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_vpclattice_Rule_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Rule.Action"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Rule.Action"
             $($field $value)*)
         };
     }
@@ -215,7 +215,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_vpclattice_Rule_FixedResponse {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Rule.FixedResponse"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Rule.FixedResponse"
             $($field $value)*)
         };
     }
@@ -238,7 +238,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_vpclattice_Rule_Forward {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Rule.Forward"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Rule.Forward"
             $($field $value)*)
         };
     }
@@ -263,7 +263,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_vpclattice_Rule_HeaderMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Rule.HeaderMatch"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Rule.HeaderMatch"
             $($field $value)*)
         };
     }
@@ -298,7 +298,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_vpclattice_Rule_HeaderMatchType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Rule.HeaderMatchType"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Rule.HeaderMatchType"
             $($field $value)*)
         };
     }
@@ -331,7 +331,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_vpclattice_Rule_HttpMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Rule.HttpMatch"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Rule.HttpMatch"
             $($field $value)*)
         };
     }
@@ -365,7 +365,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_vpclattice_Rule_Match {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Rule.Match"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Rule.Match"
             $($field $value)*)
         };
     }
@@ -389,7 +389,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_vpclattice_Rule_PathMatch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Rule.PathMatch"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Rule.PathMatch"
             $($field $value)*)
         };
     }
@@ -419,7 +419,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_vpclattice_Rule_PathMatchType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Rule.PathMatchType"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Rule.PathMatchType"
             $($field $value)*)
         };
     }
@@ -445,7 +445,7 @@ pub mod rule {
     #[macro_export]
     macro_rules! __aws_vpclattice_Rule_WeightedTargetGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Rule.WeightedTargetGroup"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Rule.WeightedTargetGroup"
             $($field $value)*)
         };
     }
@@ -474,7 +474,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_vpclattice_Service_DnsEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::Service.DnsEntry"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::Service.DnsEntry"
             $($field $value)*)
         };
     }
@@ -507,7 +507,7 @@ pub mod servicenetwork {
     #[macro_export]
     macro_rules! __aws_vpclattice_ServiceNetwork_SharingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::ServiceNetwork.SharingConfig"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::ServiceNetwork.SharingConfig"
             $($field $value)*)
         };
     }
@@ -533,7 +533,7 @@ pub mod servicenetworkserviceassociation {
     #[macro_export]
     macro_rules! __aws_vpclattice_ServiceNetworkServiceAssociation_DnsEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::ServiceNetworkServiceAssociation.DnsEntry"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::ServiceNetworkServiceAssociation.DnsEntry"
             $($field $value)*)
         };
     }
@@ -575,7 +575,7 @@ pub mod targetgroup {
     #[macro_export]
     macro_rules! __aws_vpclattice_TargetGroup_HealthCheckConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::TargetGroup.HealthCheckConfig"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::TargetGroup.HealthCheckConfig"
             $($field $value)*)
         };
     }
@@ -648,7 +648,7 @@ pub mod targetgroup {
     #[macro_export]
     macro_rules! __aws_vpclattice_TargetGroup_Matcher {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::TargetGroup.Matcher"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::TargetGroup.Matcher"
             $($field $value)*)
         };
     }
@@ -672,7 +672,7 @@ pub mod targetgroup {
     #[macro_export]
     macro_rules! __aws_vpclattice_TargetGroup_Target {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::TargetGroup.Target"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::TargetGroup.Target"
             $($field $value)*)
         };
     }
@@ -701,7 +701,7 @@ pub mod targetgroup {
     #[macro_export]
     macro_rules! __aws_vpclattice_TargetGroup_TargetGroupConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VpcLattice::TargetGroup.TargetGroupConfig"
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::TargetGroup.TargetGroupConfig"
             $($field $value)*)
         };
     }
@@ -763,7 +763,7 @@ pub struct AccessLogSubscription_ {
 #[macro_export]
 macro_rules! __aws_vpclattice_AccessLogSubscription {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VpcLattice::AccessLogSubscription"
+        stratosphere::generator::construct_resource_type!("AWS::VpcLattice::AccessLogSubscription"
         $($field $value)*)
     };
 }
@@ -810,7 +810,7 @@ pub struct AuthPolicy_ {
 #[macro_export]
 macro_rules! __aws_vpclattice_AuthPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VpcLattice::AuthPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::VpcLattice::AuthPolicy"
         $($field $value)*)
     };
 }
@@ -850,7 +850,7 @@ pub struct Listener_ {
 #[macro_export]
 macro_rules! __aws_vpclattice_Listener {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VpcLattice::Listener"
+        stratosphere::generator::construct_resource_type!("AWS::VpcLattice::Listener"
         $($field $value)*)
     };
 }
@@ -910,7 +910,7 @@ pub struct ResourceConfiguration_ {
 #[macro_export]
 macro_rules! __aws_vpclattice_ResourceConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VpcLattice::ResourceConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::VpcLattice::ResourceConfiguration"
         $($field $value)*)
     };
 }
@@ -995,7 +995,7 @@ pub struct ResourceGateway_ {
 #[macro_export]
 macro_rules! __aws_vpclattice_ResourceGateway {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VpcLattice::ResourceGateway"
+        stratosphere::generator::construct_resource_type!("AWS::VpcLattice::ResourceGateway"
         $($field $value)*)
     };
 }
@@ -1050,7 +1050,7 @@ pub struct ResourcePolicy_ {
 #[macro_export]
 macro_rules! __aws_vpclattice_ResourcePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VpcLattice::ResourcePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::VpcLattice::ResourcePolicy"
         $($field $value)*)
     };
 }
@@ -1091,8 +1091,8 @@ pub struct Rule_ {
 #[macro_export]
 macro_rules! __aws_vpclattice_Rule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VpcLattice::Rule" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::VpcLattice::Rule"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_vpclattice_Rule as Rule;
@@ -1153,7 +1153,7 @@ pub struct Service_ {
 #[macro_export]
 macro_rules! __aws_vpclattice_Service {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VpcLattice::Service"
+        stratosphere::generator::construct_resource_type!("AWS::VpcLattice::Service"
         $($field $value)*)
     };
 }
@@ -1213,7 +1213,7 @@ pub struct ServiceNetwork_ {
 #[macro_export]
 macro_rules! __aws_vpclattice_ServiceNetwork {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VpcLattice::ServiceNetwork"
+        stratosphere::generator::construct_resource_type!("AWS::VpcLattice::ServiceNetwork"
         $($field $value)*)
     };
 }
@@ -1260,7 +1260,7 @@ pub struct ServiceNetworkResourceAssociation_ {
 #[macro_export]
 macro_rules! __aws_vpclattice_ServiceNetworkResourceAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VpcLattice::ServiceNetworkResourceAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::VpcLattice::ServiceNetworkResourceAssociation"
         $($field $value)*)
     };
 }
@@ -1307,7 +1307,7 @@ pub struct ServiceNetworkServiceAssociation_ {
 #[macro_export]
 macro_rules! __aws_vpclattice_ServiceNetworkServiceAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VpcLattice::ServiceNetworkServiceAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::VpcLattice::ServiceNetworkServiceAssociation"
         $($field $value)*)
     };
 }
@@ -1360,7 +1360,7 @@ pub struct ServiceNetworkVpcAssociation_ {
 #[macro_export]
 macro_rules! __aws_vpclattice_ServiceNetworkVpcAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VpcLattice::ServiceNetworkVpcAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::VpcLattice::ServiceNetworkVpcAssociation"
         $($field $value)*)
     };
 }
@@ -1414,7 +1414,7 @@ pub struct TargetGroup_ {
 #[macro_export]
 macro_rules! __aws_vpclattice_TargetGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VpcLattice::TargetGroup"
+        stratosphere::generator::construct_resource_type!("AWS::VpcLattice::TargetGroup"
         $($field $value)*)
     };
 }

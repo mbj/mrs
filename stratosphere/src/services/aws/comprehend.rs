@@ -9,7 +9,7 @@ pub mod documentclassifier {
     #[macro_export]
     macro_rules! __aws_comprehend_DocumentClassifier_AugmentedManifestsListItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Comprehend::DocumentClassifier.AugmentedManifestsListItem"
+            stratosphere::generator::construct_property_type!("AWS::Comprehend::DocumentClassifier.AugmentedManifestsListItem"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod documentclassifier {
     #[macro_export]
     macro_rules! __aws_comprehend_DocumentClassifier_DocumentClassifierDocuments {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Comprehend::DocumentClassifier.DocumentClassifierDocuments"
+            stratosphere::generator::construct_property_type!("AWS::Comprehend::DocumentClassifier.DocumentClassifierDocuments"
             $($field $value)*)
         };
     }
@@ -76,7 +76,7 @@ pub mod documentclassifier {
     #[macro_export]
     macro_rules! __aws_comprehend_DocumentClassifier_DocumentClassifierInputDataConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Comprehend::DocumentClassifier.DocumentClassifierInputDataConfig"
+            stratosphere::generator::construct_property_type!("AWS::Comprehend::DocumentClassifier.DocumentClassifierInputDataConfig"
             $($field $value)*)
         };
     }
@@ -141,7 +141,7 @@ pub mod documentclassifier {
     #[macro_export]
     macro_rules! __aws_comprehend_DocumentClassifier_DocumentClassifierOutputDataConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Comprehend::DocumentClassifier.DocumentClassifierOutputDataConfig"
+            stratosphere::generator::construct_property_type!("AWS::Comprehend::DocumentClassifier.DocumentClassifierOutputDataConfig"
             $($field $value)*)
         };
     }
@@ -171,7 +171,7 @@ pub mod documentclassifier {
     #[macro_export]
     macro_rules! __aws_comprehend_DocumentClassifier_DocumentReaderConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Comprehend::DocumentClassifier.DocumentReaderConfig"
+            stratosphere::generator::construct_property_type!("AWS::Comprehend::DocumentClassifier.DocumentReaderConfig"
             $($field $value)*)
         };
     }
@@ -207,7 +207,7 @@ pub mod documentclassifier {
     #[macro_export]
     macro_rules! __aws_comprehend_DocumentClassifier_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Comprehend::DocumentClassifier.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::Comprehend::DocumentClassifier.VpcConfig"
             $($field $value)*)
         };
     }
@@ -239,7 +239,7 @@ pub mod flywheel {
     #[macro_export]
     macro_rules! __aws_comprehend_Flywheel_DataSecurityConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Comprehend::Flywheel.DataSecurityConfig"
+            stratosphere::generator::construct_property_type!("AWS::Comprehend::Flywheel.DataSecurityConfig"
             $($field $value)*)
         };
     }
@@ -283,7 +283,7 @@ pub mod flywheel {
     #[macro_export]
     macro_rules! __aws_comprehend_Flywheel_DocumentClassificationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Comprehend::Flywheel.DocumentClassificationConfig"
+            stratosphere::generator::construct_property_type!("AWS::Comprehend::Flywheel.DocumentClassificationConfig"
             $($field $value)*)
         };
     }
@@ -309,7 +309,7 @@ pub mod flywheel {
     #[macro_export]
     macro_rules! __aws_comprehend_Flywheel_EntityRecognitionConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Comprehend::Flywheel.EntityRecognitionConfig"
+            stratosphere::generator::construct_property_type!("AWS::Comprehend::Flywheel.EntityRecognitionConfig"
             $($field $value)*)
         };
     }
@@ -334,7 +334,7 @@ pub mod flywheel {
     #[macro_export]
     macro_rules! __aws_comprehend_Flywheel_EntityTypesListItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Comprehend::Flywheel.EntityTypesListItem"
+            stratosphere::generator::construct_property_type!("AWS::Comprehend::Flywheel.EntityTypesListItem"
             $($field $value)*)
         };
     }
@@ -359,7 +359,7 @@ pub mod flywheel {
     #[macro_export]
     macro_rules! __aws_comprehend_Flywheel_TaskConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Comprehend::Flywheel.TaskConfig"
+            stratosphere::generator::construct_property_type!("AWS::Comprehend::Flywheel.TaskConfig"
             $($field $value)*)
         };
     }
@@ -395,7 +395,7 @@ pub mod flywheel {
     #[macro_export]
     macro_rules! __aws_comprehend_Flywheel_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Comprehend::Flywheel.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::Comprehend::Flywheel.VpcConfig"
             $($field $value)*)
         };
     }
@@ -436,7 +436,7 @@ pub struct DocumentClassifier_ {
 #[macro_export]
 macro_rules! __aws_comprehend_DocumentClassifier {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Comprehend::DocumentClassifier"
+        stratosphere::generator::construct_resource_type!("AWS::Comprehend::DocumentClassifier"
         $($field $value)*)
     };
 }
@@ -528,7 +528,7 @@ pub struct Flywheel_ {
 #[macro_export]
 macro_rules! __aws_comprehend_Flywheel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Comprehend::Flywheel"
+        stratosphere::generator::construct_resource_type!("AWS::Comprehend::Flywheel"
         $($field $value)*)
     };
 }

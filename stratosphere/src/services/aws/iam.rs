@@ -8,7 +8,7 @@ pub mod group {
     #[macro_export]
     macro_rules! __aws_iam_Group_Policy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IAM::Group.Policy"
+            stratosphere::generator::construct_property_type!("AWS::IAM::Group.Policy"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod role {
     #[macro_export]
     macro_rules! __aws_iam_Role_Policy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IAM::Role.Policy"
+            stratosphere::generator::construct_property_type!("AWS::IAM::Role.Policy"
             $($field $value)*)
         };
     }
@@ -68,7 +68,7 @@ pub mod samlprovider {
     #[macro_export]
     macro_rules! __aws_iam_SAMLProvider_SAMLPrivateKey {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IAM::SAMLProvider.SAMLPrivateKey"
+            stratosphere::generator::construct_property_type!("AWS::IAM::SAMLProvider.SAMLPrivateKey"
             $($field $value)*)
         };
     }
@@ -98,7 +98,7 @@ pub mod user {
     #[macro_export]
     macro_rules! __aws_iam_User_LoginProfile {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IAM::User.LoginProfile"
+            stratosphere::generator::construct_property_type!("AWS::IAM::User.LoginProfile"
             $($field $value)*)
         };
     }
@@ -128,7 +128,7 @@ pub mod user {
     #[macro_export]
     macro_rules! __aws_iam_User_Policy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IAM::User.Policy"
+            stratosphere::generator::construct_property_type!("AWS::IAM::User.Policy"
             $($field $value)*)
         };
     }
@@ -158,7 +158,7 @@ pub struct AccessKey_ {
 #[macro_export]
 macro_rules! __aws_iam_AccessKey {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::AccessKey" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IAM::AccessKey" $($field
         $value)*)
     };
 }
@@ -198,7 +198,7 @@ pub struct Group_ {
 #[macro_export]
 macro_rules! __aws_iam_Group {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::Group" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IAM::Group" $($field
         $value)*)
     };
 }
@@ -248,8 +248,8 @@ pub struct GroupPolicy_ {
 #[macro_export]
 macro_rules! __aws_iam_GroupPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::GroupPolicy" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::IAM::GroupPolicy"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_iam_GroupPolicy as GroupPolicy;
@@ -291,7 +291,7 @@ pub struct InstanceProfile_ {
 #[macro_export]
 macro_rules! __aws_iam_InstanceProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::InstanceProfile"
+        stratosphere::generator::construct_resource_type!("AWS::IAM::InstanceProfile"
         $($field $value)*)
     };
 }
@@ -337,7 +337,7 @@ pub struct ManagedPolicy_ {
 #[macro_export]
 macro_rules! __aws_iam_ManagedPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::ManagedPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::IAM::ManagedPolicy"
         $($field $value)*)
     };
 }
@@ -395,7 +395,7 @@ pub struct OIDCProvider_ {
 #[macro_export]
 macro_rules! __aws_iam_OIDCProvider {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::OIDCProvider"
+        stratosphere::generator::construct_resource_type!("AWS::IAM::OIDCProvider"
         $($field $value)*)
     };
 }
@@ -444,7 +444,7 @@ pub struct Policy_ {
 #[macro_export]
 macro_rules! __aws_iam_Policy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::Policy" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IAM::Policy" $($field
         $value)*)
     };
 }
@@ -496,7 +496,7 @@ pub struct Role_ {
 #[macro_export]
 macro_rules! __aws_iam_Role {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::Role" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IAM::Role" $($field
         $value)*)
     };
 }
@@ -571,7 +571,7 @@ pub struct RolePolicy_ {
 #[macro_export]
 macro_rules! __aws_iam_RolePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::RolePolicy" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IAM::RolePolicy" $($field
         $value)*)
     };
 }
@@ -618,7 +618,7 @@ pub struct SAMLProvider_ {
 #[macro_export]
 macro_rules! __aws_iam_SAMLProvider {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::SAMLProvider"
+        stratosphere::generator::construct_resource_type!("AWS::IAM::SAMLProvider"
         $($field $value)*)
     };
 }
@@ -686,7 +686,7 @@ pub struct ServerCertificate_ {
 #[macro_export]
 macro_rules! __aws_iam_ServerCertificate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::ServerCertificate"
+        stratosphere::generator::construct_resource_type!("AWS::IAM::ServerCertificate"
         $($field $value)*)
     };
 }
@@ -745,7 +745,7 @@ pub struct ServiceLinkedRole_ {
 #[macro_export]
 macro_rules! __aws_iam_ServiceLinkedRole {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::ServiceLinkedRole"
+        stratosphere::generator::construct_resource_type!("AWS::IAM::ServiceLinkedRole"
         $($field $value)*)
     };
 }
@@ -797,7 +797,7 @@ pub struct User_ {
 #[macro_export]
 macro_rules! __aws_iam_User {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::User" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IAM::User" $($field
         $value)*)
     };
 }
@@ -865,7 +865,7 @@ pub struct UserPolicy_ {
 #[macro_export]
 macro_rules! __aws_iam_UserPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::UserPolicy" $($field
+        stratosphere::generator::construct_resource_type!("AWS::IAM::UserPolicy" $($field
         $value)*)
     };
 }
@@ -907,7 +907,7 @@ pub struct UserToGroupAddition_ {
 #[macro_export]
 macro_rules! __aws_iam_UserToGroupAddition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::UserToGroupAddition"
+        stratosphere::generator::construct_resource_type!("AWS::IAM::UserToGroupAddition"
         $($field $value)*)
     };
 }
@@ -945,7 +945,7 @@ pub struct VirtualMFADevice_ {
 #[macro_export]
 macro_rules! __aws_iam_VirtualMFADevice {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IAM::VirtualMFADevice"
+        stratosphere::generator::construct_resource_type!("AWS::IAM::VirtualMFADevice"
         $($field $value)*)
     };
 }

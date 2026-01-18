@@ -7,7 +7,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_qbusiness_Application_AttachmentsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Application.AttachmentsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Application.AttachmentsConfiguration"
             $($field $value)*)
         };
     }
@@ -31,7 +31,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_qbusiness_Application_AutoSubscriptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Application.AutoSubscriptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Application.AutoSubscriptionConfiguration"
             $($field $value)*)
         };
     }
@@ -60,7 +60,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_qbusiness_Application_EncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Application.EncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Application.EncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -85,7 +85,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_qbusiness_Application_PersonalizationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Application.PersonalizationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Application.PersonalizationConfiguration"
             $($field $value)*)
         };
     }
@@ -108,7 +108,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_qbusiness_Application_QAppsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Application.QAppsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Application.QAppsConfiguration"
             $($field $value)*)
         };
     }
@@ -131,7 +131,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_qbusiness_Application_QuickSightConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Application.QuickSightConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Application.QuickSightConfiguration"
             $($field $value)*)
         };
     }
@@ -157,7 +157,7 @@ pub mod dataaccessor {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataAccessor_ActionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataAccessor.ActionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataAccessor.ActionConfiguration"
             $($field $value)*)
         };
     }
@@ -186,7 +186,7 @@ pub mod dataaccessor {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataAccessor_ActionFilterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataAccessor.ActionFilterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataAccessor.ActionFilterConfiguration"
             $($field $value)*)
         };
     }
@@ -218,7 +218,7 @@ pub mod dataaccessor {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataAccessor_AttributeFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataAccessor.AttributeFilter"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataAccessor.AttributeFilter"
             $($field $value)*)
         };
     }
@@ -298,7 +298,7 @@ pub mod dataaccessor {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataAccessor_DataAccessorAuthenticationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataAccessor.DataAccessorAuthenticationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataAccessor.DataAccessorAuthenticationConfiguration"
             $($field $value)*)
         };
     }
@@ -323,7 +323,7 @@ pub mod dataaccessor {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataAccessor_DataAccessorAuthenticationDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataAccessor.DataAccessorAuthenticationDetail"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataAccessor.DataAccessorAuthenticationDetail"
             $($field $value)*)
         };
     }
@@ -358,7 +358,7 @@ pub mod dataaccessor {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataAccessor_DataAccessorIdcTrustedTokenIssuerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataAccessor.DataAccessorIdcTrustedTokenIssuerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataAccessor.DataAccessorIdcTrustedTokenIssuerConfiguration"
             $($field $value)*)
         };
     }
@@ -382,7 +382,7 @@ pub mod dataaccessor {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataAccessor_DocumentAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataAccessor.DocumentAttribute"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataAccessor.DocumentAttribute"
             $($field $value)*)
         };
     }
@@ -412,7 +412,7 @@ pub mod dataaccessor {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataAccessor_DocumentAttributeValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataAccessor.DocumentAttributeValue"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataAccessor.DocumentAttributeValue"
             $($field $value)*)
         };
     }
@@ -457,7 +457,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataSource_AudioExtractionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataSource.AudioExtractionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataSource.AudioExtractionConfiguration"
             $($field $value)*)
         };
     }
@@ -481,7 +481,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataSource_DataSourceVpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataSource.DataSourceVpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataSource.DataSourceVpcConfiguration"
             $($field $value)*)
         };
     }
@@ -510,7 +510,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataSource_DocumentAttributeCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataSource.DocumentAttributeCondition"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataSource.DocumentAttributeCondition"
             $($field $value)*)
         };
     }
@@ -542,7 +542,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataSource_DocumentAttributeTarget {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataSource.DocumentAttributeTarget"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataSource.DocumentAttributeTarget"
             $($field $value)*)
         };
     }
@@ -577,7 +577,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataSource_DocumentAttributeValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataSource.DocumentAttributeValue"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataSource.DocumentAttributeValue"
             $($field $value)*)
         };
     }
@@ -622,7 +622,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataSource_DocumentEnrichmentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataSource.DocumentEnrichmentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataSource.DocumentEnrichmentConfiguration"
             $($field $value)*)
         };
     }
@@ -662,7 +662,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataSource_HookConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataSource.HookConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataSource.HookConfiguration"
             $($field $value)*)
         };
     }
@@ -705,7 +705,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataSource_ImageExtractionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataSource.ImageExtractionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataSource.ImageExtractionConfiguration"
             $($field $value)*)
         };
     }
@@ -730,7 +730,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataSource_InlineDocumentEnrichmentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataSource.InlineDocumentEnrichmentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataSource.InlineDocumentEnrichmentConfiguration"
             $($field $value)*)
         };
     }
@@ -766,7 +766,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataSource_MediaExtractionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataSource.MediaExtractionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataSource.MediaExtractionConfiguration"
             $($field $value)*)
         };
     }
@@ -803,7 +803,7 @@ pub mod datasource {
     #[macro_export]
     macro_rules! __aws_qbusiness_DataSource_VideoExtractionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::DataSource.VideoExtractionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::DataSource.VideoExtractionConfiguration"
             $($field $value)*)
         };
     }
@@ -830,7 +830,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_qbusiness_Index_DocumentAttributeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Index.DocumentAttributeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Index.DocumentAttributeConfiguration"
             $($field $value)*)
         };
     }
@@ -858,7 +858,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_qbusiness_Index_IndexCapacityConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Index.IndexCapacityConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Index.IndexCapacityConfiguration"
             $($field $value)*)
         };
     }
@@ -880,7 +880,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_qbusiness_Index_IndexStatistics {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Index.IndexStatistics"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Index.IndexStatistics"
             $($field $value)*)
         };
     }
@@ -906,7 +906,7 @@ pub mod index {
     #[macro_export]
     macro_rules! __aws_qbusiness_Index_TextDocumentStatistics {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Index.TextDocumentStatistics"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Index.TextDocumentStatistics"
             $($field $value)*)
         };
     }
@@ -941,7 +941,7 @@ pub mod permission {
     #[macro_export]
     macro_rules! __aws_qbusiness_Permission_Condition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Permission.Condition"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Permission.Condition"
             $($field $value)*)
         };
     }
@@ -975,7 +975,7 @@ pub mod plugin {
     #[macro_export]
     macro_rules! __aws_qbusiness_Plugin_APISchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Plugin.APISchema"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Plugin.APISchema"
             $($field $value)*)
         };
     }
@@ -1004,7 +1004,7 @@ pub mod plugin {
     #[macro_export]
     macro_rules! __aws_qbusiness_Plugin_BasicAuthConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Plugin.BasicAuthConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Plugin.BasicAuthConfiguration"
             $($field $value)*)
         };
     }
@@ -1033,7 +1033,7 @@ pub mod plugin {
     #[macro_export]
     macro_rules! __aws_qbusiness_Plugin_CustomPluginConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Plugin.CustomPluginConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Plugin.CustomPluginConfiguration"
             $($field $value)*)
         };
     }
@@ -1067,7 +1067,7 @@ pub mod plugin {
     #[macro_export]
     macro_rules! __aws_qbusiness_Plugin_OAuth2ClientCredentialConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Plugin.OAuth2ClientCredentialConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Plugin.OAuth2ClientCredentialConfiguration"
             $($field $value)*)
         };
     }
@@ -1109,7 +1109,7 @@ pub mod plugin {
     #[macro_export]
     macro_rules! __aws_qbusiness_Plugin_PluginAuthConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Plugin.PluginAuthConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Plugin.PluginAuthConfiguration"
             $($field $value)*)
         };
     }
@@ -1147,7 +1147,7 @@ pub mod plugin {
     #[macro_export]
     macro_rules! __aws_qbusiness_Plugin_S3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Plugin.S3"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Plugin.S3"
             $($field $value)*)
         };
     }
@@ -1176,7 +1176,7 @@ pub mod retriever {
     #[macro_export]
     macro_rules! __aws_qbusiness_Retriever_KendraIndexConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Retriever.KendraIndexConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Retriever.KendraIndexConfiguration"
             $($field $value)*)
         };
     }
@@ -1199,7 +1199,7 @@ pub mod retriever {
     #[macro_export]
     macro_rules! __aws_qbusiness_Retriever_NativeIndexConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Retriever.NativeIndexConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Retriever.NativeIndexConfiguration"
             $($field $value)*)
         };
     }
@@ -1223,7 +1223,7 @@ pub mod retriever {
     #[macro_export]
     macro_rules! __aws_qbusiness_Retriever_RetrieverConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::Retriever.RetrieverConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::Retriever.RetrieverConfiguration"
             $($field $value)*)
         };
     }
@@ -1256,7 +1256,7 @@ pub mod webexperience {
     #[macro_export]
     macro_rules! __aws_qbusiness_WebExperience_BrowserExtensionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::WebExperience.BrowserExtensionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::WebExperience.BrowserExtensionConfiguration"
             $($field $value)*)
         };
     }
@@ -1282,7 +1282,7 @@ pub mod webexperience {
     #[macro_export]
     macro_rules! __aws_qbusiness_WebExperience_CustomizationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::WebExperience.CustomizationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::WebExperience.CustomizationConfiguration"
             $($field $value)*)
         };
     }
@@ -1326,7 +1326,7 @@ pub mod webexperience {
     #[macro_export]
     macro_rules! __aws_qbusiness_WebExperience_IdentityProviderConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::WebExperience.IdentityProviderConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::WebExperience.IdentityProviderConfiguration"
             $($field $value)*)
         };
     }
@@ -1358,7 +1358,7 @@ pub mod webexperience {
     #[macro_export]
     macro_rules! __aws_qbusiness_WebExperience_OpenIDConnectProviderConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::WebExperience.OpenIDConnectProviderConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::WebExperience.OpenIDConnectProviderConfiguration"
             $($field $value)*)
         };
     }
@@ -1385,7 +1385,7 @@ pub mod webexperience {
     #[macro_export]
     macro_rules! __aws_qbusiness_WebExperience_SamlProviderConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::QBusiness::WebExperience.SamlProviderConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::QBusiness::WebExperience.SamlProviderConfiguration"
             $($field $value)*)
         };
     }
@@ -1424,7 +1424,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_qbusiness_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QBusiness::Application"
+        stratosphere::generator::construct_resource_type!("AWS::QBusiness::Application"
         $($field $value)*)
     };
 }
@@ -1536,7 +1536,7 @@ pub struct DataAccessor_ {
 #[macro_export]
 macro_rules! __aws_qbusiness_DataAccessor {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QBusiness::DataAccessor"
+        stratosphere::generator::construct_resource_type!("AWS::QBusiness::DataAccessor"
         $($field $value)*)
     };
 }
@@ -1600,7 +1600,7 @@ pub struct DataSource_ {
 #[macro_export]
 macro_rules! __aws_qbusiness_DataSource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QBusiness::DataSource"
+        stratosphere::generator::construct_resource_type!("AWS::QBusiness::DataSource"
         $($field $value)*)
     };
 }
@@ -1689,8 +1689,8 @@ pub struct Index_ {
 #[macro_export]
 macro_rules! __aws_qbusiness_Index {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QBusiness::Index" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::QBusiness::Index"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_qbusiness_Index as Index;
@@ -1752,7 +1752,7 @@ pub struct Permission_ {
 #[macro_export]
 macro_rules! __aws_qbusiness_Permission {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QBusiness::Permission"
+        stratosphere::generator::construct_resource_type!("AWS::QBusiness::Permission"
         $($field $value)*)
     };
 }
@@ -1808,7 +1808,7 @@ pub struct Plugin_ {
 #[macro_export]
 macro_rules! __aws_qbusiness_Plugin {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QBusiness::Plugin"
+        stratosphere::generator::construct_resource_type!("AWS::QBusiness::Plugin"
         $($field $value)*)
     };
 }
@@ -1876,7 +1876,7 @@ pub struct Retriever_ {
 #[macro_export]
 macro_rules! __aws_qbusiness_Retriever {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QBusiness::Retriever"
+        stratosphere::generator::construct_resource_type!("AWS::QBusiness::Retriever"
         $($field $value)*)
     };
 }
@@ -1941,7 +1941,7 @@ pub struct WebExperience_ {
 #[macro_export]
 macro_rules! __aws_qbusiness_WebExperience {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::QBusiness::WebExperience"
+        stratosphere::generator::construct_resource_type!("AWS::QBusiness::WebExperience"
         $($field $value)*)
     };
 }

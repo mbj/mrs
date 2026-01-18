@@ -9,7 +9,7 @@ pub mod connectordefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_ConnectorDefinition_Connector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ConnectorDefinition.Connector"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ConnectorDefinition.Connector"
             $($field $value)*)
         };
     }
@@ -39,7 +39,7 @@ pub mod connectordefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_ConnectorDefinition_ConnectorDefinitionVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ConnectorDefinition.ConnectorDefinitionVersion"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ConnectorDefinition.ConnectorDefinitionVersion"
             $($field $value)*)
         };
     }
@@ -66,7 +66,7 @@ pub mod connectordefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_ConnectorDefinitionVersion_Connector {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ConnectorDefinitionVersion.Connector"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ConnectorDefinitionVersion.Connector"
             $($field $value)*)
         };
     }
@@ -101,7 +101,7 @@ pub mod coredefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_CoreDefinition_Core {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::CoreDefinition.Core"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::CoreDefinition.Core"
             $($field $value)*)
         };
     }
@@ -135,7 +135,7 @@ pub mod coredefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_CoreDefinition_CoreDefinitionVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::CoreDefinition.CoreDefinitionVersion"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::CoreDefinition.CoreDefinitionVersion"
             $($field $value)*)
         };
     }
@@ -163,7 +163,7 @@ pub mod coredefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_CoreDefinitionVersion_Core {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::CoreDefinitionVersion.Core"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::CoreDefinitionVersion.Core"
             $($field $value)*)
         };
     }
@@ -202,7 +202,7 @@ pub mod devicedefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_DeviceDefinition_Device {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::DeviceDefinition.Device"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::DeviceDefinition.Device"
             $($field $value)*)
         };
     }
@@ -236,7 +236,7 @@ pub mod devicedefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_DeviceDefinition_DeviceDefinitionVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::DeviceDefinition.DeviceDefinitionVersion"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::DeviceDefinition.DeviceDefinitionVersion"
             $($field $value)*)
         };
     }
@@ -264,7 +264,7 @@ pub mod devicedefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_DeviceDefinitionVersion_Device {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::DeviceDefinitionVersion.Device"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::DeviceDefinitionVersion.Device"
             $($field $value)*)
         };
     }
@@ -300,7 +300,7 @@ pub mod functiondefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinition_DefaultConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.DefaultConfig"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.DefaultConfig"
             $($field $value)*)
         };
     }
@@ -326,7 +326,7 @@ pub mod functiondefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinition_Environment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.Environment"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.Environment"
             $($field $value)*)
         };
     }
@@ -370,7 +370,7 @@ pub mod functiondefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinition_Execution {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.Execution"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.Execution"
             $($field $value)*)
         };
     }
@@ -400,7 +400,7 @@ pub mod functiondefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinition_Function {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.Function"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.Function"
             $($field $value)*)
         };
     }
@@ -434,7 +434,7 @@ pub mod functiondefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinition_FunctionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.FunctionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.FunctionConfiguration"
             $($field $value)*)
         };
     }
@@ -493,7 +493,7 @@ pub mod functiondefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinition_FunctionDefinitionVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.FunctionDefinitionVersion"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.FunctionDefinitionVersion"
             $($field $value)*)
         };
     }
@@ -523,7 +523,7 @@ pub mod functiondefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinition_ResourceAccessPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.ResourceAccessPolicy"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.ResourceAccessPolicy"
             $($field $value)*)
         };
     }
@@ -553,7 +553,7 @@ pub mod functiondefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinition_RunAs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.RunAs"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinition.RunAs"
             $($field $value)*)
         };
     }
@@ -580,7 +580,7 @@ pub mod functiondefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinitionVersion_DefaultConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinitionVersion.DefaultConfig"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinitionVersion.DefaultConfig"
             $($field $value)*)
         };
     }
@@ -606,7 +606,7 @@ pub mod functiondefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinitionVersion_Environment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinitionVersion.Environment"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinitionVersion.Environment"
             $($field $value)*)
         };
     }
@@ -650,7 +650,7 @@ pub mod functiondefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinitionVersion_Execution {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinitionVersion.Execution"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinitionVersion.Execution"
             $($field $value)*)
         };
     }
@@ -680,7 +680,7 @@ pub mod functiondefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinitionVersion_Function {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinitionVersion.Function"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinitionVersion.Function"
             $($field $value)*)
         };
     }
@@ -714,7 +714,7 @@ pub mod functiondefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinitionVersion_FunctionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinitionVersion.FunctionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinitionVersion.FunctionConfiguration"
             $($field $value)*)
         };
     }
@@ -773,7 +773,7 @@ pub mod functiondefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinitionVersion_ResourceAccessPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinitionVersion.ResourceAccessPolicy"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinitionVersion.ResourceAccessPolicy"
             $($field $value)*)
         };
     }
@@ -803,7 +803,7 @@ pub mod functiondefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_FunctionDefinitionVersion_RunAs {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::FunctionDefinitionVersion.RunAs"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::FunctionDefinitionVersion.RunAs"
             $($field $value)*)
         };
     }
@@ -836,7 +836,7 @@ pub mod group {
     #[macro_export]
     macro_rules! __aws_greengrass_Group_GroupVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::Group.GroupVersion"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::Group.GroupVersion"
             $($field $value)*)
         };
     }
@@ -903,7 +903,7 @@ pub mod loggerdefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_LoggerDefinition_Logger {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::LoggerDefinition.Logger"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::LoggerDefinition.Logger"
             $($field $value)*)
         };
     }
@@ -938,7 +938,7 @@ pub mod loggerdefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_LoggerDefinition_LoggerDefinitionVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::LoggerDefinition.LoggerDefinitionVersion"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::LoggerDefinition.LoggerDefinitionVersion"
             $($field $value)*)
         };
     }
@@ -967,7 +967,7 @@ pub mod loggerdefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_LoggerDefinitionVersion_Logger {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::LoggerDefinitionVersion.Logger"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::LoggerDefinitionVersion.Logger"
             $($field $value)*)
         };
     }
@@ -1005,7 +1005,7 @@ pub mod resourcedefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinition_GroupOwnerSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.GroupOwnerSetting"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.GroupOwnerSetting"
             $($field $value)*)
         };
     }
@@ -1035,7 +1035,7 @@ pub mod resourcedefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinition_LocalDeviceResourceData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.LocalDeviceResourceData"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.LocalDeviceResourceData"
             $($field $value)*)
         };
     }
@@ -1066,7 +1066,7 @@ pub mod resourcedefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinition_LocalVolumeResourceData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.LocalVolumeResourceData"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.LocalVolumeResourceData"
             $($field $value)*)
         };
     }
@@ -1105,7 +1105,7 @@ pub mod resourcedefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinition_ResourceDataContainer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.ResourceDataContainer"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.ResourceDataContainer"
             $($field $value)*)
         };
     }
@@ -1154,7 +1154,7 @@ pub mod resourcedefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinition_ResourceDefinitionVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.ResourceDefinitionVersion"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.ResourceDefinitionVersion"
             $($field $value)*)
         };
     }
@@ -1178,7 +1178,7 @@ pub mod resourcedefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinition_ResourceDownloadOwnerSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.ResourceDownloadOwnerSetting"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.ResourceDownloadOwnerSetting"
             $($field $value)*)
         };
     }
@@ -1207,7 +1207,7 @@ pub mod resourcedefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinition_ResourceInstance {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.ResourceInstance"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.ResourceInstance"
             $($field $value)*)
         };
     }
@@ -1237,7 +1237,7 @@ pub mod resourcedefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinition_S3MachineLearningModelResourceData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.S3MachineLearningModelResourceData"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.S3MachineLearningModelResourceData"
             $($field $value)*)
         };
     }
@@ -1272,7 +1272,7 @@ pub mod resourcedefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinition_SageMakerMachineLearningModelResourceData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.SageMakerMachineLearningModelResourceData"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.SageMakerMachineLearningModelResourceData"
             $($field $value)*)
         };
     }
@@ -1306,7 +1306,7 @@ pub mod resourcedefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinition_SecretsManagerSecretResourceData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.SecretsManagerSecretResourceData"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinition.SecretsManagerSecretResourceData"
             $($field $value)*)
         };
     }
@@ -1338,7 +1338,7 @@ pub mod resourcedefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinitionVersion_GroupOwnerSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.GroupOwnerSetting"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.GroupOwnerSetting"
             $($field $value)*)
         };
     }
@@ -1368,7 +1368,7 @@ pub mod resourcedefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinitionVersion_LocalDeviceResourceData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.LocalDeviceResourceData"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.LocalDeviceResourceData"
             $($field $value)*)
         };
     }
@@ -1399,7 +1399,7 @@ pub mod resourcedefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinitionVersion_LocalVolumeResourceData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.LocalVolumeResourceData"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.LocalVolumeResourceData"
             $($field $value)*)
         };
     }
@@ -1438,7 +1438,7 @@ pub mod resourcedefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinitionVersion_ResourceDataContainer {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.ResourceDataContainer"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.ResourceDataContainer"
             $($field $value)*)
         };
     }
@@ -1488,7 +1488,7 @@ pub mod resourcedefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinitionVersion_ResourceDownloadOwnerSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.ResourceDownloadOwnerSetting"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.ResourceDownloadOwnerSetting"
             $($field $value)*)
         };
     }
@@ -1517,7 +1517,7 @@ pub mod resourcedefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinitionVersion_ResourceInstance {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.ResourceInstance"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.ResourceInstance"
             $($field $value)*)
         };
     }
@@ -1547,7 +1547,7 @@ pub mod resourcedefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinitionVersion_S3MachineLearningModelResourceData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.S3MachineLearningModelResourceData"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.S3MachineLearningModelResourceData"
             $($field $value)*)
         };
     }
@@ -1582,7 +1582,7 @@ pub mod resourcedefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinitionVersion_SageMakerMachineLearningModelResourceData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.SageMakerMachineLearningModelResourceData"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.SageMakerMachineLearningModelResourceData"
             $($field $value)*)
         };
     }
@@ -1616,7 +1616,7 @@ pub mod resourcedefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_ResourceDefinitionVersion_SecretsManagerSecretResourceData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.SecretsManagerSecretResourceData"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::ResourceDefinitionVersion.SecretsManagerSecretResourceData"
             $($field $value)*)
         };
     }
@@ -1650,7 +1650,7 @@ pub mod subscriptiondefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_SubscriptionDefinition_Subscription {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::SubscriptionDefinition.Subscription"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::SubscriptionDefinition.Subscription"
             $($field $value)*)
         };
     }
@@ -1682,7 +1682,7 @@ pub mod subscriptiondefinition {
     #[macro_export]
     macro_rules! __aws_greengrass_SubscriptionDefinition_SubscriptionDefinitionVersion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::SubscriptionDefinition.SubscriptionDefinitionVersion"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::SubscriptionDefinition.SubscriptionDefinitionVersion"
             $($field $value)*)
         };
     }
@@ -1710,7 +1710,7 @@ pub mod subscriptiondefinitionversion {
     #[macro_export]
     macro_rules! __aws_greengrass_SubscriptionDefinitionVersion_Subscription {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Greengrass::SubscriptionDefinitionVersion.Subscription"
+            stratosphere::generator::construct_property_type!("AWS::Greengrass::SubscriptionDefinitionVersion.Subscription"
             $($field $value)*)
         };
     }
@@ -1746,7 +1746,7 @@ pub struct ConnectorDefinition_ {
 #[macro_export]
 macro_rules! __aws_greengrass_ConnectorDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::ConnectorDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::ConnectorDefinition"
         $($field $value)*)
     };
 }
@@ -1787,7 +1787,7 @@ pub struct ConnectorDefinitionVersion_ {
 #[macro_export]
 macro_rules! __aws_greengrass_ConnectorDefinitionVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::ConnectorDefinitionVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::ConnectorDefinitionVersion"
         $($field $value)*)
     };
 }
@@ -1826,7 +1826,7 @@ pub struct CoreDefinition_ {
 #[macro_export]
 macro_rules! __aws_greengrass_CoreDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::CoreDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::CoreDefinition"
         $($field $value)*)
     };
 }
@@ -1867,7 +1867,7 @@ pub struct CoreDefinitionVersion_ {
 #[macro_export]
 macro_rules! __aws_greengrass_CoreDefinitionVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::CoreDefinitionVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::CoreDefinitionVersion"
         $($field $value)*)
     };
 }
@@ -1904,7 +1904,7 @@ pub struct DeviceDefinition_ {
 #[macro_export]
 macro_rules! __aws_greengrass_DeviceDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::DeviceDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::DeviceDefinition"
         $($field $value)*)
     };
 }
@@ -1945,7 +1945,7 @@ pub struct DeviceDefinitionVersion_ {
 #[macro_export]
 macro_rules! __aws_greengrass_DeviceDefinitionVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::DeviceDefinitionVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::DeviceDefinitionVersion"
         $($field $value)*)
     };
 }
@@ -1982,7 +1982,7 @@ pub struct FunctionDefinition_ {
 #[macro_export]
 macro_rules! __aws_greengrass_FunctionDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::FunctionDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::FunctionDefinition"
         $($field $value)*)
     };
 }
@@ -2024,7 +2024,7 @@ pub struct FunctionDefinitionVersion_ {
 #[macro_export]
 macro_rules! __aws_greengrass_FunctionDefinitionVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::FunctionDefinitionVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::FunctionDefinitionVersion"
         $($field $value)*)
     };
 }
@@ -2068,7 +2068,7 @@ pub struct Group_ {
 #[macro_export]
 macro_rules! __aws_greengrass_Group {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::Group"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::Group"
         $($field $value)*)
     };
 }
@@ -2121,7 +2121,7 @@ pub struct GroupVersion_ {
 #[macro_export]
 macro_rules! __aws_greengrass_GroupVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::GroupVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::GroupVersion"
         $($field $value)*)
     };
 }
@@ -2196,7 +2196,7 @@ pub struct LoggerDefinition_ {
 #[macro_export]
 macro_rules! __aws_greengrass_LoggerDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::LoggerDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::LoggerDefinition"
         $($field $value)*)
     };
 }
@@ -2237,7 +2237,7 @@ pub struct LoggerDefinitionVersion_ {
 #[macro_export]
 macro_rules! __aws_greengrass_LoggerDefinitionVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::LoggerDefinitionVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::LoggerDefinitionVersion"
         $($field $value)*)
     };
 }
@@ -2274,7 +2274,7 @@ pub struct ResourceDefinition_ {
 #[macro_export]
 macro_rules! __aws_greengrass_ResourceDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::ResourceDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::ResourceDefinition"
         $($field $value)*)
     };
 }
@@ -2315,7 +2315,7 @@ pub struct ResourceDefinitionVersion_ {
 #[macro_export]
 macro_rules! __aws_greengrass_ResourceDefinitionVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::ResourceDefinitionVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::ResourceDefinitionVersion"
         $($field $value)*)
     };
 }
@@ -2353,7 +2353,7 @@ pub struct SubscriptionDefinition_ {
 #[macro_export]
 macro_rules! __aws_greengrass_SubscriptionDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::SubscriptionDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::SubscriptionDefinition"
         $($field $value)*)
     };
 }
@@ -2394,7 +2394,7 @@ pub struct SubscriptionDefinitionVersion_ {
 #[macro_export]
 macro_rules! __aws_greengrass_SubscriptionDefinitionVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Greengrass::SubscriptionDefinitionVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Greengrass::SubscriptionDefinitionVersion"
         $($field $value)*)
     };
 }

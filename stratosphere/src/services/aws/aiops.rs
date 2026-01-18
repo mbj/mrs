@@ -8,7 +8,7 @@ pub mod investigationgroup {
     #[macro_export]
     macro_rules! __aws_aiops_InvestigationGroup_ChatbotNotificationChannel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AIOps::InvestigationGroup.ChatbotNotificationChannel"
+            stratosphere::generator::construct_property_type!("AWS::AIOps::InvestigationGroup.ChatbotNotificationChannel"
             $($field $value)*)
         };
     }
@@ -39,7 +39,7 @@ pub mod investigationgroup {
     #[macro_export]
     macro_rules! __aws_aiops_InvestigationGroup_CrossAccountConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AIOps::InvestigationGroup.CrossAccountConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AIOps::InvestigationGroup.CrossAccountConfiguration"
             $($field $value)*)
         };
     }
@@ -65,7 +65,7 @@ pub mod investigationgroup {
     #[macro_export]
     macro_rules! __aws_aiops_InvestigationGroup_EncryptionConfigMap {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AIOps::InvestigationGroup.EncryptionConfigMap"
+            stratosphere::generator::construct_property_type!("AWS::AIOps::InvestigationGroup.EncryptionConfigMap"
             $($field $value)*)
         };
     }
@@ -108,7 +108,7 @@ pub struct InvestigationGroup_ {
 #[macro_export]
 macro_rules! __aws_aiops_InvestigationGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AIOps::InvestigationGroup"
+        stratosphere::generator::construct_resource_type!("AWS::AIOps::InvestigationGroup"
         $($field $value)*)
     };
 }

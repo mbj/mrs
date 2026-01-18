@@ -8,7 +8,7 @@ pub mod profile {
     #[macro_export]
     macro_rules! __aws_rolesanywhere_Profile_AttributeMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RolesAnywhere::Profile.AttributeMapping"
+            stratosphere::generator::construct_property_type!("AWS::RolesAnywhere::Profile.AttributeMapping"
             $($field $value)*)
         };
     }
@@ -35,7 +35,7 @@ pub mod profile {
     #[macro_export]
     macro_rules! __aws_rolesanywhere_Profile_MappingRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RolesAnywhere::Profile.MappingRule"
+            stratosphere::generator::construct_property_type!("AWS::RolesAnywhere::Profile.MappingRule"
             $($field $value)*)
         };
     }
@@ -63,7 +63,7 @@ pub mod trustanchor {
     #[macro_export]
     macro_rules! __aws_rolesanywhere_TrustAnchor_NotificationSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RolesAnywhere::TrustAnchor.NotificationSetting"
+            stratosphere::generator::construct_property_type!("AWS::RolesAnywhere::TrustAnchor.NotificationSetting"
             $($field $value)*)
         };
     }
@@ -103,7 +103,7 @@ pub mod trustanchor {
     #[macro_export]
     macro_rules! __aws_rolesanywhere_TrustAnchor_Source {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RolesAnywhere::TrustAnchor.Source"
+            stratosphere::generator::construct_property_type!("AWS::RolesAnywhere::TrustAnchor.Source"
             $($field $value)*)
         };
     }
@@ -131,7 +131,7 @@ pub mod trustanchor {
     #[macro_export]
     macro_rules! __aws_rolesanywhere_TrustAnchor_SourceData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RolesAnywhere::TrustAnchor.SourceData"
+            stratosphere::generator::construct_property_type!("AWS::RolesAnywhere::TrustAnchor.SourceData"
             $($field $value)*)
         };
     }
@@ -167,7 +167,7 @@ pub struct CRL_ {
 #[macro_export]
 macro_rules! __aws_rolesanywhere_CRL {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RolesAnywhere::CRL"
+        stratosphere::generator::construct_resource_type!("AWS::RolesAnywhere::CRL"
         $($field $value)*)
     };
 }
@@ -226,7 +226,7 @@ pub struct Profile_ {
 #[macro_export]
 macro_rules! __aws_rolesanywhere_Profile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RolesAnywhere::Profile"
+        stratosphere::generator::construct_resource_type!("AWS::RolesAnywhere::Profile"
         $($field $value)*)
     };
 }
@@ -310,7 +310,7 @@ pub struct TrustAnchor_ {
 #[macro_export]
 macro_rules! __aws_rolesanywhere_TrustAnchor {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RolesAnywhere::TrustAnchor"
+        stratosphere::generator::construct_resource_type!("AWS::RolesAnywhere::TrustAnchor"
         $($field $value)*)
     };
 }

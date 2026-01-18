@@ -15,7 +15,7 @@ pub mod component {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Component_ActionParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ActionParameters"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ActionParameters"
             $($field $value)*)
         };
     }
@@ -63,7 +63,7 @@ pub mod component {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Component_ComponentBindingPropertiesValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentBindingPropertiesValue"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentBindingPropertiesValue"
             $($field $value)*)
         };
     }
@@ -104,7 +104,7 @@ pub mod component {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Component_ComponentBindingPropertiesValueProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentBindingPropertiesValueProperties"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentBindingPropertiesValueProperties"
             $($field $value)*)
         };
     }
@@ -164,7 +164,7 @@ pub mod component {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Component_ComponentChild {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentChild"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentChild"
             $($field $value)*)
         };
     }
@@ -216,7 +216,7 @@ pub mod component {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Component_ComponentConditionProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentConditionProperty"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentConditionProperty"
             $($field $value)*)
         };
     }
@@ -271,7 +271,7 @@ pub mod component {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Component_ComponentDataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentDataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentDataConfiguration"
             $($field $value)*)
         };
     }
@@ -311,7 +311,7 @@ pub mod component {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Component_ComponentEvent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentEvent"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentEvent"
             $($field $value)*)
         };
     }
@@ -359,7 +359,7 @@ pub mod component {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Component_ComponentProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentProperty"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentProperty"
             $($field $value)*)
         };
     }
@@ -454,7 +454,7 @@ pub mod component {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Component_ComponentPropertyBindingProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentPropertyBindingProperties"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentPropertyBindingProperties"
             $($field $value)*)
         };
     }
@@ -481,7 +481,7 @@ pub mod component {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Component_ComponentVariant {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentVariant"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.ComponentVariant"
             $($field $value)*)
         };
     }
@@ -513,7 +513,7 @@ pub mod component {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Component_FormBindingElement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.FormBindingElement"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.FormBindingElement"
             $($field $value)*)
         };
     }
@@ -542,7 +542,7 @@ pub mod component {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Component_MutationActionSetStateParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.MutationActionSetStateParameter"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.MutationActionSetStateParameter"
             $($field $value)*)
         };
     }
@@ -578,7 +578,7 @@ pub mod component {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Component_Predicate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.Predicate"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.Predicate"
             $($field $value)*)
         };
     }
@@ -625,7 +625,7 @@ pub mod component {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Component_SortProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.SortProperty"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Component.SortProperty"
             $($field $value)*)
         };
     }
@@ -658,7 +658,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_FieldConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FieldConfig"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FieldConfig"
             $($field $value)*)
         };
     }
@@ -719,7 +719,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_FieldInputConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FieldInputConfig"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FieldInputConfig"
             $($field $value)*)
         };
     }
@@ -825,7 +825,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_FieldPosition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FieldPosition"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FieldPosition"
             $($field $value)*)
         };
     }
@@ -859,7 +859,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_FieldValidationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FieldValidationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FieldValidationConfiguration"
             $($field $value)*)
         };
     }
@@ -905,7 +905,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_FileUploaderFieldConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FileUploaderFieldConfig"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FileUploaderFieldConfig"
             $($field $value)*)
         };
     }
@@ -958,7 +958,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_FormButton {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormButton"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormButton"
             $($field $value)*)
         };
     }
@@ -998,7 +998,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_FormCTA {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormCTA"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormCTA"
             $($field $value)*)
         };
     }
@@ -1033,7 +1033,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_FormDataTypeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormDataTypeConfig"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormDataTypeConfig"
             $($field $value)*)
         };
     }
@@ -1061,7 +1061,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_FormInputBindingPropertiesValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormInputBindingPropertiesValue"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormInputBindingPropertiesValue"
             $($field $value)*)
         };
     }
@@ -1089,7 +1089,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_FormInputBindingPropertiesValueProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormInputBindingPropertiesValueProperties"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormInputBindingPropertiesValueProperties"
             $($field $value)*)
         };
     }
@@ -1113,7 +1113,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_FormInputValueProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormInputValueProperty"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormInputValueProperty"
             $($field $value)*)
         };
     }
@@ -1145,7 +1145,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_FormInputValuePropertyBindingProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormInputValuePropertyBindingProperties"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormInputValuePropertyBindingProperties"
             $($field $value)*)
         };
     }
@@ -1173,7 +1173,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_FormStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormStyle"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormStyle"
             $($field $value)*)
         };
     }
@@ -1211,7 +1211,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_FormStyleConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormStyleConfig"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.FormStyleConfig"
             $($field $value)*)
         };
     }
@@ -1244,7 +1244,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_SectionalElement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.SectionalElement"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.SectionalElement"
             $($field $value)*)
         };
     }
@@ -1292,7 +1292,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_ValueMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.ValueMapping"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.ValueMapping"
             $($field $value)*)
         };
     }
@@ -1323,7 +1323,7 @@ pub mod form {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Form_ValueMappings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.ValueMappings"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Form.ValueMappings"
             $($field $value)*)
         };
     }
@@ -1355,7 +1355,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Theme_ThemeValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Theme.ThemeValue"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Theme.ThemeValue"
             $($field $value)*)
         };
     }
@@ -1384,7 +1384,7 @@ pub mod theme {
     #[macro_export]
     macro_rules! __aws_amplifyuibuilder_Theme_ThemeValues {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::AmplifyUIBuilder::Theme.ThemeValues"
+            stratosphere::generator::construct_property_type!("AWS::AmplifyUIBuilder::Theme.ThemeValues"
             $($field $value)*)
         };
     }
@@ -1437,7 +1437,7 @@ pub struct Component_ {
 #[macro_export]
 macro_rules! __aws_amplifyuibuilder_Component {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AmplifyUIBuilder::Component"
+        stratosphere::generator::construct_resource_type!("AWS::AmplifyUIBuilder::Component"
         $($field $value)*)
     };
 }
@@ -1550,7 +1550,7 @@ pub struct Form_ {
 #[macro_export]
 macro_rules! __aws_amplifyuibuilder_Form {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AmplifyUIBuilder::Form"
+        stratosphere::generator::construct_resource_type!("AWS::AmplifyUIBuilder::Form"
         $($field $value)*)
     };
 }
@@ -1636,7 +1636,7 @@ pub struct Theme_ {
 #[macro_export]
 macro_rules! __aws_amplifyuibuilder_Theme {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::AmplifyUIBuilder::Theme"
+        stratosphere::generator::construct_resource_type!("AWS::AmplifyUIBuilder::Theme"
         $($field $value)*)
     };
 }

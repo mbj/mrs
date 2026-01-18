@@ -9,7 +9,7 @@ pub mod crossaccountattachment {
     #[macro_export]
     macro_rules! __aws_globalaccelerator_CrossAccountAttachment_Resource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GlobalAccelerator::CrossAccountAttachment.Resource"
+            stratosphere::generator::construct_property_type!("AWS::GlobalAccelerator::CrossAccountAttachment.Resource"
             $($field $value)*)
         };
     }
@@ -45,7 +45,7 @@ pub mod endpointgroup {
     #[macro_export]
     macro_rules! __aws_globalaccelerator_EndpointGroup_EndpointConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GlobalAccelerator::EndpointGroup.EndpointConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GlobalAccelerator::EndpointGroup.EndpointConfiguration"
             $($field $value)*)
         };
     }
@@ -84,7 +84,7 @@ pub mod endpointgroup {
     #[macro_export]
     macro_rules! __aws_globalaccelerator_EndpointGroup_PortOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GlobalAccelerator::EndpointGroup.PortOverride"
+            stratosphere::generator::construct_property_type!("AWS::GlobalAccelerator::EndpointGroup.PortOverride"
             $($field $value)*)
         };
     }
@@ -114,7 +114,7 @@ pub mod listener {
     #[macro_export]
     macro_rules! __aws_globalaccelerator_Listener_PortRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GlobalAccelerator::Listener.PortRange"
+            stratosphere::generator::construct_property_type!("AWS::GlobalAccelerator::Listener.PortRange"
             $($field $value)*)
         };
     }
@@ -146,7 +146,7 @@ pub struct Accelerator_ {
 #[macro_export]
 macro_rules! __aws_globalaccelerator_Accelerator {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GlobalAccelerator::Accelerator"
+        stratosphere::generator::construct_resource_type!("AWS::GlobalAccelerator::Accelerator"
         $($field $value)*)
     };
 }
@@ -201,7 +201,7 @@ pub struct CrossAccountAttachment_ {
 #[macro_export]
 macro_rules! __aws_globalaccelerator_CrossAccountAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GlobalAccelerator::CrossAccountAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::GlobalAccelerator::CrossAccountAttachment"
         $($field $value)*)
     };
 }
@@ -257,7 +257,7 @@ pub struct EndpointGroup_ {
 #[macro_export]
 macro_rules! __aws_globalaccelerator_EndpointGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GlobalAccelerator::EndpointGroup"
+        stratosphere::generator::construct_resource_type!("AWS::GlobalAccelerator::EndpointGroup"
         $($field $value)*)
     };
 }
@@ -343,7 +343,7 @@ pub struct Listener_ {
 #[macro_export]
 macro_rules! __aws_globalaccelerator_Listener {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GlobalAccelerator::Listener"
+        stratosphere::generator::construct_resource_type!("AWS::GlobalAccelerator::Listener"
         $($field $value)*)
     };
 }

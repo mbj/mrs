@@ -7,7 +7,7 @@ pub mod identitysource {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_IdentitySource_CognitoGroupConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.CognitoGroupConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.CognitoGroupConfiguration"
             $($field $value)*)
         };
     }
@@ -32,7 +32,7 @@ pub mod identitysource {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_IdentitySource_CognitoUserPoolConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.CognitoUserPoolConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.CognitoUserPoolConfiguration"
             $($field $value)*)
         };
     }
@@ -68,7 +68,7 @@ pub mod identitysource {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_IdentitySource_IdentitySourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.IdentitySourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.IdentitySourceConfiguration"
             $($field $value)*)
         };
     }
@@ -100,7 +100,7 @@ pub mod identitysource {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_IdentitySource_OpenIdConnectAccessTokenConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.OpenIdConnectAccessTokenConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.OpenIdConnectAccessTokenConfiguration"
             $($field $value)*)
         };
     }
@@ -134,7 +134,7 @@ pub mod identitysource {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_IdentitySource_OpenIdConnectConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.OpenIdConnectConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.OpenIdConnectConfiguration"
             $($field $value)*)
         };
     }
@@ -174,7 +174,7 @@ pub mod identitysource {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_IdentitySource_OpenIdConnectGroupConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.OpenIdConnectGroupConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.OpenIdConnectGroupConfiguration"
             $($field $value)*)
         };
     }
@@ -202,7 +202,7 @@ pub mod identitysource {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_IdentitySource_OpenIdConnectIdentityTokenConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.OpenIdConnectIdentityTokenConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.OpenIdConnectIdentityTokenConfiguration"
             $($field $value)*)
         };
     }
@@ -234,7 +234,7 @@ pub mod identitysource {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_IdentitySource_OpenIdConnectTokenSelection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.OpenIdConnectTokenSelection"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::IdentitySource.OpenIdConnectTokenSelection"
             $($field $value)*)
         };
     }
@@ -268,7 +268,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_Policy_EntityIdentifier {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::Policy.EntityIdentifier"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::Policy.EntityIdentifier"
             $($field $value)*)
         };
     }
@@ -296,7 +296,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_Policy_PolicyDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::Policy.PolicyDefinition"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::Policy.PolicyDefinition"
             $($field $value)*)
         };
     }
@@ -325,7 +325,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_Policy_StaticPolicyDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::Policy.StaticPolicyDefinition"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::Policy.StaticPolicyDefinition"
             $($field $value)*)
         };
     }
@@ -356,7 +356,7 @@ pub mod policy {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_Policy_TemplateLinkedPolicyDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::Policy.TemplateLinkedPolicyDefinition"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::Policy.TemplateLinkedPolicyDefinition"
             $($field $value)*)
         };
     }
@@ -393,7 +393,7 @@ pub mod policystore {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_PolicyStore_DeletionProtection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::PolicyStore.DeletionProtection"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::PolicyStore.DeletionProtection"
             $($field $value)*)
         };
     }
@@ -417,7 +417,7 @@ pub mod policystore {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_PolicyStore_SchemaDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::PolicyStore.SchemaDefinition"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::PolicyStore.SchemaDefinition"
             $($field $value)*)
         };
     }
@@ -448,7 +448,7 @@ pub mod policystore {
     #[macro_export]
     macro_rules! __aws_verifiedpermissions_PolicyStore_ValidationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::VerifiedPermissions::PolicyStore.ValidationSettings"
+            stratosphere::generator::construct_property_type!("AWS::VerifiedPermissions::PolicyStore.ValidationSettings"
             $($field $value)*)
         };
     }
@@ -474,7 +474,7 @@ pub struct IdentitySource_ {
 #[macro_export]
 macro_rules! __aws_verifiedpermissions_IdentitySource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VerifiedPermissions::IdentitySource"
+        stratosphere::generator::construct_resource_type!("AWS::VerifiedPermissions::IdentitySource"
         $($field $value)*)
     };
 }
@@ -516,7 +516,7 @@ pub struct Policy_ {
 #[macro_export]
 macro_rules! __aws_verifiedpermissions_Policy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VerifiedPermissions::Policy"
+        stratosphere::generator::construct_resource_type!("AWS::VerifiedPermissions::Policy"
         $($field $value)*)
     };
 }
@@ -555,7 +555,7 @@ pub struct PolicyStore_ {
 #[macro_export]
 macro_rules! __aws_verifiedpermissions_PolicyStore {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VerifiedPermissions::PolicyStore"
+        stratosphere::generator::construct_resource_type!("AWS::VerifiedPermissions::PolicyStore"
         $($field $value)*)
     };
 }
@@ -606,7 +606,7 @@ pub struct PolicyTemplate_ {
 #[macro_export]
 macro_rules! __aws_verifiedpermissions_PolicyTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::VerifiedPermissions::PolicyTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::VerifiedPermissions::PolicyTemplate"
         $($field $value)*)
     };
 }

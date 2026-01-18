@@ -8,7 +8,7 @@ pub mod enabledbaseline {
     #[macro_export]
     macro_rules! __aws_controltower_EnabledBaseline_Parameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ControlTower::EnabledBaseline.Parameter"
+            stratosphere::generator::construct_property_type!("AWS::ControlTower::EnabledBaseline.Parameter"
             $($field $value)*)
         };
     }
@@ -36,7 +36,7 @@ pub mod enabledcontrol {
     #[macro_export]
     macro_rules! __aws_controltower_EnabledControl_EnabledControlParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ControlTower::EnabledControl.EnabledControlParameter"
+            stratosphere::generator::construct_property_type!("AWS::ControlTower::EnabledControl.EnabledControlParameter"
             $($field $value)*)
         };
     }
@@ -68,7 +68,7 @@ pub struct EnabledBaseline_ {
 #[macro_export]
 macro_rules! __aws_controltower_EnabledBaseline {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ControlTower::EnabledBaseline"
+        stratosphere::generator::construct_resource_type!("AWS::ControlTower::EnabledBaseline"
         $($field $value)*)
     };
 }
@@ -119,7 +119,7 @@ pub struct EnabledControl_ {
 #[macro_export]
 macro_rules! __aws_controltower_EnabledControl {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ControlTower::EnabledControl"
+        stratosphere::generator::construct_resource_type!("AWS::ControlTower::EnabledControl"
         $($field $value)*)
     };
 }
@@ -165,7 +165,7 @@ pub struct LandingZone_ {
 #[macro_export]
 macro_rules! __aws_controltower_LandingZone {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ControlTower::LandingZone"
+        stratosphere::generator::construct_resource_type!("AWS::ControlTower::LandingZone"
         $($field $value)*)
     };
 }

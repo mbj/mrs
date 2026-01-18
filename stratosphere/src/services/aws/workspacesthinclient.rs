@@ -13,7 +13,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_workspacesthinclient_Environment_MaintenanceWindow {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::WorkSpacesThinClient::Environment.MaintenanceWindow"
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesThinClient::Environment.MaintenanceWindow"
             $($field $value)*)
         };
     }
@@ -82,7 +82,7 @@ pub struct Environment_ {
 #[macro_export]
 macro_rules! __aws_workspacesthinclient_Environment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::WorkSpacesThinClient::Environment"
+        stratosphere::generator::construct_resource_type!("AWS::WorkSpacesThinClient::Environment"
         $($field $value)*)
     };
 }

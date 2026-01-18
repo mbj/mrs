@@ -8,7 +8,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_efs_AccessPoint_AccessPointTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EFS::AccessPoint.AccessPointTag"
+            stratosphere::generator::construct_property_type!("AWS::EFS::AccessPoint.AccessPointTag"
             $($field $value)*)
         };
     }
@@ -35,7 +35,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_efs_AccessPoint_CreationInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EFS::AccessPoint.CreationInfo"
+            stratosphere::generator::construct_property_type!("AWS::EFS::AccessPoint.CreationInfo"
             $($field $value)*)
         };
     }
@@ -68,7 +68,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_efs_AccessPoint_PosixUser {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EFS::AccessPoint.PosixUser"
+            stratosphere::generator::construct_property_type!("AWS::EFS::AccessPoint.PosixUser"
             $($field $value)*)
         };
     }
@@ -102,7 +102,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_efs_AccessPoint_RootDirectory {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EFS::AccessPoint.RootDirectory"
+            stratosphere::generator::construct_property_type!("AWS::EFS::AccessPoint.RootDirectory"
             $($field $value)*)
         };
     }
@@ -132,7 +132,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_efs_FileSystem_BackupPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EFS::FileSystem.BackupPolicy"
+            stratosphere::generator::construct_property_type!("AWS::EFS::FileSystem.BackupPolicy"
             $($field $value)*)
         };
     }
@@ -156,7 +156,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_efs_FileSystem_ElasticFileSystemTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EFS::FileSystem.ElasticFileSystemTag"
+            stratosphere::generator::construct_property_type!("AWS::EFS::FileSystem.ElasticFileSystemTag"
             $($field $value)*)
         };
     }
@@ -183,7 +183,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_efs_FileSystem_FileSystemProtection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EFS::FileSystem.FileSystemProtection"
+            stratosphere::generator::construct_property_type!("AWS::EFS::FileSystem.FileSystemProtection"
             $($field $value)*)
         };
     }
@@ -210,7 +210,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_efs_FileSystem_LifecyclePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EFS::FileSystem.LifecyclePolicy"
+            stratosphere::generator::construct_property_type!("AWS::EFS::FileSystem.LifecyclePolicy"
             $($field $value)*)
         };
     }
@@ -247,7 +247,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_efs_FileSystem_ReplicationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EFS::FileSystem.ReplicationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::EFS::FileSystem.ReplicationConfiguration"
             $($field $value)*)
         };
     }
@@ -278,7 +278,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_efs_FileSystem_ReplicationDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EFS::FileSystem.ReplicationDestination"
+            stratosphere::generator::construct_property_type!("AWS::EFS::FileSystem.ReplicationDestination"
             $($field $value)*)
         };
     }
@@ -338,8 +338,8 @@ pub struct AccessPoint_ {
 #[macro_export]
 macro_rules! __aws_efs_AccessPoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EFS::AccessPoint" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::EFS::AccessPoint"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_efs_AccessPoint as AccessPoint;
@@ -405,7 +405,7 @@ pub struct FileSystem_ {
 #[macro_export]
 macro_rules! __aws_efs_FileSystem {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EFS::FileSystem" $($field
+        stratosphere::generator::construct_resource_type!("AWS::EFS::FileSystem" $($field
         $value)*)
     };
 }
@@ -515,8 +515,8 @@ pub struct MountTarget_ {
 #[macro_export]
 macro_rules! __aws_efs_MountTarget {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EFS::MountTarget" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::EFS::MountTarget"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_efs_MountTarget as MountTarget;

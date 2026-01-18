@@ -7,7 +7,7 @@ pub mod datarepositoryassociation {
     #[macro_export]
     macro_rules! __aws_fsx_DataRepositoryAssociation_AutoExportPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::DataRepositoryAssociation.AutoExportPolicy"
+            stratosphere::generator::construct_property_type!("AWS::FSx::DataRepositoryAssociation.AutoExportPolicy"
             $($field $value)*)
         };
     }
@@ -30,7 +30,7 @@ pub mod datarepositoryassociation {
     #[macro_export]
     macro_rules! __aws_fsx_DataRepositoryAssociation_AutoImportPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::DataRepositoryAssociation.AutoImportPolicy"
+            stratosphere::generator::construct_property_type!("AWS::FSx::DataRepositoryAssociation.AutoImportPolicy"
             $($field $value)*)
         };
     }
@@ -54,7 +54,7 @@ pub mod datarepositoryassociation {
     #[macro_export]
     macro_rules! __aws_fsx_DataRepositoryAssociation_S3 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::DataRepositoryAssociation.S3"
+            stratosphere::generator::construct_property_type!("AWS::FSx::DataRepositoryAssociation.S3"
             $($field $value)*)
         };
     }
@@ -89,7 +89,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_fsx_FileSystem_AuditLogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::FileSystem.AuditLogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::FileSystem.AuditLogConfiguration"
             $($field $value)*)
         };
     }
@@ -123,7 +123,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_fsx_FileSystem_ClientConfigurations {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::FileSystem.ClientConfigurations"
+            stratosphere::generator::construct_property_type!("AWS::FSx::FileSystem.ClientConfigurations"
             $($field $value)*)
         };
     }
@@ -155,7 +155,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_fsx_FileSystem_DataReadCacheConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::FileSystem.DataReadCacheConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::FileSystem.DataReadCacheConfiguration"
             $($field $value)*)
         };
     }
@@ -187,7 +187,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_fsx_FileSystem_DiskIopsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::FileSystem.DiskIopsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::FileSystem.DiskIopsConfiguration"
             $($field $value)*)
         };
     }
@@ -227,7 +227,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_fsx_FileSystem_LustreConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::FileSystem.LustreConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::FileSystem.LustreConfiguration"
             $($field $value)*)
         };
     }
@@ -343,7 +343,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_fsx_FileSystem_MetadataConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::FileSystem.MetadataConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::FileSystem.MetadataConfiguration"
             $($field $value)*)
         };
     }
@@ -368,7 +368,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_fsx_FileSystem_NfsExports {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::FileSystem.NfsExports"
+            stratosphere::generator::construct_property_type!("AWS::FSx::FileSystem.NfsExports"
             $($field $value)*)
         };
     }
@@ -404,7 +404,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_fsx_FileSystem_OntapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::FileSystem.OntapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::FileSystem.OntapConfiguration"
             $($field $value)*)
         };
     }
@@ -507,7 +507,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_fsx_FileSystem_OpenZFSConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::FileSystem.OpenZFSConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::FileSystem.OpenZFSConfiguration"
             $($field $value)*)
         };
     }
@@ -615,7 +615,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_fsx_FileSystem_ReadCacheConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::FileSystem.ReadCacheConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::FileSystem.ReadCacheConfiguration"
             $($field $value)*)
         };
     }
@@ -651,7 +651,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_fsx_FileSystem_RootVolumeConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::FileSystem.RootVolumeConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::FileSystem.RootVolumeConfiguration"
             $($field $value)*)
         };
     }
@@ -711,7 +711,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_fsx_FileSystem_SelfManagedActiveDirectoryConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::FileSystem.SelfManagedActiveDirectoryConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::FileSystem.SelfManagedActiveDirectoryConfiguration"
             $($field $value)*)
         };
     }
@@ -765,7 +765,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_fsx_FileSystem_UserAndGroupQuotas {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::FileSystem.UserAndGroupQuotas"
+            stratosphere::generator::construct_property_type!("AWS::FSx::FileSystem.UserAndGroupQuotas"
             $($field $value)*)
         };
     }
@@ -808,7 +808,7 @@ pub mod filesystem {
     #[macro_export]
     macro_rules! __aws_fsx_FileSystem_WindowsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::FileSystem.WindowsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::FileSystem.WindowsConfiguration"
             $($field $value)*)
         };
     }
@@ -899,7 +899,7 @@ pub mod s3accesspointattachment {
     #[macro_export]
     macro_rules! __aws_fsx_S3AccessPointAttachment_FileSystemGID {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.FileSystemGID"
+            stratosphere::generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.FileSystemGID"
             $($field $value)*)
         };
     }
@@ -923,7 +923,7 @@ pub mod s3accesspointattachment {
     #[macro_export]
     macro_rules! __aws_fsx_S3AccessPointAttachment_OpenZFSFileSystemIdentity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.OpenZFSFileSystemIdentity"
+            stratosphere::generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.OpenZFSFileSystemIdentity"
             $($field $value)*)
         };
     }
@@ -952,7 +952,7 @@ pub mod s3accesspointattachment {
     #[macro_export]
     macro_rules! __aws_fsx_S3AccessPointAttachment_OpenZFSPosixFileSystemUser {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.OpenZFSPosixFileSystemUser"
+            stratosphere::generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.OpenZFSPosixFileSystemUser"
             $($field $value)*)
         };
     }
@@ -988,7 +988,7 @@ pub mod s3accesspointattachment {
     #[macro_export]
     macro_rules! __aws_fsx_S3AccessPointAttachment_S3AccessPoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.S3AccessPoint"
+            stratosphere::generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.S3AccessPoint"
             $($field $value)*)
         };
     }
@@ -1026,7 +1026,7 @@ pub mod s3accesspointattachment {
     #[macro_export]
     macro_rules! __aws_fsx_S3AccessPointAttachment_S3AccessPointOpenZFSConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.S3AccessPointOpenZFSConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.S3AccessPointOpenZFSConfiguration"
             $($field $value)*)
         };
     }
@@ -1053,7 +1053,7 @@ pub mod s3accesspointattachment {
     #[macro_export]
     macro_rules! __aws_fsx_S3AccessPointAttachment_S3AccessPointVpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.S3AccessPointVpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.S3AccessPointVpcConfiguration"
             $($field $value)*)
         };
     }
@@ -1080,7 +1080,7 @@ pub mod storagevirtualmachine {
     #[macro_export]
     macro_rules! __aws_fsx_StorageVirtualMachine_ActiveDirectoryConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::StorageVirtualMachine.ActiveDirectoryConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::StorageVirtualMachine.ActiveDirectoryConfiguration"
             $($field $value)*)
         };
     }
@@ -1116,7 +1116,7 @@ pub mod storagevirtualmachine {
     #[macro_export]
     macro_rules! __aws_fsx_StorageVirtualMachine_SelfManagedActiveDirectoryConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::StorageVirtualMachine.SelfManagedActiveDirectoryConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::StorageVirtualMachine.SelfManagedActiveDirectoryConfiguration"
             $($field $value)*)
         };
     }
@@ -1171,7 +1171,7 @@ pub mod volume {
     #[macro_export]
     macro_rules! __aws_fsx_Volume_AggregateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::Volume.AggregateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::Volume.AggregateConfiguration"
             $($field $value)*)
         };
     }
@@ -1203,7 +1203,7 @@ pub mod volume {
     #[macro_export]
     macro_rules! __aws_fsx_Volume_AutocommitPeriod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::Volume.AutocommitPeriod"
+            stratosphere::generator::construct_property_type!("AWS::FSx::Volume.AutocommitPeriod"
             $($field $value)*)
         };
     }
@@ -1230,7 +1230,7 @@ pub mod volume {
     #[macro_export]
     macro_rules! __aws_fsx_Volume_ClientConfigurations {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::Volume.ClientConfigurations"
+            stratosphere::generator::construct_property_type!("AWS::FSx::Volume.ClientConfigurations"
             $($field $value)*)
         };
     }
@@ -1257,7 +1257,7 @@ pub mod volume {
     #[macro_export]
     macro_rules! __aws_fsx_Volume_NfsExports {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::Volume.NfsExports"
+            stratosphere::generator::construct_property_type!("AWS::FSx::Volume.NfsExports"
             $($field $value)*)
         };
     }
@@ -1292,7 +1292,7 @@ pub mod volume {
     #[macro_export]
     macro_rules! __aws_fsx_Volume_OntapConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::Volume.OntapConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::Volume.OntapConfiguration"
             $($field $value)*)
         };
     }
@@ -1397,7 +1397,7 @@ pub mod volume {
     #[macro_export]
     macro_rules! __aws_fsx_Volume_OpenZFSConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::Volume.OpenZFSConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::Volume.OpenZFSConfiguration"
             $($field $value)*)
         };
     }
@@ -1481,7 +1481,7 @@ pub mod volume {
     #[macro_export]
     macro_rules! __aws_fsx_Volume_OriginSnapshot {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::Volume.OriginSnapshot"
+            stratosphere::generator::construct_property_type!("AWS::FSx::Volume.OriginSnapshot"
             $($field $value)*)
         };
     }
@@ -1509,7 +1509,7 @@ pub mod volume {
     #[macro_export]
     macro_rules! __aws_fsx_Volume_RetentionPeriod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::Volume.RetentionPeriod"
+            stratosphere::generator::construct_property_type!("AWS::FSx::Volume.RetentionPeriod"
             $($field $value)*)
         };
     }
@@ -1540,7 +1540,7 @@ pub mod volume {
     #[macro_export]
     macro_rules! __aws_fsx_Volume_SnaplockConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::Volume.SnaplockConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::FSx::Volume.SnaplockConfiguration"
             $($field $value)*)
         };
     }
@@ -1595,7 +1595,7 @@ pub mod volume {
     #[macro_export]
     macro_rules! __aws_fsx_Volume_SnaplockRetentionPeriod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::Volume.SnaplockRetentionPeriod"
+            stratosphere::generator::construct_property_type!("AWS::FSx::Volume.SnaplockRetentionPeriod"
             $($field $value)*)
         };
     }
@@ -1627,7 +1627,7 @@ pub mod volume {
     #[macro_export]
     macro_rules! __aws_fsx_Volume_TieringPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::Volume.TieringPolicy"
+            stratosphere::generator::construct_property_type!("AWS::FSx::Volume.TieringPolicy"
             $($field $value)*)
         };
     }
@@ -1657,7 +1657,7 @@ pub mod volume {
     #[macro_export]
     macro_rules! __aws_fsx_Volume_UserAndGroupQuotas {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::FSx::Volume.UserAndGroupQuotas"
+            stratosphere::generator::construct_property_type!("AWS::FSx::Volume.UserAndGroupQuotas"
             $($field $value)*)
         };
     }
@@ -1692,7 +1692,7 @@ pub struct DataRepositoryAssociation_ {
 #[macro_export]
 macro_rules! __aws_fsx_DataRepositoryAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FSx::DataRepositoryAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::FSx::DataRepositoryAssociation"
         $($field $value)*)
     };
 }
@@ -1762,7 +1762,7 @@ pub struct FileSystem_ {
 #[macro_export]
 macro_rules! __aws_fsx_FileSystem {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FSx::FileSystem" $($field
+        stratosphere::generator::construct_resource_type!("AWS::FSx::FileSystem" $($field
         $value)*)
     };
 }
@@ -1870,7 +1870,7 @@ pub struct S3AccessPointAttachment_ {
 #[macro_export]
 macro_rules! __aws_fsx_S3AccessPointAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FSx::S3AccessPointAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::FSx::S3AccessPointAttachment"
         $($field $value)*)
     };
 }
@@ -1917,7 +1917,7 @@ pub struct Snapshot_ {
 #[macro_export]
 macro_rules! __aws_fsx_Snapshot {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FSx::Snapshot" $($field
+        stratosphere::generator::construct_resource_type!("AWS::FSx::Snapshot" $($field
         $value)*)
     };
 }
@@ -1961,7 +1961,7 @@ pub struct StorageVirtualMachine_ {
 #[macro_export]
 macro_rules! __aws_fsx_StorageVirtualMachine {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FSx::StorageVirtualMachine"
+        stratosphere::generator::construct_resource_type!("AWS::FSx::StorageVirtualMachine"
         $($field $value)*)
     };
 }
@@ -2022,7 +2022,7 @@ pub struct Volume_ {
 #[macro_export]
 macro_rules! __aws_fsx_Volume {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::FSx::Volume" $($field
+        stratosphere::generator::construct_resource_type!("AWS::FSx::Volume" $($field
         $value)*)
     };
 }

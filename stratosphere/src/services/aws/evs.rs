@@ -9,7 +9,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_evs_Environment_Check {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EVS::Environment.Check"
+            stratosphere::generator::construct_property_type!("AWS::EVS::Environment.Check"
             $($field $value)*)
         };
     }
@@ -42,7 +42,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_evs_Environment_ConnectivityInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EVS::Environment.ConnectivityInfo"
+            stratosphere::generator::construct_property_type!("AWS::EVS::Environment.ConnectivityInfo"
             $($field $value)*)
         };
     }
@@ -69,7 +69,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_evs_Environment_HostInfoForCreate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EVS::Environment.HostInfoForCreate"
+            stratosphere::generator::construct_property_type!("AWS::EVS::Environment.HostInfoForCreate"
             $($field $value)*)
         };
     }
@@ -112,7 +112,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_evs_Environment_InitialVlanInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EVS::Environment.InitialVlanInfo"
+            stratosphere::generator::construct_property_type!("AWS::EVS::Environment.InitialVlanInfo"
             $($field $value)*)
         };
     }
@@ -146,7 +146,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_evs_Environment_InitialVlans {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EVS::Environment.InitialVlans"
+            stratosphere::generator::construct_property_type!("AWS::EVS::Environment.InitialVlans"
             $($field $value)*)
         };
     }
@@ -218,7 +218,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_evs_Environment_LicenseInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EVS::Environment.LicenseInfo"
+            stratosphere::generator::construct_property_type!("AWS::EVS::Environment.LicenseInfo"
             $($field $value)*)
         };
     }
@@ -245,7 +245,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_evs_Environment_Secret {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EVS::Environment.Secret"
+            stratosphere::generator::construct_property_type!("AWS::EVS::Environment.Secret"
             $($field $value)*)
         };
     }
@@ -270,7 +270,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_evs_Environment_ServiceAccessSecurityGroups {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EVS::Environment.ServiceAccessSecurityGroups"
+            stratosphere::generator::construct_property_type!("AWS::EVS::Environment.ServiceAccessSecurityGroups"
             $($field $value)*)
         };
     }
@@ -303,7 +303,7 @@ pub mod environment {
     #[macro_export]
     macro_rules! __aws_evs_Environment_VcfHostnames {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::EVS::Environment.VcfHostnames"
+            stratosphere::generator::construct_property_type!("AWS::EVS::Environment.VcfHostnames"
             $($field $value)*)
         };
     }
@@ -373,8 +373,8 @@ pub struct Environment_ {
 #[macro_export]
 macro_rules! __aws_evs_Environment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::EVS::Environment" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::EVS::Environment"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_evs_Environment as Environment;

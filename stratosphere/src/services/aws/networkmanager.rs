@@ -7,7 +7,7 @@ pub mod connectattachment {
     #[macro_export]
     macro_rules! __aws_networkmanager_ConnectAttachment_ConnectAttachmentOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::ConnectAttachment.ConnectAttachmentOptions"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::ConnectAttachment.ConnectAttachmentOptions"
             $($field $value)*)
         };
     }
@@ -34,7 +34,7 @@ pub mod connectattachment {
     #[macro_export]
     macro_rules! __aws_networkmanager_ConnectAttachment_ProposedNetworkFunctionGroupChange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::ConnectAttachment.ProposedNetworkFunctionGroupChange"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::ConnectAttachment.ProposedNetworkFunctionGroupChange"
             $($field $value)*)
         };
     }
@@ -70,7 +70,7 @@ pub mod connectattachment {
     #[macro_export]
     macro_rules! __aws_networkmanager_ConnectAttachment_ProposedSegmentChange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::ConnectAttachment.ProposedSegmentChange"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::ConnectAttachment.ProposedSegmentChange"
             $($field $value)*)
         };
     }
@@ -106,7 +106,7 @@ pub mod connectpeer {
     #[macro_export]
     macro_rules! __aws_networkmanager_ConnectPeer_BgpOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::ConnectPeer.BgpOptions"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::ConnectPeer.BgpOptions"
             $($field $value)*)
         };
     }
@@ -134,7 +134,7 @@ pub mod connectpeer {
     #[macro_export]
     macro_rules! __aws_networkmanager_ConnectPeer_ConnectPeerBgpConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::ConnectPeer.ConnectPeerBgpConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::ConnectPeer.ConnectPeerBgpConfiguration"
             $($field $value)*)
         };
     }
@@ -181,7 +181,7 @@ pub mod connectpeer {
     #[macro_export]
     macro_rules! __aws_networkmanager_ConnectPeer_ConnectPeerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::ConnectPeer.ConnectPeerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::ConnectPeer.ConnectPeerConfiguration"
             $($field $value)*)
         };
     }
@@ -234,7 +234,7 @@ pub mod corenetwork {
     #[macro_export]
     macro_rules! __aws_networkmanager_CoreNetwork_CoreNetworkEdge {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::CoreNetwork.CoreNetworkEdge"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::CoreNetwork.CoreNetworkEdge"
             $($field $value)*)
         };
     }
@@ -270,7 +270,7 @@ pub mod corenetwork {
     #[macro_export]
     macro_rules! __aws_networkmanager_CoreNetwork_CoreNetworkNetworkFunctionGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::CoreNetwork.CoreNetworkNetworkFunctionGroup"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::CoreNetwork.CoreNetworkNetworkFunctionGroup"
             $($field $value)*)
         };
     }
@@ -306,7 +306,7 @@ pub mod corenetwork {
     #[macro_export]
     macro_rules! __aws_networkmanager_CoreNetwork_CoreNetworkSegment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::CoreNetwork.CoreNetworkSegment"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::CoreNetwork.CoreNetworkSegment"
             $($field $value)*)
         };
     }
@@ -341,7 +341,7 @@ pub mod corenetwork {
     #[macro_export]
     macro_rules! __aws_networkmanager_CoreNetwork_Segments {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::CoreNetwork.Segments"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::CoreNetwork.Segments"
             $($field $value)*)
         };
     }
@@ -372,7 +372,7 @@ pub mod device {
     #[macro_export]
     macro_rules! __aws_networkmanager_Device_AWSLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::Device.AWSLocation"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::Device.AWSLocation"
             $($field $value)*)
         };
     }
@@ -402,7 +402,7 @@ pub mod device {
     #[macro_export]
     macro_rules! __aws_networkmanager_Device_Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::Device.Location"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::Device.Location"
             $($field $value)*)
         };
     }
@@ -443,7 +443,7 @@ pub mod directconnectgatewayattachment {
     #[macro_export]
     macro_rules! __aws_networkmanager_DirectConnectGatewayAttachment_ProposedNetworkFunctionGroupChange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::DirectConnectGatewayAttachment.ProposedNetworkFunctionGroupChange"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::DirectConnectGatewayAttachment.ProposedNetworkFunctionGroupChange"
             $($field $value)*)
         };
     }
@@ -479,7 +479,7 @@ pub mod directconnectgatewayattachment {
     #[macro_export]
     macro_rules! __aws_networkmanager_DirectConnectGatewayAttachment_ProposedSegmentChange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::DirectConnectGatewayAttachment.ProposedSegmentChange"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::DirectConnectGatewayAttachment.ProposedSegmentChange"
             $($field $value)*)
         };
     }
@@ -516,7 +516,7 @@ pub mod link {
     #[macro_export]
     macro_rules! __aws_networkmanager_Link_Bandwidth {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::Link.Bandwidth"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::Link.Bandwidth"
             $($field $value)*)
         };
     }
@@ -551,7 +551,7 @@ pub mod site {
     #[macro_export]
     macro_rules! __aws_networkmanager_Site_Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::Site.Location"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::Site.Location"
             $($field $value)*)
         };
     }
@@ -592,7 +592,7 @@ pub mod sitetositevpnattachment {
     #[macro_export]
     macro_rules! __aws_networkmanager_SiteToSiteVpnAttachment_ProposedNetworkFunctionGroupChange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::SiteToSiteVpnAttachment.ProposedNetworkFunctionGroupChange"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::SiteToSiteVpnAttachment.ProposedNetworkFunctionGroupChange"
             $($field $value)*)
         };
     }
@@ -628,7 +628,7 @@ pub mod sitetositevpnattachment {
     #[macro_export]
     macro_rules! __aws_networkmanager_SiteToSiteVpnAttachment_ProposedSegmentChange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::SiteToSiteVpnAttachment.ProposedSegmentChange"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::SiteToSiteVpnAttachment.ProposedSegmentChange"
             $($field $value)*)
         };
     }
@@ -666,7 +666,7 @@ pub mod transitgatewayroutetableattachment {
     #[macro_export]
     macro_rules! __aws_networkmanager_TransitGatewayRouteTableAttachment_ProposedNetworkFunctionGroupChange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::TransitGatewayRouteTableAttachment.ProposedNetworkFunctionGroupChange"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::TransitGatewayRouteTableAttachment.ProposedNetworkFunctionGroupChange"
             $($field $value)*)
         };
     }
@@ -702,7 +702,7 @@ pub mod transitgatewayroutetableattachment {
     #[macro_export]
     macro_rules! __aws_networkmanager_TransitGatewayRouteTableAttachment_ProposedSegmentChange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::TransitGatewayRouteTableAttachment.ProposedSegmentChange"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::TransitGatewayRouteTableAttachment.ProposedSegmentChange"
             $($field $value)*)
         };
     }
@@ -740,7 +740,7 @@ pub mod vpcattachment {
     #[macro_export]
     macro_rules! __aws_networkmanager_VpcAttachment_ProposedNetworkFunctionGroupChange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::VpcAttachment.ProposedNetworkFunctionGroupChange"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::VpcAttachment.ProposedNetworkFunctionGroupChange"
             $($field $value)*)
         };
     }
@@ -776,7 +776,7 @@ pub mod vpcattachment {
     #[macro_export]
     macro_rules! __aws_networkmanager_VpcAttachment_ProposedSegmentChange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::VpcAttachment.ProposedSegmentChange"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::VpcAttachment.ProposedSegmentChange"
             $($field $value)*)
         };
     }
@@ -813,7 +813,7 @@ pub mod vpcattachment {
     #[macro_export]
     macro_rules! __aws_networkmanager_VpcAttachment_VpcOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NetworkManager::VpcAttachment.VpcOptions"
+            stratosphere::generator::construct_property_type!("AWS::NetworkManager::VpcAttachment.VpcOptions"
             $($field $value)*)
         };
     }
@@ -866,7 +866,7 @@ pub struct ConnectAttachment_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_ConnectAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::ConnectAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::ConnectAttachment"
         $($field $value)*)
     };
 }
@@ -936,7 +936,7 @@ pub struct ConnectPeer_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_ConnectPeer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::ConnectPeer"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::ConnectPeer"
         $($field $value)*)
     };
 }
@@ -1001,7 +1001,7 @@ pub struct CoreNetwork_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_CoreNetwork {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::CoreNetwork"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::CoreNetwork"
         $($field $value)*)
     };
 }
@@ -1050,7 +1050,7 @@ pub struct CustomerGatewayAssociation_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_CustomerGatewayAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::CustomerGatewayAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::CustomerGatewayAssociation"
         $($field $value)*)
     };
 }
@@ -1103,7 +1103,7 @@ pub struct Device_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_Device {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::Device"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::Device"
         $($field $value)*)
     };
 }
@@ -1181,7 +1181,7 @@ pub struct DirectConnectGatewayAttachment_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_DirectConnectGatewayAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::DirectConnectGatewayAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::DirectConnectGatewayAttachment"
         $($field $value)*)
     };
 }
@@ -1240,7 +1240,7 @@ pub struct GlobalNetwork_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_GlobalNetwork {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::GlobalNetwork"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::GlobalNetwork"
         $($field $value)*)
     };
 }
@@ -1291,7 +1291,7 @@ pub struct Link_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_Link {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::Link"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::Link"
         $($field $value)*)
     };
 }
@@ -1350,7 +1350,7 @@ pub struct LinkAssociation_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_LinkAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::LinkAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::LinkAssociation"
         $($field $value)*)
     };
 }
@@ -1392,7 +1392,7 @@ pub struct Site_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_Site {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::Site"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::Site"
         $($field $value)*)
     };
 }
@@ -1445,7 +1445,7 @@ pub struct SiteToSiteVpnAttachment_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_SiteToSiteVpnAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::SiteToSiteVpnAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::SiteToSiteVpnAttachment"
         $($field $value)*)
     };
 }
@@ -1503,7 +1503,7 @@ pub struct TransitGatewayPeering_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_TransitGatewayPeering {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::TransitGatewayPeering"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::TransitGatewayPeering"
         $($field $value)*)
     };
 }
@@ -1542,7 +1542,7 @@ pub struct TransitGatewayRegistration_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_TransitGatewayRegistration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::TransitGatewayRegistration"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::TransitGatewayRegistration"
         $($field $value)*)
     };
 }
@@ -1588,7 +1588,7 @@ pub struct TransitGatewayRouteTableAttachment_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_TransitGatewayRouteTableAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::TransitGatewayRouteTableAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::TransitGatewayRouteTableAttachment"
         $($field $value)*)
     };
 }
@@ -1654,7 +1654,7 @@ pub struct VpcAttachment_ {
 #[macro_export]
 macro_rules! __aws_networkmanager_VpcAttachment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NetworkManager::VpcAttachment"
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::VpcAttachment"
         $($field $value)*)
     };
 }

@@ -8,7 +8,7 @@ pub mod anomalymonitor {
     #[macro_export]
     macro_rules! __aws_ce_AnomalyMonitor_ResourceTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CE::AnomalyMonitor.ResourceTag"
+            stratosphere::generator::construct_property_type!("AWS::CE::AnomalyMonitor.ResourceTag"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod anomalysubscription {
     #[macro_export]
     macro_rules! __aws_ce_AnomalySubscription_ResourceTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CE::AnomalySubscription.ResourceTag"
+            stratosphere::generator::construct_property_type!("AWS::CE::AnomalySubscription.ResourceTag"
             $($field $value)*)
         };
     }
@@ -67,7 +67,7 @@ pub mod anomalysubscription {
     #[macro_export]
     macro_rules! __aws_ce_AnomalySubscription_Subscriber {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CE::AnomalySubscription.Subscriber"
+            stratosphere::generator::construct_property_type!("AWS::CE::AnomalySubscription.Subscriber"
             $($field $value)*)
         };
     }
@@ -100,7 +100,7 @@ pub mod costcategory {
     #[macro_export]
     macro_rules! __aws_ce_CostCategory_ResourceTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CE::CostCategory.ResourceTag"
+            stratosphere::generator::construct_property_type!("AWS::CE::CostCategory.ResourceTag"
             $($field $value)*)
         };
     }
@@ -132,7 +132,7 @@ pub struct AnomalyMonitor_ {
 #[macro_export]
 macro_rules! __aws_ce_AnomalyMonitor {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CE::AnomalyMonitor"
+        stratosphere::generator::construct_resource_type!("AWS::CE::AnomalyMonitor"
         $($field $value)*)
     };
 }
@@ -191,7 +191,7 @@ pub struct AnomalySubscription_ {
 #[macro_export]
 macro_rules! __aws_ce_AnomalySubscription {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CE::AnomalySubscription"
+        stratosphere::generator::construct_resource_type!("AWS::CE::AnomalySubscription"
         $($field $value)*)
     };
 }
@@ -257,8 +257,8 @@ pub struct CostCategory_ {
 #[macro_export]
 macro_rules! __aws_ce_CostCategory {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CE::CostCategory" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::CE::CostCategory"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_ce_CostCategory as CostCategory;

@@ -8,7 +8,7 @@ pub mod stream {
     #[macro_export]
     macro_rules! __aws_kinesis_Stream_StreamEncryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kinesis::Stream.StreamEncryption"
+            stratosphere::generator::construct_property_type!("AWS::Kinesis::Stream.StreamEncryption"
             $($field $value)*)
         };
     }
@@ -35,7 +35,7 @@ pub mod stream {
     #[macro_export]
     macro_rules! __aws_kinesis_Stream_StreamModeDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Kinesis::Stream.StreamModeDetails"
+            stratosphere::generator::construct_property_type!("AWS::Kinesis::Stream.StreamModeDetails"
             $($field $value)*)
         };
     }
@@ -60,7 +60,7 @@ pub struct ResourcePolicy_ {
 #[macro_export]
 macro_rules! __aws_kinesis_ResourcePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Kinesis::ResourcePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::Kinesis::ResourcePolicy"
         $($field $value)*)
     };
 }
@@ -101,7 +101,7 @@ pub struct Stream_ {
 #[macro_export]
 macro_rules! __aws_kinesis_Stream {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Kinesis::Stream" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Kinesis::Stream" $($field
         $value)*)
     };
 }
@@ -166,7 +166,7 @@ pub struct StreamConsumer_ {
 #[macro_export]
 macro_rules! __aws_kinesis_StreamConsumer {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Kinesis::StreamConsumer"
+        stratosphere::generator::construct_resource_type!("AWS::Kinesis::StreamConsumer"
         $($field $value)*)
     };
 }

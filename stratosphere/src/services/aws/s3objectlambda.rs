@@ -8,7 +8,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_s3objectlambda_AccessPoint_Alias {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3ObjectLambda::AccessPoint.Alias"
+            stratosphere::generator::construct_property_type!("AWS::S3ObjectLambda::AccessPoint.Alias"
             $($field $value)*)
         };
     }
@@ -35,7 +35,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_s3objectlambda_AccessPoint_AwsLambda {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3ObjectLambda::AccessPoint.AwsLambda"
+            stratosphere::generator::construct_property_type!("AWS::S3ObjectLambda::AccessPoint.AwsLambda"
             $($field $value)*)
         };
     }
@@ -64,7 +64,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_s3objectlambda_AccessPoint_ContentTransformation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3ObjectLambda::AccessPoint.ContentTransformation"
+            stratosphere::generator::construct_property_type!("AWS::S3ObjectLambda::AccessPoint.ContentTransformation"
             $($field $value)*)
         };
     }
@@ -90,7 +90,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_s3objectlambda_AccessPoint_ObjectLambdaConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3ObjectLambda::AccessPoint.ObjectLambdaConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3ObjectLambda::AccessPoint.ObjectLambdaConfiguration"
             $($field $value)*)
         };
     }
@@ -132,7 +132,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_s3objectlambda_AccessPoint_PublicAccessBlockConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3ObjectLambda::AccessPoint.PublicAccessBlockConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3ObjectLambda::AccessPoint.PublicAccessBlockConfiguration"
             $($field $value)*)
         };
     }
@@ -176,7 +176,7 @@ pub mod accesspoint {
     #[macro_export]
     macro_rules! __aws_s3objectlambda_AccessPoint_TransformationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3ObjectLambda::AccessPoint.TransformationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3ObjectLambda::AccessPoint.TransformationConfiguration"
             $($field $value)*)
         };
     }
@@ -205,7 +205,7 @@ pub struct AccessPoint_ {
 #[macro_export]
 macro_rules! __aws_s3objectlambda_AccessPoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3ObjectLambda::AccessPoint"
+        stratosphere::generator::construct_resource_type!("AWS::S3ObjectLambda::AccessPoint"
         $($field $value)*)
     };
 }
@@ -240,7 +240,7 @@ pub struct AccessPointPolicy_ {
 #[macro_export]
 macro_rules! __aws_s3objectlambda_AccessPointPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3ObjectLambda::AccessPointPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::S3ObjectLambda::AccessPointPolicy"
         $($field $value)*)
     };
 }

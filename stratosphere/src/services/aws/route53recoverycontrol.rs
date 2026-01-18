@@ -8,7 +8,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_route53recoverycontrol_Cluster_ClusterEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53RecoveryControl::Cluster.ClusterEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::Route53RecoveryControl::Cluster.ClusterEndpoint"
             $($field $value)*)
         };
     }
@@ -39,7 +39,7 @@ pub mod safetyrule {
     #[macro_export]
     macro_rules! __aws_route53recoverycontrol_SafetyRule_AssertionRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53RecoveryControl::SafetyRule.AssertionRule"
+            stratosphere::generator::construct_property_type!("AWS::Route53RecoveryControl::SafetyRule.AssertionRule"
             $($field $value)*)
         };
     }
@@ -68,7 +68,7 @@ pub mod safetyrule {
     #[macro_export]
     macro_rules! __aws_route53recoverycontrol_SafetyRule_GatingRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53RecoveryControl::SafetyRule.GatingRule"
+            stratosphere::generator::construct_property_type!("AWS::Route53RecoveryControl::SafetyRule.GatingRule"
             $($field $value)*)
         };
     }
@@ -101,7 +101,7 @@ pub mod safetyrule {
     #[macro_export]
     macro_rules! __aws_route53recoverycontrol_SafetyRule_RuleConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53RecoveryControl::SafetyRule.RuleConfig"
+            stratosphere::generator::construct_property_type!("AWS::Route53RecoveryControl::SafetyRule.RuleConfig"
             $($field $value)*)
         };
     }
@@ -135,7 +135,7 @@ pub struct Cluster_ {
 #[macro_export]
 macro_rules! __aws_route53recoverycontrol_Cluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53RecoveryControl::Cluster"
+        stratosphere::generator::construct_resource_type!("AWS::Route53RecoveryControl::Cluster"
         $($field $value)*)
     };
 }
@@ -177,7 +177,7 @@ pub struct ControlPanel_ {
 #[macro_export]
 macro_rules! __aws_route53recoverycontrol_ControlPanel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53RecoveryControl::ControlPanel"
+        stratosphere::generator::construct_resource_type!("AWS::Route53RecoveryControl::ControlPanel"
         $($field $value)*)
     };
 }
@@ -219,7 +219,7 @@ pub struct RoutingControl_ {
 #[macro_export]
 macro_rules! __aws_route53recoverycontrol_RoutingControl {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53RecoveryControl::RoutingControl"
+        stratosphere::generator::construct_resource_type!("AWS::Route53RecoveryControl::RoutingControl"
         $($field $value)*)
     };
 }
@@ -267,7 +267,7 @@ pub struct SafetyRule_ {
 #[macro_export]
 macro_rules! __aws_route53recoverycontrol_SafetyRule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53RecoveryControl::SafetyRule"
+        stratosphere::generator::construct_resource_type!("AWS::Route53RecoveryControl::SafetyRule"
         $($field $value)*)
     };
 }

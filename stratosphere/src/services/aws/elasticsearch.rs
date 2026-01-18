@@ -10,7 +10,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_elasticsearch_Domain_AdvancedSecurityOptionsInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Elasticsearch::Domain.AdvancedSecurityOptionsInput"
+            stratosphere::generator::construct_property_type!("AWS::Elasticsearch::Domain.AdvancedSecurityOptionsInput"
             $($field $value)*)
         };
     }
@@ -56,7 +56,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_elasticsearch_Domain_CognitoOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Elasticsearch::Domain.CognitoOptions"
+            stratosphere::generator::construct_property_type!("AWS::Elasticsearch::Domain.CognitoOptions"
             $($field $value)*)
         };
     }
@@ -99,7 +99,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_elasticsearch_Domain_ColdStorageOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Elasticsearch::Domain.ColdStorageOptions"
+            stratosphere::generator::construct_property_type!("AWS::Elasticsearch::Domain.ColdStorageOptions"
             $($field $value)*)
         };
     }
@@ -128,7 +128,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_elasticsearch_Domain_DomainEndpointOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Elasticsearch::Domain.DomainEndpointOptions"
+            stratosphere::generator::construct_property_type!("AWS::Elasticsearch::Domain.DomainEndpointOptions"
             $($field $value)*)
         };
     }
@@ -180,7 +180,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_elasticsearch_Domain_EBSOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Elasticsearch::Domain.EBSOptions"
+            stratosphere::generator::construct_property_type!("AWS::Elasticsearch::Domain.EBSOptions"
             $($field $value)*)
         };
     }
@@ -230,7 +230,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_elasticsearch_Domain_ElasticsearchClusterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Elasticsearch::Domain.ElasticsearchClusterConfig"
+            stratosphere::generator::construct_property_type!("AWS::Elasticsearch::Domain.ElasticsearchClusterConfig"
             $($field $value)*)
         };
     }
@@ -316,7 +316,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_elasticsearch_Domain_EncryptionAtRestOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Elasticsearch::Domain.EncryptionAtRestOptions"
+            stratosphere::generator::construct_property_type!("AWS::Elasticsearch::Domain.EncryptionAtRestOptions"
             $($field $value)*)
         };
     }
@@ -348,7 +348,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_elasticsearch_Domain_LogPublishingOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Elasticsearch::Domain.LogPublishingOption"
+            stratosphere::generator::construct_property_type!("AWS::Elasticsearch::Domain.LogPublishingOption"
             $($field $value)*)
         };
     }
@@ -381,7 +381,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_elasticsearch_Domain_MasterUserOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Elasticsearch::Domain.MasterUserOptions"
+            stratosphere::generator::construct_property_type!("AWS::Elasticsearch::Domain.MasterUserOptions"
             $($field $value)*)
         };
     }
@@ -418,7 +418,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_elasticsearch_Domain_NodeToNodeEncryptionOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Elasticsearch::Domain.NodeToNodeEncryptionOptions"
+            stratosphere::generator::construct_property_type!("AWS::Elasticsearch::Domain.NodeToNodeEncryptionOptions"
             $($field $value)*)
         };
     }
@@ -443,7 +443,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_elasticsearch_Domain_SnapshotOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Elasticsearch::Domain.SnapshotOptions"
+            stratosphere::generator::construct_property_type!("AWS::Elasticsearch::Domain.SnapshotOptions"
             $($field $value)*)
         };
     }
@@ -469,7 +469,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_elasticsearch_Domain_VPCOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Elasticsearch::Domain.VPCOptions"
+            stratosphere::generator::construct_property_type!("AWS::Elasticsearch::Domain.VPCOptions"
             $($field $value)*)
         };
     }
@@ -500,7 +500,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_elasticsearch_Domain_ZoneAwarenessConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Elasticsearch::Domain.ZoneAwarenessConfig"
+            stratosphere::generator::construct_property_type!("AWS::Elasticsearch::Domain.ZoneAwarenessConfig"
             $($field $value)*)
         };
     }
@@ -545,7 +545,7 @@ pub struct Domain_ {
 #[macro_export]
 macro_rules! __aws_elasticsearch_Domain {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Elasticsearch::Domain"
+        stratosphere::generator::construct_resource_type!("AWS::Elasticsearch::Domain"
         $($field $value)*)
     };
 }

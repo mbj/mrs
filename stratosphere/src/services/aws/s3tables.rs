@@ -8,7 +8,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_s3tables_Table_Compaction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Tables::Table.Compaction"
+            stratosphere::generator::construct_property_type!("AWS::S3Tables::Table.Compaction"
             $($field $value)*)
         };
     }
@@ -36,7 +36,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_s3tables_Table_IcebergMetadata {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Tables::Table.IcebergMetadata"
+            stratosphere::generator::construct_property_type!("AWS::S3Tables::Table.IcebergMetadata"
             $($field $value)*)
         };
     }
@@ -59,7 +59,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_s3tables_Table_IcebergSchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Tables::Table.IcebergSchema"
+            stratosphere::generator::construct_property_type!("AWS::S3Tables::Table.IcebergSchema"
             $($field $value)*)
         };
     }
@@ -84,7 +84,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_s3tables_Table_SchemaField {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Tables::Table.SchemaField"
+            stratosphere::generator::construct_property_type!("AWS::S3Tables::Table.SchemaField"
             $($field $value)*)
         };
     }
@@ -119,7 +119,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_s3tables_Table_SnapshotManagement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Tables::Table.SnapshotManagement"
+            stratosphere::generator::construct_property_type!("AWS::S3Tables::Table.SnapshotManagement"
             $($field $value)*)
         };
     }
@@ -156,7 +156,7 @@ pub mod tablebucket {
     #[macro_export]
     macro_rules! __aws_s3tables_TableBucket_EncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Tables::TableBucket.EncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::S3Tables::TableBucket.EncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -189,7 +189,7 @@ pub mod tablebucket {
     #[macro_export]
     macro_rules! __aws_s3tables_TableBucket_UnreferencedFileRemoval {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::S3Tables::TableBucket.UnreferencedFileRemoval"
+            stratosphere::generator::construct_property_type!("AWS::S3Tables::TableBucket.UnreferencedFileRemoval"
             $($field $value)*)
         };
     }
@@ -225,7 +225,7 @@ pub struct Namespace_ {
 #[macro_export]
 macro_rules! __aws_s3tables_Namespace {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3Tables::Namespace"
+        stratosphere::generator::construct_resource_type!("AWS::S3Tables::Namespace"
         $($field $value)*)
     };
 }
@@ -267,7 +267,7 @@ pub struct Table_ {
 #[macro_export]
 macro_rules! __aws_s3tables_Table {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3Tables::Table" $($field
+        stratosphere::generator::construct_resource_type!("AWS::S3Tables::Table" $($field
         $value)*)
     };
 }
@@ -336,7 +336,7 @@ pub struct TableBucket_ {
 #[macro_export]
 macro_rules! __aws_s3tables_TableBucket {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3Tables::TableBucket"
+        stratosphere::generator::construct_resource_type!("AWS::S3Tables::TableBucket"
         $($field $value)*)
     };
 }
@@ -380,7 +380,7 @@ pub struct TableBucketPolicy_ {
 #[macro_export]
 macro_rules! __aws_s3tables_TableBucketPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3Tables::TableBucketPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::S3Tables::TableBucketPolicy"
         $($field $value)*)
     };
 }
@@ -416,7 +416,7 @@ pub struct TablePolicy_ {
 #[macro_export]
 macro_rules! __aws_s3tables_TablePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::S3Tables::TablePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::S3Tables::TablePolicy"
         $($field $value)*)
     };
 }

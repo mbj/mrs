@@ -7,7 +7,7 @@ pub mod alias {
     #[macro_export]
     macro_rules! __aws_lambda_Alias_AliasRoutingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Alias.AliasRoutingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Alias.AliasRoutingConfiguration"
             $($field $value)*)
         };
     }
@@ -32,7 +32,7 @@ pub mod alias {
     #[macro_export]
     macro_rules! __aws_lambda_Alias_ProvisionedConcurrencyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Alias.ProvisionedConcurrencyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Alias.ProvisionedConcurrencyConfiguration"
             $($field $value)*)
         };
     }
@@ -56,7 +56,7 @@ pub mod alias {
     #[macro_export]
     macro_rules! __aws_lambda_Alias_VersionWeight {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Alias.VersionWeight"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Alias.VersionWeight"
             $($field $value)*)
         };
     }
@@ -85,7 +85,7 @@ pub mod codesigningconfig {
     #[macro_export]
     macro_rules! __aws_lambda_CodeSigningConfig_AllowedPublishers {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::CodeSigningConfig.AllowedPublishers"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::CodeSigningConfig.AllowedPublishers"
             $($field $value)*)
         };
     }
@@ -108,7 +108,7 @@ pub mod codesigningconfig {
     #[macro_export]
     macro_rules! __aws_lambda_CodeSigningConfig_CodeSigningPolicies {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::CodeSigningConfig.CodeSigningPolicies"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::CodeSigningConfig.CodeSigningPolicies"
             $($field $value)*)
         };
     }
@@ -134,7 +134,7 @@ pub mod eventinvokeconfig {
     #[macro_export]
     macro_rules! __aws_lambda_EventInvokeConfig_DestinationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventInvokeConfig.DestinationConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventInvokeConfig.DestinationConfig"
             $($field $value)*)
         };
     }
@@ -165,7 +165,7 @@ pub mod eventinvokeconfig {
     #[macro_export]
     macro_rules! __aws_lambda_EventInvokeConfig_OnFailure {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventInvokeConfig.OnFailure"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventInvokeConfig.OnFailure"
             $($field $value)*)
         };
     }
@@ -188,7 +188,7 @@ pub mod eventinvokeconfig {
     #[macro_export]
     macro_rules! __aws_lambda_EventInvokeConfig_OnSuccess {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventInvokeConfig.OnSuccess"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventInvokeConfig.OnSuccess"
             $($field $value)*)
         };
     }
@@ -214,7 +214,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_AmazonManagedKafkaEventSourceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.AmazonManagedKafkaEventSourceConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.AmazonManagedKafkaEventSourceConfig"
             $($field $value)*)
         };
     }
@@ -245,7 +245,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_DestinationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.DestinationConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.DestinationConfig"
             $($field $value)*)
         };
     }
@@ -272,7 +272,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_DocumentDBEventSourceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.DocumentDBEventSourceConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.DocumentDBEventSourceConfig"
             $($field $value)*)
         };
     }
@@ -309,7 +309,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_Endpoints {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.Endpoints"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.Endpoints"
             $($field $value)*)
         };
     }
@@ -334,7 +334,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_Filter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.Filter"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.Filter"
             $($field $value)*)
         };
     }
@@ -359,7 +359,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_FilterCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.FilterCriteria"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.FilterCriteria"
             $($field $value)*)
         };
     }
@@ -384,7 +384,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_MetricsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.MetricsConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.MetricsConfig"
             $($field $value)*)
         };
     }
@@ -409,7 +409,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_OnFailure {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.OnFailure"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.OnFailure"
             $($field $value)*)
         };
     }
@@ -435,7 +435,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_ProvisionedPollerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.ProvisionedPollerConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.ProvisionedPollerConfig"
             $($field $value)*)
         };
     }
@@ -466,7 +466,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_ScalingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.ScalingConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.ScalingConfig"
             $($field $value)*)
         };
     }
@@ -492,7 +492,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_SchemaRegistryAccessConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.SchemaRegistryAccessConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.SchemaRegistryAccessConfig"
             $($field $value)*)
         };
     }
@@ -520,7 +520,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_SchemaRegistryConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.SchemaRegistryConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.SchemaRegistryConfig"
             $($field $value)*)
         };
     }
@@ -563,7 +563,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_SchemaValidationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.SchemaValidationConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.SchemaValidationConfig"
             $($field $value)*)
         };
     }
@@ -588,7 +588,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_SelfManagedEventSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.SelfManagedEventSource"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.SelfManagedEventSource"
             $($field $value)*)
         };
     }
@@ -614,7 +614,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_SelfManagedKafkaEventSourceConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.SelfManagedKafkaEventSourceConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.SelfManagedKafkaEventSourceConfig"
             $($field $value)*)
         };
     }
@@ -646,7 +646,7 @@ pub mod eventsourcemapping {
     #[macro_export]
     macro_rules! __aws_lambda_EventSourceMapping_SourceAccessConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::EventSourceMapping.SourceAccessConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.SourceAccessConfiguration"
             $($field $value)*)
         };
     }
@@ -678,7 +678,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_lambda_Function_Code {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Function.Code"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.Code"
             $($field $value)*)
         };
     }
@@ -730,7 +730,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_lambda_Function_DeadLetterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Function.DeadLetterConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.DeadLetterConfig"
             $($field $value)*)
         };
     }
@@ -755,7 +755,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_lambda_Function_Environment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Function.Environment"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.Environment"
             $($field $value)*)
         };
     }
@@ -780,7 +780,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_lambda_Function_EphemeralStorage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Function.EphemeralStorage"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.EphemeralStorage"
             $($field $value)*)
         };
     }
@@ -804,7 +804,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_lambda_Function_FileSystemConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Function.FileSystemConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.FileSystemConfig"
             $($field $value)*)
         };
     }
@@ -833,7 +833,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_lambda_Function_ImageConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Function.ImageConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.ImageConfig"
             $($field $value)*)
         };
     }
@@ -873,7 +873,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_lambda_Function_LoggingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Function.LoggingConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.LoggingConfig"
             $($field $value)*)
         };
     }
@@ -917,7 +917,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_lambda_Function_RuntimeManagementConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Function.RuntimeManagementConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.RuntimeManagementConfig"
             $($field $value)*)
         };
     }
@@ -946,7 +946,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_lambda_Function_SnapStart {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Function.SnapStart"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.SnapStart"
             $($field $value)*)
         };
     }
@@ -970,7 +970,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_lambda_Function_SnapStartResponse {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Function.SnapStartResponse"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.SnapStartResponse"
             $($field $value)*)
         };
     }
@@ -1001,7 +1001,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_lambda_Function_TracingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Function.TracingConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.TracingConfig"
             $($field $value)*)
         };
     }
@@ -1025,7 +1025,7 @@ pub mod function {
     #[macro_export]
     macro_rules! __aws_lambda_Function_VpcConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Function.VpcConfig"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.VpcConfig"
             $($field $value)*)
         };
     }
@@ -1066,7 +1066,7 @@ pub mod layerversion {
     #[macro_export]
     macro_rules! __aws_lambda_LayerVersion_Content {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::LayerVersion.Content"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::LayerVersion.Content"
             $($field $value)*)
         };
     }
@@ -1106,7 +1106,7 @@ pub mod url {
     #[macro_export]
     macro_rules! __aws_lambda_Url_Cors {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Url.Cors"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Url.Cors"
             $($field $value)*)
         };
     }
@@ -1160,7 +1160,7 @@ pub mod version {
     #[macro_export]
     macro_rules! __aws_lambda_Version_ProvisionedConcurrencyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Version.ProvisionedConcurrencyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Version.ProvisionedConcurrencyConfiguration"
             $($field $value)*)
         };
     }
@@ -1184,7 +1184,7 @@ pub mod version {
     #[macro_export]
     macro_rules! __aws_lambda_Version_RuntimePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lambda::Version.RuntimePolicy"
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Version.RuntimePolicy"
             $($field $value)*)
         };
     }
@@ -1220,7 +1220,7 @@ pub struct Alias_ {
 #[macro_export]
 macro_rules! __aws_lambda_Alias {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lambda::Alias" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Lambda::Alias" $($field
         $value)*)
     };
 }
@@ -1280,7 +1280,7 @@ pub struct CodeSigningConfig_ {
 #[macro_export]
 macro_rules! __aws_lambda_CodeSigningConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lambda::CodeSigningConfig"
+        stratosphere::generator::construct_resource_type!("AWS::Lambda::CodeSigningConfig"
         $($field $value)*)
     };
 }
@@ -1330,7 +1330,7 @@ pub struct EventInvokeConfig_ {
 #[macro_export]
 macro_rules! __aws_lambda_EventInvokeConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lambda::EventInvokeConfig"
+        stratosphere::generator::construct_resource_type!("AWS::Lambda::EventInvokeConfig"
         $($field $value)*)
     };
 }
@@ -1415,7 +1415,7 @@ pub struct EventSourceMapping_ {
 #[macro_export]
 macro_rules! __aws_lambda_EventSourceMapping {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lambda::EventSourceMapping"
+        stratosphere::generator::construct_resource_type!("AWS::Lambda::EventSourceMapping"
         $($field $value)*)
     };
 }
@@ -1618,8 +1618,8 @@ pub struct Function_ {
 #[macro_export]
 macro_rules! __aws_lambda_Function {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lambda::Function" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::Lambda::Function"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_lambda_Function as Function;
@@ -1796,7 +1796,7 @@ pub struct LayerVersion_ {
 #[macro_export]
 macro_rules! __aws_lambda_LayerVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lambda::LayerVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Lambda::LayerVersion"
         $($field $value)*)
     };
 }
@@ -1860,7 +1860,7 @@ pub struct LayerVersionPermission_ {
 #[macro_export]
 macro_rules! __aws_lambda_LayerVersionPermission {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lambda::LayerVersionPermission"
+        stratosphere::generator::construct_resource_type!("AWS::Lambda::LayerVersionPermission"
         $($field $value)*)
     };
 }
@@ -1912,7 +1912,7 @@ pub struct Permission_ {
 #[macro_export]
 macro_rules! __aws_lambda_Permission {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lambda::Permission"
+        stratosphere::generator::construct_resource_type!("AWS::Lambda::Permission"
         $($field $value)*)
     };
 }
@@ -1985,7 +1985,7 @@ pub struct Url_ {
 #[macro_export]
 macro_rules! __aws_lambda_Url {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lambda::Url" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Lambda::Url" $($field
         $value)*)
     };
 }
@@ -2040,7 +2040,7 @@ pub struct Version_ {
 #[macro_export]
 macro_rules! __aws_lambda_Version {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lambda::Version" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Lambda::Version" $($field
         $value)*)
     };
 }

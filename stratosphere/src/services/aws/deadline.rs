@@ -8,7 +8,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_AcceleratorCapabilities {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.AcceleratorCapabilities"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.AcceleratorCapabilities"
             $($field $value)*)
         };
     }
@@ -35,7 +35,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_AcceleratorCountRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.AcceleratorCountRange"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.AcceleratorCountRange"
             $($field $value)*)
         };
     }
@@ -62,7 +62,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_AcceleratorSelection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.AcceleratorSelection"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.AcceleratorSelection"
             $($field $value)*)
         };
     }
@@ -92,7 +92,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_AcceleratorTotalMemoryMiBRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.AcceleratorTotalMemoryMiBRange"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.AcceleratorTotalMemoryMiBRange"
             $($field $value)*)
         };
     }
@@ -121,7 +121,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_CustomerManagedFleetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.CustomerManagedFleetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.CustomerManagedFleetConfiguration"
             $($field $value)*)
         };
     }
@@ -168,7 +168,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_CustomerManagedWorkerCapabilities {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.CustomerManagedWorkerCapabilities"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.CustomerManagedWorkerCapabilities"
             $($field $value)*)
         };
     }
@@ -235,7 +235,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_Ec2EbsVolume {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.Ec2EbsVolume"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.Ec2EbsVolume"
             $($field $value)*)
         };
     }
@@ -271,7 +271,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_FleetAmountCapability {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.FleetAmountCapability"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.FleetAmountCapability"
             $($field $value)*)
         };
     }
@@ -302,7 +302,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_FleetAttributeCapability {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.FleetAttributeCapability"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.FleetAttributeCapability"
             $($field $value)*)
         };
     }
@@ -330,7 +330,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_FleetCapabilities {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.FleetCapabilities"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.FleetCapabilities"
             $($field $value)*)
         };
     }
@@ -362,7 +362,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_FleetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.FleetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.FleetConfiguration"
             $($field $value)*)
         };
     }
@@ -394,7 +394,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_HostConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.HostConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.HostConfiguration"
             $($field $value)*)
         };
     }
@@ -424,7 +424,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_MemoryMiBRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.MemoryMiBRange"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.MemoryMiBRange"
             $($field $value)*)
         };
     }
@@ -453,7 +453,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_ServiceManagedEc2FleetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.ServiceManagedEc2FleetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.ServiceManagedEc2FleetConfiguration"
             $($field $value)*)
         };
     }
@@ -501,7 +501,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_ServiceManagedEc2InstanceCapabilities {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.ServiceManagedEc2InstanceCapabilities"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.ServiceManagedEc2InstanceCapabilities"
             $($field $value)*)
         };
     }
@@ -572,7 +572,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_ServiceManagedEc2InstanceMarketOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.ServiceManagedEc2InstanceMarketOptions"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.ServiceManagedEc2InstanceMarketOptions"
             $($field $value)*)
         };
     }
@@ -596,7 +596,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_VCpuCountRange {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.VCpuCountRange"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.VCpuCountRange"
             $($field $value)*)
         };
     }
@@ -622,7 +622,7 @@ pub mod fleet {
     #[macro_export]
     macro_rules! __aws_deadline_Fleet_VpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Fleet.VpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Fleet.VpcConfiguration"
             $($field $value)*)
         };
     }
@@ -650,7 +650,7 @@ pub mod queue {
     #[macro_export]
     macro_rules! __aws_deadline_Queue_JobAttachmentSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Queue.JobAttachmentSettings"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Queue.JobAttachmentSettings"
             $($field $value)*)
         };
     }
@@ -679,7 +679,7 @@ pub mod queue {
     #[macro_export]
     macro_rules! __aws_deadline_Queue_JobRunAsUser {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Queue.JobRunAsUser"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Queue.JobRunAsUser"
             $($field $value)*)
         };
     }
@@ -712,7 +712,7 @@ pub mod queue {
     #[macro_export]
     macro_rules! __aws_deadline_Queue_PosixUser {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Queue.PosixUser"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Queue.PosixUser"
             $($field $value)*)
         };
     }
@@ -740,7 +740,7 @@ pub mod queue {
     #[macro_export]
     macro_rules! __aws_deadline_Queue_WindowsUser {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::Queue.WindowsUser"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::Queue.WindowsUser"
             $($field $value)*)
         };
     }
@@ -771,7 +771,7 @@ pub mod storageprofile {
     #[macro_export]
     macro_rules! __aws_deadline_StorageProfile_FileSystemLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Deadline::StorageProfile.FileSystemLocation"
+            stratosphere::generator::construct_property_type!("AWS::Deadline::StorageProfile.FileSystemLocation"
             $($field $value)*)
         };
     }
@@ -806,7 +806,7 @@ pub struct Farm_ {
 #[macro_export]
 macro_rules! __aws_deadline_Farm {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Deadline::Farm" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Deadline::Farm" $($field
         $value)*)
     };
 }
@@ -860,7 +860,7 @@ pub struct Fleet_ {
 #[macro_export]
 macro_rules! __aws_deadline_Fleet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Deadline::Fleet" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Deadline::Fleet" $($field
         $value)*)
     };
 }
@@ -931,7 +931,7 @@ pub struct LicenseEndpoint_ {
 #[macro_export]
 macro_rules! __aws_deadline_LicenseEndpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Deadline::LicenseEndpoint"
+        stratosphere::generator::construct_resource_type!("AWS::Deadline::LicenseEndpoint"
         $($field $value)*)
     };
 }
@@ -977,7 +977,7 @@ pub struct Limit_ {
 #[macro_export]
 macro_rules! __aws_deadline_Limit {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Deadline::Limit" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Deadline::Limit" $($field
         $value)*)
     };
 }
@@ -1027,7 +1027,7 @@ pub struct MeteredProduct_ {
 #[macro_export]
 macro_rules! __aws_deadline_MeteredProduct {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Deadline::MeteredProduct"
+        stratosphere::generator::construct_resource_type!("AWS::Deadline::MeteredProduct"
         $($field $value)*)
     };
 }
@@ -1070,7 +1070,7 @@ pub struct Monitor_ {
 #[macro_export]
 macro_rules! __aws_deadline_Monitor {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Deadline::Monitor"
+        stratosphere::generator::construct_resource_type!("AWS::Deadline::Monitor"
         $($field $value)*)
     };
 }
@@ -1125,7 +1125,7 @@ pub struct Queue_ {
 #[macro_export]
 macro_rules! __aws_deadline_Queue {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Deadline::Queue" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Deadline::Queue" $($field
         $value)*)
     };
 }
@@ -1209,7 +1209,7 @@ pub struct QueueEnvironment_ {
 #[macro_export]
 macro_rules! __aws_deadline_QueueEnvironment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Deadline::QueueEnvironment"
+        stratosphere::generator::construct_resource_type!("AWS::Deadline::QueueEnvironment"
         $($field $value)*)
     };
 }
@@ -1258,7 +1258,7 @@ pub struct QueueFleetAssociation_ {
 #[macro_export]
 macro_rules! __aws_deadline_QueueFleetAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Deadline::QueueFleetAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::Deadline::QueueFleetAssociation"
         $($field $value)*)
     };
 }
@@ -1299,7 +1299,7 @@ pub struct QueueLimitAssociation_ {
 #[macro_export]
 macro_rules! __aws_deadline_QueueLimitAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Deadline::QueueLimitAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::Deadline::QueueLimitAssociation"
         $($field $value)*)
     };
 }
@@ -1341,7 +1341,7 @@ pub struct StorageProfile_ {
 #[macro_export]
 macro_rules! __aws_deadline_StorageProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Deadline::StorageProfile"
+        stratosphere::generator::construct_resource_type!("AWS::Deadline::StorageProfile"
         $($field $value)*)
     };
 }

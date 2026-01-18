@@ -7,7 +7,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_pinpointemail_ConfigurationSet_DeliveryOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSet.DeliveryOptions"
+            stratosphere::generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSet.DeliveryOptions"
             $($field $value)*)
         };
     }
@@ -32,7 +32,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_pinpointemail_ConfigurationSet_ReputationOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSet.ReputationOptions"
+            stratosphere::generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSet.ReputationOptions"
             $($field $value)*)
         };
     }
@@ -57,7 +57,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_pinpointemail_ConfigurationSet_SendingOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSet.SendingOptions"
+            stratosphere::generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSet.SendingOptions"
             $($field $value)*)
         };
     }
@@ -83,7 +83,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_pinpointemail_ConfigurationSet_Tags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSet.Tags"
+            stratosphere::generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSet.Tags"
             $($field $value)*)
         };
     }
@@ -108,7 +108,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_pinpointemail_ConfigurationSet_TrackingOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSet.TrackingOptions"
+            stratosphere::generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSet.TrackingOptions"
             $($field $value)*)
         };
     }
@@ -135,7 +135,7 @@ pub mod configurationseteventdestination {
     #[macro_export]
     macro_rules! __aws_pinpointemail_ConfigurationSetEventDestination_CloudWatchDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSetEventDestination.CloudWatchDestination"
+            stratosphere::generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSetEventDestination.CloudWatchDestination"
             $($field $value)*)
         };
     }
@@ -162,7 +162,7 @@ pub mod configurationseteventdestination {
     #[macro_export]
     macro_rules! __aws_pinpointemail_ConfigurationSetEventDestination_DimensionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSetEventDestination.DimensionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSetEventDestination.DimensionConfiguration"
             $($field $value)*)
         };
     }
@@ -198,7 +198,7 @@ pub mod configurationseteventdestination {
     #[macro_export]
     macro_rules! __aws_pinpointemail_ConfigurationSetEventDestination_EventDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSetEventDestination.EventDestination"
+            stratosphere::generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSetEventDestination.EventDestination"
             $($field $value)*)
         };
     }
@@ -252,7 +252,7 @@ pub mod configurationseteventdestination {
     #[macro_export]
     macro_rules! __aws_pinpointemail_ConfigurationSetEventDestination_KinesisFirehoseDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSetEventDestination.KinesisFirehoseDestination"
+            stratosphere::generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSetEventDestination.KinesisFirehoseDestination"
             $($field $value)*)
         };
     }
@@ -279,7 +279,7 @@ pub mod configurationseteventdestination {
     #[macro_export]
     macro_rules! __aws_pinpointemail_ConfigurationSetEventDestination_PinpointDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSetEventDestination.PinpointDestination"
+            stratosphere::generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSetEventDestination.PinpointDestination"
             $($field $value)*)
         };
     }
@@ -304,7 +304,7 @@ pub mod configurationseteventdestination {
     #[macro_export]
     macro_rules! __aws_pinpointemail_ConfigurationSetEventDestination_SnsDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSetEventDestination.SnsDestination"
+            stratosphere::generator::construct_property_type!("AWS::PinpointEmail::ConfigurationSetEventDestination.SnsDestination"
             $($field $value)*)
         };
     }
@@ -330,7 +330,7 @@ pub mod dedicatedippool {
     #[macro_export]
     macro_rules! __aws_pinpointemail_DedicatedIpPool_Tags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PinpointEmail::DedicatedIpPool.Tags"
+            stratosphere::generator::construct_property_type!("AWS::PinpointEmail::DedicatedIpPool.Tags"
             $($field $value)*)
         };
     }
@@ -358,7 +358,7 @@ pub mod identity {
     #[macro_export]
     macro_rules! __aws_pinpointemail_Identity_MailFromAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PinpointEmail::Identity.MailFromAttributes"
+            stratosphere::generator::construct_property_type!("AWS::PinpointEmail::Identity.MailFromAttributes"
             $($field $value)*)
         };
     }
@@ -390,7 +390,7 @@ pub mod identity {
     #[macro_export]
     macro_rules! __aws_pinpointemail_Identity_Tags {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::PinpointEmail::Identity.Tags"
+            stratosphere::generator::construct_property_type!("AWS::PinpointEmail::Identity.Tags"
             $($field $value)*)
         };
     }
@@ -421,7 +421,7 @@ pub struct ConfigurationSet_ {
 #[macro_export]
 macro_rules! __aws_pinpointemail_ConfigurationSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PinpointEmail::ConfigurationSet"
+        stratosphere::generator::construct_resource_type!("AWS::PinpointEmail::ConfigurationSet"
         $($field $value)*)
     };
 }
@@ -482,7 +482,7 @@ pub struct ConfigurationSetEventDestination_ {
 #[macro_export]
 macro_rules! __aws_pinpointemail_ConfigurationSetEventDestination {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PinpointEmail::ConfigurationSetEventDestination"
+        stratosphere::generator::construct_resource_type!("AWS::PinpointEmail::ConfigurationSetEventDestination"
         $($field $value)*)
     };
 }
@@ -526,7 +526,7 @@ pub struct DedicatedIpPool_ {
 #[macro_export]
 macro_rules! __aws_pinpointemail_DedicatedIpPool {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PinpointEmail::DedicatedIpPool"
+        stratosphere::generator::construct_resource_type!("AWS::PinpointEmail::DedicatedIpPool"
         $($field $value)*)
     };
 }
@@ -566,7 +566,7 @@ pub struct Identity_ {
 #[macro_export]
 macro_rules! __aws_pinpointemail_Identity {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::PinpointEmail::Identity"
+        stratosphere::generator::construct_resource_type!("AWS::PinpointEmail::Identity"
         $($field $value)*)
     };
 }

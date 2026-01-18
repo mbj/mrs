@@ -12,7 +12,7 @@ pub struct Hypervisor_ {
 #[macro_export]
 macro_rules! __aws_backupgateway_Hypervisor {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::BackupGateway::Hypervisor"
+        stratosphere::generator::construct_resource_type!("AWS::BackupGateway::Hypervisor"
         $($field $value)*)
     };
 }

@@ -12,7 +12,7 @@ pub mod experiment {
     #[macro_export]
     macro_rules! __aws_evidently_Experiment_MetricGoalObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Experiment.MetricGoalObject"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Experiment.MetricGoalObject"
             $($field $value)*)
         };
     }
@@ -60,7 +60,7 @@ pub mod experiment {
     #[macro_export]
     macro_rules! __aws_evidently_Experiment_OnlineAbConfigObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Experiment.OnlineAbConfigObject"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Experiment.OnlineAbConfigObject"
             $($field $value)*)
         };
     }
@@ -94,7 +94,7 @@ pub mod experiment {
     #[macro_export]
     macro_rules! __aws_evidently_Experiment_RunningStatusObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Experiment.RunningStatusObject"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Experiment.RunningStatusObject"
             $($field $value)*)
         };
     }
@@ -135,7 +135,7 @@ pub mod experiment {
     #[macro_export]
     macro_rules! __aws_evidently_Experiment_TreatmentObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Experiment.TreatmentObject"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Experiment.TreatmentObject"
             $($field $value)*)
         };
     }
@@ -173,7 +173,7 @@ pub mod experiment {
     #[macro_export]
     macro_rules! __aws_evidently_Experiment_TreatmentToWeight {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Experiment.TreatmentToWeight"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Experiment.TreatmentToWeight"
             $($field $value)*)
         };
     }
@@ -203,7 +203,7 @@ pub mod feature {
     #[macro_export]
     macro_rules! __aws_evidently_Feature_EntityOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Feature.EntityOverride"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Feature.EntityOverride"
             $($field $value)*)
         };
     }
@@ -238,7 +238,7 @@ pub mod feature {
     #[macro_export]
     macro_rules! __aws_evidently_Feature_VariationObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Feature.VariationObject"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Feature.VariationObject"
             $($field $value)*)
         };
     }
@@ -289,7 +289,7 @@ pub mod launch {
     #[macro_export]
     macro_rules! __aws_evidently_Launch_ExecutionStatusObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Launch.ExecutionStatusObject"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Launch.ExecutionStatusObject"
             $($field $value)*)
         };
     }
@@ -322,7 +322,7 @@ pub mod launch {
     #[macro_export]
     macro_rules! __aws_evidently_Launch_GroupToWeight {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Launch.GroupToWeight"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Launch.GroupToWeight"
             $($field $value)*)
         };
     }
@@ -352,7 +352,7 @@ pub mod launch {
     #[macro_export]
     macro_rules! __aws_evidently_Launch_LaunchGroupObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Launch.LaunchGroupObject"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Launch.LaunchGroupObject"
             $($field $value)*)
         };
     }
@@ -393,7 +393,7 @@ pub mod launch {
     #[macro_export]
     macro_rules! __aws_evidently_Launch_MetricDefinitionObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Launch.MetricDefinitionObject"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Launch.MetricDefinitionObject"
             $($field $value)*)
         };
     }
@@ -438,7 +438,7 @@ pub mod launch {
     #[macro_export]
     macro_rules! __aws_evidently_Launch_SegmentOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Launch.SegmentOverride"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Launch.SegmentOverride"
             $($field $value)*)
         };
     }
@@ -471,7 +471,7 @@ pub mod launch {
     #[macro_export]
     macro_rules! __aws_evidently_Launch_StepConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Launch.StepConfig"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Launch.StepConfig"
             $($field $value)*)
         };
     }
@@ -507,7 +507,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_evidently_Project_AppConfigResourceObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Project.AppConfigResourceObject"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Project.AppConfigResourceObject"
             $($field $value)*)
         };
     }
@@ -535,7 +535,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_evidently_Project_DataDeliveryObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Project.DataDeliveryObject"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Project.DataDeliveryObject"
             $($field $value)*)
         };
     }
@@ -564,7 +564,7 @@ pub mod project {
     #[macro_export]
     macro_rules! __aws_evidently_Project_S3Destination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Evidently::Project.S3Destination"
+            stratosphere::generator::construct_property_type!("AWS::Evidently::Project.S3Destination"
             $($field $value)*)
         };
     }
@@ -602,7 +602,7 @@ pub struct Experiment_ {
 #[macro_export]
 macro_rules! __aws_evidently_Experiment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Evidently::Experiment"
+        stratosphere::generator::construct_resource_type!("AWS::Evidently::Experiment"
         $($field $value)*)
     };
 }
@@ -695,7 +695,7 @@ pub struct Feature_ {
 #[macro_export]
 macro_rules! __aws_evidently_Feature {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Evidently::Feature"
+        stratosphere::generator::construct_resource_type!("AWS::Evidently::Feature"
         $($field $value)*)
     };
 }
@@ -769,7 +769,7 @@ pub struct Launch_ {
 #[macro_export]
 macro_rules! __aws_evidently_Launch {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Evidently::Launch"
+        stratosphere::generator::construct_resource_type!("AWS::Evidently::Launch"
         $($field $value)*)
     };
 }
@@ -843,7 +843,7 @@ pub struct Project_ {
 #[macro_export]
 macro_rules! __aws_evidently_Project {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Evidently::Project"
+        stratosphere::generator::construct_resource_type!("AWS::Evidently::Project"
         $($field $value)*)
     };
 }
@@ -898,7 +898,7 @@ pub struct Segment_ {
 #[macro_export]
 macro_rules! __aws_evidently_Segment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Evidently::Segment"
+        stratosphere::generator::construct_resource_type!("AWS::Evidently::Segment"
         $($field $value)*)
     };
 }

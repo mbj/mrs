@@ -8,7 +8,7 @@ pub mod dbcluster {
     #[macro_export]
     macro_rules! __aws_rds_DBCluster_DBClusterRole {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBCluster.DBClusterRole"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBCluster.DBClusterRole"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod dbcluster {
     #[macro_export]
     macro_rules! __aws_rds_DBCluster_Endpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBCluster.Endpoint"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBCluster.Endpoint"
             $($field $value)*)
         };
     }
@@ -67,7 +67,7 @@ pub mod dbcluster {
     #[macro_export]
     macro_rules! __aws_rds_DBCluster_MasterUserSecret {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBCluster.MasterUserSecret"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBCluster.MasterUserSecret"
             $($field $value)*)
         };
     }
@@ -98,7 +98,7 @@ pub mod dbcluster {
     #[macro_export]
     macro_rules! __aws_rds_DBCluster_ReadEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBCluster.ReadEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBCluster.ReadEndpoint"
             $($field $value)*)
         };
     }
@@ -128,7 +128,7 @@ pub mod dbcluster {
     #[macro_export]
     macro_rules! __aws_rds_DBCluster_ScalingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBCluster.ScalingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBCluster.ScalingConfiguration"
             $($field $value)*)
         };
     }
@@ -185,7 +185,7 @@ pub mod dbcluster {
     #[macro_export]
     macro_rules! __aws_rds_DBCluster_ServerlessV2ScalingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBCluster.ServerlessV2ScalingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBCluster.ServerlessV2ScalingConfiguration"
             $($field $value)*)
         };
     }
@@ -225,7 +225,7 @@ pub mod dbinstance {
     #[macro_export]
     macro_rules! __aws_rds_DBInstance_CertificateDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBInstance.CertificateDetails"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBInstance.CertificateDetails"
             $($field $value)*)
         };
     }
@@ -257,7 +257,7 @@ pub mod dbinstance {
     #[macro_export]
     macro_rules! __aws_rds_DBInstance_DBInstanceRole {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBInstance.DBInstanceRole"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBInstance.DBInstanceRole"
             $($field $value)*)
         };
     }
@@ -287,7 +287,7 @@ pub mod dbinstance {
     #[macro_export]
     macro_rules! __aws_rds_DBInstance_DBInstanceStatusInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBInstance.DBInstanceStatusInfo"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBInstance.DBInstanceStatusInfo"
             $($field $value)*)
         };
     }
@@ -326,7 +326,7 @@ pub mod dbinstance {
     #[macro_export]
     macro_rules! __aws_rds_DBInstance_Endpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBInstance.Endpoint"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBInstance.Endpoint"
             $($field $value)*)
         };
     }
@@ -361,7 +361,7 @@ pub mod dbinstance {
     #[macro_export]
     macro_rules! __aws_rds_DBInstance_MasterUserSecret {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBInstance.MasterUserSecret"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBInstance.MasterUserSecret"
             $($field $value)*)
         };
     }
@@ -393,7 +393,7 @@ pub mod dbinstance {
     #[macro_export]
     macro_rules! __aws_rds_DBInstance_ProcessorFeature {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBInstance.ProcessorFeature"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBInstance.ProcessorFeature"
             $($field $value)*)
         };
     }
@@ -424,7 +424,7 @@ pub mod dbproxy {
     #[macro_export]
     macro_rules! __aws_rds_DBProxy_AuthFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBProxy.AuthFormat"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBProxy.AuthFormat"
             $($field $value)*)
         };
     }
@@ -474,7 +474,7 @@ pub mod dbproxy {
     #[macro_export]
     macro_rules! __aws_rds_DBProxy_TagFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBProxy.TagFormat"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBProxy.TagFormat"
             $($field $value)*)
         };
     }
@@ -502,7 +502,7 @@ pub mod dbproxyendpoint {
     #[macro_export]
     macro_rules! __aws_rds_DBProxyEndpoint_TagFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBProxyEndpoint.TagFormat"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBProxyEndpoint.TagFormat"
             $($field $value)*)
         };
     }
@@ -533,7 +533,7 @@ pub mod dbproxytargetgroup {
     #[macro_export]
     macro_rules! __aws_rds_DBProxyTargetGroup_ConnectionPoolConfigurationInfoFormat {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBProxyTargetGroup.ConnectionPoolConfigurationInfoFormat"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBProxyTargetGroup.ConnectionPoolConfigurationInfoFormat"
             $($field $value)*)
         };
     }
@@ -587,7 +587,7 @@ pub mod dbsecuritygroup {
     #[macro_export]
     macro_rules! __aws_rds_DBSecurityGroup_Ingress {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::DBSecurityGroup.Ingress"
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBSecurityGroup.Ingress"
             $($field $value)*)
         };
     }
@@ -629,7 +629,7 @@ pub mod globalcluster {
     #[macro_export]
     macro_rules! __aws_rds_GlobalCluster_GlobalEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::GlobalCluster.GlobalEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::RDS::GlobalCluster.GlobalEndpoint"
             $($field $value)*)
         };
     }
@@ -661,7 +661,7 @@ pub mod optiongroup {
     #[macro_export]
     macro_rules! __aws_rds_OptionGroup_OptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::OptionGroup.OptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::RDS::OptionGroup.OptionConfiguration"
             $($field $value)*)
         };
     }
@@ -712,7 +712,7 @@ pub mod optiongroup {
     #[macro_export]
     macro_rules! __aws_rds_OptionGroup_OptionSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RDS::OptionGroup.OptionSetting"
+            stratosphere::generator::construct_property_type!("AWS::RDS::OptionGroup.OptionSetting"
             $($field $value)*)
         };
     }
@@ -749,7 +749,7 @@ pub struct CustomDBEngineVersion_ {
 #[macro_export]
 macro_rules! __aws_rds_CustomDBEngineVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::CustomDBEngineVersion"
+        stratosphere::generator::construct_resource_type!("AWS::RDS::CustomDBEngineVersion"
         $($field $value)*)
     };
 }
@@ -898,7 +898,7 @@ pub struct DBCluster_ {
 #[macro_export]
 macro_rules! __aws_rds_DBCluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::DBCluster" $($field
+        stratosphere::generator::construct_resource_type!("AWS::RDS::DBCluster" $($field
         $value)*)
     };
 }
@@ -1274,7 +1274,7 @@ pub struct DBClusterParameterGroup_ {
 #[macro_export]
 macro_rules! __aws_rds_DBClusterParameterGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::DBClusterParameterGroup"
+        stratosphere::generator::construct_resource_type!("AWS::RDS::DBClusterParameterGroup"
         $($field $value)*)
     };
 }
@@ -1400,7 +1400,7 @@ pub struct DBInstance_ {
 #[macro_export]
 macro_rules! __aws_rds_DBInstance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::DBInstance" $($field
+        stratosphere::generator::construct_resource_type!("AWS::RDS::DBInstance" $($field
         $value)*)
     };
 }
@@ -1887,7 +1887,7 @@ pub struct DBParameterGroup_ {
 #[macro_export]
 macro_rules! __aws_rds_DBParameterGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::DBParameterGroup"
+        stratosphere::generator::construct_resource_type!("AWS::RDS::DBParameterGroup"
         $($field $value)*)
     };
 }
@@ -1946,7 +1946,7 @@ pub struct DBProxy_ {
 #[macro_export]
 macro_rules! __aws_rds_DBProxy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::DBProxy" $($field
+        stratosphere::generator::construct_resource_type!("AWS::RDS::DBProxy" $($field
         $value)*)
     };
 }
@@ -2025,7 +2025,7 @@ pub struct DBProxyEndpoint_ {
 #[macro_export]
 macro_rules! __aws_rds_DBProxyEndpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::DBProxyEndpoint"
+        stratosphere::generator::construct_resource_type!("AWS::RDS::DBProxyEndpoint"
         $($field $value)*)
     };
 }
@@ -2084,7 +2084,7 @@ pub struct DBProxyTargetGroup_ {
 #[macro_export]
 macro_rules! __aws_rds_DBProxyTargetGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::DBProxyTargetGroup"
+        stratosphere::generator::construct_resource_type!("AWS::RDS::DBProxyTargetGroup"
         $($field $value)*)
     };
 }
@@ -2140,7 +2140,7 @@ pub struct DBSecurityGroup_ {
 #[macro_export]
 macro_rules! __aws_rds_DBSecurityGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::DBSecurityGroup"
+        stratosphere::generator::construct_resource_type!("AWS::RDS::DBSecurityGroup"
         $($field $value)*)
     };
 }
@@ -2188,7 +2188,7 @@ pub struct DBSecurityGroupIngress_ {
 #[macro_export]
 macro_rules! __aws_rds_DBSecurityGroupIngress {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::DBSecurityGroupIngress"
+        stratosphere::generator::construct_resource_type!("AWS::RDS::DBSecurityGroupIngress"
         $($field $value)*)
     };
 }
@@ -2246,7 +2246,7 @@ pub struct DBShardGroup_ {
 #[macro_export]
 macro_rules! __aws_rds_DBShardGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::DBShardGroup"
+        stratosphere::generator::construct_resource_type!("AWS::RDS::DBShardGroup"
         $($field $value)*)
     };
 }
@@ -2308,7 +2308,7 @@ pub struct DBSubnetGroup_ {
 #[macro_export]
 macro_rules! __aws_rds_DBSubnetGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::DBSubnetGroup"
+        stratosphere::generator::construct_resource_type!("AWS::RDS::DBSubnetGroup"
         $($field $value)*)
     };
 }
@@ -2358,7 +2358,7 @@ pub struct EventSubscription_ {
 #[macro_export]
 macro_rules! __aws_rds_EventSubscription {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::EventSubscription"
+        stratosphere::generator::construct_resource_type!("AWS::RDS::EventSubscription"
         $($field $value)*)
     };
 }
@@ -2429,7 +2429,7 @@ pub struct GlobalCluster_ {
 #[macro_export]
 macro_rules! __aws_rds_GlobalCluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::GlobalCluster"
+        stratosphere::generator::construct_resource_type!("AWS::RDS::GlobalCluster"
         $($field $value)*)
     };
 }
@@ -2506,8 +2506,8 @@ pub struct Integration_ {
 #[macro_export]
 macro_rules! __aws_rds_Integration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::Integration" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::RDS::Integration"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_rds_Integration as Integration;
@@ -2579,8 +2579,8 @@ pub struct OptionGroup_ {
 #[macro_export]
 macro_rules! __aws_rds_OptionGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RDS::OptionGroup" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::RDS::OptionGroup"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_rds_OptionGroup as OptionGroup;

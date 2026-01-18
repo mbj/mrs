@@ -9,7 +9,7 @@ pub mod datamigration {
     #[macro_export]
     macro_rules! __aws_dms_DataMigration_DataMigrationSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::DataMigration.DataMigrationSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::DataMigration.DataMigrationSettings"
             $($field $value)*)
         };
     }
@@ -49,7 +49,7 @@ pub mod datamigration {
     #[macro_export]
     macro_rules! __aws_dms_DataMigration_SourceDataSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::DataMigration.SourceDataSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::DataMigration.SourceDataSettings"
             $($field $value)*)
         };
     }
@@ -98,7 +98,7 @@ pub mod dataprovider {
     #[macro_export]
     macro_rules! __aws_dms_DataProvider_DocDbSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::DataProvider.DocDbSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::DataProvider.DocDbSettings"
             $($field $value)*)
         };
     }
@@ -145,7 +145,7 @@ pub mod dataprovider {
     #[macro_export]
     macro_rules! __aws_dms_DataProvider_IbmDb2LuwSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::DataProvider.IbmDb2LuwSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::DataProvider.IbmDb2LuwSettings"
             $($field $value)*)
         };
     }
@@ -190,7 +190,7 @@ pub mod dataprovider {
     #[macro_export]
     macro_rules! __aws_dms_DataProvider_IbmDb2zOsSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::DataProvider.IbmDb2zOsSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::DataProvider.IbmDb2zOsSettings"
             $($field $value)*)
         };
     }
@@ -234,7 +234,7 @@ pub mod dataprovider {
     #[macro_export]
     macro_rules! __aws_dms_DataProvider_MariaDbSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::DataProvider.MariaDbSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::DataProvider.MariaDbSettings"
             $($field $value)*)
         };
     }
@@ -275,7 +275,7 @@ pub mod dataprovider {
     #[macro_export]
     macro_rules! __aws_dms_DataProvider_MicrosoftSqlServerSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::DataProvider.MicrosoftSqlServerSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::DataProvider.MicrosoftSqlServerSettings"
             $($field $value)*)
         };
     }
@@ -323,7 +323,7 @@ pub mod dataprovider {
     #[macro_export]
     macro_rules! __aws_dms_DataProvider_MongoDbSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::DataProvider.MongoDbSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::DataProvider.MongoDbSettings"
             $($field $value)*)
         };
     }
@@ -389,7 +389,7 @@ pub mod dataprovider {
     #[macro_export]
     macro_rules! __aws_dms_DataProvider_MySqlSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::DataProvider.MySqlSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::DataProvider.MySqlSettings"
             $($field $value)*)
         };
     }
@@ -435,7 +435,7 @@ pub mod dataprovider {
     #[macro_export]
     macro_rules! __aws_dms_DataProvider_OracleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::DataProvider.OracleSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::DataProvider.OracleSettings"
             $($field $value)*)
         };
     }
@@ -510,7 +510,7 @@ pub mod dataprovider {
     #[macro_export]
     macro_rules! __aws_dms_DataProvider_PostgreSqlSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::DataProvider.PostgreSqlSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::DataProvider.PostgreSqlSettings"
             $($field $value)*)
         };
     }
@@ -553,7 +553,7 @@ pub mod dataprovider {
     #[macro_export]
     macro_rules! __aws_dms_DataProvider_RedshiftSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::DataProvider.RedshiftSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::DataProvider.RedshiftSettings"
             $($field $value)*)
         };
     }
@@ -593,7 +593,7 @@ pub mod dataprovider {
     #[macro_export]
     macro_rules! __aws_dms_DataProvider_Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::DataProvider.Settings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::DataProvider.Settings"
             $($field $value)*)
         };
     }
@@ -678,7 +678,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_DocDbSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.DocDbSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.DocDbSettings"
             $($field $value)*)
         };
     }
@@ -727,7 +727,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_DynamoDbSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.DynamoDbSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.DynamoDbSettings"
             $($field $value)*)
         };
     }
@@ -755,7 +755,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_ElasticsearchSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.ElasticsearchSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.ElasticsearchSettings"
             $($field $value)*)
         };
     }
@@ -810,7 +810,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_GcpMySQLSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.GcpMySQLSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.GcpMySQLSettings"
             $($field $value)*)
         };
     }
@@ -912,7 +912,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_IbmDb2Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.IbmDb2Settings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.IbmDb2Settings"
             $($field $value)*)
         };
     }
@@ -1002,7 +1002,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_KafkaSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.KafkaSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.KafkaSettings"
             $($field $value)*)
         };
     }
@@ -1132,7 +1132,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_KinesisSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.KinesisSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.KinesisSettings"
             $($field $value)*)
         };
     }
@@ -1227,7 +1227,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_MicrosoftSqlServerSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.MicrosoftSqlServerSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.MicrosoftSqlServerSettings"
             $($field $value)*)
         };
     }
@@ -1357,7 +1357,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_MongoDbSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.MongoDbSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.MongoDbSettings"
             $($field $value)*)
         };
     }
@@ -1459,7 +1459,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_MySqlSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.MySqlSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.MySqlSettings"
             $($field $value)*)
         };
     }
@@ -1538,7 +1538,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_NeptuneSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.NeptuneSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.NeptuneSettings"
             $($field $value)*)
         };
     }
@@ -1633,7 +1633,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_OracleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.OracleSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.OracleSettings"
             $($field $value)*)
         };
     }
@@ -1877,7 +1877,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_PostgreSqlSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.PostgreSqlSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.PostgreSqlSettings"
             $($field $value)*)
         };
     }
@@ -1998,7 +1998,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_RedisSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.RedisSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.RedisSettings"
             $($field $value)*)
         };
     }
@@ -2081,7 +2081,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_RedshiftSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.RedshiftSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.RedshiftSettings"
             $($field $value)*)
         };
     }
@@ -2296,7 +2296,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_S3Settings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.S3Settings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.S3Settings"
             $($field $value)*)
         };
     }
@@ -2562,7 +2562,7 @@ pub mod endpoint {
     #[macro_export]
     macro_rules! __aws_dms_Endpoint_SybaseSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::Endpoint.SybaseSettings"
+            stratosphere::generator::construct_property_type!("AWS::DMS::Endpoint.SybaseSettings"
             $($field $value)*)
         };
     }
@@ -2599,7 +2599,7 @@ pub mod migrationproject {
     #[macro_export]
     macro_rules! __aws_dms_MigrationProject_DataProviderDescriptor {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::MigrationProject.DataProviderDescriptor"
+            stratosphere::generator::construct_property_type!("AWS::DMS::MigrationProject.DataProviderDescriptor"
             $($field $value)*)
         };
     }
@@ -2649,7 +2649,7 @@ pub mod migrationproject {
     #[macro_export]
     macro_rules! __aws_dms_MigrationProject_SchemaConversionApplicationAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::MigrationProject.SchemaConversionApplicationAttributes"
+            stratosphere::generator::construct_property_type!("AWS::DMS::MigrationProject.SchemaConversionApplicationAttributes"
             $($field $value)*)
         };
     }
@@ -2690,7 +2690,7 @@ pub mod replicationconfig {
     #[macro_export]
     macro_rules! __aws_dms_ReplicationConfig_ComputeConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DMS::ReplicationConfig.ComputeConfig"
+            stratosphere::generator::construct_property_type!("AWS::DMS::ReplicationConfig.ComputeConfig"
             $($field $value)*)
         };
     }
@@ -2764,8 +2764,8 @@ pub struct Certificate_ {
 #[macro_export]
 macro_rules! __aws_dms_Certificate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DMS::Certificate" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::DMS::Certificate"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_dms_Certificate as Certificate;
@@ -2816,7 +2816,7 @@ pub struct DataMigration_ {
 #[macro_export]
 macro_rules! __aws_dms_DataMigration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DMS::DataMigration"
+        stratosphere::generator::construct_resource_type!("AWS::DMS::DataMigration"
         $($field $value)*)
     };
 }
@@ -2888,7 +2888,7 @@ pub struct DataProvider_ {
 #[macro_export]
 macro_rules! __aws_dms_DataProvider {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DMS::DataProvider"
+        stratosphere::generator::construct_resource_type!("AWS::DMS::DataProvider"
         $($field $value)*)
     };
 }
@@ -2982,7 +2982,7 @@ pub struct Endpoint_ {
 #[macro_export]
 macro_rules! __aws_dms_Endpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DMS::Endpoint" $($field
+        stratosphere::generator::construct_resource_type!("AWS::DMS::Endpoint" $($field
         $value)*)
     };
 }
@@ -3191,7 +3191,7 @@ pub struct EventSubscription_ {
 #[macro_export]
 macro_rules! __aws_dms_EventSubscription {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DMS::EventSubscription"
+        stratosphere::generator::construct_resource_type!("AWS::DMS::EventSubscription"
         $($field $value)*)
     };
 }
@@ -3264,7 +3264,7 @@ pub struct InstanceProfile_ {
 #[macro_export]
 macro_rules! __aws_dms_InstanceProfile {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DMS::InstanceProfile"
+        stratosphere::generator::construct_resource_type!("AWS::DMS::InstanceProfile"
         $($field $value)*)
     };
 }
@@ -3361,7 +3361,7 @@ pub struct MigrationProject_ {
 #[macro_export]
 macro_rules! __aws_dms_MigrationProject {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DMS::MigrationProject"
+        stratosphere::generator::construct_resource_type!("AWS::DMS::MigrationProject"
         $($field $value)*)
     };
 }
@@ -3460,7 +3460,7 @@ pub struct ReplicationConfig_ {
 #[macro_export]
 macro_rules! __aws_dms_ReplicationConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DMS::ReplicationConfig"
+        stratosphere::generator::construct_resource_type!("AWS::DMS::ReplicationConfig"
         $($field $value)*)
     };
 }
@@ -3548,7 +3548,7 @@ pub struct ReplicationInstance_ {
 #[macro_export]
 macro_rules! __aws_dms_ReplicationInstance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DMS::ReplicationInstance"
+        stratosphere::generator::construct_resource_type!("AWS::DMS::ReplicationInstance"
         $($field $value)*)
     };
 }
@@ -3675,7 +3675,7 @@ pub struct ReplicationSubnetGroup_ {
 #[macro_export]
 macro_rules! __aws_dms_ReplicationSubnetGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DMS::ReplicationSubnetGroup"
+        stratosphere::generator::construct_resource_type!("AWS::DMS::ReplicationSubnetGroup"
         $($field $value)*)
     };
 }
@@ -3731,7 +3731,7 @@ pub struct ReplicationTask_ {
 #[macro_export]
 macro_rules! __aws_dms_ReplicationTask {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DMS::ReplicationTask"
+        stratosphere::generator::construct_resource_type!("AWS::DMS::ReplicationTask"
         $($field $value)*)
     };
 }

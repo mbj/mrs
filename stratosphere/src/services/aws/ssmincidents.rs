@@ -7,7 +7,7 @@ pub mod replicationset {
     #[macro_export]
     macro_rules! __aws_ssmincidents_ReplicationSet_RegionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMIncidents::ReplicationSet.RegionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SSMIncidents::ReplicationSet.RegionConfiguration"
             $($field $value)*)
         };
     }
@@ -31,7 +31,7 @@ pub mod replicationset {
     #[macro_export]
     macro_rules! __aws_ssmincidents_ReplicationSet_ReplicationRegion {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMIncidents::ReplicationSet.ReplicationRegion"
+            stratosphere::generator::construct_property_type!("AWS::SSMIncidents::ReplicationSet.ReplicationRegion"
             $($field $value)*)
         };
     }
@@ -64,7 +64,7 @@ pub mod responseplan {
     #[macro_export]
     macro_rules! __aws_ssmincidents_ResponsePlan_Action {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.Action"
+            stratosphere::generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.Action"
             $($field $value)*)
         };
     }
@@ -89,7 +89,7 @@ pub mod responseplan {
     #[macro_export]
     macro_rules! __aws_ssmincidents_ResponsePlan_ChatChannel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.ChatChannel"
+            stratosphere::generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.ChatChannel"
             $($field $value)*)
         };
     }
@@ -115,7 +115,7 @@ pub mod responseplan {
     #[macro_export]
     macro_rules! __aws_ssmincidents_ResponsePlan_DynamicSsmParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.DynamicSsmParameter"
+            stratosphere::generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.DynamicSsmParameter"
             $($field $value)*)
         };
     }
@@ -142,7 +142,7 @@ pub mod responseplan {
     #[macro_export]
     macro_rules! __aws_ssmincidents_ResponsePlan_DynamicSsmParameterValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.DynamicSsmParameterValue"
+            stratosphere::generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.DynamicSsmParameterValue"
             $($field $value)*)
         };
     }
@@ -172,7 +172,7 @@ pub mod responseplan {
     #[macro_export]
     macro_rules! __aws_ssmincidents_ResponsePlan_IncidentTemplate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.IncidentTemplate"
+            stratosphere::generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.IncidentTemplate"
             $($field $value)*)
         };
     }
@@ -223,7 +223,7 @@ pub mod responseplan {
     #[macro_export]
     macro_rules! __aws_ssmincidents_ResponsePlan_Integration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.Integration"
+            stratosphere::generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.Integration"
             $($field $value)*)
         };
     }
@@ -246,7 +246,7 @@ pub mod responseplan {
     #[macro_export]
     macro_rules! __aws_ssmincidents_ResponsePlan_NotificationTargetItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.NotificationTargetItem"
+            stratosphere::generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.NotificationTargetItem"
             $($field $value)*)
         };
     }
@@ -273,7 +273,7 @@ pub mod responseplan {
     #[macro_export]
     macro_rules! __aws_ssmincidents_ResponsePlan_PagerDutyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.PagerDutyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.PagerDutyConfiguration"
             $($field $value)*)
         };
     }
@@ -304,7 +304,7 @@ pub mod responseplan {
     #[macro_export]
     macro_rules! __aws_ssmincidents_ResponsePlan_PagerDutyIncidentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.PagerDutyIncidentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.PagerDutyIncidentConfiguration"
             $($field $value)*)
         };
     }
@@ -332,7 +332,7 @@ pub mod responseplan {
     #[macro_export]
     macro_rules! __aws_ssmincidents_ResponsePlan_SsmAutomation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.SsmAutomation"
+            stratosphere::generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.SsmAutomation"
             $($field $value)*)
         };
     }
@@ -384,7 +384,7 @@ pub mod responseplan {
     #[macro_export]
     macro_rules! __aws_ssmincidents_ResponsePlan_SsmParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.SsmParameter"
+            stratosphere::generator::construct_property_type!("AWS::SSMIncidents::ResponsePlan.SsmParameter"
             $($field $value)*)
         };
     }
@@ -414,7 +414,7 @@ pub struct ReplicationSet_ {
 #[macro_export]
 macro_rules! __aws_ssmincidents_ReplicationSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSMIncidents::ReplicationSet"
+        stratosphere::generator::construct_resource_type!("AWS::SSMIncidents::ReplicationSet"
         $($field $value)*)
     };
 }
@@ -461,7 +461,7 @@ pub struct ResponsePlan_ {
 #[macro_export]
 macro_rules! __aws_ssmincidents_ResponsePlan {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSMIncidents::ResponsePlan"
+        stratosphere::generator::construct_resource_type!("AWS::SSMIncidents::ResponsePlan"
         $($field $value)*)
     };
 }

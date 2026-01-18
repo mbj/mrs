@@ -8,7 +8,7 @@ pub mod keyspace {
     #[macro_export]
     macro_rules! __aws_cassandra_Keyspace_ReplicationSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cassandra::Keyspace.ReplicationSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Cassandra::Keyspace.ReplicationSpecification"
             $($field $value)*)
         };
     }
@@ -44,7 +44,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_cassandra_Table_AutoScalingSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cassandra::Table.AutoScalingSetting"
+            stratosphere::generator::construct_property_type!("AWS::Cassandra::Table.AutoScalingSetting"
             $($field $value)*)
         };
     }
@@ -88,7 +88,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_cassandra_Table_AutoScalingSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cassandra::Table.AutoScalingSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Cassandra::Table.AutoScalingSpecification"
             $($field $value)*)
         };
     }
@@ -120,7 +120,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_cassandra_Table_BillingMode {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cassandra::Table.BillingMode"
+            stratosphere::generator::construct_property_type!("AWS::Cassandra::Table.BillingMode"
             $($field $value)*)
         };
     }
@@ -151,7 +151,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_cassandra_Table_CdcSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cassandra::Table.CdcSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Cassandra::Table.CdcSpecification"
             $($field $value)*)
         };
     }
@@ -184,7 +184,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_cassandra_Table_ClusteringKeyColumn {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cassandra::Table.ClusteringKeyColumn"
+            stratosphere::generator::construct_property_type!("AWS::Cassandra::Table.ClusteringKeyColumn"
             $($field $value)*)
         };
     }
@@ -214,7 +214,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_cassandra_Table_Column {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cassandra::Table.Column"
+            stratosphere::generator::construct_property_type!("AWS::Cassandra::Table.Column"
             $($field $value)*)
         };
     }
@@ -242,7 +242,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_cassandra_Table_EncryptionSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cassandra::Table.EncryptionSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Cassandra::Table.EncryptionSpecification"
             $($field $value)*)
         };
     }
@@ -272,7 +272,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_cassandra_Table_ProvisionedThroughput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cassandra::Table.ProvisionedThroughput"
+            stratosphere::generator::construct_property_type!("AWS::Cassandra::Table.ProvisionedThroughput"
             $($field $value)*)
         };
     }
@@ -301,7 +301,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_cassandra_Table_ReplicaSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cassandra::Table.ReplicaSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Cassandra::Table.ReplicaSpecification"
             $($field $value)*)
         };
     }
@@ -337,7 +337,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_cassandra_Table_ScalingPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cassandra::Table.ScalingPolicy"
+            stratosphere::generator::construct_property_type!("AWS::Cassandra::Table.ScalingPolicy"
             $($field $value)*)
         };
     }
@@ -365,7 +365,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_cassandra_Table_TargetTrackingScalingPolicyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cassandra::Table.TargetTrackingScalingPolicyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Cassandra::Table.TargetTrackingScalingPolicyConfiguration"
             $($field $value)*)
         };
     }
@@ -409,7 +409,7 @@ pub mod r#type {
     #[macro_export]
     macro_rules! __aws_cassandra_Type_Field {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Cassandra::Type.Field"
+            stratosphere::generator::construct_property_type!("AWS::Cassandra::Type.Field"
             $($field $value)*)
         };
     }
@@ -440,7 +440,7 @@ pub struct Keyspace_ {
 #[macro_export]
 macro_rules! __aws_cassandra_Keyspace {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cassandra::Keyspace"
+        stratosphere::generator::construct_resource_type!("AWS::Cassandra::Keyspace"
         $($field $value)*)
     };
 }
@@ -501,8 +501,8 @@ pub struct Table_ {
 #[macro_export]
 macro_rules! __aws_cassandra_Table {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cassandra::Table" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::Cassandra::Table"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_cassandra_Table as Table;
@@ -607,7 +607,7 @@ pub struct Type_ {
 #[macro_export]
 macro_rules! __aws_cassandra_Type {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Cassandra::Type" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Cassandra::Type" $($field
         $value)*)
     };
 }

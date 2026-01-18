@@ -9,7 +9,7 @@ pub mod accesspolicy {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AccessPolicy_AccessPolicyIdentity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AccessPolicy.AccessPolicyIdentity"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AccessPolicy.AccessPolicyIdentity"
             $($field $value)*)
         };
     }
@@ -44,7 +44,7 @@ pub mod accesspolicy {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AccessPolicy_AccessPolicyResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AccessPolicy.AccessPolicyResource"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AccessPolicy.AccessPolicyResource"
             $($field $value)*)
         };
     }
@@ -72,7 +72,7 @@ pub mod accesspolicy {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AccessPolicy_IamRole {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AccessPolicy.IamRole"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AccessPolicy.IamRole"
             $($field $value)*)
         };
     }
@@ -94,7 +94,7 @@ pub mod accesspolicy {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AccessPolicy_IamUser {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AccessPolicy.IamUser"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AccessPolicy.IamUser"
             $($field $value)*)
         };
     }
@@ -116,7 +116,7 @@ pub mod accesspolicy {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AccessPolicy_Portal {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AccessPolicy.Portal"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AccessPolicy.Portal"
             $($field $value)*)
         };
     }
@@ -138,7 +138,7 @@ pub mod accesspolicy {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AccessPolicy_Project {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AccessPolicy.Project"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AccessPolicy.Project"
             $($field $value)*)
         };
     }
@@ -160,7 +160,7 @@ pub mod accesspolicy {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AccessPolicy_User {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AccessPolicy.User"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AccessPolicy.User"
             $($field $value)*)
         };
     }
@@ -187,7 +187,7 @@ pub mod asset {
     #[macro_export]
     macro_rules! __aws_iotsitewise_Asset_AssetHierarchy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::Asset.AssetHierarchy"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::Asset.AssetHierarchy"
             $($field $value)*)
         };
     }
@@ -230,7 +230,7 @@ pub mod asset {
     #[macro_export]
     macro_rules! __aws_iotsitewise_Asset_AssetProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::Asset.AssetProperty"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::Asset.AssetProperty"
             $($field $value)*)
         };
     }
@@ -286,7 +286,7 @@ pub mod assetmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AssetModel_AssetModelCompositeModel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.AssetModelCompositeModel"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.AssetModelCompositeModel"
             $($field $value)*)
         };
     }
@@ -353,7 +353,7 @@ pub mod assetmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AssetModel_AssetModelHierarchy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.AssetModelHierarchy"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.AssetModelHierarchy"
             $($field $value)*)
         };
     }
@@ -402,7 +402,7 @@ pub mod assetmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AssetModel_AssetModelProperty {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.AssetModelProperty"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.AssetModelProperty"
             $($field $value)*)
         };
     }
@@ -457,7 +457,7 @@ pub mod assetmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AssetModel_Attribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.Attribute"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.Attribute"
             $($field $value)*)
         };
     }
@@ -484,7 +484,7 @@ pub mod assetmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AssetModel_EnforcedAssetModelInterfacePropertyMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.EnforcedAssetModelInterfacePropertyMapping"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.EnforcedAssetModelInterfacePropertyMapping"
             $($field $value)*)
         };
     }
@@ -520,7 +520,7 @@ pub mod assetmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AssetModel_EnforcedAssetModelInterfaceRelationship {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.EnforcedAssetModelInterfaceRelationship"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.EnforcedAssetModelInterfaceRelationship"
             $($field $value)*)
         };
     }
@@ -552,7 +552,7 @@ pub mod assetmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AssetModel_ExpressionVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.ExpressionVariable"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.ExpressionVariable"
             $($field $value)*)
         };
     }
@@ -581,7 +581,7 @@ pub mod assetmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AssetModel_Metric {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.Metric"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.Metric"
             $($field $value)*)
         };
     }
@@ -612,7 +612,7 @@ pub mod assetmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AssetModel_MetricWindow {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.MetricWindow"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.MetricWindow"
             $($field $value)*)
         };
     }
@@ -637,7 +637,7 @@ pub mod assetmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AssetModel_PropertyPathDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.PropertyPathDefinition"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.PropertyPathDefinition"
             $($field $value)*)
         };
     }
@@ -663,7 +663,7 @@ pub mod assetmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AssetModel_PropertyType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.PropertyType"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.PropertyType"
             $($field $value)*)
         };
     }
@@ -702,7 +702,7 @@ pub mod assetmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AssetModel_Transform {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.Transform"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.Transform"
             $($field $value)*)
         };
     }
@@ -730,7 +730,7 @@ pub mod assetmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AssetModel_TumblingWindow {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.TumblingWindow"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.TumblingWindow"
             $($field $value)*)
         };
     }
@@ -762,7 +762,7 @@ pub mod assetmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_AssetModel_VariableValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.VariableValue"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::AssetModel.VariableValue"
             $($field $value)*)
         };
     }
@@ -826,7 +826,7 @@ pub mod computationmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_ComputationModel_AnomalyDetectionComputationModelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::ComputationModel.AnomalyDetectionComputationModelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::ComputationModel.AnomalyDetectionComputationModelConfiguration"
             $($field $value)*)
         };
     }
@@ -854,7 +854,7 @@ pub mod computationmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_ComputationModel_AssetModelPropertyBindingValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::ComputationModel.AssetModelPropertyBindingValue"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::ComputationModel.AssetModelPropertyBindingValue"
             $($field $value)*)
         };
     }
@@ -882,7 +882,7 @@ pub mod computationmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_ComputationModel_AssetPropertyBindingValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::ComputationModel.AssetPropertyBindingValue"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::ComputationModel.AssetPropertyBindingValue"
             $($field $value)*)
         };
     }
@@ -909,7 +909,7 @@ pub mod computationmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_ComputationModel_ComputationModelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::ComputationModel.ComputationModelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::ComputationModel.ComputationModelConfiguration"
             $($field $value)*)
         };
     }
@@ -936,7 +936,7 @@ pub mod computationmodel {
     #[macro_export]
     macro_rules! __aws_iotsitewise_ComputationModel_ComputationModelDataBindingValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::ComputationModel.ComputationModelDataBindingValue"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::ComputationModel.ComputationModelDataBindingValue"
             $($field $value)*)
         };
     }
@@ -974,7 +974,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotsitewise_Dataset_DatasetSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::Dataset.DatasetSource"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::Dataset.DatasetSource"
             $($field $value)*)
         };
     }
@@ -1008,7 +1008,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotsitewise_Dataset_KendraSourceDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::Dataset.KendraSourceDetail"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::Dataset.KendraSourceDetail"
             $($field $value)*)
         };
     }
@@ -1035,7 +1035,7 @@ pub mod dataset {
     #[macro_export]
     macro_rules! __aws_iotsitewise_Dataset_SourceDetail {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::Dataset.SourceDetail"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::Dataset.SourceDetail"
             $($field $value)*)
         };
     }
@@ -1060,7 +1060,7 @@ pub mod gateway {
     #[macro_export]
     macro_rules! __aws_iotsitewise_Gateway_GatewayCapabilitySummary {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::Gateway.GatewayCapabilitySummary"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::Gateway.GatewayCapabilitySummary"
             $($field $value)*)
         };
     }
@@ -1090,7 +1090,7 @@ pub mod gateway {
     #[macro_export]
     macro_rules! __aws_iotsitewise_Gateway_GatewayPlatform {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::Gateway.GatewayPlatform"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::Gateway.GatewayPlatform"
             $($field $value)*)
         };
     }
@@ -1122,7 +1122,7 @@ pub mod gateway {
     #[macro_export]
     macro_rules! __aws_iotsitewise_Gateway_GreengrassV2 {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::Gateway.GreengrassV2"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::Gateway.GreengrassV2"
             $($field $value)*)
         };
     }
@@ -1151,7 +1151,7 @@ pub mod gateway {
     #[macro_export]
     macro_rules! __aws_iotsitewise_Gateway_SiemensIE {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::Gateway.SiemensIE"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::Gateway.SiemensIE"
             $($field $value)*)
         };
     }
@@ -1177,7 +1177,7 @@ pub mod portal {
     #[macro_export]
     macro_rules! __aws_iotsitewise_Portal_Alarms {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::Portal.Alarms"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::Portal.Alarms"
             $($field $value)*)
         };
     }
@@ -1208,7 +1208,7 @@ pub mod portal {
     #[macro_export]
     macro_rules! __aws_iotsitewise_Portal_PortalTypeEntry {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTSiteWise::Portal.PortalTypeEntry"
+            stratosphere::generator::construct_property_type!("AWS::IoTSiteWise::Portal.PortalTypeEntry"
             $($field $value)*)
         };
     }
@@ -1234,7 +1234,7 @@ pub struct AccessPolicy_ {
 #[macro_export]
 macro_rules! __aws_iotsitewise_AccessPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTSiteWise::AccessPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::IoTSiteWise::AccessPolicy"
         $($field $value)*)
     };
 }
@@ -1279,7 +1279,7 @@ pub struct Asset_ {
 #[macro_export]
 macro_rules! __aws_iotsitewise_Asset {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTSiteWise::Asset"
+        stratosphere::generator::construct_resource_type!("AWS::IoTSiteWise::Asset"
         $($field $value)*)
     };
 }
@@ -1351,7 +1351,7 @@ pub struct AssetModel_ {
 #[macro_export]
 macro_rules! __aws_iotsitewise_AssetModel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTSiteWise::AssetModel"
+        stratosphere::generator::construct_resource_type!("AWS::IoTSiteWise::AssetModel"
         $($field $value)*)
     };
 }
@@ -1435,7 +1435,7 @@ pub struct ComputationModel_ {
 #[macro_export]
 macro_rules! __aws_iotsitewise_ComputationModel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTSiteWise::ComputationModel"
+        stratosphere::generator::construct_resource_type!("AWS::IoTSiteWise::ComputationModel"
         $($field $value)*)
     };
 }
@@ -1487,7 +1487,7 @@ pub struct Dashboard_ {
 #[macro_export]
 macro_rules! __aws_iotsitewise_Dashboard {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTSiteWise::Dashboard"
+        stratosphere::generator::construct_resource_type!("AWS::IoTSiteWise::Dashboard"
         $($field $value)*)
     };
 }
@@ -1538,7 +1538,7 @@ pub struct Dataset_ {
 #[macro_export]
 macro_rules! __aws_iotsitewise_Dataset {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTSiteWise::Dataset"
+        stratosphere::generator::construct_resource_type!("AWS::IoTSiteWise::Dataset"
         $($field $value)*)
     };
 }
@@ -1587,7 +1587,7 @@ pub struct Gateway_ {
 #[macro_export]
 macro_rules! __aws_iotsitewise_Gateway {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTSiteWise::Gateway"
+        stratosphere::generator::construct_resource_type!("AWS::IoTSiteWise::Gateway"
         $($field $value)*)
     };
 }
@@ -1647,7 +1647,7 @@ pub struct Portal_ {
 #[macro_export]
 macro_rules! __aws_iotsitewise_Portal {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTSiteWise::Portal"
+        stratosphere::generator::construct_resource_type!("AWS::IoTSiteWise::Portal"
         $($field $value)*)
     };
 }
@@ -1726,7 +1726,7 @@ pub struct Project_ {
 #[macro_export]
 macro_rules! __aws_iotsitewise_Project {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTSiteWise::Project"
+        stratosphere::generator::construct_resource_type!("AWS::IoTSiteWise::Project"
         $($field $value)*)
     };
 }

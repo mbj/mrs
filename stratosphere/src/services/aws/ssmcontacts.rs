@@ -8,7 +8,7 @@ pub mod contact {
     #[macro_export]
     macro_rules! __aws_ssmcontacts_Contact_ChannelTargetInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMContacts::Contact.ChannelTargetInfo"
+            stratosphere::generator::construct_property_type!("AWS::SSMContacts::Contact.ChannelTargetInfo"
             $($field $value)*)
         };
     }
@@ -36,7 +36,7 @@ pub mod contact {
     #[macro_export]
     macro_rules! __aws_ssmcontacts_Contact_ContactTargetInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMContacts::Contact.ContactTargetInfo"
+            stratosphere::generator::construct_property_type!("AWS::SSMContacts::Contact.ContactTargetInfo"
             $($field $value)*)
         };
     }
@@ -65,7 +65,7 @@ pub mod contact {
     #[macro_export]
     macro_rules! __aws_ssmcontacts_Contact_Stage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMContacts::Contact.Stage"
+            stratosphere::generator::construct_property_type!("AWS::SSMContacts::Contact.Stage"
             $($field $value)*)
         };
     }
@@ -103,7 +103,7 @@ pub mod contact {
     #[macro_export]
     macro_rules! __aws_ssmcontacts_Contact_Targets {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMContacts::Contact.Targets"
+            stratosphere::generator::construct_property_type!("AWS::SSMContacts::Contact.Targets"
             $($field $value)*)
         };
     }
@@ -137,7 +137,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_ssmcontacts_Plan_ChannelTargetInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMContacts::Plan.ChannelTargetInfo"
+            stratosphere::generator::construct_property_type!("AWS::SSMContacts::Plan.ChannelTargetInfo"
             $($field $value)*)
         };
     }
@@ -165,7 +165,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_ssmcontacts_Plan_ContactTargetInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMContacts::Plan.ContactTargetInfo"
+            stratosphere::generator::construct_property_type!("AWS::SSMContacts::Plan.ContactTargetInfo"
             $($field $value)*)
         };
     }
@@ -193,7 +193,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_ssmcontacts_Plan_Stage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMContacts::Plan.Stage"
+            stratosphere::generator::construct_property_type!("AWS::SSMContacts::Plan.Stage"
             $($field $value)*)
         };
     }
@@ -223,7 +223,7 @@ pub mod plan {
     #[macro_export]
     macro_rules! __aws_ssmcontacts_Plan_Targets {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMContacts::Plan.Targets"
+            stratosphere::generator::construct_property_type!("AWS::SSMContacts::Plan.Targets"
             $($field $value)*)
         };
     }
@@ -257,7 +257,7 @@ pub mod rotation {
     #[macro_export]
     macro_rules! __aws_ssmcontacts_Rotation_CoverageTime {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMContacts::Rotation.CoverageTime"
+            stratosphere::generator::construct_property_type!("AWS::SSMContacts::Rotation.CoverageTime"
             $($field $value)*)
         };
     }
@@ -285,7 +285,7 @@ pub mod rotation {
     #[macro_export]
     macro_rules! __aws_ssmcontacts_Rotation_MonthlySetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMContacts::Rotation.MonthlySetting"
+            stratosphere::generator::construct_property_type!("AWS::SSMContacts::Rotation.MonthlySetting"
             $($field $value)*)
         };
     }
@@ -317,7 +317,7 @@ pub mod rotation {
     #[macro_export]
     macro_rules! __aws_ssmcontacts_Rotation_RecurrenceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMContacts::Rotation.RecurrenceSettings"
+            stratosphere::generator::construct_property_type!("AWS::SSMContacts::Rotation.RecurrenceSettings"
             $($field $value)*)
         };
     }
@@ -369,7 +369,7 @@ pub mod rotation {
     #[macro_export]
     macro_rules! __aws_ssmcontacts_Rotation_ShiftCoverage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMContacts::Rotation.ShiftCoverage"
+            stratosphere::generator::construct_property_type!("AWS::SSMContacts::Rotation.ShiftCoverage"
             $($field $value)*)
         };
     }
@@ -397,7 +397,7 @@ pub mod rotation {
     #[macro_export]
     macro_rules! __aws_ssmcontacts_Rotation_WeeklySetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SSMContacts::Rotation.WeeklySetting"
+            stratosphere::generator::construct_property_type!("AWS::SSMContacts::Rotation.WeeklySetting"
             $($field $value)*)
         };
     }
@@ -429,7 +429,7 @@ pub struct Contact_ {
 #[macro_export]
 macro_rules! __aws_ssmcontacts_Contact {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSMContacts::Contact"
+        stratosphere::generator::construct_resource_type!("AWS::SSMContacts::Contact"
         $($field $value)*)
     };
 }
@@ -478,7 +478,7 @@ pub struct ContactChannel_ {
 #[macro_export]
 macro_rules! __aws_ssmcontacts_ContactChannel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSMContacts::ContactChannel"
+        stratosphere::generator::construct_resource_type!("AWS::SSMContacts::ContactChannel"
         $($field $value)*)
     };
 }
@@ -529,7 +529,7 @@ pub struct Plan_ {
 #[macro_export]
 macro_rules! __aws_ssmcontacts_Plan {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSMContacts::Plan"
+        stratosphere::generator::construct_resource_type!("AWS::SSMContacts::Plan"
         $($field $value)*)
     };
 }
@@ -574,7 +574,7 @@ pub struct Rotation_ {
 #[macro_export]
 macro_rules! __aws_ssmcontacts_Rotation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SSMContacts::Rotation"
+        stratosphere::generator::construct_resource_type!("AWS::SSMContacts::Rotation"
         $($field $value)*)
     };
 }

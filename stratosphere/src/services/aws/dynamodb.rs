@@ -8,7 +8,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_AttributeDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.AttributeDefinition"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.AttributeDefinition"
             $($field $value)*)
         };
     }
@@ -39,7 +39,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_CapacityAutoScalingSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.CapacityAutoScalingSettings"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.CapacityAutoScalingSettings"
             $($field $value)*)
         };
     }
@@ -77,7 +77,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_ContributorInsightsSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ContributorInsightsSpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ContributorInsightsSpecification"
             $($field $value)*)
         };
     }
@@ -108,7 +108,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_GlobalSecondaryIndex {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.GlobalSecondaryIndex"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.GlobalSecondaryIndex"
             $($field $value)*)
         };
     }
@@ -157,7 +157,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_GlobalTableWitness {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.GlobalTableWitness"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.GlobalTableWitness"
             $($field $value)*)
         };
     }
@@ -180,7 +180,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_KeySchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.KeySchema"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.KeySchema"
             $($field $value)*)
         };
     }
@@ -208,7 +208,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_KinesisStreamSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.KinesisStreamSpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.KinesisStreamSpecification"
             $($field $value)*)
         };
     }
@@ -239,7 +239,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_LocalSecondaryIndex {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.LocalSecondaryIndex"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.LocalSecondaryIndex"
             $($field $value)*)
         };
     }
@@ -271,7 +271,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_PointInTimeRecoverySpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.PointInTimeRecoverySpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.PointInTimeRecoverySpecification"
             $($field $value)*)
         };
     }
@@ -303,7 +303,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_Projection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.Projection"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.Projection"
             $($field $value)*)
         };
     }
@@ -334,7 +334,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_ReadOnDemandThroughputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ReadOnDemandThroughputSettings"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ReadOnDemandThroughputSettings"
             $($field $value)*)
         };
     }
@@ -360,7 +360,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_ReadProvisionedThroughputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ReadProvisionedThroughputSettings"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ReadProvisionedThroughputSettings"
             $($field $value)*)
         };
     }
@@ -394,7 +394,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_ReplicaGlobalSecondaryIndexSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ReplicaGlobalSecondaryIndexSpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ReplicaGlobalSecondaryIndexSpecification"
             $($field $value)*)
         };
     }
@@ -435,7 +435,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_ReplicaSSESpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ReplicaSSESpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ReplicaSSESpecification"
             $($field $value)*)
         };
     }
@@ -470,7 +470,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_ReplicaSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ReplicaSpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ReplicaSpecification"
             $($field $value)*)
         };
     }
@@ -562,7 +562,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_ReplicaStreamSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ReplicaStreamSpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ReplicaStreamSpecification"
             $($field $value)*)
         };
     }
@@ -585,7 +585,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_ResourcePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ResourcePolicy"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.ResourcePolicy"
             $($field $value)*)
         };
     }
@@ -609,7 +609,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_SSESpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.SSESpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.SSESpecification"
             $($field $value)*)
         };
     }
@@ -638,7 +638,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_StreamSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.StreamSpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.StreamSpecification"
             $($field $value)*)
         };
     }
@@ -664,7 +664,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_TargetTrackingScalingPolicyConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.TargetTrackingScalingPolicyConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.TargetTrackingScalingPolicyConfiguration"
             $($field $value)*)
         };
     }
@@ -706,7 +706,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_TimeToLiveSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.TimeToLiveSpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.TimeToLiveSpecification"
             $($field $value)*)
         };
     }
@@ -736,7 +736,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_WarmThroughput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.WarmThroughput"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.WarmThroughput"
             $($field $value)*)
         };
     }
@@ -767,7 +767,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_WriteOnDemandThroughputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.WriteOnDemandThroughputSettings"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.WriteOnDemandThroughputSettings"
             $($field $value)*)
         };
     }
@@ -792,7 +792,7 @@ pub mod globaltable {
     #[macro_export]
     macro_rules! __aws_dynamodb_GlobalTable_WriteProvisionedThroughputSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::GlobalTable.WriteProvisionedThroughputSettings"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.WriteProvisionedThroughputSettings"
             $($field $value)*)
         };
     }
@@ -820,7 +820,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_AttributeDefinition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.AttributeDefinition"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.AttributeDefinition"
             $($field $value)*)
         };
     }
@@ -848,7 +848,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_ContributorInsightsSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.ContributorInsightsSpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.ContributorInsightsSpecification"
             $($field $value)*)
         };
     }
@@ -875,7 +875,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_Csv {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.Csv"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.Csv"
             $($field $value)*)
         };
     }
@@ -912,7 +912,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_GlobalSecondaryIndex {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.GlobalSecondaryIndex"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.GlobalSecondaryIndex"
             $($field $value)*)
         };
     }
@@ -970,7 +970,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_ImportSourceSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.ImportSourceSpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.ImportSourceSpecification"
             $($field $value)*)
         };
     }
@@ -1009,7 +1009,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_InputFormatOptions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.InputFormatOptions"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.InputFormatOptions"
             $($field $value)*)
         };
     }
@@ -1032,7 +1032,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_KeySchema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.KeySchema"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.KeySchema"
             $($field $value)*)
         };
     }
@@ -1060,7 +1060,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_KinesisStreamSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.KinesisStreamSpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.KinesisStreamSpecification"
             $($field $value)*)
         };
     }
@@ -1091,7 +1091,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_LocalSecondaryIndex {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.LocalSecondaryIndex"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.LocalSecondaryIndex"
             $($field $value)*)
         };
     }
@@ -1123,7 +1123,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_OnDemandThroughput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.OnDemandThroughput"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.OnDemandThroughput"
             $($field $value)*)
         };
     }
@@ -1155,7 +1155,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_PointInTimeRecoverySpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.PointInTimeRecoverySpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.PointInTimeRecoverySpecification"
             $($field $value)*)
         };
     }
@@ -1187,7 +1187,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_Projection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.Projection"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.Projection"
             $($field $value)*)
         };
     }
@@ -1219,7 +1219,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_ProvisionedThroughput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.ProvisionedThroughput"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.ProvisionedThroughput"
             $($field $value)*)
         };
     }
@@ -1246,7 +1246,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_ResourcePolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.ResourcePolicy"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.ResourcePolicy"
             $($field $value)*)
         };
     }
@@ -1271,7 +1271,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_S3BucketSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.S3BucketSource"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.S3BucketSource"
             $($field $value)*)
         };
     }
@@ -1308,7 +1308,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_SSESpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.SSESpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.SSESpecification"
             $($field $value)*)
         };
     }
@@ -1344,7 +1344,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_StreamSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.StreamSpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.StreamSpecification"
             $($field $value)*)
         };
     }
@@ -1374,7 +1374,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_TimeToLiveSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.TimeToLiveSpecification"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.TimeToLiveSpecification"
             $($field $value)*)
         };
     }
@@ -1404,7 +1404,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_dynamodb_Table_WarmThroughput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DynamoDB::Table.WarmThroughput"
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::Table.WarmThroughput"
             $($field $value)*)
         };
     }
@@ -1454,7 +1454,7 @@ pub struct GlobalTable_ {
 #[macro_export]
 macro_rules! __aws_dynamodb_GlobalTable {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DynamoDB::GlobalTable"
+        stratosphere::generator::construct_resource_type!("AWS::DynamoDB::GlobalTable"
         $($field $value)*)
     };
 }
@@ -1599,7 +1599,7 @@ pub struct Table_ {
 #[macro_export]
 macro_rules! __aws_dynamodb_Table {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DynamoDB::Table" $($field
+        stratosphere::generator::construct_resource_type!("AWS::DynamoDB::Table" $($field
         $value)*)
     };
 }

@@ -6,7 +6,7 @@ pub struct AccountAlias_ {
 #[macro_export]
 macro_rules! __aws_supportapp_AccountAlias {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SupportApp::AccountAlias"
+        stratosphere::generator::construct_resource_type!("AWS::SupportApp::AccountAlias"
         $($field $value)*)
     };
 }
@@ -44,7 +44,7 @@ pub struct SlackChannelConfiguration_ {
 #[macro_export]
 macro_rules! __aws_supportapp_SlackChannelConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SupportApp::SlackChannelConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::SupportApp::SlackChannelConfiguration"
         $($field $value)*)
     };
 }
@@ -112,7 +112,7 @@ pub struct SlackWorkspaceConfiguration_ {
 #[macro_export]
 macro_rules! __aws_supportapp_SlackWorkspaceConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SupportApp::SlackWorkspaceConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::SupportApp::SlackWorkspaceConfiguration"
         $($field $value)*)
     };
 }
