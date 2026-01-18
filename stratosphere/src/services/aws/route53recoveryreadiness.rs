@@ -11,7 +11,7 @@ pub mod resourceset {
     #[macro_export]
     macro_rules! __aws_route53recoveryreadiness_ResourceSet_DNSTargetResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53RecoveryReadiness::ResourceSet.DNSTargetResource"
+            stratosphere::generator::construct_property_type!("AWS::Route53RecoveryReadiness::ResourceSet.DNSTargetResource"
             $($field $value)*)
         };
     }
@@ -60,7 +60,7 @@ pub mod resourceset {
     #[macro_export]
     macro_rules! __aws_route53recoveryreadiness_ResourceSet_NLBResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53RecoveryReadiness::ResourceSet.NLBResource"
+            stratosphere::generator::construct_property_type!("AWS::Route53RecoveryReadiness::ResourceSet.NLBResource"
             $($field $value)*)
         };
     }
@@ -83,7 +83,7 @@ pub mod resourceset {
     #[macro_export]
     macro_rules! __aws_route53recoveryreadiness_ResourceSet_R53ResourceRecord {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53RecoveryReadiness::ResourceSet.R53ResourceRecord"
+            stratosphere::generator::construct_property_type!("AWS::Route53RecoveryReadiness::ResourceSet.R53ResourceRecord"
             $($field $value)*)
         };
     }
@@ -117,7 +117,7 @@ pub mod resourceset {
     #[macro_export]
     macro_rules! __aws_route53recoveryreadiness_ResourceSet_Resource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53RecoveryReadiness::ResourceSet.Resource"
+            stratosphere::generator::construct_property_type!("AWS::Route53RecoveryReadiness::ResourceSet.Resource"
             $($field $value)*)
         };
     }
@@ -161,7 +161,7 @@ pub mod resourceset {
     #[macro_export]
     macro_rules! __aws_route53recoveryreadiness_ResourceSet_TargetResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Route53RecoveryReadiness::ResourceSet.TargetResource"
+            stratosphere::generator::construct_property_type!("AWS::Route53RecoveryReadiness::ResourceSet.TargetResource"
             $($field $value)*)
         };
     }
@@ -195,7 +195,7 @@ pub struct Cell_ {
 #[macro_export]
 macro_rules! __aws_route53recoveryreadiness_Cell {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53RecoveryReadiness::Cell"
+        stratosphere::generator::construct_resource_type!("AWS::Route53RecoveryReadiness::Cell"
         $($field $value)*)
     };
 }
@@ -238,7 +238,7 @@ pub struct ReadinessCheck_ {
 #[macro_export]
 macro_rules! __aws_route53recoveryreadiness_ReadinessCheck {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53RecoveryReadiness::ReadinessCheck"
+        stratosphere::generator::construct_resource_type!("AWS::Route53RecoveryReadiness::ReadinessCheck"
         $($field $value)*)
     };
 }
@@ -284,7 +284,7 @@ pub struct RecoveryGroup_ {
 #[macro_export]
 macro_rules! __aws_route53recoveryreadiness_RecoveryGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53RecoveryReadiness::RecoveryGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Route53RecoveryReadiness::RecoveryGroup"
         $($field $value)*)
     };
 }
@@ -328,7 +328,7 @@ pub struct ResourceSet_ {
 #[macro_export]
 macro_rules! __aws_route53recoveryreadiness_ResourceSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Route53RecoveryReadiness::ResourceSet"
+        stratosphere::generator::construct_resource_type!("AWS::Route53RecoveryReadiness::ResourceSet"
         $($field $value)*)
     };
 }

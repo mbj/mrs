@@ -7,7 +7,7 @@ pub mod graph {
     #[macro_export]
     macro_rules! __aws_neptunegraph_Graph_VectorSearchConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::NeptuneGraph::Graph.VectorSearchConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::NeptuneGraph::Graph.VectorSearchConfiguration"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub struct Graph_ {
 #[macro_export]
 macro_rules! __aws_neptunegraph_Graph {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NeptuneGraph::Graph"
+        stratosphere::generator::construct_resource_type!("AWS::NeptuneGraph::Graph"
         $($field $value)*)
     };
 }
@@ -104,7 +104,7 @@ pub struct PrivateGraphEndpoint_ {
 #[macro_export]
 macro_rules! __aws_neptunegraph_PrivateGraphEndpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::NeptuneGraph::PrivateGraphEndpoint"
+        stratosphere::generator::construct_resource_type!("AWS::NeptuneGraph::PrivateGraphEndpoint"
         $($field $value)*)
     };
 }

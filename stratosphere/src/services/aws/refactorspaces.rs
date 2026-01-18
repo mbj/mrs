@@ -8,7 +8,7 @@ pub mod application {
     #[macro_export]
     macro_rules! __aws_refactorspaces_Application_ApiGatewayProxyInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RefactorSpaces::Application.ApiGatewayProxyInput"
+            stratosphere::generator::construct_property_type!("AWS::RefactorSpaces::Application.ApiGatewayProxyInput"
             $($field $value)*)
         };
     }
@@ -41,7 +41,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_refactorspaces_Route_DefaultRouteInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RefactorSpaces::Route.DefaultRouteInput"
+            stratosphere::generator::construct_property_type!("AWS::RefactorSpaces::Route.DefaultRouteInput"
             $($field $value)*)
         };
     }
@@ -68,7 +68,7 @@ pub mod route {
     #[macro_export]
     macro_rules! __aws_refactorspaces_Route_UriPathRouteInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RefactorSpaces::Route.UriPathRouteInput"
+            stratosphere::generator::construct_property_type!("AWS::RefactorSpaces::Route.UriPathRouteInput"
             $($field $value)*)
         };
     }
@@ -117,7 +117,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_refactorspaces_Service_LambdaEndpointInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RefactorSpaces::Service.LambdaEndpointInput"
+            stratosphere::generator::construct_property_type!("AWS::RefactorSpaces::Service.LambdaEndpointInput"
             $($field $value)*)
         };
     }
@@ -141,7 +141,7 @@ pub mod service {
     #[macro_export]
     macro_rules! __aws_refactorspaces_Service_UrlEndpointInput {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::RefactorSpaces::Service.UrlEndpointInput"
+            stratosphere::generator::construct_property_type!("AWS::RefactorSpaces::Service.UrlEndpointInput"
             $($field $value)*)
         };
     }
@@ -176,7 +176,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_refactorspaces_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RefactorSpaces::Application"
+        stratosphere::generator::construct_resource_type!("AWS::RefactorSpaces::Application"
         $($field $value)*)
     };
 }
@@ -231,7 +231,7 @@ pub struct Environment_ {
 #[macro_export]
 macro_rules! __aws_refactorspaces_Environment {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RefactorSpaces::Environment"
+        stratosphere::generator::construct_resource_type!("AWS::RefactorSpaces::Environment"
         $($field $value)*)
     };
 }
@@ -282,7 +282,7 @@ pub struct Route_ {
 #[macro_export]
 macro_rules! __aws_refactorspaces_Route {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RefactorSpaces::Route"
+        stratosphere::generator::construct_resource_type!("AWS::RefactorSpaces::Route"
         $($field $value)*)
     };
 }
@@ -348,7 +348,7 @@ pub struct Service_ {
 #[macro_export]
 macro_rules! __aws_refactorspaces_Service {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::RefactorSpaces::Service"
+        stratosphere::generator::construct_resource_type!("AWS::RefactorSpaces::Service"
         $($field $value)*)
     };
 }

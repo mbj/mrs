@@ -9,7 +9,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_AwsVpcConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.AwsVpcConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.AwsVpcConfiguration"
             $($field $value)*)
         };
     }
@@ -46,7 +46,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_CapacityProviderStrategyItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.CapacityProviderStrategyItem"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.CapacityProviderStrategyItem"
             $($field $value)*)
         };
     }
@@ -75,7 +75,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_DeadLetterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.DeadLetterConfig"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.DeadLetterConfig"
             $($field $value)*)
         };
     }
@@ -110,7 +110,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_EcsParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.EcsParameters"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.EcsParameters"
             $($field $value)*)
         };
     }
@@ -206,7 +206,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_EventBridgeParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.EventBridgeParameters"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.EventBridgeParameters"
             $($field $value)*)
         };
     }
@@ -234,7 +234,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_FlexibleTimeWindow {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.FlexibleTimeWindow"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.FlexibleTimeWindow"
             $($field $value)*)
         };
     }
@@ -263,7 +263,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_KinesisParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.KinesisParameters"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.KinesisParameters"
             $($field $value)*)
         };
     }
@@ -286,7 +286,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_NetworkConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.NetworkConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.NetworkConfiguration"
             $($field $value)*)
         };
     }
@@ -312,7 +312,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_PlacementConstraint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.PlacementConstraint"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.PlacementConstraint"
             $($field $value)*)
         };
     }
@@ -341,7 +341,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_PlacementStrategy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.PlacementStrategy"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.PlacementStrategy"
             $($field $value)*)
         };
     }
@@ -367,7 +367,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_RetryPolicy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.RetryPolicy"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.RetryPolicy"
             $($field $value)*)
         };
     }
@@ -399,7 +399,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_SageMakerPipelineParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.SageMakerPipelineParameter"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.SageMakerPipelineParameter"
             $($field $value)*)
         };
     }
@@ -426,7 +426,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_SageMakerPipelineParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.SageMakerPipelineParameters"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.SageMakerPipelineParameters"
             $($field $value)*)
         };
     }
@@ -451,7 +451,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_SqsParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.SqsParameters"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.SqsParameters"
             $($field $value)*)
         };
     }
@@ -485,7 +485,7 @@ pub mod schedule {
     #[macro_export]
     macro_rules! __aws_scheduler_Schedule_Target {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Scheduler::Schedule.Target"
+            stratosphere::generator::construct_property_type!("AWS::Scheduler::Schedule.Target"
             $($field $value)*)
         };
     }
@@ -568,7 +568,7 @@ pub struct Schedule_ {
 #[macro_export]
 macro_rules! __aws_scheduler_Schedule {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Scheduler::Schedule"
+        stratosphere::generator::construct_resource_type!("AWS::Scheduler::Schedule"
         $($field $value)*)
     };
 }
@@ -650,7 +650,7 @@ pub struct ScheduleGroup_ {
 #[macro_export]
 macro_rules! __aws_scheduler_ScheduleGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Scheduler::ScheduleGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Scheduler::ScheduleGroup"
         $($field $value)*)
     };
 }

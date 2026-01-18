@@ -8,7 +8,7 @@ pub mod allowlist {
     #[macro_export]
     macro_rules! __aws_macie_AllowList_Criteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Macie::AllowList.Criteria"
+            stratosphere::generator::construct_property_type!("AWS::Macie::AllowList.Criteria"
             $($field $value)*)
         };
     }
@@ -37,7 +37,7 @@ pub mod allowlist {
     #[macro_export]
     macro_rules! __aws_macie_AllowList_S3WordsList {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Macie::AllowList.S3WordsList"
+            stratosphere::generator::construct_property_type!("AWS::Macie::AllowList.S3WordsList"
             $($field $value)*)
         };
     }
@@ -71,7 +71,7 @@ pub mod findingsfilter {
     #[macro_export]
     macro_rules! __aws_macie_FindingsFilter_CriterionAdditionalProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Macie::FindingsFilter.CriterionAdditionalProperties"
+            stratosphere::generator::construct_property_type!("AWS::Macie::FindingsFilter.CriterionAdditionalProperties"
             $($field $value)*)
         };
     }
@@ -108,7 +108,7 @@ pub mod findingsfilter {
     #[macro_export]
     macro_rules! __aws_macie_FindingsFilter_FindingCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Macie::FindingsFilter.FindingCriteria"
+            stratosphere::generator::construct_property_type!("AWS::Macie::FindingsFilter.FindingCriteria"
             $($field $value)*)
         };
     }
@@ -137,8 +137,8 @@ pub struct AllowList_ {
 #[macro_export]
 macro_rules! __aws_macie_AllowList {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Macie::AllowList" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::Macie::AllowList"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_macie_AllowList as AllowList;
@@ -187,7 +187,7 @@ pub struct CustomDataIdentifier_ {
 #[macro_export]
 macro_rules! __aws_macie_CustomDataIdentifier {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Macie::CustomDataIdentifier"
+        stratosphere::generator::construct_resource_type!("AWS::Macie::CustomDataIdentifier"
         $($field $value)*)
     };
 }
@@ -254,7 +254,7 @@ pub struct FindingsFilter_ {
 #[macro_export]
 macro_rules! __aws_macie_FindingsFilter {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Macie::FindingsFilter"
+        stratosphere::generator::construct_resource_type!("AWS::Macie::FindingsFilter"
         $($field $value)*)
     };
 }
@@ -308,7 +308,7 @@ pub struct Session_ {
 #[macro_export]
 macro_rules! __aws_macie_Session {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Macie::Session" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Macie::Session" $($field
         $value)*)
     };
 }

@@ -7,7 +7,7 @@ pub mod groupmembership {
     #[macro_export]
     macro_rules! __aws_identitystore_GroupMembership_MemberId {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IdentityStore::GroupMembership.MemberId"
+            stratosphere::generator::construct_property_type!("AWS::IdentityStore::GroupMembership.MemberId"
             $($field $value)*)
         };
     }
@@ -33,7 +33,7 @@ pub struct Group_ {
 #[macro_export]
 macro_rules! __aws_identitystore_Group {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IdentityStore::Group"
+        stratosphere::generator::construct_resource_type!("AWS::IdentityStore::Group"
         $($field $value)*)
     };
 }
@@ -76,7 +76,7 @@ pub struct GroupMembership_ {
 #[macro_export]
 macro_rules! __aws_identitystore_GroupMembership {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IdentityStore::GroupMembership"
+        stratosphere::generator::construct_resource_type!("AWS::IdentityStore::GroupMembership"
         $($field $value)*)
     };
 }

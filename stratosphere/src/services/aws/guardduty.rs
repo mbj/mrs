@@ -9,7 +9,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_guardduty_Detector_CFNDataSourceConfigurations {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::Detector.CFNDataSourceConfigurations"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::Detector.CFNDataSourceConfigurations"
             $($field $value)*)
         };
     }
@@ -44,7 +44,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_guardduty_Detector_CFNFeatureAdditionalConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::Detector.CFNFeatureAdditionalConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::Detector.CFNFeatureAdditionalConfiguration"
             $($field $value)*)
         };
     }
@@ -71,7 +71,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_guardduty_Detector_CFNFeatureConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::Detector.CFNFeatureConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::Detector.CFNFeatureConfiguration"
             $($field $value)*)
         };
     }
@@ -104,7 +104,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_guardduty_Detector_CFNKubernetesAuditLogsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::Detector.CFNKubernetesAuditLogsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::Detector.CFNKubernetesAuditLogsConfiguration"
             $($field $value)*)
         };
     }
@@ -127,7 +127,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_guardduty_Detector_CFNKubernetesConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::Detector.CFNKubernetesConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::Detector.CFNKubernetesConfiguration"
             $($field $value)*)
         };
     }
@@ -151,7 +151,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_guardduty_Detector_CFNMalwareProtectionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::Detector.CFNMalwareProtectionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::Detector.CFNMalwareProtectionConfiguration"
             $($field $value)*)
         };
     }
@@ -176,7 +176,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_guardduty_Detector_CFNS3LogsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::Detector.CFNS3LogsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::Detector.CFNS3LogsConfiguration"
             $($field $value)*)
         };
     }
@@ -199,7 +199,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_guardduty_Detector_CFNScanEc2InstanceWithFindingsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::Detector.CFNScanEc2InstanceWithFindingsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::Detector.CFNScanEc2InstanceWithFindingsConfiguration"
             $($field $value)*)
         };
     }
@@ -225,7 +225,7 @@ pub mod detector {
     #[macro_export]
     macro_rules! __aws_guardduty_Detector_TagItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::Detector.TagItem"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::Detector.TagItem"
             $($field $value)*)
         };
     }
@@ -265,7 +265,7 @@ pub mod filter {
     #[macro_export]
     macro_rules! __aws_guardduty_Filter_Condition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::Filter.Condition"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::Filter.Condition"
             $($field $value)*)
         };
     }
@@ -335,7 +335,7 @@ pub mod filter {
     #[macro_export]
     macro_rules! __aws_guardduty_Filter_FindingCriteria {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::Filter.FindingCriteria"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::Filter.FindingCriteria"
             $($field $value)*)
         };
     }
@@ -361,7 +361,7 @@ pub mod filter {
     #[macro_export]
     macro_rules! __aws_guardduty_Filter_TagItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::Filter.TagItem"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::Filter.TagItem"
             $($field $value)*)
         };
     }
@@ -391,7 +391,7 @@ pub mod ipset {
     #[macro_export]
     macro_rules! __aws_guardduty_IPSet_TagItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::IPSet.TagItem"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::IPSet.TagItem"
             $($field $value)*)
         };
     }
@@ -420,7 +420,7 @@ pub mod malwareprotectionplan {
     #[macro_export]
     macro_rules! __aws_guardduty_MalwareProtectionPlan_CFNActions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::MalwareProtectionPlan.CFNActions"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::MalwareProtectionPlan.CFNActions"
             $($field $value)*)
         };
     }
@@ -445,7 +445,7 @@ pub mod malwareprotectionplan {
     #[macro_export]
     macro_rules! __aws_guardduty_MalwareProtectionPlan_CFNProtectedResource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::MalwareProtectionPlan.CFNProtectedResource"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::MalwareProtectionPlan.CFNProtectedResource"
             $($field $value)*)
         };
     }
@@ -469,7 +469,7 @@ pub mod malwareprotectionplan {
     #[macro_export]
     macro_rules! __aws_guardduty_MalwareProtectionPlan_CFNStatusReasons {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::MalwareProtectionPlan.CFNStatusReasons"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::MalwareProtectionPlan.CFNStatusReasons"
             $($field $value)*)
         };
     }
@@ -497,7 +497,7 @@ pub mod malwareprotectionplan {
     #[macro_export]
     macro_rules! __aws_guardduty_MalwareProtectionPlan_CFNTagging {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::MalwareProtectionPlan.CFNTagging"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::MalwareProtectionPlan.CFNTagging"
             $($field $value)*)
         };
     }
@@ -520,7 +520,7 @@ pub mod malwareprotectionplan {
     #[macro_export]
     macro_rules! __aws_guardduty_MalwareProtectionPlan_S3Bucket {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::MalwareProtectionPlan.S3Bucket"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::MalwareProtectionPlan.S3Bucket"
             $($field $value)*)
         };
     }
@@ -552,7 +552,7 @@ pub mod malwareprotectionplan {
     #[macro_export]
     macro_rules! __aws_guardduty_MalwareProtectionPlan_TagItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::MalwareProtectionPlan.TagItem"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::MalwareProtectionPlan.TagItem"
             $($field $value)*)
         };
     }
@@ -582,7 +582,7 @@ pub mod publishingdestination {
     #[macro_export]
     macro_rules! __aws_guardduty_PublishingDestination_CFNDestinationProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::PublishingDestination.CFNDestinationProperties"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::PublishingDestination.CFNDestinationProperties"
             $($field $value)*)
         };
     }
@@ -614,7 +614,7 @@ pub mod publishingdestination {
     #[macro_export]
     macro_rules! __aws_guardduty_PublishingDestination_TagItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::PublishingDestination.TagItem"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::PublishingDestination.TagItem"
             $($field $value)*)
         };
     }
@@ -644,7 +644,7 @@ pub mod threatentityset {
     #[macro_export]
     macro_rules! __aws_guardduty_ThreatEntitySet_TagItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::ThreatEntitySet.TagItem"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::ThreatEntitySet.TagItem"
             $($field $value)*)
         };
     }
@@ -674,7 +674,7 @@ pub mod threatintelset {
     #[macro_export]
     macro_rules! __aws_guardduty_ThreatIntelSet_TagItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::ThreatIntelSet.TagItem"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::ThreatIntelSet.TagItem"
             $($field $value)*)
         };
     }
@@ -704,7 +704,7 @@ pub mod trustedentityset {
     #[macro_export]
     macro_rules! __aws_guardduty_TrustedEntitySet_TagItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::GuardDuty::TrustedEntitySet.TagItem"
+            stratosphere::generator::construct_property_type!("AWS::GuardDuty::TrustedEntitySet.TagItem"
             $($field $value)*)
         };
     }
@@ -736,7 +736,7 @@ pub struct Detector_ {
 #[macro_export]
 macro_rules! __aws_guardduty_Detector {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GuardDuty::Detector"
+        stratosphere::generator::construct_resource_type!("AWS::GuardDuty::Detector"
         $($field $value)*)
     };
 }
@@ -794,7 +794,7 @@ pub struct Filter_ {
 #[macro_export]
 macro_rules! __aws_guardduty_Filter {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GuardDuty::Filter"
+        stratosphere::generator::construct_resource_type!("AWS::GuardDuty::Filter"
         $($field $value)*)
     };
 }
@@ -854,8 +854,8 @@ pub struct IPSet_ {
 #[macro_export]
 macro_rules! __aws_guardduty_IPSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GuardDuty::IPSet" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::GuardDuty::IPSet"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_guardduty_IPSet as IPSet;
@@ -916,7 +916,7 @@ pub struct MalwareProtectionPlan_ {
 #[macro_export]
 macro_rules! __aws_guardduty_MalwareProtectionPlan {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GuardDuty::MalwareProtectionPlan"
+        stratosphere::generator::construct_resource_type!("AWS::GuardDuty::MalwareProtectionPlan"
         $($field $value)*)
     };
 }
@@ -962,7 +962,7 @@ pub struct Master_ {
 #[macro_export]
 macro_rules! __aws_guardduty_Master {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GuardDuty::Master"
+        stratosphere::generator::construct_resource_type!("AWS::GuardDuty::Master"
         $($field $value)*)
     };
 }
@@ -1008,7 +1008,7 @@ pub struct Member_ {
 #[macro_export]
 macro_rules! __aws_guardduty_Member {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GuardDuty::Member"
+        stratosphere::generator::construct_resource_type!("AWS::GuardDuty::Member"
         $($field $value)*)
     };
 }
@@ -1069,7 +1069,7 @@ pub struct PublishingDestination_ {
 #[macro_export]
 macro_rules! __aws_guardduty_PublishingDestination {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GuardDuty::PublishingDestination"
+        stratosphere::generator::construct_resource_type!("AWS::GuardDuty::PublishingDestination"
         $($field $value)*)
     };
 }
@@ -1117,7 +1117,7 @@ pub struct ThreatEntitySet_ {
 #[macro_export]
 macro_rules! __aws_guardduty_ThreatEntitySet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GuardDuty::ThreatEntitySet"
+        stratosphere::generator::construct_resource_type!("AWS::GuardDuty::ThreatEntitySet"
         $($field $value)*)
     };
 }
@@ -1182,7 +1182,7 @@ pub struct ThreatIntelSet_ {
 #[macro_export]
 macro_rules! __aws_guardduty_ThreatIntelSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GuardDuty::ThreatIntelSet"
+        stratosphere::generator::construct_resource_type!("AWS::GuardDuty::ThreatIntelSet"
         $($field $value)*)
     };
 }
@@ -1247,7 +1247,7 @@ pub struct TrustedEntitySet_ {
 #[macro_export]
 macro_rules! __aws_guardduty_TrustedEntitySet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::GuardDuty::TrustedEntitySet"
+        stratosphere::generator::construct_resource_type!("AWS::GuardDuty::TrustedEntitySet"
         $($field $value)*)
     };
 }

@@ -9,7 +9,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_dsql_Cluster_EncryptionDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DSQL::Cluster.EncryptionDetails"
+            stratosphere::generator::construct_property_type!("AWS::DSQL::Cluster.EncryptionDetails"
             $($field $value)*)
         };
     }
@@ -47,7 +47,7 @@ pub mod cluster {
     #[macro_export]
     macro_rules! __aws_dsql_Cluster_MultiRegionProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::DSQL::Cluster.MultiRegionProperties"
+            stratosphere::generator::construct_property_type!("AWS::DSQL::Cluster.MultiRegionProperties"
             $($field $value)*)
         };
     }
@@ -82,7 +82,7 @@ pub struct Cluster_ {
 #[macro_export]
 macro_rules! __aws_dsql_Cluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::DSQL::Cluster" $($field
+        stratosphere::generator::construct_resource_type!("AWS::DSQL::Cluster" $($field
         $value)*)
     };
 }

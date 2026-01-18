@@ -10,7 +10,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_mediatailor_Channel_DashPlaylistSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::Channel.DashPlaylistSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::Channel.DashPlaylistSettings"
             $($field $value)*)
         };
     }
@@ -54,7 +54,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_mediatailor_Channel_HlsPlaylistSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::Channel.HlsPlaylistSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::Channel.HlsPlaylistSettings"
             $($field $value)*)
         };
     }
@@ -85,7 +85,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_mediatailor_Channel_LogConfigurationForChannel {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::Channel.LogConfigurationForChannel"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::Channel.LogConfigurationForChannel"
             $($field $value)*)
         };
     }
@@ -113,7 +113,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_mediatailor_Channel_RequestOutputItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::Channel.RequestOutputItem"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::Channel.RequestOutputItem"
             $($field $value)*)
         };
     }
@@ -153,7 +153,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_mediatailor_Channel_SlateSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::Channel.SlateSource"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::Channel.SlateSource"
             $($field $value)*)
         };
     }
@@ -184,7 +184,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_mediatailor_Channel_TimeShiftConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::Channel.TimeShiftConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::Channel.TimeShiftConfiguration"
             $($field $value)*)
         };
     }
@@ -211,7 +211,7 @@ pub mod livesource {
     #[macro_export]
     macro_rules! __aws_mediatailor_LiveSource_HttpPackageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::LiveSource.HttpPackageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::LiveSource.HttpPackageConfiguration"
             $($field $value)*)
         };
     }
@@ -244,7 +244,7 @@ pub mod playbackconfiguration {
     #[macro_export]
     macro_rules! __aws_mediatailor_PlaybackConfiguration_AdConditioningConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.AdConditioningConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.AdConditioningConfiguration"
             $($field $value)*)
         };
     }
@@ -267,7 +267,7 @@ pub mod playbackconfiguration {
     #[macro_export]
     macro_rules! __aws_mediatailor_PlaybackConfiguration_AdMarkerPassthrough {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.AdMarkerPassthrough"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.AdMarkerPassthrough"
             $($field $value)*)
         };
     }
@@ -293,7 +293,7 @@ pub mod playbackconfiguration {
     #[macro_export]
     macro_rules! __aws_mediatailor_PlaybackConfiguration_AdsInteractionLog {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.AdsInteractionLog"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.AdsInteractionLog"
             $($field $value)*)
         };
     }
@@ -326,7 +326,7 @@ pub mod playbackconfiguration {
     #[macro_export]
     macro_rules! __aws_mediatailor_PlaybackConfiguration_AvailSuppression {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.AvailSuppression"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.AvailSuppression"
             $($field $value)*)
         };
     }
@@ -358,7 +358,7 @@ pub mod playbackconfiguration {
     #[macro_export]
     macro_rules! __aws_mediatailor_PlaybackConfiguration_Bumper {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.Bumper"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.Bumper"
             $($field $value)*)
         };
     }
@@ -387,7 +387,7 @@ pub mod playbackconfiguration {
     #[macro_export]
     macro_rules! __aws_mediatailor_PlaybackConfiguration_CdnConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.CdnConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.CdnConfiguration"
             $($field $value)*)
         };
     }
@@ -420,7 +420,7 @@ pub mod playbackconfiguration {
     #[macro_export]
     macro_rules! __aws_mediatailor_PlaybackConfiguration_DashConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.DashConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.DashConfiguration"
             $($field $value)*)
         };
     }
@@ -457,7 +457,7 @@ pub mod playbackconfiguration {
     #[macro_export]
     macro_rules! __aws_mediatailor_PlaybackConfiguration_HlsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.HlsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.HlsConfiguration"
             $($field $value)*)
         };
     }
@@ -483,7 +483,7 @@ pub mod playbackconfiguration {
     #[macro_export]
     macro_rules! __aws_mediatailor_PlaybackConfiguration_LivePreRollConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.LivePreRollConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.LivePreRollConfiguration"
             $($field $value)*)
         };
     }
@@ -517,7 +517,7 @@ pub mod playbackconfiguration {
     #[macro_export]
     macro_rules! __aws_mediatailor_PlaybackConfiguration_LogConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.LogConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.LogConfiguration"
             $($field $value)*)
         };
     }
@@ -558,7 +558,7 @@ pub mod playbackconfiguration {
     #[macro_export]
     macro_rules! __aws_mediatailor_PlaybackConfiguration_ManifestProcessingRules {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.ManifestProcessingRules"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.ManifestProcessingRules"
             $($field $value)*)
         };
     }
@@ -583,7 +583,7 @@ pub mod playbackconfiguration {
     #[macro_export]
     macro_rules! __aws_mediatailor_PlaybackConfiguration_ManifestServiceInteractionLog {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.ManifestServiceInteractionLog"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.ManifestServiceInteractionLog"
             $($field $value)*)
         };
     }
@@ -612,7 +612,7 @@ pub mod sourcelocation {
     #[macro_export]
     macro_rules! __aws_mediatailor_SourceLocation_AccessConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::SourceLocation.AccessConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::SourceLocation.AccessConfiguration"
             $($field $value)*)
         };
     }
@@ -643,7 +643,7 @@ pub mod sourcelocation {
     #[macro_export]
     macro_rules! __aws_mediatailor_SourceLocation_DefaultSegmentDeliveryConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::SourceLocation.DefaultSegmentDeliveryConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::SourceLocation.DefaultSegmentDeliveryConfiguration"
             $($field $value)*)
         };
     }
@@ -668,7 +668,7 @@ pub mod sourcelocation {
     #[macro_export]
     macro_rules! __aws_mediatailor_SourceLocation_HttpConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::SourceLocation.HttpConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::SourceLocation.HttpConfiguration"
             $($field $value)*)
         };
     }
@@ -693,7 +693,7 @@ pub mod sourcelocation {
     #[macro_export]
     macro_rules! __aws_mediatailor_SourceLocation_SecretsManagerAccessTokenConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::SourceLocation.SecretsManagerAccessTokenConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::SourceLocation.SecretsManagerAccessTokenConfiguration"
             $($field $value)*)
         };
     }
@@ -731,7 +731,7 @@ pub mod sourcelocation {
     #[macro_export]
     macro_rules! __aws_mediatailor_SourceLocation_SegmentDeliveryConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::SourceLocation.SegmentDeliveryConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::SourceLocation.SegmentDeliveryConfiguration"
             $($field $value)*)
         };
     }
@@ -763,7 +763,7 @@ pub mod vodsource {
     #[macro_export]
     macro_rules! __aws_mediatailor_VodSource_HttpPackageConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaTailor::VodSource.HttpPackageConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::VodSource.HttpPackageConfiguration"
             $($field $value)*)
         };
     }
@@ -803,7 +803,7 @@ pub struct Channel_ {
 #[macro_export]
 macro_rules! __aws_mediatailor_Channel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaTailor::Channel"
+        stratosphere::generator::construct_resource_type!("AWS::MediaTailor::Channel"
         $($field $value)*)
     };
 }
@@ -873,7 +873,7 @@ pub struct ChannelPolicy_ {
 #[macro_export]
 macro_rules! __aws_mediatailor_ChannelPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaTailor::ChannelPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::MediaTailor::ChannelPolicy"
         $($field $value)*)
     };
 }
@@ -911,7 +911,7 @@ pub struct LiveSource_ {
 #[macro_export]
 macro_rules! __aws_mediatailor_LiveSource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaTailor::LiveSource"
+        stratosphere::generator::construct_resource_type!("AWS::MediaTailor::LiveSource"
         $($field $value)*)
     };
 }
@@ -973,7 +973,7 @@ pub struct PlaybackConfiguration_ {
 #[macro_export]
 macro_rules! __aws_mediatailor_PlaybackConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaTailor::PlaybackConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::MediaTailor::PlaybackConfiguration"
         $($field $value)*)
     };
 }
@@ -1103,7 +1103,7 @@ pub struct SourceLocation_ {
 #[macro_export]
 macro_rules! __aws_mediatailor_SourceLocation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaTailor::SourceLocation"
+        stratosphere::generator::construct_resource_type!("AWS::MediaTailor::SourceLocation"
         $($field $value)*)
     };
 }
@@ -1162,7 +1162,7 @@ pub struct VodSource_ {
 #[macro_export]
 macro_rules! __aws_mediatailor_VodSource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaTailor::VodSource"
+        stratosphere::generator::construct_resource_type!("AWS::MediaTailor::VodSource"
         $($field $value)*)
     };
 }

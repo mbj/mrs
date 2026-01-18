@@ -17,7 +17,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_amplify_App_AutoBranchCreationConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Amplify::App.AutoBranchCreationConfig"
+            stratosphere::generator::construct_property_type!("AWS::Amplify::App.AutoBranchCreationConfig"
             $($field $value)*)
         };
     }
@@ -101,7 +101,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_amplify_App_BasicAuthConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Amplify::App.BasicAuthConfig"
+            stratosphere::generator::construct_property_type!("AWS::Amplify::App.BasicAuthConfig"
             $($field $value)*)
         };
     }
@@ -138,7 +138,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_amplify_App_CacheConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Amplify::App.CacheConfig"
+            stratosphere::generator::construct_property_type!("AWS::Amplify::App.CacheConfig"
             $($field $value)*)
         };
     }
@@ -163,7 +163,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_amplify_App_CustomRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Amplify::App.CustomRule"
+            stratosphere::generator::construct_property_type!("AWS::Amplify::App.CustomRule"
             $($field $value)*)
         };
     }
@@ -200,7 +200,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_amplify_App_EnvironmentVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Amplify::App.EnvironmentVariable"
+            stratosphere::generator::construct_property_type!("AWS::Amplify::App.EnvironmentVariable"
             $($field $value)*)
         };
     }
@@ -227,7 +227,7 @@ pub mod app {
     #[macro_export]
     macro_rules! __aws_amplify_App_JobConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Amplify::App.JobConfig"
+            stratosphere::generator::construct_property_type!("AWS::Amplify::App.JobConfig"
             $($field $value)*)
         };
     }
@@ -252,7 +252,7 @@ pub mod branch {
     #[macro_export]
     macro_rules! __aws_amplify_Branch_Backend {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Amplify::Branch.Backend"
+            stratosphere::generator::construct_property_type!("AWS::Amplify::Branch.Backend"
             $($field $value)*)
         };
     }
@@ -279,7 +279,7 @@ pub mod branch {
     #[macro_export]
     macro_rules! __aws_amplify_Branch_BasicAuthConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Amplify::Branch.BasicAuthConfig"
+            stratosphere::generator::construct_property_type!("AWS::Amplify::Branch.BasicAuthConfig"
             $($field $value)*)
         };
     }
@@ -313,7 +313,7 @@ pub mod branch {
     #[macro_export]
     macro_rules! __aws_amplify_Branch_EnvironmentVariable {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Amplify::Branch.EnvironmentVariable"
+            stratosphere::generator::construct_property_type!("AWS::Amplify::Branch.EnvironmentVariable"
             $($field $value)*)
         };
     }
@@ -344,7 +344,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_amplify_Domain_Certificate {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Amplify::Domain.Certificate"
+            stratosphere::generator::construct_property_type!("AWS::Amplify::Domain.Certificate"
             $($field $value)*)
         };
     }
@@ -382,7 +382,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_amplify_Domain_CertificateSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Amplify::Domain.CertificateSettings"
+            stratosphere::generator::construct_property_type!("AWS::Amplify::Domain.CertificateSettings"
             $($field $value)*)
         };
     }
@@ -414,7 +414,7 @@ pub mod domain {
     #[macro_export]
     macro_rules! __aws_amplify_Domain_SubDomainSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Amplify::Domain.SubDomainSetting"
+            stratosphere::generator::construct_property_type!("AWS::Amplify::Domain.SubDomainSetting"
             $($field $value)*)
         };
     }
@@ -459,7 +459,7 @@ pub struct App_ {
 #[macro_export]
 macro_rules! __aws_amplify_App {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Amplify::App" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Amplify::App" $($field
         $value)*)
     };
 }
@@ -604,7 +604,7 @@ pub struct Branch_ {
 #[macro_export]
 macro_rules! __aws_amplify_Branch {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Amplify::Branch" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Amplify::Branch" $($field
         $value)*)
     };
 }
@@ -723,7 +723,7 @@ pub struct Domain_ {
 #[macro_export]
 macro_rules! __aws_amplify_Domain {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Amplify::Domain" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Amplify::Domain" $($field
         $value)*)
     };
 }

@@ -10,7 +10,7 @@ pub mod cloudformationproduct {
     #[macro_export]
     macro_rules! __aws_servicecatalog_CloudFormationProduct_CodeStarParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceCatalog::CloudFormationProduct.CodeStarParameters"
+            stratosphere::generator::construct_property_type!("AWS::ServiceCatalog::CloudFormationProduct.CodeStarParameters"
             $($field $value)*)
         };
     }
@@ -45,7 +45,7 @@ pub mod cloudformationproduct {
     #[macro_export]
     macro_rules! __aws_servicecatalog_CloudFormationProduct_ConnectionParameters {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceCatalog::CloudFormationProduct.ConnectionParameters"
+            stratosphere::generator::construct_property_type!("AWS::ServiceCatalog::CloudFormationProduct.ConnectionParameters"
             $($field $value)*)
         };
     }
@@ -74,7 +74,7 @@ pub mod cloudformationproduct {
     #[macro_export]
     macro_rules! __aws_servicecatalog_CloudFormationProduct_ProvisioningArtifactProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceCatalog::CloudFormationProduct.ProvisioningArtifactProperties"
+            stratosphere::generator::construct_property_type!("AWS::ServiceCatalog::CloudFormationProduct.ProvisioningArtifactProperties"
             $($field $value)*)
         };
     }
@@ -116,7 +116,7 @@ pub mod cloudformationproduct {
     #[macro_export]
     macro_rules! __aws_servicecatalog_CloudFormationProduct_SourceConnection {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceCatalog::CloudFormationProduct.SourceConnection"
+            stratosphere::generator::construct_property_type!("AWS::ServiceCatalog::CloudFormationProduct.SourceConnection"
             $($field $value)*)
         };
     }
@@ -146,7 +146,7 @@ pub mod cloudformationprovisionedproduct {
     #[macro_export]
     macro_rules! __aws_servicecatalog_CloudFormationProvisionedProduct_ProvisioningParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceCatalog::CloudFormationProvisionedProduct.ProvisioningParameter"
+            stratosphere::generator::construct_property_type!("AWS::ServiceCatalog::CloudFormationProvisionedProduct.ProvisioningParameter"
             $($field $value)*)
         };
     }
@@ -179,7 +179,7 @@ pub mod cloudformationprovisionedproduct {
     #[macro_export]
     macro_rules! __aws_servicecatalog_CloudFormationProvisionedProduct_ProvisioningPreferences {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceCatalog::CloudFormationProvisionedProduct.ProvisioningPreferences"
+            stratosphere::generator::construct_property_type!("AWS::ServiceCatalog::CloudFormationProvisionedProduct.ProvisioningPreferences"
             $($field $value)*)
         };
     }
@@ -243,7 +243,7 @@ pub mod serviceaction {
     #[macro_export]
     macro_rules! __aws_servicecatalog_ServiceAction_DefinitionParameter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::ServiceCatalog::ServiceAction.DefinitionParameter"
+            stratosphere::generator::construct_property_type!("AWS::ServiceCatalog::ServiceAction.DefinitionParameter"
             $($field $value)*)
         };
     }
@@ -272,7 +272,7 @@ pub struct AcceptedPortfolioShare_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_AcceptedPortfolioShare {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::AcceptedPortfolioShare"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::AcceptedPortfolioShare"
         $($field $value)*)
     };
 }
@@ -322,7 +322,7 @@ pub struct CloudFormationProduct_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_CloudFormationProduct {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::CloudFormationProduct"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::CloudFormationProduct"
         $($field $value)*)
     };
 }
@@ -434,7 +434,7 @@ pub struct CloudFormationProvisionedProduct_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_CloudFormationProvisionedProduct {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::CloudFormationProvisionedProduct"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::CloudFormationProvisionedProduct"
         $($field $value)*)
     };
 }
@@ -533,7 +533,7 @@ pub struct LaunchNotificationConstraint_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_LaunchNotificationConstraint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::LaunchNotificationConstraint"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::LaunchNotificationConstraint"
         $($field $value)*)
     };
 }
@@ -591,7 +591,7 @@ pub struct LaunchRoleConstraint_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_LaunchRoleConstraint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::LaunchRoleConstraint"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::LaunchRoleConstraint"
         $($field $value)*)
     };
 }
@@ -654,7 +654,7 @@ pub struct LaunchTemplateConstraint_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_LaunchTemplateConstraint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::LaunchTemplateConstraint"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::LaunchTemplateConstraint"
         $($field $value)*)
     };
 }
@@ -709,7 +709,7 @@ pub struct Portfolio_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_Portfolio {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::Portfolio"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::Portfolio"
         $($field $value)*)
     };
 }
@@ -762,7 +762,7 @@ pub struct PortfolioPrincipalAssociation_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_PortfolioPrincipalAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::PortfolioPrincipalAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::PortfolioPrincipalAssociation"
         $($field $value)*)
     };
 }
@@ -816,7 +816,7 @@ pub struct PortfolioProductAssociation_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_PortfolioProductAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::PortfolioProductAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::PortfolioProductAssociation"
         $($field $value)*)
     };
 }
@@ -868,7 +868,7 @@ pub struct PortfolioShare_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_PortfolioShare {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::PortfolioShare"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::PortfolioShare"
         $($field $value)*)
     };
 }
@@ -919,7 +919,7 @@ pub struct ResourceUpdateConstraint_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_ResourceUpdateConstraint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::ResourceUpdateConstraint"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::ResourceUpdateConstraint"
         $($field $value)*)
     };
 }
@@ -974,7 +974,7 @@ pub struct ServiceAction_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_ServiceAction {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::ServiceAction"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::ServiceAction"
         $($field $value)*)
     };
 }
@@ -1027,7 +1027,7 @@ pub struct ServiceActionAssociation_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_ServiceActionAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::ServiceActionAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::ServiceActionAssociation"
         $($field $value)*)
     };
 }
@@ -1074,7 +1074,7 @@ pub struct StackSetConstraint_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_StackSetConstraint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::StackSetConstraint"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::StackSetConstraint"
         $($field $value)*)
     };
 }
@@ -1141,7 +1141,7 @@ pub struct TagOption_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_TagOption {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::TagOption"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::TagOption"
         $($field $value)*)
     };
 }
@@ -1180,7 +1180,7 @@ pub struct TagOptionAssociation_ {
 #[macro_export]
 macro_rules! __aws_servicecatalog_TagOptionAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::ServiceCatalog::TagOptionAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::ServiceCatalog::TagOptionAssociation"
         $($field $value)*)
     };
 }

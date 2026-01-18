@@ -8,7 +8,7 @@ pub mod dbcluster {
     #[macro_export]
     macro_rules! __aws_neptune_DBCluster_DBClusterRole {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Neptune::DBCluster.DBClusterRole"
+            stratosphere::generator::construct_property_type!("AWS::Neptune::DBCluster.DBClusterRole"
             $($field $value)*)
         };
     }
@@ -38,7 +38,7 @@ pub mod dbcluster {
     #[macro_export]
     macro_rules! __aws_neptune_DBCluster_ServerlessScalingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Neptune::DBCluster.ServerlessScalingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Neptune::DBCluster.ServerlessScalingConfiguration"
             $($field $value)*)
         };
     }
@@ -91,7 +91,7 @@ pub struct DBCluster_ {
 #[macro_export]
 macro_rules! __aws_neptune_DBCluster {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Neptune::DBCluster"
+        stratosphere::generator::construct_resource_type!("AWS::Neptune::DBCluster"
         $($field $value)*)
     };
 }
@@ -266,7 +266,7 @@ pub struct DBClusterParameterGroup_ {
 #[macro_export]
 macro_rules! __aws_neptune_DBClusterParameterGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Neptune::DBClusterParameterGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Neptune::DBClusterParameterGroup"
         $($field $value)*)
     };
 }
@@ -320,7 +320,7 @@ pub struct DBInstance_ {
 #[macro_export]
 macro_rules! __aws_neptune_DBInstance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Neptune::DBInstance"
+        stratosphere::generator::construct_resource_type!("AWS::Neptune::DBInstance"
         $($field $value)*)
     };
 }
@@ -406,7 +406,7 @@ pub struct DBParameterGroup_ {
 #[macro_export]
 macro_rules! __aws_neptune_DBParameterGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Neptune::DBParameterGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Neptune::DBParameterGroup"
         $($field $value)*)
     };
 }
@@ -454,7 +454,7 @@ pub struct DBSubnetGroup_ {
 #[macro_export]
 macro_rules! __aws_neptune_DBSubnetGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Neptune::DBSubnetGroup"
+        stratosphere::generator::construct_resource_type!("AWS::Neptune::DBSubnetGroup"
         $($field $value)*)
     };
 }
@@ -502,7 +502,7 @@ pub struct EventSubscription_ {
 #[macro_export]
 macro_rules! __aws_neptune_EventSubscription {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Neptune::EventSubscription"
+        stratosphere::generator::construct_resource_type!("AWS::Neptune::EventSubscription"
         $($field $value)*)
     };
 }

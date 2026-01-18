@@ -8,7 +8,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_Channel_IngestEndpoint {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::Channel.IngestEndpoint"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::Channel.IngestEndpoint"
             $($field $value)*)
         };
     }
@@ -34,7 +34,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_Channel_InputSwitchConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::Channel.InputSwitchConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::Channel.InputSwitchConfiguration"
             $($field $value)*)
         };
     }
@@ -65,7 +65,7 @@ pub mod channel {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_Channel_OutputHeaderConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::Channel.OutputHeaderConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::Channel.OutputHeaderConfiguration"
             $($field $value)*)
         };
     }
@@ -95,7 +95,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_DashBaseUrl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashBaseUrl"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashBaseUrl"
             $($field $value)*)
         };
     }
@@ -138,7 +138,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_DashDvbFontDownload {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashDvbFontDownload"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashDvbFontDownload"
             $($field $value)*)
         };
     }
@@ -173,7 +173,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_DashDvbMetricsReporting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashDvbMetricsReporting"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashDvbMetricsReporting"
             $($field $value)*)
         };
     }
@@ -203,7 +203,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_DashDvbSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashDvbSettings"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashDvbSettings"
             $($field $value)*)
         };
     }
@@ -250,7 +250,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_DashManifestConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashManifestConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashManifestConfiguration"
             $($field $value)*)
         };
     }
@@ -373,7 +373,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_DashProgramInformation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashProgramInformation"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashProgramInformation"
             $($field $value)*)
         };
     }
@@ -416,7 +416,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_DashSubtitleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashSubtitleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashSubtitleConfiguration"
             $($field $value)*)
         };
     }
@@ -441,7 +441,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_DashTtmlConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashTtmlConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashTtmlConfiguration"
             $($field $value)*)
         };
     }
@@ -465,7 +465,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_DashUtcTiming {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashUtcTiming"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.DashUtcTiming"
             $($field $value)*)
         };
     }
@@ -500,7 +500,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_Encryption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.Encryption"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.Encryption"
             $($field $value)*)
         };
     }
@@ -546,7 +546,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_EncryptionContractConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.EncryptionContractConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.EncryptionContractConfiguration"
             $($field $value)*)
         };
     }
@@ -574,7 +574,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_EncryptionMethod {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.EncryptionMethod"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.EncryptionMethod"
             $($field $value)*)
         };
     }
@@ -609,7 +609,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_FilterConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.FilterConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.FilterConfiguration"
             $($field $value)*)
         };
     }
@@ -652,7 +652,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_ForceEndpointErrorConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.ForceEndpointErrorConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.ForceEndpointErrorConfiguration"
             $($field $value)*)
         };
     }
@@ -685,7 +685,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_HlsManifestConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.HlsManifestConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.HlsManifestConfiguration"
             $($field $value)*)
         };
     }
@@ -761,7 +761,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_LowLatencyHlsManifestConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.LowLatencyHlsManifestConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.LowLatencyHlsManifestConfiguration"
             $($field $value)*)
         };
     }
@@ -829,7 +829,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_Scte {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.Scte"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.Scte"
             $($field $value)*)
         };
     }
@@ -854,7 +854,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_ScteDash {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.ScteDash"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.ScteDash"
             $($field $value)*)
         };
     }
@@ -879,7 +879,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_ScteHls {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.ScteHls"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.ScteHls"
             $($field $value)*)
         };
     }
@@ -910,7 +910,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_Segment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.Segment"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.Segment"
             $($field $value)*)
         };
     }
@@ -972,7 +972,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_SpekeKeyProvider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.SpekeKeyProvider"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.SpekeKeyProvider"
             $($field $value)*)
         };
     }
@@ -1012,7 +1012,7 @@ pub mod originendpoint {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpoint_StartTag {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.StartTag"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.StartTag"
             $($field $value)*)
         };
     }
@@ -1044,7 +1044,7 @@ pub mod originendpointpolicy {
     #[macro_export]
     macro_rules! __aws_mediapackagev2_OriginEndpointPolicy_CdnAuthConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpointPolicy.CdnAuthConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpointPolicy.CdnAuthConfiguration"
             $($field $value)*)
         };
     }
@@ -1080,7 +1080,7 @@ pub struct Channel_ {
 #[macro_export]
 macro_rules! __aws_mediapackagev2_Channel {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaPackageV2::Channel"
+        stratosphere::generator::construct_resource_type!("AWS::MediaPackageV2::Channel"
         $($field $value)*)
     };
 }
@@ -1144,7 +1144,7 @@ pub struct ChannelGroup_ {
 #[macro_export]
 macro_rules! __aws_mediapackagev2_ChannelGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaPackageV2::ChannelGroup"
+        stratosphere::generator::construct_resource_type!("AWS::MediaPackageV2::ChannelGroup"
         $($field $value)*)
     };
 }
@@ -1186,7 +1186,7 @@ pub struct ChannelPolicy_ {
 #[macro_export]
 macro_rules! __aws_mediapackagev2_ChannelPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaPackageV2::ChannelPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::MediaPackageV2::ChannelPolicy"
         $($field $value)*)
     };
 }
@@ -1240,7 +1240,7 @@ pub struct OriginEndpoint_ {
 #[macro_export]
 macro_rules! __aws_mediapackagev2_OriginEndpoint {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaPackageV2::OriginEndpoint"
+        stratosphere::generator::construct_resource_type!("AWS::MediaPackageV2::OriginEndpoint"
         $($field $value)*)
     };
 }
@@ -1333,7 +1333,7 @@ pub struct OriginEndpointPolicy_ {
 #[macro_export]
 macro_rules! __aws_mediapackagev2_OriginEndpointPolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::MediaPackageV2::OriginEndpointPolicy"
+        stratosphere::generator::construct_resource_type!("AWS::MediaPackageV2::OriginEndpointPolicy"
         $($field $value)*)
     };
 }

@@ -8,7 +8,7 @@ pub mod deploymentconfig {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentConfig_MinimumHealthyHosts {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentConfig.MinimumHealthyHosts"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentConfig.MinimumHealthyHosts"
             $($field $value)*)
         };
     }
@@ -36,7 +36,7 @@ pub mod deploymentconfig {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentConfig_MinimumHealthyHostsPerZone {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentConfig.MinimumHealthyHostsPerZone"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentConfig.MinimumHealthyHostsPerZone"
             $($field $value)*)
         };
     }
@@ -64,7 +64,7 @@ pub mod deploymentconfig {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentConfig_TimeBasedCanary {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentConfig.TimeBasedCanary"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentConfig.TimeBasedCanary"
             $($field $value)*)
         };
     }
@@ -92,7 +92,7 @@ pub mod deploymentconfig {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentConfig_TimeBasedLinear {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentConfig.TimeBasedLinear"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentConfig.TimeBasedLinear"
             $($field $value)*)
         };
     }
@@ -121,7 +121,7 @@ pub mod deploymentconfig {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentConfig_TrafficRoutingConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentConfig.TrafficRoutingConfig"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentConfig.TrafficRoutingConfig"
             $($field $value)*)
         };
     }
@@ -158,7 +158,7 @@ pub mod deploymentconfig {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentConfig_ZonalConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentConfig.ZonalConfig"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentConfig.ZonalConfig"
             $($field $value)*)
         };
     }
@@ -197,7 +197,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_Alarm {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.Alarm"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.Alarm"
             $($field $value)*)
         };
     }
@@ -221,7 +221,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_AlarmConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.AlarmConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.AlarmConfiguration"
             $($field $value)*)
         };
     }
@@ -256,7 +256,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_AutoRollbackConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.AutoRollbackConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.AutoRollbackConfiguration"
             $($field $value)*)
         };
     }
@@ -287,7 +287,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_BlueGreenDeploymentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.BlueGreenDeploymentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.BlueGreenDeploymentConfiguration"
             $($field $value)*)
         };
     }
@@ -325,7 +325,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_BlueInstanceTerminationOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.BlueInstanceTerminationOption"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.BlueInstanceTerminationOption"
             $($field $value)*)
         };
     }
@@ -355,7 +355,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_Deployment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.Deployment"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.Deployment"
             $($field $value)*)
         };
     }
@@ -391,7 +391,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_DeploymentReadyOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.DeploymentReadyOption"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.DeploymentReadyOption"
             $($field $value)*)
         };
     }
@@ -423,7 +423,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_DeploymentStyle {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.DeploymentStyle"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.DeploymentStyle"
             $($field $value)*)
         };
     }
@@ -456,7 +456,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_EC2TagFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.EC2TagFilter"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.EC2TagFilter"
             $($field $value)*)
         };
     }
@@ -484,7 +484,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_EC2TagSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.EC2TagSet"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.EC2TagSet"
             $($field $value)*)
         };
     }
@@ -509,7 +509,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_EC2TagSetListObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.EC2TagSetListObject"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.EC2TagSetListObject"
             $($field $value)*)
         };
     }
@@ -535,7 +535,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_ECSService {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.ECSService"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.ECSService"
             $($field $value)*)
         };
     }
@@ -562,7 +562,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_ELBInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.ELBInfo"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.ELBInfo"
             $($field $value)*)
         };
     }
@@ -585,7 +585,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_GitHubLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.GitHubLocation"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.GitHubLocation"
             $($field $value)*)
         };
     }
@@ -612,7 +612,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_GreenFleetProvisioningOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.GreenFleetProvisioningOption"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.GreenFleetProvisioningOption"
             $($field $value)*)
         };
     }
@@ -636,7 +636,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_LoadBalancerInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.LoadBalancerInfo"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.LoadBalancerInfo"
             $($field $value)*)
         };
     }
@@ -673,7 +673,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_OnPremisesTagSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.OnPremisesTagSet"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.OnPremisesTagSet"
             $($field $value)*)
         };
     }
@@ -698,7 +698,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_OnPremisesTagSetListObject {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.OnPremisesTagSetListObject"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.OnPremisesTagSetListObject"
             $($field $value)*)
         };
     }
@@ -725,7 +725,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_RevisionLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.RevisionLocation"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.RevisionLocation"
             $($field $value)*)
         };
     }
@@ -766,7 +766,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.S3Location"
             $($field $value)*)
         };
     }
@@ -810,7 +810,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_TagFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.TagFilter"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.TagFilter"
             $($field $value)*)
         };
     }
@@ -838,7 +838,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_TargetGroupInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.TargetGroupInfo"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.TargetGroupInfo"
             $($field $value)*)
         };
     }
@@ -862,7 +862,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_TargetGroupPairInfo {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.TargetGroupPairInfo"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.TargetGroupPairInfo"
             $($field $value)*)
         };
     }
@@ -899,7 +899,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_TrafficRoute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.TrafficRoute"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.TrafficRoute"
             $($field $value)*)
         };
     }
@@ -926,7 +926,7 @@ pub mod deploymentgroup {
     #[macro_export]
     macro_rules! __aws_codedeploy_DeploymentGroup_TriggerConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.TriggerConfig"
+            stratosphere::generator::construct_property_type!("AWS::CodeDeploy::DeploymentGroup.TriggerConfig"
             $($field $value)*)
         };
     }
@@ -966,7 +966,7 @@ pub struct Application_ {
 #[macro_export]
 macro_rules! __aws_codedeploy_Application {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeDeploy::Application"
+        stratosphere::generator::construct_resource_type!("AWS::CodeDeploy::Application"
         $($field $value)*)
     };
 }
@@ -1012,7 +1012,7 @@ pub struct DeploymentConfig_ {
 #[macro_export]
 macro_rules! __aws_codedeploy_DeploymentConfig {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeDeploy::DeploymentConfig"
+        stratosphere::generator::construct_resource_type!("AWS::CodeDeploy::DeploymentConfig"
         $($field $value)*)
     };
 }
@@ -1091,7 +1091,7 @@ pub struct DeploymentGroup_ {
 #[macro_export]
 macro_rules! __aws_codedeploy_DeploymentGroup {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CodeDeploy::DeploymentGroup"
+        stratosphere::generator::construct_resource_type!("AWS::CodeDeploy::DeploymentGroup"
         $($field $value)*)
     };
 }

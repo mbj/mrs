@@ -7,7 +7,7 @@ pub struct Alias_ {
 #[macro_export]
 macro_rules! __aws_kms_Alias {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::KMS::Alias" $($field
+        stratosphere::generator::construct_resource_type!("AWS::KMS::Alias" $($field
         $value)*)
     };
 }
@@ -53,7 +53,7 @@ pub struct Key_ {
 #[macro_export]
 macro_rules! __aws_kms_Key {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::KMS::Key" $($field
+        stratosphere::generator::construct_resource_type!("AWS::KMS::Key" $($field
         $value)*)
     };
 }
@@ -151,7 +151,7 @@ pub struct ReplicaKey_ {
 #[macro_export]
 macro_rules! __aws_kms_ReplicaKey {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::KMS::ReplicaKey" $($field
+        stratosphere::generator::construct_resource_type!("AWS::KMS::ReplicaKey" $($field
         $value)*)
     };
 }

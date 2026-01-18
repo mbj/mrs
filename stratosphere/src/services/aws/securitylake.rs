@@ -7,7 +7,7 @@ pub mod datalake {
     #[macro_export]
     macro_rules! __aws_securitylake_DataLake_EncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityLake::DataLake.EncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SecurityLake::DataLake.EncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -32,7 +32,7 @@ pub mod datalake {
     #[macro_export]
     macro_rules! __aws_securitylake_DataLake_Expiration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityLake::DataLake.Expiration"
+            stratosphere::generator::construct_property_type!("AWS::SecurityLake::DataLake.Expiration"
             $($field $value)*)
         };
     }
@@ -55,7 +55,7 @@ pub mod datalake {
     #[macro_export]
     macro_rules! __aws_securitylake_DataLake_LifecycleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityLake::DataLake.LifecycleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SecurityLake::DataLake.LifecycleConfiguration"
             $($field $value)*)
         };
     }
@@ -87,7 +87,7 @@ pub mod datalake {
     #[macro_export]
     macro_rules! __aws_securitylake_DataLake_ReplicationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityLake::DataLake.ReplicationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SecurityLake::DataLake.ReplicationConfiguration"
             $($field $value)*)
         };
     }
@@ -119,7 +119,7 @@ pub mod datalake {
     #[macro_export]
     macro_rules! __aws_securitylake_DataLake_Transitions {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityLake::DataLake.Transitions"
+            stratosphere::generator::construct_property_type!("AWS::SecurityLake::DataLake.Transitions"
             $($field $value)*)
         };
     }
@@ -150,7 +150,7 @@ pub mod subscriber {
     #[macro_export]
     macro_rules! __aws_securitylake_Subscriber_AwsLogSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityLake::Subscriber.AwsLogSource"
+            stratosphere::generator::construct_property_type!("AWS::SecurityLake::Subscriber.AwsLogSource"
             $($field $value)*)
         };
     }
@@ -182,7 +182,7 @@ pub mod subscriber {
     #[macro_export]
     macro_rules! __aws_securitylake_Subscriber_CustomLogSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityLake::Subscriber.CustomLogSource"
+            stratosphere::generator::construct_property_type!("AWS::SecurityLake::Subscriber.CustomLogSource"
             $($field $value)*)
         };
     }
@@ -214,7 +214,7 @@ pub mod subscriber {
     #[macro_export]
     macro_rules! __aws_securitylake_Subscriber_Source {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityLake::Subscriber.Source"
+            stratosphere::generator::construct_property_type!("AWS::SecurityLake::Subscriber.Source"
             $($field $value)*)
         };
     }
@@ -246,7 +246,7 @@ pub mod subscriber {
     #[macro_export]
     macro_rules! __aws_securitylake_Subscriber_SubscriberIdentity {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityLake::Subscriber.SubscriberIdentity"
+            stratosphere::generator::construct_property_type!("AWS::SecurityLake::Subscriber.SubscriberIdentity"
             $($field $value)*)
         };
     }
@@ -279,7 +279,7 @@ pub mod subscribernotification {
     #[macro_export]
     macro_rules! __aws_securitylake_SubscriberNotification_HttpsNotificationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityLake::SubscriberNotification.HttpsNotificationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SecurityLake::SubscriberNotification.HttpsNotificationConfiguration"
             $($field $value)*)
         };
     }
@@ -325,7 +325,7 @@ pub mod subscribernotification {
     #[macro_export]
     macro_rules! __aws_securitylake_SubscriberNotification_NotificationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SecurityLake::SubscriberNotification.NotificationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::SecurityLake::SubscriberNotification.NotificationConfiguration"
             $($field $value)*)
         };
     }
@@ -360,7 +360,7 @@ pub struct AwsLogSource_ {
 #[macro_export]
 macro_rules! __aws_securitylake_AwsLogSource {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityLake::AwsLogSource"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityLake::AwsLogSource"
         $($field $value)*)
     };
 }
@@ -409,7 +409,7 @@ pub struct DataLake_ {
 #[macro_export]
 macro_rules! __aws_securitylake_DataLake {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityLake::DataLake"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityLake::DataLake"
         $($field $value)*)
     };
 }
@@ -469,7 +469,7 @@ pub struct Subscriber_ {
 #[macro_export]
 macro_rules! __aws_securitylake_Subscriber {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityLake::Subscriber"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityLake::Subscriber"
         $($field $value)*)
     };
 }
@@ -527,7 +527,7 @@ pub struct SubscriberNotification_ {
 #[macro_export]
 macro_rules! __aws_securitylake_SubscriberNotification {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SecurityLake::SubscriberNotification"
+        stratosphere::generator::construct_resource_type!("AWS::SecurityLake::SubscriberNotification"
         $($field $value)*)
     };
 }

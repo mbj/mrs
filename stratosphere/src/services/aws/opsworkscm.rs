@@ -8,7 +8,7 @@ pub mod server {
     #[macro_export]
     macro_rules! __aws_opsworkscm_Server_EngineAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::OpsWorksCM::Server.EngineAttribute"
+            stratosphere::generator::construct_property_type!("AWS::OpsWorksCM::Server.EngineAttribute"
             $($field $value)*)
         };
     }
@@ -54,7 +54,7 @@ pub struct Server_ {
 #[macro_export]
 macro_rules! __aws_opsworkscm_Server {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::OpsWorksCM::Server"
+        stratosphere::generator::construct_resource_type!("AWS::OpsWorksCM::Server"
         $($field $value)*)
     };
 }

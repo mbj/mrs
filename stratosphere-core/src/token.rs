@@ -246,7 +246,7 @@ fn property_type_token_stream(
         #[macro_export]
         macro_rules! #prefixed_macro_name {
             ($($field:ident : $value:expr),* $(,)?) => {
-               stratosphere_generator::construct_property_type!(#property_type_name_str $($field $value)*)
+               stratosphere::generator::construct_property_type!(#property_type_name_str $($field $value)*)
             }
         }
 
@@ -490,7 +490,7 @@ fn resource_type_token_stream(
         #[macro_export]
         macro_rules! #prefixed_macro_name {
             ($($field:ident : $value:expr),* $(,)?) => {
-               stratosphere_generator::construct_resource_type!(#resource_type_name_str $($field $value)*)
+               stratosphere::generator::construct_resource_type!(#resource_type_name_str $($field $value)*)
             }
         }
 

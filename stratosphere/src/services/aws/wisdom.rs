@@ -10,7 +10,7 @@ pub mod aiagent {
     #[macro_export]
     macro_rules! __aws_wisdom_AIAgent_AIAgentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIAgent.AIAgentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.AIAgentConfiguration"
             $($field $value)*)
         };
     }
@@ -52,7 +52,7 @@ pub mod aiagent {
     #[macro_export]
     macro_rules! __aws_wisdom_AIAgent_AnswerRecommendationAIAgentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIAgent.AnswerRecommendationAIAgentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.AnswerRecommendationAIAgentConfiguration"
             $($field $value)*)
         };
     }
@@ -106,7 +106,7 @@ pub mod aiagent {
     #[macro_export]
     macro_rules! __aws_wisdom_AIAgent_AssociationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIAgent.AssociationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.AssociationConfiguration"
             $($field $value)*)
         };
     }
@@ -144,7 +144,7 @@ pub mod aiagent {
     #[macro_export]
     macro_rules! __aws_wisdom_AIAgent_AssociationConfigurationData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIAgent.AssociationConfigurationData"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.AssociationConfigurationData"
             $($field $value)*)
         };
     }
@@ -171,7 +171,7 @@ pub mod aiagent {
     #[macro_export]
     macro_rules! __aws_wisdom_AIAgent_KnowledgeBaseAssociationConfigurationData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIAgent.KnowledgeBaseAssociationConfigurationData"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.KnowledgeBaseAssociationConfigurationData"
             $($field $value)*)
         };
     }
@@ -211,7 +211,7 @@ pub mod aiagent {
     #[macro_export]
     macro_rules! __aws_wisdom_AIAgent_ManualSearchAIAgentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIAgent.ManualSearchAIAgentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.ManualSearchAIAgentConfiguration"
             $($field $value)*)
         };
     }
@@ -252,7 +252,7 @@ pub mod aiagent {
     #[macro_export]
     macro_rules! __aws_wisdom_AIAgent_OrCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIAgent.OrCondition"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.OrCondition"
             $($field $value)*)
         };
     }
@@ -286,7 +286,7 @@ pub mod aiagent {
     #[macro_export]
     macro_rules! __aws_wisdom_AIAgent_SelfServiceAIAgentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIAgent.SelfServiceAIAgentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.SelfServiceAIAgentConfiguration"
             $($field $value)*)
         };
     }
@@ -330,7 +330,7 @@ pub mod aiagent {
     #[macro_export]
     macro_rules! __aws_wisdom_AIAgent_TagCondition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIAgent.TagCondition"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.TagCondition"
             $($field $value)*)
         };
     }
@@ -358,7 +358,7 @@ pub mod aiagent {
     #[macro_export]
     macro_rules! __aws_wisdom_AIAgent_TagFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIAgent.TagFilter"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.TagFilter"
             $($field $value)*)
         };
     }
@@ -397,7 +397,7 @@ pub mod aiguardrail {
     #[macro_export]
     macro_rules! __aws_wisdom_AIGuardrail_AIGuardrailContentPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIGuardrail.AIGuardrailContentPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIGuardrail.AIGuardrailContentPolicyConfig"
             $($field $value)*)
         };
     }
@@ -420,7 +420,7 @@ pub mod aiguardrail {
     #[macro_export]
     macro_rules! __aws_wisdom_AIGuardrail_AIGuardrailContextualGroundingPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIGuardrail.AIGuardrailContextualGroundingPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIGuardrail.AIGuardrailContextualGroundingPolicyConfig"
             $($field $value)*)
         };
     }
@@ -444,7 +444,7 @@ pub mod aiguardrail {
     #[macro_export]
     macro_rules! __aws_wisdom_AIGuardrail_AIGuardrailSensitiveInformationPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIGuardrail.AIGuardrailSensitiveInformationPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIGuardrail.AIGuardrailSensitiveInformationPolicyConfig"
             $($field $value)*)
         };
     }
@@ -475,7 +475,7 @@ pub mod aiguardrail {
     #[macro_export]
     macro_rules! __aws_wisdom_AIGuardrail_AIGuardrailTopicPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIGuardrail.AIGuardrailTopicPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIGuardrail.AIGuardrailTopicPolicyConfig"
             $($field $value)*)
         };
     }
@@ -499,7 +499,7 @@ pub mod aiguardrail {
     #[macro_export]
     macro_rules! __aws_wisdom_AIGuardrail_AIGuardrailWordPolicyConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIGuardrail.AIGuardrailWordPolicyConfig"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIGuardrail.AIGuardrailWordPolicyConfig"
             $($field $value)*)
         };
     }
@@ -532,7 +532,7 @@ pub mod aiguardrail {
     #[macro_export]
     macro_rules! __aws_wisdom_AIGuardrail_GuardrailContentFilterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIGuardrail.GuardrailContentFilterConfig"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIGuardrail.GuardrailContentFilterConfig"
             $($field $value)*)
         };
     }
@@ -564,7 +564,7 @@ pub mod aiguardrail {
     #[macro_export]
     macro_rules! __aws_wisdom_AIGuardrail_GuardrailContextualGroundingFilterConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIGuardrail.GuardrailContextualGroundingFilterConfig"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIGuardrail.GuardrailContextualGroundingFilterConfig"
             $($field $value)*)
         };
     }
@@ -591,7 +591,7 @@ pub mod aiguardrail {
     #[macro_export]
     macro_rules! __aws_wisdom_AIGuardrail_GuardrailManagedWordsConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIGuardrail.GuardrailManagedWordsConfig"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIGuardrail.GuardrailManagedWordsConfig"
             $($field $value)*)
         };
     }
@@ -615,7 +615,7 @@ pub mod aiguardrail {
     #[macro_export]
     macro_rules! __aws_wisdom_AIGuardrail_GuardrailPiiEntityConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIGuardrail.GuardrailPiiEntityConfig"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIGuardrail.GuardrailPiiEntityConfig"
             $($field $value)*)
         };
     }
@@ -645,7 +645,7 @@ pub mod aiguardrail {
     #[macro_export]
     macro_rules! __aws_wisdom_AIGuardrail_GuardrailRegexConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIGuardrail.GuardrailRegexConfig"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIGuardrail.GuardrailRegexConfig"
             $($field $value)*)
         };
     }
@@ -685,7 +685,7 @@ pub mod aiguardrail {
     #[macro_export]
     macro_rules! __aws_wisdom_AIGuardrail_GuardrailTopicConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIGuardrail.GuardrailTopicConfig"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIGuardrail.GuardrailTopicConfig"
             $($field $value)*)
         };
     }
@@ -722,7 +722,7 @@ pub mod aiguardrail {
     #[macro_export]
     macro_rules! __aws_wisdom_AIGuardrail_GuardrailWordConfig {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIGuardrail.GuardrailWordConfig"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIGuardrail.GuardrailWordConfig"
             $($field $value)*)
         };
     }
@@ -748,7 +748,7 @@ pub mod aiprompt {
     #[macro_export]
     macro_rules! __aws_wisdom_AIPrompt_AIPromptTemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIPrompt.AIPromptTemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIPrompt.AIPromptTemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -773,7 +773,7 @@ pub mod aiprompt {
     #[macro_export]
     macro_rules! __aws_wisdom_AIPrompt_TextFullAIPromptEditTemplateConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AIPrompt.TextFullAIPromptEditTemplateConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIPrompt.TextFullAIPromptEditTemplateConfiguration"
             $($field $value)*)
         };
     }
@@ -798,7 +798,7 @@ pub mod assistant {
     #[macro_export]
     macro_rules! __aws_wisdom_Assistant_ServerSideEncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::Assistant.ServerSideEncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::Assistant.ServerSideEncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -825,7 +825,7 @@ pub mod assistantassociation {
     #[macro_export]
     macro_rules! __aws_wisdom_AssistantAssociation_AssociationData {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::AssistantAssociation.AssociationData"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AssistantAssociation.AssociationData"
             $($field $value)*)
         };
     }
@@ -851,7 +851,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_AppIntegrationsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.AppIntegrationsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.AppIntegrationsConfiguration"
             $($field $value)*)
         };
     }
@@ -881,7 +881,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_BedrockFoundationModelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.BedrockFoundationModelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.BedrockFoundationModelConfiguration"
             $($field $value)*)
         };
     }
@@ -913,7 +913,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_ChunkingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.ChunkingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.ChunkingConfiguration"
             $($field $value)*)
         };
     }
@@ -954,7 +954,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_CrawlerLimits {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.CrawlerLimits"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.CrawlerLimits"
             $($field $value)*)
         };
     }
@@ -980,7 +980,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_FixedSizeChunkingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.FixedSizeChunkingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.FixedSizeChunkingConfiguration"
             $($field $value)*)
         };
     }
@@ -1008,7 +1008,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_HierarchicalChunkingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.HierarchicalChunkingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.HierarchicalChunkingConfiguration"
             $($field $value)*)
         };
     }
@@ -1035,7 +1035,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_HierarchicalChunkingLevelConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.HierarchicalChunkingLevelConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.HierarchicalChunkingLevelConfiguration"
             $($field $value)*)
         };
     }
@@ -1058,7 +1058,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_ManagedSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.ManagedSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.ManagedSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -1083,7 +1083,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_ParsingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.ParsingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.ParsingConfiguration"
             $($field $value)*)
         };
     }
@@ -1112,7 +1112,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_ParsingPrompt {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.ParsingPrompt"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.ParsingPrompt"
             $($field $value)*)
         };
     }
@@ -1135,7 +1135,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_RenderingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.RenderingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.RenderingConfiguration"
             $($field $value)*)
         };
     }
@@ -1160,7 +1160,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_SeedUrl {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.SeedUrl"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.SeedUrl"
             $($field $value)*)
         };
     }
@@ -1184,7 +1184,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_SemanticChunkingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.SemanticChunkingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.SemanticChunkingConfiguration"
             $($field $value)*)
         };
     }
@@ -1215,7 +1215,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_ServerSideEncryptionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.ServerSideEncryptionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.ServerSideEncryptionConfiguration"
             $($field $value)*)
         };
     }
@@ -1241,7 +1241,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_SourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.SourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.SourceConfiguration"
             $($field $value)*)
         };
     }
@@ -1272,7 +1272,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_UrlConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.UrlConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.UrlConfiguration"
             $($field $value)*)
         };
     }
@@ -1298,7 +1298,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_VectorIngestionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.VectorIngestionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.VectorIngestionConfiguration"
             $($field $value)*)
         };
     }
@@ -1333,7 +1333,7 @@ pub mod knowledgebase {
     #[macro_export]
     macro_rules! __aws_wisdom_KnowledgeBase_WebCrawlerConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.WebCrawlerConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::KnowledgeBase.WebCrawlerConfiguration"
             $($field $value)*)
         };
     }
@@ -1380,7 +1380,7 @@ pub mod messagetemplate {
     #[macro_export]
     macro_rules! __aws_wisdom_MessageTemplate_AgentAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::MessageTemplate.AgentAttributes"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::MessageTemplate.AgentAttributes"
             $($field $value)*)
         };
     }
@@ -1412,7 +1412,7 @@ pub mod messagetemplate {
     #[macro_export]
     macro_rules! __aws_wisdom_MessageTemplate_Content {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::MessageTemplate.Content"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::MessageTemplate.Content"
             $($field $value)*)
         };
     }
@@ -1500,7 +1500,7 @@ pub mod messagetemplate {
     #[macro_export]
     macro_rules! __aws_wisdom_MessageTemplate_CustomerProfileAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::MessageTemplate.CustomerProfileAttributes"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::MessageTemplate.CustomerProfileAttributes"
             $($field $value)*)
         };
     }
@@ -1854,7 +1854,7 @@ pub mod messagetemplate {
     #[macro_export]
     macro_rules! __aws_wisdom_MessageTemplate_EmailMessageTemplateContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::MessageTemplate.EmailMessageTemplateContent"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::MessageTemplate.EmailMessageTemplateContent"
             $($field $value)*)
         };
     }
@@ -1886,7 +1886,7 @@ pub mod messagetemplate {
     #[macro_export]
     macro_rules! __aws_wisdom_MessageTemplate_EmailMessageTemplateContentBody {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::MessageTemplate.EmailMessageTemplateContentBody"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::MessageTemplate.EmailMessageTemplateContentBody"
             $($field $value)*)
         };
     }
@@ -1915,7 +1915,7 @@ pub mod messagetemplate {
     #[macro_export]
     macro_rules! __aws_wisdom_MessageTemplate_EmailMessageTemplateHeader {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::MessageTemplate.EmailMessageTemplateHeader"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::MessageTemplate.EmailMessageTemplateHeader"
             $($field $value)*)
         };
     }
@@ -1941,7 +1941,7 @@ pub mod messagetemplate {
     #[macro_export]
     macro_rules! __aws_wisdom_MessageTemplate_GroupingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::MessageTemplate.GroupingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::MessageTemplate.GroupingConfiguration"
             $($field $value)*)
         };
     }
@@ -1970,7 +1970,7 @@ pub mod messagetemplate {
     #[macro_export]
     macro_rules! __aws_wisdom_MessageTemplate_MessageTemplateAttachment {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::MessageTemplate.MessageTemplateAttachment"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::MessageTemplate.MessageTemplateAttachment"
             $($field $value)*)
         };
     }
@@ -2006,7 +2006,7 @@ pub mod messagetemplate {
     #[macro_export]
     macro_rules! __aws_wisdom_MessageTemplate_MessageTemplateAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::MessageTemplate.MessageTemplateAttributes"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::MessageTemplate.MessageTemplateAttributes"
             $($field $value)*)
         };
     }
@@ -2049,7 +2049,7 @@ pub mod messagetemplate {
     #[macro_export]
     macro_rules! __aws_wisdom_MessageTemplate_MessageTemplateBodyContentProvider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::MessageTemplate.MessageTemplateBodyContentProvider"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::MessageTemplate.MessageTemplateBodyContentProvider"
             $($field $value)*)
         };
     }
@@ -2074,7 +2074,7 @@ pub mod messagetemplate {
     #[macro_export]
     macro_rules! __aws_wisdom_MessageTemplate_SmsMessageTemplateContent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::MessageTemplate.SmsMessageTemplateContent"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::MessageTemplate.SmsMessageTemplateContent"
             $($field $value)*)
         };
     }
@@ -2097,7 +2097,7 @@ pub mod messagetemplate {
     #[macro_export]
     macro_rules! __aws_wisdom_MessageTemplate_SmsMessageTemplateContentBody {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::MessageTemplate.SmsMessageTemplateContentBody"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::MessageTemplate.SmsMessageTemplateContentBody"
             $($field $value)*)
         };
     }
@@ -2124,7 +2124,7 @@ pub mod messagetemplate {
     #[macro_export]
     macro_rules! __aws_wisdom_MessageTemplate_SystemAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::MessageTemplate.SystemAttributes"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::MessageTemplate.SystemAttributes"
             $($field $value)*)
         };
     }
@@ -2158,7 +2158,7 @@ pub mod messagetemplate {
     #[macro_export]
     macro_rules! __aws_wisdom_MessageTemplate_SystemEndpointAttributes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::MessageTemplate.SystemEndpointAttributes"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::MessageTemplate.SystemEndpointAttributes"
             $($field $value)*)
         };
     }
@@ -2186,7 +2186,7 @@ pub mod quickresponse {
     #[macro_export]
     macro_rules! __aws_wisdom_QuickResponse_GroupingConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::QuickResponse.GroupingConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::QuickResponse.GroupingConfiguration"
             $($field $value)*)
         };
     }
@@ -2213,7 +2213,7 @@ pub mod quickresponse {
     #[macro_export]
     macro_rules! __aws_wisdom_QuickResponse_QuickResponseContentProvider {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::QuickResponse.QuickResponseContentProvider"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::QuickResponse.QuickResponseContentProvider"
             $($field $value)*)
         };
     }
@@ -2239,7 +2239,7 @@ pub mod quickresponse {
     #[macro_export]
     macro_rules! __aws_wisdom_QuickResponse_QuickResponseContents {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Wisdom::QuickResponse.QuickResponseContents"
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::QuickResponse.QuickResponseContents"
             $($field $value)*)
         };
     }
@@ -2276,7 +2276,7 @@ pub struct AIAgent_ {
 #[macro_export]
 macro_rules! __aws_wisdom_AIAgent {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Wisdom::AIAgent" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Wisdom::AIAgent" $($field
         $value)*)
     };
 }
@@ -2329,7 +2329,7 @@ pub struct AIAgentVersion_ {
 #[macro_export]
 macro_rules! __aws_wisdom_AIAgentVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Wisdom::AIAgentVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Wisdom::AIAgentVersion"
         $($field $value)*)
     };
 }
@@ -2382,7 +2382,7 @@ pub struct AIGuardrail_ {
 #[macro_export]
 macro_rules! __aws_wisdom_AIGuardrail {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Wisdom::AIGuardrail"
+        stratosphere::generator::construct_resource_type!("AWS::Wisdom::AIGuardrail"
         $($field $value)*)
     };
 }
@@ -2465,7 +2465,7 @@ pub struct AIGuardrailVersion_ {
 #[macro_export]
 macro_rules! __aws_wisdom_AIGuardrailVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Wisdom::AIGuardrailVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Wisdom::AIGuardrailVersion"
         $($field $value)*)
     };
 }
@@ -2514,8 +2514,8 @@ pub struct AIPrompt_ {
 #[macro_export]
 macro_rules! __aws_wisdom_AIPrompt {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Wisdom::AIPrompt" $($field
-        $value)*)
+        stratosphere::generator::construct_resource_type!("AWS::Wisdom::AIPrompt"
+        $($field $value)*)
     };
 }
 pub use crate::__aws_wisdom_AIPrompt as AIPrompt;
@@ -2581,7 +2581,7 @@ pub struct AIPromptVersion_ {
 #[macro_export]
 macro_rules! __aws_wisdom_AIPromptVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Wisdom::AIPromptVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Wisdom::AIPromptVersion"
         $($field $value)*)
     };
 }
@@ -2627,7 +2627,7 @@ pub struct Assistant_ {
 #[macro_export]
 macro_rules! __aws_wisdom_Assistant {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Wisdom::Assistant"
+        stratosphere::generator::construct_resource_type!("AWS::Wisdom::Assistant"
         $($field $value)*)
     };
 }
@@ -2680,7 +2680,7 @@ pub struct AssistantAssociation_ {
 #[macro_export]
 macro_rules! __aws_wisdom_AssistantAssociation {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Wisdom::AssistantAssociation"
+        stratosphere::generator::construct_resource_type!("AWS::Wisdom::AssistantAssociation"
         $($field $value)*)
     };
 }
@@ -2731,7 +2731,7 @@ pub struct KnowledgeBase_ {
 #[macro_export]
 macro_rules! __aws_wisdom_KnowledgeBase {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Wisdom::KnowledgeBase"
+        stratosphere::generator::construct_resource_type!("AWS::Wisdom::KnowledgeBase"
         $($field $value)*)
     };
 }
@@ -2809,7 +2809,7 @@ pub struct MessageTemplate_ {
 #[macro_export]
 macro_rules! __aws_wisdom_MessageTemplate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Wisdom::MessageTemplate"
+        stratosphere::generator::construct_resource_type!("AWS::Wisdom::MessageTemplate"
         $($field $value)*)
     };
 }
@@ -2886,7 +2886,7 @@ pub struct MessageTemplateVersion_ {
 #[macro_export]
 macro_rules! __aws_wisdom_MessageTemplateVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Wisdom::MessageTemplateVersion"
+        stratosphere::generator::construct_resource_type!("AWS::Wisdom::MessageTemplateVersion"
         $($field $value)*)
     };
 }
@@ -2933,7 +2933,7 @@ pub struct QuickResponse_ {
 #[macro_export]
 macro_rules! __aws_wisdom_QuickResponse {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Wisdom::QuickResponse"
+        stratosphere::generator::construct_resource_type!("AWS::Wisdom::QuickResponse"
         $($field $value)*)
     };
 }

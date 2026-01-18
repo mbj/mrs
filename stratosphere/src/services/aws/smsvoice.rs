@@ -8,7 +8,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_smsvoice_ConfigurationSet_CloudWatchLogsDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SMSVOICE::ConfigurationSet.CloudWatchLogsDestination"
+            stratosphere::generator::construct_property_type!("AWS::SMSVOICE::ConfigurationSet.CloudWatchLogsDestination"
             $($field $value)*)
         };
     }
@@ -40,7 +40,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_smsvoice_ConfigurationSet_EventDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SMSVOICE::ConfigurationSet.EventDestination"
+            stratosphere::generator::construct_property_type!("AWS::SMSVOICE::ConfigurationSet.EventDestination"
             $($field $value)*)
         };
     }
@@ -90,7 +90,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_smsvoice_ConfigurationSet_KinesisFirehoseDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SMSVOICE::ConfigurationSet.KinesisFirehoseDestination"
+            stratosphere::generator::construct_property_type!("AWS::SMSVOICE::ConfigurationSet.KinesisFirehoseDestination"
             $($field $value)*)
         };
     }
@@ -117,7 +117,7 @@ pub mod configurationset {
     #[macro_export]
     macro_rules! __aws_smsvoice_ConfigurationSet_SnsDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SMSVOICE::ConfigurationSet.SnsDestination"
+            stratosphere::generator::construct_property_type!("AWS::SMSVOICE::ConfigurationSet.SnsDestination"
             $($field $value)*)
         };
     }
@@ -142,7 +142,7 @@ pub mod phonenumber {
     #[macro_export]
     macro_rules! __aws_smsvoice_PhoneNumber_MandatoryKeyword {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SMSVOICE::PhoneNumber.MandatoryKeyword"
+            stratosphere::generator::construct_property_type!("AWS::SMSVOICE::PhoneNumber.MandatoryKeyword"
             $($field $value)*)
         };
     }
@@ -166,7 +166,7 @@ pub mod phonenumber {
     #[macro_export]
     macro_rules! __aws_smsvoice_PhoneNumber_MandatoryKeywords {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SMSVOICE::PhoneNumber.MandatoryKeywords"
+            stratosphere::generator::construct_property_type!("AWS::SMSVOICE::PhoneNumber.MandatoryKeywords"
             $($field $value)*)
         };
     }
@@ -195,7 +195,7 @@ pub mod phonenumber {
     #[macro_export]
     macro_rules! __aws_smsvoice_PhoneNumber_OptionalKeyword {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SMSVOICE::PhoneNumber.OptionalKeyword"
+            stratosphere::generator::construct_property_type!("AWS::SMSVOICE::PhoneNumber.OptionalKeyword"
             $($field $value)*)
         };
     }
@@ -228,7 +228,7 @@ pub mod phonenumber {
     #[macro_export]
     macro_rules! __aws_smsvoice_PhoneNumber_TwoWay {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SMSVOICE::PhoneNumber.TwoWay"
+            stratosphere::generator::construct_property_type!("AWS::SMSVOICE::PhoneNumber.TwoWay"
             $($field $value)*)
         };
     }
@@ -265,7 +265,7 @@ pub mod pool {
     #[macro_export]
     macro_rules! __aws_smsvoice_Pool_MandatoryKeyword {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SMSVOICE::Pool.MandatoryKeyword"
+            stratosphere::generator::construct_property_type!("AWS::SMSVOICE::Pool.MandatoryKeyword"
             $($field $value)*)
         };
     }
@@ -289,7 +289,7 @@ pub mod pool {
     #[macro_export]
     macro_rules! __aws_smsvoice_Pool_MandatoryKeywords {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SMSVOICE::Pool.MandatoryKeywords"
+            stratosphere::generator::construct_property_type!("AWS::SMSVOICE::Pool.MandatoryKeywords"
             $($field $value)*)
         };
     }
@@ -318,7 +318,7 @@ pub mod pool {
     #[macro_export]
     macro_rules! __aws_smsvoice_Pool_OptionalKeyword {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SMSVOICE::Pool.OptionalKeyword"
+            stratosphere::generator::construct_property_type!("AWS::SMSVOICE::Pool.OptionalKeyword"
             $($field $value)*)
         };
     }
@@ -351,7 +351,7 @@ pub mod pool {
     #[macro_export]
     macro_rules! __aws_smsvoice_Pool_TwoWay {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SMSVOICE::Pool.TwoWay"
+            stratosphere::generator::construct_property_type!("AWS::SMSVOICE::Pool.TwoWay"
             $($field $value)*)
         };
     }
@@ -389,7 +389,7 @@ pub mod protectconfiguration {
     #[macro_export]
     macro_rules! __aws_smsvoice_ProtectConfiguration_CountryRule {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SMSVOICE::ProtectConfiguration.CountryRule"
+            stratosphere::generator::construct_property_type!("AWS::SMSVOICE::ProtectConfiguration.CountryRule"
             $($field $value)*)
         };
     }
@@ -418,7 +418,7 @@ pub mod protectconfiguration {
     #[macro_export]
     macro_rules! __aws_smsvoice_ProtectConfiguration_CountryRuleSet {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::SMSVOICE::ProtectConfiguration.CountryRuleSet"
+            stratosphere::generator::construct_property_type!("AWS::SMSVOICE::ProtectConfiguration.CountryRuleSet"
             $($field $value)*)
         };
     }
@@ -452,7 +452,7 @@ pub struct ConfigurationSet_ {
 #[macro_export]
 macro_rules! __aws_smsvoice_ConfigurationSet {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SMSVOICE::ConfigurationSet"
+        stratosphere::generator::construct_resource_type!("AWS::SMSVOICE::ConfigurationSet"
         $($field $value)*)
     };
 }
@@ -513,7 +513,7 @@ pub struct OptOutList_ {
 #[macro_export]
 macro_rules! __aws_smsvoice_OptOutList {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SMSVOICE::OptOutList"
+        stratosphere::generator::construct_resource_type!("AWS::SMSVOICE::OptOutList"
         $($field $value)*)
     };
 }
@@ -558,7 +558,7 @@ pub struct PhoneNumber_ {
 #[macro_export]
 macro_rules! __aws_smsvoice_PhoneNumber {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SMSVOICE::PhoneNumber"
+        stratosphere::generator::construct_resource_type!("AWS::SMSVOICE::PhoneNumber"
         $($field $value)*)
     };
 }
@@ -639,7 +639,7 @@ pub struct Pool_ {
 #[macro_export]
 macro_rules! __aws_smsvoice_Pool {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SMSVOICE::Pool" $($field
+        stratosphere::generator::construct_resource_type!("AWS::SMSVOICE::Pool" $($field
         $value)*)
     };
 }
@@ -712,7 +712,7 @@ pub struct ProtectConfiguration_ {
 #[macro_export]
 macro_rules! __aws_smsvoice_ProtectConfiguration {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SMSVOICE::ProtectConfiguration"
+        stratosphere::generator::construct_resource_type!("AWS::SMSVOICE::ProtectConfiguration"
         $($field $value)*)
     };
 }
@@ -755,7 +755,7 @@ pub struct ResourcePolicy_ {
 #[macro_export]
 macro_rules! __aws_smsvoice_ResourcePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SMSVOICE::ResourcePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::SMSVOICE::ResourcePolicy"
         $($field $value)*)
     };
 }
@@ -793,7 +793,7 @@ pub struct SenderId_ {
 #[macro_export]
 macro_rules! __aws_smsvoice_SenderId {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::SMSVOICE::SenderId"
+        stratosphere::generator::construct_resource_type!("AWS::SMSVOICE::SenderId"
         $($field $value)*)
     };
 }

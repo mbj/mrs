@@ -7,7 +7,7 @@ pub mod account {
     #[macro_export]
     macro_rules! __aws_certificatemanager_Account_ExpiryEventsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CertificateManager::Account.ExpiryEventsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::CertificateManager::Account.ExpiryEventsConfiguration"
             $($field $value)*)
         };
     }
@@ -36,7 +36,7 @@ pub mod certificate {
     #[macro_export]
     macro_rules! __aws_certificatemanager_Certificate_DomainValidationOption {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::CertificateManager::Certificate.DomainValidationOption"
+            stratosphere::generator::construct_property_type!("AWS::CertificateManager::Certificate.DomainValidationOption"
             $($field $value)*)
         };
     }
@@ -72,7 +72,7 @@ pub struct Account_ {
 #[macro_export]
 macro_rules! __aws_certificatemanager_Account {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CertificateManager::Account"
+        stratosphere::generator::construct_resource_type!("AWS::CertificateManager::Account"
         $($field $value)*)
     };
 }
@@ -112,7 +112,7 @@ pub struct Certificate_ {
 #[macro_export]
 macro_rules! __aws_certificatemanager_Certificate {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::CertificateManager::Certificate"
+        stratosphere::generator::construct_resource_type!("AWS::CertificateManager::Certificate"
         $($field $value)*)
     };
 }

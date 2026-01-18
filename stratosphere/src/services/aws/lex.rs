@@ -7,7 +7,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_AdvancedRecognitionSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.AdvancedRecognitionSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.AdvancedRecognitionSetting"
             $($field $value)*)
         };
     }
@@ -33,7 +33,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_AllowedInputTypes {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.AllowedInputTypes"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.AllowedInputTypes"
             $($field $value)*)
         };
     }
@@ -62,7 +62,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_AudioAndDTMFInputSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.AudioAndDTMFInputSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.AudioAndDTMFInputSpecification"
             $($field $value)*)
         };
     }
@@ -97,7 +97,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_AudioLogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.AudioLogDestination"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.AudioLogDestination"
             $($field $value)*)
         };
     }
@@ -121,7 +121,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_AudioLogSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.AudioLogSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.AudioLogSetting"
             $($field $value)*)
         };
     }
@@ -149,7 +149,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_AudioSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.AudioSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.AudioSpecification"
             $($field $value)*)
         };
     }
@@ -176,7 +176,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_BKBExactResponseFields {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.BKBExactResponseFields"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.BKBExactResponseFields"
             $($field $value)*)
         };
     }
@@ -202,7 +202,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_BedrockAgentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.BedrockAgentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.BedrockAgentConfiguration"
             $($field $value)*)
         };
     }
@@ -235,7 +235,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_BedrockAgentIntentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.BedrockAgentIntentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.BedrockAgentIntentConfiguration"
             $($field $value)*)
         };
     }
@@ -267,7 +267,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_BedrockAgentIntentKnowledgeBaseConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.BedrockAgentIntentKnowledgeBaseConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.BedrockAgentIntentKnowledgeBaseConfiguration"
             $($field $value)*)
         };
     }
@@ -295,7 +295,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_BedrockGuardrailConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.BedrockGuardrailConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.BedrockGuardrailConfiguration"
             $($field $value)*)
         };
     }
@@ -328,7 +328,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_BedrockKnowledgeStoreConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.BedrockKnowledgeStoreConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.BedrockKnowledgeStoreConfiguration"
             $($field $value)*)
         };
     }
@@ -368,7 +368,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_BedrockModelSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.BedrockModelSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.BedrockModelSpecification"
             $($field $value)*)
         };
     }
@@ -410,7 +410,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_BotAliasLocaleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.BotAliasLocaleSettings"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.BotAliasLocaleSettings"
             $($field $value)*)
         };
     }
@@ -440,7 +440,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_BotAliasLocaleSettingsItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.BotAliasLocaleSettingsItem"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.BotAliasLocaleSettingsItem"
             $($field $value)*)
         };
     }
@@ -474,7 +474,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_BotLocale {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.BotLocale"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.BotLocale"
             $($field $value)*)
         };
     }
@@ -539,7 +539,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_BuildtimeSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.BuildtimeSettings"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.BuildtimeSettings"
             $($field $value)*)
         };
     }
@@ -571,7 +571,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_Button {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.Button"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.Button"
             $($field $value)*)
         };
     }
@@ -599,7 +599,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_CloudWatchLogGroupLogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.CloudWatchLogGroupLogDestination"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.CloudWatchLogGroupLogDestination"
             $($field $value)*)
         };
     }
@@ -626,7 +626,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_CodeHookSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.CodeHookSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.CodeHookSpecification"
             $($field $value)*)
         };
     }
@@ -649,7 +649,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_CompositeSlotTypeSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.CompositeSlotTypeSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.CompositeSlotTypeSetting"
             $($field $value)*)
         };
     }
@@ -674,7 +674,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_Condition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.Condition"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.Condition"
             $($field $value)*)
         };
     }
@@ -700,7 +700,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_ConditionalBranch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.ConditionalBranch"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.ConditionalBranch"
             $($field $value)*)
         };
     }
@@ -739,7 +739,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_ConditionalSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.ConditionalSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.ConditionalSpecification"
             $($field $value)*)
         };
     }
@@ -771,7 +771,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_ConversationLogSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.ConversationLogSettings"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.ConversationLogSettings"
             $($field $value)*)
         };
     }
@@ -802,7 +802,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_CustomPayload {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.CustomPayload"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.CustomPayload"
             $($field $value)*)
         };
     }
@@ -825,7 +825,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_CustomVocabulary {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.CustomVocabulary"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.CustomVocabulary"
             $($field $value)*)
         };
     }
@@ -850,7 +850,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_CustomVocabularyItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.CustomVocabularyItem"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.CustomVocabularyItem"
             $($field $value)*)
         };
     }
@@ -885,7 +885,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_DTMFSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.DTMFSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.DTMFSpecification"
             $($field $value)*)
         };
     }
@@ -920,7 +920,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_DataPrivacy {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.DataPrivacy"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.DataPrivacy"
             $($field $value)*)
         };
     }
@@ -945,7 +945,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_DataSourceConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.DataSourceConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.DataSourceConfiguration"
             $($field $value)*)
         };
     }
@@ -983,7 +983,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_DefaultConditionalBranch {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.DefaultConditionalBranch"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.DefaultConditionalBranch"
             $($field $value)*)
         };
     }
@@ -1015,7 +1015,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_DescriptiveBotBuilderSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.DescriptiveBotBuilderSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.DescriptiveBotBuilderSpecification"
             $($field $value)*)
         };
     }
@@ -1046,7 +1046,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_DialogAction {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.DialogAction"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.DialogAction"
             $($field $value)*)
         };
     }
@@ -1084,7 +1084,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_DialogCodeHookInvocationSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.DialogCodeHookInvocationSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.DialogCodeHookInvocationSetting"
             $($field $value)*)
         };
     }
@@ -1121,7 +1121,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_DialogCodeHookSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.DialogCodeHookSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.DialogCodeHookSetting"
             $($field $value)*)
         };
     }
@@ -1146,7 +1146,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_DialogState {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.DialogState"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.DialogState"
             $($field $value)*)
         };
     }
@@ -1181,7 +1181,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_ElicitationCodeHookInvocationSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.ElicitationCodeHookInvocationSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.ElicitationCodeHookInvocationSetting"
             $($field $value)*)
         };
     }
@@ -1210,7 +1210,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_ErrorLogSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.ErrorLogSettings"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.ErrorLogSettings"
             $($field $value)*)
         };
     }
@@ -1234,7 +1234,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_ExactResponseFields {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.ExactResponseFields"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.ExactResponseFields"
             $($field $value)*)
         };
     }
@@ -1265,7 +1265,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_ExternalSourceSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.ExternalSourceSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.ExternalSourceSetting"
             $($field $value)*)
         };
     }
@@ -1293,7 +1293,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_FulfillmentCodeHookSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.FulfillmentCodeHookSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.FulfillmentCodeHookSetting"
             $($field $value)*)
         };
     }
@@ -1336,7 +1336,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_FulfillmentStartResponseSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.FulfillmentStartResponseSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.FulfillmentStartResponseSpecification"
             $($field $value)*)
         };
     }
@@ -1371,7 +1371,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_FulfillmentUpdateResponseSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.FulfillmentUpdateResponseSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.FulfillmentUpdateResponseSpecification"
             $($field $value)*)
         };
     }
@@ -1407,7 +1407,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_FulfillmentUpdatesSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.FulfillmentUpdatesSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.FulfillmentUpdatesSpecification"
             $($field $value)*)
         };
     }
@@ -1449,7 +1449,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_GenerativeAISettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.GenerativeAISettings"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.GenerativeAISettings"
             $($field $value)*)
         };
     }
@@ -1480,7 +1480,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_GrammarSlotTypeSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.GrammarSlotTypeSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.GrammarSlotTypeSetting"
             $($field $value)*)
         };
     }
@@ -1504,7 +1504,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_GrammarSlotTypeSource {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.GrammarSlotTypeSource"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.GrammarSlotTypeSource"
             $($field $value)*)
         };
     }
@@ -1540,7 +1540,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_ImageResponseCard {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.ImageResponseCard"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.ImageResponseCard"
             $($field $value)*)
         };
     }
@@ -1584,7 +1584,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_InitialResponseSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.InitialResponseSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.InitialResponseSetting"
             $($field $value)*)
         };
     }
@@ -1627,7 +1627,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_InputContext {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.InputContext"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.InputContext"
             $($field $value)*)
         };
     }
@@ -1666,7 +1666,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_Intent {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.Intent"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.Intent"
             $($field $value)*)
         };
     }
@@ -1785,7 +1785,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_IntentClosingSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.IntentClosingSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.IntentClosingSetting"
             $($field $value)*)
         };
     }
@@ -1840,7 +1840,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_IntentConfirmationSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.IntentConfirmationSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.IntentConfirmationSetting"
             $($field $value)*)
         };
     }
@@ -1936,7 +1936,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_IntentOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.IntentOverride"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.IntentOverride"
             $($field $value)*)
         };
     }
@@ -1963,7 +1963,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_KendraConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.KendraConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.KendraConfiguration"
             $($field $value)*)
         };
     }
@@ -1999,7 +1999,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_LambdaCodeHook {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.LambdaCodeHook"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.LambdaCodeHook"
             $($field $value)*)
         };
     }
@@ -2029,7 +2029,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_Message {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.Message"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.Message"
             $($field $value)*)
         };
     }
@@ -2073,7 +2073,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_MessageGroup {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.MessageGroup"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.MessageGroup"
             $($field $value)*)
         };
     }
@@ -2102,7 +2102,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_MultipleValuesSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.MultipleValuesSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.MultipleValuesSetting"
             $($field $value)*)
         };
     }
@@ -2127,7 +2127,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_NluImprovementSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.NluImprovementSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.NluImprovementSpecification"
             $($field $value)*)
         };
     }
@@ -2150,7 +2150,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_ObfuscationSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.ObfuscationSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.ObfuscationSetting"
             $($field $value)*)
         };
     }
@@ -2177,7 +2177,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_OpensearchConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.OpensearchConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.OpensearchConfiguration"
             $($field $value)*)
         };
     }
@@ -2228,7 +2228,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_OutputContext {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.OutputContext"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.OutputContext"
             $($field $value)*)
         };
     }
@@ -2259,7 +2259,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_PlainTextMessage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.PlainTextMessage"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.PlainTextMessage"
             $($field $value)*)
         };
     }
@@ -2290,7 +2290,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_PostDialogCodeHookInvocationSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.PostDialogCodeHookInvocationSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.PostDialogCodeHookInvocationSpecification"
             $($field $value)*)
         };
     }
@@ -2371,7 +2371,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_PostFulfillmentStatusSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.PostFulfillmentStatusSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.PostFulfillmentStatusSpecification"
             $($field $value)*)
         };
     }
@@ -2447,7 +2447,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_PromptAttemptSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.PromptAttemptSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.PromptAttemptSpecification"
             $($field $value)*)
         };
     }
@@ -2493,7 +2493,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_PromptSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.PromptSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.PromptSpecification"
             $($field $value)*)
         };
     }
@@ -2538,7 +2538,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_QInConnectAssistantConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.QInConnectAssistantConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.QInConnectAssistantConfiguration"
             $($field $value)*)
         };
     }
@@ -2561,7 +2561,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_QInConnectIntentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.QInConnectIntentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.QInConnectIntentConfiguration"
             $($field $value)*)
         };
     }
@@ -2587,7 +2587,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_QnAIntentConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.QnAIntentConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.QnAIntentConfiguration"
             $($field $value)*)
         };
     }
@@ -2617,7 +2617,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_QnAKendraConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.QnAKendraConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.QnAKendraConfiguration"
             $($field $value)*)
         };
     }
@@ -2654,7 +2654,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_Replication {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.Replication"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.Replication"
             $($field $value)*)
         };
     }
@@ -2678,7 +2678,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_ResponseSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.ResponseSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.ResponseSpecification"
             $($field $value)*)
         };
     }
@@ -2709,7 +2709,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_RuntimeSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.RuntimeSettings"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.RuntimeSettings"
             $($field $value)*)
         };
     }
@@ -2742,7 +2742,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_S3BucketLogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.S3BucketLogDestination"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.S3BucketLogDestination"
             $($field $value)*)
         };
     }
@@ -2777,7 +2777,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_S3Location {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.S3Location"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.S3Location"
             $($field $value)*)
         };
     }
@@ -2810,7 +2810,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SSMLMessage {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SSMLMessage"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SSMLMessage"
             $($field $value)*)
         };
     }
@@ -2833,7 +2833,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SampleUtterance {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SampleUtterance"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SampleUtterance"
             $($field $value)*)
         };
     }
@@ -2857,7 +2857,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SampleUtteranceGenerationSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SampleUtteranceGenerationSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SampleUtteranceGenerationSpecification"
             $($field $value)*)
         };
     }
@@ -2886,7 +2886,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SampleValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SampleValue"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SampleValue"
             $($field $value)*)
         };
     }
@@ -2909,7 +2909,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SentimentAnalysisSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SentimentAnalysisSettings"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SentimentAnalysisSettings"
             $($field $value)*)
         };
     }
@@ -2933,7 +2933,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SessionAttribute {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SessionAttribute"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SessionAttribute"
             $($field $value)*)
         };
     }
@@ -2965,7 +2965,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_Slot {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.Slot"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.Slot"
             $($field $value)*)
         };
     }
@@ -3027,7 +3027,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SlotCaptureSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SlotCaptureSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SlotCaptureSetting"
             $($field $value)*)
         };
     }
@@ -3094,7 +3094,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SlotDefaultValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SlotDefaultValue"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SlotDefaultValue"
             $($field $value)*)
         };
     }
@@ -3117,7 +3117,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SlotDefaultValueSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SlotDefaultValueSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SlotDefaultValueSpecification"
             $($field $value)*)
         };
     }
@@ -3141,7 +3141,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SlotPriority {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SlotPriority"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SlotPriority"
             $($field $value)*)
         };
     }
@@ -3169,7 +3169,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SlotResolutionImprovementSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SlotResolutionImprovementSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SlotResolutionImprovementSpecification"
             $($field $value)*)
         };
     }
@@ -3204,7 +3204,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SlotType {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SlotType"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SlotType"
             $($field $value)*)
         };
     }
@@ -3264,7 +3264,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SlotTypeValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SlotTypeValue"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SlotTypeValue"
             $($field $value)*)
         };
     }
@@ -3293,7 +3293,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SlotValue {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SlotValue"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SlotValue"
             $($field $value)*)
         };
     }
@@ -3323,7 +3323,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SlotValueElicitationSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SlotValueElicitationSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SlotValueElicitationSetting"
             $($field $value)*)
         };
     }
@@ -3378,7 +3378,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SlotValueOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SlotValueOverride"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SlotValueOverride"
             $($field $value)*)
         };
     }
@@ -3407,7 +3407,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SlotValueOverrideMap {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SlotValueOverrideMap"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SlotValueOverrideMap"
             $($field $value)*)
         };
     }
@@ -3438,7 +3438,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SlotValueRegexFilter {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SlotValueRegexFilter"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SlotValueRegexFilter"
             $($field $value)*)
         };
     }
@@ -3463,7 +3463,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SlotValueSelectionSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SlotValueSelectionSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SlotValueSelectionSetting"
             $($field $value)*)
         };
     }
@@ -3499,7 +3499,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_Specifications {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.Specifications"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.Specifications"
             $($field $value)*)
         };
     }
@@ -3529,7 +3529,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_StillWaitingResponseSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.StillWaitingResponseSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.StillWaitingResponseSpecification"
             $($field $value)*)
         };
     }
@@ -3567,7 +3567,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SubSlotSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SubSlotSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SubSlotSetting"
             $($field $value)*)
         };
     }
@@ -3599,7 +3599,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SubSlotTypeComposition {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SubSlotTypeComposition"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SubSlotTypeComposition"
             $($field $value)*)
         };
     }
@@ -3629,7 +3629,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_SubSlotValueElicitationSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.SubSlotValueElicitationSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SubSlotValueElicitationSetting"
             $($field $value)*)
         };
     }
@@ -3675,7 +3675,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_TestBotAliasSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.TestBotAliasSettings"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.TestBotAliasSettings"
             $($field $value)*)
         };
     }
@@ -3718,7 +3718,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_TextInputSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.TextInputSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.TextInputSpecification"
             $($field $value)*)
         };
     }
@@ -3741,7 +3741,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_TextLogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.TextLogDestination"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.TextLogDestination"
             $($field $value)*)
         };
     }
@@ -3765,7 +3765,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_TextLogSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.TextLogSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.TextLogSetting"
             $($field $value)*)
         };
     }
@@ -3793,7 +3793,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_VoiceSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.VoiceSettings"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.VoiceSettings"
             $($field $value)*)
         };
     }
@@ -3822,7 +3822,7 @@ pub mod bot {
     #[macro_export]
     macro_rules! __aws_lex_Bot_WaitAndContinueSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::Bot.WaitAndContinueSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.WaitAndContinueSpecification"
             $($field $value)*)
         };
     }
@@ -3863,7 +3863,7 @@ pub mod botalias {
     #[macro_export]
     macro_rules! __aws_lex_BotAlias_AudioLogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::BotAlias.AudioLogDestination"
+            stratosphere::generator::construct_property_type!("AWS::Lex::BotAlias.AudioLogDestination"
             $($field $value)*)
         };
     }
@@ -3887,7 +3887,7 @@ pub mod botalias {
     #[macro_export]
     macro_rules! __aws_lex_BotAlias_AudioLogSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::BotAlias.AudioLogSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::BotAlias.AudioLogSetting"
             $($field $value)*)
         };
     }
@@ -3915,7 +3915,7 @@ pub mod botalias {
     #[macro_export]
     macro_rules! __aws_lex_BotAlias_BotAliasLocaleSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::BotAlias.BotAliasLocaleSettings"
+            stratosphere::generator::construct_property_type!("AWS::Lex::BotAlias.BotAliasLocaleSettings"
             $($field $value)*)
         };
     }
@@ -3945,7 +3945,7 @@ pub mod botalias {
     #[macro_export]
     macro_rules! __aws_lex_BotAlias_BotAliasLocaleSettingsItem {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::BotAlias.BotAliasLocaleSettingsItem"
+            stratosphere::generator::construct_property_type!("AWS::Lex::BotAlias.BotAliasLocaleSettingsItem"
             $($field $value)*)
         };
     }
@@ -3973,7 +3973,7 @@ pub mod botalias {
     #[macro_export]
     macro_rules! __aws_lex_BotAlias_CloudWatchLogGroupLogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::BotAlias.CloudWatchLogGroupLogDestination"
+            stratosphere::generator::construct_property_type!("AWS::Lex::BotAlias.CloudWatchLogGroupLogDestination"
             $($field $value)*)
         };
     }
@@ -4000,7 +4000,7 @@ pub mod botalias {
     #[macro_export]
     macro_rules! __aws_lex_BotAlias_CodeHookSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::BotAlias.CodeHookSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::BotAlias.CodeHookSpecification"
             $($field $value)*)
         };
     }
@@ -4024,7 +4024,7 @@ pub mod botalias {
     #[macro_export]
     macro_rules! __aws_lex_BotAlias_ConversationLogSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::BotAlias.ConversationLogSettings"
+            stratosphere::generator::construct_property_type!("AWS::Lex::BotAlias.ConversationLogSettings"
             $($field $value)*)
         };
     }
@@ -4056,7 +4056,7 @@ pub mod botalias {
     #[macro_export]
     macro_rules! __aws_lex_BotAlias_LambdaCodeHook {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::BotAlias.LambdaCodeHook"
+            stratosphere::generator::construct_property_type!("AWS::Lex::BotAlias.LambdaCodeHook"
             $($field $value)*)
         };
     }
@@ -4085,7 +4085,7 @@ pub mod botalias {
     #[macro_export]
     macro_rules! __aws_lex_BotAlias_S3BucketLogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::BotAlias.S3BucketLogDestination"
+            stratosphere::generator::construct_property_type!("AWS::Lex::BotAlias.S3BucketLogDestination"
             $($field $value)*)
         };
     }
@@ -4118,7 +4118,7 @@ pub mod botalias {
     #[macro_export]
     macro_rules! __aws_lex_BotAlias_SentimentAnalysisSettings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::BotAlias.SentimentAnalysisSettings"
+            stratosphere::generator::construct_property_type!("AWS::Lex::BotAlias.SentimentAnalysisSettings"
             $($field $value)*)
         };
     }
@@ -4141,7 +4141,7 @@ pub mod botalias {
     #[macro_export]
     macro_rules! __aws_lex_BotAlias_TextLogDestination {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::BotAlias.TextLogDestination"
+            stratosphere::generator::construct_property_type!("AWS::Lex::BotAlias.TextLogDestination"
             $($field $value)*)
         };
     }
@@ -4165,7 +4165,7 @@ pub mod botalias {
     #[macro_export]
     macro_rules! __aws_lex_BotAlias_TextLogSetting {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::BotAlias.TextLogSetting"
+            stratosphere::generator::construct_property_type!("AWS::Lex::BotAlias.TextLogSetting"
             $($field $value)*)
         };
     }
@@ -4194,7 +4194,7 @@ pub mod botversion {
     #[macro_export]
     macro_rules! __aws_lex_BotVersion_BotVersionLocaleDetails {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::BotVersion.BotVersionLocaleDetails"
+            stratosphere::generator::construct_property_type!("AWS::Lex::BotVersion.BotVersionLocaleDetails"
             $($field $value)*)
         };
     }
@@ -4218,7 +4218,7 @@ pub mod botversion {
     #[macro_export]
     macro_rules! __aws_lex_BotVersion_BotVersionLocaleSpecification {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Lex::BotVersion.BotVersionLocaleSpecification"
+            stratosphere::generator::construct_property_type!("AWS::Lex::BotVersion.BotVersionLocaleSpecification"
             $($field $value)*)
         };
     }
@@ -4258,7 +4258,7 @@ pub struct Bot_ {
 #[macro_export]
 macro_rules! __aws_lex_Bot {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lex::Bot" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Lex::Bot" $($field
         $value)*)
     };
 }
@@ -4362,7 +4362,7 @@ pub struct BotAlias_ {
 #[macro_export]
 macro_rules! __aws_lex_BotAlias {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lex::BotAlias" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Lex::BotAlias" $($field
         $value)*)
     };
 }
@@ -4436,7 +4436,7 @@ pub struct BotVersion_ {
 #[macro_export]
 macro_rules! __aws_lex_BotVersion {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lex::BotVersion" $($field
+        stratosphere::generator::construct_resource_type!("AWS::Lex::BotVersion" $($field
         $value)*)
     };
 }
@@ -4478,7 +4478,7 @@ pub struct ResourcePolicy_ {
 #[macro_export]
 macro_rules! __aws_lex_ResourcePolicy {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Lex::ResourcePolicy"
+        stratosphere::generator::construct_resource_type!("AWS::Lex::ResourcePolicy"
         $($field $value)*)
     };
 }

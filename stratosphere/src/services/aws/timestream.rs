@@ -7,7 +7,7 @@ pub mod influxdbinstance {
     #[macro_export]
     macro_rules! __aws_timestream_InfluxDBInstance_LogDeliveryConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::InfluxDBInstance.LogDeliveryConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::InfluxDBInstance.LogDeliveryConfiguration"
             $($field $value)*)
         };
     }
@@ -31,7 +31,7 @@ pub mod influxdbinstance {
     #[macro_export]
     macro_rules! __aws_timestream_InfluxDBInstance_S3Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::InfluxDBInstance.S3Configuration"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::InfluxDBInstance.S3Configuration"
             $($field $value)*)
         };
     }
@@ -61,7 +61,7 @@ pub mod scheduledquery {
     #[macro_export]
     macro_rules! __aws_timestream_ScheduledQuery_DimensionMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::ScheduledQuery.DimensionMapping"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::ScheduledQuery.DimensionMapping"
             $($field $value)*)
         };
     }
@@ -88,7 +88,7 @@ pub mod scheduledquery {
     #[macro_export]
     macro_rules! __aws_timestream_ScheduledQuery_ErrorReportConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::ScheduledQuery.ErrorReportConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::ScheduledQuery.ErrorReportConfiguration"
             $($field $value)*)
         };
     }
@@ -115,7 +115,7 @@ pub mod scheduledquery {
     #[macro_export]
     macro_rules! __aws_timestream_ScheduledQuery_MixedMeasureMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::ScheduledQuery.MixedMeasureMapping"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::ScheduledQuery.MixedMeasureMapping"
             $($field $value)*)
         };
     }
@@ -164,7 +164,7 @@ pub mod scheduledquery {
     #[macro_export]
     macro_rules! __aws_timestream_ScheduledQuery_MultiMeasureAttributeMapping {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::ScheduledQuery.MultiMeasureAttributeMapping"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::ScheduledQuery.MultiMeasureAttributeMapping"
             $($field $value)*)
         };
     }
@@ -198,7 +198,7 @@ pub mod scheduledquery {
     #[macro_export]
     macro_rules! __aws_timestream_ScheduledQuery_MultiMeasureMappings {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::ScheduledQuery.MultiMeasureMappings"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::ScheduledQuery.MultiMeasureMappings"
             $($field $value)*)
         };
     }
@@ -227,7 +227,7 @@ pub mod scheduledquery {
     #[macro_export]
     macro_rules! __aws_timestream_ScheduledQuery_NotificationConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::ScheduledQuery.NotificationConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::ScheduledQuery.NotificationConfiguration"
             $($field $value)*)
         };
     }
@@ -252,7 +252,7 @@ pub mod scheduledquery {
     #[macro_export]
     macro_rules! __aws_timestream_ScheduledQuery_S3Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::ScheduledQuery.S3Configuration"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::ScheduledQuery.S3Configuration"
             $($field $value)*)
         };
     }
@@ -287,7 +287,7 @@ pub mod scheduledquery {
     #[macro_export]
     macro_rules! __aws_timestream_ScheduledQuery_ScheduleConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::ScheduledQuery.ScheduleConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::ScheduledQuery.ScheduleConfiguration"
             $($field $value)*)
         };
     }
@@ -310,7 +310,7 @@ pub mod scheduledquery {
     #[macro_export]
     macro_rules! __aws_timestream_ScheduledQuery_SnsConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::ScheduledQuery.SnsConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::ScheduledQuery.SnsConfiguration"
             $($field $value)*)
         };
     }
@@ -333,7 +333,7 @@ pub mod scheduledquery {
     #[macro_export]
     macro_rules! __aws_timestream_ScheduledQuery_TargetConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::ScheduledQuery.TargetConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::ScheduledQuery.TargetConfiguration"
             $($field $value)*)
         };
     }
@@ -362,7 +362,7 @@ pub mod scheduledquery {
     #[macro_export]
     macro_rules! __aws_timestream_ScheduledQuery_TimestreamConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::ScheduledQuery.TimestreamConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::ScheduledQuery.TimestreamConfiguration"
             $($field $value)*)
         };
     }
@@ -417,7 +417,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_timestream_Table_MagneticStoreRejectedDataLocation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::Table.MagneticStoreRejectedDataLocation"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::Table.MagneticStoreRejectedDataLocation"
             $($field $value)*)
         };
     }
@@ -443,7 +443,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_timestream_Table_MagneticStoreWriteProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::Table.MagneticStoreWriteProperties"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::Table.MagneticStoreWriteProperties"
             $($field $value)*)
         };
     }
@@ -474,7 +474,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_timestream_Table_PartitionKey {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::Table.PartitionKey"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::Table.PartitionKey"
             $($field $value)*)
         };
     }
@@ -507,7 +507,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_timestream_Table_RetentionProperties {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::Table.RetentionProperties"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::Table.RetentionProperties"
             $($field $value)*)
         };
     }
@@ -541,7 +541,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_timestream_Table_S3Configuration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::Table.S3Configuration"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::Table.S3Configuration"
             $($field $value)*)
         };
     }
@@ -580,7 +580,7 @@ pub mod table {
     #[macro_export]
     macro_rules! __aws_timestream_Table_Schema {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::Timestream::Table.Schema"
+            stratosphere::generator::construct_property_type!("AWS::Timestream::Table.Schema"
             $($field $value)*)
         };
     }
@@ -608,7 +608,7 @@ pub struct Database_ {
 #[macro_export]
 macro_rules! __aws_timestream_Database {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Timestream::Database"
+        stratosphere::generator::construct_resource_type!("AWS::Timestream::Database"
         $($field $value)*)
     };
 }
@@ -667,7 +667,7 @@ pub struct InfluxDBInstance_ {
 #[macro_export]
 macro_rules! __aws_timestream_InfluxDBInstance {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Timestream::InfluxDBInstance"
+        stratosphere::generator::construct_resource_type!("AWS::Timestream::InfluxDBInstance"
         $($field $value)*)
     };
 }
@@ -793,7 +793,7 @@ pub struct ScheduledQuery_ {
 #[macro_export]
 macro_rules! __aws_timestream_ScheduledQuery {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Timestream::ScheduledQuery"
+        stratosphere::generator::construct_resource_type!("AWS::Timestream::ScheduledQuery"
         $($field $value)*)
     };
 }
@@ -873,7 +873,7 @@ pub struct Table_ {
 #[macro_export]
 macro_rules! __aws_timestream_Table {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::Timestream::Table"
+        stratosphere::generator::construct_resource_type!("AWS::Timestream::Table"
         $($field $value)*)
     };
 }

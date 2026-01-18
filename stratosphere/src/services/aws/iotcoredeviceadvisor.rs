@@ -8,7 +8,7 @@ pub mod suitedefinition {
     #[macro_export]
     macro_rules! __aws_iotcoredeviceadvisor_SuiteDefinition_DeviceUnderTest {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTCoreDeviceAdvisor::SuiteDefinition.DeviceUnderTest"
+            stratosphere::generator::construct_property_type!("AWS::IoTCoreDeviceAdvisor::SuiteDefinition.DeviceUnderTest"
             $($field $value)*)
         };
     }
@@ -43,7 +43,7 @@ pub mod suitedefinition {
     #[macro_export]
     macro_rules! __aws_iotcoredeviceadvisor_SuiteDefinition_SuiteDefinitionConfiguration {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere_generator::construct_property_type!("AWS::IoTCoreDeviceAdvisor::SuiteDefinition.SuiteDefinitionConfiguration"
+            stratosphere::generator::construct_property_type!("AWS::IoTCoreDeviceAdvisor::SuiteDefinition.SuiteDefinitionConfiguration"
             $($field $value)*)
         };
     }
@@ -91,7 +91,7 @@ pub struct SuiteDefinition_ {
 #[macro_export]
 macro_rules! __aws_iotcoredeviceadvisor_SuiteDefinition {
     ($($field:ident : $value:expr),* $(,)?) => {
-        stratosphere_generator::construct_resource_type!("AWS::IoTCoreDeviceAdvisor::SuiteDefinition"
+        stratosphere::generator::construct_resource_type!("AWS::IoTCoreDeviceAdvisor::SuiteDefinition"
         $($field $value)*)
     };
 }
