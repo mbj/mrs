@@ -15,21 +15,21 @@ pub fn test_definition(backend: ociman::Backend) -> pg_ephemeral::Definition {
 pub fn run_pg_ephemeral(args: &[&str], current_dir: &std::path::Path) -> String {
     let pg_ephemeral_bin = env!("CARGO_BIN_EXE_pg-ephemeral");
 
-    let output = std::process::Command::new(pg_ephemeral_bin)
-        .args(args)
-        .current_dir(current_dir)
+    let output = cmd_proc::Command::new(pg_ephemeral_bin)
+        .arguments(args)
+        .working_directory(current_dir)
         .output()
         .unwrap();
 
     assert!(
-        output.status.success(),
+        output.success(),
         "pg-ephemeral {} failed:\nstdout:\n{}\nstderr:\n{}",
         args.join(" "),
         String::from_utf8_lossy(&output.stdout),
         String::from_utf8_lossy(&output.stderr)
     );
 
-    String::from_utf8(output.stdout).unwrap()
+    output.into_stdout_string().unwrap()
 }
 
 /// A temporary directory for testing.
@@ -88,23 +88,23 @@ impl TestGitRepo {
         std::fs::create_dir_all(&path).unwrap();
 
         // Initialize git repository
-        std::process::Command::new("git")
-            .arg("init")
-            .current_dir(&path)
-            .output()
+        cmd_proc::Command::new("git")
+            .argument("init")
+            .working_directory(&path)
+            .status()
             .unwrap();
 
         // Configure git with hardcoded author (no environment reflection)
-        std::process::Command::new("git")
-            .args(["config", "user.name", "Test User"])
-            .current_dir(&path)
-            .output()
+        cmd_proc::Command::new("git")
+            .arguments(["config", "user.name", "Test User"])
+            .working_directory(&path)
+            .status()
             .unwrap();
 
-        std::process::Command::new("git")
-            .args(["config", "user.email", "test@example.com"])
-            .current_dir(&path)
-            .output()
+        cmd_proc::Command::new("git")
+            .arguments(["config", "user.email", "test@example.com"])
+            .working_directory(&path)
+            .status()
             .unwrap();
 
         Self { path }
@@ -120,31 +120,35 @@ impl TestGitRepo {
     #[allow(dead_code)]
     #[must_use]
     pub fn commit(&self, message: &str) -> String {
-        std::process::Command::new("git")
-            .args(["add", "."])
-            .current_dir(&self.path)
-            .output()
+        cmd_proc::Command::new("git")
+            .arguments(["add", "."])
+            .working_directory(&self.path)
+            .status()
             .unwrap();
 
-        std::process::Command::new("git")
-            .args([
+        const GIT_COMMITTER_DATE: cmd_proc::EnvVariableName<'static> =
+            cmd_proc::EnvVariableName::from_static("GIT_COMMITTER_DATE");
+
+        cmd_proc::Command::new("git")
+            .arguments([
                 "commit",
                 &format!("--message={message}"),
                 "--author=Test User <test@example.com>",
                 "--date=2020-01-01T00:00:00Z",
             ])
-            .env("GIT_COMMITTER_DATE", "2020-01-01T00:00:00Z")
-            .current_dir(&self.path)
-            .output()
+            .env(&GIT_COMMITTER_DATE, "2020-01-01T00:00:00Z")
+            .working_directory(&self.path)
+            .status()
             .unwrap();
 
-        let output = std::process::Command::new("git")
-            .args(["rev-parse", "HEAD"])
-            .current_dir(&self.path)
-            .output()
-            .unwrap();
-
-        String::from_utf8(output.stdout).unwrap().trim().to_string()
+        cmd_proc::Command::new("git")
+            .arguments(["rev-parse", "HEAD"])
+            .working_directory(&self.path)
+            .stdout()
+            .string()
+            .unwrap()
+            .trim()
+            .to_string()
     }
 }
 

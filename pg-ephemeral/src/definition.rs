@@ -208,37 +208,23 @@ impl Definition {
         }
     }
 
-    pub fn apply_pg_env(cmd: &mut std::process::Command, db_container: &Container) {
-        cmd.envs(db_container.pg_env());
-        cmd.env("DATABASE_URL", db_container.database_url());
-    }
-
     fn execute_command(&self, db_container: &Container, command: &Command) {
-        let mut cmd = std::process::Command::new(&command.command);
-        cmd.args(&command.arguments);
-
-        Self::apply_pg_env(&mut cmd, db_container);
-
-        let status = cmd.status().expect("Failed to execute command");
-
-        if !status.success() {
-            panic!("Command failed with status: {status}");
-        }
+        cmd_proc::Command::new(&command.command)
+            .arguments(&command.arguments)
+            .envs(db_container.pg_env())
+            .env(&crate::ENV_DATABASE_URL, db_container.database_url())
+            .status()
+            .expect("Failed to execute command");
     }
 
     fn execute_script(&self, db_container: &Container, script: &str) {
-        let mut cmd = std::process::Command::new("sh");
-        cmd.arg("-e");
-        cmd.arg("-c");
-        cmd.arg(script);
-
-        Self::apply_pg_env(&mut cmd, db_container);
-
-        let status = cmd.status().expect("Failed to execute script");
-
-        if !status.success() {
-            panic!("Script failed with status: {status}");
-        }
+        cmd_proc::Command::new("sh")
+            .arguments(["-e", "-c"])
+            .argument(script)
+            .envs(db_container.pg_env())
+            .env(&crate::ENV_DATABASE_URL, db_container.database_url())
+            .status()
+            .expect("Failed to execute script");
     }
 
     #[must_use]

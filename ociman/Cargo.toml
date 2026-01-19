@@ -11,11 +11,15 @@ readme = "README.md"
 keywords = ["docker", "podman", "container", "oci"]
 categories = ["development-tools"]
 
+[features]
+test-utils = []
+
 [lints]
 workspace = true
 
 [dependencies]
 clap.workspace = true
+cmd-proc.workspace = true
 log.workspace = true
 nom.workspace = true
 semver.workspace = true

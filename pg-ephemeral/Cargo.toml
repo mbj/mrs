@@ -16,6 +16,7 @@ workspace = true
 
 [dependencies]
 clap.workspace = true
+cmd-proc.workspace = true
 env_logger.workspace = true
 hex.workspace = true
 humantime-serde = "1"

@@ -3,11 +3,15 @@
 //! These tests spawn the actual binary with controlled environment
 //! to verify token discovery behavior.
 
-use std::process::Command;
-
 const MOCK_GH_TOKEN: &str = "ghp_mockTokenFromGhAuth1234567890abcdef";
 const ENV_GH_TOKEN: &str = "ghp_fromGhTokenEnv12345678901234567890";
 const ENV_GITHUB_TOKEN: &str = "ghp_fromGithubTokenEnv123456789012345";
+
+const GH_TOKEN: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static("GH_TOKEN");
+const GITHUB_TOKEN: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static("GITHUB_TOKEN");
+const PATH: cmd_proc::EnvVariableName<'static> = cmd_proc::EnvVariableName::from_static("PATH");
 
 fn binary_path() -> std::path::PathBuf {
     env!("CARGO_BIN_EXE_greenhell").into()
@@ -19,43 +23,38 @@ fn mock_gh_path() -> std::path::PathBuf {
         .join("mock-gh")
 }
 
-/// Creates a command with clean environment for testing.
-fn cli_token_command() -> Command {
-    let mut command = Command::new(binary_path());
-    command.arg("cli-token");
-
-    command.env_remove("GH_TOKEN");
-    command.env_remove("GITHUB_TOKEN");
-
+/// Creates a base command with clean environment for testing.
+fn base_command() -> cmd_proc::Command {
     let original_path = std::env::var("PATH").unwrap_or_default();
-    command.env(
-        "PATH",
-        format!("{}:{}", mock_gh_path().display(), original_path),
-    );
+    let path_with_mock = format!("{}:{}", mock_gh_path().display(), original_path);
 
-    command
+    cmd_proc::Command::new(binary_path())
+        .argument("cli-token")
+        .env_remove(&GH_TOKEN)
+        .env_remove(&GITHUB_TOKEN)
+        .env(&PATH, path_with_mock)
 }
 
 #[test]
 fn gh_token_env_takes_precedence() {
-    let output = cli_token_command()
-        .env("GH_TOKEN", ENV_GH_TOKEN)
-        .env("GITHUB_TOKEN", ENV_GITHUB_TOKEN)
+    let output = base_command()
+        .env(&GH_TOKEN, ENV_GH_TOKEN)
+        .env(&GITHUB_TOKEN, ENV_GITHUB_TOKEN)
         .output()
         .expect("failed to execute");
 
-    assert!(output.status.success());
+    assert!(output.success());
     assert_eq!(String::from_utf8_lossy(&output.stdout).trim(), ENV_GH_TOKEN);
 }
 
 #[test]
 fn github_token_env_fallback() {
-    let output = cli_token_command()
-        .env("GITHUB_TOKEN", ENV_GITHUB_TOKEN)
+    let output = base_command()
+        .env(&GITHUB_TOKEN, ENV_GITHUB_TOKEN)
         .output()
         .expect("failed to execute");
 
-    assert!(output.status.success());
+    assert!(output.success());
     assert_eq!(
         String::from_utf8_lossy(&output.stdout).trim(),
         ENV_GITHUB_TOKEN
@@ -64,9 +63,9 @@ fn github_token_env_fallback() {
 
 #[test]
 fn gh_auth_token_fallback() {
-    let output = cli_token_command().output().expect("failed to execute");
+    let output = base_command().output().expect("failed to execute");
 
-    assert!(output.status.success());
+    assert!(output.success());
     assert_eq!(
         String::from_utf8_lossy(&output.stdout).trim(),
         MOCK_GH_TOKEN
@@ -75,13 +74,13 @@ fn gh_auth_token_fallback() {
 
 #[test]
 fn fails_when_no_token_source() {
-    let mut command = Command::new(binary_path());
-    command.arg("cli-token");
-    command.env_remove("GH_TOKEN");
-    command.env_remove("GITHUB_TOKEN");
-    command.env("PATH", "/nonexistent");
+    let output = cmd_proc::Command::new(binary_path())
+        .argument("cli-token")
+        .env_remove(&GH_TOKEN)
+        .env_remove(&GITHUB_TOKEN)
+        .env(&PATH, "/nonexistent")
+        .output()
+        .expect("failed to execute");
 
-    let output = command.output().expect("failed to execute");
-
-    assert!(!output.status.success());
+    assert!(!output.success());
 }

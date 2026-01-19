@@ -16,12 +16,12 @@ workspace = true
 
 [dependencies]
 clap.workspace = true
+cmd-proc.workspace = true
 dirs.workspace = true
 env_logger.workspace = true
 log.workspace = true
 nom.workspace = true
 nom-language.workspace = true
-ociman.workspace = true
 serde.workspace = true
 thiserror.workspace = true
 toml.workspace = true

@@ -1,4 +1,4 @@
-use super::command::*;
+use cmd_proc::*;
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq, serde::Deserialize, clap::ValueEnum)]
 #[serde(rename_all = "snake_case")]

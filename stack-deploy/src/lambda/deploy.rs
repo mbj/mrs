@@ -133,14 +133,11 @@ impl Target {
     /// Build the lambda target via cargo
     pub fn build(&self) {
         log::info!("Building lambda target");
-        assert!(
-            std::process::Command::new("cargo")
-                .args(["build", "--target", &self.build_target.0])
-                .args(self.build_type.args())
-                .status()
-                .unwrap()
-                .success()
-        );
+        cmd_proc::Command::new("cargo")
+            .arguments(["build", "--target", &self.build_target.0])
+            .arguments(self.build_type.args())
+            .status()
+            .unwrap_or_else(|error| panic!("Failed to build lambda target: {error}"));
     }
 
     /// Build the lambda target and generate zip file
