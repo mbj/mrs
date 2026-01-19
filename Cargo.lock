@@ -779,6 +779,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "cmd-proc"
+version = "0.0.1"
+dependencies = [
+ "log",
+ "thiserror 2.0.17",
+]
+
+[[package]]
 name = "colorchoice"
 version = "1.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1305,6 +1313,7 @@ dependencies = [
  "async-stream",
  "chrono",
  "clap",
+ "cmd-proc",
  "env_logger",
  "futures-util",
  "http 1.4.0",
@@ -1911,6 +1920,7 @@ name = "manager"
 version = "0.0.1"
 dependencies = [
  "clap",
+ "cmd-proc",
  "env_logger",
  "flate2",
  "indoc",
@@ -2111,6 +2121,7 @@ name = "ociman"
 version = "0.0.1"
 dependencies = [
  "clap",
+ "cmd-proc",
  "env_logger",
  "indoc",
  "log",
@@ -2250,6 +2261,7 @@ name = "pg-ephemeral"
 version = "0.0.1-pre2"
 dependencies = [
  "clap",
+ "cmd-proc",
  "env_logger",
  "hex",
  "humantime-serde",
@@ -3228,6 +3240,7 @@ dependencies = [
  "base64",
  "chrono",
  "clap",
+ "cmd-proc",
  "hex",
  "http 1.4.0",
  "log",
@@ -4255,12 +4268,12 @@ name = "wtt"
 version = "0.0.5"
 dependencies = [
  "clap",
+ "cmd-proc",
  "dirs",
  "env_logger",
  "log",
  "nom 8.0.0",
  "nom-language",
- "ociman",
  "serde",
  "thiserror 2.0.17",
  "toml",

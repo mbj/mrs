@@ -1,14 +1,13 @@
 #![doc = include_str!("../README.md")]
 
 pub mod backend;
-pub mod command;
 pub mod image;
 pub mod platform;
 pub mod reference;
 pub mod testing;
 
 pub use backend::{Backend, ContainerHostnameResolver, ResolveHostnameError};
-pub use command::Command;
+use cmd_proc::{Command, CommandError};
 pub use image::{
     BuildArgumentKey, BuildArgumentKeyError, BuildArgumentValue, BuildDefinition, BuildSource,
     BuildTarget, Reference,
@@ -580,7 +579,7 @@ impl Definition {
     }
 
     /// Runs the container and returns success or an error.
-    pub fn run(&self) -> Result<(), command::CommandError> {
+    pub fn run(&self) -> Result<(), CommandError> {
         self.build_run_command().status()
     }
 
@@ -748,18 +747,18 @@ impl<'a> ExecCommand<'a> {
 
     /// Capture stdout from this exec command.
     #[must_use]
-    pub fn stdout(self) -> command::Capture {
+    pub fn stdout(self) -> cmd_proc::Capture {
         self.build_command().stdout()
     }
 
     /// Capture stderr from this exec command.
     #[must_use]
-    pub fn stderr(self) -> command::Capture {
+    pub fn stderr(self) -> cmd_proc::Capture {
         self.build_command().stderr()
     }
 
     /// Execute the command and return success or an error.
-    pub fn status(self) -> Result<(), command::CommandError> {
+    pub fn status(self) -> Result<(), CommandError> {
         self.build_command().status()
     }
 }
@@ -837,11 +836,7 @@ impl Container {
             .ok()
     }
 
-    pub fn commit(
-        &self,
-        reference: &image::Reference,
-        pause: bool,
-    ) -> Result<(), command::CommandError> {
+    pub fn commit(&self, reference: &image::Reference, pause: bool) -> Result<(), CommandError> {
         let pause_argument = match (&self.backend, pause) {
             (Backend::Docker { .. }, true) => None,
             (Backend::Docker { version }, false) => {

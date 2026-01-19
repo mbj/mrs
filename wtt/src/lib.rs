@@ -11,10 +11,10 @@ mod repo_name;
 
 pub use base::{Base, BaseError};
 pub use branch::{Branch, BranchError};
+pub use cmd_proc::{Command, CommandError};
 pub use config::{Config, Error as ConfigError, Source as ConfigSource};
 pub use detect::{DetectError, detect_repo_from_cwd};
 pub use git_url::{GitUrl, GitUrlError};
-pub use ociman::command::{Command, CommandError};
 pub use repo_name::{RepoName, RepoNameError};
 
 use std::path::PathBuf;

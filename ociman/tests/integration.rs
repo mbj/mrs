@@ -150,7 +150,7 @@ fn test_read_host_tcp_port_not_published() {
 #[test]
 fn test_command_with_stdin() {
     let input = b"Hello from stdin!";
-    let output = ociman::Command::new("cat")
+    let output = cmd_proc::Command::new("cat")
         .stdin_bytes(input.to_vec())
         .stdout()
         .bytes()
