@@ -1,6 +1,6 @@
 # pg-client
 
-**Status: Highly experimental - currently only intended for use within [pg-ephemeral](../pg-ephemeral)**
+**Status: Highly experimental - currently only intended for use within [pg-ephemeral](https://github.com/mbj/mrs/tree/main/pg-ephemeral)**
 
 A PostgreSQL client configuration library providing strongly-typed connection parameters with accurate representation of PostgreSQL connection options.
 
