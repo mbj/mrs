@@ -1,4 +1,4 @@
-# stratosphere-core
+# stratosphere-core - CloudFormation Core Types
 
 Core types and utilities for stratosphere - a type-safe CloudFormation template generation library.
 

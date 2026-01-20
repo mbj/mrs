@@ -1,4 +1,4 @@
-# pg-client
+# pg-client - PostgreSQL Client Configuration
 
 **Status: Highly experimental - currently only intended for use within [pg-ephemeral](https://github.com/mbj/mrs/tree/main/pg-ephemeral)**
 

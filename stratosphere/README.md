@@ -1,4 +1,4 @@
-# stratosphere
+# stratosphere - CloudFormation Template Generator
 
 Type-safe CloudFormation template generation library for Rust.
 

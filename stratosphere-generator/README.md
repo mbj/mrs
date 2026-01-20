@@ -1,4 +1,4 @@
-# stratosphere-generator
+# stratosphere-generator - CloudFormation Code Generator
 
 Procedural macros for stratosphere - generates CloudFormation resource types.
 
