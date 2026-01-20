@@ -64,7 +64,11 @@ pub fn remove_worktree(
     command.argument(worktree_path).status()
 }
 
-fn cleanup_empty_parents(config: &Config, repo: &RepoName, branch: &Branch) -> Result<(), Error> {
+pub(crate) fn cleanup_empty_parents(
+    config: &Config,
+    repo: &RepoName,
+    branch: &Branch,
+) -> Result<(), Error> {
     if !branch.has_parents() {
         return Ok(());
     }

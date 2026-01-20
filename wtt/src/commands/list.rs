@@ -1,4 +1,4 @@
-use crate::{Command, Config, Error, RepoName, detect_repo_from_cwd, git};
+use crate::{Command, Config, Error, RepoName, detect_repo_from_cwd, git, list_repos};
 
 #[derive(Debug, clap::Parser)]
 pub struct List {
@@ -46,34 +46,18 @@ fn list_repo(config: &Config, repo: &RepoName) -> Result<(), Error> {
 }
 
 fn list_all(config: &Config) -> Result<(), Error> {
-    if !config.bare_clone_dir.exists() {
+    let repos = list_repos(config)?;
+
+    if repos.is_empty() {
         log::info!("No repositories found");
         return Ok(());
     }
 
-    let entries = std::fs::read_dir(&config.bare_clone_dir)?;
-
-    let mut repos: Vec<RepoName> = Vec::new();
-
-    for entry in entries {
-        let entry = entry?;
-        let path = entry.path();
-
-        if path.is_dir()
-            && let Some(name) = path.file_name()
-            && let Some(name_str) = name.to_str()
-            && let Some(repo_name) = name_str.strip_suffix(".git")
-            && let Ok(repo) = repo_name.parse::<RepoName>()
-        {
-            repos.push(repo);
+    for (index, repo) in repos.iter().enumerate() {
+        list_repo(config, repo)?;
+        if index + 1 < repos.len() {
+            println!();
         }
-    }
-
-    repos.sort_by(|a, b| a.as_str().cmp(b.as_str()));
-
-    for repo in repos {
-        list_repo(config, &repo)?;
-        println!();
     }
 
     Ok(())

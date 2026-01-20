@@ -20,6 +20,7 @@ enum Command {
     Teardown(commands::Teardown),
     Add(commands::Add),
     List(commands::List),
+    Gc(commands::Gc),
     #[clap(visible_alias = "rm")]
     Remove(commands::Remove),
 }
@@ -50,6 +51,7 @@ fn main() {
         Command::Teardown(cmd) => cmd.run(&config),
         Command::Add(cmd) => cmd.run(&config),
         Command::List(cmd) => cmd.run(&config),
+        Command::Gc(cmd) => cmd.run(&config),
         Command::Remove(cmd) => cmd.run(&config),
     };
 

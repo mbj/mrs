@@ -7,6 +7,7 @@ mod config;
 mod detect;
 mod git;
 mod git_url;
+mod repos;
 mod repo_name;
 
 pub use base::{Base, BaseError};
@@ -15,6 +16,7 @@ pub use cmd_proc::{Command, CommandError};
 pub use config::{Config, Error as ConfigError, Source as ConfigSource};
 pub use detect::{DetectError, detect_repo_from_cwd};
 pub use git_url::{GitUrl, GitUrlError};
+pub use repos::list_repos;
 pub use repo_name::{RepoName, RepoNameError};
 
 use std::path::PathBuf;

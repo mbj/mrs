@@ -97,6 +97,17 @@ wtt list [OPTIONS]
 
 - `--repo <REPO>` - Repository name (default: auto-detected, or list all if outside worktree)
 
+### gc
+
+Garbage-collect merged worktrees and branches.
+
+```bash
+wtt gc [OPTIONS]
+```
+
+- `--repo <REPO>` - Repository name (default: all repos)
+- `--force` - Force removal of worktrees with uncommitted changes
+
 ### remove
 
 Remove a worktree.

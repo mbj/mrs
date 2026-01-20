@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Add `gc` command to remove merged worktrees and local branches across repos
+
 ## 0.0.5
 
 - Add `teardown` command to remove a repository completely (inverse of setup)
