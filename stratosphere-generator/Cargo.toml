@@ -5,6 +5,7 @@ edition.workspace = true
 rust-version.workspace = true
 description = "Procedural macro code generator for stratosphere - generates CloudFormation resource types"
 license = "MIT"
+readme = "README.md"
 repository = "https://github.com/mbj/mrs/tree/main/stratosphere-generator"
 homepage = "https://github.com/mbj/mrs/tree/main/stratosphere-generator"
 keywords = ["aws", "cloudformation", "codegen", "proc-macro"]
