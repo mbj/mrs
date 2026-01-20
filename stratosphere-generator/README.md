@@ -1,5 +1,7 @@
 # stratosphere-generator - CloudFormation Code Generator
 
+> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
+
 Procedural macros for stratosphere - generates CloudFormation resource types.
 
 This crate provides compile-time code generation for AWS CloudFormation resources:

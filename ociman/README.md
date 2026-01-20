@@ -2,11 +2,7 @@
 
 A Rust library providing a unified API for OCI container runtimes (Docker, Podman).
 
-## ⚠️ Status
-
-**ociman is highly unstable and exists solely to serve pg-ephemeral.** The API is changing frequently and nothing should be considered stable. Breaking changes occur without notice as the library evolves to meet pg-ephemeral's needs.
-
-Do not use this library for other projects at this time.
+> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
 
 ## Goals
 

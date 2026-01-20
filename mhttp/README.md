@@ -1,5 +1,7 @@
 # mhttp - Typed HTTP Requests
 
+> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
+
 Turn any type into a typed HTTP request with declarative response decoding.
 
 ## Overview
