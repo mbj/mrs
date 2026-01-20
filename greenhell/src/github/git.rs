@@ -1,11 +1,10 @@
 use super::Repository;
-use std::process::Command;
 use url::Url;
 
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
     #[error("Failed to run git command: {0}")]
-    GitCommand(#[from] std::io::Error),
+    GitCommand(#[from] cmd_proc::CommandError),
     #[error("Git command failed: {0}")]
     GitCommandFailed(String),
     #[error("Git output is not valid UTF-8: {0}")]
@@ -16,11 +15,11 @@ pub enum Error {
 
 /// Gets the GitHub repository from the specified git remote.
 pub fn get_github_repository(remote_name: &str) -> Result<Repository, Error> {
-    let output = Command::new("git")
-        .args(["remote", "get-url", remote_name])
+    let output = cmd_proc::Command::new("git")
+        .arguments(["remote", "get-url", remote_name])
         .output()?;
 
-    if !output.status.success() {
+    if !output.success() {
         let stderr = String::from_utf8(output.stderr)?;
         return Err(Error::GitCommandFailed(stderr.trim().to_string()));
     }
@@ -32,11 +31,11 @@ pub fn get_github_repository(remote_name: &str) -> Result<Repository, Error> {
 
 /// Gets the current branch name.
 pub fn get_current_branch() -> Result<super::Branch, Error> {
-    let output = Command::new("git")
-        .args(["rev-parse", "--abbrev-ref", "HEAD"])
+    let output = cmd_proc::Command::new("git")
+        .arguments(["rev-parse", "--abbrev-ref", "HEAD"])
         .output()?;
 
-    if !output.status.success() {
+    if !output.success() {
         let stderr = String::from_utf8(output.stderr)?;
         return Err(Error::GitCommandFailed(stderr.trim().to_string()));
     }
@@ -52,8 +51,8 @@ pub fn get_current_branch() -> Result<super::Branch, Error> {
 ///
 /// Returns commits in topological order with parents before children.
 pub fn list_commits(base: &super::Ref) -> Result<Vec<super::Sha>, Error> {
-    let output = Command::new("git")
-        .args([
+    let output = cmd_proc::Command::new("git")
+        .arguments([
             "rev-list",
             "--topo-order",
             "--reverse",
@@ -61,7 +60,7 @@ pub fn list_commits(base: &super::Ref) -> Result<Vec<super::Sha>, Error> {
         ])
         .output()?;
 
-    if !output.status.success() {
+    if !output.success() {
         let stderr = String::from_utf8(output.stderr)?;
         return Err(Error::GitCommandFailed(stderr.trim().to_string()));
     }
@@ -88,11 +87,11 @@ pub fn force_push_commit(
 ) -> Result<(), Error> {
     let refspec = format!("{sha}:refs/heads/{branch}");
 
-    let output = Command::new("git")
-        .args(["push", "--force", remote, &refspec])
+    let output = cmd_proc::Command::new("git")
+        .arguments(["push", "--force", remote, &refspec])
         .output()?;
 
-    if !output.status.success() {
+    if !output.success() {
         let stderr = String::from_utf8(output.stderr)?;
         return Err(Error::GitCommandFailed(stderr.trim().to_string()));
     }
@@ -108,11 +107,11 @@ pub fn force_push_commit(
 ///
 /// Returns `None` if no upstream is configured for the current branch.
 pub fn get_upstream() -> Result<Option<super::Ref>, Error> {
-    let output = Command::new("git")
-        .args(["rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{u}"])
+    let output = cmd_proc::Command::new("git")
+        .arguments(["rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{u}"])
         .output()?;
 
-    if !output.status.success() {
+    if !output.success() {
         let stderr = String::from_utf8(output.stderr)?;
         if stderr.contains("no upstream") || stderr.contains("unknown revision") {
             return Ok(None);

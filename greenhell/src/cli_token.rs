@@ -9,8 +9,6 @@
 //! This module is only for CLI/user context. For GitHub App authentication
 //! (used in hosted/Lambda deployments), see the app authentication module.
 
-use std::process::Command;
-
 use nom::{IResult, Parser, bytes::complete::take_while1, combinator::verify, error::context};
 use nom_language::error::VerboseError;
 
@@ -265,12 +263,12 @@ mod tests {
 
 /// Executes `gh auth token` and returns the token.
 fn gh_auth_token() -> Result<Token, String> {
-    let output = Command::new("gh")
-        .args(["auth", "token"])
+    let output = cmd_proc::Command::new("gh")
+        .arguments(["auth", "token"])
         .output()
         .map_err(|error| format!("failed to execute gh: {error}"))?;
 
-    if !output.status.success() {
+    if !output.success() {
         let stderr = String::from_utf8_lossy(&output.stderr);
         return Err(stderr.trim().to_string());
     }

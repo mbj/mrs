@@ -24,6 +24,8 @@ pub(crate) const LOCALHOST_IP: std::net::IpAddr =
 pub(crate) const UNSPECIFIED_IP: std::net::IpAddr =
     std::net::IpAddr::V4(std::net::Ipv4Addr::UNSPECIFIED);
 pub(crate) const LOCALHOST_HOST_ADDR: pg_client::HostAddr = pg_client::HostAddr::new(LOCALHOST_IP);
+pub(crate) const ENV_DATABASE_URL: cmd_proc::EnvVariableName =
+    cmd_proc::EnvVariableName::from_static("DATABASE_URL");
 
 #[must_use]
 pub fn version() -> &'static semver::Version {

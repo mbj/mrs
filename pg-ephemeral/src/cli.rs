@@ -320,7 +320,10 @@ impl Command {
                 let definition = Self::get_instance(instance_map, instance)
                     .definition()
                     .unwrap();
-                definition.with_container(host_psql).await
+                definition
+                    .with_container(host_psql)
+                    .await
+                    .expect("psql command failed")
             }
             Self::RunEnv {
                 instance,
@@ -335,6 +338,7 @@ impl Command {
                         host_command(container, command, arguments).await
                     })
                     .await
+                    .expect("command failed")
             }
             Self::Platform { command } => command.run(),
         }
@@ -353,21 +357,22 @@ impl Command {
     }
 }
 
-async fn host_psql(container: &crate::container::Container) {
-    let _ = std::process::Command::new("psql")
+async fn host_psql(container: &crate::container::Container) -> Result<(), cmd_proc::CommandError> {
+    cmd_proc::Command::new("psql")
         .envs(container.client_config.to_pg_env())
-        .status();
+        .status()
 }
 
 async fn host_command(
     container: &crate::container::Container,
     command: &str,
     arguments: &Vec<String>,
-) {
-    let mut cmd = std::process::Command::new(command);
-    cmd.args(arguments);
-    crate::definition::Definition::apply_pg_env(&mut cmd, container);
-    let _ = cmd.status();
+) -> Result<(), cmd_proc::CommandError> {
+    cmd_proc::Command::new(command)
+        .arguments(arguments)
+        .envs(container.pg_env())
+        .env(&crate::ENV_DATABASE_URL, container.database_url())
+        .status()
 }
 
 async fn container_psql(container: &crate::container::Container) {

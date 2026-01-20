@@ -191,41 +191,55 @@ impl Seed {
                 })
             }
             Seed::SqlFileGitRevision { path, git_revision } => {
-                let result = std::process::Command::new("git")
-                    .arg("show")
-                    .arg(format!("{git_revision}:{}", path.to_str().unwrap()))
-                    .output();
-
-                match result {
-                    Ok(output) if output.status.success() => {
-                        let content = String::from_utf8_lossy(&output.stdout).into_owned();
-
-                        hash_chain.update(&content);
-
-                        Ok(LoadedSeed::SqlFileGitRevision {
-                            cache_status: CacheStatus::from_cache_key(
-                                hash_chain.cache_key(),
-                                backend,
-                                instance_name,
-                            ),
-                            name,
-                            path: path.clone(),
-                            git_revision: git_revision.clone(),
-                            content,
-                        })
-                    }
-                    Ok(output) => Err(LoadError::GitRevision {
-                        name,
-                        path: path.clone(),
-                        git_revision: git_revision.clone(),
-                        message: String::from_utf8_lossy(&output.stderr).into_owned(),
-                    }),
-                    Err(error) => Err(LoadError::GitRevision {
-                        name,
+                let output = cmd_proc::Command::new("git")
+                    .argument("show")
+                    .argument(format!("{git_revision}:{}", path.to_str().unwrap()))
+                    .output()
+                    .map_err(|error| LoadError::GitRevision {
+                        name: name.clone(),
                         path: path.clone(),
                         git_revision: git_revision.clone(),
                         message: error.to_string(),
-                    }),
+                    })?;
+
+                if output.success() {
+                    let content = String::from_utf8(output.stdout).map_err(|error| {
+                        LoadError::GitRevision {
+                            name: name.clone(),
+                            path: path.clone(),
+                            git_revision: git_revision.clone(),
+                            message: error.to_string(),
+                        }
+                    })?;
+
+                    hash_chain.update(&content);
+
+                    Ok(LoadedSeed::SqlFileGitRevision {
+                        cache_status: CacheStatus::from_cache_key(
+                            hash_chain.cache_key(),
+                            backend,
+                            instance_name,
+                        ),
+                        name,
+                        path: path.clone(),
+                        git_revision: git_revision.clone(),
+                        content,
+                    })
+                } else {
+                    let message = String::from_utf8(output.stderr).map_err(|error| {
+                        LoadError::GitRevision {
+                            name: name.clone(),
+                            path: path.clone(),
+                            git_revision: git_revision.clone(),
+                            message: error.to_string(),
+                        }
+                    })?;
+                    Err(LoadError::GitRevision {
+                        name,
+                        path: path.clone(),
+                        git_revision: git_revision.clone(),
+                        message,
+                    })
                 }
             }
             Seed::Command { command, cache } => {
@@ -245,55 +259,54 @@ impl Seed {
                         command: key_command,
                         arguments: key_arguments,
                     } => {
-                        let result = std::process::Command::new(key_command)
-                            .args(key_arguments)
-                            .output();
+                        let output = cmd_proc::Command::new(key_command)
+                            .arguments(key_arguments)
+                            .output()
+                            .map_err(|error| LoadError::KeyCommand {
+                                name: name.clone(),
+                                command: key_command.clone(),
+                                message: error.to_string(),
+                            })?;
 
-                        match result {
-                            Ok(output) if output.status.success() => {
-                                hash_chain.update(&output.stdout);
-                                Some(output.stdout)
-                            }
-                            Ok(output) => {
-                                return Err(LoadError::KeyCommand {
-                                    name,
-                                    command: key_command.clone(),
-                                    message: String::from_utf8_lossy(&output.stderr).into_owned(),
-                                });
-                            }
-                            Err(error) => {
-                                return Err(LoadError::KeyCommand {
-                                    name,
+                        if output.success() {
+                            hash_chain.update(&output.stdout);
+                            Some(output.stdout)
+                        } else {
+                            let message = String::from_utf8(output.stderr).map_err(|error| {
+                                LoadError::KeyCommand {
+                                    name: name.clone(),
                                     command: key_command.clone(),
                                     message: error.to_string(),
-                                });
-                            }
+                                }
+                            })?;
+                            return Err(LoadError::KeyCommand {
+                                name,
+                                command: key_command.clone(),
+                                message,
+                            });
                         }
                     }
                     CommandCacheConfig::KeyScript { script: key_script } => {
-                        let result = std::process::Command::new("sh")
-                            .arg("-e")
-                            .arg("-c")
-                            .arg(key_script)
-                            .output();
+                        let output = cmd_proc::Command::new("sh")
+                            .arguments(["-e", "-c"])
+                            .argument(key_script)
+                            .output()
+                            .map_err(|error| LoadError::KeyScript {
+                                name: name.clone(),
+                                message: error.to_string(),
+                            })?;
 
-                        match result {
-                            Ok(output) if output.status.success() => {
-                                hash_chain.update(&output.stdout);
-                                Some(output.stdout)
-                            }
-                            Ok(output) => {
-                                return Err(LoadError::KeyScript {
-                                    name,
-                                    message: String::from_utf8_lossy(&output.stderr).into_owned(),
-                                });
-                            }
-                            Err(error) => {
-                                return Err(LoadError::KeyScript {
-                                    name,
+                        if output.success() {
+                            hash_chain.update(&output.stdout);
+                            Some(output.stdout)
+                        } else {
+                            let message = String::from_utf8(output.stderr).map_err(|error| {
+                                LoadError::KeyScript {
+                                    name: name.clone(),
                                     message: error.to_string(),
-                                });
-                            }
+                                }
+                            })?;
+                            return Err(LoadError::KeyScript { name, message });
                         }
                     }
                 };
