@@ -1,4 +1,4 @@
-# stack-deploy
+# stack-deploy - CloudFormation Stack Manager
 
 A CLI tool for managing AWS CloudFormation stacks with enhanced workflow support.
 

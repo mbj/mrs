@@ -1,4 +1,4 @@
-# mhttp
+# mhttp - Typed HTTP Requests
 
 Turn any type into a typed HTTP request with declarative response decoding.
 

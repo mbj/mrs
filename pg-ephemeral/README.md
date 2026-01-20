@@ -1,4 +1,4 @@
-# pg-ephemeral
+# pg-ephemeral - Ephemeral PostgreSQL for Testing
 
 Ephemeral PostgreSQL instances for testing.
 
