@@ -1,4 +1,6 @@
-# stack-deploy
+# stack-deploy - CloudFormation Stack Manager
+
+> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
 
 A CLI tool for managing AWS CloudFormation stacks with enhanced workflow support.
 
@@ -59,7 +61,3 @@ When updating or syncing stacks, you can control the change set review behavior:
 ## Integration
 
 Works seamlessly with the [stratosphere](https://github.com/mbj/mrs/tree/main/stratosphere) library for type-safe CloudFormation template generation.
-
-## License
-
-Part of the [mrs](https://github.com/mbj/mrs) collection by [@mbj](https://github.com/mbj)

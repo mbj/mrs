@@ -5,6 +5,7 @@ edition.workspace = true
 rust-version.workspace = true
 description = "Type-safe CloudFormation template generation library for Rust with comprehensive coverage of all CloudFormation types. Pre-generated types from official AWS resource specifications, feature-gated for minimal compile times."
 license = "MIT"
+readme = "README.md"
 repository = "https://github.com/mbj/mrs/tree/main/stratosphere"
 homepage = "https://github.com/mbj/mrs/tree/main/stratosphere"
 keywords = ["aws", "cloudformation", "iac", "infrastructure"]

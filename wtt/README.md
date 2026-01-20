@@ -1,5 +1,7 @@
 # wtt - Work Tree Tool
 
+> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
+
 ## Overview
 
 CLI tool for managing git worktrees using bare clones.
@@ -8,7 +10,7 @@ CLI tool for managing git worktrees using bare clones.
 
 From a repository checkout:
 
-```sh
+```bash
 cargo install --path wtt
 ```
 
@@ -44,7 +46,7 @@ worktree_dir = "/path/to/worktrees"
 
 Create bare clone and prepare worktree directory.
 
-```sh
+```bash
 wtt setup <REPO> <URL>
 ```
 
@@ -57,7 +59,7 @@ wtt setup <REPO> <URL>
 
 Remove a repository completely (inverse of setup).
 
-```sh
+```bash
 wtt teardown [OPTIONS] <REPO>
 ```
 
@@ -71,7 +73,7 @@ wtt teardown [OPTIONS] <REPO>
 
 Create a worktree.
 
-```sh
+```bash
 wtt add [OPTIONS] <BRANCH>
 ```
 
@@ -89,7 +91,7 @@ wtt add [OPTIONS] <BRANCH>
 
 List worktrees.
 
-```sh
+```bash
 wtt list [OPTIONS]
 ```
 
@@ -99,7 +101,7 @@ wtt list [OPTIONS]
 
 Remove a worktree.
 
-```sh
+```bash
 wtt remove [OPTIONS] <BRANCH>
 ```
 

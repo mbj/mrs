@@ -1,4 +1,6 @@
-# pg-ephemeral
+# pg-ephemeral - Ephemeral PostgreSQL for Testing
+
+> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
 
 Ephemeral PostgreSQL instances for testing.
 
@@ -24,7 +26,3 @@ This configuration provides:
 - Cross-platform consistency
 
 The Ruby gem includes both the binary and its debug info files to ensure useful panic backtraces in production.
-
-## License
-
-See workspace root for license information.
