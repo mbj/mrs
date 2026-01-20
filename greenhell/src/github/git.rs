@@ -1,5 +1,73 @@
 use super::Repository;
+use nom::{IResult, Parser, bytes::complete::take_till, character::complete::char};
 use url::Url;
+
+/// A git config key (e.g., `branch.main.remote`).
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ConfigKey(String);
+
+impl ConfigKey {
+    #[must_use]
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
+impl std::fmt::Display for ConfigKey {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.0)
+    }
+}
+
+/// A git config value.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ConfigValue(String);
+
+impl ConfigValue {
+    #[must_use]
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
+impl std::fmt::Display for ConfigValue {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.0)
+    }
+}
+
+/// A git config entry (key-value pair).
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ConfigEntry {
+    key: ConfigKey,
+    value: ConfigValue,
+}
+
+impl ConfigEntry {
+    #[must_use]
+    pub fn key(&self) -> &ConfigKey {
+        &self.key
+    }
+
+    #[must_use]
+    pub fn value(&self) -> &ConfigValue {
+        &self.value
+    }
+
+    fn parse(input: &str) -> IResult<&str, Self> {
+        let (remaining, key) = take_till(|c| c == '=').parse(input)?;
+        let (remaining, _) = char('=').parse(remaining)?;
+        let value = remaining;
+
+        Ok((
+            "",
+            Self {
+                key: ConfigKey(key.to_string()),
+                value: ConfigValue(value.to_string()),
+            },
+        ))
+    }
+}
 
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
@@ -101,30 +169,115 @@ pub fn force_push_commit(
 
 /// Gets the upstream tracking ref for the current branch.
 ///
-/// Uses `@{u}` (shorthand for `@{upstream}`) which resolves to the upstream
-/// tracking branch. For example, if on branch `feature` tracking `origin/feature`,
-/// this returns `origin/feature`.
+/// Reads git config `branch.<name>.remote` and `branch.<name>.merge` directly.
+/// If the upstream ref doesn't exist yet, falls back to the remote's default branch.
+///
+/// For example, if on branch `feature` with config:
+/// - `branch.feature.remote` = `origin`
+/// - `branch.feature.merge` = `refs/heads/feature`
+///
+/// This returns `origin/feature` if that ref exists, otherwise `origin/main`.
 ///
 /// Returns `None` if no upstream is configured for the current branch.
 pub fn get_upstream() -> Result<Option<super::Ref>, Error> {
+    let branch = get_current_branch()?;
+    let config = get_config()?;
+
+    let remote_key = format!("branch.{branch}.remote");
+    let merge_key = format!("branch.{branch}.merge");
+
+    let remote = config
+        .iter()
+        .find(|entry| entry.key().as_str() == remote_key)
+        .map(ConfigEntry::value);
+
+    let merge = config
+        .iter()
+        .find(|entry| entry.key().as_str() == merge_key)
+        .map(ConfigEntry::value);
+
+    let (Some(remote), Some(merge)) = (remote, merge) else {
+        return Ok(None);
+    };
+
+    let branch_name = merge
+        .as_str()
+        .strip_prefix("refs/heads/")
+        .ok_or_else(|| Error::GitCommandFailed(format!("Invalid merge ref: {merge}")))?;
+
+    let upstream = format!("{remote}/{branch_name}");
+
+    if remote_ref_exists(&upstream)? {
+        return upstream
+            .parse()
+            .map(Some)
+            .map_err(|_| Error::GitCommandFailed(format!("Invalid ref: {upstream}")));
+    }
+
+    get_remote_head(remote.as_str())
+}
+
+/// Gets the HEAD ref for a remote (e.g., `origin/main`).
+fn get_remote_head(remote: &str) -> Result<Option<super::Ref>, Error> {
+    let symbolic_ref = format!("refs/remotes/{remote}/HEAD");
+
     let output = cmd_proc::Command::new("git")
-        .arguments(["rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{u}"])
+        .arguments(["symbolic-ref", &symbolic_ref])
         .output()?;
 
     if !output.success() {
-        let stderr = String::from_utf8(output.stderr)?;
-        if stderr.contains("no upstream") || stderr.contains("unknown revision") {
-            return Ok(None);
-        }
-        return Err(Error::GitCommandFailed(stderr.trim().to_string()));
+        return Ok(None);
     }
 
-    let upstream = String::from_utf8(output.stdout)?.trim().to_string();
+    let full_ref = String::from_utf8(output.stdout)?.trim().to_string();
+
+    let branch = full_ref
+        .strip_prefix(&format!("refs/remotes/{remote}/"))
+        .ok_or_else(|| {
+            Error::GitCommandFailed(format!("Invalid default branch ref: {full_ref}"))
+        })?;
+
+    let upstream = format!("{remote}/{branch}");
 
     upstream
         .parse()
         .map(Some)
         .map_err(|_| Error::GitCommandFailed(format!("Invalid ref: {upstream}")))
+}
+
+/// Checks if a remote ref exists.
+fn remote_ref_exists(ref_name: &str) -> Result<bool, Error> {
+    let output = cmd_proc::Command::new("git")
+        .arguments(["rev-parse", "--verify", "--quiet", ref_name])
+        .output()?;
+
+    Ok(output.success())
+}
+
+/// Reads the git config.
+fn get_config() -> Result<Vec<ConfigEntry>, Error> {
+    let output = cmd_proc::Command::new("git")
+        .arguments(["config", "--list"])
+        .output()?;
+
+    if !output.success() {
+        let stderr = String::from_utf8(output.stderr)?;
+        return Err(Error::GitCommandFailed(stderr.trim().to_string()));
+    }
+
+    let stdout = String::from_utf8(output.stdout)?;
+
+    stdout
+        .lines()
+        .filter(|line| !line.is_empty())
+        .map(|line| {
+            ConfigEntry::parse(line)
+                .map(|(_, entry)| entry)
+                .map_err(|err| {
+                    Error::GitCommandFailed(format!("Failed to parse config line '{line}': {err}"))
+                })
+        })
+        .collect()
 }
 
 /// Parses a GitHub SSH remote URL.
