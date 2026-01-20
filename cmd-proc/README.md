@@ -2,7 +2,7 @@
 
 A wrapper around `std::process::Command` providing debug logging, stronger input types, and a fluent builder API with automatic exit code checking.
 
-> **Note**: This crate primarily exists to serve the [mbj/mrs](https://github.com/mbj/mrs) monorepo crates. While pre-1.0, the API is subject to change without notice. External use is welcome but not the primary goal.
+> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
 
 ## Why cmd-proc?
 

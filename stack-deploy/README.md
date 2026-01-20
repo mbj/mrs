@@ -1,5 +1,7 @@
 # stack-deploy - CloudFormation Stack Manager
 
+> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
+
 A CLI tool for managing AWS CloudFormation stacks with enhanced workflow support.
 
 ## Features

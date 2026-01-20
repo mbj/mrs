@@ -1,6 +1,6 @@
 # greenhell - GitHub Status Check Aggregator
 
-> **Experimental**: This project is under development. The README describes the planned architecture and features, not all of which are implemented yet.
+> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
 
 A GitHub status check that ensures all commits in a PR pass CI, not just the latest one.
 

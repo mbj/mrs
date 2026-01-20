@@ -1,6 +1,6 @@
 # pg-client - PostgreSQL Client Configuration
 
-**Status: Highly experimental - currently only intended for use within [pg-ephemeral](https://github.com/mbj/mrs/tree/main/pg-ephemeral)**
+> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
 
 A PostgreSQL client configuration library providing strongly-typed connection parameters with accurate representation of PostgreSQL connection options.
 
