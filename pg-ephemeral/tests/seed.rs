@@ -139,43 +139,48 @@ fn test_git_revision_seed() {
     let pg_ephemeral_bin = env!("CARGO_BIN_EXE_pg-ephemeral");
 
     // Start pg-ephemeral integration-server
-    let mut server = std::process::Command::new(pg_ephemeral_bin)
-        .arg("integration-server")
-        .arg("--protocol")
-        .arg("v0")
-        .current_dir(&repo.path)
-        .stdin(std::process::Stdio::piped())
-        .stdout(std::process::Stdio::piped())
-        .stderr(std::process::Stdio::inherit())
+    let mut server = cmd_proc::Command::new(pg_ephemeral_bin)
+        .arguments(["integration-server", "--protocol", "v0"])
+        .working_directory(&repo.path)
         .spawn()
+        .stdin(cmd_proc::Stdio::Piped)
+        .stdout(cmd_proc::Stdio::Piped)
+        .stderr(cmd_proc::Stdio::Inherit)
+        .run()
         .unwrap();
 
     // Read the JSON output with connection details
     use std::io::BufRead;
-    std::io::BufReader::new(server.stdout.as_mut().unwrap())
+    std::io::BufReader::new(server.stdout().unwrap())
         .lines()
         .next()
         .unwrap()
         .unwrap();
 
     // Run psql command to query the data
-    let output = std::process::Command::new(pg_ephemeral_bin)
-        .arg("run-env")
-        .arg("--")
-        .arg("psql")
-        .arg("--csv")
-        .arg("--command=SELECT id FROM users ORDER BY id")
-        .current_dir(&repo.path)
-        .stderr(std::process::Stdio::inherit())
-        .output()
+    let output = cmd_proc::Command::new(pg_ephemeral_bin)
+        .arguments([
+            "run-env",
+            "--",
+            "psql",
+            "--csv",
+            "--command=SELECT id FROM users ORDER BY id",
+        ])
+        .working_directory(&repo.path)
+        .spawn()
+        .stdout(cmd_proc::Stdio::Piped)
+        .stderr(cmd_proc::Stdio::Inherit)
+        .run()
+        .unwrap()
+        .wait_with_output()
         .unwrap();
 
-    assert!(output.status.success(), "psql command failed");
+    assert!(output.success(), "psql command failed");
 
     // Verify we have the data from commit 1 (id=1), not commit 2 (id=2)
-    assert_eq!(String::from_utf8(output.stdout).unwrap().trim(), "id\n1");
+    assert_eq!(output.into_stdout_string().unwrap().trim(), "id\n1");
 
     // Stop the server by closing stdin and wait for it to finish
-    drop(server.stdin.take());
+    drop(server.take_stdin());
     server.wait().unwrap();
 }

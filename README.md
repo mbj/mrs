@@ -31,6 +31,9 @@ A collection of Rust tools for cloud infrastructure, PostgreSQL, Git, and GitHub
 ### Git
 - [**wtt**](wtt/) - Work Tree Tool - manages git worktrees using bare clones
 
+### Utilities
+- [**cmd-proc**](cmd-proc/) - `std::process::Command` wrapper with debug logging, stronger input types, and automatic exit code checking
+
 ---
 
 By [@mbj](https://github.com/mbj)

@@ -219,20 +219,23 @@ fn test_config_ssl() {
 
 #[tokio::test]
 async fn test_run_env() {
+    const DATABASE_URL: cmd_proc::EnvVariableName<'static> =
+        cmd_proc::EnvVariableName::from_static("DATABASE_URL");
+
     let backend = ociman::test_backend_setup!();
 
     common::test_definition(backend)
         .with_container(async |container| {
             // Use sh -c to emit both PG* and DATABASE_URL
-            let output = std::process::Command::new("sh")
-                .arg("-c")
-                .arg("(env | grep '^PG' | sort) && echo DATABASE_URL=$DATABASE_URL")
+            let output = cmd_proc::Command::new("sh")
+                .argument("-c")
+                .argument("(env | grep '^PG' | sort) && echo DATABASE_URL=$DATABASE_URL")
                 .envs(container.pg_env())
-                .env("DATABASE_URL", container.database_url())
+                .env(&DATABASE_URL, container.database_url())
                 .output()
                 .unwrap();
 
-            let actual = String::from_utf8(output.stdout).unwrap();
+            let actual = output.into_stdout_string().unwrap();
 
             // Generate expected output from config
             let pg_env = container.pg_env();

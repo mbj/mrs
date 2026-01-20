@@ -1,7 +1,15 @@
+use cmd_proc::EnvVariableName;
 use flate2::{Compression, write::GzEncoder};
 use indoc::formatdoc;
 use sha2::{Digest, Sha256};
 use std::path::{Path, PathBuf};
+
+const ENV_PG_EPHEMERAL_GEMSPEC_CONFIG: EnvVariableName =
+    EnvVariableName::from_static("PG_EPHEMERAL_GEMSPEC_CONFIG");
+const ENV_PG_EPHEMERAL_GEM_SOURCE: EnvVariableName =
+    EnvVariableName::from_static("PG_EPHEMERAL_GEM_SOURCE");
+const ENV_EXPECTED_PG_EPHEMERAL_VERSION: EnvVariableName =
+    EnvVariableName::from_static("EXPECTED_PG_EPHEMERAL_VERSION");
 
 fn ruby_version() -> String {
     let version = pg_ephemeral::version();
@@ -309,7 +317,7 @@ fn create_edge_release() {
         .unwrap_or_else(|error| panic!("Failed to get current directory: {error}"));
 
     // Get git commit SHA
-    let sha = ociman::Command::new("git")
+    let sha = cmd_proc::Command::new("git")
         .arguments(["rev-parse", "HEAD"])
         .stdout()
         .string()
@@ -318,7 +326,7 @@ fn create_edge_release() {
         .to_string();
 
     // Get current branch name
-    let branch = ociman::Command::new("git")
+    let branch = cmd_proc::Command::new("git")
         .arguments(["rev-parse", "--abbrev-ref", "HEAD"])
         .stdout()
         .string()
@@ -376,7 +384,7 @@ fn create_edge_release() {
         release_files.len()
     );
 
-    ociman::Command::new("gh")
+    cmd_proc::Command::new("gh")
         .arguments(
             arguments
                 .iter()
@@ -575,7 +583,7 @@ fn build_integrations(no_compile: bool) {
     if no_compile {
         log::info!("Skipping compilation (--no-compile flag set)");
     } else {
-        ociman::Command::new("cargo")
+        cmd_proc::Command::new("cargo")
             .arguments([
                 "build",
                 "--release",
@@ -672,11 +680,11 @@ fn build_integrations(no_compile: bool) {
     log::info!("Building gem");
     if platform.is_macos() {
         log::info!("Using native gem build for macOS");
-        ociman::Command::new("gem")
+        cmd_proc::Command::new("gem")
             .argument("build")
             .argument("pg-ephemeral.gemspec")
             .working_directory(&build_staging)
-            .env("PG_EPHEMERAL_GEMSPEC_CONFIG", &gemspec_config_json)
+            .env(&ENV_PG_EPHEMERAL_GEMSPEC_CONFIG, &gemspec_config_json)
             .status()
             .unwrap_or_else(|error| panic!("Failed to build gem: {error}"));
     } else {
@@ -741,7 +749,7 @@ fn build_integrations(no_compile: bool) {
 
     // Generate gem index for local gem source
     log::info!("Generating gem index in: {}", dist_root.display());
-    ociman::Command::new("gem")
+    cmd_proc::Command::new("gem")
         .arguments(["generate_index", "--directory", dist_root.to_str().unwrap()])
         .status()
         .unwrap_or_else(|error| panic!("Failed to generate gem index: {error}"));
@@ -859,7 +867,7 @@ fn merge_gems() {
 
     // Generate gem index for the unified repository
     log::info!("Generating gem index in: {}", dist_root.display());
-    ociman::Command::new("gem")
+    cmd_proc::Command::new("gem")
         .arguments(["generate_index", "--directory", dist_root.to_str().unwrap()])
         .status()
         .unwrap_or_else(|error| panic!("Failed to generate gem index: {error}"));
@@ -901,7 +909,7 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
             "/usr/local/opt/libpq/bin/pg_config"
         };
 
-        ociman::Command::new("bundle")
+        cmd_proc::Command::new("bundle")
             .arguments([
                 "config",
                 "--local",
@@ -914,15 +922,15 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
     }
 
     log::info!("Running bundle install with Gemfile.acceptance");
-    ociman::Command::new("bundle")
+    cmd_proc::Command::new("bundle")
         .arguments(["install", "--gemfile=Gemfile.acceptance"])
         .working_directory(&integration_directory)
-        .env("PG_EPHEMERAL_GEM_SOURCE", &gem_source_url)
+        .env(&ENV_PG_EPHEMERAL_GEM_SOURCE, &gem_source_url)
         .status()
         .unwrap_or_else(|error| panic!("Failed to run bundle install: {error}"));
 
     log::info!("Running RSpec acceptance tests");
-    ociman::Command::new("bundle")
+    cmd_proc::Command::new("bundle")
         .arguments([
             "exec",
             "--gemfile=Gemfile.acceptance",
@@ -930,8 +938,8 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
             "spec/integration",
         ])
         .working_directory(&integration_directory)
-        .env("EXPECTED_PG_EPHEMERAL_VERSION", &ruby_version)
-        .env("PG_EPHEMERAL_GEM_SOURCE", &gem_source_url)
+        .env(&ENV_EXPECTED_PG_EPHEMERAL_VERSION, &ruby_version)
+        .env(&ENV_PG_EPHEMERAL_GEM_SOURCE, &gem_source_url)
         .status()
         .unwrap_or_else(|error| panic!("RSpec acceptance tests failed: {error}"));
 
@@ -939,7 +947,7 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
     log::info!("Copying pg-ephemeral binary from installed gem");
 
     // Get gem path using bundler
-    let gem_dir = ociman::Command::new("bundle")
+    let gem_dir = cmd_proc::Command::new("bundle")
         .arguments([
             "exec",
             "--gemfile=Gemfile.acceptance",
@@ -948,7 +956,7 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
             "puts Gem::Specification.find_by_name('pg-ephemeral').gem_dir",
         ])
         .working_directory(&integration_directory)
-        .env("PG_EPHEMERAL_GEM_SOURCE", &gem_source_url)
+        .env(&ENV_PG_EPHEMERAL_GEM_SOURCE, &gem_source_url)
         .stdout()
         .string()
         .unwrap_or_else(|error| panic!("Failed to get gem path: {error}"))
@@ -1011,7 +1019,7 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
 
     // Run bundle install
     log::info!("Running bundle install");
-    ociman::Command::new("bundle")
+    cmd_proc::Command::new("bundle")
         .arguments(["install"])
         .working_directory(&integration_directory)
         .status()
@@ -1019,10 +1027,10 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
 
     // Run RSpec tests
     log::info!("Running RSpec tests");
-    ociman::Command::new("bundle")
+    cmd_proc::Command::new("bundle")
         .arguments(["exec", "rspec"])
         .working_directory(&integration_directory)
-        .env("EXPECTED_PG_EPHEMERAL_VERSION", &ruby_version)
+        .env(&ENV_EXPECTED_PG_EPHEMERAL_VERSION, &ruby_version)
         .status()
         .unwrap_or_else(|error| panic!("RSpec tests failed: {error}"));
 
@@ -1030,10 +1038,10 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
     match ociman::platform::support() {
         Ok(()) => {
             log::info!("Running Mutant tests");
-            ociman::Command::new("bundle")
+            cmd_proc::Command::new("bundle")
                 .arguments(["exec", "mutant", "run"])
                 .working_directory(&integration_directory)
-                .env("EXPECTED_PG_EPHEMERAL_VERSION", &ruby_version)
+                .env(&ENV_EXPECTED_PG_EPHEMERAL_VERSION, &ruby_version)
                 .status()
                 .unwrap_or_else(|error| panic!("Mutant tests failed: {error}"));
         }
@@ -1067,7 +1075,7 @@ fn publish_gems(push: bool) {
         .unwrap_or_else(|error| panic!("Failed to get current directory: {error}"));
 
     // Get git commit SHA
-    let sha = ociman::Command::new("git")
+    let sha = cmd_proc::Command::new("git")
         .arguments(["rev-parse", "HEAD"])
         .stdout()
         .string()
@@ -1095,7 +1103,7 @@ fn publish_gems(push: bool) {
     log::info!("Downloading artifacts from edge release {release_tag}");
 
     // Download all artifacts from the edge release
-    ociman::Command::new("gh")
+    cmd_proc::Command::new("gh")
         .arguments([
             "release",
             "download",
@@ -1137,21 +1145,19 @@ fn publish_gems(push: bool) {
 
     // Publish each gem
     for gem_path in &gems_to_publish {
-        let mut command = std::process::Command::new("gem");
-        command.args(["push", gem_path.to_str().unwrap()]);
+        let gem_path_str = gem_path.to_str().unwrap();
 
         if push {
             log::info!("Pushing gem: {}", gem_path.display());
-            let status = command
+            cmd_proc::Command::new("gem")
+                .arguments(["push", gem_path_str])
                 .status()
-                .unwrap_or_else(|error| panic!("Failed to execute gem push: {error}"));
-
-            if !status.success() {
-                panic!("Failed to push gem: {}", gem_path.display());
-            }
+                .unwrap_or_else(|error| {
+                    panic!("Failed to push gem {}: {error}", gem_path.display())
+                });
             log::info!("Successfully pushed: {}", gem_path.display());
         } else {
-            log::info!("[DRY-RUN] Would execute: {command:?}");
+            log::info!("[DRY-RUN] Would execute: gem push {gem_path_str}");
         }
     }
 
@@ -1329,7 +1335,7 @@ fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error::Error
 
     // Format generated code
     log::info!("Running cargo fmt on stratosphere");
-    ociman::Command::new("cargo")
+    cmd_proc::Command::new("cargo")
         .arguments(["fmt", "--package", "stratosphere"])
         .working_directory(&workspace_root)
         .status()
@@ -1337,7 +1343,7 @@ fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error::Error
 
     if reject_dirty {
         log::info!("Checking for uncommitted changes");
-        let status = ociman::Command::new("git")
+        let status = cmd_proc::Command::new("git")
             .arguments(["status", "--porcelain"])
             .working_directory(&workspace_root)
             .stdout()
