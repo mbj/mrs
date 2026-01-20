@@ -5,6 +5,7 @@ name = "mhttp"
 version = "0.0.1"
 description = "Minimal HTTP client abstraction with typed requests and response decoders"
 license = "MIT"
+readme = "README.md"
 repository = "https://github.com/mbj/mrs/tree/main/mhttp"
 homepage = "https://github.com/mbj/mrs/tree/main/mhttp"
 keywords = ["http", "client", "api"]
