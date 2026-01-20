@@ -8,10 +8,11 @@ const ENV_GH_TOKEN: &str = "ghp_fromGhTokenEnv12345678901234567890";
 const ENV_GITHUB_TOKEN: &str = "ghp_fromGithubTokenEnv123456789012345";
 
 const GH_TOKEN: cmd_proc::EnvVariableName<'static> =
-    cmd_proc::EnvVariableName::from_static("GH_TOKEN");
+    cmd_proc::EnvVariableName::from_static_or_panic("GH_TOKEN");
 const GITHUB_TOKEN: cmd_proc::EnvVariableName<'static> =
-    cmd_proc::EnvVariableName::from_static("GITHUB_TOKEN");
-const PATH: cmd_proc::EnvVariableName<'static> = cmd_proc::EnvVariableName::from_static("PATH");
+    cmd_proc::EnvVariableName::from_static_or_panic("GITHUB_TOKEN");
+const PATH: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PATH");
 
 fn binary_path() -> std::path::PathBuf {
     env!("CARGO_BIN_EXE_greenhell").into()

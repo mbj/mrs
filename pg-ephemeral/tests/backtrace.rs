@@ -1,5 +1,5 @@
 const RUST_BACKTRACE: cmd_proc::EnvVariableName<'static> =
-    cmd_proc::EnvVariableName::from_static("RUST_BACKTRACE");
+    cmd_proc::EnvVariableName::from_static_or_panic("RUST_BACKTRACE");
 
 #[test]
 fn test_backtrace_contains_file_paths() {

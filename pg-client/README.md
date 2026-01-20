@@ -60,7 +60,7 @@ enum Endpoint {
 
 A single `Config` can be converted to:
 
-- PostgreSQL environment variables (`to_pg_env()`) - `PGHOST`, `PGPORT`, `PGDATABASE`, etc.
+- PostgreSQL environment variables (`to_pg_env()`) - returns `BTreeMap<EnvVariableName, String>` with keys like `pg_client::PGHOST`, `pg_client::PGPORT`, `pg_client::PGDATABASE`
 - PostgreSQL connection URL (`to_url()`)
 - `sqlx::postgres::PgConnectOptions` (`to_sqlx_connect_options()`)
 - JSON (via serde)

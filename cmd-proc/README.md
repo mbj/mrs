@@ -75,7 +75,7 @@ let output = Command::new("cat")
     .string()?;
 
 // Set environment variables (compile-time validated)
-const MY_VAR: EnvVariableName = EnvVariableName::from_static("MY_VAR");
+const MY_VAR: EnvVariableName = EnvVariableName::from_static_or_panic("MY_VAR");
 Command::new("sh")
     .arguments(["-c", "echo $MY_VAR"])
     .env(&MY_VAR, "value")
@@ -180,25 +180,28 @@ Environment variable names are validated via `EnvVariableName`:
 - **Cannot be empty** - an empty name is meaningless
 - **Cannot contain `=`** - the OS uses `=` as separator between name and value; a name containing `=` corrupts the environment block
 
-`std::process::Command::env()` silently accepts invalid names, causing mysterious runtime failures. `EnvVariableName` catches errors at compile time (`from_static`) or parse time (`FromStr`).
+`std::process::Command::env()` silently accepts invalid names, causing mysterious runtime failures. `EnvVariableName` catches errors at compile time (when `from_static_or_panic` is used in a `const` context) or parse time (`FromStr`).
 
 ```rust
 use cmd_proc::{Command, EnvVariableName};
 
 // Compile-time validated (panics at compile time if invalid)
-const MY_VAR: EnvVariableName = EnvVariableName::from_static("MY_VAR");
+const MY_VAR: EnvVariableName = EnvVariableName::from_static_or_panic("MY_VAR");
 Command::new("sh")
     .env(&MY_VAR, "value")
     .status()?;
 
 // Set multiple variables from an iterator
-let vars = [("FOO", "1"), ("BAR", "2")];
+let vars = [
+    (EnvVariableName::from_static_or_panic("FOO"), "1"),
+    (EnvVariableName::from_static_or_panic("BAR"), "2"),
+];
 Command::new("sh")
     .envs(vars)
     .status()?;
 
 // Remove a variable from the child environment
-const PATH: EnvVariableName = EnvVariableName::from_static("PATH");
+const PATH: EnvVariableName = EnvVariableName::from_static_or_panic("PATH");
 Command::new("sh")
     .env_remove(&PATH)
     .status()?;

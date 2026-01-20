@@ -220,7 +220,7 @@ fn test_config_ssl() {
 #[tokio::test]
 async fn test_run_env() {
     const DATABASE_URL: cmd_proc::EnvVariableName<'static> =
-        cmd_proc::EnvVariableName::from_static("DATABASE_URL");
+        cmd_proc::EnvVariableName::from_static_or_panic("DATABASE_URL");
 
     let backend = ociman::test_backend_setup!();
 
