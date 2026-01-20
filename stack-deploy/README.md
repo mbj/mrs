@@ -59,7 +59,3 @@ When updating or syncing stacks, you can control the change set review behavior:
 ## Integration
 
 Works seamlessly with the [stratosphere](https://github.com/mbj/mrs/tree/main/stratosphere) library for type-safe CloudFormation template generation.
-
-## License
-
-Part of the [mrs](https://github.com/mbj/mrs) collection by [@mbj](https://github.com/mbj)

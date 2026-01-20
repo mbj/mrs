@@ -24,7 +24,3 @@ This configuration provides:
 - Cross-platform consistency
 
 The Ruby gem includes both the binary and its debug info files to ensure useful panic backtraces in production.
-
-## License
-
-See workspace root for license information.

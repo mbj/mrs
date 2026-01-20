@@ -139,7 +139,3 @@ The official GitHub App name is `greenhell-bot`. Three integration options are s
 ## Future Improvements
 
 - **Stale webhook detection**: When GitHub recovers from an outage, it delivers a backlog of webhooks that were queued during downtime. Due to the hybrid architecture, this does not cause functional problems - the scheduled reconciliation ensures correctness regardless. However, it creates excessive API call volumes. We will detect and ignore stale webhooks in the future.
-
-## License
-
-See workspace root for license information.

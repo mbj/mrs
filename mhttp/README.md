@@ -204,7 +204,3 @@ TestRequest {
     body: None,
 }.assert(&GetUser { username: "octocat".to_string() }, &base_url);
 ```
-
-## License
-
-MIT
