@@ -70,7 +70,7 @@ fn run_and_wait_status(
 /// Validated environment variable name.
 ///
 /// Ensures the name is non-empty and does not contain `=`.
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub struct EnvVariableName<'a>(Cow<'a, str>);
 
 impl EnvVariableName<'_> {
@@ -86,24 +86,29 @@ impl AsRef<OsStr> for EnvVariableName<'_> {
     }
 }
 
+impl std::fmt::Display for EnvVariableName<'_> {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        formatter.write_str(self.as_str())
+    }
+}
+
 impl EnvVariableName<'static> {
-    /// Compile-time validated environment variable name.
+    /// Validated environment variable name for `'static` inputs.
     ///
     /// # Panics
     ///
-    /// Panics at compile time if the name is empty or contains `=`.
+    /// Panics at compile time when used in a `const` context, or at runtime otherwise,
+    /// if the name is empty or contains `=`.
     #[must_use]
-    pub const fn from_static(s: &'static str) -> Self {
-        if s.is_empty() {
-            panic!("Environment variable name cannot be empty");
-        }
-        let bytes = s.as_bytes();
-        let mut i = 0;
-        while i < bytes.len() {
-            if bytes[i] == b'=' {
+    pub const fn from_static_or_panic(s: &'static str) -> Self {
+        match validate_env_variable_name(s) {
+            Ok(()) => {}
+            Err(EnvVariableNameError::Empty) => {
+                panic!("Environment variable name cannot be empty");
+            }
+            Err(EnvVariableNameError::ContainsEquals) => {
                 panic!("Environment variable name cannot contain '='");
             }
-            i += 1;
         }
         Self(Cow::Borrowed(s))
     }
@@ -121,14 +126,24 @@ impl std::str::FromStr for EnvVariableName<'static> {
     type Err = EnvVariableNameError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        if s.is_empty() {
-            return Err(EnvVariableNameError::Empty);
-        }
-        if s.contains('=') {
+        validate_env_variable_name(s).map(|()| Self(Cow::Owned(s.to_string())))
+    }
+}
+
+const fn validate_env_variable_name(s: &str) -> Result<(), EnvVariableNameError> {
+    if s.is_empty() {
+        return Err(EnvVariableNameError::Empty);
+    }
+    let bytes = s.as_bytes();
+    let mut i = 0;
+    // Iterator helpers are not const-stable yet; use a manual loop.
+    while i < bytes.len() {
+        if bytes[i] == b'=' {
             return Err(EnvVariableNameError::ContainsEquals);
         }
-        Ok(Self(Cow::Owned(s.to_string())))
+        i += 1;
     }
+    Ok(())
 }
 
 /// Output from a command execution, including both streams and exit status.
@@ -440,13 +455,14 @@ impl Command {
         self
     }
 
-    pub fn envs<I, K, V>(mut self, vars: I) -> Self
+    pub fn envs<'a, I, V>(mut self, vars: I) -> Self
     where
-        I: IntoIterator<Item = (K, V)>,
-        K: AsRef<OsStr>,
+        I: IntoIterator<Item = (EnvVariableName<'a>, V)>,
         V: AsRef<OsStr>,
     {
-        self.inner.envs(vars);
+        for (key, val) in vars {
+            self.inner.env(key, val);
+        }
         self
     }
 
@@ -673,8 +689,8 @@ mod tests {
     }
 
     #[test]
-    fn test_env_variable_name_from_static() {
-        const NAME: EnvVariableName<'static> = EnvVariableName::from_static("PATH");
+    fn test_env_variable_name_from_static_or_panic() {
+        const NAME: EnvVariableName<'static> = EnvVariableName::from_static_or_panic("PATH");
         assert_eq!(NAME.as_str(), "PATH");
     }
 

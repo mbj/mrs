@@ -1,5 +1,8 @@
 use indoc::indoc;
 
+const ENV_TEST_VAR: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("TEST_VAR");
+
 /// Helper function to create a Definition with .remove() automatically set
 /// to prevent container leaks in tests.
 fn test_definition(
@@ -36,7 +39,7 @@ fn test_container_with_env_vars() {
     let definition = test_definition(&backend, "alpine:latest".parse().unwrap())
         .entrypoint("sh")
         .arguments(["-c", "echo $TEST_VAR"])
-        .environment_variable("TEST_VAR", "test_value");
+        .environment_variable(ENV_TEST_VAR, "test_value");
 
     let output = definition.run_capture_only_stdout();
     let stdout = std::str::from_utf8(&output).expect("invalid utf8 in output");

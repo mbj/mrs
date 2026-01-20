@@ -400,6 +400,25 @@ pub struct Config {
     pub username: Username,
 }
 
+pub const PGAPPNAME: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PGAPPNAME");
+pub const PGDATABASE: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PGDATABASE");
+pub const PGHOST: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PGHOST");
+pub const PGHOSTADDR: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PGHOSTADDR");
+pub const PGPASSWORD: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PGPASSWORD");
+pub const PGPORT: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PGPORT");
+pub const PGSSLMODE: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PGSSLMODE");
+pub const PGSSLROOTCERT: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PGSSLROOTCERT");
+pub const PGUSER: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PGUSER");
+
 impl serde::Serialize for Config {
     fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
         use serde::ser::SerializeStruct;
@@ -617,11 +636,11 @@ impl Config {
     /// };
     ///
     /// let expected = BTreeMap::from([
-    ///     ("PGDATABASE", "some-database".to_string()),
-    ///     ("PGHOST", "some-host".to_string()),
-    ///     ("PGPORT", "5432".to_string()),
-    ///     ("PGSSLMODE", "verify-full".to_string()),
-    ///     ("PGUSER", "some-username".to_string()),
+    ///     (PGDATABASE, "some-database".to_string()),
+    ///     (PGHOST, "some-host".to_string()),
+    ///     (PGPORT, "5432".to_string()),
+    ///     (PGSSLMODE, "verify-full".to_string()),
+    ///     (PGUSER, "some-username".to_string()),
     /// ]);
     ///
     /// assert_eq!(expected, config.to_pg_env());
@@ -639,21 +658,23 @@ impl Config {
     /// };
     ///
     /// let expected = BTreeMap::from([
-    ///     ("PGAPPNAME", "some-app".to_string()),
-    ///     ("PGDATABASE", "some-database".to_string()),
-    ///     ("PGHOST", "some-host".to_string()),
-    ///     ("PGHOSTADDR", "127.0.0.1".to_string()),
-    ///     ("PGPASSWORD", "some-password".to_string()),
-    ///     ("PGPORT", "5432".to_string()),
-    ///     ("PGSSLMODE", "verify-full".to_string()),
-    ///     ("PGSSLROOTCERT", "/some.pem".to_string()),
-    ///     ("PGUSER", "some-username".to_string()),
+    ///     (PGAPPNAME, "some-app".to_string()),
+    ///     (PGDATABASE, "some-database".to_string()),
+    ///     (PGHOST, "some-host".to_string()),
+    ///     (PGHOSTADDR, "127.0.0.1".to_string()),
+    ///     (PGPASSWORD, "some-password".to_string()),
+    ///     (PGPORT, "5432".to_string()),
+    ///     (PGSSLMODE, "verify-full".to_string()),
+    ///     (PGSSLROOTCERT, "/some.pem".to_string()),
+    ///     (PGUSER, "some-username".to_string()),
     /// ]);
     ///
     /// assert_eq!(expected, config_with_optionals.to_pg_env());
     /// ```
     #[must_use]
-    pub fn to_pg_env(&self) -> std::collections::BTreeMap<&'static str, String> {
+    pub fn to_pg_env(
+        &self,
+    ) -> std::collections::BTreeMap<cmd_proc::EnvVariableName<'static>, String> {
         let mut map = std::collections::BTreeMap::new();
 
         match &self.endpoint {
@@ -662,17 +683,17 @@ impl Config {
                 host_addr,
                 port,
             } => {
-                map.insert("PGHOST", host.pg_env_value());
+                map.insert(PGHOST.clone(), host.pg_env_value());
                 if let Some(port) = port {
-                    map.insert("PGPORT", port.pg_env_value());
+                    map.insert(PGPORT.clone(), port.pg_env_value());
                 }
                 if let Some(addr) = host_addr {
-                    map.insert("PGHOSTADDR", addr.to_string());
+                    map.insert(PGHOSTADDR.clone(), addr.to_string());
                 }
             }
             Endpoint::SocketPath(path) => {
                 map.insert(
-                    "PGHOST",
+                    PGHOST.clone(),
                     path.to_str()
                         .expect("socket path contains invalid utf8")
                         .to_string(),
@@ -680,20 +701,20 @@ impl Config {
             }
         }
 
-        map.insert("PGSSLMODE", self.ssl_mode.pg_env_value());
-        map.insert("PGUSER", self.username.pg_env_value());
-        map.insert("PGDATABASE", self.database.pg_env_value());
+        map.insert(PGSSLMODE.clone(), self.ssl_mode.pg_env_value());
+        map.insert(PGUSER.clone(), self.username.pg_env_value());
+        map.insert(PGDATABASE.clone(), self.database.pg_env_value());
 
         if let Some(application_name) = &self.application_name {
-            map.insert("PGAPPNAME", application_name.pg_env_value());
+            map.insert(PGAPPNAME.clone(), application_name.pg_env_value());
         }
 
         if let Some(password) = &self.password {
-            map.insert("PGPASSWORD", password.pg_env_value());
+            map.insert(PGPASSWORD.clone(), password.pg_env_value());
         }
 
         if let Some(ssl_root_cert) = &self.ssl_root_cert {
-            map.insert("PGSSLROOTCERT", ssl_root_cert.pg_env_value());
+            map.insert(PGSSLROOTCERT.clone(), ssl_root_cert.pg_env_value());
         }
 
         map

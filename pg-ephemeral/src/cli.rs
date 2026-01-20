@@ -359,7 +359,7 @@ impl Command {
 
 async fn host_psql(container: &crate::container::Container) -> Result<(), cmd_proc::CommandError> {
     cmd_proc::Command::new("psql")
-        .envs(container.client_config.to_pg_env())
+        .envs(container.pg_env())
         .status()
 }
 
