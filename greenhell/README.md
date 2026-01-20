@@ -1,6 +1,6 @@
 # greenhell - GitHub Status Check Aggregator
 
-> **Experimental**: This project is under development. The README describes the planned architecture and features, not all of which are implemented yet.
+> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
 
 A GitHub status check that ensures all commits in a PR pass CI, not just the latest one.
 
@@ -139,7 +139,3 @@ The official GitHub App name is `greenhell-bot`. Three integration options are s
 ## Future Improvements
 
 - **Stale webhook detection**: When GitHub recovers from an outage, it delivers a backlog of webhooks that were queued during downtime. Due to the hybrid architecture, this does not cause functional problems - the scheduled reconciliation ensures correctness regardless. However, it creates excessive API call volumes. We will detect and ignore stale webhooks in the future.
-
-## License
-
-See workspace root for license information.

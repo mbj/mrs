@@ -1,6 +1,6 @@
-# pg-client
+# pg-client - PostgreSQL Client Configuration
 
-**Status: Highly experimental - currently only intended for use within [pg-ephemeral](../pg-ephemeral)**
+> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
 
 A PostgreSQL client configuration library providing strongly-typed connection parameters with accurate representation of PostgreSQL connection options.
 
@@ -84,7 +84,3 @@ When parsing connection URLs without an explicit `sslmode` parameter, this libra
 libpq's `prefer` mode attempts TLS but silently falls back to unencrypted connections if TLS fails, providing no protection against downgrade attacks. This default made sense in 1996 when PostgreSQL was primarily used on trusted networks, but is inappropriate for modern deployments where databases are frequently accessed over untrusted networks.
 
 By defaulting to `verify-full`, connections require TLS with full certificate verification. Applications that explicitly need weaker security can specify `sslmode=prefer` or `sslmode=disable` in their connection URLs.
-
-## License
-
-MIT

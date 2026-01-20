@@ -1,4 +1,6 @@
-# stratosphere-core
+# stratosphere-core - CloudFormation Core Types
+
+> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
 
 Core types and utilities for stratosphere - a type-safe CloudFormation template generation library.
 

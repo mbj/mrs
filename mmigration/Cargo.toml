@@ -2,6 +2,7 @@
 name = "mmigration"
 version = "0.0.1"
 edition.workspace = true
+readme = "README.md"
 
 [lints]
 workspace = true

@@ -1,4 +1,6 @@
-# stratosphere
+# stratosphere - CloudFormation Template Generator
+
+> **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
 
 Type-safe CloudFormation template generation library for Rust.
 
