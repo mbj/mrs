@@ -221,7 +221,3 @@ match Command::new("might-fail").status() {
     }
 }
 ```
-
-## License
-
-See workspace root for license information.
