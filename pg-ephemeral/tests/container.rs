@@ -1,5 +1,12 @@
 use std::str::FromStr;
 
+const ENV_POSTGRES_PASSWORD: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("POSTGRES_PASSWORD");
+const ENV_POSTGRES_USER: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("POSTGRES_USER");
+const ENV_PGDATA: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PGDATA");
+
 #[tokio::test]
 async fn test_run_container_definition() {
     if ociman::testing::platform_not_supported() {
@@ -19,9 +26,9 @@ async fn test_run_container_definition() {
             .unwrap(),
     )
     .remove_on_drop()
-    .environment_variable("POSTGRES_PASSWORD", static_password)
-    .environment_variable("POSTGRES_USER", static_username)
-    .environment_variable("PGDATA", pg_ephemeral::container::PGDATA)
+    .environment_variable(ENV_POSTGRES_PASSWORD, static_password)
+    .environment_variable(ENV_POSTGRES_USER, static_username)
+    .environment_variable(ENV_PGDATA, pg_ephemeral::container::PGDATA)
     .publish(ociman::Publish::tcp(5432))
     .run_detached();
 
