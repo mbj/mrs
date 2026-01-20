@@ -5,11 +5,11 @@ use sha2::{Digest, Sha256};
 use std::path::{Path, PathBuf};
 
 const ENV_PG_EPHEMERAL_GEMSPEC_CONFIG: EnvVariableName =
-    EnvVariableName::from_static("PG_EPHEMERAL_GEMSPEC_CONFIG");
+    EnvVariableName::from_static_or_panic("PG_EPHEMERAL_GEMSPEC_CONFIG");
 const ENV_PG_EPHEMERAL_GEM_SOURCE: EnvVariableName =
-    EnvVariableName::from_static("PG_EPHEMERAL_GEM_SOURCE");
+    EnvVariableName::from_static_or_panic("PG_EPHEMERAL_GEM_SOURCE");
 const ENV_EXPECTED_PG_EPHEMERAL_VERSION: EnvVariableName =
-    EnvVariableName::from_static("EXPECTED_PG_EPHEMERAL_VERSION");
+    EnvVariableName::from_static_or_panic("EXPECTED_PG_EPHEMERAL_VERSION");
 
 fn ruby_version() -> String {
     let version = pg_ephemeral::version();
@@ -702,7 +702,7 @@ fn build_integrations(no_compile: bool) {
         )
         .mount(mount)
         .workdir("/build")
-        .environment_variable("PG_EPHEMERAL_GEMSPEC_CONFIG", &gemspec_config_json)
+        .environment_variable(ENV_PG_EPHEMERAL_GEMSPEC_CONFIG, &gemspec_config_json)
         .entrypoint("gem")
         .arguments(["build", "pg-ephemeral.gemspec"])
         .remove()

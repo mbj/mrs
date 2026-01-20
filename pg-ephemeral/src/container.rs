@@ -7,6 +7,20 @@ use crate::certificate;
 use crate::definition;
 
 pub const PGDATA: &str = "/var/lib/pg-ephemeral";
+const ENV_POSTGRES_PASSWORD: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("POSTGRES_PASSWORD");
+const ENV_POSTGRES_USER: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("POSTGRES_USER");
+const ENV_PGDATA: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PGDATA");
+const ENV_PG_EPHEMERAL_SSL_DIR: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PG_EPHEMERAL_SSL_DIR");
+const ENV_PG_EPHEMERAL_CA_CERT_PEM: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PG_EPHEMERAL_CA_CERT_PEM");
+const ENV_PG_EPHEMERAL_SERVER_CERT_PEM: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PG_EPHEMERAL_SERVER_CERT_PEM");
+const ENV_PG_EPHEMERAL_SERVER_KEY_PEM: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PG_EPHEMERAL_SERVER_KEY_PEM");
 
 const SSL_SETUP_SCRIPT: &str = r#"
 printf '%s' "$PG_EPHEMERAL_CA_CERT_PEM" > ${PG_EPHEMERAL_SSL_DIR}/root.crt
@@ -54,8 +68,8 @@ impl Container {
 
         let ociman_definition = definition
             .to_ociman_definition()
-            .environment_variable("POSTGRES_PASSWORD", password.as_ref())
-            .environment_variable("POSTGRES_USER", definition.superuser.as_ref());
+            .environment_variable(ENV_POSTGRES_PASSWORD, password.as_ref())
+            .environment_variable(ENV_POSTGRES_USER, definition.superuser.as_ref());
 
         run_container(
             ociman_definition,
@@ -218,7 +232,7 @@ impl Container {
     }
 
     #[must_use]
-    pub fn pg_env(&self) -> std::collections::BTreeMap<&'static str, String> {
+    pub fn pg_env(&self) -> std::collections::BTreeMap<cmd_proc::EnvVariableName<'static>, String> {
         self.client_config.to_pg_env()
     }
 
@@ -266,7 +280,7 @@ fn run_container(
     let mut ociman_definition = ociman_definition
         .stop_on_drop()
         .remove()
-        .environment_variable("PGDATA", "/var/lib/pg-ephemeral")
+        .environment_variable(ENV_PGDATA, "/var/lib/pg-ephemeral")
         .publish(ociman::Publish::tcp(5432).host_ip(host_ip));
 
     let ssl_bundle = if let Some(ssl_config) = ssl_config {
@@ -290,10 +304,10 @@ fn run_container(
             .argument(format!("--ssl_cert_file={ssl_dir}/server.crt"))
             .argument(format!("--ssl_key_file={ssl_dir}/server.key"))
             .argument(format!("--ssl_ca_file={ssl_dir}/root.crt"))
-            .environment_variable("PG_EPHEMERAL_SSL_DIR", ssl_dir)
-            .environment_variable("PG_EPHEMERAL_CA_CERT_PEM", &bundle.ca_cert_pem)
-            .environment_variable("PG_EPHEMERAL_SERVER_CERT_PEM", &bundle.server_cert_pem)
-            .environment_variable("PG_EPHEMERAL_SERVER_KEY_PEM", &bundle.server_key_pem);
+            .environment_variable(ENV_PG_EPHEMERAL_SSL_DIR, ssl_dir)
+            .environment_variable(ENV_PG_EPHEMERAL_CA_CERT_PEM, &bundle.ca_cert_pem)
+            .environment_variable(ENV_PG_EPHEMERAL_SERVER_CERT_PEM, &bundle.server_cert_pem)
+            .environment_variable(ENV_PG_EPHEMERAL_SERVER_KEY_PEM, &bundle.server_key_pem);
 
         Some(bundle)
     } else {

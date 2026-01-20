@@ -127,7 +127,7 @@ impl TestGitRepo {
             .unwrap();
 
         const GIT_COMMITTER_DATE: cmd_proc::EnvVariableName<'static> =
-            cmd_proc::EnvVariableName::from_static("GIT_COMMITTER_DATE");
+            cmd_proc::EnvVariableName::from_static_or_panic("GIT_COMMITTER_DATE");
 
         cmd_proc::Command::new("git")
             .arguments([
