@@ -1,5 +1,6 @@
 use crate::resource_specification::ResourceTypeName;
 use crate::value;
+use crate::value::ConditionName;
 
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd, serde::Serialize)]
 pub struct LogicalResourceName(pub String);
@@ -181,6 +182,11 @@ pub struct OutputExport {
 pub struct Template<'a> {
     #[serde(rename = "AWSTemplateFormatVersion")]
     version: Version,
+    #[serde(
+        rename = "Conditions",
+        skip_serializing_if = "std::collections::BTreeMap::is_empty"
+    )]
+    conditions: std::collections::BTreeMap<ConditionName, value::ExpBool>,
     #[serde(rename = "Description", skip_serializing_if = "Option::is_none")]
     description: Option<String>,
     #[serde(
@@ -212,6 +218,7 @@ impl Template<'_> {
     #[must_use]
     pub fn new() -> Self {
         Self {
+            conditions: std::collections::BTreeMap::new(),
             description: None,
             mappings: std::collections::BTreeMap::new(),
             outputs: std::collections::BTreeMap::new(),
@@ -264,6 +271,21 @@ impl Template<'_> {
         }
 
         parameter_key
+    }
+
+    pub fn condition(
+        &mut self,
+        condition_name: impl Into<ConditionName>,
+        condition: value::ExpBool,
+    ) -> ConditionName {
+        let condition_name = condition_name.into();
+
+        match self.conditions.insert(condition_name.clone(), condition) {
+            None => condition_name,
+            Some(_existing) => {
+                panic!("Condition with name: {condition_name:?} already exists")
+            }
+        }
     }
 
     pub fn parameter_(
