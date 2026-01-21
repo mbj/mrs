@@ -1,7 +1,7 @@
 use crate::{Config, Database, Endpoint, Host, Password, Port, SslMode, SslRootCert, Username};
 use percent_encoding::percent_decode_str;
 use std::borrow::Cow;
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum ParseError {
@@ -9,12 +9,16 @@ pub enum ParseError {
     InvalidUrl(#[from] ::url::ParseError),
     #[error("Invalid URL scheme: expected 'postgres' or 'postgresql', got '{0}'")]
     InvalidScheme(String),
+    #[error("Invalid URL fragment: '{0}'")]
+    InvalidFragment(String),
     #[error("Missing host in URL")]
     MissingHost,
     #[error("Missing required parameter '{0}' in URL")]
     MissingParameter(&'static str),
     #[error("Parameter '{0}' specified in both URL and query string")]
     ConflictingParameter(&'static str),
+    #[error("Unknown query parameter: '{0}'")]
+    InvalidQueryParameter(String),
     #[error("Invalid username: {0}")]
     InvalidUsername(String),
     #[error("Invalid password: {0}")]
@@ -29,6 +33,10 @@ pub enum ParseError {
     InvalidSslMode(String),
     #[error("Invalid application_name: {0}")]
     InvalidApplicationName(String),
+    #[error("Invalid channel binding: {0}")]
+    InvalidChannelBinding(String),
+    #[error("Unsupported parameter for this connection type: '{0}'")]
+    UnsupportedParameter(&'static str),
 }
 
 /// Parse a PostgreSQL connection URL into a Config.
@@ -56,6 +64,7 @@ pub enum ParseError {
 /// - `sslrootcert`: Path to SSL root certificate or "system"
 /// - `application_name`: Application name
 /// - `hostaddr`: IP address for the host
+/// - `pgchannelbinding`: Channel binding (disable, prefer, require)
 /// - `host`: Socket path (when URL has no host component)
 /// - `user`: Username (when URL has no username component)
 /// - `dbname`: Database name (when URL has no path component)
@@ -86,18 +95,23 @@ pub fn parse(url: &::url::Url) -> Result<Config, ParseError> {
         return Err(ParseError::InvalidScheme(scheme.to_string()));
     }
 
+    if let Some(fragment) = url.fragment() {
+        return Err(ParseError::InvalidFragment(fragment.to_string()));
+    }
+
     let query_pairs: BTreeMap<_, _> = url.query_pairs().collect();
+    let mut query_params = QueryParams::new(&query_pairs);
 
     // Resolve host - check for conflicts between URL host and query param host
     let url_host = url.host();
-    let query_host = query_pairs.get("host").map(AsRef::as_ref);
+    let query_host = query_params.take("host");
 
     let (endpoint, username, password, database) = match (url_host, query_host) {
         (Some(_), Some(_)) => return Err(ParseError::ConflictingParameter("host")),
-        (Some(url_host), None) => parse_network_connection(url_host, url, &query_pairs)?,
+        (Some(url_host), None) => parse_network_connection(url_host, url, &mut query_params)?,
         (None, Some(host)) => {
             if host.starts_with('/') || host.starts_with('@') {
-                parse_socket_connection(host, &query_pairs)?
+                parse_socket_connection(host, &mut query_params)?
             } else {
                 return Err(ParseError::InvalidHost(
                     "query host must be a socket path (start with / or @)".to_string(),
@@ -108,7 +122,7 @@ pub fn parse(url: &::url::Url) -> Result<Config, ParseError> {
     };
 
     // Parse sslmode, defaulting to verify-full for secure connections
-    let ssl_mode = match query_pairs.get("sslmode") {
+    let ssl_mode = match query_params.take("sslmode") {
         Some(mode_str) => mode_str
             .parse()
             .map_err(|_| ParseError::InvalidSslMode(mode_str.to_string()))?,
@@ -116,7 +130,7 @@ pub fn parse(url: &::url::Url) -> Result<Config, ParseError> {
     };
 
     // Parse sslrootcert
-    let ssl_root_cert = query_pairs.get("sslrootcert").map(|cert_str| {
+    let ssl_root_cert = query_params.take("sslrootcert").map(|cert_str| {
         if cert_str == "system" {
             SslRootCert::System
         } else {
@@ -125,7 +139,7 @@ pub fn parse(url: &::url::Url) -> Result<Config, ParseError> {
     });
 
     // Parse application_name
-    let application_name = match query_pairs.get("application_name") {
+    let application_name = match query_params.take("application_name") {
         Some(name_str) => Some(
             name_str
                 .parse()
@@ -133,6 +147,10 @@ pub fn parse(url: &::url::Url) -> Result<Config, ParseError> {
         ),
         None => None,
     };
+
+    if let Some(unknown) = query_params.unknown_param() {
+        return Err(ParseError::InvalidQueryParameter((*unknown).to_string()));
+    }
 
     Ok(Config {
         application_name,
@@ -147,21 +165,27 @@ pub fn parse(url: &::url::Url) -> Result<Config, ParseError> {
 
 fn parse_socket_connection<'a>(
     socket_path: &str,
-    query_pairs: &'a BTreeMap<Cow<'a, str>, Cow<'a, str>>,
+    query_params: &mut QueryParams<'a>,
 ) -> Result<(Endpoint, Username, Option<Password>, Database), ParseError> {
-    let username: Username = query_pairs
-        .get("user")
+    for name in ["pgchannelbinding", "hostaddr"] {
+        if query_params.take(name).is_some() {
+            return Err(ParseError::UnsupportedParameter(name));
+        }
+    }
+
+    let username: Username = query_params
+        .take("user")
         .ok_or(ParseError::MissingParameter("user"))?
         .parse()
         .map_err(ParseError::InvalidUsername)?;
 
-    let password: Option<Password> = query_pairs
-        .get("password")
+    let password: Option<Password> = query_params
+        .take("password")
         .map(|value| value.parse().map_err(ParseError::InvalidPassword))
         .transpose()?;
 
-    let database: Database = query_pairs
-        .get("dbname")
+    let database: Database = query_params
+        .take("dbname")
         .ok_or(ParseError::MissingParameter("dbname"))?
         .parse()
         .map_err(ParseError::InvalidDatabase)?;
@@ -174,10 +198,48 @@ fn parse_socket_connection<'a>(
     ))
 }
 
+fn access_field<'a>(
+    name: &'static str,
+    url_value: Option<&'a str>,
+    query_params: &mut QueryParams<'a>,
+) -> Result<Option<&'a str>, ParseError> {
+    let query_value = query_params.take(name);
+    match (url_value, query_value) {
+        (Some(_), Some(_)) => Err(ParseError::ConflictingParameter(name)),
+        (Some(value), None) => Ok(Some(value)),
+        (None, Some(value)) => Ok(Some(value)),
+        (None, None) => Ok(None),
+    }
+}
+
+struct QueryParams<'a> {
+    params: &'a BTreeMap<Cow<'a, str>, Cow<'a, str>>,
+    remaining: BTreeSet<&'a str>,
+}
+
+impl<'a> QueryParams<'a> {
+    fn new(params: &'a BTreeMap<Cow<'a, str>, Cow<'a, str>>) -> Self {
+        let remaining = params.keys().map(|key| key.as_ref()).collect();
+        Self { params, remaining }
+    }
+
+    fn take(&mut self, name: &'static str) -> Option<&'a str> {
+        let value = self.params.get(name).map(|value| value.as_ref());
+        if value.is_some() {
+            self.remaining.remove(name);
+        }
+        value
+    }
+
+    fn unknown_param(&self) -> Option<&&'a str> {
+        self.remaining.iter().next()
+    }
+}
+
 fn parse_network_connection<'a>(
     url_host: ::url::Host<&str>,
     url: &'a ::url::Url,
-    query_pairs: &'a BTreeMap<Cow<'a, str>, Cow<'a, str>>,
+    query_params: &mut QueryParams<'a>,
 ) -> Result<(Endpoint, Username, Option<Password>, Database), ParseError> {
     let host = match url_host {
         ::url::Host::Domain(domain) => domain
@@ -187,7 +249,7 @@ fn parse_network_connection<'a>(
         ::url::Host::Ipv6(ipv6) => Host::IpAddr(ipv6.into()),
     };
 
-    let host_addr = match query_pairs.get("hostaddr") {
+    let host_addr = match query_params.take("hostaddr") {
         Some(addr_str) => Some(
             addr_str
                 .parse()
@@ -196,9 +258,19 @@ fn parse_network_connection<'a>(
         None => None,
     };
 
+    let channel_binding = match query_params.take("pgchannelbinding") {
+        Some(binding_str) => Some(
+            binding_str
+                .parse()
+                .map_err(|_| ParseError::InvalidChannelBinding(binding_str.to_string()))?,
+        ),
+        None => None,
+    };
+
     let port = url.port().map(Port::new);
 
-    let username_encoded = url.username();
+    let username_encoded = access_field("user", Some(url.username()), query_params)?
+        .ok_or(ParseError::MissingParameter("user"))?;
     if username_encoded.is_empty() {
         return Err(ParseError::MissingParameter("user"));
     }
@@ -209,7 +281,7 @@ fn parse_network_connection<'a>(
         .parse()
         .map_err(ParseError::InvalidUsername)?;
 
-    let password = match url.password() {
+    let password = match access_field("password", url.password(), query_params)? {
         Some(password_encoded) => {
             let password_decoded = percent_decode_str(password_encoded)
                 .decode_utf8()
@@ -224,10 +296,12 @@ fn parse_network_connection<'a>(
     };
 
     let path = url.path();
-    let database_encoded = path.strip_prefix('/').unwrap_or(path);
-    if database_encoded.is_empty() {
-        return Err(ParseError::MissingParameter("dbname"));
-    }
+    let database_raw = match path.strip_prefix('/').unwrap_or(path) {
+        "" => None,
+        value => Some(value),
+    };
+    let database_encoded = access_field("dbname", database_raw, query_params)?
+        .ok_or(ParseError::MissingParameter("dbname"))?;
     let database_decoded = percent_decode_str(database_encoded)
         .decode_utf8()
         .map_err(|err| ParseError::InvalidDatabase(err.to_string()))?;
@@ -238,6 +312,7 @@ fn parse_network_connection<'a>(
     Ok((
         Endpoint::Network {
             host,
+            channel_binding,
             host_addr,
             port,
         },
@@ -250,11 +325,13 @@ fn parse_network_connection<'a>(
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::ChannelBinding;
     use crate::SslMode;
 
     fn network(host: &str, port: Option<u16>, host_addr: Option<&str>) -> Endpoint {
         Endpoint::Network {
             host: host.parse().unwrap(),
+            channel_binding: None,
             port: port.map(Port::new),
             host_addr: host_addr.map(|address| address.parse().unwrap()),
         }
@@ -347,6 +424,24 @@ mod tests {
                     "mydb",
                     network("localhost", None, None),
                     SslMode::Require,
+                    None,
+                    None,
+                )),
+            ),
+            (
+                "with_channel_binding",
+                "postgres://user@localhost/mydb?pgchannelbinding=require",
+                Ok(success(
+                    "user",
+                    None,
+                    "mydb",
+                    Endpoint::Network {
+                        host: "localhost".parse().unwrap(),
+                        channel_binding: Some(ChannelBinding::Require),
+                        port: None,
+                        host_addr: None,
+                    },
+                    SslMode::VerifyFull,
                     None,
                     None,
                 )),
@@ -521,9 +616,29 @@ mod tests {
                 Err(ParseError::ConflictingParameter("host")),
             ),
             (
+                "conflicting_user",
+                "postgres://user@localhost/mydb?user=other",
+                Err(ParseError::ConflictingParameter("user")),
+            ),
+            (
+                "conflicting_password",
+                "postgres://user:secret@localhost/mydb?password=other",
+                Err(ParseError::ConflictingParameter("password")),
+            ),
+            (
+                "conflicting_dbname",
+                "postgres://user@localhost/mydb?dbname=other",
+                Err(ParseError::ConflictingParameter("dbname")),
+            ),
+            (
                 "invalid_sslmode",
                 "postgres://user@localhost/mydb?sslmode=invalid",
                 Err(ParseError::InvalidSslMode("invalid".to_string())),
+            ),
+            (
+                "invalid_channel_binding",
+                "postgres://user@localhost/mydb?pgchannelbinding=invalid",
+                Err(ParseError::InvalidChannelBinding("invalid".to_string())),
             ),
             (
                 "invalid_hostaddr",
@@ -531,6 +646,18 @@ mod tests {
                 Err(ParseError::InvalidHostAddr(
                     "invalid IP address".to_string(),
                 )),
+            ),
+            (
+                "unknown_parameter",
+                "postgres://user@localhost/mydb?unknown_parameter=1",
+                Err(ParseError::InvalidQueryParameter(
+                    "unknown_parameter".to_string(),
+                )),
+            ),
+            (
+                "fragment",
+                "postgres://user@localhost/mydb#section",
+                Err(ParseError::InvalidFragment("section".to_string())),
             ),
             (
                 "socket_missing_user",
@@ -542,13 +669,23 @@ mod tests {
                 "postgres://?host=/socket&user=user",
                 Err(ParseError::MissingParameter("dbname")),
             ),
+            (
+                "socket_with_channel_binding",
+                "postgres://?host=/socket&user=user&dbname=mydb&pgchannelbinding=require",
+                Err(ParseError::UnsupportedParameter("pgchannelbinding")),
+            ),
+            (
+                "socket_with_hostaddr",
+                "postgres://?host=/socket&user=user&dbname=mydb&hostaddr=127.0.0.1",
+                Err(ParseError::UnsupportedParameter("hostaddr")),
+            ),
         ];
 
         for (name, url_str, expected) in cases {
             let url = ::url::Url::parse(url_str).unwrap();
             let actual = parse(&url);
 
-            assert_eq!(actual, expected, "{name}");
+            assert_eq!(actual, expected, "{name}: {url_str}");
 
             if let Ok(config) = actual {
                 let roundtrip_url = config.to_url();

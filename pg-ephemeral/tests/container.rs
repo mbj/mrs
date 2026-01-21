@@ -39,6 +39,7 @@ async fn test_run_container_definition() {
         database: pg_client::Database::from_str(static_database).unwrap(),
         endpoint: pg_client::Endpoint::Network {
             host: pg_client::Host::IpAddr(std::net::IpAddr::V4(std::net::Ipv4Addr::LOCALHOST)),
+            channel_binding: None,
             host_addr: None,
             port: Some(port.into()),
         },

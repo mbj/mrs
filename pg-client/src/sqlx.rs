@@ -1,4 +1,7 @@
-use crate::{Config, Endpoint, SslMode};
+use crate::{
+    Config, Endpoint, PGAPPNAME, PGCHANNELBINDING, PGHOSTADDR, PGPASSWORD, PGPORT, PGSSLROOTCERT,
+    SslMode,
+};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum OptionsError {
@@ -54,10 +57,13 @@ impl From<&SslMode> for sqlx::postgres::PgSslMode {
     }
 }
 
-fn reject_env(env_key: &str, field_name: &str) -> Result<(), OptionsError> {
-    if std::env::var(env_key).is_ok() {
+fn reject_env(
+    env_key: &cmd_proc::EnvVariableName<'static>,
+    field_name: &str,
+) -> Result<(), OptionsError> {
+    if std::env::var(env_key.as_str()).is_ok() {
         Err(OptionsError::EnvConflict {
-            env_key: env_key.to_string(),
+            env_key: env_key.as_str().to_string(),
             field_name: field_name.to_string(),
         })
     } else {
@@ -88,6 +94,7 @@ impl Config {
     ///     database: Database::from_str("some-database").unwrap(),
     ///     endpoint: Endpoint::Network {
     ///         host: Host::from_str("some-host").unwrap(),
+    ///         channel_binding: None,
     ///         host_addr: None,
     ///         port: Some(Port::new(5432)),
     ///     },
@@ -135,6 +142,7 @@ impl Config {
         match &self.endpoint {
             Endpoint::Network {
                 host,
+                channel_binding,
                 host_addr,
                 port,
             } => {
@@ -142,18 +150,27 @@ impl Config {
                 if let Some(port) = port {
                     options = options.port(port.into());
                 } else {
-                    reject_env("PGPORT", "port")?;
+                    reject_env(&PGPORT, "port")?;
+                }
+                if channel_binding.is_some() {
+                    return Err(OptionsError::UnsupportedFeature {
+                        env_key: PGCHANNELBINDING.as_str().to_string(),
+                        field_name: "channel_binding".to_string(),
+                    });
+                } else {
+                    reject_env(&PGCHANNELBINDING, "channel_binding")?;
                 }
                 if let Some(host_addr) = host_addr {
                     options = options.host_addr(&host_addr.to_string())
                 } else {
-                    reject_env("PGHOSTADDR", "hostaddr")?;
+                    reject_env(&PGHOSTADDR, "hostaddr")?;
                 }
             }
             Endpoint::SocketPath(path) => {
                 options = options.host(path.to_str().expect("socket path contains invalid utf8"));
-                reject_env("PGPORT", "port")?;
-                reject_env("PGHOSTADDR", "hostaddr")?;
+                reject_env(&PGPORT, "port")?;
+                reject_env(&PGCHANNELBINDING, "channel_binding")?;
+                reject_env(&PGHOSTADDR, "hostaddr")?;
             }
         }
 
@@ -163,19 +180,19 @@ impl Config {
         if let Some(application_name) = &self.application_name {
             options = options.application_name(application_name.as_str());
         } else {
-            reject_env("PGAPPNAME", "application_name")?;
+            reject_env(&PGAPPNAME, "application_name")?;
         }
 
         if let Some(password) = &self.password {
             options = options.password(password.as_str());
         } else {
-            reject_env("PGPASSWORD", "password")?;
+            reject_env(&PGPASSWORD, "password")?;
         }
 
         if let Some(ssl_root_cert) = &self.ssl_root_cert {
             options = options.ssl_root_cert(ssl_root_cert.pg_env_value());
         } else {
-            reject_env("PGSSLROOTCERT", "ssl_root_cert")?;
+            reject_env(&PGSSLROOTCERT, "ssl_root_cert")?;
         }
 
         Ok(options)
