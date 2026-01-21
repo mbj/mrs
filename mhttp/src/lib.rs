@@ -25,7 +25,8 @@ pub mod testing;
 ///     );
 ///
 ///     fn request_builder(&self, client: &reqwest::Client, base_url: &BaseUrl) -> reqwest::RequestBuilder {
-///         client.get(base_url.set_path(&format!("/users/{}", self.id)))
+///         let id = self.id.to_string();
+///         client.get(base_url.set_path_segments(&["users", &id]))
 ///     }
 /// }
 /// ```
@@ -58,22 +59,78 @@ pub trait Request<API> {
     ) -> reqwest::RequestBuilder;
 }
 
-/// Base URL for API requests.
-#[derive(Clone, Debug, serde::Deserialize)]
-pub struct BaseUrl(url::Url);
+/// Base URL origin for API requests (scheme + host + optional port).
+#[derive(Clone, Debug)]
+pub struct BaseUrl {
+    origin: url::Url,
+}
+
+/// Supported URL schemes for base URLs.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum Scheme {
+    /// HTTP scheme.
+    Http,
+    /// HTTPS scheme.
+    Https,
+}
+
+impl Scheme {
+    fn as_str(self) -> &'static str {
+        match self {
+            Self::Http => "http",
+            Self::Https => "https",
+        }
+    }
+}
+
+impl std::fmt::Display for Scheme {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        formatter.write_str(self.as_str())
+    }
+}
 
 impl BaseUrl {
-    /// Creates a new `BaseUrl` from a `url::Url`.
+    /// Creates a new `BaseUrl` from the required URL components.
+    ///
+    /// `BaseUrl` stores only the origin; request builders always replace the path.
     #[must_use]
-    pub fn new(url: url::Url) -> Self {
-        Self(url)
+    pub fn new(scheme: Scheme, host: url::Host<String>, port: Option<u16>) -> Self {
+        let mut origin =
+            url::Url::parse(&format!("{scheme}://{host}")).expect("BaseUrl must be valid");
+        if let Some(port) = port {
+            origin
+                .set_port(Some(port))
+                .expect("BaseUrl must have a valid port");
+        }
+        Self { origin }
     }
 
-    /// Builds a URL by replacing the path component of the base URL.
+    /// Creates a new HTTPS `BaseUrl`.
     #[must_use]
-    pub fn set_path(&self, path: &str) -> url::Url {
-        let mut target = self.0.clone();
-        target.set_path(path);
+    pub fn https(host: url::Host<String>) -> Self {
+        Self::new(Scheme::Https, host, None)
+    }
+
+    /// Creates a new HTTP `BaseUrl`.
+    #[must_use]
+    pub fn http(host: url::Host<String>) -> Self {
+        Self::new(Scheme::Http, host, None)
+    }
+
+    /// Builds a URL by replacing the path with encoded path segments.
+    ///
+    /// Use an empty segment to preserve a trailing slash, for example
+    /// `set_path_segments(&["foo", ""])` yields `/foo/`.
+    #[must_use]
+    pub fn set_path_segments(&self, segments: &[&str]) -> url::Url {
+        let mut target = self.origin.clone();
+        {
+            let mut target_segments = target
+                .path_segments_mut()
+                .unwrap_or_else(|_| unreachable!("BaseUrl invariant violated"));
+            target_segments.clear();
+            target_segments.extend(segments.iter().copied());
+        }
         target
     }
 }
@@ -82,24 +139,44 @@ impl BaseUrl {
 mod tests {
     use super::*;
 
+    fn api_host() -> url::Host<String> {
+        url::Host::parse("api.example.com").unwrap()
+    }
+
     fn base_url() -> BaseUrl {
-        BaseUrl::new("https://api.example.com".parse().unwrap())
+        BaseUrl::https(api_host())
     }
 
     #[test]
     fn base_url_path() {
         assert_eq!(
-            base_url().set_path("/users/123").as_str(),
+            base_url().set_path_segments(&["users", "123"]).as_str(),
             "https://api.example.com/users/123"
         );
     }
 
     #[test]
-    fn base_url_path_replaces_existing() {
-        let base = BaseUrl::new("https://api.example.com/v1".parse().unwrap());
+    fn base_url_path_includes_port() {
+        let base = BaseUrl::new(Scheme::Https, api_host(), Some(8443));
         assert_eq!(
-            base.set_path("/users/123").as_str(),
-            "https://api.example.com/users/123"
+            base.set_path_segments(&["users", "123"]).as_str(),
+            "https://api.example.com:8443/users/123"
+        );
+    }
+
+    #[test]
+    fn base_url_path_trailing_slash() {
+        assert_eq!(
+            base_url().set_path_segments(&["foo", ""]).as_str(),
+            "https://api.example.com/foo/"
+        );
+    }
+
+    #[test]
+    fn base_url_path_encodes_segments() {
+        assert_eq!(
+            base_url().set_path_segments(&["foo/bar"]).as_str(),
+            "https://api.example.com/foo%2Fbar"
         );
     }
 
@@ -129,7 +206,8 @@ mod tests {
             client: &reqwest::Client,
             base_url: &BaseUrl,
         ) -> reqwest::RequestBuilder {
-            client.get(base_url.set_path(&format!("/users/{}", self.id)))
+            let id = self.id.to_string();
+            client.get(base_url.set_path_segments(&["users", &id]))
         }
     }
 
