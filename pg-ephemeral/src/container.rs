@@ -200,12 +200,14 @@ impl Container {
         let mut config = self.client_config.clone();
         if let pg_client::Endpoint::Network {
             ref host,
+            ref channel_binding,
             ref host_addr,
             ..
         } = config.endpoint
         {
             config.endpoint = pg_client::Endpoint::Network {
                 host: host.clone(),
+                channel_binding: *channel_binding,
                 host_addr: host_addr.clone(),
                 port: Some(pg_client::Port::new(5432)),
             };
@@ -222,8 +224,16 @@ impl Container {
             .resolve_container_host()
             .expect("Failed to resolve container host from container");
 
+        let channel_binding = match &self.client_config.endpoint {
+            pg_client::Endpoint::Network {
+                channel_binding, ..
+            } => *channel_binding,
+            pg_client::Endpoint::SocketPath(_) => None,
+        };
+
         let endpoint = pg_client::Endpoint::Network {
             host: pg_client::Host::IpAddr(ip_address),
+            channel_binding,
             host_addr: None,
             port: Some(self.host_port),
         };
@@ -354,6 +364,7 @@ fn run_container(
         database: database.clone(),
         endpoint: pg_client::Endpoint::Network {
             host,
+            channel_binding: None,
             host_addr,
             port: Some(port),
         },
