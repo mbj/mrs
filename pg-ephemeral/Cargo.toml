@@ -18,6 +18,7 @@ workspace = true
 clap.workspace = true
 cmd-proc.workspace = true
 env_logger.workspace = true
+git-proc.workspace = true
 hex.workspace = true
 humantime-serde = "1"
 indexmap = { version = "2.7", features = ["serde"] }

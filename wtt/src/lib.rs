@@ -1,23 +1,23 @@
 #![doc = include_str!("../README.md")]
 
 mod base;
-mod branch;
 pub mod commands;
 mod config;
 mod detect;
 mod git;
-mod git_url;
 mod repo_name;
 
 pub use base::{Base, BaseError};
-pub use branch::{Branch, BranchError};
-pub use cmd_proc::{Command, CommandError};
 pub use config::{Config, Error as ConfigError, Source as ConfigSource};
 pub use detect::{DetectError, detect_repo_from_cwd};
-pub use git_url::{GitUrl, GitUrlError};
+pub use git_proc::CommandError;
+pub use git_proc::branch::{Branch, BranchError};
+pub use git_proc::url::{GitUrl, GitUrlError, Remote, RemoteName};
 pub use repo_name::{RepoName, RepoNameError};
 
 use std::path::PathBuf;
+
+pub const ORIGIN: Remote = Remote::Name(RemoteName::from_static_or_panic("origin"));
 
 #[derive(Debug, thiserror::Error)]
 pub enum Error {

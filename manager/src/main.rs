@@ -317,8 +317,8 @@ fn create_edge_release() {
         .unwrap_or_else(|error| panic!("Failed to get current directory: {error}"));
 
     // Get git commit SHA
-    let sha = cmd_proc::Command::new("git")
-        .arguments(["rev-parse", "HEAD"])
+    let sha = git_proc::rev_parse::new()
+        .rev("HEAD")
         .stdout()
         .string()
         .unwrap_or_else(|error| panic!("Failed to get git SHA: {error}"))
@@ -326,8 +326,9 @@ fn create_edge_release() {
         .to_string();
 
     // Get current branch name
-    let branch = cmd_proc::Command::new("git")
-        .arguments(["rev-parse", "--abbrev-ref", "HEAD"])
+    let branch = git_proc::rev_parse::new()
+        .abbrev_ref()
+        .rev("HEAD")
         .stdout()
         .string()
         .unwrap_or_else(|error| panic!("Failed to get git branch: {error}"))
@@ -1075,8 +1076,8 @@ fn publish_gems(push: bool) {
         .unwrap_or_else(|error| panic!("Failed to get current directory: {error}"));
 
     // Get git commit SHA
-    let sha = cmd_proc::Command::new("git")
-        .arguments(["rev-parse", "HEAD"])
+    let sha = git_proc::rev_parse::new()
+        .rev("HEAD")
         .stdout()
         .string()
         .unwrap_or_else(|error| panic!("Failed to get git SHA: {error}"))
@@ -1343,9 +1344,9 @@ fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error::Error
 
     if reject_dirty {
         log::info!("Checking for uncommitted changes");
-        let status = cmd_proc::Command::new("git")
-            .arguments(["status", "--porcelain"])
-            .working_directory(&workspace_root)
+        let status = git_proc::status::new()
+            .repo_path(&workspace_root)
+            .porcelain()
             .stdout()
             .string()
             .map_err(|error| format!("Failed to run git status: {error}"))?;
