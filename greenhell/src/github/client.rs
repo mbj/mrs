@@ -22,8 +22,8 @@ pub struct Client {
 }
 
 impl Client {
-    /// Default GitHub API base URL.
-    pub const DEFAULT_BASE_URL: &str = "https://api.github.com";
+    /// Default GitHub API host.
+    pub const DEFAULT_HOST: &str = "api.github.com";
 
     /// Creates a new GitHub API client by discovering a token using CLI resolution order.
     ///
@@ -44,7 +44,7 @@ impl Client {
             inner: tower::limit::ConcurrencyLimit::new(
                 HttpClient::new(
                     token,
-                    mhttp::BaseUrl::new(Self::DEFAULT_BASE_URL.parse().unwrap()),
+                    mhttp::BaseUrl::https(url::Host::parse(Self::DEFAULT_HOST).unwrap()),
                 ),
                 MAX_CONCURRENT_REQUESTS,
             ),

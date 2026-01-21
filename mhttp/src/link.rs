@@ -89,7 +89,7 @@ pub struct Paginated<T> {
 /// Extracts the path and query from a Link header URL and applies them
 /// to the base URL, ensuring requests stay within the same domain.
 pub struct PaginationRequest<R> {
-    path: String,
+    path_segments: Vec<String>,
     query: Option<String>,
     _marker: std::marker::PhantomData<R>,
 }
@@ -104,7 +104,8 @@ impl<API, R: crate::Request<API>> crate::Request<API> for PaginationRequest<R> {
         client: &reqwest::Client,
         base_url: &crate::BaseUrl,
     ) -> reqwest::RequestBuilder {
-        let mut url = base_url.set_path(&self.path);
+        let segment_refs: Vec<&str> = self.path_segments.iter().map(String::as_str).collect();
+        let mut url = base_url.set_path_segments(&segment_refs);
         url.set_query(self.query.as_deref());
         client.get(url)
     }
@@ -118,8 +119,19 @@ pub trait PaginatedRequest: Sized {
     ///
     /// Extracts the path and query from the URL to be applied to the base URL.
     fn for_url(url: url::Url) -> PaginationRequest<Self> {
+        let mut path_segments = url
+            .path_segments()
+            .map(|segments| segments.map(str::to_string).collect::<Vec<_>>())
+            .unwrap_or_default();
+        if url.path().ends_with('/')
+            && path_segments
+                .last()
+                .is_none_or(|segment| !segment.is_empty())
+        {
+            path_segments.push(String::new());
+        }
         PaginationRequest {
-            path: url.path().to_owned(),
+            path_segments,
             query: url.query().map(str::to_owned),
             _marker: std::marker::PhantomData,
         }
@@ -166,7 +178,7 @@ impl<E: std::error::Error + 'static> std::error::Error for PaginateError<E> {
 /// #     type Response = Paginated<Vec<Pull>>;
 /// #     decoder!(decoder::Response::build().status_code_constant(http::StatusCode::OK, Vec::new()).paginated());
 /// #     fn request_builder(&self, client: &reqwest::Client, base_url: &BaseUrl) -> reqwest::RequestBuilder {
-/// #         client.get(base_url.set_path("/pulls"))
+/// #         client.get(base_url.set_path_segments(&["pulls"]))
 /// #     }
 /// # }
 /// # impl PaginatedRequest for ListPulls {}
@@ -617,6 +629,10 @@ mod tests {
 
     struct ListItems;
 
+    fn api_host() -> url::Host<String> {
+        url::Host::parse("api.example.com").unwrap()
+    }
+
     impl crate::Request<TestApi> for ListItems {
         type Response = Paginated<String>;
 
@@ -631,7 +647,7 @@ mod tests {
             client: &reqwest::Client,
             base_url: &crate::BaseUrl,
         ) -> reqwest::RequestBuilder {
-            client.get(base_url.set_path("/items"))
+            client.get(base_url.set_path_segments(&["items"]))
         }
     }
 
@@ -641,7 +657,7 @@ mod tests {
     async fn paginate_single_page() {
         use futures_util::StreamExt;
 
-        let base_url = crate::BaseUrl::new("https://api.example.com".parse().unwrap());
+        let base_url = crate::BaseUrl::https(api_host());
         let pages = vec![Paginated {
             data: "page1".to_string(),
             links: None,
@@ -664,7 +680,7 @@ mod tests {
     async fn paginate_multiple_pages() {
         use futures_util::StreamExt;
 
-        let base_url = crate::BaseUrl::new("https://api.example.com".parse().unwrap());
+        let base_url = crate::BaseUrl::https(api_host());
         let pages = vec![
             Paginated {
                 data: "page1".to_string(),
@@ -707,7 +723,7 @@ mod tests {
     async fn paginate_verifies_requests() {
         use futures_util::StreamExt;
 
-        let base_url = crate::BaseUrl::new("https://api.example.com".parse().unwrap());
+        let base_url = crate::BaseUrl::https(api_host());
         let pages = vec![
             Paginated {
                 data: "page1".to_string(),
@@ -738,5 +754,15 @@ mod tests {
             service.requests()[1].url.as_str(),
             "https://api.example.com/items?page=2"
         );
+    }
+
+    #[test]
+    fn paginate_preserves_trailing_slash() {
+        let base_url = crate::BaseUrl::https(api_host());
+        let url = "https://api.example.com/items/?page=2".parse().unwrap();
+        let request = <ListItems as PaginatedRequest>::for_url(url);
+        let built = crate::testing::TestRequest::from_request(&request, &base_url);
+
+        assert_eq!(built.url.as_str(), "https://api.example.com/items/?page=2");
     }
 }
