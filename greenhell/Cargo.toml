@@ -20,6 +20,7 @@ chrono.workspace = true
 clap.workspace = true
 cmd-proc.workspace = true
 env_logger.workspace = true
+git-proc.workspace = true
 futures-util.workspace = true
 http.workspace = true
 itertools.workspace = true

@@ -1,4 +1,4 @@
-use crate::{Command, Config, Error, GitUrl, RepoName};
+use crate::{Config, Error, GitUrl, ORIGIN, RepoName};
 
 #[derive(Debug, clap::Parser)]
 pub struct Setup {
@@ -20,28 +20,21 @@ impl Setup {
 
         log::info!("Cloning bare repository to {}", bare_path.display());
 
-        Command::new("git")
-            .argument("clone")
-            .argument("--bare")
-            .argument(&self.url)
-            .argument(&bare_path)
+        git_proc::clone::new(&self.url)
+            .bare()
+            .directory(&bare_path)
             .status()?;
 
         log::info!("Configuring remote tracking branches");
 
-        Command::new("git")
-            .argument("-C")
-            .argument(&bare_path)
-            .argument("config")
-            .argument("remote.origin.fetch")
-            .argument("+refs/heads/*:refs/remotes/origin/*")
+        git_proc::config::new("remote.origin.fetch")
+            .repo_path(&bare_path)
+            .value("+refs/heads/*:refs/remotes/origin/*")
             .status()?;
 
-        Command::new("git")
-            .argument("-C")
-            .argument(&bare_path)
-            .argument("fetch")
-            .argument("origin")
+        git_proc::fetch::new()
+            .repo_path(&bare_path)
+            .remote(&ORIGIN)
             .status()?;
 
         log::info!("Creating worktree directory {}", worktree_base.display());

@@ -1,6 +1,7 @@
 [workspace]
 members = [
   "cmd-proc",
+  "git-proc",
   "greenhell",
   "manager",
   "mhttp",
@@ -30,6 +31,7 @@ clap = { version = "4.5", features = ["derive"] }
 cmd-proc = { version = "0.0.1", path = "cmd-proc" }
 dirs = "6"
 env_logger = "0.11"
+git-proc = { version = "0.0.1", path = "git-proc" }
 hex = "0.4.3"
 http = "1.3"
 indoc = "2"

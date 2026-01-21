@@ -191,16 +191,15 @@ impl Seed {
                 })
             }
             Seed::SqlFileGitRevision { path, git_revision } => {
-                let output = cmd_proc::Command::new("git")
-                    .argument("show")
-                    .argument(format!("{git_revision}:{}", path.to_str().unwrap()))
-                    .output()
-                    .map_err(|error| LoadError::GitRevision {
-                        name: name.clone(),
-                        path: path.clone(),
-                        git_revision: git_revision.clone(),
-                        message: error.to_string(),
-                    })?;
+                let output =
+                    git_proc::show::new(&format!("{git_revision}:{}", path.to_str().unwrap()))
+                        .output()
+                        .map_err(|error| LoadError::GitRevision {
+                            name: name.clone(),
+                            path: path.clone(),
+                            git_revision: git_revision.clone(),
+                            message: error.to_string(),
+                        })?;
 
                 if output.success() {
                     let content = String::from_utf8(output.stdout).map_err(|error| {
