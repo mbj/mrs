@@ -14,6 +14,7 @@ impl App {
 
 pub struct Config<'a> {
     pub cloudformation: &'a aws_sdk_cloudformation::client::Client,
+    pub cloudwatchlogs: &'a aws_sdk_cloudwatchlogs::Client,
     pub registry: &'a Registry,
     pub template_uploader: Option<&'a TemplateUploader<'a>>,
 }
@@ -21,12 +22,22 @@ pub struct Config<'a> {
 #[derive(Clone, Debug, Eq, PartialEq, clap::Parser)]
 pub enum Command {
     Instance(Box<crate::cli::instance::App>),
+    Logs {
+        #[clap(subcommand)]
+        command: crate::logs::cli::Command,
+    },
 }
 
 impl Command {
     pub async fn run(&self, config: &Config<'_>) {
         match self {
             Self::Instance(command) => command.run(config).await,
+            Self::Logs { command } => {
+                let logs_config = crate::logs::cli::Config {
+                    client: config.cloudwatchlogs,
+                };
+                command.run(&logs_config).await
+            }
         }
     }
 }

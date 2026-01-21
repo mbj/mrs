@@ -16,21 +16,35 @@ workspace = true
 
 [dependencies]
 async-stream.workspace = true
+aws-config = { workspace = true, features = ["behavior-version-latest", "rustls", "rt-tokio", "sso"] }
+base64.workspace = true
+aws-sdk-cloudformation = { workspace = true, features = ["behavior-version-latest", "rustls"] }
+aws-sdk-cloudwatchlogs = { workspace = true, features = ["behavior-version-latest", "rustls"] }
+aws-sdk-s3 = { workspace = true, features = ["behavior-version-latest", "rustls"] }
+aws-sdk-secretsmanager = { workspace = true, features = ["behavior-version-latest", "rustls"] }
 chrono.workspace = true
 clap.workspace = true
 cmd-proc.workspace = true
 env_logger.workspace = true
 git-proc.workspace = true
 futures-util.workspace = true
+hex.workspace = true
+hmac.workspace = true
 http.workspace = true
 itertools.workspace = true
 log.workspace = true
 mhttp.workspace = true
+mlambda.workspace = true
 nom.workspace = true
 nom-language.workspace = true
+rcgen.workspace = true
 reqwest.workspace = true
 serde.workspace = true
 serde_json.workspace = true
+sha2.workspace = true
+stack-deploy.workspace = true
+stratosphere = { workspace = true, features = ["aws_iam", "aws_lambda", "aws_logs", "aws_s3", "aws_secretsmanager"] }
+strum.workspace = true
 thiserror.workspace = true
 tokio.workspace = true
 tower.workspace = true
