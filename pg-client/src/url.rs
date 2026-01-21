@@ -64,7 +64,7 @@ pub enum ParseError {
 /// - `sslrootcert`: Path to SSL root certificate or "system"
 /// - `application_name`: Application name
 /// - `hostaddr`: IP address for the host
-/// - `pgchannelbinding`: Channel binding (disable, prefer, require)
+/// - `channel_binding`: Channel binding (disable, prefer, require)
 /// - `host`: Socket path (when URL has no host component)
 /// - `user`: Username (when URL has no username component)
 /// - `dbname`: Database name (when URL has no path component)
@@ -167,7 +167,7 @@ fn parse_socket_connection<'a>(
     socket_path: &str,
     query_params: &mut QueryParams<'a>,
 ) -> Result<(Endpoint, Username, Option<Password>, Database), ParseError> {
-    for name in ["pgchannelbinding", "hostaddr"] {
+    for name in ["channel_binding", "hostaddr"] {
         if query_params.take(name).is_some() {
             return Err(ParseError::UnsupportedParameter(name));
         }
@@ -258,7 +258,7 @@ fn parse_network_connection<'a>(
         None => None,
     };
 
-    let channel_binding = match query_params.take("pgchannelbinding") {
+    let channel_binding = match query_params.take("channel_binding") {
         Some(binding_str) => Some(
             binding_str
                 .parse()
@@ -430,7 +430,7 @@ mod tests {
             ),
             (
                 "with_channel_binding",
-                "postgres://user@localhost/mydb?pgchannelbinding=require",
+                "postgres://user@localhost/mydb?channel_binding=require",
                 Ok(success(
                     "user",
                     None,
@@ -637,7 +637,7 @@ mod tests {
             ),
             (
                 "invalid_channel_binding",
-                "postgres://user@localhost/mydb?pgchannelbinding=invalid",
+                "postgres://user@localhost/mydb?channel_binding=invalid",
                 Err(ParseError::InvalidChannelBinding("invalid".to_string())),
             ),
             (
@@ -671,8 +671,8 @@ mod tests {
             ),
             (
                 "socket_with_channel_binding",
-                "postgres://?host=/socket&user=user&dbname=mydb&pgchannelbinding=require",
-                Err(ParseError::UnsupportedParameter("pgchannelbinding")),
+                "postgres://?host=/socket&user=user&dbname=mydb&channel_binding=require",
+                Err(ParseError::UnsupportedParameter("channel_binding")),
             ),
             (
                 "socket_with_hostaddr",

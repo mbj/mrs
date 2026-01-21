@@ -616,7 +616,7 @@ impl Config {
                 }
                 if let Some(channel_binding) = channel_binding {
                     url.query_pairs_mut()
-                        .append_pair("pgchannelbinding", channel_binding.as_str());
+                        .append_pair("channel_binding", channel_binding.as_str());
                 }
             }
             Endpoint::SocketPath(path) => {
