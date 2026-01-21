@@ -440,6 +440,36 @@ impl Command {
         self
     }
 
+    /// Adds a CLI option (name + value).
+    ///
+    /// ```ignore
+    /// command.option("--message", "hello")
+    /// // equivalent to: command.argument("--message").argument("hello")
+    /// ```
+    pub fn option(mut self, name: impl AsRef<OsStr>, value: impl AsRef<OsStr>) -> Self {
+        self.inner.arg(name);
+        self.inner.arg(value);
+        self
+    }
+
+    /// Adds a CLI option (name + value) only if the value is `Some`.
+    ///
+    /// ```ignore
+    /// command.optional_option("--name", optional)
+    /// // adds "--name <value>" only if optional is Some
+    /// ```
+    pub fn optional_option(
+        mut self,
+        name: impl AsRef<OsStr>,
+        value: Option<impl AsRef<OsStr>>,
+    ) -> Self {
+        if let Some(value) = value {
+            self.inner.arg(name);
+            self.inner.arg(value);
+        }
+        self
+    }
+
     pub fn arguments<T: AsRef<OsStr>>(mut self, value: impl IntoIterator<Item = T>) -> Self {
         self.inner.args(value);
         self
@@ -859,5 +889,36 @@ mod tests {
         assert_eq!(output, "test");
 
         child.wait().unwrap();
+    }
+
+    #[test]
+    fn test_option() {
+        let output = Command::new("echo")
+            .option("-n", "hello")
+            .stdout()
+            .string()
+            .unwrap();
+        assert_eq!(output, "hello");
+    }
+
+    #[test]
+    fn test_optional_option_some() {
+        let output = Command::new("echo")
+            .optional_option("-n", Some("hello"))
+            .stdout()
+            .string()
+            .unwrap();
+        assert_eq!(output, "hello");
+    }
+
+    #[test]
+    fn test_optional_option_none() {
+        let output = Command::new("echo")
+            .optional_option("-n", None::<&str>)
+            .argument("hello")
+            .stdout()
+            .string()
+            .unwrap();
+        assert_eq!(output, "hello\n");
     }
 }

@@ -1307,6 +1307,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "git-proc"
+version = "0.0.1"
+dependencies = [
+ "cmd-proc",
+ "thiserror 2.0.17",
+ "url",
+]
+
+[[package]]
 name = "greenhell"
 version = "0.0.1"
 dependencies = [
@@ -1316,6 +1325,7 @@ dependencies = [
  "cmd-proc",
  "env_logger",
  "futures-util",
+ "git-proc",
  "http 1.4.0",
  "itertools",
  "log",
@@ -1923,6 +1933,7 @@ dependencies = [
  "cmd-proc",
  "env_logger",
  "flate2",
+ "git-proc",
  "indoc",
  "log",
  "ociman",
@@ -2264,6 +2275,7 @@ dependencies = [
  "clap",
  "cmd-proc",
  "env_logger",
+ "git-proc",
  "hex",
  "humantime-serde",
  "indexmap",
@@ -4269,9 +4281,9 @@ name = "wtt"
 version = "0.0.5"
 dependencies = [
  "clap",
- "cmd-proc",
  "dirs",
  "env_logger",
+ "git-proc",
  "log",
  "nom 8.0.0",
  "nom-language",

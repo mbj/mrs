@@ -1,3 +1,6 @@
+const GIT_COMMITTER_DATE: cmd_proc::EnvVariableName =
+    cmd_proc::EnvVariableName::from_static_or_panic("GIT_COMMITTER_DATE");
+
 /// Create a test definition with extended timeout.
 ///
 /// CI environments may be slow, so we use 30s instead of the default 10s.
@@ -88,22 +91,18 @@ impl TestGitRepo {
         std::fs::create_dir_all(&path).unwrap();
 
         // Initialize git repository
-        cmd_proc::Command::new("git")
-            .argument("init")
-            .working_directory(&path)
-            .status()
-            .unwrap();
+        git_proc::init::new().directory(&path).status().unwrap();
 
         // Configure git with hardcoded author (no environment reflection)
-        cmd_proc::Command::new("git")
-            .arguments(["config", "user.name", "Test User"])
-            .working_directory(&path)
+        git_proc::config::new("user.name")
+            .repo_path(&path)
+            .value("Test User")
             .status()
             .unwrap();
 
-        cmd_proc::Command::new("git")
-            .arguments(["config", "user.email", "test@example.com"])
-            .working_directory(&path)
+        git_proc::config::new("user.email")
+            .repo_path(&path)
+            .value("test@example.com")
             .status()
             .unwrap();
 
@@ -120,30 +119,27 @@ impl TestGitRepo {
     #[allow(dead_code)]
     #[must_use]
     pub fn commit(&self, message: &str) -> String {
-        cmd_proc::Command::new("git")
-            .arguments(["add", "."])
-            .working_directory(&self.path)
+        git_proc::add::new()
+            .repo_path(&self.path)
+            .pathspec(".")
             .status()
             .unwrap();
 
-        const GIT_COMMITTER_DATE: cmd_proc::EnvVariableName<'static> =
-            cmd_proc::EnvVariableName::from_static_or_panic("GIT_COMMITTER_DATE");
-
-        cmd_proc::Command::new("git")
-            .arguments([
-                "commit",
-                &format!("--message={message}"),
-                "--author=Test User <test@example.com>",
-                "--date=2020-01-01T00:00:00Z",
-            ])
-            .env(&GIT_COMMITTER_DATE, "2020-01-01T00:00:00Z")
-            .working_directory(&self.path)
+        git_proc::commit::new()
+            .repo_path(&self.path)
+            .message(message)
+            .author("Test User <test@example.com>")
+            .date("2020-01-01T00:00:00Z")
+            .env(
+                GIT_COMMITTER_DATE,
+                std::ffi::OsStr::new("2020-01-01T00:00:00Z"),
+            )
             .status()
             .unwrap();
 
-        cmd_proc::Command::new("git")
-            .arguments(["rev-parse", "HEAD"])
-            .working_directory(&self.path)
+        git_proc::rev_parse::new()
+            .repo_path(&self.path)
+            .rev("HEAD")
             .stdout()
             .string()
             .unwrap()

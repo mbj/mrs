@@ -1,0 +1,23 @@
+[package]
+name = "git-proc"
+version = "0.0.1"
+edition.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Process-based git CLI wrapper with rich types"
+license = "MIT"
+repository = "https://github.com/mbj/mrs/tree/main/git-proc"
+readme = "README.md"
+keywords = ["git", "cli", "process", "types"]
+categories = ["development-tools"]
+
+[lints]
+workspace = true
+
+[features]
+test-utils = ["cmd-proc/test-utils"]
+
+[dependencies]
+cmd-proc.workspace = true
+thiserror.workspace = true
+url.workspace = true
