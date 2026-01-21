@@ -174,6 +174,19 @@ fn parse_socket_connection<'a>(
     ))
 }
 
+fn access_field<'a>(
+    name: &'static str,
+    url_value: Option<&'a str>,
+    query_pairs: &'a BTreeMap<Cow<'a, str>, Cow<'a, str>>,
+) -> Result<Option<&'a str>, ParseError> {
+    match (url_value, query_pairs.get(name)) {
+        (Some(_), Some(_)) => Err(ParseError::ConflictingParameter(name)),
+        (Some(value), None) => Ok(Some(value)),
+        (None, Some(value)) => Ok(Some(value.as_ref())),
+        (None, None) => Ok(None),
+    }
+}
+
 fn parse_network_connection<'a>(
     url_host: ::url::Host<&str>,
     url: &'a ::url::Url,
@@ -198,7 +211,8 @@ fn parse_network_connection<'a>(
 
     let port = url.port().map(Port::new);
 
-    let username_encoded = url.username();
+    let username_encoded = access_field("user", Some(url.username()), query_pairs)?
+        .ok_or(ParseError::MissingParameter("user"))?;
     if username_encoded.is_empty() {
         return Err(ParseError::MissingParameter("user"));
     }
@@ -209,7 +223,7 @@ fn parse_network_connection<'a>(
         .parse()
         .map_err(ParseError::InvalidUsername)?;
 
-    let password = match url.password() {
+    let password = match access_field("password", url.password(), query_pairs)? {
         Some(password_encoded) => {
             let password_decoded = percent_decode_str(password_encoded)
                 .decode_utf8()
@@ -224,10 +238,12 @@ fn parse_network_connection<'a>(
     };
 
     let path = url.path();
-    let database_encoded = path.strip_prefix('/').unwrap_or(path);
-    if database_encoded.is_empty() {
-        return Err(ParseError::MissingParameter("dbname"));
-    }
+    let database_raw = match path.strip_prefix('/').unwrap_or(path) {
+        "" => None,
+        value => Some(value),
+    };
+    let database_encoded = access_field("dbname", database_raw, query_pairs)?
+        .ok_or(ParseError::MissingParameter("dbname"))?;
     let database_decoded = percent_decode_str(database_encoded)
         .decode_utf8()
         .map_err(|err| ParseError::InvalidDatabase(err.to_string()))?;
@@ -521,6 +537,21 @@ mod tests {
                 Err(ParseError::ConflictingParameter("host")),
             ),
             (
+                "conflicting_user",
+                "postgres://user@localhost/mydb?user=other",
+                Err(ParseError::ConflictingParameter("user")),
+            ),
+            (
+                "conflicting_password",
+                "postgres://user:secret@localhost/mydb?password=other",
+                Err(ParseError::ConflictingParameter("password")),
+            ),
+            (
+                "conflicting_dbname",
+                "postgres://user@localhost/mydb?dbname=other",
+                Err(ParseError::ConflictingParameter("dbname")),
+            ),
+            (
                 "invalid_sslmode",
                 "postgres://user@localhost/mydb?sslmode=invalid",
                 Err(ParseError::InvalidSslMode("invalid".to_string())),
@@ -548,7 +579,7 @@ mod tests {
             let url = ::url::Url::parse(url_str).unwrap();
             let actual = parse(&url);
 
-            assert_eq!(actual, expected, "{name}");
+            assert_eq!(actual, expected, "{name}: {url_str}");
 
             if let Ok(config) = actual {
                 let roundtrip_url = config.to_url();
