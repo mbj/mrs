@@ -780,7 +780,7 @@ dependencies = [
 
 [[package]]
 name = "cmd-proc"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "log",
  "thiserror 2.0.17",
