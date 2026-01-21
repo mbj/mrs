@@ -210,6 +210,7 @@ impl std::str::FromStr for HostAddr {
 pub enum Endpoint {
     Network {
         host: Host,
+        channel_binding: Option<ChannelBinding>,
         host_addr: Option<HostAddr>,
         port: Option<Port>,
     },
@@ -222,11 +223,15 @@ impl serde::Serialize for Endpoint {
         match self {
             Self::Network {
                 host,
+                channel_binding,
                 host_addr,
                 port,
             } => {
-                let mut state = serializer.serialize_struct("Endpoint", 3)?;
+                let mut state = serializer.serialize_struct("Endpoint", 4)?;
                 state.serialize_field("host", host)?;
+                if let Some(channel_binding) = channel_binding {
+                    state.serialize_field("channel_binding", channel_binding)?;
+                }
                 if let Some(addr) = host_addr {
                     state.serialize_field("host_addr", &addr.to_string())?;
                 }
@@ -359,6 +364,28 @@ impl SslMode {
     }
 }
 
+#[derive(
+    Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, strum::IntoStaticStr, strum::EnumString,
+)]
+#[serde(rename_all = "kebab-case")]
+#[strum(serialize_all = "kebab-case")]
+pub enum ChannelBinding {
+    Disable,
+    Prefer,
+    Require,
+}
+
+impl ChannelBinding {
+    #[must_use]
+    pub fn as_str(&self) -> &'static str {
+        self.into()
+    }
+
+    fn pg_env_value(&self) -> String {
+        self.as_str().to_string()
+    }
+}
+
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 #[serde(rename_all = "kebab-case")]
 pub enum SslRootCert {
@@ -402,6 +429,8 @@ pub struct Config {
 
 pub const PGAPPNAME: cmd_proc::EnvVariableName<'static> =
     cmd_proc::EnvVariableName::from_static_or_panic("PGAPPNAME");
+pub const PGCHANNELBINDING: cmd_proc::EnvVariableName<'static> =
+    cmd_proc::EnvVariableName::from_static_or_panic("PGCHANNELBINDING");
 pub const PGDATABASE: cmd_proc::EnvVariableName<'static> =
     cmd_proc::EnvVariableName::from_static_or_panic("PGDATABASE");
 pub const PGHOST: cmd_proc::EnvVariableName<'static> =
@@ -461,6 +490,7 @@ impl Config {
     ///     database: Database::from_str("some-database").unwrap(),
     ///     endpoint: Endpoint::Network {
     ///         host: Host::from_str("some-host").unwrap(),
+    ///         channel_binding: None,
     ///         host_addr: None,
     ///         port: Some(Port::new(5432)),
     ///     },
@@ -498,6 +528,7 @@ impl Config {
     ///     Config {
     ///         endpoint: Endpoint::Network {
     ///             host: Host::from_str("some-host").unwrap(),
+    ///             channel_binding: None,
     ///             host_addr: Some("127.0.0.1".parse().unwrap()),
     ///             port: Some(Port::new(5432)),
     ///         },
@@ -511,6 +542,7 @@ impl Config {
     ///     database: Database::from_str("mydb").unwrap(),
     ///     endpoint: Endpoint::Network {
     ///         host: Host::IpAddr(std::net::IpAddr::V4(std::net::Ipv4Addr::new(127, 0, 0, 1))),
+    ///         channel_binding: None,
     ///         host_addr: None,
     ///         port: Some(Port::new(5432)),
     ///     },
@@ -530,6 +562,7 @@ impl Config {
     ///     database: Database::from_str("mydb").unwrap(),
     ///     endpoint: Endpoint::Network {
     ///         host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::LOCALHOST)),
+    ///         channel_binding: None,
     ///         host_addr: None,
     ///         port: Some(Port::new(5432)),
     ///     },
@@ -550,6 +583,7 @@ impl Config {
         match &self.endpoint {
             Endpoint::Network {
                 host,
+                channel_binding,
                 host_addr,
                 port,
             } => {
@@ -579,6 +613,10 @@ impl Config {
                 if let Some(addr) = host_addr {
                     url.query_pairs_mut()
                         .append_pair("hostaddr", &addr.to_string());
+                }
+                if let Some(channel_binding) = channel_binding {
+                    url.query_pairs_mut()
+                        .append_pair("pgchannelbinding", channel_binding.as_str());
                 }
             }
             Endpoint::SocketPath(path) => {
@@ -626,6 +664,7 @@ impl Config {
     ///     database: "some-database".parse().unwrap(),
     ///     endpoint: Endpoint::Network {
     ///         host: "some-host".parse().unwrap(),
+    ///         channel_binding: None,
     ///         host_addr: None,
     ///         port: Some(Port::new(5432)),
     ///     },
@@ -649,6 +688,7 @@ impl Config {
     ///     application_name: Some("some-app".parse().unwrap()),
     ///     endpoint: Endpoint::Network {
     ///         host: "some-host".parse().unwrap(),
+    ///         channel_binding: None,
     ///         host_addr: Some("127.0.0.1".parse().unwrap()),
     ///         port: Some(Port::new(5432)),
     ///     },
@@ -680,12 +720,16 @@ impl Config {
         match &self.endpoint {
             Endpoint::Network {
                 host,
+                channel_binding,
                 host_addr,
                 port,
             } => {
                 map.insert(PGHOST.clone(), host.pg_env_value());
                 if let Some(port) = port {
                     map.insert(PGPORT.clone(), port.pg_env_value());
+                }
+                if let Some(channel_binding) = channel_binding {
+                    map.insert(PGCHANNELBINDING.clone(), channel_binding.pg_env_value());
                 }
                 if let Some(addr) = host_addr {
                     map.insert(PGHOSTADDR.clone(), addr.to_string());
@@ -1012,6 +1056,7 @@ mod test {
             database: Database::from_str("some-database").unwrap(),
             endpoint: Endpoint::Network {
                 host: Host::from_str("some-host").unwrap(),
+                channel_binding: None,
                 host_addr: None,
                 port: Some(Port::new(5432)),
             },
@@ -1073,6 +1118,7 @@ mod test {
             &Config {
                 endpoint: Endpoint::Network {
                     host: Host::from_str("127.0.0.1").unwrap(),
+                    channel_binding: None,
                     host_addr: None,
                     port: Some(Port::new(5432)),
                 },
@@ -1129,6 +1175,7 @@ mod test {
             &Config {
                 endpoint: Endpoint::Network {
                     host: Host::from_str("some-host").unwrap(),
+                    channel_binding: None,
                     host_addr: Some("192.168.1.100".parse().unwrap()),
                     port: Some(Port::new(5432)),
                 },
@@ -1150,6 +1197,7 @@ mod test {
             &Config {
                 endpoint: Endpoint::Network {
                     host: Host::from_str("some-host").unwrap(),
+                    channel_binding: None,
                     host_addr: None,
                     port: None,
                 },
@@ -1172,6 +1220,7 @@ mod test {
             &Config {
                 endpoint: Endpoint::Network {
                     host: Host::from_str("some-host").unwrap(),
+                    channel_binding: None,
                     host_addr: Some("10.0.0.1".parse().unwrap()),
                     port: None,
                 },
@@ -1188,6 +1237,7 @@ mod test {
             database: Database::from_str("testdb").unwrap(),
             endpoint: Endpoint::Network {
                 host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::LOCALHOST)),
+                channel_binding: None,
                 host_addr: None,
                 port: Some(Port::new(5432)),
             },
@@ -1212,6 +1262,7 @@ mod test {
                 host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::new(
                     0xfe80, 0, 0, 0, 0, 0, 0, 1,
                 ))),
+                channel_binding: None,
                 host_addr: None,
                 port: Some(Port::new(5432)),
             },
@@ -1236,6 +1287,7 @@ mod test {
                 host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::new(
                     0x2001, 0x0db8, 0, 0, 0, 0, 0, 1,
                 ))),
+                channel_binding: None,
                 host_addr: None,
                 port: Some(Port::new(5432)),
             },
@@ -1258,6 +1310,7 @@ mod test {
             database: Database::from_str("testdb").unwrap(),
             endpoint: Endpoint::Network {
                 host: Host::IpAddr(std::net::IpAddr::V4(std::net::Ipv4Addr::LOCALHOST)),
+                channel_binding: None,
                 host_addr: None,
                 port: Some(Port::new(5432)),
             },
@@ -1280,6 +1333,7 @@ mod test {
             database: Database::from_str("testdb").unwrap(),
             endpoint: Endpoint::Network {
                 host: Host::from_str("localhost").unwrap(),
+                channel_binding: None,
                 host_addr: None,
                 port: Some(Port::new(5432)),
             },

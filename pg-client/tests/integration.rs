@@ -33,6 +33,7 @@ async fn test_with_sqlx_connection_error_on_unavailable_database() {
         database: "test_db".parse().unwrap(),
         endpoint: pg_client::Endpoint::Network {
             host: "localhost".parse().unwrap(),
+            channel_binding: None,
             host_addr: None,
             port: Some(pg_client::Port::new(0)), // Port 0 is reserved and never available
         },

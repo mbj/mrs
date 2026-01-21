@@ -1,4 +1,7 @@
-use crate::{Config, Endpoint, PGAPPNAME, PGHOSTADDR, PGPASSWORD, PGPORT, PGSSLROOTCERT, SslMode};
+use crate::{
+    Config, Endpoint, PGAPPNAME, PGCHANNELBINDING, PGHOSTADDR, PGPASSWORD, PGPORT, PGSSLROOTCERT,
+    SslMode,
+};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum OptionsError {
@@ -91,6 +94,7 @@ impl Config {
     ///     database: Database::from_str("some-database").unwrap(),
     ///     endpoint: Endpoint::Network {
     ///         host: Host::from_str("some-host").unwrap(),
+    ///         channel_binding: None,
     ///         host_addr: None,
     ///         port: Some(Port::new(5432)),
     ///     },
@@ -138,6 +142,7 @@ impl Config {
         match &self.endpoint {
             Endpoint::Network {
                 host,
+                channel_binding,
                 host_addr,
                 port,
             } => {
@@ -146,6 +151,14 @@ impl Config {
                     options = options.port(port.into());
                 } else {
                     reject_env(&PGPORT, "port")?;
+                }
+                if channel_binding.is_some() {
+                    return Err(OptionsError::UnsupportedFeature {
+                        env_key: PGCHANNELBINDING.as_str().to_string(),
+                        field_name: "channel_binding".to_string(),
+                    });
+                } else {
+                    reject_env(&PGCHANNELBINDING, "channel_binding")?;
                 }
                 if let Some(host_addr) = host_addr {
                     options = options.host_addr(&host_addr.to_string())
@@ -156,6 +169,7 @@ impl Config {
             Endpoint::SocketPath(path) => {
                 options = options.host(path.to_str().expect("socket path contains invalid utf8"));
                 reject_env(&PGPORT, "port")?;
+                reject_env(&PGCHANNELBINDING, "channel_binding")?;
                 reject_env(&PGHOSTADDR, "hostaddr")?;
             }
         }
