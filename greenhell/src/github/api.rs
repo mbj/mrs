@@ -76,11 +76,11 @@ impl mhttp::Request<Client> for GetRepository {
         client: &reqwest::Client,
         base_url: &mhttp::BaseUrl,
     ) -> reqwest::RequestBuilder {
-        client.get(base_url.set_path(&format!(
-            "/repos/{}/{}",
+        client.get(base_url.set_path_segments(&[
+            "repos",
             self.repository.owner(),
-            self.repository.repo()
-        )))
+            self.repository.repo(),
+        ]))
     }
 }
 
@@ -134,14 +134,15 @@ impl mhttp::Request<Client> for CompareCommits {
         client: &reqwest::Client,
         base_url: &mhttp::BaseUrl,
     ) -> reqwest::RequestBuilder {
+        let compare_ref = format!("{}...{}", self.base, self.head);
         client
-            .get(base_url.set_path(&format!(
-                "/repos/{}/{}/compare/{}...{}",
+            .get(base_url.set_path_segments(&[
+                "repos",
                 self.repository.owner(),
                 self.repository.repo(),
-                self.base,
-                self.head
-            )))
+                "compare",
+                &compare_ref,
+            ]))
             .query(&[("per_page", MAX_PER_PAGE)])
     }
 }
@@ -250,12 +251,14 @@ impl ListCheckRuns {
         base_url: &mhttp::BaseUrl,
     ) -> reqwest::RequestBuilder {
         client
-            .get(base_url.set_path(&format!(
-                "/repos/{}/{}/commits/{}/check-runs",
+            .get(base_url.set_path_segments(&[
+                "repos",
                 self.repository.owner(),
                 self.repository.repo(),
-                self.git_ref
-            )))
+                "commits",
+                self.git_ref.as_str(),
+                "check-runs",
+            ]))
             .query(&[("per_page", MAX_PER_PAGE)])
     }
 }
@@ -358,12 +361,14 @@ impl mhttp::Request<Client> for GetCombinedStatus {
         client: &reqwest::Client,
         base_url: &mhttp::BaseUrl,
     ) -> reqwest::RequestBuilder {
-        client.get(base_url.set_path(&format!(
-            "/repos/{}/{}/commits/{}/status",
+        client.get(base_url.set_path_segments(&[
+            "repos",
             self.repository.owner(),
             self.repository.repo(),
-            self.git_ref
-        )))
+            "commits",
+            self.git_ref.as_str(),
+            "status",
+        ]))
     }
 }
 
@@ -423,11 +428,12 @@ impl mhttp::Request<Client> for CreateCheckRun {
         }
 
         client
-            .post(base_url.set_path(&format!(
-                "/repos/{}/{}/check-runs",
+            .post(base_url.set_path_segments(&[
+                "repos",
                 self.repository.owner(),
-                self.repository.repo()
-            )))
+                self.repository.repo(),
+                "check-runs",
+            ]))
             .json(&Body {
                 name: &self.name,
                 head_sha: &self.head_sha,
@@ -474,12 +480,13 @@ impl mhttp::Request<Client> for UpdateCheckRun {
         }
 
         client
-            .patch(base_url.set_path(&format!(
-                "/repos/{}/{}/check-runs/{}",
+            .patch(base_url.set_path_segments(&[
+                "repos",
                 self.repository.owner(),
                 self.repository.repo(),
-                self.check_run_id
-            )))
+                "check-runs",
+                &self.check_run_id.to_string(),
+            ]))
             .json(&Body {
                 status: self.status.as_ref(),
                 conclusion: self.conclusion.as_ref(),
@@ -537,12 +544,13 @@ impl mhttp::Request<Client> for CreateCommitStatus {
         }
 
         client
-            .post(base_url.set_path(&format!(
-                "/repos/{}/{}/statuses/{}",
+            .post(base_url.set_path_segments(&[
+                "repos",
                 self.repository.owner(),
                 self.repository.repo(),
-                self.sha
-            )))
+                "statuses",
+                self.sha.as_str(),
+            ]))
             .json(&Body {
                 state: &self.state,
                 context: &self.context,
@@ -634,12 +642,13 @@ impl mhttp::Request<Client> for GetPullRequest {
         client: &reqwest::Client,
         base_url: &mhttp::BaseUrl,
     ) -> reqwest::RequestBuilder {
-        client.get(base_url.set_path(&format!(
-            "/repos/{}/{}/pulls/{}",
+        client.get(base_url.set_path_segments(&[
+            "repos",
             self.repository.owner(),
             self.repository.repo(),
-            self.pull_request
-        )))
+            "pulls",
+            &self.pull_request.to_string(),
+        ]))
     }
 }
 
@@ -665,11 +674,12 @@ impl mhttp::Request<Client> for ListPullRequests {
         base_url: &mhttp::BaseUrl,
     ) -> reqwest::RequestBuilder {
         client
-            .get(base_url.set_path(&format!(
-                "/repos/{}/{}/pulls",
+            .get(base_url.set_path_segments(&[
+                "repos",
                 self.repository.owner(),
-                self.repository.repo()
-            )))
+                self.repository.repo(),
+                "pulls",
+            ]))
             .query(&[("per_page", MAX_PER_PAGE)])
     }
 }
@@ -700,11 +710,12 @@ impl mhttp::Request<Client> for ListPullRequestsByHead {
     ) -> reqwest::RequestBuilder {
         let head = format!("{}:{}", self.repository.owner(), self.branch);
         client
-            .get(base_url.set_path(&format!(
-                "/repos/{}/{}/pulls",
+            .get(base_url.set_path_segments(&[
+                "repos",
                 self.repository.owner(),
-                self.repository.repo()
-            )))
+                self.repository.repo(),
+                "pulls",
+            ]))
             .query(&[("head", head), ("per_page", MAX_PER_PAGE.to_string())])
     }
 }
@@ -798,12 +809,14 @@ impl mhttp::Request<Client> for ListPullRequestCommits {
         base_url: &mhttp::BaseUrl,
     ) -> reqwest::RequestBuilder {
         client
-            .get(base_url.set_path(&format!(
-                "/repos/{}/{}/pulls/{}/commits",
+            .get(base_url.set_path_segments(&[
+                "repos",
                 self.repository.owner(),
                 self.repository.repo(),
-                self.pull_request
-            )))
+                "pulls",
+                &self.pull_request.to_string(),
+                "commits",
+            ]))
             .query(&[("per_page", MAX_PER_PAGE)])
     }
 }
@@ -941,11 +954,12 @@ impl mhttp::Request<Client> for ListRepositoryEvents {
         base_url: &mhttp::BaseUrl,
     ) -> reqwest::RequestBuilder {
         let builder = client
-            .get(base_url.set_path(&format!(
-                "/repos/{}/{}/events",
+            .get(base_url.set_path_segments(&[
+                "repos",
                 self.repository.owner(),
-                self.repository.repo()
-            )))
+                self.repository.repo(),
+                "events",
+            ]))
             .query(&[("per_page", MAX_PER_PAGE)]);
 
         match &self.etag {
@@ -964,7 +978,7 @@ mod tests {
     use mhttp::testing::TestRequest;
 
     fn base_url() -> mhttp::BaseUrl {
-        mhttp::BaseUrl::new("https://api.github.com".parse().unwrap())
+        mhttp::BaseUrl::https(url::Host::parse("api.github.com").unwrap())
     }
 
     fn json_response(status: http::StatusCode, body: &'static str) -> reqwest::Response {
@@ -1042,6 +1056,25 @@ mod tests {
             .assert(&request, &base_url());
         }
 
+        #[test]
+        fn request_builder_encodes_refs() {
+            let request = CompareCommits {
+                repository: "mbj/mrs".parse().unwrap(),
+                base: "main".parse().unwrap(),
+                head: "feature/test".parse().unwrap(),
+            };
+
+            TestRequest {
+                method: reqwest::Method::GET,
+                url: "https://api.github.com/repos/mbj/mrs/compare/main...feature%2Ftest?per_page=100"
+                    .parse()
+                    .unwrap(),
+                headers: http::HeaderMap::new(),
+                body: None,
+            }
+            .assert(&request, &base_url());
+        }
+
         #[tokio::test]
         async fn decoder() {
             let response = json_response(
@@ -1094,6 +1127,24 @@ mod tests {
             TestRequest {
                 method: reqwest::Method::GET,
                 url: "https://api.github.com/repos/mbj/mrs/commits/abc123/check-runs?per_page=100"
+                    .parse()
+                    .unwrap(),
+                headers: http::HeaderMap::new(),
+                body: None,
+            }
+            .assert(&request, &base_url());
+        }
+
+        #[test]
+        fn request_builder_encodes_ref() {
+            let request = ListCheckRuns {
+                repository: "mbj/mrs".parse().unwrap(),
+                git_ref: "feature/test".parse().unwrap(),
+            };
+
+            TestRequest {
+                method: reqwest::Method::GET,
+                url: "https://api.github.com/repos/mbj/mrs/commits/feature%2Ftest/check-runs?per_page=100"
                     .parse()
                     .unwrap(),
                 headers: http::HeaderMap::new(),

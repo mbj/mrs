@@ -85,7 +85,7 @@ impl Request<GitHubApi> for GetUser {
         client: &reqwest::Client,
         base_url: &BaseUrl,
     ) -> reqwest::RequestBuilder {
-        client.get(base_url.set_path(&format!("/users/{}", self.username)))
+        client.get(base_url.set_path_segments(&["users", &self.username]))
     }
 }
 
@@ -110,7 +110,7 @@ impl Request<GitHubApi> for ListRepos {
         client: &reqwest::Client,
         base_url: &BaseUrl,
     ) -> reqwest::RequestBuilder {
-        client.get(base_url.set_path(&format!("/users/{}/repos", self.username)))
+        client.get(base_url.set_path_segments(&["users", &self.username, "repos"]))
     }
 }
 
@@ -128,7 +128,7 @@ impl Client {
     pub fn new(token: String) -> Self {
         Self {
             http: reqwest::Client::new(),
-            base_url: BaseUrl::new("https://api.github.com".parse().unwrap()),
+            base_url: BaseUrl::https(url::Host::parse("api.github.com").unwrap()),
             token,
         }
     }
@@ -177,6 +177,20 @@ async fn example() -> Result<(), decoder::DecodeError> {
 }
 ```
 
+To preserve a trailing slash, include an empty segment. For example,
+`set_path_segments(&["foo", ""])` yields `/foo/`.
+
+```rust
+# use mhttp::BaseUrl;
+# fn base_url() -> BaseUrl {
+#     BaseUrl::https(url::Host::parse("api.example.com").unwrap())
+# }
+assert_eq!(
+    base_url().set_path_segments(&["foo", ""]).as_str(),
+    "https://api.example.com/foo/"
+);
+```
+
 ## Testing
 
 Enable the `test-utils` feature for request assertion helpers:
@@ -191,13 +205,13 @@ Enable the `test-utils` feature for request assertion helpers:
 #     type Response = User;
 #     decoder!(decoder::Response::build().status_code_json(http::StatusCode::OK).finish());
 #     fn request_builder(&self, client: &reqwest::Client, base_url: &BaseUrl) -> reqwest::RequestBuilder {
-#         client.get(base_url.set_path(&format!("/users/{}", self.username)))
+#         client.get(base_url.set_path_segments(&["users", &self.username]))
 #     }
 # }
 use mhttp::testing::TestRequest;
 
 // Assert request construction without making HTTP calls
-let base_url = BaseUrl::new("https://api.github.com".parse().unwrap());
+let base_url = BaseUrl::https(url::Host::parse("api.github.com").unwrap());
 
 TestRequest {
     method: reqwest::Method::GET,
