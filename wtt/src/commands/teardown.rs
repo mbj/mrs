@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 
-use crate::{Command, Config, Error, RepoName, git};
+use crate::{Config, Error, RepoName, git};
 
 use super::remove::remove_worktree;
 
@@ -22,11 +22,8 @@ impl Teardown {
             return Err(Error::RepoNotFound(self.repo));
         }
 
-        let output = Command::new("git")
-            .argument("-C")
-            .argument(&bare_path)
-            .argument("worktree")
-            .argument("list")
+        let output = git_proc::worktree::list()
+            .repo_path(&bare_path)
             .stdout()
             .string()?;
 

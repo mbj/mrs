@@ -1,5 +1,6 @@
 use clap::error::ErrorKind;
 use futures_util::StreamExt;
+use git_proc::url::{Remote, RemoteName};
 use greenhell::github::{Branch, PullRequestNumber, Ref, Repository};
 
 #[derive(Debug, Eq, PartialEq, clap::Parser)]
@@ -93,7 +94,7 @@ enum Command {
 
         /// Git remote name
         #[clap(long, default_value = "origin")]
-        remote: String,
+        remote: RemoteName,
 
         /// Print actions without executing
         #[clap(long)]
@@ -291,6 +292,7 @@ impl App {
                 use tower_service::Service;
 
                 let repository = git::get_github_repository(remote)?;
+                let remote = Remote::from(remote.clone());
                 let branch = git::get_current_branch()?;
 
                 let base_ref = match base {
@@ -320,7 +322,7 @@ impl App {
                             log::info!("  {} - [dry-run] would push", sha.abbrev());
                         } else {
                             log::info!("  {} - pushing", sha.abbrev());
-                            git::force_push_commit(remote, sha, &branch)?;
+                            git::force_push_commit(&remote, sha, &branch)?;
                         }
                         continue;
                     }
@@ -339,7 +341,7 @@ impl App {
                                 log::info!("  {} - [dry-run] would push", sha.abbrev());
                             } else {
                                 log::info!("  {} - pushing", sha.abbrev());
-                                git::force_push_commit(remote, sha, &branch)?;
+                                git::force_push_commit(&remote, sha, &branch)?;
                             }
                             continue;
                         }
@@ -354,7 +356,7 @@ impl App {
                         log::info!("  {} - [dry-run] would push", sha.abbrev());
                     } else {
                         log::info!("  {} - pushing", sha.abbrev());
-                        git::force_push_commit(remote, sha, &branch)?;
+                        git::force_push_commit(&remote, sha, &branch)?;
                     }
                 }
             }

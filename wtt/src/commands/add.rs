@@ -1,4 +1,6 @@
-use crate::{Base, Branch, Command, Config, Error, RepoName, detect_repo_from_cwd, git};
+use crate::{
+    Base, Branch, CommandError, Config, Error, ORIGIN, RepoName, detect_repo_from_cwd, git,
+};
 
 #[derive(Debug, clap::Parser)]
 pub struct Add {
@@ -35,18 +37,10 @@ impl Add {
 
         log::info!("Fetching latest from remote");
 
-        Command::new("git")
-            .argument("-C")
-            .argument(&bare_path)
-            .argument("fetch")
-            .argument("--all")
+        git_proc::fetch::new()
+            .repo_path(&bare_path)
+            .all()
             .status()?;
-
-        let mut command = Command::new("git")
-            .argument("-C")
-            .argument(&bare_path)
-            .argument("worktree")
-            .argument("add");
 
         if branch_exists(&bare_path, &self.branch)? {
             log::info!(
@@ -55,7 +49,10 @@ impl Add {
                 worktree_path.display()
             );
 
-            command = command.argument(&worktree_path).argument(&self.branch);
+            git_proc::worktree::add(&worktree_path)
+                .repo_path(&bare_path)
+                .branch(self.branch.as_str())
+                .status()?;
         } else {
             let base = match self.base {
                 Some(base) => base,
@@ -69,14 +66,12 @@ impl Add {
                 worktree_path.display()
             );
 
-            command = command
-                .argument("-b")
-                .argument(&self.branch)
-                .argument(&worktree_path)
-                .argument(&base);
+            git_proc::worktree::add(&worktree_path)
+                .repo_path(&bare_path)
+                .new_branch(self.branch.as_str())
+                .commit_ish(base.as_str())
+                .status()?;
         }
-
-        command.status()?;
 
         set_upstream(&worktree_path, &self.branch)?;
 
@@ -86,16 +81,11 @@ impl Add {
     }
 }
 
-fn branch_exists(
-    bare_path: &std::path::Path,
-    branch: &Branch,
-) -> Result<bool, crate::CommandError> {
-    let local_result = Command::new("git")
-        .argument("-C")
-        .argument(bare_path)
-        .argument("show-ref")
-        .argument("--verify")
-        .argument(format!("refs/heads/{branch}"))
+fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<bool, CommandError> {
+    let local_result = git_proc::show_ref::new()
+        .repo_path(bare_path)
+        .verify()
+        .pattern(&format!("refs/heads/{branch}"))
         .stdout()
         .bytes();
 
@@ -103,13 +93,11 @@ fn branch_exists(
         return Ok(true);
     }
 
-    let remote_output = Command::new("git")
-        .argument("-C")
-        .argument(bare_path)
-        .argument("ls-remote")
-        .argument("--heads")
-        .argument("origin")
-        .argument(branch)
+    let remote_output = git_proc::ls_remote::new()
+        .repo_path(bare_path)
+        .heads()
+        .remote(&ORIGIN)
+        .pattern(branch.as_str())
         .stdout()
         .string()?;
 
@@ -117,13 +105,11 @@ fn branch_exists(
 }
 
 fn get_remote_default_branch(bare_path: &std::path::Path) -> Result<Base, Error> {
-    let output = Command::new("git")
-        .argument("-C")
-        .argument(bare_path)
-        .argument("ls-remote")
-        .argument("--symref")
-        .argument("origin")
-        .argument("HEAD")
+    let output = git_proc::ls_remote::new()
+        .repo_path(bare_path)
+        .symref()
+        .remote(&ORIGIN)
+        .pattern("HEAD")
         .stdout()
         .string()?;
 
@@ -134,25 +120,16 @@ fn get_remote_default_branch(bare_path: &std::path::Path) -> Result<Base, Error>
         .map_err(|_| Error::DefaultBranchNotFound)
 }
 
-fn set_upstream(
-    worktree_path: &std::path::Path,
-    branch: &Branch,
-) -> Result<(), crate::CommandError> {
+fn set_upstream(worktree_path: &std::path::Path, branch: &Branch) -> Result<(), CommandError> {
     log::info!("Setting upstream to origin/{branch}");
 
-    Command::new("git")
-        .argument("-C")
-        .argument(worktree_path)
-        .argument("config")
-        .argument(format!("branch.{branch}.remote"))
-        .argument("origin")
+    git_proc::config::new(&format!("branch.{branch}.remote"))
+        .repo_path(worktree_path)
+        .value("origin")
         .status()?;
 
-    Command::new("git")
-        .argument("-C")
-        .argument(worktree_path)
-        .argument("config")
-        .argument(format!("branch.{branch}.merge"))
-        .argument(format!("refs/heads/{branch}"))
+    git_proc::config::new(&format!("branch.{branch}.merge"))
+        .repo_path(worktree_path)
+        .value(&format!("refs/heads/{branch}"))
         .status()
 }

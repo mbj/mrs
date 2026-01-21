@@ -88,6 +88,43 @@ Command::new("cargo")
     .status()?;
 ```
 
+## Arguments vs Options
+
+In CLI terminology:
+- **Argument**: positional value (e.g., `git clone <url>`)
+- **Option**: named parameter with value (e.g., `--message "text"`, `-o file`)
+
+cmd-proc provides methods for both:
+
+```rust
+// Arguments (positional)
+Command::new("git")
+    .argument("clone")              // single argument
+    .argument(url)                  // another argument
+    .arguments(["--depth", "1"])    // multiple arguments
+    .optional_argument(maybe_path)  // argument only if Some
+    .status()?;
+
+// Options (name + value pairs)
+Command::new("git")
+    .argument("commit")
+    .option("--message", "fix bug")           // required option
+    .optional_option("--author", maybe_author) // option only if Some
+    .status()?;
+```
+
+The `option` and `optional_option` methods simplify the common pattern of adding a flag followed by its value:
+
+```rust
+// Instead of:
+if let Some(author) = maybe_author {
+    command = command.argument("--author").argument(author);
+}
+
+// Use:
+command.optional_option("--author", maybe_author)
+```
+
 ## The Capture Pattern
 
 Output capture uses a two-step pattern via the `Capture` struct:

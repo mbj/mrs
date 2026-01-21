@@ -11,6 +11,7 @@ clap.workspace = true
 cmd-proc.workspace = true
 env_logger.workspace = true
 flate2 = "1.0"
+git-proc.workspace = true
 indoc.workspace = true
 log.workspace = true
 ociman.workspace = true

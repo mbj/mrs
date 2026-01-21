@@ -1,4 +1,5 @@
 use super::Repository;
+use git_proc::url::{Remote, RemoteName};
 use nom::{IResult, Parser, bytes::complete::take_till, character::complete::char};
 use url::Url;
 
@@ -82,10 +83,8 @@ pub enum Error {
 }
 
 /// Gets the GitHub repository from the specified git remote.
-pub fn get_github_repository(remote_name: &str) -> Result<Repository, Error> {
-    let output = cmd_proc::Command::new("git")
-        .arguments(["remote", "get-url", remote_name])
-        .output()?;
+pub fn get_github_repository(remote_name: &RemoteName) -> Result<Repository, Error> {
+    let output = git_proc::remote::get_url(remote_name).output()?;
 
     if !output.success() {
         let stderr = String::from_utf8(output.stderr)?;
@@ -99,8 +98,9 @@ pub fn get_github_repository(remote_name: &str) -> Result<Repository, Error> {
 
 /// Gets the current branch name.
 pub fn get_current_branch() -> Result<super::Branch, Error> {
-    let output = cmd_proc::Command::new("git")
-        .arguments(["rev-parse", "--abbrev-ref", "HEAD"])
+    let output = git_proc::rev_parse::new()
+        .abbrev_ref()
+        .rev("HEAD")
         .output()?;
 
     if !output.success() {
@@ -119,13 +119,10 @@ pub fn get_current_branch() -> Result<super::Branch, Error> {
 ///
 /// Returns commits in topological order with parents before children.
 pub fn list_commits(base: &super::Ref) -> Result<Vec<super::Sha>, Error> {
-    let output = cmd_proc::Command::new("git")
-        .arguments([
-            "rev-list",
-            "--topo-order",
-            "--reverse",
-            &format!("{base}..HEAD"),
-        ])
+    let output = git_proc::rev_list::new()
+        .topo_order()
+        .reverse()
+        .commit(&format!("{base}..HEAD"))
         .output()?;
 
     if !output.success() {
@@ -149,14 +146,16 @@ pub fn list_commits(base: &super::Ref) -> Result<Vec<super::Sha>, Error> {
 ///
 /// Uses `git push --force <remote> <sha>:refs/heads/<branch>`.
 pub fn force_push_commit(
-    remote: &str,
+    remote: &Remote,
     sha: &super::Sha,
     branch: &super::Branch,
 ) -> Result<(), Error> {
     let refspec = format!("{sha}:refs/heads/{branch}");
 
-    let output = cmd_proc::Command::new("git")
-        .arguments(["push", "--force", remote, &refspec])
+    let output = git_proc::push::new()
+        .force()
+        .remote(remote)
+        .refspec(&refspec)
         .output()?;
 
     if !output.success() {
