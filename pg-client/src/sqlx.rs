@@ -7,6 +7,7 @@ use crate::{
 pub enum OptionsError {
     EnvConflict { env_key: String, field_name: String },
     UnsupportedFeature { env_key: String, field_name: String },
+    SslRootCertSystemNotSupported,
 }
 
 impl std::fmt::Display for OptionsError {
@@ -25,6 +26,10 @@ impl std::fmt::Display for OptionsError {
             } => write!(
                 f,
                 "`PgConnectOptions::new` has inferred `{field_name}` from the `{env_key}` environment variable, but `pg_client::Config` does not support that feature at this point. As `PgConnectOptions` has no option to unset that field, or a constructor that allows us to bypass the inference: we have to bail out, please remove the environment variable!"
+            ),
+            Self::SslRootCertSystemNotSupported => write!(
+                f,
+                "`SslRootCert::System` is not supported by sqlx, which expects a file path for `ssl_root_cert`"
             ),
         }
     }
@@ -190,7 +195,14 @@ impl Config {
         }
 
         if let Some(ssl_root_cert) = &self.ssl_root_cert {
-            options = options.ssl_root_cert(ssl_root_cert.pg_env_value());
+            match ssl_root_cert {
+                crate::SslRootCert::File(path) => {
+                    options = options.ssl_root_cert(path.to_str().unwrap());
+                }
+                crate::SslRootCert::System => {
+                    return Err(OptionsError::SslRootCertSystemNotSupported);
+                }
+            }
         } else {
             reject_env(&PGSSLROOTCERT, "ssl_root_cert")?;
         }
@@ -215,5 +227,37 @@ impl Config {
             .map_err(ConnectionError::Close)?;
 
         Ok(result)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::{Database, Endpoint, Host, Port, SslMode, SslRootCert, Username};
+    use std::str::FromStr;
+
+    #[test]
+    fn test_ssl_root_cert_system_not_supported() {
+        let config = Config {
+            application_name: None,
+            database: Database::from_str("test").unwrap(),
+            endpoint: Endpoint::Network {
+                host: Host::from_str("localhost").unwrap(),
+                channel_binding: None,
+                host_addr: None,
+                port: Some(Port::new(5432)),
+            },
+            password: None,
+            ssl_mode: SslMode::VerifyFull,
+            ssl_root_cert: Some(SslRootCert::System),
+            username: Username::from_str("test").unwrap(),
+        };
+
+        let result = config.to_sqlx_connect_options();
+
+        assert!(matches!(
+            result,
+            Err(OptionsError::SslRootCertSystemNotSupported)
+        ));
     }
 }
