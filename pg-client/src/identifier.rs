@@ -396,6 +396,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL procedural language name.
+    Language,
+    language
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
