@@ -1,5 +1,7 @@
 #![doc = include_str!("../README.md")]
 
+pub mod identifier;
+
 #[cfg(feature = "sqlx")]
 pub mod sqlx;
 

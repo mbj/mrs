@@ -24,6 +24,7 @@ Enables integration with [sqlx](https://github.com/launchbadge/sqlx):
 
 - `Config::to_sqlx_connect_options()` - converts to `sqlx::postgres::PgConnectOptions`
 - `Config::with_sqlx_connection()` - runs an async action with a managed connection
+- `sqlx::analyze::run_all()` - runs `ANALYZE` on tables in specified schemas in parallel
 
 ```toml
 [dependencies]
