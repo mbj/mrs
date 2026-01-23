@@ -384,6 +384,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL foreign table name.
+    ForeignTable,
+    foreign_table
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
