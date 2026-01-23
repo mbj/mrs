@@ -233,6 +233,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL index name.
+    Index,
+    index
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
