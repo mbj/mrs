@@ -24,7 +24,9 @@ pub enum ParseError {
     #[error("Invalid password: {0}")]
     InvalidPassword(String),
     #[error("Invalid database: {0}")]
-    InvalidDatabase(String),
+    InvalidDatabase(#[from] crate::identifier::ParseError),
+    #[error("Invalid database encoding: {0}")]
+    InvalidDatabaseEncoding(std::str::Utf8Error),
     #[error("Invalid host: {0}")]
     InvalidHost(String),
     #[error("Invalid hostaddr: {0}")]
@@ -187,8 +189,7 @@ fn parse_socket_connection<'a>(
     let database: Database = query_params
         .take("dbname")
         .ok_or(ParseError::MissingParameter("dbname"))?
-        .parse()
-        .map_err(ParseError::InvalidDatabase)?;
+        .parse()?;
 
     Ok((
         Endpoint::SocketPath(socket_path.into()),
@@ -304,10 +305,8 @@ fn parse_network_connection<'a>(
         .ok_or(ParseError::MissingParameter("dbname"))?;
     let database_decoded = percent_decode_str(database_encoded)
         .decode_utf8()
-        .map_err(|err| ParseError::InvalidDatabase(err.to_string()))?;
-    let database: Database = database_decoded
-        .parse()
-        .map_err(ParseError::InvalidDatabase)?;
+        .map_err(ParseError::InvalidDatabaseEncoding)?;
+    let database: Database = database_decoded.parse()?;
 
     Ok((
         Endpoint::Network {

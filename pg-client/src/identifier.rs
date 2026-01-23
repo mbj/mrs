@@ -46,7 +46,7 @@ const fn validate(input: &str) -> Option<ParseError> {
 ///
 /// This represents the actual identifier value, not SQL syntax. Identifiers can contain
 /// spaces and special characters (which would require quoting in SQL).
-#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, serde::Serialize)]
 struct Identifier(Cow<'static, str>);
 
 impl Identifier {
@@ -130,7 +130,7 @@ impl std::error::Error for ParseError {}
 macro_rules! define_identifier_type {
     ($(#[$meta:meta])* $name:ident, $test_mod:ident) => {
         $(#[$meta])*
-        #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+        #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, serde::Serialize)]
         pub struct $name(Identifier);
 
         impl $name {
@@ -230,6 +230,12 @@ define_identifier_type!(
     /// A PostgreSQL column name.
     Column,
     column
+);
+
+define_identifier_type!(
+    /// A PostgreSQL database name.
+    Database,
+    database
 );
 
 #[cfg(test)]

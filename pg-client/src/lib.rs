@@ -2,6 +2,8 @@
 
 pub mod identifier;
 
+pub use identifier::Database;
+
 #[cfg(feature = "sqlx")]
 pub mod sqlx;
 
@@ -308,14 +310,9 @@ impl ApplicationName {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
-pub struct Database(String);
-
-from_str_impl!(Database, 1, 63);
-
 impl Database {
     fn pg_env_value(&self) -> String {
-        self.0.clone()
+        self.as_str().to_owned()
     }
 }
 
@@ -869,69 +866,6 @@ mod test {
         let err = ApplicationName::from_str(&value).expect_err("expected NUL failure");
 
         assert_eq!(err, "ApplicationName contains NUL byte");
-    }
-
-    #[test]
-    fn database_lt_min_length() {
-        let value = String::new();
-
-        let err = Database::from_str(&value).expect_err("expected min length failure");
-
-        assert_eq!(err, "Database byte min length: 1 violated, got: 0");
-    }
-
-    #[test]
-    fn database_eq_min_length() {
-        let value = repeat('d', 1);
-
-        let database = Database::from_str(&value).expect("expected valid min length value");
-
-        assert_eq!(database, Database(value));
-    }
-
-    #[test]
-    fn database_gt_min_length() {
-        let value = repeat('d', 2);
-
-        let database = Database::from_str(&value).expect("expected valid value greater than min");
-
-        assert_eq!(database, Database(value));
-    }
-
-    #[test]
-    fn database_lt_max_length() {
-        let value = repeat('d', 62);
-
-        let database = Database::from_str(&value).expect("expected valid value less than max");
-
-        assert_eq!(database, Database(value));
-    }
-
-    #[test]
-    fn database_eq_max_length() {
-        let value = repeat('d', 63);
-
-        let database = Database::from_str(&value).expect("expected valid value equal to max");
-
-        assert_eq!(database, Database(value));
-    }
-
-    #[test]
-    fn database_gt_max_length() {
-        let value = repeat('d', 64);
-
-        let err = Database::from_str(&value).expect_err("expected max length failure");
-
-        assert_eq!(err, "Database byte max length: 63 violated, got: 64");
-    }
-
-    #[test]
-    fn database_contains_nul() {
-        let value = String::from('\0');
-
-        let err = Database::from_str(&value).expect_err("expected NUL failure");
-
-        assert_eq!(err, "Database contains NUL byte");
     }
 
     #[test]
