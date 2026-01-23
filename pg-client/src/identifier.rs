@@ -366,6 +366,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL subscription name (for logical replication).
+    Subscription,
+    subscription
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
