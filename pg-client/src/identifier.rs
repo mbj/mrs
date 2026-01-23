@@ -330,6 +330,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL aggregate function name.
+    Aggregate,
+    aggregate
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
