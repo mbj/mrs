@@ -402,6 +402,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL text search configuration name.
+    TextSearchConfiguration,
+    text_search_configuration
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
