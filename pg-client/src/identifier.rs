@@ -426,6 +426,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL operator family name.
+    OperatorFamily,
+    operator_family
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
