@@ -1,3 +1,5 @@
+use std::num::NonZeroUsize;
+
 #[tokio::test]
 async fn test_with_sqlx_connection() {
     let backend = ociman::test_backend_setup!();
@@ -63,4 +65,45 @@ async fn test_with_sqlx_connection_error_on_unavailable_database() {
         }
         other => panic!("Expected Connect error, got: {other:?}"),
     }
+}
+
+#[tokio::test]
+async fn test_analyze_all_tables() {
+    let backend = ociman::test_backend_setup!();
+
+    let definition = pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default())
+        .wait_available_timeout(std::time::Duration::from_secs(30));
+
+    definition
+        .with_container(async |container| {
+            let config = container.client_config();
+
+            // Create a test table to analyze
+            config
+                .with_sqlx_connection(async |connection| {
+                    sqlx::query("CREATE TABLE test_table (id INT PRIMARY KEY, name TEXT)")
+                        .execute(connection)
+                        .await
+                        .unwrap();
+                })
+                .await
+                .unwrap();
+
+            // Run analyze on public schema
+            let result = pg_client::sqlx::analyze::run_all(
+                config,
+                &pg_client::sqlx::analyze::Schemas::Specific(
+                    [pg_client::identifier::Schema::PUBLIC].into(),
+                ),
+                NonZeroUsize::new(1).unwrap(),
+            )
+            .await;
+
+            assert!(result.is_ok(), "Analyze should succeed: {result:?}");
+
+            let result = result.unwrap();
+            assert_eq!(result.table_count, 1, "Should have 1 table to analyze");
+            assert!(!result.elapsed.is_zero(), "Elapsed time should be non-zero");
+        })
+        .await
 }

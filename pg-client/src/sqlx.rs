@@ -1,3 +1,5 @@
+pub mod analyze;
+
 use crate::{
     Config, Endpoint, PGAPPNAME, PGCHANNELBINDING, PGHOSTADDR, PGPASSWORD, PGPORT, PGSSLROOTCERT,
     SslMode,
