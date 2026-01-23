@@ -239,6 +239,14 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL constraint name.
+    ///
+    /// Includes PRIMARY KEY, FOREIGN KEY, CHECK, UNIQUE, and EXCLUSION constraints.
+    Constraint,
+    constraint
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
