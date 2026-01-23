@@ -136,14 +136,20 @@ async fn fetch_tasks(
                 Schemas::All => {
                     sqlx::query(indoc::indoc! {"
                       SELECT
-                        schemaname AS schema_name
-                      , tablename AS table_name
-                      , format('ANALYZE %I.%I', schemaname, tablename) AS statement
+                        pg_tables.schemaname AS schema_name
+                      , pg_tables.tablename AS table_name
+                      , format('ANALYZE %I.%I', pg_tables.schemaname, pg_tables.tablename) AS statement
                       FROM
                         pg_tables
+                      JOIN
+                        pg_class ON pg_class.relname = pg_tables.tablename
+                      JOIN
+                        pg_namespace ON pg_namespace.oid = pg_class.relnamespace AND pg_namespace.nspname = pg_tables.schemaname
+                      WHERE
+                        pg_class.relkind != 'p'
                       ORDER BY
-                        schemaname
-                      , tablename
+                        pg_tables.schemaname
+                      , pg_tables.tablename
                     "})
                     .fetch_all(connection)
                     .await?
@@ -153,16 +159,22 @@ async fn fetch_tasks(
 
                     sqlx::query(indoc::indoc! {"
                       SELECT
-                        schemaname AS schema_name
-                      , tablename AS table_name
-                      , format('ANALYZE %I.%I', schemaname, tablename) AS statement
+                        pg_tables.schemaname AS schema_name
+                      , pg_tables.tablename AS table_name
+                      , format('ANALYZE %I.%I', pg_tables.schemaname, pg_tables.tablename) AS statement
                       FROM
                         pg_tables
+                      JOIN
+                        pg_class ON pg_class.relname = pg_tables.tablename
+                      JOIN
+                        pg_namespace ON pg_namespace.oid = pg_class.relnamespace AND pg_namespace.nspname = pg_tables.schemaname
                       WHERE
-                        schemaname = ANY($1)
+                        pg_class.relkind != 'p'
+                      AND
+                        pg_tables.schemaname = ANY($1)
                       ORDER BY
-                        schemaname
-                      , tablename
+                        pg_tables.schemaname
+                      , pg_tables.tablename
                     "})
                     .bind(&schema_names)
                     .fetch_all(connection)
