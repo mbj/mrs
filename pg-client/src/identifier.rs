@@ -265,6 +265,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL trigger name.
+    Trigger,
+    trigger
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
