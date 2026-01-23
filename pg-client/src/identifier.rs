@@ -420,6 +420,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL operator class name.
+    OperatorClass,
+    operator_class
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
