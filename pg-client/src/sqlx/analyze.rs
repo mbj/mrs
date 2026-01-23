@@ -58,9 +58,10 @@ pub async fn run_all(
     schemas: &Schemas,
     jobs: NonZeroUsize,
 ) -> core::result::Result<Result, Error> {
+    use std::collections::VecDeque;
     use std::sync::Arc;
 
-    use tokio::sync::{Mutex, mpsc};
+    use tokio::sync::Mutex;
     use tokio::task::JoinSet;
 
     let start = std::time::Instant::now();
@@ -68,25 +69,15 @@ pub async fn run_all(
     let tasks = fetch_tasks(config, schemas).await?;
     let table_count = u64::try_from(tasks.len()).expect("task count fits in u64");
 
-    let (sender, task_receiver) = mpsc::channel(tasks.len().max(1));
-
-    for task in tasks {
-        sender
-            .send(task)
-            .await
-            .expect("channel should not be closed");
-    }
-    drop(sender);
-
     let shared_config = Arc::new(config.clone());
-    let shared_receiver = Arc::new(Mutex::new(task_receiver));
+    let shared_queue = Arc::new(Mutex::new(VecDeque::from(tasks)));
     let mut join_set = JoinSet::new();
 
     for _ in 0..jobs.get() {
         let worker_config = Arc::clone(&shared_config);
-        let worker_receiver = Arc::clone(&shared_receiver);
+        let worker_queue = Arc::clone(&shared_queue);
 
-        join_set.spawn(async move { worker(worker_config, worker_receiver).await });
+        join_set.spawn(async move { worker(worker_config, worker_queue).await });
     }
 
     while let Some(result) = join_set.join_next().await {
@@ -105,12 +96,18 @@ pub async fn run_all(
 /// Worker that processes ANALYZE tasks from the queue.
 async fn worker(
     config: std::sync::Arc<crate::Config>,
-    receiver: std::sync::Arc<tokio::sync::Mutex<tokio::sync::mpsc::Receiver<AnalyzeTask>>>,
+    queue: std::sync::Arc<tokio::sync::Mutex<std::collections::VecDeque<AnalyzeTask>>>,
 ) -> core::result::Result<(), Error> {
     config
         .as_ref()
         .with_sqlx_connection(async move |connection| {
-            while let Some(task) = receiver.lock().await.recv().await {
+            loop {
+                let task = queue.lock().await.pop_front();
+
+                let Some(task) = task else {
+                    break;
+                };
+
                 let schema = task.schema.to_string();
                 let table = task.table.to_string();
 
