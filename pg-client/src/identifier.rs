@@ -378,6 +378,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL foreign data wrapper name.
+    ForeignDataWrapper,
+    foreign_data_wrapper
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
