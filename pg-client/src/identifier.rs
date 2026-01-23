@@ -238,6 +238,11 @@ define_identifier_type!(
     database
 );
 
+impl Database {
+    /// The default `postgres` database.
+    pub const POSTGRES: Self = Self::from_static_or_panic("postgres");
+}
+
 define_identifier_type!(
     /// A PostgreSQL role name.
     ///
@@ -245,6 +250,11 @@ define_identifier_type!(
     Role,
     role
 );
+
+impl Role {
+    /// The default `postgres` superuser role.
+    pub const POSTGRES: Self = Self::from_static_or_panic("postgres");
+}
 
 /// A PostgreSQL user (alias for [`Role`]).
 ///

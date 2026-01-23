@@ -481,7 +481,7 @@ impl Config {
     ///
     /// let config = Config {
     ///     application_name: None,
-    ///     database: Database::from_str("some-database").unwrap(),
+    ///     database: Database::from_static_or_panic("some-database"),
     ///     endpoint: Endpoint::Network {
     ///         host: Host::from_str("some-host").unwrap(),
     ///         channel_binding: None,
@@ -491,7 +491,7 @@ impl Config {
     ///     password: None,
     ///     ssl_mode: SslMode::VerifyFull,
     ///     ssl_root_cert: None,
-    ///     user: User::from_str("some-user").unwrap(),
+    ///     user: User::from_static_or_panic("some-user"),
     /// };
     ///
     /// let options = config.to_sqlx_connect_options();
@@ -533,7 +533,7 @@ impl Config {
     /// // IPv4 example
     /// let ipv4_config = Config {
     ///     application_name: None,
-    ///     database: Database::from_str("mydb").unwrap(),
+    ///     database: Database::from_static_or_panic("mydb"),
     ///     endpoint: Endpoint::Network {
     ///         host: Host::IpAddr(std::net::IpAddr::V4(std::net::Ipv4Addr::new(127, 0, 0, 1))),
     ///         channel_binding: None,
@@ -543,7 +543,7 @@ impl Config {
     ///     password: None,
     ///     ssl_mode: SslMode::Disable,
     ///     ssl_root_cert: None,
-    ///     user: User::from_str("user").unwrap(),
+    ///     user: User::from_static_or_panic("user"),
     /// };
     /// assert_eq!(
     ///     ipv4_config.to_url().to_string(),
@@ -553,7 +553,7 @@ impl Config {
     /// // IPv6 example (automatically bracketed)
     /// let ipv6_config = Config {
     ///     application_name: None,
-    ///     database: Database::from_str("mydb").unwrap(),
+    ///     database: Database::from_static_or_panic("mydb"),
     ///     endpoint: Endpoint::Network {
     ///         host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::LOCALHOST)),
     ///         channel_binding: None,
@@ -563,7 +563,7 @@ impl Config {
     ///     password: None,
     ///     ssl_mode: SslMode::Disable,
     ///     ssl_root_cert: None,
-    ///     user: User::from_str("user").unwrap(),
+    ///     user: User::from_static_or_panic("user"),
     /// };
     /// assert_eq!(
     ///     ipv6_config.to_url().to_string(),
@@ -787,6 +787,9 @@ mod test {
     use pretty_assertions::assert_eq;
     use std::str::FromStr;
 
+    const TEST_DATABASE: Database = Database::from_static_or_panic("some-database");
+    const TEST_USER: User = User::from_static_or_panic("some-user");
+
     fn assert_config(expected: serde_json::Value, config: &Config) {
         assert_eq!(expected, serde_json::to_value(config).unwrap());
     }
@@ -920,7 +923,7 @@ mod test {
     fn test_json() {
         let config = Config {
             application_name: None,
-            database: Database::from_str("some-database").unwrap(),
+            database: TEST_DATABASE,
             endpoint: Endpoint::Network {
                 host: Host::from_str("some-host").unwrap(),
                 channel_binding: None,
@@ -930,7 +933,7 @@ mod test {
             password: None,
             ssl_mode: SslMode::VerifyFull,
             ssl_root_cert: None,
-            user: User::from_str("some-user").unwrap(),
+            user: TEST_USER,
         };
 
         assert_config(
@@ -1101,7 +1104,7 @@ mod test {
         // Test IPv6 loopback address
         let config_ipv6_loopback = Config {
             application_name: None,
-            database: Database::from_str("testdb").unwrap(),
+            database: TEST_DATABASE,
             endpoint: Endpoint::Network {
                 host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::LOCALHOST)),
                 channel_binding: None,
@@ -1111,20 +1114,20 @@ mod test {
             password: None,
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
-            user: User::from_str("postgres").unwrap(),
+            user: User::POSTGRES,
         };
 
         let url = config_ipv6_loopback.to_url();
         assert_eq!(
             url.to_string(),
-            "postgres://postgres@[::1]:5432/testdb?sslmode=disable",
+            "postgres://postgres@[::1]:5432/some-database?sslmode=disable",
             "IPv6 loopback address should be bracketed in URL"
         );
 
         // Test fe80 link-local IPv6 address
         let config_ipv6_fe80 = Config {
             application_name: None,
-            database: Database::from_str("testdb").unwrap(),
+            database: TEST_DATABASE,
             endpoint: Endpoint::Network {
                 host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::new(
                     0xfe80, 0, 0, 0, 0, 0, 0, 1,
@@ -1136,20 +1139,20 @@ mod test {
             password: None,
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
-            user: User::from_str("postgres").unwrap(),
+            user: User::POSTGRES,
         };
 
         let url = config_ipv6_fe80.to_url();
         assert_eq!(
             url.to_string(),
-            "postgres://postgres@[fe80::1]:5432/testdb?sslmode=disable",
+            "postgres://postgres@[fe80::1]:5432/some-database?sslmode=disable",
             "IPv6 link-local address should be bracketed in URL"
         );
 
         // Test full IPv6 address
         let config_ipv6_full = Config {
             application_name: None,
-            database: Database::from_str("testdb").unwrap(),
+            database: TEST_DATABASE,
             endpoint: Endpoint::Network {
                 host: Host::IpAddr(std::net::IpAddr::V6(std::net::Ipv6Addr::new(
                     0x2001, 0x0db8, 0, 0, 0, 0, 0, 1,
@@ -1161,20 +1164,20 @@ mod test {
             password: None,
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
-            user: User::from_str("postgres").unwrap(),
+            user: User::POSTGRES,
         };
 
         let url = config_ipv6_full.to_url();
         assert_eq!(
             url.to_string(),
-            "postgres://postgres@[2001:db8::1]:5432/testdb?sslmode=disable",
+            "postgres://postgres@[2001:db8::1]:5432/some-database?sslmode=disable",
             "Full IPv6 address should be bracketed in URL"
         );
 
         // Test IPv4 address (should NOT be bracketed)
         let config_ipv4 = Config {
             application_name: None,
-            database: Database::from_str("testdb").unwrap(),
+            database: TEST_DATABASE,
             endpoint: Endpoint::Network {
                 host: Host::IpAddr(std::net::IpAddr::V4(std::net::Ipv4Addr::LOCALHOST)),
                 channel_binding: None,
@@ -1184,20 +1187,20 @@ mod test {
             password: None,
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
-            user: User::from_str("postgres").unwrap(),
+            user: User::POSTGRES,
         };
 
         let url = config_ipv4.to_url();
         assert_eq!(
             url.to_string(),
-            "postgres://postgres@127.0.0.1:5432/testdb?sslmode=disable",
+            "postgres://postgres@127.0.0.1:5432/some-database?sslmode=disable",
             "IPv4 address should NOT be bracketed in URL"
         );
 
         // Test hostname (should NOT be bracketed)
         let config_hostname = Config {
             application_name: None,
-            database: Database::from_str("testdb").unwrap(),
+            database: TEST_DATABASE,
             endpoint: Endpoint::Network {
                 host: Host::from_str("localhost").unwrap(),
                 channel_binding: None,
@@ -1207,13 +1210,13 @@ mod test {
             password: None,
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
-            user: User::from_str("postgres").unwrap(),
+            user: User::POSTGRES,
         };
 
         let url = config_hostname.to_url();
         assert_eq!(
             url.to_string(),
-            "postgres://postgres@localhost:5432/testdb?sslmode=disable",
+            "postgres://postgres@localhost:5432/some-database?sslmode=disable",
             "Hostname should NOT be bracketed in URL"
         );
     }

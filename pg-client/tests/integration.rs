@@ -1,5 +1,9 @@
 use std::num::NonZeroUsize;
 
+const TEST_DATABASE: pg_client::Database =
+    pg_client::Database::from_static_or_panic("some-database");
+const TEST_USER: pg_client::User = pg_client::User::from_static_or_panic("some-user");
+
 #[tokio::test]
 async fn test_with_sqlx_connection() {
     let backend = ociman::test_backend_setup!();
@@ -32,7 +36,7 @@ async fn test_with_sqlx_connection() {
 async fn test_with_sqlx_connection_error_on_unavailable_database() {
     let config = pg_client::Config {
         application_name: None,
-        database: "test_db".parse().unwrap(),
+        database: TEST_DATABASE,
         endpoint: pg_client::Endpoint::Network {
             host: "localhost".parse().unwrap(),
             channel_binding: None,
@@ -42,7 +46,7 @@ async fn test_with_sqlx_connection_error_on_unavailable_database() {
         password: Some("test".parse().unwrap()),
         ssl_mode: pg_client::SslMode::Disable,
         ssl_root_cert: None,
-        user: "test".parse().unwrap(),
+        user: TEST_USER,
     };
 
     let result = config
