@@ -324,6 +324,12 @@ impl From<MaterializedView> for Relation {
 }
 
 define_identifier_type!(
+    /// A PostgreSQL operator name.
+    Operator,
+    operator
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
