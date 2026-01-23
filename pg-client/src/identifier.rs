@@ -271,6 +271,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL domain name.
+    Domain,
+    domain
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
