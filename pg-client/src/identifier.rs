@@ -285,6 +285,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL view name.
+    View,
+    view
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
