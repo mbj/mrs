@@ -128,7 +128,7 @@ impl std::error::Error for ParseError {}
 
 /// Macro to define identifier-backed newtypes.
 macro_rules! define_identifier_type {
-    ($(#[$meta:meta])* $name:ident) => {
+    ($(#[$meta:meta])* $name:ident, $test_mod:ident) => {
         $(#[$meta])*
         #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
         pub struct $name(Identifier);
@@ -170,23 +170,67 @@ macro_rules! define_identifier_type {
                 Identifier::from_str(input).map(Self)
             }
         }
+
+        #[cfg(test)]
+        mod $test_mod {
+            use super::*;
+
+            #[test]
+            fn parse_valid() {
+                let value: $name = "test".parse().unwrap();
+                assert_eq!(value.to_string(), "test");
+            }
+
+            #[test]
+            fn parse_valid_with_space() {
+                let value: $name = "test value".parse().unwrap();
+                assert_eq!(value.to_string(), "test value");
+            }
+
+            #[test]
+            fn parse_empty_fails() {
+                let result: Result<$name, _> = "".parse();
+                assert!(matches!(result, Err(ParseError::Empty)));
+            }
+
+            #[test]
+            fn parse_contains_nul_fails() {
+                let result: Result<$name, _> = "test\0value".parse();
+                assert!(matches!(result, Err(ParseError::ContainsNul)));
+            }
+
+            #[test]
+            fn parse_too_long_fails() {
+                let input = "a".repeat(MAX_LENGTH + 1);
+                let result: Result<$name, _> = input.parse();
+                assert!(matches!(result, Err(ParseError::TooLong)));
+            }
+        }
     };
 }
 
 define_identifier_type!(
     /// A PostgreSQL table name.
-    Table
+    Table,
+    table
 );
 
 define_identifier_type!(
     /// A PostgreSQL schema name.
-    Schema
+    Schema,
+    schema
 );
 
 impl Schema {
     /// The default `public` schema.
     pub const PUBLIC: Self = Self::from_static_or_panic("public");
 }
+
+define_identifier_type!(
+    /// A PostgreSQL column name.
+    Column,
+    column
+);
 
 #[cfg(test)]
 mod tests {
@@ -243,62 +287,6 @@ mod tests {
         fn parse_contains_nul_fails() {
             let result: Result<Identifier, _> = "my\0table".parse();
             assert_eq!(result, Err(ParseError::ContainsNul));
-        }
-    }
-
-    mod table {
-        use super::*;
-
-        #[test]
-        fn parse_valid() {
-            let table: Table = "users".parse().unwrap();
-            assert_eq!(table.to_string(), "users");
-        }
-
-        #[test]
-        fn parse_valid_with_space() {
-            let table: Table = "user accounts".parse().unwrap();
-            assert_eq!(table.to_string(), "user accounts");
-        }
-
-        #[test]
-        fn parse_empty_fails() {
-            let result: Result<Table, _> = "".parse();
-            assert!(matches!(result, Err(ParseError::Empty)));
-        }
-
-        #[test]
-        fn parse_contains_nul_fails() {
-            let result: Result<Table, _> = "my\0table".parse();
-            assert!(matches!(result, Err(ParseError::ContainsNul)));
-        }
-    }
-
-    mod schema {
-        use super::*;
-
-        #[test]
-        fn parse_valid() {
-            let schema: Schema = "public".parse().unwrap();
-            assert_eq!(schema.to_string(), "public");
-        }
-
-        #[test]
-        fn parse_valid_with_space() {
-            let schema: Schema = "my schema".parse().unwrap();
-            assert_eq!(schema.to_string(), "my schema");
-        }
-
-        #[test]
-        fn parse_empty_fails() {
-            let result: Result<Schema, _> = "".parse();
-            assert!(matches!(result, Err(ParseError::Empty)));
-        }
-
-        #[test]
-        fn parse_contains_nul_fails() {
-            let result: Result<Schema, _> = "my\0schema".parse();
-            assert!(matches!(result, Err(ParseError::ContainsNul)));
         }
     }
 }
