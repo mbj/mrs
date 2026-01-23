@@ -17,7 +17,7 @@ pub struct Definition {
     pub database: pg_client::Database,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
     pub ssl_config: Option<SslConfig>,
-    pub superuser: pg_client::Username,
+    pub superuser: pg_client::User,
     pub image: crate::image::Image,
     pub cross_container_access: bool,
     pub wait_available_timeout: std::time::Duration,
@@ -31,8 +31,8 @@ impl Definition {
             application_name: None,
             seeds: indexmap::IndexMap::new(),
             ssl_config: None,
-            superuser: "postgres".parse().unwrap(),
-            database: "postgres".parse().unwrap(),
+            superuser: pg_client::User::POSTGRES,
+            database: pg_client::Database::POSTGRES,
             image,
             cross_container_access: false,
             wait_available_timeout: std::time::Duration::from_secs(10),
@@ -76,9 +76,9 @@ impl Definition {
     }
 
     #[must_use]
-    pub fn superuser(self, username: pg_client::Username) -> Self {
+    pub fn superuser(self, user: pg_client::User) -> Self {
         Self {
-            superuser: username,
+            superuser: user,
             ..self
         }
     }

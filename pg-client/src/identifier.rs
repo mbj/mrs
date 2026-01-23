@@ -46,7 +46,7 @@ const fn validate(input: &str) -> Option<ParseError> {
 ///
 /// This represents the actual identifier value, not SQL syntax. Identifiers can contain
 /// spaces and special characters (which would require quoting in SQL).
-#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, serde::Serialize)]
 struct Identifier(Cow<'static, str>);
 
 impl Identifier {
@@ -128,9 +128,9 @@ impl std::error::Error for ParseError {}
 
 /// Macro to define identifier-backed newtypes.
 macro_rules! define_identifier_type {
-    ($(#[$meta:meta])* $name:ident) => {
+    ($(#[$meta:meta])* $name:ident, $test_mod:ident) => {
         $(#[$meta])*
-        #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+        #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, serde::Serialize)]
         pub struct $name(Identifier);
 
         impl $name {
@@ -170,23 +170,307 @@ macro_rules! define_identifier_type {
                 Identifier::from_str(input).map(Self)
             }
         }
+
+        #[cfg(test)]
+        mod $test_mod {
+            use super::*;
+
+            #[test]
+            fn parse_valid() {
+                let value: $name = "test".parse().unwrap();
+                assert_eq!(value.to_string(), "test");
+            }
+
+            #[test]
+            fn parse_valid_with_space() {
+                let value: $name = "test value".parse().unwrap();
+                assert_eq!(value.to_string(), "test value");
+            }
+
+            #[test]
+            fn parse_empty_fails() {
+                let result: Result<$name, _> = "".parse();
+                assert!(matches!(result, Err(ParseError::Empty)));
+            }
+
+            #[test]
+            fn parse_contains_nul_fails() {
+                let result: Result<$name, _> = "test\0value".parse();
+                assert!(matches!(result, Err(ParseError::ContainsNul)));
+            }
+
+            #[test]
+            fn parse_too_long_fails() {
+                let input = "a".repeat(MAX_LENGTH + 1);
+                let result: Result<$name, _> = input.parse();
+                assert!(matches!(result, Err(ParseError::TooLong)));
+            }
+        }
     };
 }
 
 define_identifier_type!(
     /// A PostgreSQL table name.
-    Table
+    Table,
+    table
 );
 
 define_identifier_type!(
     /// A PostgreSQL schema name.
-    Schema
+    Schema,
+    schema
 );
 
 impl Schema {
     /// The default `public` schema.
     pub const PUBLIC: Self = Self::from_static_or_panic("public");
 }
+
+define_identifier_type!(
+    /// A PostgreSQL column name.
+    Column,
+    column
+);
+
+define_identifier_type!(
+    /// A PostgreSQL index name.
+    Index,
+    index
+);
+
+define_identifier_type!(
+    /// A PostgreSQL constraint name.
+    ///
+    /// Includes PRIMARY KEY, FOREIGN KEY, CHECK, UNIQUE, and EXCLUSION constraints.
+    Constraint,
+    constraint
+);
+
+define_identifier_type!(
+    /// A PostgreSQL extension name.
+    Extension,
+    extension
+);
+
+define_identifier_type!(
+    /// A PostgreSQL sequence name.
+    Sequence,
+    sequence
+);
+
+define_identifier_type!(
+    /// A PostgreSQL function or procedure name.
+    Function,
+    function
+);
+
+define_identifier_type!(
+    /// A PostgreSQL trigger name.
+    Trigger,
+    trigger
+);
+
+define_identifier_type!(
+    /// A PostgreSQL domain name.
+    Domain,
+    domain
+);
+
+define_identifier_type!(
+    /// A PostgreSQL type name.
+    ///
+    /// Includes custom types, enums, and composite types.
+    Type,
+    r#type
+);
+
+define_identifier_type!(
+    /// A PostgreSQL view name.
+    View,
+    view
+);
+
+define_identifier_type!(
+    /// A PostgreSQL relation name.
+    ///
+    /// A relation is either a table or a view. Use this type when an operation
+    /// accepts both tables and views (e.g., SELECT queries).
+    Relation,
+    relation
+);
+
+impl From<Table> for Relation {
+    fn from(table: Table) -> Self {
+        Self(table.0)
+    }
+}
+
+impl From<View> for Relation {
+    fn from(view: View) -> Self {
+        Self(view.0)
+    }
+}
+
+define_identifier_type!(
+    /// A PostgreSQL materialized view name.
+    MaterializedView,
+    materialized_view
+);
+
+impl From<MaterializedView> for Relation {
+    fn from(materialized_view: MaterializedView) -> Self {
+        Self(materialized_view.0)
+    }
+}
+
+define_identifier_type!(
+    /// A PostgreSQL operator name.
+    Operator,
+    operator
+);
+
+define_identifier_type!(
+    /// A PostgreSQL aggregate function name.
+    Aggregate,
+    aggregate
+);
+
+define_identifier_type!(
+    /// A PostgreSQL collation name.
+    Collation,
+    collation
+);
+
+define_identifier_type!(
+    /// A PostgreSQL tablespace name.
+    Tablespace,
+    tablespace
+);
+
+define_identifier_type!(
+    /// A PostgreSQL row-level security policy name.
+    Policy,
+    policy
+);
+
+define_identifier_type!(
+    /// A PostgreSQL rule name.
+    Rule,
+    rule
+);
+
+define_identifier_type!(
+    /// A PostgreSQL publication name (for logical replication).
+    Publication,
+    publication
+);
+
+define_identifier_type!(
+    /// A PostgreSQL subscription name (for logical replication).
+    Subscription,
+    subscription
+);
+
+define_identifier_type!(
+    /// A PostgreSQL foreign server name.
+    ForeignServer,
+    foreign_server
+);
+
+define_identifier_type!(
+    /// A PostgreSQL foreign data wrapper name.
+    ForeignDataWrapper,
+    foreign_data_wrapper
+);
+
+define_identifier_type!(
+    /// A PostgreSQL foreign table name.
+    ForeignTable,
+    foreign_table
+);
+
+define_identifier_type!(
+    /// A PostgreSQL event trigger name.
+    EventTrigger,
+    event_trigger
+);
+
+define_identifier_type!(
+    /// A PostgreSQL procedural language name.
+    Language,
+    language
+);
+
+define_identifier_type!(
+    /// A PostgreSQL text search configuration name.
+    TextSearchConfiguration,
+    text_search_configuration
+);
+
+define_identifier_type!(
+    /// A PostgreSQL text search dictionary name.
+    TextSearchDictionary,
+    text_search_dictionary
+);
+
+define_identifier_type!(
+    /// A PostgreSQL encoding conversion name.
+    Conversion,
+    conversion
+);
+
+define_identifier_type!(
+    /// A PostgreSQL operator class name.
+    OperatorClass,
+    operator_class
+);
+
+define_identifier_type!(
+    /// A PostgreSQL operator family name.
+    OperatorFamily,
+    operator_family
+);
+
+define_identifier_type!(
+    /// A PostgreSQL access method name.
+    AccessMethod,
+    access_method
+);
+
+define_identifier_type!(
+    /// A PostgreSQL extended statistics object name.
+    StatisticsObject,
+    statistics_object
+);
+
+define_identifier_type!(
+    /// A PostgreSQL database name.
+    Database,
+    database
+);
+
+impl Database {
+    /// The default `postgres` database.
+    pub const POSTGRES: Self = Self::from_static_or_panic("postgres");
+}
+
+define_identifier_type!(
+    /// A PostgreSQL role name.
+    ///
+    /// Roles with the `LOGIN` attribute are typically called users.
+    Role,
+    role
+);
+
+impl Role {
+    /// The default `postgres` superuser role.
+    pub const POSTGRES: Self = Self::from_static_or_panic("postgres");
+}
+
+/// A PostgreSQL user (alias for [`Role`]).
+///
+/// A user is a role with the `LOGIN` attribute.
+pub type User = Role;
 
 #[cfg(test)]
 mod tests {
@@ -243,62 +527,6 @@ mod tests {
         fn parse_contains_nul_fails() {
             let result: Result<Identifier, _> = "my\0table".parse();
             assert_eq!(result, Err(ParseError::ContainsNul));
-        }
-    }
-
-    mod table {
-        use super::*;
-
-        #[test]
-        fn parse_valid() {
-            let table: Table = "users".parse().unwrap();
-            assert_eq!(table.to_string(), "users");
-        }
-
-        #[test]
-        fn parse_valid_with_space() {
-            let table: Table = "user accounts".parse().unwrap();
-            assert_eq!(table.to_string(), "user accounts");
-        }
-
-        #[test]
-        fn parse_empty_fails() {
-            let result: Result<Table, _> = "".parse();
-            assert!(matches!(result, Err(ParseError::Empty)));
-        }
-
-        #[test]
-        fn parse_contains_nul_fails() {
-            let result: Result<Table, _> = "my\0table".parse();
-            assert!(matches!(result, Err(ParseError::ContainsNul)));
-        }
-    }
-
-    mod schema {
-        use super::*;
-
-        #[test]
-        fn parse_valid() {
-            let schema: Schema = "public".parse().unwrap();
-            assert_eq!(schema.to_string(), "public");
-        }
-
-        #[test]
-        fn parse_valid_with_space() {
-            let schema: Schema = "my schema".parse().unwrap();
-            assert_eq!(schema.to_string(), "my schema");
-        }
-
-        #[test]
-        fn parse_empty_fails() {
-            let result: Result<Schema, _> = "".parse();
-            assert!(matches!(result, Err(ParseError::Empty)));
-        }
-
-        #[test]
-        fn parse_contains_nul_fails() {
-            let result: Result<Schema, _> = "my\0schema".parse();
-            assert!(matches!(result, Err(ParseError::ContainsNul)));
         }
     }
 }

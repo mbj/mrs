@@ -44,7 +44,7 @@ exec docker-entrypoint.sh "$@"
 pub struct Definition {
     pub image: ociman::image::Reference,
     pub password: pg_client::Password,
-    pub username: pg_client::Username,
+    pub user: pg_client::User,
     pub database: pg_client::Database,
     pub backend: ociman::Backend,
     pub cross_container_access: bool,
@@ -97,7 +97,7 @@ impl Container {
             &definition.application_name,
             &definition.database,
             &definition.password,
-            &definition.username,
+            &definition.user,
             definition.wait_available_timeout,
         )
     }
@@ -277,7 +277,7 @@ fn run_container(
     application_name: &Option<pg_client::ApplicationName>,
     database: &pg_client::Database,
     password: &pg_client::Password,
-    username: &pg_client::Username,
+    user: &pg_client::User,
     wait_available_timeout: std::time::Duration,
 ) -> Container {
     let backend = backend.clone();
@@ -371,7 +371,7 @@ fn run_container(
         password: Some(password.clone()),
         ssl_mode,
         ssl_root_cert,
-        username: username.clone(),
+        user: user.clone(),
     };
 
     Container {

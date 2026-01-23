@@ -15,7 +15,7 @@ async fn test_run_container_definition() {
 
     let backend = ociman::test_backend_setup!();
     let static_password = "testpass123";
-    let static_username = "postgres";
+    let static_user = "postgres";
     let static_database = "postgres";
     let snapshot_image: ociman::image::Reference = "pg-ephemeral-test:snapshot".parse().unwrap();
 
@@ -27,7 +27,7 @@ async fn test_run_container_definition() {
     )
     .remove_on_drop()
     .environment_variable(ENV_POSTGRES_PASSWORD, static_password)
-    .environment_variable(ENV_POSTGRES_USER, static_username)
+    .environment_variable(ENV_POSTGRES_USER, static_user)
     .environment_variable(ENV_PGDATA, pg_ephemeral::container::PGDATA)
     .publish(ociman::Publish::tcp(5432))
     .run_detached();
@@ -46,7 +46,7 @@ async fn test_run_container_definition() {
         password: Some(pg_client::Password::from_str(static_password).unwrap()),
         ssl_mode: pg_client::SslMode::Disable,
         ssl_root_cert: None,
-        username: pg_client::Username::from_str(static_username).unwrap(),
+        user: pg_client::User::from_str(static_user).unwrap(),
     };
 
     wait_for_postgres(&client_config).await;
@@ -72,7 +72,7 @@ async fn test_run_container_definition() {
     let definition = pg_ephemeral::container::Definition {
         image: snapshot_image.clone(),
         password: pg_client::Password::from_str(static_password).unwrap(),
-        username: pg_client::Username::from_str(static_username).unwrap(),
+        user: pg_client::User::from_str(static_user).unwrap(),
         database: pg_client::Database::from_str(static_database).unwrap(),
         backend: backend.clone(),
         cross_container_access: false,

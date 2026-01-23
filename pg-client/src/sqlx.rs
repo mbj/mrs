@@ -98,7 +98,7 @@ impl Config {
     ///
     /// let config = Config {
     ///     application_name: Some(ApplicationName::from_str("some-app").unwrap()),
-    ///     database: Database::from_str("some-database").unwrap(),
+    ///     database: Database::from_static_or_panic("some-database"),
     ///     endpoint: Endpoint::Network {
     ///         host: Host::from_str("some-host").unwrap(),
     ///         channel_binding: None,
@@ -108,7 +108,7 @@ impl Config {
     ///     password: Some(Password::from_str("some-password").unwrap()),
     ///     ssl_mode: SslMode::VerifyFull,
     ///     ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
-    ///     username: Username::from_str("some-username").unwrap(),
+    ///     user: User::from_static_or_panic("some-user"),
     /// };
     ///
     /// let options = config.to_sqlx_connect_options().unwrap();
@@ -118,7 +118,7 @@ impl Config {
     /// assert_eq!(Some("some-app"), options.get_application_name());
     /// assert_eq!("some-host", options.get_host());
     /// assert_eq!(5432, options.get_port());
-    /// assert_eq!("some-username", options.get_username());
+    /// assert_eq!("some-user", options.get_username());
     /// // No PartialEQ instance, compare debug output
     /// assert_eq!("VerifyFull", format!("{:?}", options.get_ssl_mode()));
     /// assert_eq!(Some("some-database"), options.get_database());
@@ -182,7 +182,7 @@ impl Config {
         }
 
         options = options.ssl_mode((&self.ssl_mode).into());
-        options = options.username(self.username.as_str());
+        options = options.username(self.user.as_str());
 
         if let Some(application_name) = &self.application_name {
             options = options.application_name(application_name.as_str());
@@ -235,14 +235,17 @@ impl Config {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{Database, Endpoint, Host, Port, SslMode, SslRootCert, Username};
+    use crate::{Database, Endpoint, Host, Port, SslMode, SslRootCert, User};
     use std::str::FromStr;
+
+    const TEST_DATABASE: Database = Database::from_static_or_panic("some-database");
+    const TEST_USER: User = User::from_static_or_panic("some-user");
 
     #[test]
     fn test_ssl_root_cert_system_not_supported() {
         let config = Config {
             application_name: None,
-            database: Database::from_str("test").unwrap(),
+            database: TEST_DATABASE,
             endpoint: Endpoint::Network {
                 host: Host::from_str("localhost").unwrap(),
                 channel_binding: None,
@@ -252,7 +255,7 @@ mod tests {
             password: None,
             ssl_mode: SslMode::VerifyFull,
             ssl_root_cert: Some(SslRootCert::System),
-            username: Username::from_str("test").unwrap(),
+            user: TEST_USER,
         };
 
         let result = config.to_sqlx_connect_options();
