@@ -277,6 +277,14 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL type name.
+    ///
+    /// Includes custom types, enums, and composite types.
+    Type,
+    r#type
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
