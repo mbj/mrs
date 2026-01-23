@@ -372,6 +372,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL foreign server name.
+    ForeignServer,
+    foreign_server
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
