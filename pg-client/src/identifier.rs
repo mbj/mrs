@@ -414,6 +414,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL encoding conversion name.
+    Conversion,
+    conversion
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
