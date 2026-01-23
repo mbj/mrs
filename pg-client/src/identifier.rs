@@ -360,6 +360,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL publication name (for logical replication).
+    Publication,
+    publication
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
