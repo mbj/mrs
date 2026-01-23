@@ -312,6 +312,18 @@ impl From<View> for Relation {
 }
 
 define_identifier_type!(
+    /// A PostgreSQL materialized view name.
+    MaterializedView,
+    materialized_view
+);
+
+impl From<MaterializedView> for Relation {
+    fn from(materialized_view: MaterializedView) -> Self {
+        Self(materialized_view.0)
+    }
+}
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
