@@ -348,6 +348,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL row-level security policy name.
+    Policy,
+    policy
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
