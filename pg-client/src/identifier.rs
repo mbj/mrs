@@ -354,6 +354,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL rule name.
+    Rule,
+    rule
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
