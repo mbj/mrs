@@ -291,6 +291,27 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL relation name.
+    ///
+    /// A relation is either a table or a view. Use this type when an operation
+    /// accepts both tables and views (e.g., SELECT queries).
+    Relation,
+    relation
+);
+
+impl From<Table> for Relation {
+    fn from(table: Table) -> Self {
+        Self(table.0)
+    }
+}
+
+impl From<View> for Relation {
+    fn from(view: View) -> Self {
+        Self(view.0)
+    }
+}
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
