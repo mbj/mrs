@@ -2,7 +2,7 @@
 
 pub mod identifier;
 
-pub use identifier::Database;
+pub use identifier::{Database, Role, User};
 
 #[cfg(feature = "sqlx")]
 pub mod sqlx;
@@ -316,14 +316,9 @@ impl Database {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
-pub struct Username(String);
-
-from_str_impl!(Username, 1, 63);
-
-impl Username {
+impl Role {
     fn pg_env_value(&self) -> String {
-        self.0.clone()
+        self.as_str().to_owned()
     }
 }
 
@@ -423,7 +418,7 @@ pub struct Config {
     pub password: Option<Password>,
     pub ssl_mode: SslMode,
     pub ssl_root_cert: Option<SslRootCert>,
-    pub username: Username,
+    pub user: User,
 }
 
 pub const PGAPPNAME: cmd_proc::EnvVariableName<'static> =
@@ -469,7 +464,7 @@ impl serde::Serialize for Config {
             state.serialize_field("ssl_root_cert", ssl_root_cert)?;
         }
 
-        state.serialize_field("username", &self.username)?;
+        state.serialize_field("user", &self.user)?;
         state.serialize_field("url", &self.to_url())?;
 
         state.end()
@@ -496,21 +491,21 @@ impl Config {
     ///     password: None,
     ///     ssl_mode: SslMode::VerifyFull,
     ///     ssl_root_cert: None,
-    ///     username: Username::from_str("some-username").unwrap(),
+    ///     user: User::from_str("some-user").unwrap(),
     /// };
     ///
     /// let options = config.to_sqlx_connect_options();
     ///
     /// assert_eq!(
     ///     Url::parse(
-    ///         "postgres://some-username@some-host:5432/some-database?sslmode=verify-full"
+    ///         "postgres://some-user@some-host:5432/some-database?sslmode=verify-full"
     ///     ).unwrap(),
     ///     config.to_url()
     /// );
     ///
     /// assert_eq!(
     ///     Url::parse(
-    ///         "postgres://some-username:some-password@some-host:5432/some-database?application_name=some-app&sslmode=verify-full&sslrootcert=%2Fsome.pem"
+    ///         "postgres://some-user:some-password@some-host:5432/some-database?application_name=some-app&sslmode=verify-full&sslrootcert=%2Fsome.pem"
     ///     ).unwrap(),
     ///     Config {
     ///         application_name: Some(ApplicationName::from_str("some-app").unwrap()),
@@ -522,7 +517,7 @@ impl Config {
     ///
     /// assert_eq!(
     ///     Url::parse(
-    ///         "postgres://some-username@some-host:5432/some-database?hostaddr=127.0.0.1&sslmode=verify-full"
+    ///         "postgres://some-user@some-host:5432/some-database?hostaddr=127.0.0.1&sslmode=verify-full"
     ///     ).unwrap(),
     ///     Config {
     ///         endpoint: Endpoint::Network {
@@ -548,7 +543,7 @@ impl Config {
     ///     password: None,
     ///     ssl_mode: SslMode::Disable,
     ///     ssl_root_cert: None,
-    ///     username: Username::from_str("user").unwrap(),
+    ///     user: User::from_str("user").unwrap(),
     /// };
     /// assert_eq!(
     ///     ipv4_config.to_url().to_string(),
@@ -568,7 +563,7 @@ impl Config {
     ///     password: None,
     ///     ssl_mode: SslMode::Disable,
     ///     ssl_root_cert: None,
-    ///     username: Username::from_str("user").unwrap(),
+    ///     user: User::from_str("user").unwrap(),
     /// };
     /// assert_eq!(
     ///     ipv6_config.to_url().to_string(),
@@ -595,8 +590,7 @@ impl Config {
                         url.set_host(Some(hostname.as_str())).unwrap();
                     }
                 }
-                url.set_username(self.username.pg_env_value().as_str())
-                    .unwrap();
+                url.set_username(self.user.pg_env_value().as_str()).unwrap();
 
                 if let Some(password) = &self.password {
                     url.set_password(Some(password.as_str())).unwrap();
@@ -626,7 +620,7 @@ impl Config {
                         path.to_str().expect("socket path contains invalid utf8"),
                     )
                     .append_pair("dbname", self.database.as_str())
-                    .append_pair("user", self.username.pg_env_value().as_str());
+                    .append_pair("user", self.user.pg_env_value().as_str());
 
                 if let Some(password) = &self.password {
                     url.query_pairs_mut()
@@ -670,7 +664,7 @@ impl Config {
     ///     password: None,
     ///     ssl_mode: SslMode::VerifyFull,
     ///     ssl_root_cert: None,
-    ///     username: "some-username".parse().unwrap(),
+    ///     user: "some-user".parse().unwrap(),
     /// };
     ///
     /// let expected = BTreeMap::from([
@@ -678,7 +672,7 @@ impl Config {
     ///     (PGHOST, "some-host".to_string()),
     ///     (PGPORT, "5432".to_string()),
     ///     (PGSSLMODE, "verify-full".to_string()),
-    ///     (PGUSER, "some-username".to_string()),
+    ///     (PGUSER, "some-user".to_string()),
     /// ]);
     ///
     /// assert_eq!(expected, config.to_pg_env());
@@ -705,7 +699,7 @@ impl Config {
     ///     (PGPORT, "5432".to_string()),
     ///     (PGSSLMODE, "verify-full".to_string()),
     ///     (PGSSLROOTCERT, "/some.pem".to_string()),
-    ///     (PGUSER, "some-username".to_string()),
+    ///     (PGUSER, "some-user".to_string()),
     /// ]);
     ///
     /// assert_eq!(expected, config_with_optionals.to_pg_env());
@@ -745,7 +739,7 @@ impl Config {
         }
 
         map.insert(PGSSLMODE.clone(), self.ssl_mode.pg_env_value());
-        map.insert(PGUSER.clone(), self.username.pg_env_value());
+        map.insert(PGUSER.clone(), self.user.pg_env_value());
         map.insert(PGDATABASE.clone(), self.database.pg_env_value());
 
         if let Some(application_name) = &self.application_name {
@@ -869,69 +863,6 @@ mod test {
     }
 
     #[test]
-    fn username_lt_min_length() {
-        let value = String::new();
-
-        let err = Username::from_str(&value).expect_err("expected min length failure");
-
-        assert_eq!(err, "Username byte min length: 1 violated, got: 0");
-    }
-
-    #[test]
-    fn username_eq_min_length() {
-        let value = repeat('u', 1);
-
-        let username = Username::from_str(&value).expect("expected valid min length value");
-
-        assert_eq!(username, Username(value));
-    }
-
-    #[test]
-    fn username_gt_min_length() {
-        let value = repeat('u', 2);
-
-        let username = Username::from_str(&value).expect("expected valid value greater than min");
-
-        assert_eq!(username, Username(value));
-    }
-
-    #[test]
-    fn username_lt_max_length() {
-        let value = repeat('u', 62);
-
-        let username = Username::from_str(&value).expect("expected valid value less than max");
-
-        assert_eq!(username, Username(value));
-    }
-
-    #[test]
-    fn username_eq_max_length() {
-        let value = repeat('u', 63);
-
-        let username = Username::from_str(&value).expect("expected valid value equal to max");
-
-        assert_eq!(username, Username(value));
-    }
-
-    #[test]
-    fn username_gt_max_length() {
-        let value = repeat('u', 64);
-
-        let err = Username::from_str(&value).expect_err("expected max length failure");
-
-        assert_eq!(err, "Username byte max length: 63 violated, got: 64");
-    }
-
-    #[test]
-    fn username_contains_nul() {
-        let value = String::from('\0');
-
-        let err = Username::from_str(&value).expect_err("expected NUL failure");
-
-        assert_eq!(err, "Username contains NUL byte");
-    }
-
-    #[test]
     fn password_eq_min_length() {
         let value = String::new();
 
@@ -999,7 +930,7 @@ mod test {
             password: None,
             ssl_mode: SslMode::VerifyFull,
             ssl_root_cert: None,
-            username: Username::from_str("some-username").unwrap(),
+            user: User::from_str("some-user").unwrap(),
         };
 
         assert_config(
@@ -1010,8 +941,8 @@ mod test {
                     "port": 5432,
                 },
                 "ssl_mode": "verify-full",
-                "url": "postgres://some-username@some-host:5432/some-database?sslmode=verify-full",
-                "username": "some-username",
+                "url": "postgres://some-user@some-host:5432/some-database?sslmode=verify-full",
+                "user": "some-user",
             }),
             &config,
         );
@@ -1029,8 +960,8 @@ mod test {
                 "ssl_root_cert": {
                     "file": "/some.pem"
                 },
-                "url": "postgres://some-username:some-password@some-host:5432/some-database?application_name=some-app&sslmode=verify-full&sslrootcert=%2Fsome.pem",
-                "username": "some-username"
+                "url": "postgres://some-user:some-password@some-host:5432/some-database?application_name=some-app&sslmode=verify-full&sslrootcert=%2Fsome.pem",
+                "user": "some-user"
             }),
             &Config {
                 application_name: Some(ApplicationName::from_str("some-app").unwrap()),
@@ -1048,8 +979,8 @@ mod test {
                     "port": 5432,
                 },
                 "ssl_mode": "verify-full",
-                "url": "postgres://some-username@127.0.0.1:5432/some-database?sslmode=verify-full",
-                "username": "some-username"
+                "url": "postgres://some-user@127.0.0.1:5432/some-database?sslmode=verify-full",
+                "user": "some-user"
             }),
             &Config {
                 endpoint: Endpoint::Network {
@@ -1069,8 +1000,8 @@ mod test {
                     "socket_path": "/some/socket",
                 },
                 "ssl_mode": "verify-full",
-                "url": "postgres://?host=%2Fsome%2Fsocket&dbname=some-database&user=some-username&sslmode=verify-full",
-                "username": "some-username"
+                "url": "postgres://?host=%2Fsome%2Fsocket&dbname=some-database&user=some-user&sslmode=verify-full",
+                "user": "some-user"
             }),
             &Config {
                 endpoint: Endpoint::SocketPath("/some/socket".into()),
@@ -1087,8 +1018,8 @@ mod test {
                 },
                 "ssl_mode": "verify-full",
                 "ssl_root_cert": "system",
-                "url": "postgres://some-username@some-host:5432/some-database?sslmode=verify-full&sslrootcert=system",
-                "username": "some-username"
+                "url": "postgres://some-user@some-host:5432/some-database?sslmode=verify-full&sslrootcert=system",
+                "user": "some-user"
             }),
             &Config {
                 ssl_root_cert: Some(SslRootCert::System),
@@ -1105,8 +1036,8 @@ mod test {
                     "port": 5432,
                 },
                 "ssl_mode": "verify-full",
-                "url": "postgres://some-username@some-host:5432/some-database?hostaddr=192.168.1.100&sslmode=verify-full",
-                "username": "some-username"
+                "url": "postgres://some-user@some-host:5432/some-database?hostaddr=192.168.1.100&sslmode=verify-full",
+                "user": "some-user"
             }),
             &Config {
                 endpoint: Endpoint::Network {
@@ -1127,8 +1058,8 @@ mod test {
                     "host": "some-host",
                 },
                 "ssl_mode": "verify-full",
-                "url": "postgres://some-username@some-host/some-database?sslmode=verify-full",
-                "username": "some-username"
+                "url": "postgres://some-user@some-host/some-database?sslmode=verify-full",
+                "user": "some-user"
             }),
             &Config {
                 endpoint: Endpoint::Network {
@@ -1150,8 +1081,8 @@ mod test {
                     "host_addr": "10.0.0.1",
                 },
                 "ssl_mode": "verify-full",
-                "url": "postgres://some-username@some-host/some-database?hostaddr=10.0.0.1&sslmode=verify-full",
-                "username": "some-username"
+                "url": "postgres://some-user@some-host/some-database?hostaddr=10.0.0.1&sslmode=verify-full",
+                "user": "some-user"
             }),
             &Config {
                 endpoint: Endpoint::Network {
@@ -1180,7 +1111,7 @@ mod test {
             password: None,
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
-            username: Username::from_str("postgres").unwrap(),
+            user: User::from_str("postgres").unwrap(),
         };
 
         let url = config_ipv6_loopback.to_url();
@@ -1205,7 +1136,7 @@ mod test {
             password: None,
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
-            username: Username::from_str("postgres").unwrap(),
+            user: User::from_str("postgres").unwrap(),
         };
 
         let url = config_ipv6_fe80.to_url();
@@ -1230,7 +1161,7 @@ mod test {
             password: None,
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
-            username: Username::from_str("postgres").unwrap(),
+            user: User::from_str("postgres").unwrap(),
         };
 
         let url = config_ipv6_full.to_url();
@@ -1253,7 +1184,7 @@ mod test {
             password: None,
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
-            username: Username::from_str("postgres").unwrap(),
+            user: User::from_str("postgres").unwrap(),
         };
 
         let url = config_ipv4.to_url();
@@ -1276,7 +1207,7 @@ mod test {
             password: None,
             ssl_mode: SslMode::Disable,
             ssl_root_cert: None,
-            username: Username::from_str("postgres").unwrap(),
+            user: User::from_str("postgres").unwrap(),
         };
 
         let url = config_hostname.to_url();

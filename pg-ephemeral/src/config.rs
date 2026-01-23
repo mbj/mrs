@@ -10,7 +10,7 @@ pub struct Instance {
     pub database: pg_client::Database,
     pub seeds: indexmap::IndexMap<SeedName, Seed>,
     pub ssl_config: Option<SslConfig>,
-    pub superuser: pg_client::Username,
+    pub superuser: pg_client::User,
     pub image: Image,
     pub cross_container_access: bool,
     pub wait_available_timeout: std::time::Duration,

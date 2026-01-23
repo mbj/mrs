@@ -42,7 +42,7 @@ async fn test_with_sqlx_connection_error_on_unavailable_database() {
         password: Some("test".parse().unwrap()),
         ssl_mode: pg_client::SslMode::Disable,
         ssl_root_cert: None,
-        username: "test".parse().unwrap(),
+        user: "test".parse().unwrap(),
     };
 
     let result = config

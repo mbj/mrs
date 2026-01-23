@@ -238,6 +238,19 @@ define_identifier_type!(
     database
 );
 
+define_identifier_type!(
+    /// A PostgreSQL role name.
+    ///
+    /// Roles with the `LOGIN` attribute are typically called users.
+    Role,
+    role
+);
+
+/// A PostgreSQL user (alias for [`Role`]).
+///
+/// A user is a role with the `LOGIN` attribute.
+pub type User = Role;
+
 #[cfg(test)]
 mod tests {
     use super::*;

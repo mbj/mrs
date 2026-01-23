@@ -1,4 +1,4 @@
-use crate::{Config, Database, Endpoint, Host, Password, Port, SslMode, SslRootCert, Username};
+use crate::{Config, Database, Endpoint, Host, Password, Port, SslMode, SslRootCert, User};
 use percent_encoding::percent_decode_str;
 use std::borrow::Cow;
 use std::collections::{BTreeMap, BTreeSet};
@@ -19,12 +19,14 @@ pub enum ParseError {
     ConflictingParameter(&'static str),
     #[error("Unknown query parameter: '{0}'")]
     InvalidQueryParameter(String),
-    #[error("Invalid username: {0}")]
-    InvalidUsername(String),
+    #[error("Invalid user: {0}")]
+    InvalidUser(crate::identifier::ParseError),
+    #[error("Invalid user encoding: {0}")]
+    InvalidUserEncoding(std::str::Utf8Error),
     #[error("Invalid password: {0}")]
     InvalidPassword(String),
     #[error("Invalid database: {0}")]
-    InvalidDatabase(#[from] crate::identifier::ParseError),
+    InvalidDatabase(crate::identifier::ParseError),
     #[error("Invalid database encoding: {0}")]
     InvalidDatabaseEncoding(std::str::Utf8Error),
     #[error("Invalid host: {0}")]
@@ -68,7 +70,7 @@ pub enum ParseError {
 /// - `hostaddr`: IP address for the host
 /// - `channel_binding`: Channel binding (disable, prefer, require)
 /// - `host`: Socket path (when URL has no host component)
-/// - `user`: Username (when URL has no username component)
+/// - `user`: User (when URL has no username component)
 /// - `dbname`: Database name (when URL has no path component)
 /// - `password`: Password (when URL has no password component)
 ///
@@ -86,7 +88,7 @@ pub enum ParseError {
 ///     &"postgres://user@localhost:5432/mydb".parse().unwrap(),
 /// ).unwrap();
 ///
-/// assert_eq!(config.username.as_str(), "user");
+/// assert_eq!(config.user.as_str(), "user");
 /// assert_eq!(config.database.as_str(), "mydb");
 /// assert_eq!(config.ssl_mode, SslMode::VerifyFull);
 /// ```
@@ -108,7 +110,7 @@ pub fn parse(url: &::url::Url) -> Result<Config, ParseError> {
     let url_host = url.host();
     let query_host = query_params.take("host");
 
-    let (endpoint, username, password, database) = match (url_host, query_host) {
+    let (endpoint, user, password, database) = match (url_host, query_host) {
         (Some(_), Some(_)) => return Err(ParseError::ConflictingParameter("host")),
         (Some(url_host), None) => parse_network_connection(url_host, url, &mut query_params)?,
         (None, Some(host)) => {
@@ -161,25 +163,25 @@ pub fn parse(url: &::url::Url) -> Result<Config, ParseError> {
         password,
         ssl_mode,
         ssl_root_cert,
-        username,
+        user,
     })
 }
 
 fn parse_socket_connection<'a>(
     socket_path: &str,
     query_params: &mut QueryParams<'a>,
-) -> Result<(Endpoint, Username, Option<Password>, Database), ParseError> {
+) -> Result<(Endpoint, User, Option<Password>, Database), ParseError> {
     for name in ["channel_binding", "hostaddr"] {
         if query_params.take(name).is_some() {
             return Err(ParseError::UnsupportedParameter(name));
         }
     }
 
-    let username: Username = query_params
+    let user: User = query_params
         .take("user")
         .ok_or(ParseError::MissingParameter("user"))?
         .parse()
-        .map_err(ParseError::InvalidUsername)?;
+        .map_err(ParseError::InvalidUser)?;
 
     let password: Option<Password> = query_params
         .take("password")
@@ -189,11 +191,12 @@ fn parse_socket_connection<'a>(
     let database: Database = query_params
         .take("dbname")
         .ok_or(ParseError::MissingParameter("dbname"))?
-        .parse()?;
+        .parse()
+        .map_err(ParseError::InvalidDatabase)?;
 
     Ok((
         Endpoint::SocketPath(socket_path.into()),
-        username,
+        user,
         password,
         database,
     ))
@@ -241,7 +244,7 @@ fn parse_network_connection<'a>(
     url_host: ::url::Host<&str>,
     url: &'a ::url::Url,
     query_params: &mut QueryParams<'a>,
-) -> Result<(Endpoint, Username, Option<Password>, Database), ParseError> {
+) -> Result<(Endpoint, User, Option<Password>, Database), ParseError> {
     let host = match url_host {
         ::url::Host::Domain(domain) => domain
             .parse::<Host>()
@@ -270,17 +273,15 @@ fn parse_network_connection<'a>(
 
     let port = url.port().map(Port::new);
 
-    let username_encoded = access_field("user", Some(url.username()), query_params)?
+    let user_encoded = access_field("user", Some(url.username()), query_params)?
         .ok_or(ParseError::MissingParameter("user"))?;
-    if username_encoded.is_empty() {
+    if user_encoded.is_empty() {
         return Err(ParseError::MissingParameter("user"));
     }
-    let username_decoded = percent_decode_str(username_encoded)
+    let user_decoded = percent_decode_str(user_encoded)
         .decode_utf8()
-        .map_err(|err| ParseError::InvalidUsername(err.to_string()))?;
-    let username: Username = username_decoded
-        .parse()
-        .map_err(ParseError::InvalidUsername)?;
+        .map_err(ParseError::InvalidUserEncoding)?;
+    let user: User = user_decoded.parse().map_err(ParseError::InvalidUser)?;
 
     let password = match access_field("password", url.password(), query_params)? {
         Some(password_encoded) => {
@@ -306,7 +307,9 @@ fn parse_network_connection<'a>(
     let database_decoded = percent_decode_str(database_encoded)
         .decode_utf8()
         .map_err(ParseError::InvalidDatabaseEncoding)?;
-    let database: Database = database_decoded.parse()?;
+    let database: Database = database_decoded
+        .parse()
+        .map_err(ParseError::InvalidDatabase)?;
 
     Ok((
         Endpoint::Network {
@@ -315,7 +318,7 @@ fn parse_network_connection<'a>(
             host_addr,
             port,
         },
-        username,
+        user,
         password,
         database,
     ))
@@ -337,7 +340,7 @@ mod tests {
     }
 
     fn success(
-        username: &str,
+        user: &str,
         password: Option<&str>,
         database: &str,
         endpoint: Endpoint,
@@ -346,7 +349,7 @@ mod tests {
         application_name: Option<&str>,
     ) -> Config {
         Config {
-            username: username.parse().unwrap(),
+            user: user.parse().unwrap(),
             password: password.map(|value| value.parse().unwrap()),
             database: database.parse().unwrap(),
             endpoint,

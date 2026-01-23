@@ -108,7 +108,7 @@ impl Config {
     ///     password: Some(Password::from_str("some-password").unwrap()),
     ///     ssl_mode: SslMode::VerifyFull,
     ///     ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
-    ///     username: Username::from_str("some-username").unwrap(),
+    ///     user: User::from_str("some-username").unwrap(),
     /// };
     ///
     /// let options = config.to_sqlx_connect_options().unwrap();
@@ -182,7 +182,7 @@ impl Config {
         }
 
         options = options.ssl_mode((&self.ssl_mode).into());
-        options = options.username(self.username.as_str());
+        options = options.username(self.user.as_str());
 
         if let Some(application_name) = &self.application_name {
             options = options.application_name(application_name.as_str());
@@ -235,7 +235,7 @@ impl Config {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{Database, Endpoint, Host, Port, SslMode, SslRootCert, Username};
+    use crate::{Database, Endpoint, Host, Port, SslMode, SslRootCert, User};
     use std::str::FromStr;
 
     #[test]
@@ -252,7 +252,7 @@ mod tests {
             password: None,
             ssl_mode: SslMode::VerifyFull,
             ssl_root_cert: Some(SslRootCert::System),
-            username: Username::from_str("test").unwrap(),
+            user: User::from_str("test").unwrap(),
         };
 
         let result = config.to_sqlx_connect_options();
