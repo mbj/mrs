@@ -259,6 +259,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL function or procedure name.
+    Function,
+    function
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
