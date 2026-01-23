@@ -247,6 +247,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL extension name.
+    Extension,
+    extension
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
