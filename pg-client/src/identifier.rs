@@ -390,6 +390,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL event trigger name.
+    EventTrigger,
+    event_trigger
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
