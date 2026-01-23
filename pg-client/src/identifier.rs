@@ -432,6 +432,12 @@ define_identifier_type!(
 );
 
 define_identifier_type!(
+    /// A PostgreSQL access method name.
+    AccessMethod,
+    access_method
+);
+
+define_identifier_type!(
     /// A PostgreSQL database name.
     Database,
     database
