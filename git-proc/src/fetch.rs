@@ -52,14 +52,7 @@ impl<'a> Fetch<'a> {
 
     /// Execute the command and return the exit status.
     pub fn status(self) -> Result<(), CommandError> {
-        self.build().status()
-    }
-
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
-            .argument("fetch")
-            .optional_argument(self.all.then_some("--all"))
-            .optional_argument(self.remote)
+        crate::Build::build(self).status()
     }
 }
 
@@ -69,16 +62,24 @@ impl Default for Fetch<'_> {
     }
 }
 
+impl crate::Build for Fetch<'_> {
+    fn build(self) -> cmd_proc::Command {
+        crate::base_command(self.repo_path)
+            .argument("fetch")
+            .optional_argument(self.all.then_some("--all"))
+            .optional_argument(self.remote)
+    }
+}
+
 #[cfg(feature = "test-utils")]
 impl Fetch<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             all: self.all,
             remote: self.remote,
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }

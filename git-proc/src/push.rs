@@ -61,28 +61,20 @@ impl<'a> Push<'a> {
 
     /// Execute the command and return the exit status.
     pub fn status(self) -> Result<(), CommandError> {
-        self.build().status()
+        crate::Build::build(self).status()
     }
 
     /// Capture stdout from this command.
     #[must_use]
     pub fn stdout(self) -> cmd_proc::Capture {
-        self.build().stdout()
+        crate::Build::build(self).stdout()
     }
 
     /// Execute and return full output regardless of exit status.
     ///
     /// Use this when you need to inspect stderr on failure.
     pub fn output(self) -> Result<cmd_proc::Output, CommandError> {
-        self.build().output()
-    }
-
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
-            .argument("push")
-            .optional_argument(self.force.then_some("--force"))
-            .optional_argument(self.remote)
-            .optional_argument(self.refspec)
+        crate::Build::build(self).output()
     }
 }
 
@@ -92,17 +84,26 @@ impl Default for Push<'_> {
     }
 }
 
+impl crate::Build for Push<'_> {
+    fn build(self) -> cmd_proc::Command {
+        crate::base_command(self.repo_path)
+            .argument("push")
+            .optional_argument(self.force.then_some("--force"))
+            .optional_argument(self.remote)
+            .optional_argument(self.refspec)
+    }
+}
+
 #[cfg(feature = "test-utils")]
 impl Push<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             force: self.force,
             remote: self.remote,
             refspec: self.refspec,
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }

@@ -61,22 +61,14 @@ impl<'a> RevParse<'a> {
     /// Capture stdout from this command.
     #[must_use]
     pub fn stdout(self) -> cmd_proc::Capture {
-        self.build().stdout()
+        crate::Build::build(self).stdout()
     }
 
     /// Execute and return full output regardless of exit status.
     ///
     /// Use this when you need to inspect stderr on failure.
     pub fn output(self) -> Result<cmd_proc::Output, CommandError> {
-        self.build().output()
-    }
-
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
-            .argument("rev-parse")
-            .optional_argument(self.abbrev_ref.then_some("--abbrev-ref"))
-            .optional_argument(self.symbolic_full_name.then_some("--symbolic-full-name"))
-            .optional_argument(self.rev)
+        crate::Build::build(self).output()
     }
 }
 
@@ -86,20 +78,28 @@ impl Default for RevParse<'_> {
     }
 }
 
+impl crate::Build for RevParse<'_> {
+    fn build(self) -> cmd_proc::Command {
+        crate::base_command(self.repo_path)
+            .argument("rev-parse")
+            .optional_argument(self.abbrev_ref.then_some("--abbrev-ref"))
+            .optional_argument(self.symbolic_full_name.then_some("--symbolic-full-name"))
+            .optional_argument(self.rev)
+    }
+}
+
 #[cfg(feature = "test-utils")]
 impl RevParse<'_> {
     /// Compare the built command with another command using debug representation.
     ///
     /// This is useful for testing command construction without executing.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        // Clone self to build without consuming
-        let command = Self {
+        let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             abbrev_ref: self.abbrev_ref,
             symbolic_full_name: self.symbolic_full_name,
             rev: self.rev,
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }

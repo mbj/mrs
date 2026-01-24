@@ -52,14 +52,7 @@ impl<'a> ShowRef<'a> {
     /// Returns error if the ref does not exist (with `--verify`).
     #[must_use]
     pub fn stdout(self) -> cmd_proc::Capture {
-        self.build().stdout()
-    }
-
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
-            .argument("show-ref")
-            .optional_argument(self.verify.then_some("--verify"))
-            .optional_argument(self.pattern)
+        crate::Build::build(self).stdout()
     }
 }
 
@@ -69,16 +62,24 @@ impl Default for ShowRef<'_> {
     }
 }
 
+impl crate::Build for ShowRef<'_> {
+    fn build(self) -> cmd_proc::Command {
+        crate::base_command(self.repo_path)
+            .argument("show-ref")
+            .optional_argument(self.verify.then_some("--verify"))
+            .optional_argument(self.pattern)
+    }
+}
+
 #[cfg(feature = "test-utils")]
 impl ShowRef<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             verify: self.verify,
             pattern: self.pattern,
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }

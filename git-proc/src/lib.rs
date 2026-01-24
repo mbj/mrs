@@ -62,6 +62,29 @@ use std::path::Path;
 
 pub use cmd_proc::CommandError;
 
+/// Trait for building a command without executing it.
+///
+/// All git command builders implement this trait, allowing you to
+/// access the underlying `cmd_proc::Command` for custom execution.
+///
+/// # Example
+///
+/// ```ignore
+/// use git_proc::Build;
+/// use cmd_proc::Stdio;
+///
+/// git_proc::fetch::new()
+///     .all()
+///     .build()
+///     .spawn()
+///     .stderr(Stdio::Null)
+///     .run()?;
+/// ```
+pub trait Build {
+    /// Build the command without executing it.
+    fn build(self) -> cmd_proc::Command;
+}
+
 /// Create a command builder with optional repository path.
 ///
 /// If `repo_path` is `Some`, adds `-C <path>` to the command.

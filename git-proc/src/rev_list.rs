@@ -72,16 +72,24 @@ impl<'a> RevList<'a> {
     /// Capture stdout from this command.
     #[must_use]
     pub fn stdout(self) -> cmd_proc::Capture {
-        self.build().stdout()
+        crate::Build::build(self).stdout()
     }
 
     /// Execute and return full output regardless of exit status.
     ///
     /// Use this when you need to inspect stderr on failure.
     pub fn output(self) -> Result<cmd_proc::Output, CommandError> {
-        self.build().output()
+        crate::Build::build(self).output()
     }
+}
 
+impl Default for RevList<'_> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+impl crate::Build for RevList<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("rev-list")
@@ -92,24 +100,17 @@ impl<'a> RevList<'a> {
     }
 }
 
-impl Default for RevList<'_> {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
 #[cfg(feature = "test-utils")]
 impl RevList<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             topo_order: self.topo_order,
             reverse: self.reverse,
             max_count: self.max_count,
             commits: self.commits.clone(),
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }

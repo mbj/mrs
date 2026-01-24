@@ -45,9 +45,11 @@ impl<'a> Clone<'a> {
 
     /// Execute the command and return the exit status.
     pub fn status(self) -> Result<(), CommandError> {
-        self.build().status()
+        crate::Build::build(self).status()
     }
+}
 
+impl crate::Build for Clone<'_> {
     fn build(self) -> cmd_proc::Command {
         cmd_proc::Command::new("git")
             .argument("clone")
@@ -61,12 +63,11 @@ impl<'a> Clone<'a> {
 impl Clone<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             url: self.url,
             directory: self.directory,
             bare: self.bare,
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }

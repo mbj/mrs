@@ -42,14 +42,7 @@ impl<'a> Init<'a> {
 
     /// Execute the command and return the exit status.
     pub fn status(self) -> Result<(), CommandError> {
-        self.build().status()
-    }
-
-    fn build(self) -> cmd_proc::Command {
-        cmd_proc::Command::new("git")
-            .argument("init")
-            .optional_argument(self.bare.then_some("--bare"))
-            .optional_argument(self.directory)
+        crate::Build::build(self).status()
     }
 }
 
@@ -59,15 +52,23 @@ impl Default for Init<'_> {
     }
 }
 
+impl crate::Build for Init<'_> {
+    fn build(self) -> cmd_proc::Command {
+        cmd_proc::Command::new("git")
+            .argument("init")
+            .optional_argument(self.bare.then_some("--bare"))
+            .optional_argument(self.directory)
+    }
+}
+
 #[cfg(feature = "test-utils")]
 impl Init<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             directory: self.directory,
             bare: self.bare,
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }

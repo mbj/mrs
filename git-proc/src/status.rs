@@ -41,13 +41,7 @@ impl<'a> Status<'a> {
     /// Capture stdout from this command.
     #[must_use]
     pub fn stdout(self) -> cmd_proc::Capture {
-        self.build().stdout()
-    }
-
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
-            .argument("status")
-            .optional_argument(self.porcelain.then_some("--porcelain"))
+        crate::Build::build(self).stdout()
     }
 }
 
@@ -57,15 +51,22 @@ impl Default for Status<'_> {
     }
 }
 
+impl crate::Build for Status<'_> {
+    fn build(self) -> cmd_proc::Command {
+        crate::base_command(self.repo_path)
+            .argument("status")
+            .optional_argument(self.porcelain.then_some("--porcelain"))
+    }
+}
+
 #[cfg(feature = "test-utils")]
 impl Status<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             porcelain: self.porcelain,
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }

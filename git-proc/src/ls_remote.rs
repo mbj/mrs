@@ -70,9 +70,17 @@ impl<'a> LsRemote<'a> {
     /// Capture stdout from this command.
     #[must_use]
     pub fn stdout(self) -> cmd_proc::Capture {
-        self.build().stdout()
+        crate::Build::build(self).stdout()
     }
+}
 
+impl Default for LsRemote<'_> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+impl crate::Build for LsRemote<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("ls-remote")
@@ -83,24 +91,17 @@ impl<'a> LsRemote<'a> {
     }
 }
 
-impl Default for LsRemote<'_> {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
 #[cfg(feature = "test-utils")]
 impl LsRemote<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             heads: self.heads,
             symref: self.symref,
             remote: self.remote,
             pattern: self.pattern,
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }
