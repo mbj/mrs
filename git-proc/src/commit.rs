@@ -94,9 +94,17 @@ impl<'a> Commit<'a> {
 
     /// Execute the command and return the exit status.
     pub fn status(self) -> Result<(), CommandError> {
-        self.build().status()
+        crate::Build::build(self).status()
     }
+}
 
+impl Default for Commit<'_> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+impl crate::Build for Commit<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("commit")
@@ -109,17 +117,11 @@ impl<'a> Commit<'a> {
     }
 }
 
-impl Default for Commit<'_> {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
 #[cfg(feature = "test-utils")]
 impl Commit<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             message: self.message,
             author: self.author,
@@ -127,8 +129,7 @@ impl Commit<'_> {
             allow_empty: self.allow_empty,
             allow_empty_message: self.allow_empty_message,
             env_vars: self.env_vars.clone(),
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }

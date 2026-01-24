@@ -44,13 +44,7 @@ impl<'a> List<'a> {
     /// Capture stdout from this command.
     #[must_use]
     pub fn stdout(self) -> cmd_proc::Capture {
-        self.build().stdout()
-    }
-
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
-            .argument("worktree")
-            .argument("list")
+        crate::Build::build(self).stdout()
     }
 }
 
@@ -60,14 +54,21 @@ impl Default for List<'_> {
     }
 }
 
+impl crate::Build for List<'_> {
+    fn build(self) -> cmd_proc::Command {
+        crate::base_command(self.repo_path)
+            .argument("worktree")
+            .argument("list")
+    }
+}
+
 #[cfg(feature = "test-utils")]
 impl List<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             repo_path: self.repo_path,
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }
@@ -128,9 +129,11 @@ impl<'a> Add<'a> {
 
     /// Execute the command and return the exit status.
     pub fn status(self) -> Result<(), CommandError> {
-        self.build().status()
+        crate::Build::build(self).status()
     }
+}
 
+impl crate::Build for Add<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("worktree")
@@ -146,14 +149,13 @@ impl<'a> Add<'a> {
 impl Add<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             path: self.path,
             branch: self.branch,
             new_branch: self.new_branch,
             commit_ish: self.commit_ish,
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }
@@ -194,9 +196,11 @@ impl<'a> Remove<'a> {
 
     /// Execute the command and return the exit status.
     pub fn status(self) -> Result<(), CommandError> {
-        self.build().status()
+        crate::Build::build(self).status()
     }
+}
 
+impl crate::Build for Remove<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("worktree")
@@ -210,12 +214,11 @@ impl<'a> Remove<'a> {
 impl Remove<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             worktree: self.worktree,
             force: self.force,
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }

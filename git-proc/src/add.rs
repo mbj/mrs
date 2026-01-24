@@ -51,14 +51,7 @@ impl<'a> Add<'a> {
 
     /// Execute the command and return the exit status.
     pub fn status(self) -> Result<(), CommandError> {
-        self.build().status()
-    }
-
-    fn build(self) -> cmd_proc::Command {
-        crate::base_command(self.repo_path)
-            .argument("add")
-            .optional_argument(self.all.then_some("--all"))
-            .arguments(self.pathspecs)
+        crate::Build::build(self).status()
     }
 }
 
@@ -68,16 +61,24 @@ impl Default for Add<'_> {
     }
 }
 
+impl crate::Build for Add<'_> {
+    fn build(self) -> cmd_proc::Command {
+        crate::base_command(self.repo_path)
+            .argument("add")
+            .optional_argument(self.all.then_some("--all"))
+            .arguments(self.pathspecs)
+    }
+}
+
 #[cfg(feature = "test-utils")]
 impl Add<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             all: self.all,
             pathspecs: self.pathspecs.clone(),
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }

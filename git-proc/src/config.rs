@@ -44,15 +44,17 @@ impl<'a> Config<'a> {
 
     /// Execute the command and return the exit status.
     pub fn status(self) -> Result<(), CommandError> {
-        self.build().status()
+        crate::Build::build(self).status()
     }
 
     /// Execute the command and return stdout as a string (for getting values).
     #[must_use]
     pub fn stdout(self) -> cmd_proc::Capture {
-        self.build().stdout()
+        crate::Build::build(self).stdout()
     }
+}
 
+impl crate::Build for Config<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("config")
@@ -65,12 +67,11 @@ impl<'a> Config<'a> {
 impl Config<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             key: self.key,
             value: self.value,
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }

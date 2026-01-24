@@ -42,16 +42,18 @@ impl<'a> Remote<'a> {
     /// Capture stdout from this command.
     #[must_use]
     pub fn stdout(self) -> cmd_proc::Capture {
-        self.build().stdout()
+        crate::Build::build(self).stdout()
     }
 
     /// Execute and return full output regardless of exit status.
     ///
     /// Use this when you need to inspect stderr on failure.
     pub fn output(self) -> Result<cmd_proc::Output, CommandError> {
-        self.build().output()
+        crate::Build::build(self).output()
     }
+}
 
+impl crate::Build for Remote<'_> {
     fn build(self) -> cmd_proc::Command {
         let RemoteSubcommand::GetUrl { name } = self.subcommand;
 
@@ -66,13 +68,12 @@ impl<'a> Remote<'a> {
 impl Remote<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
-        let command = Self {
+        let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             subcommand: match &self.subcommand {
                 RemoteSubcommand::GetUrl { name } => RemoteSubcommand::GetUrl { name },
             },
-        }
-        .build();
+        });
         command.test_eq(other);
     }
 }
