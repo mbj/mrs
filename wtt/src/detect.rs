@@ -1,4 +1,4 @@
-use crate::{Config, RepoName};
+use crate::{BareCloneNotFound, Config, RepoName};
 use std::path::{Path, PathBuf};
 
 #[derive(Debug, thiserror::Error)]
@@ -12,8 +12,8 @@ pub enum DetectError {
         worktree_dir: PathBuf,
     },
 
-    #[error("Bare repository not found for '{repo}' at '{}'", .bare_path.display())]
-    BareRepoNotFound { repo: RepoName, bare_path: PathBuf },
+    #[error("{0}")]
+    BareCloneNotFound(#[from] BareCloneNotFound),
 }
 
 pub fn detect_repo_from_cwd(config: &Config) -> Result<RepoName, DetectError> {
@@ -28,16 +28,9 @@ fn detect_repo_from_path(config: &Config, path: &Path) -> Result<RepoName, Detec
             worktree_dir: config.worktree_dir.clone(),
         })?;
 
-    let bare_path = config.bare_repo_path(&repo_name);
+    config.bare_clone(&repo_name)?;
 
-    if bare_path.exists() {
-        Ok(repo_name)
-    } else {
-        Err(DetectError::BareRepoNotFound {
-            repo: repo_name,
-            bare_path,
-        })
-    }
+    Ok(repo_name)
 }
 
 fn extract_repo_name(config: &Config, path: &Path) -> Option<RepoName> {

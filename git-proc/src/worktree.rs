@@ -26,12 +26,16 @@ pub fn remove(worktree: &Path) -> Remove<'_> {
 #[derive(Debug)]
 pub struct List<'a> {
     repo_path: Option<&'a Path>,
+    porcelain: bool,
 }
 
 impl<'a> List<'a> {
     #[must_use]
     fn new() -> Self {
-        Self { repo_path: None }
+        Self {
+            repo_path: None,
+            porcelain: false,
+        }
     }
 
     /// Set the repository path (`-C <path>`).
@@ -39,6 +43,13 @@ impl<'a> List<'a> {
     pub fn repo_path(mut self, path: &'a Path) -> Self {
         self.repo_path = Some(path);
         self
+    }
+
+    crate::flag_methods! {
+        /// Use machine-readable output format.
+        ///
+        /// Corresponds to `--porcelain`.
+        pub fn porcelain / porcelain_if, porcelain, "Conditionally use porcelain output."
     }
 
     /// Capture stdout from this command.
@@ -59,6 +70,7 @@ impl crate::Build for List<'_> {
         crate::base_command(self.repo_path)
             .argument("worktree")
             .argument("list")
+            .optional_argument(self.porcelain.then_some("--porcelain"))
     }
 }
 
@@ -68,6 +80,7 @@ impl List<'_> {
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
             repo_path: self.repo_path,
+            porcelain: self.porcelain,
         });
         command.test_eq(other);
     }

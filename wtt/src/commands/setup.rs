@@ -12,7 +12,7 @@ pub struct Setup {
 impl Setup {
     pub fn run(self, config: &Config) -> Result<(), Error> {
         let bare_path = config.bare_repo_path(&self.repo);
-        let worktree_base = config.worktree_base_path(&self.repo);
+        let worktree_base = config.base_dir_path(&self.repo);
 
         if bare_path.exists() {
             return Err(Error::RepoAlreadyExists(self.repo));

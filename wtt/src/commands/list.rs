@@ -1,4 +1,4 @@
-use crate::{Config, Error, RepoName, detect_repo_from_cwd, git};
+use crate::{Config, Error, RepoName, detect_repo_from_cwd};
 
 #[derive(Debug, clap::Parser)]
 pub struct List {
@@ -22,21 +22,12 @@ impl List {
 }
 
 fn list_repo(config: &Config, repo: &RepoName) -> Result<(), Error> {
-    let bare_path = config.bare_repo_path(repo);
-
-    if !bare_path.exists() {
-        return Err(Error::RepoNotFound(repo.clone()));
-    }
+    let bare_clone = config.bare_clone(repo)?;
 
     println!("{repo}:");
 
-    let output = git_proc::worktree::list()
-        .repo_path(&bare_path)
-        .stdout()
-        .string()?;
-
-    for line in git::parse_worktree_list(&output) {
-        println!("  {line}");
+    for branch in bare_clone.list_worktrees()? {
+        println!("  {branch}");
     }
 
     Ok(())

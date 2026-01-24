@@ -8,7 +8,9 @@ mod git;
 mod repo_name;
 
 pub use base::{Base, BaseError};
-pub use config::{Config, Error as ConfigError, Source as ConfigSource};
+pub use config::{
+    BareClone, BareCloneNotFound, Config, Error as ConfigError, Source as ConfigSource, Worktree,
+};
 pub use detect::{DetectError, detect_repo_from_cwd};
 pub use git_proc::CommandError;
 pub use git_proc::branch::{Branch, BranchError};
@@ -44,4 +46,10 @@ pub enum Error {
 
     #[error("IO error: {0}")]
     Io(#[from] std::io::Error),
+}
+
+impl From<BareCloneNotFound> for Error {
+    fn from(error: BareCloneNotFound) -> Self {
+        Self::RepoNotFound(error.repo)
+    }
 }

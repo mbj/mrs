@@ -1,5 +1,5 @@
 use crate::{
-    Base, Branch, CommandError, Config, Error, ORIGIN, RepoName, detect_repo_from_cwd, git,
+    Base, Branch, Config, Error, RepoName, detect_repo_from_cwd,
 };
 
 #[derive(Debug, clap::Parser)]
@@ -23,11 +23,8 @@ impl Add {
             None => detect_repo_from_cwd(config)?,
         };
 
-        let bare_path = config.bare_repo_path(&repo);
-
-        if !bare_path.exists() {
-            return Err(Error::RepoNotFound(repo));
-        }
+        let bare_clone = config.bare_clone(&repo)?;
+        let bare_path = bare_clone.path();
 
         let worktree_path = config.worktree_path(&repo, &self.branch);
 
@@ -35,14 +32,9 @@ impl Add {
             return Err(Error::WorktreeExists(worktree_path));
         }
 
-        log::info!("Fetching latest from remote");
+        bare_clone.fetch()?;
 
-        git_proc::fetch::new()
-            .repo_path(&bare_path)
-            .all()
-            .status()?;
-
-        if branch_exists(&bare_path, &self.branch)? {
+        if bare_clone.branch_exists(&self.branch)? {
             log::info!(
                 "Creating worktree for existing branch '{}' at {}",
                 self.branch,
@@ -50,13 +42,13 @@ impl Add {
             );
 
             git_proc::worktree::add(&worktree_path)
-                .repo_path(&bare_path)
+                .repo_path(bare_path)
                 .branch(self.branch.as_str())
                 .status()?;
         } else {
             let base = match self.base {
                 Some(base) => base,
-                None => get_remote_default_branch(&bare_path)?,
+                None => bare_clone.remote_default_branch()?,
             };
 
             log::info!(
@@ -67,13 +59,13 @@ impl Add {
             );
 
             git_proc::worktree::add(&worktree_path)
-                .repo_path(&bare_path)
+                .repo_path(bare_path)
                 .new_branch(self.branch.as_str())
                 .commit_ish(base.as_str())
                 .status()?;
         }
 
-        set_upstream(&worktree_path, &self.branch)?;
+        config.worktree(&repo, &self.branch)?.set_upstream()?;
 
         log::info!("Worktree created at {}", worktree_path.display());
 
@@ -81,55 +73,3 @@ impl Add {
     }
 }
 
-fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<bool, CommandError> {
-    let local_result = git_proc::show_ref::new()
-        .repo_path(bare_path)
-        .verify()
-        .pattern(&format!("refs/heads/{branch}"))
-        .stdout()
-        .bytes();
-
-    if local_result.is_ok() {
-        return Ok(true);
-    }
-
-    let remote_output = git_proc::ls_remote::new()
-        .repo_path(bare_path)
-        .heads()
-        .remote(&ORIGIN)
-        .pattern(branch.as_str())
-        .stdout()
-        .string()?;
-
-    Ok(!remote_output.trim().is_empty())
-}
-
-fn get_remote_default_branch(bare_path: &std::path::Path) -> Result<Base, Error> {
-    let output = git_proc::ls_remote::new()
-        .repo_path(bare_path)
-        .symref()
-        .remote(&ORIGIN)
-        .pattern("HEAD")
-        .stdout()
-        .string()?;
-
-    let branch = git::parse_default_branch(&output).map_err(|_| Error::DefaultBranchNotFound)?;
-
-    format!("origin/{branch}")
-        .parse()
-        .map_err(|_| Error::DefaultBranchNotFound)
-}
-
-fn set_upstream(worktree_path: &std::path::Path, branch: &Branch) -> Result<(), CommandError> {
-    log::info!("Setting upstream to origin/{branch}");
-
-    git_proc::config::new(&format!("branch.{branch}.remote"))
-        .repo_path(worktree_path)
-        .value("origin")
-        .status()?;
-
-    git_proc::config::new(&format!("branch.{branch}.merge"))
-        .repo_path(worktree_path)
-        .value(&format!("refs/heads/{branch}"))
-        .status()
-}
