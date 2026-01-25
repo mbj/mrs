@@ -111,6 +111,7 @@ jobs:
         - '3.2'
         - '3.3'
         - '3.4'
+        - '4.0'
     name: Ruby Integration Test (${{ matrix.platform.runner }}, Ruby ${{ matrix.ruby-version }})
     runs-on: ${{ matrix.platform.runner }}
     needs: build
