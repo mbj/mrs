@@ -16,11 +16,13 @@ pub fn new() -> Push<'static> {
 pub struct Push<'a> {
     repo_path: Option<&'a Path>,
     force: bool,
+    porcelain: bool,
     remote: Option<&'a Remote>,
     refspec: Option<&'a str>,
 }
 
 crate::impl_repo_path!(Push);
+crate::impl_porcelain!(Push);
 
 impl<'a> Push<'a> {
     #[must_use]
@@ -28,6 +30,7 @@ impl<'a> Push<'a> {
         Self {
             repo_path: None,
             force: false,
+            porcelain: false,
             remote: None,
             refspec: None,
         }
@@ -84,6 +87,7 @@ impl crate::Build for Push<'_> {
         crate::base_command(self.repo_path)
             .argument("push")
             .optional_argument(self.force.then_some("--force"))
+            .optional_argument(self.porcelain.then_some("--porcelain"))
             .optional_argument(self.remote)
             .optional_argument(self.refspec)
     }
@@ -96,6 +100,7 @@ impl Push<'_> {
         let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             force: self.force,
+            porcelain: self.porcelain,
             remote: self.remote,
             refspec: self.refspec,
         });

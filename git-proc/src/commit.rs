@@ -20,10 +20,12 @@ pub struct Commit<'a> {
     date: Option<&'a str>,
     allow_empty: bool,
     allow_empty_message: bool,
+    porcelain: bool,
     env_vars: Vec<(cmd_proc::EnvVariableName<'a>, &'a OsStr)>,
 }
 
 crate::impl_repo_path!(Commit);
+crate::impl_porcelain!(Commit);
 
 impl<'a> Commit<'a> {
     #[must_use]
@@ -35,6 +37,7 @@ impl<'a> Commit<'a> {
             date: None,
             allow_empty: false,
             allow_empty_message: false,
+            porcelain: false,
             env_vars: Vec::new(),
         }
     }
@@ -108,6 +111,7 @@ impl crate::Build for Commit<'_> {
             .optional_option("--date", self.date)
             .optional_argument(self.allow_empty.then_some("--allow-empty"))
             .optional_argument(self.allow_empty_message.then_some("--allow-empty-message"))
+            .optional_argument(self.porcelain.then_some("--porcelain"))
             .envs(self.env_vars)
     }
 }
@@ -123,6 +127,7 @@ impl Commit<'_> {
             date: self.date,
             allow_empty: self.allow_empty,
             allow_empty_message: self.allow_empty_message,
+            porcelain: self.porcelain,
             env_vars: self.env_vars.clone(),
         });
         command.test_eq(other);

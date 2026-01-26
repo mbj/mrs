@@ -16,6 +16,7 @@ pub struct Status<'a> {
 }
 
 crate::impl_repo_path!(Status);
+crate::impl_porcelain!(Status);
 
 impl<'a> Status<'a> {
     #[must_use]
@@ -24,13 +25,6 @@ impl<'a> Status<'a> {
             repo_path: None,
             porcelain: false,
         }
-    }
-
-    crate::flag_methods! {
-        /// Give output in machine-parseable format.
-        ///
-        /// Corresponds to `--porcelain`.
-        pub fn porcelain / porcelain_if, porcelain, "Conditionally enable porcelain output."
     }
 
     /// Capture stdout from this command.

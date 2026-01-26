@@ -26,14 +26,19 @@ pub fn remove(worktree: &Path) -> Remove<'_> {
 #[derive(Debug)]
 pub struct List<'a> {
     repo_path: Option<&'a Path>,
+    porcelain: bool,
 }
 
 crate::impl_repo_path!(List);
+crate::impl_porcelain!(List);
 
 impl<'a> List<'a> {
     #[must_use]
     fn new() -> Self {
-        Self { repo_path: None }
+        Self {
+            repo_path: None,
+            porcelain: false,
+        }
     }
 
     /// Capture stdout from this command.
@@ -54,6 +59,7 @@ impl crate::Build for List<'_> {
         crate::base_command(self.repo_path)
             .argument("worktree")
             .argument("list")
+            .optional_argument(self.porcelain.then_some("--porcelain"))
     }
 }
 
@@ -63,6 +69,7 @@ impl List<'_> {
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
             repo_path: self.repo_path,
+            porcelain: self.porcelain,
         });
         command.test_eq(other);
     }

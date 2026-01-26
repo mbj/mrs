@@ -90,6 +90,55 @@ use std::path::Path;
 
 pub use cmd_proc::CommandError;
 
+/// Trait for git command builders that support porcelain output.
+///
+/// Provides the `porcelain` and `porcelain_if` methods to set `--porcelain`.
+pub trait Porcelain: Sized {
+    /// Conditionally enable porcelain output (`--porcelain`).
+    fn porcelain_if(self, value: bool) -> Self;
+
+    /// Enable porcelain output (`--porcelain`).
+    fn porcelain(self) -> Self {
+        self.porcelain_if(true)
+    }
+}
+
+/// Generate inherent `porcelain` / `porcelain_if` methods and a `Porcelain` trait implementation.
+///
+/// The inherent methods set the `porcelain` field.
+/// The trait implementation delegates to the inherent methods.
+///
+/// This ensures callers can use `.porcelain()` without importing the `Porcelain` trait,
+/// while the trait remains available for generic bounds.
+#[doc(hidden)]
+#[macro_export]
+macro_rules! impl_porcelain {
+    ($ty:ident) => {
+        impl<'a> $ty<'a> {
+            /// Give output in machine-parseable format.
+            ///
+            /// Corresponds to `--porcelain`.
+            #[must_use]
+            pub fn porcelain(self) -> Self {
+                self.porcelain_if(true)
+            }
+
+            /// Conditionally enable porcelain output.
+            #[must_use]
+            pub fn porcelain_if(mut self, value: bool) -> Self {
+                self.porcelain = value;
+                self
+            }
+        }
+
+        impl<'a> $crate::Porcelain for $ty<'a> {
+            fn porcelain_if(self, value: bool) -> Self {
+                self.porcelain_if(value)
+            }
+        }
+    };
+}
+
 /// Trait for git command builders that support a repository path.
 ///
 /// Provides the `repo_path` method to set `-C <path>`.
