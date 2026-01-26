@@ -15,6 +15,9 @@ pub struct Status<'a> {
     porcelain: bool,
 }
 
+crate::impl_repo_path!(Status);
+crate::impl_porcelain!(Status);
+
 impl<'a> Status<'a> {
     #[must_use]
     fn new() -> Self {
@@ -22,20 +25,6 @@ impl<'a> Status<'a> {
             repo_path: None,
             porcelain: false,
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
-    }
-
-    crate::flag_methods! {
-        /// Give output in machine-parseable format.
-        ///
-        /// Corresponds to `--porcelain`.
-        pub fn porcelain / porcelain_if, porcelain, "Conditionally enable porcelain output."
     }
 
     /// Capture stdout from this command.
@@ -55,7 +44,7 @@ impl crate::Build for Status<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("status")
-            .optional_argument(self.porcelain.then_some("--porcelain"))
+            .optional_flag(self.porcelain, "--porcelain")
     }
 }
 

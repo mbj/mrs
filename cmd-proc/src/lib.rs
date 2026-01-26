@@ -440,6 +440,19 @@ impl Command {
         self
     }
 
+    /// Adds a flag argument only if the condition is `true`.
+    ///
+    /// ```ignore
+    /// command.optional_flag(verbose, "--verbose")
+    /// // adds "--verbose" only if verbose is true
+    /// ```
+    pub fn optional_flag(mut self, condition: bool, flag: impl AsRef<OsStr>) -> Self {
+        if condition {
+            self.inner.arg(flag);
+        }
+        self
+    }
+
     /// Adds a CLI option (name + value).
     ///
     /// ```ignore
@@ -915,6 +928,28 @@ mod tests {
     fn test_optional_option_none() {
         let output = Command::new("echo")
             .optional_option("-n", None::<&str>)
+            .argument("hello")
+            .stdout()
+            .string()
+            .unwrap();
+        assert_eq!(output, "hello\n");
+    }
+
+    #[test]
+    fn test_optional_flag_true() {
+        let output = Command::new("echo")
+            .optional_flag(true, "-n")
+            .argument("hello")
+            .stdout()
+            .string()
+            .unwrap();
+        assert_eq!(output, "hello");
+    }
+
+    #[test]
+    fn test_optional_flag_false() {
+        let output = Command::new("echo")
+            .optional_flag(false, "-n")
             .argument("hello")
             .stdout()
             .string()

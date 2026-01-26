@@ -26,19 +26,19 @@ pub fn remove(worktree: &Path) -> Remove<'_> {
 #[derive(Debug)]
 pub struct List<'a> {
     repo_path: Option<&'a Path>,
+    porcelain: bool,
 }
+
+crate::impl_repo_path!(List);
+crate::impl_porcelain!(List);
 
 impl<'a> List<'a> {
     #[must_use]
     fn new() -> Self {
-        Self { repo_path: None }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
+        Self {
+            repo_path: None,
+            porcelain: false,
+        }
     }
 
     /// Capture stdout from this command.
@@ -59,6 +59,7 @@ impl crate::Build for List<'_> {
         crate::base_command(self.repo_path)
             .argument("worktree")
             .argument("list")
+            .optional_flag(self.porcelain, "--porcelain")
     }
 }
 
@@ -68,6 +69,7 @@ impl List<'_> {
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
             repo_path: self.repo_path,
+            porcelain: self.porcelain,
         });
         command.test_eq(other);
     }
@@ -85,6 +87,8 @@ pub struct Add<'a> {
     commit_ish: Option<&'a str>,
 }
 
+crate::impl_repo_path!(Add);
+
 impl<'a> Add<'a> {
     #[must_use]
     fn new(path: &'a Path) -> Self {
@@ -95,13 +99,6 @@ impl<'a> Add<'a> {
             new_branch: None,
             commit_ish: None,
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     /// Checkout existing branch in the new worktree.
@@ -170,6 +167,8 @@ pub struct Remove<'a> {
     force: bool,
 }
 
+crate::impl_repo_path!(Remove);
+
 impl<'a> Remove<'a> {
     #[must_use]
     fn new(worktree: &'a Path) -> Self {
@@ -178,13 +177,6 @@ impl<'a> Remove<'a> {
             worktree,
             force: false,
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     crate::flag_methods! {
@@ -205,7 +197,7 @@ impl crate::Build for Remove<'_> {
         crate::base_command(self.repo_path)
             .argument("worktree")
             .argument("remove")
-            .optional_argument(self.force.then_some("--force"))
+            .optional_flag(self.force, "--force")
             .argument(self.worktree)
     }
 }

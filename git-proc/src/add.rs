@@ -28,13 +28,6 @@ impl<'a> Add<'a> {
         }
     }
 
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
-    }
-
     crate::flag_methods! {
         /// Add all changes (new, modified, deleted).
         ///
@@ -55,6 +48,8 @@ impl<'a> Add<'a> {
     }
 }
 
+crate::impl_repo_path!(Add);
+
 impl Default for Add<'_> {
     fn default() -> Self {
         Self::new()
@@ -65,7 +60,7 @@ impl crate::Build for Add<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("add")
-            .optional_argument(self.all.then_some("--all"))
+            .optional_flag(self.all, "--all")
             .arguments(self.pathspecs)
     }
 }

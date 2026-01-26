@@ -16,8 +16,12 @@ pub fn new() -> Fetch<'static> {
 pub struct Fetch<'a> {
     repo_path: Option<&'a Path>,
     all: bool,
+    porcelain: bool,
     remote: Option<&'a Remote>,
 }
+
+crate::impl_repo_path!(Fetch);
+crate::impl_porcelain!(Fetch);
 
 impl<'a> Fetch<'a> {
     #[must_use]
@@ -25,15 +29,9 @@ impl<'a> Fetch<'a> {
         Self {
             repo_path: None,
             all: false,
+            porcelain: false,
             remote: None,
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     crate::flag_methods! {
@@ -66,7 +64,8 @@ impl crate::Build for Fetch<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("fetch")
-            .optional_argument(self.all.then_some("--all"))
+            .optional_flag(self.all, "--all")
+            .optional_flag(self.porcelain, "--porcelain")
             .optional_argument(self.remote)
     }
 }
@@ -78,6 +77,7 @@ impl Fetch<'_> {
         let command = crate::Build::build(Self {
             repo_path: self.repo_path,
             all: self.all,
+            porcelain: self.porcelain,
             remote: self.remote,
         });
         command.test_eq(other);
