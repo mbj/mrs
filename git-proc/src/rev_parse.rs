@@ -77,8 +77,8 @@ impl crate::Build for RevParse<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("rev-parse")
-            .optional_argument(self.abbrev_ref.then_some("--abbrev-ref"))
-            .optional_argument(self.symbolic_full_name.then_some("--symbolic-full-name"))
+            .optional_flag(self.abbrev_ref, "--abbrev-ref")
+            .optional_flag(self.symbolic_full_name, "--symbolic-full-name")
             .optional_argument(self.rev)
     }
 }

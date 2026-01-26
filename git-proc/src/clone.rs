@@ -53,7 +53,7 @@ impl crate::Build for Clone<'_> {
     fn build(self) -> cmd_proc::Command {
         cmd_proc::Command::new("git")
             .argument("clone")
-            .optional_argument(self.bare.then_some("--bare"))
+            .optional_flag(self.bare, "--bare")
             .argument(self.url)
             .optional_argument(self.directory)
     }

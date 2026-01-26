@@ -56,7 +56,7 @@ impl crate::Build for Init<'_> {
     fn build(self) -> cmd_proc::Command {
         cmd_proc::Command::new("git")
             .argument("init")
-            .optional_argument(self.bare.then_some("--bare"))
+            .optional_flag(self.bare, "--bare")
             .optional_argument(self.directory)
     }
 }

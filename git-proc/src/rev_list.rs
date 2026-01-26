@@ -88,8 +88,8 @@ impl crate::Build for RevList<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("rev-list")
-            .optional_argument(self.topo_order.then_some("--topo-order"))
-            .optional_argument(self.reverse.then_some("--reverse"))
+            .optional_flag(self.topo_order, "--topo-order")
+            .optional_flag(self.reverse, "--reverse")
             .optional_option("--max-count", self.max_count.map(|c| c.to_string()))
             .arguments(self.commits)
     }

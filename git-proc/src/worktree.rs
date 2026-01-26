@@ -59,7 +59,7 @@ impl crate::Build for List<'_> {
         crate::base_command(self.repo_path)
             .argument("worktree")
             .argument("list")
-            .optional_argument(self.porcelain.then_some("--porcelain"))
+            .optional_flag(self.porcelain, "--porcelain")
     }
 }
 
@@ -197,7 +197,7 @@ impl crate::Build for Remove<'_> {
         crate::base_command(self.repo_path)
             .argument("worktree")
             .argument("remove")
-            .optional_argument(self.force.then_some("--force"))
+            .optional_flag(self.force, "--force")
             .argument(self.worktree)
     }
 }

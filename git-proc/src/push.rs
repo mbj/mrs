@@ -86,8 +86,8 @@ impl crate::Build for Push<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("push")
-            .optional_argument(self.force.then_some("--force"))
-            .optional_argument(self.porcelain.then_some("--porcelain"))
+            .optional_flag(self.force, "--force")
+            .optional_flag(self.porcelain, "--porcelain")
             .optional_argument(self.remote)
             .optional_argument(self.refspec)
     }

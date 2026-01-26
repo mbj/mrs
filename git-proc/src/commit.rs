@@ -109,9 +109,9 @@ impl crate::Build for Commit<'_> {
             .optional_option("--message", self.message)
             .optional_option("--author", self.author)
             .optional_option("--date", self.date)
-            .optional_argument(self.allow_empty.then_some("--allow-empty"))
-            .optional_argument(self.allow_empty_message.then_some("--allow-empty-message"))
-            .optional_argument(self.porcelain.then_some("--porcelain"))
+            .optional_flag(self.allow_empty, "--allow-empty")
+            .optional_flag(self.allow_empty_message, "--allow-empty-message")
+            .optional_flag(self.porcelain, "--porcelain")
             .envs(self.env_vars)
     }
 }

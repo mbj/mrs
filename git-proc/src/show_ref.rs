@@ -61,7 +61,7 @@ impl crate::Build for ShowRef<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("show-ref")
-            .optional_argument(self.verify.then_some("--verify"))
+            .optional_flag(self.verify, "--verify")
             .optional_argument(self.pattern)
     }
 }

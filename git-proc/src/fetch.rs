@@ -64,8 +64,8 @@ impl crate::Build for Fetch<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("fetch")
-            .optional_argument(self.all.then_some("--all"))
-            .optional_argument(self.porcelain.then_some("--porcelain"))
+            .optional_flag(self.all, "--all")
+            .optional_flag(self.porcelain, "--porcelain")
             .optional_argument(self.remote)
     }
 }

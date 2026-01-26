@@ -44,7 +44,7 @@ impl crate::Build for Status<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("status")
-            .optional_argument(self.porcelain.then_some("--porcelain"))
+            .optional_flag(self.porcelain, "--porcelain")
     }
 }
 

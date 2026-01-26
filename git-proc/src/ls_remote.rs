@@ -79,8 +79,8 @@ impl crate::Build for LsRemote<'_> {
     fn build(self) -> cmd_proc::Command {
         crate::base_command(self.repo_path)
             .argument("ls-remote")
-            .optional_argument(self.heads.then_some("--heads"))
-            .optional_argument(self.symref.then_some("--symref"))
+            .optional_flag(self.heads, "--heads")
+            .optional_flag(self.symref, "--symref")
             .optional_argument(self.remote)
             .optional_argument(self.pattern)
     }
