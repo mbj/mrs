@@ -18,6 +18,8 @@ pub struct Config<'a> {
     value: Option<&'a str>,
 }
 
+crate::impl_repo_path!(Config);
+
 impl<'a> Config<'a> {
     #[must_use]
     fn new(key: &'a str) -> Self {
@@ -26,13 +28,6 @@ impl<'a> Config<'a> {
             key,
             value: None,
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     /// Set the value for the configuration key.

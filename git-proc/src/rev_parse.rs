@@ -19,6 +19,8 @@ pub struct RevParse<'a> {
     rev: Option<&'a str>,
 }
 
+crate::impl_repo_path!(RevParse);
+
 impl<'a> RevParse<'a> {
     #[must_use]
     fn new() -> Self {
@@ -28,13 +30,6 @@ impl<'a> RevParse<'a> {
             symbolic_full_name: false,
             rev: None,
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     crate::flag_methods! {

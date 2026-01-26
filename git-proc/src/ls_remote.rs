@@ -20,6 +20,8 @@ pub struct LsRemote<'a> {
     pattern: Option<&'a str>,
 }
 
+crate::impl_repo_path!(LsRemote);
+
 impl<'a> LsRemote<'a> {
     #[must_use]
     fn new() -> Self {
@@ -30,13 +32,6 @@ impl<'a> LsRemote<'a> {
             remote: None,
             pattern: None,
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     crate::flag_methods! {

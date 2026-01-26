@@ -40,6 +40,34 @@ macro_rules! flag_methods {
     };
 }
 
+/// Generate an inherent `repo_path` method and a `RepoPath` trait implementation.
+///
+/// The inherent method sets the `repo_path` field to `Some(path)`.
+/// The trait implementation delegates to the inherent method.
+///
+/// This ensures callers can use `.repo_path()` without importing the `RepoPath` trait,
+/// while the trait remains available for generic bounds.
+#[doc(hidden)]
+#[macro_export]
+macro_rules! impl_repo_path {
+    ($ty:ident) => {
+        impl<'a> $ty<'a> {
+            /// Set the repository path (`-C <path>`).
+            #[must_use]
+            pub fn repo_path(mut self, path: &'a std::path::Path) -> Self {
+                self.repo_path = Some(path);
+                self
+            }
+        }
+
+        impl<'a> $crate::RepoPath<'a> for $ty<'a> {
+            fn repo_path(self, path: &'a std::path::Path) -> Self {
+                self.repo_path(path)
+            }
+        }
+    };
+}
+
 pub mod add;
 pub mod branch;
 pub mod clone;
@@ -61,6 +89,15 @@ pub mod worktree;
 use std::path::Path;
 
 pub use cmd_proc::CommandError;
+
+/// Trait for git command builders that support a repository path.
+///
+/// Provides the `repo_path` method to set `-C <path>`.
+#[must_use = "repo_path returns a modified builder; the return value must be used"]
+pub trait RepoPath<'a>: Sized {
+    /// Set the repository path (`-C <path>`).
+    fn repo_path(self, path: &'a Path) -> Self;
+}
 
 /// Trait for building a command without executing it.
 ///

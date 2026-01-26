@@ -23,6 +23,8 @@ enum RemoteSubcommand<'a> {
     GetUrl { name: &'a RemoteName },
 }
 
+crate::impl_repo_path!(Remote);
+
 impl<'a> Remote<'a> {
     #[must_use]
     fn get_url(name: &'a RemoteName) -> Self {
@@ -30,13 +32,6 @@ impl<'a> Remote<'a> {
             repo_path: None,
             subcommand: RemoteSubcommand::GetUrl { name },
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     /// Capture stdout from this command.

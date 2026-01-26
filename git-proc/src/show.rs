@@ -20,6 +20,8 @@ pub struct Show<'a> {
     object: &'a str,
 }
 
+crate::impl_repo_path!(Show);
+
 impl<'a> Show<'a> {
     #[must_use]
     fn new(object: &'a str) -> Self {
@@ -27,13 +29,6 @@ impl<'a> Show<'a> {
             repo_path: None,
             object,
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     /// Capture stdout from this command.

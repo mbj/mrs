@@ -19,6 +19,8 @@ pub struct Fetch<'a> {
     remote: Option<&'a Remote>,
 }
 
+crate::impl_repo_path!(Fetch);
+
 impl<'a> Fetch<'a> {
     #[must_use]
     fn new() -> Self {
@@ -27,13 +29,6 @@ impl<'a> Fetch<'a> {
             all: false,
             remote: None,
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     crate::flag_methods! {

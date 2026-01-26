@@ -14,6 +14,9 @@ git-proc provides:
 - **Compile-time structure**: Builders ensure required arguments are present and ordered correctly.
 - **Testable commands**: Compare built commands without executing them using `test_eq()`.
 - **Consistent `-C` handling**: Every command supports `.repo_path()` for repository context.
+- **Command unifying traits**: Traits like `RepoPath` unify common options across all command
+  builders, ensuring a consistent interface regardless of the specific git command. More unifying
+  traits will be added as this library evolves.
 
 This is not a reimplementation of git. It shells out to the `git` binary. For embedded git
 functionality, use `gitoxide` or `git2`.

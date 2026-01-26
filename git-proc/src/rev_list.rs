@@ -20,6 +20,8 @@ pub struct RevList<'a> {
     commits: Vec<&'a str>,
 }
 
+crate::impl_repo_path!(RevList);
+
 impl<'a> RevList<'a> {
     #[must_use]
     fn new() -> Self {
@@ -30,13 +32,6 @@ impl<'a> RevList<'a> {
             max_count: None,
             commits: Vec::new(),
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     crate::flag_methods! {

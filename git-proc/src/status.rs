@@ -15,6 +15,8 @@ pub struct Status<'a> {
     porcelain: bool,
 }
 
+crate::impl_repo_path!(Status);
+
 impl<'a> Status<'a> {
     #[must_use]
     fn new() -> Self {
@@ -22,13 +24,6 @@ impl<'a> Status<'a> {
             repo_path: None,
             porcelain: false,
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     crate::flag_methods! {

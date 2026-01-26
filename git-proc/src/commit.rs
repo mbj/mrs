@@ -23,6 +23,8 @@ pub struct Commit<'a> {
     env_vars: Vec<(cmd_proc::EnvVariableName<'a>, &'a OsStr)>,
 }
 
+crate::impl_repo_path!(Commit);
+
 impl<'a> Commit<'a> {
     #[must_use]
     fn new() -> Self {
@@ -35,13 +37,6 @@ impl<'a> Commit<'a> {
             allow_empty_message: false,
             env_vars: Vec::new(),
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     /// Set the commit message.

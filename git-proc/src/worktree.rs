@@ -28,17 +28,12 @@ pub struct List<'a> {
     repo_path: Option<&'a Path>,
 }
 
+crate::impl_repo_path!(List);
+
 impl<'a> List<'a> {
     #[must_use]
     fn new() -> Self {
         Self { repo_path: None }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     /// Capture stdout from this command.
@@ -85,6 +80,8 @@ pub struct Add<'a> {
     commit_ish: Option<&'a str>,
 }
 
+crate::impl_repo_path!(Add);
+
 impl<'a> Add<'a> {
     #[must_use]
     fn new(path: &'a Path) -> Self {
@@ -95,13 +92,6 @@ impl<'a> Add<'a> {
             new_branch: None,
             commit_ish: None,
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     /// Checkout existing branch in the new worktree.
@@ -170,6 +160,8 @@ pub struct Remove<'a> {
     force: bool,
 }
 
+crate::impl_repo_path!(Remove);
+
 impl<'a> Remove<'a> {
     #[must_use]
     fn new(worktree: &'a Path) -> Self {
@@ -178,13 +170,6 @@ impl<'a> Remove<'a> {
             worktree,
             force: false,
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     crate::flag_methods! {

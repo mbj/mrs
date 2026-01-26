@@ -20,6 +20,8 @@ pub struct Push<'a> {
     refspec: Option<&'a str>,
 }
 
+crate::impl_repo_path!(Push);
+
 impl<'a> Push<'a> {
     #[must_use]
     fn new() -> Self {
@@ -29,13 +31,6 @@ impl<'a> Push<'a> {
             remote: None,
             refspec: None,
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     crate::flag_methods! {

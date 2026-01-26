@@ -16,6 +16,8 @@ pub struct ShowRef<'a> {
     pattern: Option<&'a str>,
 }
 
+crate::impl_repo_path!(ShowRef);
+
 impl<'a> ShowRef<'a> {
     #[must_use]
     fn new() -> Self {
@@ -24,13 +26,6 @@ impl<'a> ShowRef<'a> {
             verify: false,
             pattern: None,
         }
-    }
-
-    /// Set the repository path (`-C <path>`).
-    #[must_use]
-    pub fn repo_path(mut self, path: &'a Path) -> Self {
-        self.repo_path = Some(path);
-        self
     }
 
     crate::flag_methods! {
