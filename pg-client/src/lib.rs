@@ -465,7 +465,7 @@ impl serde::Serialize for Config {
         }
 
         state.serialize_field("user", &self.user)?;
-        state.serialize_field("url", &self.to_url())?;
+        state.serialize_field("url", &self.to_url_string())?;
 
         state.end()
     }
@@ -477,7 +477,6 @@ impl Config {
     /// ```
     /// # use pg_client::*;
     /// # use std::str::FromStr;
-    /// # use ::url::Url;
     ///
     /// let config = Config {
     ///     application_name: None,
@@ -494,31 +493,22 @@ impl Config {
     ///     user: User::from_static_or_panic("some-user"),
     /// };
     ///
-    /// let options = config.to_sqlx_connect_options();
-    ///
     /// assert_eq!(
-    ///     Url::parse(
-    ///         "postgres://some-user@some-host:5432/some-database?sslmode=verify-full"
-    ///     ).unwrap(),
-    ///     config.to_url()
+    ///     config.to_url_string(),
+    ///     "postgres://some-user@some-host:5432/some-database?sslmode=verify-full"
     /// );
     ///
     /// assert_eq!(
-    ///     Url::parse(
-    ///         "postgres://some-user:some-password@some-host:5432/some-database?application_name=some-app&sslmode=verify-full&sslrootcert=%2Fsome.pem"
-    ///     ).unwrap(),
     ///     Config {
     ///         application_name: Some(ApplicationName::from_str("some-app").unwrap()),
     ///         password: Some(Password::from_str("some-password").unwrap()),
     ///         ssl_root_cert: Some(SslRootCert::File("/some.pem".into())),
     ///         ..config.clone()
-    ///     }.to_url()
+    ///     }.to_url_string(),
+    ///     "postgres://some-user:some-password@some-host:5432/some-database?application_name=some-app&sslmode=verify-full&sslrootcert=%2Fsome.pem"
     /// );
     ///
     /// assert_eq!(
-    ///     Url::parse(
-    ///         "postgres://some-user@some-host:5432/some-database?hostaddr=127.0.0.1&sslmode=verify-full"
-    ///     ).unwrap(),
     ///     Config {
     ///         endpoint: Endpoint::Network {
     ///             host: Host::from_str("some-host").unwrap(),
@@ -527,7 +517,8 @@ impl Config {
     ///             port: Some(Port::new(5432)),
     ///         },
     ///         ..config.clone()
-    ///     }.to_url()
+    ///     }.to_url_string(),
+    ///     "postgres://some-user@some-host:5432/some-database?hostaddr=127.0.0.1&sslmode=verify-full"
     /// );
     ///
     /// // IPv4 example
@@ -546,7 +537,7 @@ impl Config {
     ///     user: User::from_static_or_panic("user"),
     /// };
     /// assert_eq!(
-    ///     ipv4_config.to_url().to_string(),
+    ///     ipv4_config.to_url_string(),
     ///     "postgres://user@127.0.0.1:5432/mydb?sslmode=disable"
     /// );
     ///
@@ -566,13 +557,31 @@ impl Config {
     ///     user: User::from_static_or_panic("user"),
     /// };
     /// assert_eq!(
-    ///     ipv6_config.to_url().to_string(),
+    ///     ipv6_config.to_url_string(),
     ///     "postgres://user@[::1]:5432/mydb?sslmode=disable"
     /// );
     /// ```
     #[must_use]
-    pub fn to_url(&self) -> ::url::Url {
-        let mut url = ::url::Url::parse("postgres://").unwrap();
+    pub fn to_url(&self) -> ::fluent_uri::Uri<String> {
+        use ::fluent_uri::{
+            Uri,
+            build::Builder,
+            component::{Authority, Scheme},
+            pct_enc::{EStr, EString, encoder},
+        };
+
+        const POSTGRES: &Scheme = Scheme::new_or_panic("postgres");
+
+        fn append_query_pair(query: &mut EString<encoder::Query>, key: &str, value: &str) {
+            if !query.is_empty() {
+                query.push('&');
+            }
+            query.encode_str::<encoder::Data>(key);
+            query.push('=');
+            query.encode_str::<encoder::Data>(value);
+        }
+
+        let mut query = EString::<encoder::Query>::new();
 
         match &self.endpoint {
             Endpoint::Network {
@@ -581,69 +590,103 @@ impl Config {
                 host_addr,
                 port,
             } => {
-                // Use set_ip_host for IP addresses to handle IPv6 bracketing automatically
-                match host {
-                    Host::IpAddr(ip_addr) => {
-                        url.set_ip_host(*ip_addr).unwrap();
-                    }
-                    Host::HostName(hostname) => {
-                        url.set_host(Some(hostname.as_str())).unwrap();
-                    }
-                }
-                url.set_username(self.user.pg_env_value().as_str()).unwrap();
-
+                let mut userinfo = EString::<encoder::Userinfo>::new();
+                userinfo.encode_str::<encoder::Data>(self.user.pg_env_value().as_str());
                 if let Some(password) = &self.password {
-                    url.set_password(Some(password.as_str())).unwrap();
+                    userinfo.push(':');
+                    userinfo.encode_str::<encoder::Data>(password.as_str());
                 }
 
-                if let Some(port) = port {
-                    url.set_port(Some(port.0)).unwrap();
-                }
+                let mut path = EString::<encoder::Path>::new();
+                path.push('/');
+                path.encode_str::<encoder::Data>(self.database.as_str());
 
-                url.set_path(self.database.as_str());
-
-                // host_addr has no dedicated URL component
                 if let Some(addr) = host_addr {
-                    url.query_pairs_mut()
-                        .append_pair("hostaddr", &addr.to_string());
+                    append_query_pair(&mut query, "hostaddr", &addr.to_string());
                 }
                 if let Some(channel_binding) = channel_binding {
-                    url.query_pairs_mut()
-                        .append_pair("channel_binding", channel_binding.as_str());
+                    append_query_pair(&mut query, "channel_binding", channel_binding.as_str());
                 }
+                self.append_common_query_params(&mut query, append_query_pair);
+
+                let non_empty_query = if query.is_empty() {
+                    None
+                } else {
+                    Some(query.as_estr())
+                };
+
+                // build() only fails on RFC 3986 structural violations:
+                // scheme and authority are always present, path starts with '/'.
+                Uri::builder()
+                    .scheme(POSTGRES)
+                    .authority_with(|builder| {
+                        let builder = builder.userinfo(&userinfo);
+                        let builder = match host {
+                            Host::IpAddr(addr) => builder.host(*addr),
+                            Host::HostName(name) => {
+                                let mut encoded = EString::<encoder::RegName>::new();
+                                encoded.encode_str::<encoder::Data>(name.as_str());
+                                builder.host(encoded.as_estr())
+                            }
+                        };
+                        match port {
+                            Some(port) => builder.port(port.0),
+                            None => builder.advance(),
+                        }
+                    })
+                    .path(&path)
+                    .optional(Builder::query, non_empty_query)
+                    .build()
+                    .unwrap()
             }
             Endpoint::SocketPath(path) => {
-                // Socket paths require query parameters (no dedicated URL components without a network host)
-                url.query_pairs_mut()
-                    .append_pair(
-                        "host",
-                        path.to_str().expect("socket path contains invalid utf8"),
-                    )
-                    .append_pair("dbname", self.database.as_str())
-                    .append_pair("user", self.user.pg_env_value().as_str());
-
+                append_query_pair(
+                    &mut query,
+                    "host",
+                    path.to_str().expect("socket path contains invalid utf8"),
+                );
+                append_query_pair(&mut query, "dbname", self.database.as_str());
+                append_query_pair(&mut query, "user", self.user.pg_env_value().as_str());
                 if let Some(password) = &self.password {
-                    url.query_pairs_mut()
-                        .append_pair("password", password.as_str());
+                    append_query_pair(&mut query, "password", password.as_str());
                 }
+                self.append_common_query_params(&mut query, append_query_pair);
+
+                // build() only fails on RFC 3986 structural violations:
+                // scheme and authority are always present, path is empty.
+                Uri::builder()
+                    .scheme(POSTGRES)
+                    .authority(Authority::EMPTY)
+                    .path(EStr::EMPTY)
+                    .query(&query)
+                    .build()
+                    .unwrap()
             }
         }
+    }
 
-        {
-            let mut pairs = url.query_pairs_mut();
+    /// Convert to PG connection URL string
+    #[must_use]
+    pub fn to_url_string(&self) -> String {
+        self.to_url().into_string()
+    }
 
-            if let Some(application_name) = &self.application_name {
-                pairs.append_pair("application_name", application_name.as_str());
-            }
-
-            pairs.append_pair("sslmode", &self.ssl_mode.pg_env_value());
-
-            if let Some(ssl_root_cert) = &self.ssl_root_cert {
-                pairs.append_pair("sslrootcert", &ssl_root_cert.pg_env_value());
-            }
+    fn append_common_query_params(
+        &self,
+        query: &mut ::fluent_uri::pct_enc::EString<::fluent_uri::pct_enc::encoder::Query>,
+        append_query_pair: fn(
+            &mut ::fluent_uri::pct_enc::EString<::fluent_uri::pct_enc::encoder::Query>,
+            &str,
+            &str,
+        ),
+    ) {
+        if let Some(application_name) = &self.application_name {
+            append_query_pair(query, "application_name", application_name.as_str());
         }
-
-        url
+        append_query_pair(query, "sslmode", &self.ssl_mode.pg_env_value());
+        if let Some(ssl_root_cert) = &self.ssl_root_cert {
+            append_query_pair(query, "sslrootcert", &ssl_root_cert.pg_env_value());
+        }
     }
 
     /// Convert to PG environment variable names
@@ -762,22 +805,14 @@ impl Config {
         Self { endpoint, ..self }
     }
 
-    /// Parse a PostgreSQL connection URL into a Config.
+    /// Parse a PostgreSQL connection URL string into a Config.
     ///
     /// When the URL does not specify `sslmode`, it defaults to `verify-full`
     /// to ensure secure connections by default.
     ///
     /// See [`url::parse`] for full documentation.
-    pub fn from_url(url: &::url::Url) -> Result<Self, crate::url::ParseError> {
-        crate::url::parse(url)
-    }
-
-    /// Parse a PostgreSQL connection URL string into a Config.
-    ///
-    /// See [`Self::from_url`] for details on SSL mode defaults.
     pub fn from_str_url(url: &str) -> Result<Self, crate::url::ParseError> {
-        let parsed_url = url.parse()?;
-        crate::url::parse(&parsed_url)
+        crate::url::parse(url)
     }
 }
 
@@ -1117,9 +1152,8 @@ mod test {
             user: User::POSTGRES,
         };
 
-        let url = config_ipv6_loopback.to_url();
         assert_eq!(
-            url.to_string(),
+            config_ipv6_loopback.to_url_string(),
             "postgres://postgres@[::1]:5432/some-database?sslmode=disable",
             "IPv6 loopback address should be bracketed in URL"
         );
@@ -1142,9 +1176,8 @@ mod test {
             user: User::POSTGRES,
         };
 
-        let url = config_ipv6_fe80.to_url();
         assert_eq!(
-            url.to_string(),
+            config_ipv6_fe80.to_url_string(),
             "postgres://postgres@[fe80::1]:5432/some-database?sslmode=disable",
             "IPv6 link-local address should be bracketed in URL"
         );
@@ -1167,9 +1200,8 @@ mod test {
             user: User::POSTGRES,
         };
 
-        let url = config_ipv6_full.to_url();
         assert_eq!(
-            url.to_string(),
+            config_ipv6_full.to_url_string(),
             "postgres://postgres@[2001:db8::1]:5432/some-database?sslmode=disable",
             "Full IPv6 address should be bracketed in URL"
         );
@@ -1190,9 +1222,8 @@ mod test {
             user: User::POSTGRES,
         };
 
-        let url = config_ipv4.to_url();
         assert_eq!(
-            url.to_string(),
+            config_ipv4.to_url_string(),
             "postgres://postgres@127.0.0.1:5432/some-database?sslmode=disable",
             "IPv4 address should NOT be bracketed in URL"
         );
@@ -1213,9 +1244,8 @@ mod test {
             user: User::POSTGRES,
         };
 
-        let url = config_hostname.to_url();
         assert_eq!(
-            url.to_string(),
+            config_hostname.to_url_string(),
             "postgres://postgres@localhost:5432/some-database?sslmode=disable",
             "Hostname should NOT be bracketed in URL"
         );

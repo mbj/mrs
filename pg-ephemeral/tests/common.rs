@@ -174,10 +174,7 @@ pub async fn test_database_url_integration(language: &str, image_dir: &str) {
                 .bytes()
                 .unwrap();
 
-            let database_url = container
-                .cross_container_client_config()
-                .to_url()
-                .to_string();
+            let database_url = container.cross_container_client_config().to_url_string();
 
             let stdout = backend
                 .command()
