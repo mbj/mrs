@@ -1,4 +1,4 @@
-use std::num::{NonZeroU16, NonZeroUsize};
+use std::num::NonZeroU16;
 
 use indoc::indoc;
 use sqlx::Row as _;
@@ -291,7 +291,7 @@ async fn test_analyze_all_tables() {
                 &pg_client::sqlx::analyze::Schemas::Specific(
                     [pg_client::identifier::Schema::PUBLIC].into(),
                 ),
-                NonZeroUsize::new(1).unwrap(),
+                NonZeroU16::new(1).unwrap(),
             )
             .await;
 
