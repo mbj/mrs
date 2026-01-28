@@ -19,6 +19,7 @@ default = []
 sqlx = ["dep:indoc", "dep:log", "dep:sqlx", "dep:tokio"]
 
 [dependencies]
+clap = { workspace = true, optional = true }
 cmd-proc.workspace = true
 fluent-uri.workspace = true
 hostname-validator = "1.1.1"
