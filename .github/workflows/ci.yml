@@ -61,7 +61,9 @@ jobs:
       run: target/${{ matrix.os.cargo_build_target }}/release/manager repository-lint rust-version
 
     - name: Verify stratosphere generated code is committed
-      run: target/${{ matrix.os.cargo_build_target }}/release/manager stratosphere sync --reject-dirty
+      run: |
+        target/${{ matrix.os.cargo_build_target }}/release/manager stratosphere sync --reject-dirty
+        git restore-mtime
 
     - name: Run clippy
       run: cargo --verbose clippy --all-features --release
