@@ -162,7 +162,9 @@ pub async fn test_database_url_integration(language: &str, image_dir: &str) {
 
     definition
         .with_container(async |container| {
-            let image_tag = format!("pg-ephemeral-{language}-test:latest");
+            let image_tag =
+                ociman::testing::test_reference(&format!("pg-ephemeral-{language}-test:latest"))
+                    .to_string();
 
             backend
                 .command()
