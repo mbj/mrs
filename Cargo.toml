@@ -14,6 +14,7 @@ members = [
   "stratosphere",
   "stratosphere-core",
   "stratosphere-generator",
+  "swaybridge",
   "wtt",
 ]
 
@@ -62,6 +63,7 @@ stratosphere = { version = "0.0.4", path = "./stratosphere" }
 stratosphere-core = { version = "0.0.4", path = "./stratosphere-core" }
 stratosphere-generator = { version = "0.0.4", path = "./stratosphere-generator" }
 strum = { version = "0.27", features = ["derive"] }
+comfy-table = "7"
 syn = { version = "2", features = ["derive"] }
 thiserror = "2"
 tokio = { version = "1", features = ["io-std", "macros", "rt"] }

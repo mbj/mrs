@@ -220,6 +220,8 @@ pub struct Spawn {
     stdin: Stdio,
     stdout: Stdio,
     stderr: Stdio,
+    #[cfg(unix)]
+    kill_on_parent_death: bool,
 }
 
 impl Spawn {
@@ -229,6 +231,8 @@ impl Spawn {
             stdin: Stdio::Inherit,
             stdout: Stdio::Inherit,
             stderr: Stdio::Inherit,
+            #[cfg(unix)]
+            kill_on_parent_death: false,
         }
     }
 
@@ -253,6 +257,17 @@ impl Spawn {
         self
     }
 
+    /// Send SIGHUP to the child when the parent process dies.
+    ///
+    /// Uses `prctl(PR_SET_PDEATHSIG, SIGHUP)` on Linux to ensure the child
+    /// is terminated when the parent exits, even if the parent is killed.
+    #[cfg(unix)]
+    #[must_use]
+    pub fn kill_on_parent_death(mut self) -> Self {
+        self.kill_on_parent_death = true;
+        self
+    }
+
     /// Spawn the child process.
     pub fn run(mut self) -> Result<Child, CommandError> {
         log::debug!("{:#?}", self.command.inner);
@@ -260,6 +275,22 @@ impl Spawn {
         self.command.inner.stdin(self.stdin);
         self.command.inner.stdout(self.stdout);
         self.command.inner.stderr(self.stderr);
+
+        #[cfg(unix)]
+        if self.kill_on_parent_death {
+            use std::os::unix::process::CommandExt;
+
+            // SAFETY: prctl(PR_SET_PDEATHSIG) is async-signal-safe and does not
+            // allocate or call non-reentrant functions.
+            unsafe {
+                self.command.inner.pre_exec(|| {
+                    if libc::prctl(libc::PR_SET_PDEATHSIG, libc::SIGHUP) == -1 {
+                        return Err(std::io::Error::last_os_error());
+                    }
+                    Ok(())
+                });
+            }
+        }
 
         let inner = self
             .command
@@ -283,6 +314,12 @@ pub struct Child {
 }
 
 impl Child {
+    /// Returns the process ID of the child.
+    #[must_use]
+    pub fn id(&self) -> u32 {
+        self.inner.id()
+    }
+
     /// Returns a mutable reference to the child's stdin handle.
     pub fn stdin(&mut self) -> Option<&mut std::process::ChildStdin> {
         self.inner.stdin.as_mut()
@@ -316,6 +353,16 @@ impl Child {
     /// Waits for the child to exit and returns its exit status.
     pub fn wait(mut self) -> Result<std::process::ExitStatus, CommandError> {
         self.inner.wait().map_err(|io_error| CommandError {
+            io_error: Some(io_error),
+            exit_status: None,
+        })
+    }
+
+    /// Checks if the child has exited without blocking.
+    ///
+    /// Returns `Ok(Some(status))` if the child has exited, `Ok(None)` if it is still running.
+    pub fn try_wait(&mut self) -> Result<Option<std::process::ExitStatus>, CommandError> {
+        self.inner.try_wait().map_err(|io_error| CommandError {
             io_error: Some(io_error),
             exit_status: None,
         })
