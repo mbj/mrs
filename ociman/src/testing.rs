@@ -24,6 +24,42 @@ pub fn platform_not_supported() -> bool {
     crate::platform::support().is_err()
 }
 
+/// Returns the process ID for use as a run-specific prefix in test image names.
+///
+/// Concurrent test processes have different PIDs, preventing image-name collisions
+/// when multiple test runs execute simultaneously.
+#[must_use]
+pub fn run_id() -> u32 {
+    static RUN_ID: std::sync::LazyLock<u32> = std::sync::LazyLock::new(std::process::id);
+    *RUN_ID
+}
+
+/// Create a test image reference with a run-specific prefix.
+///
+/// Prepends the process ID to the given base string to avoid collisions
+/// between concurrent test processes.
+///
+/// # Panics
+///
+/// Panics if the resulting string is not a valid OCI image reference.
+#[must_use]
+pub fn test_reference(base: &str) -> crate::image::Reference {
+    format!("{}-{base}", run_id()).parse().unwrap()
+}
+
+/// Create a test image name with a run-specific prefix.
+///
+/// Like [`test_reference`], but returns a [`Name`](crate::reference::Name) for use
+/// with content-addressed build definitions.
+///
+/// # Panics
+///
+/// Panics if the resulting string is not a valid OCI image name.
+#[must_use]
+pub fn test_name(base: &str) -> crate::reference::Name {
+    format!("{}-{base}", run_id()).parse().unwrap()
+}
+
 #[macro_export]
 macro_rules! test_backend_setup {
     () => {{

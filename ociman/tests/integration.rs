@@ -173,7 +173,7 @@ fn test_image_build_from_instructions() {
 
     let definition = ociman::BuildDefinition::from_instructions(
         &backend,
-        "ociman-test-instructions:latest".parse().unwrap(),
+        ociman::testing::test_reference("ociman-test-instructions:latest"),
         dockerfile,
     );
 
@@ -193,7 +193,7 @@ fn test_image_build_from_directory() {
 
     let definition = ociman::BuildDefinition::from_directory(
         &backend,
-        "ociman-test-directory:latest".parse().unwrap(),
+        ociman::testing::test_reference("ociman-test-directory:latest"),
         "tests/fixtures/test-build",
     );
 
@@ -218,7 +218,7 @@ fn test_image_build_if_absent() {
 
     let definition = ociman::BuildDefinition::from_instructions(
         &backend,
-        "ociman-test-if-absent:latest".parse().unwrap(),
+        ociman::testing::test_reference("ociman-test-if-absent:latest"),
         dockerfile,
     );
 
@@ -238,7 +238,8 @@ fn test_image_tag() {
     let backend = ociman::test_backend_setup!();
 
     let source: ociman::image::Reference = "alpine:latest".parse().unwrap();
-    let target: ociman::image::Reference = "ociman-test-tagged:latest".parse().unwrap();
+    let target: ociman::image::Reference =
+        ociman::testing::test_reference("ociman-test-tagged:latest");
 
     backend.pull_image_if_absent(&source);
 
@@ -273,7 +274,7 @@ fn test_image_build_from_instructions_hash() {
 
     let definition = ociman::BuildDefinition::from_instructions_hash(
         &backend,
-        "ociman-test-hash".parse().unwrap(),
+        ociman::testing::test_name("ociman-test-hash"),
         dockerfile,
     );
 
@@ -282,7 +283,7 @@ fn test_image_build_from_instructions_hash() {
 
     let definition2 = ociman::BuildDefinition::from_instructions_hash(
         &backend,
-        "ociman-test-hash".parse().unwrap(),
+        ociman::testing::test_name("ociman-test-hash"),
         dockerfile,
     );
     let reference2 = definition2.build();
@@ -297,7 +298,7 @@ fn test_image_build_from_directory_hash() {
 
     let definition = ociman::BuildDefinition::from_directory_hash(
         &backend,
-        "ociman-test-dir-hash".parse().unwrap(),
+        ociman::testing::test_name("ociman-test-dir-hash"),
         "tests/fixtures/test-build",
     );
 
@@ -306,7 +307,7 @@ fn test_image_build_from_directory_hash() {
 
     let definition2 = ociman::BuildDefinition::from_directory_hash(
         &backend,
-        "ociman-test-dir-hash".parse().unwrap(),
+        ociman::testing::test_name("ociman-test-dir-hash"),
         "tests/fixtures/test-build",
     );
     let reference2 = definition2.build();
@@ -327,7 +328,7 @@ fn test_image_build_with_build_args() {
 
     let definition = ociman::BuildDefinition::from_instructions(
         &backend,
-        "ociman-test-build-args:latest".parse().unwrap(),
+        ociman::testing::test_reference("ociman-test-build-args:latest"),
         dockerfile,
     )
     .build_argument("TEST_ARG".parse().unwrap(), "test_value");
@@ -360,7 +361,7 @@ fn test_image_build_args_affect_hash() {
 
     let definition1 = ociman::BuildDefinition::from_instructions_hash(
         &backend,
-        "ociman-test-args-hash".parse().unwrap(),
+        ociman::testing::test_name("ociman-test-args-hash"),
         dockerfile,
     )
     .build_argument("VERSION".parse().unwrap(), "1.0");
@@ -368,7 +369,7 @@ fn test_image_build_args_affect_hash() {
 
     let definition2 = ociman::BuildDefinition::from_instructions_hash(
         &backend,
-        "ociman-test-args-hash".parse().unwrap(),
+        ociman::testing::test_name("ociman-test-args-hash"),
         dockerfile,
     )
     .build_argument("VERSION".parse().unwrap(), "2.0");
@@ -381,7 +382,7 @@ fn test_image_build_args_affect_hash() {
 
     let definition3 = ociman::BuildDefinition::from_instructions_hash(
         &backend,
-        "ociman-test-args-hash".parse().unwrap(),
+        ociman::testing::test_name("ociman-test-args-hash"),
         dockerfile,
     )
     .build_argument("VERSION".parse().unwrap(), "1.0");
@@ -449,7 +450,8 @@ fn test_container_with_workdir() {
 fn test_container_commit() {
     let backend = ociman::test_backend_setup!();
 
-    let target_reference: ociman::image::Reference = "ociman-test-commit:latest".parse().unwrap();
+    let target_reference: ociman::image::Reference =
+        ociman::testing::test_reference("ociman-test-commit:latest");
 
     // Ensure target image doesn't exist before test
     if backend.is_image_present(&target_reference) {

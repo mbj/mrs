@@ -17,7 +17,8 @@ async fn test_run_container_definition() {
     let static_password = "testpass123";
     let static_user = "postgres";
     let static_database = "postgres";
-    let snapshot_image: ociman::image::Reference = "pg-ephemeral-test:snapshot".parse().unwrap();
+    let snapshot_image: ociman::image::Reference =
+        ociman::testing::test_reference("pg-ephemeral-test:snapshot");
 
     let mut ociman_container = ociman::Definition::new(
         backend.clone(),
