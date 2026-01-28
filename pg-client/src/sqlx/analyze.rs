@@ -1,6 +1,6 @@
 //! Parallel ANALYZE execution for PostgreSQL tables.
 
-use core::num::NonZeroUsize;
+use core::num::NonZeroU16;
 use core::str::FromStr as _;
 use std::collections::BTreeSet;
 
@@ -56,7 +56,7 @@ pub struct Result {
 pub async fn run_all(
     config: &crate::Config,
     schemas: &Schemas,
-    jobs: NonZeroUsize,
+    jobs: NonZeroU16,
 ) -> core::result::Result<Result, Error> {
     use std::collections::VecDeque;
     use std::sync::Arc;

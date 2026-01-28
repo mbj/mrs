@@ -1,4 +1,5 @@
 pub mod analyze;
+pub mod partitioned_index;
 
 use crate::{
     Config, Endpoint, PGAPPNAME, PGCHANNELBINDING, PGHOSTADDR, PGPASSWORD, PGPORT, PGSSLROOTCERT,
