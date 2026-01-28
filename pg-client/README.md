@@ -28,7 +28,7 @@ Enables integration with [sqlx](https://github.com/launchbadge/sqlx):
 
 ```toml
 [dependencies]
-pg-client = { version = "0.0.1-pre1", features = ["sqlx"] }
+pg-client = { version = "0.0.2", features = ["sqlx"] }
 ```
 
 ## Features

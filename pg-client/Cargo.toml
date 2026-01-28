@@ -1,6 +1,6 @@
 [package]
 name = "pg-client"
-version = "0.0.1"
+version = "0.0.2"
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true
@@ -20,16 +20,15 @@ sqlx = ["dep:indoc", "dep:log", "dep:sqlx", "dep:tokio"]
 
 [dependencies]
 cmd-proc.workspace = true
+fluent-uri.workspace = true
 hostname-validator = "1.1.1"
 indoc = { workspace = true, optional = true }
 log = { workspace = true, optional = true }
-percent-encoding = "2.3"
 serde.workspace = true
 sqlx = { workspace = true, optional = true }
 strum.workspace = true
 thiserror.workspace = true
 tokio = { workspace = true, optional = true }
-url.workspace = true
 
 [dev-dependencies]
 env_logger.workspace = true

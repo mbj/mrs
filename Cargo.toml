@@ -31,6 +31,7 @@ clap = { version = "4.5", features = ["derive"] }
 cmd-proc = { version = "0.1.0", path = "cmd-proc" }
 dirs = "6"
 env_logger = "0.11"
+fluent-uri = { version = "0.4", features = ["net"] }
 git-proc = { version = "0.0.1", path = "git-proc" }
 hex = "0.4.3"
 http = "1.3"
@@ -42,7 +43,7 @@ mmigration = { path = "mmigration" }
 nom = "8"
 nom-language = "0.1"
 ociman = { version = "0.0.1", path = "ociman" }
-pg-client = { version = "0.0.1", path = "pg-client", features = ["sqlx"] }
+pg-client = { version = "0.0.2", path = "pg-client", features = ["sqlx"] }
 pg-ephemeral = { version = "0.0.1-pre2", path = "pg-ephemeral" }
 pretty_assertions = "1.4"
 prettyplease = "0.2"

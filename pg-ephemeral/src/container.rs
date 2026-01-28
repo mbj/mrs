@@ -248,7 +248,7 @@ impl Container {
 
     #[must_use]
     pub fn database_url(&self) -> String {
-        self.client_config.to_url().to_string()
+        self.client_config.to_url_string()
     }
 
     pub fn stop(&mut self) {
