@@ -33,6 +33,7 @@ tokio = { workspace = true, optional = true }
 
 [dev-dependencies]
 env_logger.workspace = true
+indoc.workspace = true
 ociman.workspace = true
 pg-ephemeral.workspace = true
 pretty_assertions.workspace = true

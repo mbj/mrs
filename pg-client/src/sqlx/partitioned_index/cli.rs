@@ -6,7 +6,7 @@ use super::{Error, Input, SqlFragment};
 use crate::identifier::{AccessMethod, Index, Schema, Table};
 
 /// Add an index to a partitioned PostgreSQL table.
-#[derive(Debug, clap::Parser)]
+#[derive(Debug, clap::Args)]
 pub struct Cli {
     /// Parent partitioned table name.
     #[arg(long)]
@@ -14,7 +14,7 @@ pub struct Cli {
     /// Index name for the parent index.
     #[arg(long)]
     index: Index,
-    /// Index key expression (e.g. "created_at" or "lower(email), account_id").
+    /// Index key expression without surrounding parentheses (e.g. "created_at" or "lower(email), account_id").
     #[arg(long)]
     key_expression: SqlFragment,
     /// Schema name.

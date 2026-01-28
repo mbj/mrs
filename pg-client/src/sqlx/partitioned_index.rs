@@ -55,7 +55,7 @@ pub struct Input {
     pub table: Table,
     /// The desired parent index name.
     pub index: Index,
-    /// The index key expression (e.g. `"lower(email), account_id"`).
+    /// The index key expression without surrounding parentheses (e.g. `"lower(email), account_id"`).
     pub key_expression: SqlFragment,
     /// Whether the index should enforce uniqueness.
     pub unique: bool,
