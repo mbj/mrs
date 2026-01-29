@@ -5,7 +5,7 @@ use core::num::NonZeroU16;
 use sqlx::Row as _;
 use sqlx::SqlSafeStr as _;
 
-use super::{Error, SqlFragment};
+use super::{Error, FillFactor, SqlFragment};
 use crate::identifier::{AccessMethod, Index, Schema, Table};
 
 /// Input parameters for adding an index to a partitioned table.
@@ -26,6 +26,8 @@ pub struct Input {
     pub include: Option<SqlFragment>,
     /// An optional `WHERE` clause (without the `WHERE` keyword).
     pub where_clause: Option<SqlFragment>,
+    /// An optional index fillfactor (1-100).
+    pub fillfactor: Option<FillFactor>,
     /// Whether to use `CREATE INDEX CONCURRENTLY` on partitions.
     pub concurrently: bool,
 }
@@ -102,6 +104,10 @@ pub async fn fetch_statements(
         .as_ref()
         .map(|w| w.as_str())
         .unwrap_or_default();
+    let fillfactor = input
+        .fillfactor
+        .map(|value| value.as_u8().to_string())
+        .unwrap_or_default();
 
     let (parent_create, partitions) = config
         .with_sqlx_connection(async |connection| {
@@ -116,6 +122,7 @@ pub async fn fetch_statements(
                   , concurrently_keyword
                   , key_expression
                   , include_clause
+                  , fillfactor
                   , where_clause
                   ) AS (
                     VALUES
@@ -128,14 +135,16 @@ pub async fn fetch_statements(
                       , $7::text
                       , $8::text
                       , $9::text
+                      , $10::text
                       )
                   )
                 , fragments AS (
                     SELECT
                       derived.include_clause
+                    , derived.storage_clause
                     , derived.where_clause
                     , format
-                      ( 'CREATE %sINDEX %I ON ONLY %I.%I USING %I (%s)%s%s'
+                      ( 'CREATE %sINDEX %I ON ONLY %I.%I USING %I (%s)%s%s%s'
                       , params.unique_keyword
                       , params.parent_index
                       , params.schema_name
@@ -143,15 +152,17 @@ pub async fn fetch_statements(
                       , params.access_method
                       , params.key_expression
                       , derived.include_clause
+                      , derived.storage_clause
                       , derived.where_clause
                       ) AS parent_create_statement
                     , format
-                      ( 'CREATE %sINDEX %s%%I ON %%I.%%I USING %I (%s)%s%s'
+                      ( 'CREATE %sINDEX %s%%I ON %%I.%%I USING %I (%s)%s%s%s'
                       , params.unique_keyword
                       , params.concurrently_keyword
                       , params.access_method
                       , params.key_expression
                       , derived.include_clause
+                      , derived.storage_clause
                       , derived.where_clause
                       ) AS create_index_template
                     , format
@@ -164,8 +175,9 @@ pub async fn fetch_statements(
                     CROSS JOIN LATERAL (
                       SELECT
                         CASE WHEN params.include_clause = '' THEN '' ELSE ' INCLUDE (' || params.include_clause || ')' END
+                      , CASE WHEN params.fillfactor = '' THEN '' ELSE ' WITH (fillfactor = ' || params.fillfactor || ')' END
                       , CASE WHEN params.where_clause = '' THEN '' ELSE ' WHERE ' || params.where_clause END
-                    ) AS derived(include_clause, where_clause)
+                    ) AS derived(include_clause, storage_clause, where_clause)
                   )
                 , partitions AS (
                     SELECT
@@ -250,6 +262,7 @@ pub async fn fetch_statements(
             .bind(concurrently_keyword)
             .bind(key_expression)
             .bind(include_clause)
+            .bind(fillfactor.clone())
             .bind(where_clause)
             .fetch_one(connection)
             .await?;

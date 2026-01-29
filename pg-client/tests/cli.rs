@@ -55,6 +55,8 @@ mod cli_help {
                       INCLUDE clause for covering indexes without INCLUDE keyword or parentheses (e.g. "col1, col2")
                   --where-clause <WHERE_CLAUSE>
                       WHERE clause filter (without the WHERE keyword)
+                  --fillfactor <FILLFACTOR>
+                      Storage parameter for fillfactor (1-100)
                   --concurrently
                       Use CREATE INDEX CONCURRENTLY on partitions
                   --jobs <JOBS>
