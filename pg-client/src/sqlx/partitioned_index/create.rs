@@ -1,11 +1,12 @@
 //! Index creation for partitioned tables.
 
 use core::num::NonZeroU16;
+use std::collections::BTreeSet;
 
 use sqlx::Row as _;
 use sqlx::SqlSafeStr as _;
 
-use super::{Error, FillFactor, SqlFragment};
+use super::{ConcurrentlyConfig, Error, FillFactor, SqlFragment};
 use crate::identifier::{AccessMethod, Index, Schema, Table};
 
 /// Input parameters for adding an index to a partitioned table.
@@ -28,8 +29,8 @@ pub struct Input {
     pub where_clause: Option<SqlFragment>,
     /// An optional index fillfactor (1-100).
     pub fillfactor: Option<FillFactor>,
-    /// Whether to use `CREATE INDEX CONCURRENTLY` on partitions.
-    pub concurrently: bool,
+    /// Concurrency settings for partition index creation.
+    pub concurrently: ConcurrentlyConfig,
 }
 
 /// Result of a successful index addition.
@@ -63,10 +64,29 @@ pub struct Partition {
     pub index: Index,
     /// Partition `CREATE INDEX` statement.
     #[serde(deserialize_with = "super::sql_str_serde::deserialize")]
-    pub create_statement: sqlx::SqlStr,
+    pub create_index_statement: sqlx::SqlStr,
     /// `ALTER INDEX ATTACH PARTITION` statement.
     #[serde(deserialize_with = "super::sql_str_serde::deserialize")]
     pub attach_statement: sqlx::SqlStr,
+}
+
+#[derive(Debug, Clone, serde::Deserialize)]
+struct PartitionRow {
+    /// Partition schema name.
+    schema: Schema,
+    /// Partition table name.
+    table: Table,
+    /// Partition index name.
+    index: Index,
+    /// Partition `CREATE INDEX` statement (non-concurrent).
+    #[serde(deserialize_with = "super::sql_str_serde::deserialize")]
+    create_index_statement: sqlx::SqlStr,
+    /// Partition `CREATE INDEX CONCURRENTLY` statement.
+    #[serde(deserialize_with = "super::sql_str_serde::deserialize")]
+    create_index_statement_concurrently: sqlx::SqlStr,
+    /// `ALTER INDEX ATTACH PARTITION` statement.
+    #[serde(deserialize_with = "super::sql_str_serde::deserialize")]
+    attach_statement: sqlx::SqlStr,
 }
 
 /// All SQL statements needed for the index addition protocol.
@@ -88,11 +108,6 @@ pub async fn fetch_statements(
 ) -> core::result::Result<Statements, Error> {
     let method = input.method.as_str();
     let unique_keyword = if input.unique { "UNIQUE " } else { "" };
-    let concurrently_keyword = if input.concurrently {
-        "CONCURRENTLY "
-    } else {
-        ""
-    };
     let key_expression = input.key_expression.as_str();
     let include_clause = input
         .include
@@ -119,7 +134,6 @@ pub async fn fetch_statements(
                   , parent_index
                   , access_method
                   , unique_keyword
-                  , concurrently_keyword
                   , key_expression
                   , include_clause
                   , fillfactor
@@ -135,7 +149,6 @@ pub async fn fetch_statements(
                       , $7::text
                       , $8::text
                       , $9::text
-                      , $10::text
                       )
                   )
                 , fragments AS (
@@ -156,15 +169,23 @@ pub async fn fetch_statements(
                       , derived.where_clause
                       ) AS parent_create_statement
                     , format
-                      ( 'CREATE %sINDEX %s%%I ON %%I.%%I USING %I (%s)%s%s%s'
+                      ( 'CREATE %sINDEX %%I ON %%I.%%I USING %I (%s)%s%s%s'
                       , params.unique_keyword
-                      , params.concurrently_keyword
                       , params.access_method
                       , params.key_expression
                       , derived.include_clause
                       , derived.storage_clause
                       , derived.where_clause
                       ) AS create_index_template
+                    , format
+                      ( 'CREATE %sINDEX CONCURRENTLY %%I ON %%I.%%I USING %I (%s)%s%s%s'
+                      , params.unique_keyword
+                      , params.access_method
+                      , params.key_expression
+                      , derived.include_clause
+                      , derived.storage_clause
+                      , derived.where_clause
+                      ) AS create_index_template_concurrently
                     , format
                       ( 'ALTER INDEX %I.%I ATTACH PARTITION %%I.%%I'
                       , params.schema_name
@@ -189,7 +210,13 @@ pub async fn fetch_statements(
                       , derived.partition_index_name
                       , child_namespace.nspname
                       , child_class.relname
-                      ) AS create_statement
+                      ) AS create_index_statement
+                    , format
+                      ( fragments.create_index_template_concurrently
+                      , derived.partition_index_name
+                      , child_namespace.nspname
+                      , child_class.relname
+                      ) AS create_index_statement_concurrently
                     , format
                       ( fragments.attach_index_template
                       , child_namespace.nspname
@@ -243,7 +270,8 @@ pub async fn fetch_statements(
                           ( 'schema', partitions.schema
                           , 'table', partitions.table
                           , 'index', partitions.index
-                          , 'create_statement', partitions.create_statement
+                          , 'create_index_statement', partitions.create_index_statement
+                          , 'create_index_statement_concurrently', partitions.create_index_statement_concurrently
                           , 'attach_statement', partitions.attach_statement
                           )
                         ORDER BY partitions.schema, partitions.table
@@ -259,7 +287,6 @@ pub async fn fetch_statements(
             .bind(input.index.as_str())
             .bind(method)
             .bind(unique_keyword)
-            .bind(concurrently_keyword)
             .bind(key_expression)
             .bind(include_clause)
             .bind(fillfactor.clone())
@@ -269,7 +296,7 @@ pub async fn fetch_statements(
 
             let parent_create: String = row.get("parent_create_statement");
             let partitions_json: serde_json::Value = row.get("partitions");
-            let partitions: Vec<Partition> =
+            let partitions: Vec<PartitionRow> =
                 serde_json::from_value(partitions_json).expect("valid partition JSON from database");
 
             Ok::<_, sqlx::Error>((parent_create, partitions))
@@ -283,9 +310,61 @@ pub async fn fetch_statements(
         });
     }
 
+    let partition_tables: BTreeSet<Table> = partitions
+        .iter()
+        .map(|partition| partition.table.clone())
+        .collect();
+    validate_concurrently_tables(&input.concurrently, &partition_tables)?;
+
+    let partitions = partitions
+        .into_iter()
+        .map(|partition| {
+            let create_index_statement = if input.concurrently.is_concurrent_for(&partition.table) {
+                partition.create_index_statement_concurrently
+            } else {
+                partition.create_index_statement
+            };
+
+            Partition {
+                schema: partition.schema,
+                table: partition.table,
+                index: partition.index,
+                create_index_statement,
+                attach_statement: partition.attach_statement,
+            }
+        })
+        .collect();
+
     Ok(Statements {
         parent_create: sqlx::AssertSqlSafe(parent_create).into_sql_str(),
         partitions,
+    })
+}
+
+fn validate_concurrently_tables(
+    concurrently: &ConcurrentlyConfig,
+    partition_tables: &BTreeSet<Table>,
+) -> core::result::Result<(), Error> {
+    let requested_tables = match concurrently {
+        ConcurrentlyConfig::Except(tables) => Some(tables),
+        ConcurrentlyConfig::None | ConcurrentlyConfig::All => None,
+    };
+
+    let Some(requested_tables) = requested_tables else {
+        return Ok(());
+    };
+
+    let unknown_tables: BTreeSet<Table> = requested_tables
+        .difference(partition_tables)
+        .cloned()
+        .collect();
+
+    if unknown_tables.is_empty() {
+        return Ok(());
+    }
+
+    Err(Error::UnknownPartitionTables {
+        tables: unknown_tables,
     })
 }
 
@@ -306,7 +385,7 @@ async fn worker(
 
                 log::info!("Creating index {} on {}", partition.index, partition.table);
 
-                sqlx::raw_sql(partition.create_statement.clone())
+                sqlx::raw_sql(partition.create_index_statement.clone())
                     .execute(&mut *connection)
                     .await?;
 
@@ -349,7 +428,7 @@ pub async fn run(
 
     if dry_run {
         for partition in &partitions {
-            log::info!("[dry-run] {};", partition.create_statement.as_str());
+            log::info!("[dry-run] {};", partition.create_index_statement.as_str());
         }
         log::info!("[dry-run] {};", parent_create.as_str());
         for partition in &partitions {
