@@ -2,7 +2,7 @@
 
 use core::num::NonZeroU16;
 
-use super::{Error, SqlFragment};
+use super::{Error, FillFactor, SqlFragment};
 use crate::identifier::{AccessMethod, Index, Schema, Table};
 
 /// Partitioned index operations.
@@ -73,6 +73,9 @@ pub struct Create {
     /// WHERE clause filter (without the WHERE keyword).
     #[arg(long)]
     where_clause: Option<SqlFragment>,
+    /// Storage parameter for fillfactor (1-100).
+    #[arg(long)]
+    fillfactor: Option<FillFactor>,
     /// Use CREATE INDEX CONCURRENTLY on partitions.
     #[arg(long)]
     concurrently: bool,
@@ -96,6 +99,7 @@ impl Create {
             method: self.method,
             include: self.include,
             where_clause: self.where_clause,
+            fillfactor: self.fillfactor,
             concurrently: self.concurrently,
         };
 

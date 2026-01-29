@@ -105,6 +105,7 @@ async fn run_partitioned_index_addition(
         method: "btree".parse().unwrap(),
         include: None,
         where_clause: None,
+        fillfactor: None,
         concurrently: true,
     };
 
@@ -474,6 +475,7 @@ async fn test_partitioned_index_gc() {
                 method: "btree".parse().unwrap(),
                 include: None,
                 where_clause: None,
+                fillfactor: None,
                 concurrently: false, // Non-concurrent for simpler partial state
             };
 
