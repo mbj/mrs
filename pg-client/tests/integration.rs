@@ -92,8 +92,11 @@ async fn setup_partitioned_events_with_partitions(
 
 async fn run_partitioned_index_addition(
     config: &pg_client::Config,
-) -> Result<pg_client::sqlx::partitioned_index::Result, pg_client::sqlx::partitioned_index::Error> {
-    let input = pg_client::sqlx::partitioned_index::Input {
+) -> Result<
+    pg_client::sqlx::partitioned_index::create::Result,
+    pg_client::sqlx::partitioned_index::Error,
+> {
+    let input = pg_client::sqlx::partitioned_index::create::Input {
         schema: pg_client::identifier::Schema::PUBLIC,
         table: "events".parse().unwrap(),
         index: "idx_events_created_at".parse().unwrap(),
@@ -104,7 +107,13 @@ async fn run_partitioned_index_addition(
         concurrently: true,
     };
 
-    pg_client::sqlx::partitioned_index::run(config, &input, NonZeroU16::new(2).unwrap()).await
+    pg_client::sqlx::partitioned_index::create::run(
+        config,
+        &input,
+        NonZeroU16::new(2).unwrap(),
+        false,
+    )
+    .await
 }
 
 async fn assert_parent_index_valid(config: &pg_client::Config) {
@@ -173,7 +182,7 @@ async fn assert_index_exists(
 }
 
 fn find_partition_index_name(
-    result: &pg_client::sqlx::partitioned_index::Result,
+    result: &pg_client::sqlx::partitioned_index::create::Result,
     schema: &pg_client::identifier::Schema,
     table: &pg_client::identifier::Table,
 ) -> pg_client::identifier::Index {
@@ -320,7 +329,7 @@ async fn test_partitioned_index_addition() {
             let result = run_partitioned_index_addition(config).await;
             assert!(result.is_ok(), "Index addition failed: {result:?}");
             let result = result.unwrap();
-            assert_eq!(result.partition_count, 2);
+            assert_eq!(result.partitions.len(), 2);
 
             // Verify parent index is valid
             assert_parent_index_valid(config).await;
@@ -344,7 +353,7 @@ async fn test_partitioned_index_addition_cross_schema() {
             let result = run_partitioned_index_addition(config).await;
             assert!(result.is_ok(), "Index addition failed: {result:?}");
             let result = result.unwrap();
-            assert_eq!(result.partition_count, 2);
+            assert_eq!(result.partitions.len(), 2);
 
             // Verify parent index is valid
             assert_parent_index_valid(config).await;
@@ -393,7 +402,7 @@ async fn test_partitioned_index_addition_truncation() {
             let result = run_partitioned_index_addition(config).await;
             assert!(result.is_ok(), "Index addition failed: {result:?}");
             let result = result.unwrap();
-            assert_eq!(result.partition_count, 2);
+            assert_eq!(result.partitions.len(), 2);
 
             assert_parent_index_valid(config).await;
 
