@@ -14,22 +14,29 @@ mod cli_help {
     #[derive(Debug, Subcommand)]
     enum Command {
         #[command(name = "partitioned-index")]
-        PartitionedIndex(pg_client::sqlx::partitioned_index::cli::Cli),
+        PartitionedIndex {
+            #[command(subcommand)]
+            command: pg_client::sqlx::partitioned_index::cli::Command,
+        },
     }
 
     #[test]
-    fn partitioned_index_help() {
+    fn partitioned_index_create_help() {
         let cmd = App::command();
-        let subcommand = cmd
+        let partitioned_index = cmd
             .find_subcommand("partitioned-index")
             .expect("partitioned-index subcommand")
             .clone();
+        let create = partitioned_index
+            .find_subcommand("create")
+            .expect("create subcommand")
+            .clone();
 
-        let help = subcommand.term_width(80).render_help().to_string();
+        let help = create.term_width(80).render_help().to_string();
         let expected = indoc! {r#"
-            Add an index to a partitioned PostgreSQL table
+            Create an index on a partitioned table
 
-            Usage: partitioned-index [OPTIONS] --table <TABLE> --index <INDEX> --key-expression <KEY_EXPRESSION>
+            Usage: create [OPTIONS] --table <TABLE> --index <INDEX> --key-expression <KEY_EXPRESSION>
 
             Options:
                   --table <TABLE>
@@ -44,14 +51,47 @@ mod cli_help {
                       Create a unique index
                   --method <METHOD>
                       Index access method (e.g. btree, hash) [default: btree]
+                  --include <INCLUDE>
+                      INCLUDE clause for covering indexes without INCLUDE keyword or parentheses (e.g. "col1, col2")
                   --where-clause <WHERE_CLAUSE>
                       WHERE clause filter (without the WHERE keyword)
                   --concurrently
                       Use CREATE INDEX CONCURRENTLY on partitions
                   --jobs <JOBS>
                       Number of parallel workers for partition index creation [default: 1]
+                  --dry-run
+                      Print SQL statements without executing them
               -h, --help
                       Print help
+        "#};
+
+        assert_eq!(help, expected);
+    }
+
+    #[test]
+    fn partitioned_index_gc_help() {
+        let cmd = App::command();
+        let partitioned_index = cmd
+            .find_subcommand("partitioned-index")
+            .expect("partitioned-index subcommand")
+            .clone();
+        let gc = partitioned_index
+            .find_subcommand("gc")
+            .expect("gc subcommand")
+            .clone();
+
+        let help = gc.term_width(80).render_help().to_string();
+        let expected = indoc! {r#"
+            Garbage collect incomplete index creation state
+
+            Usage: gc [OPTIONS] --index <INDEX>
+
+            Options:
+                  --index <INDEX>    Index name for the parent index
+                  --schema <SCHEMA>  Schema name [default: public]
+                  --jobs <JOBS>      Number of parallel workers for partition index deletion [default: 1]
+                  --dry-run          Print SQL statements without executing them
+              -h, --help             Print help
         "#};
 
         assert_eq!(help, expected);

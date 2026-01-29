@@ -46,8 +46,17 @@ const fn validate(input: &str) -> Option<ParseError> {
 ///
 /// This represents the actual identifier value, not SQL syntax. Identifiers can contain
 /// spaces and special characters (which would require quoting in SQL).
-#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, serde::Serialize)]
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, serde::Serialize, serde::Deserialize)]
+#[serde(try_from = "String")]
 struct Identifier(Cow<'static, str>);
+
+impl TryFrom<String> for Identifier {
+    type Error = ParseError;
+
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        value.parse()
+    }
+}
 
 impl Identifier {
     /// Creates a new identifier from a static string.
@@ -130,8 +139,17 @@ impl std::error::Error for ParseError {}
 macro_rules! define_identifier_type {
     ($(#[$meta:meta])* $name:ident, $test_mod:ident) => {
         $(#[$meta])*
-        #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, serde::Serialize)]
+        #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, serde::Serialize, serde::Deserialize)]
+        #[serde(try_from = "String")]
         pub struct $name(Identifier);
+
+        impl TryFrom<String> for $name {
+            type Error = ParseError;
+
+            fn try_from(value: String) -> Result<Self, Self::Error> {
+                value.parse()
+            }
+        }
 
         impl $name {
             /// Creates a new value from a static string.
