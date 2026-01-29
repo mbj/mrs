@@ -16,7 +16,7 @@ workspace = true
 
 [features]
 default = []
-sqlx = ["dep:indoc", "dep:log", "dep:sqlx", "dep:tokio"]
+sqlx = ["dep:indoc", "dep:log", "dep:serde_json", "dep:sqlx", "dep:tokio"]
 
 [dependencies]
 clap = { workspace = true, optional = true }
@@ -26,6 +26,7 @@ hostname-validator = "1.1.1"
 indoc = { workspace = true, optional = true }
 log = { workspace = true, optional = true }
 serde.workspace = true
+serde_json = { workspace = true, optional = true }
 sqlx = { workspace = true, optional = true }
 strum.workspace = true
 thiserror.workspace = true
