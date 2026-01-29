@@ -9,6 +9,7 @@
 #[cfg(feature = "clap")]
 pub mod cli;
 pub mod create;
+pub mod gc;
 
 pub(crate) mod sql_str_serde {
     use serde::{Deserialize, Deserializer};
@@ -53,6 +54,8 @@ impl core::str::FromStr for SqlFragment {
     }
 }
 
+use crate::identifier::{Index, Schema};
+
 /// Errors that can occur during index operations.
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
@@ -76,4 +79,20 @@ pub enum Error {
     /// Invalid identifier.
     #[error("invalid identifier: {0}")]
     Identifier(#[from] crate::identifier::ParseError),
+    /// Index is already valid, gc should not run.
+    #[error("index {schema}.{index} is already valid")]
+    IndexAlreadyValid {
+        /// The schema name.
+        schema: Schema,
+        /// The index name.
+        index: Index,
+    },
+    /// Index not found, nothing to gc.
+    #[error("index {schema}.{index} not found")]
+    IndexNotFound {
+        /// The schema name.
+        schema: Schema,
+        /// The index name.
+        index: Index,
+    },
 }

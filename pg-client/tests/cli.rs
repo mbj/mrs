@@ -65,4 +65,33 @@ mod cli_help {
 
         assert_eq!(help, expected);
     }
+
+    #[test]
+    fn partitioned_index_gc_help() {
+        let cmd = App::command();
+        let partitioned_index = cmd
+            .find_subcommand("partitioned-index")
+            .expect("partitioned-index subcommand")
+            .clone();
+        let gc = partitioned_index
+            .find_subcommand("gc")
+            .expect("gc subcommand")
+            .clone();
+
+        let help = gc.term_width(80).render_help().to_string();
+        let expected = indoc! {r#"
+            Garbage collect incomplete index creation state
+
+            Usage: gc [OPTIONS] --index <INDEX>
+
+            Options:
+                  --index <INDEX>    Index name for the parent index
+                  --schema <SCHEMA>  Schema name [default: public]
+                  --jobs <JOBS>      Number of parallel workers for partition index deletion [default: 1]
+                  --dry-run          Print SQL statements without executing them
+              -h, --help             Print help
+        "#};
+
+        assert_eq!(help, expected);
+    }
 }

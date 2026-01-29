@@ -117,6 +117,16 @@ async fn run_partitioned_index_addition(
 }
 
 async fn assert_parent_index_valid(config: &pg_client::Config) {
+    let is_valid = get_parent_index_validity(config).await;
+    assert_eq!(is_valid, Some(true), "Parent index should be valid");
+}
+
+async fn assert_parent_index_invalid(config: &pg_client::Config) {
+    let is_valid = get_parent_index_validity(config).await;
+    assert_eq!(is_valid, Some(false), "Parent index should be invalid");
+}
+
+async fn get_parent_index_validity(config: &pg_client::Config) -> Option<bool> {
     config
         .with_sqlx_connection(async |connection| {
             let row = sqlx::query(indoc! {"
@@ -132,16 +142,14 @@ async fn assert_parent_index_valid(config: &pg_client::Config) {
                   pg_class.relname = $1
             "})
             .bind("idx_events_created_at")
-            .fetch_one(&mut *connection)
+            .fetch_optional(&mut *connection)
             .await?;
-            let is_valid: bool = row.get("indisvalid");
-            assert!(is_valid, "Parent index should be valid");
 
-            Ok::<(), sqlx::Error>(())
+            Ok::<Option<bool>, sqlx::Error>(row.map(|r| r.get("indisvalid")))
         })
         .await
         .unwrap()
-        .unwrap();
+        .unwrap()
 }
 
 async fn assert_index_exists(
@@ -149,6 +157,24 @@ async fn assert_index_exists(
     schema: &pg_client::identifier::Schema,
     index: &pg_client::identifier::Index,
 ) {
+    let count = count_index(config, schema, index).await;
+    assert_eq!(count, 1, "Expected {schema}.{index} to exist");
+}
+
+async fn assert_index_not_exists(
+    config: &pg_client::Config,
+    schema: &pg_client::identifier::Schema,
+    index: &pg_client::identifier::Index,
+) {
+    let count = count_index(config, schema, index).await;
+    assert_eq!(count, 0, "Expected {schema}.{index} to not exist");
+}
+
+async fn count_index(
+    config: &pg_client::Config,
+    schema: &pg_client::identifier::Schema,
+    index: &pg_client::identifier::Index,
+) -> i64 {
     config
         .with_sqlx_connection(async |connection| {
             let row = sqlx::query(indoc! {"
@@ -172,13 +198,12 @@ async fn assert_index_exists(
             .fetch_one(&mut *connection)
             .await?;
             let count: i64 = row.get("index_count");
-            assert_eq!(count, 1, "Expected {schema}.{index} to exist");
 
-            Ok::<(), sqlx::Error>(())
+            Ok::<i64, sqlx::Error>(count)
         })
         .await
         .unwrap()
-        .unwrap();
+        .unwrap()
 }
 
 fn find_partition_index_name(
@@ -422,6 +447,150 @@ async fn test_partitioned_index_addition_truncation() {
             assert_ne!(index_1, index_2, "Index names should be distinct");
             assert_index_exists(config, &pg_client::identifier::Schema::PUBLIC, &index_1).await;
             assert_index_exists(config, &pg_client::identifier::Schema::PUBLIC, &index_2).await;
+        })
+        .await
+}
+
+#[tokio::test]
+async fn test_partitioned_index_gc() {
+    let backend = ociman::test_backend_setup!();
+    let definition = definition(backend);
+
+    definition
+        .with_container(async |container| {
+            let config = container.client_config();
+
+            // Setup: create partitioned table with 2 range partitions
+            setup_partitioned_events(config, false).await;
+
+            // Fetch statements but only partially apply them
+            let input = pg_client::sqlx::partitioned_index::create::Input {
+                schema: pg_client::identifier::Schema::PUBLIC,
+                table: "events".parse().unwrap(),
+                index: "idx_events_created_at".parse().unwrap(),
+                key_expression: "created_at".parse().unwrap(),
+                unique: false,
+                method: "btree".parse().unwrap(),
+                where_clause: None,
+                concurrently: false, // Non-concurrent for simpler partial state
+            };
+
+            let statements =
+                pg_client::sqlx::partitioned_index::create::fetch_statements(config, &input)
+                    .await
+                    .expect("fetch_statements should succeed");
+
+            // Create partition indexes and parent stub, but don't attach
+            config
+                .with_sqlx_connection(async |connection| {
+                    // Create partition indexes
+                    for partition in &statements.partitions {
+                        sqlx::raw_sql(partition.create_statement.clone())
+                            .execute(&mut *connection)
+                            .await?;
+                    }
+
+                    // Create parent index stub (will be invalid)
+                    sqlx::raw_sql(statements.parent_create.clone())
+                        .execute(&mut *connection)
+                        .await?;
+
+                    Ok::<(), sqlx::Error>(())
+                })
+                .await
+                .unwrap()
+                .unwrap();
+
+            // Verify we have an invalid parent index
+            assert_parent_index_invalid(config).await;
+
+            // Verify partition indexes exist
+            for partition in &statements.partitions {
+                assert_index_exists(config, &partition.schema, &partition.index).await;
+            }
+
+            // Run GC
+            let gc_input = pg_client::sqlx::partitioned_index::gc::Input {
+                schema: pg_client::identifier::Schema::PUBLIC,
+                index: "idx_events_created_at".parse().unwrap(),
+            };
+
+            let gc_result = pg_client::sqlx::partitioned_index::gc::run(
+                config,
+                &gc_input,
+                NonZeroU16::new(2).unwrap(),
+                false,
+            )
+            .await
+            .expect("gc should succeed");
+
+            assert!(
+                gc_result.parent_dropped,
+                "Parent index should have been dropped"
+            );
+            assert_eq!(
+                gc_result.partition_indexes.len(),
+                statements.partitions.len(),
+                "Should have dropped all partition indexes"
+            );
+
+            // Verify all indexes are gone
+            let parent_index: pg_client::identifier::Index =
+                "idx_events_created_at".parse().unwrap();
+            assert_index_not_exists(
+                config,
+                &pg_client::identifier::Schema::PUBLIC,
+                &parent_index,
+            )
+            .await;
+
+            for partition in &statements.partitions {
+                assert_index_not_exists(config, &partition.schema, &partition.index).await;
+            }
+        })
+        .await
+}
+
+#[tokio::test]
+async fn test_partitioned_index_gc_refuses_valid_index() {
+    let backend = ociman::test_backend_setup!();
+    let definition = definition(backend);
+
+    definition
+        .with_container(async |container| {
+            let config = container.client_config();
+
+            // Setup and create a valid index
+            setup_partitioned_events(config, false).await;
+            run_partitioned_index_addition(config)
+                .await
+                .expect("index creation should succeed");
+
+            // Verify index is valid
+            assert_parent_index_valid(config).await;
+
+            // Try to GC - should fail
+            let gc_input = pg_client::sqlx::partitioned_index::gc::Input {
+                schema: pg_client::identifier::Schema::PUBLIC,
+                index: "idx_events_created_at".parse().unwrap(),
+            };
+
+            let gc_result = pg_client::sqlx::partitioned_index::gc::run(
+                config,
+                &gc_input,
+                NonZeroU16::new(1).unwrap(),
+                false,
+            )
+            .await;
+
+            assert!(gc_result.is_err(), "GC should fail on valid index");
+            assert!(
+                matches!(
+                    gc_result.unwrap_err(),
+                    pg_client::sqlx::partitioned_index::Error::IndexAlreadyValid { .. }
+                ),
+                "Should be IndexAlreadyValid error"
+            );
         })
         .await
 }
