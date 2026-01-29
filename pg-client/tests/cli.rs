@@ -51,6 +51,8 @@ mod cli_help {
                       Create a unique index
                   --method <METHOD>
                       Index access method (e.g. btree, hash) [default: btree]
+                  --include <INCLUDE>
+                      INCLUDE clause for covering indexes without INCLUDE keyword or parentheses (e.g. "col1, col2")
                   --where-clause <WHERE_CLAUSE>
                       WHERE clause filter (without the WHERE keyword)
                   --concurrently

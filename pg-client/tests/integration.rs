@@ -103,6 +103,7 @@ async fn run_partitioned_index_addition(
         key_expression: "created_at".parse().unwrap(),
         unique: false,
         method: "btree".parse().unwrap(),
+        include: None,
         where_clause: None,
         concurrently: true,
     };
@@ -471,6 +472,7 @@ async fn test_partitioned_index_gc() {
                 key_expression: "created_at".parse().unwrap(),
                 unique: false,
                 method: "btree".parse().unwrap(),
+                include: None,
                 where_clause: None,
                 concurrently: false, // Non-concurrent for simpler partial state
             };

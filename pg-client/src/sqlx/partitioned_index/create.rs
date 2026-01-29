@@ -22,6 +22,8 @@ pub struct Input {
     pub unique: bool,
     /// The index access method (e.g. btree, hash).
     pub method: AccessMethod,
+    /// An optional `INCLUDE` clause for covering indexes (without `INCLUDE` keyword or parentheses).
+    pub include: Option<SqlFragment>,
     /// An optional `WHERE` clause (without the `WHERE` keyword).
     pub where_clause: Option<SqlFragment>,
     /// Whether to use `CREATE INDEX CONCURRENTLY` on partitions.
@@ -90,6 +92,11 @@ pub async fn fetch_statements(
         ""
     };
     let key_expression = input.key_expression.as_str();
+    let include_clause = input
+        .include
+        .as_ref()
+        .map(|i| i.as_str())
+        .unwrap_or_default();
     let where_clause = input
         .where_clause
         .as_ref()
@@ -108,6 +115,7 @@ pub async fn fetch_statements(
                   , unique_keyword
                   , concurrently_keyword
                   , key_expression
+                  , include_clause
                   , where_clause
                   ) AS (
                     VALUES
@@ -119,27 +127,31 @@ pub async fn fetch_statements(
                       , $6::text
                       , $7::text
                       , $8::text
+                      , $9::text
                       )
                   )
                 , fragments AS (
                     SELECT
-                      derived.where_clause
+                      derived.include_clause
+                    , derived.where_clause
                     , format
-                      ( 'CREATE %sINDEX %I ON ONLY %I.%I USING %I (%s)%s'
+                      ( 'CREATE %sINDEX %I ON ONLY %I.%I USING %I (%s)%s%s'
                       , params.unique_keyword
                       , params.parent_index
                       , params.schema_name
                       , params.parent_table
                       , params.access_method
                       , params.key_expression
+                      , derived.include_clause
                       , derived.where_clause
                       ) AS parent_create_statement
                     , format
-                      ( 'CREATE %sINDEX %s%%I ON %%I.%%I USING %I (%s)%s'
+                      ( 'CREATE %sINDEX %s%%I ON %%I.%%I USING %I (%s)%s%s'
                       , params.unique_keyword
                       , params.concurrently_keyword
                       , params.access_method
                       , params.key_expression
+                      , derived.include_clause
                       , derived.where_clause
                       ) AS create_index_template
                     , format
@@ -151,8 +163,9 @@ pub async fn fetch_statements(
                       params
                     CROSS JOIN LATERAL (
                       SELECT
-                        CASE WHEN params.where_clause = '' THEN '' ELSE ' WHERE ' || params.where_clause END
-                    ) AS derived(where_clause)
+                        CASE WHEN params.include_clause = '' THEN '' ELSE ' INCLUDE (' || params.include_clause || ')' END
+                      , CASE WHEN params.where_clause = '' THEN '' ELSE ' WHERE ' || params.where_clause END
+                    ) AS derived(include_clause, where_clause)
                   )
                 , partitions AS (
                     SELECT
@@ -236,6 +249,7 @@ pub async fn fetch_statements(
             .bind(unique_keyword)
             .bind(concurrently_keyword)
             .bind(key_expression)
+            .bind(include_clause)
             .bind(where_clause)
             .fetch_one(connection)
             .await?;

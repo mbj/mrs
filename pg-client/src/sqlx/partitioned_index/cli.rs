@@ -67,6 +67,9 @@ pub struct Create {
     /// Index access method (e.g. btree, hash).
     #[arg(long, default_value = "btree")]
     method: AccessMethod,
+    /// INCLUDE clause for covering indexes without INCLUDE keyword or parentheses (e.g. "col1, col2").
+    #[arg(long)]
+    include: Option<SqlFragment>,
     /// WHERE clause filter (without the WHERE keyword).
     #[arg(long)]
     where_clause: Option<SqlFragment>,
@@ -91,6 +94,7 @@ impl Create {
             key_expression: self.key_expression,
             unique: self.unique,
             method: self.method,
+            include: self.include,
             where_clause: self.where_clause,
             concurrently: self.concurrently,
         };
