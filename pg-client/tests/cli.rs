@@ -57,8 +57,8 @@ mod cli_help {
                       WHERE clause filter (without the WHERE keyword)
                   --fillfactor <FILLFACTOR>
                       Storage parameter for fillfactor (1-100)
-                  --concurrently
-                      Use CREATE INDEX CONCURRENTLY on partitions
+                  --concurrently [<MODE>]
+                      Use CREATE INDEX CONCURRENTLY on partitions [default: none]
                   --jobs <JOBS>
                       Number of parallel workers for partition index creation [default: 1]
                   --dry-run

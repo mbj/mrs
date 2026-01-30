@@ -11,6 +11,10 @@ pub mod cli;
 pub mod create;
 pub mod gc;
 
+use std::collections::BTreeSet;
+
+use crate::identifier::Table;
+
 pub(crate) mod sql_str_serde {
     use serde::{Deserialize, Deserializer};
     use sqlx::SqlSafeStr as _;
@@ -21,6 +25,29 @@ pub(crate) mod sql_str_serde {
     {
         let s = String::deserialize(deserializer)?;
         Ok(sqlx::AssertSqlSafe(s).into_sql_str())
+    }
+}
+
+/// Concurrency settings for partition index creation.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum ConcurrentlyConfig {
+    /// Do not use `CREATE INDEX CONCURRENTLY`.
+    None,
+    /// Use `CREATE INDEX CONCURRENTLY` on all partitions.
+    All,
+    /// Use `CREATE INDEX CONCURRENTLY` for all partitions except the specified ones.
+    Except(BTreeSet<Table>),
+}
+
+impl ConcurrentlyConfig {
+    /// Returns true if the partition should be created concurrently.
+    #[must_use]
+    pub fn is_concurrent_for(&self, table: &Table) -> bool {
+        match self {
+            Self::None => false,
+            Self::All => true,
+            Self::Except(tables) => !tables.contains(table),
+        }
     }
 }
 
@@ -133,6 +160,12 @@ pub enum Error {
     /// Invalid identifier.
     #[error("invalid identifier: {0}")]
     Identifier(#[from] crate::identifier::ParseError),
+    /// Partition tables referenced in concurrency configuration were not found.
+    #[error("unknown partition tables in concurrently selection: {tables:?}")]
+    UnknownPartitionTables {
+        /// Unknown partition tables.
+        tables: BTreeSet<Table>,
+    },
     /// Index is already valid, gc should not run.
     #[error("index {schema}.{index} is already valid")]
     IndexAlreadyValid {

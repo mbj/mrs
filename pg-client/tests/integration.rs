@@ -106,7 +106,7 @@ async fn run_partitioned_index_addition(
         include: None,
         where_clause: None,
         fillfactor: None,
-        concurrently: true,
+        concurrently: pg_client::sqlx::partitioned_index::ConcurrentlyConfig::All,
     };
 
     pg_client::sqlx::partitioned_index::create::run(
@@ -454,6 +454,58 @@ async fn test_partitioned_index_addition_truncation() {
 }
 
 #[tokio::test]
+async fn test_partitioned_index_concurrently_except_unknown_partition_fails() {
+    let backend = ociman::test_backend_setup!();
+    let definition = definition(backend);
+
+    definition
+        .with_container(async |container| {
+            let config = container.client_config();
+
+            // Setup: create partitioned table with 2 range partitions
+            setup_partitioned_events(config, false).await;
+
+            let missing_partition: pg_client::identifier::Table = "events_2024q3".parse().unwrap();
+            let mut excluded_tables = std::collections::BTreeSet::new();
+            excluded_tables.insert(missing_partition.clone());
+
+            let input = pg_client::sqlx::partitioned_index::create::Input {
+                schema: pg_client::identifier::Schema::PUBLIC,
+                table: "events".parse().unwrap(),
+                index: "idx_events_created_at".parse().unwrap(),
+                key_expression: "created_at".parse().unwrap(),
+                unique: false,
+                method: "btree".parse().unwrap(),
+                include: None,
+                where_clause: None,
+                fillfactor: None,
+                concurrently: pg_client::sqlx::partitioned_index::ConcurrentlyConfig::Except(
+                    excluded_tables,
+                ),
+            };
+
+            let result =
+                pg_client::sqlx::partitioned_index::create::fetch_statements(config, &input).await;
+
+            match result {
+                Err(pg_client::sqlx::partitioned_index::Error::UnknownPartitionTables {
+                    tables,
+                }) => {
+                    assert!(
+                        tables.contains(&missing_partition),
+                        "Missing partition should be reported"
+                    );
+                }
+                Err(other_error) => {
+                    panic!("Expected UnknownPartitionTables error, got {other_error}")
+                }
+                Ok(_) => panic!("Expected UnknownPartitionTables error, got Ok"),
+            }
+        })
+        .await
+}
+
+#[tokio::test]
 async fn test_partitioned_index_gc() {
     let backend = ociman::test_backend_setup!();
     let definition = definition(backend);
@@ -476,7 +528,7 @@ async fn test_partitioned_index_gc() {
                 include: None,
                 where_clause: None,
                 fillfactor: None,
-                concurrently: false, // Non-concurrent for simpler partial state
+                concurrently: pg_client::sqlx::partitioned_index::ConcurrentlyConfig::None, // Non-concurrent for simpler partial state
             };
 
             let statements =
@@ -489,7 +541,7 @@ async fn test_partitioned_index_gc() {
                 .with_sqlx_connection(async |connection| {
                     // Create partition indexes
                     for partition in &statements.partitions {
-                        sqlx::raw_sql(partition.create_statement.clone())
+                        sqlx::raw_sql(partition.create_index_statement.clone())
                             .execute(&mut *connection)
                             .await?;
                     }

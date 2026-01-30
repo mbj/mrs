@@ -16,6 +16,7 @@ workspace = true
 
 [features]
 default = []
+clap = ["dep:clap", "dep:nom", "dep:nom-language"]
 sqlx = ["dep:indoc", "dep:log", "dep:serde_json", "dep:sqlx", "dep:tokio"]
 
 [dependencies]
@@ -25,6 +26,8 @@ fluent-uri.workspace = true
 hostname-validator = "1.1.1"
 indoc = { workspace = true, optional = true }
 log = { workspace = true, optional = true }
+nom = { workspace = true, optional = true }
+nom-language = { workspace = true, optional = true }
 serde.workspace = true
 serde_json = { workspace = true, optional = true }
 sqlx = { workspace = true, optional = true }
