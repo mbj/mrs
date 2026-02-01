@@ -37,7 +37,7 @@ jobs:
       with:
         fetch-depth: 0
     - run: git restore-mtime
-    - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+    - uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
       with:
         path: |
           target/
@@ -69,7 +69,7 @@ jobs:
       run: cargo --verbose clippy --all-features --release
 
     - name: Install nextest
-      uses: taiki-e/install-action@90558ad1e179036f31467972b00dec6cb80701fa # v2.66.3
+      uses: taiki-e/install-action@650c5ca14212efbbf3e580844b04bdccf68dac31 # v2.67.18
       with:
         tool: cargo-nextest
 
@@ -91,7 +91,7 @@ jobs:
 
     - name: Upload build artifacts
       if: ${{ !endsWith(matrix.os.cargo_build_target, '-gnu') }}
-      uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
       with:
         name: pg-ephemeral-${{ matrix.os.cargo_build_target }}
         path: |
@@ -132,7 +132,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install --yes libpq-dev
 
     - name: Download all artifacts
-      uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
+      uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
       with:
         path: artifacts/
         merge-multiple: false
@@ -168,7 +168,7 @@ jobs:
     - run: git restore-mtime
 
     - name: Download all artifacts
-      uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
+      uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
       with:
         path: artifacts
 

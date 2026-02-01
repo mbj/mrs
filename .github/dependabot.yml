@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+    cooldown:
+      default-days: 7
+  - package-ecosystem: cargo
+    directory: /
+    schedule:
+      interval: daily
+    cooldown:
+      default-days: 7
+  - package-ecosystem: bundler
+    directory: /pg-ephemeral/integrations/ruby
+    schedule:
+      interval: daily
+    cooldown:
+      default-days: 7
