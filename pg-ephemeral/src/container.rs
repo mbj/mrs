@@ -268,6 +268,57 @@ impl Container {
     pub fn stop(&mut self) {
         self.container.stop()
     }
+
+    fn wait_for_unix_socket(&self) -> Result<(), Error> {
+        let start = std::time::Instant::now();
+        let max_duration = self.wait_available_timeout;
+        let sleep_duration = std::time::Duration::from_millis(100);
+
+        while start.elapsed() <= max_duration {
+            if self
+                .container
+                .exec("pg_isready")
+                .argument("--host")
+                .argument("/var/run/postgresql")
+                .status()
+                .is_ok()
+            {
+                return Ok(());
+            }
+            std::thread::sleep(sleep_duration);
+        }
+
+        Err(Error::ConnectionTimeout {
+            timeout: max_duration,
+            source: None,
+        })
+    }
+
+    /// Set the superuser password using peer authentication via Unix domain socket.
+    ///
+    /// This is useful when resuming from a cached image where the password
+    /// doesn't match the newly generated one.
+    pub fn set_superuser_password(&self, password: &pg_client::Password) -> Result<(), Error> {
+        self.wait_for_unix_socket()?;
+
+        self.container
+            .exec("psql")
+            .argument("--host")
+            .argument("/var/run/postgresql")
+            .argument("--username")
+            .argument(self.client_config.user.as_ref())
+            .argument("--dbname")
+            .argument("postgres")
+            .argument("--variable")
+            .argument(format!("target_user={}", self.client_config.user.as_ref()))
+            .argument("--variable")
+            .argument(format!("new_password={}", password.as_ref()))
+            .stdin("ALTER USER :target_user WITH PASSWORD :'new_password'")
+            .stdout()
+            .bytes()?;
+
+        Ok(())
+    }
 }
 
 fn generate_password() -> pg_client::Password {
