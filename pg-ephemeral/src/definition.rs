@@ -12,6 +12,7 @@ pub enum SslConfig {
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Definition {
+    pub instance_name: crate::InstanceName,
     pub application_name: Option<pg_client::ApplicationName>,
     pub backend: ociman::Backend,
     pub database: pg_client::Database,
@@ -25,8 +26,13 @@ pub struct Definition {
 
 impl Definition {
     #[must_use]
-    pub fn new(backend: ociman::backend::Backend, image: crate::image::Image) -> Self {
+    pub fn new(
+        backend: ociman::backend::Backend,
+        image: crate::image::Image,
+        instance_name: crate::InstanceName,
+    ) -> Self {
         Self {
+            instance_name,
             backend,
             application_name: None,
             seeds: indexmap::IndexMap::new(),
@@ -58,7 +64,10 @@ impl Definition {
         self.add_seed(name, Seed::SqlFile { path })
     }
 
-    pub fn load_seeds(&self, instance_name: &str) -> Result<LoadedSeeds<'_>, LoadError> {
+    pub fn load_seeds(
+        &self,
+        instance_name: &crate::InstanceName,
+    ) -> Result<LoadedSeeds<'_>, LoadError> {
         LoadedSeeds::load(
             &self.image,
             self.ssl_config.as_ref(),
@@ -70,7 +79,7 @@ impl Definition {
 
     pub fn print_cache_status(
         &self,
-        instance_name: &str,
+        instance_name: &crate::InstanceName,
         verbose: bool,
     ) -> Result<(), crate::container::Error> {
         self.load_seeds(instance_name)?.print(verbose);
@@ -155,7 +164,7 @@ impl Definition {
         &self,
         mut action: impl AsyncFnMut(&Container) -> T,
     ) -> Result<T, crate::container::Error> {
-        let loaded_seeds = self.load_seeds("main")?;
+        let loaded_seeds = self.load_seeds(&self.instance_name)?;
 
         let mut db_container = Container::run_definition(self);
 
@@ -301,9 +310,17 @@ mod test {
         }
     }
 
+    fn test_instance_name() -> crate::InstanceName {
+        "test".parse().unwrap()
+    }
+
     #[test]
     fn test_add_seed_rejects_duplicate() {
-        let definition = Definition::new(test_backend(), crate::Image::default());
+        let definition = Definition::new(
+            test_backend(),
+            crate::Image::default(),
+            test_instance_name(),
+        );
         let seed_name: SeedName = "test-seed".parse().unwrap();
 
         let definition = definition
@@ -327,7 +344,11 @@ mod test {
 
     #[test]
     fn test_add_seed_allows_different_names() {
-        let definition = Definition::new(test_backend(), crate::Image::default());
+        let definition = Definition::new(
+            test_backend(),
+            crate::Image::default(),
+            test_instance_name(),
+        );
 
         let definition = definition
             .add_seed(
@@ -350,7 +371,11 @@ mod test {
 
     #[test]
     fn test_apply_file_rejects_duplicate() {
-        let definition = Definition::new(test_backend(), crate::Image::default());
+        let definition = Definition::new(
+            test_backend(),
+            crate::Image::default(),
+            test_instance_name(),
+        );
         let seed_name: SeedName = "test-seed".parse().unwrap();
 
         let definition = definition
@@ -364,7 +389,11 @@ mod test {
 
     #[test]
     fn test_apply_command_adds_seed() {
-        let definition = Definition::new(test_backend(), crate::Image::default());
+        let definition = Definition::new(
+            test_backend(),
+            crate::Image::default(),
+            test_instance_name(),
+        );
 
         let result = definition.apply_command(
             "test-command".parse().unwrap(),
@@ -379,7 +408,11 @@ mod test {
 
     #[test]
     fn test_apply_command_rejects_duplicate() {
-        let definition = Definition::new(test_backend(), crate::Image::default());
+        let definition = Definition::new(
+            test_backend(),
+            crate::Image::default(),
+            test_instance_name(),
+        );
         let seed_name: SeedName = "test-command".parse().unwrap();
 
         let definition = definition
@@ -401,7 +434,11 @@ mod test {
 
     #[test]
     fn test_apply_script_adds_seed() {
-        let definition = Definition::new(test_backend(), crate::Image::default());
+        let definition = Definition::new(
+            test_backend(),
+            crate::Image::default(),
+            test_instance_name(),
+        );
 
         let result = definition.apply_script("test-script".parse().unwrap(), "echo test");
 
@@ -412,7 +449,11 @@ mod test {
 
     #[test]
     fn test_apply_script_rejects_duplicate() {
-        let definition = Definition::new(test_backend(), crate::Image::default());
+        let definition = Definition::new(
+            test_backend(),
+            crate::Image::default(),
+            test_instance_name(),
+        );
         let seed_name: SeedName = "test-script".parse().unwrap();
 
         let definition = definition

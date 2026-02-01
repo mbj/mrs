@@ -6,8 +6,12 @@ const GIT_COMMITTER_DATE: cmd_proc::EnvVariableName =
 /// CI environments may be slow, so we use 30s instead of the default 10s.
 #[allow(dead_code)]
 pub fn test_definition(backend: ociman::Backend) -> pg_ephemeral::Definition {
-    pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default())
-        .wait_available_timeout(std::time::Duration::from_secs(30))
+    pg_ephemeral::Definition::new(
+        backend,
+        pg_ephemeral::Image::default(),
+        "test".parse().unwrap(),
+    )
+    .wait_available_timeout(std::time::Duration::from_secs(30))
 }
 
 /// Run pg-ephemeral with the given arguments and assert success.

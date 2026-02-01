@@ -224,8 +224,12 @@ fn find_partition_index_name(
 
 fn definition(backend: ociman::Backend) -> pg_ephemeral::Definition {
     // CI environments may be slow, use 30s instead of default 10s
-    pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default())
-        .wait_available_timeout(std::time::Duration::from_secs(30))
+    pg_ephemeral::Definition::new(
+        backend,
+        pg_ephemeral::Image::default(),
+        "test".parse().unwrap(),
+    )
+    .wait_available_timeout(std::time::Duration::from_secs(30))
 }
 
 const TEST_USER: pg_client::User = pg_client::User::from_static_or_panic("some-user");
