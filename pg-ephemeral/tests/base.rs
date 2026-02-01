@@ -17,6 +17,7 @@ async fn test_base_feature() {
                 .await
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -39,6 +40,7 @@ async fn test_ssl_generated() {
                 .await
         })
         .await
+        .unwrap()
 }
 
 #[test]
@@ -253,6 +255,7 @@ async fn test_run_env() {
             );
         })
         .await
+        .unwrap()
 }
 
 #[test]

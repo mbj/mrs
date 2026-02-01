@@ -7,6 +7,20 @@ use crate::certificate;
 use crate::definition;
 
 pub const PGDATA: &str = "/var/lib/pg-ephemeral";
+
+#[derive(Debug, thiserror::Error)]
+pub enum Error {
+    #[error("PostgreSQL did not become available within {timeout:?}")]
+    ConnectionTimeout {
+        timeout: std::time::Duration,
+        #[source]
+        source: Option<sqlx::Error>,
+    },
+    #[error("Failed to execute command in container")]
+    ContainerExec(#[from] cmd_proc::CommandError),
+    #[error(transparent)]
+    SeedLoad(#[from] crate::seed::LoadError),
+}
 const ENV_POSTGRES_PASSWORD: cmd_proc::EnvVariableName<'static> =
     cmd_proc::EnvVariableName::from_static_or_panic("POSTGRES_PASSWORD");
 const ENV_POSTGRES_USER: cmd_proc::EnvVariableName<'static> =
@@ -102,14 +116,14 @@ impl Container {
         )
     }
 
-    pub async fn wait_available(&self) {
+    pub async fn wait_available(&self) -> Result<(), Error> {
         let config = self.client_config.to_sqlx_connect_options().unwrap();
 
         let start = std::time::Instant::now();
         let max_duration = self.wait_available_timeout;
         let sleep_duration = std::time::Duration::from_millis(100);
 
-        let mut last_error: Option<_> = None;
+        let mut last_error: Option<sqlx::Error> = None;
 
         while start.elapsed() <= max_duration {
             log::trace!("connection attempt");
@@ -124,7 +138,7 @@ impl Container {
                         self.client_config.endpoint
                     );
 
-                    return;
+                    return Ok(());
                 }
                 Err(error) => {
                     log::trace!("{error:#?}, retry in 100ms");
@@ -134,10 +148,10 @@ impl Container {
             tokio::time::sleep(sleep_duration).await;
         }
 
-        panic!(
-            "Container did not become available within ~{} seconds! Last connection error: {last_error:#?}",
-            max_duration.as_secs()
-        );
+        Err(Error::ConnectionTimeout {
+            timeout: max_duration,
+            source: last_error,
+        })
     }
 
     pub(crate) fn exec_schema_dump(&self) -> String {
@@ -253,6 +267,57 @@ impl Container {
 
     pub fn stop(&mut self) {
         self.container.stop()
+    }
+
+    fn wait_for_unix_socket(&self) -> Result<(), Error> {
+        let start = std::time::Instant::now();
+        let max_duration = self.wait_available_timeout;
+        let sleep_duration = std::time::Duration::from_millis(100);
+
+        while start.elapsed() <= max_duration {
+            if self
+                .container
+                .exec("pg_isready")
+                .argument("--host")
+                .argument("/var/run/postgresql")
+                .status()
+                .is_ok()
+            {
+                return Ok(());
+            }
+            std::thread::sleep(sleep_duration);
+        }
+
+        Err(Error::ConnectionTimeout {
+            timeout: max_duration,
+            source: None,
+        })
+    }
+
+    /// Set the superuser password using peer authentication via Unix domain socket.
+    ///
+    /// This is useful when resuming from a cached image where the password
+    /// doesn't match the newly generated one.
+    pub fn set_superuser_password(&self, password: &pg_client::Password) -> Result<(), Error> {
+        self.wait_for_unix_socket()?;
+
+        self.container
+            .exec("psql")
+            .argument("--host")
+            .argument("/var/run/postgresql")
+            .argument("--username")
+            .argument(self.client_config.user.as_ref())
+            .argument("--dbname")
+            .argument("postgres")
+            .argument("--variable")
+            .argument(format!("target_user={}", self.client_config.user.as_ref()))
+            .argument("--variable")
+            .argument(format!("new_password={}", password.as_ref()))
+            .stdin("ALTER USER :target_user WITH PASSWORD :'new_password'")
+            .stdout()
+            .bytes()?;
+
+        Ok(())
     }
 }
 

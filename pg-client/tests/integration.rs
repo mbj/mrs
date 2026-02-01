@@ -224,8 +224,12 @@ fn find_partition_index_name(
 
 fn definition(backend: ociman::Backend) -> pg_ephemeral::Definition {
     // CI environments may be slow, use 30s instead of default 10s
-    pg_ephemeral::Definition::new(backend, pg_ephemeral::Image::default())
-        .wait_available_timeout(std::time::Duration::from_secs(30))
+    pg_ephemeral::Definition::new(
+        backend,
+        pg_ephemeral::Image::default(),
+        "test".parse().unwrap(),
+    )
+    .wait_available_timeout(std::time::Duration::from_secs(30))
 }
 
 const TEST_USER: pg_client::User = pg_client::User::from_static_or_panic("some-user");
@@ -254,6 +258,7 @@ async fn test_with_sqlx_connection() {
             assert!(result.unwrap(), "Query should return true");
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -338,6 +343,7 @@ async fn test_analyze_all_tables() {
             assert!(!result.elapsed.is_zero(), "Elapsed time should be non-zero");
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -362,6 +368,7 @@ async fn test_partitioned_index_addition() {
             assert_parent_index_valid(config).await;
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -403,6 +410,7 @@ async fn test_partitioned_index_addition_cross_schema() {
             assert_index_exists(config, &analytics_schema, &analytics_index).await;
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -451,6 +459,7 @@ async fn test_partitioned_index_addition_truncation() {
             assert_index_exists(config, &pg_client::identifier::Schema::PUBLIC, &index_2).await;
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -503,6 +512,7 @@ async fn test_partitioned_index_concurrently_except_unknown_partition_fails() {
             }
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -605,6 +615,7 @@ async fn test_partitioned_index_gc() {
             }
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -649,4 +660,5 @@ async fn test_partitioned_index_gc_refuses_valid_index() {
             );
         })
         .await
+        .unwrap()
 }
