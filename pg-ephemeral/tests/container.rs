@@ -84,7 +84,7 @@ async fn test_run_container_definition() {
     };
 
     let mut container = pg_ephemeral::container::Container::run_container_definition(&definition);
-    container.wait_available().await;
+    container.wait_available().await.unwrap();
 
     container
         .with_connection(async |conn| {
@@ -101,6 +101,40 @@ async fn test_run_container_definition() {
     // Force remove needed: container stop returns before container removal completes,
     // so a non-force remove may fail with "image is in use by stopped container".
     backend.remove_image_force(&snapshot_image);
+}
+
+#[tokio::test]
+async fn test_set_superuser_password() {
+    if ociman::testing::platform_not_supported() {
+        return;
+    }
+
+    let backend = ociman::test_backend_setup!();
+
+    let definition = pg_ephemeral::Definition::new(
+        backend,
+        pg_ephemeral::Image::default(),
+        "test".parse().unwrap(),
+    )
+    .wait_available_timeout(std::time::Duration::from_secs(30));
+
+    definition
+        .with_container(async |container| {
+            let new_password = pg_client::Password::from_str("new_password_123").unwrap();
+            container.set_superuser_password(&new_password).unwrap();
+
+            let new_client_config = pg_client::Config {
+                password: Some(new_password),
+                ..container.client_config().clone()
+            };
+
+            new_client_config
+                .with_sqlx_connection(async |_| {})
+                .await
+                .unwrap();
+        })
+        .await
+        .unwrap();
 }
 
 async fn wait_for_postgres(config: &pg_client::Config) {

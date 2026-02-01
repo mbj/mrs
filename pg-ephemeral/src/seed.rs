@@ -11,7 +11,7 @@ impl CacheStatus {
     fn from_cache_key(
         cache_key: Option<CacheKey>,
         backend: &ociman::Backend,
-        instance_name: &str,
+        instance_name: &crate::InstanceName,
     ) -> Self {
         match cache_key {
             Some(key) => {
@@ -166,7 +166,7 @@ impl Seed {
         name: SeedName,
         hash_chain: &mut HashChain,
         backend: &ociman::Backend,
-        instance_name: &str,
+        instance_name: &crate::InstanceName,
     ) -> Result<LoadedSeed, LoadError> {
         match self {
             Seed::SqlFile { path } => {
@@ -507,7 +507,7 @@ impl<'a> LoadedSeeds<'a> {
         ssl_config: Option<&crate::definition::SslConfig>,
         seeds: &indexmap::IndexMap<SeedName, Seed>,
         backend: &ociman::Backend,
-        instance_name: &str,
+        instance_name: &crate::InstanceName,
     ) -> Result<Self, LoadError> {
         let mut hash_chain = HashChain::new();
         let mut loaded_seeds = Vec::new();

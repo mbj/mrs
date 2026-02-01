@@ -32,8 +32,12 @@ impl Instance {
         }
     }
 
-    pub fn definition(&self) -> Result<Definition, ociman::backend::resolve::Error> {
+    pub fn definition(
+        &self,
+        instance_name: &crate::InstanceName,
+    ) -> Result<Definition, ociman::backend::resolve::Error> {
         Ok(Definition {
+            instance_name: instance_name.clone(),
             application_name: self.application_name.clone(),
             backend: self.backend.resolve()?,
             database: self.database.clone(),
