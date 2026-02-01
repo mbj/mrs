@@ -64,6 +64,7 @@ async fn test_command_seed_receives_environment() {
                 .await
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -91,6 +92,7 @@ async fn test_script_seed_receives_environment() {
                 .await
         })
         .await
+        .unwrap()
 }
 
 #[test]

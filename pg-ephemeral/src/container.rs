@@ -7,6 +7,20 @@ use crate::certificate;
 use crate::definition;
 
 pub const PGDATA: &str = "/var/lib/pg-ephemeral";
+
+#[derive(Debug, thiserror::Error)]
+pub enum Error {
+    #[error("PostgreSQL did not become available within {timeout:?}")]
+    ConnectionTimeout {
+        timeout: std::time::Duration,
+        #[source]
+        source: Option<sqlx::Error>,
+    },
+    #[error("Failed to execute command in container")]
+    ContainerExec(#[from] cmd_proc::CommandError),
+    #[error(transparent)]
+    SeedLoad(#[from] crate::seed::LoadError),
+}
 const ENV_POSTGRES_PASSWORD: cmd_proc::EnvVariableName<'static> =
     cmd_proc::EnvVariableName::from_static_or_panic("POSTGRES_PASSWORD");
 const ENV_POSTGRES_USER: cmd_proc::EnvVariableName<'static> =
@@ -102,14 +116,14 @@ impl Container {
         )
     }
 
-    pub async fn wait_available(&self) {
+    pub async fn wait_available(&self) -> Result<(), Error> {
         let config = self.client_config.to_sqlx_connect_options().unwrap();
 
         let start = std::time::Instant::now();
         let max_duration = self.wait_available_timeout;
         let sleep_duration = std::time::Duration::from_millis(100);
 
-        let mut last_error: Option<_> = None;
+        let mut last_error: Option<sqlx::Error> = None;
 
         while start.elapsed() <= max_duration {
             log::trace!("connection attempt");
@@ -124,7 +138,7 @@ impl Container {
                         self.client_config.endpoint
                     );
 
-                    return;
+                    return Ok(());
                 }
                 Err(error) => {
                     log::trace!("{error:#?}, retry in 100ms");
@@ -134,10 +148,10 @@ impl Container {
             tokio::time::sleep(sleep_duration).await;
         }
 
-        panic!(
-            "Container did not become available within ~{} seconds! Last connection error: {last_error:#?}",
-            max_duration.as_secs()
-        );
+        Err(Error::ConnectionTimeout {
+            timeout: max_duration,
+            source: last_error,
+        })
     }
 
     pub(crate) fn exec_schema_dump(&self) -> String {

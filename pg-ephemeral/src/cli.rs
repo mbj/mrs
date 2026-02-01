@@ -1,6 +1,18 @@
 use crate::config::Config;
 use crate::{InstanceMap, InstanceName};
 
+#[derive(Debug, thiserror::Error)]
+pub enum Error {
+    #[error(transparent)]
+    Command(#[from] cmd_proc::CommandError),
+    #[error(transparent)]
+    Config(#[from] crate::config::Error),
+    #[error(transparent)]
+    Container(#[from] crate::container::Error),
+    #[error("Unknown instance: {0}")]
+    UnknownInstance(InstanceName),
+}
+
 #[derive(Clone, Debug, clap::ValueEnum)]
 pub enum Protocol {
     V0,
@@ -58,7 +70,7 @@ pub struct App {
 }
 
 impl App {
-    pub async fn run(&self) {
+    pub async fn run(&self) -> Result<(), Error> {
         let overwrites = crate::config::InstanceDefinition {
             backend: self.backend,
             image: self.image.clone(),
@@ -73,50 +85,39 @@ impl App {
         let config_file_source =
             ConfigFileSource::from_arguments(self.config_file.clone(), self.no_config_file);
 
-        let result = match config_file_source {
+        let instance_map = match config_file_source {
             ConfigFileSource::Explicit(config_file) => {
-                Config::load_toml_file(&config_file, &overwrites).map_err(|error| {
-                    format!("Could not load config file specified on the CLI: {error}")
-                })
+                Config::load_toml_file(&config_file, &overwrites)?
             }
             ConfigFileSource::None => {
                 log::info!("--no-config-file specified, using default instance map");
-                crate::Config::default()
-                    .instance_map(&overwrites)
-                    .map_err(|error| format!("Could not load default config: {error}"))
+                crate::Config::default().instance_map(&overwrites)?
             }
             ConfigFileSource::Implicit => {
                 log::info!("No config file specified, trying to load from default location");
 
                 match Config::load_toml_file("database.toml", &overwrites) {
-                    Ok(value) => Ok(value),
+                    Ok(value) => value,
                     Err(crate::config::Error::IO(crate::config::IoError(
                         std::io::ErrorKind::NotFound,
                     ))) => {
                         log::info!(
                             "Config file does not exist in default location, using default instance map"
                         );
-                        crate::Config::default()
-                            .instance_map(&overwrites)
-                            .map_err(|error| format!("Could not load default config: {error}"))
+                        crate::Config::default().instance_map(&overwrites)?
                     }
-                    Err(error) => Err(format!(
-                        "Could not load config file from default location: {error}"
-                    )),
+                    Err(error) => return Err(error.into()),
                 }
             }
         };
 
-        match result {
-            Ok(instance_map) => {
-                self.command
-                    .clone()
-                    .unwrap_or_default()
-                    .run(&instance_map)
-                    .await
-            }
-            Err(error) => panic!("{error}"),
-        }
+        self.command
+            .clone()
+            .unwrap_or_default()
+            .run(&instance_map)
+            .await?;
+
+        Ok(())
     }
 }
 
@@ -260,19 +261,19 @@ impl Default for Command {
 }
 
 impl Command {
-    pub async fn run(&self, instance_map: &InstanceMap) {
+    pub async fn run(&self, instance_map: &InstanceMap) -> Result<(), Error> {
         match self {
             Self::Cache { instance, command } => match command {
                 CacheCommand::Status { verbose } => {
                     let instance_name = instance.clone().unwrap_or_default();
-                    let definition = Self::get_instance(instance_map, instance)
+                    let definition = Self::get_instance(instance_map, instance)?
                         .definition()
                         .unwrap();
-                    definition.print_cache_status(&instance_name.to_string(), *verbose)
+                    definition.print_cache_status(&instance_name.to_string(), *verbose)?
                 }
                 CacheCommand::Reset => {
                     let instance_name = instance.clone().unwrap_or_default();
-                    let definition = Self::get_instance(instance_map, instance)
+                    let definition = Self::get_instance(instance_map, instance)?
                         .definition()
                         .unwrap();
                     let name: ociman::reference::Name =
@@ -285,31 +286,31 @@ impl Command {
                 }
             },
             Self::ContainerPsql { instance } => {
-                let definition = Self::get_instance(instance_map, instance)
+                let definition = Self::get_instance(instance_map, instance)?
                     .definition()
                     .unwrap();
-                definition.with_container(container_psql).await
+                definition.with_container(container_psql).await?
             }
             Self::ContainerSchemaDump { instance } => {
-                let definition = Self::get_instance(instance_map, instance)
+                let definition = Self::get_instance(instance_map, instance)?
                     .definition()
                     .unwrap();
-                definition.with_container(container_schema_dump).await
+                definition.with_container(container_schema_dump).await?
             }
             Self::ContainerShell { instance } => {
-                let definition = Self::get_instance(instance_map, instance)
+                let definition = Self::get_instance(instance_map, instance)?
                     .definition()
                     .unwrap();
-                definition.with_container(container_shell).await
+                definition.with_container(container_shell).await?
             }
             Self::IntegrationServer {
                 instance,
                 protocol: _,
             } => {
-                let definition = Self::get_instance(instance_map, instance)
+                let definition = Self::get_instance(instance_map, instance)?
                     .definition()
                     .unwrap();
-                definition.run_integration_server().await
+                definition.run_integration_server().await?
             }
             Self::List => {
                 for instance_name in instance_map.keys() {
@@ -317,43 +318,40 @@ impl Command {
                 }
             }
             Self::Psql { instance } => {
-                let definition = Self::get_instance(instance_map, instance)
+                let definition = Self::get_instance(instance_map, instance)?
                     .definition()
                     .unwrap();
-                definition
-                    .with_container(host_psql)
-                    .await
-                    .expect("psql command failed")
+                definition.with_container(host_psql).await??
             }
             Self::RunEnv {
                 instance,
                 command,
                 arguments,
             } => {
-                let definition = Self::get_instance(instance_map, instance)
+                let definition = Self::get_instance(instance_map, instance)?
                     .definition()
                     .unwrap();
                 definition
                     .with_container(async |container| {
                         host_command(container, command, arguments).await
                     })
-                    .await
-                    .expect("command failed")
+                    .await??
             }
             Self::Platform { command } => command.run(),
         }
+
+        Ok(())
     }
 
     fn get_instance<'a>(
         instance_map: &'a InstanceMap,
         instance: &Option<InstanceName>,
-    ) -> &'a crate::config::Instance {
+    ) -> Result<&'a crate::config::Instance, Error> {
         let instance_name = instance.clone().unwrap_or_default();
 
-        match instance_map.get(&instance_name) {
-            None => panic!("Unknown instance: {instance_name}"),
-            Some(instance) => instance,
-        }
+        instance_map
+            .get(&instance_name)
+            .ok_or(Error::UnknownInstance(instance_name))
     }
 }
 

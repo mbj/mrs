@@ -68,11 +68,13 @@ impl Definition {
         )
     }
 
-    pub fn print_cache_status(&self, instance_name: &str, verbose: bool) {
-        match self.load_seeds(instance_name) {
-            Ok(loaded_seeds) => loaded_seeds.print(verbose),
-            Err(error) => panic!("{error}"),
-        }
+    pub fn print_cache_status(
+        &self,
+        instance_name: &str,
+        verbose: bool,
+    ) -> Result<(), crate::container::Error> {
+        self.load_seeds(instance_name)?.print(verbose);
+        Ok(())
     }
 
     #[must_use]
@@ -149,14 +151,15 @@ impl Definition {
         ociman::Definition::new(self.backend.clone(), (&self.image).into())
     }
 
-    pub async fn with_container<T>(&self, mut action: impl AsyncFnMut(&Container) -> T) -> T {
-        let loaded_seeds = self
-            .load_seeds("main")
-            .unwrap_or_else(|error| panic!("{error}"));
+    pub async fn with_container<T>(
+        &self,
+        mut action: impl AsyncFnMut(&Container) -> T,
+    ) -> Result<T, crate::container::Error> {
+        let loaded_seeds = self.load_seeds("main")?;
 
         let mut db_container = Container::run_definition(self);
 
-        db_container.wait_available().await;
+        db_container.wait_available().await?;
 
         for loaded_seed in loaded_seeds.iter_seeds() {
             self.apply_loaded_seed(&db_container, loaded_seed).await
@@ -166,10 +169,10 @@ impl Definition {
 
         db_container.stop();
 
-        result
+        Ok(result)
     }
 
-    pub async fn run_integration_server(&self) {
+    pub async fn run_integration_server(&self) -> Result<(), crate::container::Error> {
         use tokio::io::AsyncReadExt;
 
         self.with_container(async |container| {

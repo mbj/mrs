@@ -195,4 +195,5 @@ pub async fn test_database_url_integration(language: &str, image_dir: &str) {
             );
         })
         .await
+        .unwrap()
 }

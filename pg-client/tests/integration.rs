@@ -254,6 +254,7 @@ async fn test_with_sqlx_connection() {
             assert!(result.unwrap(), "Query should return true");
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -338,6 +339,7 @@ async fn test_analyze_all_tables() {
             assert!(!result.elapsed.is_zero(), "Elapsed time should be non-zero");
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -362,6 +364,7 @@ async fn test_partitioned_index_addition() {
             assert_parent_index_valid(config).await;
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -403,6 +406,7 @@ async fn test_partitioned_index_addition_cross_schema() {
             assert_index_exists(config, &analytics_schema, &analytics_index).await;
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -451,6 +455,7 @@ async fn test_partitioned_index_addition_truncation() {
             assert_index_exists(config, &pg_client::identifier::Schema::PUBLIC, &index_2).await;
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -503,6 +508,7 @@ async fn test_partitioned_index_concurrently_except_unknown_partition_fails() {
             }
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -605,6 +611,7 @@ async fn test_partitioned_index_gc() {
             }
         })
         .await
+        .unwrap()
 }
 
 #[tokio::test]
@@ -649,4 +656,5 @@ async fn test_partitioned_index_gc_refuses_valid_index() {
             );
         })
         .await
+        .unwrap()
 }

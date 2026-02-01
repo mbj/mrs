@@ -84,7 +84,7 @@ async fn test_run_container_definition() {
     };
 
     let mut container = pg_ephemeral::container::Container::run_container_definition(&definition);
-    container.wait_available().await;
+    container.wait_available().await.unwrap();
 
     container
         .with_connection(async |conn| {
