@@ -299,7 +299,7 @@ fn test_image_build_from_directory_hash() {
     let definition = ociman::BuildDefinition::from_directory_hash(
         &backend,
         ociman::testing::test_name("ociman-test-dir-hash"),
-        "tests/fixtures/test-build",
+        "tests/fixtures/test-build-hash",
     );
 
     let reference1 = definition.build();
@@ -308,7 +308,7 @@ fn test_image_build_from_directory_hash() {
     let definition2 = ociman::BuildDefinition::from_directory_hash(
         &backend,
         ociman::testing::test_name("ociman-test-dir-hash"),
-        "tests/fixtures/test-build",
+        "tests/fixtures/test-build-hash",
     );
     let reference2 = definition2.build();
     assert_eq!(reference1, reference2);
