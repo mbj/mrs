@@ -33,7 +33,8 @@ impl Bundle {
 
         server_params.extended_key_usages = vec![rcgen::ExtendedKeyUsagePurpose::ServerAuth];
 
-        let server_cert = server_params.signed_by(&server_key, &ca_cert, &ca_key)?;
+        let ca_issuer = rcgen::Issuer::from_params(&ca_params, &ca_key);
+        let server_cert = server_params.signed_by(&server_key, &ca_issuer)?;
         let server_cert_pem = server_cert.pem();
         let server_key_pem = server_key.serialize_pem();
 
@@ -152,7 +153,7 @@ impl Bundle {
         let server_key = rcgen::KeyPair::from_pem(&server_key_pem)
             .map_err(|e| ValidationError::ParseError(format!("Failed to parse server key: {e}")))?;
 
-        let server_key_public = server_key.public_key_der();
+        let server_key_public = rcgen::PublicKeyData::subject_public_key_info(&server_key);
         let cert_public_key = server_cert.public_key().raw;
 
         if server_key_public != cert_public_key {
