@@ -2,20 +2,26 @@ use crate::{Config, Error, GitUrl, ORIGIN, RepoName};
 
 #[derive(Debug, clap::Parser)]
 pub struct Setup {
-    /// Local name for the repository
-    repo: RepoName,
-
     /// Git remote URL to clone
     url: GitUrl,
+
+    /// Local name for the repository (defaults to repo name extracted from URL)
+    #[clap(long)]
+    repo: Option<RepoName>,
 }
 
 impl Setup {
     pub fn run(self, config: &Config) -> Result<(), Error> {
-        let bare_path = config.bare_repo_path(&self.repo);
-        let worktree_base = config.worktree_base_path(&self.repo);
+        let repo = match self.repo {
+            Some(name) => name,
+            None => RepoName::from_git_url(&self.url)?,
+        };
+
+        let bare_path = config.bare_repo_path(&repo);
+        let worktree_base = config.worktree_base_path(&repo);
 
         if bare_path.exists() {
-            return Err(Error::RepoAlreadyExists(self.repo));
+            return Err(Error::RepoAlreadyExists(repo));
         }
 
         log::info!("Cloning bare repository to {}", bare_path.display());
@@ -41,7 +47,7 @@ impl Setup {
 
         std::fs::create_dir_all(&worktree_base)?;
 
-        log::info!("Setup complete for repository '{}'", self.repo);
+        log::info!("Setup complete for repository '{repo}'");
 
         Ok(())
     }
