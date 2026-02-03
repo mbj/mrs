@@ -13,6 +13,36 @@ A Rust library providing a unified API for OCI container runtimes (Docker, Podma
 - **Image building**: Build images from Dockerfiles or inline instructions
 - **Content-based hashing**: Automatic tag generation based on SHA256 of build context/instructions for deterministic builds
 
+## Executing Commands in Containers
+
+Use `container.exec()` to run commands inside a running container:
+
+```rust,ignore
+// Simple command execution
+container.exec("echo")
+    .argument("hello")
+    .status()?;
+
+// Capture stdout
+let output = container.exec("cat")
+    .argument("/etc/os-release")
+    .build()
+    .capture_stdout()
+    .string()?;
+
+// With environment variables and stdin
+let result = container.exec("psql")
+    .argument("--dbname=mydb")
+    .environment_variable(PG_PASSWORD, "secret")
+    .stdin(b"SELECT 1;")
+    .build()
+    .capture_stdout()
+    .bytes()?;
+```
+
+The `ExecCommand` builder focuses on container exec configuration. For stream capture,
+use `.build()` to get a `cmd_proc::Command`, then use its stream methods.
+
 ## Content-Based Image Hashing
 
 ociman supports automatic tag generation based on content hashing (SHA256). This ensures deterministic builds where the same content always produces the same image tag.

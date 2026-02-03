@@ -41,12 +41,6 @@ impl<'a> Config<'a> {
     pub fn status(self) -> Result<(), CommandError> {
         crate::Build::build(self).status()
     }
-
-    /// Execute the command and return stdout as a string (for getting values).
-    #[must_use]
-    pub fn stdout(self) -> cmd_proc::Capture {
-        crate::Build::build(self).stdout()
-    }
 }
 
 impl crate::Build for Config<'_> {

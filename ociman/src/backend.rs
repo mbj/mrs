@@ -45,7 +45,7 @@ impl Backend {
             Backend::Docker { .. } => self
                 .command()
                 .arguments(["inspect", "--type", "image", &reference_string])
-                .stdout()
+                .capture_stdout()
                 .bytes()
                 .is_ok(),
             Backend::Podman { .. } => {
@@ -129,7 +129,7 @@ impl Backend {
                 "--filter",
                 &format!("reference={name}:*"),
             ])
-            .stdout()
+            .capture_stdout()
             .string()
             .unwrap();
 
@@ -279,7 +279,7 @@ impl ContainerHostnameResolver {
             .argument("getent")
             .argument("hosts")
             .argument(hostname)
-            .stdout()
+            .capture_stdout()
             .bytes()
             .map_err(|error| ResolveHostnameError::CommandFailed(error.to_string()))?;
 
@@ -375,7 +375,7 @@ pub mod resolve {
     ) -> Result {
         let output = Command::new(executable)
             .argument("--version")
-            .stdout()
+            .capture_stdout()
             .bytes()
             .map_err(|error| Error::VersionDetectionFailed {
                 executable,

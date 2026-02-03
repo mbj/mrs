@@ -160,7 +160,8 @@ impl Container {
             .exec("pg_dump")
             .argument("--schema-only")
             .environment_variables(self.container_client_config().to_pg_env())
-            .stdout()
+            .build()
+            .capture_stdout()
             .bytes()
             .unwrap();
         crate::convert_schema(&output)
@@ -314,7 +315,8 @@ impl Container {
             .argument("--variable")
             .argument(format!("new_password={}", password.as_ref()))
             .stdin("ALTER USER :target_user WITH PASSWORD :'new_password'")
-            .stdout()
+            .build()
+            .capture_stdout()
             .bytes()?;
 
         Ok(())

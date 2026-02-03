@@ -1,3 +1,5 @@
+use git_proc::Build;
+
 type CacheKey = [u8; 32];
 
 #[derive(Clone, Debug, PartialEq)]
@@ -193,6 +195,7 @@ impl Seed {
             Seed::SqlFileGitRevision { path, git_revision } => {
                 let output =
                     git_proc::show::new(&format!("{git_revision}:{}", path.to_str().unwrap()))
+                        .build()
                         .output()
                         .map_err(|error| LoadError::GitRevision {
                             name: name.clone(),

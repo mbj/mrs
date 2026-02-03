@@ -1,6 +1,5 @@
 use std::path::Path;
 
-use crate::CommandError;
 use crate::url::RemoteName;
 
 /// Create a `git remote get-url` command builder.
@@ -32,19 +31,6 @@ impl<'a> Remote<'a> {
             repo_path: None,
             subcommand: RemoteSubcommand::GetUrl { name },
         }
-    }
-
-    /// Capture stdout from this command.
-    #[must_use]
-    pub fn stdout(self) -> cmd_proc::Capture {
-        crate::Build::build(self).stdout()
-    }
-
-    /// Execute and return full output regardless of exit status.
-    ///
-    /// Use this when you need to inspect stderr on failure.
-    pub fn output(self) -> Result<cmd_proc::Output, CommandError> {
-        crate::Build::build(self).output()
     }
 }
 

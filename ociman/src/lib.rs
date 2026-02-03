@@ -607,7 +607,7 @@ impl Definition {
     }
 
     fn run_output(&self) -> Vec<u8> {
-        self.build_run_command().stdout().bytes().unwrap()
+        self.build_run_command().capture_stdout().bytes().unwrap()
     }
 }
 
@@ -732,7 +732,11 @@ impl<'a> ExecCommand<'a> {
         self
     }
 
-    fn build_command(self) -> Command {
+    /// Build the command without executing it.
+    ///
+    /// Use this to access stream configuration methods on [`cmd_proc::Command`].
+    #[must_use]
+    pub fn build(self) -> Command {
         let mut command = self.container.backend_command().argument("exec");
 
         if self.interactive {
@@ -757,21 +761,9 @@ impl<'a> ExecCommand<'a> {
         command
     }
 
-    /// Capture stdout from this exec command.
-    #[must_use]
-    pub fn stdout(self) -> cmd_proc::Capture {
-        self.build_command().stdout()
-    }
-
-    /// Capture stderr from this exec command.
-    #[must_use]
-    pub fn stderr(self) -> cmd_proc::Capture {
-        self.build_command().stderr()
-    }
-
     /// Execute the command and return success or an error.
     pub fn status(self) -> Result<(), CommandError> {
-        self.build_command().status()
+        self.build().status()
     }
 }
 
@@ -785,7 +777,7 @@ impl Container {
         self.backend_command()
             .arguments(["container", "stop"])
             .argument(&self.id)
-            .stdout()
+            .capture_stdout()
             .bytes()
             .unwrap();
 
@@ -796,7 +788,7 @@ impl Container {
         self.backend_command()
             .arguments(["container", "rm"])
             .argument(&self.id)
-            .stdout()
+            .capture_stdout()
             .bytes()
             .unwrap();
 
@@ -809,7 +801,7 @@ impl Container {
             .backend_command()
             .argument("inspect")
             .argument(&self.id)
-            .stdout()
+            .capture_stdout()
             .bytes()
             .unwrap();
 
@@ -824,7 +816,7 @@ impl Container {
             .argument("--format")
             .argument(format)
             .argument(&self.id)
-            .stdout()
+            .capture_stdout()
             .bytes()
             .unwrap();
 

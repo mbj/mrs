@@ -34,7 +34,7 @@ Each git command has a corresponding builder struct in its own module. Builders 
 matching the git CLI options from `git <command> --help`.
 
 ```rust,ignore
-use git_proc::{rev_parse, status, clone, fetch, worktree};
+use git_proc::{Build, rev_parse, status, clone, fetch, worktree};
 use git_proc::url::GitUrl;
 use std::path::Path;
 
@@ -42,13 +42,17 @@ use std::path::Path;
 let branch = rev_parse::new()
     .abbrev_ref()
     .rev("HEAD")
-    .stdout().string()?;
+    .build()
+    .capture_stdout()
+    .string()?;
 
 // git -C /path/to/repo status --porcelain
-let status = status::new()
+let output = status::new()
     .repo_path(Path::new("/path/to/repo"))
     .porcelain()
-    .stdout().string()?;
+    .build()
+    .capture_stdout()
+    .string()?;
 
 // git clone --bare <url> <path>
 let url: GitUrl = "https://github.com/user/repo.git".parse()?;
@@ -70,6 +74,34 @@ worktree::add(Path::new("/path/to/worktree"))
     .commit_ish("origin/main")
     .status()?;
 ```
+
+## Stream Handling
+
+git-proc builders focus on command construction. For stream capture, use the `Build` trait
+to get a `cmd_proc::Command`, then use its stream methods:
+
+```rust,ignore
+use git_proc::Build;
+
+// Capture stdout
+let sha = git_proc::rev_parse::new()
+    .rev("HEAD")
+    .build()                  // Returns cmd_proc::Command
+    .capture_stdout()         // Returns cmd_proc::Capture
+    .string()?;
+
+// Capture full output (stdout + stderr)
+let output = git_proc::show::new("HEAD:path/to/file")
+    .build()
+    .output()?;
+
+if output.success() {
+    let content = output.into_stdout_string()?;
+}
+```
+
+This design keeps git-proc focused on git command building while delegating all stream
+configuration to `cmd_proc::Command`.
 
 ## Available Commands
 

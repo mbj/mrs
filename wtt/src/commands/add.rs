@@ -1,6 +1,7 @@
 use crate::{
     Base, Branch, CommandError, Config, Error, ORIGIN, RepoName, detect_repo_from_cwd, git,
 };
+use git_proc::Build;
 
 #[derive(Debug, clap::Parser)]
 pub struct Add {
@@ -86,7 +87,8 @@ fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<bool, C
         .repo_path(bare_path)
         .verify()
         .pattern(&format!("refs/heads/{branch}"))
-        .stdout()
+        .build()
+        .capture_stdout()
         .bytes();
 
     if local_result.is_ok() {
@@ -98,7 +100,8 @@ fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<bool, C
         .heads()
         .remote(&ORIGIN)
         .pattern(branch.as_str())
-        .stdout()
+        .build()
+        .capture_stdout()
         .string()?;
 
     Ok(!remote_output.trim().is_empty())
@@ -110,7 +113,8 @@ fn get_remote_default_branch(bare_path: &std::path::Path) -> Result<Base, Error>
         .symref()
         .remote(&ORIGIN)
         .pattern("HEAD")
-        .stdout()
+        .build()
+        .capture_stdout()
         .string()?;
 
     let branch = git::parse_default_branch(&output).map_err(|_| Error::DefaultBranchNotFound)?;
