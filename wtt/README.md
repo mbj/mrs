@@ -47,13 +47,23 @@ worktree_dir = "/path/to/worktrees"
 Create bare clone and prepare worktree directory.
 
 ```bash
-wtt setup <REPO> <URL>
+wtt setup <URL> [--repo <REPO>]
 ```
 
-- `<REPO>` - Local name for the repository
 - `<URL>` - Git remote URL to clone
+- `--repo <REPO>` - Optional: Local name for the repository (defaults to repo name extracted from URL)
 - Clones bare repo to `~/.local/share/wtt/bare/<repo>.git`
 - Creates empty `~/devel/<repo>/` directory
+
+**Examples:**
+
+```bash
+# Auto-extract repo name from URL (will use 'my-repo')
+wtt setup git@github.com:user/my-repo.git
+
+# Specify custom repo name
+wtt setup git@github.com:user/my-repo.git --repo custom-name
+```
 
 ### teardown
 
