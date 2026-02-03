@@ -85,9 +85,12 @@ jobs:
       with:
         ruby-version: '3.4'
 
-    - name: Build integrations
+    - name: Verify pg-ephemeral generated files are committed
+      run: target/${{ matrix.os.cargo_build_target }}/release/manager pg-ephemeral sync --reject-dirty
+
+    - name: Build pg-ephemeral gem
       if: ${{ endsWith(matrix.os.cargo_build_target, '-musl') || endsWith(matrix.os.cargo_build_target, '-darwin') }}
-      run: target/${{ matrix.os.cargo_build_target }}/release/manager integrations build --no-compile
+      run: target/${{ matrix.os.cargo_build_target }}/release/manager pg-ephemeral build --no-compile
 
     - name: Upload build artifacts
       if: ${{ !endsWith(matrix.os.cargo_build_target, '-gnu') }}
@@ -146,10 +149,10 @@ jobs:
       run: chmod +x artifacts/pg-ephemeral-${{ matrix.platform.target }}/target/${{ matrix.platform.target }}/release/manager
 
     - name: Merge multi-platform gems
-      run: artifacts/pg-ephemeral-${{ matrix.platform.target }}/target/${{ matrix.platform.target }}/release/manager integrations merge-gems
+      run: artifacts/pg-ephemeral-${{ matrix.platform.target }}/target/${{ matrix.platform.target }}/release/manager pg-ephemeral merge-gems
 
     - name: Run integration tests with manager
-      run: artifacts/pg-ephemeral-${{ matrix.platform.target }}/target/${{ matrix.platform.target }}/release/manager integrations test
+      run: artifacts/pg-ephemeral-${{ matrix.platform.target }}/target/${{ matrix.platform.target }}/release/manager pg-ephemeral test
 
   publish:
     name: Publish Edge Build
