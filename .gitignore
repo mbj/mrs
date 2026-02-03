@@ -1,5 +1,7 @@
 /target
 /dist
 /pg-ephemeral/build
+/pg-ephemeral/integrations/ruby/Gemfile.lock
 /pg-ephemeral/integrations/ruby/Gemfile.acceptance.lock
 /pg-ephemeral/integrations/ruby/bin
+/pg-ephemeral/tests/integration/ruby/Gemfile.lock
