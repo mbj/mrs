@@ -23,6 +23,7 @@ rayon = "1"
 serde.workspace = true
 serde_json.workspace = true
 sha2.workspace = true
+similar = "2"
 stratosphere-core.workspace = true
 syn.workspace = true
 tar = "0.4"
