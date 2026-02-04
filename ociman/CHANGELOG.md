@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.0
+
+### Changed
+
+- Migrate to `cmd-proc` for command execution with consistent stream handling
+- Change to consistent formatting of the stability warning
+
+### Fixed
+
+- Fix environment variable handling to enforce validation via `cmd-proc`
+
 ## 0.0.1
 
 Initial release.
