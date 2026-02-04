@@ -28,7 +28,7 @@ rust-version = "1.93"
 async-stream = "0.3"
 chrono = { version = "0.4", features = ["serde"] }
 clap = { version = "4.5", features = ["derive"] }
-cmd-proc = { version = "0.1.0", path = "cmd-proc" }
+cmd-proc = { version = "0.2.0", path = "cmd-proc" }
 dirs = "6"
 env_logger = "0.11"
 fluent-uri = { version = "0.4", features = ["net"] }
