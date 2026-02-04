@@ -1298,7 +1298,7 @@ dependencies = [
 
 [[package]]
 name = "git-proc"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "cmd-proc",
  "thiserror 2.0.18",
