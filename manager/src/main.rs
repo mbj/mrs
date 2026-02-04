@@ -1,5 +1,6 @@
 use cmd_proc::EnvVariableName;
 use flate2::{Compression, write::GzEncoder};
+use git_proc::Build;
 use indoc::formatdoc;
 use sha2::{Digest, Sha256};
 use std::path::{Path, PathBuf};
@@ -326,7 +327,8 @@ fn create_edge_release() {
     // Get git commit SHA
     let sha = git_proc::rev_parse::new()
         .rev("HEAD")
-        .stdout()
+        .build()
+        .capture_stdout()
         .string()
         .unwrap_or_else(|error| panic!("Failed to get git SHA: {error}"))
         .trim()
@@ -336,7 +338,8 @@ fn create_edge_release() {
     let branch = git_proc::rev_parse::new()
         .abbrev_ref()
         .rev("HEAD")
-        .stdout()
+        .build()
+        .capture_stdout()
         .string()
         .unwrap_or_else(|error| panic!("Failed to get git branch: {error}"))
         .trim()
@@ -1007,7 +1010,7 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
         ])
         .working_directory(&integration_directory)
         .env(&ENV_PG_EPHEMERAL_GEM_SOURCE, &gem_source_url)
-        .stdout()
+        .capture_stdout()
         .string()
         .unwrap_or_else(|error| panic!("Failed to get gem path: {error}"))
         .trim()
@@ -1127,7 +1130,8 @@ fn publish_gems(push: bool) {
     // Get git commit SHA
     let sha = git_proc::rev_parse::new()
         .rev("HEAD")
-        .stdout()
+        .build()
+        .capture_stdout()
         .string()
         .unwrap_or_else(|error| panic!("Failed to get git SHA: {error}"))
         .trim()
@@ -1396,7 +1400,8 @@ fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error::Error
         let status = git_proc::status::new()
             .repo_path(&workspace_root)
             .porcelain()
-            .stdout()
+            .build()
+            .capture_stdout()
             .string()
             .map_err(|error| format!("Failed to run git status: {error}"))?;
 

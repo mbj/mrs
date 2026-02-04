@@ -61,12 +61,6 @@ impl<'a> LsRemote<'a> {
         self.pattern = Some(pattern);
         self
     }
-
-    /// Capture stdout from this command.
-    #[must_use]
-    pub fn stdout(self) -> cmd_proc::Capture {
-        crate::Build::build(self).stdout()
-    }
 }
 
 impl Default for LsRemote<'_> {

@@ -41,14 +41,6 @@ impl<'a> ShowRef<'a> {
         self.pattern = Some(pattern);
         self
     }
-
-    /// Capture stdout from this command.
-    ///
-    /// Returns error if the ref does not exist (with `--verify`).
-    #[must_use]
-    pub fn stdout(self) -> cmd_proc::Capture {
-        crate::Build::build(self).stdout()
-    }
 }
 
 impl Default for ShowRef<'_> {

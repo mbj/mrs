@@ -1,4 +1,5 @@
 use crate::{Config, Error, RepoName, detect_repo_from_cwd, git};
+use git_proc::Build;
 
 #[derive(Debug, clap::Parser)]
 pub struct List {
@@ -32,7 +33,8 @@ fn list_repo(config: &Config, repo: &RepoName) -> Result<(), Error> {
 
     let output = git_proc::worktree::list()
         .repo_path(&bare_path)
-        .stdout()
+        .build()
+        .capture_stdout()
         .string()?;
 
     for line in git::parse_worktree_list(&output) {

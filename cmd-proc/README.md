@@ -21,7 +21,7 @@ let stdout = String::from_utf8(output.stdout)?;
 // cmd-proc - same operation
 let stdout = cmd_proc::Command::new("git")
     .arguments(["rev-parse", "HEAD"])
-    .stdout()
+    .capture_stdout()
     .string()?;
 ```
 
@@ -31,7 +31,7 @@ let stdout = cmd_proc::Command::new("git")
 |---------|---------------|------------|
 | **Debug logging** | None | Automatic debug logging of commands before execution |
 | **Exit code checking** | Manual | Automatic - non-zero exits return `Err` |
-| **Output capture** | Returns raw `Output` struct | Two-step pattern: `.stdout().string()`, `.stderr().bytes()` |
+| **Output capture** | Returns raw `Output` struct | Two-step pattern: `.capture_stdout().string()`, `.capture_stderr().bytes()` |
 | **Builder pattern** | Mutable references | Owned builder with method chaining |
 | **Stdin data** | Requires manual pipe setup | Simple `.stdin_bytes()` method |
 | **Env var names** | Accepts any `&str` | `EnvVariableName` type with compile-time validation |
@@ -42,8 +42,8 @@ let stdout = cmd_proc::Command::new("git")
 
 - **Debug logging**: Every command execution is logged via the `log` crate at debug level, making it easy to trace what commands are being run.
 - **Stronger input types**: `EnvVariableName` prevents invalid environment variable names (empty or containing `=`) at compile time rather than runtime.
-- **Two-step capture pattern**: The `.stdout()` and `.stderr()` methods return a `Capture` builder, which provides `.bytes()` and `.string()` methods. This separates stream selection from output format.
-- **Mandatory exit code checking**: Capture methods always treat non-zero exit as an error, preventing accidentally ignored failures.
+- **Two-step capture pattern**: The `.capture_stdout()` and `.capture_stderr()` methods return a `Capture` builder, which provides `.bytes()` and `.string()` methods. This separates stream selection from output format.
+- **Default exit code checking**: Capture methods treat non-zero exit as an error by default, preventing accidentally ignored failures. Use `.accept_nonzero_exit()` to opt out when needed.
 - **Fluent API**: Chain configuration methods naturally without `&mut self` gymnastics.
 
 ## Usage
@@ -54,13 +54,13 @@ use cmd_proc::{Command, Capture, Output, EnvVariableName};
 // Capture stdout as string (two-step pattern)
 let sha = Command::new("git")
     .arguments(["rev-parse", "HEAD"])
-    .stdout()
+    .capture_stdout()
     .string()?;
 
 // Capture stderr as bytes
 let errors = Command::new("cargo")
     .argument("build")
-    .stderr()
+    .capture_stderr()
     .bytes()?;
 
 // Run without capturing (just check success)
@@ -71,7 +71,7 @@ Command::new("cargo")
 // Pass stdin data
 let output = Command::new("cat")
     .stdin_bytes(b"hello world")
-    .stdout()
+    .capture_stdout()
     .string()?;
 
 // Set environment variables (compile-time validated)
@@ -132,15 +132,28 @@ Output capture uses a two-step pattern via the `Capture` struct:
 ```rust
 Command::new("git")
     .argument("status")
-    .stdout()      // Returns Capture (selects which stream)
-    .string()?;    // Executes and returns output in chosen format
+    .capture_stdout()  // Returns Capture (selects which stream)
+    .string()?;        // Executes and returns output in chosen format
 ```
 
-The `Capture` struct is returned by `.stdout()` or `.stderr()` and provides:
+The `Capture` struct is returned by `.capture_stdout()` or `.capture_stderr()` and provides:
 - `.bytes()` - Execute and return output as `Vec<u8>`
 - `.string()` - Execute and return output as `String` (with UTF-8 validation)
+- `.accept_nonzero_exit()` - Allow non-zero exit codes without returning an error
 
-This separation makes the API explicit about which stream is being captured and in what format.
+For capturing both streams simultaneously, use `.capture_stderr_stdout()` which returns a `CaptureAllStreams` builder:
+
+```rust
+let output = Command::new("my-command")
+    .capture_stderr_stdout()
+    .accept_nonzero_exit()  // Optional: don't treat non-zero exit as error
+    .output()?;
+
+println!("stdout: {:?}", output.stdout);
+println!("stderr: {:?}", output.stderr);
+```
+
+This separation makes the API explicit about which stream(s) are being captured and in what format.
 
 ## Full Output Access
 

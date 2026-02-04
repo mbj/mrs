@@ -1,3 +1,5 @@
+use git_proc::Build;
+
 const GIT_COMMITTER_DATE: cmd_proc::EnvVariableName =
     cmd_proc::EnvVariableName::from_static_or_panic("GIT_COMMITTER_DATE");
 
@@ -144,7 +146,8 @@ impl TestGitRepo {
         git_proc::rev_parse::new()
             .repo_path(&self.path)
             .rev("HEAD")
-            .stdout()
+            .build()
+            .capture_stdout()
             .string()
             .unwrap()
             .trim()
@@ -176,7 +179,7 @@ pub async fn test_database_url_integration(language: &str, image_dir: &str) {
                 .argument("--tag")
                 .argument(&image_tag)
                 .argument(image_dir)
-                .stdout()
+                .capture_stdout()
                 .bytes()
                 .unwrap();
 
@@ -189,7 +192,7 @@ pub async fn test_database_url_integration(language: &str, image_dir: &str) {
                 .argument("--env")
                 .argument(format!("DATABASE_URL={database_url}"))
                 .argument(&image_tag)
-                .stdout()
+                .capture_stdout()
                 .string()
                 .unwrap_or_else(|error| panic!("Failed to run {language} container: {error:?}"));
 

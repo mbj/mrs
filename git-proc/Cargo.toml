@@ -1,6 +1,6 @@
 [package]
 name = "git-proc"
-version = "0.0.1"
+version = "0.1.0"
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true

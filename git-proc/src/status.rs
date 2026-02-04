@@ -26,12 +26,6 @@ impl<'a> Status<'a> {
             porcelain: false,
         }
     }
-
-    /// Capture stdout from this command.
-    #[must_use]
-    pub fn stdout(self) -> cmd_proc::Capture {
-        crate::Build::build(self).stdout()
-    }
 }
 
 impl Default for Status<'_> {
@@ -63,17 +57,23 @@ impl Status<'_> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::Build;
 
     #[test]
     fn test_status() {
-        let output = Status::new().stdout().string().unwrap();
+        let output = Status::new().build().capture_stdout().string().unwrap();
         // Just verify it runs without error
         let _ = output;
     }
 
     #[test]
     fn test_status_porcelain() {
-        let output = Status::new().porcelain().stdout().string().unwrap();
+        let output = Status::new()
+            .porcelain()
+            .build()
+            .capture_stdout()
+            .string()
+            .unwrap();
         // Porcelain output is empty if repo is clean
         let _ = output;
     }

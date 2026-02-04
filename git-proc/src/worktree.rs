@@ -40,12 +40,6 @@ impl<'a> List<'a> {
             porcelain: false,
         }
     }
-
-    /// Capture stdout from this command.
-    #[must_use]
-    pub fn stdout(self) -> cmd_proc::Capture {
-        crate::Build::build(self).stdout()
-    }
 }
 
 impl Default for List<'_> {

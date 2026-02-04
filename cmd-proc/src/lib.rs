@@ -185,7 +185,7 @@ impl Output {
 
 /// Which stream to capture from a command.
 #[derive(Clone, Copy)]
-enum CaptureStream {
+enum CaptureSingleStream {
     Stdout,
     Stderr,
 }
@@ -342,51 +342,73 @@ impl Child {
 /// Builder for capturing command output.
 pub struct Capture {
     command: Command,
-    stream: CaptureStream,
+    stream: CaptureSingleStream,
+    accept_nonzero_exit: bool,
+}
+
+fn run_capture(
+    mut command: Command,
+    accept_nonzero_exit: bool,
+) -> Result<std::process::Output, CommandError> {
+    log::debug!("{:#?}", command.inner);
+
+    if command.stdin_data.is_some() {
+        command.inner.stdin(std::process::Stdio::piped());
+    }
+
+    let start = std::time::Instant::now();
+
+    let child = command.inner.spawn().map_err(|io_error| CommandError {
+        io_error: Some(io_error),
+        exit_status: None,
+    })?;
+
+    let output = run_and_wait(child, command.stdin_data, start)?;
+
+    if accept_nonzero_exit || output.status.success() {
+        Ok(output)
+    } else {
+        Err(CommandError {
+            io_error: None,
+            exit_status: Some(output.status),
+        })
+    }
 }
 
 impl Capture {
-    fn new(command: Command, stream: CaptureStream) -> Self {
-        Self { command, stream }
+    fn new(command: Command, stream: CaptureSingleStream) -> Self {
+        Self {
+            command,
+            stream,
+            accept_nonzero_exit: false,
+        }
+    }
+
+    /// Accept non-zero exit status instead of treating it as an error.
+    #[must_use]
+    pub fn accept_nonzero_exit(mut self) -> Self {
+        self.accept_nonzero_exit = true;
+        self
     }
 
     /// Execute the command and return captured output as bytes.
     pub fn bytes(mut self) -> Result<Vec<u8>, CommandError> {
         use std::process::Stdio;
 
-        log::debug!("{:#?}", self.command.inner);
+        let (stdout, stderr) = match self.stream {
+            CaptureSingleStream::Stdout => (Stdio::piped(), Stdio::inherit()),
+            CaptureSingleStream::Stderr => (Stdio::inherit(), Stdio::piped()),
+        };
 
-        self.command.inner.stdout(Stdio::piped());
-        self.command.inner.stderr(Stdio::piped());
+        self.command.inner.stdout(stdout);
+        self.command.inner.stderr(stderr);
 
-        if self.command.stdin_data.is_some() {
-            self.command.inner.stdin(Stdio::piped());
-        }
+        let output = run_capture(self.command, self.accept_nonzero_exit)?;
 
-        let start = std::time::Instant::now();
-
-        let child = self
-            .command
-            .inner
-            .spawn()
-            .map_err(|io_error| CommandError {
-                io_error: Some(io_error),
-                exit_status: None,
-            })?;
-
-        let output = run_and_wait(child, self.command.stdin_data, start)?;
-
-        if output.status.success() {
-            Ok(match self.stream {
-                CaptureStream::Stdout => output.stdout,
-                CaptureStream::Stderr => output.stderr,
-            })
-        } else {
-            Err(CommandError {
-                io_error: None,
-                exit_status: Some(output.status),
-            })
-        }
+        Ok(match self.stream {
+            CaptureSingleStream::Stdout => output.stdout,
+            CaptureSingleStream::Stderr => output.stderr,
+        })
     }
 
     /// Execute the command and return captured output as a UTF-8 string.
@@ -398,6 +420,44 @@ impl Capture {
                 utf8_error,
             )),
             exit_status: None,
+        })
+    }
+}
+
+/// Builder for capturing both stdout and stderr from a command.
+pub struct CaptureAllStreams {
+    command: Command,
+    accept_nonzero_exit: bool,
+}
+
+impl CaptureAllStreams {
+    fn new(command: Command) -> Self {
+        Self {
+            command,
+            accept_nonzero_exit: false,
+        }
+    }
+
+    /// Accept non-zero exit status instead of treating it as an error.
+    #[must_use]
+    pub fn accept_nonzero_exit(mut self) -> Self {
+        self.accept_nonzero_exit = true;
+        self
+    }
+
+    /// Execute the command and return captured output.
+    pub fn output(mut self) -> Result<Output, CommandError> {
+        use std::process::Stdio;
+
+        self.command.inner.stdout(Stdio::piped());
+        self.command.inner.stderr(Stdio::piped());
+
+        let output = run_capture(self.command, self.accept_nonzero_exit)?;
+
+        Ok(Output {
+            stdout: output.stdout,
+            stderr: output.stderr,
+            status: output.status,
         })
     }
 }
@@ -524,14 +584,20 @@ impl Command {
 
     /// Capture stdout from this command.
     #[must_use]
-    pub fn stdout(self) -> Capture {
-        Capture::new(self, CaptureStream::Stdout)
+    pub fn capture_stdout(self) -> Capture {
+        Capture::new(self, CaptureSingleStream::Stdout)
     }
 
     /// Capture stderr from this command.
     #[must_use]
-    pub fn stderr(self) -> Capture {
-        Capture::new(self, CaptureStream::Stderr)
+    pub fn capture_stderr(self) -> Capture {
+        Capture::new(self, CaptureSingleStream::Stderr)
+    }
+
+    /// Capture both stdout and stderr from this command.
+    #[must_use]
+    pub fn capture_stderr_stdout(self) -> CaptureAllStreams {
+        CaptureAllStreams::new(self)
     }
 
     /// Spawn the command as a child process.
@@ -640,7 +706,7 @@ mod tests {
         assert_eq!(
             Command::new("echo")
                 .argument("hello")
-                .stdout()
+                .capture_stdout()
                 .bytes()
                 .unwrap(),
             b"hello\n"
@@ -651,7 +717,7 @@ mod tests {
     fn test_stdout_bytes_nonzero_exit() {
         let error = Command::new("sh")
             .arguments(["-c", "exit 42"])
-            .stdout()
+            .capture_stdout()
             .bytes()
             .unwrap_err();
         assert_eq!(
@@ -663,7 +729,10 @@ mod tests {
 
     #[test]
     fn test_stdout_bytes_io_error() {
-        let error = Command::new("./nonexistent").stdout().bytes().unwrap_err();
+        let error = Command::new("./nonexistent")
+            .capture_stdout()
+            .bytes()
+            .unwrap_err();
         assert!(error.io_error.is_some());
         assert_eq!(error.io_error.unwrap().kind(), std::io::ErrorKind::NotFound);
         assert!(error.exit_status.is_none());
@@ -674,7 +743,7 @@ mod tests {
         assert_eq!(
             Command::new("echo")
                 .argument("hello")
-                .stdout()
+                .capture_stdout()
                 .string()
                 .unwrap(),
             "hello\n"
@@ -686,7 +755,7 @@ mod tests {
         assert_eq!(
             Command::new("sh")
                 .arguments(["-c", "echo error >&2"])
-                .stderr()
+                .capture_stderr()
                 .bytes()
                 .unwrap(),
             b"error\n"
@@ -698,7 +767,7 @@ mod tests {
         assert_eq!(
             Command::new("sh")
                 .arguments(["-c", "echo error >&2"])
-                .stderr()
+                .capture_stderr()
                 .string()
                 .unwrap(),
             "error\n"
@@ -761,7 +830,7 @@ mod tests {
         let output = Command::new("sh")
             .arguments(["-c", "echo $MY_VAR"])
             .env(&name, "hello")
-            .stdout()
+            .capture_stdout()
             .string()
             .unwrap();
         assert_eq!(output, "hello\n");
@@ -771,7 +840,7 @@ mod tests {
     fn test_stdin_bytes() {
         let output = Command::new("cat")
             .stdin_bytes(b"hello world".as_slice())
-            .stdout()
+            .capture_stdout()
             .string()
             .unwrap();
         assert_eq!(output, "hello world");
@@ -781,7 +850,7 @@ mod tests {
     fn test_stdin_bytes_vec() {
         let output = Command::new("cat")
             .stdin_bytes(vec![104, 105])
-            .stdout()
+            .capture_stdout()
             .string()
             .unwrap();
         assert_eq!(output, "hi");
@@ -908,7 +977,7 @@ mod tests {
     fn test_option() {
         let output = Command::new("echo")
             .option("-n", "hello")
-            .stdout()
+            .capture_stdout()
             .string()
             .unwrap();
         assert_eq!(output, "hello");
@@ -918,7 +987,7 @@ mod tests {
     fn test_optional_option_some() {
         let output = Command::new("echo")
             .optional_option("-n", Some("hello"))
-            .stdout()
+            .capture_stdout()
             .string()
             .unwrap();
         assert_eq!(output, "hello");
@@ -929,7 +998,7 @@ mod tests {
         let output = Command::new("echo")
             .optional_option("-n", None::<&str>)
             .argument("hello")
-            .stdout()
+            .capture_stdout()
             .string()
             .unwrap();
         assert_eq!(output, "hello\n");
@@ -940,7 +1009,7 @@ mod tests {
         let output = Command::new("echo")
             .optional_flag(true, "-n")
             .argument("hello")
-            .stdout()
+            .capture_stdout()
             .string()
             .unwrap();
         assert_eq!(output, "hello");
@@ -951,7 +1020,7 @@ mod tests {
         let output = Command::new("echo")
             .optional_flag(false, "-n")
             .argument("hello")
-            .stdout()
+            .capture_stdout()
             .string()
             .unwrap();
         assert_eq!(output, "hello\n");

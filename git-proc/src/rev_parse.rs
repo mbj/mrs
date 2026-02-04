@@ -1,7 +1,5 @@
 use std::path::Path;
 
-use crate::CommandError;
-
 /// Create a new `git rev-parse` command builder.
 #[must_use]
 pub fn new() -> RevParse<'static> {
@@ -52,19 +50,6 @@ impl<'a> RevParse<'a> {
         self.rev = Some(rev);
         self
     }
-
-    /// Capture stdout from this command.
-    #[must_use]
-    pub fn stdout(self) -> cmd_proc::Capture {
-        crate::Build::build(self).stdout()
-    }
-
-    /// Execute and return full output regardless of exit status.
-    ///
-    /// Use this when you need to inspect stderr on failure.
-    pub fn output(self) -> Result<cmd_proc::Output, CommandError> {
-        crate::Build::build(self).output()
-    }
 }
 
 impl Default for RevParse<'_> {
@@ -102,10 +87,16 @@ impl RevParse<'_> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::Build;
 
     #[test]
     fn test_rev_parse_head() {
-        let output = RevParse::new().rev("HEAD").stdout().string().unwrap();
+        let output = RevParse::new()
+            .rev("HEAD")
+            .build()
+            .capture_stdout()
+            .string()
+            .unwrap();
         assert!(!output.trim().is_empty());
     }
 
@@ -114,7 +105,8 @@ mod tests {
         let output = RevParse::new()
             .abbrev_ref()
             .rev("HEAD")
-            .stdout()
+            .build()
+            .capture_stdout()
             .string()
             .unwrap();
         assert!(!output.trim().is_empty());

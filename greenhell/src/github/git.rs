@@ -1,4 +1,5 @@
 use super::Repository;
+use git_proc::Build;
 use git_proc::url::{Remote, RemoteName};
 use nom::{IResult, Parser, bytes::complete::take_till, character::complete::char};
 use url::Url;
@@ -84,7 +85,7 @@ pub enum Error {
 
 /// Gets the GitHub repository from the specified git remote.
 pub fn get_github_repository(remote_name: &RemoteName) -> Result<Repository, Error> {
-    let output = git_proc::remote::get_url(remote_name).output()?;
+    let output = git_proc::remote::get_url(remote_name).build().output()?;
 
     if !output.success() {
         let stderr = String::from_utf8(output.stderr)?;
@@ -101,6 +102,7 @@ pub fn get_current_branch() -> Result<super::Branch, Error> {
     let output = git_proc::rev_parse::new()
         .abbrev_ref()
         .rev("HEAD")
+        .build()
         .output()?;
 
     if !output.success() {
@@ -123,6 +125,7 @@ pub fn list_commits(base: &super::Ref) -> Result<Vec<super::Sha>, Error> {
         .topo_order()
         .reverse()
         .commit(&format!("{base}..HEAD"))
+        .build()
         .output()?;
 
     if !output.success() {
@@ -156,6 +159,7 @@ pub fn force_push_commit(
         .force()
         .remote(remote)
         .refspec(&refspec)
+        .build()
         .output()?;
 
     if !output.success() {

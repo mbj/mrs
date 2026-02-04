@@ -61,19 +61,6 @@ impl<'a> Push<'a> {
     pub fn status(self) -> Result<(), CommandError> {
         crate::Build::build(self).status()
     }
-
-    /// Capture stdout from this command.
-    #[must_use]
-    pub fn stdout(self) -> cmd_proc::Capture {
-        crate::Build::build(self).stdout()
-    }
-
-    /// Execute and return full output regardless of exit status.
-    ///
-    /// Use this when you need to inspect stderr on failure.
-    pub fn output(self) -> Result<cmd_proc::Output, CommandError> {
-        crate::Build::build(self).output()
-    }
 }
 
 impl Default for Push<'_> {

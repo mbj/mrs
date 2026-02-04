@@ -1,7 +1,5 @@
 use std::path::Path;
 
-use crate::CommandError;
-
 /// Create a new `git rev-list` command builder.
 #[must_use]
 pub fn new() -> RevList<'static> {
@@ -62,19 +60,6 @@ impl<'a> RevList<'a> {
     pub fn commit(mut self, commit: &'a str) -> Self {
         self.commits.push(commit);
         self
-    }
-
-    /// Capture stdout from this command.
-    #[must_use]
-    pub fn stdout(self) -> cmd_proc::Capture {
-        crate::Build::build(self).stdout()
-    }
-
-    /// Execute and return full output regardless of exit status.
-    ///
-    /// Use this when you need to inspect stderr on failure.
-    pub fn output(self) -> Result<cmd_proc::Output, CommandError> {
-        crate::Build::build(self).output()
     }
 }
 

@@ -1,6 +1,7 @@
 use std::path::PathBuf;
 
 use crate::{Config, Error, RepoName, git};
+use git_proc::Build;
 
 use super::remove::remove_worktree;
 
@@ -24,7 +25,8 @@ impl Teardown {
 
         let output = git_proc::worktree::list()
             .repo_path(&bare_path)
-            .stdout()
+            .build()
+            .capture_stdout()
             .string()?;
 
         let worktree_paths: Vec<PathBuf> = git::parse_worktree_list(&output)

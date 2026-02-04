@@ -59,7 +59,8 @@ fn test_container_exec() {
         let output = container
             .exec("echo")
             .argument("Container is running!")
-            .stdout()
+            .build()
+            .capture_stdout()
             .string()
             .unwrap();
 
@@ -106,7 +107,8 @@ fn test_container_exec_with_stdin() {
         let output = container
             .exec("cat")
             .stdin(b"hello from stdin")
-            .stdout()
+            .build()
+            .capture_stdout()
             .bytes()
             .unwrap();
 
@@ -155,7 +157,7 @@ fn test_command_with_stdin() {
     let input = b"Hello from stdin!";
     let output = cmd_proc::Command::new("cat")
         .stdin_bytes(input.to_vec())
-        .stdout()
+        .capture_stdout()
         .bytes()
         .unwrap();
 
@@ -562,7 +564,7 @@ fn test_container_stop_on_drop() {
             "{{.State.Running}}",
             &container_id,
         ])
-        .stdout()
+        .capture_stdout()
         .string()
         .unwrap();
     assert_eq!(
@@ -606,7 +608,7 @@ fn test_container_without_stop_on_drop() {
             "{{.State.Running}}",
             &container_id,
         ])
-        .stdout()
+        .capture_stdout()
         .string()
         .unwrap();
     assert_eq!(
