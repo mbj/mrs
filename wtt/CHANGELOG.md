@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.6
+
+- Change `wtt setup` to make the repo argument optional, auto-extracting the
+  repository name from the URL when `--repo` is not specified
+
 ## 0.0.5
 
 - Add `teardown` command to remove a repository completely (inverse of setup)
