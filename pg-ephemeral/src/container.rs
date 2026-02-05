@@ -355,7 +355,6 @@ fn run_container(
     };
 
     let mut ociman_definition = ociman_definition
-        .stop_on_drop()
         .remove()
         .environment_variable(ENV_PGDATA, "/var/lib/pg-ephemeral")
         .publish(ociman::Publish::tcp(5432).host_ip(host_ip));
