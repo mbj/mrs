@@ -43,6 +43,39 @@ let result = container.exec("psql")
 The `ExecCommand` builder focuses on container exec configuration. For stream capture,
 use `.build()` to get a `cmd_proc::Command`, then use its stream methods.
 
+## Container Stopping and Removal
+
+Containers must be stopped and removed explicitly by the caller. `ociman::Container`
+intentionally does **not** implement `Drop` for automatic cleanup. This is a deliberate
+design decision:
+
+- **Blocking I/O in Drop is unsafe**: Stopping/removing a container shells out to
+  `docker`/`podman`. If the subprocess fails, an `unwrap()` inside Drop causes a panic,
+  which aborts the process when unwinding from another panic.
+- **`--rm` is the correct cleanup mechanism**: Use `.remove()` on the `Definition` to pass
+  `--rm` to the container runtime. This ensures the runtime removes the container when it
+  stops, even if the Rust process is killed.
+- **Explicit lifecycle is clearer**: Callers always know when stop/remove happens. There
+  are no hidden side effects on scope exit.
+
+Typical usage patterns:
+
+```rust,ignore
+// Pattern 1: Use --rm flag + with_container (most common)
+// Container is explicitly stopped after the closure, and --rm handles removal.
+let definition = Definition::new(backend, image).remove();
+definition.with_container(|container| {
+    // use container
+});
+
+// Pattern 2: Stop, commit, then remove (for snapshotting)
+// Cannot use --rm here because the container must survive stop for commit.
+let mut container = definition.run_detached();
+container.stop();
+container.commit(&snapshot_image, false)?;
+container.remove();
+```
+
 ## Content-Based Image Hashing
 
 ociman supports automatic tag generation based on content hashing (SHA256). This ensures deterministic builds where the same content always produces the same image tag.

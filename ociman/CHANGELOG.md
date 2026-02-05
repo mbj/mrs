@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.2.0
+
+### Removed
+
+- Remove unsound `Drop` implementation for `Container`. The Drop impl performed
+  blocking I/O (shelling out to `docker`/`podman`) and called `unwrap()`, which
+  aborts the process when panicking during unwind. Container cleanup is now the
+  caller's responsibility via explicit `stop()`/`remove()` calls or the `--rm` flag.
+- Remove `stop_on_drop()` and `remove_on_drop()` builder methods from `Definition`
+- Remove `stopped` and `removed` fields from `Container`
+
+### Changed
+
+- `Definition::with_container` now stops the container explicitly after the closure
+  instead of relying on Drop
+
 ## 0.1.0
 
 ### Changed
@@ -26,7 +42,7 @@ Initial release.
 - Content-addressed image builds with hash-based tags
 - Port publishing configuration
 - Environment variables and mounts
-- Stop-on-drop and remove-on-drop container cleanup
+- Explicit container stop and remove methods
 - OCI reference parsing (domain, path, tag, digest)
 - Container hostname resolution for inter-container networking
 - Platform support detection (amd64, arm64)

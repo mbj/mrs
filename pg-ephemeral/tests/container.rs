@@ -26,7 +26,6 @@ async fn test_run_container_definition() {
             .parse::<ociman::image::Reference>()
             .unwrap(),
     )
-    .remove_on_drop()
     .environment_variable(ENV_POSTGRES_PASSWORD, static_password)
     .environment_variable(ENV_POSTGRES_USER, static_user)
     .environment_variable(ENV_PGDATA, pg_ephemeral::container::PGDATA)
@@ -68,7 +67,7 @@ async fn test_run_container_definition() {
 
     ociman_container.stop();
     ociman_container.commit(&snapshot_image, false).unwrap();
-    drop(ociman_container);
+    ociman_container.remove();
 
     let definition = pg_ephemeral::container::Definition {
         image: snapshot_image.clone(),

@@ -370,8 +370,6 @@ pub struct Definition {
     environment_variables: EnvironmentVariables,
     reference: image::Reference,
     remove: Remove,
-    stop_on_drop: bool,
-    remove_on_drop: bool,
     mounts: Vec<Mount>,
     publish: Vec<Publish>,
     workdir: Option<Workdir>,
@@ -390,22 +388,21 @@ impl Definition {
             mounts: vec![],
             publish: vec![],
             remove: Remove::NoRemove,
-            stop_on_drop: false,
-            remove_on_drop: false,
             workdir: None,
         }
     }
 
     /// Runs a detached container and passes it to the provided closure.
     ///
-    /// The container is automatically stopped when dropped (after the closure returns
-    /// or on panic).
+    /// The container is explicitly stopped after the closure returns.
     pub fn with_container<F, R>(&self, f: F) -> R
     where
         F: FnOnce(&mut Container) -> R,
     {
-        let mut container = self.clone().stop_on_drop().run_detached();
-        f(&mut container)
+        let mut container = self.clone().run_detached();
+        let result = f(&mut container);
+        container.stop();
+        result
     }
 
     #[must_use]
@@ -496,33 +493,6 @@ impl Definition {
         }
     }
 
-    /// Marks the container to be stopped when the Container handle is dropped.
-    ///
-    /// By default containers are not stopped on drop. Use this when you want
-    /// automatic cleanup of running containers when the handle goes out of scope.
-    #[must_use]
-    pub fn stop_on_drop(self) -> Self {
-        Self {
-            stop_on_drop: true,
-            ..self
-        }
-    }
-
-    /// Marks the container for removal when the Container handle is dropped.
-    ///
-    /// This is different from `remove()` which uses `--rm` flag:
-    /// - `remove()` → docker/podman removes container when it stops (can't commit)
-    /// - `remove_on_drop()` → Rust removes container on Drop (can commit stopped container)
-    ///
-    /// Use this when you need to stop a container, commit it, then clean up.
-    #[must_use]
-    pub fn remove_on_drop(self) -> Self {
-        Self {
-            remove_on_drop: true,
-            ..self
-        }
-    }
-
     #[must_use]
     pub fn detach(self) -> Self {
         Self {
@@ -574,10 +544,6 @@ impl Definition {
         Container {
             backend: self.backend.clone(),
             id: ContainerId::try_from(strip_nl_end(&stdout)).unwrap(),
-            stopped: false,
-            removed: false,
-            stop_on_drop: self.stop_on_drop,
-            remove_on_drop: self.remove_on_drop,
         }
     }
 
@@ -652,10 +618,6 @@ impl ContainerId {
 pub struct Container {
     backend: Backend,
     id: ContainerId,
-    stopped: bool,
-    removed: bool,
-    stop_on_drop: bool,
-    remove_on_drop: bool,
 }
 
 /// Builder for executing commands inside a container.
@@ -780,8 +742,6 @@ impl Container {
             .capture_stdout()
             .bytes()
             .unwrap();
-
-        self.stopped = true;
     }
 
     pub fn remove(&mut self) {
@@ -791,8 +751,6 @@ impl Container {
             .capture_stdout()
             .bytes()
             .unwrap();
-
-        self.removed = true;
     }
 
     #[must_use]
@@ -866,17 +824,5 @@ impl Container {
 
     fn backend_command(&self) -> Command {
         self.backend.command()
-    }
-}
-
-impl Drop for Container {
-    fn drop(&mut self) {
-        if self.stop_on_drop && !self.stopped {
-            self.stop()
-        }
-
-        if self.remove_on_drop && !self.removed {
-            self.remove()
-        }
     }
 }
