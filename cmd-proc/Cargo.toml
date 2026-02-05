@@ -1,6 +1,6 @@
 [package]
 name = "cmd-proc"
-version = "0.2.0"
+version = "0.3.0"
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true
@@ -8,8 +8,8 @@ description = "Process command builder with capture support"
 license = "MIT"
 repository = "https://github.com/mbj/mrs/tree/main/cmd-proc"
 readme = "README.md"
-keywords = ["command", "process", "shell", "exec"]
-categories = ["development-tools"]
+keywords = ["command", "process", "shell", "exec", "async"]
+categories = ["development-tools", "asynchronous"]
 
 [features]
 test-utils = []
@@ -20,3 +20,4 @@ workspace = true
 [dependencies]
 log.workspace = true
 thiserror.workspace = true
+tokio = { workspace = true, features = ["process", "io-util"] }

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.7
+
+- Switch to async `cmd-proc` and `git-proc`: all command execution is now async
+- Add `tokio` runtime with `#[tokio::main(flavor = "current_thread")]`
+
 ## 0.0.6
 
 - Change `wtt setup` to make the repo argument optional, auto-extracting the

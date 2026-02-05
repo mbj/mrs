@@ -7,7 +7,8 @@ pub mod reference;
 pub mod testing;
 
 pub use backend::{Backend, ContainerHostnameResolver, ResolveHostnameError};
-use cmd_proc::{Command, CommandError};
+use cmd_proc::Command;
+use cmd_proc::CommandError;
 pub use image::{
     BuildArgumentKey, BuildArgumentKeyError, BuildArgumentValue, BuildDefinition, BuildSource,
     BuildTarget, Reference,
@@ -392,16 +393,13 @@ impl Definition {
         }
     }
 
-    /// Runs a detached container and passes it to the provided closure.
+    /// Runs a detached container and passes it to the provided async closure.
     ///
-    /// The container is explicitly stopped after the closure returns.
-    pub fn with_container<F, R>(&self, f: F) -> R
-    where
-        F: FnOnce(&mut Container) -> R,
-    {
-        let mut container = self.clone().run_detached();
-        let result = f(&mut container);
-        container.stop();
+    /// The container is automatically stopped after the closure returns.
+    pub async fn with_container<R>(&self, mut action: impl AsyncFnMut(&mut Container) -> R) -> R {
+        let mut container = self.clone().run_detached().await;
+        let result = action(&mut container).await;
+        container.stop().await;
         result
     }
 
@@ -537,9 +535,8 @@ impl Definition {
         Self { mounts, ..self }
     }
 
-    #[must_use]
-    pub fn run_detached(&self) -> Container {
-        let stdout = self.clone().detach().run_output();
+    pub async fn run_detached(&self) -> Container {
+        let stdout = self.clone().detach().run_output().await;
 
         Container {
             backend: self.backend.clone(),
@@ -547,14 +544,13 @@ impl Definition {
         }
     }
 
-    #[must_use]
-    pub fn run_capture_only_stdout(&self) -> Vec<u8> {
-        self.clone().no_detach().run_output()
+    pub async fn run_capture_only_stdout(&self) -> Vec<u8> {
+        self.clone().no_detach().run_output().await
     }
 
     /// Runs the container and returns success or an error.
-    pub fn run(&self) -> Result<(), CommandError> {
-        self.build_run_command().status()
+    pub async fn run(&self) -> Result<(), CommandError> {
+        self.build_run_command().status().await
     }
 
     fn build_run_command(&self) -> Command {
@@ -572,8 +568,12 @@ impl Definition {
         self.container_arguments.apply(command)
     }
 
-    fn run_output(&self) -> Vec<u8> {
-        self.build_run_command().capture_stdout().bytes().unwrap()
+    async fn run_output(&self) -> Vec<u8> {
+        self.build_run_command()
+            .capture_stdout()
+            .bytes()
+            .await
+            .unwrap()
     }
 }
 
@@ -724,8 +724,8 @@ impl<'a> ExecCommand<'a> {
     }
 
     /// Execute the command and return success or an error.
-    pub fn status(self) -> Result<(), CommandError> {
-        self.build().status()
+    pub async fn status(self) -> Result<(), CommandError> {
+        self.build().status().await
     }
 }
 
@@ -735,39 +735,40 @@ impl Container {
         ExecCommand::new(self, executable)
     }
 
-    pub fn stop(&mut self) {
+    pub async fn stop(&mut self) {
         self.backend_command()
             .arguments(["container", "stop"])
             .argument(&self.id)
             .capture_stdout()
             .bytes()
+            .await
             .unwrap();
     }
 
-    pub fn remove(&mut self) {
+    pub async fn remove(&mut self) {
         self.backend_command()
             .arguments(["container", "rm"])
             .argument(&self.id)
             .capture_stdout()
             .bytes()
+            .await
             .unwrap();
     }
 
-    #[must_use]
-    pub fn inspect(&self) -> serde_json::Value {
+    pub async fn inspect(&self) -> serde_json::Value {
         let stdout = self
             .backend_command()
             .argument("inspect")
             .argument(&self.id)
             .capture_stdout()
             .bytes()
+            .await
             .unwrap();
 
         serde_json::from_slice(&stdout).expect("invalid json")
     }
 
-    #[must_use]
-    pub fn inspect_format(&self, format: &str) -> String {
+    pub async fn inspect_format(&self, format: &str) -> String {
         let bytes = self
             .backend_command()
             .argument("inspect")
@@ -776,6 +777,7 @@ impl Container {
             .argument(&self.id)
             .capture_stdout()
             .bytes()
+            .await
             .unwrap();
 
         std::str::from_utf8(strip_nl_end(&bytes))
@@ -783,9 +785,8 @@ impl Container {
             .to_string()
     }
 
-    #[must_use]
-    pub fn read_host_tcp_port(&self, container_port: u16) -> Option<u16> {
-        let json = self.inspect();
+    pub async fn read_host_tcp_port(&self, container_port: u16) -> Option<u16> {
+        let json = self.inspect().await;
 
         json.get(0)?
             .get("NetworkSettings")?
@@ -798,7 +799,11 @@ impl Container {
             .ok()
     }
 
-    pub fn commit(&self, reference: &image::Reference, pause: bool) -> Result<(), CommandError> {
+    pub async fn commit(
+        &self,
+        reference: &image::Reference,
+        pause: bool,
+    ) -> Result<(), CommandError> {
         let pause_argument = match (&self.backend, pause) {
             (Backend::Docker { .. }, true) => None,
             (Backend::Docker { version }, false) => {
@@ -820,6 +825,7 @@ impl Container {
             .argument(&self.id)
             .argument(reference.to_string())
             .status()
+            .await
     }
 
     fn backend_command(&self) -> Command {

@@ -77,7 +77,7 @@ pub struct Container {
 }
 
 impl Container {
-    pub(crate) fn run_definition(definition: &crate::definition::Definition) -> Self {
+    pub(crate) async fn run_definition(definition: &crate::definition::Definition) -> Self {
         let password = generate_password();
 
         let ociman_definition = definition
@@ -96,10 +96,10 @@ impl Container {
             &definition.superuser,
             definition.wait_available_timeout,
         )
+        .await
     }
 
-    #[must_use]
-    pub fn run_container_definition(definition: &Definition) -> Self {
+    pub async fn run_container_definition(definition: &Definition) -> Self {
         let ociman_definition =
             ociman::Definition::new(definition.backend.clone(), definition.image.clone());
 
@@ -114,6 +114,7 @@ impl Container {
             &definition.user,
             definition.wait_available_timeout,
         )
+        .await
     }
 
     pub async fn wait_available(&self) -> Result<(), Error> {
@@ -154,7 +155,7 @@ impl Container {
         })
     }
 
-    pub(crate) fn exec_schema_dump(&self) -> String {
+    pub(crate) async fn exec_schema_dump(&self) -> String {
         let output = self
             .container
             .exec("pg_dump")
@@ -163,6 +164,7 @@ impl Container {
             .build()
             .capture_stdout()
             .bytes()
+            .await
             .unwrap();
         crate::convert_schema(&output)
     }
@@ -193,21 +195,23 @@ impl Container {
         .await
     }
 
-    pub(crate) fn exec_container_shell(&self) {
+    pub(crate) async fn exec_container_shell(&self) {
         self.container
             .exec("sh")
             .environment_variables(self.container_client_config().to_pg_env())
             .interactive()
             .status()
+            .await
             .unwrap();
     }
 
-    pub(crate) fn exec_psql(&self) {
+    pub(crate) async fn exec_psql(&self) {
         self.container
             .exec("psql")
             .environment_variables(self.container_client_config().to_pg_env())
             .interactive()
             .status()
+            .await
             .unwrap();
     }
 
@@ -230,13 +234,13 @@ impl Container {
         config
     }
 
-    #[must_use]
-    pub fn cross_container_client_config(&self) -> pg_client::Config {
+    pub async fn cross_container_client_config(&self) -> pg_client::Config {
         // Resolve the container host from inside a container
         // This DNS name only works from inside containers, not from the host
         let ip_address = self
             .backend
             .resolve_container_host()
+            .await
             .expect("Failed to resolve container host from container");
 
         let channel_binding = match &self.client_config.endpoint {
@@ -266,11 +270,11 @@ impl Container {
         self.client_config.to_url_string()
     }
 
-    pub fn stop(&mut self) {
-        self.container.stop()
+    pub async fn stop(&mut self) {
+        self.container.stop().await
     }
 
-    fn wait_for_unix_socket(&self) -> Result<(), Error> {
+    async fn wait_for_unix_socket(&self) -> Result<(), Error> {
         let start = std::time::Instant::now();
         let max_duration = self.wait_available_timeout;
         let sleep_duration = std::time::Duration::from_millis(100);
@@ -282,11 +286,12 @@ impl Container {
                 .argument("--host")
                 .argument("/var/run/postgresql")
                 .status()
+                .await
                 .is_ok()
             {
                 return Ok(());
             }
-            std::thread::sleep(sleep_duration);
+            tokio::time::sleep(sleep_duration).await;
         }
 
         Err(Error::ConnectionTimeout {
@@ -299,8 +304,11 @@ impl Container {
     ///
     /// This is useful when resuming from a cached image where the password
     /// doesn't match the newly generated one.
-    pub fn set_superuser_password(&self, password: &pg_client::Password) -> Result<(), Error> {
-        self.wait_for_unix_socket()?;
+    pub async fn set_superuser_password(
+        &self,
+        password: &pg_client::Password,
+    ) -> Result<(), Error> {
+        self.wait_for_unix_socket().await?;
 
         self.container
             .exec("psql")
@@ -317,7 +325,8 @@ impl Container {
             .stdin("ALTER USER :target_user WITH PASSWORD :'new_password'")
             .build()
             .capture_stdout()
-            .bytes()?;
+            .bytes()
+            .await?;
 
         Ok(())
     }
@@ -336,7 +345,7 @@ fn generate_password() -> pg_client::Password {
 }
 
 #[allow(clippy::too_many_arguments)]
-fn run_container(
+async fn run_container(
     ociman_definition: ociman::Definition,
     cross_container_access: bool,
     ssl_config: &Option<definition::SslConfig>,
@@ -390,10 +399,11 @@ fn run_container(
         None
     };
 
-    let container = ociman_definition.run_detached();
+    let container = ociman_definition.run_detached().await;
 
     let port: pg_client::Port = container
         .read_host_tcp_port(5432)
+        .await
         .expect("port 5432 not published")
         .into();
 

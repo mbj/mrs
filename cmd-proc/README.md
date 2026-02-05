@@ -1,6 +1,6 @@
 # cmd-proc - Process Command Builder
 
-A wrapper around `std::process::Command` providing debug logging, stronger input types, and a fluent builder API with automatic exit code checking.
+A wrapper around `tokio::process::Command` providing debug logging, stronger input types, and a fluent builder API with automatic exit code checking.
 
 > **Status**: Pre-1.0 - exists to serve [mbj/mrs](https://github.com/mbj/mrs) monorepo, expect breaking changes without notice.
 
@@ -22,7 +22,7 @@ let stdout = String::from_utf8(output.stdout)?;
 let stdout = cmd_proc::Command::new("git")
     .arguments(["rev-parse", "HEAD"])
     .capture_stdout()
-    .string()?;
+    .string().await?;
 ```
 
 ### Key differences from `std::process`
@@ -55,37 +55,37 @@ use cmd_proc::{Command, Capture, Output, EnvVariableName};
 let sha = Command::new("git")
     .arguments(["rev-parse", "HEAD"])
     .capture_stdout()
-    .string()?;
+    .string().await?;
 
 // Capture stderr as bytes
 let errors = Command::new("cargo")
     .argument("build")
     .capture_stderr()
-    .bytes()?;
+    .bytes().await?;
 
 // Run without capturing (just check success)
 Command::new("cargo")
     .arguments(["fmt", "--check"])
-    .status()?;
+    .status().await?;
 
 // Pass stdin data
 let output = Command::new("cat")
     .stdin_bytes(b"hello world")
     .capture_stdout()
-    .string()?;
+    .string().await?;
 
 // Set environment variables (compile-time validated)
 const MY_VAR: EnvVariableName = EnvVariableName::from_static_or_panic("MY_VAR");
 Command::new("sh")
     .arguments(["-c", "echo $MY_VAR"])
     .env(&MY_VAR, "value")
-    .status()?;
+    .status().await?;
 
 // Set working directory
 Command::new("cargo")
     .argument("build")
     .working_directory("/path/to/project")
-    .status()?;
+    .status().await?;
 ```
 
 ## Arguments vs Options
@@ -103,14 +103,14 @@ Command::new("git")
     .argument(url)                  // another argument
     .arguments(["--depth", "1"])    // multiple arguments
     .optional_argument(maybe_path)  // argument only if Some
-    .status()?;
+    .status().await?;
 
 // Options (name + value pairs)
 Command::new("git")
     .argument("commit")
     .option("--message", "fix bug")           // required option
     .optional_option("--author", maybe_author) // option only if Some
-    .status()?;
+    .status().await?;
 ```
 
 The `option` and `optional_option` methods simplify the common pattern of adding a flag followed by its value:
@@ -133,7 +133,7 @@ Output capture uses a two-step pattern via the `Capture` struct:
 Command::new("git")
     .argument("status")
     .capture_stdout()  // Returns Capture (selects which stream)
-    .string()?;        // Executes and returns output in chosen format
+    .string().await?;        // Executes and returns output in chosen format
 ```
 
 The `Capture` struct is returned by `.capture_stdout()` or `.capture_stderr()` and provides:
@@ -147,7 +147,7 @@ For capturing both streams simultaneously, use `.capture_stderr_stdout()` which 
 let output = Command::new("my-command")
     .capture_stderr_stdout()
     .accept_nonzero_exit()  // Optional: don't treat non-zero exit as error
-    .output()?;
+    .output().await?;
 
 println!("stdout: {:?}", output.stdout);
 println!("stderr: {:?}", output.stderr);
@@ -162,7 +162,7 @@ When you need both streams or want to handle failures with stderr access, use `.
 ```rust
 let output = Command::new("git")
     .arguments(["show", "some-ref:path"])
-    .output()?;
+    .output().await?;
 
 if output.success() {
     let content = output.into_stdout_string()?;
@@ -189,7 +189,7 @@ For processes that need interactive stdin/stdout or run in the background, use `
 
 ```rust
 use cmd_proc::{Command, Stdio};
-use std::io::BufRead;
+use tokio::io::AsyncBufReadExt;
 
 let mut child = Command::new("my-server")
     .argument("--port=8080")
@@ -200,7 +200,7 @@ let mut child = Command::new("my-server")
     .run()?;
 
 // Read from stdout
-let line = std::io::BufReader::new(child.stdout().unwrap())
+let line = tokio::io::BufReader::new(child.stdout().unwrap())
     .lines()
     .next()
     .unwrap()?;
@@ -209,7 +209,7 @@ let line = std::io::BufReader::new(child.stdout().unwrap())
 drop(child.take_stdin());
 
 // Wait for exit
-let status = child.wait()?;
+let status = child.wait().await?;
 ```
 
 The `Stdio` enum controls stream handling:
@@ -239,7 +239,7 @@ use cmd_proc::{Command, EnvVariableName};
 const MY_VAR: EnvVariableName = EnvVariableName::from_static_or_panic("MY_VAR");
 Command::new("sh")
     .env(&MY_VAR, "value")
-    .status()?;
+    .status().await?;
 
 // Set multiple variables from an iterator
 let vars = [
@@ -248,13 +248,13 @@ let vars = [
 ];
 Command::new("sh")
     .envs(vars)
-    .status()?;
+    .status().await?;
 
 // Remove a variable from the child environment
 const PATH: EnvVariableName = EnvVariableName::from_static_or_panic("PATH");
 Command::new("sh")
     .env_remove(&PATH)
-    .status()?;
+    .status().await?;
 ```
 
 ## Error Handling
@@ -262,7 +262,7 @@ Command::new("sh")
 `CommandError` unifies IO errors (command not found, permission denied) and non-zero exit status:
 
 ```rust
-match Command::new("might-fail").status() {
+match Command::new("might-fail").status().await {
     Ok(()) => println!("Success"),
     Err(e) => {
         if let Some(io_error) = &e.io_error {

@@ -95,11 +95,11 @@ async fn test_script_seed_receives_environment() {
         .unwrap()
 }
 
-#[test]
-fn test_git_revision_seed() {
+#[tokio::test]
+async fn test_git_revision_seed() {
     let _backend = ociman::test_backend_setup!();
 
-    let repo = common::TestGitRepo::new("git_revision_seed");
+    let repo = common::TestGitRepo::new("git_revision_seed").await;
 
     // Create seed.sql with table creation and insert for commit 1
     repo.write_file(
@@ -111,7 +111,7 @@ fn test_git_revision_seed() {
     );
 
     // Commit v1
-    let commit1_hash = repo.commit("Initial data");
+    let commit1_hash = repo.commit("Initial data").await;
 
     // Modify seed.sql to insert different data for commit 2
     repo.write_file(
@@ -123,7 +123,7 @@ fn test_git_revision_seed() {
     );
 
     // Commit v2
-    let _ = repo.commit("Different data");
+    let _ = repo.commit("Different data").await;
 
     // Create TOML config that references commit1
     let config_path = repo.path.join("database.toml");
@@ -152,12 +152,10 @@ fn test_git_revision_seed() {
         .unwrap();
 
     // Read the JSON output with connection details
-    use std::io::BufRead;
-    std::io::BufReader::new(server.stdout().unwrap())
-        .lines()
-        .next()
-        .unwrap()
-        .unwrap();
+    use tokio::io::AsyncBufReadExt;
+    let mut reader = tokio::io::BufReader::new(server.stdout().unwrap());
+    let mut line = String::new();
+    reader.read_line(&mut line).await.unwrap();
 
     // Run psql command to query the data
     let output = cmd_proc::Command::new(pg_ephemeral_bin)
@@ -175,6 +173,7 @@ fn test_git_revision_seed() {
         .run()
         .unwrap()
         .wait_with_output()
+        .await
         .unwrap();
 
     assert!(output.success(), "psql command failed");
@@ -184,5 +183,5 @@ fn test_git_revision_seed() {
 
     // Stop the server by closing stdin and wait for it to finish
     drop(server.take_stdin());
-    server.wait().unwrap();
+    server.wait().await.unwrap();
 }

@@ -9,11 +9,11 @@ pub enum Selection {
 }
 
 impl Selection {
-    pub fn resolve(&self) -> resolve::Result {
+    pub async fn resolve(&self) -> resolve::Result {
         match self {
-            Self::Auto => resolve::auto(),
-            Self::Docker => resolve::docker(),
-            Self::Podman => resolve::podman(),
+            Self::Auto => resolve::auto().await,
+            Self::Docker => resolve::docker().await,
+            Self::Podman => resolve::podman().await,
         }
     }
 }
@@ -37,8 +37,7 @@ impl Backend {
     }
 
     /// Check if an image is present in the local registry
-    #[must_use]
-    pub fn is_image_present(&self, reference: &crate::image::Reference) -> bool {
+    pub async fn is_image_present(&self, reference: &crate::image::Reference) -> bool {
         let reference_string = reference.to_string();
 
         match self {
@@ -47,6 +46,7 @@ impl Backend {
                 .arguments(["inspect", "--type", "image", &reference_string])
                 .capture_stdout()
                 .bytes()
+                .await
                 .is_ok(),
             Backend::Podman { .. } => {
                 // For Podman, image exists returns 0 if present, 1 if not
@@ -54,58 +54,70 @@ impl Backend {
                 self.command()
                     .arguments(["image", "exists", &reference_string])
                     .status()
+                    .await
                     .is_ok()
             }
         }
     }
 
     /// Tag an image with a new name
-    pub fn tag_image(&self, source: &crate::image::Reference, target: &crate::image::Reference) {
+    pub async fn tag_image(
+        &self,
+        source: &crate::image::Reference,
+        target: &crate::image::Reference,
+    ) {
         self.command()
             .arguments(["tag", &source.to_string(), &target.to_string()])
             .status()
+            .await
             .unwrap();
     }
 
     /// Pull an image from a registry
-    pub fn pull_image(&self, reference: &crate::image::Reference) {
+    pub async fn pull_image(&self, reference: &crate::image::Reference) {
         self.command()
             .arguments(["pull", &reference.to_string()])
             .status()
+            .await
             .unwrap();
     }
 
     /// Pull an image only if it's not already present
-    pub fn pull_image_if_absent(&self, reference: &crate::image::Reference) {
-        if !self.is_image_present(reference) {
-            self.pull_image(reference);
+    pub async fn pull_image_if_absent(&self, reference: &crate::image::Reference) {
+        if !self.is_image_present(reference).await {
+            self.pull_image(reference).await;
         }
     }
 
     /// Push an image to a registry
-    pub fn push_image(&self, reference: &crate::image::Reference) {
+    pub async fn push_image(&self, reference: &crate::image::Reference) {
         self.command()
             .arguments(["push", &reference.to_string()])
             .status()
+            .await
             .unwrap();
     }
 
-    pub fn remove_image(&self, reference: &crate::image::Reference) {
-        self.do_remove_image(reference, false);
+    pub async fn remove_image(&self, reference: &crate::image::Reference) {
+        self.do_remove_image(reference, false).await;
     }
 
-    pub fn remove_image_force(&self, reference: &crate::image::Reference) {
-        self.do_remove_image(reference, true);
+    pub async fn remove_image_force(&self, reference: &crate::image::Reference) {
+        self.do_remove_image(reference, true).await;
     }
 
-    fn do_remove_image(&self, reference: &crate::image::Reference, force: bool) {
+    async fn do_remove_image(&self, reference: &crate::image::Reference, force: bool) {
         let command = self.command().arguments(["image", "rm"]);
         let command = if force {
             command.argument("--force")
         } else {
             command
         };
-        command.argument(reference.to_string()).status().unwrap();
+        command
+            .argument(reference.to_string())
+            .status()
+            .await
+            .unwrap();
     }
 
     /// List image references by name (e.g., "pg-ephemeral/main")
@@ -115,8 +127,7 @@ impl Backend {
     /// <https://github.com/containers/common/pull/2413>, but only for single fully-qualified
     /// references ("query mode"), not wildcard patterns ("search mode"). We filter results
     /// client-side to ensure only matching names are returned.
-    #[must_use]
-    pub fn image_references_by_name(
+    pub async fn image_references_by_name(
         &self,
         name: &crate::reference::Name,
     ) -> std::collections::BTreeSet<crate::image::Reference> {
@@ -131,6 +142,7 @@ impl Backend {
             ])
             .capture_stdout()
             .string()
+            .await
             .unwrap();
 
         output
@@ -171,23 +183,29 @@ impl Backend {
     ///
     /// # Example
     /// ```no_run
-    /// let ip = ociman::backend::resolve::auto()
-    ///     .unwrap()
-    ///     .resolve_container_host()
-    ///     .unwrap();
+    /// async fn example() {
+    ///     let ip = ociman::backend::resolve::auto()
+    ///         .await
+    ///         .unwrap()
+    ///         .resolve_container_host()
+    ///         .await
+    ///         .unwrap();
+    /// }
     /// ```
-    pub fn resolve_container_host(&self) -> Result<std::net::IpAddr, ResolveHostnameError> {
+    pub async fn resolve_container_host(&self) -> Result<std::net::IpAddr, ResolveHostnameError> {
         match self {
             Backend::Podman { .. } => {
                 // Podman provides host.containers.internal natively
                 self.container_resolver()
                     .resolve("host.containers.internal")
+                    .await
             }
             Backend::Docker { .. } => {
                 // Docker needs --add-host on Linux
                 self.container_resolver()
                     .add_host("host.docker.internal:host-gateway")
                     .resolve("host.docker.internal")
+                    .await
             }
         }
     }
@@ -266,7 +284,7 @@ impl ContainerHostnameResolver {
     ///
     /// # Returns
     /// The resolved IP address (supports both IPv4 and IPv6)
-    pub fn resolve(self, hostname: &str) -> Result<std::net::IpAddr, ResolveHostnameError> {
+    pub async fn resolve(self, hostname: &str) -> Result<std::net::IpAddr, ResolveHostnameError> {
         const ALPINE_IMAGE: &str = "alpine:latest";
 
         let output = self
@@ -281,6 +299,7 @@ impl ContainerHostnameResolver {
             .argument(hostname)
             .capture_stdout()
             .bytes()
+            .await
             .map_err(|error| ResolveHostnameError::CommandFailed(error.to_string()))?;
 
         // Parse output: "IP_ADDRESS HOSTNAME [ALIASES...]"
@@ -331,45 +350,48 @@ pub mod resolve {
     }
 
     /// Resolve backend automatically based on env var or available tools
-    pub fn auto() -> Result {
+    pub async fn auto() -> Result {
         match std::env::var(ENV_VARIABLE_NAME) {
-            Err(std::env::VarError::NotPresent) => from_present_tool(),
+            Err(std::env::VarError::NotPresent) => from_present_tool().await,
             Err(std::env::VarError::NotUnicode(_)) => {
                 panic!("{ENV_VARIABLE_NAME} env variable exist but is not unicode!")
             }
-            Ok(value) => from_env_value(&value),
+            Ok(value) => from_env_value(&value).await,
         }
     }
 
     /// Resolve docker backend with version detection
-    pub fn docker() -> Result {
+    pub async fn docker() -> Result {
         detect_version(Backend::DOCKER_EXECUTABLE, |version| Backend::Docker {
             version,
         })
+        .await
     }
 
     /// Resolve podman backend with version detection
-    pub fn podman() -> Result {
+    pub async fn podman() -> Result {
         detect_version(Backend::PODMAN_EXECUTABLE, |version| Backend::Podman {
             version,
         })
+        .await
     }
 
-    fn from_env_value(value: &str) -> Result {
+    async fn from_env_value(value: &str) -> Result {
         match value {
-            "docker" => docker(),
-            "podman" => podman(),
+            "docker" => docker().await,
+            "podman" => podman().await,
             _ => Err(Error::InvalidEnvVariable(value.to_string())),
         }
     }
 
-    fn from_present_tool() -> Result {
-        podman()
-            .or_else(|_| docker())
-            .map_err(|_| Error::NoContainerToolDetected)
+    async fn from_present_tool() -> Result {
+        match podman().await {
+            Ok(backend) => Ok(backend),
+            Err(_) => docker().await.map_err(|_| Error::NoContainerToolDetected),
+        }
     }
 
-    fn detect_version(
+    async fn detect_version(
         executable: &'static str,
         constructor: impl FnOnce(semver::Version) -> Backend,
     ) -> Result {
@@ -377,6 +399,7 @@ pub mod resolve {
             .argument("--version")
             .capture_stdout()
             .bytes()
+            .await
             .map_err(|error| Error::VersionDetectionFailed {
                 executable,
                 message: error.to_string(),
@@ -417,61 +440,48 @@ pub mod resolve {
             message: error.to_string(),
         })
     }
-
-    pub struct Lazy(std::cell::OnceCell<Result>);
-
-    impl Default for Lazy {
-        fn default() -> Self {
-            Self::new()
-        }
-    }
-
-    impl Lazy {
-        #[must_use]
-        pub fn new() -> Self {
-            Self(std::cell::OnceCell::new())
-        }
-
-        pub fn result(&self) -> &Result {
-            self.0.get_or_init(auto)
-        }
-    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    #[test]
-    fn test_container_resolver_localhost() {
+    #[tokio::test]
+    async fn test_container_resolver_localhost() {
         let backend = crate::test_backend_setup!();
 
-        let ip = backend.container_resolver().resolve("localhost").unwrap();
+        let ip = backend
+            .container_resolver()
+            .resolve("localhost")
+            .await
+            .unwrap();
 
         assert!(ip.is_loopback());
     }
 
-    #[test]
-    fn test_container_resolver_with_add_host() {
+    #[tokio::test]
+    async fn test_container_resolver_with_add_host() {
         let backend = crate::test_backend_setup!();
 
         let ip = backend
             .container_resolver()
             .add_host("host.docker.internal:host-gateway")
             .resolve("host.docker.internal")
+            .await
             .unwrap();
 
         // Should resolve to some IP address
         assert!(ip.is_ipv4() || ip.is_ipv6());
     }
 
-    #[test]
-    fn test_container_resolver_nonexistent() {
+    #[tokio::test]
+    async fn test_container_resolver_nonexistent() {
         let backend = crate::test_backend_setup!();
 
         let result = backend
             .container_resolver()
-            .resolve("this-definitely-does-not-exist-12345.local");
+            .resolve("this-definitely-does-not-exist-12345.local")
+            .await;
 
         assert!(result.is_err());
         match result {
@@ -482,14 +492,15 @@ mod tests {
         }
     }
 
-    #[test]
-    fn test_container_resolver_with_multiple_arguments() {
+    #[tokio::test]
+    async fn test_container_resolver_with_multiple_arguments() {
         let backend = crate::test_backend_setup!();
 
         let ip = backend
             .container_resolver()
             .add_host("custom-host:192.168.1.100")
             .resolve("custom-host")
+            .await
             .unwrap();
 
         assert_eq!(
@@ -498,8 +509,8 @@ mod tests {
         );
     }
 
-    #[test]
-    fn test_container_resolver_builder_pattern() {
+    #[tokio::test]
+    async fn test_container_resolver_builder_pattern() {
         let backend = crate::test_backend_setup!();
 
         let resolver = backend
@@ -507,7 +518,7 @@ mod tests {
             .argument("--add-host")
             .argument("test-host:10.0.0.1");
 
-        let ip = resolver.resolve("test-host").unwrap();
+        let ip = resolver.resolve("test-host").await.unwrap();
 
         assert_eq!(
             ip,
@@ -515,18 +526,18 @@ mod tests {
         );
     }
 
-    #[test]
-    fn test_resolve_container_host() {
+    #[tokio::test]
+    async fn test_resolve_container_host() {
         let backend = crate::test_backend_setup!();
 
-        let ip = backend.resolve_container_host().unwrap();
+        let ip = backend.resolve_container_host().await.unwrap();
 
         // Should resolve to some IP address
         assert!(ip.is_ipv4() || ip.is_ipv6());
     }
 
-    #[test]
-    fn test_image_references_by_name() {
+    #[tokio::test]
+    async fn test_image_references_by_name() {
         use std::collections::BTreeSet;
 
         let backend = crate::test_backend_setup!();
@@ -537,13 +548,13 @@ mod tests {
             .unwrap();
 
         // Clean up any existing images with this name
-        for image in backend.image_references_by_name(&name) {
-            backend.remove_image_force(&image);
+        for image in backend.image_references_by_name(&name).await {
+            backend.remove_image_force(&image).await;
         }
 
         // Create test images by tagging alpine:latest
         let source: crate::image::Reference = "alpine:latest".parse().unwrap();
-        backend.pull_image_if_absent(&source);
+        backend.pull_image_if_absent(&source).await;
 
         let target_a: crate::image::Reference = "localhost/ociman-test/image-references-by-name:a"
             .parse()
@@ -552,16 +563,16 @@ mod tests {
             .parse()
             .unwrap();
 
-        backend.tag_image(&source, &target_a);
-        backend.tag_image(&source, &target_b);
+        backend.tag_image(&source, &target_a).await;
+        backend.tag_image(&source, &target_b).await;
 
         assert_eq!(
-            backend.image_references_by_name(&name),
+            backend.image_references_by_name(&name).await,
             BTreeSet::from([target_a.clone(), target_b.clone()])
         );
 
         // Clean up
-        backend.remove_image_force(&target_a);
-        backend.remove_image_force(&target_b);
+        backend.remove_image_force(&target_a).await;
+        backend.remove_image_force(&target_b).await;
     }
 }

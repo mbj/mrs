@@ -9,20 +9,20 @@ pub struct List {
 }
 
 impl List {
-    pub fn run(self, config: &Config) -> Result<(), Error> {
+    pub async fn run(self, config: &Config) -> Result<(), Error> {
         let repo = match self.repo {
             Some(repo) => Some(repo),
             None => detect_repo_from_cwd(config).ok(),
         };
 
         match repo {
-            Some(repo) => list_repo(config, &repo),
-            None => list_all(config),
+            Some(repo) => list_repo(config, &repo).await,
+            None => list_all(config).await,
         }
     }
 }
 
-fn list_repo(config: &Config, repo: &RepoName) -> Result<(), Error> {
+async fn list_repo(config: &Config, repo: &RepoName) -> Result<(), Error> {
     let bare_path = config.bare_repo_path(repo);
 
     if !bare_path.exists() {
@@ -35,7 +35,8 @@ fn list_repo(config: &Config, repo: &RepoName) -> Result<(), Error> {
         .repo_path(&bare_path)
         .build()
         .capture_stdout()
-        .string()?;
+        .string()
+        .await?;
 
     for line in git::parse_worktree_list(&output) {
         println!("  {line}");
@@ -44,7 +45,7 @@ fn list_repo(config: &Config, repo: &RepoName) -> Result<(), Error> {
     Ok(())
 }
 
-fn list_all(config: &Config) -> Result<(), Error> {
+async fn list_all(config: &Config) -> Result<(), Error> {
     if !config.bare_clone_dir.exists() {
         log::info!("No repositories found");
         return Ok(());
@@ -71,7 +72,7 @@ fn list_all(config: &Config) -> Result<(), Error> {
     repos.sort_by(|a, b| a.as_str().cmp(b.as_str()));
 
     for repo in repos {
-        list_repo(config, &repo)?;
+        list_repo(config, &repo).await?;
         println!();
     }
 

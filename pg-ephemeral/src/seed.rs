@@ -10,7 +10,7 @@ pub enum CacheStatus {
 }
 
 impl CacheStatus {
-    fn from_cache_key(
+    async fn from_cache_key(
         cache_key: Option<CacheKey>,
         backend: &ociman::Backend,
         instance_name: &crate::InstanceName,
@@ -20,7 +20,7 @@ impl CacheStatus {
                 let reference = format!("pg-ephemeral/{}:{}", instance_name, hex::encode(key))
                     .parse()
                     .unwrap();
-                if backend.is_image_present(&reference) {
+                if backend.is_image_present(&reference).await {
                     Self::Hit { reference }
                 } else {
                     Self::Miss { reference }
@@ -163,7 +163,7 @@ pub enum Seed {
 }
 
 impl Seed {
-    fn load(
+    async fn load(
         &self,
         name: SeedName,
         hash_chain: &mut HashChain,
@@ -186,7 +186,8 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
-                    ),
+                    )
+                    .await,
                     name,
                     path: path.clone(),
                     content,
@@ -197,6 +198,7 @@ impl Seed {
                     git_proc::show::new(&format!("{git_revision}:{}", path.to_str().unwrap()))
                         .build()
                         .output()
+                        .await
                         .map_err(|error| LoadError::GitRevision {
                             name: name.clone(),
                             path: path.clone(),
@@ -221,7 +223,8 @@ impl Seed {
                             hash_chain.cache_key(),
                             backend,
                             instance_name,
-                        ),
+                        )
+                        .await,
                         name,
                         path: path.clone(),
                         git_revision: git_revision.clone(),
@@ -264,6 +267,7 @@ impl Seed {
                         let output = cmd_proc::Command::new(key_command)
                             .arguments(key_arguments)
                             .output()
+                            .await
                             .map_err(|error| LoadError::KeyCommand {
                                 name: name.clone(),
                                 command: key_command.clone(),
@@ -293,6 +297,7 @@ impl Seed {
                             .arguments(["-e", "-c"])
                             .argument(key_script)
                             .output()
+                            .await
                             .map_err(|error| LoadError::KeyScript {
                                 name: name.clone(),
                                 message: error.to_string(),
@@ -318,7 +323,8 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
-                    ),
+                    )
+                    .await,
                     cache_key_output,
                     name,
                     command: command.clone(),
@@ -332,7 +338,8 @@ impl Seed {
                         hash_chain.cache_key(),
                         backend,
                         instance_name,
-                    ),
+                    )
+                    .await,
                     name,
                     script: script.clone(),
                 })
@@ -505,7 +512,7 @@ pub struct LoadedSeeds<'a> {
 }
 
 impl<'a> LoadedSeeds<'a> {
-    pub fn load(
+    pub async fn load(
         image: &'a crate::image::Image,
         ssl_config: Option<&crate::definition::SslConfig>,
         seeds: &indexmap::IndexMap<SeedName, Seed>,
@@ -529,7 +536,9 @@ impl<'a> LoadedSeeds<'a> {
         }
 
         for (name, seed) in seeds {
-            let loaded_seed = seed.load(name.clone(), &mut hash_chain, backend, instance_name)?;
+            let loaded_seed = seed
+                .load(name.clone(), &mut hash_chain, backend, instance_name)
+                .await?;
             loaded_seeds.push(loaded_seed);
         }
 

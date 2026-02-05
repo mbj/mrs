@@ -778,10 +778,11 @@ dependencies = [
 
 [[package]]
 name = "cmd-proc"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "log",
  "thiserror 2.0.18",
+ "tokio",
 ]
 
 [[package]]
@@ -1298,10 +1299,11 @@ dependencies = [
 
 [[package]]
 name = "git-proc"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "cmd-proc",
  "thiserror 2.0.18",
+ "tokio",
  "url",
 ]
 
@@ -1918,6 +1920,7 @@ dependencies = [
  "stratosphere-core",
  "syn",
  "tar",
+ "tokio",
  "toml",
  "toml_edit",
  "url",
@@ -2099,7 +2102,7 @@ dependencies = [
 
 [[package]]
 name = "ociman"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "clap",
  "cmd-proc",
@@ -2112,6 +2115,7 @@ dependencies = [
  "serde_json",
  "sha2",
  "thiserror 2.0.18",
+ "tokio",
  "walkdir",
 ]
 
@@ -2989,6 +2993,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0fda2ff0d084019ba4d7c6f371c95d8fd75ce3524c3cb8fb653a3023f6323e64"
 
 [[package]]
+name = "signal-hook-registry"
+version = "1.4.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7664a098b8e616bdfcc2dc0e9ac44eb231eedf41db4e9fe95d8d32ec728dedad"
+dependencies = [
+ "libc",
+]
+
+[[package]]
 name = "signature"
 version = "2.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3511,6 +3524,7 @@ dependencies = [
  "libc",
  "mio",
  "pin-project-lite",
+ "signal-hook-registry",
  "socket2",
  "tokio-macros",
  "windows-sys 0.61.2",
@@ -4281,7 +4295,7 @@ checksum = "9edde0db4769d2dc68579893f2306b26c6ecfbe0ef499b013d731b7b9247e0b9"
 
 [[package]]
 name = "wtt"
-version = "0.0.6"
+version = "0.0.7"
 dependencies = [
  "clap",
  "dirs",
@@ -4292,6 +4306,7 @@ dependencies = [
  "nom-language",
  "serde",
  "thiserror 2.0.18",
+ "tokio",
  "toml",
 ]
 

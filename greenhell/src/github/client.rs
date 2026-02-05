@@ -31,8 +31,8 @@ impl Client {
     /// 1. `GH_TOKEN` environment variable
     /// 2. `GITHUB_TOKEN` environment variable
     /// 3. `gh auth token` command
-    pub fn discover() -> Result<Self, crate::cli_token::NotFound> {
-        let discovery = crate::cli_token::discover()?;
+    pub async fn discover() -> Result<Self, crate::cli_token::NotFound> {
+        let discovery = crate::cli_token::discover().await?;
         log::info!("Token source: {}", discovery.source);
         Ok(Self::new(discovery.token))
     }

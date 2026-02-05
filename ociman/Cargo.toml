@@ -1,6 +1,6 @@
 [package]
 name = "ociman"
-version = "0.2.0"
+version = "0.3.0"
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true
@@ -12,7 +12,7 @@ keywords = ["docker", "podman", "container", "oci"]
 categories = ["development-tools"]
 
 [features]
-test-utils = []
+test-utils = ["dep:env_logger"]
 
 [lints]
 workspace = true
@@ -20,6 +20,7 @@ workspace = true
 [dependencies]
 clap.workspace = true
 cmd-proc.workspace = true
+tokio.workspace = true
 log.workspace = true
 nom.workspace = true
 semver.workspace = true
@@ -28,7 +29,7 @@ serde_json.workspace = true
 sha2.workspace = true
 thiserror.workspace = true
 walkdir = "2.5"
+env_logger = { workspace = true, optional = true }
 
 [dev-dependencies]
 indoc.workspace = true
-env_logger.workspace = true

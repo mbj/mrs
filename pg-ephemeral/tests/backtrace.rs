@@ -1,14 +1,15 @@
 const RUST_BACKTRACE: cmd_proc::EnvVariableName<'static> =
     cmd_proc::EnvVariableName::from_static_or_panic("RUST_BACKTRACE");
 
-#[test]
-fn test_backtrace_contains_file_paths() {
+#[tokio::test]
+async fn test_backtrace_contains_file_paths() {
     let pg_ephemeral_bin = env!("CARGO_BIN_EXE_pg-ephemeral");
 
     let output = cmd_proc::Command::new(pg_ephemeral_bin)
         .arguments(["platform", "test-backtrace"])
         .env(&RUST_BACKTRACE, "1")
         .output()
+        .await
         .expect("failed to execute pg-ephemeral");
 
     assert!(

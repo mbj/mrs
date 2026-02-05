@@ -36,23 +36,25 @@ fn base_command() -> cmd_proc::Command {
         .env(&PATH, path_with_mock)
 }
 
-#[test]
-fn gh_token_env_takes_precedence() {
+#[tokio::test]
+async fn gh_token_env_takes_precedence() {
     let output = base_command()
         .env(&GH_TOKEN, ENV_GH_TOKEN)
         .env(&GITHUB_TOKEN, ENV_GITHUB_TOKEN)
         .output()
+        .await
         .expect("failed to execute");
 
     assert!(output.success());
     assert_eq!(String::from_utf8_lossy(&output.stdout).trim(), ENV_GH_TOKEN);
 }
 
-#[test]
-fn github_token_env_fallback() {
+#[tokio::test]
+async fn github_token_env_fallback() {
     let output = base_command()
         .env(&GITHUB_TOKEN, ENV_GITHUB_TOKEN)
         .output()
+        .await
         .expect("failed to execute");
 
     assert!(output.success());
@@ -62,9 +64,9 @@ fn github_token_env_fallback() {
     );
 }
 
-#[test]
-fn gh_auth_token_fallback() {
-    let output = base_command().output().expect("failed to execute");
+#[tokio::test]
+async fn gh_auth_token_fallback() {
+    let output = base_command().output().await.expect("failed to execute");
 
     assert!(output.success());
     assert_eq!(
@@ -73,14 +75,15 @@ fn gh_auth_token_fallback() {
     );
 }
 
-#[test]
-fn fails_when_no_token_source() {
+#[tokio::test]
+async fn fails_when_no_token_source() {
     let output = cmd_proc::Command::new(binary_path())
         .argument("cli-token")
         .env_remove(&GH_TOKEN)
         .env_remove(&GITHUB_TOKEN)
         .env(&PATH, "/nonexistent")
         .output()
+        .await
         .expect("failed to execute");
 
     assert!(!output.success());

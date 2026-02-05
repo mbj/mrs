@@ -59,20 +59,26 @@ mod tests {
     use super::*;
     use crate::Build;
 
-    #[test]
-    fn test_status() {
-        let output = Status::new().build().capture_stdout().string().unwrap();
+    #[tokio::test]
+    async fn test_status() {
+        let output = Status::new()
+            .build()
+            .capture_stdout()
+            .string()
+            .await
+            .unwrap();
         // Just verify it runs without error
         let _ = output;
     }
 
-    #[test]
-    fn test_status_porcelain() {
+    #[tokio::test]
+    async fn test_status_porcelain() {
         let output = Status::new()
             .porcelain()
             .build()
             .capture_stdout()
             .string()
+            .await
             .unwrap();
         // Porcelain output is empty if repo is clean
         let _ = output;

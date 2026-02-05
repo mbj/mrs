@@ -32,14 +32,14 @@ impl Instance {
         }
     }
 
-    pub fn definition(
+    pub async fn definition(
         &self,
         instance_name: &crate::InstanceName,
     ) -> Result<Definition, ociman::backend::resolve::Error> {
         Ok(Definition {
             instance_name: instance_name.clone(),
             application_name: self.application_name.clone(),
-            backend: self.backend.resolve()?,
+            backend: self.backend.resolve().await?,
             database: self.database.clone(),
             seeds: self.seeds.clone(),
             ssl_config: self.ssl_config.clone(),

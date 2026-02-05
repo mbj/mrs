@@ -2,14 +2,14 @@ mod common;
 
 use common::{TestDir, TestGitRepo, run_pg_ephemeral};
 
-#[test]
-fn test_cache_status() {
+#[tokio::test]
+async fn test_cache_status() {
     let _backend = ociman::test_backend_setup!();
-    let repo = TestGitRepo::new("cache-test");
+    let repo = TestGitRepo::new("cache-test").await;
 
     repo.write_file("schema.sql", "CREATE TABLE users (id INTEGER PRIMARY KEY);");
     repo.write_file("data.sql", "INSERT INTO users (id) VALUES (1);");
-    let commit_hash = repo.commit("Initial");
+    let commit_hash = repo.commit("Initial").await;
 
     let config_content = indoc::formatdoc! {r#"
         image = "17.1"
@@ -64,12 +64,12 @@ fn test_cache_status() {
         status = "miss"
     "#};
 
-    let stdout = run_pg_ephemeral(&["cache", "status"], &repo.path);
+    let stdout = run_pg_ephemeral(&["cache", "status"], &repo.path).await;
     assert_eq!(stdout, expected);
 }
 
-#[test]
-fn test_cache_status_deterministic() {
+#[tokio::test]
+async fn test_cache_status_deterministic() {
     let _backend = ociman::test_backend_setup!();
     let dir = TestDir::new("cache-deterministic-test");
 
@@ -97,12 +97,12 @@ fn test_cache_status_deterministic() {
         status = "miss"
     "#};
 
-    let stdout = run_pg_ephemeral(&["cache", "status"], &dir.path);
+    let stdout = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
     assert_eq!(stdout, expected);
 }
 
-#[test]
-fn test_cache_status_change_with_content() {
+#[tokio::test]
+async fn test_cache_status_change_with_content() {
     let _backend = ociman::test_backend_setup!();
     let dir = TestDir::new("cache-changes-test");
 
@@ -130,7 +130,7 @@ fn test_cache_status_change_with_content() {
         status = "miss"
     "#};
 
-    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path);
+    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
     assert_eq!(stdout1, expected_before);
 
     dir.write_file(
@@ -138,13 +138,13 @@ fn test_cache_status_change_with_content() {
         "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);",
     );
 
-    let stdout2 = run_pg_ephemeral(&["cache", "status"], &dir.path);
+    let stdout2 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
     // Cache image should change when content changes - just verify it's different
     assert_ne!(stdout2, expected_before);
 }
 
-#[test]
-fn test_cache_status_change_with_image() {
+#[tokio::test]
+async fn test_cache_status_change_with_image() {
     let _backend = ociman::test_backend_setup!();
     let dir = TestDir::new("cache-image-test");
 
@@ -172,7 +172,7 @@ fn test_cache_status_change_with_image() {
         status = "miss"
     "#};
 
-    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path);
+    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
     assert_eq!(stdout1, expected_before);
 
     dir.write_file(
@@ -186,13 +186,13 @@ fn test_cache_status_change_with_image() {
         "#},
     );
 
-    let stdout2 = run_pg_ephemeral(&["cache", "status"], &dir.path);
+    let stdout2 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
     // Cache image should change when image changes - just verify it's different
     assert_ne!(stdout2, expected_before);
 }
 
-#[test]
-fn test_cache_status_chain_propagates() {
+#[tokio::test]
+async fn test_cache_status_chain_propagates() {
     let _backend = ociman::test_backend_setup!();
     let dir = TestDir::new("cache-chain-test");
 
@@ -231,18 +231,18 @@ fn test_cache_status_chain_propagates() {
         status = "miss"
     "#};
 
-    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path);
+    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
     assert_eq!(stdout1, expected_before);
 
     dir.write_file("first.sql", "CREATE TABLE first (id INTEGER, name TEXT);");
 
-    let stdout2 = run_pg_ephemeral(&["cache", "status"], &dir.path);
+    let stdout2 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
     // Cache image should change when first seed changes, and propagate to second seed
     assert_ne!(stdout2, expected_before);
 }
 
-#[test]
-fn test_cache_status_key_command() {
+#[tokio::test]
+async fn test_cache_status_key_command() {
     let _backend = ociman::test_backend_setup!();
     let dir = TestDir::new("cache-key-command-test");
 
@@ -277,19 +277,19 @@ fn test_cache_status_key_command() {
         cache_key_output = "1.0.0"
     "#};
 
-    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path);
+    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
     assert_eq!(stdout1, expected_before);
 
     // Change the version file - cache image should change
     dir.write_file("version.txt", "2.0.0");
 
-    let stdout2 = run_pg_ephemeral(&["cache", "status"], &dir.path);
+    let stdout2 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
     // Cache image should change when key command output changes
     assert_ne!(stdout2, expected_before);
 }
 
-#[test]
-fn test_cache_status_output_truncation_and_verbose() {
+#[tokio::test]
+async fn test_cache_status_output_truncation_and_verbose() {
     let _backend = ociman::test_backend_setup!();
     let dir = TestDir::new("cache-truncation-test");
 
@@ -338,16 +338,16 @@ fn test_cache_status_output_truncation_and_verbose() {
     "#};
 
     // Without --verbose: truncated output
-    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path);
+    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
     assert_eq!(stdout1, expected_truncated);
 
     // With --verbose: full output
-    let stdout2 = run_pg_ephemeral(&["cache", "status", "--verbose"], &dir.path);
+    let stdout2 = run_pg_ephemeral(&["cache", "status", "--verbose"], &dir.path).await;
     assert_eq!(stdout2, expected_verbose);
 }
 
-#[test]
-fn test_cache_status_change_with_ssl() {
+#[tokio::test]
+async fn test_cache_status_change_with_ssl() {
     let _backend = ociman::test_backend_setup!();
     let dir = TestDir::new("cache-ssl-test");
 
@@ -364,7 +364,7 @@ fn test_cache_status_change_with_ssl() {
         "#},
     );
 
-    let output_no_ssl = run_pg_ephemeral(&["cache", "status"], &dir.path);
+    let output_no_ssl = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
 
     // Add SSL config
     dir.write_file(
@@ -381,7 +381,7 @@ fn test_cache_status_change_with_ssl() {
         "#},
     );
 
-    let output_with_ssl = run_pg_ephemeral(&["cache", "status"], &dir.path);
+    let output_with_ssl = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
 
     // Cache key should change when SSL config is added
     assert_ne!(output_no_ssl, output_with_ssl);
@@ -401,7 +401,7 @@ fn test_cache_status_change_with_ssl() {
         "#},
     );
 
-    let output_different_ssl = run_pg_ephemeral(&["cache", "status"], &dir.path);
+    let output_different_ssl = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
 
     // Cache key should change when SSL hostname changes
     assert_ne!(output_with_ssl, output_different_ssl);

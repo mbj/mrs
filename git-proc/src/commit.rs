@@ -91,8 +91,8 @@ impl<'a> Commit<'a> {
     }
 
     /// Execute the command and return the exit status.
-    pub fn status(self) -> Result<(), CommandError> {
-        crate::Build::build(self).status()
+    pub async fn status(self) -> Result<(), CommandError> {
+        crate::Build::build(self).status().await
     }
 }
 

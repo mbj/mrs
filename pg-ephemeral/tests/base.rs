@@ -235,6 +235,7 @@ async fn test_run_env() {
                 .envs(container.pg_env())
                 .env(&DATABASE_URL, container.database_url())
                 .output()
+                .await
                 .unwrap();
 
             let actual = output.into_stdout_string().unwrap();

@@ -9,6 +9,7 @@ workspace = true
 [dependencies]
 clap.workspace = true
 cmd-proc.workspace = true
+tokio.workspace = true
 env_logger.workspace = true
 flate2 = "1.0"
 git-proc.workspace = true

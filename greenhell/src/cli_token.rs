@@ -157,7 +157,7 @@ impl std::error::Error for NotFound {}
 /// # Errors
 ///
 /// Returns `NotFound` if no token could be discovered from any source.
-pub fn discover() -> Result<Discovery, NotFound> {
+pub async fn discover() -> Result<Discovery, NotFound> {
     if let Some(discovery) = try_env_var("GH_TOKEN", Source::GhToken) {
         return Ok(discovery);
     }
@@ -166,7 +166,7 @@ pub fn discover() -> Result<Discovery, NotFound> {
         return Ok(discovery);
     }
 
-    match gh_auth_token() {
+    match gh_auth_token().await {
         Ok(token) => Ok(Discovery {
             token,
             source: Source::GhAuthToken,
@@ -262,10 +262,11 @@ mod tests {
 }
 
 /// Executes `gh auth token` and returns the token.
-fn gh_auth_token() -> Result<Token, String> {
+async fn gh_auth_token() -> Result<Token, String> {
     let output = cmd_proc::Command::new("gh")
         .arguments(["auth", "token"])
         .output()
+        .await
         .map_err(|error| format!("failed to execute gh: {error}"))?;
 
     if !output.success() {

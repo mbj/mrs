@@ -18,6 +18,7 @@ workspace = true
 default = []
 clap = ["dep:clap", "dep:nom", "dep:nom-language"]
 sqlx = ["dep:indoc", "dep:log", "dep:serde_json", "dep:sqlx", "dep:tokio"]
+test-utils = []
 
 [dependencies]
 clap = { workspace = true, optional = true }

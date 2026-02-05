@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.3.0
+
+### Breaking Changes
+
+- Switch from `std::process` to `tokio::process` for async process execution
+- `Command::status()`, `Command::output()` are now `async fn`
+- `Capture::bytes()`, `Capture::string()` are now `async fn`
+- `CaptureAllStreams::output()` is now `async fn`
+- `Child::wait()`, `Child::wait_with_output()` are now `async fn`
+- `Child` stream accessors now return `tokio::process` types
+- `Spawn` doc example uses `tokio::io::AsyncBufReadExt` instead of `std::io::BufRead`
+
+### Added
+
+- `tokio` dependency with `process` and `io-util` features
+
 ## 0.2.0
 
 ### Breaking Changes

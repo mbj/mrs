@@ -11,7 +11,7 @@ pub struct Setup {
 }
 
 impl Setup {
-    pub fn run(self, config: &Config) -> Result<(), Error> {
+    pub async fn run(self, config: &Config) -> Result<(), Error> {
         let repo = match self.repo {
             Some(name) => name,
             None => RepoName::from_git_url(&self.url)?,
@@ -29,19 +29,22 @@ impl Setup {
         git_proc::clone::new(&self.url)
             .bare()
             .directory(&bare_path)
-            .status()?;
+            .status()
+            .await?;
 
         log::info!("Configuring remote tracking branches");
 
         git_proc::config::new("remote.origin.fetch")
             .repo_path(&bare_path)
             .value("+refs/heads/*:refs/remotes/origin/*")
-            .status()?;
+            .status()
+            .await?;
 
         git_proc::fetch::new()
             .repo_path(&bare_path)
             .remote(&ORIGIN)
-            .status()?;
+            .status()
+            .await?;
 
         log::info!("Creating worktree directory {}", worktree_base.display());
 

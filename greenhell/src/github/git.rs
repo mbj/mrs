@@ -84,8 +84,11 @@ pub enum Error {
 }
 
 /// Gets the GitHub repository from the specified git remote.
-pub fn get_github_repository(remote_name: &RemoteName) -> Result<Repository, Error> {
-    let output = git_proc::remote::get_url(remote_name).build().output()?;
+pub async fn get_github_repository(remote_name: &RemoteName) -> Result<Repository, Error> {
+    let output = git_proc::remote::get_url(remote_name)
+        .build()
+        .output()
+        .await?;
 
     if !output.success() {
         let stderr = String::from_utf8(output.stderr)?;
@@ -98,12 +101,13 @@ pub fn get_github_repository(remote_name: &RemoteName) -> Result<Repository, Err
 }
 
 /// Gets the current branch name.
-pub fn get_current_branch() -> Result<super::Branch, Error> {
+pub async fn get_current_branch() -> Result<super::Branch, Error> {
     let output = git_proc::rev_parse::new()
         .abbrev_ref()
         .rev("HEAD")
         .build()
-        .output()?;
+        .output()
+        .await?;
 
     if !output.success() {
         let stderr = String::from_utf8(output.stderr)?;
@@ -120,13 +124,14 @@ pub fn get_current_branch() -> Result<super::Branch, Error> {
 /// Lists commit SHAs from base (exclusive) to HEAD (inclusive).
 ///
 /// Returns commits in topological order with parents before children.
-pub fn list_commits(base: &super::Ref) -> Result<Vec<super::Sha>, Error> {
+pub async fn list_commits(base: &super::Ref) -> Result<Vec<super::Sha>, Error> {
     let output = git_proc::rev_list::new()
         .topo_order()
         .reverse()
         .commit(&format!("{base}..HEAD"))
         .build()
-        .output()?;
+        .output()
+        .await?;
 
     if !output.success() {
         let stderr = String::from_utf8(output.stderr)?;
@@ -148,7 +153,7 @@ pub fn list_commits(base: &super::Ref) -> Result<Vec<super::Sha>, Error> {
 /// Force pushes a specific commit to a remote branch.
 ///
 /// Uses `git push --force <remote> <sha>:refs/heads/<branch>`.
-pub fn force_push_commit(
+pub async fn force_push_commit(
     remote: &Remote,
     sha: &super::Sha,
     branch: &super::Branch,
@@ -160,7 +165,8 @@ pub fn force_push_commit(
         .remote(remote)
         .refspec(&refspec)
         .build()
-        .output()?;
+        .output()
+        .await?;
 
     if !output.success() {
         let stderr = String::from_utf8(output.stderr)?;
@@ -182,9 +188,9 @@ pub fn force_push_commit(
 /// This returns `origin/feature` if that ref exists, otherwise `origin/main`.
 ///
 /// Returns `None` if no upstream is configured for the current branch.
-pub fn get_upstream() -> Result<Option<super::Ref>, Error> {
-    let branch = get_current_branch()?;
-    let config = get_config()?;
+pub async fn get_upstream() -> Result<Option<super::Ref>, Error> {
+    let branch = get_current_branch().await?;
+    let config = get_config().await?;
 
     let remote_key = format!("branch.{branch}.remote");
     let merge_key = format!("branch.{branch}.merge");
@@ -210,23 +216,24 @@ pub fn get_upstream() -> Result<Option<super::Ref>, Error> {
 
     let upstream = format!("{remote}/{branch_name}");
 
-    if remote_ref_exists(&upstream)? {
+    if remote_ref_exists(&upstream).await? {
         return upstream
             .parse()
             .map(Some)
             .map_err(|_| Error::GitCommandFailed(format!("Invalid ref: {upstream}")));
     }
 
-    get_remote_head(remote.as_str())
+    get_remote_head(remote.as_str()).await
 }
 
 /// Gets the HEAD ref for a remote (e.g., `origin/main`).
-fn get_remote_head(remote: &str) -> Result<Option<super::Ref>, Error> {
+async fn get_remote_head(remote: &str) -> Result<Option<super::Ref>, Error> {
     let symbolic_ref = format!("refs/remotes/{remote}/HEAD");
 
     let output = cmd_proc::Command::new("git")
         .arguments(["symbolic-ref", &symbolic_ref])
-        .output()?;
+        .output()
+        .await?;
 
     if !output.success() {
         return Ok(None);
@@ -249,19 +256,21 @@ fn get_remote_head(remote: &str) -> Result<Option<super::Ref>, Error> {
 }
 
 /// Checks if a remote ref exists.
-fn remote_ref_exists(ref_name: &str) -> Result<bool, Error> {
+async fn remote_ref_exists(ref_name: &str) -> Result<bool, Error> {
     let output = cmd_proc::Command::new("git")
         .arguments(["rev-parse", "--verify", "--quiet", ref_name])
-        .output()?;
+        .output()
+        .await?;
 
     Ok(output.success())
 }
 
 /// Reads the git config.
-fn get_config() -> Result<Vec<ConfigEntry>, Error> {
+async fn get_config() -> Result<Vec<ConfigEntry>, Error> {
     let output = cmd_proc::Command::new("git")
         .arguments(["config", "--list"])
-        .output()?;
+        .output()
+        .await?;
 
     if !output.success() {
         let stderr = String::from_utf8(output.stderr)?;

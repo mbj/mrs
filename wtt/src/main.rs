@@ -24,7 +24,8 @@ enum Command {
     Remove(commands::Remove),
 }
 
-fn main() {
+#[tokio::main(flavor = "current_thread")]
+async fn main() {
     env_logger::Builder::from_env(env_logger::Env::default().default_filter_or("info")).init();
 
     let app = App::parse();
@@ -46,11 +47,11 @@ fn main() {
     };
 
     let result = match app.command {
-        Command::Setup(cmd) => cmd.run(&config),
-        Command::Teardown(cmd) => cmd.run(&config),
-        Command::Add(cmd) => cmd.run(&config),
-        Command::List(cmd) => cmd.run(&config),
-        Command::Remove(cmd) => cmd.run(&config),
+        Command::Setup(cmd) => cmd.run(&config).await,
+        Command::Teardown(cmd) => cmd.run(&config).await,
+        Command::Add(cmd) => cmd.run(&config).await,
+        Command::List(cmd) => cmd.run(&config).await,
+        Command::Remove(cmd) => cmd.run(&config).await,
     };
 
     if let Err(error) = result {

@@ -1,6 +1,6 @@
 # git-proc
 
-Process-based git CLI wrapper with builder API.
+Async process-based git CLI wrapper with builder API, built on [`cmd-proc`](https://crates.io/crates/cmd-proc).
 
 ## Why
 
@@ -44,7 +44,7 @@ let branch = rev_parse::new()
     .rev("HEAD")
     .build()
     .capture_stdout()
-    .string()?;
+    .string().await?;
 
 // git -C /path/to/repo status --porcelain
 let output = status::new()
@@ -52,27 +52,27 @@ let output = status::new()
     .porcelain()
     .build()
     .capture_stdout()
-    .string()?;
+    .string().await?;
 
 // git clone --bare <url> <path>
 let url: GitUrl = "https://github.com/user/repo.git".parse()?;
 clone::new(&url)
     .bare()
     .directory(Path::new("/path/to/bare.git"))
-    .status()?;
+    .status().await?;
 
 // git -C /path/to/repo fetch --all
 fetch::new()
     .repo_path(Path::new("/path/to/repo"))
     .all()
-    .status()?;
+    .status().await?;
 
 // git -C /path/to/repo worktree add -b new-branch /path/to/worktree origin/main
 worktree::add(Path::new("/path/to/worktree"))
     .repo_path(Path::new("/path/to/repo"))
     .new_branch("new-branch")
     .commit_ish("origin/main")
-    .status()?;
+    .status().await?;
 ```
 
 ## Stream Handling
@@ -88,12 +88,12 @@ let sha = git_proc::rev_parse::new()
     .rev("HEAD")
     .build()                  // Returns cmd_proc::Command
     .capture_stdout()         // Returns cmd_proc::Capture
-    .string()?;
+    .string().await?;
 
 // Capture full output (stdout + stderr)
 let output = git_proc::show::new("HEAD:path/to/file")
     .build()
-    .output()?;
+    .output().await?;
 
 if output.success() {
     let content = output.into_stdout_string()?;

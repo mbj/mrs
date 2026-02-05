@@ -166,7 +166,7 @@ impl clap::Args for EvaluateTarget {
 impl App {
     async fn run(&self) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
         match &self.command {
-            Command::CliToken => match greenhell::cli_token::discover() {
+            Command::CliToken => match greenhell::cli_token::discover().await {
                 Ok(discovery) => {
                     log::info!("Token source: {}", discovery.source);
                     println!("{}", discovery.token.as_str());
@@ -190,7 +190,7 @@ impl App {
 
                 log::info!("Evaluating {target_display} on repository {repository}");
 
-                let token = greenhell::cli_token::discover()?;
+                let token = greenhell::cli_token::discover().await?;
                 let mut client = greenhell::github::Client::new(token.token);
 
                 let (result, _) = match target {
@@ -238,14 +238,14 @@ impl App {
                 }
             }
             Command::GitHub { command } => {
-                let token = greenhell::cli_token::discover()?;
+                let token = greenhell::cli_token::discover().await?;
                 let mut client = greenhell::github::Client::new(token.token);
                 command.run(&mut client).await?;
             }
             Command::WatchEvents { repository } => {
                 log::info!("Watching events on repository {repository}");
 
-                let token = greenhell::cli_token::discover()?;
+                let token = greenhell::cli_token::discover().await?;
                 let client = greenhell::github::Client::new(token.token);
 
                 let mut stream = std::pin::pin!(greenhell::events::stream_new_events(
@@ -273,7 +273,7 @@ impl App {
                 active_timeout,
                 dry_run,
             } => {
-                let token = greenhell::cli_token::discover()?;
+                let token = greenhell::cli_token::discover().await?;
                 let client = greenhell::github::Client::new(token.token);
 
                 let config = greenhell::watch::Config {
@@ -291,19 +291,20 @@ impl App {
                 use greenhell::github::git;
                 use tower_service::Service;
 
-                let repository = git::get_github_repository(remote)?;
+                let repository = git::get_github_repository(remote).await?;
                 let remote = Remote::from(remote.clone());
-                let branch = git::get_current_branch()?;
+                let branch = git::get_current_branch().await?;
 
                 let base_ref = match base {
                     Some(base) => base.clone(),
-                    None => git::get_upstream()?
+                    None => git::get_upstream()
+                        .await?
                         .ok_or("No upstream branch detected. Use --base to specify a base ref.")?,
                 };
 
                 log::info!("Checking commits from {base_ref} to HEAD on {repository}/{branch}");
 
-                let commits = git::list_commits(&base_ref)?;
+                let commits = git::list_commits(&base_ref).await?;
 
                 if commits.is_empty() {
                     log::info!("No commits to push");
@@ -312,7 +313,7 @@ impl App {
 
                 log::info!("Found {} commits", commits.len());
 
-                let mut client = greenhell::github::Client::discover()?;
+                let mut client = greenhell::github::Client::discover().await?;
 
                 let mut remaining_unpushed = false;
 
@@ -322,7 +323,7 @@ impl App {
                             log::info!("  {} - [dry-run] would push", sha.abbrev());
                         } else {
                             log::info!("  {} - pushing", sha.abbrev());
-                            git::force_push_commit(&remote, sha, &branch)?;
+                            git::force_push_commit(&remote, sha, &branch).await?;
                         }
                         continue;
                     }
@@ -341,7 +342,7 @@ impl App {
                                 log::info!("  {} - [dry-run] would push", sha.abbrev());
                             } else {
                                 log::info!("  {} - pushing", sha.abbrev());
-                                git::force_push_commit(&remote, sha, &branch)?;
+                                git::force_push_commit(&remote, sha, &branch).await?;
                             }
                             continue;
                         }
@@ -356,7 +357,7 @@ impl App {
                         log::info!("  {} - [dry-run] would push", sha.abbrev());
                     } else {
                         log::info!("  {} - pushing", sha.abbrev());
-                        git::force_push_commit(&remote, sha, &branch)?;
+                        git::force_push_commit(&remote, sha, &branch).await?;
                     }
                 }
             }

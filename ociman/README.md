@@ -21,14 +21,14 @@ Use `container.exec()` to run commands inside a running container:
 // Simple command execution
 container.exec("echo")
     .argument("hello")
-    .status()?;
+    .status().await?;
 
 // Capture stdout
 let output = container.exec("cat")
     .argument("/etc/os-release")
     .build()
     .capture_stdout()
-    .string()?;
+    .string().await?;
 
 // With environment variables and stdin
 let result = container.exec("psql")
@@ -37,7 +37,7 @@ let result = container.exec("psql")
     .stdin(b"SELECT 1;")
     .build()
     .capture_stdout()
-    .bytes()?;
+    .bytes().await?;
 ```
 
 The `ExecCommand` builder focuses on container exec configuration. For stream capture,
@@ -64,16 +64,16 @@ Typical usage patterns:
 // Pattern 1: Use --rm flag + with_container (most common)
 // Container is explicitly stopped after the closure, and --rm handles removal.
 let definition = Definition::new(backend, image).remove();
-definition.with_container(|container| {
+definition.with_container(async |container| {
     // use container
-});
+}).await;
 
 // Pattern 2: Stop, commit, then remove (for snapshotting)
 // Cannot use --rm here because the container must survive stop for commit.
-let mut container = definition.run_detached();
-container.stop();
-container.commit(&snapshot_image, false)?;
-container.remove();
+let mut container = definition.run_detached().await;
+container.stop().await;
+container.commit(&snapshot_image, false).await?;
+container.remove().await;
 ```
 
 ## Content-Based Image Hashing

@@ -173,45 +173,45 @@ enum StratosphereCommand {
 }
 
 impl App {
-    fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
+    async fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
         match &self.command {
-            AppCommand::PgEphemeral { command } => command.run(),
-            AppCommand::Release { command } => command.run(),
-            AppCommand::RepositoryLint { command } => command.run(),
-            AppCommand::Stratosphere { command } => command.run(),
+            AppCommand::PgEphemeral { command } => command.run().await,
+            AppCommand::Release { command } => command.run().await,
+            AppCommand::RepositoryLint { command } => command.run().await,
+            AppCommand::Stratosphere { command } => command.run().await,
         }
     }
 }
 
 impl PgEphemeralCommand {
-    fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
+    async fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
         match self {
             Self::Build { no_compile } => {
-                build_integrations(*no_compile);
+                build_integrations(*no_compile).await;
                 Ok(())
             }
             Self::MergeGems => {
-                merge_gems();
+                merge_gems().await;
                 Ok(())
             }
             Self::Test => {
-                test();
+                test().await;
                 Ok(())
             }
             Self::Publish { push } => {
-                publish_gems(*push);
+                publish_gems(*push).await;
                 Ok(())
             }
-            Self::Sync { reject_dirty } => pg_ephemeral_sync(*reject_dirty),
+            Self::Sync { reject_dirty } => pg_ephemeral_sync(*reject_dirty).await,
         }
     }
 }
 
 impl ReleaseCommand {
-    fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
+    async fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
         match self {
             Self::CreateEdge => {
-                create_edge_release();
+                create_edge_release().await;
                 Ok(())
             }
         }
@@ -219,22 +219,22 @@ impl ReleaseCommand {
 }
 
 impl RepositoryLintCommand {
-    fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
+    async fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
         match self {
-            Self::RustVersion => lint_rust_version(),
+            Self::RustVersion => lint_rust_version().await,
         }
     }
 }
 
 impl StratosphereCommand {
-    fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
+    async fn run(&self) -> Result<(), Box<dyn std::error::Error>> {
         match self {
-            Self::Sync { reject_dirty } => stratosphere_sync(*reject_dirty),
+            Self::Sync { reject_dirty } => stratosphere_sync(*reject_dirty).await,
         }
     }
 }
 
-fn lint_rust_version() -> Result<(), Box<dyn std::error::Error>> {
+async fn lint_rust_version() -> Result<(), Box<dyn std::error::Error>> {
     let workspace_root = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
@@ -318,7 +318,7 @@ fn platform_artifact_paths(
     }
 }
 
-fn create_edge_release() {
+async fn create_edge_release() {
     log::info!("Creating edge release");
 
     let workspace_root = std::env::current_dir()
@@ -330,6 +330,7 @@ fn create_edge_release() {
         .build()
         .capture_stdout()
         .string()
+        .await
         .unwrap_or_else(|error| panic!("Failed to get git SHA: {error}"))
         .trim()
         .to_string();
@@ -341,6 +342,7 @@ fn create_edge_release() {
         .build()
         .capture_stdout()
         .string()
+        .await
         .unwrap_or_else(|error| panic!("Failed to get git branch: {error}"))
         .trim()
         .to_string();
@@ -403,6 +405,7 @@ fn create_edge_release() {
                 .collect::<Vec<_>>(),
         )
         .status()
+        .await
         .unwrap_or_else(|error| panic!("Failed to create GitHub release: {error}"));
 
     log::info!("Successfully created edge release: {tag}");
@@ -452,7 +455,7 @@ fn gemspec_config(version: &str, platform: Platform, bin_files: Vec<String>) -> 
     }
 }
 
-fn pg_ephemeral_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error::Error>> {
+async fn pg_ephemeral_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error::Error>> {
     let workspace_root = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
@@ -625,7 +628,7 @@ fn detect_target_platform() -> Platform {
         .unwrap_or_else(|| panic!("Unsupported target: {target_str}"))
 }
 
-fn build_integrations(no_compile: bool) {
+async fn build_integrations(no_compile: bool) {
     let platform = detect_target_platform();
     let rust_target = platform.rust_target();
     let ruby_platform = platform.ruby_platform();
@@ -648,6 +651,7 @@ fn build_integrations(no_compile: bool) {
                 rust_target,
             ])
             .status()
+            .await
             .unwrap_or_else(|error| panic!("Failed to build pg-ephemeral binary: {error}"));
     }
 
@@ -739,10 +743,13 @@ fn build_integrations(no_compile: bool) {
             .working_directory(&build_staging)
             .env(&ENV_PG_EPHEMERAL_GEMSPEC_CONFIG, &gemspec_config_json)
             .status()
+            .await
             .unwrap_or_else(|error| panic!("Failed to build gem: {error}"));
     } else {
         log::info!("Using containerized gem build for Linux");
-        let backend = ociman::backend::resolve::auto().expect("Failed to detect backend");
+        let backend = ociman::backend::resolve::auto()
+            .await
+            .expect("Failed to detect backend");
 
         let mount = ociman::Mount::from(format!(
             "type=bind,source={},target=/build",
@@ -760,6 +767,7 @@ fn build_integrations(no_compile: bool) {
         .arguments(["build", "pg-ephemeral.gemspec"])
         .remove()
         .run()
+        .await
         .unwrap_or_else(|error| panic!("Failed to build gem: {error}"));
     }
 
@@ -805,6 +813,7 @@ fn build_integrations(no_compile: bool) {
     cmd_proc::Command::new("gem")
         .arguments(["generate_index", "--directory", dist_root.to_str().unwrap()])
         .status()
+        .await
         .unwrap_or_else(|error| panic!("Failed to generate gem index: {error}"));
 
     log::info!("Gem index generated successfully");
@@ -868,7 +877,7 @@ fn build_integrations(no_compile: bool) {
     log::info!("Integrations build complete");
 }
 
-fn merge_gems() {
+async fn merge_gems() {
     log::info!("Merging multi-platform gems into unified repository");
 
     let workspace_root = std::env::current_dir()
@@ -923,6 +932,7 @@ fn merge_gems() {
     cmd_proc::Command::new("gem")
         .arguments(["generate_index", "--directory", dist_root.to_str().unwrap()])
         .status()
+        .await
         .unwrap_or_else(|error| panic!("Failed to generate gem index: {error}"));
 
     log::info!("Gem index generated successfully with {collected_gems} platform gems");
@@ -932,7 +942,7 @@ fn merge_gems() {
     );
 }
 
-fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
+async fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
     let ruby_version = ruby_version();
     let integration_directory = workspace_root
         .join("pg-ephemeral")
@@ -971,6 +981,7 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
             ])
             .working_directory(&integration_directory)
             .status()
+            .await
             .unwrap_or_else(|error| panic!("Failed to configure bundle: {error}"));
     }
 
@@ -980,6 +991,7 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
         .working_directory(&integration_directory)
         .env(&ENV_PG_EPHEMERAL_GEM_SOURCE, &gem_source_url)
         .status()
+        .await
         .unwrap_or_else(|error| panic!("Failed to run bundle install: {error}"));
 
     log::info!("Running RSpec acceptance tests");
@@ -994,6 +1006,7 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
         .env(&ENV_EXPECTED_PG_EPHEMERAL_VERSION, &ruby_version)
         .env(&ENV_PG_EPHEMERAL_GEM_SOURCE, &gem_source_url)
         .status()
+        .await
         .unwrap_or_else(|error| panic!("RSpec acceptance tests failed: {error}"));
 
     // Copy pg-ephemeral binary from installed gem for local development
@@ -1012,6 +1025,7 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
         .env(&ENV_PG_EPHEMERAL_GEM_SOURCE, &gem_source_url)
         .capture_stdout()
         .string()
+        .await
         .unwrap_or_else(|error| panic!("Failed to get gem path: {error}"))
         .trim()
         .to_string();
@@ -1076,6 +1090,7 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
         .arguments(["install"])
         .working_directory(&integration_directory)
         .status()
+        .await
         .unwrap_or_else(|error| panic!("Failed to run bundle install: {error}"));
 
     // Run RSpec tests
@@ -1085,6 +1100,7 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
         .working_directory(&integration_directory)
         .env(&ENV_EXPECTED_PG_EPHEMERAL_VERSION, &ruby_version)
         .status()
+        .await
         .unwrap_or_else(|error| panic!("RSpec tests failed: {error}"));
 
     // Run Mutant tests (only on supported platforms)
@@ -1096,6 +1112,7 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
                 .working_directory(&integration_directory)
                 .env(&ENV_EXPECTED_PG_EPHEMERAL_VERSION, &ruby_version)
                 .status()
+                .await
                 .unwrap_or_else(|error| panic!("Mutant tests failed: {error}"));
         }
         Err(error) => {
@@ -1106,7 +1123,7 @@ fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
     log::info!("Integration tests complete");
 }
 
-fn test() {
+async fn test() {
     log::info!("Running Ruby integration tests");
 
     let workspace_root = std::env::current_dir()
@@ -1114,10 +1131,10 @@ fn test() {
 
     let target = detect_target_platform();
 
-    run_ruby_tests(workspace_root, target);
+    run_ruby_tests(workspace_root, target).await;
 }
 
-fn publish_gems(push: bool) {
+async fn publish_gems(push: bool) {
     if push {
         log::info!("Publishing gems to RubyGems.org");
     } else {
@@ -1133,6 +1150,7 @@ fn publish_gems(push: bool) {
         .build()
         .capture_stdout()
         .string()
+        .await
         .unwrap_or_else(|error| panic!("Failed to get git SHA: {error}"))
         .trim()
         .to_string();
@@ -1170,6 +1188,7 @@ fn publish_gems(push: bool) {
             "*.gem",
         ])
         .status()
+        .await
         .unwrap_or_else(|error| {
             panic!("Failed to download artifacts from release {release_tag}: {error}")
         });
@@ -1206,6 +1225,7 @@ fn publish_gems(push: bool) {
             cmd_proc::Command::new("gem")
                 .arguments(["push", gem_path_str])
                 .status()
+                .await
                 .unwrap_or_else(|error| {
                     panic!("Failed to push gem {}: {error}", gem_path.display())
                 });
@@ -1242,7 +1262,7 @@ fn write_token_stream(
     Ok(())
 }
 
-fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error::Error>> {
+async fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error::Error>> {
     let workspace_root = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
@@ -1393,6 +1413,7 @@ fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error::Error
         .arguments(["fmt", "--package", "stratosphere"])
         .working_directory(&workspace_root)
         .status()
+        .await
         .map_err(|error| format!("Failed to run cargo fmt: {error}"))?;
 
     if reject_dirty {
@@ -1403,6 +1424,7 @@ fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error::Error
             .build()
             .capture_stdout()
             .string()
+            .await
             .map_err(|error| format!("Failed to run git status: {error}"))?;
 
         if !status.is_empty() {
@@ -1417,12 +1439,13 @@ fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error::Error
     Ok(())
 }
 
-fn main() {
+#[tokio::main(flavor = "current_thread")]
+async fn main() {
     env_logger::Builder::from_env(env_logger::Env::default().default_filter_or("info")).init();
 
     let app = <App as clap::Parser>::parse();
 
-    if let Err(error) = app.run() {
+    if let Err(error) = app.run().await {
         log::error!("{error}");
         std::process::exit(1);
     }

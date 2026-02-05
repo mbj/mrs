@@ -16,7 +16,7 @@ pub struct Remove {
 }
 
 impl Remove {
-    pub fn run(self, config: &Config) -> Result<(), Error> {
+    pub async fn run(self, config: &Config) -> Result<(), Error> {
         let repo = match self.repo {
             Some(repo) => repo,
             None => detect_repo_from_cwd(config)?,
@@ -34,7 +34,7 @@ impl Remove {
             return Err(Error::WorktreeNotFound(worktree_path));
         }
 
-        remove_worktree(&bare_path, &worktree_path, self.force)?;
+        remove_worktree(&bare_path, &worktree_path, self.force).await?;
 
         cleanup_empty_parents(config, &repo, &self.branch)?;
 
@@ -44,7 +44,7 @@ impl Remove {
     }
 }
 
-pub fn remove_worktree(
+pub async fn remove_worktree(
     bare_path: &Path,
     worktree_path: &Path,
     force: bool,
@@ -55,6 +55,7 @@ pub fn remove_worktree(
         .repo_path(bare_path)
         .force_if(force)
         .status()
+        .await
 }
 
 fn cleanup_empty_parents(config: &Config, repo: &RepoName, branch: &Branch) -> Result<(), Error> {
