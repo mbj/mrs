@@ -20,6 +20,7 @@ async fn test_run_container_definition() {
     let snapshot_image: ociman::image::Reference =
         ociman::testing::test_reference("pg-ephemeral-test:snapshot");
 
+    // Create a container, populate it with data, and commit it as a snapshot image
     let mut ociman_container = ociman::Definition::new(
         backend.clone(),
         "docker.io/library/postgres:17"
@@ -73,6 +74,7 @@ async fn test_run_container_definition() {
         .unwrap();
     ociman_container.remove().await;
 
+    // Now use pg_ephemeral to run from this snapshot image using container::Definition
     let definition = pg_ephemeral::container::Definition {
         image: snapshot_image.clone(),
         password: pg_client::Password::from_str(static_password).unwrap(),

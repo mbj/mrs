@@ -95,6 +95,7 @@ impl Container {
             &password,
             &definition.superuser,
             definition.wait_available_timeout,
+            definition.remove,
         )
         .await
     }
@@ -113,6 +114,7 @@ impl Container {
             &definition.password,
             &definition.user,
             definition.wait_available_timeout,
+            true, // Always remove containers when using low-level API
         )
         .await
     }
@@ -274,6 +276,14 @@ impl Container {
         self.container.stop().await
     }
 
+    /// Stop the container (clean PostgreSQL shutdown), commit it to an image,
+    /// and remove the stopped container.
+    pub(crate) async fn stop_commit_remove(&mut self, reference: &ociman::Reference) {
+        self.container.stop().await;
+        self.container.commit(reference, false).await.unwrap();
+        self.container.remove().await;
+    }
+
     async fn wait_for_unix_socket(&self) -> Result<(), Error> {
         let start = std::time::Instant::now();
         let max_duration = self.wait_available_timeout;
@@ -285,7 +295,9 @@ impl Container {
                 .exec("pg_isready")
                 .argument("--host")
                 .argument("/var/run/postgresql")
-                .status()
+                .build()
+                .stdout_capture()
+                .bytes()
                 .await
                 .is_ok()
             {
@@ -355,6 +367,7 @@ async fn run_container(
     password: &pg_client::Password,
     user: &pg_client::User,
     wait_available_timeout: std::time::Duration,
+    remove: bool,
 ) -> Container {
     let backend = backend.clone();
     let host_ip = if cross_container_access {
@@ -364,9 +377,12 @@ async fn run_container(
     };
 
     let mut ociman_definition = ociman_definition
-        .remove()
         .environment_variable(ENV_PGDATA, "/var/lib/pg-ephemeral")
         .publish(ociman::Publish::tcp(5432).host_ip(host_ip));
+
+    if remove {
+        ociman_definition = ociman_definition.remove();
+    }
 
     let ssl_bundle = if let Some(ssl_config) = ssl_config {
         let hostname = match ssl_config {

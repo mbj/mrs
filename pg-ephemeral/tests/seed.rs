@@ -1,5 +1,9 @@
 mod common;
 
+/// Keys whose values change between the caching container and the final container
+/// (password is regenerated, port is reassigned on each boot).
+const UNSTABLE_ENV_KEYS: &[&str] = &["DATABASE_URL", "PGPASSWORD", "PGPORT"];
+
 async fn assert_environment_matches(
     container: &pg_ephemeral::Container,
     connection: &mut sqlx::postgres::PgConnection,
@@ -29,7 +33,21 @@ async fn assert_environment_matches(
     expected.push(("DATABASE_URL".to_string(), container.database_url()));
     expected.sort();
 
-    assert_eq!(expected, actual);
+    // Verify all expected keys are present
+    let actual_keys: Vec<&str> = actual.iter().map(|(k, _)| k.as_str()).collect();
+    let expected_keys: Vec<&str> = expected.iter().map(|(k, _)| k.as_str()).collect();
+    assert_eq!(expected_keys, actual_keys);
+
+    // Verify stable values match (password and port change between cache and boot)
+    let actual_stable: Vec<&(String, String)> = actual
+        .iter()
+        .filter(|(k, _)| !UNSTABLE_ENV_KEYS.contains(&k.as_str()))
+        .collect();
+    let expected_stable: Vec<&(String, String)> = expected
+        .iter()
+        .filter(|(k, _)| !UNSTABLE_ENV_KEYS.contains(&k.as_str()))
+        .collect();
+    assert_eq!(expected_stable, actual_stable);
 }
 
 #[tokio::test]
@@ -99,7 +117,7 @@ async fn test_script_seed_receives_environment() {
 async fn test_git_revision_seed() {
     let _backend = ociman::test_backend_setup!();
 
-    let repo = common::TestGitRepo::new("git_revision_seed").await;
+    let repo = common::TestGitRepo::new("git-revision-test").await;
 
     // Create seed.sql with table creation and insert for commit 1
     repo.write_file(
@@ -109,8 +127,6 @@ async fn test_git_revision_seed() {
             INSERT INTO users (id) VALUES (1);
         "#},
     );
-
-    // Commit v1
     let commit1_hash = repo.commit("Initial data").await;
 
     // Modify seed.sql to insert different data for commit 2
@@ -126,7 +142,6 @@ async fn test_git_revision_seed() {
     let _ = repo.commit("Different data").await;
 
     // Create TOML config that references commit1
-    let config_path = repo.path.join("database.toml");
     let config_content = indoc::formatdoc! {r#"
         image = "17.1"
 
@@ -135,7 +150,7 @@ async fn test_git_revision_seed() {
         path = "seed.sql"
         git_revision = "{commit1_hash}"
     "#};
-    std::fs::write(&config_path, config_content).unwrap();
+    repo.write_file("database.toml", &config_content);
 
     // Get path to pg-ephemeral binary using the canonical Cargo test environment variable
     let pg_ephemeral_bin = env!("CARGO_BIN_EXE_pg-ephemeral");
