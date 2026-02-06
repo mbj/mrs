@@ -328,7 +328,7 @@ async fn create_edge_release() {
     let sha = git_proc::rev_parse::new()
         .rev("HEAD")
         .build()
-        .capture_stdout()
+        .stdout_capture()
         .string()
         .await
         .unwrap_or_else(|error| panic!("Failed to get git SHA: {error}"))
@@ -340,7 +340,7 @@ async fn create_edge_release() {
         .abbrev_ref()
         .rev("HEAD")
         .build()
-        .capture_stdout()
+        .stdout_capture()
         .string()
         .await
         .unwrap_or_else(|error| panic!("Failed to get git branch: {error}"))
@@ -1023,7 +1023,7 @@ async fn run_ruby_tests(workspace_root: PathBuf, platform: Platform) {
         ])
         .working_directory(&integration_directory)
         .env(&ENV_PG_EPHEMERAL_GEM_SOURCE, &gem_source_url)
-        .capture_stdout()
+        .stdout_capture()
         .string()
         .await
         .unwrap_or_else(|error| panic!("Failed to get gem path: {error}"))
@@ -1148,7 +1148,7 @@ async fn publish_gems(push: bool) {
     let sha = git_proc::rev_parse::new()
         .rev("HEAD")
         .build()
-        .capture_stdout()
+        .stdout_capture()
         .string()
         .await
         .unwrap_or_else(|error| panic!("Failed to get git SHA: {error}"))
@@ -1422,7 +1422,7 @@ async fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error:
             .repo_path(&workspace_root)
             .porcelain()
             .build()
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .map_err(|error| format!("Failed to run git status: {error}"))?;

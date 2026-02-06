@@ -144,16 +144,15 @@ async fn test_git_revision_seed() {
     let mut server = cmd_proc::Command::new(pg_ephemeral_bin)
         .arguments(["integration-server", "--protocol", "v0"])
         .working_directory(&repo.path)
+        .build()
+        .stdin(std::process::Stdio::piped())
+        .stdout(std::process::Stdio::piped())
         .spawn()
-        .stdin(cmd_proc::Stdio::Piped)
-        .stdout(cmd_proc::Stdio::Piped)
-        .stderr(cmd_proc::Stdio::Inherit)
-        .run()
         .unwrap();
 
     // Read the JSON output with connection details
     use tokio::io::AsyncBufReadExt;
-    let mut reader = tokio::io::BufReader::new(server.stdout().unwrap());
+    let mut reader = tokio::io::BufReader::new(server.stdout.as_mut().unwrap());
     let mut line = String::new();
     reader.read_line(&mut line).await.unwrap();
 
@@ -167,21 +166,19 @@ async fn test_git_revision_seed() {
             "--command=SELECT id FROM users ORDER BY id",
         ])
         .working_directory(&repo.path)
-        .spawn()
-        .stdout(cmd_proc::Stdio::Piped)
-        .stderr(cmd_proc::Stdio::Inherit)
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
         .run()
-        .unwrap()
-        .wait_with_output()
         .await
         .unwrap();
 
-    assert!(output.success(), "psql command failed");
+    assert!(output.status.success(), "psql command failed");
 
     // Verify we have the data from commit 1 (id=1), not commit 2 (id=2)
-    assert_eq!(output.into_stdout_string().unwrap().trim(), "id\n1");
+    assert_eq!(String::from_utf8(output.stdout).unwrap().trim(), "id\n1");
 
     // Stop the server by closing stdin and wait for it to finish
-    drop(server.take_stdin());
+    drop(server.stdin.take());
     server.wait().await.unwrap();
 }

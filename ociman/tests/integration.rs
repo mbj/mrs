@@ -61,7 +61,7 @@ async fn test_container_exec() {
                 .exec("echo")
                 .argument("Container is running!")
                 .build()
-                .capture_stdout()
+                .stdout_capture()
                 .string()
                 .await
                 .unwrap();
@@ -116,7 +116,7 @@ async fn test_container_exec_with_stdin() {
                 .exec("cat")
                 .stdin(b"hello from stdin")
                 .build()
-                .capture_stdout()
+                .stdout_capture()
                 .bytes()
                 .await
                 .unwrap();
@@ -172,7 +172,7 @@ async fn test_command_with_stdin() {
     let input = b"Hello from stdin!";
     let output = cmd_proc::Command::new("cat")
         .stdin_bytes(input.to_vec())
-        .capture_stdout()
+        .stdout_capture()
         .bytes()
         .await
         .unwrap();

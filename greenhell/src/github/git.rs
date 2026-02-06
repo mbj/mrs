@@ -87,10 +87,13 @@ pub enum Error {
 pub async fn get_github_repository(remote_name: &RemoteName) -> Result<Repository, Error> {
     let output = git_proc::remote::get_url(remote_name)
         .build()
-        .output()
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
         .await?;
 
-    if !output.success() {
+    if !output.status.success() {
         let stderr = String::from_utf8(output.stderr)?;
         return Err(Error::GitCommandFailed(stderr.trim().to_string()));
     }
@@ -106,10 +109,13 @@ pub async fn get_current_branch() -> Result<super::Branch, Error> {
         .abbrev_ref()
         .rev("HEAD")
         .build()
-        .output()
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
         .await?;
 
-    if !output.success() {
+    if !output.status.success() {
         let stderr = String::from_utf8(output.stderr)?;
         return Err(Error::GitCommandFailed(stderr.trim().to_string()));
     }
@@ -130,10 +136,13 @@ pub async fn list_commits(base: &super::Ref) -> Result<Vec<super::Sha>, Error> {
         .reverse()
         .commit(&format!("{base}..HEAD"))
         .build()
-        .output()
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
         .await?;
 
-    if !output.success() {
+    if !output.status.success() {
         let stderr = String::from_utf8(output.stderr)?;
         return Err(Error::GitCommandFailed(stderr.trim().to_string()));
     }
@@ -165,10 +174,13 @@ pub async fn force_push_commit(
         .remote(remote)
         .refspec(&refspec)
         .build()
-        .output()
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
         .await?;
 
-    if !output.success() {
+    if !output.status.success() {
         let stderr = String::from_utf8(output.stderr)?;
         return Err(Error::GitCommandFailed(stderr.trim().to_string()));
     }
@@ -232,10 +244,13 @@ async fn get_remote_head(remote: &str) -> Result<Option<super::Ref>, Error> {
 
     let output = cmd_proc::Command::new("git")
         .arguments(["symbolic-ref", &symbolic_ref])
-        .output()
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
         .await?;
 
-    if !output.success() {
+    if !output.status.success() {
         return Ok(None);
     }
 
@@ -259,20 +274,26 @@ async fn get_remote_head(remote: &str) -> Result<Option<super::Ref>, Error> {
 async fn remote_ref_exists(ref_name: &str) -> Result<bool, Error> {
     let output = cmd_proc::Command::new("git")
         .arguments(["rev-parse", "--verify", "--quiet", ref_name])
-        .output()
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
         .await?;
 
-    Ok(output.success())
+    Ok(output.status.success())
 }
 
 /// Reads the git config.
 async fn get_config() -> Result<Vec<ConfigEntry>, Error> {
     let output = cmd_proc::Command::new("git")
         .arguments(["config", "--list"])
-        .output()
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
         .await?;
 
-    if !output.success() {
+    if !output.status.success() {
         let stderr = String::from_utf8(output.stderr)?;
         return Err(Error::GitCommandFailed(stderr.trim().to_string()));
     }

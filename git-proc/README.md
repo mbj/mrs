@@ -43,7 +43,7 @@ let branch = rev_parse::new()
     .abbrev_ref()
     .rev("HEAD")
     .build()
-    .capture_stdout()
+    .stdout_capture()
     .string().await?;
 
 // git -C /path/to/repo status --porcelain
@@ -51,7 +51,7 @@ let output = status::new()
     .repo_path(Path::new("/path/to/repo"))
     .porcelain()
     .build()
-    .capture_stdout()
+    .stdout_capture()
     .string().await?;
 
 // git clone --bare <url> <path>
@@ -87,16 +87,19 @@ use git_proc::Build;
 let sha = git_proc::rev_parse::new()
     .rev("HEAD")
     .build()                  // Returns cmd_proc::Command
-    .capture_stdout()         // Returns cmd_proc::Capture
+    .stdout_capture()         // Returns cmd_proc::CaptureSingle<Stdout>
     .string().await?;
 
-// Capture full output (stdout + stderr)
-let output = git_proc::show::new("HEAD:path/to/file")
+// Capture both stdout and stderr
+let result = git_proc::show::new("HEAD:path/to/file")
     .build()
-    .output().await?;
+    .stdout_capture()
+    .stderr_capture()
+    .accept_nonzero_exit()
+    .run().await?;
 
-if output.success() {
-    let content = output.into_stdout_string()?;
+if result.status.success() {
+    let content = String::from_utf8(result.stdout)?;
 }
 ```
 

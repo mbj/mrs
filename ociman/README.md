@@ -27,7 +27,7 @@ container.exec("echo")
 let output = container.exec("cat")
     .argument("/etc/os-release")
     .build()
-    .capture_stdout()
+    .stdout_capture()
     .string().await?;
 
 // With environment variables and stdin
@@ -36,7 +36,7 @@ let result = container.exec("psql")
     .environment_variable(PG_PASSWORD, "secret")
     .stdin(b"SELECT 1;")
     .build()
-    .capture_stdout()
+    .stdout_capture()
     .bytes().await?;
 ```
 

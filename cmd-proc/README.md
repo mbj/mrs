@@ -6,87 +6,149 @@ A wrapper around `tokio::process::Command` providing debug logging, stronger inp
 
 ## Why cmd-proc?
 
-`std::process::Command` is powerful but requires verbose boilerplate for common patterns:
+`std::process::Command` (and its async wrapper `tokio::process::Command`) is powerful but requires verbose boilerplate for common patterns:
 
 ```rust
-// std::process - capturing stdout as string
-let output = std::process::Command::new("git")
-    .args(["rev-parse", "HEAD"])
-    .output()?;
-if !output.status.success() {
-    return Err(/* construct error with exit status */);
-}
-let stdout = String::from_utf8(output.stdout)?;
+#[tokio::main(flavor = "current_thread")]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // std/tokio process - capturing stdout as string
+    let output = std::process::Command::new("echo")
+        .arg("hello")
+        .output()?;
+    if !output.status.success() {
+        return Err("non-zero exit".into());
+    }
+    let stdout = String::from_utf8(output.stdout)?;
+    assert_eq!(stdout, "hello\n");
 
-// cmd-proc - same operation
-let stdout = cmd_proc::Command::new("git")
-    .arguments(["rev-parse", "HEAD"])
-    .capture_stdout()
-    .string().await?;
+    // cmd-proc - same operation
+    let stdout = cmd_proc::Command::new("echo")
+        .argument("hello")
+        .stdout_capture()
+        .string().await?;
+    assert_eq!(stdout, "hello\n");
+    Ok(())
+}
 ```
 
-### Key differences from `std::process`
+### Key differences from `std` / `tokio` process
 
-| Feature | `std::process` | `cmd-proc` |
-|---------|---------------|------------|
-| **Debug logging** | None | Automatic debug logging of commands before execution |
-| **Exit code checking** | Manual | Automatic - non-zero exits return `Err` |
-| **Output capture** | Returns raw `Output` struct | Two-step pattern: `.capture_stdout().string()`, `.capture_stderr().bytes()` |
-| **Builder pattern** | Mutable references | Owned builder with method chaining |
-| **Stdin data** | Requires manual pipe setup | Simple `.stdin_bytes()` method |
-| **Env var names** | Accepts any `&str` | `EnvVariableName` type with compile-time validation |
-| **Error type** | Separate `io::Error` and `ExitStatus` | Unified `CommandError` with both |
-| **Process spawning** | Direct `.spawn()` on Command | Separate `Spawn` builder with `Stdio` configuration |
+| Feature              | `std` / `tokio` process                 | `cmd-proc`                                                                  |
+|----------------------|-----------------------------------------|-----------------------------------------------------------------------------|
+| **Debug logging**    | None                                    | Automatic debug logging of commands before execution                        |
+| **Exit code check**  | Manual                                  | Automatic - non-zero exits return `Err`                                     |
+| **Output capture**   | Returns raw `Output` struct             | Typestate: `.stdout_capture().string()`, `.stderr_capture().bytes()`        |
+| **Builder pattern**  | Mutable references (`&mut self`)        | Owned builder with method chaining                                          |
+| **Stdin data**       | Requires manual pipe setup              | Simple `.stdin_bytes()` method                                              |
+| **Env var names**    | Accepts any `AsRef<OsStr>`              | `EnvVariableName` type with compile-time validation                         |
+| **Error type**       | Separate `io::Error` and `ExitStatus`   | Unified `CommandError` with both                                            |
+| **Process spawning** | Direct `.spawn()` on Command            | `.build()` for native `tokio::process::Command` access                      |
 
 ### Design philosophy
 
 - **Debug logging**: Every command execution is logged via the `log` crate at debug level, making it easy to trace what commands are being run.
 - **Stronger input types**: `EnvVariableName` prevents invalid environment variable names (empty or containing `=`) at compile time rather than runtime.
-- **Two-step capture pattern**: The `.capture_stdout()` and `.capture_stderr()` methods return a `Capture` builder, which provides `.bytes()` and `.string()` methods. This separates stream selection from output format.
+- **Typestate capture pattern**: Stream capture methods transition between builder types (`Command` -> `CaptureSingle<S>` -> `CaptureAll`), enforcing valid API usage at compile time. You can't call `.bytes()` on a double-capture builder, and you can't accidentally forget which stream you're capturing.
 - **Default exit code checking**: Capture methods treat non-zero exit as an error by default, preventing accidentally ignored failures. Use `.accept_nonzero_exit()` to opt out when needed.
 - **Fluent API**: Chain configuration methods naturally without `&mut self` gymnastics.
 
 ## Usage
 
 ```rust
-use cmd_proc::{Command, Capture, Output, EnvVariableName};
+#[tokio::main(flavor = "current_thread")]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    use cmd_proc::Command;
 
-// Capture stdout as string (two-step pattern)
-let sha = Command::new("git")
-    .arguments(["rev-parse", "HEAD"])
-    .capture_stdout()
-    .string().await?;
+    // Capture stdout as string
+    let output = Command::new("echo")
+        .argument("hello")
+        .stdout_capture()
+        .string().await?;
+    assert_eq!(output, "hello\n");
 
-// Capture stderr as bytes
-let errors = Command::new("cargo")
-    .argument("build")
-    .capture_stderr()
-    .bytes().await?;
+    // Capture stderr as bytes
+    let errors = Command::new("sh")
+        .arguments(["-c", "echo err >&2"])
+        .stderr_capture()
+        .bytes().await?;
+    assert_eq!(errors, b"err\n");
 
-// Run without capturing (just check success)
-Command::new("cargo")
-    .arguments(["fmt", "--check"])
-    .status().await?;
+    // Run without capturing (just check success)
+    Command::new("true")
+        .status().await?;
 
-// Pass stdin data
-let output = Command::new("cat")
-    .stdin_bytes(b"hello world")
-    .capture_stdout()
-    .string().await?;
+    // Capture both stdout and stderr
+    let result = Command::new("sh")
+        .arguments(["-c", "echo out; echo err >&2; exit 1"])
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run().await?;
+    assert_eq!(result.stdout, b"out\n");
+    assert_eq!(result.stderr, b"err\n");
 
-// Set environment variables (compile-time validated)
-const MY_VAR: EnvVariableName = EnvVariableName::from_static_or_panic("MY_VAR");
-Command::new("sh")
-    .arguments(["-c", "echo $MY_VAR"])
-    .env(&MY_VAR, "value")
-    .status().await?;
+    // Pass stdin data
+    let output = Command::new("cat")
+        .stdin_bytes(b"hello world")
+        .stdout_capture()
+        .string().await?;
+    assert_eq!(output, "hello world");
 
-// Set working directory
-Command::new("cargo")
-    .argument("build")
-    .working_directory("/path/to/project")
-    .status().await?;
+    // Redirect streams to /dev/null
+    Command::new("sh")
+        .arguments(["-c", "echo noise >&2"])
+        .stderr_null()
+        .status().await?;
+    Ok(())
+}
 ```
+
+## Stream Capture Typestate
+
+Stream configuration uses a typestate pattern with three builder types. Each method consumes `self` and returns the appropriate type, enforcing valid transitions at compile time.
+
+### State transition matrix
+
+| From                     | Method              | To                       |
+|--------------------------|---------------------|--------------------------|
+| `Command`                | `.stdout_capture()` | `CaptureSingle<Stdout>`  |
+| `Command`                | `.stderr_capture()` | `CaptureSingle<Stderr>`  |
+| `Command`                | `.stdout_null()`    | `Command`                |
+| `Command`                | `.stderr_null()`    | `Command`                |
+| `Command`                | `.stdout_inherit()` | `Command`                |
+| `Command`                | `.stderr_inherit()` | `Command`                |
+| `CaptureSingle<Stdout>`  | `.stderr_capture()` | `CaptureAll`             |
+| `CaptureSingle<Stdout>`  | `.stderr_null()`    | `CaptureSingle<Stdout>`  |
+| `CaptureSingle<Stdout>`  | `.stderr_inherit()` | `CaptureSingle<Stdout>`  |
+| `CaptureSingle<Stdout>`  | `.stdout_null()`    | `Command`                |
+| `CaptureSingle<Stdout>`  | `.stdout_inherit()` | `Command`                |
+| `CaptureSingle<Stderr>`  | `.stdout_capture()` | `CaptureAll`             |
+| `CaptureSingle<Stderr>`  | `.stdout_null()`    | `CaptureSingle<Stderr>`  |
+| `CaptureSingle<Stderr>`  | `.stdout_inherit()` | `CaptureSingle<Stderr>`  |
+| `CaptureSingle<Stderr>`  | `.stderr_null()`    | `Command`                |
+| `CaptureSingle<Stderr>`  | `.stderr_inherit()` | `Command`                |
+| `CaptureAll`             | `.stdout_null()`    | `CaptureSingle<Stderr>`  |
+| `CaptureAll`             | `.stdout_inherit()` | `CaptureSingle<Stderr>`  |
+| `CaptureAll`             | `.stderr_null()`    | `CaptureSingle<Stdout>`  |
+| `CaptureAll`             | `.stderr_inherit()` | `CaptureSingle<Stdout>`  |
+
+### Terminal methods
+
+| Type               | Method      | Return                                      |
+|--------------------|-------------|---------------------------------------------|
+| `Command`          | `.status()` | `Result<(), CommandError>`                  |
+| `Command`          | `.build()`  | `tokio::process::Command`                   |
+| `CaptureSingle<S>` | `.run()`    | `Result<CaptureSingleResult, CommandError>` |
+| `CaptureSingle<S>` | `.bytes()`  | `Result<Vec<u8>, CommandError>`             |
+| `CaptureSingle<S>` | `.string()` | `Result<String, CommandError>`              |
+| `CaptureAll`       | `.run()`    | `Result<CaptureAllResult, CommandError>`    |
+
+### Result types
+
+- **`CaptureSingleResult`**: `bytes: Vec<u8>`, `status: ExitStatus`
+- **`CaptureAllResult`**: `stdout: Vec<u8>`, `stderr: Vec<u8>`, `status: ExitStatus`
+
+All builders support `.accept_nonzero_exit()` to allow non-zero exit codes without error.
 
 ## Arguments vs Options
 
@@ -97,131 +159,73 @@ In CLI terminology:
 cmd-proc provides methods for both:
 
 ```rust
-// Arguments (positional)
-Command::new("git")
-    .argument("clone")              // single argument
-    .argument(url)                  // another argument
-    .arguments(["--depth", "1"])    // multiple arguments
-    .optional_argument(maybe_path)  // argument only if Some
-    .status().await?;
+#[tokio::main(flavor = "current_thread")]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    use cmd_proc::Command;
 
-// Options (name + value pairs)
-Command::new("git")
-    .argument("commit")
-    .option("--message", "fix bug")           // required option
-    .optional_option("--author", maybe_author) // option only if Some
-    .status().await?;
-```
+    // Arguments (positional)
+    let output = Command::new("echo")
+        .argument("one")                       // single argument
+        .arguments(["two", "three"])           // multiple arguments
+        .optional_argument(Some("four"))       // argument only if Some
+        .optional_argument(None::<&str>)       // skipped when None
+        .stdout_capture()
+        .string().await?;
+    assert_eq!(output, "one two three four\n");
 
-The `option` and `optional_option` methods simplify the common pattern of adding a flag followed by its value:
+    // Options (name + value pairs)
+    let output = Command::new("echo")
+        .option("-n", "hello")                           // required option
+        .optional_option("--unused", None::<&str>)       // skipped when None
+        .stdout_capture()
+        .string().await?;
+    assert_eq!(output, "hello");
 
-```rust
-// Instead of:
-if let Some(author) = maybe_author {
-    command = command.argument("--author").argument(author);
-}
-
-// Use:
-command.optional_option("--author", maybe_author)
-```
-
-## The Capture Pattern
-
-Output capture uses a two-step pattern via the `Capture` struct:
-
-```rust
-Command::new("git")
-    .argument("status")
-    .capture_stdout()  // Returns Capture (selects which stream)
-    .string().await?;        // Executes and returns output in chosen format
-```
-
-The `Capture` struct is returned by `.capture_stdout()` or `.capture_stderr()` and provides:
-- `.bytes()` - Execute and return output as `Vec<u8>`
-- `.string()` - Execute and return output as `String` (with UTF-8 validation)
-- `.accept_nonzero_exit()` - Allow non-zero exit codes without returning an error
-
-For capturing both streams simultaneously, use `.capture_stderr_stdout()` which returns a `CaptureAllStreams` builder:
-
-```rust
-let output = Command::new("my-command")
-    .capture_stderr_stdout()
-    .accept_nonzero_exit()  // Optional: don't treat non-zero exit as error
-    .output().await?;
-
-println!("stdout: {:?}", output.stdout);
-println!("stderr: {:?}", output.stderr);
-```
-
-This separation makes the API explicit about which stream(s) are being captured and in what format.
-
-## Full Output Access
-
-When you need both streams or want to handle failures with stderr access, use `.output()`:
-
-```rust
-let output = Command::new("git")
-    .arguments(["show", "some-ref:path"])
-    .output().await?;
-
-if output.success() {
-    let content = output.into_stdout_string()?;
-    // use content
-} else {
-    let error_message = output.into_stderr_string()?;
-    // handle error with stderr
+    // optional_option simplifies the common flag + value pattern:
+    let maybe_author: Option<&str> = Some("Alice");
+    let output = Command::new("echo")
+        .argument("-n")
+        .optional_option("--author", maybe_author)
+        .stdout_capture()
+        .string().await?;
+    assert_eq!(output, "--author Alice");
+    Ok(())
 }
 ```
 
-The `Output` struct provides:
-- `stdout: Vec<u8>` - Raw stdout bytes
-- `stderr: Vec<u8>` - Raw stderr bytes
-- `status: ExitStatus` - Exit status
-- `.success()` - Check if command succeeded
-- `.into_stdout_string()` - Convert stdout to String (strict UTF-8, consumes self)
-- `.into_stderr_string()` - Convert stderr to String (strict UTF-8, consumes self)
+## Native Process Access
 
-Unlike `Capture`, `.output()` does not treat non-zero exit as an error - it only fails on IO errors.
-
-## Spawning Long-Running Processes
-
-For processes that need interactive stdin/stdout or run in the background, use `.spawn()`:
+For interactive processes or other use cases beyond capture, use `.build()` to get
+the underlying `tokio::process::Command`:
 
 ```rust
-use cmd_proc::{Command, Stdio};
-use tokio::io::AsyncBufReadExt;
+#[tokio::main(flavor = "current_thread")]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    use cmd_proc::Command;
+    use tokio::io::AsyncBufReadExt;
 
-let mut child = Command::new("my-server")
-    .argument("--port=8080")
-    .spawn()
-    .stdin(Stdio::Piped)
-    .stdout(Stdio::Piped)
-    .stderr(Stdio::Inherit)
-    .run()?;
+    let mut child = Command::new("echo")
+        .argument("hello")
+        .build()
+        .stdin(std::process::Stdio::piped())
+        .stdout(std::process::Stdio::piped())
+        .spawn()?;
 
-// Read from stdout
-let line = tokio::io::BufReader::new(child.stdout().unwrap())
-    .lines()
-    .next()
-    .unwrap()?;
+    // Read a line from stdout
+    let mut line = String::new();
+    tokio::io::BufReader::new(child.stdout.as_mut().unwrap())
+        .read_line(&mut line)
+        .await?;
+    assert_eq!(line, "hello\n");
 
-// Close stdin to signal shutdown
-drop(child.take_stdin());
+    // Close stdin to signal shutdown
+    drop(child.stdin.take());
 
-// Wait for exit
-let status = child.wait().await?;
+    // Wait for exit
+    child.wait().await?;
+    Ok(())
+}
 ```
-
-The `Stdio` enum controls stream handling:
-- `Stdio::Piped` - Capture the stream for reading/writing
-- `Stdio::Inherit` - Pass through to parent process (default)
-- `Stdio::Null` - Redirect to /dev/null
-
-The `Child` struct provides:
-- `.stdin()`, `.stdout()`, `.stderr()` - Mutable references to handles
-- `.take_stdin()`, `.take_stdout()`, `.take_stderr()` - Take ownership of handles
-- `.wait()` - Wait for exit, returns `ExitStatus`
-- `.wait_with_output()` - Wait and collect output as `Output`
 
 ## Environment Variables
 
@@ -233,44 +237,58 @@ Environment variable names are validated via `EnvVariableName`:
 `std::process::Command::env()` silently accepts invalid names, causing mysterious runtime failures. `EnvVariableName` catches errors at compile time (when `from_static_or_panic` is used in a `const` context) or parse time (`FromStr`).
 
 ```rust
-use cmd_proc::{Command, EnvVariableName};
+#[tokio::main(flavor = "current_thread")]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    use cmd_proc::{Command, EnvVariableName};
 
-// Compile-time validated (panics at compile time if invalid)
-const MY_VAR: EnvVariableName = EnvVariableName::from_static_or_panic("MY_VAR");
-Command::new("sh")
-    .env(&MY_VAR, "value")
-    .status().await?;
+    // Compile-time validated (panics at compile time if invalid)
+    const MY_VAR: EnvVariableName = EnvVariableName::from_static_or_panic("MY_VAR");
+    let output = Command::new("sh")
+        .arguments(["-c", "echo $MY_VAR"])
+        .env(&MY_VAR, "hello")
+        .stdout_capture()
+        .string().await?;
+    assert_eq!(output, "hello\n");
 
-// Set multiple variables from an iterator
-let vars = [
-    (EnvVariableName::from_static_or_panic("FOO"), "1"),
-    (EnvVariableName::from_static_or_panic("BAR"), "2"),
-];
-Command::new("sh")
-    .envs(vars)
-    .status().await?;
+    // Set multiple variables from an iterator
+    let vars = [
+        (EnvVariableName::from_static_or_panic("FOO"), "1"),
+        (EnvVariableName::from_static_or_panic("BAR"), "2"),
+    ];
+    Command::new("sh")
+        .arguments(["-c", "true"])
+        .envs(vars)
+        .status().await?;
 
-// Remove a variable from the child environment
-const PATH: EnvVariableName = EnvVariableName::from_static_or_panic("PATH");
-Command::new("sh")
-    .env_remove(&PATH)
-    .status().await?;
+    // Remove a variable from the child environment
+    const PATH: EnvVariableName = EnvVariableName::from_static_or_panic("PATH");
+    Command::new("sh")
+        .arguments(["-c", "true"])
+        .env_remove(&PATH)
+        .status().await?;
+    Ok(())
+}
 ```
 
 ## Error Handling
 
-`CommandError` unifies IO errors (command not found, permission denied) and non-zero exit status:
+`CommandError` has two mutually exclusive failure modes: an IO error
+(command not found, permission denied) or a non-zero exit status — never both.
 
 ```rust
-match Command::new("might-fail").status().await {
-    Ok(()) => println!("Success"),
-    Err(e) => {
-        if let Some(io_error) = &e.io_error {
-            eprintln!("IO error: {io_error}");
-        }
-        if let Some(exit_status) = &e.exit_status {
-            eprintln!("Exit code: {:?}", exit_status.code());
-        }
-    }
+#[tokio::main(flavor = "current_thread")]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    use cmd_proc::Command;
+
+    // IO error — command not found
+    let error = Command::new("./nonexistent").status().await.unwrap_err();
+    assert!(error.io_error.is_some());
+    assert!(error.exit_status.is_none());
+
+    // Non-zero exit status
+    let error = Command::new("false").status().await.unwrap_err();
+    assert!(error.io_error.is_none());
+    assert!(error.exit_status.is_some());
+    Ok(())
 }
 ```

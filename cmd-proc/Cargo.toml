@@ -1,6 +1,6 @@
 [package]
 name = "cmd-proc"
-version = "0.3.0"
+version = "0.4.0"
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true
@@ -21,3 +21,6 @@ workspace = true
 log.workspace = true
 thiserror.workspace = true
 tokio = { workspace = true, features = ["process", "io-util"] }
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["rt", "macros"] }

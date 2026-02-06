@@ -234,11 +234,13 @@ async fn test_run_env() {
                 .argument("(env | grep '^PG' | sort) && echo DATABASE_URL=$DATABASE_URL")
                 .envs(container.pg_env())
                 .env(&DATABASE_URL, container.database_url())
-                .output()
+                .stdout_capture()
+                .stderr_capture()
+                .run()
                 .await
                 .unwrap();
 
-            let actual = output.into_stdout_string().unwrap();
+            let actual = String::from_utf8(output.stdout).unwrap();
 
             // Generate expected output from config
             let pg_env = container.pg_env();

@@ -91,7 +91,7 @@ async fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<b
         .verify()
         .pattern(&format!("refs/heads/{branch}"))
         .build()
-        .capture_stdout()
+        .stdout_capture()
         .bytes()
         .await;
 
@@ -105,7 +105,7 @@ async fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<b
         .remote(&ORIGIN)
         .pattern(branch.as_str())
         .build()
-        .capture_stdout()
+        .stdout_capture()
         .string()
         .await?;
 
@@ -119,7 +119,7 @@ async fn get_remote_default_branch(bare_path: &std::path::Path) -> Result<Base, 
         .remote(&ORIGIN)
         .pattern("HEAD")
         .build()
-        .capture_stdout()
+        .stdout_capture()
         .string()
         .await?;
 

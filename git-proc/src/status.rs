@@ -63,7 +63,7 @@ mod tests {
     async fn test_status() {
         let output = Status::new()
             .build()
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .unwrap();
@@ -76,7 +76,7 @@ mod tests {
         let output = Status::new()
             .porcelain()
             .build()
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .unwrap();

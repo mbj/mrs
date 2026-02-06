@@ -27,19 +27,22 @@ pub async fn run_pg_ephemeral(args: &[&str], current_dir: &std::path::Path) -> S
     let output = cmd_proc::Command::new(pg_ephemeral_bin)
         .arguments(args)
         .working_directory(current_dir)
-        .output()
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
         .await
         .unwrap();
 
     assert!(
-        output.success(),
+        output.status.success(),
         "pg-ephemeral {} failed:\nstdout:\n{}\nstderr:\n{}",
         args.join(" "),
         String::from_utf8_lossy(&output.stdout),
         String::from_utf8_lossy(&output.stderr)
     );
 
-    output.into_stdout_string().unwrap()
+    String::from_utf8(output.stdout).unwrap()
 }
 
 /// A temporary directory for testing.
@@ -154,7 +157,7 @@ impl TestGitRepo {
             .repo_path(&self.path)
             .rev("HEAD")
             .build()
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .unwrap()
@@ -187,7 +190,7 @@ pub async fn test_database_url_integration(language: &str, image_dir: &str) {
                 .argument("--tag")
                 .argument(&image_tag)
                 .argument(image_dir)
-                .capture_stdout()
+                .stdout_capture()
                 .bytes()
                 .await
                 .unwrap();
@@ -204,7 +207,7 @@ pub async fn test_database_url_integration(language: &str, image_dir: &str) {
                 .argument("--env")
                 .argument(format!("DATABASE_URL={database_url}"))
                 .argument(&image_tag)
-                .capture_stdout()
+                .stdout_capture()
                 .string()
                 .await
                 .unwrap_or_else(|error| panic!("Failed to run {language} container: {error:?}"));

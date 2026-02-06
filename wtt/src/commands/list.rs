@@ -34,7 +34,7 @@ async fn list_repo(config: &Config, repo: &RepoName) -> Result<(), Error> {
     let output = git_proc::worktree::list()
         .repo_path(&bare_path)
         .build()
-        .capture_stdout()
+        .stdout_capture()
         .string()
         .await?;
 

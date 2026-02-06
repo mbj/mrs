@@ -1,5 +1,8 @@
+#![doc = include_str!("../README.md")]
+
 use std::borrow::Cow;
 use std::ffi::OsStr;
+use std::marker::PhantomData;
 
 #[derive(Debug, thiserror::Error)]
 #[error("Command execution failed: io_error={io_error:?}, exit_status={exit_status:?}")]
@@ -150,205 +153,37 @@ const fn validate_env_variable_name(s: &str) -> Result<(), EnvVariableNameError>
     Ok(())
 }
 
-/// Output from a command execution, including both streams and exit status.
-///
-/// Unlike `Capture`, this does not treat non-zero exit as an error.
-/// Use this when you need to inspect stderr on failure.
+mod sealed {
+    pub trait Sealed {}
+}
+
+/// Marker trait for stream type parameters.
+pub trait StreamMarker: sealed::Sealed {}
+
+/// Marker type for stdout stream.
+pub struct Stdout;
+
+/// Marker type for stderr stream.
+pub struct Stderr;
+
+impl sealed::Sealed for Stdout {}
+impl sealed::Sealed for Stderr {}
+impl StreamMarker for Stdout {}
+impl StreamMarker for Stderr {}
+
+/// Result from capturing a single stream.
 #[derive(Debug)]
-pub struct Output {
-    pub stdout: Vec<u8>,
-    pub stderr: Vec<u8>,
+pub struct CaptureSingleResult {
+    pub bytes: Vec<u8>,
     pub status: std::process::ExitStatus,
 }
 
-impl Output {
-    /// Returns true if the command exited successfully.
-    #[must_use]
-    pub fn success(&self) -> bool {
-        self.status.success()
-    }
-
-    /// Converts stdout to a UTF-8 string.
-    ///
-    /// # Errors
-    ///
-    /// Returns an error if stdout is not valid UTF-8.
-    pub fn into_stdout_string(self) -> Result<String, std::string::FromUtf8Error> {
-        String::from_utf8(self.stdout)
-    }
-
-    /// Converts stderr to a UTF-8 string.
-    ///
-    /// # Errors
-    ///
-    /// Returns an error if stderr is not valid UTF-8.
-    pub fn into_stderr_string(self) -> Result<String, std::string::FromUtf8Error> {
-        String::from_utf8(self.stderr)
-    }
-}
-
-/// Which stream to capture from a command.
-#[derive(Clone, Copy)]
-enum CaptureSingleStream {
-    Stdout,
-    Stderr,
-}
-
-/// Stdio configuration for spawned processes.
-#[derive(Clone, Copy, Default)]
-pub enum Stdio {
-    /// Pipe the stream, allowing reading/writing from the parent process.
-    Piped,
-    /// Inherit the stream from the parent process.
-    #[default]
-    Inherit,
-    /// Redirect to /dev/null.
-    Null,
-}
-
-impl From<Stdio> for std::process::Stdio {
-    fn from(stdio: Stdio) -> Self {
-        match stdio {
-            Stdio::Piped => std::process::Stdio::piped(),
-            Stdio::Inherit => std::process::Stdio::inherit(),
-            Stdio::Null => std::process::Stdio::null(),
-        }
-    }
-}
-
-/// Builder for spawning a child process.
-///
-/// Created by [`Command::spawn`]. Configure stdin/stdout/stderr, then call [`Spawn::run`].
-pub struct Spawn {
-    command: Command,
-    stdin: Stdio,
-    stdout: Stdio,
-    stderr: Stdio,
-}
-
-impl Spawn {
-    fn new(command: Command) -> Self {
-        Self {
-            command,
-            stdin: Stdio::Inherit,
-            stdout: Stdio::Inherit,
-            stderr: Stdio::Inherit,
-        }
-    }
-
-    /// Configure stdin for the child process.
-    #[must_use]
-    pub fn stdin(mut self, stdio: Stdio) -> Self {
-        self.stdin = stdio;
-        self
-    }
-
-    /// Configure stdout for the child process.
-    #[must_use]
-    pub fn stdout(mut self, stdio: Stdio) -> Self {
-        self.stdout = stdio;
-        self
-    }
-
-    /// Configure stderr for the child process.
-    #[must_use]
-    pub fn stderr(mut self, stdio: Stdio) -> Self {
-        self.stderr = stdio;
-        self
-    }
-
-    /// Spawn the child process.
-    pub fn run(mut self) -> Result<Child, CommandError> {
-        log::debug!("{:#?}", self.command.inner);
-
-        self.command.inner.stdin(self.stdin);
-        self.command.inner.stdout(self.stdout);
-        self.command.inner.stderr(self.stderr);
-
-        let inner = self
-            .command
-            .inner
-            .spawn()
-            .map_err(|io_error| CommandError {
-                io_error: Some(io_error),
-                exit_status: None,
-            })?;
-
-        Ok(Child { inner })
-    }
-}
-
-/// A running child process.
-///
-/// Created by [`Spawn::run`].
+/// Result from capturing both stdout and stderr.
 #[derive(Debug)]
-pub struct Child {
-    inner: tokio::process::Child,
-}
-
-impl Child {
-    /// Returns a mutable reference to the child's stdin handle.
-    pub fn stdin(&mut self) -> Option<&mut tokio::process::ChildStdin> {
-        self.inner.stdin.as_mut()
-    }
-
-    /// Returns a mutable reference to the child's stdout handle.
-    pub fn stdout(&mut self) -> Option<&mut tokio::process::ChildStdout> {
-        self.inner.stdout.as_mut()
-    }
-
-    /// Returns a mutable reference to the child's stderr handle.
-    pub fn stderr(&mut self) -> Option<&mut tokio::process::ChildStderr> {
-        self.inner.stderr.as_mut()
-    }
-
-    /// Takes ownership of the child's stdin handle.
-    pub fn take_stdin(&mut self) -> Option<tokio::process::ChildStdin> {
-        self.inner.stdin.take()
-    }
-
-    /// Takes ownership of the child's stdout handle.
-    pub fn take_stdout(&mut self) -> Option<tokio::process::ChildStdout> {
-        self.inner.stdout.take()
-    }
-
-    /// Takes ownership of the child's stderr handle.
-    pub fn take_stderr(&mut self) -> Option<tokio::process::ChildStderr> {
-        self.inner.stderr.take()
-    }
-
-    /// Waits for the child to exit and returns its exit status.
-    pub async fn wait(mut self) -> Result<std::process::ExitStatus, CommandError> {
-        self.inner.wait().await.map_err(|io_error| CommandError {
-            io_error: Some(io_error),
-            exit_status: None,
-        })
-    }
-
-    /// Simultaneously waits for the child to exit and collects all output.
-    pub async fn wait_with_output(self) -> Result<Output, CommandError> {
-        let output = self
-            .inner
-            .wait_with_output()
-            .await
-            .map_err(|io_error| CommandError {
-                io_error: Some(io_error),
-                exit_status: None,
-            })?;
-
-        Ok(Output {
-            stdout: output.stdout,
-            stderr: output.stderr,
-            status: output.status,
-        })
-    }
-}
-
-/// Builder for capturing command output.
-pub struct Capture {
-    command: Command,
-    stream: CaptureSingleStream,
-    accept_nonzero_exit: bool,
+pub struct CaptureAllResult {
+    pub stdout: Vec<u8>,
+    pub stderr: Vec<u8>,
+    pub status: std::process::ExitStatus,
 }
 
 async fn run_capture(
@@ -380,43 +215,178 @@ async fn run_capture(
     }
 }
 
-impl Capture {
-    fn new(command: Command, stream: CaptureSingleStream) -> Self {
-        Self {
-            command,
-            stream,
-            accept_nonzero_exit: false,
-        }
-    }
+/// Builder for capturing a single stream from a command.
+///
+/// The type parameter `S` indicates which stream is being captured:
+/// `Stdout` or `Stderr`.
+pub struct CaptureSingle<S: StreamMarker> {
+    inner: tokio::process::Command,
+    stdin_data: Option<Vec<u8>>,
+    accept_nonzero_exit: bool,
+    _marker: PhantomData<S>,
+}
 
+impl<S: StreamMarker> CaptureSingle<S> {
     /// Accept non-zero exit status instead of treating it as an error.
     #[must_use]
     pub fn accept_nonzero_exit(mut self) -> Self {
         self.accept_nonzero_exit = true;
         self
     }
+}
 
-    /// Execute the command and return captured output as bytes.
-    pub async fn bytes(mut self) -> Result<Vec<u8>, CommandError> {
-        use std::process::Stdio;
+impl CaptureSingle<Stdout> {
+    /// Also capture stderr, transitioning to [`CaptureAll`].
+    #[must_use]
+    pub fn stderr_capture(mut self) -> CaptureAll {
+        self.inner.stdout(std::process::Stdio::piped());
+        self.inner.stderr(std::process::Stdio::piped());
+        CaptureAll {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+            accept_nonzero_exit: self.accept_nonzero_exit,
+        }
+    }
 
-        let (stdout, stderr) = match self.stream {
-            CaptureSingleStream::Stdout => (Stdio::piped(), Stdio::inherit()),
-            CaptureSingleStream::Stderr => (Stdio::inherit(), Stdio::piped()),
+    /// Redirect stderr to /dev/null.
+    #[must_use]
+    pub fn stderr_null(mut self) -> Self {
+        self.inner.stderr(std::process::Stdio::null());
+        self
+    }
+
+    /// Inherit stderr from the parent process (default).
+    #[must_use]
+    pub fn stderr_inherit(mut self) -> Self {
+        self.inner.stderr(std::process::Stdio::inherit());
+        self
+    }
+
+    /// Stop capturing stdout (null), transitioning back to [`Command`].
+    #[must_use]
+    pub fn stdout_null(mut self) -> Command {
+        self.inner.stdout(std::process::Stdio::null());
+        Command {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+        }
+    }
+
+    /// Stop capturing stdout (inherit), transitioning back to [`Command`].
+    #[must_use]
+    pub fn stdout_inherit(mut self) -> Command {
+        self.inner.stdout(std::process::Stdio::inherit());
+        Command {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+        }
+    }
+
+    /// Execute the command and return captured stdout.
+    pub async fn run(mut self) -> Result<CaptureSingleResult, CommandError> {
+        self.inner.stdout(std::process::Stdio::piped());
+
+        let command = Command {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
         };
 
-        self.command.inner.stdout(stdout);
-        self.command.inner.stderr(stderr);
+        let output = run_capture(command, self.accept_nonzero_exit).await?;
 
-        let output = run_capture(self.command, self.accept_nonzero_exit).await?;
-
-        Ok(match self.stream {
-            CaptureSingleStream::Stdout => output.stdout,
-            CaptureSingleStream::Stderr => output.stderr,
+        Ok(CaptureSingleResult {
+            bytes: output.stdout,
+            status: output.status,
         })
     }
 
-    /// Execute the command and return captured output as a UTF-8 string.
+    /// Execute the command and return captured stdout as bytes.
+    pub async fn bytes(self) -> Result<Vec<u8>, CommandError> {
+        Ok(self.run().await?.bytes)
+    }
+
+    /// Execute the command and return captured stdout as a UTF-8 string.
+    pub async fn string(self) -> Result<String, CommandError> {
+        let bytes = self.bytes().await?;
+        String::from_utf8(bytes).map_err(|utf8_error| CommandError {
+            io_error: Some(std::io::Error::new(
+                std::io::ErrorKind::InvalidData,
+                utf8_error,
+            )),
+            exit_status: None,
+        })
+    }
+}
+
+impl CaptureSingle<Stderr> {
+    /// Also capture stdout, transitioning to [`CaptureAll`].
+    #[must_use]
+    pub fn stdout_capture(mut self) -> CaptureAll {
+        self.inner.stdout(std::process::Stdio::piped());
+        self.inner.stderr(std::process::Stdio::piped());
+        CaptureAll {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+            accept_nonzero_exit: self.accept_nonzero_exit,
+        }
+    }
+
+    /// Redirect stdout to /dev/null.
+    #[must_use]
+    pub fn stdout_null(mut self) -> Self {
+        self.inner.stdout(std::process::Stdio::null());
+        self
+    }
+
+    /// Inherit stdout from the parent process (default).
+    #[must_use]
+    pub fn stdout_inherit(mut self) -> Self {
+        self.inner.stdout(std::process::Stdio::inherit());
+        self
+    }
+
+    /// Stop capturing stderr (null), transitioning back to [`Command`].
+    #[must_use]
+    pub fn stderr_null(mut self) -> Command {
+        self.inner.stderr(std::process::Stdio::null());
+        Command {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+        }
+    }
+
+    /// Stop capturing stderr (inherit), transitioning back to [`Command`].
+    #[must_use]
+    pub fn stderr_inherit(mut self) -> Command {
+        self.inner.stderr(std::process::Stdio::inherit());
+        Command {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+        }
+    }
+
+    /// Execute the command and return captured stderr.
+    pub async fn run(mut self) -> Result<CaptureSingleResult, CommandError> {
+        self.inner.stderr(std::process::Stdio::piped());
+
+        let command = Command {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+        };
+
+        let output = run_capture(command, self.accept_nonzero_exit).await?;
+
+        Ok(CaptureSingleResult {
+            bytes: output.stderr,
+            status: output.status,
+        })
+    }
+
+    /// Execute the command and return captured stderr as bytes.
+    pub async fn bytes(self) -> Result<Vec<u8>, CommandError> {
+        Ok(self.run().await?.bytes)
+    }
+
+    /// Execute the command and return captured stderr as a UTF-8 string.
     pub async fn string(self) -> Result<String, CommandError> {
         let bytes = self.bytes().await?;
         String::from_utf8(bytes).map_err(|utf8_error| CommandError {
@@ -430,19 +400,13 @@ impl Capture {
 }
 
 /// Builder for capturing both stdout and stderr from a command.
-pub struct CaptureAllStreams {
-    command: Command,
+pub struct CaptureAll {
+    inner: tokio::process::Command,
+    stdin_data: Option<Vec<u8>>,
     accept_nonzero_exit: bool,
 }
 
-impl CaptureAllStreams {
-    fn new(command: Command) -> Self {
-        Self {
-            command,
-            accept_nonzero_exit: false,
-        }
-    }
-
+impl CaptureAll {
     /// Accept non-zero exit status instead of treating it as an error.
     #[must_use]
     pub fn accept_nonzero_exit(mut self) -> Self {
@@ -450,16 +414,67 @@ impl CaptureAllStreams {
         self
     }
 
-    /// Execute the command and return captured output.
-    pub async fn output(mut self) -> Result<Output, CommandError> {
-        use std::process::Stdio;
+    /// Stop capturing stdout (null), transitioning to [`CaptureSingle<Stderr>`].
+    #[must_use]
+    pub fn stdout_null(mut self) -> CaptureSingle<Stderr> {
+        self.inner.stdout(std::process::Stdio::null());
+        CaptureSingle {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+            accept_nonzero_exit: self.accept_nonzero_exit,
+            _marker: PhantomData,
+        }
+    }
 
-        self.command.inner.stdout(Stdio::piped());
-        self.command.inner.stderr(Stdio::piped());
+    /// Stop capturing stdout (inherit), transitioning to [`CaptureSingle<Stderr>`].
+    #[must_use]
+    pub fn stdout_inherit(mut self) -> CaptureSingle<Stderr> {
+        self.inner.stdout(std::process::Stdio::inherit());
+        CaptureSingle {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+            accept_nonzero_exit: self.accept_nonzero_exit,
+            _marker: PhantomData,
+        }
+    }
 
-        let output = run_capture(self.command, self.accept_nonzero_exit).await?;
+    /// Stop capturing stderr (null), transitioning to [`CaptureSingle<Stdout>`].
+    #[must_use]
+    pub fn stderr_null(mut self) -> CaptureSingle<Stdout> {
+        self.inner.stderr(std::process::Stdio::null());
+        CaptureSingle {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+            accept_nonzero_exit: self.accept_nonzero_exit,
+            _marker: PhantomData,
+        }
+    }
 
-        Ok(Output {
+    /// Stop capturing stderr (inherit), transitioning to [`CaptureSingle<Stdout>`].
+    #[must_use]
+    pub fn stderr_inherit(mut self) -> CaptureSingle<Stdout> {
+        self.inner.stderr(std::process::Stdio::inherit());
+        CaptureSingle {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+            accept_nonzero_exit: self.accept_nonzero_exit,
+            _marker: PhantomData,
+        }
+    }
+
+    /// Execute the command and return captured output from both streams.
+    pub async fn run(mut self) -> Result<CaptureAllResult, CommandError> {
+        self.inner.stdout(std::process::Stdio::piped());
+        self.inner.stderr(std::process::Stdio::piped());
+
+        let command = Command {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+        };
+
+        let output = run_capture(command, self.accept_nonzero_exit).await?;
+
+        Ok(CaptureAllResult {
             stdout: output.stdout,
             stderr: output.stderr,
             status: output.status,
@@ -507,9 +522,10 @@ impl Command {
 
     /// Adds a flag argument only if the condition is `true`.
     ///
-    /// ```ignore
-    /// command.optional_flag(verbose, "--verbose")
-    /// // adds "--verbose" only if verbose is true
+    /// ```rust
+    /// let verbose = true;
+    /// cmd_proc::Command::new("echo")
+    ///     .optional_flag(verbose, "--verbose");
     /// ```
     pub fn optional_flag(mut self, condition: bool, flag: impl AsRef<OsStr>) -> Self {
         if condition {
@@ -520,9 +536,10 @@ impl Command {
 
     /// Adds a CLI option (name + value).
     ///
-    /// ```ignore
-    /// command.option("--message", "hello")
-    /// // equivalent to: command.argument("--message").argument("hello")
+    /// ```rust
+    /// cmd_proc::Command::new("git")
+    ///     .option("--message", "hello");
+    /// // equivalent to: .argument("--message").argument("hello")
     /// ```
     pub fn option(mut self, name: impl AsRef<OsStr>, value: impl AsRef<OsStr>) -> Self {
         self.inner.arg(name);
@@ -532,9 +549,10 @@ impl Command {
 
     /// Adds a CLI option (name + value) only if the value is `Some`.
     ///
-    /// ```ignore
-    /// command.optional_option("--name", optional)
-    /// // adds "--name <value>" only if optional is Some
+    /// ```rust
+    /// cmd_proc::Command::new("git")
+    ///     .optional_option("--author", Some("Alice"));
+    /// // adds "--author Alice" only if Some
     /// ```
     pub fn optional_option(
         mut self,
@@ -589,90 +607,61 @@ impl Command {
 
     /// Capture stdout from this command.
     #[must_use]
-    pub fn capture_stdout(self) -> Capture {
-        Capture::new(self, CaptureSingleStream::Stdout)
+    pub fn stdout_capture(self) -> CaptureSingle<Stdout> {
+        CaptureSingle {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+            accept_nonzero_exit: false,
+            _marker: PhantomData,
+        }
     }
 
     /// Capture stderr from this command.
     #[must_use]
-    pub fn capture_stderr(self) -> Capture {
-        Capture::new(self, CaptureSingleStream::Stderr)
-    }
-
-    /// Capture both stdout and stderr from this command.
-    #[must_use]
-    pub fn capture_stderr_stdout(self) -> CaptureAllStreams {
-        CaptureAllStreams::new(self)
-    }
-
-    /// Spawn the command as a child process.
-    ///
-    /// Returns a [`Spawn`] builder to configure stdin/stdout/stderr before running.
-    ///
-    /// # Example
-    ///
-    /// ```no_run
-    /// use cmd_proc::{Command, Stdio};
-    /// use tokio::io::AsyncBufReadExt;
-    ///
-    /// # async fn example() -> Result<(), cmd_proc::CommandError> {
-    /// let mut child = Command::new("server")
-    ///     .argument("--port=8080")
-    ///     .spawn()
-    ///     .stdin(Stdio::Piped)
-    ///     .stdout(Stdio::Piped)
-    ///     .stderr(Stdio::Inherit)
-    ///     .run()
-    ///     .unwrap();
-    ///
-    /// // Read a line from stdout
-    /// let mut line = String::new();
-    /// tokio::io::BufReader::new(child.stdout().unwrap())
-    ///     .read_line(&mut line)
-    ///     .await
-    ///     .unwrap();
-    ///
-    /// // Close stdin to signal the child to exit
-    /// drop(child.take_stdin());
-    /// child.wait().await.unwrap();
-    /// # Ok(())
-    /// # }
-    /// ```
-    #[must_use]
-    pub fn spawn(self) -> Spawn {
-        Spawn::new(self)
-    }
-
-    /// Execute the command and return full output regardless of exit status.
-    ///
-    /// Unlike `stdout()` and `stderr()`, this does not treat non-zero exit as an error.
-    /// Use this when you need to inspect both streams or handle failure cases with stderr.
-    pub async fn output(mut self) -> Result<Output, CommandError> {
-        use std::process::Stdio;
-
-        log::debug!("{:#?}", self.inner);
-
-        self.inner.stdout(Stdio::piped());
-        self.inner.stderr(Stdio::piped());
-
-        if self.stdin_data.is_some() {
-            self.inner.stdin(Stdio::piped());
+    pub fn stderr_capture(self) -> CaptureSingle<Stderr> {
+        CaptureSingle {
+            inner: self.inner,
+            stdin_data: self.stdin_data,
+            accept_nonzero_exit: false,
+            _marker: PhantomData,
         }
+    }
 
-        let start = std::time::Instant::now();
+    /// Redirect stdout to /dev/null.
+    #[must_use]
+    pub fn stdout_null(mut self) -> Self {
+        self.inner.stdout(std::process::Stdio::null());
+        self
+    }
 
-        let child = self.inner.spawn().map_err(|io_error| CommandError {
-            io_error: Some(io_error),
-            exit_status: None,
-        })?;
+    /// Redirect stderr to /dev/null.
+    #[must_use]
+    pub fn stderr_null(mut self) -> Self {
+        self.inner.stderr(std::process::Stdio::null());
+        self
+    }
 
-        let output = run_and_wait(child, self.stdin_data, start).await?;
+    /// Inherit stdout from the parent process (default).
+    #[must_use]
+    pub fn stdout_inherit(mut self) -> Self {
+        self.inner.stdout(std::process::Stdio::inherit());
+        self
+    }
 
-        Ok(Output {
-            stdout: output.stdout,
-            stderr: output.stderr,
-            status: output.status,
-        })
+    /// Inherit stderr from the parent process (default).
+    #[must_use]
+    pub fn stderr_inherit(mut self) -> Self {
+        self.inner.stderr(std::process::Stdio::inherit());
+        self
+    }
+
+    /// Consume the builder and return the underlying `tokio::process::Command`.
+    ///
+    /// Use this when you need full control over the child process (e.g.
+    /// interactive stdin/stdout piping) beyond what the capture API provides.
+    #[must_use]
+    pub fn build(self) -> tokio::process::Command {
+        self.inner
     }
 
     /// Execute the command and return success or an error.
@@ -714,7 +703,7 @@ mod tests {
         assert_eq!(
             Command::new("echo")
                 .argument("hello")
-                .capture_stdout()
+                .stdout_capture()
                 .bytes()
                 .await
                 .unwrap(),
@@ -726,7 +715,7 @@ mod tests {
     async fn test_stdout_bytes_nonzero_exit() {
         let error = Command::new("sh")
             .arguments(["-c", "exit 42"])
-            .capture_stdout()
+            .stdout_capture()
             .bytes()
             .await
             .unwrap_err();
@@ -740,7 +729,7 @@ mod tests {
     #[tokio::test]
     async fn test_stdout_bytes_io_error() {
         let error = Command::new("./nonexistent")
-            .capture_stdout()
+            .stdout_capture()
             .bytes()
             .await
             .unwrap_err();
@@ -754,7 +743,7 @@ mod tests {
         assert_eq!(
             Command::new("echo")
                 .argument("hello")
-                .capture_stdout()
+                .stdout_capture()
                 .string()
                 .await
                 .unwrap(),
@@ -767,7 +756,7 @@ mod tests {
         assert_eq!(
             Command::new("sh")
                 .arguments(["-c", "echo error >&2"])
-                .capture_stderr()
+                .stderr_capture()
                 .bytes()
                 .await
                 .unwrap(),
@@ -780,7 +769,7 @@ mod tests {
         assert_eq!(
             Command::new("sh")
                 .arguments(["-c", "echo error >&2"])
-                .capture_stderr()
+                .stderr_capture()
                 .string()
                 .await
                 .unwrap(),
@@ -845,7 +834,7 @@ mod tests {
         let output = Command::new("sh")
             .arguments(["-c", "echo $MY_VAR"])
             .env(&name, "hello")
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .unwrap();
@@ -856,7 +845,7 @@ mod tests {
     async fn test_stdin_bytes() {
         let output = Command::new("cat")
             .stdin_bytes(b"hello world".as_slice())
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .unwrap();
@@ -867,7 +856,7 @@ mod tests {
     async fn test_stdin_bytes_vec() {
         let output = Command::new("cat")
             .stdin_bytes(vec![104, 105])
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .unwrap();
@@ -875,137 +864,84 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn test_output_success() {
-        let output = Command::new("echo")
+    async fn test_capture_all_success() {
+        let result = Command::new("echo")
             .argument("hello")
-            .output()
+            .stdout_capture()
+            .stderr_capture()
+            .run()
             .await
             .unwrap();
-        assert!(output.success());
-        assert_eq!(output.stdout, b"hello\n");
-        assert!(output.stderr.is_empty());
+        assert!(result.status.success());
+        assert_eq!(result.stdout, b"hello\n");
+        assert!(result.stderr.is_empty());
     }
 
     #[tokio::test]
-    async fn test_output_failure_with_stderr() {
-        let output = Command::new("sh")
+    async fn test_capture_all_failure_with_stderr() {
+        let result = Command::new("sh")
             .arguments(["-c", "echo error >&2; exit 1"])
-            .output()
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
             .await
             .unwrap();
-        assert!(!output.success());
-        assert_eq!(output.into_stderr_string().unwrap(), "error\n");
+        assert!(!result.status.success());
+        assert_eq!(String::from_utf8(result.stderr).unwrap(), "error\n");
     }
 
     #[tokio::test]
-    async fn test_output_io_error() {
-        let error = Command::new("./nonexistent").output().await.unwrap_err();
+    async fn test_capture_all_io_error() {
+        let error = Command::new("./nonexistent")
+            .stdout_capture()
+            .stderr_capture()
+            .run()
+            .await
+            .unwrap_err();
         assert!(error.io_error.is_some());
         assert_eq!(error.io_error.unwrap().kind(), std::io::ErrorKind::NotFound);
     }
 
     #[tokio::test]
-    async fn test_spawn_with_piped_stdout() {
-        use tokio::io::AsyncReadExt;
+    async fn test_build() {
+        use tokio::io::{AsyncReadExt, AsyncWriteExt};
 
-        let mut child = Command::new("echo")
-            .argument("hello")
+        let mut child = Command::new("cat")
+            .build()
+            .stdin(std::process::Stdio::piped())
+            .stdout(std::process::Stdio::piped())
             .spawn()
-            .stdout(Stdio::Piped)
-            .run()
             .unwrap();
+
+        child
+            .stdin
+            .as_mut()
+            .unwrap()
+            .write_all(b"hello")
+            .await
+            .unwrap();
+        drop(child.stdin.take());
 
         let mut output = String::new();
         child
-            .stdout()
+            .stdout
+            .as_mut()
             .unwrap()
             .read_to_string(&mut output)
             .await
             .unwrap();
-        assert_eq!(output, "hello\n");
+        assert_eq!(output, "hello");
 
         let status = child.wait().await.unwrap();
         assert!(status.success());
-    }
-
-    #[tokio::test]
-    async fn test_spawn_with_piped_stdin() {
-        use tokio::io::AsyncWriteExt;
-
-        let mut child = Command::new("cat")
-            .spawn()
-            .stdin(Stdio::Piped)
-            .stdout(Stdio::Piped)
-            .run()
-            .unwrap();
-
-        child.stdin().unwrap().write_all(b"hello").await.unwrap();
-        drop(child.take_stdin());
-
-        let output = child.wait_with_output().await.unwrap();
-        assert!(output.success());
-        assert_eq!(output.stdout, b"hello");
-    }
-
-    #[tokio::test]
-    async fn test_spawn_wait() {
-        let child = Command::new("true").spawn().run().unwrap();
-
-        let status = child.wait().await.unwrap();
-        assert!(status.success());
-    }
-
-    #[tokio::test]
-    async fn test_spawn_wait_with_output() {
-        let child = Command::new("sh")
-            .arguments(["-c", "echo out; echo err >&2"])
-            .spawn()
-            .stdout(Stdio::Piped)
-            .stderr(Stdio::Piped)
-            .run()
-            .unwrap();
-
-        let output = child.wait_with_output().await.unwrap();
-        assert!(output.success());
-        assert_eq!(output.stdout, b"out\n");
-        assert_eq!(output.stderr, b"err\n");
-    }
-
-    #[tokio::test]
-    async fn test_spawn_io_error() {
-        let error = Command::new("./nonexistent").spawn().run().unwrap_err();
-        assert!(error.io_error.is_some());
-        assert_eq!(error.io_error.unwrap().kind(), std::io::ErrorKind::NotFound);
-    }
-
-    #[tokio::test]
-    async fn test_spawn_take_handles() {
-        use tokio::io::{AsyncReadExt, AsyncWriteExt};
-
-        let mut child = Command::new("cat")
-            .spawn()
-            .stdin(Stdio::Piped)
-            .stdout(Stdio::Piped)
-            .run()
-            .unwrap();
-
-        let mut stdin = child.take_stdin().unwrap();
-        stdin.write_all(b"test").await.unwrap();
-        drop(stdin);
-
-        let mut stdout = child.take_stdout().unwrap();
-        let mut output = String::new();
-        stdout.read_to_string(&mut output).await.unwrap();
-        assert_eq!(output, "test");
-
-        child.wait().await.unwrap();
     }
 
     #[tokio::test]
     async fn test_option() {
         let output = Command::new("echo")
             .option("-n", "hello")
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .unwrap();
@@ -1016,7 +952,7 @@ mod tests {
     async fn test_optional_option_some() {
         let output = Command::new("echo")
             .optional_option("-n", Some("hello"))
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .unwrap();
@@ -1028,7 +964,7 @@ mod tests {
         let output = Command::new("echo")
             .optional_option("-n", None::<&str>)
             .argument("hello")
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .unwrap();
@@ -1040,7 +976,7 @@ mod tests {
         let output = Command::new("echo")
             .optional_flag(true, "-n")
             .argument("hello")
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .unwrap();
@@ -1052,10 +988,72 @@ mod tests {
         let output = Command::new("echo")
             .optional_flag(false, "-n")
             .argument("hello")
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .unwrap();
         assert_eq!(output, "hello\n");
+    }
+
+    #[tokio::test]
+    async fn test_stdout_null() {
+        // stdout_null should discard output; command should still succeed
+        Command::new("echo")
+            .argument("hello")
+            .stdout_null()
+            .status()
+            .await
+            .unwrap();
+    }
+
+    #[tokio::test]
+    async fn test_stderr_null() {
+        // stderr_null should discard stderr; command should still succeed
+        Command::new("sh")
+            .arguments(["-c", "echo error >&2"])
+            .stderr_null()
+            .status()
+            .await
+            .unwrap();
+    }
+
+    #[tokio::test]
+    async fn test_stdout_capture_stderr_null() {
+        let output = Command::new("sh")
+            .arguments(["-c", "echo out; echo err >&2"])
+            .stdout_capture()
+            .stderr_null()
+            .string()
+            .await
+            .unwrap();
+        assert_eq!(output, "out\n");
+    }
+
+    #[tokio::test]
+    async fn test_accept_nonzero_exit_stdout() {
+        let result = Command::new("sh")
+            .arguments(["-c", "echo out; exit 42"])
+            .stdout_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .unwrap();
+        assert!(!result.status.success());
+        assert_eq!(result.bytes, b"out\n");
+    }
+
+    #[tokio::test]
+    async fn test_accept_nonzero_exit_capture_all() {
+        let result = Command::new("sh")
+            .arguments(["-c", "echo out; echo err >&2; exit 42"])
+            .stdout_capture()
+            .stderr_capture()
+            .accept_nonzero_exit()
+            .run()
+            .await
+            .unwrap();
+        assert!(!result.status.success());
+        assert_eq!(result.stdout, b"out\n");
+        assert_eq!(result.stderr, b"err\n");
     }
 }
