@@ -30,9 +30,10 @@ async fn test_run_container_definition() {
     .environment_variable(ENV_POSTGRES_USER, static_user)
     .environment_variable(ENV_PGDATA, pg_ephemeral::container::PGDATA)
     .publish(ociman::Publish::tcp(5432))
-    .run_detached();
+    .run_detached()
+    .await;
 
-    let port = ociman_container.read_host_tcp_port(5432).unwrap();
+    let port = ociman_container.read_host_tcp_port(5432).await.unwrap();
 
     let client_config = pg_client::Config {
         application_name: None,
@@ -65,9 +66,12 @@ async fn test_run_container_definition() {
         .await
         .unwrap();
 
-    ociman_container.stop();
-    ociman_container.commit(&snapshot_image, false).unwrap();
-    ociman_container.remove();
+    ociman_container.stop().await;
+    ociman_container
+        .commit(&snapshot_image, false)
+        .await
+        .unwrap();
+    ociman_container.remove().await;
 
     let definition = pg_ephemeral::container::Definition {
         image: snapshot_image.clone(),
@@ -82,7 +86,8 @@ async fn test_run_container_definition() {
         wait_available_timeout: std::time::Duration::from_secs(30),
     };
 
-    let mut container = pg_ephemeral::container::Container::run_container_definition(&definition);
+    let mut container =
+        pg_ephemeral::container::Container::run_container_definition(&definition).await;
     container.wait_available().await.unwrap();
 
     container
@@ -96,10 +101,10 @@ async fn test_run_container_definition() {
         })
         .await;
 
-    container.stop();
+    container.stop().await;
     // Force remove needed: container stop returns before container removal completes,
     // so a non-force remove may fail with "image is in use by stopped container".
-    backend.remove_image_force(&snapshot_image);
+    backend.remove_image_force(&snapshot_image).await;
 }
 
 #[tokio::test]
@@ -120,7 +125,10 @@ async fn test_set_superuser_password() {
     definition
         .with_container(async |container| {
             let new_password = pg_client::Password::from_str("new_password_123").unwrap();
-            container.set_superuser_password(&new_password).unwrap();
+            container
+                .set_superuser_password(&new_password)
+                .await
+                .unwrap();
 
             let new_client_config = pg_client::Config {
                 password: Some(new_password),

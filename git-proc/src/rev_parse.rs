@@ -89,25 +89,27 @@ mod tests {
     use super::*;
     use crate::Build;
 
-    #[test]
-    fn test_rev_parse_head() {
+    #[tokio::test]
+    async fn test_rev_parse_head() {
         let output = RevParse::new()
             .rev("HEAD")
             .build()
             .capture_stdout()
             .string()
+            .await
             .unwrap();
         assert!(!output.trim().is_empty());
     }
 
-    #[test]
-    fn test_rev_parse_abbrev_ref() {
+    #[tokio::test]
+    async fn test_rev_parse_abbrev_ref() {
         let output = RevParse::new()
             .abbrev_ref()
             .rev("HEAD")
             .build()
             .capture_stdout()
             .string()
+            .await
             .unwrap();
         assert!(!output.trim().is_empty());
     }

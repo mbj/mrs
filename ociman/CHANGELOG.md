@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.0
+
+### Breaking Changes
+
+- Switch to async `cmd-proc` 0.3.0: all container execution methods are now `async fn`
+- `Definition::run_detached()` is now `async fn`
+- `Definition::with_container()` now takes `AsyncFnMut` and is `async fn`
+- `Container::stop()`, `Container::remove()`, `Container::commit()` are now `async fn`
+- `Container::exec()` returns builder whose terminal methods are now async
+- `Container::read_host_tcp_port()` is now `async fn`
+- All `Backend` methods are now `async fn`
+- Image building and pulling methods are now `async fn`
+
 ## 0.2.0
 
 ### Removed

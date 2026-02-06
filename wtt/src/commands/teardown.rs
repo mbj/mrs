@@ -16,7 +16,7 @@ pub struct Teardown {
 }
 
 impl Teardown {
-    pub fn run(self, config: &Config) -> Result<(), Error> {
+    pub async fn run(self, config: &Config) -> Result<(), Error> {
         let bare_path = config.bare_repo_path(&self.repo);
 
         if !bare_path.exists() {
@@ -27,7 +27,8 @@ impl Teardown {
             .repo_path(&bare_path)
             .build()
             .capture_stdout()
-            .string()?;
+            .string()
+            .await?;
 
         let worktree_paths: Vec<PathBuf> = git::parse_worktree_list(&output)
             .into_iter()
@@ -36,7 +37,7 @@ impl Teardown {
             .collect();
 
         for worktree_path in worktree_paths {
-            remove_worktree(&bare_path, &worktree_path, self.force)?;
+            remove_worktree(&bare_path, &worktree_path, self.force).await?;
         }
 
         log::info!("Removing bare repository at {}", bare_path.display());

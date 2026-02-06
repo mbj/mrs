@@ -8,11 +8,11 @@ pub struct CommandError {
     pub exit_status: Option<std::process::ExitStatus>,
 }
 
-fn write_stdin(
-    child: &mut std::process::Child,
+async fn write_stdin(
+    child: &mut tokio::process::Child,
     stdin_data: Option<Vec<u8>>,
 ) -> Result<(), CommandError> {
-    use std::io::Write;
+    use tokio::io::AsyncWriteExt;
 
     if let Some(data) = stdin_data {
         child
@@ -20,6 +20,7 @@ fn write_stdin(
             .take()
             .unwrap()
             .write_all(&data)
+            .await
             .map_err(|io_error| CommandError {
                 io_error: Some(io_error),
                 exit_status: None,
@@ -29,17 +30,20 @@ fn write_stdin(
     Ok(())
 }
 
-fn run_and_wait(
-    mut child: std::process::Child,
+async fn run_and_wait(
+    mut child: tokio::process::Child,
     stdin_data: Option<Vec<u8>>,
     start: std::time::Instant,
 ) -> Result<std::process::Output, CommandError> {
-    write_stdin(&mut child, stdin_data)?;
+    write_stdin(&mut child, stdin_data).await?;
 
-    let output = child.wait_with_output().map_err(|io_error| CommandError {
-        io_error: Some(io_error),
-        exit_status: None,
-    })?;
+    let output = child
+        .wait_with_output()
+        .await
+        .map_err(|io_error| CommandError {
+            io_error: Some(io_error),
+            exit_status: None,
+        })?;
 
     log::debug!(
         "exit_status={:?} runtime={:?}",
@@ -50,14 +54,14 @@ fn run_and_wait(
     Ok(output)
 }
 
-fn run_and_wait_status(
-    mut child: std::process::Child,
+async fn run_and_wait_status(
+    mut child: tokio::process::Child,
     stdin_data: Option<Vec<u8>>,
     start: std::time::Instant,
 ) -> Result<std::process::ExitStatus, CommandError> {
-    write_stdin(&mut child, stdin_data)?;
+    write_stdin(&mut child, stdin_data).await?;
 
-    let status = child.wait().map_err(|io_error| CommandError {
+    let status = child.wait().await.map_err(|io_error| CommandError {
         io_error: Some(io_error),
         exit_status: None,
     })?;
@@ -279,53 +283,54 @@ impl Spawn {
 /// Created by [`Spawn::run`].
 #[derive(Debug)]
 pub struct Child {
-    inner: std::process::Child,
+    inner: tokio::process::Child,
 }
 
 impl Child {
     /// Returns a mutable reference to the child's stdin handle.
-    pub fn stdin(&mut self) -> Option<&mut std::process::ChildStdin> {
+    pub fn stdin(&mut self) -> Option<&mut tokio::process::ChildStdin> {
         self.inner.stdin.as_mut()
     }
 
     /// Returns a mutable reference to the child's stdout handle.
-    pub fn stdout(&mut self) -> Option<&mut std::process::ChildStdout> {
+    pub fn stdout(&mut self) -> Option<&mut tokio::process::ChildStdout> {
         self.inner.stdout.as_mut()
     }
 
     /// Returns a mutable reference to the child's stderr handle.
-    pub fn stderr(&mut self) -> Option<&mut std::process::ChildStderr> {
+    pub fn stderr(&mut self) -> Option<&mut tokio::process::ChildStderr> {
         self.inner.stderr.as_mut()
     }
 
     /// Takes ownership of the child's stdin handle.
-    pub fn take_stdin(&mut self) -> Option<std::process::ChildStdin> {
+    pub fn take_stdin(&mut self) -> Option<tokio::process::ChildStdin> {
         self.inner.stdin.take()
     }
 
     /// Takes ownership of the child's stdout handle.
-    pub fn take_stdout(&mut self) -> Option<std::process::ChildStdout> {
+    pub fn take_stdout(&mut self) -> Option<tokio::process::ChildStdout> {
         self.inner.stdout.take()
     }
 
     /// Takes ownership of the child's stderr handle.
-    pub fn take_stderr(&mut self) -> Option<std::process::ChildStderr> {
+    pub fn take_stderr(&mut self) -> Option<tokio::process::ChildStderr> {
         self.inner.stderr.take()
     }
 
     /// Waits for the child to exit and returns its exit status.
-    pub fn wait(mut self) -> Result<std::process::ExitStatus, CommandError> {
-        self.inner.wait().map_err(|io_error| CommandError {
+    pub async fn wait(mut self) -> Result<std::process::ExitStatus, CommandError> {
+        self.inner.wait().await.map_err(|io_error| CommandError {
             io_error: Some(io_error),
             exit_status: None,
         })
     }
 
     /// Simultaneously waits for the child to exit and collects all output.
-    pub fn wait_with_output(self) -> Result<Output, CommandError> {
+    pub async fn wait_with_output(self) -> Result<Output, CommandError> {
         let output = self
             .inner
             .wait_with_output()
+            .await
             .map_err(|io_error| CommandError {
                 io_error: Some(io_error),
                 exit_status: None,
@@ -346,7 +351,7 @@ pub struct Capture {
     accept_nonzero_exit: bool,
 }
 
-fn run_capture(
+async fn run_capture(
     mut command: Command,
     accept_nonzero_exit: bool,
 ) -> Result<std::process::Output, CommandError> {
@@ -363,7 +368,7 @@ fn run_capture(
         exit_status: None,
     })?;
 
-    let output = run_and_wait(child, command.stdin_data, start)?;
+    let output = run_and_wait(child, command.stdin_data, start).await?;
 
     if accept_nonzero_exit || output.status.success() {
         Ok(output)
@@ -392,7 +397,7 @@ impl Capture {
     }
 
     /// Execute the command and return captured output as bytes.
-    pub fn bytes(mut self) -> Result<Vec<u8>, CommandError> {
+    pub async fn bytes(mut self) -> Result<Vec<u8>, CommandError> {
         use std::process::Stdio;
 
         let (stdout, stderr) = match self.stream {
@@ -403,7 +408,7 @@ impl Capture {
         self.command.inner.stdout(stdout);
         self.command.inner.stderr(stderr);
 
-        let output = run_capture(self.command, self.accept_nonzero_exit)?;
+        let output = run_capture(self.command, self.accept_nonzero_exit).await?;
 
         Ok(match self.stream {
             CaptureSingleStream::Stdout => output.stdout,
@@ -412,8 +417,8 @@ impl Capture {
     }
 
     /// Execute the command and return captured output as a UTF-8 string.
-    pub fn string(self) -> Result<String, CommandError> {
-        let bytes = self.bytes()?;
+    pub async fn string(self) -> Result<String, CommandError> {
+        let bytes = self.bytes().await?;
         String::from_utf8(bytes).map_err(|utf8_error| CommandError {
             io_error: Some(std::io::Error::new(
                 std::io::ErrorKind::InvalidData,
@@ -446,13 +451,13 @@ impl CaptureAllStreams {
     }
 
     /// Execute the command and return captured output.
-    pub fn output(mut self) -> Result<Output, CommandError> {
+    pub async fn output(mut self) -> Result<Output, CommandError> {
         use std::process::Stdio;
 
         self.command.inner.stdout(Stdio::piped());
         self.command.inner.stderr(Stdio::piped());
 
-        let output = run_capture(self.command, self.accept_nonzero_exit)?;
+        let output = run_capture(self.command, self.accept_nonzero_exit).await?;
 
         Ok(Output {
             stdout: output.stdout,
@@ -463,14 +468,14 @@ impl CaptureAllStreams {
 }
 
 pub struct Command {
-    inner: std::process::Command,
+    inner: tokio::process::Command,
     stdin_data: Option<Vec<u8>>,
 }
 
 impl Command {
     pub fn new(value: impl AsRef<OsStr>) -> Self {
         Command {
-            inner: std::process::Command::new(value),
+            inner: tokio::process::Command::new(value),
             stdin_data: None,
         }
     }
@@ -482,7 +487,7 @@ impl Command {
     ///
     /// # Panics
     ///
-    /// Panics if the `Debug` output of the two commands' inner `std::process::Command` differ.
+    /// Panics if the `Debug` output of the two commands' inner `tokio::process::Command` differ.
     #[cfg(feature = "test-utils")]
     pub fn test_eq(&self, other: &Self) {
         assert_eq!(format!("{:?}", self.inner), format!("{:?}", other.inner));
@@ -608,8 +613,9 @@ impl Command {
     ///
     /// ```no_run
     /// use cmd_proc::{Command, Stdio};
-    /// use std::io::BufRead;
+    /// use tokio::io::AsyncBufReadExt;
     ///
+    /// # async fn example() -> Result<(), cmd_proc::CommandError> {
     /// let mut child = Command::new("server")
     ///     .argument("--port=8080")
     ///     .spawn()
@@ -620,15 +626,17 @@ impl Command {
     ///     .unwrap();
     ///
     /// // Read a line from stdout
-    /// let line = std::io::BufReader::new(child.stdout().unwrap())
-    ///     .lines()
-    ///     .next()
-    ///     .unwrap()
+    /// let mut line = String::new();
+    /// tokio::io::BufReader::new(child.stdout().unwrap())
+    ///     .read_line(&mut line)
+    ///     .await
     ///     .unwrap();
     ///
     /// // Close stdin to signal the child to exit
     /// drop(child.take_stdin());
-    /// child.wait().unwrap();
+    /// child.wait().await.unwrap();
+    /// # Ok(())
+    /// # }
     /// ```
     #[must_use]
     pub fn spawn(self) -> Spawn {
@@ -639,7 +647,7 @@ impl Command {
     ///
     /// Unlike `stdout()` and `stderr()`, this does not treat non-zero exit as an error.
     /// Use this when you need to inspect both streams or handle failure cases with stderr.
-    pub fn output(mut self) -> Result<Output, CommandError> {
+    pub async fn output(mut self) -> Result<Output, CommandError> {
         use std::process::Stdio;
 
         log::debug!("{:#?}", self.inner);
@@ -658,7 +666,7 @@ impl Command {
             exit_status: None,
         })?;
 
-        let output = run_and_wait(child, self.stdin_data, start)?;
+        let output = run_and_wait(child, self.stdin_data, start).await?;
 
         Ok(Output {
             stdout: output.stdout,
@@ -668,7 +676,7 @@ impl Command {
     }
 
     /// Execute the command and return success or an error.
-    pub fn status(mut self) -> Result<(), CommandError> {
+    pub async fn status(mut self) -> Result<(), CommandError> {
         use std::process::Stdio;
 
         log::debug!("{:#?}", self.inner);
@@ -684,7 +692,7 @@ impl Command {
             exit_status: None,
         })?;
 
-        let exit_status = run_and_wait_status(child, self.stdin_data, start)?;
+        let exit_status = run_and_wait_status(child, self.stdin_data, start).await?;
 
         if exit_status.success() {
             Ok(())
@@ -701,24 +709,26 @@ impl Command {
 mod tests {
     use super::*;
 
-    #[test]
-    fn test_stdout_bytes_success() {
+    #[tokio::test]
+    async fn test_stdout_bytes_success() {
         assert_eq!(
             Command::new("echo")
                 .argument("hello")
                 .capture_stdout()
                 .bytes()
+                .await
                 .unwrap(),
             b"hello\n"
         );
     }
 
-    #[test]
-    fn test_stdout_bytes_nonzero_exit() {
+    #[tokio::test]
+    async fn test_stdout_bytes_nonzero_exit() {
         let error = Command::new("sh")
             .arguments(["-c", "exit 42"])
             .capture_stdout()
             .bytes()
+            .await
             .unwrap_err();
         assert_eq!(
             error.exit_status.map(|status| status.code()),
@@ -727,63 +737,68 @@ mod tests {
         assert!(error.io_error.is_none());
     }
 
-    #[test]
-    fn test_stdout_bytes_io_error() {
+    #[tokio::test]
+    async fn test_stdout_bytes_io_error() {
         let error = Command::new("./nonexistent")
             .capture_stdout()
             .bytes()
+            .await
             .unwrap_err();
         assert!(error.io_error.is_some());
         assert_eq!(error.io_error.unwrap().kind(), std::io::ErrorKind::NotFound);
         assert!(error.exit_status.is_none());
     }
 
-    #[test]
-    fn test_stdout_string_success() {
+    #[tokio::test]
+    async fn test_stdout_string_success() {
         assert_eq!(
             Command::new("echo")
                 .argument("hello")
                 .capture_stdout()
                 .string()
+                .await
                 .unwrap(),
             "hello\n"
         );
     }
 
-    #[test]
-    fn test_stderr_bytes_success() {
+    #[tokio::test]
+    async fn test_stderr_bytes_success() {
         assert_eq!(
             Command::new("sh")
                 .arguments(["-c", "echo error >&2"])
                 .capture_stderr()
                 .bytes()
+                .await
                 .unwrap(),
             b"error\n"
         );
     }
 
-    #[test]
-    fn test_stderr_string_success() {
+    #[tokio::test]
+    async fn test_stderr_string_success() {
         assert_eq!(
             Command::new("sh")
                 .arguments(["-c", "echo error >&2"])
                 .capture_stderr()
                 .string()
+                .await
                 .unwrap(),
             "error\n"
         );
     }
 
-    #[test]
-    fn test_status_success() {
-        assert!(Command::new("true").status().is_ok());
+    #[tokio::test]
+    async fn test_status_success() {
+        assert!(Command::new("true").status().await.is_ok());
     }
 
-    #[test]
-    fn test_status_nonzero_exit() {
+    #[tokio::test]
+    async fn test_status_nonzero_exit() {
         let error = Command::new("sh")
             .arguments(["-c", "exit 42"])
             .status()
+            .await
             .unwrap_err();
         assert_eq!(
             error.exit_status.map(|status| status.code()),
@@ -792,9 +807,9 @@ mod tests {
         assert!(error.io_error.is_none());
     }
 
-    #[test]
-    fn test_status_io_error() {
-        let error = Command::new("./nonexistent").status().unwrap_err();
+    #[tokio::test]
+    async fn test_status_io_error() {
+        let error = Command::new("./nonexistent").status().await.unwrap_err();
         assert!(error.io_error.is_some());
         assert_eq!(error.io_error.unwrap().kind(), std::io::ErrorKind::NotFound);
         assert!(error.exit_status.is_none());
@@ -824,66 +839,74 @@ mod tests {
         assert!(matches!(result, Err(EnvVariableNameError::ContainsEquals)));
     }
 
-    #[test]
-    fn test_env_with_variable() {
+    #[tokio::test]
+    async fn test_env_with_variable() {
         let name: EnvVariableName = "MY_VAR".parse().unwrap();
         let output = Command::new("sh")
             .arguments(["-c", "echo $MY_VAR"])
             .env(&name, "hello")
             .capture_stdout()
             .string()
+            .await
             .unwrap();
         assert_eq!(output, "hello\n");
     }
 
-    #[test]
-    fn test_stdin_bytes() {
+    #[tokio::test]
+    async fn test_stdin_bytes() {
         let output = Command::new("cat")
             .stdin_bytes(b"hello world".as_slice())
             .capture_stdout()
             .string()
+            .await
             .unwrap();
         assert_eq!(output, "hello world");
     }
 
-    #[test]
-    fn test_stdin_bytes_vec() {
+    #[tokio::test]
+    async fn test_stdin_bytes_vec() {
         let output = Command::new("cat")
             .stdin_bytes(vec![104, 105])
             .capture_stdout()
             .string()
+            .await
             .unwrap();
         assert_eq!(output, "hi");
     }
 
-    #[test]
-    fn test_output_success() {
-        let output = Command::new("echo").argument("hello").output().unwrap();
+    #[tokio::test]
+    async fn test_output_success() {
+        let output = Command::new("echo")
+            .argument("hello")
+            .output()
+            .await
+            .unwrap();
         assert!(output.success());
         assert_eq!(output.stdout, b"hello\n");
         assert!(output.stderr.is_empty());
     }
 
-    #[test]
-    fn test_output_failure_with_stderr() {
+    #[tokio::test]
+    async fn test_output_failure_with_stderr() {
         let output = Command::new("sh")
             .arguments(["-c", "echo error >&2; exit 1"])
             .output()
+            .await
             .unwrap();
         assert!(!output.success());
         assert_eq!(output.into_stderr_string().unwrap(), "error\n");
     }
 
-    #[test]
-    fn test_output_io_error() {
-        let error = Command::new("./nonexistent").output().unwrap_err();
+    #[tokio::test]
+    async fn test_output_io_error() {
+        let error = Command::new("./nonexistent").output().await.unwrap_err();
         assert!(error.io_error.is_some());
         assert_eq!(error.io_error.unwrap().kind(), std::io::ErrorKind::NotFound);
     }
 
-    #[test]
-    fn test_spawn_with_piped_stdout() {
-        use std::io::Read;
+    #[tokio::test]
+    async fn test_spawn_with_piped_stdout() {
+        use tokio::io::AsyncReadExt;
 
         let mut child = Command::new("echo")
             .argument("hello")
@@ -893,16 +916,21 @@ mod tests {
             .unwrap();
 
         let mut output = String::new();
-        child.stdout().unwrap().read_to_string(&mut output).unwrap();
+        child
+            .stdout()
+            .unwrap()
+            .read_to_string(&mut output)
+            .await
+            .unwrap();
         assert_eq!(output, "hello\n");
 
-        let status = child.wait().unwrap();
+        let status = child.wait().await.unwrap();
         assert!(status.success());
     }
 
-    #[test]
-    fn test_spawn_with_piped_stdin() {
-        use std::io::Write;
+    #[tokio::test]
+    async fn test_spawn_with_piped_stdin() {
+        use tokio::io::AsyncWriteExt;
 
         let mut child = Command::new("cat")
             .spawn()
@@ -911,24 +939,24 @@ mod tests {
             .run()
             .unwrap();
 
-        child.stdin().unwrap().write_all(b"hello").unwrap();
+        child.stdin().unwrap().write_all(b"hello").await.unwrap();
         drop(child.take_stdin());
 
-        let output = child.wait_with_output().unwrap();
+        let output = child.wait_with_output().await.unwrap();
         assert!(output.success());
         assert_eq!(output.stdout, b"hello");
     }
 
-    #[test]
-    fn test_spawn_wait() {
+    #[tokio::test]
+    async fn test_spawn_wait() {
         let child = Command::new("true").spawn().run().unwrap();
 
-        let status = child.wait().unwrap();
+        let status = child.wait().await.unwrap();
         assert!(status.success());
     }
 
-    #[test]
-    fn test_spawn_wait_with_output() {
+    #[tokio::test]
+    async fn test_spawn_wait_with_output() {
         let child = Command::new("sh")
             .arguments(["-c", "echo out; echo err >&2"])
             .spawn()
@@ -937,22 +965,22 @@ mod tests {
             .run()
             .unwrap();
 
-        let output = child.wait_with_output().unwrap();
+        let output = child.wait_with_output().await.unwrap();
         assert!(output.success());
         assert_eq!(output.stdout, b"out\n");
         assert_eq!(output.stderr, b"err\n");
     }
 
-    #[test]
-    fn test_spawn_io_error() {
+    #[tokio::test]
+    async fn test_spawn_io_error() {
         let error = Command::new("./nonexistent").spawn().run().unwrap_err();
         assert!(error.io_error.is_some());
         assert_eq!(error.io_error.unwrap().kind(), std::io::ErrorKind::NotFound);
     }
 
-    #[test]
-    fn test_spawn_take_handles() {
-        use std::io::{Read, Write};
+    #[tokio::test]
+    async fn test_spawn_take_handles() {
+        use tokio::io::{AsyncReadExt, AsyncWriteExt};
 
         let mut child = Command::new("cat")
             .spawn()
@@ -962,66 +990,71 @@ mod tests {
             .unwrap();
 
         let mut stdin = child.take_stdin().unwrap();
-        stdin.write_all(b"test").unwrap();
+        stdin.write_all(b"test").await.unwrap();
         drop(stdin);
 
         let mut stdout = child.take_stdout().unwrap();
         let mut output = String::new();
-        stdout.read_to_string(&mut output).unwrap();
+        stdout.read_to_string(&mut output).await.unwrap();
         assert_eq!(output, "test");
 
-        child.wait().unwrap();
+        child.wait().await.unwrap();
     }
 
-    #[test]
-    fn test_option() {
+    #[tokio::test]
+    async fn test_option() {
         let output = Command::new("echo")
             .option("-n", "hello")
             .capture_stdout()
             .string()
+            .await
             .unwrap();
         assert_eq!(output, "hello");
     }
 
-    #[test]
-    fn test_optional_option_some() {
+    #[tokio::test]
+    async fn test_optional_option_some() {
         let output = Command::new("echo")
             .optional_option("-n", Some("hello"))
             .capture_stdout()
             .string()
+            .await
             .unwrap();
         assert_eq!(output, "hello");
     }
 
-    #[test]
-    fn test_optional_option_none() {
+    #[tokio::test]
+    async fn test_optional_option_none() {
         let output = Command::new("echo")
             .optional_option("-n", None::<&str>)
             .argument("hello")
             .capture_stdout()
             .string()
+            .await
             .unwrap();
         assert_eq!(output, "hello\n");
     }
 
-    #[test]
-    fn test_optional_flag_true() {
+    #[tokio::test]
+    async fn test_optional_flag_true() {
         let output = Command::new("echo")
             .optional_flag(true, "-n")
             .argument("hello")
             .capture_stdout()
             .string()
+            .await
             .unwrap();
         assert_eq!(output, "hello");
     }
 
-    #[test]
-    fn test_optional_flag_false() {
+    #[tokio::test]
+    async fn test_optional_flag_false() {
         let output = Command::new("echo")
             .optional_flag(false, "-n")
             .argument("hello")
             .capture_stdout()
             .string()
+            .await
             .unwrap();
         assert_eq!(output, "hello\n");
     }

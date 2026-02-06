@@ -272,18 +272,22 @@ impl Command {
                 CacheCommand::Status { verbose } => {
                     let definition = Self::get_instance(instance_map, instance_name)?
                         .definition(instance_name)
+                        .await
                         .unwrap();
-                    definition.print_cache_status(instance_name, *verbose)?
+                    definition
+                        .print_cache_status(instance_name, *verbose)
+                        .await?
                 }
                 CacheCommand::Reset => {
                     let definition = Self::get_instance(instance_map, instance_name)?
                         .definition(instance_name)
+                        .await
                         .unwrap();
                     let name: ociman::reference::Name =
                         format!("pg-ephemeral/{instance_name}").parse().unwrap();
-                    let references = definition.backend.image_references_by_name(&name);
+                    let references = definition.backend.image_references_by_name(&name).await;
                     for reference in &references {
-                        definition.backend.remove_image(reference);
+                        definition.backend.remove_image(reference).await;
                         println!("Removed: {reference}");
                     }
                 }
@@ -291,18 +295,21 @@ impl Command {
             Self::ContainerPsql { instance_name } => {
                 let definition = Self::get_instance(instance_map, instance_name)?
                     .definition(instance_name)
+                    .await
                     .unwrap();
                 definition.with_container(container_psql).await?
             }
             Self::ContainerSchemaDump { instance_name } => {
                 let definition = Self::get_instance(instance_map, instance_name)?
                     .definition(instance_name)
+                    .await
                     .unwrap();
                 definition.with_container(container_schema_dump).await?
             }
             Self::ContainerShell { instance_name } => {
                 let definition = Self::get_instance(instance_map, instance_name)?
                     .definition(instance_name)
+                    .await
                     .unwrap();
                 definition.with_container(container_shell).await?
             }
@@ -312,6 +319,7 @@ impl Command {
             } => {
                 let definition = Self::get_instance(instance_map, instance_name)?
                     .definition(instance_name)
+                    .await
                     .unwrap();
                 definition.run_integration_server().await?
             }
@@ -323,6 +331,7 @@ impl Command {
             Self::Psql { instance_name } => {
                 let definition = Self::get_instance(instance_map, instance_name)?
                     .definition(instance_name)
+                    .await
                     .unwrap();
                 definition.with_container(host_psql).await??
             }
@@ -333,6 +342,7 @@ impl Command {
             } => {
                 let definition = Self::get_instance(instance_map, instance_name)?
                     .definition(instance_name)
+                    .await
                     .unwrap();
                 definition
                     .with_container(async |container| {
@@ -360,6 +370,7 @@ async fn host_psql(container: &crate::container::Container) -> Result<(), cmd_pr
     cmd_proc::Command::new("psql")
         .envs(container.pg_env())
         .status()
+        .await
 }
 
 async fn host_command(
@@ -372,16 +383,17 @@ async fn host_command(
         .envs(container.pg_env())
         .env(&crate::ENV_DATABASE_URL, container.database_url())
         .status()
+        .await
 }
 
 async fn container_psql(container: &crate::container::Container) {
-    container.exec_psql()
+    container.exec_psql().await
 }
 
 async fn container_schema_dump(container: &crate::container::Container) {
-    println!("{}", container.exec_schema_dump());
+    println!("{}", container.exec_schema_dump().await);
 }
 
 async fn container_shell(container: &crate::container::Container) {
-    container.exec_container_shell()
+    container.exec_container_shell().await
 }

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.0
+
+### Breaking Changes
+
+- Switch to async `cmd-proc` 0.3.0: `Build::status()` and capture chain terminal
+  methods (`.string()`, `.bytes()`, `.output()`) are now `async fn`
+
+### Added
+
+- `tokio` dependency with `process` feature
+
 ## 0.1.0
 
 ### Breaking Changes

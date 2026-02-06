@@ -28,11 +28,11 @@ rust-version = "1.93"
 async-stream = "0.3"
 chrono = { version = "0.4", features = ["serde"] }
 clap = { version = "4.5", features = ["derive"] }
-cmd-proc = { version = "0.2.0", path = "cmd-proc" }
+cmd-proc = { version = "0.3.0", path = "cmd-proc" }
 dirs = "6"
 env_logger = "0.11"
 fluent-uri = { version = "0.4", features = ["net"] }
-git-proc = { version = "0.1.0", path = "git-proc" }
+git-proc = { version = "0.2.0", path = "git-proc" }
 hex = "0.4.3"
 http = "1.3"
 indoc = "2"
@@ -42,7 +42,7 @@ mhttp = { path = "mhttp" }
 mmigration = { path = "mmigration" }
 nom = "8"
 nom-language = "0.1"
-ociman = { version = "0.2.0", path = "ociman" }
+ociman = { version = "0.3.0", path = "ociman" }
 pg-client = { version = "0.0.2", path = "pg-client", features = ["sqlx"] }
 pg-ephemeral = { version = "0.0.1-pre2", path = "pg-ephemeral" }
 pretty_assertions = "1.4"
@@ -71,7 +71,10 @@ tower = { version = "0.5", features = ["limit"], default-features = false }
 tower-service = "0.3"
 futures-util = { version = "0.3", default-features = false }
 url = { version = "2.5", features = ["serde"] }
-wtt = { version = "0.0.6", path = "wtt" }
+wtt = { version = "0.0.7", path = "wtt" }
+
+[workspace.lints.rust]
+unexpected_cfgs = "deny"
 
 [workspace.lints.clippy]
 all = { level = "deny", priority = -1 }

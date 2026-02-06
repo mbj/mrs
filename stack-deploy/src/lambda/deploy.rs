@@ -131,19 +131,19 @@ impl Target {
     }
 
     /// Build the lambda target via cargo
-    pub fn build(&self) {
+    pub async fn build(&self) {
         log::info!("Building lambda target");
         cmd_proc::Command::new("cargo")
             .arguments(["build", "--target", &self.build_target.0])
             .arguments(self.build_type.args())
             .status()
+            .await
             .unwrap_or_else(|error| panic!("Failed to build lambda target: {error}"));
     }
 
     /// Build the lambda target and generate zip file
-    #[must_use]
-    pub fn build_zip(&self) -> ZipFile {
-        self.build();
+    pub async fn build_zip(&self) -> ZipFile {
+        self.build().await;
         self.generate_zip()
     }
 
@@ -272,8 +272,8 @@ pub mod cli {
     }
 
     impl Config<'_> {
-        pub(crate) fn build(&self) {
-            self.target.build()
+        pub(crate) async fn build(&self) {
+            self.target.build().await
         }
 
         pub(crate) async fn upload(&self) -> ParameterValue {
@@ -282,6 +282,7 @@ pub mod cli {
             let parameter_value = self
                 .target
                 .build_zip()
+                .await
                 .upload(self.s3, &s3_bucket_name)
                 .await;
 
@@ -370,7 +371,7 @@ pub mod cli {
     impl Command {
         pub async fn run(&self, config: &'_ Config<'_>) {
             match self {
-                Self::Build => config.build(),
+                Self::Build => config.build().await,
                 Self::Upload => {
                     config.upload().await;
                 }

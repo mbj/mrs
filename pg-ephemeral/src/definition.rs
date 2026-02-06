@@ -64,7 +64,7 @@ impl Definition {
         self.add_seed(name, Seed::SqlFile { path })
     }
 
-    pub fn load_seeds(
+    pub async fn load_seeds(
         &self,
         instance_name: &crate::InstanceName,
     ) -> Result<LoadedSeeds<'_>, LoadError> {
@@ -75,14 +75,15 @@ impl Definition {
             &self.backend,
             instance_name,
         )
+        .await
     }
 
-    pub fn print_cache_status(
+    pub async fn print_cache_status(
         &self,
         instance_name: &crate::InstanceName,
         verbose: bool,
     ) -> Result<(), crate::container::Error> {
-        self.load_seeds(instance_name)?.print(verbose);
+        self.load_seeds(instance_name).await?.print(verbose);
         Ok(())
     }
 
@@ -164,9 +165,9 @@ impl Definition {
         &self,
         mut action: impl AsyncFnMut(&Container) -> T,
     ) -> Result<T, crate::container::Error> {
-        let loaded_seeds = self.load_seeds(&self.instance_name)?;
+        let loaded_seeds = self.load_seeds(&self.instance_name).await?;
 
-        let mut db_container = Container::run_definition(self);
+        let mut db_container = Container::run_definition(self).await;
 
         db_container.wait_available().await?;
 
@@ -176,7 +177,7 @@ impl Definition {
 
         let result = action(&db_container).await;
 
-        db_container.stop();
+        db_container.stop().await;
 
         Ok(result)
     }
@@ -215,32 +216,35 @@ impl Definition {
         match loaded_seed {
             LoadedSeed::SqlFile { content, .. } => db_container.apply_sql(content).await,
             LoadedSeed::SqlFileGitRevision { content, .. } => db_container.apply_sql(content).await,
-            LoadedSeed::Command { command, .. } => self.execute_command(db_container, command),
-            LoadedSeed::Script { script, .. } => self.execute_script(db_container, script),
+            LoadedSeed::Command { command, .. } => {
+                self.execute_command(db_container, command).await
+            }
+            LoadedSeed::Script { script, .. } => self.execute_script(db_container, script).await,
         }
     }
 
-    fn execute_command(&self, db_container: &Container, command: &Command) {
+    async fn execute_command(&self, db_container: &Container, command: &Command) {
         cmd_proc::Command::new(&command.command)
             .arguments(&command.arguments)
             .envs(db_container.pg_env())
             .env(&crate::ENV_DATABASE_URL, db_container.database_url())
             .status()
+            .await
             .expect("Failed to execute command");
     }
 
-    fn execute_script(&self, db_container: &Container, script: &str) {
+    async fn execute_script(&self, db_container: &Container, script: &str) {
         cmd_proc::Command::new("sh")
             .arguments(["-e", "-c"])
             .argument(script)
             .envs(db_container.pg_env())
             .env(&crate::ENV_DATABASE_URL, db_container.database_url())
             .status()
+            .await
             .expect("Failed to execute script");
     }
 
-    #[must_use]
-    pub fn schema_dump(
+    pub async fn schema_dump(
         &self,
         client_config: &pg_client::Config,
         extra_arguments: &[String],
@@ -257,7 +261,8 @@ impl Definition {
             .arguments(effective_arguments)
             .environment_variables(effective_config.to_pg_env())
             .mounts(mounts)
-            .run_capture_only_stdout();
+            .run_capture_only_stdout()
+            .await;
 
         crate::convert_schema(&bytes)
     }

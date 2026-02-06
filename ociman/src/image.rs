@@ -191,24 +191,22 @@ impl BuildDefinition {
     }
 
     /// Build the image using the specified backend and return the built image reference
-    #[must_use]
-    pub fn build(&self) -> Reference {
-        self.build_image(self.compute_final_reference())
+    pub async fn build(&self) -> Reference {
+        self.build_image(self.compute_final_reference()).await
     }
 
     /// Build the image only if it's not already present, and return the image reference
-    #[must_use]
-    pub fn build_if_absent(&self) -> Reference {
+    pub async fn build_if_absent(&self) -> Reference {
         let target_reference = self.compute_final_reference();
 
-        if self.backend.is_image_present(&target_reference) {
+        if self.backend.is_image_present(&target_reference).await {
             target_reference
         } else {
-            self.build_image(target_reference)
+            self.build_image(target_reference).await
         }
     }
 
-    fn build_image(&self, target_reference: Reference) -> Reference {
+    async fn build_image(&self, target_reference: Reference) -> Reference {
         let mut arguments = vec!["build".into(), "--tag".into(), target_reference.to_string()];
 
         for (key, value) in &self.build_arguments {
@@ -230,7 +228,7 @@ impl BuildDefinition {
             }
         };
 
-        command.status().unwrap();
+        command.status().await.unwrap();
 
         target_reference
     }

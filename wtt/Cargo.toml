@@ -1,6 +1,6 @@
 [package]
 name = "wtt"
-version = "0.0.6"
+version = "0.0.7"
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true
@@ -24,6 +24,7 @@ nom.workspace = true
 nom-language.workspace = true
 serde.workspace = true
 thiserror.workspace = true
+tokio.workspace = true
 toml.workspace = true
 
 [[bin]]

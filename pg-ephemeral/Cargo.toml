@@ -11,6 +11,9 @@ readme = "README.md"
 keywords = ["postgres", "postgresql", "testing", "database"]
 categories = ["development-tools::testing"]
 
+[features]
+test-utils = []
+
 [lints]
 workspace = true
 

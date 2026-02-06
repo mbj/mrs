@@ -18,7 +18,7 @@ pub struct Add {
 }
 
 impl Add {
-    pub fn run(self, config: &Config) -> Result<(), Error> {
+    pub async fn run(self, config: &Config) -> Result<(), Error> {
         let repo = match self.repo {
             Some(repo) => repo,
             None => detect_repo_from_cwd(config)?,
@@ -41,9 +41,10 @@ impl Add {
         git_proc::fetch::new()
             .repo_path(&bare_path)
             .all()
-            .status()?;
+            .status()
+            .await?;
 
-        if branch_exists(&bare_path, &self.branch)? {
+        if branch_exists(&bare_path, &self.branch).await? {
             log::info!(
                 "Creating worktree for existing branch '{}' at {}",
                 self.branch,
@@ -53,11 +54,12 @@ impl Add {
             git_proc::worktree::add(&worktree_path)
                 .repo_path(&bare_path)
                 .branch(self.branch.as_str())
-                .status()?;
+                .status()
+                .await?;
         } else {
             let base = match self.base {
                 Some(base) => base,
-                None => get_remote_default_branch(&bare_path)?,
+                None => get_remote_default_branch(&bare_path).await?,
             };
 
             log::info!(
@@ -71,10 +73,11 @@ impl Add {
                 .repo_path(&bare_path)
                 .new_branch(self.branch.as_str())
                 .commit_ish(base.as_str())
-                .status()?;
+                .status()
+                .await?;
         }
 
-        set_upstream(&worktree_path, &self.branch)?;
+        set_upstream(&worktree_path, &self.branch).await?;
 
         log::info!("Worktree created at {}", worktree_path.display());
 
@@ -82,14 +85,15 @@ impl Add {
     }
 }
 
-fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<bool, CommandError> {
+async fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<bool, CommandError> {
     let local_result = git_proc::show_ref::new()
         .repo_path(bare_path)
         .verify()
         .pattern(&format!("refs/heads/{branch}"))
         .build()
         .capture_stdout()
-        .bytes();
+        .bytes()
+        .await;
 
     if local_result.is_ok() {
         return Ok(true);
@@ -102,12 +106,13 @@ fn branch_exists(bare_path: &std::path::Path, branch: &Branch) -> Result<bool, C
         .pattern(branch.as_str())
         .build()
         .capture_stdout()
-        .string()?;
+        .string()
+        .await?;
 
     Ok(!remote_output.trim().is_empty())
 }
 
-fn get_remote_default_branch(bare_path: &std::path::Path) -> Result<Base, Error> {
+async fn get_remote_default_branch(bare_path: &std::path::Path) -> Result<Base, Error> {
     let output = git_proc::ls_remote::new()
         .repo_path(bare_path)
         .symref()
@@ -115,7 +120,8 @@ fn get_remote_default_branch(bare_path: &std::path::Path) -> Result<Base, Error>
         .pattern("HEAD")
         .build()
         .capture_stdout()
-        .string()?;
+        .string()
+        .await?;
 
     let branch = git::parse_default_branch(&output).map_err(|_| Error::DefaultBranchNotFound)?;
 
@@ -124,16 +130,21 @@ fn get_remote_default_branch(bare_path: &std::path::Path) -> Result<Base, Error>
         .map_err(|_| Error::DefaultBranchNotFound)
 }
 
-fn set_upstream(worktree_path: &std::path::Path, branch: &Branch) -> Result<(), CommandError> {
+async fn set_upstream(
+    worktree_path: &std::path::Path,
+    branch: &Branch,
+) -> Result<(), CommandError> {
     log::info!("Setting upstream to origin/{branch}");
 
     git_proc::config::new(&format!("branch.{branch}.remote"))
         .repo_path(worktree_path)
         .value("origin")
-        .status()?;
+        .status()
+        .await?;
 
     git_proc::config::new(&format!("branch.{branch}.merge"))
         .repo_path(worktree_path)
         .value(&format!("refs/heads/{branch}"))
         .status()
+        .await
 }

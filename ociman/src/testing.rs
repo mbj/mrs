@@ -60,14 +60,57 @@ pub fn test_name(base: &str) -> crate::reference::Name {
     format!("{}-{base}", run_id()).parse().unwrap()
 }
 
+/// Sets up the test backend, initializing logging and checking platform support.
+///
+/// Returns `None` if the platform is not supported for container tests.
+/// This function is async and returns an `Option<Backend>`.
+/// Use the `test_backend_setup!()` macro instead which handles early return properly.
+pub async fn setup_backend() -> Option<crate::Backend> {
+    #[cfg(feature = "test-utils")]
+    {
+        let _ = env_logger::builder().is_test(true).try_init();
+    }
+
+    if platform_not_supported() {
+        return None;
+    }
+
+    Some(
+        crate::backend::resolve::auto()
+            .await
+            .expect("No container backend detected"),
+    )
+}
+
+/// Sets up the test backend for async tests.
+///
+/// This macro:
+/// 1. Initializes env_logger for tests (if test-utils feature is enabled)
+/// 2. Checks if the platform supports containers, returning early if not
+/// 3. Returns the resolved backend
+///
+/// Must be used in an async function:
+/// ```ignore
+/// #[tokio::test]
+/// async fn my_test() {
+///     let backend = ociman::test_backend_setup!();
+///     // use backend...
+/// }
+/// ```
 #[macro_export]
 macro_rules! test_backend_setup {
     () => {{
-        let _ = env_logger::builder().is_test(true).try_init();
+        #[cfg(feature = "test-utils")]
+        {
+            let _ = env_logger::builder().is_test(true).try_init();
+        }
 
         if $crate::testing::platform_not_supported() {
             return;
         }
-        $crate::backend::resolve::auto().expect("No container backend detected")
+
+        $crate::backend::resolve::auto()
+            .await
+            .expect("No container backend detected")
     }};
 }
