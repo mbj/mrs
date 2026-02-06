@@ -1,4 +1,6 @@
 use indoc::indoc;
+use std::time::Duration;
+use tokio::time::sleep;
 
 const ENV_TEST_VAR: cmd_proc::EnvVariableName<'static> =
     cmd_proc::EnvVariableName::from_static_or_panic("TEST_VAR");
@@ -297,7 +299,9 @@ async fn test_image_build_from_instructions_hash() {
     );
 
     let reference = definition.build().await;
+    sleep(Duration::from_secs(2)).await;
     assert!(backend.is_image_present(&reference).await);
+    sleep(Duration::from_secs(2)).await;
 
     let definition2 = ociman::BuildDefinition::from_instructions_hash(
         &backend,
@@ -305,9 +309,11 @@ async fn test_image_build_from_instructions_hash() {
         dockerfile,
     );
     let reference2 = definition2.build().await;
+    sleep(Duration::from_secs(2)).await;
     assert_eq!(reference, reference2);
 
     backend.remove_image(&reference).await;
+    sleep(Duration::from_secs(2)).await;
 }
 
 #[tokio::test]
@@ -321,7 +327,9 @@ async fn test_image_build_from_directory_hash() {
     );
 
     let reference1 = definition.build().await;
+    sleep(Duration::from_secs(2)).await;
     assert!(backend.is_image_present(&reference1).await);
+    sleep(Duration::from_secs(2)).await;
 
     let definition2 = ociman::BuildDefinition::from_directory_hash(
         &backend,
@@ -329,9 +337,11 @@ async fn test_image_build_from_directory_hash() {
         "tests/fixtures/test-build-hash",
     );
     let reference2 = definition2.build().await;
+    sleep(Duration::from_secs(2)).await;
     assert_eq!(reference1, reference2);
 
     backend.remove_image(&reference1).await;
+    sleep(Duration::from_secs(2)).await;
 }
 
 #[tokio::test]
