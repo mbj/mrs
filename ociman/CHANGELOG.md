@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.3.1
+
+### Added
+
+- `Domain::is_registry()` method following distribution/reference convention
+- Improved `Name` parsing: single-component segments before `/` are now treated as path
+  components (not domains) unless they contain dots, ports, or are `localhost`
+
+### Changed
+
+- Update to `cmd-proc` 0.4.0
+
+### Fixed
+
+- Resolve flaky Docker image build tests with unique isolation layers
+- Fix stale doctest for async `resolve` example
+
 ## 0.3.0
 
 ### Breaking Changes
