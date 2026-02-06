@@ -79,6 +79,10 @@ jobs:
         # Podman on GH actions is old <5.x cannot deal corectly with concurrent access to overlay storage.
         OCIMAN_BACKEND=podman cargo --verbose nextest run --all-features --release --package ociman --test-threads=1
 
+    # nextest does not support doctests, run them separately.
+    - name: Run doctests
+      run: cargo --verbose test --doc --all-features --release
+
     - name: Set up Ruby 3.4 for macOS gem build
       if: ${{ endsWith(matrix.os.cargo_build_target, '-darwin') }}
       uses: ruby/setup-ruby@09a7688d3b55cf0e976497ff046b70949eeaccfd # v1.288.0
