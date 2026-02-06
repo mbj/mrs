@@ -36,6 +36,19 @@ impl Backend {
         }
     }
 
+    /// Returns the arguments for building an image.
+    ///
+    /// For Docker, uses BuildKit via `buildx build` which has proper
+    /// concurrency handling. For Podman, uses the standard `build` command
+    /// since Podman already uses Buildah (BuildKit-like) natively.
+    #[must_use]
+    pub fn build_command_args(&self) -> Vec<String> {
+        match self {
+            Self::Docker { .. } => vec!["buildx".into(), "build".into(), "--load".into()],
+            Self::Podman { .. } => vec!["build".into()],
+        }
+    }
+
     /// Check if an image is present in the local registry
     pub async fn is_image_present(&self, reference: &crate::image::Reference) -> bool {
         let reference_string = reference.to_string();
