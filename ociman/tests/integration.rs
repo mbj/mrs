@@ -186,6 +186,7 @@ async fn test_image_build_from_instructions() {
 
     let dockerfile = indoc! {"
         FROM alpine:latest
+        RUN echo 'test_image_build_from_instructions' > /test-id
         RUN touch dirty && echo 'test build from instructions'
     "};
 
@@ -231,6 +232,7 @@ async fn test_image_build_if_absent() {
 
     let dockerfile = indoc! {"
         FROM alpine:latest
+        RUN echo 'test_image_build_if_absent' > /test-id
         RUN touch dirty && echo 'test build if absent'
     "};
 
@@ -287,6 +289,7 @@ async fn test_image_build_from_instructions_hash() {
 
     let dockerfile = indoc! {"
         FROM alpine:latest
+        RUN echo 'test_image_build_from_instructions_hash' > /test-id
         RUN touch dirty && echo 'test hash'
     "};
 
@@ -340,6 +343,7 @@ async fn test_image_build_with_build_args() {
 
     let dockerfile = indoc! {"
         FROM alpine:latest
+        RUN echo 'test_image_build_with_build_args' > /test-id
         ARG TEST_ARG
         RUN touch dirty && echo \"Build arg value: $TEST_ARG\" > /test-output
     "};
@@ -373,6 +377,7 @@ async fn test_image_build_args_affect_hash() {
 
     let dockerfile = indoc! {"
         FROM alpine:latest
+        RUN echo 'test_image_build_args_affect_hash' > /test-id
         ARG VERSION
         RUN touch dirty && echo \"Version: $VERSION\"
     "};
