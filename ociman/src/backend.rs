@@ -161,12 +161,16 @@ impl Backend {
     ///
     /// # Example
     /// ```no_run
-    /// let ip = ociman::backend::resolve::auto()
-    ///     .unwrap()
-    ///     .container_resolver()
-    ///     .add_host("host.docker.internal:host-gateway")
-    ///     .resolve("host.docker.internal")
-    ///     .unwrap();
+    /// async fn example() {
+    ///     let ip = ociman::backend::resolve::auto()
+    ///         .await
+    ///         .unwrap()
+    ///         .container_resolver()
+    ///         .add_host("host.docker.internal:host-gateway")
+    ///         .resolve("host.docker.internal")
+    ///         .await
+    ///         .unwrap();
+    /// }
     /// ```
     #[must_use]
     pub fn container_resolver(&self) -> ContainerHostnameResolver {
