@@ -8,12 +8,15 @@ async fn test_backtrace_contains_file_paths() {
     let output = cmd_proc::Command::new(pg_ephemeral_bin)
         .arguments(["platform", "test-backtrace"])
         .env(&RUST_BACKTRACE, "1")
-        .output()
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
         .await
         .expect("failed to execute pg-ephemeral");
 
     assert!(
-        !output.success(),
+        !output.status.success(),
         "test-backtrace should exit with non-zero status"
     );
 

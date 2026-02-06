@@ -94,7 +94,7 @@ mod tests {
         let output = RevParse::new()
             .rev("HEAD")
             .build()
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .unwrap();
@@ -107,7 +107,7 @@ mod tests {
             .abbrev_ref()
             .rev("HEAD")
             .build()
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .unwrap();

@@ -265,11 +265,14 @@ mod tests {
 async fn gh_auth_token() -> Result<Token, String> {
     let output = cmd_proc::Command::new("gh")
         .arguments(["auth", "token"])
-        .output()
+        .stdout_capture()
+        .stderr_capture()
+        .accept_nonzero_exit()
+        .run()
         .await
         .map_err(|error| format!("failed to execute gh: {error}"))?;
 
-    if !output.success() {
+    if !output.status.success() {
         let stderr = String::from_utf8_lossy(&output.stderr);
         return Err(stderr.trim().to_string());
     }

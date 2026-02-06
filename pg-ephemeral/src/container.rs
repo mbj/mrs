@@ -162,7 +162,7 @@ impl Container {
             .argument("--schema-only")
             .environment_variables(self.container_client_config().to_pg_env())
             .build()
-            .capture_stdout()
+            .stdout_capture()
             .bytes()
             .await
             .unwrap();
@@ -324,7 +324,7 @@ impl Container {
             .argument(format!("new_password={}", password.as_ref()))
             .stdin("ALTER USER :target_user WITH PASSWORD :'new_password'")
             .build()
-            .capture_stdout()
+            .stdout_capture()
             .bytes()
             .await?;
 

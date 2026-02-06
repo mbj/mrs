@@ -197,7 +197,10 @@ impl Seed {
                 let output =
                     git_proc::show::new(&format!("{git_revision}:{}", path.to_str().unwrap()))
                         .build()
-                        .output()
+                        .stdout_capture()
+                        .stderr_capture()
+                        .accept_nonzero_exit()
+                        .run()
                         .await
                         .map_err(|error| LoadError::GitRevision {
                             name: name.clone(),
@@ -206,7 +209,7 @@ impl Seed {
                             message: error.to_string(),
                         })?;
 
-                if output.success() {
+                if output.status.success() {
                     let content = String::from_utf8(output.stdout).map_err(|error| {
                         LoadError::GitRevision {
                             name: name.clone(),
@@ -266,7 +269,10 @@ impl Seed {
                     } => {
                         let output = cmd_proc::Command::new(key_command)
                             .arguments(key_arguments)
-                            .output()
+                            .stdout_capture()
+                            .stderr_capture()
+                            .accept_nonzero_exit()
+                            .run()
                             .await
                             .map_err(|error| LoadError::KeyCommand {
                                 name: name.clone(),
@@ -274,7 +280,7 @@ impl Seed {
                                 message: error.to_string(),
                             })?;
 
-                        if output.success() {
+                        if output.status.success() {
                             hash_chain.update(&output.stdout);
                             Some(output.stdout)
                         } else {
@@ -296,14 +302,17 @@ impl Seed {
                         let output = cmd_proc::Command::new("sh")
                             .arguments(["-e", "-c"])
                             .argument(key_script)
-                            .output()
+                            .stdout_capture()
+                            .stderr_capture()
+                            .accept_nonzero_exit()
+                            .run()
                             .await
                             .map_err(|error| LoadError::KeyScript {
                                 name: name.clone(),
                                 message: error.to_string(),
                             })?;
 
-                        if output.success() {
+                        if output.status.success() {
                             hash_chain.update(&output.stdout);
                             Some(output.stdout)
                         } else {

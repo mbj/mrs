@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.4.0
+
+### Breaking Changes
+
+- Typestate stream handling API: `Command::capture_stdout()` renamed to `Command::stdout_capture()`,
+  `Command::capture_stderr()` renamed to `Command::stderr_capture()`
+- Remove `Command::capture_stderr_stdout()` (use `.stdout_capture().stderr_capture()` instead)
+- Remove `Command::output()` (use `.stdout_capture().stderr_capture().run()` instead)
+- Replace `Capture` with `CaptureSingle<S>` using sealed `StreamMarker` trait (`Stdout`/`Stderr`)
+- Replace `CaptureAllStreams` with `CaptureAll`
+- Replace `Output` with `CaptureAllResult` (fields: `stdout`, `stderr`, `status`)
+- Add `CaptureSingleResult` (fields: `bytes`, `status`)
+- Remove `Output::success()`, `Output::into_stdout_string()`, `Output::into_stderr_string()`
+- Remove `Spawn` builder, `Stdio` enum, `Child` struct
+- Remove `Command::spawn()` (use `.build()` for native `tokio::process` access)
+
+### Added
+
+- `Command::stdout_null()`, `Command::stderr_null()` to redirect streams to /dev/null
+- `Command::stdout_inherit()`, `Command::stderr_inherit()` for explicit inherit
+- Bidirectional typestate transitions: `CaptureAll` -> `CaptureSingle<S>` -> `Command`
+- `CaptureSingle<S>::run()` returning `CaptureSingleResult`
+- `CaptureAll::run()` returning `CaptureAllResult`
+- `Command::build()` to access the underlying `tokio::process::Command`
+
 ## 0.3.0
 
 ### Breaking Changes

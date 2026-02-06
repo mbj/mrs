@@ -157,14 +157,13 @@ pub trait RepoPath<'a>: Sized {
 ///
 /// ```ignore
 /// use git_proc::Build;
-/// use cmd_proc::Stdio;
 ///
 /// git_proc::fetch::new()
 ///     .all()
 ///     .build()
-///     .spawn()
-///     .stderr(Stdio::Null)
-///     .run()?;
+///     .stderr_null()
+///     .status()
+///     .await?;
 /// ```
 pub trait Build {
     /// Build the command without executing it.

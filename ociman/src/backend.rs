@@ -44,7 +44,7 @@ impl Backend {
             Backend::Docker { .. } => self
                 .command()
                 .arguments(["inspect", "--type", "image", &reference_string])
-                .capture_stdout()
+                .stdout_capture()
                 .bytes()
                 .await
                 .is_ok(),
@@ -140,7 +140,7 @@ impl Backend {
                 "--filter",
                 &format!("reference={name}:*"),
             ])
-            .capture_stdout()
+            .stdout_capture()
             .string()
             .await
             .unwrap();
@@ -301,7 +301,7 @@ impl ContainerHostnameResolver {
             .argument("getent")
             .argument("hosts")
             .argument(hostname)
-            .capture_stdout()
+            .stdout_capture()
             .bytes()
             .await
             .map_err(|error| ResolveHostnameError::CommandFailed(error.to_string()))?;
@@ -401,7 +401,7 @@ pub mod resolve {
     ) -> Result {
         let output = Command::new(executable)
             .argument("--version")
-            .capture_stdout()
+            .stdout_capture()
             .bytes()
             .await
             .map_err(|error| Error::VersionDetectionFailed {

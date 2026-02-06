@@ -570,7 +570,7 @@ impl Definition {
 
     async fn run_output(&self) -> Vec<u8> {
         self.build_run_command()
-            .capture_stdout()
+            .stdout_capture()
             .bytes()
             .await
             .unwrap()
@@ -739,7 +739,7 @@ impl Container {
         self.backend_command()
             .arguments(["container", "stop"])
             .argument(&self.id)
-            .capture_stdout()
+            .stdout_capture()
             .bytes()
             .await
             .unwrap();
@@ -749,7 +749,7 @@ impl Container {
         self.backend_command()
             .arguments(["container", "rm"])
             .argument(&self.id)
-            .capture_stdout()
+            .stdout_capture()
             .bytes()
             .await
             .unwrap();
@@ -760,7 +760,7 @@ impl Container {
             .backend_command()
             .argument("inspect")
             .argument(&self.id)
-            .capture_stdout()
+            .stdout_capture()
             .bytes()
             .await
             .unwrap();
@@ -775,7 +775,7 @@ impl Container {
             .argument("--format")
             .argument(format)
             .argument(&self.id)
-            .capture_stdout()
+            .stdout_capture()
             .bytes()
             .await
             .unwrap();
