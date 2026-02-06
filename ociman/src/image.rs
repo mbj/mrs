@@ -207,7 +207,8 @@ impl BuildDefinition {
     }
 
     async fn build_image(&self, target_reference: Reference) -> Reference {
-        let mut arguments = vec!["build".into(), "--tag".into(), target_reference.to_string()];
+        let mut arguments = self.backend.build_command_args();
+        arguments.extend(["--tag".into(), target_reference.to_string()]);
 
         for (key, value) in &self.build_arguments {
             arguments.push("--build-arg".into());
