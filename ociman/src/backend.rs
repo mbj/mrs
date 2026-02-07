@@ -149,7 +149,7 @@ impl Backend {
             .lines()
             .filter(|line| !line.is_empty())
             .map(|line| line.parse::<crate::image::Reference>().unwrap())
-            .filter(|reference| &reference.name == name)
+            .filter(|reference| reference.name.path == name.path)
             .collect()
     }
 

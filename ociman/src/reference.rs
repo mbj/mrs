@@ -402,6 +402,29 @@ pub struct Domain {
     pub port: Option<PortNumber>,
 }
 
+impl Domain {
+    /// Returns true if this domain looks like a registry endpoint.
+    ///
+    /// Following the distribution/reference convention (used by both Docker and
+    /// Podman) on top of the OCI spec: a domain is a registry if it has a port,
+    /// is an IP address, is the literal "localhost", or is a multi-component
+    /// domain name (contains dots). A bare single-component name like
+    /// "myproject" is treated as a path component, not a domain.
+    #[must_use]
+    pub fn is_registry(&self) -> bool {
+        if self.port.is_some() {
+            return true;
+        }
+
+        match &self.host {
+            Host::Ipv4(_) | Host::Ipv6(_) => true,
+            Host::DomainName(name) => {
+                name.components().len() > 1 || name.to_string() == "localhost"
+            }
+        }
+    }
+}
+
 impl Parse for Domain {
     fn parse(input: &str) -> IResult<&str, Self> {
         pair(Host::parse, opt(preceded(char(':'), PortNumber::parse)))
@@ -606,6 +629,20 @@ impl std::fmt::Display for Path {
 /// assert!(name.domain.is_some());
 /// assert_eq!(name.domain.unwrap().to_string(), "docker.io");
 /// assert_eq!(name.path.to_string(), "library/alpine");
+///
+/// // Single-component names before '/' are path components, not domains.
+/// // This follows the distribution/reference convention (used by both Docker
+/// // and Podman) on top of the OCI spec: the first segment is only treated
+/// // as a domain if it contains a dot, a colon (port), is an IP address,
+/// // or is the literal "localhost".
+/// let name: Name = "pg-ephemeral/main".parse().unwrap();
+/// assert!(name.domain.is_none());
+/// assert_eq!(name.path.to_string(), "pg-ephemeral/main");
+///
+/// let name: Name = "localhost/pg-ephemeral/main".parse().unwrap();
+/// assert!(name.domain.is_some());
+/// assert_eq!(name.domain.unwrap().to_string(), "localhost");
+/// assert_eq!(name.path.to_string(), "pg-ephemeral/main");
 /// ```
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct Name {
@@ -614,19 +651,22 @@ pub struct Name {
 }
 
 impl Parse for Name {
+    /// Parse a name, applying the distribution/reference convention for domain
+    /// detection on top of the OCI spec: the segment before the first '/' is
+    /// only a domain if it contains a dot, a colon (port), is an IP address,
+    /// or is the literal "localhost".
     fn parse(input: &str) -> IResult<&str, Self> {
         alt((
             pair(
                 |input| {
                     let (remaining, domain) = Domain::parse(input)?;
-                    if remaining.starts_with('/') {
-                        Ok((remaining, domain))
-                    } else {
-                        Err(nom::Err::Error(nom::error::Error::new(
+                    if !remaining.starts_with('/') || !domain.is_registry() {
+                        return Err(nom::Err::Error(nom::error::Error::new(
                             input,
                             nom::error::ErrorKind::Verify,
-                        )))
+                        )));
                     }
+                    Ok((remaining, domain))
                 },
                 preceded(char('/'), Path::parse),
             )
@@ -953,5 +993,88 @@ impl std::fmt::Display for Reference {
             write!(formatter, "@{digest}")?;
         }
         Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_domain_is_registry_with_dots() {
+        let domain: Domain = "docker.io".parse().unwrap();
+        assert!(domain.is_registry());
+    }
+
+    #[test]
+    fn test_domain_is_registry_with_port() {
+        let domain: Domain = "myhost:5000".parse().unwrap();
+        assert!(domain.is_registry());
+    }
+
+    #[test]
+    fn test_domain_is_registry_localhost() {
+        let domain: Domain = "localhost".parse().unwrap();
+        assert!(domain.is_registry());
+    }
+
+    #[test]
+    fn test_domain_is_registry_localhost_with_port() {
+        let domain: Domain = "localhost:5000".parse().unwrap();
+        assert!(domain.is_registry());
+    }
+
+    #[test]
+    fn test_domain_is_registry_ipv4() {
+        let domain: Domain = "192.168.1.1".parse().unwrap();
+        assert!(domain.is_registry());
+    }
+
+    #[test]
+    fn test_domain_is_not_registry_single_component() {
+        let domain: Domain = "myproject".parse().unwrap();
+        assert!(!domain.is_registry());
+    }
+
+    #[test]
+    fn test_name_single_component_not_domain() {
+        let name: Name = "pg-ephemeral/main".parse().unwrap();
+        assert!(name.domain.is_none());
+        assert_eq!(name.path.to_string(), "pg-ephemeral/main");
+    }
+
+    #[test]
+    fn test_name_localhost_is_domain() {
+        let name: Name = "localhost/pg-ephemeral/main".parse().unwrap();
+        assert_eq!(name.domain.unwrap().to_string(), "localhost");
+        assert_eq!(name.path.to_string(), "pg-ephemeral/main");
+    }
+
+    #[test]
+    fn test_name_dotted_is_domain() {
+        let name: Name = "docker.io/library/alpine".parse().unwrap();
+        assert_eq!(name.domain.unwrap().to_string(), "docker.io");
+        assert_eq!(name.path.to_string(), "library/alpine");
+    }
+
+    #[test]
+    fn test_name_with_port_is_domain() {
+        let name: Name = "myhost:5000/myimage".parse().unwrap();
+        assert_eq!(name.domain.unwrap().to_string(), "myhost:5000");
+        assert_eq!(name.path.to_string(), "myimage");
+    }
+
+    #[test]
+    fn test_name_bare_path() {
+        let name: Name = "alpine".parse().unwrap();
+        assert!(name.domain.is_none());
+        assert_eq!(name.path.to_string(), "alpine");
+    }
+
+    #[test]
+    fn test_name_multi_segment_path_no_domain() {
+        let name: Name = "myorg/myproject/myimage".parse().unwrap();
+        assert!(name.domain.is_none());
+        assert_eq!(name.path.to_string(), "myorg/myproject/myimage");
     }
 }

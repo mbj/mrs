@@ -43,7 +43,8 @@ impl CacheStatus {
         matches!(self, Self::Hit { .. })
     }
 
-    fn status_str(&self) -> &'static str {
+    #[must_use]
+    pub fn status_str(&self) -> &'static str {
         match self {
             Self::Hit { .. } => "hit",
             Self::Miss { .. } => "miss",
@@ -441,43 +442,6 @@ impl LoadedSeed {
             Self::Script { .. } => "script",
         }
     }
-
-    fn cache_key_output(&self) -> Option<&[u8]> {
-        match self {
-            Self::Command {
-                cache_key_output, ..
-            } => cache_key_output.as_deref(),
-            _ => None,
-        }
-    }
-}
-
-fn format_cache_key_output(output: &[u8], verbose: bool) -> String {
-    match std::str::from_utf8(output) {
-        Ok(text) if verbose => text.to_string(),
-        Ok(text) => {
-            let first_line = text.lines().next().unwrap_or("");
-            let line_count = text.lines().count();
-            if line_count > 1 {
-                format!("{first_line} [...{} more lines]", line_count - 1)
-            } else {
-                first_line.to_string()
-            }
-        }
-        Err(_) if verbose => hex::encode(output),
-        Err(_) => {
-            let hex_string = hex::encode(output);
-            if hex_string.len() > 256 {
-                format!(
-                    "{}... [{} more bytes]",
-                    &hex_string[..256],
-                    output.len() - 128
-                )
-            } else {
-                hex_string
-            }
-        }
-    }
 }
 
 struct HashChain {
@@ -561,48 +525,64 @@ impl<'a> LoadedSeeds<'a> {
         self.seeds.iter()
     }
 
-    pub fn print(&self, verbose: bool) {
+    pub fn print(&self, instance_name: &crate::InstanceName) {
+        println!("Instance: {instance_name}");
+        println!("Image:    {}", self.image);
+        println!("Version:  {}", crate::VERSION_STR);
+        println!();
+
+        let mut table = comfy_table::Table::new();
+
+        table
+            .load_preset(comfy_table::presets::NOTHING)
+            .set_header(["Seed", "Type", "Status"]);
+
+        for seed in &self.seeds {
+            table.add_row([
+                seed.name().as_str(),
+                seed.variant_name(),
+                seed.cache_status().status_str(),
+            ]);
+        }
+
+        println!("{table}");
+    }
+
+    pub fn print_json(&self, instance_name: &crate::InstanceName) {
         #[derive(serde::Serialize)]
-        struct Output {
-            version: String,
+        struct Output<'a> {
+            instance: &'a str,
             image: String,
-            seeds: Vec<SeedOutput>,
+            version: &'a str,
+            seeds: Vec<SeedOutput<'a>>,
         }
 
         #[derive(serde::Serialize)]
-        struct SeedOutput {
-            name: String,
-            #[serde(rename = "type")]
-            variant: String,
+        struct SeedOutput<'a> {
+            name: &'a str,
+            r#type: &'a str,
+            status: &'a str,
             #[serde(skip_serializing_if = "Option::is_none")]
-            cache_image: Option<String>,
-            status: String,
-            #[serde(skip_serializing_if = "Option::is_none")]
-            cache_key_output: Option<String>,
+            reference: Option<String>,
         }
 
         let output = Output {
-            version: crate::VERSION_STR.to_string(),
+            instance: &instance_name.to_string(),
             image: self.image.to_string(),
+            version: crate::VERSION_STR,
             seeds: self
                 .seeds
                 .iter()
                 .map(|seed| SeedOutput {
-                    cache_image: seed
-                        .cache_status()
-                        .reference()
-                        .map(|reference| reference.to_string()),
-                    status: seed.cache_status().status_str().to_string(),
-                    cache_key_output: seed
-                        .cache_key_output()
-                        .map(|output| format_cache_key_output(output, verbose)),
-                    name: seed.name().to_string(),
-                    variant: seed.variant_name().to_string(),
+                    name: seed.name().as_str(),
+                    r#type: seed.variant_name(),
+                    status: seed.cache_status().status_str(),
+                    reference: seed.cache_status().reference().map(|r| r.to_string()),
                 })
                 .collect(),
         };
 
-        print!("{}", toml::to_string_pretty(&output).unwrap());
+        println!("{}", serde_json::to_string_pretty(&output).unwrap());
     }
 }
 

@@ -3,6 +3,65 @@ mod common;
 use common::{TestDir, TestGitRepo, run_pg_ephemeral};
 
 #[tokio::test]
+async fn test_populate_cache() {
+    let backend = ociman::test_backend_setup!();
+    let instance_name: pg_ephemeral::InstanceName = "populate-cache-test".parse().unwrap();
+
+    // Clean up any leftover images from previous runs
+    let name: ociman::reference::Name = format!("localhost/pg-ephemeral/{instance_name}")
+        .parse()
+        .unwrap();
+    for reference in backend.image_references_by_name(&name).await {
+        backend.remove_image_force(&reference).await;
+    }
+
+    let definition = pg_ephemeral::Definition::new(backend.clone(), pg_ephemeral::Image::default(), instance_name.clone())
+        .wait_available_timeout(std::time::Duration::from_secs(30))
+        .apply_script(
+            "schema-and-data".parse().unwrap(),
+            r##"psql -c "CREATE TABLE test_cache (id INTEGER PRIMARY KEY); INSERT INTO test_cache VALUES (42);""##,
+        )
+        .unwrap();
+
+    // Verify cache status is Miss initially
+    let loaded_seeds = definition.load_seeds(&instance_name).await.unwrap();
+    for seed in loaded_seeds.iter_seeds() {
+        assert!(!seed.cache_status().is_hit());
+    }
+
+    // Populate cache
+    definition.populate_cache(&instance_name).await.unwrap();
+
+    // Verify cache status is now Hit
+    let loaded_seeds = definition.load_seeds(&instance_name).await.unwrap();
+    for seed in loaded_seeds.iter_seeds() {
+        assert!(seed.cache_status().is_hit());
+    }
+
+    // Boot from the cached image using with_container (which handles cache hits properly)
+    // and verify the seed effect is present
+    definition
+        .with_container(async |container| {
+            container
+                .with_connection(async |connection| {
+                    let row: (i32,) = sqlx::query_as("SELECT id FROM test_cache")
+                        .fetch_one(&mut *connection)
+                        .await
+                        .unwrap();
+                    assert_eq!(row.0, 42);
+                })
+                .await;
+        })
+        .await
+        .unwrap();
+
+    // Clean up images
+    for reference in backend.image_references_by_name(&name).await {
+        backend.remove_image_force(&reference).await;
+    }
+}
+
+#[tokio::test]
 async fn test_cache_status() {
     let _backend = ociman::test_backend_setup!();
     let repo = TestGitRepo::new("cache-test").await;
@@ -36,35 +95,40 @@ async fn test_cache_status() {
     repo.write_file("database.toml", &config_content);
 
     let expected = indoc::indoc! {r#"
-        version = "0.0.1-pre2"
-        image = "17.1"
-
-        [[seeds]]
-        name = "a-schema"
-        type = "sql-file"
-        cache_image = "pg-ephemeral/main:6ca66287ad925179b556edbe98c6e813ffd02e1ed129cc4bea99e10f610f656a"
-        status = "miss"
-
-        [[seeds]]
-        name = "b-data-from-git"
-        type = "sql-file-git-revision"
-        cache_image = "pg-ephemeral/main:9d1fe3c033a5353478c44008c8c34a1223ab208664d43a1c63b22172c9d9c645"
-        status = "miss"
-
-        [[seeds]]
-        name = "c-run-command"
-        type = "command"
-        cache_image = "pg-ephemeral/main:9c76bdb2e278bff90fa66ea86693deaeab85d2b84ff009d8c31d5d8b0c857e88"
-        status = "miss"
-
-        [[seeds]]
-        name = "d-run-script"
-        type = "script"
-        cache_image = "pg-ephemeral/main:2204e587eb3ffecb4d3c372f127cbaf26a3c4df88a63b1fa86ec26036d36ecdc"
-        status = "miss"
+        {
+          "instance": "main",
+          "image": "17.1",
+          "version": "0.0.1-pre2",
+          "seeds": [
+            {
+              "name": "a-schema",
+              "type": "sql-file",
+              "status": "miss",
+              "reference": "pg-ephemeral/main:6ca66287ad925179b556edbe98c6e813ffd02e1ed129cc4bea99e10f610f656a"
+            },
+            {
+              "name": "b-data-from-git",
+              "type": "sql-file-git-revision",
+              "status": "miss",
+              "reference": "pg-ephemeral/main:9d1fe3c033a5353478c44008c8c34a1223ab208664d43a1c63b22172c9d9c645"
+            },
+            {
+              "name": "c-run-command",
+              "type": "command",
+              "status": "miss",
+              "reference": "pg-ephemeral/main:9c76bdb2e278bff90fa66ea86693deaeab85d2b84ff009d8c31d5d8b0c857e88"
+            },
+            {
+              "name": "d-run-script",
+              "type": "script",
+              "status": "miss",
+              "reference": "pg-ephemeral/main:2204e587eb3ffecb4d3c372f127cbaf26a3c4df88a63b1fa86ec26036d36ecdc"
+            }
+          ]
+        }
     "#};
 
-    let stdout = run_pg_ephemeral(&["cache", "status"], &repo.path).await;
+    let stdout = run_pg_ephemeral(&["cache", "status", "--json"], &repo.path).await;
     assert_eq!(stdout, expected);
 }
 
@@ -87,17 +151,22 @@ async fn test_cache_status_deterministic() {
     );
 
     let expected = indoc::indoc! {r#"
-        version = "0.0.1-pre2"
-        image = "17.1"
-
-        [[seeds]]
-        name = "schema"
-        type = "sql-file"
-        cache_image = "pg-ephemeral/main:6ca66287ad925179b556edbe98c6e813ffd02e1ed129cc4bea99e10f610f656a"
-        status = "miss"
+        {
+          "instance": "main",
+          "image": "17.1",
+          "version": "0.0.1-pre2",
+          "seeds": [
+            {
+              "name": "schema",
+              "type": "sql-file",
+              "status": "miss",
+              "reference": "pg-ephemeral/main:6ca66287ad925179b556edbe98c6e813ffd02e1ed129cc4bea99e10f610f656a"
+            }
+          ]
+        }
     "#};
 
-    let stdout = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
+    let stdout = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
     assert_eq!(stdout, expected);
 }
 
@@ -119,28 +188,16 @@ async fn test_cache_status_change_with_content() {
         "#},
     );
 
-    let expected_before = indoc::indoc! {r#"
-        version = "0.0.1-pre2"
-        image = "17.1"
-
-        [[seeds]]
-        name = "schema"
-        type = "sql-file"
-        cache_image = "pg-ephemeral/main:6ca66287ad925179b556edbe98c6e813ffd02e1ed129cc4bea99e10f610f656a"
-        status = "miss"
-    "#};
-
-    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
-    assert_eq!(stdout1, expected_before);
+    let stdout1 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
 
     dir.write_file(
         "schema.sql",
         "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);",
     );
 
-    let stdout2 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
-    // Cache image should change when content changes - just verify it's different
-    assert_ne!(stdout2, expected_before);
+    let stdout2 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+    // Cache reference should change when content changes
+    assert_ne!(stdout2, stdout1);
 }
 
 #[tokio::test]
@@ -161,19 +218,7 @@ async fn test_cache_status_change_with_image() {
         "#},
     );
 
-    let expected_before = indoc::indoc! {r#"
-        version = "0.0.1-pre2"
-        image = "17.1"
-
-        [[seeds]]
-        name = "schema"
-        type = "sql-file"
-        cache_image = "pg-ephemeral/main:6ca66287ad925179b556edbe98c6e813ffd02e1ed129cc4bea99e10f610f656a"
-        status = "miss"
-    "#};
-
-    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
-    assert_eq!(stdout1, expected_before);
+    let stdout1 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
 
     dir.write_file(
         "database.toml",
@@ -186,9 +231,9 @@ async fn test_cache_status_change_with_image() {
         "#},
     );
 
-    let stdout2 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
-    // Cache image should change when image changes - just verify it's different
-    assert_ne!(stdout2, expected_before);
+    let stdout2 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+    // Cache reference should change when image changes
+    assert_ne!(stdout2, stdout1);
 }
 
 #[tokio::test]
@@ -215,29 +260,34 @@ async fn test_cache_status_chain_propagates() {
     );
 
     let expected_before = indoc::indoc! {r#"
-        version = "0.0.1-pre2"
-        image = "17.1"
-
-        [[seeds]]
-        name = "a-first"
-        type = "sql-file"
-        cache_image = "pg-ephemeral/main:f8b223da0e4cf8d8db2add4450845e7563bf9800e27773f3301cdf7740cf6176"
-        status = "miss"
-
-        [[seeds]]
-        name = "b-second"
-        type = "sql-file"
-        cache_image = "pg-ephemeral/main:96482a6449ac57c34b002ba936158de8ab89819238bd18863c37450d6915cd8e"
-        status = "miss"
+        {
+          "instance": "main",
+          "image": "17.1",
+          "version": "0.0.1-pre2",
+          "seeds": [
+            {
+              "name": "a-first",
+              "type": "sql-file",
+              "status": "miss",
+              "reference": "pg-ephemeral/main:f8b223da0e4cf8d8db2add4450845e7563bf9800e27773f3301cdf7740cf6176"
+            },
+            {
+              "name": "b-second",
+              "type": "sql-file",
+              "status": "miss",
+              "reference": "pg-ephemeral/main:96482a6449ac57c34b002ba936158de8ab89819238bd18863c37450d6915cd8e"
+            }
+          ]
+        }
     "#};
 
-    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
+    let stdout1 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
     assert_eq!(stdout1, expected_before);
 
     dir.write_file("first.sql", "CREATE TABLE first (id INTEGER, name TEXT);");
 
-    let stdout2 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
-    // Cache image should change when first seed changes, and propagate to second seed
+    let stdout2 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+    // Cache reference should change when first seed changes, and propagate to second seed
     assert_ne!(stdout2, expected_before);
 }
 
@@ -266,84 +316,30 @@ async fn test_cache_status_key_command() {
     );
 
     let expected_before = indoc::indoc! {r#"
-        version = "0.0.1-pre2"
-        image = "17.1"
-
-        [[seeds]]
-        name = "run-migrations"
-        type = "command"
-        cache_image = "pg-ephemeral/main:7f881e9f75f7767a96ff07d2ee9649c0754a228cd69517e31928107abb11b256"
-        status = "miss"
-        cache_key_output = "1.0.0"
+        {
+          "instance": "main",
+          "image": "17.1",
+          "version": "0.0.1-pre2",
+          "seeds": [
+            {
+              "name": "run-migrations",
+              "type": "command",
+              "status": "miss",
+              "reference": "pg-ephemeral/main:7f881e9f75f7767a96ff07d2ee9649c0754a228cd69517e31928107abb11b256"
+            }
+          ]
+        }
     "#};
 
-    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
+    let stdout1 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
     assert_eq!(stdout1, expected_before);
 
-    // Change the version file - cache image should change
+    // Change the version file - cache reference should change
     dir.write_file("version.txt", "2.0.0");
 
-    let stdout2 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
-    // Cache image should change when key command output changes
+    let stdout2 = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
+    // Cache reference should change when key command output changes
     assert_ne!(stdout2, expected_before);
-}
-
-#[tokio::test]
-async fn test_cache_status_output_truncation_and_verbose() {
-    let _backend = ociman::test_backend_setup!();
-    let dir = TestDir::new("cache-truncation-test");
-
-    dir.write_file(
-        "database.toml",
-        indoc::indoc! {r#"
-            image = "17.1"
-
-            [instances.main.seeds.run-migrations]
-            type = "command"
-            command = "migrate"
-            arguments = ["up"]
-
-            [instances.main.seeds.run-migrations.cache]
-            type = "key-script"
-            script = "echo 'line1'; echo 'line2'; echo 'line3'"
-        "#},
-    );
-
-    let expected_truncated = indoc::indoc! {r#"
-        version = "0.0.1-pre2"
-        image = "17.1"
-
-        [[seeds]]
-        name = "run-migrations"
-        type = "command"
-        cache_image = "pg-ephemeral/main:c0bb68b81534ae662400ea38803ee43940c9a96b20c625bbd517dac8018511e8"
-        status = "miss"
-        cache_key_output = "line1 [...2 more lines]"
-    "#};
-
-    let expected_verbose = indoc::indoc! {r#"
-        version = "0.0.1-pre2"
-        image = "17.1"
-
-        [[seeds]]
-        name = "run-migrations"
-        type = "command"
-        cache_image = "pg-ephemeral/main:c0bb68b81534ae662400ea38803ee43940c9a96b20c625bbd517dac8018511e8"
-        status = "miss"
-        cache_key_output = """
-        line1
-        line2
-        line3
-        """
-    "#};
-
-    // Without --verbose: truncated output
-    let stdout1 = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
-    assert_eq!(stdout1, expected_truncated);
-
-    // With --verbose: full output
-    let stdout2 = run_pg_ephemeral(&["cache", "status", "--verbose"], &dir.path).await;
-    assert_eq!(stdout2, expected_verbose);
 }
 
 #[tokio::test]
@@ -364,7 +360,7 @@ async fn test_cache_status_change_with_ssl() {
         "#},
     );
 
-    let output_no_ssl = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
+    let output_no_ssl = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
 
     // Add SSL config
     dir.write_file(
@@ -381,7 +377,7 @@ async fn test_cache_status_change_with_ssl() {
         "#},
     );
 
-    let output_with_ssl = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
+    let output_with_ssl = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
 
     // Cache key should change when SSL config is added
     assert_ne!(output_no_ssl, output_with_ssl);
@@ -401,7 +397,7 @@ async fn test_cache_status_change_with_ssl() {
         "#},
     );
 
-    let output_different_ssl = run_pg_ephemeral(&["cache", "status"], &dir.path).await;
+    let output_different_ssl = run_pg_ephemeral(&["cache", "status", "--json"], &dir.path).await;
 
     // Cache key should change when SSL hostname changes
     assert_ne!(output_with_ssl, output_different_ssl);

@@ -47,6 +47,7 @@ impl Instance {
             image: self.image.clone(),
             cross_container_access: self.cross_container_access,
             wait_available_timeout: self.wait_available_timeout,
+            remove: true,
         })
     }
 }

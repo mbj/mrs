@@ -20,6 +20,7 @@ workspace = true
 [dependencies]
 clap.workspace = true
 cmd-proc.workspace = true
+comfy-table.workspace = true
 env_logger.workspace = true
 git-proc.workspace = true
 hex.workspace = true

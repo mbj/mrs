@@ -125,12 +125,18 @@ impl App {
 pub enum CacheCommand {
     /// Print cache status for seeds
     Status {
-        /// Show full cache key output instead of truncated
+        /// Output as JSON with full details
         #[arg(long)]
-        verbose: bool,
+        json: bool,
     },
     /// Remove cached images for the instance
-    Reset,
+    Reset {
+        /// Force removal even if images are in use by stopped containers
+        #[arg(long)]
+        force: bool,
+    },
+    /// Populate cache by running seeds and committing at each cacheable point
+    Populate,
 }
 
 #[derive(Clone, Debug, clap::Parser)]
@@ -269,16 +275,14 @@ impl Command {
                 instance_name,
                 command,
             } => match command {
-                CacheCommand::Status { verbose } => {
+                CacheCommand::Status { json } => {
                     let definition = Self::get_instance(instance_map, instance_name)?
                         .definition(instance_name)
                         .await
                         .unwrap();
-                    definition
-                        .print_cache_status(instance_name, *verbose)
-                        .await?
+                    definition.print_cache_status(instance_name, *json).await?
                 }
-                CacheCommand::Reset => {
+                CacheCommand::Reset { force } => {
                     let definition = Self::get_instance(instance_map, instance_name)?
                         .definition(instance_name)
                         .await
@@ -287,9 +291,21 @@ impl Command {
                         format!("pg-ephemeral/{instance_name}").parse().unwrap();
                     let references = definition.backend.image_references_by_name(&name).await;
                     for reference in &references {
-                        definition.backend.remove_image(reference).await;
+                        if *force {
+                            definition.backend.remove_image_force(reference).await;
+                        } else {
+                            definition.backend.remove_image(reference).await;
+                        }
                         println!("Removed: {reference}");
                     }
+                }
+                CacheCommand::Populate => {
+                    let definition = Self::get_instance(instance_map, instance_name)?
+                        .definition(instance_name)
+                        .await
+                        .unwrap();
+                    definition.populate_cache(instance_name).await?;
+                    definition.print_cache_status(instance_name, false).await?;
                 }
             },
             Self::ContainerPsql { instance_name } => {

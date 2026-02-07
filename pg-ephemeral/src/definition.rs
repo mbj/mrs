@@ -22,6 +22,7 @@ pub struct Definition {
     pub image: crate::image::Image,
     pub cross_container_access: bool,
     pub wait_available_timeout: std::time::Duration,
+    pub remove: bool,
 }
 
 impl Definition {
@@ -42,7 +43,18 @@ impl Definition {
             image,
             cross_container_access: false,
             wait_available_timeout: std::time::Duration::from_secs(10),
+            remove: true,
         }
+    }
+
+    #[must_use]
+    pub fn remove(self, remove: bool) -> Self {
+        Self { remove, ..self }
+    }
+
+    #[must_use]
+    pub fn image(self, image: crate::image::Image) -> Self {
+        Self { image, ..self }
     }
 
     pub fn add_seed(self, name: SeedName, seed: Seed) -> Result<Self, DuplicateSeedName> {
@@ -81,9 +93,14 @@ impl Definition {
     pub async fn print_cache_status(
         &self,
         instance_name: &crate::InstanceName,
-        verbose: bool,
+        json: bool,
     ) -> Result<(), crate::container::Error> {
-        self.load_seeds(instance_name).await?.print(verbose);
+        let loaded_seeds = self.load_seeds(instance_name).await?;
+        if json {
+            loaded_seeds.print_json(instance_name);
+        } else {
+            loaded_seeds.print(instance_name);
+        }
         Ok(())
     }
 
@@ -165,14 +182,27 @@ impl Definition {
         &self,
         mut action: impl AsyncFnMut(&Container) -> T,
     ) -> Result<T, crate::container::Error> {
-        let loaded_seeds = self.load_seeds(&self.instance_name).await?;
+        let (last_cache_hit, uncached_seeds) = self.populate_cache(&self.instance_name).await?;
 
-        let mut db_container = Container::run_definition(self).await;
+        let boot_definition = match &last_cache_hit {
+            Some(reference) => self
+                .clone()
+                .image(crate::image::Image::Explicit(reference.clone())),
+            None => self.clone(),
+        };
+
+        let mut db_container = Container::run_definition(&boot_definition).await;
+
+        if last_cache_hit.is_some() {
+            db_container
+                .set_superuser_password(db_container.client_config.password.as_ref().unwrap())
+                .await?;
+        }
 
         db_container.wait_available().await?;
 
-        for loaded_seed in loaded_seeds.iter_seeds() {
-            self.apply_loaded_seed(&db_container, loaded_seed).await
+        for seed in &uncached_seeds {
+            self.apply_loaded_seed(&db_container, seed).await;
         }
 
         let result = action(&db_container).await;
@@ -180,6 +210,59 @@ impl Definition {
         db_container.stop().await;
 
         Ok(result)
+    }
+
+    /// Populate cache images for seeds.
+    ///
+    /// Returns a tuple of:
+    /// - The last cache hit reference (if any), which can be used to boot from
+    /// - The loaded seeds that could not be cached because the cache chain was broken
+    pub async fn populate_cache(
+        &self,
+        instance_name: &crate::InstanceName,
+    ) -> Result<(Option<ociman::Reference>, Vec<LoadedSeed>), crate::container::Error> {
+        let loaded_seeds = self.load_seeds(instance_name).await?;
+
+        let mut previous_cache_reference: Option<&ociman::Reference> = None;
+        let mut seeds_iter = loaded_seeds.iter_seeds().peekable();
+
+        while let Some(seed) = seeds_iter.next() {
+            let Some(cache_reference) = seed.cache_status().reference() else {
+                // Uncacheable seed - cache chain is broken, return remaining seeds
+                let mut remaining = vec![seed.clone()];
+                remaining.extend(seeds_iter.cloned());
+                return Ok((previous_cache_reference.cloned(), remaining));
+            };
+
+            if seed.cache_status().is_hit() {
+                previous_cache_reference = Some(cache_reference);
+                continue;
+            }
+
+            let caching_definition = self.clone().remove(false).image(
+                previous_cache_reference
+                    .map(|reference| crate::image::Image::Explicit(reference.clone()))
+                    .unwrap_or_else(|| self.image.clone()),
+            );
+
+            let mut container = Container::run_definition(&caching_definition).await;
+
+            if previous_cache_reference.is_some() {
+                container
+                    .set_superuser_password(container.client_config.password.as_ref().unwrap())
+                    .await?;
+            }
+
+            container.wait_available().await?;
+
+            self.apply_loaded_seed(&container, seed).await;
+            container.stop_commit_remove(cache_reference).await;
+            log::info!("Committed cache image: {cache_reference}");
+
+            previous_cache_reference = Some(cache_reference);
+        }
+
+        Ok((previous_cache_reference.cloned(), Vec::new()))
     }
 
     pub async fn run_integration_server(&self) -> Result<(), crate::container::Error> {
@@ -213,6 +296,7 @@ impl Definition {
     }
 
     async fn apply_loaded_seed(&self, db_container: &Container, loaded_seed: &LoadedSeed) {
+        log::info!("Applying seed: {}", loaded_seed.name());
         match loaded_seed {
             LoadedSeed::SqlFile { content, .. } => db_container.apply_sql(content).await,
             LoadedSeed::SqlFileGitRevision { content, .. } => db_container.apply_sql(content).await,
