@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+### Changed
+
+- Update to `cmd-proc` 0.4.0
+
 ## 0.2.0
 
 ### Breaking Changes

@@ -1,5 +1,43 @@
 # Changelog
 
+## 0.0.3
+
+### Breaking Changes
+
+- Switch to async `cmd-proc`: command execution methods are now `async fn`
+- Switch `sqlx` dependency to `msqlx` fork
+- Change to `u16` non-zero interface for port types
+- Change to `clap` args for CLI integration
+- Change to consistent instance name types
+
+### Added
+
+- GCP Cloud SQL URL support
+- Partitioned index addition helper
+- Support for partially concurrent indexes
+- `INCLUDE` support for covering indexes
+- Fillfactor support
+- `gc` subcommand for incomplete index cleanup
+- `analyze all` support
+- Channel binding URL parameter support
+- `host_addr` support
+- Comprehensive PostgreSQL object identifier types: column, index, constraint,
+  extension, sequence, function, trigger, domain, type, view, relation,
+  materialized view, operator, aggregate, collation, tablespace, policy, rule,
+  publication, subscription, foreign server, foreign data wrapper, foreign table,
+  event trigger, language, text search configuration, text search dictionary,
+  conversion, operator class, operator family, access method, statistics object
+
+### Fixed
+
+- Reject NUL bytes in identifiers
+- Fix channel binding URL parsing query parameter
+- Fix duplicated constants
+- Fix conflicting user/hostname/database values
+- Fix to not analyze partition parents
+- Fix to allow analyze statements concurrently
+- Fix to not attempt to set unsupported `system` pgsslroot (sqlx/msqlx integration)
+
 ## 0.0.2
 
 - URL parsing now accepts a `&str` and uses RFC 3986 semantics; `+` is treated as a literal plus
