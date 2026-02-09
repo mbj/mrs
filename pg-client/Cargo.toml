@@ -40,7 +40,8 @@ tokio = { workspace = true, optional = true }
 env_logger.workspace = true
 indoc.workspace = true
 ociman.workspace = true
-pg-ephemeral.workspace = true
+# Path-only to avoid circular dependency on publish, version-less dev-deps get stripped.
+pg-ephemeral = { path = "../pg-ephemeral" }
 pretty_assertions.workspace = true
 serde_json.workspace = true
 sqlx.workspace = true
