@@ -1438,6 +1438,113 @@ pub mod database {
         }
     }
 }
+pub mod integration {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-integration-integrationconfig.html
+    pub struct IntegrationConfig_ {
+        pub continuous_sync: Option<crate::value::ExpBool>,
+        pub refresh_interval: Option<crate::value::ExpString>,
+        pub source_properties: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_glue_Integration_IntegrationConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Glue::Integration.IntegrationConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_glue_Integration_IntegrationConfig as IntegrationConfig;
+    impl crate::value::ToValue for IntegrationConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.continuous_sync {
+                properties.insert(
+                    "ContinuousSync".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.refresh_interval {
+                properties.insert(
+                    "RefreshInterval".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.source_properties {
+                properties.insert(
+                    "SourceProperties".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
+pub mod integrationresourceproperty {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-integrationresourceproperty-sourceprocessingproperties.html
+    pub struct SourceProcessingProperties_ {
+        pub role_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_glue_IntegrationResourceProperty_SourceProcessingProperties {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Glue::IntegrationResourceProperty.SourceProcessingProperties"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_glue_IntegrationResourceProperty_SourceProcessingProperties as SourceProcessingProperties;
+    impl crate::value::ToValue for SourceProcessingProperties_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "RoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.role_arn),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-integrationresourceproperty-targetprocessingproperties.html
+    pub struct TargetProcessingProperties_ {
+        pub connection_name: Option<crate::value::ExpString>,
+        pub event_bus_arn: Option<crate::value::ExpString>,
+        pub kms_arn: Option<crate::value::ExpString>,
+        pub role_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_glue_IntegrationResourceProperty_TargetProcessingProperties {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Glue::IntegrationResourceProperty.TargetProcessingProperties"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_glue_IntegrationResourceProperty_TargetProcessingProperties as TargetProcessingProperties;
+    impl crate::value::ToValue for TargetProcessingProperties_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.connection_name {
+                properties.insert(
+                    "ConnectionName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.event_bus_arn {
+                properties.insert(
+                    "EventBusArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.kms_arn {
+                properties.insert("KmsArn".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.insert(
+                "RoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.role_arn),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod job {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-connectionslist.html
     pub struct ConnectionsList_ {
@@ -3902,6 +4009,184 @@ impl crate::template::ToResource for DevEndpoint_ {
         if let Some(ref value) = self.worker_type {
             properties.insert(
                 "WorkerType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-identitycenterconfiguration.html
+pub struct IdentityCenterConfiguration_ {
+    pub instance_arn: crate::value::ExpString,
+    pub scopes: Option<Vec<crate::value::ExpString>>,
+    pub user_background_sessions_enabled: Option<crate::value::ExpBool>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_glue_IdentityCenterConfiguration {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Glue::IdentityCenterConfiguration"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_glue_IdentityCenterConfiguration as IdentityCenterConfiguration;
+impl crate::template::ToResource for IdentityCenterConfiguration_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Glue"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName(
+                "IdentityCenterConfiguration",
+            ),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "InstanceArn".to_string(),
+            crate::value::ToValue::to_value(&self.instance_arn),
+        );
+        if let Some(ref value) = self.scopes {
+            properties.insert("Scopes".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.user_background_sessions_enabled {
+            properties.insert(
+                "UserBackgroundSessionsEnabled".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-integration.html
+pub struct Integration_ {
+    pub additional_encryption_context:
+        Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+    pub data_filter: Option<crate::value::ExpString>,
+    pub description: Option<crate::value::ExpString>,
+    pub integration_config: Option<super::glue::integration::IntegrationConfig_>,
+    pub integration_name: crate::value::ExpString,
+    pub kms_key_id: Option<crate::value::ExpString>,
+    pub source_arn: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub target_arn: crate::value::ExpString,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_glue_Integration {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Glue::Integration"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_glue_Integration as Integration;
+impl crate::template::ToResource for Integration_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Glue"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("Integration"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.additional_encryption_context {
+            properties.insert(
+                "AdditionalEncryptionContext".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.data_filter {
+            properties.insert(
+                "DataFilter".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.description {
+            properties.insert(
+                "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.integration_config {
+            properties.insert(
+                "IntegrationConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "IntegrationName".to_string(),
+            crate::value::ToValue::to_value(&self.integration_name),
+        );
+        if let Some(ref value) = self.kms_key_id {
+            properties.insert(
+                "KmsKeyId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "SourceArn".to_string(),
+            crate::value::ToValue::to_value(&self.source_arn),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "TargetArn".to_string(),
+            crate::value::ToValue::to_value(&self.target_arn),
+        );
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-integrationresourceproperty.html
+pub struct IntegrationResourceProperty_ {
+    pub resource_arn: crate::value::ExpString,
+    pub source_processing_properties:
+        Option<super::glue::integrationresourceproperty::SourceProcessingProperties_>,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub target_processing_properties:
+        Option<super::glue::integrationresourceproperty::TargetProcessingProperties_>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_glue_IntegrationResourceProperty {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Glue::IntegrationResourceProperty"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_glue_IntegrationResourceProperty as IntegrationResourceProperty;
+impl crate::template::ToResource for IntegrationResourceProperty_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Glue"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName(
+                "IntegrationResourceProperty",
+            ),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "ResourceArn".to_string(),
+            crate::value::ToValue::to_value(&self.resource_arn),
+        );
+        if let Some(ref value) = self.source_processing_properties {
+            properties.insert(
+                "SourceProcessingProperties".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.target_processing_properties {
+            properties.insert(
+                "TargetProcessingProperties".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

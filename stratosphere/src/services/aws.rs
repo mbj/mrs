@@ -62,12 +62,16 @@ pub mod batch;
 pub mod bcmdataexports;
 #[cfg(feature = "aws_bedrock")]
 pub mod bedrock;
+#[cfg(feature = "aws_bedrockagentcore")]
+pub mod bedrockagentcore;
 #[cfg(feature = "aws_billing")]
 pub mod billing;
 #[cfg(feature = "aws_billingconductor")]
 pub mod billingconductor;
 #[cfg(feature = "aws_budgets")]
 pub mod budgets;
+#[cfg(feature = "aws_cases")]
+pub mod cases;
 #[cfg(feature = "aws_cassandra")]
 pub mod cassandra;
 #[cfg(feature = "aws_ce")]
@@ -144,6 +148,8 @@ pub mod dax;
 pub mod deadline;
 #[cfg(feature = "aws_detective")]
 pub mod detective;
+#[cfg(feature = "aws_devopsagent")]
+pub mod devopsagent;
 #[cfg(feature = "aws_devopsguru")]
 pub mod devopsguru;
 #[cfg(feature = "aws_directoryservice")]
@@ -250,8 +256,6 @@ pub mod iotanalytics;
 pub mod iotcoredeviceadvisor;
 #[cfg(feature = "aws_iotevents")]
 pub mod iotevents;
-#[cfg(feature = "aws_iotfleethub")]
-pub mod iotfleethub;
 #[cfg(feature = "aws_iotfleetwise")]
 pub mod iotfleetwise;
 #[cfg(feature = "aws_iotsitewise")]
@@ -302,8 +306,6 @@ pub mod location;
 pub mod logs;
 #[cfg(feature = "aws_lookoutequipment")]
 pub mod lookoutequipment;
-#[cfg(feature = "aws_lookoutmetrics")]
-pub mod lookoutmetrics;
 #[cfg(feature = "aws_lookoutvision")]
 pub mod lookoutvision;
 #[cfg(feature = "aws_m2")]
@@ -334,6 +336,8 @@ pub mod mpa;
 pub mod msk;
 #[cfg(feature = "aws_mwaa")]
 pub mod mwaa;
+#[cfg(feature = "aws_mwaaserverless")]
+pub mod mwaaserverless;
 #[cfg(feature = "aws_neptune")]
 pub mod neptune;
 #[cfg(feature = "aws_neptunegraph")]
@@ -360,8 +364,6 @@ pub mod opensearchserverless;
 pub mod opensearchservice;
 #[cfg(feature = "aws_opsworks")]
 pub mod opsworks;
-#[cfg(feature = "aws_opsworkscm")]
-pub mod opsworkscm;
 #[cfg(feature = "aws_organizations")]
 pub mod organizations;
 #[cfg(feature = "aws_osis")]
@@ -426,6 +428,8 @@ pub mod route53recoverycontrol;
 pub mod route53recoveryreadiness;
 #[cfg(feature = "aws_route53resolver")]
 pub mod route53resolver;
+#[cfg(feature = "aws_rtbfabric")]
+pub mod rtbfabric;
 #[cfg(feature = "aws_rum")]
 pub mod rum;
 #[cfg(feature = "aws_s3")]
@@ -438,6 +442,8 @@ pub mod s3objectlambda;
 pub mod s3outposts;
 #[cfg(feature = "aws_s3tables")]
 pub mod s3tables;
+#[cfg(feature = "aws_s3vectors")]
+pub mod s3vectors;
 #[cfg(feature = "aws_sagemaker")]
 pub mod sagemaker;
 #[cfg(feature = "aws_scheduler")]

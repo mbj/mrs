@@ -392,6 +392,7 @@ pub mod filesystem {
         pub deployment_type: crate::value::ExpString,
         pub disk_iops_configuration: Option<Box<DiskIopsConfiguration_>>,
         pub endpoint_ip_address_range: Option<crate::value::ExpString>,
+        pub endpoint_ipv6_address_range: Option<crate::value::ExpString>,
         pub fsx_admin_password: Option<crate::value::ExpString>,
         pub ha_pairs: Option<i32>,
         pub preferred_subnet_id: Option<crate::value::ExpString>,
@@ -437,6 +438,12 @@ pub mod filesystem {
             if let Some(ref value) = self.endpoint_ip_address_range {
                 properties.insert(
                     "EndpointIpAddressRange".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.endpoint_ipv6_address_range {
+                properties.insert(
+                    "EndpointIpv6AddressRange".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -701,6 +708,7 @@ pub mod filesystem {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-windowsconfiguration-selfmanagedactivedirectoryconfiguration.html
     pub struct SelfManagedActiveDirectoryConfiguration_ {
         pub dns_ips: Option<Vec<crate::value::ExpString>>,
+        pub domain_join_service_account_secret: Option<crate::value::ExpString>,
         pub domain_name: Option<crate::value::ExpString>,
         pub file_system_administrators_group: Option<crate::value::ExpString>,
         pub organizational_unit_distinguished_name: Option<crate::value::ExpString>,
@@ -721,6 +729,12 @@ pub mod filesystem {
             let mut properties = serde_json::Map::new();
             if let Some(ref value) = self.dns_ips {
                 properties.insert("DnsIps".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.domain_join_service_account_secret {
+                properties.insert(
+                    "DomainJoinServiceAccountSecret".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
             }
             if let Some(ref value) = self.domain_name {
                 properties.insert(
@@ -914,6 +928,89 @@ pub mod s3accesspointattachment {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-ontapfilesystemidentity.html
+    pub struct OntapFileSystemIdentity_ {
+        pub r#type: crate::value::ExpString,
+        pub unix_user: Option<Box<OntapUnixFileSystemUser_>>,
+        pub windows_user: Option<Box<OntapWindowsFileSystemUser_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_fsx_S3AccessPointAttachment_OntapFileSystemIdentity {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.OntapFileSystemIdentity"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_fsx_S3AccessPointAttachment_OntapFileSystemIdentity as OntapFileSystemIdentity;
+    impl crate::value::ToValue for OntapFileSystemIdentity_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Type".to_string(),
+                crate::value::ToValue::to_value(&self.r#type),
+            );
+            if let Some(ref value) = self.unix_user {
+                properties.insert(
+                    "UnixUser".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.windows_user {
+                properties.insert(
+                    "WindowsUser".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-ontapunixfilesystemuser.html
+    pub struct OntapUnixFileSystemUser_ {
+        pub name: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_fsx_S3AccessPointAttachment_OntapUnixFileSystemUser {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.OntapUnixFileSystemUser"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_fsx_S3AccessPointAttachment_OntapUnixFileSystemUser as OntapUnixFileSystemUser;
+    impl crate::value::ToValue for OntapUnixFileSystemUser_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-ontapwindowsfilesystemuser.html
+    pub struct OntapWindowsFileSystemUser_ {
+        pub name: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_fsx_S3AccessPointAttachment_OntapWindowsFileSystemUser {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.OntapWindowsFileSystemUser"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_fsx_S3AccessPointAttachment_OntapWindowsFileSystemUser as OntapWindowsFileSystemUser;
+    impl crate::value::ToValue for OntapWindowsFileSystemUser_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-openzfsfilesystemidentity.html
     pub struct OpenZFSFileSystemIdentity_ {
         pub posix_user: Box<OpenZFSPosixFileSystemUser_>,
@@ -1017,6 +1114,34 @@ pub mod s3accesspointattachment {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-s3accesspointontapconfiguration.html
+    pub struct S3AccessPointOntapConfiguration_ {
+        pub file_system_identity: Box<OntapFileSystemIdentity_>,
+        pub volume_id: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_fsx_S3AccessPointAttachment_S3AccessPointOntapConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::FSx::S3AccessPointAttachment.S3AccessPointOntapConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_fsx_S3AccessPointAttachment_S3AccessPointOntapConfiguration as S3AccessPointOntapConfiguration;
+    impl crate::value::ToValue for S3AccessPointOntapConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "FileSystemIdentity".to_string(),
+                crate::value::ToValue::to_value(&self.file_system_identity),
+            );
+            properties.insert(
+                "VolumeId".to_string(),
+                crate::value::ToValue::to_value(&self.volume_id),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-s3accesspointattachment-s3accesspointopenzfsconfiguration.html
     pub struct S3AccessPointOpenZFSConfiguration_ {
         pub file_system_identity: Box<OpenZFSFileSystemIdentity_>,
@@ -1106,6 +1231,7 @@ pub mod storagevirtualmachine {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-storagevirtualmachine-activedirectoryconfiguration-selfmanagedactivedirectoryconfiguration.html
     pub struct SelfManagedActiveDirectoryConfiguration_ {
         pub dns_ips: Option<Vec<crate::value::ExpString>>,
+        pub domain_join_service_account_secret: Option<crate::value::ExpString>,
         pub domain_name: Option<crate::value::ExpString>,
         pub file_system_administrators_group: Option<crate::value::ExpString>,
         pub organizational_unit_distinguished_name: Option<crate::value::ExpString>,
@@ -1126,6 +1252,12 @@ pub mod storagevirtualmachine {
             let mut properties = serde_json::Map::new();
             if let Some(ref value) = self.dns_ips {
                 properties.insert("DnsIps".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.domain_join_service_account_secret {
+                properties.insert(
+                    "DomainJoinServiceAccountSecret".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
             }
             if let Some(ref value) = self.domain_name {
                 properties.insert(
@@ -1861,8 +1993,10 @@ impl crate::template::ToResource for FileSystem_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fsx-s3accesspointattachment.html
 pub struct S3AccessPointAttachment_ {
     pub name: crate::value::ExpString,
+    pub ontap_configuration:
+        Option<super::fsx::s3accesspointattachment::S3AccessPointOntapConfiguration_>,
     pub open_zfs_configuration:
-        super::fsx::s3accesspointattachment::S3AccessPointOpenZFSConfiguration_,
+        Option<super::fsx::s3accesspointattachment::S3AccessPointOpenZFSConfiguration_>,
     pub s3_access_point: Option<super::fsx::s3accesspointattachment::S3AccessPoint_>,
     pub r#type: crate::value::ExpString,
 }
@@ -1890,10 +2024,18 @@ impl crate::template::ToResource for S3AccessPointAttachment_ {
             "Name".to_string(),
             crate::value::ToValue::to_value(&self.name),
         );
-        properties.insert(
-            "OpenZFSConfiguration".to_string(),
-            crate::value::ToValue::to_value(&self.open_zfs_configuration),
-        );
+        if let Some(ref value) = self.ontap_configuration {
+            properties.insert(
+                "OntapConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.open_zfs_configuration {
+            properties.insert(
+                "OpenZFSConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.s3_access_point {
             properties.insert(
                 "S3AccessPoint".to_string(),

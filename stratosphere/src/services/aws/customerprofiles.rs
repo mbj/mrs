@@ -365,6 +365,38 @@ pub mod domain {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-datastore.html
+    pub struct DataStore_ {
+        pub enabled: Option<crate::value::ExpBool>,
+        pub readiness: Option<Box<Readiness_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_customerprofiles_Domain_DataStore {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.DataStore"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_customerprofiles_Domain_DataStore as DataStore;
+    impl crate::value::ToValue for DataStore_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.enabled {
+                properties.insert(
+                    "Enabled".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.readiness {
+                properties.insert(
+                    "Readiness".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-domainstats.html
     pub struct DomainStats_ {
         pub metering_profile_count: Option<f64>,
@@ -528,6 +560,38 @@ pub mod domain {
                 "Rule".to_string(),
                 crate::value::ToValue::to_value(&self.rule),
             );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-readiness.html
+    pub struct Readiness_ {
+        pub message: Option<crate::value::ExpString>,
+        pub progress_percentage: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_customerprofiles_Domain_Readiness {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.Readiness"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_customerprofiles_Domain_Readiness as Readiness;
+    impl crate::value::ToValue for Readiness_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.message {
+                properties.insert(
+                    "Message".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.progress_percentage {
+                properties.insert(
+                    "ProgressPercentage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -715,7 +779,7 @@ pub mod eventtrigger {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventtrigger-eventtriggerlimits.html
     pub struct EventTriggerLimits_ {
-        pub event_expiration: Option<i32>,
+        pub event_expiration: Option<i64>,
         pub periods: Option<Vec<Period_>>,
     }
     #[doc(hidden)]
@@ -2199,6 +2263,7 @@ impl crate::template::ToResource for CalculatedAttributeDefinition_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-domain.html
 pub struct Domain_ {
+    pub data_store: Option<super::customerprofiles::domain::DataStore_>,
     pub dead_letter_queue_url: Option<crate::value::ExpString>,
     pub default_encryption_key: Option<crate::value::ExpString>,
     pub default_expiration_days: i32,
@@ -2227,6 +2292,12 @@ impl crate::template::ToResource for Domain_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.data_store {
+            properties.insert(
+                "DataStore".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.dead_letter_queue_url {
             properties.insert(
                 "DeadLetterQueueUrl".to_string(),
@@ -2550,7 +2621,8 @@ pub struct SegmentDefinition_ {
     pub display_name: crate::value::ExpString,
     pub domain_name: crate::value::ExpString,
     pub segment_definition_name: crate::value::ExpString,
-    pub segment_groups: super::customerprofiles::segmentdefinition::SegmentGroup_,
+    pub segment_groups: Option<super::customerprofiles::segmentdefinition::SegmentGroup_>,
+    pub segment_sql_query: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -2591,10 +2663,18 @@ impl crate::template::ToResource for SegmentDefinition_ {
             "SegmentDefinitionName".to_string(),
             crate::value::ToValue::to_value(&self.segment_definition_name),
         );
-        properties.insert(
-            "SegmentGroups".to_string(),
-            crate::value::ToValue::to_value(&self.segment_groups),
-        );
+        if let Some(ref value) = self.segment_groups {
+            properties.insert(
+                "SegmentGroups".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.segment_sql_query {
+            properties.insert(
+                "SegmentSqlQuery".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }

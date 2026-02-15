@@ -528,7 +528,7 @@ pub mod taskdefinition {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-taskdefinition-lorawanupdategatewaytaskcreate.html
     pub struct LoRaWANUpdateGatewayTaskCreate_ {
         pub current_version: Option<Box<LoRaWANGatewayVersion_>>,
-        pub sig_key_crc: Option<i32>,
+        pub sig_key_crc: Option<i64>,
         pub update_signature: Option<crate::value::ExpString>,
         pub update_version: Option<Box<LoRaWANGatewayVersion_>>,
     }

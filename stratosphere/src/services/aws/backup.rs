@@ -32,6 +32,7 @@ pub mod backupplan {
         pub advanced_backup_settings: Option<Vec<AdvancedBackupSettingResourceType_>>,
         pub backup_plan_name: crate::value::ExpString,
         pub backup_plan_rule: Vec<BackupRuleResourceType_>,
+        pub scan_settings: Option<Vec<ScanSettingResourceType_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -59,6 +60,12 @@ pub mod backupplan {
                 "BackupPlanRule".to_string(),
                 crate::value::ToValue::to_value(&self.backup_plan_rule),
             );
+            if let Some(ref value) = self.scan_settings {
+                properties.insert(
+                    "ScanSettings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -72,10 +79,12 @@ pub mod backupplan {
         pub recovery_point_tags:
             Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub rule_name: crate::value::ExpString,
+        pub scan_actions: Option<Vec<ScanActionResourceType_>>,
         pub schedule_expression: Option<crate::value::ExpString>,
         pub schedule_expression_timezone: Option<crate::value::ExpString>,
         pub start_window_minutes: Option<f64>,
         pub target_backup_vault: crate::value::ExpString,
+        pub target_logically_air_gapped_backup_vault_arn: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -129,6 +138,12 @@ pub mod backupplan {
                 "RuleName".to_string(),
                 crate::value::ToValue::to_value(&self.rule_name),
             );
+            if let Some(ref value) = self.scan_actions {
+                properties.insert(
+                    "ScanActions".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.schedule_expression {
                 properties.insert(
                     "ScheduleExpression".to_string(),
@@ -151,6 +166,12 @@ pub mod backupplan {
                 "TargetBackupVault".to_string(),
                 crate::value::ToValue::to_value(&self.target_backup_vault),
             );
+            if let Some(ref value) = self.target_logically_air_gapped_backup_vault_arn {
+                properties.insert(
+                    "TargetLogicallyAirGappedBackupVaultArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -242,6 +263,77 @@ pub mod backupplan {
             if let Some(ref value) = self.opt_in_to_archive_for_supported_resources {
                 properties.insert(
                     "OptInToArchiveForSupportedResources".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-scanactionresourcetype.html
+    pub struct ScanActionResourceType_ {
+        pub malware_scanner: Option<crate::value::ExpString>,
+        pub scan_mode: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_backup_BackupPlan_ScanActionResourceType {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Backup::BackupPlan.ScanActionResourceType"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_backup_BackupPlan_ScanActionResourceType as ScanActionResourceType;
+    impl crate::value::ToValue for ScanActionResourceType_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.malware_scanner {
+                properties.insert(
+                    "MalwareScanner".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.scan_mode {
+                properties.insert(
+                    "ScanMode".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupplan-scansettingresourcetype.html
+    pub struct ScanSettingResourceType_ {
+        pub malware_scanner: Option<crate::value::ExpString>,
+        pub resource_types: Option<Vec<crate::value::ExpString>>,
+        pub scanner_role_arn: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_backup_BackupPlan_ScanSettingResourceType {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Backup::BackupPlan.ScanSettingResourceType"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_backup_BackupPlan_ScanSettingResourceType as ScanSettingResourceType;
+    impl crate::value::ToValue for ScanSettingResourceType_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.malware_scanner {
+                properties.insert(
+                    "MalwareScanner".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.resource_types {
+                properties.insert(
+                    "ResourceTypes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.scanner_role_arn {
+                properties.insert(
+                    "ScannerRoleArn".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -819,6 +911,41 @@ pub mod restoretestingselection {
         }
     }
 }
+pub mod tieringconfiguration {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-tieringconfiguration-resourceselection.html
+    pub struct ResourceSelection_ {
+        pub resource_type: crate::value::ExpString,
+        pub resources: Vec<crate::value::ExpString>,
+        pub tiering_down_settings_in_days: i32,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_backup_TieringConfiguration_ResourceSelection {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Backup::TieringConfiguration.ResourceSelection"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_backup_TieringConfiguration_ResourceSelection as ResourceSelection;
+    impl crate::value::ToValue for ResourceSelection_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ResourceType".to_string(),
+                crate::value::ToValue::to_value(&self.resource_type),
+            );
+            properties.insert(
+                "Resources".to_string(),
+                crate::value::ToValue::to_value(&self.resources),
+            );
+            properties.insert(
+                "TieringDownSettingsInDays".to_string(),
+                crate::value::ToValue::to_value(&self.tiering_down_settings_in_days),
+            );
+            properties.into()
+        }
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupplan.html
 pub struct BackupPlan_ {
     pub backup_plan: super::backup::backupplan::BackupPlanResourceType_,
@@ -1016,8 +1143,10 @@ pub struct LogicallyAirGappedBackupVault_ {
     pub access_policy: Option<serde_json::Value>,
     pub backup_vault_name: crate::value::ExpString,
     pub backup_vault_tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+    pub encryption_key_arn: Option<crate::value::ExpString>,
     pub max_retention_days: i32,
     pub min_retention_days: i32,
+    pub mpa_approval_team_arn: Option<crate::value::ExpString>,
     pub notifications:
         Option<super::backup::logicallyairgappedbackupvault::NotificationObjectType_>,
 }
@@ -1059,6 +1188,12 @@ impl crate::template::ToResource for LogicallyAirGappedBackupVault_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.encryption_key_arn {
+            properties.insert(
+                "EncryptionKeyArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "MaxRetentionDays".to_string(),
             crate::value::ToValue::to_value(&self.max_retention_days),
@@ -1067,6 +1202,12 @@ impl crate::template::ToResource for LogicallyAirGappedBackupVault_ {
             "MinRetentionDays".to_string(),
             crate::value::ToValue::to_value(&self.min_retention_days),
         );
+        if let Some(ref value) = self.mpa_approval_team_arn {
+            properties.insert(
+                "MpaApprovalTeamArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.notifications {
             properties.insert(
                 "Notifications".to_string(),
@@ -1263,6 +1404,55 @@ impl crate::template::ToResource for RestoreTestingSelection_ {
         if let Some(ref value) = self.validation_window_hours {
             properties.insert(
                 "ValidationWindowHours".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-tieringconfiguration.html
+pub struct TieringConfiguration_ {
+    pub backup_vault_name: crate::value::ExpString,
+    pub resource_selection: Vec<super::backup::tieringconfiguration::ResourceSelection_>,
+    pub tiering_configuration_name: crate::value::ExpString,
+    pub tiering_configuration_tags:
+        Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_backup_TieringConfiguration {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Backup::TieringConfiguration"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_backup_TieringConfiguration as TieringConfiguration;
+impl crate::template::ToResource for TieringConfiguration_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Backup"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("TieringConfiguration"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "BackupVaultName".to_string(),
+            crate::value::ToValue::to_value(&self.backup_vault_name),
+        );
+        properties.insert(
+            "ResourceSelection".to_string(),
+            crate::value::ToValue::to_value(&self.resource_selection),
+        );
+        properties.insert(
+            "TieringConfigurationName".to_string(),
+            crate::value::ToValue::to_value(&self.tiering_configuration_name),
+        );
+        if let Some(ref value) = self.tiering_configuration_tags {
+            properties.insert(
+                "TieringConfigurationTags".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

@@ -488,6 +488,7 @@ pub mod resourceversion {
 pub mod stackset {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-autodeployment.html
     pub struct AutoDeployment_ {
+        pub depends_on: Option<Vec<crate::value::ExpString>>,
         pub enabled: Option<crate::value::ExpBool>,
         pub retain_stacks_on_account_removal: Option<crate::value::ExpBool>,
     }
@@ -503,6 +504,12 @@ pub mod stackset {
     impl crate::value::ToValue for AutoDeployment_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.depends_on {
+                properties.insert(
+                    "DependsOn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.enabled {
                 properties.insert(
                     "Enabled".to_string(),

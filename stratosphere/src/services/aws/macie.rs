@@ -61,10 +61,10 @@ pub mod findingsfilter {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-macie-findingsfilter-criterionadditionalproperties.html
     pub struct CriterionAdditionalProperties_ {
         pub eq: Option<Vec<crate::value::ExpString>>,
-        pub gt: Option<i32>,
-        pub gte: Option<i32>,
-        pub lt: Option<i32>,
-        pub lte: Option<i32>,
+        pub gt: Option<i64>,
+        pub gte: Option<i64>,
+        pub lt: Option<i64>,
+        pub lte: Option<i64>,
         pub neq: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]

@@ -698,6 +698,7 @@ pub mod rulegroup {
         pub all_query_arguments: Option<serde_json::Value>,
         pub body: Option<Box<Body_>>,
         pub cookies: Option<Box<Cookies_>>,
+        pub header_order: Option<Box<HeaderOrder_>>,
         pub headers: Option<Box<Headers_>>,
         pub ja3_fingerprint: Option<Box<JA3Fingerprint_>>,
         pub ja4_fingerprint: Option<Box<JA4Fingerprint_>>,
@@ -733,6 +734,12 @@ pub mod rulegroup {
             if let Some(ref value) = self.cookies {
                 properties.insert(
                     "Cookies".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.header_order {
+                properties.insert(
+                    "HeaderOrder".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -889,6 +896,29 @@ pub mod rulegroup {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-headerorder.html
+    pub struct HeaderOrder_ {
+        pub oversize_handling: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wafv2_RuleGroup_HeaderOrder {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.HeaderOrder"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wafv2_RuleGroup_HeaderOrder as HeaderOrder;
+    impl crate::value::ToValue for HeaderOrder_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "OversizeHandling".to_string(),
+                crate::value::ToValue::to_value(&self.oversize_handling),
+            );
             properties.into()
         }
     }
@@ -2315,6 +2345,57 @@ pub mod webacl {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-applicationattribute.html
+    pub struct ApplicationAttribute_ {
+        pub name: crate::value::ExpString,
+        pub values: Vec<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wafv2_WebACL_ApplicationAttribute {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ApplicationAttribute"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wafv2_WebACL_ApplicationAttribute as ApplicationAttribute;
+    impl crate::value::ToValue for ApplicationAttribute_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.insert(
+                "Values".to_string(),
+                crate::value::ToValue::to_value(&self.values),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-applicationconfig.html
+    pub struct ApplicationConfig_ {
+        pub attributes: Vec<ApplicationAttribute_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wafv2_WebACL_ApplicationConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ApplicationConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wafv2_WebACL_ApplicationConfig as ApplicationConfig;
+    impl crate::value::ToValue for ApplicationConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Attributes".to_string(),
+                crate::value::ToValue::to_value(&self.attributes),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-asnmatchstatement.html
     pub struct AsnMatchStatement_ {
         pub asn_list: Option<Vec<i32>>,
@@ -2982,6 +3063,7 @@ pub mod webacl {
         pub all_query_arguments: Option<serde_json::Value>,
         pub body: Option<Box<Body_>>,
         pub cookies: Option<Box<Cookies_>>,
+        pub header_order: Option<Box<HeaderOrder_>>,
         pub headers: Option<Box<Headers_>>,
         pub ja3_fingerprint: Option<Box<JA3Fingerprint_>>,
         pub ja4_fingerprint: Option<Box<JA4Fingerprint_>>,
@@ -3017,6 +3099,12 @@ pub mod webacl {
             if let Some(ref value) = self.cookies {
                 properties.insert(
                     "Cookies".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.header_order {
+                properties.insert(
+                    "HeaderOrder".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -3203,6 +3291,29 @@ pub mod webacl {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-headerorder.html
+    pub struct HeaderOrder_ {
+        pub oversize_handling: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wafv2_WebACL_HeaderOrder {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.HeaderOrder"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wafv2_WebACL_HeaderOrder as HeaderOrder;
+    impl crate::value::ToValue for HeaderOrder_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "OversizeHandling".to_string(),
+                crate::value::ToValue::to_value(&self.oversize_handling),
+            );
             properties.into()
         }
     }
@@ -5221,6 +5332,7 @@ impl crate::template::ToResource for RuleGroup_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html
 pub struct WebACL_ {
+    pub application_config: Option<super::wafv2::webacl::ApplicationConfig_>,
     pub association_config: Option<super::wafv2::webacl::AssociationConfig_>,
     pub captcha_config: Option<super::wafv2::webacl::CaptchaConfig_>,
     pub challenge_config: Option<super::wafv2::webacl::ChallengeConfig_>,
@@ -5258,6 +5370,12 @@ impl crate::template::ToResource for WebACL_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.application_config {
+            properties.insert(
+                "ApplicationConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.association_config {
             properties.insert(
                 "AssociationConfig".to_string(),

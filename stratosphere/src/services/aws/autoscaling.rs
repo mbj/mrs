@@ -239,6 +239,31 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancelifecyclepolicy.html
+    pub struct InstanceLifecyclePolicy_ {
+        pub retention_triggers: Option<Box<RetentionTriggers_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_autoscaling_AutoScalingGroup_InstanceLifecyclePolicy {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.InstanceLifecyclePolicy"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_autoscaling_AutoScalingGroup_InstanceLifecyclePolicy as InstanceLifecyclePolicy;
+    impl crate::value::ToValue for InstanceLifecyclePolicy_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.retention_triggers {
+                properties.insert(
+                    "RetentionTriggers".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancemaintenancepolicy.html
     pub struct InstanceMaintenancePolicy_ {
         pub max_healthy_percentage: Option<i32>,
@@ -552,6 +577,7 @@ pub mod autoscalinggroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-launchtemplateoverrides.html
     pub struct LaunchTemplateOverrides_ {
+        pub image_id: Option<crate::value::ExpString>,
         pub instance_requirements: Option<Box<InstanceRequirements_>>,
         pub instance_type: Option<crate::value::ExpString>,
         pub launch_template_specification: Option<Box<LaunchTemplateSpecification_>>,
@@ -569,6 +595,12 @@ pub mod autoscalinggroup {
     impl crate::value::ToValue for LaunchTemplateOverrides_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.image_id {
+                properties.insert(
+                    "ImageId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.instance_requirements {
                 properties.insert(
                     "InstanceRequirements".to_string(),
@@ -909,6 +941,31 @@ pub mod autoscalinggroup {
             if let Some(ref value) = self.instance_family {
                 properties.insert(
                     "InstanceFamily".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-retentiontriggers.html
+    pub struct RetentionTriggers_ {
+        pub terminate_hook_abandon: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_autoscaling_AutoScalingGroup_RetentionTriggers {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.RetentionTriggers"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_autoscaling_AutoScalingGroup_RetentionTriggers as RetentionTriggers;
+    impl crate::value::ToValue for RetentionTriggers_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.terminate_hook_abandon {
+                properties.insert(
+                    "TerminateHookAbandon".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -1893,11 +1950,14 @@ pub struct AutoScalingGroup_ {
     pub context: Option<crate::value::ExpString>,
     pub cooldown: Option<crate::value::ExpString>,
     pub default_instance_warmup: Option<i32>,
+    pub deletion_protection: Option<crate::value::ExpString>,
     pub desired_capacity: Option<crate::value::ExpString>,
     pub desired_capacity_type: Option<crate::value::ExpString>,
     pub health_check_grace_period: Option<i32>,
     pub health_check_type: Option<crate::value::ExpString>,
     pub instance_id: Option<crate::value::ExpString>,
+    pub instance_lifecycle_policy:
+        Option<super::autoscaling::autoscalinggroup::InstanceLifecyclePolicy_>,
     pub instance_maintenance_policy:
         Option<super::autoscaling::autoscalinggroup::InstanceMaintenancePolicy_>,
     pub launch_configuration_name: Option<crate::value::ExpString>,
@@ -1997,6 +2057,12 @@ impl crate::template::ToResource for AutoScalingGroup_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.deletion_protection {
+            properties.insert(
+                "DeletionProtection".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.desired_capacity {
             properties.insert(
                 "DesiredCapacity".to_string(),
@@ -2024,6 +2090,12 @@ impl crate::template::ToResource for AutoScalingGroup_ {
         if let Some(ref value) = self.instance_id {
             properties.insert(
                 "InstanceId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.instance_lifecycle_policy {
+            properties.insert(
+                "InstanceLifecyclePolicy".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

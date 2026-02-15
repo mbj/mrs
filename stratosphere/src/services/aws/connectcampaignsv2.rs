@@ -34,6 +34,7 @@ pub mod campaign {
         pub email: Option<Box<EmailChannelSubtypeConfig_>>,
         pub sms: Option<Box<SmsChannelSubtypeConfig_>>,
         pub telephony: Option<Box<TelephonyChannelSubtypeConfig_>>,
+        pub whats_app: Option<Box<WhatsAppChannelSubtypeConfig_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -56,6 +57,12 @@ pub mod campaign {
             if let Some(ref value) = self.telephony {
                 properties.insert(
                     "Telephony".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.whats_app {
+                properties.insert(
+                    "WhatsApp".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -158,6 +165,7 @@ pub mod campaign {
         pub local_time_zone_config: Box<LocalTimeZoneConfig_>,
         pub sms: Option<Box<TimeWindow_>>,
         pub telephony: Option<Box<TimeWindow_>>,
+        pub whats_app: Option<Box<TimeWindow_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -184,6 +192,12 @@ pub mod campaign {
             if let Some(ref value) = self.telephony {
                 properties.insert(
                     "Telephony".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.whats_app {
+                properties.insert(
+                    "WhatsApp".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -410,6 +424,41 @@ pub mod campaign {
             properties.insert(
                 "BandwidthAllocation".to_string(),
                 crate::value::ToValue::to_value(&self.bandwidth_allocation),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-previewconfig.html
+    pub struct PreviewConfig_ {
+        pub agent_actions: Option<Vec<crate::value::ExpString>>,
+        pub bandwidth_allocation: f64,
+        pub timeout_config: Box<TimeoutConfig_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connectcampaignsv2_Campaign_PreviewConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.PreviewConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connectcampaignsv2_Campaign_PreviewConfig as PreviewConfig;
+    impl crate::value::ToValue for PreviewConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.agent_actions {
+                properties.insert(
+                    "AgentActions".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "BandwidthAllocation".to_string(),
+                crate::value::ToValue::to_value(&self.bandwidth_allocation),
+            );
+            properties.insert(
+                "TimeoutConfig".to_string(),
+                crate::value::ToValue::to_value(&self.timeout_config),
             );
             properties.into()
         }
@@ -694,6 +743,7 @@ pub mod campaign {
         pub answer_machine_detection_config: Option<Box<AnswerMachineDetectionConfig_>>,
         pub connect_contact_flow_id: crate::value::ExpString,
         pub connect_source_phone_number: Option<crate::value::ExpString>,
+        pub ring_timeout: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -723,6 +773,12 @@ pub mod campaign {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.ring_timeout {
+                properties.insert(
+                    "RingTimeout".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -730,6 +786,7 @@ pub mod campaign {
     pub struct TelephonyOutboundMode_ {
         pub agentless_config: Option<serde_json::Value>,
         pub predictive_config: Option<Box<PredictiveConfig_>>,
+        pub preview_config: Option<Box<PreviewConfig_>>,
         pub progressive_config: Option<Box<ProgressiveConfig_>>,
     }
     #[doc(hidden)]
@@ -753,6 +810,12 @@ pub mod campaign {
             if let Some(ref value) = self.predictive_config {
                 properties.insert(
                     "PredictiveConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.preview_config {
+                properties.insert(
+                    "PreviewConfig".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -823,10 +886,123 @@ pub mod campaign {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-timeoutconfig.html
+    pub struct TimeoutConfig_ {
+        pub duration_in_seconds: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connectcampaignsv2_Campaign_TimeoutConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.TimeoutConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connectcampaignsv2_Campaign_TimeoutConfig as TimeoutConfig;
+    impl crate::value::ToValue for TimeoutConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.duration_in_seconds {
+                properties.insert(
+                    "DurationInSeconds".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-whatsappchannelsubtypeconfig.html
+    pub struct WhatsAppChannelSubtypeConfig_ {
+        pub capacity: Option<f64>,
+        pub default_outbound_config: Box<WhatsAppOutboundConfig_>,
+        pub outbound_mode: Box<WhatsAppOutboundMode_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connectcampaignsv2_Campaign_WhatsAppChannelSubtypeConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.WhatsAppChannelSubtypeConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connectcampaignsv2_Campaign_WhatsAppChannelSubtypeConfig as WhatsAppChannelSubtypeConfig;
+    impl crate::value::ToValue for WhatsAppChannelSubtypeConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.capacity {
+                properties.insert(
+                    "Capacity".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "DefaultOutboundConfig".to_string(),
+                crate::value::ToValue::to_value(&self.default_outbound_config),
+            );
+            properties.insert(
+                "OutboundMode".to_string(),
+                crate::value::ToValue::to_value(&self.outbound_mode),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-whatsappoutboundconfig.html
+    pub struct WhatsAppOutboundConfig_ {
+        pub connect_source_phone_number_arn: crate::value::ExpString,
+        pub wisdom_template_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connectcampaignsv2_Campaign_WhatsAppOutboundConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.WhatsAppOutboundConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connectcampaignsv2_Campaign_WhatsAppOutboundConfig as WhatsAppOutboundConfig;
+    impl crate::value::ToValue for WhatsAppOutboundConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ConnectSourcePhoneNumberArn".to_string(),
+                crate::value::ToValue::to_value(&self.connect_source_phone_number_arn),
+            );
+            properties.insert(
+                "WisdomTemplateArn".to_string(),
+                crate::value::ToValue::to_value(&self.wisdom_template_arn),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-whatsappoutboundmode.html
+    pub struct WhatsAppOutboundMode_ {
+        pub agentless_config: Option<serde_json::Value>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connectcampaignsv2_Campaign_WhatsAppOutboundMode {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ConnectCampaignsV2::Campaign.WhatsAppOutboundMode"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connectcampaignsv2_Campaign_WhatsAppOutboundMode as WhatsAppOutboundMode;
+    impl crate::value::ToValue for WhatsAppOutboundMode_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.agentless_config {
+                properties.insert(
+                    "AgentlessConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connectcampaignsv2-campaign.html
 pub struct Campaign_ {
-    pub channel_subtype_config: super::connectcampaignsv2::campaign::ChannelSubtypeConfig_,
+    pub channel_subtype_config: Option<super::connectcampaignsv2::campaign::ChannelSubtypeConfig_>,
     pub communication_limits_override:
         Option<super::connectcampaignsv2::campaign::CommunicationLimitsConfig_>,
     pub communication_time_config:
@@ -837,6 +1013,7 @@ pub struct Campaign_ {
     pub schedule: Option<super::connectcampaignsv2::campaign::Schedule_>,
     pub source: Option<super::connectcampaignsv2::campaign::Source_>,
     pub tags: Option<Vec<crate::Tag_>>,
+    pub r#type: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -858,10 +1035,12 @@ impl crate::template::ToResource for Campaign_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
-        properties.insert(
-            "ChannelSubtypeConfig".to_string(),
-            crate::value::ToValue::to_value(&self.channel_subtype_config),
-        );
+        if let Some(ref value) = self.channel_subtype_config {
+            properties.insert(
+                "ChannelSubtypeConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.communication_limits_override {
             properties.insert(
                 "CommunicationLimitsOverride".to_string(),
@@ -899,6 +1078,9 @@ impl crate::template::ToResource for Campaign_ {
         }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.r#type {
+            properties.insert("Type".to_string(), crate::value::ToValue::to_value(value));
         }
         properties
     }

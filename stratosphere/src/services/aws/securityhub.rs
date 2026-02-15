@@ -1386,6 +1386,91 @@ pub mod configurationpolicy {
         }
     }
 }
+pub mod connectorv2 {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-connectorv2-jiracloudproviderconfiguration.html
+    pub struct JiraCloudProviderConfiguration_ {
+        pub project_key: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_securityhub_ConnectorV2_JiraCloudProviderConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::ConnectorV2.JiraCloudProviderConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_securityhub_ConnectorV2_JiraCloudProviderConfiguration as JiraCloudProviderConfiguration;
+    impl crate::value::ToValue for JiraCloudProviderConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ProjectKey".to_string(),
+                crate::value::ToValue::to_value(&self.project_key),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-connectorv2-provider.html
+    pub struct Provider_ {
+        pub jira_cloud: Option<Box<JiraCloudProviderConfiguration_>>,
+        pub service_now: Option<Box<ServiceNowProviderConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_securityhub_ConnectorV2_Provider {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::ConnectorV2.Provider"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_securityhub_ConnectorV2_Provider as Provider;
+    impl crate::value::ToValue for Provider_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.jira_cloud {
+                properties.insert(
+                    "JiraCloud".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.service_now {
+                properties.insert(
+                    "ServiceNow".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-connectorv2-servicenowproviderconfiguration.html
+    pub struct ServiceNowProviderConfiguration_ {
+        pub instance_name: crate::value::ExpString,
+        pub secret_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_securityhub_ConnectorV2_ServiceNowProviderConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::ConnectorV2.ServiceNowProviderConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_securityhub_ConnectorV2_ServiceNowProviderConfiguration as ServiceNowProviderConfiguration;
+    impl crate::value::ToValue for ServiceNowProviderConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "InstanceName".to_string(),
+                crate::value::ToValue::to_value(&self.instance_name),
+            );
+            properties.insert(
+                "SecretArn".to_string(),
+                crate::value::ToValue::to_value(&self.secret_arn),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod insight {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-insight-awssecurityfindingfilters.html
     pub struct AwsSecurityFindingFilters_ {
@@ -2623,6 +2708,60 @@ impl crate::template::ToResource for ConfigurationPolicy_ {
         properties.insert(
             "Name".to_string(),
             crate::value::ToValue::to_value(&self.name),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-connectorv2.html
+pub struct ConnectorV2_ {
+    pub description: Option<crate::value::ExpString>,
+    pub kms_key_arn: Option<crate::value::ExpString>,
+    pub name: crate::value::ExpString,
+    pub provider: super::securityhub::connectorv2::Provider_,
+    pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_securityhub_ConnectorV2 {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::ConnectorV2"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_securityhub_ConnectorV2 as ConnectorV2;
+impl crate::template::ToResource for ConnectorV2_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("SecurityHub"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("ConnectorV2"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.description {
+            properties.insert(
+                "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.kms_key_arn {
+            properties.insert(
+                "KmsKeyArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "Name".to_string(),
+            crate::value::ToValue::to_value(&self.name),
+        );
+        properties.insert(
+            "Provider".to_string(),
+            crate::value::ToValue::to_value(&self.provider),
         );
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));

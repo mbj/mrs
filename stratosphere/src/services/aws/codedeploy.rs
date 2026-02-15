@@ -150,9 +150,9 @@ pub mod deploymentconfig {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-zonalconfig.html
     pub struct ZonalConfig_ {
-        pub first_zone_monitor_duration_in_seconds: Option<i32>,
+        pub first_zone_monitor_duration_in_seconds: Option<i64>,
         pub minimum_healthy_hosts_per_zone: Option<Box<MinimumHealthyHostsPerZone_>>,
-        pub monitor_duration_in_seconds: Option<i32>,
+        pub monitor_duration_in_seconds: Option<i64>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -576,7 +576,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision-githublocation.html
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-githublocation.html
     pub struct GitHubLocation_ {
         pub commit_id: crate::value::ExpString,
         pub repository: crate::value::ExpString,
@@ -715,7 +715,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision.html
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-revisionlocation.html
     pub struct RevisionLocation_ {
         pub git_hub_location: Option<Box<GitHubLocation_>>,
         pub revision_type: Option<crate::value::ExpString>,
@@ -754,7 +754,7 @@ pub mod deploymentgroup {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision-s3location.html
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-s3location.html
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
         pub bundle_type: Option<crate::value::ExpString>,

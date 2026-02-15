@@ -1,3 +1,289 @@
+pub mod contactflowmodule {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-contactflowmodule-externalinvocationconfiguration.html
+    pub struct ExternalInvocationConfiguration_ {
+        pub enabled: crate::value::ExpBool,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_ContactFlowModule_ExternalInvocationConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::ContactFlowModule.ExternalInvocationConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_ContactFlowModule_ExternalInvocationConfiguration as ExternalInvocationConfiguration;
+    impl crate::value::ToValue for ExternalInvocationConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Enabled".to_string(),
+                crate::value::ToValue::to_value(&self.enabled),
+            );
+            properties.into()
+        }
+    }
+}
+pub mod datatable {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatable-lockversion.html
+    pub struct LockVersion_ {
+        pub data_table: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_DataTable_LockVersion {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::DataTable.LockVersion"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_DataTable_LockVersion as LockVersion;
+    impl crate::value::ToValue for LockVersion_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.data_table {
+                properties.insert(
+                    "DataTable".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
+pub mod datatableattribute {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatableattribute-enum.html
+    pub struct Enum_ {
+        pub strict: Option<crate::value::ExpBool>,
+        pub values: Option<Vec<crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_DataTableAttribute_Enum {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::DataTableAttribute.Enum"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_DataTableAttribute_Enum as Enum;
+    impl crate::value::ToValue for Enum_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.strict {
+                properties.insert("Strict".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.values {
+                properties.insert("Values".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatableattribute-lockversion.html
+    pub struct LockVersion_ {
+        pub attribute: Option<crate::value::ExpString>,
+        pub data_table: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_DataTableAttribute_LockVersion {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::DataTableAttribute.LockVersion"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_DataTableAttribute_LockVersion as LockVersion;
+    impl crate::value::ToValue for LockVersion_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.attribute {
+                properties.insert(
+                    "Attribute".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.data_table {
+                properties.insert(
+                    "DataTable".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatableattribute-validation.html
+    pub struct Validation_ {
+        pub r#enum: Option<Box<Enum_>>,
+        pub exclusive_maximum: Option<f64>,
+        pub exclusive_minimum: Option<f64>,
+        pub max_length: Option<i32>,
+        pub max_values: Option<i32>,
+        pub maximum: Option<f64>,
+        pub min_length: Option<i32>,
+        pub min_values: Option<i32>,
+        pub minimum: Option<f64>,
+        pub multiple_of: Option<f64>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_DataTableAttribute_Validation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::DataTableAttribute.Validation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_DataTableAttribute_Validation as Validation;
+    impl crate::value::ToValue for Validation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.r#enum {
+                properties.insert("Enum".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.exclusive_maximum {
+                properties.insert(
+                    "ExclusiveMaximum".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.exclusive_minimum {
+                properties.insert(
+                    "ExclusiveMinimum".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.max_length {
+                properties.insert(
+                    "MaxLength".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.max_values {
+                properties.insert(
+                    "MaxValues".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.maximum {
+                properties.insert(
+                    "Maximum".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.min_length {
+                properties.insert(
+                    "MinLength".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.min_values {
+                properties.insert(
+                    "MinValues".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.minimum {
+                properties.insert(
+                    "Minimum".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.multiple_of {
+                properties.insert(
+                    "MultipleOf".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
+pub mod datatablerecord {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatablerecord-datatablerecord.html
+    pub struct DataTableRecord_ {
+        pub primary_values: Option<Vec<Value_>>,
+        pub values: Vec<Value_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_DataTableRecord_DataTableRecord {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::DataTableRecord.DataTableRecord"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_DataTableRecord_DataTableRecord as DataTableRecord;
+    impl crate::value::ToValue for DataTableRecord_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.primary_values {
+                properties.insert(
+                    "PrimaryValues".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Values".to_string(),
+                crate::value::ToValue::to_value(&self.values),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-datatablerecord-value.html
+    pub struct Value_ {
+        pub attribute_id: Option<crate::value::ExpString>,
+        pub attribute_value: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_DataTableRecord_Value {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::DataTableRecord.Value"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_DataTableRecord_Value as Value;
+    impl crate::value::ToValue for Value_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.attribute_id {
+                properties.insert(
+                    "AttributeId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.attribute_value {
+                properties.insert(
+                    "AttributeValue".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
+pub mod emailaddress {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-emailaddress-aliasconfiguration.html
+    pub struct AliasConfiguration_ {
+        pub email_address_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EmailAddress_AliasConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EmailAddress.AliasConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EmailAddress_AliasConfiguration as AliasConfiguration;
+    impl crate::value::ToValue for AliasConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "EmailAddressArn".to_string(),
+                crate::value::ToValue::to_value(&self.email_address_arn),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod evaluationform {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-autoevaluationconfiguration.html
     pub struct AutoEvaluationConfiguration_ {
@@ -18,6 +304,31 @@ pub mod evaluationform {
             if let Some(ref value) = self.enabled {
                 properties.insert(
                     "Enabled".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-automaticfailconfiguration.html
+    pub struct AutomaticFailConfiguration_ {
+        pub target_section: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_AutomaticFailConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.AutomaticFailConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_AutomaticFailConfiguration as AutomaticFailConfiguration;
+    impl crate::value::ToValue for AutomaticFailConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.target_section {
+                properties.insert(
+                    "TargetSection".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -79,9 +390,335 @@ pub mod evaluationform {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementcondition.html
+    pub struct EvaluationFormItemEnablementCondition_ {
+        pub operands: Vec<EvaluationFormItemEnablementConditionOperand_>,
+        pub operator: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormItemEnablementCondition {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormItemEnablementCondition"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormItemEnablementCondition as EvaluationFormItemEnablementCondition;
+    impl crate::value::ToValue for EvaluationFormItemEnablementCondition_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Operands".to_string(),
+                crate::value::ToValue::to_value(&self.operands),
+            );
+            if let Some(ref value) = self.operator {
+                properties.insert(
+                    "Operator".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementconditionoperand.html
+    pub struct EvaluationFormItemEnablementConditionOperand_ {
+        pub expression: Option<Box<EvaluationFormItemEnablementExpression_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormItemEnablementConditionOperand {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormItemEnablementConditionOperand"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormItemEnablementConditionOperand as EvaluationFormItemEnablementConditionOperand;
+    impl crate::value::ToValue for EvaluationFormItemEnablementConditionOperand_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.expression {
+                properties.insert(
+                    "Expression".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementconfiguration.html
+    pub struct EvaluationFormItemEnablementConfiguration_ {
+        pub action: crate::value::ExpString,
+        pub condition: Box<EvaluationFormItemEnablementCondition_>,
+        pub default_action: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormItemEnablementConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormItemEnablementConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormItemEnablementConfiguration as EvaluationFormItemEnablementConfiguration;
+    impl crate::value::ToValue for EvaluationFormItemEnablementConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Action".to_string(),
+                crate::value::ToValue::to_value(&self.action),
+            );
+            properties.insert(
+                "Condition".to_string(),
+                crate::value::ToValue::to_value(&self.condition),
+            );
+            if let Some(ref value) = self.default_action {
+                properties.insert(
+                    "DefaultAction".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementexpression.html
+    pub struct EvaluationFormItemEnablementExpression_ {
+        pub comparator: crate::value::ExpString,
+        pub source: Box<EvaluationFormItemEnablementSource_>,
+        pub values: Vec<EvaluationFormItemEnablementSourceValue_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormItemEnablementExpression {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormItemEnablementExpression"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormItemEnablementExpression as EvaluationFormItemEnablementExpression;
+    impl crate::value::ToValue for EvaluationFormItemEnablementExpression_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Comparator".to_string(),
+                crate::value::ToValue::to_value(&self.comparator),
+            );
+            properties.insert(
+                "Source".to_string(),
+                crate::value::ToValue::to_value(&self.source),
+            );
+            properties.insert(
+                "Values".to_string(),
+                crate::value::ToValue::to_value(&self.values),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementsource.html
+    pub struct EvaluationFormItemEnablementSource_ {
+        pub ref_id: Option<crate::value::ExpString>,
+        pub r#type: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormItemEnablementSource {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormItemEnablementSource"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormItemEnablementSource as EvaluationFormItemEnablementSource;
+    impl crate::value::ToValue for EvaluationFormItemEnablementSource_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.ref_id {
+                properties.insert("RefId".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.insert(
+                "Type".to_string(),
+                crate::value::ToValue::to_value(&self.r#type),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformitemenablementsourcevalue.html
+    pub struct EvaluationFormItemEnablementSourceValue_ {
+        pub ref_id: Option<crate::value::ExpString>,
+        pub r#type: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormItemEnablementSourceValue {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormItemEnablementSourceValue"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormItemEnablementSourceValue as EvaluationFormItemEnablementSourceValue;
+    impl crate::value::ToValue for EvaluationFormItemEnablementSourceValue_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.ref_id {
+                properties.insert("RefId".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.r#type {
+                properties.insert("Type".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformlanguageconfiguration.html
+    pub struct EvaluationFormLanguageConfiguration_ {
+        pub form_language: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormLanguageConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormLanguageConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormLanguageConfiguration as EvaluationFormLanguageConfiguration;
+    impl crate::value::ToValue for EvaluationFormLanguageConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.form_language {
+                properties.insert(
+                    "FormLanguage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformmultiselectquestionautomation.html
+    pub struct EvaluationFormMultiSelectQuestionAutomation_ {
+        pub answer_source: Option<Box<EvaluationFormQuestionAutomationAnswerSource_>>,
+        pub default_option_ref_ids: Option<Vec<crate::value::ExpString>>,
+        pub options: Vec<EvaluationFormMultiSelectQuestionAutomationOption_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormMultiSelectQuestionAutomation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormMultiSelectQuestionAutomation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormMultiSelectQuestionAutomation as EvaluationFormMultiSelectQuestionAutomation;
+    impl crate::value::ToValue for EvaluationFormMultiSelectQuestionAutomation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.answer_source {
+                properties.insert(
+                    "AnswerSource".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.default_option_ref_ids {
+                properties.insert(
+                    "DefaultOptionRefIds".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Options".to_string(),
+                crate::value::ToValue::to_value(&self.options),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformmultiselectquestionautomationoption.html
+    pub struct EvaluationFormMultiSelectQuestionAutomationOption_ {
+        pub rule_category: Box<MultiSelectQuestionRuleCategoryAutomation_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormMultiSelectQuestionAutomationOption {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormMultiSelectQuestionAutomationOption"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormMultiSelectQuestionAutomationOption as EvaluationFormMultiSelectQuestionAutomationOption;
+    impl crate::value::ToValue for EvaluationFormMultiSelectQuestionAutomationOption_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "RuleCategory".to_string(),
+                crate::value::ToValue::to_value(&self.rule_category),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformmultiselectquestionoption.html
+    pub struct EvaluationFormMultiSelectQuestionOption_ {
+        pub ref_id: crate::value::ExpString,
+        pub text: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormMultiSelectQuestionOption {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormMultiSelectQuestionOption"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormMultiSelectQuestionOption as EvaluationFormMultiSelectQuestionOption;
+    impl crate::value::ToValue for EvaluationFormMultiSelectQuestionOption_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "RefId".to_string(),
+                crate::value::ToValue::to_value(&self.ref_id),
+            );
+            properties.insert(
+                "Text".to_string(),
+                crate::value::ToValue::to_value(&self.text),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformmultiselectquestionproperties.html
+    pub struct EvaluationFormMultiSelectQuestionProperties_ {
+        pub automation: Option<Box<EvaluationFormMultiSelectQuestionAutomation_>>,
+        pub display_as: Option<crate::value::ExpString>,
+        pub options: Vec<EvaluationFormMultiSelectQuestionOption_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormMultiSelectQuestionProperties {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormMultiSelectQuestionProperties"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormMultiSelectQuestionProperties as EvaluationFormMultiSelectQuestionProperties;
+    impl crate::value::ToValue for EvaluationFormMultiSelectQuestionProperties_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.automation {
+                properties.insert(
+                    "Automation".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.display_as {
+                properties.insert(
+                    "DisplayAs".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Options".to_string(),
+                crate::value::ToValue::to_value(&self.options),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformnumericquestionautomation.html
     pub struct EvaluationFormNumericQuestionAutomation_ {
-        pub answer_source: Option<serde_json::Value>,
+        pub answer_source: Option<Box<EvaluationFormQuestionAutomationAnswerSource_>>,
         pub property_value: Option<Box<NumericQuestionPropertyValueAutomation_>>,
     }
     #[doc(hidden)]
@@ -114,6 +751,7 @@ pub mod evaluationform {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformnumericquestionoption.html
     pub struct EvaluationFormNumericQuestionOption_ {
         pub automatic_fail: Option<crate::value::ExpBool>,
+        pub automatic_fail_configuration: Option<Box<AutomaticFailConfiguration_>>,
         pub max_value: i32,
         pub min_value: i32,
         pub score: Option<i32>,
@@ -133,6 +771,12 @@ pub mod evaluationform {
             if let Some(ref value) = self.automatic_fail {
                 properties.insert(
                     "AutomaticFail".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.automatic_fail_configuration {
+                properties.insert(
+                    "AutomaticFailConfiguration".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -194,6 +838,7 @@ pub mod evaluationform {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformquestion.html
     pub struct EvaluationFormQuestion_ {
+        pub enablement: Option<Box<EvaluationFormItemEnablementConfiguration_>>,
         pub instructions: Option<crate::value::ExpString>,
         pub not_applicable_enabled: Option<crate::value::ExpBool>,
         pub question_type: crate::value::ExpString,
@@ -214,6 +859,12 @@ pub mod evaluationform {
     impl crate::value::ToValue for EvaluationFormQuestion_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.enablement {
+                properties.insert(
+                    "Enablement".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.instructions {
                 properties.insert(
                     "Instructions".to_string(),
@@ -250,10 +901,35 @@ pub mod evaluationform {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformquestionautomationanswersource.html
+    pub struct EvaluationFormQuestionAutomationAnswerSource_ {
+        pub source_type: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormQuestionAutomationAnswerSource {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormQuestionAutomationAnswerSource"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormQuestionAutomationAnswerSource as EvaluationFormQuestionAutomationAnswerSource;
+    impl crate::value::ToValue for EvaluationFormQuestionAutomationAnswerSource_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "SourceType".to_string(),
+                crate::value::ToValue::to_value(&self.source_type),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformquestiontypeproperties.html
     pub struct EvaluationFormQuestionTypeProperties_ {
+        pub multi_select: Option<Box<EvaluationFormMultiSelectQuestionProperties_>>,
         pub numeric: Option<Box<EvaluationFormNumericQuestionProperties_>>,
         pub single_select: Option<Box<EvaluationFormSingleSelectQuestionProperties_>>,
+        pub text: Option<Box<EvaluationFormTextQuestionProperties_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -267,6 +943,12 @@ pub mod evaluationform {
     impl crate::value::ToValue for EvaluationFormQuestionTypeProperties_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.multi_select {
+                properties.insert(
+                    "MultiSelect".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.numeric {
                 properties.insert(
                     "Numeric".to_string(),
@@ -278,6 +960,9 @@ pub mod evaluationform {
                     "SingleSelect".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
+            }
+            if let Some(ref value) = self.text {
+                properties.insert("Text".to_string(), crate::value::ToValue::to_value(value));
             }
             properties.into()
         }
@@ -327,6 +1012,7 @@ pub mod evaluationform {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformsingleselectquestionautomation.html
     pub struct EvaluationFormSingleSelectQuestionAutomation_ {
+        pub answer_source: Option<Box<EvaluationFormQuestionAutomationAnswerSource_>>,
         pub default_option_ref_id: Option<crate::value::ExpString>,
         pub options: Vec<EvaluationFormSingleSelectQuestionAutomationOption_>,
     }
@@ -342,6 +1028,12 @@ pub mod evaluationform {
     impl crate::value::ToValue for EvaluationFormSingleSelectQuestionAutomation_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.answer_source {
+                properties.insert(
+                    "AnswerSource".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.default_option_ref_id {
                 properties.insert(
                     "DefaultOptionRefId".to_string(),
@@ -381,6 +1073,7 @@ pub mod evaluationform {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformsingleselectquestionoption.html
     pub struct EvaluationFormSingleSelectQuestionOption_ {
         pub automatic_fail: Option<crate::value::ExpBool>,
+        pub automatic_fail_configuration: Option<Box<AutomaticFailConfiguration_>>,
         pub ref_id: crate::value::ExpString,
         pub score: Option<i32>,
         pub text: crate::value::ExpString,
@@ -400,6 +1093,12 @@ pub mod evaluationform {
             if let Some(ref value) = self.automatic_fail {
                 properties.insert(
                     "AutomaticFail".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.automatic_fail_configuration {
+                properties.insert(
+                    "AutomaticFailConfiguration".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -450,6 +1149,192 @@ pub mod evaluationform {
             properties.insert(
                 "Options".to_string(),
                 crate::value::ToValue::to_value(&self.options),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformtargetconfiguration.html
+    pub struct EvaluationFormTargetConfiguration_ {
+        pub contact_interaction_type: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormTargetConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormTargetConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormTargetConfiguration as EvaluationFormTargetConfiguration;
+    impl crate::value::ToValue for EvaluationFormTargetConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ContactInteractionType".to_string(),
+                crate::value::ToValue::to_value(&self.contact_interaction_type),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformtextquestionautomation.html
+    pub struct EvaluationFormTextQuestionAutomation_ {
+        pub answer_source: Option<Box<EvaluationFormQuestionAutomationAnswerSource_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormTextQuestionAutomation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormTextQuestionAutomation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormTextQuestionAutomation as EvaluationFormTextQuestionAutomation;
+    impl crate::value::ToValue for EvaluationFormTextQuestionAutomation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.answer_source {
+                properties.insert(
+                    "AnswerSource".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformtextquestionproperties.html
+    pub struct EvaluationFormTextQuestionProperties_ {
+        pub automation: Option<Box<EvaluationFormTextQuestionAutomation_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationFormTextQuestionProperties {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationFormTextQuestionProperties"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationFormTextQuestionProperties as EvaluationFormTextQuestionProperties;
+    impl crate::value::ToValue for EvaluationFormTextQuestionProperties_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.automation {
+                properties.insert(
+                    "Automation".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationreviewconfiguration.html
+    pub struct EvaluationReviewConfiguration_ {
+        pub eligibility_days: Option<i32>,
+        pub review_notification_recipients: Vec<EvaluationReviewNotificationRecipient_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationReviewConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationReviewConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationReviewConfiguration as EvaluationReviewConfiguration;
+    impl crate::value::ToValue for EvaluationReviewConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.eligibility_days {
+                properties.insert(
+                    "EligibilityDays".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "ReviewNotificationRecipients".to_string(),
+                crate::value::ToValue::to_value(&self.review_notification_recipients),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationreviewnotificationrecipient.html
+    pub struct EvaluationReviewNotificationRecipient_ {
+        pub r#type: crate::value::ExpString,
+        pub value: Box<EvaluationReviewNotificationRecipientValue_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationReviewNotificationRecipient {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationReviewNotificationRecipient"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationReviewNotificationRecipient as EvaluationReviewNotificationRecipient;
+    impl crate::value::ToValue for EvaluationReviewNotificationRecipient_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Type".to_string(),
+                crate::value::ToValue::to_value(&self.r#type),
+            );
+            properties.insert(
+                "Value".to_string(),
+                crate::value::ToValue::to_value(&self.value),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationreviewnotificationrecipientvalue.html
+    pub struct EvaluationReviewNotificationRecipientValue_ {
+        pub user_id: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_EvaluationReviewNotificationRecipientValue {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.EvaluationReviewNotificationRecipientValue"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_EvaluationReviewNotificationRecipientValue as EvaluationReviewNotificationRecipientValue;
+    impl crate::value::ToValue for EvaluationReviewNotificationRecipientValue_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.user_id {
+                properties.insert("UserId".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-multiselectquestionrulecategoryautomation.html
+    pub struct MultiSelectQuestionRuleCategoryAutomation_ {
+        pub category: crate::value::ExpString,
+        pub condition: crate::value::ExpString,
+        pub option_ref_ids: Vec<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_EvaluationForm_MultiSelectQuestionRuleCategoryAutomation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::EvaluationForm.MultiSelectQuestionRuleCategoryAutomation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_EvaluationForm_MultiSelectQuestionRuleCategoryAutomation as MultiSelectQuestionRuleCategoryAutomation;
+    impl crate::value::ToValue for MultiSelectQuestionRuleCategoryAutomation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Category".to_string(),
+                crate::value::ToValue::to_value(&self.category),
+            );
+            properties.insert(
+                "Condition".to_string(),
+                crate::value::ToValue::to_value(&self.condition),
+            );
+            properties.insert(
+                "OptionRefIds".to_string(),
+                crate::value::ToValue::to_value(&self.option_ref_ids),
             );
             properties.into()
         }
@@ -581,6 +1466,8 @@ pub mod hoursofoperation {
         pub override_config: Vec<HoursOfOperationOverrideConfig_>,
         pub override_description: Option<crate::value::ExpString>,
         pub override_name: crate::value::ExpString,
+        pub override_type: Option<crate::value::ExpString>,
+        pub recurrence_config: Option<Box<RecurrenceConfig_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -622,6 +1509,18 @@ pub mod hoursofoperation {
                 "OverrideName".to_string(),
                 crate::value::ToValue::to_value(&self.override_name),
             );
+            if let Some(ref value) = self.override_type {
+                properties.insert(
+                    "OverrideType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.recurrence_config {
+                properties.insert(
+                    "RecurrenceConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -686,6 +1585,30 @@ pub mod hoursofoperation {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-hoursofoperationsidentifier.html
+    pub struct HoursOfOperationsIdentifier_ {
+        pub id: crate::value::ExpString,
+        pub name: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_HoursOfOperation_HoursOfOperationsIdentifier {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::HoursOfOperation.HoursOfOperationsIdentifier"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_HoursOfOperation_HoursOfOperationsIdentifier as HoursOfOperationsIdentifier;
+    impl crate::value::ToValue for HoursOfOperationsIdentifier_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert("Id".to_string(), crate::value::ToValue::to_value(&self.id));
+            if let Some(ref value) = self.name {
+                properties.insert("Name".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-overridetimeslice.html
     pub struct OverrideTimeSlice_ {
         pub hours: i32,
@@ -714,6 +1637,82 @@ pub mod hoursofoperation {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-recurrenceconfig.html
+    pub struct RecurrenceConfig_ {
+        pub recurrence_pattern: Box<RecurrencePattern_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_HoursOfOperation_RecurrenceConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::HoursOfOperation.RecurrenceConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_HoursOfOperation_RecurrenceConfig as RecurrenceConfig;
+    impl crate::value::ToValue for RecurrenceConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "RecurrencePattern".to_string(),
+                crate::value::ToValue::to_value(&self.recurrence_pattern),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-recurrencepattern.html
+    pub struct RecurrencePattern_ {
+        pub by_month: Option<Vec<i32>>,
+        pub by_month_day: Option<Vec<i32>>,
+        pub by_weekday_occurrence: Option<Vec<i32>>,
+        pub frequency: Option<crate::value::ExpString>,
+        pub interval: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_HoursOfOperation_RecurrencePattern {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::HoursOfOperation.RecurrencePattern"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_HoursOfOperation_RecurrencePattern as RecurrencePattern;
+    impl crate::value::ToValue for RecurrencePattern_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.by_month {
+                properties.insert(
+                    "ByMonth".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.by_month_day {
+                properties.insert(
+                    "ByMonthDay".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.by_weekday_occurrence {
+                properties.insert(
+                    "ByWeekdayOccurrence".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.frequency {
+                properties.insert(
+                    "Frequency".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.interval {
+                properties.insert(
+                    "Interval".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
 }
 pub mod instance {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-instance-attributes.html
@@ -726,6 +1725,7 @@ pub mod instance {
         pub enhanced_contact_monitoring: Option<crate::value::ExpBool>,
         pub high_volume_out_bound: Option<crate::value::ExpBool>,
         pub inbound_calls: crate::value::ExpBool,
+        pub message_streaming: Option<crate::value::ExpBool>,
         pub multi_party_chat_conference: Option<crate::value::ExpBool>,
         pub multi_party_conference: Option<crate::value::ExpBool>,
         pub outbound_calls: crate::value::ExpBool,
@@ -789,6 +1789,12 @@ pub mod instance {
                 "InboundCalls".to_string(),
                 crate::value::ToValue::to_value(&self.inbound_calls),
             );
+            if let Some(ref value) = self.message_streaming {
+                properties.insert(
+                    "MessageStreaming".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.multi_party_chat_conference {
                 properties.insert(
                     "MultiPartyChatConference".to_string(),
@@ -1803,6 +2809,114 @@ pub mod securityprofile {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-securityprofile-datatableaccesscontrolconfiguration.html
+    pub struct DataTableAccessControlConfiguration_ {
+        pub primary_attribute_access_control_configuration:
+            Option<Box<PrimaryAttributeAccessControlConfigurationItem_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_SecurityProfile_DataTableAccessControlConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::SecurityProfile.DataTableAccessControlConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_SecurityProfile_DataTableAccessControlConfiguration as DataTableAccessControlConfiguration;
+    impl crate::value::ToValue for DataTableAccessControlConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.primary_attribute_access_control_configuration {
+                properties.insert(
+                    "PrimaryAttributeAccessControlConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-securityprofile-granularaccesscontrolconfiguration.html
+    pub struct GranularAccessControlConfiguration_ {
+        pub data_table_access_control_configuration:
+            Option<Box<DataTableAccessControlConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_SecurityProfile_GranularAccessControlConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::SecurityProfile.GranularAccessControlConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_SecurityProfile_GranularAccessControlConfiguration as GranularAccessControlConfiguration;
+    impl crate::value::ToValue for GranularAccessControlConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.data_table_access_control_configuration {
+                properties.insert(
+                    "DataTableAccessControlConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-securityprofile-primaryattributeaccesscontrolconfigurationitem.html
+    pub struct PrimaryAttributeAccessControlConfigurationItem_ {
+        pub primary_attribute_values: Vec<PrimaryAttributeValue_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_SecurityProfile_PrimaryAttributeAccessControlConfigurationItem {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::SecurityProfile.PrimaryAttributeAccessControlConfigurationItem"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_SecurityProfile_PrimaryAttributeAccessControlConfigurationItem as PrimaryAttributeAccessControlConfigurationItem;
+    impl crate::value::ToValue for PrimaryAttributeAccessControlConfigurationItem_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "PrimaryAttributeValues".to_string(),
+                crate::value::ToValue::to_value(&self.primary_attribute_values),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-securityprofile-primaryattributevalue.html
+    pub struct PrimaryAttributeValue_ {
+        pub access_type: crate::value::ExpString,
+        pub attribute_name: crate::value::ExpString,
+        pub values: Vec<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_SecurityProfile_PrimaryAttributeValue {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::SecurityProfile.PrimaryAttributeValue"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_SecurityProfile_PrimaryAttributeValue as PrimaryAttributeValue;
+    impl crate::value::ToValue for PrimaryAttributeValue_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "AccessType".to_string(),
+                crate::value::ToValue::to_value(&self.access_type),
+            );
+            properties.insert(
+                "AttributeName".to_string(),
+                crate::value::ToValue::to_value(&self.attribute_name),
+            );
+            properties.insert(
+                "Values".to_string(),
+                crate::value::ToValue::to_value(&self.values),
+            );
+            properties.into()
+        }
+    }
 }
 pub mod tasktemplate {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-tasktemplate-constraints.html
@@ -1993,6 +3107,164 @@ pub mod tasktemplate {
     }
 }
 pub mod user {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-aftercontactworkconfig.html
+    pub struct AfterContactWorkConfig_ {
+        pub after_contact_work_time_limit: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_User_AfterContactWorkConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::User.AfterContactWorkConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_User_AfterContactWorkConfig as AfterContactWorkConfig;
+    impl crate::value::ToValue for AfterContactWorkConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.after_contact_work_time_limit {
+                properties.insert(
+                    "AfterContactWorkTimeLimit".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-aftercontactworkconfigperchannel.html
+    pub struct AfterContactWorkConfigPerChannel_ {
+        pub after_contact_work_config: Box<AfterContactWorkConfig_>,
+        pub agent_first_callback_after_contact_work_config: Option<Box<AfterContactWorkConfig_>>,
+        pub channel: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_User_AfterContactWorkConfigPerChannel {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::User.AfterContactWorkConfigPerChannel"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_User_AfterContactWorkConfigPerChannel as AfterContactWorkConfigPerChannel;
+    impl crate::value::ToValue for AfterContactWorkConfigPerChannel_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "AfterContactWorkConfig".to_string(),
+                crate::value::ToValue::to_value(&self.after_contact_work_config),
+            );
+            if let Some(ref value) = self.agent_first_callback_after_contact_work_config {
+                properties.insert(
+                    "AgentFirstCallbackAfterContactWorkConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Channel".to_string(),
+                crate::value::ToValue::to_value(&self.channel),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-autoacceptconfig.html
+    pub struct AutoAcceptConfig_ {
+        pub agent_first_callback_auto_accept: Option<crate::value::ExpBool>,
+        pub auto_accept: crate::value::ExpBool,
+        pub channel: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_User_AutoAcceptConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::User.AutoAcceptConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_User_AutoAcceptConfig as AutoAcceptConfig;
+    impl crate::value::ToValue for AutoAcceptConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.agent_first_callback_auto_accept {
+                properties.insert(
+                    "AgentFirstCallbackAutoAccept".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "AutoAccept".to_string(),
+                crate::value::ToValue::to_value(&self.auto_accept),
+            );
+            properties.insert(
+                "Channel".to_string(),
+                crate::value::ToValue::to_value(&self.channel),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-persistentconnectionconfig.html
+    pub struct PersistentConnectionConfig_ {
+        pub channel: crate::value::ExpString,
+        pub persistent_connection: crate::value::ExpBool,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_User_PersistentConnectionConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::User.PersistentConnectionConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_User_PersistentConnectionConfig as PersistentConnectionConfig;
+    impl crate::value::ToValue for PersistentConnectionConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Channel".to_string(),
+                crate::value::ToValue::to_value(&self.channel),
+            );
+            properties.insert(
+                "PersistentConnection".to_string(),
+                crate::value::ToValue::to_value(&self.persistent_connection),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-phonenumberconfig.html
+    pub struct PhoneNumberConfig_ {
+        pub channel: crate::value::ExpString,
+        pub phone_number: Option<crate::value::ExpString>,
+        pub phone_type: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_User_PhoneNumberConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::User.PhoneNumberConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_User_PhoneNumberConfig as PhoneNumberConfig;
+    impl crate::value::ToValue for PhoneNumberConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Channel".to_string(),
+                crate::value::ToValue::to_value(&self.channel),
+            );
+            if let Some(ref value) = self.phone_number {
+                properties.insert(
+                    "PhoneNumber".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "PhoneType".to_string(),
+                crate::value::ToValue::to_value(&self.phone_type),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-useridentityinfo.html
     pub struct UserIdentityInfo_ {
         pub email: Option<crate::value::ExpString>,
@@ -2046,7 +3318,7 @@ pub mod user {
         pub auto_accept: Option<crate::value::ExpBool>,
         pub desk_phone_number: Option<crate::value::ExpString>,
         pub persistent_connection: Option<crate::value::ExpBool>,
-        pub phone_type: crate::value::ExpString,
+        pub phone_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2084,10 +3356,12 @@ pub mod user {
                     crate::value::ToValue::to_value(value),
                 );
             }
-            properties.insert(
-                "PhoneType".to_string(),
-                crate::value::ToValue::to_value(&self.phone_type),
-            );
+            if let Some(ref value) = self.phone_type {
+                properties.insert(
+                    "PhoneType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -2120,6 +3394,34 @@ pub mod user {
             properties.insert(
                 "Level".to_string(),
                 crate::value::ToValue::to_value(&self.level),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-voiceenhancementconfig.html
+    pub struct VoiceEnhancementConfig_ {
+        pub channel: crate::value::ExpString,
+        pub voice_enhancement_mode: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_User_VoiceEnhancementConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::User.VoiceEnhancementConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_User_VoiceEnhancementConfig as VoiceEnhancementConfig;
+    impl crate::value::ToValue for VoiceEnhancementConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Channel".to_string(),
+                crate::value::ToValue::to_value(&self.channel),
+            );
+            properties.insert(
+                "VoiceEnhancementMode".to_string(),
+                crate::value::ToValue::to_value(&self.voice_enhancement_mode),
             );
             properties.into()
         }
@@ -2365,6 +3667,404 @@ pub mod userhierarchystructure {
         }
     }
 }
+pub mod workspace {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-fontfamily.html
+    pub struct FontFamily_ {
+        pub default: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_Workspace_FontFamily {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::Workspace.FontFamily"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_Workspace_FontFamily as FontFamily;
+    impl crate::value::ToValue for FontFamily_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.default {
+                properties.insert(
+                    "Default".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-mediaitem.html
+    pub struct MediaItem_ {
+        pub source: Option<crate::value::ExpString>,
+        pub r#type: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_Workspace_MediaItem {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::Workspace.MediaItem"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_Workspace_MediaItem as MediaItem;
+    impl crate::value::ToValue for MediaItem_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.source {
+                properties.insert("Source".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.insert(
+                "Type".to_string(),
+                crate::value::ToValue::to_value(&self.r#type),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-palettecanvas.html
+    pub struct PaletteCanvas_ {
+        pub active_background: Option<crate::value::ExpString>,
+        pub container_background: Option<crate::value::ExpString>,
+        pub page_background: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_Workspace_PaletteCanvas {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::Workspace.PaletteCanvas"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_Workspace_PaletteCanvas as PaletteCanvas;
+    impl crate::value::ToValue for PaletteCanvas_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.active_background {
+                properties.insert(
+                    "ActiveBackground".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.container_background {
+                properties.insert(
+                    "ContainerBackground".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.page_background {
+                properties.insert(
+                    "PageBackground".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-paletteheader.html
+    pub struct PaletteHeader_ {
+        pub background: Option<crate::value::ExpString>,
+        pub invert_actions_colors: Option<crate::value::ExpBool>,
+        pub text: Option<crate::value::ExpString>,
+        pub text_hover: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_Workspace_PaletteHeader {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::Workspace.PaletteHeader"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_Workspace_PaletteHeader as PaletteHeader;
+    impl crate::value::ToValue for PaletteHeader_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.background {
+                properties.insert(
+                    "Background".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.invert_actions_colors {
+                properties.insert(
+                    "InvertActionsColors".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.text {
+                properties.insert("Text".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.text_hover {
+                properties.insert(
+                    "TextHover".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-palettenavigation.html
+    pub struct PaletteNavigation_ {
+        pub background: Option<crate::value::ExpString>,
+        pub invert_actions_colors: Option<crate::value::ExpBool>,
+        pub text: Option<crate::value::ExpString>,
+        pub text_active: Option<crate::value::ExpString>,
+        pub text_background_active: Option<crate::value::ExpString>,
+        pub text_background_hover: Option<crate::value::ExpString>,
+        pub text_hover: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_Workspace_PaletteNavigation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::Workspace.PaletteNavigation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_Workspace_PaletteNavigation as PaletteNavigation;
+    impl crate::value::ToValue for PaletteNavigation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.background {
+                properties.insert(
+                    "Background".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.invert_actions_colors {
+                properties.insert(
+                    "InvertActionsColors".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.text {
+                properties.insert("Text".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.text_active {
+                properties.insert(
+                    "TextActive".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.text_background_active {
+                properties.insert(
+                    "TextBackgroundActive".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.text_background_hover {
+                properties.insert(
+                    "TextBackgroundHover".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.text_hover {
+                properties.insert(
+                    "TextHover".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-paletteprimary.html
+    pub struct PalettePrimary_ {
+        pub active: Option<crate::value::ExpString>,
+        pub contrast_text: Option<crate::value::ExpString>,
+        pub default: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_Workspace_PalettePrimary {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::Workspace.PalettePrimary"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_Workspace_PalettePrimary as PalettePrimary;
+    impl crate::value::ToValue for PalettePrimary_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.active {
+                properties.insert("Active".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.contrast_text {
+                properties.insert(
+                    "ContrastText".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.default {
+                properties.insert(
+                    "Default".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacepage.html
+    pub struct WorkspacePage_ {
+        pub input_data: Option<crate::value::ExpString>,
+        pub page: crate::value::ExpString,
+        pub resource_arn: crate::value::ExpString,
+        pub slug: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_Workspace_WorkspacePage {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::Workspace.WorkspacePage"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_Workspace_WorkspacePage as WorkspacePage;
+    impl crate::value::ToValue for WorkspacePage_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.input_data {
+                properties.insert(
+                    "InputData".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Page".to_string(),
+                crate::value::ToValue::to_value(&self.page),
+            );
+            properties.insert(
+                "ResourceArn".to_string(),
+                crate::value::ToValue::to_value(&self.resource_arn),
+            );
+            if let Some(ref value) = self.slug {
+                properties.insert("Slug".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacetheme.html
+    pub struct WorkspaceTheme_ {
+        pub dark: Option<Box<WorkspaceThemeConfig_>>,
+        pub light: Option<Box<WorkspaceThemeConfig_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_Workspace_WorkspaceTheme {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::Workspace.WorkspaceTheme"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_Workspace_WorkspaceTheme as WorkspaceTheme;
+    impl crate::value::ToValue for WorkspaceTheme_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.dark {
+                properties.insert("Dark".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.light {
+                properties.insert("Light".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacethemeconfig.html
+    pub struct WorkspaceThemeConfig_ {
+        pub palette: Option<Box<WorkspaceThemePalette_>>,
+        pub typography: Option<Box<WorkspaceThemeTypography_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_Workspace_WorkspaceThemeConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::Workspace.WorkspaceThemeConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_Workspace_WorkspaceThemeConfig as WorkspaceThemeConfig;
+    impl crate::value::ToValue for WorkspaceThemeConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.palette {
+                properties.insert(
+                    "Palette".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.typography {
+                properties.insert(
+                    "Typography".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacethemepalette.html
+    pub struct WorkspaceThemePalette_ {
+        pub canvas: Option<Box<PaletteCanvas_>>,
+        pub header: Option<Box<PaletteHeader_>>,
+        pub navigation: Option<Box<PaletteNavigation_>>,
+        pub primary: Option<Box<PalettePrimary_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_Workspace_WorkspaceThemePalette {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::Workspace.WorkspaceThemePalette"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_Workspace_WorkspaceThemePalette as WorkspaceThemePalette;
+    impl crate::value::ToValue for WorkspaceThemePalette_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.canvas {
+                properties.insert("Canvas".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.header {
+                properties.insert("Header".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.navigation {
+                properties.insert(
+                    "Navigation".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.primary {
+                properties.insert(
+                    "Primary".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-workspace-workspacethemetypography.html
+    pub struct WorkspaceThemeTypography_ {
+        pub font_family: Option<Box<FontFamily_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_connect_Workspace_WorkspaceThemeTypography {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Connect::Workspace.WorkspaceThemeTypography"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_connect_Workspace_WorkspaceThemeTypography as WorkspaceThemeTypography;
+    impl crate::value::ToValue for WorkspaceThemeTypography_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.font_family {
+                properties.insert(
+                    "FontFamily".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-agentstatus.html
 pub struct AgentStatus_ {
     pub description: Option<crate::value::ExpString>,
@@ -2536,8 +4236,11 @@ impl crate::template::ToResource for ContactFlow_ {
 pub struct ContactFlowModule_ {
     pub content: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
+    pub external_invocation_configuration:
+        Option<super::connect::contactflowmodule::ExternalInvocationConfiguration_>,
     pub instance_arn: crate::value::ExpString,
     pub name: crate::value::ExpString,
+    pub settings: Option<crate::value::ExpString>,
     pub state: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -2571,6 +4274,12 @@ impl crate::template::ToResource for ContactFlowModule_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.external_invocation_configuration {
+            properties.insert(
+                "ExternalInvocationConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "InstanceArn".to_string(),
             crate::value::ToValue::to_value(&self.instance_arn),
@@ -2579,6 +4288,12 @@ impl crate::template::ToResource for ContactFlowModule_ {
             "Name".to_string(),
             crate::value::ToValue::to_value(&self.name),
         );
+        if let Some(ref value) = self.settings {
+            properties.insert(
+                "Settings".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.state {
             properties.insert("State".to_string(), crate::value::ToValue::to_value(value));
         }
@@ -2626,8 +4341,194 @@ impl crate::template::ToResource for ContactFlowVersion_ {
         properties
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-datatable.html
+pub struct DataTable_ {
+    pub description: Option<crate::value::ExpString>,
+    pub instance_arn: Option<crate::value::ExpString>,
+    pub name: Option<crate::value::ExpString>,
+    pub status: Option<crate::value::ExpString>,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub time_zone: Option<crate::value::ExpString>,
+    pub value_lock_level: Option<crate::value::ExpString>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_connect_DataTable {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Connect::DataTable"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_connect_DataTable as DataTable;
+impl crate::template::ToResource for DataTable_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Connect"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("DataTable"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.description {
+            properties.insert(
+                "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.instance_arn {
+            properties.insert(
+                "InstanceArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.name {
+            properties.insert("Name".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.status {
+            properties.insert("Status".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.time_zone {
+            properties.insert(
+                "TimeZone".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.value_lock_level {
+            properties.insert(
+                "ValueLockLevel".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-datatableattribute.html
+pub struct DataTableAttribute_ {
+    pub data_table_arn: Option<crate::value::ExpString>,
+    pub description: Option<crate::value::ExpString>,
+    pub instance_arn: Option<crate::value::ExpString>,
+    pub name: Option<crate::value::ExpString>,
+    pub primary: Option<crate::value::ExpBool>,
+    pub validation: Option<super::connect::datatableattribute::Validation_>,
+    pub value_type: Option<crate::value::ExpString>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_connect_DataTableAttribute {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Connect::DataTableAttribute"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_connect_DataTableAttribute as DataTableAttribute;
+impl crate::template::ToResource for DataTableAttribute_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Connect"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("DataTableAttribute"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.data_table_arn {
+            properties.insert(
+                "DataTableArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.description {
+            properties.insert(
+                "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.instance_arn {
+            properties.insert(
+                "InstanceArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.name {
+            properties.insert("Name".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.primary {
+            properties.insert(
+                "Primary".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.validation {
+            properties.insert(
+                "Validation".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.value_type {
+            properties.insert(
+                "ValueType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-datatablerecord.html
+pub struct DataTableRecord_ {
+    pub data_table_arn: Option<crate::value::ExpString>,
+    pub data_table_record: Option<super::connect::datatablerecord::DataTableRecord_>,
+    pub instance_arn: Option<crate::value::ExpString>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_connect_DataTableRecord {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Connect::DataTableRecord"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_connect_DataTableRecord as DataTableRecord;
+impl crate::template::ToResource for DataTableRecord_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Connect"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("DataTableRecord"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.data_table_arn {
+            properties.insert(
+                "DataTableArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.data_table_record {
+            properties.insert(
+                "DataTableRecord".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.instance_arn {
+            properties.insert(
+                "InstanceArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-emailaddress.html
 pub struct EmailAddress_ {
+    pub alias_configurations: Option<Vec<super::connect::emailaddress::AliasConfiguration_>>,
     pub description: Option<crate::value::ExpString>,
     pub display_name: Option<crate::value::ExpString>,
     pub email_address: crate::value::ExpString,
@@ -2654,6 +4555,12 @@ impl crate::template::ToResource for EmailAddress_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.alias_configurations {
+            properties.insert(
+                "AliasConfigurations".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.description {
             properties.insert(
                 "Description".to_string(),
@@ -2687,9 +4594,15 @@ pub struct EvaluationForm_ {
     pub description: Option<crate::value::ExpString>,
     pub instance_arn: crate::value::ExpString,
     pub items: Vec<super::connect::evaluationform::EvaluationFormBaseItem_>,
+    pub language_configuration:
+        Option<super::connect::evaluationform::EvaluationFormLanguageConfiguration_>,
+    pub review_configuration:
+        Option<super::connect::evaluationform::EvaluationReviewConfiguration_>,
     pub scoring_strategy: Option<super::connect::evaluationform::ScoringStrategy_>,
     pub status: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
+    pub target_configuration:
+        Option<super::connect::evaluationform::EvaluationFormTargetConfiguration_>,
     pub title: crate::value::ExpString,
 }
 #[doc(hidden)]
@@ -2732,6 +4645,18 @@ impl crate::template::ToResource for EvaluationForm_ {
             "Items".to_string(),
             crate::value::ToValue::to_value(&self.items),
         );
+        if let Some(ref value) = self.language_configuration {
+            properties.insert(
+                "LanguageConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.review_configuration {
+            properties.insert(
+                "ReviewConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.scoring_strategy {
             properties.insert(
                 "ScoringStrategy".to_string(),
@@ -2745,6 +4670,12 @@ impl crate::template::ToResource for EvaluationForm_ {
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
+        if let Some(ref value) = self.target_configuration {
+            properties.insert(
+                "TargetConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "Title".to_string(),
             crate::value::ToValue::to_value(&self.title),
@@ -2754,12 +4685,16 @@ impl crate::template::ToResource for EvaluationForm_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-hoursofoperation.html
 pub struct HoursOfOperation_ {
+    pub child_hours_of_operations:
+        Option<Vec<super::connect::hoursofoperation::HoursOfOperationsIdentifier_>>,
     pub config: Vec<super::connect::hoursofoperation::HoursOfOperationConfig_>,
     pub description: Option<crate::value::ExpString>,
     pub hours_of_operation_overrides:
         Option<Vec<super::connect::hoursofoperation::HoursOfOperationOverride_>>,
     pub instance_arn: crate::value::ExpString,
     pub name: crate::value::ExpString,
+    pub parent_hours_of_operations:
+        Option<Vec<super::connect::hoursofoperation::HoursOfOperationsIdentifier_>>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub time_zone: crate::value::ExpString,
 }
@@ -2783,6 +4718,12 @@ impl crate::template::ToResource for HoursOfOperation_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.child_hours_of_operations {
+            properties.insert(
+                "ChildHoursOfOperations".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "Config".to_string(),
             crate::value::ToValue::to_value(&self.config),
@@ -2807,6 +4748,12 @@ impl crate::template::ToResource for HoursOfOperation_ {
             "Name".to_string(),
             crate::value::ToValue::to_value(&self.name),
         );
+        if let Some(ref value) = self.parent_hours_of_operations {
+            properties.insert(
+                "ParentHoursOfOperations".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
@@ -3468,6 +5415,8 @@ pub struct SecurityProfile_ {
     pub allowed_access_control_tags: Option<Vec<crate::Tag_>>,
     pub applications: Option<Vec<super::connect::securityprofile::Application_>>,
     pub description: Option<crate::value::ExpString>,
+    pub granular_access_control_configuration:
+        Option<super::connect::securityprofile::GranularAccessControlConfiguration_>,
     pub hierarchy_restricted_resources: Option<Vec<crate::value::ExpString>>,
     pub instance_arn: crate::value::ExpString,
     pub permissions: Option<Vec<crate::value::ExpString>>,
@@ -3516,6 +5465,12 @@ impl crate::template::ToResource for SecurityProfile_ {
         if let Some(ref value) = self.description {
             properties.insert(
                 "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.granular_access_control_configuration {
+            properties.insert(
+                "GranularAccessControlConfiguration".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -3689,17 +5644,24 @@ impl crate::template::ToResource for TrafficDistributionGroup_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-user.html
 pub struct User_ {
+    pub after_contact_work_configs:
+        Option<Vec<super::connect::user::AfterContactWorkConfigPerChannel_>>,
+    pub auto_accept_configs: Option<Vec<super::connect::user::AutoAcceptConfig_>>,
     pub directory_user_id: Option<crate::value::ExpString>,
     pub hierarchy_group_arn: Option<crate::value::ExpString>,
     pub identity_info: Option<super::connect::user::UserIdentityInfo_>,
     pub instance_arn: crate::value::ExpString,
     pub password: Option<crate::value::ExpString>,
-    pub phone_config: super::connect::user::UserPhoneConfig_,
+    pub persistent_connection_configs:
+        Option<Vec<super::connect::user::PersistentConnectionConfig_>>,
+    pub phone_config: Option<super::connect::user::UserPhoneConfig_>,
+    pub phone_number_configs: Option<Vec<super::connect::user::PhoneNumberConfig_>>,
     pub routing_profile_arn: crate::value::ExpString,
     pub security_profile_arns: Vec<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub user_proficiencies: Option<Vec<super::connect::user::UserProficiency_>>,
     pub username: crate::value::ExpString,
+    pub voice_enhancement_configs: Option<Vec<super::connect::user::VoiceEnhancementConfig_>>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -3721,6 +5683,18 @@ impl crate::template::ToResource for User_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.after_contact_work_configs {
+            properties.insert(
+                "AfterContactWorkConfigs".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.auto_accept_configs {
+            properties.insert(
+                "AutoAcceptConfigs".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.directory_user_id {
             properties.insert(
                 "DirectoryUserId".to_string(),
@@ -3749,10 +5723,24 @@ impl crate::template::ToResource for User_ {
                 crate::value::ToValue::to_value(value),
             );
         }
-        properties.insert(
-            "PhoneConfig".to_string(),
-            crate::value::ToValue::to_value(&self.phone_config),
-        );
+        if let Some(ref value) = self.persistent_connection_configs {
+            properties.insert(
+                "PersistentConnectionConfigs".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.phone_config {
+            properties.insert(
+                "PhoneConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.phone_number_configs {
+            properties.insert(
+                "PhoneNumberConfigs".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "RoutingProfileArn".to_string(),
             crate::value::ToValue::to_value(&self.routing_profile_arn),
@@ -3774,6 +5762,12 @@ impl crate::template::ToResource for User_ {
             "Username".to_string(),
             crate::value::ToValue::to_value(&self.username),
         );
+        if let Some(ref value) = self.voice_enhancement_configs {
+            properties.insert(
+                "VoiceEnhancementConfigs".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties
     }
 }
@@ -3959,6 +5953,83 @@ impl crate::template::ToResource for ViewVersion_ {
         if let Some(ref value) = self.view_content_sha256 {
             properties.insert(
                 "ViewContentSha256".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-workspace.html
+pub struct Workspace_ {
+    pub associations: Option<Vec<crate::value::ExpString>>,
+    pub description: Option<crate::value::ExpString>,
+    pub instance_arn: crate::value::ExpString,
+    pub media: Option<Vec<super::connect::workspace::MediaItem_>>,
+    pub name: crate::value::ExpString,
+    pub pages: Option<Vec<super::connect::workspace::WorkspacePage_>>,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub theme: Option<super::connect::workspace::WorkspaceTheme_>,
+    pub title: Option<crate::value::ExpString>,
+    pub visibility: Option<crate::value::ExpString>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_connect_Workspace {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Connect::Workspace"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_connect_Workspace as Workspace;
+impl crate::template::ToResource for Workspace_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Connect"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("Workspace"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.associations {
+            properties.insert(
+                "Associations".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.description {
+            properties.insert(
+                "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "InstanceArn".to_string(),
+            crate::value::ToValue::to_value(&self.instance_arn),
+        );
+        if let Some(ref value) = self.media {
+            properties.insert("Media".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "Name".to_string(),
+            crate::value::ToValue::to_value(&self.name),
+        );
+        if let Some(ref value) = self.pages {
+            properties.insert("Pages".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.theme {
+            properties.insert("Theme".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.title {
+            properties.insert("Title".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.visibility {
+            properties.insert(
+                "Visibility".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

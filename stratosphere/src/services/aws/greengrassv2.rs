@@ -824,7 +824,7 @@ pub mod deployment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-systemresourcelimits.html
     pub struct SystemResourceLimits_ {
         pub cpus: Option<f64>,
-        pub memory: Option<i32>,
+        pub memory: Option<i64>,
     }
     #[doc(hidden)]
     #[macro_export]

@@ -432,6 +432,40 @@ pub mod database {
         }
     }
 }
+pub mod databasesnapshot {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-databasesnapshot-location.html
+    pub struct Location_ {
+        pub availability_zone: Option<crate::value::ExpString>,
+        pub region_name: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lightsail_DatabaseSnapshot_Location {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::DatabaseSnapshot.Location"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lightsail_DatabaseSnapshot_Location as Location;
+    impl crate::value::ToValue for Location_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.availability_zone {
+                properties.insert(
+                    "AvailabilityZone".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.region_name {
+                properties.insert(
+                    "RegionName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
 pub mod disk {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-disk-addon.html
     pub struct AddOn_ {
@@ -525,6 +559,40 @@ pub mod disk {
         }
     }
 }
+pub mod disksnapshot {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-disksnapshot-location.html
+    pub struct Location_ {
+        pub availability_zone: Option<crate::value::ExpString>,
+        pub region_name: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lightsail_DiskSnapshot_Location {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::DiskSnapshot.Location"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lightsail_DiskSnapshot_Location as Location;
+    impl crate::value::ToValue for Location_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.availability_zone {
+                properties.insert(
+                    "AvailabilityZone".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.region_name {
+                properties.insert(
+                    "RegionName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
 pub mod distribution {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-distribution-cachebehavior.html
     pub struct CacheBehavior_ {
@@ -584,12 +652,12 @@ pub mod distribution {
     pub struct CacheSettings_ {
         pub allowed_http_methods: Option<crate::value::ExpString>,
         pub cached_http_methods: Option<crate::value::ExpString>,
-        pub default_ttl: Option<i32>,
+        pub default_ttl: Option<i64>,
         pub forwarded_cookies: Option<Box<CookieObject_>>,
         pub forwarded_headers: Option<Box<HeaderObject_>>,
         pub forwarded_query_strings: Option<Box<QueryStringObject_>>,
-        pub maximum_ttl: Option<i32>,
-        pub minimum_ttl: Option<i32>,
+        pub maximum_ttl: Option<i64>,
+        pub minimum_ttl: Option<i64>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1641,6 +1709,46 @@ impl crate::template::ToResource for Database_ {
         properties
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-databasesnapshot.html
+pub struct DatabaseSnapshot_ {
+    pub relational_database_name: crate::value::ExpString,
+    pub relational_database_snapshot_name: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_lightsail_DatabaseSnapshot {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::DatabaseSnapshot"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_lightsail_DatabaseSnapshot as DatabaseSnapshot;
+impl crate::template::ToResource for DatabaseSnapshot_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Lightsail"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("DatabaseSnapshot"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "RelationalDatabaseName".to_string(),
+            crate::value::ToValue::to_value(&self.relational_database_name),
+        );
+        properties.insert(
+            "RelationalDatabaseSnapshotName".to_string(),
+            crate::value::ToValue::to_value(&self.relational_database_snapshot_name),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-disk.html
 pub struct Disk_ {
     pub add_ons: Option<Vec<super::lightsail::disk::AddOn_>>,
@@ -1692,6 +1800,46 @@ impl crate::template::ToResource for Disk_ {
         properties.insert(
             "SizeInGb".to_string(),
             crate::value::ToValue::to_value(&self.size_in_gb),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-disksnapshot.html
+pub struct DiskSnapshot_ {
+    pub disk_name: crate::value::ExpString,
+    pub disk_snapshot_name: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_lightsail_DiskSnapshot {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::DiskSnapshot"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_lightsail_DiskSnapshot as DiskSnapshot;
+impl crate::template::ToResource for DiskSnapshot_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Lightsail"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("DiskSnapshot"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "DiskName".to_string(),
+            crate::value::ToValue::to_value(&self.disk_name),
+        );
+        properties.insert(
+            "DiskSnapshotName".to_string(),
+            crate::value::ToValue::to_value(&self.disk_snapshot_name),
         );
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));

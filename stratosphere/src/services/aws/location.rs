@@ -1,7 +1,37 @@
 pub mod apikey {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-location-apikey-androidapp.html
+    pub struct AndroidApp_ {
+        pub certificate_fingerprint: crate::value::ExpString,
+        pub package: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_location_APIKey_AndroidApp {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Location::APIKey.AndroidApp"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_location_APIKey_AndroidApp as AndroidApp;
+    impl crate::value::ToValue for AndroidApp_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "CertificateFingerprint".to_string(),
+                crate::value::ToValue::to_value(&self.certificate_fingerprint),
+            );
+            properties.insert(
+                "Package".to_string(),
+                crate::value::ToValue::to_value(&self.package),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-location-apikey-apikeyrestrictions.html
     pub struct ApiKeyRestrictions_ {
         pub allow_actions: Vec<crate::value::ExpString>,
+        pub allow_android_apps: Option<Vec<AndroidApp_>>,
+        pub allow_apple_apps: Option<Vec<AppleApp_>>,
         pub allow_referers: Option<Vec<crate::value::ExpString>>,
         pub allow_resources: Vec<crate::value::ExpString>,
     }
@@ -21,6 +51,18 @@ pub mod apikey {
                 "AllowActions".to_string(),
                 crate::value::ToValue::to_value(&self.allow_actions),
             );
+            if let Some(ref value) = self.allow_android_apps {
+                properties.insert(
+                    "AllowAndroidApps".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.allow_apple_apps {
+                properties.insert(
+                    "AllowAppleApps".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.allow_referers {
                 properties.insert(
                     "AllowReferers".to_string(),
@@ -30,6 +72,29 @@ pub mod apikey {
             properties.insert(
                 "AllowResources".to_string(),
                 crate::value::ToValue::to_value(&self.allow_resources),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-location-apikey-appleapp.html
+    pub struct AppleApp_ {
+        pub bundle_id: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_location_APIKey_AppleApp {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Location::APIKey.AppleApp"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_location_APIKey_AppleApp as AppleApp;
+    impl crate::value::ToValue for AppleApp_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "BundleId".to_string(),
+                crate::value::ToValue::to_value(&self.bundle_id),
             );
             properties.into()
         }

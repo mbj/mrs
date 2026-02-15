@@ -314,6 +314,7 @@ pub struct DBInstance_ {
     pub db_parameter_group_name: Option<crate::value::ExpString>,
     pub db_subnet_group_name: Option<crate::value::ExpString>,
     pub preferred_maintenance_window: Option<crate::value::ExpString>,
+    pub publicly_accessible: Option<crate::value::ExpBool>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -385,6 +386,12 @@ impl crate::template::ToResource for DBInstance_ {
         if let Some(ref value) = self.preferred_maintenance_window {
             properties.insert(
                 "PreferredMaintenanceWindow".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.publicly_accessible {
+            properties.insert(
+                "PubliclyAccessible".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -494,9 +501,11 @@ impl crate::template::ToResource for DBSubnetGroup_ {
 pub struct EventSubscription_ {
     pub enabled: Option<crate::value::ExpBool>,
     pub event_categories: Option<Vec<crate::value::ExpString>>,
-    pub sns_topic_arn: Option<crate::value::ExpString>,
+    pub sns_topic_arn: crate::value::ExpString,
     pub source_ids: Option<Vec<crate::value::ExpString>>,
     pub source_type: Option<crate::value::ExpString>,
+    pub subscription_name: Option<crate::value::ExpString>,
+    pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -530,12 +539,10 @@ impl crate::template::ToResource for EventSubscription_ {
                 crate::value::ToValue::to_value(value),
             );
         }
-        if let Some(ref value) = self.sns_topic_arn {
-            properties.insert(
-                "SnsTopicArn".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
+        properties.insert(
+            "SnsTopicArn".to_string(),
+            crate::value::ToValue::to_value(&self.sns_topic_arn),
+        );
         if let Some(ref value) = self.source_ids {
             properties.insert(
                 "SourceIds".to_string(),
@@ -547,6 +554,15 @@ impl crate::template::ToResource for EventSubscription_ {
                 "SourceType".to_string(),
                 crate::value::ToValue::to_value(value),
             );
+        }
+        if let Some(ref value) = self.subscription_name {
+            properties.insert(
+                "SubscriptionName".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
         properties
     }

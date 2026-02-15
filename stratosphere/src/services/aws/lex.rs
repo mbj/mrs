@@ -468,6 +468,9 @@ pub mod bot {
         pub locale_id: crate::value::ExpString,
         pub nlu_confidence_threshold: f64,
         pub slot_types: Option<Vec<SlotType_>>,
+        pub speech_detection_sensitivity: Option<crate::value::ExpString>,
+        pub speech_recognition_settings: Option<Box<SpeechRecognitionSettings_>>,
+        pub unified_speech_settings: Option<Box<UnifiedSpeechSettings_>>,
         pub voice_settings: Option<Box<VoiceSettings_>>,
     }
     #[doc(hidden)]
@@ -517,6 +520,24 @@ pub mod bot {
             if let Some(ref value) = self.slot_types {
                 properties.insert(
                     "SlotTypes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.speech_detection_sensitivity {
+                properties.insert(
+                    "SpeechDetectionSensitivity".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.speech_recognition_settings {
+                properties.insert(
+                    "SpeechRecognitionSettings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.unified_speech_settings {
+                properties.insert(
+                    "UnifiedSpeechSettings".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -968,6 +989,36 @@ pub mod bot {
             if let Some(ref value) = self.opensearch_configuration {
                 properties.insert(
                     "OpensearchConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-deepgramspeechmodelconfig.html
+    pub struct DeepgramSpeechModelConfig_ {
+        pub api_token_secret_arn: crate::value::ExpString,
+        pub model_id: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lex_Bot_DeepgramSpeechModelConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.DeepgramSpeechModelConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lex_Bot_DeepgramSpeechModelConfig as DeepgramSpeechModelConfig;
+    impl crate::value::ToValue for DeepgramSpeechModelConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ApiTokenSecretArn".to_string(),
+                crate::value::ToValue::to_value(&self.api_token_secret_arn),
+            );
+            if let Some(ref value) = self.model_id {
+                properties.insert(
+                    "ModelId".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -1647,6 +1698,7 @@ pub mod bot {
         pub bedrock_agent_intent_configuration: Option<Box<BedrockAgentIntentConfiguration_>>,
         pub description: Option<crate::value::ExpString>,
         pub dialog_code_hook: Option<Box<DialogCodeHookSetting_>>,
+        pub display_name: Option<crate::value::ExpString>,
         pub fulfillment_code_hook: Option<Box<FulfillmentCodeHookSetting_>>,
         pub initial_response_setting: Option<Box<InitialResponseSetting_>>,
         pub input_contexts: Option<Vec<InputContext_>>,
@@ -1689,6 +1741,12 @@ pub mod bot {
             if let Some(ref value) = self.dialog_code_hook {
                 properties.insert(
                     "DialogCodeHook".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.display_name {
+                properties.insert(
+                    "DisplayName".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -1927,6 +1985,43 @@ pub mod bot {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-intentdisambiguationsettings.html
+    pub struct IntentDisambiguationSettings_ {
+        pub custom_disambiguation_message: Option<crate::value::ExpString>,
+        pub enabled: crate::value::ExpBool,
+        pub max_disambiguation_intents: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lex_Bot_IntentDisambiguationSettings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.IntentDisambiguationSettings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lex_Bot_IntentDisambiguationSettings as IntentDisambiguationSettings;
+    impl crate::value::ToValue for IntentDisambiguationSettings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.custom_disambiguation_message {
+                properties.insert(
+                    "CustomDisambiguationMessage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Enabled".to_string(),
+                crate::value::ToValue::to_value(&self.enabled),
+            );
+            if let Some(ref value) = self.max_disambiguation_intents {
+                properties.insert(
+                    "MaxDisambiguationIntents".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-intentoverride.html
     pub struct IntentOverride_ {
         pub name: Option<crate::value::ExpString>,
@@ -2121,7 +2216,9 @@ pub mod bot {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-nluimprovementspecification.html
     pub struct NluImprovementSpecification_ {
+        pub assisted_nlu_mode: Option<crate::value::ExpString>,
         pub enabled: crate::value::ExpBool,
+        pub intent_disambiguation_settings: Option<Box<IntentDisambiguationSettings_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2135,10 +2232,22 @@ pub mod bot {
     impl crate::value::ToValue for NluImprovementSpecification_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.assisted_nlu_mode {
+                properties.insert(
+                    "AssistedNluMode".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "Enabled".to_string(),
                 crate::value::ToValue::to_value(&self.enabled),
             );
+            if let Some(ref value) = self.intent_disambiguation_settings {
+                properties.insert(
+                    "IntentDisambiguationSettings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -3492,7 +3601,8 @@ pub mod bot {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-specifications.html
     pub struct Specifications_ {
-        pub slot_type_id: crate::value::ExpString,
+        pub slot_type_id: Option<crate::value::ExpString>,
+        pub slot_type_name: Option<crate::value::ExpString>,
         pub value_elicitation_setting: Box<SubSlotValueElicitationSetting_>,
     }
     #[doc(hidden)]
@@ -3507,14 +3617,109 @@ pub mod bot {
     impl crate::value::ToValue for Specifications_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            properties.insert(
-                "SlotTypeId".to_string(),
-                crate::value::ToValue::to_value(&self.slot_type_id),
-            );
+            if let Some(ref value) = self.slot_type_id {
+                properties.insert(
+                    "SlotTypeId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.slot_type_name {
+                properties.insert(
+                    "SlotTypeName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "ValueElicitationSetting".to_string(),
                 crate::value::ToValue::to_value(&self.value_elicitation_setting),
             );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-speechfoundationmodel.html
+    pub struct SpeechFoundationModel_ {
+        pub model_arn: crate::value::ExpString,
+        pub voice_id: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lex_Bot_SpeechFoundationModel {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SpeechFoundationModel"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lex_Bot_SpeechFoundationModel as SpeechFoundationModel;
+    impl crate::value::ToValue for SpeechFoundationModel_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ModelArn".to_string(),
+                crate::value::ToValue::to_value(&self.model_arn),
+            );
+            if let Some(ref value) = self.voice_id {
+                properties.insert(
+                    "VoiceId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-speechmodelconfig.html
+    pub struct SpeechModelConfig_ {
+        pub deepgram_config: Option<Box<DeepgramSpeechModelConfig_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lex_Bot_SpeechModelConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SpeechModelConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lex_Bot_SpeechModelConfig as SpeechModelConfig;
+    impl crate::value::ToValue for SpeechModelConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.deepgram_config {
+                properties.insert(
+                    "DeepgramConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-speechrecognitionsettings.html
+    pub struct SpeechRecognitionSettings_ {
+        pub speech_model_config: Option<Box<SpeechModelConfig_>>,
+        pub speech_model_preference: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lex_Bot_SpeechRecognitionSettings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.SpeechRecognitionSettings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lex_Bot_SpeechRecognitionSettings as SpeechRecognitionSettings;
+    impl crate::value::ToValue for SpeechRecognitionSettings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.speech_model_config {
+                properties.insert(
+                    "SpeechModelConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.speech_model_preference {
+                properties.insert(
+                    "SpeechModelPreference".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -3593,7 +3798,8 @@ pub mod bot {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-subslottypecomposition.html
     pub struct SubSlotTypeComposition_ {
         pub name: crate::value::ExpString,
-        pub slot_type_id: crate::value::ExpString,
+        pub slot_type_id: Option<crate::value::ExpString>,
+        pub slot_type_name: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3611,10 +3817,18 @@ pub mod bot {
                 "Name".to_string(),
                 crate::value::ToValue::to_value(&self.name),
             );
-            properties.insert(
-                "SlotTypeId".to_string(),
-                crate::value::ToValue::to_value(&self.slot_type_id),
-            );
+            if let Some(ref value) = self.slot_type_id {
+                properties.insert(
+                    "SlotTypeId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.slot_type_name {
+                properties.insert(
+                    "SlotTypeName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -3780,6 +3994,29 @@ pub mod bot {
             properties.insert(
                 "Enabled".to_string(),
                 crate::value::ToValue::to_value(&self.enabled),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-unifiedspeechsettings.html
+    pub struct UnifiedSpeechSettings_ {
+        pub speech_foundation_model: Box<SpeechFoundationModel_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lex_Bot_UnifiedSpeechSettings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lex::Bot.UnifiedSpeechSettings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lex_Bot_UnifiedSpeechSettings as UnifiedSpeechSettings;
+    impl crate::value::ToValue for UnifiedSpeechSettings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "SpeechFoundationModel".to_string(),
+                crate::value::ToValue::to_value(&self.speech_foundation_model),
             );
             properties.into()
         }

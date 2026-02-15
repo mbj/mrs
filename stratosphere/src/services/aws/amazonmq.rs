@@ -61,7 +61,7 @@ pub mod broker {
         pub role_name: Option<crate::value::ExpString>,
         pub role_search_matching: crate::value::ExpString,
         pub role_search_subtree: Option<crate::value::ExpBool>,
-        pub service_account_password: crate::value::ExpString,
+        pub service_account_password: Option<crate::value::ExpString>,
         pub service_account_username: crate::value::ExpString,
         pub user_base: crate::value::ExpString,
         pub user_role_name: Option<crate::value::ExpString>,
@@ -104,10 +104,12 @@ pub mod broker {
                     crate::value::ToValue::to_value(value),
                 );
             }
-            properties.insert(
-                "ServiceAccountPassword".to_string(),
-                crate::value::ToValue::to_value(&self.service_account_password),
-            );
+            if let Some(ref value) = self.service_account_password {
+                properties.insert(
+                    "ServiceAccountPassword".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "ServiceAccountUsername".to_string(),
                 crate::value::ToValue::to_value(&self.service_account_username),
@@ -350,7 +352,7 @@ pub struct Broker_ {
     pub storage_type: Option<crate::value::ExpString>,
     pub subnet_ids: Option<Vec<crate::value::ExpString>>,
     pub tags: Option<Vec<super::amazonmq::broker::TagsEntry_>>,
-    pub users: Vec<super::amazonmq::broker::User_>,
+    pub users: Option<Vec<super::amazonmq::broker::User_>>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -470,10 +472,9 @@ impl crate::template::ToResource for Broker_ {
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
-        properties.insert(
-            "Users".to_string(),
-            crate::value::ToValue::to_value(&self.users),
-        );
+        if let Some(ref value) = self.users {
+            properties.insert("Users".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties
     }
 }

@@ -2785,8 +2785,10 @@ impl crate::template::ToResource for SecurityConfiguration_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html
 pub struct Step_ {
     pub action_on_failure: crate::value::ExpString,
+    pub encryption_key_arn: Option<crate::value::ExpString>,
     pub hadoop_jar_step: super::emr::step::HadoopJarStepConfig_,
     pub job_flow_id: crate::value::ExpString,
+    pub log_uri: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
 }
 #[doc(hidden)]
@@ -2813,6 +2815,12 @@ impl crate::template::ToResource for Step_ {
             "ActionOnFailure".to_string(),
             crate::value::ToValue::to_value(&self.action_on_failure),
         );
+        if let Some(ref value) = self.encryption_key_arn {
+            properties.insert(
+                "EncryptionKeyArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "HadoopJarStep".to_string(),
             crate::value::ToValue::to_value(&self.hadoop_jar_step),
@@ -2821,6 +2829,9 @@ impl crate::template::ToResource for Step_ {
             "JobFlowId".to_string(),
             crate::value::ToValue::to_value(&self.job_flow_id),
         );
+        if let Some(ref value) = self.log_uri {
+            properties.insert("LogUri".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties.insert(
             "Name".to_string(),
             crate::value::ToValue::to_value(&self.name),

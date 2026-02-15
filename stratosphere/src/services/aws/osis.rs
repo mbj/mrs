@@ -100,6 +100,29 @@ pub mod pipeline {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-resourcepolicy.html
+    pub struct ResourcePolicy_ {
+        pub policy: serde_json::Value,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_osis_Pipeline_ResourcePolicy {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::OSIS::Pipeline.ResourcePolicy"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_osis_Pipeline_ResourcePolicy as ResourcePolicy;
+    impl crate::value::ToValue for ResourcePolicy_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Policy".to_string(),
+                crate::value::ToValue::to_value(&self.policy),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-osis-pipeline-vpcattachmentoptions.html
     pub struct VpcAttachmentOptions_ {
         pub attach_to_vpc: crate::value::ExpBool,
@@ -218,6 +241,8 @@ pub struct Pipeline_ {
     pub min_units: i32,
     pub pipeline_configuration_body: crate::value::ExpString,
     pub pipeline_name: crate::value::ExpString,
+    pub pipeline_role_arn: Option<crate::value::ExpString>,
+    pub resource_policy: Option<super::osis::pipeline::ResourcePolicy_>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub vpc_options: Option<super::osis::pipeline::VpcOptions_>,
 }
@@ -275,6 +300,18 @@ impl crate::template::ToResource for Pipeline_ {
             "PipelineName".to_string(),
             crate::value::ToValue::to_value(&self.pipeline_name),
         );
+        if let Some(ref value) = self.pipeline_role_arn {
+            properties.insert(
+                "PipelineRoleArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.resource_policy {
+            properties.insert(
+                "ResourcePolicy".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }

@@ -237,6 +237,7 @@ pub struct Grant_ {
     pub license_arn: Option<crate::value::ExpString>,
     pub principals: Option<Vec<crate::value::ExpString>>,
     pub status: Option<crate::value::ExpString>,
+    pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -291,12 +292,15 @@ impl crate::template::ToResource for Grant_ {
         if let Some(ref value) = self.status {
             properties.insert("Status".to_string(), crate::value::ToValue::to_value(value));
         }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties
     }
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-licensemanager-license.html
 pub struct License_ {
-    pub beneficiary: Option<crate::value::ExpString>,
+    pub beneficiary: crate::value::ExpString,
     pub consumption_configuration: super::licensemanager::license::ConsumptionConfiguration_,
     pub entitlements: Vec<super::licensemanager::license::Entitlement_>,
     pub home_region: crate::value::ExpString,
@@ -304,8 +308,9 @@ pub struct License_ {
     pub license_metadata: Option<Vec<super::licensemanager::license::Metadata_>>,
     pub license_name: crate::value::ExpString,
     pub product_name: crate::value::ExpString,
-    pub product_sku: Option<crate::value::ExpString>,
+    pub product_sku: crate::value::ExpString,
     pub status: Option<crate::value::ExpString>,
+    pub tags: Option<Vec<crate::Tag_>>,
     pub validity: super::licensemanager::license::ValidityDateFormat_,
 }
 #[doc(hidden)]
@@ -328,12 +333,10 @@ impl crate::template::ToResource for License_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
-        if let Some(ref value) = self.beneficiary {
-            properties.insert(
-                "Beneficiary".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
+        properties.insert(
+            "Beneficiary".to_string(),
+            crate::value::ToValue::to_value(&self.beneficiary),
+        );
         properties.insert(
             "ConsumptionConfiguration".to_string(),
             crate::value::ToValue::to_value(&self.consumption_configuration),
@@ -364,14 +367,15 @@ impl crate::template::ToResource for License_ {
             "ProductName".to_string(),
             crate::value::ToValue::to_value(&self.product_name),
         );
-        if let Some(ref value) = self.product_sku {
-            properties.insert(
-                "ProductSKU".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
+        properties.insert(
+            "ProductSKU".to_string(),
+            crate::value::ToValue::to_value(&self.product_sku),
+        );
         if let Some(ref value) = self.status {
             properties.insert("Status".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
         properties.insert(
             "Validity".to_string(),

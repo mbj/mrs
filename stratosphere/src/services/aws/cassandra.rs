@@ -398,6 +398,38 @@ pub mod table {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-warmthroughput.html
+    pub struct WarmThroughput_ {
+        pub read_units_per_second: Option<i32>,
+        pub write_units_per_second: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cassandra_Table_WarmThroughput {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Cassandra::Table.WarmThroughput"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cassandra_Table_WarmThroughput as WarmThroughput;
+    impl crate::value::ToValue for WarmThroughput_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.read_units_per_second {
+                properties.insert(
+                    "ReadUnitsPerSecond".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.write_units_per_second {
+                properties.insert(
+                    "WriteUnitsPerSecond".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
 }
 pub mod r#type {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-type-field.html
@@ -496,6 +528,7 @@ pub struct Table_ {
     pub replica_specifications: Option<Vec<super::cassandra::table::ReplicaSpecification_>>,
     pub table_name: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
+    pub warm_throughput: Option<super::cassandra::table::WarmThroughput_>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -593,6 +626,12 @@ impl crate::template::ToResource for Table_ {
         }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.warm_throughput {
+            properties.insert(
+                "WarmThroughput".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         properties
     }

@@ -189,6 +189,89 @@ pub mod metricfilter {
         }
     }
 }
+pub mod scheduledquery {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-scheduledquery-destinationconfiguration.html
+    pub struct DestinationConfiguration_ {
+        pub s3_configuration: Option<Box<S3Configuration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_logs_ScheduledQuery_DestinationConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Logs::ScheduledQuery.DestinationConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_logs_ScheduledQuery_DestinationConfiguration as DestinationConfiguration;
+    impl crate::value::ToValue for DestinationConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.s3_configuration {
+                properties.insert(
+                    "S3Configuration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-scheduledquery-s3configuration.html
+    pub struct S3Configuration_ {
+        pub destination_identifier: crate::value::ExpString,
+        pub role_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_logs_ScheduledQuery_S3Configuration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Logs::ScheduledQuery.S3Configuration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_logs_ScheduledQuery_S3Configuration as S3Configuration;
+    impl crate::value::ToValue for S3Configuration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "DestinationIdentifier".to_string(),
+                crate::value::ToValue::to_value(&self.destination_identifier),
+            );
+            properties.insert(
+                "RoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.role_arn),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-scheduledquery-tagsitems.html
+    pub struct TagsItems_ {
+        pub key: crate::value::ExpString,
+        pub value: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_logs_ScheduledQuery_TagsItems {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Logs::ScheduledQuery.TagsItems"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_logs_ScheduledQuery_TagsItems as TagsItems;
+    impl crate::value::ToValue for TagsItems_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Key".to_string(),
+                crate::value::ToValue::to_value(&self.key),
+            );
+            properties.insert(
+                "Value".to_string(),
+                crate::value::ToValue::to_value(&self.value),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod transformer {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-addkeyentry.html
     pub struct AddKeyEntry_ {
@@ -753,6 +836,7 @@ pub mod transformer {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-transformer-parsetoocsf.html
     pub struct ParseToOCSF_ {
         pub event_source: crate::value::ExpString,
+        pub mapping_version: Option<crate::value::ExpString>,
         pub ocsf_version: crate::value::ExpString,
         pub source: Option<crate::value::ExpString>,
     }
@@ -772,6 +856,12 @@ pub mod transformer {
                 "EventSource".to_string(),
                 crate::value::ToValue::to_value(&self.event_source),
             );
+            if let Some(ref value) = self.mapping_version {
+                properties.insert(
+                    "MappingVersion".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "OcsfVersion".to_string(),
                 crate::value::ToValue::to_value(&self.ocsf_version),
@@ -1382,6 +1472,7 @@ impl crate::template::ToResource for Delivery_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-deliverydestination.html
 pub struct DeliveryDestination_ {
     pub delivery_destination_policy: Option<super::logs::deliverydestination::DestinationPolicy_>,
+    pub delivery_destination_type: Option<crate::value::ExpString>,
     pub destination_resource_arn: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
     pub output_format: Option<crate::value::ExpString>,
@@ -1410,6 +1501,12 @@ impl crate::template::ToResource for DeliveryDestination_ {
         if let Some(ref value) = self.delivery_destination_policy {
             properties.insert(
                 "DeliveryDestinationPolicy".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.delivery_destination_type {
+            properties.insert(
+                "DeliveryDestinationType".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1655,6 +1752,7 @@ impl crate::template::ToResource for LogAnomalyDetector_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html
 pub struct LogGroup_ {
     pub data_protection_policy: Option<serde_json::Value>,
+    pub deletion_protection_enabled: Option<crate::value::ExpBool>,
     pub field_index_policies: Option<Vec<serde_json::Value>>,
     pub kms_key_id: Option<crate::value::ExpString>,
     pub log_group_class: Option<crate::value::ExpString>,
@@ -1686,6 +1784,12 @@ impl crate::template::ToResource for LogGroup_ {
         if let Some(ref value) = self.data_protection_policy {
             properties.insert(
                 "DataProtectionPolicy".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.deletion_protection_enabled {
+            properties.insert(
+                "DeletionProtectionEnabled".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1772,6 +1876,8 @@ impl crate::template::ToResource for LogStream_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html
 pub struct MetricFilter_ {
     pub apply_on_transformed_logs: Option<crate::value::ExpBool>,
+    pub emit_system_field_dimensions: Option<Vec<crate::value::ExpString>>,
+    pub field_selection_criteria: Option<crate::value::ExpString>,
     pub filter_name: Option<crate::value::ExpString>,
     pub filter_pattern: crate::value::ExpString,
     pub log_group_name: crate::value::ExpString,
@@ -1800,6 +1906,18 @@ impl crate::template::ToResource for MetricFilter_ {
         if let Some(ref value) = self.apply_on_transformed_logs {
             properties.insert(
                 "ApplyOnTransformedLogs".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.emit_system_field_dimensions {
+            properties.insert(
+                "EmitSystemFieldDimensions".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.field_selection_criteria {
+            properties.insert(
+                "FieldSelectionCriteria".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1910,11 +2028,121 @@ impl crate::template::ToResource for ResourcePolicy_ {
         properties
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-scheduledquery.html
+pub struct ScheduledQuery_ {
+    pub description: Option<crate::value::ExpString>,
+    pub destination_configuration: Option<super::logs::scheduledquery::DestinationConfiguration_>,
+    pub execution_role_arn: crate::value::ExpString,
+    pub log_group_identifiers: Option<Vec<crate::value::ExpString>>,
+    pub name: crate::value::ExpString,
+    pub query_language: crate::value::ExpString,
+    pub query_string: crate::value::ExpString,
+    pub schedule_end_time: Option<f64>,
+    pub schedule_expression: crate::value::ExpString,
+    pub schedule_start_time: Option<f64>,
+    pub start_time_offset: Option<i32>,
+    pub state: Option<crate::value::ExpString>,
+    pub tags: Option<Vec<super::logs::scheduledquery::TagsItems_>>,
+    pub timezone: Option<crate::value::ExpString>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_logs_ScheduledQuery {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Logs::ScheduledQuery"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_logs_ScheduledQuery as ScheduledQuery;
+impl crate::template::ToResource for ScheduledQuery_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Logs"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("ScheduledQuery"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.description {
+            properties.insert(
+                "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.destination_configuration {
+            properties.insert(
+                "DestinationConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "ExecutionRoleArn".to_string(),
+            crate::value::ToValue::to_value(&self.execution_role_arn),
+        );
+        if let Some(ref value) = self.log_group_identifiers {
+            properties.insert(
+                "LogGroupIdentifiers".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "Name".to_string(),
+            crate::value::ToValue::to_value(&self.name),
+        );
+        properties.insert(
+            "QueryLanguage".to_string(),
+            crate::value::ToValue::to_value(&self.query_language),
+        );
+        properties.insert(
+            "QueryString".to_string(),
+            crate::value::ToValue::to_value(&self.query_string),
+        );
+        if let Some(ref value) = self.schedule_end_time {
+            properties.insert(
+                "ScheduleEndTime".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "ScheduleExpression".to_string(),
+            crate::value::ToValue::to_value(&self.schedule_expression),
+        );
+        if let Some(ref value) = self.schedule_start_time {
+            properties.insert(
+                "ScheduleStartTime".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.start_time_offset {
+            properties.insert(
+                "StartTimeOffset".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.state {
+            properties.insert("State".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.timezone {
+            properties.insert(
+                "Timezone".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html
 pub struct SubscriptionFilter_ {
     pub apply_on_transformed_logs: Option<crate::value::ExpBool>,
     pub destination_arn: crate::value::ExpString,
     pub distribution: Option<crate::value::ExpString>,
+    pub emit_system_fields: Option<Vec<crate::value::ExpString>>,
+    pub field_selection_criteria: Option<crate::value::ExpString>,
     pub filter_name: Option<crate::value::ExpString>,
     pub filter_pattern: crate::value::ExpString,
     pub log_group_name: crate::value::ExpString,
@@ -1953,6 +2181,18 @@ impl crate::template::ToResource for SubscriptionFilter_ {
         if let Some(ref value) = self.distribution {
             properties.insert(
                 "Distribution".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.emit_system_fields {
+            properties.insert(
+                "EmitSystemFields".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.field_selection_criteria {
+            properties.insert(
+                "FieldSelectionCriteria".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

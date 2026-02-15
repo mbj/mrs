@@ -1,3 +1,40 @@
+pub mod groupingconfiguration {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-groupingconfiguration-groupingattributedefinition.html
+    pub struct GroupingAttributeDefinition_ {
+        pub default_grouping_value: Option<crate::value::ExpString>,
+        pub grouping_name: crate::value::ExpString,
+        pub grouping_source_keys: Vec<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_applicationsignals_GroupingConfiguration_GroupingAttributeDefinition {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ApplicationSignals::GroupingConfiguration.GroupingAttributeDefinition"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_applicationsignals_GroupingConfiguration_GroupingAttributeDefinition as GroupingAttributeDefinition;
+    impl crate::value::ToValue for GroupingAttributeDefinition_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.default_grouping_value {
+                properties.insert(
+                    "DefaultGroupingValue".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "GroupingName".to_string(),
+                crate::value::ToValue::to_value(&self.grouping_name),
+            );
+            properties.insert(
+                "GroupingSourceKeys".to_string(),
+                crate::value::ToValue::to_value(&self.grouping_source_keys),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod servicelevelobjective {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-burnrateconfiguration.html
     pub struct BurnRateConfiguration_ {
@@ -678,6 +715,38 @@ impl crate::template::ToResource for Discovery_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         crate::template::ResourceProperties::new()
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationsignals-groupingconfiguration.html
+pub struct GroupingConfiguration_ {
+    pub grouping_attribute_definitions:
+        Vec<super::applicationsignals::groupingconfiguration::GroupingAttributeDefinition_>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_applicationsignals_GroupingConfiguration {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::ApplicationSignals::GroupingConfiguration"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_applicationsignals_GroupingConfiguration as GroupingConfiguration;
+impl crate::template::ToResource for GroupingConfiguration_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("ApplicationSignals"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("GroupingConfiguration"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "GroupingAttributeDefinitions".to_string(),
+            crate::value::ToValue::to_value(&self.grouping_attribute_definitions),
+        );
+        properties
     }
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationsignals-servicelevelobjective.html

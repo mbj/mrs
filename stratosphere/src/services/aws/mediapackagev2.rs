@@ -568,6 +568,7 @@ pub mod originendpoint {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-encryptionmethod.html
     pub struct EncryptionMethod_ {
         pub cmaf_encryption_method: Option<crate::value::ExpString>,
+        pub ism_encryption_method: Option<crate::value::ExpString>,
         pub ts_encryption_method: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -588,6 +589,12 @@ pub mod originendpoint {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.ism_encryption_method {
+                properties.insert(
+                    "IsmEncryptionMethod".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.ts_encryption_method {
                 properties.insert(
                     "TsEncryptionMethod".to_string(),
@@ -600,6 +607,7 @@ pub mod originendpoint {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-filterconfiguration.html
     pub struct FilterConfiguration_ {
         pub clip_start_time: Option<crate::value::ExpString>,
+        pub drm_settings: Option<crate::value::ExpString>,
         pub end: Option<crate::value::ExpString>,
         pub manifest_filter: Option<crate::value::ExpString>,
         pub start: Option<crate::value::ExpString>,
@@ -620,6 +628,12 @@ pub mod originendpoint {
             if let Some(ref value) = self.clip_start_time {
                 properties.insert(
                     "ClipStartTime".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.drm_settings {
+                properties.insert(
+                    "DrmSettings".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -821,9 +835,54 @@ pub mod originendpoint {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-mssmanifestconfiguration.html
+    pub struct MssManifestConfiguration_ {
+        pub filter_configuration: Option<Box<FilterConfiguration_>>,
+        pub manifest_layout: Option<crate::value::ExpString>,
+        pub manifest_name: crate::value::ExpString,
+        pub manifest_window_seconds: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediapackagev2_OriginEndpoint_MssManifestConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaPackageV2::OriginEndpoint.MssManifestConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediapackagev2_OriginEndpoint_MssManifestConfiguration as MssManifestConfiguration;
+    impl crate::value::ToValue for MssManifestConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.filter_configuration {
+                properties.insert(
+                    "FilterConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.manifest_layout {
+                properties.insert(
+                    "ManifestLayout".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "ManifestName".to_string(),
+                crate::value::ToValue::to_value(&self.manifest_name),
+            );
+            if let Some(ref value) = self.manifest_window_seconds {
+                properties.insert(
+                    "ManifestWindowSeconds".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-scte.html
     pub struct Scte_ {
         pub scte_filter: Option<Vec<crate::value::ExpString>>,
+        pub scte_in_segments: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -840,6 +899,12 @@ pub mod originendpoint {
             if let Some(ref value) = self.scte_filter {
                 properties.insert(
                     "ScteFilter".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.scte_in_segments {
+                properties.insert(
+                    "ScteInSegments".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -962,6 +1027,7 @@ pub mod originendpoint {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-spekekeyprovider.html
     pub struct SpekeKeyProvider_ {
+        pub certificate_arn: Option<crate::value::ExpString>,
         pub drm_systems: Vec<crate::value::ExpString>,
         pub encryption_contract_configuration: Box<EncryptionContractConfiguration_>,
         pub resource_id: crate::value::ExpString,
@@ -980,6 +1046,12 @@ pub mod originendpoint {
     impl crate::value::ToValue for SpekeKeyProvider_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.certificate_arn {
+                properties.insert(
+                    "CertificateArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "DrmSystems".to_string(),
                 crate::value::ToValue::to_value(&self.drm_systems),
@@ -1231,6 +1303,8 @@ pub struct OriginEndpoint_ {
         Option<Vec<super::mediapackagev2::originendpoint::HlsManifestConfiguration_>>,
     pub low_latency_hls_manifests:
         Option<Vec<super::mediapackagev2::originendpoint::LowLatencyHlsManifestConfiguration_>>,
+    pub mss_manifests:
+        Option<Vec<super::mediapackagev2::originendpoint::MssManifestConfiguration_>>,
     pub origin_endpoint_name: crate::value::ExpString,
     pub segment: Option<super::mediapackagev2::originendpoint::Segment_>,
     pub startover_window_seconds: Option<i32>,
@@ -1295,6 +1369,12 @@ impl crate::template::ToResource for OriginEndpoint_ {
         if let Some(ref value) = self.low_latency_hls_manifests {
             properties.insert(
                 "LowLatencyHlsManifests".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.mss_manifests {
+            properties.insert(
+                "MssManifests".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

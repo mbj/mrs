@@ -569,34 +569,6 @@ pub mod datasource {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-elasticsearchconfig.html
-    pub struct ElasticsearchConfig_ {
-        pub aws_region: crate::value::ExpString,
-        pub endpoint: crate::value::ExpString,
-    }
-    #[doc(hidden)]
-    #[macro_export]
-    macro_rules! __aws_appsync_DataSource_ElasticsearchConfig {
-        ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::AppSync::DataSource.ElasticsearchConfig"
-            $($field $value)*)
-        };
-    }
-    pub use crate::__aws_appsync_DataSource_ElasticsearchConfig as ElasticsearchConfig;
-    impl crate::value::ToValue for ElasticsearchConfig_ {
-        fn to_value(&self) -> serde_json::Value {
-            let mut properties = serde_json::Map::new();
-            properties.insert(
-                "AwsRegion".to_string(),
-                crate::value::ToValue::to_value(&self.aws_region),
-            );
-            properties.insert(
-                "Endpoint".to_string(),
-                crate::value::ToValue::to_value(&self.endpoint),
-            );
-            properties.into()
-        }
-    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-eventbridgeconfig.html
     pub struct EventBridgeConfig_ {
         pub event_bus_arn: crate::value::ExpString,
@@ -1026,9 +998,9 @@ pub mod graphqlapi {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-logconfig.html
     pub struct LogConfig_ {
-        pub cloud_watch_logs_role_arn: Option<crate::value::ExpString>,
+        pub cloud_watch_logs_role_arn: crate::value::ExpString,
         pub exclude_verbose_content: Option<crate::value::ExpBool>,
-        pub field_log_level: Option<crate::value::ExpString>,
+        pub field_log_level: crate::value::ExpString,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1042,24 +1014,20 @@ pub mod graphqlapi {
     impl crate::value::ToValue for LogConfig_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.cloud_watch_logs_role_arn {
-                properties.insert(
-                    "CloudWatchLogsRoleArn".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "CloudWatchLogsRoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.cloud_watch_logs_role_arn),
+            );
             if let Some(ref value) = self.exclude_verbose_content {
                 properties.insert(
                     "ExcludeVerboseContent".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
-            if let Some(ref value) = self.field_log_level {
-                properties.insert(
-                    "FieldLogLevel".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "FieldLogLevel".to_string(),
+                crate::value::ToValue::to_value(&self.field_log_level),
+            );
             properties.into()
         }
     }
@@ -1572,7 +1540,6 @@ pub struct DataSource_ {
     pub api_id: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
     pub dynamo_db_config: Option<super::appsync::datasource::DynamoDBConfig_>,
-    pub elasticsearch_config: Option<super::appsync::datasource::ElasticsearchConfig_>,
     pub event_bridge_config: Option<super::appsync::datasource::EventBridgeConfig_>,
     pub http_config: Option<super::appsync::datasource::HttpConfig_>,
     pub lambda_config: Option<super::appsync::datasource::LambdaConfig_>,
@@ -1616,12 +1583,6 @@ impl crate::template::ToResource for DataSource_ {
         if let Some(ref value) = self.dynamo_db_config {
             properties.insert(
                 "DynamoDBConfig".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
-        if let Some(ref value) = self.elasticsearch_config {
-            properties.insert(
-                "ElasticsearchConfig".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

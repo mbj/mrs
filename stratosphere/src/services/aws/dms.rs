@@ -588,6 +588,7 @@ pub mod dataprovider {
         pub oracle_settings: Option<Box<OracleSettings_>>,
         pub postgre_sql_settings: Option<Box<PostgreSqlSettings_>>,
         pub redshift_settings: Option<Box<RedshiftSettings_>>,
+        pub sybase_ase_settings: Option<Box<SybaseAseSettings_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -661,6 +662,66 @@ pub mod dataprovider {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.sybase_ase_settings {
+                properties.insert(
+                    "SybaseAseSettings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-sybaseasesettings.html
+    pub struct SybaseAseSettings_ {
+        pub certificate_arn: Option<crate::value::ExpString>,
+        pub database_name: Option<crate::value::ExpString>,
+        pub encrypt_password: Option<crate::value::ExpBool>,
+        pub port: i32,
+        pub server_name: crate::value::ExpString,
+        pub ssl_mode: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_dms_DataProvider_SybaseAseSettings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::DMS::DataProvider.SybaseAseSettings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_dms_DataProvider_SybaseAseSettings as SybaseAseSettings;
+    impl crate::value::ToValue for SybaseAseSettings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.certificate_arn {
+                properties.insert(
+                    "CertificateArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.database_name {
+                properties.insert(
+                    "DatabaseName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.encrypt_password {
+                properties.insert(
+                    "EncryptPassword".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Port".to_string(),
+                crate::value::ToValue::to_value(&self.port),
+            );
+            properties.insert(
+                "ServerName".to_string(),
+                crate::value::ToValue::to_value(&self.server_name),
+            );
+            properties.insert(
+                "SslMode".to_string(),
+                crate::value::ToValue::to_value(&self.ssl_mode),
+            );
             properties.into()
         }
     }

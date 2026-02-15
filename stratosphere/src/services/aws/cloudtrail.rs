@@ -365,6 +365,34 @@ pub mod trail {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-aggregationconfiguration.html
+    pub struct AggregationConfiguration_ {
+        pub event_category: crate::value::ExpString,
+        pub templates: Vec<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cloudtrail_Trail_AggregationConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CloudTrail::Trail.AggregationConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cloudtrail_Trail_AggregationConfiguration as AggregationConfiguration;
+    impl crate::value::ToValue for AggregationConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "EventCategory".to_string(),
+                crate::value::ToValue::to_value(&self.event_category),
+            );
+            properties.insert(
+                "Templates".to_string(),
+                crate::value::ToValue::to_value(&self.templates),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-dataresource.html
     pub struct DataResource_ {
         pub r#type: crate::value::ExpString,
@@ -440,6 +468,7 @@ pub mod trail {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-insightselector.html
     pub struct InsightSelector_ {
+        pub event_categories: Option<Vec<crate::value::ExpString>>,
         pub insight_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -454,6 +483,12 @@ pub mod trail {
     impl crate::value::ToValue for InsightSelector_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.event_categories {
+                properties.insert(
+                    "EventCategories".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.insight_type {
                 properties.insert(
                     "InsightType".to_string(),
@@ -736,6 +771,8 @@ impl crate::template::ToResource for ResourcePolicy_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html
 pub struct Trail_ {
     pub advanced_event_selectors: Option<Vec<super::cloudtrail::trail::AdvancedEventSelector_>>,
+    pub aggregation_configurations:
+        Option<Vec<super::cloudtrail::trail::AggregationConfiguration_>>,
     pub cloud_watch_logs_log_group_arn: Option<crate::value::ExpString>,
     pub cloud_watch_logs_role_arn: Option<crate::value::ExpString>,
     pub enable_log_file_validation: Option<crate::value::ExpBool>,
@@ -775,6 +812,12 @@ impl crate::template::ToResource for Trail_ {
         if let Some(ref value) = self.advanced_event_selectors {
             properties.insert(
                 "AdvancedEventSelectors".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.aggregation_configurations {
+            properties.insert(
+                "AggregationConfigurations".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
