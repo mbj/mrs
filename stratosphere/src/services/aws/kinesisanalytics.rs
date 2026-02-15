@@ -113,7 +113,7 @@ pub mod application {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputparallelism.html
     pub struct InputParallelism_ {
-        pub count: Option<i64>,
+        pub count: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

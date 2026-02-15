@@ -136,6 +136,7 @@ pub struct SimpleAD_ {
     pub password: Option<crate::value::ExpString>,
     pub short_name: Option<crate::value::ExpString>,
     pub size: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
     pub vpc_settings: super::directoryservice::simplead::VpcSettings_,
 }
 #[doc(hidden)]
@@ -196,6 +197,9 @@ impl crate::template::ToResource for SimpleAD_ {
             "Size".to_string(),
             crate::value::ToValue::to_value(&self.size),
         );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties.insert(
             "VpcSettings".to_string(),
             crate::value::ToValue::to_value(&self.vpc_settings),

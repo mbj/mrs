@@ -24,9 +24,9 @@ pub mod jobtemplate {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconvert-jobtemplate-hopdestination.html
     pub struct HopDestination_ {
-        pub priority: Option<i64>,
+        pub priority: Option<i32>,
         pub queue: Option<crate::value::ExpString>,
-        pub wait_minutes: Option<i64>,
+        pub wait_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -66,7 +66,7 @@ pub struct JobTemplate_ {
     pub description: Option<crate::value::ExpString>,
     pub hop_destinations: Option<Vec<super::mediaconvert::jobtemplate::HopDestination_>>,
     pub name: Option<crate::value::ExpString>,
-    pub priority: Option<i64>,
+    pub priority: Option<i32>,
     pub queue: Option<crate::value::ExpString>,
     pub settings_json: serde_json::Value,
     pub status_update_interval: Option<crate::value::ExpString>,
@@ -199,7 +199,7 @@ impl crate::template::ToResource for Preset_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconvert-queue.html
 pub struct Queue_ {
-    pub concurrent_jobs: Option<i64>,
+    pub concurrent_jobs: Option<i32>,
     pub description: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
     pub pricing_plan: Option<crate::value::ExpString>,

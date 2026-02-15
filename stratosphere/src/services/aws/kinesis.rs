@@ -50,6 +50,38 @@ pub mod stream {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesis-stream-warmthroughputobject.html
+    pub struct WarmThroughputObject_ {
+        pub current_mi_bps: Option<i32>,
+        pub target_mi_bps: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_kinesis_Stream_WarmThroughputObject {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Kinesis::Stream.WarmThroughputObject"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_kinesis_Stream_WarmThroughputObject as WarmThroughputObject;
+    impl crate::value::ToValue for WarmThroughputObject_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.current_mi_bps {
+                properties.insert(
+                    "CurrentMiBps".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.target_mi_bps {
+                properties.insert(
+                    "TargetMiBps".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-resourcepolicy.html
 pub struct ResourcePolicy_ {
@@ -90,12 +122,14 @@ impl crate::template::ToResource for ResourcePolicy_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html
 pub struct Stream_ {
     pub desired_shard_level_metrics: Option<Vec<crate::value::ExpString>>,
+    pub max_record_size_in_ki_b: Option<i32>,
     pub name: Option<crate::value::ExpString>,
-    pub retention_period_hours: Option<i64>,
-    pub shard_count: Option<i64>,
+    pub retention_period_hours: Option<i32>,
+    pub shard_count: Option<i32>,
     pub stream_encryption: Option<super::kinesis::stream::StreamEncryption_>,
     pub stream_mode_details: Option<super::kinesis::stream::StreamModeDetails_>,
     pub tags: Option<Vec<crate::Tag_>>,
+    pub warm_throughput_mi_bps: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -120,6 +154,12 @@ impl crate::template::ToResource for Stream_ {
         if let Some(ref value) = self.desired_shard_level_metrics {
             properties.insert(
                 "DesiredShardLevelMetrics".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.max_record_size_in_ki_b {
+            properties.insert(
+                "MaxRecordSizeInKiB".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -152,6 +192,12 @@ impl crate::template::ToResource for Stream_ {
         }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.warm_throughput_mi_bps {
+            properties.insert(
+                "WarmThroughputMiBps".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         properties
     }

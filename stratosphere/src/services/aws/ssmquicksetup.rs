@@ -146,3 +146,48 @@ impl crate::template::ToResource for ConfigurationManager_ {
         properties
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmquicksetup-lifecycleautomation.html
+pub struct LifecycleAutomation_ {
+    pub automation_document: crate::value::ExpString,
+    pub automation_parameters: serde_json::Value,
+    pub resource_key: crate::value::ExpString,
+    pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_ssmquicksetup_LifecycleAutomation {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::SSMQuickSetup::LifecycleAutomation"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_ssmquicksetup_LifecycleAutomation as LifecycleAutomation;
+impl crate::template::ToResource for LifecycleAutomation_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("SSMQuickSetup"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("LifecycleAutomation"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "AutomationDocument".to_string(),
+            crate::value::ToValue::to_value(&self.automation_document),
+        );
+        properties.insert(
+            "AutomationParameters".to_string(),
+            crate::value::ToValue::to_value(&self.automation_parameters),
+        );
+        properties.insert(
+            "ResourceKey".to_string(),
+            crate::value::ToValue::to_value(&self.resource_key),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties
+    }
+}

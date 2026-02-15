@@ -238,12 +238,12 @@ pub mod service {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apprunner-service-healthcheckconfiguration.html
     pub struct HealthCheckConfiguration_ {
-        pub healthy_threshold: Option<i64>,
-        pub interval: Option<i64>,
+        pub healthy_threshold: Option<i32>,
+        pub interval: Option<i32>,
         pub path: Option<crate::value::ExpString>,
         pub protocol: Option<crate::value::ExpString>,
-        pub timeout: Option<i64>,
-        pub unhealthy_threshold: Option<i64>,
+        pub timeout: Option<i32>,
+        pub unhealthy_threshold: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -630,9 +630,9 @@ pub mod vpcingressconnection {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apprunner-autoscalingconfiguration.html
 pub struct AutoScalingConfiguration_ {
     pub auto_scaling_configuration_name: Option<crate::value::ExpString>,
-    pub max_concurrency: Option<i64>,
-    pub max_size: Option<i64>,
-    pub min_size: Option<i64>,
+    pub max_concurrency: Option<i32>,
+    pub max_size: Option<i32>,
+    pub min_size: Option<i32>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]

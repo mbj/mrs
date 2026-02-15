@@ -525,38 +525,6 @@ pub mod eventbus {
         }
     }
 }
-pub mod eventbuspolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-eventbuspolicy-condition.html
-    pub struct Condition_ {
-        pub key: Option<crate::value::ExpString>,
-        pub r#type: Option<crate::value::ExpString>,
-        pub value: Option<crate::value::ExpString>,
-    }
-    #[doc(hidden)]
-    #[macro_export]
-    macro_rules! __aws_events_EventBusPolicy_Condition {
-        ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::Events::EventBusPolicy.Condition"
-            $($field $value)*)
-        };
-    }
-    pub use crate::__aws_events_EventBusPolicy_Condition as Condition;
-    impl crate::value::ToValue for Condition_ {
-        fn to_value(&self) -> serde_json::Value {
-            let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.key {
-                properties.insert("Key".to_string(), crate::value::ToValue::to_value(value));
-            }
-            if let Some(ref value) = self.r#type {
-                properties.insert("Type".to_string(), crate::value::ToValue::to_value(value));
-            }
-            if let Some(ref value) = self.value {
-                properties.insert("Value".to_string(), crate::value::ToValue::to_value(value));
-            }
-            properties.into()
-        }
-    }
-}
 pub mod rule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-appsyncparameters.html
     pub struct AppSyncParameters_ {
@@ -620,7 +588,7 @@ pub mod rule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-batcharrayproperties.html
     pub struct BatchArrayProperties_ {
-        pub size: Option<i64>,
+        pub size: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -684,7 +652,7 @@ pub mod rule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-batchretrystrategy.html
     pub struct BatchRetryStrategy_ {
-        pub attempts: Option<i64>,
+        pub attempts: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -709,9 +677,9 @@ pub mod rule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-capacityproviderstrategyitem.html
     pub struct CapacityProviderStrategyItem_ {
-        pub base: Option<i64>,
+        pub base: Option<i32>,
         pub capacity_provider: crate::value::ExpString,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -774,7 +742,7 @@ pub mod rule {
         pub propagate_tags: Option<crate::value::ExpString>,
         pub reference_id: Option<crate::value::ExpString>,
         pub tag_list: Option<Vec<crate::Tag_>>,
-        pub task_count: Option<i64>,
+        pub task_count: Option<i32>,
         pub task_definition_arn: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -1102,8 +1070,8 @@ pub mod rule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-retrypolicy.html
     pub struct RetryPolicy_ {
-        pub maximum_event_age_in_seconds: Option<i64>,
-        pub maximum_retry_attempts: Option<i64>,
+        pub maximum_event_age_in_seconds: Option<i32>,
+        pub maximum_retry_attempts: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1393,7 +1361,7 @@ pub struct ApiDestination_ {
     pub description: Option<crate::value::ExpString>,
     pub http_method: crate::value::ExpString,
     pub invocation_endpoint: crate::value::ExpString,
-    pub invocation_rate_limit_per_second: Option<i64>,
+    pub invocation_rate_limit_per_second: Option<i32>,
     pub name: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]
@@ -1452,7 +1420,7 @@ pub struct Archive_ {
     pub description: Option<crate::value::ExpString>,
     pub event_pattern: Option<serde_json::Value>,
     pub kms_key_identifier: Option<crate::value::ExpString>,
-    pub retention_days: Option<i64>,
+    pub retention_days: Option<i32>,
     pub source_arn: crate::value::ExpString,
 }
 #[doc(hidden)]
@@ -1715,10 +1683,7 @@ impl crate::template::ToResource for EventBus_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-eventbuspolicy.html
 pub struct EventBusPolicy_ {
-    pub action: Option<crate::value::ExpString>,
-    pub condition: Option<super::events::eventbuspolicy::Condition_>,
     pub event_bus_name: Option<crate::value::ExpString>,
-    pub principal: Option<crate::value::ExpString>,
     pub statement: Option<serde_json::Value>,
     pub statement_id: crate::value::ExpString,
 }
@@ -1742,24 +1707,9 @@ impl crate::template::ToResource for EventBusPolicy_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
-        if let Some(ref value) = self.action {
-            properties.insert("Action".to_string(), crate::value::ToValue::to_value(value));
-        }
-        if let Some(ref value) = self.condition {
-            properties.insert(
-                "Condition".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
         if let Some(ref value) = self.event_bus_name {
             properties.insert(
                 "EventBusName".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
-        if let Some(ref value) = self.principal {
-            properties.insert(
-                "Principal".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

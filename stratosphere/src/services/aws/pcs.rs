@@ -1,7 +1,7 @@
 pub mod cluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-accounting.html
     pub struct Accounting_ {
-        pub default_purge_time_in_days: Option<i64>,
+        pub default_purge_time_in_days: Option<i32>,
         pub mode: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -133,6 +133,56 @@ pub mod cluster {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-jwtauth.html
+    pub struct JwtAuth_ {
+        pub jwt_key: Option<Box<JwtKey_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_pcs_Cluster_JwtAuth {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::PCS::Cluster.JwtAuth"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_pcs_Cluster_JwtAuth as JwtAuth;
+    impl crate::value::ToValue for JwtAuth_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.jwt_key {
+                properties.insert("JwtKey".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-jwtkey.html
+    pub struct JwtKey_ {
+        pub secret_arn: crate::value::ExpString,
+        pub secret_version: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_pcs_Cluster_JwtKey {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::PCS::Cluster.JwtKey"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_pcs_Cluster_JwtKey as JwtKey;
+    impl crate::value::ToValue for JwtKey_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "SecretArn".to_string(),
+                crate::value::ToValue::to_value(&self.secret_arn),
+            );
+            properties.insert(
+                "SecretVersion".to_string(),
+                crate::value::ToValue::to_value(&self.secret_version),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-networking.html
     pub struct Networking_ {
         pub network_type: Option<crate::value::ExpString>,
@@ -204,8 +254,10 @@ pub mod cluster {
     pub struct SlurmConfiguration_ {
         pub accounting: Option<Box<Accounting_>>,
         pub auth_key: Option<Box<AuthKey_>>,
-        pub scale_down_idle_time_in_seconds: Option<i64>,
+        pub jwt_auth: Option<Box<JwtAuth_>>,
+        pub scale_down_idle_time_in_seconds: Option<i32>,
         pub slurm_custom_settings: Option<Vec<SlurmCustomSetting_>>,
+        pub slurm_rest: Option<Box<SlurmRest_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -231,6 +283,12 @@ pub mod cluster {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.jwt_auth {
+                properties.insert(
+                    "JwtAuth".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.scale_down_idle_time_in_seconds {
                 properties.insert(
                     "ScaleDownIdleTimeInSeconds".to_string(),
@@ -240,6 +298,12 @@ pub mod cluster {
             if let Some(ref value) = self.slurm_custom_settings {
                 properties.insert(
                     "SlurmCustomSettings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.slurm_rest {
+                properties.insert(
+                    "SlurmRest".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -270,6 +334,29 @@ pub mod cluster {
             properties.insert(
                 "ParameterValue".to_string(),
                 crate::value::ToValue::to_value(&self.parameter_value),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-slurmrest.html
+    pub struct SlurmRest_ {
+        pub mode: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_pcs_Cluster_SlurmRest {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::PCS::Cluster.SlurmRest"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_pcs_Cluster_SlurmRest as SlurmRest;
+    impl crate::value::ToValue for SlurmRest_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Mode".to_string(),
+                crate::value::ToValue::to_value(&self.mode),
             );
             properties.into()
         }
@@ -362,8 +449,8 @@ pub mod computenodegroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-scalingconfiguration.html
     pub struct ScalingConfiguration_ {
-        pub max_instance_count: i64,
-        pub min_instance_count: i64,
+        pub max_instance_count: i32,
+        pub min_instance_count: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -522,6 +609,59 @@ pub mod queue {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-queue-slurmconfiguration.html
+    pub struct SlurmConfiguration_ {
+        pub slurm_custom_settings: Option<Vec<SlurmCustomSetting_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_pcs_Queue_SlurmConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::PCS::Queue.SlurmConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_pcs_Queue_SlurmConfiguration as SlurmConfiguration;
+    impl crate::value::ToValue for SlurmConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.slurm_custom_settings {
+                properties.insert(
+                    "SlurmCustomSettings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-queue-slurmcustomsetting.html
+    pub struct SlurmCustomSetting_ {
+        pub parameter_name: crate::value::ExpString,
+        pub parameter_value: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_pcs_Queue_SlurmCustomSetting {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::PCS::Queue.SlurmCustomSetting"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_pcs_Queue_SlurmCustomSetting as SlurmCustomSetting;
+    impl crate::value::ToValue for SlurmCustomSetting_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ParameterName".to_string(),
+                crate::value::ToValue::to_value(&self.parameter_name),
+            );
+            properties.insert(
+                "ParameterValue".to_string(),
+                crate::value::ToValue::to_value(&self.parameter_value),
+            );
+            properties.into()
+        }
+    }
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pcs-cluster.html
 pub struct Cluster_ {
@@ -674,6 +814,7 @@ pub struct Queue_ {
     pub compute_node_group_configurations:
         Option<Vec<super::pcs::queue::ComputeNodeGroupConfiguration_>>,
     pub name: Option<crate::value::ExpString>,
+    pub slurm_configuration: Option<super::pcs::queue::SlurmConfiguration_>,
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
 }
 #[doc(hidden)]
@@ -708,6 +849,12 @@ impl crate::template::ToResource for Queue_ {
         }
         if let Some(ref value) = self.name {
             properties.insert("Name".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.slurm_configuration {
+            properties.insert(
+                "SlurmConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));

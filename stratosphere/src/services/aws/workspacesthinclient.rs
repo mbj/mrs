@@ -3,10 +3,10 @@ pub mod environment {
     pub struct MaintenanceWindow_ {
         pub apply_time_of: Option<crate::value::ExpString>,
         pub days_of_the_week: Option<Vec<crate::value::ExpString>>,
-        pub end_time_hour: Option<i64>,
-        pub end_time_minute: Option<i64>,
-        pub start_time_hour: Option<i64>,
-        pub start_time_minute: Option<i64>,
+        pub end_time_hour: Option<i32>,
+        pub end_time_minute: Option<i32>,
+        pub start_time_hour: Option<i32>,
+        pub start_time_minute: Option<i32>,
         pub r#type: crate::value::ExpString,
     }
     #[doc(hidden)]

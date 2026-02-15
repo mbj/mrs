@@ -46,6 +46,7 @@ pub mod agreement {
 pub mod connector {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-as2config.html
     pub struct As2Config_ {
+        pub async_mdn_config: Option<Box<ConnectorAsyncMdnConfig_>>,
         pub basic_auth_secret_id: Option<crate::value::ExpString>,
         pub compression: Option<crate::value::ExpString>,
         pub encryption_algorithm: Option<crate::value::ExpString>,
@@ -69,6 +70,12 @@ pub mod connector {
     impl crate::value::ToValue for As2Config_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.async_mdn_config {
+                properties.insert(
+                    "AsyncMdnConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.basic_auth_secret_id {
                 properties.insert(
                     "BasicAuthSecretId".to_string(),
@@ -132,9 +139,90 @@ pub mod connector {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-connectorasyncmdnconfig.html
+    pub struct ConnectorAsyncMdnConfig_ {
+        pub server_ids: Vec<crate::value::ExpString>,
+        pub url: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_transfer_Connector_ConnectorAsyncMdnConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Connector.ConnectorAsyncMdnConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_transfer_Connector_ConnectorAsyncMdnConfig as ConnectorAsyncMdnConfig;
+    impl crate::value::ToValue for ConnectorAsyncMdnConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ServerIds".to_string(),
+                crate::value::ToValue::to_value(&self.server_ids),
+            );
+            properties.insert(
+                "Url".to_string(),
+                crate::value::ToValue::to_value(&self.url),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-connectoregressconfig.html
+    pub struct ConnectorEgressConfig_ {
+        pub vpc_lattice: Box<ConnectorVpcLatticeEgressConfig_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_transfer_Connector_ConnectorEgressConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Connector.ConnectorEgressConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_transfer_Connector_ConnectorEgressConfig as ConnectorEgressConfig;
+    impl crate::value::ToValue for ConnectorEgressConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "VpcLattice".to_string(),
+                crate::value::ToValue::to_value(&self.vpc_lattice),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-connectorvpclatticeegressconfig.html
+    pub struct ConnectorVpcLatticeEgressConfig_ {
+        pub port_number: Option<i32>,
+        pub resource_configuration_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_transfer_Connector_ConnectorVpcLatticeEgressConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Transfer::Connector.ConnectorVpcLatticeEgressConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_transfer_Connector_ConnectorVpcLatticeEgressConfig as ConnectorVpcLatticeEgressConfig;
+    impl crate::value::ToValue for ConnectorVpcLatticeEgressConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.port_number {
+                properties.insert(
+                    "PortNumber".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "ResourceConfigurationArn".to_string(),
+                crate::value::ToValue::to_value(&self.resource_configuration_arn),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-sftpconfig.html
     pub struct SftpConfig_ {
-        pub max_concurrent_connections: Option<i64>,
+        pub max_concurrent_connections: Option<i32>,
         pub trusted_host_keys: Option<Vec<crate::value::ExpString>>,
         pub user_secret_id: Option<crate::value::ExpString>,
     }
@@ -475,6 +563,28 @@ pub mod user {
     }
 }
 pub mod webapp {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-endpointdetails.html
+    pub struct EndpointDetails_ {
+        pub vpc: Option<Box<Vpc_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_transfer_WebApp_EndpointDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Transfer::WebApp.EndpointDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_transfer_WebApp_EndpointDetails as EndpointDetails;
+    impl crate::value::ToValue for EndpointDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.vpc {
+                properties.insert("Vpc".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-identityproviderdetails.html
     pub struct IdentityProviderDetails_ {
         pub application_arn: Option<crate::value::ExpString>,
@@ -507,6 +617,42 @@ pub mod webapp {
             }
             if let Some(ref value) = self.role {
                 properties.insert("Role".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-vpc.html
+    pub struct Vpc_ {
+        pub security_group_ids: Option<Vec<crate::value::ExpString>>,
+        pub subnet_ids: Option<Vec<crate::value::ExpString>>,
+        pub vpc_id: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_transfer_WebApp_Vpc {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Transfer::WebApp.Vpc"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_transfer_WebApp_Vpc as Vpc;
+    impl crate::value::ToValue for Vpc_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.security_group_ids {
+                properties.insert(
+                    "SecurityGroupIds".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.subnet_ids {
+                properties.insert(
+                    "SubnetIds".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.vpc_id {
+                properties.insert("VpcId".to_string(), crate::value::ToValue::to_value(value));
             }
             properties.into()
         }
@@ -549,7 +695,7 @@ pub mod webapp {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-webappunits.html
     pub struct WebAppUnits_ {
-        pub provisioned: i64,
+        pub provisioned: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -620,7 +766,7 @@ pub mod workflow {
         pub name: Option<crate::value::ExpString>,
         pub source_file_location: Option<crate::value::ExpString>,
         pub target: Option<crate::value::ExpString>,
-        pub timeout_seconds: Option<i64>,
+        pub timeout_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1129,11 +1275,13 @@ impl crate::template::ToResource for Certificate_ {
 pub struct Connector_ {
     pub access_role: crate::value::ExpString,
     pub as2_config: Option<super::transfer::connector::As2Config_>,
+    pub egress_config: Option<super::transfer::connector::ConnectorEgressConfig_>,
+    pub egress_type: Option<crate::value::ExpString>,
     pub logging_role: Option<crate::value::ExpString>,
     pub security_policy_name: Option<crate::value::ExpString>,
     pub sftp_config: Option<super::transfer::connector::SftpConfig_>,
     pub tags: Option<Vec<crate::Tag_>>,
-    pub url: crate::value::ExpString,
+    pub url: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -1165,6 +1313,18 @@ impl crate::template::ToResource for Connector_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.egress_config {
+            properties.insert(
+                "EgressConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.egress_type {
+            properties.insert(
+                "EgressType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.logging_role {
             properties.insert(
                 "LoggingRole".to_string(),
@@ -1186,10 +1346,9 @@ impl crate::template::ToResource for Connector_ {
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
-        properties.insert(
-            "Url".to_string(),
-            crate::value::ToValue::to_value(&self.url),
-        );
+        if let Some(ref value) = self.url {
+            properties.insert("Url".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties
     }
 }
@@ -1466,6 +1625,7 @@ impl crate::template::ToResource for User_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-transfer-webapp.html
 pub struct WebApp_ {
     pub access_endpoint: Option<crate::value::ExpString>,
+    pub endpoint_details: Option<super::transfer::webapp::EndpointDetails_>,
     pub identity_provider_details: super::transfer::webapp::IdentityProviderDetails_,
     pub tags: Option<Vec<crate::Tag_>>,
     pub web_app_customization: Option<super::transfer::webapp::WebAppCustomization_>,
@@ -1495,6 +1655,12 @@ impl crate::template::ToResource for WebApp_ {
         if let Some(ref value) = self.access_endpoint {
             properties.insert(
                 "AccessEndpoint".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.endpoint_details {
+            properties.insert(
+                "EndpointDetails".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

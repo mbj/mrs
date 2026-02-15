@@ -76,6 +76,7 @@ pub struct Cluster_ {
     pub deletion_protection_enabled: Option<crate::value::ExpBool>,
     pub kms_encryption_key: Option<crate::value::ExpString>,
     pub multi_region_properties: Option<super::dsql::cluster::MultiRegionProperties_>,
+    pub policy_document: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -113,6 +114,12 @@ impl crate::template::ToResource for Cluster_ {
         if let Some(ref value) = self.multi_region_properties {
             properties.insert(
                 "MultiRegionProperties".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.policy_document {
+            properties.insert(
+                "PolicyDocument".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.0.5
+
+### Added
+
+- Template `Conditions` section support with `condition()` / `condition_()` builder methods
+- `ExpBool::Condition` variant for referencing named conditions in expressions
+- `conditional_resource()` / `conditional_resource_()` builder methods for resources with conditions
+- `condition` field on `Output` for conditional outputs
+- `Serialize` impl for `ExpBool`
+- `Eq`, `PartialEq` derives for `ExpPair` and `ExpBool`
+- `Ord`, `PartialOrd`, `Display` derives and `From<&ConditionName>` for `ConditionName`
+- `From<ConditionName>` and `From<&ConditionName>` for `ExpBool`
+- `ToValue` impl for `i32`
+- `Long` variant for `PrimitiveItemType`
+
+### Changed
+
+- `PrimitiveType::Integer` now maps to `i32` (was `i64`)
+- `PrimitiveItemType::Integer` now maps to `i32` (was `i64`)
+
 ## 0.0.4
 
 ### Changed

@@ -111,6 +111,196 @@ pub mod addon {
         }
     }
 }
+pub mod capability {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-argocd.html
+    pub struct ArgoCd_ {
+        pub aws_idc: Box<AwsIdc_>,
+        pub namespace: Option<crate::value::ExpString>,
+        pub network_access: Option<Box<NetworkAccess_>>,
+        pub rbac_role_mappings: Option<Vec<ArgoCdRoleMapping_>>,
+        pub server_url: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_eks_Capability_ArgoCd {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::EKS::Capability.ArgoCd"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_eks_Capability_ArgoCd as ArgoCd;
+    impl crate::value::ToValue for ArgoCd_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "AwsIdc".to_string(),
+                crate::value::ToValue::to_value(&self.aws_idc),
+            );
+            if let Some(ref value) = self.namespace {
+                properties.insert(
+                    "Namespace".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.network_access {
+                properties.insert(
+                    "NetworkAccess".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.rbac_role_mappings {
+                properties.insert(
+                    "RbacRoleMappings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.server_url {
+                properties.insert(
+                    "ServerUrl".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-argocdrolemapping.html
+    pub struct ArgoCdRoleMapping_ {
+        pub identities: Vec<SsoIdentity_>,
+        pub role: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_eks_Capability_ArgoCdRoleMapping {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::EKS::Capability.ArgoCdRoleMapping"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_eks_Capability_ArgoCdRoleMapping as ArgoCdRoleMapping;
+    impl crate::value::ToValue for ArgoCdRoleMapping_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Identities".to_string(),
+                crate::value::ToValue::to_value(&self.identities),
+            );
+            properties.insert(
+                "Role".to_string(),
+                crate::value::ToValue::to_value(&self.role),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-awsidc.html
+    pub struct AwsIdc_ {
+        pub idc_instance_arn: crate::value::ExpString,
+        pub idc_managed_application_arn: Option<crate::value::ExpString>,
+        pub idc_region: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_eks_Capability_AwsIdc {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::EKS::Capability.AwsIdc"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_eks_Capability_AwsIdc as AwsIdc;
+    impl crate::value::ToValue for AwsIdc_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "IdcInstanceArn".to_string(),
+                crate::value::ToValue::to_value(&self.idc_instance_arn),
+            );
+            if let Some(ref value) = self.idc_managed_application_arn {
+                properties.insert(
+                    "IdcManagedApplicationArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.idc_region {
+                properties.insert(
+                    "IdcRegion".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-capabilityconfiguration.html
+    pub struct CapabilityConfiguration_ {
+        pub argo_cd: Option<Box<ArgoCd_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_eks_Capability_CapabilityConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::EKS::Capability.CapabilityConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_eks_Capability_CapabilityConfiguration as CapabilityConfiguration;
+    impl crate::value::ToValue for CapabilityConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.argo_cd {
+                properties.insert("ArgoCd".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-networkaccess.html
+    pub struct NetworkAccess_ {
+        pub vpce_ids: Option<Vec<crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_eks_Capability_NetworkAccess {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::EKS::Capability.NetworkAccess"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_eks_Capability_NetworkAccess as NetworkAccess;
+    impl crate::value::ToValue for NetworkAccess_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.vpce_ids {
+                properties.insert(
+                    "VpceIds".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-capability-ssoidentity.html
+    pub struct SsoIdentity_ {
+        pub id: crate::value::ExpString,
+        pub r#type: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_eks_Capability_SsoIdentity {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::EKS::Capability.SsoIdentity"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_eks_Capability_SsoIdentity as SsoIdentity;
+    impl crate::value::ToValue for SsoIdentity_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert("Id".to_string(), crate::value::ToValue::to_value(&self.id));
+            properties.insert(
+                "Type".to_string(),
+                crate::value::ToValue::to_value(&self.r#type),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod cluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-accessconfig.html
     pub struct AccessConfig_ {
@@ -254,6 +444,28 @@ pub mod cluster {
                     "GroupName".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-controlplanescalingconfig.html
+    pub struct ControlPlaneScalingConfig_ {
+        pub tier: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_eks_Cluster_ControlPlaneScalingConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::EKS::Cluster.ControlPlaneScalingConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_eks_Cluster_ControlPlaneScalingConfig as ControlPlaneScalingConfig;
+    impl crate::value::ToValue for ControlPlaneScalingConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.tier {
+                properties.insert("Tier".to_string(), crate::value::ToValue::to_value(value));
             }
             properties.into()
         }
@@ -855,6 +1067,11 @@ pub mod nodegroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-noderepairconfig.html
     pub struct NodeRepairConfig_ {
         pub enabled: Option<crate::value::ExpBool>,
+        pub max_parallel_nodes_repaired_count: Option<i32>,
+        pub max_parallel_nodes_repaired_percentage: Option<i32>,
+        pub max_unhealthy_node_threshold_count: Option<i32>,
+        pub max_unhealthy_node_threshold_percentage: Option<i32>,
+        pub node_repair_config_overrides: Option<Vec<NodeRepairConfigOverrides_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -871,6 +1088,82 @@ pub mod nodegroup {
             if let Some(ref value) = self.enabled {
                 properties.insert(
                     "Enabled".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.max_parallel_nodes_repaired_count {
+                properties.insert(
+                    "MaxParallelNodesRepairedCount".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.max_parallel_nodes_repaired_percentage {
+                properties.insert(
+                    "MaxParallelNodesRepairedPercentage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.max_unhealthy_node_threshold_count {
+                properties.insert(
+                    "MaxUnhealthyNodeThresholdCount".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.max_unhealthy_node_threshold_percentage {
+                properties.insert(
+                    "MaxUnhealthyNodeThresholdPercentage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.node_repair_config_overrides {
+                properties.insert(
+                    "NodeRepairConfigOverrides".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-noderepairconfigoverrides.html
+    pub struct NodeRepairConfigOverrides_ {
+        pub min_repair_wait_time_mins: Option<i32>,
+        pub node_monitoring_condition: Option<crate::value::ExpString>,
+        pub node_unhealthy_reason: Option<crate::value::ExpString>,
+        pub repair_action: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_eks_Nodegroup_NodeRepairConfigOverrides {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::EKS::Nodegroup.NodeRepairConfigOverrides"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_eks_Nodegroup_NodeRepairConfigOverrides as NodeRepairConfigOverrides;
+    impl crate::value::ToValue for NodeRepairConfigOverrides_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.min_repair_wait_time_mins {
+                properties.insert(
+                    "MinRepairWaitTimeMins".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.node_monitoring_condition {
+                properties.insert(
+                    "NodeMonitoringCondition".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.node_unhealthy_reason {
+                properties.insert(
+                    "NodeUnhealthyReason".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.repair_action {
+                properties.insert(
+                    "RepairAction".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -909,9 +1202,9 @@ pub mod nodegroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-scalingconfig.html
     pub struct ScalingConfig_ {
-        pub desired_size: Option<i64>,
-        pub max_size: Option<i64>,
-        pub min_size: Option<i64>,
+        pub desired_size: Option<i32>,
+        pub max_size: Option<i32>,
+        pub min_size: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1170,11 +1463,74 @@ impl crate::template::ToResource for Addon_ {
         properties
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-capability.html
+pub struct Capability_ {
+    pub capability_name: crate::value::ExpString,
+    pub cluster_name: crate::value::ExpString,
+    pub configuration: Option<super::eks::capability::CapabilityConfiguration_>,
+    pub delete_propagation_policy: crate::value::ExpString,
+    pub role_arn: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub r#type: crate::value::ExpString,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_eks_Capability {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::EKS::Capability" $($field
+        $value)*)
+    };
+}
+pub use crate::__aws_eks_Capability as Capability;
+impl crate::template::ToResource for Capability_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("EKS"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("Capability"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "CapabilityName".to_string(),
+            crate::value::ToValue::to_value(&self.capability_name),
+        );
+        properties.insert(
+            "ClusterName".to_string(),
+            crate::value::ToValue::to_value(&self.cluster_name),
+        );
+        if let Some(ref value) = self.configuration {
+            properties.insert(
+                "Configuration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "DeletePropagationPolicy".to_string(),
+            crate::value::ToValue::to_value(&self.delete_propagation_policy),
+        );
+        properties.insert(
+            "RoleArn".to_string(),
+            crate::value::ToValue::to_value(&self.role_arn),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "Type".to_string(),
+            crate::value::ToValue::to_value(&self.r#type),
+        );
+        properties
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html
 pub struct Cluster_ {
     pub access_config: Option<super::eks::cluster::AccessConfig_>,
     pub bootstrap_self_managed_addons: Option<crate::value::ExpBool>,
     pub compute_config: Option<super::eks::cluster::ComputeConfig_>,
+    pub control_plane_scaling_config: Option<super::eks::cluster::ControlPlaneScalingConfig_>,
     pub deletion_protection: Option<crate::value::ExpBool>,
     pub encryption_config: Option<Vec<super::eks::cluster::EncryptionConfig_>>,
     pub force: Option<crate::value::ExpBool>,
@@ -1226,6 +1582,12 @@ impl crate::template::ToResource for Cluster_ {
         if let Some(ref value) = self.compute_config {
             properties.insert(
                 "ComputeConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.control_plane_scaling_config {
+            properties.insert(
+                "ControlPlaneScalingConfig".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1424,7 +1786,7 @@ pub struct Nodegroup_ {
     pub ami_type: Option<crate::value::ExpString>,
     pub capacity_type: Option<crate::value::ExpString>,
     pub cluster_name: crate::value::ExpString,
-    pub disk_size: Option<i64>,
+    pub disk_size: Option<i32>,
     pub force_update_enabled: Option<crate::value::ExpBool>,
     pub instance_types: Option<Vec<crate::value::ExpString>>,
     pub labels: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -1568,6 +1930,7 @@ pub struct PodIdentityAssociation_ {
     pub cluster_name: crate::value::ExpString,
     pub disable_session_tags: Option<crate::value::ExpBool>,
     pub namespace: crate::value::ExpString,
+    pub policy: Option<crate::value::ExpString>,
     pub role_arn: crate::value::ExpString,
     pub service_account: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1607,6 +1970,9 @@ impl crate::template::ToResource for PodIdentityAssociation_ {
             "Namespace".to_string(),
             crate::value::ToValue::to_value(&self.namespace),
         );
+        if let Some(ref value) = self.policy {
+            properties.insert("Policy".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties.insert(
             "RoleArn".to_string(),
             crate::value::ToValue::to_value(&self.role_arn),

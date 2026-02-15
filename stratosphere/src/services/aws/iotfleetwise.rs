@@ -33,7 +33,7 @@ pub mod campaign {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-conditionbasedcollectionscheme.html
     pub struct ConditionBasedCollectionScheme_ {
-        pub condition_language_version: Option<i64>,
+        pub condition_language_version: Option<i32>,
         pub expression: crate::value::ExpString,
         pub minimum_trigger_interval_ms: Option<f64>,
         pub trigger_mode: Option<crate::value::ExpString>,
@@ -209,7 +209,7 @@ pub mod campaign {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-datapartitionuploadoptions.html
     pub struct DataPartitionUploadOptions_ {
-        pub condition_language_version: Option<i64>,
+        pub condition_language_version: Option<i32>,
         pub expression: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -425,7 +425,7 @@ pub mod campaign {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-storagemaximumsize.html
     pub struct StorageMaximumSize_ {
         pub unit: crate::value::ExpString,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -453,7 +453,7 @@ pub mod campaign {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotfleetwise-campaign-storageminimumtimetolive.html
     pub struct StorageMinimumTimeToLive_ {
         pub unit: crate::value::ExpString,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1381,7 +1381,7 @@ pub struct Campaign_ {
     pub expiry_time: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
     pub post_trigger_collection_duration: Option<f64>,
-    pub priority: Option<i64>,
+    pub priority: Option<i32>,
     pub signal_catalog_arn: crate::value::ExpString,
     pub signals_to_collect: Option<Vec<super::iotfleetwise::campaign::SignalInformation_>>,
     pub signals_to_fetch: Option<Vec<super::iotfleetwise::campaign::SignalFetchInformation_>>,

@@ -37,7 +37,7 @@ pub struct Cluster_ {
     pub notification_topic_arn: Option<crate::value::ExpString>,
     pub parameter_group_name: Option<crate::value::ExpString>,
     pub preferred_maintenance_window: Option<crate::value::ExpString>,
-    pub replication_factor: i64,
+    pub replication_factor: i32,
     pub sse_specification: Option<super::dax::cluster::SSESpecification_>,
     pub security_group_ids: Option<Vec<crate::value::ExpString>>,
     pub subnet_group_name: Option<crate::value::ExpString>,

@@ -5,7 +5,8 @@ pub mod listener {
         pub authenticate_oidc_config: Option<Box<AuthenticateOidcConfig_>>,
         pub fixed_response_config: Option<Box<FixedResponseConfig_>>,
         pub forward_config: Option<Box<ForwardConfig_>>,
-        pub order: Option<i64>,
+        pub jwt_validation_config: Option<Box<JwtValidationConfig_>>,
+        pub order: Option<i32>,
         pub redirect_config: Option<Box<RedirectConfig_>>,
         pub target_group_arn: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -43,6 +44,12 @@ pub mod listener {
             if let Some(ref value) = self.forward_config {
                 properties.insert(
                     "ForwardConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.jwt_validation_config {
+                properties.insert(
+                    "JwtValidationConfig".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -318,6 +325,74 @@ pub mod listener {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-jwtvalidationactionadditionalclaim.html
+    pub struct JwtValidationActionAdditionalClaim_ {
+        pub format: crate::value::ExpString,
+        pub name: crate::value::ExpString,
+        pub values: Vec<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_elasticloadbalancingv2_Listener_JwtValidationActionAdditionalClaim {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.JwtValidationActionAdditionalClaim"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_elasticloadbalancingv2_Listener_JwtValidationActionAdditionalClaim as JwtValidationActionAdditionalClaim;
+    impl crate::value::ToValue for JwtValidationActionAdditionalClaim_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Format".to_string(),
+                crate::value::ToValue::to_value(&self.format),
+            );
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.insert(
+                "Values".to_string(),
+                crate::value::ToValue::to_value(&self.values),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-jwtvalidationconfig.html
+    pub struct JwtValidationConfig_ {
+        pub additional_claims: Option<Vec<JwtValidationActionAdditionalClaim_>>,
+        pub issuer: crate::value::ExpString,
+        pub jwks_endpoint: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_elasticloadbalancingv2_Listener_JwtValidationConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::Listener.JwtValidationConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_elasticloadbalancingv2_Listener_JwtValidationConfig as JwtValidationConfig;
+    impl crate::value::ToValue for JwtValidationConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.additional_claims {
+                properties.insert(
+                    "AdditionalClaims".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Issuer".to_string(),
+                crate::value::ToValue::to_value(&self.issuer),
+            );
+            properties.insert(
+                "JwksEndpoint".to_string(),
+                crate::value::ToValue::to_value(&self.jwks_endpoint),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-listenerattribute.html
     pub struct ListenerAttribute_ {
         pub key: Option<crate::value::ExpString>,
@@ -435,7 +510,7 @@ pub mod listener {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-targetgroupstickinessconfig.html
     pub struct TargetGroupStickinessConfig_ {
-        pub duration_seconds: Option<i64>,
+        pub duration_seconds: Option<i32>,
         pub enabled: Option<crate::value::ExpBool>,
     }
     #[doc(hidden)]
@@ -468,7 +543,7 @@ pub mod listener {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-targetgrouptuple.html
     pub struct TargetGroupTuple_ {
         pub target_group_arn: Option<crate::value::ExpString>,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -529,7 +604,8 @@ pub mod listenerrule {
         pub authenticate_oidc_config: Option<Box<AuthenticateOidcConfig_>>,
         pub fixed_response_config: Option<Box<FixedResponseConfig_>>,
         pub forward_config: Option<Box<ForwardConfig_>>,
-        pub order: Option<i64>,
+        pub jwt_validation_config: Option<Box<JwtValidationConfig_>>,
+        pub order: Option<i32>,
         pub redirect_config: Option<Box<RedirectConfig_>>,
         pub target_group_arn: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -570,6 +646,12 @@ pub mod listenerrule {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.jwt_validation_config {
+                properties.insert(
+                    "JwtValidationConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.order {
                 properties.insert("Order".to_string(), crate::value::ToValue::to_value(value));
             }
@@ -599,7 +681,7 @@ pub mod listenerrule {
         pub on_unauthenticated_request: Option<crate::value::ExpString>,
         pub scope: Option<crate::value::ExpString>,
         pub session_cookie_name: Option<crate::value::ExpString>,
-        pub session_timeout: Option<i64>,
+        pub session_timeout: Option<i32>,
         pub user_pool_arn: crate::value::ExpString,
         pub user_pool_client_id: crate::value::ExpString,
         pub user_pool_domain: crate::value::ExpString,
@@ -669,7 +751,7 @@ pub mod listenerrule {
         pub on_unauthenticated_request: Option<crate::value::ExpString>,
         pub scope: Option<crate::value::ExpString>,
         pub session_cookie_name: Option<crate::value::ExpString>,
-        pub session_timeout: Option<i64>,
+        pub session_timeout: Option<i32>,
         pub token_endpoint: crate::value::ExpString,
         pub use_existing_client_secret: Option<crate::value::ExpBool>,
         pub user_info_endpoint: crate::value::ExpString,
@@ -819,6 +901,7 @@ pub mod listenerrule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-hostheaderconfig.html
     pub struct HostHeaderConfig_ {
+        pub regex_values: Option<Vec<crate::value::ExpString>>,
         pub values: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
@@ -833,6 +916,12 @@ pub mod listenerrule {
     impl crate::value::ToValue for HostHeaderConfig_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.regex_values {
+                properties.insert(
+                    "RegexValues".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.values {
                 properties.insert("Values".to_string(), crate::value::ToValue::to_value(value));
             }
@@ -842,6 +931,7 @@ pub mod listenerrule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-httpheaderconfig.html
     pub struct HttpHeaderConfig_ {
         pub http_header_name: Option<crate::value::ExpString>,
+        pub regex_values: Option<Vec<crate::value::ExpString>>,
         pub values: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
@@ -859,6 +949,12 @@ pub mod listenerrule {
             if let Some(ref value) = self.http_header_name {
                 properties.insert(
                     "HttpHeaderName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.regex_values {
+                properties.insert(
+                    "RegexValues".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -890,8 +986,77 @@ pub mod listenerrule {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-jwtvalidationactionadditionalclaim.html
+    pub struct JwtValidationActionAdditionalClaim_ {
+        pub format: crate::value::ExpString,
+        pub name: crate::value::ExpString,
+        pub values: Vec<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_elasticloadbalancingv2_ListenerRule_JwtValidationActionAdditionalClaim {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.JwtValidationActionAdditionalClaim"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_elasticloadbalancingv2_ListenerRule_JwtValidationActionAdditionalClaim as JwtValidationActionAdditionalClaim;
+    impl crate::value::ToValue for JwtValidationActionAdditionalClaim_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Format".to_string(),
+                crate::value::ToValue::to_value(&self.format),
+            );
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.insert(
+                "Values".to_string(),
+                crate::value::ToValue::to_value(&self.values),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-jwtvalidationconfig.html
+    pub struct JwtValidationConfig_ {
+        pub additional_claims: Option<Vec<JwtValidationActionAdditionalClaim_>>,
+        pub issuer: crate::value::ExpString,
+        pub jwks_endpoint: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_elasticloadbalancingv2_ListenerRule_JwtValidationConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.JwtValidationConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_elasticloadbalancingv2_ListenerRule_JwtValidationConfig as JwtValidationConfig;
+    impl crate::value::ToValue for JwtValidationConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.additional_claims {
+                properties.insert(
+                    "AdditionalClaims".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Issuer".to_string(),
+                crate::value::ToValue::to_value(&self.issuer),
+            );
+            properties.insert(
+                "JwksEndpoint".to_string(),
+                crate::value::ToValue::to_value(&self.jwks_endpoint),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-pathpatternconfig.html
     pub struct PathPatternConfig_ {
+        pub regex_values: Option<Vec<crate::value::ExpString>>,
         pub values: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
@@ -906,6 +1071,12 @@ pub mod listenerrule {
     impl crate::value::ToValue for PathPatternConfig_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.regex_values {
+                properties.insert(
+                    "RegexValues".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.values {
                 properties.insert("Values".to_string(), crate::value::ToValue::to_value(value));
             }
@@ -1006,6 +1177,57 @@ pub mod listenerrule {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-rewriteconfig.html
+    pub struct RewriteConfig_ {
+        pub regex: crate::value::ExpString,
+        pub replace: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_elasticloadbalancingv2_ListenerRule_RewriteConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.RewriteConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_elasticloadbalancingv2_ListenerRule_RewriteConfig as RewriteConfig;
+    impl crate::value::ToValue for RewriteConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Regex".to_string(),
+                crate::value::ToValue::to_value(&self.regex),
+            );
+            properties.insert(
+                "Replace".to_string(),
+                crate::value::ToValue::to_value(&self.replace),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-rewriteconfigobject.html
+    pub struct RewriteConfigObject_ {
+        pub rewrites: Vec<RewriteConfig_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_elasticloadbalancingv2_ListenerRule_RewriteConfigObject {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.RewriteConfigObject"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_elasticloadbalancingv2_ListenerRule_RewriteConfigObject as RewriteConfigObject;
+    impl crate::value::ToValue for RewriteConfigObject_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Rewrites".to_string(),
+                crate::value::ToValue::to_value(&self.rewrites),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-rulecondition.html
     pub struct RuleCondition_ {
         pub field: Option<crate::value::ExpString>,
@@ -1014,6 +1236,7 @@ pub mod listenerrule {
         pub http_request_method_config: Option<Box<HttpRequestMethodConfig_>>,
         pub path_pattern_config: Option<Box<PathPatternConfig_>>,
         pub query_string_config: Option<Box<QueryStringConfig_>>,
+        pub regex_values: Option<Vec<crate::value::ExpString>>,
         pub source_ip_config: Option<Box<SourceIpConfig_>>,
         pub values: Option<Vec<crate::value::ExpString>>,
     }
@@ -1062,6 +1285,12 @@ pub mod listenerrule {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.regex_values {
+                properties.insert(
+                    "RegexValues".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.source_ip_config {
                 properties.insert(
                     "SourceIpConfig".to_string(),
@@ -1098,7 +1327,7 @@ pub mod listenerrule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-targetgroupstickinessconfig.html
     pub struct TargetGroupStickinessConfig_ {
-        pub duration_seconds: Option<i64>,
+        pub duration_seconds: Option<i32>,
         pub enabled: Option<crate::value::ExpBool>,
     }
     #[doc(hidden)]
@@ -1131,7 +1360,7 @@ pub mod listenerrule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-targetgrouptuple.html
     pub struct TargetGroupTuple_ {
         pub target_group_arn: Option<crate::value::ExpString>,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1153,6 +1382,43 @@ pub mod listenerrule {
             }
             if let Some(ref value) = self.weight {
                 properties.insert("Weight".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-transform.html
+    pub struct Transform_ {
+        pub host_header_rewrite_config: Option<Box<RewriteConfigObject_>>,
+        pub r#type: crate::value::ExpString,
+        pub url_rewrite_config: Option<Box<RewriteConfigObject_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_elasticloadbalancingv2_ListenerRule_Transform {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ElasticLoadBalancingV2::ListenerRule.Transform"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_elasticloadbalancingv2_ListenerRule_Transform as Transform;
+    impl crate::value::ToValue for Transform_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.host_header_rewrite_config {
+                properties.insert(
+                    "HostHeaderRewriteConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Type".to_string(),
+                crate::value::ToValue::to_value(&self.r#type),
+            );
+            if let Some(ref value) = self.url_rewrite_config {
+                properties.insert(
+                    "UrlRewriteConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
             }
             properties.into()
         }
@@ -1187,7 +1453,7 @@ pub mod loadbalancer {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-minimumloadbalancercapacity.html
     pub struct MinimumLoadBalancerCapacity_ {
-        pub capacity_units: i64,
+        pub capacity_units: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1297,7 +1563,8 @@ pub mod targetgroup {
     pub struct TargetDescription_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub id: crate::value::ExpString,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
+        pub quic_server_id: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1320,6 +1587,12 @@ pub mod targetgroup {
             properties.insert("Id".to_string(), crate::value::ToValue::to_value(&self.id));
             if let Some(ref value) = self.port {
                 properties.insert("Port".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.quic_server_id {
+                properties.insert(
+                    "QuicServerId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
             }
             properties.into()
         }
@@ -1452,7 +1725,7 @@ pub struct Listener_ {
     pub load_balancer_arn: crate::value::ExpString,
     pub mutual_authentication:
         Option<super::elasticloadbalancingv2::listener::MutualAuthentication_>,
-    pub port: Option<i64>,
+    pub port: Option<i32>,
     pub protocol: Option<crate::value::ExpString>,
     pub ssl_policy: Option<crate::value::ExpString>,
 }
@@ -1567,7 +1840,8 @@ pub struct ListenerRule_ {
     pub actions: Vec<super::elasticloadbalancingv2::listenerrule::Action_>,
     pub conditions: Vec<super::elasticloadbalancingv2::listenerrule::RuleCondition_>,
     pub listener_arn: Option<crate::value::ExpString>,
-    pub priority: i64,
+    pub priority: i32,
+    pub transforms: Option<Vec<super::elasticloadbalancingv2::listenerrule::Transform_>>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -1607,6 +1881,12 @@ impl crate::template::ToResource for ListenerRule_ {
             "Priority".to_string(),
             crate::value::ToValue::to_value(&self.priority),
         );
+        if let Some(ref value) = self.transforms {
+            properties.insert(
+                "Transforms".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties
     }
 }
@@ -1728,24 +2008,25 @@ impl crate::template::ToResource for LoadBalancer_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html
 pub struct TargetGroup_ {
     pub health_check_enabled: Option<crate::value::ExpBool>,
-    pub health_check_interval_seconds: Option<i64>,
+    pub health_check_interval_seconds: Option<i32>,
     pub health_check_path: Option<crate::value::ExpString>,
     pub health_check_port: Option<crate::value::ExpString>,
     pub health_check_protocol: Option<crate::value::ExpString>,
-    pub health_check_timeout_seconds: Option<i64>,
-    pub healthy_threshold_count: Option<i64>,
+    pub health_check_timeout_seconds: Option<i32>,
+    pub healthy_threshold_count: Option<i32>,
     pub ip_address_type: Option<crate::value::ExpString>,
     pub matcher: Option<super::elasticloadbalancingv2::targetgroup::Matcher_>,
     pub name: Option<crate::value::ExpString>,
-    pub port: Option<i64>,
+    pub port: Option<i32>,
     pub protocol: Option<crate::value::ExpString>,
     pub protocol_version: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
+    pub target_control_port: Option<i32>,
     pub target_group_attributes:
         Option<Vec<super::elasticloadbalancingv2::targetgroup::TargetGroupAttribute_>>,
     pub target_type: Option<crate::value::ExpString>,
     pub targets: Option<Vec<super::elasticloadbalancingv2::targetgroup::TargetDescription_>>,
-    pub unhealthy_threshold_count: Option<i64>,
+    pub unhealthy_threshold_count: Option<i32>,
     pub vpc_id: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]
@@ -1842,6 +2123,12 @@ impl crate::template::ToResource for TargetGroup_ {
         }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.target_control_port {
+            properties.insert(
+                "TargetControlPort".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         if let Some(ref value) = self.target_group_attributes {
             properties.insert(

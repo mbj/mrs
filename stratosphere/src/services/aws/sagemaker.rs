@@ -141,8 +141,8 @@ pub mod appimageconfig {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-appimageconfig-filesystemconfig.html
     pub struct FileSystemConfig_ {
-        pub default_gid: Option<i64>,
-        pub default_uid: Option<i64>,
+        pub default_gid: Option<i32>,
+        pub default_uid: Option<i32>,
         pub mount_path: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -291,7 +291,7 @@ pub mod cluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-capacitysizeconfig.html
     pub struct CapacitySizeConfig_ {
         pub r#type: crate::value::ExpString,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -346,11 +346,40 @@ pub mod cluster {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clustercapacityrequirements.html
+    pub struct ClusterCapacityRequirements_ {
+        pub on_demand: Option<serde_json::Value>,
+        pub spot: Option<serde_json::Value>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_sagemaker_Cluster_ClusterCapacityRequirements {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterCapacityRequirements"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_sagemaker_Cluster_ClusterCapacityRequirements as ClusterCapacityRequirements;
+    impl crate::value::ToValue for ClusterCapacityRequirements_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.on_demand {
+                properties.insert(
+                    "OnDemand".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.spot {
+                properties.insert("Spot".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterebsvolumeconfig.html
     pub struct ClusterEbsVolumeConfig_ {
         pub root_volume: Option<crate::value::ExpBool>,
         pub volume_kms_key_id: Option<crate::value::ExpString>,
-        pub volume_size_in_gb: Option<i64>,
+        pub volume_size_in_gb: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -387,18 +416,21 @@ pub mod cluster {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterinstancegroup.html
     pub struct ClusterInstanceGroup_ {
-        pub current_count: Option<i64>,
+        pub capacity_requirements: Option<Box<ClusterCapacityRequirements_>>,
+        pub current_count: Option<i32>,
         pub execution_role: crate::value::ExpString,
         pub image_id: Option<crate::value::ExpString>,
-        pub instance_count: i64,
+        pub instance_count: i32,
         pub instance_group_name: crate::value::ExpString,
         pub instance_storage_configs: Option<Vec<ClusterInstanceStorageConfig_>>,
         pub instance_type: crate::value::ExpString,
+        pub kubernetes_config: Option<Box<ClusterKubernetesConfig_>>,
         pub life_cycle_config: Box<ClusterLifeCycleConfig_>,
+        pub min_instance_count: Option<i32>,
         pub on_start_deep_health_checks: Option<Vec<crate::value::ExpString>>,
         pub override_vpc_config: Option<Box<VpcConfig_>>,
         pub scheduled_update_config: Option<Box<ScheduledUpdateConfig_>>,
-        pub threads_per_core: Option<i64>,
+        pub threads_per_core: Option<i32>,
         pub training_plan_arn: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -413,6 +445,12 @@ pub mod cluster {
     impl crate::value::ToValue for ClusterInstanceGroup_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.capacity_requirements {
+                properties.insert(
+                    "CapacityRequirements".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.current_count {
                 properties.insert(
                     "CurrentCount".to_string(),
@@ -447,10 +485,22 @@ pub mod cluster {
                 "InstanceType".to_string(),
                 crate::value::ToValue::to_value(&self.instance_type),
             );
+            if let Some(ref value) = self.kubernetes_config {
+                properties.insert(
+                    "KubernetesConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "LifeCycleConfig".to_string(),
                 crate::value::ToValue::to_value(&self.life_cycle_config),
             );
+            if let Some(ref value) = self.min_instance_count {
+                properties.insert(
+                    "MinInstanceCount".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.on_start_deep_health_checks {
                 properties.insert(
                     "OnStartDeepHealthChecks".to_string(),
@@ -509,6 +559,64 @@ pub mod cluster {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterkubernetesconfig.html
+    pub struct ClusterKubernetesConfig_ {
+        pub labels: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+        pub taints: Option<Vec<ClusterKubernetesTaint_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_sagemaker_Cluster_ClusterKubernetesConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterKubernetesConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_sagemaker_Cluster_ClusterKubernetesConfig as ClusterKubernetesConfig;
+    impl crate::value::ToValue for ClusterKubernetesConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.labels {
+                properties.insert("Labels".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.taints {
+                properties.insert("Taints".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterkubernetestaint.html
+    pub struct ClusterKubernetesTaint_ {
+        pub effect: crate::value::ExpString,
+        pub key: crate::value::ExpString,
+        pub value: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_sagemaker_Cluster_ClusterKubernetesTaint {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterKubernetesTaint"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_sagemaker_Cluster_ClusterKubernetesTaint as ClusterKubernetesTaint;
+    impl crate::value::ToValue for ClusterKubernetesTaint_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Effect".to_string(),
+                crate::value::ToValue::to_value(&self.effect),
+            );
+            properties.insert(
+                "Key".to_string(),
+                crate::value::ToValue::to_value(&self.key),
+            );
+            if let Some(ref value) = self.value {
+                properties.insert("Value".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterlifecycleconfig.html
     pub struct ClusterLifeCycleConfig_ {
         pub on_create: crate::value::ExpString,
@@ -562,16 +670,16 @@ pub mod cluster {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterrestrictedinstancegroup.html
     pub struct ClusterRestrictedInstanceGroup_ {
-        pub current_count: Option<i64>,
+        pub current_count: Option<i32>,
         pub environment_config: Box<EnvironmentConfig_>,
         pub execution_role: crate::value::ExpString,
-        pub instance_count: i64,
+        pub instance_count: i32,
         pub instance_group_name: crate::value::ExpString,
         pub instance_storage_configs: Option<Vec<ClusterInstanceStorageConfig_>>,
         pub instance_type: crate::value::ExpString,
         pub on_start_deep_health_checks: Option<Vec<crate::value::ExpString>>,
         pub override_vpc_config: Option<Box<VpcConfig_>>,
-        pub threads_per_core: Option<i64>,
+        pub threads_per_core: Option<i32>,
         pub training_plan_arn: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -649,7 +757,7 @@ pub mod cluster {
     pub struct DeploymentConfig_ {
         pub auto_rollback_configuration: Option<Vec<AlarmDetails_>>,
         pub rolling_update_policy: Option<Box<RollingUpdatePolicy_>>,
-        pub wait_interval_in_seconds: Option<i64>,
+        pub wait_interval_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -711,8 +819,8 @@ pub mod cluster {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-fsxlustreconfig.html
     pub struct FSxLustreConfig_ {
-        pub per_unit_storage_throughput: i64,
-        pub size_in_gi_b: i64,
+        pub per_unit_storage_throughput: i32,
+        pub size_in_gi_b: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -816,6 +924,36 @@ pub mod cluster {
             properties.insert(
                 "ScheduleExpression".to_string(),
                 crate::value::ToValue::to_value(&self.schedule_expression),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-tieredstorageconfig.html
+    pub struct TieredStorageConfig_ {
+        pub instance_memory_allocation_percentage: Option<i32>,
+        pub mode: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_sagemaker_Cluster_TieredStorageConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.TieredStorageConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_sagemaker_Cluster_TieredStorageConfig as TieredStorageConfig;
+    impl crate::value::ToValue for TieredStorageConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.instance_memory_allocation_percentage {
+                properties.insert(
+                    "InstanceMemoryAllocationPercentage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Mode".to_string(),
+                crate::value::ToValue::to_value(&self.mode),
             );
             properties.into()
         }
@@ -942,10 +1080,10 @@ pub mod dataqualityjobdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-clusterconfig.html
     pub struct ClusterConfig_ {
-        pub instance_count: i64,
+        pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
         pub volume_kms_key_id: Option<crate::value::ExpString>,
-        pub volume_size_in_gb: i64,
+        pub volume_size_in_gb: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1431,7 +1569,7 @@ pub mod dataqualityjobdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-dataqualityjobdefinition-stoppingcondition.html
     pub struct StoppingCondition_ {
-        pub max_runtime_in_seconds: i64,
+        pub max_runtime_in_seconds: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1697,7 +1835,7 @@ pub mod domain {
     pub struct CustomImage_ {
         pub app_image_config_name: crate::value::ExpString,
         pub image_name: crate::value::ExpString,
-        pub image_version_number: Option<i64>,
+        pub image_version_number: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1730,8 +1868,8 @@ pub mod domain {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-customposixuserconfig.html
     pub struct CustomPosixUserConfig_ {
-        pub gid: i64,
-        pub uid: i64,
+        pub gid: i32,
+        pub uid: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1758,8 +1896,8 @@ pub mod domain {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-defaultebsstoragesettings.html
     pub struct DefaultEbsStorageSettings_ {
-        pub default_ebs_volume_size_in_gb: i64,
-        pub maximum_ebs_volume_size_in_gb: i64,
+        pub default_ebs_volume_size_in_gb: i32,
+        pub maximum_ebs_volume_size_in_gb: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1917,6 +2055,7 @@ pub mod domain {
     pub struct DomainSettings_ {
         pub docker_settings: Option<Box<DockerSettings_>>,
         pub execution_role_identity_config: Option<crate::value::ExpString>,
+        pub ip_address_type: Option<crate::value::ExpString>,
         pub r_studio_server_pro_domain_settings: Option<Box<RStudioServerProDomainSettings_>>,
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub unified_studio_settings: Option<Box<UnifiedStudioSettings_>>,
@@ -1942,6 +2081,12 @@ pub mod domain {
             if let Some(ref value) = self.execution_role_identity_config {
                 properties.insert(
                     "ExecutionRoleIdentityConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.ip_address_type {
+                properties.insert(
+                    "IpAddressType".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -2060,10 +2205,10 @@ pub mod domain {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-domain-idlesettings.html
     pub struct IdleSettings_ {
-        pub idle_timeout_in_minutes: Option<i64>,
+        pub idle_timeout_in_minutes: Option<i32>,
         pub lifecycle_management: Option<crate::value::ExpString>,
-        pub max_idle_timeout_in_minutes: Option<i64>,
-        pub min_idle_timeout_in_minutes: Option<i64>,
+        pub max_idle_timeout_in_minutes: Option<i32>,
+        pub min_idle_timeout_in_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2748,8 +2893,8 @@ pub mod endpoint {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-bluegreenupdatepolicy.html
     pub struct BlueGreenUpdatePolicy_ {
-        pub maximum_execution_timeout_in_seconds: Option<i64>,
-        pub termination_wait_in_seconds: Option<i64>,
+        pub maximum_execution_timeout_in_seconds: Option<i32>,
+        pub termination_wait_in_seconds: Option<i32>,
         pub traffic_routing_configuration: Box<TrafficRoutingConfig_>,
     }
     #[doc(hidden)]
@@ -2786,7 +2931,7 @@ pub mod endpoint {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-capacitysize.html
     pub struct CapacitySize_ {
         pub r#type: crate::value::ExpString,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2853,9 +2998,9 @@ pub mod endpoint {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-rollingupdatepolicy.html
     pub struct RollingUpdatePolicy_ {
         pub maximum_batch_size: Box<CapacitySize_>,
-        pub maximum_execution_timeout_in_seconds: Option<i64>,
+        pub maximum_execution_timeout_in_seconds: Option<i32>,
         pub rollback_maximum_batch_size: Option<Box<CapacitySize_>>,
-        pub wait_interval_in_seconds: i64,
+        pub wait_interval_in_seconds: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2897,7 +3042,7 @@ pub mod endpoint {
         pub canary_size: Option<Box<CapacitySize_>>,
         pub linear_step_size: Option<Box<CapacitySize_>>,
         pub r#type: crate::value::ExpString,
-        pub wait_interval_in_seconds: Option<i64>,
+        pub wait_interval_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2965,7 +3110,7 @@ pub mod endpoint {
 pub mod endpointconfig {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-asyncinferenceclientconfig.html
     pub struct AsyncInferenceClientConfig_ {
-        pub max_concurrent_invocations_per_instance: Option<i64>,
+        pub max_concurrent_invocations_per_instance: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3267,11 +3412,11 @@ pub mod endpointconfig {
         pub features_attribute: Option<crate::value::ExpString>,
         pub label_attribute: Option<crate::value::ExpString>,
         pub label_headers: Option<Vec<ClarifyHeader_>>,
-        pub label_index: Option<i64>,
-        pub max_payload_in_mb: Option<i64>,
-        pub max_record_count: Option<i64>,
+        pub label_index: Option<i32>,
+        pub max_payload_in_mb: Option<i32>,
+        pub max_record_count: Option<i32>,
         pub probability_attribute: Option<crate::value::ExpString>,
-        pub probability_index: Option<i64>,
+        pub probability_index: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3395,8 +3540,8 @@ pub mod endpointconfig {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-clarifyshapconfig.html
     pub struct ClarifyShapConfig_ {
-        pub number_of_samples: Option<i64>,
-        pub seed: Option<i64>,
+        pub number_of_samples: Option<i32>,
+        pub seed: Option<i32>,
         pub shap_baseline_config: Box<ClarifyShapBaselineConfig_>,
         pub text_config: Option<Box<ClarifyTextConfig_>>,
         pub use_logit: Option<crate::value::ExpBool>,
@@ -3475,7 +3620,7 @@ pub mod endpointconfig {
         pub capture_options: Vec<CaptureOption_>,
         pub destination_s3_uri: crate::value::ExpString,
         pub enable_capture: Option<crate::value::ExpBool>,
-        pub initial_sampling_percentage: i64,
+        pub initial_sampling_percentage: i32,
         pub kms_key_id: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -3550,8 +3695,8 @@ pub mod endpointconfig {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-productionvariant-managedinstancescaling.html
     pub struct ManagedInstanceScaling_ {
-        pub max_instance_count: Option<i64>,
-        pub min_instance_count: Option<i64>,
+        pub max_instance_count: Option<i32>,
+        pub min_instance_count: Option<i32>,
         pub status: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -3587,19 +3732,19 @@ pub mod endpointconfig {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-productionvariant.html
     pub struct ProductionVariant_ {
         pub capacity_reservation_config: Option<Box<CapacityReservationConfig_>>,
-        pub container_startup_health_check_timeout_in_seconds: Option<i64>,
+        pub container_startup_health_check_timeout_in_seconds: Option<i32>,
         pub enable_ssm_access: Option<crate::value::ExpBool>,
         pub inference_ami_version: Option<crate::value::ExpString>,
-        pub initial_instance_count: Option<i64>,
+        pub initial_instance_count: Option<i32>,
         pub initial_variant_weight: Option<f64>,
         pub instance_type: Option<crate::value::ExpString>,
         pub managed_instance_scaling: Option<Box<ManagedInstanceScaling_>>,
-        pub model_data_download_timeout_in_seconds: Option<i64>,
+        pub model_data_download_timeout_in_seconds: Option<i32>,
         pub model_name: Option<crate::value::ExpString>,
         pub routing_config: Option<Box<RoutingConfig_>>,
         pub serverless_config: Option<Box<ServerlessConfig_>>,
         pub variant_name: crate::value::ExpString,
-        pub volume_size_in_gb: Option<i64>,
+        pub volume_size_in_gb: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3725,9 +3870,9 @@ pub mod endpointconfig {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpointconfig-productionvariant-serverlessconfig.html
     pub struct ServerlessConfig_ {
-        pub max_concurrency: i64,
-        pub memory_size_in_mb: i64,
-        pub provisioned_concurrency: Option<i64>,
+        pub max_concurrency: i32,
+        pub memory_size_in_mb: i32,
+        pub provisioned_concurrency: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3996,8 +4141,8 @@ pub mod featuregroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-throughputconfig.html
     pub struct ThroughputConfig_ {
-        pub provisioned_read_capacity_units: Option<i64>,
-        pub provisioned_write_capacity_units: Option<i64>,
+        pub provisioned_read_capacity_units: Option<i32>,
+        pub provisioned_write_capacity_units: Option<i32>,
         pub throughput_mode: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -4034,7 +4179,7 @@ pub mod featuregroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-featuregroup-ttlduration.html
     pub struct TtlDuration_ {
         pub unit: Option<crate::value::ExpString>,
-        pub value: Option<i64>,
+        pub value: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4147,7 +4292,7 @@ pub mod inferencecomponent {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentcapacitysize.html
     pub struct InferenceComponentCapacitySize_ {
         pub r#type: crate::value::ExpString,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4174,8 +4319,8 @@ pub mod inferencecomponent {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentcomputeresourcerequirements.html
     pub struct InferenceComponentComputeResourceRequirements_ {
-        pub max_memory_required_in_mb: Option<i64>,
-        pub min_memory_required_in_mb: Option<i64>,
+        pub max_memory_required_in_mb: Option<i32>,
+        pub min_memory_required_in_mb: Option<i32>,
         pub number_of_accelerator_devices_required: Option<f64>,
         pub number_of_cpu_cores_required: Option<f64>,
     }
@@ -4296,9 +4441,9 @@ pub mod inferencecomponent {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentrollingupdatepolicy.html
     pub struct InferenceComponentRollingUpdatePolicy_ {
         pub maximum_batch_size: Option<Box<InferenceComponentCapacitySize_>>,
-        pub maximum_execution_timeout_in_seconds: Option<i64>,
+        pub maximum_execution_timeout_in_seconds: Option<i32>,
         pub rollback_maximum_batch_size: Option<Box<InferenceComponentCapacitySize_>>,
-        pub wait_interval_in_seconds: Option<i64>,
+        pub wait_interval_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4341,9 +4486,9 @@ pub mod inferencecomponent {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentruntimeconfig.html
     pub struct InferenceComponentRuntimeConfig_ {
-        pub copy_count: Option<i64>,
-        pub current_copy_count: Option<i64>,
-        pub desired_copy_count: Option<i64>,
+        pub copy_count: Option<i32>,
+        pub current_copy_count: Option<i32>,
+        pub desired_copy_count: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4434,8 +4579,8 @@ pub mod inferencecomponent {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferencecomponent-inferencecomponentstartupparameters.html
     pub struct InferenceComponentStartupParameters_ {
-        pub container_startup_health_check_timeout_in_seconds: Option<i64>,
-        pub model_data_download_timeout_in_seconds: Option<i64>,
+        pub container_startup_health_check_timeout_in_seconds: Option<i32>,
+        pub model_data_download_timeout_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4664,7 +4809,7 @@ pub mod inferenceexperiment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-realtimeinferenceconfig.html
     pub struct RealTimeInferenceConfig_ {
-        pub instance_count: i64,
+        pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -4720,7 +4865,7 @@ pub mod inferenceexperiment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-shadowmodelvariantconfig.html
     pub struct ShadowModelVariantConfig_ {
-        pub sampling_percentage: i64,
+        pub sampling_percentage: i32,
         pub shadow_model_variant_name: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -5196,10 +5341,10 @@ pub mod modelbiasjobdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-clusterconfig.html
     pub struct ClusterConfig_ {
-        pub instance_count: i64,
+        pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
         pub volume_kms_key_id: Option<crate::value::ExpString>,
-        pub volume_size_in_gb: i64,
+        pub volume_size_in_gb: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -5696,7 +5841,7 @@ pub mod modelbiasjobdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelbiasjobdefinition-stoppingcondition.html
     pub struct StoppingCondition_ {
-        pub max_runtime_in_seconds: i64,
+        pub max_runtime_in_seconds: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -6805,10 +6950,10 @@ pub mod modelexplainabilityjobdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-clusterconfig.html
     pub struct ClusterConfig_ {
-        pub instance_count: i64,
+        pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
         pub volume_kms_key_id: Option<crate::value::ExpString>,
-        pub volume_size_in_gb: i64,
+        pub volume_size_in_gb: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -7256,7 +7401,7 @@ pub mod modelexplainabilityjobdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelexplainabilityjobdefinition-stoppingcondition.html
     pub struct StoppingCondition_ {
-        pub max_runtime_in_seconds: i64,
+        pub max_runtime_in_seconds: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -8338,8 +8483,8 @@ pub mod modelpackage {
     pub struct TransformJobDefinition_ {
         pub batch_strategy: Option<crate::value::ExpString>,
         pub environment: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
-        pub max_concurrent_transforms: Option<i64>,
-        pub max_payload_in_mb: Option<i64>,
+        pub max_concurrent_transforms: Option<i32>,
+        pub max_payload_in_mb: Option<i32>,
         pub transform_input: Box<TransformInput_>,
         pub transform_output: Box<TransformOutput_>,
         pub transform_resources: Box<TransformResources_>,
@@ -8438,7 +8583,7 @@ pub mod modelpackage {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelpackage-transformresources.html
     pub struct TransformResources_ {
-        pub instance_count: i64,
+        pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
         pub volume_kms_key_id: Option<crate::value::ExpString>,
     }
@@ -8613,10 +8758,10 @@ pub mod modelqualityjobdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-clusterconfig.html
     pub struct ClusterConfig_ {
-        pub instance_count: i64,
+        pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
         pub volume_kms_key_id: Option<crate::value::ExpString>,
-        pub volume_size_in_gb: i64,
+        pub volume_size_in_gb: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -9134,7 +9279,7 @@ pub mod modelqualityjobdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-modelqualityjobdefinition-stoppingcondition.html
     pub struct StoppingCondition_ {
-        pub max_runtime_in_seconds: i64,
+        pub max_runtime_in_seconds: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -9273,10 +9418,10 @@ pub mod monitoringschedule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-clusterconfig.html
     pub struct ClusterConfig_ {
-        pub instance_count: i64,
+        pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
         pub volume_kms_key_id: Option<crate::value::ExpString>,
-        pub volume_size_in_gb: i64,
+        pub volume_size_in_gb: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -9934,7 +10079,7 @@ pub mod monitoringschedule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-monitoringschedule-stoppingcondition.html
     pub struct StoppingCondition_ {
-        pub max_runtime_in_seconds: i64,
+        pub max_runtime_in_seconds: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -10096,7 +10241,7 @@ pub mod partnerapp {
 pub mod pipeline {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-pipeline-parallelismconfiguration.html
     pub struct ParallelismConfiguration_ {
-        pub max_parallel_execution_steps: i64,
+        pub max_parallel_execution_steps: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -10293,10 +10438,10 @@ pub mod processingjob {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-clusterconfig.html
     pub struct ClusterConfig_ {
-        pub instance_count: i64,
+        pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
         pub volume_kms_key_id: Option<crate::value::ExpString>,
-        pub volume_size_in_gb: i64,
+        pub volume_size_in_gb: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -10793,7 +10938,7 @@ pub mod processingjob {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-processingjob-stoppingcondition.html
     pub struct StoppingCondition_ {
-        pub max_runtime_in_seconds: i64,
+        pub max_runtime_in_seconds: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -11106,7 +11251,7 @@ pub mod space {
     pub struct CustomImage_ {
         pub app_image_config_name: crate::value::ExpString,
         pub image_name: crate::value::ExpString,
-        pub image_version_number: Option<i64>,
+        pub image_version_number: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -11162,7 +11307,7 @@ pub mod space {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-ebsstoragesettings.html
     pub struct EbsStorageSettings_ {
-        pub ebs_volume_size_in_gb: i64,
+        pub ebs_volume_size_in_gb: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -11427,7 +11572,7 @@ pub mod space {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-space-spaceidlesettings.html
     pub struct SpaceIdleSettings_ {
-        pub idle_timeout_in_minutes: Option<i64>,
+        pub idle_timeout_in_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -11764,7 +11909,7 @@ pub mod userprofile {
     pub struct CustomImage_ {
         pub app_image_config_name: crate::value::ExpString,
         pub image_name: crate::value::ExpString,
-        pub image_version_number: Option<i64>,
+        pub image_version_number: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -11797,8 +11942,8 @@ pub mod userprofile {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-customposixuserconfig.html
     pub struct CustomPosixUserConfig_ {
-        pub gid: i64,
-        pub uid: i64,
+        pub gid: i32,
+        pub uid: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -11825,8 +11970,8 @@ pub mod userprofile {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-defaultebsstoragesettings.html
     pub struct DefaultEbsStorageSettings_ {
-        pub default_ebs_volume_size_in_gb: i64,
-        pub maximum_ebs_volume_size_in_gb: i64,
+        pub default_ebs_volume_size_in_gb: i32,
+        pub maximum_ebs_volume_size_in_gb: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -11970,10 +12115,10 @@ pub mod userprofile {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-userprofile-idlesettings.html
     pub struct IdleSettings_ {
-        pub idle_timeout_in_minutes: Option<i64>,
+        pub idle_timeout_in_minutes: Option<i32>,
         pub lifecycle_management: Option<crate::value::ExpString>,
-        pub max_idle_timeout_in_minutes: Option<i64>,
-        pub min_idle_timeout_in_minutes: Option<i64>,
+        pub max_idle_timeout_in_minutes: Option<i32>,
+        pub min_idle_timeout_in_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -12709,6 +12854,7 @@ pub struct Cluster_ {
     pub restricted_instance_groups:
         Option<Vec<super::sagemaker::cluster::ClusterRestrictedInstanceGroup_>>,
     pub tags: Option<Vec<crate::Tag_>>,
+    pub tiered_storage_config: Option<super::sagemaker::cluster::TieredStorageConfig_>,
     pub vpc_config: Option<super::sagemaker::cluster::VpcConfig_>,
 }
 #[doc(hidden)]
@@ -12781,6 +12927,12 @@ impl crate::template::ToResource for Cluster_ {
         }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.tiered_storage_config {
+            properties.insert(
+                "TieredStorageConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         if let Some(ref value) = self.vpc_config {
             properties.insert(
@@ -14131,7 +14283,7 @@ pub struct ModelPackage_ {
     pub model_package_name: Option<crate::value::ExpString>,
     pub model_package_status_details:
         Option<super::sagemaker::modelpackage::ModelPackageStatusDetails_>,
-    pub model_package_version: Option<i64>,
+    pub model_package_version: Option<i32>,
     pub sample_payload_url: Option<crate::value::ExpString>,
     pub security_config: Option<super::sagemaker::modelpackage::SecurityConfig_>,
     pub skip_model_validation: Option<crate::value::ExpString>,
@@ -14547,7 +14699,7 @@ pub struct NotebookInstance_ {
     pub security_group_ids: Option<Vec<crate::value::ExpString>>,
     pub subnet_id: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
-    pub volume_size_in_gb: Option<i64>,
+    pub volume_size_in_gb: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -14716,8 +14868,10 @@ impl crate::template::ToResource for NotebookInstanceLifecycleConfig_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-partnerapp.html
 pub struct PartnerApp_ {
+    pub app_version: Option<crate::value::ExpString>,
     pub application_config: Option<super::sagemaker::partnerapp::PartnerAppConfig_>,
     pub auth_type: crate::value::ExpString,
+    pub enable_auto_minor_version_upgrade: Option<crate::value::ExpBool>,
     pub enable_iam_session_based_identity: Option<crate::value::ExpBool>,
     pub execution_role_arn: crate::value::ExpString,
     pub kms_key_id: Option<crate::value::ExpString>,
@@ -14747,6 +14901,12 @@ impl crate::template::ToResource for PartnerApp_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.app_version {
+            properties.insert(
+                "AppVersion".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.application_config {
             properties.insert(
                 "ApplicationConfig".to_string(),
@@ -14757,6 +14917,12 @@ impl crate::template::ToResource for PartnerApp_ {
             "AuthType".to_string(),
             crate::value::ToValue::to_value(&self.auth_type),
         );
+        if let Some(ref value) = self.enable_auto_minor_version_upgrade {
+            properties.insert(
+                "EnableAutoMinorVersionUpgrade".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.enable_iam_session_based_identity {
             properties.insert(
                 "EnableIamSessionBasedIdentity".to_string(),

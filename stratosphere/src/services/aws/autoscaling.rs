@@ -1,8 +1,8 @@
 pub mod autoscalinggroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-acceleratorcountrequest.html
     pub struct AcceleratorCountRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -27,8 +27,8 @@ pub mod autoscalinggroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-acceleratortotalmemorymibrequest.html
     pub struct AcceleratorTotalMemoryMiBRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -106,8 +106,8 @@ pub mod autoscalinggroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-baselineebsbandwidthmbpsrequest.html
     pub struct BaselineEbsBandwidthMbpsRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -239,10 +239,35 @@ pub mod autoscalinggroup {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancelifecyclepolicy.html
+    pub struct InstanceLifecyclePolicy_ {
+        pub retention_triggers: Option<Box<RetentionTriggers_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_autoscaling_AutoScalingGroup_InstanceLifecyclePolicy {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.InstanceLifecyclePolicy"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_autoscaling_AutoScalingGroup_InstanceLifecyclePolicy as InstanceLifecyclePolicy;
+    impl crate::value::ToValue for InstanceLifecyclePolicy_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.retention_triggers {
+                properties.insert(
+                    "RetentionTriggers".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancemaintenancepolicy.html
     pub struct InstanceMaintenancePolicy_ {
-        pub max_healthy_percentage: Option<i64>,
-        pub min_healthy_percentage: Option<i64>,
+        pub max_healthy_percentage: Option<i32>,
+        pub min_healthy_percentage: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -288,14 +313,14 @@ pub mod autoscalinggroup {
         pub instance_generations: Option<Vec<crate::value::ExpString>>,
         pub local_storage: Option<crate::value::ExpString>,
         pub local_storage_types: Option<Vec<crate::value::ExpString>>,
-        pub max_spot_price_as_percentage_of_optimal_on_demand_price: Option<i64>,
+        pub max_spot_price_as_percentage_of_optimal_on_demand_price: Option<i32>,
         pub memory_gi_b_per_v_cpu: Option<Box<MemoryGiBPerVCpuRequest_>>,
         pub memory_mi_b: Box<MemoryMiBRequest_>,
         pub network_bandwidth_gbps: Option<Box<NetworkBandwidthGbpsRequest_>>,
         pub network_interface_count: Option<Box<NetworkInterfaceCountRequest_>>,
-        pub on_demand_max_price_percentage_over_lowest_price: Option<i64>,
+        pub on_demand_max_price_percentage_over_lowest_price: Option<i32>,
         pub require_hibernate_support: Option<crate::value::ExpBool>,
-        pub spot_max_price_percentage_over_lowest_price: Option<i64>,
+        pub spot_max_price_percentage_over_lowest_price: Option<i32>,
         pub total_local_storage_gb: Option<Box<TotalLocalStorageGBRequest_>>,
         pub v_cpu_count: Box<VCpuCountRequest_>,
     }
@@ -463,10 +488,10 @@ pub mod autoscalinggroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-instancesdistribution.html
     pub struct InstancesDistribution_ {
         pub on_demand_allocation_strategy: Option<crate::value::ExpString>,
-        pub on_demand_base_capacity: Option<i64>,
-        pub on_demand_percentage_above_base_capacity: Option<i64>,
+        pub on_demand_base_capacity: Option<i32>,
+        pub on_demand_percentage_above_base_capacity: Option<i32>,
         pub spot_allocation_strategy: Option<crate::value::ExpString>,
-        pub spot_instance_pools: Option<i64>,
+        pub spot_instance_pools: Option<i32>,
         pub spot_max_price: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -552,6 +577,7 @@ pub mod autoscalinggroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-launchtemplateoverrides.html
     pub struct LaunchTemplateOverrides_ {
+        pub image_id: Option<crate::value::ExpString>,
         pub instance_requirements: Option<Box<InstanceRequirements_>>,
         pub instance_type: Option<crate::value::ExpString>,
         pub launch_template_specification: Option<Box<LaunchTemplateSpecification_>>,
@@ -569,6 +595,12 @@ pub mod autoscalinggroup {
     impl crate::value::ToValue for LaunchTemplateOverrides_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.image_id {
+                properties.insert(
+                    "ImageId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.instance_requirements {
                 properties.insert(
                     "InstanceRequirements".to_string(),
@@ -636,7 +668,7 @@ pub mod autoscalinggroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-lifecyclehookspecification.html
     pub struct LifecycleHookSpecification_ {
         pub default_result: Option<crate::value::ExpString>,
-        pub heartbeat_timeout: Option<i64>,
+        pub heartbeat_timeout: Option<i32>,
         pub lifecycle_hook_name: crate::value::ExpString,
         pub lifecycle_transition: crate::value::ExpString,
         pub notification_metadata: Option<crate::value::ExpString>,
@@ -724,8 +756,8 @@ pub mod autoscalinggroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-memorymibrequest.html
     pub struct MemoryMiBRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -836,8 +868,8 @@ pub mod autoscalinggroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-networkinterfacecountrequest.html
     pub struct NetworkInterfaceCountRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -909,6 +941,31 @@ pub mod autoscalinggroup {
             if let Some(ref value) = self.instance_family {
                 properties.insert(
                     "InstanceFamily".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-retentiontriggers.html
+    pub struct RetentionTriggers_ {
+        pub terminate_hook_abandon: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_autoscaling_AutoScalingGroup_RetentionTriggers {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::AutoScaling::AutoScalingGroup.RetentionTriggers"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_autoscaling_AutoScalingGroup_RetentionTriggers as RetentionTriggers;
+    impl crate::value::ToValue for RetentionTriggers_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.terminate_hook_abandon {
+                properties.insert(
+                    "TerminateHookAbandon".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -1004,8 +1061,8 @@ pub mod autoscalinggroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-vcpucountrequest.html
     pub struct VCpuCountRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1034,10 +1091,10 @@ pub mod launchconfiguration {
     pub struct BlockDevice_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub encrypted: Option<crate::value::ExpBool>,
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub snapshot_id: Option<crate::value::ExpString>,
-        pub throughput: Option<i64>,
-        pub volume_size: Option<i64>,
+        pub throughput: Option<i32>,
+        pub volume_size: Option<i32>,
         pub volume_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1138,7 +1195,7 @@ pub mod launchconfiguration {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-launchconfiguration-metadataoptions.html
     pub struct MetadataOptions_ {
         pub http_endpoint: Option<crate::value::ExpString>,
-        pub http_put_response_hop_limit: Option<i64>,
+        pub http_put_response_hop_limit: Option<i32>,
         pub http_tokens: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1182,7 +1239,7 @@ pub mod scalingpolicy {
         pub metric_name: Option<crate::value::ExpString>,
         pub metrics: Option<Vec<TargetTrackingMetricDataQuery_>>,
         pub namespace: Option<crate::value::ExpString>,
-        pub period: Option<i64>,
+        pub period: Option<i32>,
         pub statistic: Option<crate::value::ExpString>,
         pub unit: Option<crate::value::ExpString>,
     }
@@ -1410,10 +1467,10 @@ pub mod scalingpolicy {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predictivescalingconfiguration.html
     pub struct PredictiveScalingConfiguration_ {
         pub max_capacity_breach_behavior: Option<crate::value::ExpString>,
-        pub max_capacity_buffer: Option<i64>,
+        pub max_capacity_buffer: Option<i32>,
         pub metric_specifications: Vec<PredictiveScalingMetricSpecification_>,
         pub mode: Option<crate::value::ExpString>,
-        pub scheduling_buffer_time: Option<i64>,
+        pub scheduling_buffer_time: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1689,7 +1746,7 @@ pub mod scalingpolicy {
     pub struct StepAdjustment_ {
         pub metric_interval_lower_bound: Option<f64>,
         pub metric_interval_upper_bound: Option<f64>,
-        pub scaling_adjustment: i64,
+        pub scaling_adjustment: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1772,7 +1829,7 @@ pub mod scalingpolicy {
         pub id: crate::value::ExpString,
         pub label: Option<crate::value::ExpString>,
         pub metric_stat: Option<Box<TargetTrackingMetricStat_>>,
-        pub period: Option<i64>,
+        pub period: Option<i32>,
         pub return_data: Option<crate::value::ExpBool>,
     }
     #[doc(hidden)]
@@ -1818,7 +1875,7 @@ pub mod scalingpolicy {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-targettrackingmetricstat.html
     pub struct TargetTrackingMetricStat_ {
         pub metric: Box<Metric_>,
-        pub period: Option<i64>,
+        pub period: Option<i32>,
         pub stat: crate::value::ExpString,
         pub unit: Option<crate::value::ExpString>,
     }
@@ -1892,12 +1949,15 @@ pub struct AutoScalingGroup_ {
         Option<super::autoscaling::autoscalinggroup::CapacityReservationSpecification_>,
     pub context: Option<crate::value::ExpString>,
     pub cooldown: Option<crate::value::ExpString>,
-    pub default_instance_warmup: Option<i64>,
+    pub default_instance_warmup: Option<i32>,
+    pub deletion_protection: Option<crate::value::ExpString>,
     pub desired_capacity: Option<crate::value::ExpString>,
     pub desired_capacity_type: Option<crate::value::ExpString>,
-    pub health_check_grace_period: Option<i64>,
+    pub health_check_grace_period: Option<i32>,
     pub health_check_type: Option<crate::value::ExpString>,
     pub instance_id: Option<crate::value::ExpString>,
+    pub instance_lifecycle_policy:
+        Option<super::autoscaling::autoscalinggroup::InstanceLifecyclePolicy_>,
     pub instance_maintenance_policy:
         Option<super::autoscaling::autoscalinggroup::InstanceMaintenancePolicy_>,
     pub launch_configuration_name: Option<crate::value::ExpString>,
@@ -1905,7 +1965,7 @@ pub struct AutoScalingGroup_ {
     pub lifecycle_hook_specification_list:
         Option<Vec<super::autoscaling::autoscalinggroup::LifecycleHookSpecification_>>,
     pub load_balancer_names: Option<Vec<crate::value::ExpString>>,
-    pub max_instance_lifetime: Option<i64>,
+    pub max_instance_lifetime: Option<i32>,
     pub max_size: crate::value::ExpString,
     pub metrics_collection: Option<Vec<super::autoscaling::autoscalinggroup::MetricsCollection_>>,
     pub min_size: crate::value::ExpString,
@@ -1997,6 +2057,12 @@ impl crate::template::ToResource for AutoScalingGroup_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.deletion_protection {
+            properties.insert(
+                "DeletionProtection".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.desired_capacity {
             properties.insert(
                 "DesiredCapacity".to_string(),
@@ -2024,6 +2090,12 @@ impl crate::template::ToResource for AutoScalingGroup_ {
         if let Some(ref value) = self.instance_id {
             properties.insert(
                 "InstanceId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.instance_lifecycle_policy {
+            properties.insert(
+                "InstanceLifecyclePolicy".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -2303,7 +2375,7 @@ impl crate::template::ToResource for LaunchConfiguration_ {
 pub struct LifecycleHook_ {
     pub auto_scaling_group_name: crate::value::ExpString,
     pub default_result: Option<crate::value::ExpString>,
-    pub heartbeat_timeout: Option<i64>,
+    pub heartbeat_timeout: Option<i32>,
     pub lifecycle_hook_name: Option<crate::value::ExpString>,
     pub lifecycle_transition: crate::value::ExpString,
     pub notification_metadata: Option<crate::value::ExpString>,
@@ -2382,13 +2454,13 @@ pub struct ScalingPolicy_ {
     pub adjustment_type: Option<crate::value::ExpString>,
     pub auto_scaling_group_name: crate::value::ExpString,
     pub cooldown: Option<crate::value::ExpString>,
-    pub estimated_instance_warmup: Option<i64>,
+    pub estimated_instance_warmup: Option<i32>,
     pub metric_aggregation_type: Option<crate::value::ExpString>,
-    pub min_adjustment_magnitude: Option<i64>,
+    pub min_adjustment_magnitude: Option<i32>,
     pub policy_type: Option<crate::value::ExpString>,
     pub predictive_scaling_configuration:
         Option<super::autoscaling::scalingpolicy::PredictiveScalingConfiguration_>,
-    pub scaling_adjustment: Option<i64>,
+    pub scaling_adjustment: Option<i32>,
     pub step_adjustments: Option<Vec<super::autoscaling::scalingpolicy::StepAdjustment_>>,
     pub target_tracking_configuration:
         Option<super::autoscaling::scalingpolicy::TargetTrackingConfiguration_>,
@@ -2483,10 +2555,10 @@ impl crate::template::ToResource for ScalingPolicy_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-scheduledaction.html
 pub struct ScheduledAction_ {
     pub auto_scaling_group_name: crate::value::ExpString,
-    pub desired_capacity: Option<i64>,
+    pub desired_capacity: Option<i32>,
     pub end_time: Option<crate::value::ExpString>,
-    pub max_size: Option<i64>,
-    pub min_size: Option<i64>,
+    pub max_size: Option<i32>,
+    pub min_size: Option<i32>,
     pub recurrence: Option<crate::value::ExpString>,
     pub start_time: Option<crate::value::ExpString>,
     pub time_zone: Option<crate::value::ExpString>,
@@ -2564,8 +2636,8 @@ impl crate::template::ToResource for ScheduledAction_ {
 pub struct WarmPool_ {
     pub auto_scaling_group_name: crate::value::ExpString,
     pub instance_reuse_policy: Option<super::autoscaling::warmpool::InstanceReusePolicy_>,
-    pub max_group_prepared_capacity: Option<i64>,
-    pub min_size: Option<i64>,
+    pub max_group_prepared_capacity: Option<i32>,
+    pub min_size: Option<i32>,
     pub pool_state: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]

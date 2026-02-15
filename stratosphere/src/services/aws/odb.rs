@@ -2,11 +2,11 @@ pub mod cloudautonomousvmcluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-cloudautonomousvmcluster-maintenancewindow.html
     pub struct MaintenanceWindow_ {
         pub days_of_week: Option<Vec<crate::value::ExpString>>,
-        pub hours_of_day: Option<Vec<i64>>,
-        pub lead_time_in_weeks: Option<i64>,
+        pub hours_of_day: Option<Vec<i32>>,
+        pub lead_time_in_weeks: Option<i32>,
         pub months: Option<Vec<crate::value::ExpString>>,
         pub preference: Option<crate::value::ExpString>,
-        pub weeks_of_month: Option<Vec<i64>>,
+        pub weeks_of_month: Option<Vec<i32>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -82,15 +82,15 @@ pub mod cloudexadatainfrastructure {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-odb-cloudexadatainfrastructure-maintenancewindow.html
     pub struct MaintenanceWindow_ {
-        pub custom_action_timeout_in_mins: Option<i64>,
+        pub custom_action_timeout_in_mins: Option<i32>,
         pub days_of_week: Option<Vec<crate::value::ExpString>>,
-        pub hours_of_day: Option<Vec<i64>>,
+        pub hours_of_day: Option<Vec<i32>>,
         pub is_custom_action_timeout_enabled: Option<crate::value::ExpBool>,
-        pub lead_time_in_weeks: Option<i64>,
+        pub lead_time_in_weeks: Option<i32>,
         pub months: Option<Vec<crate::value::ExpString>>,
         pub patching_mode: Option<crate::value::ExpString>,
         pub preference: Option<crate::value::ExpString>,
-        pub weeks_of_month: Option<Vec<i64>>,
+        pub weeks_of_month: Option<Vec<i32>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -203,15 +203,15 @@ pub mod cloudvmcluster {
     pub struct DbNode_ {
         pub backup_ip_id: Option<crate::value::ExpString>,
         pub backup_vnic2_id: Option<crate::value::ExpString>,
-        pub cpu_core_count: Option<i64>,
+        pub cpu_core_count: Option<i32>,
         pub db_node_arn: Option<crate::value::ExpString>,
         pub db_node_id: Option<crate::value::ExpString>,
-        pub db_node_storage_size_in_g_bs: Option<i64>,
+        pub db_node_storage_size_in_g_bs: Option<i32>,
         pub db_server_id: crate::value::ExpString,
         pub db_system_id: Option<crate::value::ExpString>,
         pub host_ip_id: Option<crate::value::ExpString>,
         pub hostname: Option<crate::value::ExpString>,
-        pub memory_size_in_g_bs: Option<i64>,
+        pub memory_size_in_g_bs: Option<i32>,
         pub ocid: Option<crate::value::ExpString>,
         pub status: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
@@ -519,20 +519,20 @@ pub mod odbnetwork {
 pub struct CloudAutonomousVmCluster_ {
     pub autonomous_data_storage_size_in_t_bs: Option<f64>,
     pub cloud_exadata_infrastructure_id: Option<crate::value::ExpString>,
-    pub cpu_core_count_per_node: Option<i64>,
+    pub cpu_core_count_per_node: Option<i32>,
     pub db_servers: Option<Vec<crate::value::ExpString>>,
     pub description: Option<crate::value::ExpString>,
     pub display_name: Option<crate::value::ExpString>,
     pub is_mtls_enabled_vm_cluster: Option<crate::value::ExpBool>,
     pub license_model: Option<crate::value::ExpString>,
     pub maintenance_window: Option<super::odb::cloudautonomousvmcluster::MaintenanceWindow_>,
-    pub memory_per_oracle_compute_unit_in_g_bs: Option<i64>,
+    pub memory_per_oracle_compute_unit_in_g_bs: Option<i32>,
     pub odb_network_id: Option<crate::value::ExpString>,
-    pub scan_listener_port_non_tls: Option<i64>,
-    pub scan_listener_port_tls: Option<i64>,
+    pub scan_listener_port_non_tls: Option<i32>,
+    pub scan_listener_port_tls: Option<i32>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub time_zone: Option<crate::value::ExpString>,
-    pub total_container_databases: Option<i64>,
+    pub total_container_databases: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -654,14 +654,14 @@ impl crate::template::ToResource for CloudAutonomousVmCluster_ {
 pub struct CloudExadataInfrastructure_ {
     pub availability_zone: Option<crate::value::ExpString>,
     pub availability_zone_id: Option<crate::value::ExpString>,
-    pub compute_count: Option<i64>,
+    pub compute_count: Option<i32>,
     pub customer_contacts_to_send_to_oci:
         Option<Vec<super::odb::cloudexadatainfrastructure::CustomerContact_>>,
     pub database_server_type: Option<crate::value::ExpString>,
     pub display_name: Option<crate::value::ExpString>,
     pub maintenance_window: Option<super::odb::cloudexadatainfrastructure::MaintenanceWindow_>,
     pub shape: Option<crate::value::ExpString>,
-    pub storage_count: Option<i64>,
+    pub storage_count: Option<i32>,
     pub storage_server_type: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -754,10 +754,10 @@ impl crate::template::ToResource for CloudExadataInfrastructure_ {
 pub struct CloudVmCluster_ {
     pub cloud_exadata_infrastructure_id: Option<crate::value::ExpString>,
     pub cluster_name: Option<crate::value::ExpString>,
-    pub cpu_core_count: Option<i64>,
+    pub cpu_core_count: Option<i32>,
     pub data_collection_options: Option<super::odb::cloudvmcluster::DataCollectionOptions_>,
     pub data_storage_size_in_t_bs: Option<f64>,
-    pub db_node_storage_size_in_g_bs: Option<i64>,
+    pub db_node_storage_size_in_g_bs: Option<i32>,
     pub db_nodes: Option<Vec<super::odb::cloudvmcluster::DbNode_>>,
     pub db_servers: Option<Vec<crate::value::ExpString>>,
     pub display_name: Option<crate::value::ExpString>,
@@ -766,9 +766,9 @@ pub struct CloudVmCluster_ {
     pub is_local_backup_enabled: Option<crate::value::ExpBool>,
     pub is_sparse_diskgroup_enabled: Option<crate::value::ExpBool>,
     pub license_model: Option<crate::value::ExpString>,
-    pub memory_size_in_g_bs: Option<i64>,
+    pub memory_size_in_g_bs: Option<i32>,
     pub odb_network_id: Option<crate::value::ExpString>,
-    pub scan_listener_port_tcp: Option<i64>,
+    pub scan_listener_port_tcp: Option<i32>,
     pub ssh_public_keys: Option<Vec<crate::value::ExpString>>,
     pub system_version: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1029,6 +1029,7 @@ impl crate::template::ToResource for OdbNetwork_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-odb-odbpeeringconnection.html
 pub struct OdbPeeringConnection_ {
+    pub additional_peer_network_cidrs: Option<Vec<crate::value::ExpString>>,
     pub display_name: Option<crate::value::ExpString>,
     pub odb_network_id: Option<crate::value::ExpString>,
     pub peer_network_id: Option<crate::value::ExpString>,
@@ -1054,6 +1055,12 @@ impl crate::template::ToResource for OdbPeeringConnection_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.additional_peer_network_cidrs {
+            properties.insert(
+                "AdditionalPeerNetworkCidrs".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.display_name {
             properties.insert(
                 "DisplayName".to_string(),

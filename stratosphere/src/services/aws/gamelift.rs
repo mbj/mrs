@@ -82,8 +82,8 @@ pub mod build {
 pub mod containerfleet {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-connectionportrange.html
     pub struct ConnectionPortRange_ {
-        pub from_port: i64,
-        pub to_port: i64,
+        pub from_port: i32,
+        pub to_port: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -111,7 +111,7 @@ pub mod containerfleet {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-deploymentconfiguration.html
     pub struct DeploymentConfiguration_ {
         pub impairment_strategy: Option<crate::value::ExpString>,
-        pub minimum_healthy_percentage: Option<i64>,
+        pub minimum_healthy_percentage: Option<i32>,
         pub protection_strategy: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -174,8 +174,8 @@ pub mod containerfleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-gamesessioncreationlimitpolicy.html
     pub struct GameSessionCreationLimitPolicy_ {
-        pub new_game_sessions_per_creator: Option<i64>,
-        pub policy_period_in_minutes: Option<i64>,
+        pub new_game_sessions_per_creator: Option<i32>,
+        pub policy_period_in_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -206,10 +206,10 @@ pub mod containerfleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-ippermission.html
     pub struct IpPermission_ {
-        pub from_port: i64,
+        pub from_port: i32,
         pub ip_range: crate::value::ExpString,
         pub protocol: crate::value::ExpString,
-        pub to_port: i64,
+        pub to_port: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -244,9 +244,10 @@ pub mod containerfleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-locationcapacity.html
     pub struct LocationCapacity_ {
-        pub desired_ec2_instances: i64,
-        pub max_size: i64,
-        pub min_size: i64,
+        pub desired_ec2_instances: Option<i32>,
+        pub managed_capacity_configuration: Option<Box<ManagedCapacityConfiguration_>>,
+        pub max_size: i32,
+        pub min_size: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -260,18 +261,28 @@ pub mod containerfleet {
     impl crate::value::ToValue for LocationCapacity_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            properties.insert(
-                "DesiredEC2Instances".to_string(),
-                crate::value::ToValue::to_value(&self.desired_ec2_instances),
-            );
+            if let Some(ref value) = self.desired_ec2_instances {
+                properties.insert(
+                    "DesiredEC2Instances".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.managed_capacity_configuration {
+                properties.insert(
+                    "ManagedCapacityConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "MaxSize".to_string(),
                 crate::value::ToValue::to_value(&self.max_size),
             );
-            properties.insert(
-                "MinSize".to_string(),
-                crate::value::ToValue::to_value(&self.min_size),
-            );
+            if let Some(ref value) = self.min_size {
+                properties.insert(
+                    "MinSize".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -351,14 +362,44 @@ pub mod containerfleet {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-managedcapacityconfiguration.html
+    pub struct ManagedCapacityConfiguration_ {
+        pub scale_in_after_inactivity_minutes: Option<i32>,
+        pub zero_capacity_strategy: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_gamelift_ContainerFleet_ManagedCapacityConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerFleet.ManagedCapacityConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_gamelift_ContainerFleet_ManagedCapacityConfiguration as ManagedCapacityConfiguration;
+    impl crate::value::ToValue for ManagedCapacityConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.scale_in_after_inactivity_minutes {
+                properties.insert(
+                    "ScaleInAfterInactivityMinutes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "ZeroCapacityStrategy".to_string(),
+                crate::value::ToValue::to_value(&self.zero_capacity_strategy),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-scalingpolicy.html
     pub struct ScalingPolicy_ {
         pub comparison_operator: Option<crate::value::ExpString>,
-        pub evaluation_periods: Option<i64>,
+        pub evaluation_periods: Option<i32>,
         pub metric_name: crate::value::ExpString,
         pub name: crate::value::ExpString,
         pub policy_type: Option<crate::value::ExpString>,
-        pub scaling_adjustment: Option<i64>,
+        pub scaling_adjustment: Option<i32>,
         pub scaling_adjustment_type: Option<crate::value::ExpString>,
         pub target_configuration: Option<Box<TargetConfiguration_>>,
         pub threshold: Option<f64>,
@@ -512,10 +553,10 @@ pub mod containergroupdefinition {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-containerhealthcheck.html
     pub struct ContainerHealthCheck_ {
         pub command: Vec<crate::value::ExpString>,
-        pub interval: Option<i64>,
-        pub retries: Option<i64>,
-        pub start_period: Option<i64>,
-        pub timeout: Option<i64>,
+        pub interval: Option<i32>,
+        pub retries: Option<i32>,
+        pub start_period: Option<i32>,
+        pub timeout: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -599,9 +640,9 @@ pub mod containergroupdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containergroupdefinition-containerportrange.html
     pub struct ContainerPortRange_ {
-        pub from_port: i64,
+        pub from_port: i32,
         pub protocol: crate::value::ExpString,
-        pub to_port: i64,
+        pub to_port: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -729,7 +770,7 @@ pub mod containergroupdefinition {
         pub essential: Option<crate::value::ExpBool>,
         pub health_check: Option<Box<ContainerHealthCheck_>>,
         pub image_uri: crate::value::ExpString,
-        pub memory_hard_limit_mebibytes: Option<i64>,
+        pub memory_hard_limit_mebibytes: Option<i32>,
         pub mount_points: Option<Vec<ContainerMountPoint_>>,
         pub port_configuration: Option<Box<PortConfiguration_>>,
         pub resolved_image_digest: Option<crate::value::ExpString>,
@@ -859,10 +900,10 @@ pub mod fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-ippermission.html
     pub struct IpPermission_ {
-        pub from_port: i64,
+        pub from_port: i32,
         pub ip_range: crate::value::ExpString,
         pub protocol: crate::value::ExpString,
-        pub to_port: i64,
+        pub to_port: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -897,9 +938,10 @@ pub mod fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-locationcapacity.html
     pub struct LocationCapacity_ {
-        pub desired_ec2_instances: i64,
-        pub max_size: i64,
-        pub min_size: i64,
+        pub desired_ec2_instances: Option<i32>,
+        pub managed_capacity_configuration: Option<Box<ManagedCapacityConfiguration_>>,
+        pub max_size: i32,
+        pub min_size: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -913,18 +955,28 @@ pub mod fleet {
     impl crate::value::ToValue for LocationCapacity_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            properties.insert(
-                "DesiredEC2Instances".to_string(),
-                crate::value::ToValue::to_value(&self.desired_ec2_instances),
-            );
+            if let Some(ref value) = self.desired_ec2_instances {
+                properties.insert(
+                    "DesiredEC2Instances".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.managed_capacity_configuration {
+                properties.insert(
+                    "ManagedCapacityConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "MaxSize".to_string(),
                 crate::value::ToValue::to_value(&self.max_size),
             );
-            properties.insert(
-                "MinSize".to_string(),
-                crate::value::ToValue::to_value(&self.min_size),
-            );
+            if let Some(ref value) = self.min_size {
+                properties.insert(
+                    "MinSize".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -958,10 +1010,40 @@ pub mod fleet {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-managedcapacityconfiguration.html
+    pub struct ManagedCapacityConfiguration_ {
+        pub scale_in_after_inactivity_minutes: Option<i32>,
+        pub zero_capacity_strategy: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_gamelift_Fleet_ManagedCapacityConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Fleet.ManagedCapacityConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_gamelift_Fleet_ManagedCapacityConfiguration as ManagedCapacityConfiguration;
+    impl crate::value::ToValue for ManagedCapacityConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.scale_in_after_inactivity_minutes {
+                properties.insert(
+                    "ScaleInAfterInactivityMinutes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "ZeroCapacityStrategy".to_string(),
+                crate::value::ToValue::to_value(&self.zero_capacity_strategy),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-resourcecreationlimitpolicy.html
     pub struct ResourceCreationLimitPolicy_ {
-        pub new_game_sessions_per_creator: Option<i64>,
-        pub policy_period_in_minutes: Option<i64>,
+        pub new_game_sessions_per_creator: Option<i32>,
+        pub policy_period_in_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -992,8 +1074,8 @@ pub mod fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-runtimeconfiguration.html
     pub struct RuntimeConfiguration_ {
-        pub game_session_activation_timeout_seconds: Option<i64>,
-        pub max_concurrent_game_session_activations: Option<i64>,
+        pub game_session_activation_timeout_seconds: Option<i32>,
+        pub max_concurrent_game_session_activations: Option<i32>,
         pub server_processes: Option<Vec<ServerProcess_>>,
     }
     #[doc(hidden)]
@@ -1032,12 +1114,12 @@ pub mod fleet {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html
     pub struct ScalingPolicy_ {
         pub comparison_operator: Option<crate::value::ExpString>,
-        pub evaluation_periods: Option<i64>,
+        pub evaluation_periods: Option<i32>,
         pub location: Option<crate::value::ExpString>,
         pub metric_name: crate::value::ExpString,
         pub name: crate::value::ExpString,
         pub policy_type: Option<crate::value::ExpString>,
-        pub scaling_adjustment: Option<i64>,
+        pub scaling_adjustment: Option<i32>,
         pub scaling_adjustment_type: Option<crate::value::ExpString>,
         pub status: Option<crate::value::ExpString>,
         pub target_configuration: Option<Box<TargetConfiguration_>>,
@@ -1126,7 +1208,7 @@ pub mod fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-serverprocess.html
     pub struct ServerProcess_ {
-        pub concurrent_executions: i64,
+        pub concurrent_executions: i32,
         pub launch_path: crate::value::ExpString,
         pub parameters: Option<crate::value::ExpString>,
     }
@@ -1360,8 +1442,8 @@ pub mod gamesessionqueue {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gamesessionqueue-playerlatencypolicy.html
     pub struct PlayerLatencyPolicy_ {
-        pub maximum_individual_player_latency_milliseconds: Option<i64>,
-        pub policy_duration_seconds: Option<i64>,
+        pub maximum_individual_player_latency_milliseconds: Option<i32>,
+        pub policy_duration_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1611,7 +1693,7 @@ pub struct ContainerFleet_ {
     pub description: Option<crate::value::ExpString>,
     pub fleet_role_arn: crate::value::ExpString,
     pub game_server_container_group_definition_name: Option<crate::value::ExpString>,
-    pub game_server_container_groups_per_instance: Option<i64>,
+    pub game_server_container_groups_per_instance: Option<i32>,
     pub game_session_creation_limit_policy:
         Option<super::gamelift::containerfleet::GameSessionCreationLimitPolicy_>,
     pub instance_connection_port_range:
@@ -1753,11 +1835,11 @@ pub struct ContainerGroupDefinition_ {
         Option<super::gamelift::containergroupdefinition::GameServerContainerDefinition_>,
     pub name: crate::value::ExpString,
     pub operating_system: crate::value::ExpString,
-    pub source_version_number: Option<i64>,
+    pub source_version_number: Option<i32>,
     pub support_container_definitions:
         Option<Vec<super::gamelift::containergroupdefinition::SupportContainerDefinition_>>,
     pub tags: Option<Vec<crate::Tag_>>,
-    pub total_memory_limit_mebibytes: i64,
+    pub total_memory_limit_mebibytes: i32,
     pub total_vcpu_limit: f64,
     pub version_description: Option<crate::value::ExpString>,
 }
@@ -2121,7 +2203,7 @@ pub struct GameSessionQueue_ {
         Option<Vec<super::gamelift::gamesessionqueue::PlayerLatencyPolicy_>>,
     pub priority_configuration: Option<super::gamelift::gamesessionqueue::PriorityConfiguration_>,
     pub tags: Option<Vec<crate::Tag_>>,
-    pub timeout_in_seconds: Option<i64>,
+    pub timeout_in_seconds: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -2233,8 +2315,8 @@ impl crate::template::ToResource for Location_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingconfiguration.html
 pub struct MatchmakingConfiguration_ {
     pub acceptance_required: crate::value::ExpBool,
-    pub acceptance_timeout_seconds: Option<i64>,
-    pub additional_player_count: Option<i64>,
+    pub acceptance_timeout_seconds: Option<i32>,
+    pub additional_player_count: Option<i32>,
     pub backfill_mode: Option<crate::value::ExpString>,
     pub creation_time: Option<crate::value::ExpString>,
     pub custom_event_data: Option<crate::value::ExpString>,
@@ -2245,7 +2327,7 @@ pub struct MatchmakingConfiguration_ {
     pub game_session_queue_arns: Option<Vec<crate::value::ExpString>>,
     pub name: crate::value::ExpString,
     pub notification_target: Option<crate::value::ExpString>,
-    pub request_timeout_seconds: i64,
+    pub request_timeout_seconds: i32,
     pub rule_set_arn: Option<crate::value::ExpString>,
     pub rule_set_name: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -2407,6 +2489,7 @@ impl crate::template::ToResource for MatchmakingRuleSet_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-script.html
 pub struct Script_ {
     pub name: Option<crate::value::ExpString>,
+    pub node_js_version: Option<crate::value::ExpString>,
     pub storage_location: super::gamelift::script::S3Location_,
     pub tags: Option<Vec<crate::Tag_>>,
     pub version: Option<crate::value::ExpString>,
@@ -2433,6 +2516,12 @@ impl crate::template::ToResource for Script_ {
         let mut properties = crate::template::ResourceProperties::new();
         if let Some(ref value) = self.name {
             properties.insert("Name".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.node_js_version {
+            properties.insert(
+                "NodeJsVersion".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         properties.insert(
             "StorageLocation".to_string(),

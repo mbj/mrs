@@ -153,14 +153,14 @@ pub struct Monitor_ {
     pub internet_measurements_log_delivery:
         Option<super::internetmonitor::monitor::InternetMeasurementsLogDelivery_>,
     pub linked_account_id: Option<crate::value::ExpString>,
-    pub max_city_networks_to_monitor: Option<i64>,
+    pub max_city_networks_to_monitor: Option<i32>,
     pub monitor_name: crate::value::ExpString,
     pub resources: Option<Vec<crate::value::ExpString>>,
     pub resources_to_add: Option<Vec<crate::value::ExpString>>,
     pub resources_to_remove: Option<Vec<crate::value::ExpString>>,
     pub status: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
-    pub traffic_percentage_to_monitor: Option<i64>,
+    pub traffic_percentage_to_monitor: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]

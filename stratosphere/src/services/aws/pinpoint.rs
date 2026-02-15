@@ -34,10 +34,10 @@ pub mod applicationsettings {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-applicationsettings-limits.html
     pub struct Limits_ {
-        pub daily: Option<i64>,
-        pub maximum_duration: Option<i64>,
-        pub messages_per_second: Option<i64>,
-        pub total: Option<i64>,
+        pub daily: Option<i32>,
+        pub maximum_duration: Option<i32>,
+        pub messages_per_second: Option<i32>,
+        pub total: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -386,7 +386,7 @@ pub mod campaign {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-defaultbuttonconfiguration.html
     pub struct DefaultButtonConfiguration_ {
         pub background_color: Option<crate::value::ExpString>,
-        pub border_radius: Option<i64>,
+        pub border_radius: Option<i32>,
         pub button_action: Option<crate::value::ExpString>,
         pub link: Option<crate::value::ExpString>,
         pub text: Option<crate::value::ExpString>,
@@ -650,11 +650,11 @@ pub mod campaign {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-limits.html
     pub struct Limits_ {
-        pub daily: Option<i64>,
-        pub maximum_duration: Option<i64>,
-        pub messages_per_second: Option<i64>,
-        pub session: Option<i64>,
-        pub total: Option<i64>,
+        pub daily: Option<i32>,
+        pub maximum_duration: Option<i32>,
+        pub messages_per_second: Option<i32>,
+        pub session: Option<i32>,
+        pub total: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -706,7 +706,7 @@ pub mod campaign {
         pub media_url: Option<crate::value::ExpString>,
         pub raw_content: Option<crate::value::ExpString>,
         pub silent_push: Option<crate::value::ExpBool>,
-        pub time_to_live: Option<i64>,
+        pub time_to_live: Option<i32>,
         pub title: Option<crate::value::ExpString>,
         pub url: Option<crate::value::ExpString>,
     }
@@ -1128,7 +1128,7 @@ pub mod campaign {
         pub custom_delivery_configuration: Option<Box<CustomDeliveryConfiguration_>>,
         pub message_configuration: Option<Box<MessageConfiguration_>>,
         pub schedule: Option<Box<Schedule_>>,
-        pub size_percent: Option<i64>,
+        pub size_percent: Option<i32>,
         pub template_configuration: Option<Box<TemplateConfiguration_>>,
         pub treatment_description: Option<crate::value::ExpString>,
         pub treatment_name: Option<crate::value::ExpString>,
@@ -1271,7 +1271,7 @@ pub mod inapptemplate {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-defaultbuttonconfiguration.html
     pub struct DefaultButtonConfiguration_ {
         pub background_color: Option<crate::value::ExpString>,
-        pub border_radius: Option<i64>,
+        pub border_radius: Option<i32>,
         pub button_action: Option<crate::value::ExpString>,
         pub link: Option<crate::value::ExpString>,
         pub text: Option<crate::value::ExpString>,
@@ -1981,7 +1981,7 @@ pub mod segment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-segment-segmentgroups-groups-sourcesegments.html
     pub struct SourceSegments_ {
         pub id: crate::value::ExpString,
-        pub version: Option<i64>,
+        pub version: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2537,15 +2537,15 @@ pub struct Campaign_ {
     pub custom_delivery_configuration:
         Option<super::pinpoint::campaign::CustomDeliveryConfiguration_>,
     pub description: Option<crate::value::ExpString>,
-    pub holdout_percent: Option<i64>,
+    pub holdout_percent: Option<i32>,
     pub is_paused: Option<crate::value::ExpBool>,
     pub limits: Option<super::pinpoint::campaign::Limits_>,
     pub message_configuration: Option<super::pinpoint::campaign::MessageConfiguration_>,
     pub name: crate::value::ExpString,
-    pub priority: Option<i64>,
+    pub priority: Option<i32>,
     pub schedule: super::pinpoint::campaign::Schedule_,
     pub segment_id: crate::value::ExpString,
-    pub segment_version: Option<i64>,
+    pub segment_version: Option<i32>,
     pub tags: Option<serde_json::Value>,
     pub template_configuration: Option<super::pinpoint::campaign::TemplateConfiguration_>,
     pub treatment_description: Option<crate::value::ExpString>,

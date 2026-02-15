@@ -39,10 +39,10 @@ pub mod channel {
 pub mod encoderconfiguration {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-encoderconfiguration-video.html
     pub struct Video_ {
-        pub bitrate: Option<i64>,
+        pub bitrate: Option<i32>,
         pub framerate: Option<f64>,
-        pub height: Option<i64>,
-        pub width: Option<i64>,
+        pub height: Option<i32>,
+        pub width: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -161,7 +161,7 @@ pub mod recordingconfiguration {
         pub recording_mode: Option<crate::value::ExpString>,
         pub resolution: Option<crate::value::ExpString>,
         pub storage: Option<Vec<crate::value::ExpString>>,
-        pub target_interval_seconds: Option<i64>,
+        pub target_interval_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -208,7 +208,7 @@ pub mod stage {
     pub struct AutoParticipantRecordingConfiguration_ {
         pub hls_configuration: Option<Box<HlsConfiguration_>>,
         pub media_types: Option<Vec<crate::value::ExpString>>,
-        pub recording_reconnect_window_seconds: Option<i64>,
+        pub recording_reconnect_window_seconds: Option<i32>,
         pub storage_configuration_arn: crate::value::ExpString,
         pub thumbnail_configuration: Option<Box<ThumbnailConfiguration_>>,
     }
@@ -283,7 +283,7 @@ pub mod stage {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-stage-participantrecordinghlsconfiguration.html
     pub struct ParticipantRecordingHlsConfiguration_ {
-        pub target_segment_duration_seconds: Option<i64>,
+        pub target_segment_duration_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -310,7 +310,7 @@ pub mod stage {
     pub struct ParticipantThumbnailConfiguration_ {
         pub recording_mode: Option<crate::value::ExpString>,
         pub storage: Option<Vec<crate::value::ExpString>>,
-        pub target_interval_seconds: Option<i64>,
+        pub target_interval_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -718,7 +718,7 @@ impl crate::template::ToResource for PublicKey_ {
 pub struct RecordingConfiguration_ {
     pub destination_configuration: super::ivs::recordingconfiguration::DestinationConfiguration_,
     pub name: Option<crate::value::ExpString>,
-    pub recording_reconnect_window_seconds: Option<i64>,
+    pub recording_reconnect_window_seconds: Option<i32>,
     pub rendition_configuration:
         Option<super::ivs::recordingconfiguration::RenditionConfiguration_>,
     pub tags: Option<Vec<crate::Tag_>>,

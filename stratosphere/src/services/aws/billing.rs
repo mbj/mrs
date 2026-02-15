@@ -3,6 +3,7 @@ pub mod billingview {
     pub struct DataFilterExpression_ {
         pub dimensions: Option<Box<Dimensions_>>,
         pub tags: Option<Box<Tags_>>,
+        pub time_range: Option<Box<TimeRange_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -24,6 +25,12 @@ pub mod billingview {
             }
             if let Some(ref value) = self.tags {
                 properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.time_range {
+                properties.insert(
+                    "TimeRange".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
             }
             properties.into()
         }
@@ -76,6 +83,38 @@ pub mod billingview {
             }
             if let Some(ref value) = self.values {
                 properties.insert("Values".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billing-billingview-timerange.html
+    pub struct TimeRange_ {
+        pub begin_date_inclusive: Option<crate::value::ExpString>,
+        pub end_date_inclusive: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_billing_BillingView_TimeRange {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Billing::BillingView.TimeRange"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_billing_BillingView_TimeRange as TimeRange;
+    impl crate::value::ToValue for TimeRange_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.begin_date_inclusive {
+                properties.insert(
+                    "BeginDateInclusive".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.end_date_inclusive {
+                properties.insert(
+                    "EndDateInclusive".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
             }
             properties.into()
         }

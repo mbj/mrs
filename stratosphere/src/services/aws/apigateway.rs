@@ -145,14 +145,14 @@ pub mod deployment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html
     pub struct MethodSetting_ {
         pub cache_data_encrypted: Option<crate::value::ExpBool>,
-        pub cache_ttl_in_seconds: Option<i64>,
+        pub cache_ttl_in_seconds: Option<i32>,
         pub caching_enabled: Option<crate::value::ExpBool>,
         pub data_trace_enabled: Option<crate::value::ExpBool>,
         pub http_method: Option<crate::value::ExpString>,
         pub logging_level: Option<crate::value::ExpString>,
         pub metrics_enabled: Option<crate::value::ExpBool>,
         pub resource_path: Option<crate::value::ExpString>,
-        pub throttling_burst_limit: Option<i64>,
+        pub throttling_burst_limit: Option<i32>,
         pub throttling_rate_limit: Option<f64>,
     }
     #[doc(hidden)]
@@ -236,7 +236,7 @@ pub mod deployment {
         pub cache_cluster_enabled: Option<crate::value::ExpBool>,
         pub cache_cluster_size: Option<crate::value::ExpString>,
         pub cache_data_encrypted: Option<crate::value::ExpBool>,
-        pub cache_ttl_in_seconds: Option<i64>,
+        pub cache_ttl_in_seconds: Option<i32>,
         pub caching_enabled: Option<crate::value::ExpBool>,
         pub canary_setting: Option<Box<CanarySetting_>>,
         pub client_certificate_id: Option<crate::value::ExpString>,
@@ -247,7 +247,7 @@ pub mod deployment {
         pub method_settings: Option<Vec<MethodSetting_>>,
         pub metrics_enabled: Option<crate::value::ExpBool>,
         pub tags: Option<Vec<crate::Tag_>>,
-        pub throttling_burst_limit: Option<i64>,
+        pub throttling_burst_limit: Option<i32>,
         pub throttling_rate_limit: Option<f64>,
         pub tracing_enabled: Option<crate::value::ExpBool>,
         pub variables: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -527,10 +527,12 @@ pub mod method {
         pub credentials: Option<crate::value::ExpString>,
         pub integration_http_method: Option<crate::value::ExpString>,
         pub integration_responses: Option<Vec<IntegrationResponse_>>,
+        pub integration_target: Option<crate::value::ExpString>,
         pub passthrough_behavior: Option<crate::value::ExpString>,
         pub request_parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub request_templates: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
-        pub timeout_in_millis: Option<i64>,
+        pub response_transfer_mode: Option<crate::value::ExpString>,
+        pub timeout_in_millis: Option<i32>,
         pub r#type: crate::value::ExpString,
         pub uri: Option<crate::value::ExpString>,
     }
@@ -594,6 +596,12 @@ pub mod method {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.integration_target {
+                properties.insert(
+                    "IntegrationTarget".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.passthrough_behavior {
                 properties.insert(
                     "PassthroughBehavior".to_string(),
@@ -609,6 +617,12 @@ pub mod method {
             if let Some(ref value) = self.request_templates {
                 properties.insert(
                     "RequestTemplates".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.response_transfer_mode {
+                properties.insert(
+                    "ResponseTransferMode".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -874,14 +888,14 @@ pub mod stage {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html
     pub struct MethodSetting_ {
         pub cache_data_encrypted: Option<crate::value::ExpBool>,
-        pub cache_ttl_in_seconds: Option<i64>,
+        pub cache_ttl_in_seconds: Option<i32>,
         pub caching_enabled: Option<crate::value::ExpBool>,
         pub data_trace_enabled: Option<crate::value::ExpBool>,
         pub http_method: Option<crate::value::ExpString>,
         pub logging_level: Option<crate::value::ExpString>,
         pub metrics_enabled: Option<crate::value::ExpBool>,
         pub resource_path: Option<crate::value::ExpString>,
-        pub throttling_burst_limit: Option<i64>,
+        pub throttling_burst_limit: Option<i32>,
         pub throttling_rate_limit: Option<f64>,
     }
     #[doc(hidden)]
@@ -996,8 +1010,8 @@ pub mod usageplan {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-quotasettings.html
     pub struct QuotaSettings_ {
-        pub limit: Option<i64>,
-        pub offset: Option<i64>,
+        pub limit: Option<i32>,
+        pub offset: Option<i32>,
         pub period: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1026,7 +1040,7 @@ pub mod usageplan {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-throttlesettings.html
     pub struct ThrottleSettings_ {
-        pub burst_limit: Option<i64>,
+        pub burst_limit: Option<i32>,
         pub rate_limit: Option<f64>,
     }
     #[doc(hidden)]
@@ -1167,7 +1181,7 @@ impl crate::template::ToResource for ApiKey_ {
 pub struct Authorizer_ {
     pub auth_type: Option<crate::value::ExpString>,
     pub authorizer_credentials: Option<crate::value::ExpString>,
-    pub authorizer_result_ttl_in_seconds: Option<i64>,
+    pub authorizer_result_ttl_in_seconds: Option<i32>,
     pub authorizer_uri: Option<crate::value::ExpString>,
     pub identity_source: Option<crate::value::ExpString>,
     pub identity_validation_expression: Option<crate::value::ExpString>,
@@ -1538,6 +1552,7 @@ impl crate::template::ToResource for DocumentationVersion_ {
 pub struct DomainName_ {
     pub certificate_arn: Option<crate::value::ExpString>,
     pub domain_name: Option<crate::value::ExpString>,
+    pub endpoint_access_mode: Option<crate::value::ExpString>,
     pub endpoint_configuration: Option<super::apigateway::domainname::EndpointConfiguration_>,
     pub mutual_tls_authentication: Option<super::apigateway::domainname::MutualTlsAuthentication_>,
     pub ownership_verification_certificate_arn: Option<crate::value::ExpString>,
@@ -1575,6 +1590,12 @@ impl crate::template::ToResource for DomainName_ {
         if let Some(ref value) = self.domain_name {
             properties.insert(
                 "DomainName".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.endpoint_access_mode {
+            properties.insert(
+                "EndpointAccessMode".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1671,6 +1692,7 @@ impl crate::template::ToResource for DomainNameAccessAssociation_ {
 pub struct DomainNameV2_ {
     pub certificate_arn: Option<crate::value::ExpString>,
     pub domain_name: Option<crate::value::ExpString>,
+    pub endpoint_access_mode: Option<crate::value::ExpString>,
     pub endpoint_configuration: Option<super::apigateway::domainnamev2::EndpointConfiguration_>,
     pub policy: Option<serde_json::Value>,
     pub routing_mode: Option<crate::value::ExpString>,
@@ -1706,6 +1728,12 @@ impl crate::template::ToResource for DomainNameV2_ {
         if let Some(ref value) = self.domain_name {
             properties.insert(
                 "DomainName".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.endpoint_access_mode {
+            properties.insert(
+                "EndpointAccessMode".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -2056,13 +2084,15 @@ pub struct RestApi_ {
     pub clone_from: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
     pub disable_execute_api_endpoint: Option<crate::value::ExpBool>,
+    pub endpoint_access_mode: Option<crate::value::ExpString>,
     pub endpoint_configuration: Option<super::apigateway::restapi::EndpointConfiguration_>,
     pub fail_on_warnings: Option<crate::value::ExpBool>,
-    pub minimum_compression_size: Option<i64>,
+    pub minimum_compression_size: Option<i32>,
     pub mode: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
     pub parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub policy: Option<serde_json::Value>,
+    pub security_policy: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -2124,6 +2154,12 @@ impl crate::template::ToResource for RestApi_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.endpoint_access_mode {
+            properties.insert(
+                "EndpointAccessMode".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.endpoint_configuration {
             properties.insert(
                 "EndpointConfiguration".to_string(),
@@ -2156,6 +2192,12 @@ impl crate::template::ToResource for RestApi_ {
         }
         if let Some(ref value) = self.policy {
             properties.insert("Policy".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.security_policy {
+            properties.insert(
+                "SecurityPolicy".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));

@@ -28,8 +28,8 @@ pub mod fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-acceleratorcountrange.html
     pub struct AcceleratorCountRange_ {
-        pub max: Option<i64>,
-        pub min: i64,
+        pub max: Option<i32>,
+        pub min: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -85,8 +85,8 @@ pub mod fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-acceleratortotalmemorymibrange.html
     pub struct AcceleratorTotalMemoryMiBRange_ {
-        pub max: Option<i64>,
-        pub min: i64,
+        pub max: Option<i32>,
+        pub min: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -227,9 +227,9 @@ pub mod fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-ec2ebsvolume.html
     pub struct Ec2EbsVolume_ {
-        pub iops: Option<i64>,
-        pub size_gi_b: Option<i64>,
-        pub throughput_mi_b: Option<i64>,
+        pub iops: Option<i32>,
+        pub size_gi_b: Option<i32>,
+        pub throughput_mi_b: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -388,7 +388,7 @@ pub mod fleet {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-hostconfiguration.html
     pub struct HostConfiguration_ {
         pub script_body: crate::value::ExpString,
-        pub script_timeout_seconds: Option<i64>,
+        pub script_timeout_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -417,8 +417,8 @@ pub mod fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-memorymibrange.html
     pub struct MemoryMiBRange_ {
-        pub max: Option<i64>,
-        pub min: i64,
+        pub max: Option<i32>,
+        pub min: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -589,8 +589,8 @@ pub mod fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-deadline-fleet-vcpucountrange.html
     pub struct VCpuCountRange_ {
-        pub max: Option<i64>,
-        pub min: i64,
+        pub max: Option<i32>,
+        pub min: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -851,8 +851,8 @@ pub struct Fleet_ {
     pub display_name: crate::value::ExpString,
     pub farm_id: crate::value::ExpString,
     pub host_configuration: Option<super::deadline::fleet::HostConfiguration_>,
-    pub max_worker_count: i64,
-    pub min_worker_count: Option<i64>,
+    pub max_worker_count: i32,
+    pub min_worker_count: Option<i32>,
     pub role_arn: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -971,7 +971,7 @@ pub struct Limit_ {
     pub description: Option<crate::value::ExpString>,
     pub display_name: crate::value::ExpString,
     pub farm_id: crate::value::ExpString,
-    pub max_count: i64,
+    pub max_count: i32,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -1200,7 +1200,7 @@ impl crate::template::ToResource for Queue_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-deadline-queueenvironment.html
 pub struct QueueEnvironment_ {
     pub farm_id: crate::value::ExpString,
-    pub priority: i64,
+    pub priority: i32,
     pub queue_id: crate::value::ExpString,
     pub template: crate::value::ExpString,
     pub template_type: crate::value::ExpString,

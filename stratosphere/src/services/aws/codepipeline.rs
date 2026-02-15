@@ -1,8 +1,8 @@
 pub mod customactiontype {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-artifactdetails.html
     pub struct ArtifactDetails_ {
-        pub maximum_count: i64,
-        pub minimum_count: i64,
+        pub maximum_count: i32,
+        pub minimum_count: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -144,8 +144,8 @@ pub mod pipeline {
         pub output_variables: Option<Vec<crate::value::ExpString>>,
         pub region: Option<crate::value::ExpString>,
         pub role_arn: Option<crate::value::ExpString>,
-        pub run_order: Option<i64>,
-        pub timeout_in_minutes: Option<i64>,
+        pub run_order: Option<i32>,
+        pub timeout_in_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1308,7 +1308,7 @@ pub struct Webhook_ {
     pub register_with_third_party: Option<crate::value::ExpBool>,
     pub target_action: crate::value::ExpString,
     pub target_pipeline: crate::value::ExpString,
-    pub target_pipeline_version: Option<i64>,
+    pub target_pipeline_version: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]

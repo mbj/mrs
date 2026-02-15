@@ -1,7 +1,7 @@
 pub mod loadbalancer {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-accessloggingpolicy.html
     pub struct AccessLoggingPolicy_ {
-        pub emit_interval: Option<i64>,
+        pub emit_interval: Option<i32>,
         pub enabled: crate::value::ExpBool,
         pub s3_bucket_name: crate::value::ExpString,
         pub s3_bucket_prefix: Option<crate::value::ExpString>,
@@ -72,7 +72,7 @@ pub mod loadbalancer {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-connectiondrainingpolicy.html
     pub struct ConnectionDrainingPolicy_ {
         pub enabled: crate::value::ExpBool,
-        pub timeout: Option<i64>,
+        pub timeout: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -101,7 +101,7 @@ pub mod loadbalancer {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-connectionsettings.html
     pub struct ConnectionSettings_ {
-        pub idle_timeout: i64,
+        pub idle_timeout: i32,
     }
     #[doc(hidden)]
     #[macro_export]

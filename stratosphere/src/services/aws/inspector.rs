@@ -42,7 +42,7 @@ impl crate::template::ToResource for AssessmentTarget_ {
 pub struct AssessmentTemplate_ {
     pub assessment_target_arn: crate::value::ExpString,
     pub assessment_template_name: Option<crate::value::ExpString>,
-    pub duration_in_seconds: i64,
+    pub duration_in_seconds: i32,
     pub rules_package_arns: Vec<crate::value::ExpString>,
     pub user_attributes_for_findings: Option<Vec<crate::Tag_>>,
 }

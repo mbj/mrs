@@ -252,12 +252,12 @@ pub mod filter {
         pub equals: Option<Vec<crate::value::ExpString>>,
         pub greater_than: Option<i64>,
         pub greater_than_or_equal: Option<i64>,
-        pub gt: Option<i64>,
-        pub gte: Option<i64>,
+        pub gt: Option<i32>,
+        pub gte: Option<i32>,
         pub less_than: Option<i64>,
         pub less_than_or_equal: Option<i64>,
-        pub lt: Option<i64>,
-        pub lte: Option<i64>,
+        pub lt: Option<i32>,
+        pub lte: Option<i32>,
         pub neq: Option<Vec<crate::value::ExpString>>,
         pub not_equals: Option<Vec<crate::value::ExpString>>,
     }
@@ -787,7 +787,7 @@ pub struct Filter_ {
     pub detector_id: crate::value::ExpString,
     pub finding_criteria: super::guardduty::filter::FindingCriteria_,
     pub name: crate::value::ExpString,
-    pub rank: Option<i64>,
+    pub rank: Option<i32>,
     pub tags: Option<Vec<super::guardduty::filter::TagItem_>>,
 }
 #[doc(hidden)]

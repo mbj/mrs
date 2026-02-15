@@ -334,7 +334,7 @@ pub mod maintenancewindowtask {
         pub output_s3_key_prefix: Option<crate::value::ExpString>,
         pub parameters: Option<serde_json::Value>,
         pub service_role_arn: Option<crate::value::ExpString>,
-        pub timeout_seconds: Option<i64>,
+        pub timeout_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -648,7 +648,7 @@ pub mod patchbaseline {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rule.html
     pub struct Rule_ {
-        pub approve_after_days: Option<i64>,
+        pub approve_after_days: Option<i32>,
         pub approve_until_date: Option<crate::value::ExpString>,
         pub compliance_level: Option<crate::value::ExpString>,
         pub enable_non_security: Option<crate::value::ExpBool>,
@@ -861,10 +861,10 @@ pub struct Association_ {
     pub output_location: Option<super::ssm::association::InstanceAssociationOutputLocation_>,
     pub parameters: Option<serde_json::Value>,
     pub schedule_expression: Option<crate::value::ExpString>,
-    pub schedule_offset: Option<i64>,
+    pub schedule_offset: Option<i32>,
     pub sync_compliance: Option<crate::value::ExpString>,
     pub targets: Option<Vec<super::ssm::association::Target_>>,
-    pub wait_for_success_timeout_seconds: Option<i64>,
+    pub wait_for_success_timeout_seconds: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -1080,13 +1080,13 @@ impl crate::template::ToResource for Document_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindow.html
 pub struct MaintenanceWindow_ {
     pub allow_unassociated_targets: crate::value::ExpBool,
-    pub cutoff: i64,
+    pub cutoff: i32,
     pub description: Option<crate::value::ExpString>,
-    pub duration: i64,
+    pub duration: i32,
     pub end_date: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
     pub schedule: crate::value::ExpString,
-    pub schedule_offset: Option<i64>,
+    pub schedule_offset: Option<i32>,
     pub schedule_timezone: Option<crate::value::ExpString>,
     pub start_date: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1234,7 +1234,7 @@ pub struct MaintenanceWindowTask_ {
     pub max_concurrency: Option<crate::value::ExpString>,
     pub max_errors: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
-    pub priority: i64,
+    pub priority: i32,
     pub service_role_arn: Option<crate::value::ExpString>,
     pub targets: Option<Vec<super::ssm::maintenancewindowtask::Target_>>,
     pub task_arn: crate::value::ExpString,

@@ -1,4 +1,32 @@
 pub mod rotationschedule {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-externalsecretrotationmetadataitem.html
+    pub struct ExternalSecretRotationMetadataItem_ {
+        pub key: crate::value::ExpString,
+        pub value: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_secretsmanager_RotationSchedule_ExternalSecretRotationMetadataItem {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SecretsManager::RotationSchedule.ExternalSecretRotationMetadataItem"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_secretsmanager_RotationSchedule_ExternalSecretRotationMetadataItem as ExternalSecretRotationMetadataItem;
+    impl crate::value::ToValue for ExternalSecretRotationMetadataItem_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Key".to_string(),
+                crate::value::ToValue::to_value(&self.key),
+            );
+            properties.insert(
+                "Value".to_string(),
+                crate::value::ToValue::to_value(&self.value),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-hostedrotationlambda.html
     pub struct HostedRotationLambda_ {
         pub exclude_characters: Option<crate::value::ExpString>,
@@ -94,7 +122,7 @@ pub mod rotationschedule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-rotationrules.html
     pub struct RotationRules_ {
-        pub automatically_after_days: Option<i64>,
+        pub automatically_after_days: Option<i32>,
         pub duration: Option<crate::value::ExpString>,
         pub schedule_expression: Option<crate::value::ExpString>,
     }
@@ -142,7 +170,7 @@ pub mod secret {
         pub exclude_uppercase: Option<crate::value::ExpBool>,
         pub generate_string_key: Option<crate::value::ExpString>,
         pub include_space: Option<crate::value::ExpBool>,
-        pub password_length: Option<i64>,
+        pub password_length: Option<i32>,
         pub require_each_included_type: Option<crate::value::ExpBool>,
         pub secret_string_template: Option<crate::value::ExpString>,
     }
@@ -297,6 +325,9 @@ impl crate::template::ToResource for ResourcePolicy_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-rotationschedule.html
 pub struct RotationSchedule_ {
+    pub external_secret_rotation_metadata:
+        Option<Vec<super::secretsmanager::rotationschedule::ExternalSecretRotationMetadataItem_>>,
+    pub external_secret_rotation_role_arn: Option<crate::value::ExpString>,
     pub hosted_rotation_lambda:
         Option<super::secretsmanager::rotationschedule::HostedRotationLambda_>,
     pub rotate_immediately_on_update: Option<crate::value::ExpBool>,
@@ -324,6 +355,18 @@ impl crate::template::ToResource for RotationSchedule_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.external_secret_rotation_metadata {
+            properties.insert(
+                "ExternalSecretRotationMetadata".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.external_secret_rotation_role_arn {
+            properties.insert(
+                "ExternalSecretRotationRoleArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.hosted_rotation_lambda {
             properties.insert(
                 "HostedRotationLambda".to_string(),
@@ -364,6 +407,7 @@ pub struct Secret_ {
     pub replica_regions: Option<Vec<super::secretsmanager::secret::ReplicaRegion_>>,
     pub secret_string: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
+    pub r#type: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -420,6 +464,9 @@ impl crate::template::ToResource for Secret_ {
         }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.r#type {
+            properties.insert("Type".to_string(), crate::value::ToValue::to_value(value));
         }
         properties
     }

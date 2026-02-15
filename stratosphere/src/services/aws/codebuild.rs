@@ -1,11 +1,11 @@
 pub mod fleet {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-fleet-computeconfiguration.html
     pub struct ComputeConfiguration_ {
-        pub disk: Option<i64>,
+        pub disk: Option<i32>,
         pub instance_type: Option<crate::value::ExpString>,
         pub machine_type: Option<crate::value::ExpString>,
-        pub memory: Option<i64>,
-        pub v_cpu: Option<i64>,
+        pub memory: Option<i32>,
+        pub v_cpu: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -110,7 +110,7 @@ pub mod fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-fleet-scalingconfigurationinput.html
     pub struct ScalingConfigurationInput_ {
-        pub max_capacity: Option<i64>,
+        pub max_capacity: Option<i32>,
         pub scaling_type: Option<crate::value::ExpString>,
         pub target_tracking_scaling_configs: Option<Vec<TargetTrackingScalingConfiguration_>>,
     }
@@ -293,7 +293,7 @@ pub mod project {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-batchrestrictions.html
     pub struct BatchRestrictions_ {
         pub compute_types_allowed: Option<Vec<crate::value::ExpString>>,
-        pub maximum_builds_allowed: Option<i64>,
+        pub maximum_builds_allowed: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -606,7 +606,7 @@ pub mod project {
         pub combine_artifacts: Option<crate::value::ExpBool>,
         pub restrictions: Option<Box<BatchRestrictions_>>,
         pub service_role: Option<crate::value::ExpString>,
-        pub timeout_in_mins: Option<i64>,
+        pub timeout_in_mins: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -978,7 +978,7 @@ pub mod project {
         pub auth: Option<Box<SourceAuth_>>,
         pub build_spec: Option<crate::value::ExpString>,
         pub build_status_config: Option<Box<BuildStatusConfig_>>,
-        pub git_clone_depth: Option<i64>,
+        pub git_clone_depth: Option<i32>,
         pub git_submodules_config: Option<Box<GitSubmodulesConfig_>>,
         pub insecure_ssl: Option<crate::value::ExpBool>,
         pub location: Option<crate::value::ExpString>,
@@ -1247,7 +1247,7 @@ pub mod reportgroup {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-fleet.html
 pub struct Fleet_ {
-    pub base_capacity: Option<i64>,
+    pub base_capacity: Option<i32>,
     pub compute_configuration: Option<super::codebuild::fleet::ComputeConfiguration_>,
     pub compute_type: Option<crate::value::ExpString>,
     pub environment_type: Option<crate::value::ExpString>,
@@ -1352,18 +1352,18 @@ impl crate::template::ToResource for Fleet_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html
 pub struct Project_ {
     pub artifacts: super::codebuild::project::Artifacts_,
-    pub auto_retry_limit: Option<i64>,
+    pub auto_retry_limit: Option<i32>,
     pub badge_enabled: Option<crate::value::ExpBool>,
     pub build_batch_config: Option<super::codebuild::project::ProjectBuildBatchConfig_>,
     pub cache: Option<super::codebuild::project::ProjectCache_>,
-    pub concurrent_build_limit: Option<i64>,
+    pub concurrent_build_limit: Option<i32>,
     pub description: Option<crate::value::ExpString>,
     pub encryption_key: Option<crate::value::ExpString>,
     pub environment: super::codebuild::project::Environment_,
     pub file_system_locations: Option<Vec<super::codebuild::project::ProjectFileSystemLocation_>>,
     pub logs_config: Option<super::codebuild::project::LogsConfig_>,
     pub name: Option<crate::value::ExpString>,
-    pub queued_timeout_in_minutes: Option<i64>,
+    pub queued_timeout_in_minutes: Option<i32>,
     pub resource_access_role: Option<crate::value::ExpString>,
     pub secondary_artifacts: Option<Vec<super::codebuild::project::Artifacts_>>,
     pub secondary_source_versions: Option<Vec<super::codebuild::project::ProjectSourceVersion_>>,
@@ -1372,7 +1372,7 @@ pub struct Project_ {
     pub source: super::codebuild::project::Source_,
     pub source_version: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
-    pub timeout_in_minutes: Option<i64>,
+    pub timeout_in_minutes: Option<i32>,
     pub triggers: Option<super::codebuild::project::ProjectTriggers_>,
     pub visibility: Option<crate::value::ExpString>,
     pub vpc_config: Option<super::codebuild::project::VpcConfig_>,

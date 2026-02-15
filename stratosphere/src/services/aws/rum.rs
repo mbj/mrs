@@ -303,6 +303,7 @@ pub struct AppMonitor_ {
     pub domain: Option<crate::value::ExpString>,
     pub domain_list: Option<Vec<crate::value::ExpString>>,
     pub name: crate::value::ExpString,
+    pub platform: Option<crate::value::ExpString>,
     pub resource_policy: Option<super::rum::appmonitor::ResourcePolicy_>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -363,6 +364,12 @@ impl crate::template::ToResource for AppMonitor_ {
             "Name".to_string(),
             crate::value::ToValue::to_value(&self.name),
         );
+        if let Some(ref value) = self.platform {
+            properties.insert(
+                "Platform".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.resource_policy {
             properties.insert(
                 "ResourcePolicy".to_string(),

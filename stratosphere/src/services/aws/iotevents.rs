@@ -1454,7 +1454,7 @@ pub mod detectormodel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotevents-detectormodel-settimer.html
     pub struct SetTimer_ {
         pub duration_expression: Option<crate::value::ExpString>,
-        pub seconds: Option<i64>,
+        pub seconds: Option<i32>,
         pub timer_name: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -1722,7 +1722,7 @@ pub struct AlarmModel_ {
     pub alarm_rule: super::iotevents::alarmmodel::AlarmRule_,
     pub key: Option<crate::value::ExpString>,
     pub role_arn: crate::value::ExpString,
-    pub severity: Option<i64>,
+    pub severity: Option<i32>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]

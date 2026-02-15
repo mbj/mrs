@@ -1,3 +1,31 @@
+pub mod domainverification {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-domainverification-txtmethodconfig.html
+    pub struct TxtMethodConfig_ {
+        pub name: Option<crate::value::ExpString>,
+        pub value: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_vpclattice_DomainVerification_TxtMethodConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::DomainVerification.TxtMethodConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_vpclattice_DomainVerification_TxtMethodConfig as TxtMethodConfig;
+    impl crate::value::ToValue for TxtMethodConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.name {
+                properties.insert("name".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.value {
+                properties.insert("value".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+}
 pub mod listener {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-listener-defaultaction.html
     pub struct DefaultAction_ {
@@ -33,7 +61,7 @@ pub mod listener {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-listener-fixedresponse.html
     pub struct FixedResponse_ {
-        pub status_code: i64,
+        pub status_code: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -80,7 +108,7 @@ pub mod listener {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-listener-weightedtargetgroup.html
     pub struct WeightedTargetGroup_ {
         pub target_group_identifier: crate::value::ExpString,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -209,7 +237,7 @@ pub mod rule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-fixedresponse.html
     pub struct FixedResponse_ {
-        pub status_code: i64,
+        pub status_code: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -439,7 +467,7 @@ pub mod rule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-weightedtargetgroup.html
     pub struct WeightedTargetGroup_ {
         pub target_group_identifier: crate::value::ExpString,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -557,19 +585,53 @@ pub mod servicenetworkserviceassociation {
         }
     }
 }
+pub mod servicenetworkvpcassociation {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-servicenetworkvpcassociation-dnsoptions.html
+    pub struct DnsOptions_ {
+        pub private_dns_preference: Option<crate::value::ExpString>,
+        pub private_dns_specified_domains: Option<Vec<crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_vpclattice_ServiceNetworkVpcAssociation_DnsOptions {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::VpcLattice::ServiceNetworkVpcAssociation.DnsOptions"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_vpclattice_ServiceNetworkVpcAssociation_DnsOptions as DnsOptions;
+    impl crate::value::ToValue for DnsOptions_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.private_dns_preference {
+                properties.insert(
+                    "PrivateDnsPreference".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.private_dns_specified_domains {
+                properties.insert(
+                    "PrivateDnsSpecifiedDomains".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
 pub mod targetgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-targetgroup-healthcheckconfig.html
     pub struct HealthCheckConfig_ {
         pub enabled: Option<crate::value::ExpBool>,
-        pub health_check_interval_seconds: Option<i64>,
-        pub health_check_timeout_seconds: Option<i64>,
-        pub healthy_threshold_count: Option<i64>,
+        pub health_check_interval_seconds: Option<i32>,
+        pub health_check_timeout_seconds: Option<i32>,
+        pub healthy_threshold_count: Option<i32>,
         pub matcher: Option<Box<Matcher_>>,
         pub path: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub protocol: Option<crate::value::ExpString>,
         pub protocol_version: Option<crate::value::ExpString>,
-        pub unhealthy_threshold_count: Option<i64>,
+        pub unhealthy_threshold_count: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -666,7 +728,7 @@ pub mod targetgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-targetgroup-target.html
     pub struct Target_ {
         pub id: crate::value::ExpString,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -692,7 +754,7 @@ pub mod targetgroup {
         pub health_check: Option<Box<HealthCheckConfig_>>,
         pub ip_address_type: Option<crate::value::ExpString>,
         pub lambda_event_structure_version: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub protocol: Option<crate::value::ExpString>,
         pub protocol_version: Option<crate::value::ExpString>,
         pub vpc_identifier: Option<crate::value::ExpString>,
@@ -837,11 +899,46 @@ impl crate::template::ToResource for AuthPolicy_ {
         properties
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-domainverification.html
+pub struct DomainVerification_ {
+    pub domain_name: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_vpclattice_DomainVerification {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::VpcLattice::DomainVerification"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_vpclattice_DomainVerification as DomainVerification;
+impl crate::template::ToResource for DomainVerification_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("VpcLattice"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("DomainVerification"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "DomainName".to_string(),
+            crate::value::ToValue::to_value(&self.domain_name),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-listener.html
 pub struct Listener_ {
     pub default_action: super::vpclattice::listener::DefaultAction_,
     pub name: Option<crate::value::ExpString>,
-    pub port: Option<i64>,
+    pub port: Option<i32>,
     pub protocol: crate::value::ExpString,
     pub service_identifier: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -895,6 +992,9 @@ impl crate::template::ToResource for Listener_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-resourceconfiguration.html
 pub struct ResourceConfiguration_ {
     pub allow_association_to_sharable_service_network: Option<crate::value::ExpBool>,
+    pub custom_domain_name: Option<crate::value::ExpString>,
+    pub domain_verification_id: Option<crate::value::ExpString>,
+    pub group_domain: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
     pub port_ranges: Option<Vec<crate::value::ExpString>>,
     pub protocol_type: Option<crate::value::ExpString>,
@@ -929,6 +1029,24 @@ impl crate::template::ToResource for ResourceConfiguration_ {
         if let Some(ref value) = self.allow_association_to_sharable_service_network {
             properties.insert(
                 "AllowAssociationToSharableServiceNetwork".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.custom_domain_name {
+            properties.insert(
+                "CustomDomainName".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.domain_verification_id {
+            properties.insert(
+                "DomainVerificationId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.group_domain {
+            properties.insert(
+                "GroupDomain".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -985,6 +1103,7 @@ impl crate::template::ToResource for ResourceConfiguration_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-resourcegateway.html
 pub struct ResourceGateway_ {
     pub ip_address_type: Option<crate::value::ExpString>,
+    pub ipv4_addresses_per_eni: Option<i32>,
     pub name: crate::value::ExpString,
     pub security_group_ids: Option<Vec<crate::value::ExpString>>,
     pub subnet_ids: Vec<crate::value::ExpString>,
@@ -1014,6 +1133,12 @@ impl crate::template::ToResource for ResourceGateway_ {
         if let Some(ref value) = self.ip_address_type {
             properties.insert(
                 "IpAddressType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.ipv4_addresses_per_eni {
+            properties.insert(
+                "Ipv4AddressesPerEni".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1083,7 +1208,7 @@ pub struct Rule_ {
     pub listener_identifier: Option<crate::value::ExpString>,
     pub r#match: super::vpclattice::rule::Match_,
     pub name: Option<crate::value::ExpString>,
-    pub priority: i64,
+    pub priority: i32,
     pub service_identifier: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -1252,6 +1377,7 @@ impl crate::template::ToResource for ServiceNetwork_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-servicenetworkresourceassociation.html
 pub struct ServiceNetworkResourceAssociation_ {
+    pub private_dns_enabled: Option<crate::value::ExpBool>,
     pub resource_configuration_id: Option<crate::value::ExpString>,
     pub service_network_id: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1278,6 +1404,12 @@ impl crate::template::ToResource for ServiceNetworkResourceAssociation_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.private_dns_enabled {
+            properties.insert(
+                "PrivateDnsEnabled".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.resource_configuration_id {
             properties.insert(
                 "ResourceConfigurationId".to_string(),
@@ -1351,6 +1483,8 @@ impl crate::template::ToResource for ServiceNetworkServiceAssociation_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-vpclattice-servicenetworkvpcassociation.html
 pub struct ServiceNetworkVpcAssociation_ {
+    pub dns_options: Option<super::vpclattice::servicenetworkvpcassociation::DnsOptions_>,
+    pub private_dns_enabled: Option<crate::value::ExpBool>,
     pub security_group_ids: Option<Vec<crate::value::ExpString>>,
     pub service_network_identifier: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1378,6 +1512,18 @@ impl crate::template::ToResource for ServiceNetworkVpcAssociation_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.dns_options {
+            properties.insert(
+                "DnsOptions".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.private_dns_enabled {
+            properties.insert(
+                "PrivateDnsEnabled".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.security_group_ids {
             properties.insert(
                 "SecurityGroupIds".to_string(),

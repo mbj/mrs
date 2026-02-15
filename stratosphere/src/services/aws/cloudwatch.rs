@@ -73,7 +73,7 @@ pub mod alarm {
         pub id: crate::value::ExpString,
         pub label: Option<crate::value::ExpString>,
         pub metric_stat: Option<Box<MetricStat_>>,
-        pub period: Option<i64>,
+        pub period: Option<i32>,
         pub return_data: Option<crate::value::ExpBool>,
     }
     #[doc(hidden)]
@@ -125,7 +125,7 @@ pub mod alarm {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-alarm-metricstat.html
     pub struct MetricStat_ {
         pub metric: Box<Metric_>,
-        pub period: i64,
+        pub period: i32,
         pub stat: crate::value::ExpString,
         pub unit: Option<crate::value::ExpString>,
     }
@@ -304,7 +304,7 @@ pub mod anomalydetector {
         pub id: crate::value::ExpString,
         pub label: Option<crate::value::ExpString>,
         pub metric_stat: Option<Box<MetricStat_>>,
-        pub period: Option<i64>,
+        pub period: Option<i32>,
         pub return_data: Option<crate::value::ExpBool>,
     }
     #[doc(hidden)]
@@ -381,7 +381,7 @@ pub mod anomalydetector {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-anomalydetector-metricstat.html
     pub struct MetricStat_ {
         pub metric: Box<Metric_>,
-        pub period: i64,
+        pub period: i32,
         pub stat: crate::value::ExpString,
         pub unit: Option<crate::value::ExpString>,
     }
@@ -607,17 +607,17 @@ pub struct Alarm_ {
     pub alarm_description: Option<crate::value::ExpString>,
     pub alarm_name: Option<crate::value::ExpString>,
     pub comparison_operator: crate::value::ExpString,
-    pub datapoints_to_alarm: Option<i64>,
+    pub datapoints_to_alarm: Option<i32>,
     pub dimensions: Option<Vec<super::cloudwatch::alarm::Dimension_>>,
     pub evaluate_low_sample_count_percentile: Option<crate::value::ExpString>,
-    pub evaluation_periods: i64,
+    pub evaluation_periods: i32,
     pub extended_statistic: Option<crate::value::ExpString>,
     pub insufficient_data_actions: Option<Vec<crate::value::ExpString>>,
     pub metric_name: Option<crate::value::ExpString>,
     pub metrics: Option<Vec<super::cloudwatch::alarm::MetricDataQuery_>>,
     pub namespace: Option<crate::value::ExpString>,
     pub ok_actions: Option<Vec<crate::value::ExpString>>,
-    pub period: Option<i64>,
+    pub period: Option<i32>,
     pub statistic: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub threshold: Option<f64>,
@@ -852,8 +852,8 @@ impl crate::template::ToResource for AnomalyDetector_ {
 pub struct CompositeAlarm_ {
     pub actions_enabled: Option<crate::value::ExpBool>,
     pub actions_suppressor: Option<crate::value::ExpString>,
-    pub actions_suppressor_extension_period: Option<i64>,
-    pub actions_suppressor_wait_period: Option<i64>,
+    pub actions_suppressor_extension_period: Option<i32>,
+    pub actions_suppressor_wait_period: Option<i32>,
     pub alarm_actions: Option<Vec<crate::value::ExpString>>,
     pub alarm_description: Option<crate::value::ExpString>,
     pub alarm_name: Option<crate::value::ExpString>,

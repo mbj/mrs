@@ -70,6 +70,81 @@ pub mod workgroup {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-classification.html
+    pub struct Classification_ {
+        pub name: Option<crate::value::ExpString>,
+        pub properties: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_athena_WorkGroup_Classification {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Athena::WorkGroup.Classification"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_athena_WorkGroup_Classification as Classification;
+    impl crate::value::ToValue for Classification_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.name {
+                properties.insert("Name".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.properties {
+                properties.insert(
+                    "Properties".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-cloudwatchloggingconfiguration.html
+    pub struct CloudWatchLoggingConfiguration_ {
+        pub enabled: Option<crate::value::ExpBool>,
+        pub log_group: Option<crate::value::ExpString>,
+        pub log_stream_name_prefix: Option<crate::value::ExpString>,
+        pub log_types: Option<serde_json::Value>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_athena_WorkGroup_CloudWatchLoggingConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Athena::WorkGroup.CloudWatchLoggingConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_athena_WorkGroup_CloudWatchLoggingConfiguration as CloudWatchLoggingConfiguration;
+    impl crate::value::ToValue for CloudWatchLoggingConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.enabled {
+                properties.insert(
+                    "Enabled".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.log_group {
+                properties.insert(
+                    "LogGroup".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.log_stream_name_prefix {
+                properties.insert(
+                    "LogStreamNamePrefix".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.log_types {
+                properties.insert(
+                    "LogTypes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-customercontentencryptionconfiguration.html
     pub struct CustomerContentEncryptionConfiguration_ {
         pub kms_key: crate::value::ExpString,
@@ -120,6 +195,66 @@ pub mod workgroup {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-engineconfiguration.html
+    pub struct EngineConfiguration_ {
+        pub additional_configs: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+        pub classifications: Option<Vec<Classification_>>,
+        pub coordinator_dpu_size: Option<i32>,
+        pub default_executor_dpu_size: Option<i32>,
+        pub max_concurrent_dpus: Option<i32>,
+        pub spark_properties: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_athena_WorkGroup_EngineConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Athena::WorkGroup.EngineConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_athena_WorkGroup_EngineConfiguration as EngineConfiguration;
+    impl crate::value::ToValue for EngineConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.additional_configs {
+                properties.insert(
+                    "AdditionalConfigs".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.classifications {
+                properties.insert(
+                    "Classifications".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.coordinator_dpu_size {
+                properties.insert(
+                    "CoordinatorDpuSize".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.default_executor_dpu_size {
+                properties.insert(
+                    "DefaultExecutorDpuSize".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.max_concurrent_dpus {
+                properties.insert(
+                    "MaxConcurrentDpus".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.spark_properties {
+                properties.insert(
+                    "SparkProperties".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-engineversion.html
     pub struct EngineVersion_ {
         pub effective_engine_version: Option<crate::value::ExpString>,
@@ -148,6 +283,35 @@ pub mod workgroup {
                     "SelectedEngineVersion".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-managedloggingconfiguration.html
+    pub struct ManagedLoggingConfiguration_ {
+        pub enabled: Option<crate::value::ExpBool>,
+        pub kms_key: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_athena_WorkGroup_ManagedLoggingConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Athena::WorkGroup.ManagedLoggingConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_athena_WorkGroup_ManagedLoggingConfiguration as ManagedLoggingConfiguration;
+    impl crate::value::ToValue for ManagedLoggingConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.enabled {
+                properties.insert(
+                    "Enabled".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.kms_key {
+                properties.insert("KmsKey".to_string(), crate::value::ToValue::to_value(value));
             }
             properties.into()
         }
@@ -206,6 +370,45 @@ pub mod workgroup {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-monitoringconfiguration.html
+    pub struct MonitoringConfiguration_ {
+        pub cloud_watch_logging_configuration: Option<Box<CloudWatchLoggingConfiguration_>>,
+        pub managed_logging_configuration: Option<Box<ManagedLoggingConfiguration_>>,
+        pub s3_logging_configuration: Option<Box<S3LoggingConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_athena_WorkGroup_MonitoringConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Athena::WorkGroup.MonitoringConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_athena_WorkGroup_MonitoringConfiguration as MonitoringConfiguration;
+    impl crate::value::ToValue for MonitoringConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.cloud_watch_logging_configuration {
+                properties.insert(
+                    "CloudWatchLoggingConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.managed_logging_configuration {
+                properties.insert(
+                    "ManagedLoggingConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.s3_logging_configuration {
+                properties.insert(
+                    "S3LoggingConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-resultconfiguration.html
     pub struct ResultConfiguration_ {
         pub acl_configuration: Option<Box<AclConfiguration_>>,
@@ -252,6 +455,42 @@ pub mod workgroup {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-s3loggingconfiguration.html
+    pub struct S3LoggingConfiguration_ {
+        pub enabled: Option<crate::value::ExpBool>,
+        pub kms_key: Option<crate::value::ExpString>,
+        pub log_location: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_athena_WorkGroup_S3LoggingConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Athena::WorkGroup.S3LoggingConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_athena_WorkGroup_S3LoggingConfiguration as S3LoggingConfiguration;
+    impl crate::value::ToValue for S3LoggingConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.enabled {
+                properties.insert(
+                    "Enabled".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.kms_key {
+                properties.insert("KmsKey".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.log_location {
+                properties.insert(
+                    "LogLocation".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-workgroupconfiguration.html
     pub struct WorkGroupConfiguration_ {
         pub additional_configuration: Option<crate::value::ExpString>,
@@ -259,9 +498,11 @@ pub mod workgroup {
         pub customer_content_encryption_configuration:
             Option<Box<CustomerContentEncryptionConfiguration_>>,
         pub enforce_work_group_configuration: Option<crate::value::ExpBool>,
+        pub engine_configuration: Option<Box<EngineConfiguration_>>,
         pub engine_version: Option<Box<EngineVersion_>>,
         pub execution_role: Option<crate::value::ExpString>,
         pub managed_query_results_configuration: Option<Box<ManagedQueryResultsConfiguration_>>,
+        pub monitoring_configuration: Option<Box<MonitoringConfiguration_>>,
         pub publish_cloud_watch_metrics_enabled: Option<crate::value::ExpBool>,
         pub requester_pays_enabled: Option<crate::value::ExpBool>,
         pub result_configuration: Option<Box<ResultConfiguration_>>,
@@ -302,6 +543,12 @@ pub mod workgroup {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.engine_configuration {
+                properties.insert(
+                    "EngineConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.engine_version {
                 properties.insert(
                     "EngineVersion".to_string(),
@@ -317,6 +564,12 @@ pub mod workgroup {
             if let Some(ref value) = self.managed_query_results_configuration {
                 properties.insert(
                     "ManagedQueryResultsConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.monitoring_configuration {
+                properties.insert(
+                    "MonitoringConfiguration".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }

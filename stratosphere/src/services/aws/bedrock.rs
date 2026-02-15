@@ -951,6 +951,7 @@ pub mod dataautomationproject {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audioextractioncategory.html
     pub struct AudioExtractionCategory_ {
         pub state: crate::value::ExpString,
+        pub type_configuration: Option<Box<AudioExtractionCategoryTypeConfiguration_>>,
         pub types: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
@@ -969,15 +970,87 @@ pub mod dataautomationproject {
                 "State".to_string(),
                 crate::value::ToValue::to_value(&self.state),
             );
+            if let Some(ref value) = self.type_configuration {
+                properties.insert(
+                    "TypeConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.types {
                 properties.insert("Types".to_string(), crate::value::ToValue::to_value(value));
             }
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audioextractioncategorytypeconfiguration.html
+    pub struct AudioExtractionCategoryTypeConfiguration_ {
+        pub transcript: Option<Box<TranscriptConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_bedrock_DataAutomationProject_AudioExtractionCategoryTypeConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.AudioExtractionCategoryTypeConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_bedrock_DataAutomationProject_AudioExtractionCategoryTypeConfiguration as AudioExtractionCategoryTypeConfiguration;
+    impl crate::value::ToValue for AudioExtractionCategoryTypeConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.transcript {
+                properties.insert(
+                    "Transcript".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audiolanguageconfiguration.html
+    pub struct AudioLanguageConfiguration_ {
+        pub generative_output_language: Option<crate::value::ExpString>,
+        pub identify_multiple_languages: Option<crate::value::ExpBool>,
+        pub input_languages: Option<Vec<crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_bedrock_DataAutomationProject_AudioLanguageConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.AudioLanguageConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_bedrock_DataAutomationProject_AudioLanguageConfiguration as AudioLanguageConfiguration;
+    impl crate::value::ToValue for AudioLanguageConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.generative_output_language {
+                properties.insert(
+                    "GenerativeOutputLanguage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.identify_multiple_languages {
+                properties.insert(
+                    "IdentifyMultipleLanguages".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.input_languages {
+                properties.insert(
+                    "InputLanguages".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-audiooverrideconfiguration.html
     pub struct AudioOverrideConfiguration_ {
+        pub language_configuration: Option<Box<AudioLanguageConfiguration_>>,
         pub modality_processing: Option<Box<ModalityProcessingConfiguration_>>,
+        pub sensitive_data_configuration: Option<Box<SensitiveDataConfiguration_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -991,9 +1064,21 @@ pub mod dataautomationproject {
     impl crate::value::ToValue for AudioOverrideConfiguration_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.language_configuration {
+                properties.insert(
+                    "LanguageConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.modality_processing {
                 properties.insert(
                     "ModalityProcessing".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.sensitive_data_configuration {
+                properties.insert(
+                    "SensitiveDataConfiguration".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -1116,6 +1201,29 @@ pub mod dataautomationproject {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-channellabelingconfiguration.html
+    pub struct ChannelLabelingConfiguration_ {
+        pub state: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_bedrock_DataAutomationProject_ChannelLabelingConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.ChannelLabelingConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_bedrock_DataAutomationProject_ChannelLabelingConfiguration as ChannelLabelingConfiguration;
+    impl crate::value::ToValue for ChannelLabelingConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "State".to_string(),
+                crate::value::ToValue::to_value(&self.state),
+            );
             properties.into()
         }
     }
@@ -1265,6 +1373,7 @@ pub mod dataautomationproject {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-documentoverrideconfiguration.html
     pub struct DocumentOverrideConfiguration_ {
         pub modality_processing: Option<Box<ModalityProcessingConfiguration_>>,
+        pub sensitive_data_configuration: Option<Box<SensitiveDataConfiguration_>>,
         pub splitter: Option<Box<SplitterConfiguration_>>,
     }
     #[doc(hidden)]
@@ -1282,6 +1391,12 @@ pub mod dataautomationproject {
             if let Some(ref value) = self.modality_processing {
                 properties.insert(
                     "ModalityProcessing".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.sensitive_data_configuration {
+                properties.insert(
+                    "SensitiveDataConfiguration".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -1437,6 +1552,7 @@ pub mod dataautomationproject {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-imageoverrideconfiguration.html
     pub struct ImageOverrideConfiguration_ {
         pub modality_processing: Option<Box<ModalityProcessingConfiguration_>>,
+        pub sensitive_data_configuration: Option<Box<SensitiveDataConfiguration_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1453,6 +1569,12 @@ pub mod dataautomationproject {
             if let Some(ref value) = self.modality_processing {
                 properties.insert(
                     "ModalityProcessing".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.sensitive_data_configuration {
+                properties.insert(
+                    "SensitiveDataConfiguration".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -1646,6 +1768,100 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-piientitiesconfiguration.html
+    pub struct PIIEntitiesConfiguration_ {
+        pub pii_entity_types: Option<Vec<crate::value::ExpString>>,
+        pub redaction_mask_mode: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_bedrock_DataAutomationProject_PIIEntitiesConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.PIIEntitiesConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_bedrock_DataAutomationProject_PIIEntitiesConfiguration as PIIEntitiesConfiguration;
+    impl crate::value::ToValue for PIIEntitiesConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.pii_entity_types {
+                properties.insert(
+                    "PiiEntityTypes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.redaction_mask_mode {
+                properties.insert(
+                    "RedactionMaskMode".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-sensitivedataconfiguration.html
+    pub struct SensitiveDataConfiguration_ {
+        pub detection_mode: Option<crate::value::ExpString>,
+        pub detection_scope: Option<Vec<crate::value::ExpString>>,
+        pub pii_entities_configuration: Option<Box<PIIEntitiesConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_bedrock_DataAutomationProject_SensitiveDataConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.SensitiveDataConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_bedrock_DataAutomationProject_SensitiveDataConfiguration as SensitiveDataConfiguration;
+    impl crate::value::ToValue for SensitiveDataConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.detection_mode {
+                properties.insert(
+                    "DetectionMode".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.detection_scope {
+                properties.insert(
+                    "DetectionScope".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.pii_entities_configuration {
+                properties.insert(
+                    "PiiEntitiesConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-speakerlabelingconfiguration.html
+    pub struct SpeakerLabelingConfiguration_ {
+        pub state: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_bedrock_DataAutomationProject_SpeakerLabelingConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.SpeakerLabelingConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_bedrock_DataAutomationProject_SpeakerLabelingConfiguration as SpeakerLabelingConfiguration;
+    impl crate::value::ToValue for SpeakerLabelingConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "State".to_string(),
+                crate::value::ToValue::to_value(&self.state),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-splitterconfiguration.html
     pub struct SplitterConfiguration_ {
         pub state: Option<crate::value::ExpString>,
@@ -1705,6 +1921,38 @@ pub mod dataautomationproject {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-transcriptconfiguration.html
+    pub struct TranscriptConfiguration_ {
+        pub channel_labeling: Option<Box<ChannelLabelingConfiguration_>>,
+        pub speaker_labeling: Option<Box<SpeakerLabelingConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_bedrock_DataAutomationProject_TranscriptConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::DataAutomationProject.TranscriptConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_bedrock_DataAutomationProject_TranscriptConfiguration as TranscriptConfiguration;
+    impl crate::value::ToValue for TranscriptConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.channel_labeling {
+                properties.insert(
+                    "ChannelLabeling".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.speaker_labeling {
+                properties.insert(
+                    "SpeakerLabeling".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-videoboundingbox.html
     pub struct VideoBoundingBox_ {
         pub state: crate::value::ExpString,
@@ -1758,6 +2006,7 @@ pub mod dataautomationproject {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-dataautomationproject-videooverrideconfiguration.html
     pub struct VideoOverrideConfiguration_ {
         pub modality_processing: Option<Box<ModalityProcessingConfiguration_>>,
+        pub sensitive_data_configuration: Option<Box<SensitiveDataConfiguration_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1774,6 +2023,12 @@ pub mod dataautomationproject {
             if let Some(ref value) = self.modality_processing {
                 properties.insert(
                     "ModalityProcessing".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.sensitive_data_configuration {
+                properties.insert(
+                    "SensitiveDataConfiguration".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -2268,8 +2523,8 @@ pub mod datasource {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-fixedsizechunkingconfiguration.html
     pub struct FixedSizeChunkingConfiguration_ {
-        pub max_tokens: i64,
-        pub overlap_percentage: i64,
+        pub max_tokens: i32,
+        pub overlap_percentage: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2297,7 +2552,7 @@ pub mod datasource {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-hierarchicalchunkingconfiguration.html
     pub struct HierarchicalChunkingConfiguration_ {
         pub level_configurations: Vec<HierarchicalChunkingLevelConfiguration_>,
-        pub overlap_tokens: i64,
+        pub overlap_tokens: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2324,7 +2579,7 @@ pub mod datasource {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-hierarchicalchunkinglevelconfiguration.html
     pub struct HierarchicalChunkingLevelConfiguration_ {
-        pub max_tokens: i64,
+        pub max_tokens: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2662,9 +2917,9 @@ pub mod datasource {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-semanticchunkingconfiguration.html
     pub struct SemanticChunkingConfiguration_ {
-        pub breakpoint_percentile_threshold: i64,
-        pub buffer_size: i64,
-        pub max_tokens: i64,
+        pub breakpoint_percentile_threshold: i32,
+        pub buffer_size: i32,
+        pub max_tokens: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3025,8 +3280,8 @@ pub mod datasource {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-webcrawlerlimits.html
     pub struct WebCrawlerLimits_ {
-        pub max_pages: Option<i64>,
-        pub rate_limit: Option<i64>,
+        pub max_pages: Option<i32>,
+        pub rate_limit: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -6662,10 +6917,58 @@ pub mod intelligentpromptrouter {
     }
 }
 pub mod knowledgebase {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-audioconfiguration.html
+    pub struct AudioConfiguration_ {
+        pub segmentation_configuration: Box<AudioSegmentationConfiguration_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_bedrock_KnowledgeBase_AudioConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.AudioConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_bedrock_KnowledgeBase_AudioConfiguration as AudioConfiguration;
+    impl crate::value::ToValue for AudioConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "SegmentationConfiguration".to_string(),
+                crate::value::ToValue::to_value(&self.segmentation_configuration),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-audiosegmentationconfiguration.html
+    pub struct AudioSegmentationConfiguration_ {
+        pub fixed_length_duration: i32,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_bedrock_KnowledgeBase_AudioSegmentationConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.AudioSegmentationConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_bedrock_KnowledgeBase_AudioSegmentationConfiguration as AudioSegmentationConfiguration;
+    impl crate::value::ToValue for AudioSegmentationConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "FixedLengthDuration".to_string(),
+                crate::value::ToValue::to_value(&self.fixed_length_duration),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-bedrockembeddingmodelconfiguration.html
     pub struct BedrockEmbeddingModelConfiguration_ {
-        pub dimensions: Option<i64>,
+        pub audio: Option<Vec<AudioConfiguration_>>,
+        pub dimensions: Option<i32>,
         pub embedding_data_type: Option<crate::value::ExpString>,
+        pub video: Option<Vec<VideoConfiguration_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -6679,6 +6982,9 @@ pub mod knowledgebase {
     impl crate::value::ToValue for BedrockEmbeddingModelConfiguration_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.audio {
+                properties.insert("Audio".to_string(), crate::value::ToValue::to_value(value));
+            }
             if let Some(ref value) = self.dimensions {
                 properties.insert(
                     "Dimensions".to_string(),
@@ -6690,6 +6996,9 @@ pub mod knowledgebase {
                     "EmbeddingDataType".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
+            }
+            if let Some(ref value) = self.video {
+                properties.insert("Video".to_string(), crate::value::ToValue::to_value(value));
             }
             properties.into()
         }
@@ -7208,7 +7517,7 @@ pub mod knowledgebase {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-querygenerationconfiguration.html
     pub struct QueryGenerationConfiguration_ {
-        pub execution_timeout_seconds: Option<i64>,
+        pub execution_timeout_seconds: Option<i32>,
         pub generation_context: Option<Box<QueryGenerationContext_>>,
     }
     #[doc(hidden)]
@@ -7701,6 +8010,45 @@ pub mod knowledgebase {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-s3vectorsconfiguration.html
+    pub struct S3VectorsConfiguration_ {
+        pub index_arn: Option<crate::value::ExpString>,
+        pub index_name: Option<crate::value::ExpString>,
+        pub vector_bucket_arn: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_bedrock_KnowledgeBase_S3VectorsConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.S3VectorsConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_bedrock_KnowledgeBase_S3VectorsConfiguration as S3VectorsConfiguration;
+    impl crate::value::ToValue for S3VectorsConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.index_arn {
+                properties.insert(
+                    "IndexArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.index_name {
+                properties.insert(
+                    "IndexName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.vector_bucket_arn {
+                properties.insert(
+                    "VectorBucketArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-sqlknowledgebaseconfiguration.html
     pub struct SqlKnowledgeBaseConfiguration_ {
         pub redshift_configuration: Option<Box<RedshiftConfiguration_>>,
@@ -7740,6 +8088,7 @@ pub mod knowledgebase {
         pub opensearch_serverless_configuration: Option<Box<OpenSearchServerlessConfiguration_>>,
         pub pinecone_configuration: Option<Box<PineconeConfiguration_>>,
         pub rds_configuration: Option<Box<RdsConfiguration_>>,
+        pub s3_vectors_configuration: Option<Box<S3VectorsConfiguration_>>,
         pub r#type: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -7787,6 +8136,12 @@ pub mod knowledgebase {
             if let Some(ref value) = self.rds_configuration {
                 properties.insert(
                     "RdsConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.s3_vectors_configuration {
+                properties.insert(
+                    "S3VectorsConfiguration".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -7885,6 +8240,52 @@ pub mod knowledgebase {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-videoconfiguration.html
+    pub struct VideoConfiguration_ {
+        pub segmentation_configuration: Box<VideoSegmentationConfiguration_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_bedrock_KnowledgeBase_VideoConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.VideoConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_bedrock_KnowledgeBase_VideoConfiguration as VideoConfiguration;
+    impl crate::value::ToValue for VideoConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "SegmentationConfiguration".to_string(),
+                crate::value::ToValue::to_value(&self.segmentation_configuration),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-videosegmentationconfiguration.html
+    pub struct VideoSegmentationConfiguration_ {
+        pub fixed_length_duration: i32,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_bedrock_KnowledgeBase_VideoSegmentationConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Bedrock::KnowledgeBase.VideoSegmentationConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_bedrock_KnowledgeBase_VideoSegmentationConfiguration as VideoSegmentationConfiguration;
+    impl crate::value::ToValue for VideoSegmentationConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "FixedLengthDuration".to_string(),
+                crate::value::ToValue::to_value(&self.fixed_length_duration),
+            );
             properties.into()
         }
     }
@@ -9437,6 +9838,8 @@ impl crate::template::ToResource for ApplicationInferenceProfile_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-bedrock-automatedreasoningpolicy.html
 pub struct AutomatedReasoningPolicy_ {
     pub description: Option<crate::value::ExpString>,
+    pub force_delete: Option<crate::value::ExpBool>,
+    pub kms_key_id: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
     pub policy_definition: Option<super::bedrock::automatedreasoningpolicy::PolicyDefinition_>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -9464,6 +9867,18 @@ impl crate::template::ToResource for AutomatedReasoningPolicy_ {
         if let Some(ref value) = self.description {
             properties.insert(
                 "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.force_delete {
+            properties.insert(
+                "ForceDelete".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.kms_key_id {
+            properties.insert(
+                "KmsKeyId".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -9596,6 +10011,7 @@ pub struct DataAutomationProject_ {
         Option<super::bedrock::dataautomationproject::OverrideConfiguration_>,
     pub project_description: Option<crate::value::ExpString>,
     pub project_name: crate::value::ExpString,
+    pub project_type: Option<crate::value::ExpString>,
     pub standard_output_configuration:
         Option<super::bedrock::dataautomationproject::StandardOutputConfiguration_>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -9654,6 +10070,12 @@ impl crate::template::ToResource for DataAutomationProject_ {
             "ProjectName".to_string(),
             crate::value::ToValue::to_value(&self.project_name),
         );
+        if let Some(ref value) = self.project_type {
+            properties.insert(
+                "ProjectType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.standard_output_configuration {
             properties.insert(
                 "StandardOutputConfiguration".to_string(),

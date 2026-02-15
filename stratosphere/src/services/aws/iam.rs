@@ -150,7 +150,7 @@ pub mod user {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html
 pub struct AccessKey_ {
-    pub serial: Option<i64>,
+    pub serial: Option<i32>,
     pub status: Option<crate::value::ExpString>,
     pub user_name: crate::value::ExpString,
 }
@@ -485,7 +485,7 @@ pub struct Role_ {
     pub assume_role_policy_document: serde_json::Value,
     pub description: Option<crate::value::ExpString>,
     pub managed_policy_arns: Option<Vec<crate::value::ExpString>>,
-    pub max_session_duration: Option<i64>,
+    pub max_session_duration: Option<i32>,
     pub path: Option<crate::value::ExpString>,
     pub permissions_boundary: Option<crate::value::ExpString>,
     pub policies: Option<Vec<super::iam::role::Policy_>>,

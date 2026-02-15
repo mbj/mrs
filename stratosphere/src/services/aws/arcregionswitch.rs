@@ -168,6 +168,92 @@ pub mod plan {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-documentdbconfiguration.html
+    pub struct DocumentDbConfiguration_ {
+        pub behavior: serde_json::Value,
+        pub cross_account_role: Option<crate::value::ExpString>,
+        pub database_cluster_arns: Vec<crate::value::ExpString>,
+        pub external_id: Option<crate::value::ExpString>,
+        pub global_cluster_identifier: crate::value::ExpString,
+        pub timeout_minutes: Option<f64>,
+        pub ungraceful: Option<Box<DocumentDbUngraceful_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_arcregionswitch_Plan_DocumentDbConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.DocumentDbConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_arcregionswitch_Plan_DocumentDbConfiguration as DocumentDbConfiguration;
+    impl crate::value::ToValue for DocumentDbConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Behavior".to_string(),
+                crate::value::ToValue::to_value(&self.behavior),
+            );
+            if let Some(ref value) = self.cross_account_role {
+                properties.insert(
+                    "CrossAccountRole".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "DatabaseClusterArns".to_string(),
+                crate::value::ToValue::to_value(&self.database_cluster_arns),
+            );
+            if let Some(ref value) = self.external_id {
+                properties.insert(
+                    "ExternalId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "GlobalClusterIdentifier".to_string(),
+                crate::value::ToValue::to_value(&self.global_cluster_identifier),
+            );
+            if let Some(ref value) = self.timeout_minutes {
+                properties.insert(
+                    "TimeoutMinutes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.ungraceful {
+                properties.insert(
+                    "Ungraceful".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-documentdbungraceful.html
+    pub struct DocumentDbUngraceful_ {
+        pub ungraceful: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_arcregionswitch_Plan_DocumentDbUngraceful {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.DocumentDbUngraceful"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_arcregionswitch_Plan_DocumentDbUngraceful as DocumentDbUngraceful;
+    impl crate::value::ToValue for DocumentDbUngraceful_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.ungraceful {
+                properties.insert(
+                    "Ungraceful".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-ec2asgcapacityincreaseconfiguration.html
     pub struct Ec2AsgCapacityIncreaseConfiguration_ {
         pub asgs: Vec<Asg_>,
@@ -475,6 +561,7 @@ pub mod plan {
     pub struct ExecutionBlockConfiguration_ {
         pub arc_routing_control_config: Option<Box<ArcRoutingControlConfiguration_>>,
         pub custom_action_lambda_config: Option<Box<CustomActionLambdaConfiguration_>>,
+        pub document_db_config: Option<Box<DocumentDbConfiguration_>>,
         pub ec2_asg_capacity_increase_config: Option<Box<Ec2AsgCapacityIncreaseConfiguration_>>,
         pub ecs_capacity_increase_config: Option<Box<EcsCapacityIncreaseConfiguration_>>,
         pub eks_resource_scaling_config: Option<Box<EksResourceScalingConfiguration_>>,
@@ -505,6 +592,12 @@ pub mod plan {
             if let Some(ref value) = self.custom_action_lambda_config {
                 properties.insert(
                     "CustomActionLambdaConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.document_db_config {
+                properties.insert(
+                    "DocumentDbConfig".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -794,6 +887,54 @@ pub mod plan {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-reportconfiguration.html
+    pub struct ReportConfiguration_ {
+        pub report_output: Option<Vec<ReportOutputConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_arcregionswitch_Plan_ReportConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.ReportConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_arcregionswitch_Plan_ReportConfiguration as ReportConfiguration;
+    impl crate::value::ToValue for ReportConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.report_output {
+                properties.insert(
+                    "ReportOutput".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-reportoutputconfiguration.html
+    pub struct ReportOutputConfiguration_ {
+        pub s3_configuration: Box<S3ReportOutputConfiguration_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_arcregionswitch_Plan_ReportOutputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.ReportOutputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_arcregionswitch_Plan_ReportOutputConfiguration as ReportOutputConfiguration;
+    impl crate::value::ToValue for ReportOutputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "S3Configuration".to_string(),
+                crate::value::ToValue::to_value(&self.s3_configuration),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-route53healthcheckconfiguration.html
     pub struct Route53HealthCheckConfiguration_ {
         pub cross_account_role: Option<crate::value::ExpString>,
@@ -850,52 +991,6 @@ pub mod plan {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-route53healthchecks.html
-    pub struct Route53HealthChecks_ {
-        pub health_check_ids: Option<Vec<crate::value::ExpString>>,
-        pub hosted_zone_ids: Option<Vec<crate::value::ExpString>>,
-        pub record_names: Option<Vec<crate::value::ExpString>>,
-        pub regions: Option<Vec<crate::value::ExpString>>,
-    }
-    #[doc(hidden)]
-    #[macro_export]
-    macro_rules! __aws_arcregionswitch_Plan_Route53HealthChecks {
-        ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.Route53HealthChecks"
-            $($field $value)*)
-        };
-    }
-    pub use crate::__aws_arcregionswitch_Plan_Route53HealthChecks as Route53HealthChecks;
-    impl crate::value::ToValue for Route53HealthChecks_ {
-        fn to_value(&self) -> serde_json::Value {
-            let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.health_check_ids {
-                properties.insert(
-                    "HealthCheckIds".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
-            if let Some(ref value) = self.hosted_zone_ids {
-                properties.insert(
-                    "HostedZoneIds".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
-            if let Some(ref value) = self.record_names {
-                properties.insert(
-                    "RecordNames".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
-            if let Some(ref value) = self.regions {
-                properties.insert(
-                    "Regions".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
-            properties.into()
-        }
-    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-route53resourcerecordset.html
     pub struct Route53ResourceRecordSet_ {
         pub record_set_identifier: Option<crate::value::ExpString>,
@@ -921,6 +1016,38 @@ pub mod plan {
             }
             if let Some(ref value) = self.region {
                 properties.insert("Region".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-arcregionswitch-plan-s3reportoutputconfiguration.html
+    pub struct S3ReportOutputConfiguration_ {
+        pub bucket_owner: Option<crate::value::ExpString>,
+        pub bucket_path: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_arcregionswitch_Plan_S3ReportOutputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ARCRegionSwitch::Plan.S3ReportOutputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_arcregionswitch_Plan_S3ReportOutputConfiguration as S3ReportOutputConfiguration;
+    impl crate::value::ToValue for S3ReportOutputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.bucket_owner {
+                properties.insert(
+                    "BucketOwner".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.bucket_path {
+                properties.insert(
+                    "BucketPath".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
             }
             properties.into()
         }
@@ -1137,6 +1264,7 @@ pub struct Plan_ {
     pub recovery_approach: crate::value::ExpString,
     pub recovery_time_objective_minutes: Option<f64>,
     pub regions: Vec<crate::value::ExpString>,
+    pub report_configuration: Option<super::arcregionswitch::plan::ReportConfiguration_>,
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub triggers: Option<Vec<super::arcregionswitch::plan::Trigger_>>,
     pub workflows: Vec<super::arcregionswitch::plan::Workflow_>,
@@ -1201,6 +1329,12 @@ impl crate::template::ToResource for Plan_ {
             "Regions".to_string(),
             crate::value::ToValue::to_value(&self.regions),
         );
+        if let Some(ref value) = self.report_configuration {
+            properties.insert(
+                "ReportConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }

@@ -1,3 +1,44 @@
+pub mod browsersettings {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-browsersettings-webcontentfilteringpolicy.html
+    pub struct WebContentFilteringPolicy_ {
+        pub allowed_urls: Option<Vec<crate::value::ExpString>>,
+        pub blocked_categories: Option<Vec<crate::value::ExpString>>,
+        pub blocked_urls: Option<Vec<crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_workspacesweb_BrowserSettings_WebContentFilteringPolicy {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::BrowserSettings.WebContentFilteringPolicy"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_workspacesweb_BrowserSettings_WebContentFilteringPolicy as WebContentFilteringPolicy;
+    impl crate::value::ToValue for WebContentFilteringPolicy_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.allowed_urls {
+                properties.insert(
+                    "AllowedUrls".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.blocked_categories {
+                properties.insert(
+                    "BlockedCategories".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.blocked_urls {
+                properties.insert(
+                    "BlockedUrls".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
 pub mod dataprotectionsettings {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-dataprotectionsettings-custompattern.html
     pub struct CustomPattern_ {
@@ -307,6 +348,85 @@ pub mod sessionlogger {
     }
 }
 pub mod usersettings {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-brandingconfiguration.html
+    pub struct BrandingConfiguration_ {
+        pub color_theme: Option<crate::value::ExpString>,
+        pub favicon: Option<crate::value::ExpString>,
+        pub favicon_metadata: Option<Box<ImageMetadata_>>,
+        pub localized_strings:
+            Option<std::collections::BTreeMap<String, LocalizedBrandingStrings_>>,
+        pub logo: Option<crate::value::ExpString>,
+        pub logo_metadata: Option<Box<ImageMetadata_>>,
+        pub terms_of_service: Option<crate::value::ExpString>,
+        pub wallpaper: Option<crate::value::ExpString>,
+        pub wallpaper_metadata: Option<Box<ImageMetadata_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_workspacesweb_UserSettings_BrandingConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::UserSettings.BrandingConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_workspacesweb_UserSettings_BrandingConfiguration as BrandingConfiguration;
+    impl crate::value::ToValue for BrandingConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.color_theme {
+                properties.insert(
+                    "ColorTheme".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.favicon {
+                properties.insert(
+                    "Favicon".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.favicon_metadata {
+                properties.insert(
+                    "FaviconMetadata".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.localized_strings {
+                properties.insert(
+                    "LocalizedStrings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.logo {
+                properties.insert("Logo".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.logo_metadata {
+                properties.insert(
+                    "LogoMetadata".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.terms_of_service {
+                properties.insert(
+                    "TermsOfService".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.wallpaper {
+                properties.insert(
+                    "Wallpaper".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.wallpaper_metadata {
+                properties.insert(
+                    "WallpaperMetadata".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-cookiespecification.html
     pub struct CookieSpecification_ {
         pub domain: crate::value::ExpString,
@@ -368,6 +488,109 @@ pub mod usersettings {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-imagemetadata.html
+    pub struct ImageMetadata_ {
+        pub file_extension: crate::value::ExpString,
+        pub last_upload_timestamp: crate::value::ExpString,
+        pub mime_type: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_workspacesweb_UserSettings_ImageMetadata {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::UserSettings.ImageMetadata"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_workspacesweb_UserSettings_ImageMetadata as ImageMetadata;
+    impl crate::value::ToValue for ImageMetadata_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "FileExtension".to_string(),
+                crate::value::ToValue::to_value(&self.file_extension),
+            );
+            properties.insert(
+                "LastUploadTimestamp".to_string(),
+                crate::value::ToValue::to_value(&self.last_upload_timestamp),
+            );
+            properties.insert(
+                "MimeType".to_string(),
+                crate::value::ToValue::to_value(&self.mime_type),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-localizedbrandingstrings.html
+    pub struct LocalizedBrandingStrings_ {
+        pub browser_tab_title: crate::value::ExpString,
+        pub contact_button_text: Option<crate::value::ExpString>,
+        pub contact_link: Option<crate::value::ExpString>,
+        pub loading_text: Option<crate::value::ExpString>,
+        pub login_button_text: Option<crate::value::ExpString>,
+        pub login_description: Option<crate::value::ExpString>,
+        pub login_title: Option<crate::value::ExpString>,
+        pub welcome_text: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_workspacesweb_UserSettings_LocalizedBrandingStrings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::WorkSpacesWeb::UserSettings.LocalizedBrandingStrings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_workspacesweb_UserSettings_LocalizedBrandingStrings as LocalizedBrandingStrings;
+    impl crate::value::ToValue for LocalizedBrandingStrings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "BrowserTabTitle".to_string(),
+                crate::value::ToValue::to_value(&self.browser_tab_title),
+            );
+            if let Some(ref value) = self.contact_button_text {
+                properties.insert(
+                    "ContactButtonText".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.contact_link {
+                properties.insert(
+                    "ContactLink".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.loading_text {
+                properties.insert(
+                    "LoadingText".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.login_button_text {
+                properties.insert(
+                    "LoginButtonText".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.login_description {
+                properties.insert(
+                    "LoginDescription".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.login_title {
+                properties.insert(
+                    "LoginTitle".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "WelcomeText".to_string(),
+                crate::value::ToValue::to_value(&self.welcome_text),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesweb-usersettings-toolbarconfiguration.html
     pub struct ToolbarConfiguration_ {
         pub hidden_toolbar_items: Option<Vec<crate::value::ExpString>>,
@@ -422,6 +645,8 @@ pub struct BrowserSettings_ {
     pub browser_policy: Option<crate::value::ExpString>,
     pub customer_managed_key: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
+    pub web_content_filtering_policy:
+        Option<super::workspacesweb::browsersettings::WebContentFilteringPolicy_>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -463,6 +688,12 @@ impl crate::template::ToResource for BrowserSettings_ {
         }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.web_content_filtering_policy {
+            properties.insert(
+                "WebContentFilteringPolicy".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         properties
     }
@@ -708,6 +939,7 @@ pub struct Portal_ {
     pub ip_access_settings_arn: Option<crate::value::ExpString>,
     pub max_concurrent_sessions: Option<f64>,
     pub network_settings_arn: Option<crate::value::ExpString>,
+    pub portal_custom_domain: Option<crate::value::ExpString>,
     pub session_logger_arn: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub trust_store_arn: Option<crate::value::ExpString>,
@@ -791,6 +1023,12 @@ impl crate::template::ToResource for Portal_ {
         if let Some(ref value) = self.network_settings_arn {
             properties.insert(
                 "NetworkSettingsArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.portal_custom_domain {
+            properties.insert(
+                "PortalCustomDomain".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -960,6 +1198,7 @@ impl crate::template::ToResource for UserAccessLoggingSettings_ {
 pub struct UserSettings_ {
     pub additional_encryption_context:
         Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+    pub branding_configuration: Option<super::workspacesweb::usersettings::BrandingConfiguration_>,
     pub cookie_synchronization_configuration:
         Option<super::workspacesweb::usersettings::CookieSynchronizationConfiguration_>,
     pub copy_allowed: crate::value::ExpString,
@@ -973,6 +1212,7 @@ pub struct UserSettings_ {
     pub tags: Option<Vec<crate::Tag_>>,
     pub toolbar_configuration: Option<super::workspacesweb::usersettings::ToolbarConfiguration_>,
     pub upload_allowed: crate::value::ExpString,
+    pub web_authn_allowed: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -997,6 +1237,12 @@ impl crate::template::ToResource for UserSettings_ {
         if let Some(ref value) = self.additional_encryption_context {
             properties.insert(
                 "AdditionalEncryptionContext".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.branding_configuration {
+            properties.insert(
+                "BrandingConfiguration".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1059,6 +1305,12 @@ impl crate::template::ToResource for UserSettings_ {
             "UploadAllowed".to_string(),
             crate::value::ToValue::to_value(&self.upload_allowed),
         );
+        if let Some(ref value) = self.web_authn_allowed {
+            properties.insert(
+                "WebAuthnAllowed".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties
     }
 }

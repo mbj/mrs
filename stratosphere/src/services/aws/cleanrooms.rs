@@ -197,6 +197,29 @@ pub mod analysistemplate {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-columnclassificationdetails.html
+    pub struct ColumnClassificationDetails_ {
+        pub column_mapping: Vec<SyntheticDataColumnProperties_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cleanrooms_AnalysisTemplate_ColumnClassificationDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.ColumnClassificationDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cleanrooms_AnalysisTemplate_ColumnClassificationDetails as ColumnClassificationDetails;
+    impl crate::value::ToValue for ColumnClassificationDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ColumnMapping".to_string(),
+                crate::value::ToValue::to_value(&self.column_mapping),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-errormessageconfiguration.html
     pub struct ErrorMessageConfiguration_ {
         pub r#type: crate::value::ExpString,
@@ -242,6 +265,39 @@ pub mod analysistemplate {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-mlsyntheticdataparameters.html
+    pub struct MLSyntheticDataParameters_ {
+        pub column_classification: Box<ColumnClassificationDetails_>,
+        pub epsilon: f64,
+        pub max_membership_inference_attack_score: f64,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cleanrooms_AnalysisTemplate_MLSyntheticDataParameters {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.MLSyntheticDataParameters"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cleanrooms_AnalysisTemplate_MLSyntheticDataParameters as MLSyntheticDataParameters;
+    impl crate::value::ToValue for MLSyntheticDataParameters_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ColumnClassification".to_string(),
+                crate::value::ToValue::to_value(&self.column_classification),
+            );
+            properties.insert(
+                "Epsilon".to_string(),
+                crate::value::ToValue::to_value(&self.epsilon),
+            );
+            properties.insert(
+                "MaxMembershipInferenceAttackScore".to_string(),
+                crate::value::ToValue::to_value(&self.max_membership_inference_attack_score),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-s3location.html
     pub struct S3Location_ {
         pub bucket: crate::value::ExpString,
@@ -266,6 +322,62 @@ pub mod analysistemplate {
             properties.insert(
                 "Key".to_string(),
                 crate::value::ToValue::to_value(&self.key),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-syntheticdatacolumnproperties.html
+    pub struct SyntheticDataColumnProperties_ {
+        pub column_name: crate::value::ExpString,
+        pub column_type: crate::value::ExpString,
+        pub is_predictive_value: crate::value::ExpBool,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cleanrooms_AnalysisTemplate_SyntheticDataColumnProperties {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.SyntheticDataColumnProperties"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cleanrooms_AnalysisTemplate_SyntheticDataColumnProperties as SyntheticDataColumnProperties;
+    impl crate::value::ToValue for SyntheticDataColumnProperties_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ColumnName".to_string(),
+                crate::value::ToValue::to_value(&self.column_name),
+            );
+            properties.insert(
+                "ColumnType".to_string(),
+                crate::value::ToValue::to_value(&self.column_type),
+            );
+            properties.insert(
+                "IsPredictiveValue".to_string(),
+                crate::value::ToValue::to_value(&self.is_predictive_value),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-analysistemplate-syntheticdataparameters.html
+    pub struct SyntheticDataParameters_ {
+        pub ml_synthetic_data_parameters: Box<MLSyntheticDataParameters_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cleanrooms_AnalysisTemplate_SyntheticDataParameters {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::AnalysisTemplate.SyntheticDataParameters"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cleanrooms_AnalysisTemplate_SyntheticDataParameters as SyntheticDataParameters;
+    impl crate::value::ToValue for SyntheticDataParameters_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "MlSyntheticDataParameters".to_string(),
+                crate::value::ToValue::to_value(&self.ml_synthetic_data_parameters),
             );
             properties.into()
         }
@@ -360,6 +472,7 @@ pub mod collaboration {
     pub struct MLPaymentConfig_ {
         pub model_inference: Option<Box<ModelInferencePaymentConfig_>>,
         pub model_training: Option<Box<ModelTrainingPaymentConfig_>>,
+        pub synthetic_data_generation: Option<Box<SyntheticDataGenerationPaymentConfig_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -382,6 +495,12 @@ pub mod collaboration {
             if let Some(ref value) = self.model_training {
                 properties.insert(
                     "ModelTraining".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.synthetic_data_generation {
+                properties.insert(
+                    "SyntheticDataGeneration".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -534,6 +653,29 @@ pub mod collaboration {
     }
     pub use crate::__aws_cleanrooms_Collaboration_QueryComputePaymentConfig as QueryComputePaymentConfig;
     impl crate::value::ToValue for QueryComputePaymentConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "IsResponsible".to_string(),
+                crate::value::ToValue::to_value(&self.is_responsible),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-collaboration-syntheticdatagenerationpaymentconfig.html
+    pub struct SyntheticDataGenerationPaymentConfig_ {
+        pub is_responsible: crate::value::ExpBool,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cleanrooms_Collaboration_SyntheticDataGenerationPaymentConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Collaboration.SyntheticDataGenerationPaymentConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cleanrooms_Collaboration_SyntheticDataGenerationPaymentConfig as SyntheticDataGenerationPaymentConfig;
+    impl crate::value::ToValue for SyntheticDataGenerationPaymentConfig_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
             properties.insert(
@@ -795,6 +937,7 @@ pub mod configuredtable {
     pub struct AthenaTableReference_ {
         pub database_name: crate::value::ExpString,
         pub output_location: Option<crate::value::ExpString>,
+        pub region: Option<crate::value::ExpString>,
         pub table_name: crate::value::ExpString,
         pub work_group: crate::value::ExpString,
     }
@@ -819,6 +962,9 @@ pub mod configuredtable {
                     "OutputLocation".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
+            }
+            if let Some(ref value) = self.region {
+                properties.insert("Region".to_string(), crate::value::ToValue::to_value(value));
             }
             properties.insert(
                 "TableName".to_string(),
@@ -933,6 +1079,7 @@ pub mod configuredtable {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-configuredtable-gluetablereference.html
     pub struct GlueTableReference_ {
         pub database_name: crate::value::ExpString,
+        pub region: Option<crate::value::ExpString>,
         pub table_name: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -951,6 +1098,9 @@ pub mod configuredtable {
                 "DatabaseName".to_string(),
                 crate::value::ToValue::to_value(&self.database_name),
             );
+            if let Some(ref value) = self.region {
+                properties.insert("Region".to_string(), crate::value::ToValue::to_value(value));
+            }
             properties.insert(
                 "TableName".to_string(),
                 crate::value::ToValue::to_value(&self.table_name),
@@ -1461,6 +1611,7 @@ pub mod membership {
     pub struct MembershipMLPaymentConfig_ {
         pub model_inference: Option<Box<MembershipModelInferencePaymentConfig_>>,
         pub model_training: Option<Box<MembershipModelTrainingPaymentConfig_>>,
+        pub synthetic_data_generation: Option<Box<MembershipSyntheticDataGenerationPaymentConfig_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1483,6 +1634,12 @@ pub mod membership {
             if let Some(ref value) = self.model_training {
                 properties.insert(
                     "ModelTraining".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.synthetic_data_generation {
+                properties.insert(
+                    "SyntheticDataGeneration".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -1693,6 +1850,29 @@ pub mod membership {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-membershipsyntheticdatagenerationpaymentconfig.html
+    pub struct MembershipSyntheticDataGenerationPaymentConfig_ {
+        pub is_responsible: crate::value::ExpBool,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cleanrooms_Membership_MembershipSyntheticDataGenerationPaymentConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::Membership.MembershipSyntheticDataGenerationPaymentConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cleanrooms_Membership_MembershipSyntheticDataGenerationPaymentConfig as MembershipSyntheticDataGenerationPaymentConfig;
+    impl crate::value::ToValue for MembershipSyntheticDataGenerationPaymentConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "IsResponsible".to_string(),
+                crate::value::ToValue::to_value(&self.is_responsible),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-membership-protectedjobs3outputconfigurationinput.html
     pub struct ProtectedJobS3OutputConfigurationInput_ {
         pub bucket: crate::value::ExpString,
@@ -1767,10 +1947,47 @@ pub mod membership {
     }
 }
 pub mod privacybudgettemplate {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-privacybudgettemplate-budgetparameter.html
+    pub struct BudgetParameter_ {
+        pub auto_refresh: Option<crate::value::ExpString>,
+        pub budget: i32,
+        pub r#type: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cleanrooms_PrivacyBudgetTemplate_BudgetParameter {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CleanRooms::PrivacyBudgetTemplate.BudgetParameter"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cleanrooms_PrivacyBudgetTemplate_BudgetParameter as BudgetParameter;
+    impl crate::value::ToValue for BudgetParameter_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.auto_refresh {
+                properties.insert(
+                    "AutoRefresh".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Budget".to_string(),
+                crate::value::ToValue::to_value(&self.budget),
+            );
+            properties.insert(
+                "Type".to_string(),
+                crate::value::ToValue::to_value(&self.r#type),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-privacybudgettemplate-parameters.html
     pub struct Parameters_ {
-        pub epsilon: i64,
-        pub users_noise_per_query: i64,
+        pub budget_parameters: Option<Vec<BudgetParameter_>>,
+        pub epsilon: Option<i32>,
+        pub resource_arn: Option<crate::value::ExpString>,
+        pub users_noise_per_query: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1784,14 +2001,30 @@ pub mod privacybudgettemplate {
     impl crate::value::ToValue for Parameters_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            properties.insert(
-                "Epsilon".to_string(),
-                crate::value::ToValue::to_value(&self.epsilon),
-            );
-            properties.insert(
-                "UsersNoisePerQuery".to_string(),
-                crate::value::ToValue::to_value(&self.users_noise_per_query),
-            );
+            if let Some(ref value) = self.budget_parameters {
+                properties.insert(
+                    "BudgetParameters".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.epsilon {
+                properties.insert(
+                    "Epsilon".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.resource_arn {
+                properties.insert(
+                    "ResourceArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.users_noise_per_query {
+                properties.insert(
+                    "UsersNoisePerQuery".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -1808,6 +2041,8 @@ pub struct AnalysisTemplate_ {
     pub schema: Option<super::cleanrooms::analysistemplate::AnalysisSchema_>,
     pub source: super::cleanrooms::analysistemplate::AnalysisSource_,
     pub source_metadata: Option<super::cleanrooms::analysistemplate::AnalysisSourceMetadata_>,
+    pub synthetic_data_parameters:
+        Option<super::cleanrooms::analysistemplate::SyntheticDataParameters_>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -1873,6 +2108,12 @@ impl crate::template::ToResource for AnalysisTemplate_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.synthetic_data_parameters {
+            properties.insert(
+                "SyntheticDataParameters".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
@@ -1881,6 +2122,7 @@ impl crate::template::ToResource for AnalysisTemplate_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cleanrooms-collaboration.html
 pub struct Collaboration_ {
+    pub allowed_result_regions: Option<Vec<crate::value::ExpString>>,
     pub analytics_engine: Option<crate::value::ExpString>,
     pub auto_approved_change_types: Option<Vec<crate::value::ExpString>>,
     pub creator_display_name: crate::value::ExpString,
@@ -1890,6 +2132,7 @@ pub struct Collaboration_ {
         Option<super::cleanrooms::collaboration::PaymentConfiguration_>,
     pub data_encryption_metadata: Option<super::cleanrooms::collaboration::DataEncryptionMetadata_>,
     pub description: crate::value::ExpString,
+    pub is_metrics_enabled: Option<crate::value::ExpBool>,
     pub job_log_status: Option<crate::value::ExpString>,
     pub members: Option<Vec<super::cleanrooms::collaboration::MemberSpecification_>>,
     pub name: crate::value::ExpString,
@@ -1916,6 +2159,12 @@ impl crate::template::ToResource for Collaboration_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.allowed_result_regions {
+            properties.insert(
+                "AllowedResultRegions".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.analytics_engine {
             properties.insert(
                 "AnalyticsEngine".to_string(),
@@ -1960,6 +2209,12 @@ impl crate::template::ToResource for Collaboration_ {
             "Description".to_string(),
             crate::value::ToValue::to_value(&self.description),
         );
+        if let Some(ref value) = self.is_metrics_enabled {
+            properties.insert(
+                "IsMetricsEnabled".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.job_log_status {
             properties.insert(
                 "JobLogStatus".to_string(),
@@ -2252,6 +2507,7 @@ pub struct Membership_ {
         Option<super::cleanrooms::membership::MembershipProtectedJobResultConfiguration_>,
     pub default_result_configuration:
         Option<super::cleanrooms::membership::MembershipProtectedQueryResultConfiguration_>,
+    pub is_metrics_enabled: Option<crate::value::ExpBool>,
     pub job_log_status: Option<crate::value::ExpString>,
     pub payment_configuration:
         Option<super::cleanrooms::membership::MembershipPaymentConfiguration_>,
@@ -2291,6 +2547,12 @@ impl crate::template::ToResource for Membership_ {
         if let Some(ref value) = self.default_result_configuration {
             properties.insert(
                 "DefaultResultConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.is_metrics_enabled {
+            properties.insert(
+                "IsMetricsEnabled".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

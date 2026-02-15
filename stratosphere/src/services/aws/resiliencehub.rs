@@ -173,8 +173,8 @@ pub mod app {
 pub mod resiliencypolicy {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resiliencehub-resiliencypolicy-failurepolicy.html
     pub struct FailurePolicy_ {
-        pub rpo_in_secs: i64,
-        pub rto_in_secs: i64,
+        pub rpo_in_secs: i32,
+        pub rto_in_secs: i32,
     }
     #[doc(hidden)]
     #[macro_export]
