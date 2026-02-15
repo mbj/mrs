@@ -70,6 +70,7 @@ macro_rules! Output {
         $(,)?
     ) => {
         $crate::template::Output {
+            condition: None,
             description: $description.into(),
             value: $value.into(),
             export: None,
@@ -82,6 +83,34 @@ macro_rules! Output {
         $(,)?
     ) => {
         $crate::template::Output {
+            condition: None,
+            description: $description.into(),
+            value: $value.into(),
+            export: Some($export.into()),
+        }
+    };
+    (
+        condition: $condition:expr,
+        description: $description:expr,
+        value: $value:expr
+        $(,)?
+    ) => {
+        $crate::template::Output {
+            condition: Some($condition.into()),
+            description: $description.into(),
+            value: $value.into(),
+            export: None,
+        }
+    };
+    (
+        condition: $condition:expr,
+        description: $description:expr,
+        value: $value:expr,
+        export: $export:expr
+        $(,)?
+    ) => {
+        $crate::template::Output {
+            condition: Some($condition.into()),
             description: $description.into(),
             value: $value.into(),
             export: Some($export.into()),

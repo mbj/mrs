@@ -132,6 +132,7 @@ fn test_template_explicit() {
         .output_(
             "SecurityGroupIdA",
             stratosphere::template::Output {
+                condition: None,
                 description: "Id of the security group A".into(),
                 export: None,
                 value: stratosphere::value::ExpString::Ref("SecurityGroupA".into()),
@@ -1452,6 +1453,197 @@ fn test_fn_cidr_multiple_subnets() {
                 }
             }
         }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
+fn test_conditions_section() {
+    use stratosphere::template::ParameterType;
+    use stratosphere::value::equals_string;
+
+    let template = Template::build(|template| {
+        let env = &template.parameter(
+            "Environment",
+            stratosphere::Parameter! {
+                description: "Environment name",
+                r#type: ParameterType::String,
+            },
+        );
+
+        template.condition("IsProduction", equals_string(env, "production"));
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Conditions": {
+            "IsProduction": {
+                "Fn::Equals": [{"Ref": "Environment"}, "production"]
+            }
+        },
+        "Parameters": {
+            "Environment": {
+                "Description": "Environment name",
+                "Type": "String"
+            }
+        },
+        "Resources": {}
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
+fn test_condition_referencing_another_condition() {
+    use stratosphere::template::ParameterType;
+    use stratosphere::value::{ExpBool, equals_string};
+
+    let template = Template::build(|template| {
+        let env = &template.parameter(
+            "Environment",
+            stratosphere::Parameter! {
+                description: "Environment name",
+                r#type: ParameterType::String,
+            },
+        );
+
+        let is_prod = template.condition("IsProduction", equals_string(env, "production"));
+
+        template.condition(
+            "IsNotProduction",
+            ExpBool::Not(Box::new(ExpBool::Condition(is_prod))),
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Conditions": {
+            "IsNotProduction": {
+                "Fn::Not": [{"Condition": "IsProduction"}]
+            },
+            "IsProduction": {
+                "Fn::Equals": [{"Ref": "Environment"}, "production"]
+            }
+        },
+        "Parameters": {
+            "Environment": {
+                "Description": "Environment name",
+                "Type": "String"
+            }
+        },
+        "Resources": {}
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
+fn test_conditional_resource() {
+    use cloudformation::aws::ec2;
+    use stratosphere::template::ParameterType;
+    use stratosphere::value::equals_string;
+
+    let template = Template::build(|template| {
+        let env = &template.parameter(
+            "Environment",
+            stratosphere::Parameter! {
+                description: "Environment name",
+                r#type: ParameterType::String,
+            },
+        );
+
+        let is_prod = template.condition("IsProduction", equals_string(env, "production"));
+
+        template.conditional_resource(
+            "ProdVpc",
+            &is_prod,
+            ec2::VPC_ {
+                cidr_block: Some("10.0.0.0/16".into()),
+                enable_dns_hostnames: None,
+                enable_dns_support: None,
+                instance_tenancy: None,
+                ipv4_ipam_pool_id: None,
+                ipv4_netmask_length: None,
+                tags: None,
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Conditions": {
+            "IsProduction": {
+                "Fn::Equals": [{"Ref": "Environment"}, "production"]
+            }
+        },
+        "Parameters": {
+            "Environment": {
+                "Description": "Environment name",
+                "Type": "String"
+            }
+        },
+        "Resources": {
+            "ProdVpc": {
+                "Condition": "IsProduction",
+                "Type": "AWS::EC2::VPC",
+                "Properties": {
+                    "CidrBlock": "10.0.0.0/16"
+                }
+            }
+        }
+    });
+
+    assert_eq!(expected, serde_json::to_value(&template).unwrap());
+}
+
+#[test]
+fn test_conditional_output() {
+    use stratosphere::template::ParameterType;
+    use stratosphere::value::equals_string;
+
+    let template = Template::build(|template| {
+        let env = &template.parameter(
+            "Environment",
+            stratosphere::Parameter! {
+                description: "Environment name",
+                r#type: ParameterType::String,
+            },
+        );
+
+        let is_prod = template.condition("IsProduction", equals_string(env, "production"));
+
+        template.output(
+            "EnvInfo",
+            stratosphere::Output! {
+                condition: &is_prod,
+                description: "Production environment info",
+                value: env,
+            },
+        );
+    });
+
+    let expected = serde_json::json!({
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Conditions": {
+            "IsProduction": {
+                "Fn::Equals": [{"Ref": "Environment"}, "production"]
+            }
+        },
+        "Outputs": {
+            "EnvInfo": {
+                "Condition": "IsProduction",
+                "Description": "Production environment info",
+                "Value": {"Ref": "Environment"}
+            }
+        },
+        "Parameters": {
+            "Environment": {
+                "Description": "Environment name",
+                "Type": "String"
+            }
+        },
+        "Resources": {}
     });
 
     assert_eq!(expected, serde_json::to_value(&template).unwrap());
