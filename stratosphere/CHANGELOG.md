@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.5
+
+### Added
+
+- `Output!` macro arms accepting `condition:` field for conditional outputs
+- Updated CloudFormation resource specification
+
+### Changed
+
+- `Integer` properties now use `i32` (was `i64`), `Long` properties use `i64`
+- Bump stratosphere-core and stratosphere-generator dependencies to 0.0.5
+
 ## 0.0.4
 
 ### Changed

@@ -59,9 +59,9 @@ serde_json = { version = "1.0", features = ["arbitrary_precision", "indexmap"] }
 serde_path_to_error = "0.1"
 sha2 = "0.10"
 sqlx = { package = "msqlx", version = "0.9.0-msqlx.1", features = ["postgres", "runtime-tokio", "tls-rustls"] }
-stratosphere = { version = "0.0.4", path = "./stratosphere" }
-stratosphere-core = { version = "0.0.4", path = "./stratosphere-core" }
-stratosphere-generator = { version = "0.0.4", path = "./stratosphere-generator" }
+stratosphere = { version = "0.0.5", path = "./stratosphere" }
+stratosphere-core = { version = "0.0.5", path = "./stratosphere-core" }
+stratosphere-generator = { version = "0.0.5", path = "./stratosphere-generator" }
 strum = { version = "0.27", features = ["derive"] }
 syn = { version = "2", features = ["derive"] }
 thiserror = "2"
