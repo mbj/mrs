@@ -250,7 +250,7 @@ pub mod analyzer {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-unusedaccessconfiguration.html
     pub struct UnusedAccessConfiguration_ {
         pub analysis_rule: Option<Box<AnalysisRule_>>,
-        pub unused_access_age: Option<i64>,
+        pub unused_access_age: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

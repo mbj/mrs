@@ -134,7 +134,7 @@ pub mod connector {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-connector-sftpconfig.html
     pub struct SftpConfig_ {
-        pub max_concurrent_connections: Option<i64>,
+        pub max_concurrent_connections: Option<i32>,
         pub trusted_host_keys: Option<Vec<crate::value::ExpString>>,
         pub user_secret_id: Option<crate::value::ExpString>,
     }
@@ -549,7 +549,7 @@ pub mod webapp {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-transfer-webapp-webappunits.html
     pub struct WebAppUnits_ {
-        pub provisioned: i64,
+        pub provisioned: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -620,7 +620,7 @@ pub mod workflow {
         pub name: Option<crate::value::ExpString>,
         pub source_file_location: Option<crate::value::ExpString>,
         pub target: Option<crate::value::ExpString>,
-        pub timeout_seconds: Option<i64>,
+        pub timeout_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

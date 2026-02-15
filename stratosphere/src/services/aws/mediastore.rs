@@ -5,7 +5,7 @@ pub mod container {
         pub allowed_methods: Option<Vec<crate::value::ExpString>>,
         pub allowed_origins: Option<Vec<crate::value::ExpString>>,
         pub expose_headers: Option<Vec<crate::value::ExpString>>,
-        pub max_age_seconds: Option<i64>,
+        pub max_age_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

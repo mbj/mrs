@@ -426,9 +426,9 @@ pub mod functiondefinition {
         pub environment: Option<Box<Environment_>>,
         pub exec_args: Option<crate::value::ExpString>,
         pub executable: Option<crate::value::ExpString>,
-        pub memory_size: Option<i64>,
+        pub memory_size: Option<i32>,
         pub pinned: Option<crate::value::ExpBool>,
-        pub timeout: Option<i64>,
+        pub timeout: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -546,8 +546,8 @@ pub mod functiondefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinition-runas.html
     pub struct RunAs_ {
-        pub gid: Option<i64>,
-        pub uid: Option<i64>,
+        pub gid: Option<i32>,
+        pub uid: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -706,9 +706,9 @@ pub mod functiondefinitionversion {
         pub environment: Option<Box<Environment_>>,
         pub exec_args: Option<crate::value::ExpString>,
         pub executable: Option<crate::value::ExpString>,
-        pub memory_size: Option<i64>,
+        pub memory_size: Option<i32>,
         pub pinned: Option<crate::value::ExpBool>,
-        pub timeout: Option<i64>,
+        pub timeout: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -796,8 +796,8 @@ pub mod functiondefinitionversion {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-functiondefinitionversion-runas.html
     pub struct RunAs_ {
-        pub gid: Option<i64>,
-        pub uid: Option<i64>,
+        pub gid: Option<i32>,
+        pub uid: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -896,7 +896,7 @@ pub mod loggerdefinition {
         pub component: crate::value::ExpString,
         pub id: crate::value::ExpString,
         pub level: crate::value::ExpString,
-        pub space: Option<i64>,
+        pub space: Option<i32>,
         pub r#type: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -960,7 +960,7 @@ pub mod loggerdefinitionversion {
         pub component: crate::value::ExpString,
         pub id: crate::value::ExpString,
         pub level: crate::value::ExpString,
-        pub space: Option<i64>,
+        pub space: Option<i32>,
         pub r#type: crate::value::ExpString,
     }
     #[doc(hidden)]

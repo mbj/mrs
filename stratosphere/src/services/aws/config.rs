@@ -890,8 +890,8 @@ pub mod remediationconfiguration {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-remediationconfiguration-ssmcontrols.html
     pub struct SsmControls_ {
-        pub concurrent_execution_rate_percentage: Option<i64>,
-        pub error_percentage: Option<i64>,
+        pub concurrent_execution_rate_percentage: Option<i32>,
+        pub error_percentage: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1444,10 +1444,10 @@ pub struct RemediationConfiguration_ {
     pub automatic: Option<crate::value::ExpBool>,
     pub config_rule_name: crate::value::ExpString,
     pub execution_controls: Option<super::config::remediationconfiguration::ExecutionControls_>,
-    pub maximum_automatic_attempts: Option<i64>,
+    pub maximum_automatic_attempts: Option<i32>,
     pub parameters: Option<serde_json::Value>,
     pub resource_type: Option<crate::value::ExpString>,
-    pub retry_attempt_seconds: Option<i64>,
+    pub retry_attempt_seconds: Option<i32>,
     pub target_id: crate::value::ExpString,
     pub target_type: crate::value::ExpString,
     pub target_version: Option<crate::value::ExpString>,

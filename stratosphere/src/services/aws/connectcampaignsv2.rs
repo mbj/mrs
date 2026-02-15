@@ -64,8 +64,8 @@ pub mod campaign {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connectcampaignsv2-campaign-communicationlimit.html
     pub struct CommunicationLimit_ {
-        pub frequency: i64,
-        pub max_count_per_recipient: i64,
+        pub frequency: i32,
+        pub max_count_per_recipient: i32,
         pub unit: crate::value::ExpString,
     }
     #[doc(hidden)]

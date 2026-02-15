@@ -547,7 +547,7 @@ pub mod dataflowendpointgroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-connectiondetails.html
     pub struct ConnectionDetails_ {
-        pub mtu: Option<i64>,
+        pub mtu: Option<i32>,
         pub socket_address: Option<Box<SocketAddress_>>,
     }
     #[doc(hidden)]
@@ -577,7 +577,7 @@ pub mod dataflowendpointgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-dataflowendpoint.html
     pub struct DataflowEndpoint_ {
         pub address: Option<Box<SocketAddress_>>,
-        pub mtu: Option<i64>,
+        pub mtu: Option<i32>,
         pub name: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -648,8 +648,8 @@ pub mod dataflowendpointgroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-integerrange.html
     pub struct IntegerRange_ {
-        pub maximum: Option<i64>,
-        pub minimum: Option<i64>,
+        pub maximum: Option<i32>,
+        pub minimum: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -680,7 +680,7 @@ pub mod dataflowendpointgroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-rangedconnectiondetails.html
     pub struct RangedConnectionDetails_ {
-        pub mtu: Option<i64>,
+        pub mtu: Option<i32>,
         pub socket_address: Option<Box<RangedSocketAddress_>>,
     }
     #[doc(hidden)]
@@ -778,7 +778,7 @@ pub mod dataflowendpointgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-socketaddress.html
     pub struct SocketAddress_ {
         pub name: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -914,8 +914,8 @@ impl crate::template::ToResource for Config_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-dataflowendpointgroup.html
 pub struct DataflowEndpointGroup_ {
-    pub contact_post_pass_duration_seconds: Option<i64>,
-    pub contact_pre_pass_duration_seconds: Option<i64>,
+    pub contact_post_pass_duration_seconds: Option<i32>,
+    pub contact_pre_pass_duration_seconds: Option<i32>,
     pub endpoint_details: Vec<super::groundstation::dataflowendpointgroup::EndpointDetails_>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -963,10 +963,10 @@ impl crate::template::ToResource for DataflowEndpointGroup_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-missionprofile.html
 pub struct MissionProfile_ {
-    pub contact_post_pass_duration_seconds: Option<i64>,
-    pub contact_pre_pass_duration_seconds: Option<i64>,
+    pub contact_post_pass_duration_seconds: Option<i32>,
+    pub contact_pre_pass_duration_seconds: Option<i32>,
     pub dataflow_edges: Vec<super::groundstation::missionprofile::DataflowEdge_>,
-    pub minimum_viable_contact_duration_seconds: i64,
+    pub minimum_viable_contact_duration_seconds: i32,
     pub name: crate::value::ExpString,
     pub streams_kms_key: Option<super::groundstation::missionprofile::StreamsKmsKey_>,
     pub streams_kms_role: Option<crate::value::ExpString>,

@@ -411,7 +411,7 @@ pub mod application {
     pub struct LogPattern_ {
         pub pattern: crate::value::ExpString,
         pub pattern_name: crate::value::ExpString,
-        pub rank: i64,
+        pub rank: i32,
     }
     #[doc(hidden)]
     #[macro_export]

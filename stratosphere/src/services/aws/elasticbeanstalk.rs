@@ -67,7 +67,7 @@ pub mod application {
     pub struct MaxAgeRule_ {
         pub delete_source_from_s3: Option<crate::value::ExpBool>,
         pub enabled: Option<crate::value::ExpBool>,
-        pub max_age_in_days: Option<i64>,
+        pub max_age_in_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -106,7 +106,7 @@ pub mod application {
     pub struct MaxCountRule_ {
         pub delete_source_from_s3: Option<crate::value::ExpBool>,
         pub enabled: Option<crate::value::ExpBool>,
-        pub max_count: Option<i64>,
+        pub max_count: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

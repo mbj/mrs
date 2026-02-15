@@ -145,14 +145,14 @@ pub mod deployment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html
     pub struct MethodSetting_ {
         pub cache_data_encrypted: Option<crate::value::ExpBool>,
-        pub cache_ttl_in_seconds: Option<i64>,
+        pub cache_ttl_in_seconds: Option<i32>,
         pub caching_enabled: Option<crate::value::ExpBool>,
         pub data_trace_enabled: Option<crate::value::ExpBool>,
         pub http_method: Option<crate::value::ExpString>,
         pub logging_level: Option<crate::value::ExpString>,
         pub metrics_enabled: Option<crate::value::ExpBool>,
         pub resource_path: Option<crate::value::ExpString>,
-        pub throttling_burst_limit: Option<i64>,
+        pub throttling_burst_limit: Option<i32>,
         pub throttling_rate_limit: Option<f64>,
     }
     #[doc(hidden)]
@@ -236,7 +236,7 @@ pub mod deployment {
         pub cache_cluster_enabled: Option<crate::value::ExpBool>,
         pub cache_cluster_size: Option<crate::value::ExpString>,
         pub cache_data_encrypted: Option<crate::value::ExpBool>,
-        pub cache_ttl_in_seconds: Option<i64>,
+        pub cache_ttl_in_seconds: Option<i32>,
         pub caching_enabled: Option<crate::value::ExpBool>,
         pub canary_setting: Option<Box<CanarySetting_>>,
         pub client_certificate_id: Option<crate::value::ExpString>,
@@ -247,7 +247,7 @@ pub mod deployment {
         pub method_settings: Option<Vec<MethodSetting_>>,
         pub metrics_enabled: Option<crate::value::ExpBool>,
         pub tags: Option<Vec<crate::Tag_>>,
-        pub throttling_burst_limit: Option<i64>,
+        pub throttling_burst_limit: Option<i32>,
         pub throttling_rate_limit: Option<f64>,
         pub tracing_enabled: Option<crate::value::ExpBool>,
         pub variables: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -530,7 +530,7 @@ pub mod method {
         pub passthrough_behavior: Option<crate::value::ExpString>,
         pub request_parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
         pub request_templates: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
-        pub timeout_in_millis: Option<i64>,
+        pub timeout_in_millis: Option<i32>,
         pub r#type: crate::value::ExpString,
         pub uri: Option<crate::value::ExpString>,
     }
@@ -874,14 +874,14 @@ pub mod stage {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html
     pub struct MethodSetting_ {
         pub cache_data_encrypted: Option<crate::value::ExpBool>,
-        pub cache_ttl_in_seconds: Option<i64>,
+        pub cache_ttl_in_seconds: Option<i32>,
         pub caching_enabled: Option<crate::value::ExpBool>,
         pub data_trace_enabled: Option<crate::value::ExpBool>,
         pub http_method: Option<crate::value::ExpString>,
         pub logging_level: Option<crate::value::ExpString>,
         pub metrics_enabled: Option<crate::value::ExpBool>,
         pub resource_path: Option<crate::value::ExpString>,
-        pub throttling_burst_limit: Option<i64>,
+        pub throttling_burst_limit: Option<i32>,
         pub throttling_rate_limit: Option<f64>,
     }
     #[doc(hidden)]
@@ -996,8 +996,8 @@ pub mod usageplan {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-quotasettings.html
     pub struct QuotaSettings_ {
-        pub limit: Option<i64>,
-        pub offset: Option<i64>,
+        pub limit: Option<i32>,
+        pub offset: Option<i32>,
         pub period: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1026,7 +1026,7 @@ pub mod usageplan {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-throttlesettings.html
     pub struct ThrottleSettings_ {
-        pub burst_limit: Option<i64>,
+        pub burst_limit: Option<i32>,
         pub rate_limit: Option<f64>,
     }
     #[doc(hidden)]
@@ -1167,7 +1167,7 @@ impl crate::template::ToResource for ApiKey_ {
 pub struct Authorizer_ {
     pub auth_type: Option<crate::value::ExpString>,
     pub authorizer_credentials: Option<crate::value::ExpString>,
-    pub authorizer_result_ttl_in_seconds: Option<i64>,
+    pub authorizer_result_ttl_in_seconds: Option<i32>,
     pub authorizer_uri: Option<crate::value::ExpString>,
     pub identity_source: Option<crate::value::ExpString>,
     pub identity_validation_expression: Option<crate::value::ExpString>,
@@ -2058,7 +2058,7 @@ pub struct RestApi_ {
     pub disable_execute_api_endpoint: Option<crate::value::ExpBool>,
     pub endpoint_configuration: Option<super::apigateway::restapi::EndpointConfiguration_>,
     pub fail_on_warnings: Option<crate::value::ExpBool>,
-    pub minimum_compression_size: Option<i64>,
+    pub minimum_compression_size: Option<i32>,
     pub mode: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
     pub parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,

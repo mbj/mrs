@@ -38,7 +38,7 @@ pub mod pipe {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-batcharrayproperties.html
     pub struct BatchArrayProperties_ {
-        pub size: Option<i64>,
+        pub size: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -186,7 +186,7 @@ pub mod pipe {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-batchretrystrategy.html
     pub struct BatchRetryStrategy_ {
-        pub attempts: Option<i64>,
+        pub attempts: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -211,9 +211,9 @@ pub mod pipe {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-capacityproviderstrategyitem.html
     pub struct CapacityProviderStrategyItem_ {
-        pub base: Option<i64>,
+        pub base: Option<i32>,
         pub capacity_provider: crate::value::ExpString,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -323,11 +323,11 @@ pub mod pipe {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecscontaineroverride.html
     pub struct EcsContainerOverride_ {
         pub command: Option<Vec<crate::value::ExpString>>,
-        pub cpu: Option<i64>,
+        pub cpu: Option<i32>,
         pub environment: Option<Vec<EcsEnvironmentVariable_>>,
         pub environment_files: Option<Vec<EcsEnvironmentFile_>>,
-        pub memory: Option<i64>,
-        pub memory_reservation: Option<i64>,
+        pub memory: Option<i32>,
+        pub memory_reservation: Option<i32>,
         pub name: Option<crate::value::ExpString>,
         pub resource_requirements: Option<Vec<EcsResourceRequirement_>>,
     }
@@ -441,7 +441,7 @@ pub mod pipe {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-ecsephemeralstorage.html
     pub struct EcsEphemeralStorage_ {
-        pub size_in_gi_b: i64,
+        pub size_in_gi_b: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -923,9 +923,9 @@ pub mod pipe {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourceactivemqbrokerparameters.html
     pub struct PipeSourceActiveMQBrokerParameters_ {
-        pub batch_size: Option<i64>,
+        pub batch_size: Option<i32>,
         pub credentials: Box<MQBrokerAccessCredentials_>,
-        pub maximum_batching_window_in_seconds: Option<i64>,
+        pub maximum_batching_window_in_seconds: Option<i32>,
         pub queue_name: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -965,13 +965,13 @@ pub mod pipe {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcedynamodbstreamparameters.html
     pub struct PipeSourceDynamoDBStreamParameters_ {
-        pub batch_size: Option<i64>,
+        pub batch_size: Option<i32>,
         pub dead_letter_config: Option<Box<DeadLetterConfig_>>,
-        pub maximum_batching_window_in_seconds: Option<i64>,
-        pub maximum_record_age_in_seconds: Option<i64>,
-        pub maximum_retry_attempts: Option<i64>,
+        pub maximum_batching_window_in_seconds: Option<i32>,
+        pub maximum_record_age_in_seconds: Option<i32>,
+        pub maximum_retry_attempts: Option<i32>,
         pub on_partial_batch_item_failure: Option<crate::value::ExpString>,
-        pub parallelization_factor: Option<i64>,
+        pub parallelization_factor: Option<i32>,
         pub starting_position: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -1037,13 +1037,13 @@ pub mod pipe {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcekinesisstreamparameters.html
     pub struct PipeSourceKinesisStreamParameters_ {
-        pub batch_size: Option<i64>,
+        pub batch_size: Option<i32>,
         pub dead_letter_config: Option<Box<DeadLetterConfig_>>,
-        pub maximum_batching_window_in_seconds: Option<i64>,
-        pub maximum_record_age_in_seconds: Option<i64>,
-        pub maximum_retry_attempts: Option<i64>,
+        pub maximum_batching_window_in_seconds: Option<i32>,
+        pub maximum_record_age_in_seconds: Option<i32>,
+        pub maximum_retry_attempts: Option<i32>,
         pub on_partial_batch_item_failure: Option<crate::value::ExpString>,
-        pub parallelization_factor: Option<i64>,
+        pub parallelization_factor: Option<i32>,
         pub starting_position: crate::value::ExpString,
         pub starting_position_timestamp: Option<crate::value::ExpString>,
     }
@@ -1116,10 +1116,10 @@ pub mod pipe {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcemanagedstreamingkafkaparameters.html
     pub struct PipeSourceManagedStreamingKafkaParameters_ {
-        pub batch_size: Option<i64>,
+        pub batch_size: Option<i32>,
         pub consumer_group_id: Option<crate::value::ExpString>,
         pub credentials: Option<Box<MSKAccessCredentials_>>,
-        pub maximum_batching_window_in_seconds: Option<i64>,
+        pub maximum_batching_window_in_seconds: Option<i32>,
         pub starting_position: Option<crate::value::ExpString>,
         pub topic_name: crate::value::ExpString,
     }
@@ -1249,9 +1249,9 @@ pub mod pipe {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcerabbitmqbrokerparameters.html
     pub struct PipeSourceRabbitMQBrokerParameters_ {
-        pub batch_size: Option<i64>,
+        pub batch_size: Option<i32>,
         pub credentials: Box<MQBrokerAccessCredentials_>,
-        pub maximum_batching_window_in_seconds: Option<i64>,
+        pub maximum_batching_window_in_seconds: Option<i32>,
         pub queue_name: crate::value::ExpString,
         pub virtual_host: Option<crate::value::ExpString>,
     }
@@ -1299,10 +1299,10 @@ pub mod pipe {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourceselfmanagedkafkaparameters.html
     pub struct PipeSourceSelfManagedKafkaParameters_ {
         pub additional_bootstrap_servers: Option<Vec<crate::value::ExpString>>,
-        pub batch_size: Option<i64>,
+        pub batch_size: Option<i32>,
         pub consumer_group_id: Option<crate::value::ExpString>,
         pub credentials: Option<Box<SelfManagedKafkaAccessConfigurationCredentials_>>,
-        pub maximum_batching_window_in_seconds: Option<i64>,
+        pub maximum_batching_window_in_seconds: Option<i32>,
         pub server_root_ca_certificate: Option<crate::value::ExpString>,
         pub starting_position: Option<crate::value::ExpString>,
         pub topic_name: crate::value::ExpString,
@@ -1374,8 +1374,8 @@ pub mod pipe {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pipes-pipe-pipesourcesqsqueueparameters.html
     pub struct PipeSourceSqsQueueParameters_ {
-        pub batch_size: Option<i64>,
-        pub maximum_batching_window_in_seconds: Option<i64>,
+        pub batch_size: Option<i32>,
+        pub maximum_batching_window_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1514,7 +1514,7 @@ pub mod pipe {
         pub propagate_tags: Option<crate::value::ExpString>,
         pub reference_id: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
-        pub task_count: Option<i64>,
+        pub task_count: Option<i32>,
         pub task_definition_arn: crate::value::ExpString,
     }
     #[doc(hidden)]

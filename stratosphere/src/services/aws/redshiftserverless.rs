@@ -106,7 +106,7 @@ pub mod namespace {
     pub struct SnapshotCopyConfiguration_ {
         pub destination_kms_key_id: Option<crate::value::ExpString>,
         pub destination_region: crate::value::ExpString,
-        pub snapshot_retention_period: Option<i64>,
+        pub snapshot_retention_period: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -148,7 +148,7 @@ pub mod snapshot {
         pub namespace_arn: Option<crate::value::ExpString>,
         pub namespace_name: Option<crate::value::ExpString>,
         pub owner_account: Option<crate::value::ExpString>,
-        pub retention_period: Option<i64>,
+        pub retention_period: Option<i32>,
         pub snapshot_arn: Option<crate::value::ExpString>,
         pub snapshot_create_time: Option<crate::value::ExpString>,
         pub snapshot_name: Option<crate::value::ExpString>,
@@ -263,7 +263,7 @@ pub mod workgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-endpoint.html
     pub struct Endpoint_ {
         pub address: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub vpc_endpoints: Option<Vec<VpcEndpoint_>>,
     }
     #[doc(hidden)]
@@ -344,7 +344,7 @@ pub mod workgroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-performancetarget.html
     pub struct PerformanceTarget_ {
-        pub level: Option<i64>,
+        pub level: Option<i32>,
         pub status: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -406,12 +406,12 @@ pub mod workgroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshiftserverless-workgroup-workgroup.html
     pub struct Workgroup_ {
-        pub base_capacity: Option<i64>,
+        pub base_capacity: Option<i32>,
         pub config_parameters: Option<Vec<ConfigParameter_>>,
         pub creation_date: Option<crate::value::ExpString>,
         pub endpoint: Option<Box<Endpoint_>>,
         pub enhanced_vpc_routing: Option<crate::value::ExpBool>,
-        pub max_capacity: Option<i64>,
+        pub max_capacity: Option<i32>,
         pub namespace_name: Option<crate::value::ExpString>,
         pub price_performance_target: Option<Box<PerformanceTarget_>>,
         pub publicly_accessible: Option<crate::value::ExpBool>,
@@ -540,7 +540,7 @@ pub struct Namespace_ {
     pub db_name: Option<crate::value::ExpString>,
     pub default_iam_role_arn: Option<crate::value::ExpString>,
     pub final_snapshot_name: Option<crate::value::ExpString>,
-    pub final_snapshot_retention_period: Option<i64>,
+    pub final_snapshot_retention_period: Option<i32>,
     pub iam_roles: Option<Vec<crate::value::ExpString>>,
     pub kms_key_id: Option<crate::value::ExpString>,
     pub log_exports: Option<Vec<crate::value::ExpString>>,
@@ -666,7 +666,7 @@ impl crate::template::ToResource for Namespace_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-snapshot.html
 pub struct Snapshot_ {
     pub namespace_name: Option<crate::value::ExpString>,
-    pub retention_period: Option<i64>,
+    pub retention_period: Option<i32>,
     pub snapshot_name: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -714,12 +714,12 @@ impl crate::template::ToResource for Snapshot_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshiftserverless-workgroup.html
 pub struct Workgroup_ {
-    pub base_capacity: Option<i64>,
+    pub base_capacity: Option<i32>,
     pub config_parameters: Option<Vec<super::redshiftserverless::workgroup::ConfigParameter_>>,
     pub enhanced_vpc_routing: Option<crate::value::ExpBool>,
-    pub max_capacity: Option<i64>,
+    pub max_capacity: Option<i32>,
     pub namespace_name: Option<crate::value::ExpString>,
-    pub port: Option<i64>,
+    pub port: Option<i32>,
     pub price_performance_target: Option<super::redshiftserverless::workgroup::PerformanceTarget_>,
     pub publicly_accessible: Option<crate::value::ExpBool>,
     pub recovery_point_id: Option<crate::value::ExpString>,

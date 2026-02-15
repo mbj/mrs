@@ -1,9 +1,9 @@
 pub mod member {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-managedblockchain-member-approvalthresholdpolicy.html
     pub struct ApprovalThresholdPolicy_ {
-        pub proposal_duration_in_hours: Option<i64>,
+        pub proposal_duration_in_hours: Option<i32>,
         pub threshold_comparator: Option<crate::value::ExpString>,
-        pub threshold_percentage: Option<i64>,
+        pub threshold_percentage: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

@@ -1228,7 +1228,7 @@ pub mod connectorprofile {
         pub disable_sso: Option<crate::value::ExpBool>,
         pub logon_language: Option<crate::value::ExpString>,
         pub o_auth_properties: Option<Box<OAuthProperties_>>,
-        pub port_number: Option<i64>,
+        pub port_number: Option<i32>,
         pub private_link_service_name: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1773,7 +1773,7 @@ pub mod flow {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-aggregationconfig.html
     pub struct AggregationConfig_ {
         pub aggregation_type: Option<crate::value::ExpString>,
-        pub target_file_size: Option<i64>,
+        pub target_file_size: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2819,7 +2819,7 @@ pub mod flow {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatapaginationconfig.html
     pub struct SAPODataPaginationConfig_ {
-        pub max_page_size: i64,
+        pub max_page_size: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2842,7 +2842,7 @@ pub mod flow {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodataparallelismconfig.html
     pub struct SAPODataParallelismConfig_ {
-        pub max_parallelism: i64,
+        pub max_parallelism: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2999,7 +2999,7 @@ pub mod flow {
     pub struct ScheduledTriggerProperties_ {
         pub data_pull_mode: Option<crate::value::ExpString>,
         pub first_execution_from: Option<f64>,
-        pub flow_error_deactivation_threshold: Option<i64>,
+        pub flow_error_deactivation_threshold: Option<i32>,
         pub schedule_end_time: Option<f64>,
         pub schedule_expression: crate::value::ExpString,
         pub schedule_offset: Option<f64>,

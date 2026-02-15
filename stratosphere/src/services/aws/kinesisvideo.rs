@@ -1,6 +1,6 @@
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisvideo-signalingchannel.html
 pub struct SignalingChannel_ {
-    pub message_ttl_seconds: Option<i64>,
+    pub message_ttl_seconds: Option<i32>,
     pub name: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub r#type: Option<crate::value::ExpString>,
@@ -45,7 +45,7 @@ impl crate::template::ToResource for SignalingChannel_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisvideo-stream.html
 pub struct Stream_ {
-    pub data_retention_in_hours: Option<i64>,
+    pub data_retention_in_hours: Option<i32>,
     pub device_name: Option<crate::value::ExpString>,
     pub kms_key_id: Option<crate::value::ExpString>,
     pub media_type: Option<crate::value::ExpString>,

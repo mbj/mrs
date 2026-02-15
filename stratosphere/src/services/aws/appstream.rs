@@ -31,7 +31,7 @@ pub mod appblock {
         pub executable_parameters: Option<crate::value::ExpString>,
         pub executable_path: crate::value::ExpString,
         pub script_s3_location: Box<S3Location_>,
-        pub timeout_in_seconds: i64,
+        pub timeout_in_seconds: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -251,8 +251,8 @@ pub mod entitlement {
 pub mod fleet {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-fleet-computecapacity.html
     pub struct ComputeCapacity_ {
-        pub desired_instances: Option<i64>,
-        pub desired_sessions: Option<i64>,
+        pub desired_instances: Option<i32>,
+        pub desired_sessions: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -592,7 +592,7 @@ pub mod stack {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-stack-usersetting.html
     pub struct UserSetting_ {
         pub action: crate::value::ExpString,
-        pub maximum_length: Option<i64>,
+        pub maximum_length: Option<i32>,
         pub permission: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -1074,19 +1074,19 @@ impl crate::template::ToResource for Entitlement_ {
 pub struct Fleet_ {
     pub compute_capacity: Option<super::appstream::fleet::ComputeCapacity_>,
     pub description: Option<crate::value::ExpString>,
-    pub disconnect_timeout_in_seconds: Option<i64>,
+    pub disconnect_timeout_in_seconds: Option<i32>,
     pub display_name: Option<crate::value::ExpString>,
     pub domain_join_info: Option<super::appstream::fleet::DomainJoinInfo_>,
     pub enable_default_internet_access: Option<crate::value::ExpBool>,
     pub fleet_type: Option<crate::value::ExpString>,
     pub iam_role_arn: Option<crate::value::ExpString>,
-    pub idle_disconnect_timeout_in_seconds: Option<i64>,
+    pub idle_disconnect_timeout_in_seconds: Option<i32>,
     pub image_arn: Option<crate::value::ExpString>,
     pub image_name: Option<crate::value::ExpString>,
     pub instance_type: crate::value::ExpString,
-    pub max_concurrent_sessions: Option<i64>,
-    pub max_sessions_per_instance: Option<i64>,
-    pub max_user_duration_in_seconds: Option<i64>,
+    pub max_concurrent_sessions: Option<i32>,
+    pub max_sessions_per_instance: Option<i32>,
+    pub max_user_duration_in_seconds: Option<i32>,
     pub name: crate::value::ExpString,
     pub platform: Option<crate::value::ExpString>,
     pub session_script_s3_location: Option<super::appstream::fleet::S3Location_>,

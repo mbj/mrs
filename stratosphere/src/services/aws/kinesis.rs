@@ -91,8 +91,8 @@ impl crate::template::ToResource for ResourcePolicy_ {
 pub struct Stream_ {
     pub desired_shard_level_metrics: Option<Vec<crate::value::ExpString>>,
     pub name: Option<crate::value::ExpString>,
-    pub retention_period_hours: Option<i64>,
-    pub shard_count: Option<i64>,
+    pub retention_period_hours: Option<i32>,
+    pub shard_count: Option<i32>,
     pub stream_encryption: Option<super::kinesis::stream::StreamEncryption_>,
     pub stream_mode_details: Option<super::kinesis::stream::StreamModeDetails_>,
     pub tags: Option<Vec<crate::Tag_>>,

@@ -350,7 +350,7 @@ pub mod locationhdfs {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationhdfs-namenode.html
     pub struct NameNode_ {
         pub hostname: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -752,7 +752,7 @@ pub mod task {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-task-options.html
     pub struct Options_ {
         pub atime: Option<crate::value::ExpString>,
-        pub bytes_per_second: Option<i64>,
+        pub bytes_per_second: Option<i32>,
         pub gid: Option<crate::value::ExpString>,
         pub log_level: Option<crate::value::ExpString>,
         pub mtime: Option<crate::value::ExpString>,
@@ -1574,14 +1574,14 @@ impl crate::template::ToResource for LocationFSxWindows_ {
 pub struct LocationHDFS_ {
     pub agent_arns: Vec<crate::value::ExpString>,
     pub authentication_type: crate::value::ExpString,
-    pub block_size: Option<i64>,
+    pub block_size: Option<i32>,
     pub kerberos_keytab: Option<crate::value::ExpString>,
     pub kerberos_krb5_conf: Option<crate::value::ExpString>,
     pub kerberos_principal: Option<crate::value::ExpString>,
     pub kms_key_provider_uri: Option<crate::value::ExpString>,
     pub name_nodes: Vec<super::datasync::locationhdfs::NameNode_>,
     pub qop_configuration: Option<super::datasync::locationhdfs::QopConfiguration_>,
-    pub replication_factor: Option<i64>,
+    pub replication_factor: Option<i32>,
     pub simple_user: Option<crate::value::ExpString>,
     pub subdirectory: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1744,7 +1744,7 @@ pub struct LocationObjectStorage_ {
     pub secret_key: Option<crate::value::ExpString>,
     pub server_certificate: Option<crate::value::ExpString>,
     pub server_hostname: Option<crate::value::ExpString>,
-    pub server_port: Option<i64>,
+    pub server_port: Option<i32>,
     pub server_protocol: Option<crate::value::ExpString>,
     pub subdirectory: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,

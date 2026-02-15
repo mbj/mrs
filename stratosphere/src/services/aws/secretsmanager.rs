@@ -94,7 +94,7 @@ pub mod rotationschedule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-rotationrules.html
     pub struct RotationRules_ {
-        pub automatically_after_days: Option<i64>,
+        pub automatically_after_days: Option<i32>,
         pub duration: Option<crate::value::ExpString>,
         pub schedule_expression: Option<crate::value::ExpString>,
     }
@@ -142,7 +142,7 @@ pub mod secret {
         pub exclude_uppercase: Option<crate::value::ExpBool>,
         pub generate_string_key: Option<crate::value::ExpString>,
         pub include_space: Option<crate::value::ExpBool>,
-        pub password_length: Option<i64>,
+        pub password_length: Option<i32>,
         pub require_each_included_type: Option<crate::value::ExpBool>,
         pub secret_string_template: Option<crate::value::ExpString>,
     }

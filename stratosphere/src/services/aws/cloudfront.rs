@@ -4,7 +4,7 @@ pub mod anycastiplist {
         pub anycast_ips: Vec<crate::value::ExpString>,
         pub arn: crate::value::ExpString,
         pub id: crate::value::ExpString,
-        pub ip_count: i64,
+        pub ip_count: i32,
         pub last_modified_time: crate::value::ExpString,
         pub name: crate::value::ExpString,
         pub status: crate::value::ExpString,
@@ -343,8 +343,8 @@ pub mod continuousdeploymentpolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-sessionstickinessconfig.html
     pub struct SessionStickinessConfig_ {
-        pub idle_ttl: i64,
-        pub maximum_ttl: i64,
+        pub idle_ttl: i32,
+        pub maximum_ttl: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -710,8 +710,8 @@ pub mod distribution {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customerrorresponse.html
     pub struct CustomErrorResponse_ {
         pub error_caching_min_ttl: Option<f64>,
-        pub error_code: i64,
-        pub response_code: Option<i64>,
+        pub error_code: i32,
+        pub response_code: Option<i32>,
         pub response_page_path: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -753,12 +753,12 @@ pub mod distribution {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html
     pub struct CustomOriginConfig_ {
-        pub http_port: Option<i64>,
-        pub https_port: Option<i64>,
+        pub http_port: Option<i32>,
+        pub https_port: Option<i32>,
         pub ip_address_type: Option<crate::value::ExpString>,
-        pub origin_keepalive_timeout: Option<i64>,
+        pub origin_keepalive_timeout: Option<i32>,
         pub origin_protocol_policy: crate::value::ExpString,
-        pub origin_read_timeout: Option<i64>,
+        pub origin_read_timeout: Option<i32>,
         pub origin_ssl_protocols: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
@@ -1339,8 +1339,8 @@ pub mod distribution {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html
     pub struct LegacyCustomOrigin_ {
         pub dns_name: crate::value::ExpString,
-        pub http_port: Option<i64>,
-        pub https_port: Option<i64>,
+        pub http_port: Option<i32>,
+        pub https_port: Option<i32>,
         pub origin_protocol_policy: crate::value::ExpString,
         pub origin_ssl_protocols: Vec<crate::value::ExpString>,
     }
@@ -1448,8 +1448,8 @@ pub mod distribution {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html
     pub struct Origin_ {
-        pub connection_attempts: Option<i64>,
-        pub connection_timeout: Option<i64>,
+        pub connection_attempts: Option<i32>,
+        pub connection_timeout: Option<i32>,
         pub custom_origin_config: Option<Box<CustomOriginConfig_>>,
         pub domain_name: crate::value::ExpString,
         pub id: crate::value::ExpString,
@@ -1457,7 +1457,7 @@ pub mod distribution {
         pub origin_custom_headers: Option<Vec<OriginCustomHeader_>>,
         pub origin_path: Option<crate::value::ExpString>,
         pub origin_shield: Option<Box<OriginShield_>>,
-        pub response_completion_timeout: Option<i64>,
+        pub response_completion_timeout: Option<i32>,
         pub s3_origin_config: Option<Box<S3OriginConfig_>>,
         pub vpc_origin_config: Option<Box<VpcOriginConfig_>>,
     }
@@ -1655,7 +1655,7 @@ pub mod distribution {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupmembers.html
     pub struct OriginGroupMembers_ {
         pub items: Vec<OriginGroupMember_>,
-        pub quantity: i64,
+        pub quantity: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1683,7 +1683,7 @@ pub mod distribution {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroups.html
     pub struct OriginGroups_ {
         pub items: Option<Vec<OriginGroup_>>,
-        pub quantity: i64,
+        pub quantity: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1793,7 +1793,7 @@ pub mod distribution {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-s3originconfig.html
     pub struct S3OriginConfig_ {
         pub origin_access_identity: Option<crate::value::ExpString>,
-        pub origin_read_timeout: Option<i64>,
+        pub origin_read_timeout: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1824,8 +1824,8 @@ pub mod distribution {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-statuscodes.html
     pub struct StatusCodes_ {
-        pub items: Vec<i64>,
-        pub quantity: i64,
+        pub items: Vec<i32>,
+        pub quantity: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1967,8 +1967,8 @@ pub mod distribution {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-vpcoriginconfig.html
     pub struct VpcOriginConfig_ {
-        pub origin_keepalive_timeout: Option<i64>,
-        pub origin_read_timeout: Option<i64>,
+        pub origin_keepalive_timeout: Option<i32>,
+        pub origin_read_timeout: Option<i32>,
         pub vpc_origin_id: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -2849,7 +2849,7 @@ pub mod responseheaderspolicy {
         pub access_control_allow_methods: Box<AccessControlAllowMethods_>,
         pub access_control_allow_origins: Box<AccessControlAllowOrigins_>,
         pub access_control_expose_headers: Option<Box<AccessControlExposeHeaders_>>,
-        pub access_control_max_age_sec: Option<i64>,
+        pub access_control_max_age_sec: Option<i32>,
         pub origin_override: crate::value::ExpBool,
     }
     #[doc(hidden)]
@@ -3214,7 +3214,7 @@ pub mod responseheaderspolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-stricttransportsecurity.html
     pub struct StrictTransportSecurity_ {
-        pub access_control_max_age_sec: i64,
+        pub access_control_max_age_sec: i32,
         pub include_subdomains: Option<crate::value::ExpBool>,
         pub r#override: crate::value::ExpBool,
         pub preload: Option<crate::value::ExpBool>,
@@ -3453,8 +3453,8 @@ pub mod vpcorigin {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-vpcorigin-vpcoriginendpointconfig.html
     pub struct VpcOriginEndpointConfig_ {
         pub arn: crate::value::ExpString,
-        pub http_port: Option<i64>,
-        pub https_port: Option<i64>,
+        pub http_port: Option<i32>,
+        pub https_port: Option<i32>,
         pub name: crate::value::ExpString,
         pub origin_protocol_policy: Option<crate::value::ExpString>,
         pub origin_ssl_protocols: Option<Vec<crate::value::ExpString>>,
@@ -3509,7 +3509,7 @@ pub mod vpcorigin {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-anycastiplist.html
 pub struct AnycastIpList_ {
-    pub ip_count: i64,
+    pub ip_count: i32,
     pub name: crate::value::ExpString,
     pub tags: Option<super::cloudfront::anycastiplist::Tags_>,
 }

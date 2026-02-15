@@ -56,7 +56,7 @@ pub mod bot {
     pub struct AudioAndDTMFInputSpecification_ {
         pub audio_specification: Option<Box<AudioSpecification_>>,
         pub dtmf_specification: Option<Box<DTMFSpecification_>>,
-        pub start_timeout_ms: i64,
+        pub start_timeout_ms: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -142,8 +142,8 @@ pub mod bot {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-audiospecification.html
     pub struct AudioSpecification_ {
-        pub end_timeout_ms: i64,
-        pub max_length_ms: i64,
+        pub end_timeout_ms: i32,
+        pub max_length_ms: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -844,7 +844,7 @@ pub mod bot {
     pub struct CustomVocabularyItem_ {
         pub display_as: Option<crate::value::ExpString>,
         pub phrase: crate::value::ExpString,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -878,8 +878,8 @@ pub mod bot {
     pub struct DTMFSpecification_ {
         pub deletion_character: crate::value::ExpString,
         pub end_character: crate::value::ExpString,
-        pub end_timeout_ms: i64,
-        pub max_length: i64,
+        pub end_timeout_ms: i32,
+        pub max_length: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1329,7 +1329,7 @@ pub mod bot {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-fulfillmentstartresponsespecification.html
     pub struct FulfillmentStartResponseSpecification_ {
         pub allow_interrupt: Option<crate::value::ExpBool>,
-        pub delay_in_seconds: i64,
+        pub delay_in_seconds: i32,
         pub message_groups: Vec<MessageGroup_>,
     }
     #[doc(hidden)]
@@ -1364,7 +1364,7 @@ pub mod bot {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-fulfillmentupdateresponsespecification.html
     pub struct FulfillmentUpdateResponseSpecification_ {
         pub allow_interrupt: Option<crate::value::ExpBool>,
-        pub frequency_in_seconds: i64,
+        pub frequency_in_seconds: i32,
         pub message_groups: Vec<MessageGroup_>,
     }
     #[doc(hidden)]
@@ -1400,7 +1400,7 @@ pub mod bot {
     pub struct FulfillmentUpdatesSpecification_ {
         pub active: crate::value::ExpBool,
         pub start_response: Option<Box<FulfillmentStartResponseSpecification_>>,
-        pub timeout_in_seconds: Option<i64>,
+        pub timeout_in_seconds: Option<i32>,
         pub update_response: Option<Box<FulfillmentUpdateResponseSpecification_>>,
     }
     #[doc(hidden)]
@@ -2221,8 +2221,8 @@ pub mod bot {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-outputcontext.html
     pub struct OutputContext_ {
         pub name: crate::value::ExpString,
-        pub time_to_live_in_seconds: i64,
-        pub turns_to_live: i64,
+        pub time_to_live_in_seconds: i32,
+        pub turns_to_live: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2483,7 +2483,7 @@ pub mod bot {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-promptspecification.html
     pub struct PromptSpecification_ {
         pub allow_interrupt: Option<crate::value::ExpBool>,
-        pub max_retries: i64,
+        pub max_retries: i32,
         pub message_groups_list: Vec<MessageGroup_>,
         pub message_selection_strategy: Option<crate::value::ExpString>,
         pub prompt_attempts_specification:
@@ -3134,7 +3134,7 @@ pub mod bot {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-slotpriority.html
     pub struct SlotPriority_ {
-        pub priority: i64,
+        pub priority: i32,
         pub slot_name: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -3521,9 +3521,9 @@ pub mod bot {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-stillwaitingresponsespecification.html
     pub struct StillWaitingResponseSpecification_ {
         pub allow_interrupt: Option<crate::value::ExpBool>,
-        pub frequency_in_seconds: i64,
+        pub frequency_in_seconds: i32,
         pub message_groups_list: Vec<MessageGroup_>,
-        pub timeout_in_seconds: i64,
+        pub timeout_in_seconds: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3712,7 +3712,7 @@ pub mod bot {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lex-bot-textinputspecification.html
     pub struct TextInputSpecification_ {
-        pub start_timeout_ms: i64,
+        pub start_timeout_ms: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4247,7 +4247,7 @@ pub struct Bot_ {
     pub data_privacy: super::lex::bot::DataPrivacy_,
     pub description: Option<crate::value::ExpString>,
     pub error_log_settings: Option<super::lex::bot::ErrorLogSettings_>,
-    pub idle_session_ttl_in_seconds: i64,
+    pub idle_session_ttl_in_seconds: i32,
     pub name: crate::value::ExpString,
     pub replication: Option<super::lex::bot::Replication_>,
     pub role_arn: crate::value::ExpString,

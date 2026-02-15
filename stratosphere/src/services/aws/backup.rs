@@ -421,9 +421,9 @@ pub mod backupselection {
 pub mod backupvault {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupvault-lockconfigurationtype.html
     pub struct LockConfigurationType_ {
-        pub changeable_for_days: Option<i64>,
-        pub max_retention_days: Option<i64>,
-        pub min_retention_days: i64,
+        pub changeable_for_days: Option<i32>,
+        pub max_retention_days: Option<i32>,
+        pub min_retention_days: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -715,7 +715,7 @@ pub mod restoretestingplan {
         pub exclude_vaults: Option<Vec<crate::value::ExpString>>,
         pub include_vaults: Vec<crate::value::ExpString>,
         pub recovery_point_types: Vec<crate::value::ExpString>,
-        pub selection_window_days: Option<i64>,
+        pub selection_window_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1016,8 +1016,8 @@ pub struct LogicallyAirGappedBackupVault_ {
     pub access_policy: Option<serde_json::Value>,
     pub backup_vault_name: crate::value::ExpString,
     pub backup_vault_tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
-    pub max_retention_days: i64,
-    pub min_retention_days: i64,
+    pub max_retention_days: i32,
+    pub min_retention_days: i32,
     pub notifications:
         Option<super::backup::logicallyairgappedbackupvault::NotificationObjectType_>,
 }
@@ -1140,7 +1140,7 @@ pub struct RestoreTestingPlan_ {
     pub restore_testing_plan_name: crate::value::ExpString,
     pub schedule_expression: crate::value::ExpString,
     pub schedule_expression_timezone: Option<crate::value::ExpString>,
-    pub start_window_hours: Option<i64>,
+    pub start_window_hours: Option<i32>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -1204,7 +1204,7 @@ pub struct RestoreTestingSelection_ {
         Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub restore_testing_plan_name: crate::value::ExpString,
     pub restore_testing_selection_name: crate::value::ExpString,
-    pub validation_window_hours: Option<i64>,
+    pub validation_window_hours: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]

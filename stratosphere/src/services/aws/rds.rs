@@ -118,10 +118,10 @@ pub mod dbcluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-scalingconfiguration.html
     pub struct ScalingConfiguration_ {
         pub auto_pause: Option<crate::value::ExpBool>,
-        pub max_capacity: Option<i64>,
-        pub min_capacity: Option<i64>,
-        pub seconds_before_timeout: Option<i64>,
-        pub seconds_until_auto_pause: Option<i64>,
+        pub max_capacity: Option<i32>,
+        pub min_capacity: Option<i32>,
+        pub seconds_before_timeout: Option<i32>,
+        pub seconds_until_auto_pause: Option<i32>,
         pub timeout_action: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -179,7 +179,7 @@ pub mod dbcluster {
     pub struct ServerlessV2ScalingConfiguration_ {
         pub max_capacity: Option<f64>,
         pub min_capacity: Option<f64>,
-        pub seconds_until_auto_pause: Option<i64>,
+        pub seconds_until_auto_pause: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -523,10 +523,10 @@ pub mod dbproxyendpoint {
 pub mod dbproxytargetgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbproxytargetgroup-connectionpoolconfigurationinfoformat.html
     pub struct ConnectionPoolConfigurationInfoFormat_ {
-        pub connection_borrow_timeout: Option<i64>,
+        pub connection_borrow_timeout: Option<i32>,
         pub init_query: Option<crate::value::ExpString>,
-        pub max_connections_percent: Option<i64>,
-        pub max_idle_connections_percent: Option<i64>,
+        pub max_connections_percent: Option<i32>,
+        pub max_idle_connections_percent: Option<i32>,
         pub session_pinning_filters: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
@@ -654,7 +654,7 @@ pub mod optiongroup {
         pub option_name: crate::value::ExpString,
         pub option_settings: Option<Vec<OptionSetting_>>,
         pub option_version: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub vpc_security_group_memberships: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
@@ -832,12 +832,12 @@ impl crate::template::ToResource for CustomDBEngineVersion_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html
 pub struct DBCluster_ {
-    pub allocated_storage: Option<i64>,
+    pub allocated_storage: Option<i32>,
     pub associated_roles: Option<Vec<super::rds::dbcluster::DBClusterRole_>>,
     pub auto_minor_version_upgrade: Option<crate::value::ExpBool>,
     pub availability_zones: Option<Vec<crate::value::ExpString>>,
-    pub backtrack_window: Option<i64>,
-    pub backup_retention_period: Option<i64>,
+    pub backtrack_window: Option<i32>,
+    pub backup_retention_period: Option<i32>,
     pub cluster_scalability_type: Option<crate::value::ExpString>,
     pub copy_tags_to_snapshot: Option<crate::value::ExpBool>,
     pub db_cluster_identifier: Option<crate::value::ExpString>,
@@ -862,19 +862,19 @@ pub struct DBCluster_ {
     pub engine_mode: Option<crate::value::ExpString>,
     pub engine_version: Option<crate::value::ExpString>,
     pub global_cluster_identifier: Option<crate::value::ExpString>,
-    pub iops: Option<i64>,
+    pub iops: Option<i32>,
     pub kms_key_id: Option<crate::value::ExpString>,
     pub manage_master_user_password: Option<crate::value::ExpBool>,
     pub master_user_password: Option<crate::value::ExpString>,
     pub master_user_secret: Option<super::rds::dbcluster::MasterUserSecret_>,
     pub master_username: Option<crate::value::ExpString>,
-    pub monitoring_interval: Option<i64>,
+    pub monitoring_interval: Option<i32>,
     pub monitoring_role_arn: Option<crate::value::ExpString>,
     pub network_type: Option<crate::value::ExpString>,
     pub performance_insights_enabled: Option<crate::value::ExpBool>,
     pub performance_insights_kms_key_id: Option<crate::value::ExpString>,
-    pub performance_insights_retention_period: Option<i64>,
-    pub port: Option<i64>,
+    pub performance_insights_retention_period: Option<i32>,
+    pub port: Option<i32>,
     pub preferred_backup_window: Option<crate::value::ExpString>,
     pub preferred_maintenance_window: Option<crate::value::ExpString>,
     pub publicly_accessible: Option<crate::value::ExpBool>,
@@ -1323,9 +1323,9 @@ pub struct DBInstance_ {
     pub auto_minor_version_upgrade: Option<crate::value::ExpBool>,
     pub automatic_backup_replication_kms_key_id: Option<crate::value::ExpString>,
     pub automatic_backup_replication_region: Option<crate::value::ExpString>,
-    pub automatic_backup_replication_retention_period: Option<i64>,
+    pub automatic_backup_replication_retention_period: Option<i32>,
     pub availability_zone: Option<crate::value::ExpString>,
-    pub backup_retention_period: Option<i64>,
+    pub backup_retention_period: Option<i32>,
     pub backup_target: Option<crate::value::ExpString>,
     pub ca_certificate_identifier: Option<crate::value::ExpString>,
     pub certificate_rotation_restart: Option<crate::value::ExpBool>,
@@ -1358,27 +1358,27 @@ pub struct DBInstance_ {
     pub engine: Option<crate::value::ExpString>,
     pub engine_lifecycle_support: Option<crate::value::ExpString>,
     pub engine_version: Option<crate::value::ExpString>,
-    pub iops: Option<i64>,
+    pub iops: Option<i32>,
     pub kms_key_id: Option<crate::value::ExpString>,
     pub license_model: Option<crate::value::ExpString>,
     pub manage_master_user_password: Option<crate::value::ExpBool>,
     pub master_user_password: Option<crate::value::ExpString>,
     pub master_user_secret: Option<super::rds::dbinstance::MasterUserSecret_>,
     pub master_username: Option<crate::value::ExpString>,
-    pub max_allocated_storage: Option<i64>,
-    pub monitoring_interval: Option<i64>,
+    pub max_allocated_storage: Option<i32>,
+    pub monitoring_interval: Option<i32>,
     pub monitoring_role_arn: Option<crate::value::ExpString>,
     pub multi_az: Option<crate::value::ExpBool>,
     pub nchar_character_set_name: Option<crate::value::ExpString>,
     pub network_type: Option<crate::value::ExpString>,
     pub option_group_name: Option<crate::value::ExpString>,
     pub performance_insights_kms_key_id: Option<crate::value::ExpString>,
-    pub performance_insights_retention_period: Option<i64>,
+    pub performance_insights_retention_period: Option<i32>,
     pub port: Option<crate::value::ExpString>,
     pub preferred_backup_window: Option<crate::value::ExpString>,
     pub preferred_maintenance_window: Option<crate::value::ExpString>,
     pub processor_features: Option<Vec<super::rds::dbinstance::ProcessorFeature_>>,
-    pub promotion_tier: Option<i64>,
+    pub promotion_tier: Option<i32>,
     pub publicly_accessible: Option<crate::value::ExpBool>,
     pub replica_mode: Option<crate::value::ExpString>,
     pub restore_time: Option<crate::value::ExpString>,
@@ -1388,7 +1388,7 @@ pub struct DBInstance_ {
     pub source_dbi_resource_id: Option<crate::value::ExpString>,
     pub source_region: Option<crate::value::ExpString>,
     pub storage_encrypted: Option<crate::value::ExpBool>,
-    pub storage_throughput: Option<i64>,
+    pub storage_throughput: Option<i32>,
     pub storage_type: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub timezone: Option<crate::value::ExpString>,
@@ -1935,7 +1935,7 @@ pub struct DBProxy_ {
     pub db_proxy_name: crate::value::ExpString,
     pub debug_logging: Option<crate::value::ExpBool>,
     pub engine_family: crate::value::ExpString,
-    pub idle_client_timeout: Option<i64>,
+    pub idle_client_timeout: Option<i32>,
     pub require_tls: Option<crate::value::ExpBool>,
     pub role_arn: crate::value::ExpString,
     pub tags: Option<Vec<super::rds::dbproxy::TagFormat_>>,
@@ -2234,7 +2234,7 @@ impl crate::template::ToResource for DBSecurityGroupIngress_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbshardgroup.html
 pub struct DBShardGroup_ {
-    pub compute_redundancy: Option<i64>,
+    pub compute_redundancy: Option<i32>,
     pub db_cluster_identifier: crate::value::ExpString,
     pub db_shard_group_identifier: Option<crate::value::ExpString>,
     pub max_acu: f64,

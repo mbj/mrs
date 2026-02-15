@@ -63,11 +63,11 @@ pub mod containerrecipe {
     pub struct EbsInstanceBlockDeviceSpecification_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub encrypted: Option<crate::value::ExpBool>,
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub kms_key_id: Option<crate::value::ExpString>,
         pub snapshot_id: Option<crate::value::ExpString>,
-        pub throughput: Option<i64>,
-        pub volume_size: Option<i64>,
+        pub throughput: Option<i32>,
+        pub volume_size: Option<i32>,
         pub volume_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -402,7 +402,7 @@ pub mod distributionconfiguration {
         pub account_id: Option<crate::value::ExpString>,
         pub enabled: Option<crate::value::ExpBool>,
         pub launch_template: Option<Box<FastLaunchLaunchTemplateSpecification_>>,
-        pub max_parallel_launches: Option<i64>,
+        pub max_parallel_launches: Option<i32>,
         pub snapshot_configuration: Option<Box<FastLaunchSnapshotConfiguration_>>,
     }
     #[doc(hidden)]
@@ -491,7 +491,7 @@ pub mod distributionconfiguration {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-fastlaunchsnapshotconfiguration.html
     pub struct FastLaunchSnapshotConfiguration_ {
-        pub target_resource_count: Option<i64>,
+        pub target_resource_count: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -737,7 +737,7 @@ pub mod image {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-imagetestsconfiguration.html
     pub struct ImageTestsConfiguration_ {
         pub image_tests_enabled: Option<crate::value::ExpBool>,
-        pub timeout_minutes: Option<i64>,
+        pub timeout_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -907,7 +907,7 @@ pub mod imagepipeline {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-imagetestsconfiguration.html
     pub struct ImageTestsConfiguration_ {
         pub image_tests_enabled: Option<crate::value::ExpBool>,
-        pub timeout_minutes: Option<i64>,
+        pub timeout_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1138,11 +1138,11 @@ pub mod imagerecipe {
     pub struct EbsInstanceBlockDeviceSpecification_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub encrypted: Option<crate::value::ExpBool>,
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub kms_key_id: Option<crate::value::ExpString>,
         pub snapshot_id: Option<crate::value::ExpString>,
-        pub throughput: Option<i64>,
-        pub volume_size: Option<i64>,
+        pub throughput: Option<i32>,
+        pub volume_size: Option<i32>,
         pub volume_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1277,7 +1277,7 @@ pub mod imagerecipe {
 pub mod infrastructureconfiguration {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-infrastructureconfiguration-instancemetadataoptions.html
     pub struct InstanceMetadataOptions_ {
-        pub http_put_response_hop_limit: Option<i64>,
+        pub http_put_response_hop_limit: Option<i32>,
         pub http_tokens: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1514,10 +1514,10 @@ pub mod lifecyclepolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-filter.html
     pub struct Filter_ {
-        pub retain_at_least: Option<i64>,
+        pub retain_at_least: Option<i32>,
         pub r#type: crate::value::ExpString,
         pub unit: Option<crate::value::ExpString>,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1590,7 +1590,7 @@ pub mod lifecyclepolicy {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-lastlaunched.html
     pub struct LastLaunched_ {
         pub unit: crate::value::ExpString,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]

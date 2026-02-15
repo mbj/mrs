@@ -114,9 +114,9 @@ pub mod evaluationform {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformnumericquestionoption.html
     pub struct EvaluationFormNumericQuestionOption_ {
         pub automatic_fail: Option<crate::value::ExpBool>,
-        pub max_value: i64,
-        pub min_value: i64,
-        pub score: Option<i64>,
+        pub max_value: i32,
+        pub min_value: i32,
+        pub score: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -153,8 +153,8 @@ pub mod evaluationform {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-evaluationform-evaluationformnumericquestionproperties.html
     pub struct EvaluationFormNumericQuestionProperties_ {
         pub automation: Option<Box<EvaluationFormNumericQuestionAutomation_>>,
-        pub max_value: i64,
-        pub min_value: i64,
+        pub max_value: i32,
+        pub min_value: i32,
         pub options: Option<Vec<EvaluationFormNumericQuestionOption_>>,
     }
     #[doc(hidden)]
@@ -382,7 +382,7 @@ pub mod evaluationform {
     pub struct EvaluationFormSingleSelectQuestionOption_ {
         pub automatic_fail: Option<crate::value::ExpBool>,
         pub ref_id: crate::value::ExpString,
-        pub score: Option<i64>,
+        pub score: Option<i32>,
         pub text: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -660,8 +660,8 @@ pub mod hoursofoperation {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-hoursofoperationtimeslice.html
     pub struct HoursOfOperationTimeSlice_ {
-        pub hours: i64,
-        pub minutes: i64,
+        pub hours: i32,
+        pub minutes: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -688,8 +688,8 @@ pub mod hoursofoperation {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-hoursofoperation-overridetimeslice.html
     pub struct OverrideTimeSlice_ {
-        pub hours: i64,
-        pub minutes: i64,
+        pub hours: i32,
+        pub minutes: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1236,7 +1236,7 @@ pub mod routingprofile {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-routingprofile-mediaconcurrency.html
     pub struct MediaConcurrency_ {
         pub channel: crate::value::ExpString,
-        pub concurrency: i64,
+        pub concurrency: i32,
         pub cross_channel_behavior: Option<Box<CrossChannelBehavior_>>,
     }
     #[doc(hidden)]
@@ -1293,8 +1293,8 @@ pub mod routingprofile {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-routingprofile-routingprofilequeueconfig.html
     pub struct RoutingProfileQueueConfig_ {
-        pub delay: i64,
-        pub priority: i64,
+        pub delay: i32,
+        pub priority: i32,
         pub queue_reference: Box<RoutingProfileQueueReference_>,
     }
     #[doc(hidden)]
@@ -2042,7 +2042,7 @@ pub mod user {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-connect-user-userphoneconfig.html
     pub struct UserPhoneConfig_ {
-        pub after_contact_work_time_limit: Option<i64>,
+        pub after_contact_work_time_limit: Option<i32>,
         pub auto_accept: Option<crate::value::ExpBool>,
         pub desk_phone_number: Option<crate::value::ExpString>,
         pub persistent_connection: Option<crate::value::ExpBool>,
@@ -2368,7 +2368,7 @@ pub mod userhierarchystructure {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-connect-agentstatus.html
 pub struct AgentStatus_ {
     pub description: Option<crate::value::ExpString>,
-    pub display_order: Option<i64>,
+    pub display_order: Option<i32>,
     pub instance_arn: crate::value::ExpString,
     pub name: crate::value::ExpString,
     pub reset_order_number: Option<crate::value::ExpBool>,
@@ -3158,7 +3158,7 @@ pub struct Queue_ {
     pub description: Option<crate::value::ExpString>,
     pub hours_of_operation_arn: crate::value::ExpString,
     pub instance_arn: crate::value::ExpString,
-    pub max_contacts: Option<i64>,
+    pub max_contacts: Option<i32>,
     pub name: crate::value::ExpString,
     pub outbound_caller_config: Option<super::connect::queue::OutboundCallerConfig_>,
     pub outbound_email_config: Option<super::connect::queue::OutboundEmailConfig_>,

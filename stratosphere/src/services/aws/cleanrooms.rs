@@ -1769,8 +1769,8 @@ pub mod membership {
 pub mod privacybudgettemplate {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cleanrooms-privacybudgettemplate-parameters.html
     pub struct Parameters_ {
-        pub epsilon: i64,
-        pub users_noise_per_query: i64,
+        pub epsilon: i32,
+        pub users_noise_per_query: i32,
     }
     #[doc(hidden)]
     #[macro_export]

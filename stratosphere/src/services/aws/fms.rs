@@ -33,8 +33,8 @@ pub mod policy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-icmptypecode.html
     pub struct IcmpTypeCode_ {
-        pub code: i64,
-        pub r#type: i64,
+        pub code: i32,
+        pub r#type: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -277,8 +277,8 @@ pub mod policy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fms-policy-portrange.html
     pub struct PortRange_ {
-        pub from: i64,
-        pub to: i64,
+        pub from: i32,
+        pub to: i32,
     }
     #[doc(hidden)]
     #[macro_export]

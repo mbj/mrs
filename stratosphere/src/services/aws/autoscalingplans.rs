@@ -211,16 +211,16 @@ pub mod scalingplan {
     pub struct ScalingInstruction_ {
         pub customized_load_metric_specification: Option<Box<CustomizedLoadMetricSpecification_>>,
         pub disable_dynamic_scaling: Option<crate::value::ExpBool>,
-        pub max_capacity: i64,
-        pub min_capacity: i64,
+        pub max_capacity: i32,
+        pub min_capacity: i32,
         pub predefined_load_metric_specification: Option<Box<PredefinedLoadMetricSpecification_>>,
         pub predictive_scaling_max_capacity_behavior: Option<crate::value::ExpString>,
-        pub predictive_scaling_max_capacity_buffer: Option<i64>,
+        pub predictive_scaling_max_capacity_buffer: Option<i32>,
         pub predictive_scaling_mode: Option<crate::value::ExpString>,
         pub resource_id: crate::value::ExpString,
         pub scalable_dimension: crate::value::ExpString,
         pub scaling_policy_update_behavior: Option<crate::value::ExpString>,
-        pub scheduled_action_buffer_time: Option<i64>,
+        pub scheduled_action_buffer_time: Option<i32>,
         pub service_namespace: crate::value::ExpString,
         pub target_tracking_configurations: Vec<TargetTrackingConfiguration_>,
     }
@@ -343,11 +343,11 @@ pub mod scalingplan {
         pub customized_scaling_metric_specification:
             Option<Box<CustomizedScalingMetricSpecification_>>,
         pub disable_scale_in: Option<crate::value::ExpBool>,
-        pub estimated_instance_warmup: Option<i64>,
+        pub estimated_instance_warmup: Option<i32>,
         pub predefined_scaling_metric_specification:
             Option<Box<PredefinedScalingMetricSpecification_>>,
-        pub scale_in_cooldown: Option<i64>,
-        pub scale_out_cooldown: Option<i64>,
+        pub scale_in_cooldown: Option<i32>,
+        pub scale_out_cooldown: Option<i32>,
         pub target_value: f64,
     }
     #[doc(hidden)]

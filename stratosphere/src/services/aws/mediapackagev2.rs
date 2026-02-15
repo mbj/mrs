@@ -28,7 +28,7 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-channel-inputswitchconfiguration.html
     pub struct InputSwitchConfiguration_ {
         pub mqcs_input_switching: Option<crate::value::ExpBool>,
-        pub preferred_input: Option<i64>,
+        pub preferred_input: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -86,8 +86,8 @@ pub mod channel {
 pub mod originendpoint {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashbaseurl.html
     pub struct DashBaseUrl_ {
-        pub dvb_priority: Option<i64>,
-        pub dvb_weight: Option<i64>,
+        pub dvb_priority: Option<i32>,
+        pub dvb_weight: Option<i32>,
         pub service_location: Option<crate::value::ExpString>,
         pub url: crate::value::ExpString,
     }
@@ -166,7 +166,7 @@ pub mod originendpoint {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackagev2-originendpoint-dashdvbmetricsreporting.html
     pub struct DashDvbMetricsReporting_ {
-        pub probability: Option<i64>,
+        pub probability: Option<i32>,
         pub reporting_url: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -234,16 +234,16 @@ pub mod originendpoint {
         pub dvb_settings: Option<Box<DashDvbSettings_>>,
         pub filter_configuration: Option<Box<FilterConfiguration_>>,
         pub manifest_name: crate::value::ExpString,
-        pub manifest_window_seconds: Option<i64>,
-        pub min_buffer_time_seconds: Option<i64>,
-        pub min_update_period_seconds: Option<i64>,
+        pub manifest_window_seconds: Option<i32>,
+        pub min_buffer_time_seconds: Option<i32>,
+        pub min_update_period_seconds: Option<i32>,
         pub period_triggers: Option<Vec<crate::value::ExpString>>,
         pub profiles: Option<Vec<crate::value::ExpString>>,
         pub program_information: Option<Box<DashProgramInformation_>>,
         pub scte_dash: Option<Box<ScteDash_>>,
         pub segment_template_format: Option<crate::value::ExpString>,
         pub subtitle_configuration: Option<Box<DashSubtitleConfiguration_>>,
-        pub suggested_presentation_delay_seconds: Option<i64>,
+        pub suggested_presentation_delay_seconds: Option<i32>,
         pub utc_timing: Option<Box<DashUtcTiming_>>,
     }
     #[doc(hidden)]
@@ -493,7 +493,7 @@ pub mod originendpoint {
         pub cmaf_exclude_segment_drm_metadata: Option<crate::value::ExpBool>,
         pub constant_initialization_vector: Option<crate::value::ExpString>,
         pub encryption_method: Box<EncryptionMethod_>,
-        pub key_rotation_interval_seconds: Option<i64>,
+        pub key_rotation_interval_seconds: Option<i32>,
         pub speke_key_provider: Box<SpekeKeyProvider_>,
     }
     #[doc(hidden)]
@@ -603,7 +603,7 @@ pub mod originendpoint {
         pub end: Option<crate::value::ExpString>,
         pub manifest_filter: Option<crate::value::ExpString>,
         pub start: Option<crate::value::ExpString>,
-        pub time_delay_seconds: Option<i64>,
+        pub time_delay_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -674,8 +674,8 @@ pub mod originendpoint {
         pub child_manifest_name: Option<crate::value::ExpString>,
         pub filter_configuration: Option<Box<FilterConfiguration_>>,
         pub manifest_name: crate::value::ExpString,
-        pub manifest_window_seconds: Option<i64>,
-        pub program_date_time_interval_seconds: Option<i64>,
+        pub manifest_window_seconds: Option<i32>,
+        pub program_date_time_interval_seconds: Option<i32>,
         pub scte_hls: Option<Box<ScteHls_>>,
         pub start_tag: Option<Box<StartTag_>>,
         pub url: Option<crate::value::ExpString>,
@@ -750,8 +750,8 @@ pub mod originendpoint {
         pub child_manifest_name: Option<crate::value::ExpString>,
         pub filter_configuration: Option<Box<FilterConfiguration_>>,
         pub manifest_name: crate::value::ExpString,
-        pub manifest_window_seconds: Option<i64>,
-        pub program_date_time_interval_seconds: Option<i64>,
+        pub manifest_window_seconds: Option<i32>,
+        pub program_date_time_interval_seconds: Option<i32>,
         pub scte_hls: Option<Box<ScteHls_>>,
         pub start_tag: Option<Box<StartTag_>>,
         pub url: Option<crate::value::ExpString>,
@@ -901,7 +901,7 @@ pub mod originendpoint {
         pub encryption: Option<Box<Encryption_>>,
         pub include_iframe_only_streams: Option<crate::value::ExpBool>,
         pub scte: Option<Box<Scte_>>,
-        pub segment_duration_seconds: Option<i64>,
+        pub segment_duration_seconds: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
         pub ts_include_dvb_subtitles: Option<crate::value::ExpBool>,
         pub ts_use_audio_rendition_group: Option<crate::value::ExpBool>,
@@ -1233,7 +1233,7 @@ pub struct OriginEndpoint_ {
         Option<Vec<super::mediapackagev2::originendpoint::LowLatencyHlsManifestConfiguration_>>,
     pub origin_endpoint_name: crate::value::ExpString,
     pub segment: Option<super::mediapackagev2::originendpoint::Segment_>,
-    pub startover_window_seconds: Option<i64>,
+    pub startover_window_seconds: Option<i32>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]

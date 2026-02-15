@@ -2,7 +2,7 @@ pub mod signingprofile {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-signer-signingprofile-signaturevalidityperiod.html
     pub struct SignatureValidityPeriod_ {
         pub r#type: Option<crate::value::ExpString>,
-        pub value: Option<i64>,
+        pub value: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

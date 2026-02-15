@@ -1,7 +1,7 @@
 pub mod graph {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-neptunegraph-graph-vectorsearchconfiguration.html
     pub struct VectorSearchConfiguration_ {
-        pub vector_search_dimension: i64,
+        pub vector_search_dimension: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -27,9 +27,9 @@ pub mod graph {
 pub struct Graph_ {
     pub deletion_protection: Option<crate::value::ExpBool>,
     pub graph_name: Option<crate::value::ExpString>,
-    pub provisioned_memory: i64,
+    pub provisioned_memory: i32,
     pub public_connectivity: Option<crate::value::ExpBool>,
-    pub replica_count: Option<i64>,
+    pub replica_count: Option<i32>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub vector_search_configuration: Option<super::neptunegraph::graph::VectorSearchConfiguration_>,
 }

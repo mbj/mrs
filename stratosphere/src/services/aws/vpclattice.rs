@@ -33,7 +33,7 @@ pub mod listener {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-listener-fixedresponse.html
     pub struct FixedResponse_ {
-        pub status_code: i64,
+        pub status_code: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -80,7 +80,7 @@ pub mod listener {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-listener-weightedtargetgroup.html
     pub struct WeightedTargetGroup_ {
         pub target_group_identifier: crate::value::ExpString,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -209,7 +209,7 @@ pub mod rule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-fixedresponse.html
     pub struct FixedResponse_ {
-        pub status_code: i64,
+        pub status_code: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -439,7 +439,7 @@ pub mod rule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-rule-weightedtargetgroup.html
     pub struct WeightedTargetGroup_ {
         pub target_group_identifier: crate::value::ExpString,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -561,15 +561,15 @@ pub mod targetgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-targetgroup-healthcheckconfig.html
     pub struct HealthCheckConfig_ {
         pub enabled: Option<crate::value::ExpBool>,
-        pub health_check_interval_seconds: Option<i64>,
-        pub health_check_timeout_seconds: Option<i64>,
-        pub healthy_threshold_count: Option<i64>,
+        pub health_check_interval_seconds: Option<i32>,
+        pub health_check_timeout_seconds: Option<i32>,
+        pub healthy_threshold_count: Option<i32>,
         pub matcher: Option<Box<Matcher_>>,
         pub path: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub protocol: Option<crate::value::ExpString>,
         pub protocol_version: Option<crate::value::ExpString>,
-        pub unhealthy_threshold_count: Option<i64>,
+        pub unhealthy_threshold_count: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -666,7 +666,7 @@ pub mod targetgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-vpclattice-targetgroup-target.html
     pub struct Target_ {
         pub id: crate::value::ExpString,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -692,7 +692,7 @@ pub mod targetgroup {
         pub health_check: Option<Box<HealthCheckConfig_>>,
         pub ip_address_type: Option<crate::value::ExpString>,
         pub lambda_event_structure_version: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub protocol: Option<crate::value::ExpString>,
         pub protocol_version: Option<crate::value::ExpString>,
         pub vpc_identifier: Option<crate::value::ExpString>,
@@ -841,7 +841,7 @@ impl crate::template::ToResource for AuthPolicy_ {
 pub struct Listener_ {
     pub default_action: super::vpclattice::listener::DefaultAction_,
     pub name: Option<crate::value::ExpString>,
-    pub port: Option<i64>,
+    pub port: Option<i32>,
     pub protocol: crate::value::ExpString,
     pub service_identifier: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1083,7 +1083,7 @@ pub struct Rule_ {
     pub listener_identifier: Option<crate::value::ExpString>,
     pub r#match: super::vpclattice::rule::Match_,
     pub name: Option<crate::value::ExpString>,
-    pub priority: i64,
+    pub priority: i32,
     pub service_identifier: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
 }

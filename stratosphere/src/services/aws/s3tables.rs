@@ -2,7 +2,7 @@ pub mod table {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-compaction.html
     pub struct Compaction_ {
         pub status: Option<crate::value::ExpString>,
-        pub target_file_size_mb: Option<i64>,
+        pub target_file_size_mb: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -111,8 +111,8 @@ pub mod table {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-snapshotmanagement.html
     pub struct SnapshotManagement_ {
-        pub max_snapshot_age_hours: Option<i64>,
-        pub min_snapshots_to_keep: Option<i64>,
+        pub max_snapshot_age_hours: Option<i32>,
+        pub min_snapshots_to_keep: Option<i32>,
         pub status: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -181,9 +181,9 @@ pub mod tablebucket {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-tablebucket-unreferencedfileremoval.html
     pub struct UnreferencedFileRemoval_ {
-        pub noncurrent_days: Option<i64>,
+        pub noncurrent_days: Option<i32>,
         pub status: Option<crate::value::ExpString>,
-        pub unreferenced_days: Option<i64>,
+        pub unreferenced_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

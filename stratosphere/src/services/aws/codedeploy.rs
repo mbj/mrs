@@ -2,7 +2,7 @@ pub mod deploymentconfig {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts.html
     pub struct MinimumHealthyHosts_ {
         pub r#type: crate::value::ExpString,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -30,7 +30,7 @@ pub mod deploymentconfig {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhostsperzone.html
     pub struct MinimumHealthyHostsPerZone_ {
         pub r#type: crate::value::ExpString,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -57,8 +57,8 @@ pub mod deploymentconfig {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedcanary.html
     pub struct TimeBasedCanary_ {
-        pub canary_interval: i64,
-        pub canary_percentage: i64,
+        pub canary_interval: i32,
+        pub canary_percentage: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -85,8 +85,8 @@ pub mod deploymentconfig {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedlinear.html
     pub struct TimeBasedLinear_ {
-        pub linear_interval: i64,
-        pub linear_percentage: i64,
+        pub linear_interval: i32,
+        pub linear_percentage: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -150,9 +150,9 @@ pub mod deploymentconfig {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-zonalconfig.html
     pub struct ZonalConfig_ {
-        pub first_zone_monitor_duration_in_seconds: Option<i64>,
+        pub first_zone_monitor_duration_in_seconds: Option<i32>,
         pub minimum_healthy_hosts_per_zone: Option<Box<MinimumHealthyHostsPerZone_>>,
-        pub monitor_duration_in_seconds: Option<i64>,
+        pub monitor_duration_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -319,7 +319,7 @@ pub mod deploymentgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-blueinstanceterminationoption.html
     pub struct BlueInstanceTerminationOption_ {
         pub action: Option<crate::value::ExpString>,
-        pub termination_wait_time_in_minutes: Option<i64>,
+        pub termination_wait_time_in_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -385,7 +385,7 @@ pub mod deploymentgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deploymentreadyoption.html
     pub struct DeploymentReadyOption_ {
         pub action_on_timeout: Option<crate::value::ExpString>,
-        pub wait_time_in_minutes: Option<i64>,
+        pub wait_time_in_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

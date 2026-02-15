@@ -347,7 +347,7 @@ pub mod replicationgroup {
         pub node_group_id: Option<crate::value::ExpString>,
         pub primary_availability_zone: Option<crate::value::ExpString>,
         pub replica_availability_zones: Option<Vec<crate::value::ExpString>>,
-        pub replica_count: Option<i64>,
+        pub replica_count: Option<i32>,
         pub slots: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -428,8 +428,8 @@ pub mod serverlesscache {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-datastorage.html
     pub struct DataStorage_ {
-        pub maximum: Option<i64>,
-        pub minimum: Option<i64>,
+        pub maximum: Option<i32>,
+        pub minimum: Option<i32>,
         pub unit: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -465,8 +465,8 @@ pub mod serverlesscache {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-ecpupersecond.html
     pub struct ECPUPerSecond_ {
-        pub maximum: Option<i64>,
-        pub minimum: Option<i64>,
+        pub maximum: Option<i32>,
+        pub minimum: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -573,14 +573,14 @@ pub struct CacheCluster_ {
         Option<Vec<super::elasticache::cachecluster::LogDeliveryConfigurationRequest_>>,
     pub network_type: Option<crate::value::ExpString>,
     pub notification_topic_arn: Option<crate::value::ExpString>,
-    pub num_cache_nodes: i64,
-    pub port: Option<i64>,
+    pub num_cache_nodes: i32,
+    pub port: Option<i32>,
     pub preferred_availability_zone: Option<crate::value::ExpString>,
     pub preferred_availability_zones: Option<Vec<crate::value::ExpString>>,
     pub preferred_maintenance_window: Option<crate::value::ExpString>,
     pub snapshot_arns: Option<Vec<crate::value::ExpString>>,
     pub snapshot_name: Option<crate::value::ExpString>,
-    pub snapshot_retention_limit: Option<i64>,
+    pub snapshot_retention_limit: Option<i32>,
     pub snapshot_window: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub transit_encryption_enabled: Option<crate::value::ExpBool>,
@@ -751,7 +751,7 @@ pub struct GlobalReplicationGroup_ {
     pub cache_parameter_group_name: Option<crate::value::ExpString>,
     pub engine: Option<crate::value::ExpString>,
     pub engine_version: Option<crate::value::ExpString>,
-    pub global_node_group_count: Option<i64>,
+    pub global_node_group_count: Option<i32>,
     pub global_replication_group_description: Option<crate::value::ExpString>,
     pub global_replication_group_id_suffix: Option<crate::value::ExpString>,
     pub members: Vec<super::elasticache::globalreplicationgroup::GlobalReplicationGroupMember_>,
@@ -907,19 +907,19 @@ pub struct ReplicationGroup_ {
     pub node_group_configuration:
         Option<Vec<super::elasticache::replicationgroup::NodeGroupConfiguration_>>,
     pub notification_topic_arn: Option<crate::value::ExpString>,
-    pub num_cache_clusters: Option<i64>,
-    pub num_node_groups: Option<i64>,
-    pub port: Option<i64>,
+    pub num_cache_clusters: Option<i32>,
+    pub num_node_groups: Option<i32>,
+    pub port: Option<i32>,
     pub preferred_cache_cluster_a_zs: Option<Vec<crate::value::ExpString>>,
     pub preferred_maintenance_window: Option<crate::value::ExpString>,
     pub primary_cluster_id: Option<crate::value::ExpString>,
-    pub replicas_per_node_group: Option<i64>,
+    pub replicas_per_node_group: Option<i32>,
     pub replication_group_description: crate::value::ExpString,
     pub replication_group_id: Option<crate::value::ExpString>,
     pub security_group_ids: Option<Vec<crate::value::ExpString>>,
     pub snapshot_arns: Option<Vec<crate::value::ExpString>>,
     pub snapshot_name: Option<crate::value::ExpString>,
-    pub snapshot_retention_limit: Option<i64>,
+    pub snapshot_retention_limit: Option<i32>,
     pub snapshot_window: Option<crate::value::ExpString>,
     pub snapshotting_cluster_id: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1265,7 +1265,7 @@ pub struct ServerlessCache_ {
     pub security_group_ids: Option<Vec<crate::value::ExpString>>,
     pub serverless_cache_name: crate::value::ExpString,
     pub snapshot_arns_to_restore: Option<Vec<crate::value::ExpString>>,
-    pub snapshot_retention_limit: Option<i64>,
+    pub snapshot_retention_limit: Option<i32>,
     pub subnet_ids: Option<Vec<crate::value::ExpString>>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub user_group_id: Option<crate::value::ExpString>,

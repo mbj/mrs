@@ -255,7 +255,7 @@ pub mod workgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-athena-workgroup-workgroupconfiguration.html
     pub struct WorkGroupConfiguration_ {
         pub additional_configuration: Option<crate::value::ExpString>,
-        pub bytes_scanned_cutoff_per_query: Option<i64>,
+        pub bytes_scanned_cutoff_per_query: Option<i32>,
         pub customer_content_encryption_configuration:
             Option<Box<CustomerContentEncryptionConfiguration_>>,
         pub enforce_work_group_configuration: Option<crate::value::ExpBool>,
@@ -348,7 +348,7 @@ pub struct CapacityReservation_ {
         Option<super::athena::capacityreservation::CapacityAssignmentConfiguration_>,
     pub name: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
-    pub target_dpus: i64,
+    pub target_dpus: i32,
 }
 #[doc(hidden)]
 #[macro_export]

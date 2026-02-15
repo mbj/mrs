@@ -26,7 +26,7 @@ pub mod connectattachment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectattachment-proposednetworkfunctiongroupchange.html
     pub struct ProposedNetworkFunctionGroupChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -62,7 +62,7 @@ pub mod connectattachment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectattachment-proposedsegmentchange.html
     pub struct ProposedSegmentChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -435,7 +435,7 @@ pub mod device {
 pub mod directconnectgatewayattachment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-directconnectgatewayattachment-proposednetworkfunctiongroupchange.html
     pub struct ProposedNetworkFunctionGroupChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -471,7 +471,7 @@ pub mod directconnectgatewayattachment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-directconnectgatewayattachment-proposedsegmentchange.html
     pub struct ProposedSegmentChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -509,8 +509,8 @@ pub mod directconnectgatewayattachment {
 pub mod link {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-link-bandwidth.html
     pub struct Bandwidth_ {
-        pub download_speed: Option<i64>,
-        pub upload_speed: Option<i64>,
+        pub download_speed: Option<i32>,
+        pub upload_speed: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -584,7 +584,7 @@ pub mod site {
 pub mod sitetositevpnattachment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-sitetositevpnattachment-proposednetworkfunctiongroupchange.html
     pub struct ProposedNetworkFunctionGroupChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -620,7 +620,7 @@ pub mod sitetositevpnattachment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-sitetositevpnattachment-proposedsegmentchange.html
     pub struct ProposedSegmentChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -658,7 +658,7 @@ pub mod sitetositevpnattachment {
 pub mod transitgatewayroutetableattachment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-transitgatewayroutetableattachment-proposednetworkfunctiongroupchange.html
     pub struct ProposedNetworkFunctionGroupChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -694,7 +694,7 @@ pub mod transitgatewayroutetableattachment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-transitgatewayroutetableattachment-proposedsegmentchange.html
     pub struct ProposedSegmentChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -732,7 +732,7 @@ pub mod transitgatewayroutetableattachment {
 pub mod vpcattachment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-vpcattachment-proposednetworkfunctiongroupchange.html
     pub struct ProposedNetworkFunctionGroupChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -768,7 +768,7 @@ pub mod vpcattachment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-vpcattachment-proposedsegmentchange.html
     pub struct ProposedSegmentChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }

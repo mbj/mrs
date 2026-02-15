@@ -1,7 +1,7 @@
 pub mod cluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-cluster-accounting.html
     pub struct Accounting_ {
-        pub default_purge_time_in_days: Option<i64>,
+        pub default_purge_time_in_days: Option<i32>,
         pub mode: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -204,7 +204,7 @@ pub mod cluster {
     pub struct SlurmConfiguration_ {
         pub accounting: Option<Box<Accounting_>>,
         pub auth_key: Option<Box<AuthKey_>>,
-        pub scale_down_idle_time_in_seconds: Option<i64>,
+        pub scale_down_idle_time_in_seconds: Option<i32>,
         pub slurm_custom_settings: Option<Vec<SlurmCustomSetting_>>,
     }
     #[doc(hidden)]
@@ -362,8 +362,8 @@ pub mod computenodegroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pcs-computenodegroup-scalingconfiguration.html
     pub struct ScalingConfiguration_ {
-        pub max_instance_count: i64,
-        pub min_instance_count: i64,
+        pub max_instance_count: i32,
+        pub min_instance_count: i32,
     }
     #[doc(hidden)]
     #[macro_export]

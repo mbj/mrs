@@ -2,7 +2,7 @@ pub mod contact {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-contact-channeltargetinfo.html
     pub struct ChannelTargetInfo_ {
         pub channel_id: crate::value::ExpString,
-        pub retry_interval_in_minutes: i64,
+        pub retry_interval_in_minutes: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -57,7 +57,7 @@ pub mod contact {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-contact-stage.html
     pub struct Stage_ {
-        pub duration_in_minutes: Option<i64>,
+        pub duration_in_minutes: Option<i32>,
         pub rotation_ids: Option<Vec<crate::value::ExpString>>,
         pub targets: Option<Vec<Targets_>>,
     }
@@ -131,7 +131,7 @@ pub mod plan {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-plan-channeltargetinfo.html
     pub struct ChannelTargetInfo_ {
         pub channel_id: crate::value::ExpString,
-        pub retry_interval_in_minutes: i64,
+        pub retry_interval_in_minutes: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -186,7 +186,7 @@ pub mod plan {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-plan-stage.html
     pub struct Stage_ {
-        pub duration_in_minutes: i64,
+        pub duration_in_minutes: i32,
         pub targets: Option<Vec<Targets_>>,
     }
     #[doc(hidden)]
@@ -278,7 +278,7 @@ pub mod rotation {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmcontacts-rotation-monthlysetting.html
     pub struct MonthlySetting_ {
-        pub day_of_month: i64,
+        pub day_of_month: i32,
         pub hand_off_time: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -308,8 +308,8 @@ pub mod rotation {
     pub struct RecurrenceSettings_ {
         pub daily_settings: Option<Vec<crate::value::ExpString>>,
         pub monthly_settings: Option<Vec<MonthlySetting_>>,
-        pub number_of_on_calls: i64,
-        pub recurrence_multiplier: i64,
+        pub number_of_on_calls: i32,
+        pub recurrence_multiplier: i32,
         pub shift_coverages: Option<Vec<ShiftCoverage_>>,
         pub weekly_settings: Option<Vec<WeeklySetting_>>,
     }

@@ -321,8 +321,8 @@ pub mod solution {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-personalize-solution-integerhyperparameterrange.html
     pub struct IntegerHyperParameterRange_ {
-        pub max_value: Option<i64>,
-        pub min_value: Option<i64>,
+        pub max_value: Option<i32>,
+        pub min_value: Option<i32>,
         pub name: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]

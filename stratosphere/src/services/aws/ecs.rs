@@ -45,11 +45,11 @@ pub mod capacityprovider {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-managedscaling.html
     pub struct ManagedScaling_ {
-        pub instance_warmup_period: Option<i64>,
-        pub maximum_scaling_step_size: Option<i64>,
-        pub minimum_scaling_step_size: Option<i64>,
+        pub instance_warmup_period: Option<i32>,
+        pub maximum_scaling_step_size: Option<i32>,
+        pub minimum_scaling_step_size: Option<i32>,
         pub status: Option<crate::value::ExpString>,
-        pub target_capacity: Option<i64>,
+        pub target_capacity: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -97,9 +97,9 @@ pub mod capacityprovider {
 pub mod cluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-cluster-capacityproviderstrategyitem.html
     pub struct CapacityProviderStrategyItem_ {
-        pub base: Option<i64>,
+        pub base: Option<i32>,
         pub capacity_provider: Option<crate::value::ExpString>,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -339,9 +339,9 @@ pub mod cluster {
 pub mod clustercapacityproviderassociations {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-clustercapacityproviderassociations-capacityproviderstrategy.html
     pub struct CapacityProviderStrategy_ {
-        pub base: Option<i64>,
+        pub base: Option<i32>,
         pub capacity_provider: crate::value::ExpString,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -455,9 +455,9 @@ pub mod service {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-capacityproviderstrategyitem.html
     pub struct CapacityProviderStrategyItem_ {
-        pub base: Option<i64>,
+        pub base: Option<i32>,
         pub capacity_provider: Option<crate::value::ExpString>,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -550,11 +550,11 @@ pub mod service {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-deploymentconfiguration.html
     pub struct DeploymentConfiguration_ {
         pub alarms: Option<Box<DeploymentAlarms_>>,
-        pub bake_time_in_minutes: Option<i64>,
+        pub bake_time_in_minutes: Option<i32>,
         pub deployment_circuit_breaker: Option<Box<DeploymentCircuitBreaker_>>,
         pub lifecycle_hooks: Option<Vec<DeploymentLifecycleHook_>>,
-        pub maximum_percent: Option<i64>,
-        pub minimum_healthy_percent: Option<i64>,
+        pub maximum_percent: Option<i32>,
+        pub minimum_healthy_percent: Option<i32>,
         pub strategy: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -741,7 +741,7 @@ pub mod service {
     pub struct LoadBalancer_ {
         pub advanced_configuration: Option<Box<AdvancedConfiguration_>>,
         pub container_name: Option<crate::value::ExpString>,
-        pub container_port: Option<i64>,
+        pub container_port: Option<i32>,
         pub load_balancer_name: Option<crate::value::ExpString>,
         pub target_group_arn: Option<crate::value::ExpString>,
     }
@@ -942,7 +942,7 @@ pub mod service {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectclientalias.html
     pub struct ServiceConnectClientAlias_ {
         pub dns_name: Option<crate::value::ExpString>,
-        pub port: i64,
+        pub port: i32,
         pub test_traffic_rules: Option<Box<ServiceConnectTestTrafficRules_>>,
     }
     #[doc(hidden)]
@@ -1024,7 +1024,7 @@ pub mod service {
     pub struct ServiceConnectService_ {
         pub client_aliases: Option<Vec<ServiceConnectClientAlias_>>,
         pub discovery_name: Option<crate::value::ExpString>,
-        pub ingress_port_override: Option<i64>,
+        pub ingress_port_override: Option<i32>,
         pub port_name: crate::value::ExpString,
         pub timeout: Option<Box<TimeoutConfiguration_>>,
         pub tls: Option<Box<ServiceConnectTlsConfiguration_>>,
@@ -1211,14 +1211,14 @@ pub mod service {
     pub struct ServiceManagedEBSVolumeConfiguration_ {
         pub encrypted: Option<crate::value::ExpBool>,
         pub filesystem_type: Option<crate::value::ExpString>,
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub kms_key_id: Option<crate::value::ExpString>,
         pub role_arn: crate::value::ExpString,
-        pub size_in_gi_b: Option<i64>,
+        pub size_in_gi_b: Option<i32>,
         pub snapshot_id: Option<crate::value::ExpString>,
         pub tag_specifications: Option<Vec<EBSTagSpecification_>>,
-        pub throughput: Option<i64>,
-        pub volume_initialization_rate: Option<i64>,
+        pub throughput: Option<i32>,
+        pub volume_initialization_rate: Option<i32>,
         pub volume_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1300,8 +1300,8 @@ pub mod service {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceregistry.html
     pub struct ServiceRegistry_ {
         pub container_name: Option<crate::value::ExpString>,
-        pub container_port: Option<i64>,
-        pub port: Option<i64>,
+        pub container_port: Option<i32>,
+        pub port: Option<i32>,
         pub registry_arn: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1372,8 +1372,8 @@ pub mod service {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-timeoutconfiguration.html
     pub struct TimeoutConfiguration_ {
-        pub idle_timeout_seconds: Option<i64>,
-        pub per_request_timeout_seconds: Option<i64>,
+        pub idle_timeout_seconds: Option<i32>,
+        pub per_request_timeout_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1469,7 +1469,7 @@ pub mod taskdefinition {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html
     pub struct ContainerDefinition_ {
         pub command: Option<Vec<crate::value::ExpString>>,
-        pub cpu: Option<i64>,
+        pub cpu: Option<i32>,
         pub credential_specs: Option<Vec<crate::value::ExpString>>,
         pub depends_on: Option<Vec<ContainerDependency_>>,
         pub disable_networking: Option<crate::value::ExpBool>,
@@ -1490,8 +1490,8 @@ pub mod taskdefinition {
         pub links: Option<Vec<crate::value::ExpString>>,
         pub linux_parameters: Option<Box<LinuxParameters_>>,
         pub log_configuration: Option<Box<LogConfiguration_>>,
-        pub memory: Option<i64>,
-        pub memory_reservation: Option<i64>,
+        pub memory: Option<i32>,
+        pub memory_reservation: Option<i32>,
         pub mount_points: Option<Vec<MountPoint_>>,
         pub name: crate::value::ExpString,
         pub port_mappings: Option<Vec<PortMapping_>>,
@@ -1502,8 +1502,8 @@ pub mod taskdefinition {
         pub resource_requirements: Option<Vec<ResourceRequirement_>>,
         pub restart_policy: Option<Box<RestartPolicy_>>,
         pub secrets: Option<Vec<Secret_>>,
-        pub start_timeout: Option<i64>,
-        pub stop_timeout: Option<i64>,
+        pub start_timeout: Option<i32>,
+        pub stop_timeout: Option<i32>,
         pub system_controls: Option<Vec<SystemControl_>>,
         pub ulimits: Option<Vec<Ulimit_>>,
         pub user: Option<crate::value::ExpString>,
@@ -1883,7 +1883,7 @@ pub mod taskdefinition {
         pub filesystem_id: crate::value::ExpString,
         pub root_directory: Option<crate::value::ExpString>,
         pub transit_encryption: Option<crate::value::ExpString>,
-        pub transit_encryption_port: Option<i64>,
+        pub transit_encryption_port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1956,7 +1956,7 @@ pub mod taskdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-ephemeralstorage.html
     pub struct EphemeralStorage_ {
-        pub size_in_gi_b: Option<i64>,
+        pub size_in_gi_b: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2074,10 +2074,10 @@ pub mod taskdefinition {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-healthcheck.html
     pub struct HealthCheck_ {
         pub command: Option<Vec<crate::value::ExpString>>,
-        pub interval: Option<i64>,
-        pub retries: Option<i64>,
-        pub start_period: Option<i64>,
-        pub timeout: Option<i64>,
+        pub interval: Option<i32>,
+        pub retries: Option<i32>,
+        pub start_period: Option<i32>,
+        pub timeout: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2238,9 +2238,9 @@ pub mod taskdefinition {
         pub capabilities: Option<Box<KernelCapabilities_>>,
         pub devices: Option<Vec<Device_>>,
         pub init_process_enabled: Option<crate::value::ExpBool>,
-        pub max_swap: Option<i64>,
-        pub shared_memory_size: Option<i64>,
-        pub swappiness: Option<i64>,
+        pub max_swap: Option<i32>,
+        pub shared_memory_size: Option<i32>,
+        pub swappiness: Option<i32>,
         pub tmpfs: Option<Vec<Tmpfs_>>,
     }
     #[doc(hidden)]
@@ -2376,9 +2376,9 @@ pub mod taskdefinition {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-portmapping.html
     pub struct PortMapping_ {
         pub app_protocol: Option<crate::value::ExpString>,
-        pub container_port: Option<i64>,
+        pub container_port: Option<i32>,
         pub container_port_range: Option<crate::value::ExpString>,
-        pub host_port: Option<i64>,
+        pub host_port: Option<i32>,
         pub name: Option<crate::value::ExpString>,
         pub protocol: Option<crate::value::ExpString>,
     }
@@ -2520,8 +2520,8 @@ pub mod taskdefinition {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-restartpolicy.html
     pub struct RestartPolicy_ {
         pub enabled: Option<crate::value::ExpBool>,
-        pub ignored_exit_codes: Option<Vec<i64>>,
-        pub restart_attempt_period: Option<i64>,
+        pub ignored_exit_codes: Option<Vec<i32>>,
+        pub restart_attempt_period: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2679,7 +2679,7 @@ pub mod taskdefinition {
     pub struct Tmpfs_ {
         pub container_path: Option<crate::value::ExpString>,
         pub mount_options: Option<Vec<crate::value::ExpString>>,
-        pub size: i64,
+        pub size: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2714,9 +2714,9 @@ pub mod taskdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-ulimit.html
     pub struct Ulimit_ {
-        pub hard_limit: i64,
+        pub hard_limit: i32,
         pub name: crate::value::ExpString,
-        pub soft_limit: i64,
+        pub soft_limit: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2873,9 +2873,9 @@ pub mod taskset {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskset-capacityproviderstrategyitem.html
     pub struct CapacityProviderStrategyItem_ {
-        pub base: Option<i64>,
+        pub base: Option<i32>,
         pub capacity_provider: Option<crate::value::ExpString>,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2907,7 +2907,7 @@ pub mod taskset {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskset-loadbalancer.html
     pub struct LoadBalancer_ {
         pub container_name: Option<crate::value::ExpString>,
-        pub container_port: Option<i64>,
+        pub container_port: Option<i32>,
         pub target_group_arn: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -2997,8 +2997,8 @@ pub mod taskset {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskset-serviceregistry.html
     pub struct ServiceRegistry_ {
         pub container_name: Option<crate::value::ExpString>,
-        pub container_port: Option<i64>,
-        pub port: Option<i64>,
+        pub container_port: Option<i32>,
+        pub port: Option<i32>,
         pub registry_arn: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -3245,11 +3245,11 @@ pub struct Service_ {
     pub cluster: Option<crate::value::ExpString>,
     pub deployment_configuration: Option<super::ecs::service::DeploymentConfiguration_>,
     pub deployment_controller: Option<super::ecs::service::DeploymentController_>,
-    pub desired_count: Option<i64>,
+    pub desired_count: Option<i32>,
     pub enable_ecs_managed_tags: Option<crate::value::ExpBool>,
     pub enable_execute_command: Option<crate::value::ExpBool>,
     pub force_new_deployment: Option<super::ecs::service::ForceNewDeployment_>,
-    pub health_check_grace_period_seconds: Option<i64>,
+    pub health_check_grace_period_seconds: Option<i32>,
     pub launch_type: Option<crate::value::ExpString>,
     pub load_balancers: Option<Vec<super::ecs::service::LoadBalancer_>>,
     pub network_configuration: Option<super::ecs::service::NetworkConfiguration_>,

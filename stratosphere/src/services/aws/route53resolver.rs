@@ -4,14 +4,14 @@ pub mod firewallrulegroup {
         pub action: crate::value::ExpString,
         pub block_override_dns_type: Option<crate::value::ExpString>,
         pub block_override_domain: Option<crate::value::ExpString>,
-        pub block_override_ttl: Option<i64>,
+        pub block_override_ttl: Option<i32>,
         pub block_response: Option<crate::value::ExpString>,
         pub confidence_threshold: Option<crate::value::ExpString>,
         pub dns_threat_protection: Option<crate::value::ExpString>,
         pub firewall_domain_list_id: Option<crate::value::ExpString>,
         pub firewall_domain_redirection_action: Option<crate::value::ExpString>,
         pub firewall_threat_protection_id: Option<crate::value::ExpString>,
-        pub priority: i64,
+        pub priority: i32,
         pub qtype: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -268,7 +268,7 @@ pub struct FirewallRuleGroupAssociation_ {
     pub firewall_rule_group_id: crate::value::ExpString,
     pub mutation_protection: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
-    pub priority: i64,
+    pub priority: i32,
     pub tags: Option<Vec<crate::Tag_>>,
     pub vpc_id: crate::value::ExpString,
 }
@@ -323,7 +323,7 @@ impl crate::template::ToResource for FirewallRuleGroupAssociation_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-outpostresolver.html
 pub struct OutpostResolver_ {
-    pub instance_count: Option<i64>,
+    pub instance_count: Option<i32>,
     pub name: crate::value::ExpString,
     pub outpost_arn: crate::value::ExpString,
     pub preferred_instance_type: crate::value::ExpString,

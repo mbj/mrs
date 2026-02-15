@@ -536,7 +536,7 @@ impl crate::template::ToResource for Environment_ {
 pub struct Extension_ {
     pub actions: serde_json::Value,
     pub description: Option<crate::value::ExpString>,
-    pub latest_version_number: Option<i64>,
+    pub latest_version_number: Option<i32>,
     pub name: crate::value::ExpString,
     pub parameters:
         Option<std::collections::BTreeMap<String, super::appconfig::extension::Parameter_>>,
@@ -597,7 +597,7 @@ impl crate::template::ToResource for Extension_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extensionassociation.html
 pub struct ExtensionAssociation_ {
     pub extension_identifier: Option<crate::value::ExpString>,
-    pub extension_version_number: Option<i64>,
+    pub extension_version_number: Option<i32>,
     pub parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub resource_identifier: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -659,7 +659,7 @@ pub struct HostedConfigurationVersion_ {
     pub content: crate::value::ExpString,
     pub content_type: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
-    pub latest_version_number: Option<i64>,
+    pub latest_version_number: Option<i32>,
     pub version_label: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]

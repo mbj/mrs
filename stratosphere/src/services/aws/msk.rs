@@ -157,7 +157,7 @@ pub mod cluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-configurationinfo.html
     pub struct ConfigurationInfo_ {
         pub arn: crate::value::ExpString,
-        pub revision: i64,
+        pub revision: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -217,7 +217,7 @@ pub mod cluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-ebsstorageinfo.html
     pub struct EBSStorageInfo_ {
         pub provisioned_throughput: Option<Box<ProvisionedThroughput_>>,
-        pub volume_size: Option<i64>,
+        pub volume_size: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -513,7 +513,7 @@ pub mod cluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-provisionedthroughput.html
     pub struct ProvisionedThroughput_ {
         pub enabled: Option<crate::value::ExpBool>,
-        pub volume_throughput: Option<i64>,
+        pub volume_throughput: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -876,7 +876,7 @@ pub mod configuration {
     pub struct LatestRevision_ {
         pub creation_time: Option<crate::value::ExpString>,
         pub description: Option<crate::value::ExpString>,
-        pub revision: Option<i64>,
+        pub revision: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1341,7 +1341,7 @@ pub struct Cluster_ {
     pub enhanced_monitoring: Option<crate::value::ExpString>,
     pub kafka_version: crate::value::ExpString,
     pub logging_info: Option<super::msk::cluster::LoggingInfo_>,
-    pub number_of_broker_nodes: i64,
+    pub number_of_broker_nodes: i32,
     pub open_monitoring: Option<super::msk::cluster::OpenMonitoring_>,
     pub storage_mode: Option<crate::value::ExpString>,
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,

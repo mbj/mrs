@@ -76,7 +76,7 @@ pub mod lifecyclepolicy {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dlm-lifecyclepolicy-createrule.html
     pub struct CreateRule_ {
         pub cron_expression: Option<crate::value::ExpString>,
-        pub interval: Option<i64>,
+        pub interval: Option<i32>,
         pub interval_unit: Option<crate::value::ExpString>,
         pub location: Option<crate::value::ExpString>,
         pub scripts: Option<Vec<Script_>>,
@@ -167,7 +167,7 @@ pub mod lifecyclepolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dlm-lifecyclepolicy-crossregioncopydeprecaterule.html
     pub struct CrossRegionCopyDeprecateRule_ {
-        pub interval: i64,
+        pub interval: i32,
         pub interval_unit: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -195,7 +195,7 @@ pub mod lifecyclepolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dlm-lifecyclepolicy-crossregioncopyretainrule.html
     pub struct CrossRegionCopyRetainRule_ {
-        pub interval: i64,
+        pub interval: i32,
         pub interval_unit: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -323,8 +323,8 @@ pub mod lifecyclepolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dlm-lifecyclepolicy-deprecaterule.html
     pub struct DeprecateRule_ {
-        pub count: Option<i64>,
-        pub interval: Option<i64>,
+        pub count: Option<i32>,
+        pub interval: Option<i32>,
         pub interval_unit: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -523,8 +523,8 @@ pub mod lifecyclepolicy {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dlm-lifecyclepolicy-fastrestorerule.html
     pub struct FastRestoreRule_ {
         pub availability_zones: Option<Vec<crate::value::ExpString>>,
-        pub count: Option<i64>,
-        pub interval: Option<i64>,
+        pub count: Option<i32>,
+        pub interval: Option<i32>,
         pub interval_unit: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -606,7 +606,7 @@ pub mod lifecyclepolicy {
     pub struct PolicyDetails_ {
         pub actions: Option<Vec<Action_>>,
         pub copy_tags: Option<crate::value::ExpBool>,
-        pub create_interval: Option<i64>,
+        pub create_interval: Option<i32>,
         pub cross_region_copy_targets: Option<Box<CrossRegionCopyTargets_>>,
         pub event_source: Option<Box<EventSource_>>,
         pub exclusions: Option<Box<Exclusions_>>,
@@ -617,7 +617,7 @@ pub mod lifecyclepolicy {
         pub resource_locations: Option<Vec<crate::value::ExpString>>,
         pub resource_type: Option<crate::value::ExpString>,
         pub resource_types: Option<Vec<crate::value::ExpString>>,
-        pub retain_interval: Option<i64>,
+        pub retain_interval: Option<i32>,
         pub schedules: Option<Vec<Schedule_>>,
         pub target_tags: Option<Vec<crate::Tag_>>,
     }
@@ -734,8 +734,8 @@ pub mod lifecyclepolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dlm-lifecyclepolicy-retainrule.html
     pub struct RetainRule_ {
-        pub count: Option<i64>,
-        pub interval: Option<i64>,
+        pub count: Option<i32>,
+        pub interval: Option<i32>,
         pub interval_unit: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -770,8 +770,8 @@ pub mod lifecyclepolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dlm-lifecyclepolicy-retentionarchivetier.html
     pub struct RetentionArchiveTier_ {
-        pub count: Option<i64>,
-        pub interval: Option<i64>,
+        pub count: Option<i32>,
+        pub interval: Option<i32>,
         pub interval_unit: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -901,8 +901,8 @@ pub mod lifecyclepolicy {
         pub execute_operation_on_script_failure: Option<crate::value::ExpBool>,
         pub execution_handler: Option<crate::value::ExpString>,
         pub execution_handler_service: Option<crate::value::ExpString>,
-        pub execution_timeout: Option<i64>,
-        pub maximum_retry_count: Option<i64>,
+        pub execution_timeout: Option<i32>,
+        pub maximum_retry_count: Option<i32>,
         pub stages: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
@@ -956,7 +956,7 @@ pub mod lifecyclepolicy {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dlm-lifecyclepolicy-sharerule.html
     pub struct ShareRule_ {
         pub target_accounts: Option<Vec<crate::value::ExpString>>,
-        pub unshare_interval: Option<i64>,
+        pub unshare_interval: Option<i32>,
         pub unshare_interval_unit: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1012,7 +1012,7 @@ pub mod lifecyclepolicy {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dlm-lifecyclepolicy.html
 pub struct LifecyclePolicy_ {
     pub copy_tags: Option<crate::value::ExpBool>,
-    pub create_interval: Option<i64>,
+    pub create_interval: Option<i32>,
     pub cross_region_copy_targets: Option<super::dlm::lifecyclepolicy::CrossRegionCopyTargets_>,
     pub default_policy: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -1020,7 +1020,7 @@ pub struct LifecyclePolicy_ {
     pub execution_role_arn: Option<crate::value::ExpString>,
     pub extend_deletion: Option<crate::value::ExpBool>,
     pub policy_details: Option<super::dlm::lifecyclepolicy::PolicyDetails_>,
-    pub retain_interval: Option<i64>,
+    pub retain_interval: Option<i32>,
     pub state: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
 }

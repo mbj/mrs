@@ -139,8 +139,8 @@ pub mod workspaceinstance {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-cpuoptionsrequest.html
     pub struct CpuOptionsRequest_ {
-        pub core_count: Option<i64>,
-        pub threads_per_core: Option<i64>,
+        pub core_count: Option<i32>,
+        pub threads_per_core: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -222,10 +222,10 @@ pub mod workspaceinstance {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-ebsblockdevice.html
     pub struct EbsBlockDevice_ {
         pub encrypted: Option<crate::value::ExpBool>,
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub kms_key_id: Option<crate::value::ExpString>,
-        pub throughput: Option<i64>,
-        pub volume_size: Option<i64>,
+        pub throughput: Option<i32>,
+        pub volume_size: Option<i32>,
         pub volume_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -413,7 +413,7 @@ pub mod workspaceinstance {
     pub struct InstanceMetadataOptionsRequest_ {
         pub http_endpoint: Option<crate::value::ExpString>,
         pub http_protocol_ipv6: Option<crate::value::ExpString>,
-        pub http_put_response_hop_limit: Option<i64>,
+        pub http_put_response_hop_limit: Option<i32>,
         pub http_tokens: Option<crate::value::ExpString>,
         pub instance_metadata_tags: Option<crate::value::ExpString>,
     }
@@ -465,7 +465,7 @@ pub mod workspaceinstance {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-workspacesinstances-workspaceinstance-instancenetworkinterfacespecification.html
     pub struct InstanceNetworkInterfaceSpecification_ {
         pub description: Option<crate::value::ExpString>,
-        pub device_index: Option<i64>,
+        pub device_index: Option<i32>,
         pub groups: Option<Vec<crate::value::ExpString>>,
         pub subnet_id: Option<crate::value::ExpString>,
     }
@@ -570,7 +570,7 @@ pub mod workspaceinstance {
         pub image_id: crate::value::ExpString,
         pub instance_market_options: Option<Box<InstanceMarketOptionsRequest_>>,
         pub instance_type: crate::value::ExpString,
-        pub ipv6_address_count: Option<i64>,
+        pub ipv6_address_count: Option<i32>,
         pub key_name: Option<crate::value::ExpString>,
         pub license_specifications: Option<Vec<LicenseConfigurationRequest_>>,
         pub maintenance_options: Option<Box<InstanceMaintenanceOptionsRequest_>>,
@@ -756,7 +756,7 @@ pub mod workspaceinstance {
         pub availability_zone: Option<crate::value::ExpString>,
         pub group_id: Option<crate::value::ExpString>,
         pub group_name: Option<crate::value::ExpString>,
-        pub partition_number: Option<i64>,
+        pub partition_number: Option<i32>,
         pub tenancy: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -948,12 +948,12 @@ pub mod workspaceinstance {
 pub struct Volume_ {
     pub availability_zone: crate::value::ExpString,
     pub encrypted: Option<crate::value::ExpBool>,
-    pub iops: Option<i64>,
+    pub iops: Option<i32>,
     pub kms_key_id: Option<crate::value::ExpString>,
-    pub size_in_gb: Option<i64>,
+    pub size_in_gb: Option<i32>,
     pub snapshot_id: Option<crate::value::ExpString>,
     pub tag_specifications: Option<Vec<super::workspacesinstances::volume::TagSpecification_>>,
-    pub throughput: Option<i64>,
+    pub throughput: Option<i32>,
     pub volume_type: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]
