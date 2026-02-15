@@ -31,6 +31,8 @@ pub trait ToResource {
 
 #[derive(Debug, PartialEq, serde::Serialize)]
 pub struct Resource<'a> {
+    #[serde(rename = "Condition", skip_serializing_if = "Option::is_none")]
+    condition: Option<value::ConditionName>,
     #[serde(rename = "Type")]
     resource_type_identifier: ResourceTypeName<'a>,
     #[serde(rename = "Properties")]
@@ -161,6 +163,8 @@ pub type Mapping =
 
 #[derive(Clone, Debug, Eq, PartialEq, serde::Serialize)]
 pub struct Output {
+    #[serde(rename = "Condition", skip_serializing_if = "Option::is_none")]
+    pub condition: Option<value::ConditionName>,
     #[serde(rename = "Description")]
     pub description: value::ExpString,
     #[serde(rename = "Value")]
@@ -183,6 +187,11 @@ pub struct Template<'a> {
     version: Version,
     #[serde(rename = "Description", skip_serializing_if = "Option::is_none")]
     description: Option<String>,
+    #[serde(
+        rename = "Conditions",
+        skip_serializing_if = "std::collections::BTreeMap::is_empty"
+    )]
+    conditions: std::collections::BTreeMap<value::ConditionName, value::ExpBool>,
     #[serde(
         rename = "Mappings",
         skip_serializing_if = "std::collections::BTreeMap::is_empty"
@@ -212,6 +221,7 @@ impl Template<'_> {
     #[must_use]
     pub fn new() -> Self {
         Self {
+            conditions: std::collections::BTreeMap::new(),
             description: None,
             mappings: std::collections::BTreeMap::new(),
             outputs: std::collections::BTreeMap::new(),
@@ -237,6 +247,7 @@ impl Template<'_> {
         let logical_resource_name = logical_resource_name.into();
 
         let resource = Resource {
+            condition: None,
             resource_type_identifier: R::RESOURCE_TYPE_NAME,
             resource_properties: resource.to_resource_properties(),
         };
@@ -272,6 +283,64 @@ impl Template<'_> {
         parameter: Parameter,
     ) -> Self {
         self.parameter(parameter_key, parameter);
+        self
+    }
+
+    pub fn condition(
+        &mut self,
+        condition_name: impl Into<value::ConditionName>,
+        expression: value::ExpBool,
+    ) -> value::ConditionName {
+        let condition_name = condition_name.into();
+
+        if let Some(_existing) = self.conditions.insert(condition_name.clone(), expression) {
+            panic!("Condition with name: {condition_name} already exists")
+        }
+
+        condition_name
+    }
+
+    pub fn condition_(
+        mut self,
+        condition_name: impl Into<value::ConditionName>,
+        expression: value::ExpBool,
+    ) -> Self {
+        self.condition(condition_name, expression);
+        self
+    }
+
+    pub fn conditional_resource<R: ToResource>(
+        &mut self,
+        logical_resource_name: impl Into<LogicalResourceName>,
+        condition_name: impl Into<value::ConditionName>,
+        resource: R,
+    ) -> LogicalResourceName {
+        let logical_resource_name = logical_resource_name.into();
+
+        let resource = Resource {
+            condition: Some(condition_name.into()),
+            resource_type_identifier: R::RESOURCE_TYPE_NAME,
+            resource_properties: resource.to_resource_properties(),
+        };
+
+        match self
+            .resources
+            .insert(logical_resource_name.clone(), resource)
+        {
+            None => logical_resource_name,
+            Some(_existing) => {
+                panic!("Logical resource with name: {logical_resource_name} already exists")
+            }
+        }
+    }
+
+    pub fn conditional_resource_<R: ToResource>(
+        mut self,
+        logical_resource_name: impl Into<LogicalResourceName>,
+        condition_name: impl Into<value::ConditionName>,
+        resource: R,
+    ) -> Self {
+        self.conditional_resource(logical_resource_name, condition_name, resource);
         self
     }
 
@@ -316,6 +385,7 @@ impl Template<'_> {
         self.output(
             output_key.clone(),
             Output {
+                condition: None,
                 description: description.into(),
                 value: value.into(),
                 export: Some(OutputExport {

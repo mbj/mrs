@@ -12,12 +12,24 @@ impl From<&str> for AttributeName {
     }
 }
 
-#[derive(Clone, Debug, Eq, PartialEq, serde::Serialize)]
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd, serde::Serialize)]
 pub struct ConditionName(String);
+
+impl std::fmt::Display for ConditionName {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter) -> Result<(), std::fmt::Error> {
+        write!(formatter, "{}", self.0)
+    }
+}
 
 impl From<&str> for ConditionName {
     fn from(value: &str) -> Self {
         Self(value.to_string())
+    }
+}
+
+impl From<&ConditionName> for ConditionName {
+    fn from(value: &ConditionName) -> Self {
+        value.clone()
     }
 }
 
@@ -692,7 +704,7 @@ fn mk_ref<T: serde::Serialize>(value: T) -> serde_json::Value {
     mk_func("Ref", value)
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub enum ExpPair {
     Bool {
         left: Box<ExpBool>,
@@ -754,9 +766,10 @@ impl ToValue for ExpStringList {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub enum ExpBool {
     And(Box<ExpBool>, Box<ExpBool>),
+    Condition(ConditionName),
     Equals(ExpPair),
     FindInMap {
         map_name: crate::template::MapName,
@@ -780,6 +793,24 @@ pub enum ExpBool {
 impl From<bool> for ExpBool {
     fn from(value: bool) -> Self {
         Self::Literal(value)
+    }
+}
+
+impl From<ConditionName> for ExpBool {
+    fn from(value: ConditionName) -> Self {
+        Self::Condition(value)
+    }
+}
+
+impl From<&ConditionName> for ExpBool {
+    fn from(value: &ConditionName) -> Self {
+        Self::Condition(value.clone())
+    }
+}
+
+impl serde::Serialize for ExpBool {
+    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        self.to_value().serialize(serializer)
     }
 }
 
@@ -858,6 +889,7 @@ impl ToValue for ExpBool {
     fn to_value(&self) -> serde_json::Value {
         match self {
             ExpBool::And(left, right) => mk_func("Fn::And", [left.to_value(), right.to_value()]),
+            ExpBool::Condition(name) => mk_func("Condition", name),
             ExpBool::Equals(pair) => match pair {
                 ExpPair::Bool { left, right } => {
                     mk_func("Fn::Equals", [left.to_value(), right.to_value()])
