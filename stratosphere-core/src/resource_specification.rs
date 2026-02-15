@@ -515,6 +515,7 @@ pub enum PrimitiveItemType {
     Double,
     Integer,
     Json,
+    Long,
     String,
 }
 
