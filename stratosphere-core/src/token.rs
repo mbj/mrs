@@ -631,6 +631,7 @@ fn mk_primitive_list_type(primitive_item_type: &PrimitiveItemType) -> proc_macro
         PrimitiveItemType::Json => quote! { serde_json::Value },
         PrimitiveItemType::Double => quote! { f64 },
         PrimitiveItemType::Integer => quote! { i32 },
+        PrimitiveItemType::Long => quote! { i64 },
         PrimitiveItemType::String => quote! { crate::value::ExpString },
     };
 
@@ -658,6 +659,7 @@ fn mk_primitive_map_type(primitive_item_type: &PrimitiveItemType) -> proc_macro2
         PrimitiveItemType::Json => quote! { serde_json::Value },
         PrimitiveItemType::Double => quote! { f64 },
         PrimitiveItemType::Integer => quote! { i32 },
+        PrimitiveItemType::Long => quote! { i64 },
         PrimitiveItemType::String => quote! { crate::value::ExpString },
     };
 
@@ -679,6 +681,7 @@ fn mk_type_reference_type(
             Some(PrimitiveItemType::Json) => quote! { Vec<serde_json::Value> },
             Some(PrimitiveItemType::Double) => quote! { Vec<f64> },
             Some(PrimitiveItemType::Integer) => quote! { Vec<i32> },
+            Some(PrimitiveItemType::Long) => quote! { Vec<i64> },
             Some(PrimitiveItemType::String) => quote! { Vec<crate::value::ExpString> },
             None => panic!("TypeReference::List requires primitive_item_type to be specified"),
         },
@@ -691,6 +694,9 @@ fn mk_type_reference_type(
             }
             Some(PrimitiveItemType::Integer) => {
                 quote! { std::collections::BTreeMap<String, i32> }
+            }
+            Some(PrimitiveItemType::Long) => {
+                quote! { std::collections::BTreeMap<String, i64> }
             }
             Some(PrimitiveItemType::String) => {
                 quote! { std::collections::BTreeMap<String, crate::value::ExpString> }
