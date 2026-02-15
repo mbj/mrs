@@ -291,3 +291,6 @@ aws_workspacesweb = []
 aws_workspacesinstances = []
 aws_xray = []
 alexa_ask = []
+
+[package.metadata.docs.rs]
+all-features = true
