@@ -175,14 +175,14 @@ pub mod domain {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-clusterconfig.html
     pub struct ClusterConfig_ {
         pub cold_storage_options: Option<Box<ColdStorageOptions_>>,
-        pub dedicated_master_count: Option<i64>,
+        pub dedicated_master_count: Option<i32>,
         pub dedicated_master_enabled: Option<crate::value::ExpBool>,
         pub dedicated_master_type: Option<crate::value::ExpString>,
-        pub instance_count: Option<i64>,
+        pub instance_count: Option<i32>,
         pub instance_type: Option<crate::value::ExpString>,
         pub multi_az_with_standby_enabled: Option<crate::value::ExpBool>,
         pub node_options: Option<Vec<NodeOption_>>,
-        pub warm_count: Option<i64>,
+        pub warm_count: Option<i32>,
         pub warm_enabled: Option<crate::value::ExpBool>,
         pub warm_type: Option<crate::value::ExpString>,
         pub zone_awareness_config: Option<Box<ZoneAwarenessConfig_>>,
@@ -408,9 +408,9 @@ pub mod domain {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-ebsoptions.html
     pub struct EBSOptions_ {
         pub ebs_enabled: Option<crate::value::ExpBool>,
-        pub iops: Option<i64>,
-        pub throughput: Option<i64>,
-        pub volume_size: Option<i64>,
+        pub iops: Option<i32>,
+        pub throughput: Option<i32>,
+        pub volume_size: Option<i32>,
         pub volume_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -733,7 +733,7 @@ pub mod domain {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-nodeconfig.html
     pub struct NodeConfig_ {
-        pub count: Option<i64>,
+        pub count: Option<i32>,
         pub enabled: Option<crate::value::ExpBool>,
         pub r#type: Option<crate::value::ExpString>,
     }
@@ -885,7 +885,7 @@ pub mod domain {
         pub master_backend_role: Option<crate::value::ExpString>,
         pub master_user_name: Option<crate::value::ExpString>,
         pub roles_key: Option<crate::value::ExpString>,
-        pub session_timeout_minutes: Option<i64>,
+        pub session_timeout_minutes: Option<i32>,
         pub subject_key: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1018,7 +1018,7 @@ pub mod domain {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-snapshotoptions.html
     pub struct SnapshotOptions_ {
-        pub automated_snapshot_start_hour: Option<i64>,
+        pub automated_snapshot_start_hour: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1100,8 +1100,8 @@ pub mod domain {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-windowstarttime.html
     pub struct WindowStartTime_ {
-        pub hours: i64,
-        pub minutes: i64,
+        pub hours: i32,
+        pub minutes: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1128,7 +1128,7 @@ pub mod domain {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-zoneawarenessconfig.html
     pub struct ZoneAwarenessConfig_ {
-        pub availability_zone_count: Option<i64>,
+        pub availability_zone_count: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

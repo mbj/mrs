@@ -166,7 +166,7 @@ pub mod experiment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-experiment-treatmenttoweight.html
     pub struct TreatmentToWeight_ {
-        pub split_weight: i64,
+        pub split_weight: i32,
         pub treatment: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -316,7 +316,7 @@ pub mod launch {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-launch-grouptoweight.html
     pub struct GroupToWeight_ {
         pub group_name: crate::value::ExpString,
-        pub split_weight: i64,
+        pub split_weight: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -430,7 +430,7 @@ pub mod launch {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-evidently-launch-segmentoverride.html
     pub struct SegmentOverride_ {
-        pub evaluation_order: i64,
+        pub evaluation_order: i32,
         pub segment: crate::value::ExpString,
         pub weights: Vec<GroupToWeight_>,
     }
@@ -593,7 +593,7 @@ pub struct Experiment_ {
     pub randomization_salt: Option<crate::value::ExpString>,
     pub remove_segment: Option<crate::value::ExpBool>,
     pub running_status: Option<super::evidently::experiment::RunningStatusObject_>,
-    pub sampling_rate: Option<i64>,
+    pub sampling_rate: Option<i32>,
     pub segment: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub treatments: Vec<super::evidently::experiment::TreatmentObject_>,

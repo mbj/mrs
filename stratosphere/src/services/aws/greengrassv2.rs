@@ -63,7 +63,7 @@ pub mod componentversion {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-componentversion-lambdacontainerparams.html
     pub struct LambdaContainerParams_ {
         pub devices: Option<Vec<LambdaDeviceMount_>>,
-        pub memory_size_in_kb: Option<i64>,
+        pub memory_size_in_kb: Option<i32>,
         pub mount_ro_sysfs: Option<crate::value::ExpBool>,
         pub volumes: Option<Vec<LambdaVolumeMount_>>,
     }
@@ -176,12 +176,12 @@ pub mod componentversion {
         pub exec_args: Option<Vec<crate::value::ExpString>>,
         pub input_payload_encoding_type: Option<crate::value::ExpString>,
         pub linux_process_params: Option<Box<LambdaLinuxProcessParams_>>,
-        pub max_idle_time_in_seconds: Option<i64>,
-        pub max_instances_count: Option<i64>,
-        pub max_queue_size: Option<i64>,
+        pub max_idle_time_in_seconds: Option<i32>,
+        pub max_instances_count: Option<i32>,
+        pub max_queue_size: Option<i32>,
         pub pinned: Option<crate::value::ExpBool>,
-        pub status_timeout_in_seconds: Option<i64>,
-        pub timeout_in_seconds: Option<i64>,
+        pub status_timeout_in_seconds: Option<i32>,
+        pub timeout_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -509,7 +509,7 @@ pub mod deployment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-deploymentcomponentupdatepolicy.html
     pub struct DeploymentComponentUpdatePolicy_ {
         pub action: Option<crate::value::ExpString>,
-        pub timeout_in_seconds: Option<i64>,
+        pub timeout_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -537,7 +537,7 @@ pub mod deployment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-deploymentconfigurationvalidationpolicy.html
     pub struct DeploymentConfigurationValidationPolicy_ {
-        pub timeout_in_seconds: Option<i64>,
+        pub timeout_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -665,7 +665,7 @@ pub mod deployment {
     pub struct IoTJobAbortCriteria_ {
         pub action: crate::value::ExpString,
         pub failure_type: crate::value::ExpString,
-        pub min_number_of_executed_things: i64,
+        pub min_number_of_executed_things: i32,
         pub threshold_percentage: f64,
     }
     #[doc(hidden)]
@@ -702,7 +702,7 @@ pub mod deployment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobexecutionsrolloutconfig.html
     pub struct IoTJobExecutionsRolloutConfig_ {
         pub exponential_rate: Option<Box<IoTJobExponentialRolloutRate_>>,
-        pub maximum_per_minute: Option<i64>,
+        pub maximum_per_minute: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -733,7 +733,7 @@ pub mod deployment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobexponentialrolloutrate.html
     pub struct IoTJobExponentialRolloutRate_ {
-        pub base_rate_per_minute: i64,
+        pub base_rate_per_minute: i32,
         pub increment_factor: f64,
         pub rate_increase_criteria: Box<IoTJobRateIncreaseCriteria_>,
     }
@@ -766,8 +766,8 @@ pub mod deployment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobrateincreasecriteria.html
     pub struct IoTJobRateIncreaseCriteria_ {
-        pub number_of_notified_things: Option<i64>,
-        pub number_of_succeeded_things: Option<i64>,
+        pub number_of_notified_things: Option<i32>,
+        pub number_of_succeeded_things: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -798,7 +798,7 @@ pub mod deployment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-iotjobtimeoutconfig.html
     pub struct IoTJobTimeoutConfig_ {
-        pub in_progress_timeout_in_minutes: Option<i64>,
+        pub in_progress_timeout_in_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -824,7 +824,7 @@ pub mod deployment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrassv2-deployment-systemresourcelimits.html
     pub struct SystemResourceLimits_ {
         pub cpus: Option<f64>,
-        pub memory: Option<i64>,
+        pub memory: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

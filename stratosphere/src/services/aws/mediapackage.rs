@@ -148,7 +148,7 @@ pub mod originendpoint {
     pub struct CmafEncryption_ {
         pub constant_initialization_vector: Option<crate::value::ExpString>,
         pub encryption_method: Option<crate::value::ExpString>,
-        pub key_rotation_interval_seconds: Option<i64>,
+        pub key_rotation_interval_seconds: Option<i32>,
         pub speke_key_provider: Box<SpekeKeyProvider_>,
     }
     #[doc(hidden)]
@@ -192,7 +192,7 @@ pub mod originendpoint {
     pub struct CmafPackage_ {
         pub encryption: Option<Box<CmafEncryption_>>,
         pub hls_manifests: Option<Vec<HlsManifest_>>,
-        pub segment_duration_seconds: Option<i64>,
+        pub segment_duration_seconds: Option<i32>,
         pub segment_prefix: Option<crate::value::ExpString>,
         pub stream_selection: Option<Box<StreamSelection_>>,
     }
@@ -243,7 +243,7 @@ pub mod originendpoint {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-dashencryption.html
     pub struct DashEncryption_ {
-        pub key_rotation_interval_seconds: Option<i64>,
+        pub key_rotation_interval_seconds: Option<i32>,
         pub speke_key_provider: Box<SpekeKeyProvider_>,
     }
     #[doc(hidden)]
@@ -278,15 +278,15 @@ pub mod originendpoint {
         pub encryption: Option<Box<DashEncryption_>>,
         pub include_iframe_only_stream: Option<crate::value::ExpBool>,
         pub manifest_layout: Option<crate::value::ExpString>,
-        pub manifest_window_seconds: Option<i64>,
-        pub min_buffer_time_seconds: Option<i64>,
-        pub min_update_period_seconds: Option<i64>,
+        pub manifest_window_seconds: Option<i32>,
+        pub min_buffer_time_seconds: Option<i32>,
+        pub min_update_period_seconds: Option<i32>,
         pub period_triggers: Option<Vec<crate::value::ExpString>>,
         pub profile: Option<crate::value::ExpString>,
-        pub segment_duration_seconds: Option<i64>,
+        pub segment_duration_seconds: Option<i32>,
         pub segment_template_format: Option<crate::value::ExpString>,
         pub stream_selection: Option<Box<StreamSelection_>>,
-        pub suggested_presentation_delay_seconds: Option<i64>,
+        pub suggested_presentation_delay_seconds: Option<i32>,
         pub utc_timing: Option<crate::value::ExpString>,
         pub utc_timing_uri: Option<crate::value::ExpString>,
     }
@@ -421,7 +421,7 @@ pub mod originendpoint {
     pub struct HlsEncryption_ {
         pub constant_initialization_vector: Option<crate::value::ExpString>,
         pub encryption_method: Option<crate::value::ExpString>,
-        pub key_rotation_interval_seconds: Option<i64>,
+        pub key_rotation_interval_seconds: Option<i32>,
         pub repeat_ext_x_key: Option<crate::value::ExpBool>,
         pub speke_key_provider: Box<SpekeKeyProvider_>,
     }
@@ -477,8 +477,8 @@ pub mod originendpoint {
         pub include_iframe_only_stream: Option<crate::value::ExpBool>,
         pub manifest_name: Option<crate::value::ExpString>,
         pub playlist_type: Option<crate::value::ExpString>,
-        pub playlist_window_seconds: Option<i64>,
-        pub program_date_time_interval_seconds: Option<i64>,
+        pub playlist_window_seconds: Option<i32>,
+        pub program_date_time_interval_seconds: Option<i32>,
         pub url: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -557,9 +557,9 @@ pub mod originendpoint {
         pub include_dvb_subtitles: Option<crate::value::ExpBool>,
         pub include_iframe_only_stream: Option<crate::value::ExpBool>,
         pub playlist_type: Option<crate::value::ExpString>,
-        pub playlist_window_seconds: Option<i64>,
-        pub program_date_time_interval_seconds: Option<i64>,
-        pub segment_duration_seconds: Option<i64>,
+        pub playlist_window_seconds: Option<i32>,
+        pub program_date_time_interval_seconds: Option<i32>,
+        pub segment_duration_seconds: Option<i32>,
         pub stream_selection: Option<Box<StreamSelection_>>,
         pub use_audio_rendition_group: Option<crate::value::ExpBool>,
     }
@@ -676,8 +676,8 @@ pub mod originendpoint {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-msspackage.html
     pub struct MssPackage_ {
         pub encryption: Option<Box<MssEncryption_>>,
-        pub manifest_window_seconds: Option<i64>,
-        pub segment_duration_seconds: Option<i64>,
+        pub manifest_window_seconds: Option<i32>,
+        pub segment_duration_seconds: Option<i32>,
         pub stream_selection: Option<Box<StreamSelection_>>,
     }
     #[doc(hidden)]
@@ -773,8 +773,8 @@ pub mod originendpoint {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-originendpoint-streamselection.html
     pub struct StreamSelection_ {
-        pub max_video_bits_per_second: Option<i64>,
-        pub min_video_bits_per_second: Option<i64>,
+        pub max_video_bits_per_second: Option<i32>,
+        pub min_video_bits_per_second: Option<i32>,
         pub stream_order: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -840,7 +840,7 @@ pub mod packagingconfiguration {
         pub encryption: Option<Box<CmafEncryption_>>,
         pub hls_manifests: Vec<HlsManifest_>,
         pub include_encoder_configuration_in_segments: Option<crate::value::ExpBool>,
-        pub segment_duration_seconds: Option<i64>,
+        pub segment_duration_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -906,7 +906,7 @@ pub mod packagingconfiguration {
     pub struct DashManifest_ {
         pub manifest_layout: Option<crate::value::ExpString>,
         pub manifest_name: Option<crate::value::ExpString>,
-        pub min_buffer_time_seconds: Option<i64>,
+        pub min_buffer_time_seconds: Option<i32>,
         pub profile: Option<crate::value::ExpString>,
         pub scte_markers_source: Option<crate::value::ExpString>,
         pub stream_selection: Option<Box<StreamSelection_>>,
@@ -969,7 +969,7 @@ pub mod packagingconfiguration {
         pub include_encoder_configuration_in_segments: Option<crate::value::ExpBool>,
         pub include_iframe_only_stream: Option<crate::value::ExpBool>,
         pub period_triggers: Option<Vec<crate::value::ExpString>>,
-        pub segment_duration_seconds: Option<i64>,
+        pub segment_duration_seconds: Option<i32>,
         pub segment_template_format: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1097,7 +1097,7 @@ pub mod packagingconfiguration {
         pub ad_markers: Option<crate::value::ExpString>,
         pub include_iframe_only_stream: Option<crate::value::ExpBool>,
         pub manifest_name: Option<crate::value::ExpString>,
-        pub program_date_time_interval_seconds: Option<i64>,
+        pub program_date_time_interval_seconds: Option<i32>,
         pub repeat_ext_x_key: Option<crate::value::ExpBool>,
         pub stream_selection: Option<Box<StreamSelection_>>,
     }
@@ -1157,7 +1157,7 @@ pub mod packagingconfiguration {
         pub encryption: Option<Box<HlsEncryption_>>,
         pub hls_manifests: Vec<HlsManifest_>,
         pub include_dvb_subtitles: Option<crate::value::ExpBool>,
-        pub segment_duration_seconds: Option<i64>,
+        pub segment_duration_seconds: Option<i32>,
         pub use_audio_rendition_group: Option<crate::value::ExpBool>,
     }
     #[doc(hidden)]
@@ -1262,7 +1262,7 @@ pub mod packagingconfiguration {
     pub struct MssPackage_ {
         pub encryption: Option<Box<MssEncryption_>>,
         pub mss_manifests: Vec<MssManifest_>,
-        pub segment_duration_seconds: Option<i64>,
+        pub segment_duration_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1337,8 +1337,8 @@ pub mod packagingconfiguration {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-streamselection.html
     pub struct StreamSelection_ {
-        pub max_video_bits_per_second: Option<i64>,
-        pub min_video_bits_per_second: Option<i64>,
+        pub max_video_bits_per_second: Option<i32>,
+        pub min_video_bits_per_second: Option<i32>,
         pub stream_order: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1563,9 +1563,9 @@ pub struct OriginEndpoint_ {
     pub manifest_name: Option<crate::value::ExpString>,
     pub mss_package: Option<super::mediapackage::originendpoint::MssPackage_>,
     pub origination: Option<crate::value::ExpString>,
-    pub startover_window_seconds: Option<i64>,
+    pub startover_window_seconds: Option<i32>,
     pub tags: Option<Vec<crate::Tag_>>,
-    pub time_delay_seconds: Option<i64>,
+    pub time_delay_seconds: Option<i32>,
     pub whitelist: Option<Vec<crate::value::ExpString>>,
 }
 #[doc(hidden)]

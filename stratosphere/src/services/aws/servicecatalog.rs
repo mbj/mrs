@@ -168,10 +168,10 @@ pub mod cloudformationprovisionedproduct {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationprovisionedproduct-provisioningpreferences.html
     pub struct ProvisioningPreferences_ {
         pub stack_set_accounts: Option<Vec<crate::value::ExpString>>,
-        pub stack_set_failure_tolerance_count: Option<i64>,
-        pub stack_set_failure_tolerance_percentage: Option<i64>,
-        pub stack_set_max_concurrency_count: Option<i64>,
-        pub stack_set_max_concurrency_percentage: Option<i64>,
+        pub stack_set_failure_tolerance_count: Option<i32>,
+        pub stack_set_failure_tolerance_percentage: Option<i32>,
+        pub stack_set_max_concurrency_count: Option<i32>,
+        pub stack_set_max_concurrency_percentage: Option<i32>,
         pub stack_set_operation_type: Option<crate::value::ExpString>,
         pub stack_set_regions: Option<Vec<crate::value::ExpString>>,
     }

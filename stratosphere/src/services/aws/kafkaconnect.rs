@@ -29,9 +29,9 @@ pub mod connector {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-autoscaling.html
     pub struct AutoScaling_ {
-        pub max_worker_count: i64,
-        pub mcu_count: i64,
-        pub min_worker_count: i64,
+        pub max_worker_count: i32,
+        pub mcu_count: i32,
+        pub min_worker_count: i32,
         pub scale_in_policy: Box<ScaleInPolicy_>,
         pub scale_out_policy: Box<ScaleOutPolicy_>,
     }
@@ -135,7 +135,7 @@ pub mod connector {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-customplugin.html
     pub struct CustomPlugin_ {
         pub custom_plugin_arn: crate::value::ExpString,
-        pub revision: i64,
+        pub revision: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -307,8 +307,8 @@ pub mod connector {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-provisionedcapacity.html
     pub struct ProvisionedCapacity_ {
-        pub mcu_count: Option<i64>,
-        pub worker_count: i64,
+        pub mcu_count: Option<i32>,
+        pub worker_count: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -368,7 +368,7 @@ pub mod connector {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-scaleinpolicy.html
     pub struct ScaleInPolicy_ {
-        pub cpu_utilization_percentage: i64,
+        pub cpu_utilization_percentage: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -391,7 +391,7 @@ pub mod connector {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-scaleoutpolicy.html
     pub struct ScaleOutPolicy_ {
-        pub cpu_utilization_percentage: i64,
+        pub cpu_utilization_percentage: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -442,7 +442,7 @@ pub mod connector {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-workerconfiguration.html
     pub struct WorkerConfiguration_ {
-        pub revision: i64,
+        pub revision: i32,
         pub worker_configuration_arn: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -509,7 +509,7 @@ pub mod customplugin {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-customplugin-custompluginfiledescription.html
     pub struct CustomPluginFileDescription_ {
         pub file_md5: Option<crate::value::ExpString>,
-        pub file_size: Option<i64>,
+        pub file_size: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

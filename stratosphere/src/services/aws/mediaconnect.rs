@@ -39,9 +39,9 @@ pub mod bridge {
         pub ip_address: crate::value::ExpString,
         pub name: crate::value::ExpString,
         pub network_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub protocol: crate::value::ExpString,
-        pub ttl: i64,
+        pub ttl: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -88,7 +88,7 @@ pub mod bridge {
         pub multicast_source_settings: Option<Box<MulticastSourceSettings_>>,
         pub name: crate::value::ExpString,
         pub network_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub protocol: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -191,7 +191,7 @@ pub mod bridge {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-egressgatewaybridge.html
     pub struct EgressGatewayBridge_ {
-        pub max_bitrate: i64,
+        pub max_bitrate: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -248,8 +248,8 @@ pub mod bridge {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-ingressgatewaybridge.html
     pub struct IngressGatewayBridge_ {
-        pub max_bitrate: i64,
-        pub max_outputs: i64,
+        pub max_bitrate: i32,
+        pub max_outputs: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -355,9 +355,9 @@ pub mod bridgeoutput {
     pub struct BridgeNetworkOutput_ {
         pub ip_address: crate::value::ExpString,
         pub network_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub protocol: crate::value::ExpString,
-        pub ttl: i64,
+        pub ttl: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -431,7 +431,7 @@ pub mod bridgesource {
         pub multicast_ip: crate::value::ExpString,
         pub multicast_source_settings: Option<Box<MulticastSourceSettings_>>,
         pub network_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub protocol: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -551,7 +551,7 @@ pub mod flow {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-blackframes.html
     pub struct BlackFrames_ {
         pub state: Option<crate::value::ExpString>,
-        pub threshold_seconds: Option<i64>,
+        pub threshold_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -653,7 +653,7 @@ pub mod flow {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-failoverconfig.html
     pub struct FailoverConfig_ {
         pub failover_mode: Option<crate::value::ExpString>,
-        pub recovery_window: Option<i64>,
+        pub recovery_window: Option<i32>,
         pub source_priority: Option<Box<SourcePriority_>>,
         pub state: Option<crate::value::ExpString>,
     }
@@ -754,7 +754,7 @@ pub mod flow {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-frozenframes.html
     pub struct FrozenFrames_ {
         pub state: Option<crate::value::ExpString>,
-        pub threshold_seconds: Option<i64>,
+        pub threshold_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -812,7 +812,7 @@ pub mod flow {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-inputconfiguration.html
     pub struct InputConfiguration_ {
-        pub input_port: i64,
+        pub input_port: i32,
         pub interface: Box<Interface_>,
     }
     #[doc(hidden)]
@@ -892,10 +892,10 @@ pub mod flow {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-mediastream.html
     pub struct MediaStream_ {
         pub attributes: Option<Box<MediaStreamAttributes_>>,
-        pub clock_rate: Option<i64>,
+        pub clock_rate: Option<i32>,
         pub description: Option<crate::value::ExpString>,
-        pub fmt: Option<i64>,
-        pub media_stream_id: i64,
+        pub fmt: Option<i32>,
+        pub media_stream_id: i32,
         pub media_stream_name: crate::value::ExpString,
         pub media_stream_type: crate::value::ExpString,
         pub video_format: Option<crate::value::ExpString>,
@@ -1057,7 +1057,7 @@ pub mod flow {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-ndidiscoveryserverconfig.html
     pub struct NdiDiscoveryServerConfig_ {
         pub discovery_server_address: crate::value::ExpString,
-        pub discovery_server_port: Option<i64>,
+        pub discovery_server_port: Option<i32>,
         pub vpc_interface_adapter: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -1092,7 +1092,7 @@ pub mod flow {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-silentaudio.html
     pub struct SilentAudio_ {
         pub state: Option<crate::value::ExpString>,
-        pub threshold_seconds: Option<i64>,
+        pub threshold_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1125,20 +1125,20 @@ pub mod flow {
         pub entitlement_arn: Option<crate::value::ExpString>,
         pub gateway_bridge_source: Option<Box<GatewayBridgeSource_>>,
         pub ingest_ip: Option<crate::value::ExpString>,
-        pub ingest_port: Option<i64>,
-        pub max_bitrate: Option<i64>,
-        pub max_latency: Option<i64>,
-        pub max_sync_buffer: Option<i64>,
+        pub ingest_port: Option<i32>,
+        pub max_bitrate: Option<i32>,
+        pub max_latency: Option<i32>,
+        pub max_sync_buffer: Option<i32>,
         pub media_stream_source_configurations: Option<Vec<MediaStreamSourceConfiguration_>>,
-        pub min_latency: Option<i64>,
+        pub min_latency: Option<i32>,
         pub name: Option<crate::value::ExpString>,
         pub protocol: Option<crate::value::ExpString>,
-        pub sender_control_port: Option<i64>,
+        pub sender_control_port: Option<i32>,
         pub sender_ip_address: Option<crate::value::ExpString>,
         pub source_arn: Option<crate::value::ExpString>,
         pub source_ingest_port: Option<crate::value::ExpString>,
         pub source_listener_address: Option<crate::value::ExpString>,
-        pub source_listener_port: Option<i64>,
+        pub source_listener_port: Option<i32>,
         pub stream_id: Option<crate::value::ExpString>,
         pub vpc_interface_name: Option<crate::value::ExpString>,
         pub whitelist_cidr: Option<crate::value::ExpString>,
@@ -1543,7 +1543,7 @@ pub mod flowoutput {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-destinationconfiguration.html
     pub struct DestinationConfiguration_ {
         pub destination_ip: crate::value::ExpString,
-        pub destination_port: i64,
+        pub destination_port: i32,
         pub interface: Box<Interface_>,
     }
     #[doc(hidden)]
@@ -2150,7 +2150,7 @@ impl crate::template::ToResource for Flow_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowentitlement.html
 pub struct FlowEntitlement_ {
-    pub data_transfer_subscriber_fee_percent: Option<i64>,
+    pub data_transfer_subscriber_fee_percent: Option<i32>,
     pub description: crate::value::ExpString,
     pub encryption: Option<super::mediaconnect::flowentitlement::Encryption_>,
     pub entitlement_status: Option<crate::value::ExpString>,
@@ -2222,18 +2222,18 @@ pub struct FlowOutput_ {
     pub destination: Option<crate::value::ExpString>,
     pub encryption: Option<super::mediaconnect::flowoutput::Encryption_>,
     pub flow_arn: crate::value::ExpString,
-    pub max_latency: Option<i64>,
+    pub max_latency: Option<i32>,
     pub media_stream_output_configurations:
         Option<Vec<super::mediaconnect::flowoutput::MediaStreamOutputConfiguration_>>,
-    pub min_latency: Option<i64>,
+    pub min_latency: Option<i32>,
     pub name: Option<crate::value::ExpString>,
     pub ndi_program_name: Option<crate::value::ExpString>,
-    pub ndi_speed_hq_quality: Option<i64>,
+    pub ndi_speed_hq_quality: Option<i32>,
     pub output_status: Option<crate::value::ExpString>,
-    pub port: Option<i64>,
+    pub port: Option<i32>,
     pub protocol: crate::value::ExpString,
     pub remote_id: Option<crate::value::ExpString>,
-    pub smoothing_latency: Option<i64>,
+    pub smoothing_latency: Option<i32>,
     pub stream_id: Option<crate::value::ExpString>,
     pub vpc_interface_attachment: Option<super::mediaconnect::flowoutput::VpcInterfaceAttachment_>,
 }
@@ -2365,16 +2365,16 @@ pub struct FlowSource_ {
     pub entitlement_arn: Option<crate::value::ExpString>,
     pub flow_arn: Option<crate::value::ExpString>,
     pub gateway_bridge_source: Option<super::mediaconnect::flowsource::GatewayBridgeSource_>,
-    pub ingest_port: Option<i64>,
-    pub max_bitrate: Option<i64>,
-    pub max_latency: Option<i64>,
-    pub min_latency: Option<i64>,
+    pub ingest_port: Option<i32>,
+    pub max_bitrate: Option<i32>,
+    pub max_latency: Option<i32>,
+    pub min_latency: Option<i32>,
     pub name: crate::value::ExpString,
     pub protocol: Option<crate::value::ExpString>,
-    pub sender_control_port: Option<i64>,
+    pub sender_control_port: Option<i32>,
     pub sender_ip_address: Option<crate::value::ExpString>,
     pub source_listener_address: Option<crate::value::ExpString>,
-    pub source_listener_port: Option<i64>,
+    pub source_listener_port: Option<i32>,
     pub stream_id: Option<crate::value::ExpString>,
     pub vpc_interface_name: Option<crate::value::ExpString>,
     pub whitelist_cidr: Option<crate::value::ExpString>,

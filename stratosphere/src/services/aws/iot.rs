@@ -459,7 +459,7 @@ pub mod command {
         pub b: Option<crate::value::ExpBool>,
         pub bin: Option<crate::value::ExpString>,
         pub d: Option<f64>,
-        pub i: Option<i64>,
+        pub i: Option<i32>,
         pub l: Option<crate::value::ExpString>,
         pub s: Option<crate::value::ExpString>,
         pub ul: Option<crate::value::ExpString>,
@@ -794,7 +794,7 @@ pub mod jobtemplate {
     pub struct AbortCriteria_ {
         pub action: crate::value::ExpString,
         pub failure_type: crate::value::ExpString,
-        pub min_number_of_executed_things: i64,
+        pub min_number_of_executed_things: i32,
         pub threshold_percentage: f64,
     }
     #[doc(hidden)]
@@ -830,7 +830,7 @@ pub mod jobtemplate {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-exponentialrolloutrate.html
     pub struct ExponentialRolloutRate_ {
-        pub base_rate_per_minute: i64,
+        pub base_rate_per_minute: i32,
         pub increment_factor: f64,
         pub rate_increase_criteria: Box<RateIncreaseCriteria_>,
     }
@@ -889,7 +889,7 @@ pub mod jobtemplate {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-jobexecutionsrolloutconfig.html
     pub struct JobExecutionsRolloutConfig_ {
         pub exponential_rollout_rate: Option<Box<ExponentialRolloutRate_>>,
-        pub maximum_per_minute: Option<i64>,
+        pub maximum_per_minute: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -920,7 +920,7 @@ pub mod jobtemplate {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-maintenancewindow.html
     pub struct MaintenanceWindow_ {
-        pub duration_in_minutes: Option<i64>,
+        pub duration_in_minutes: Option<i32>,
         pub start_time: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -952,7 +952,7 @@ pub mod jobtemplate {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-presignedurlconfig.html
     pub struct PresignedUrlConfig_ {
-        pub expires_in_sec: Option<i64>,
+        pub expires_in_sec: Option<i32>,
         pub role_arn: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -982,8 +982,8 @@ pub mod jobtemplate {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-rateincreasecriteria.html
     pub struct RateIncreaseCriteria_ {
-        pub number_of_notified_things: Option<i64>,
-        pub number_of_succeeded_things: Option<i64>,
+        pub number_of_notified_things: Option<i32>,
+        pub number_of_succeeded_things: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1015,7 +1015,7 @@ pub mod jobtemplate {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-retrycriteria.html
     pub struct RetryCriteria_ {
         pub failure_type: Option<crate::value::ExpString>,
-        pub number_of_retries: Option<i64>,
+        pub number_of_retries: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1046,7 +1046,7 @@ pub mod jobtemplate {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-timeoutconfig.html
     pub struct TimeoutConfig_ {
-        pub in_progress_timeout_in_minutes: i64,
+        pub in_progress_timeout_in_minutes: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1401,9 +1401,9 @@ pub mod securityprofile {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-behaviorcriteria.html
     pub struct BehaviorCriteria_ {
         pub comparison_operator: Option<crate::value::ExpString>,
-        pub consecutive_datapoints_to_alarm: Option<i64>,
-        pub consecutive_datapoints_to_clear: Option<i64>,
-        pub duration_seconds: Option<i64>,
+        pub consecutive_datapoints_to_alarm: Option<i32>,
+        pub consecutive_datapoints_to_clear: Option<i32>,
+        pub duration_seconds: Option<i32>,
         pub ml_detection_config: Option<Box<MachineLearningDetectionConfig_>>,
         pub statistical_threshold: Option<Box<StatisticalThreshold_>>,
         pub value: Option<Box<MetricValue_>>,
@@ -1560,7 +1560,7 @@ pub mod securityprofile {
         pub count: Option<crate::value::ExpString>,
         pub number: Option<f64>,
         pub numbers: Option<Vec<f64>>,
-        pub ports: Option<Vec<i64>>,
+        pub ports: Option<Vec<i32>>,
         pub strings: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
@@ -3004,7 +3004,7 @@ pub mod topicrule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishaction.html
     pub struct RepublishAction_ {
         pub headers: Option<Box<RepublishActionHeaders_>>,
-        pub qos: Option<i64>,
+        pub qos: Option<i32>,
         pub role_arn: crate::value::ExpString,
         pub topic: crate::value::ExpString,
     }
@@ -4277,7 +4277,7 @@ pub struct FleetMetric_ {
     pub description: Option<crate::value::ExpString>,
     pub index_name: Option<crate::value::ExpString>,
     pub metric_name: crate::value::ExpString,
-    pub period: Option<i64>,
+    pub period: Option<i32>,
     pub query_string: Option<crate::value::ExpString>,
     pub query_version: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -4746,7 +4746,7 @@ impl crate::template::ToResource for ResourceSpecificLogging_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-rolealias.html
 pub struct RoleAlias_ {
-    pub credential_duration_seconds: Option<i64>,
+    pub credential_duration_seconds: Option<i32>,
     pub role_alias: Option<crate::value::ExpString>,
     pub role_arn: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,

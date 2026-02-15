@@ -83,7 +83,7 @@ pub mod channel {
         pub bitrate: Option<f64>,
         pub bitstream_mode: Option<crate::value::ExpString>,
         pub coding_mode: Option<crate::value::ExpString>,
-        pub dialnorm: Option<i64>,
+        pub dialnorm: Option<i32>,
         pub drc_profile: Option<crate::value::ExpString>,
         pub lfe_filter: Option<crate::value::ExpString>,
         pub metadata_control: Option<crate::value::ExpString>,
@@ -178,7 +178,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-ancillarysourcesettings.html
     pub struct AncillarySourceSettings_ {
-        pub source_ancillary_channel_number: Option<i64>,
+        pub source_ancillary_channel_number: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -294,7 +294,7 @@ pub mod channel {
     pub struct ArchiveGroupSettings_ {
         pub archive_cdn_settings: Option<Box<ArchiveCdnSettings_>>,
         pub destination: Option<Box<OutputLocationRef_>>,
-        pub rollover_interval: Option<i64>,
+        pub rollover_interval: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -428,7 +428,7 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiochannelmapping.html
     pub struct AudioChannelMapping_ {
         pub input_channel_levels: Option<Vec<InputChannelLevel_>>,
-        pub output_channel: Option<i64>,
+        pub output_channel: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -803,7 +803,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiopidselection.html
     pub struct AudioPidSelection_ {
-        pub pid: Option<i64>,
+        pub pid: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -901,7 +901,7 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiosilencefailoversettings.html
     pub struct AudioSilenceFailoverSettings_ {
         pub audio_selector_name: Option<crate::value::ExpString>,
-        pub audio_silence_threshold_msec: Option<i64>,
+        pub audio_silence_threshold_msec: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -932,7 +932,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiotrack.html
     pub struct AudioTrack_ {
-        pub track: Option<i64>,
+        pub track: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1008,7 +1008,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-automaticinputfailoversettings.html
     pub struct AutomaticInputFailoverSettings_ {
-        pub error_clear_time_msec: Option<i64>,
+        pub error_clear_time_msec: Option<i32>,
         pub failover_conditions: Option<Vec<FailoverCondition_>>,
         pub input_preference: Option<crate::value::ExpString>,
         pub secondary_input_id: Option<crate::value::ExpString>,
@@ -1101,21 +1101,21 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-av1settings.html
     pub struct Av1Settings_ {
         pub afd_signaling: Option<crate::value::ExpString>,
-        pub bitrate: Option<i64>,
-        pub buf_size: Option<i64>,
+        pub bitrate: Option<i32>,
+        pub buf_size: Option<i32>,
         pub color_space_settings: Option<Box<Av1ColorSpaceSettings_>>,
         pub fixed_afd: Option<crate::value::ExpString>,
-        pub framerate_denominator: Option<i64>,
-        pub framerate_numerator: Option<i64>,
+        pub framerate_denominator: Option<i32>,
+        pub framerate_numerator: Option<i32>,
         pub gop_size: Option<f64>,
         pub gop_size_units: Option<crate::value::ExpString>,
         pub level: Option<crate::value::ExpString>,
         pub look_ahead_rate_control: Option<crate::value::ExpString>,
-        pub max_bitrate: Option<i64>,
-        pub min_i_interval: Option<i64>,
-        pub par_denominator: Option<i64>,
-        pub par_numerator: Option<i64>,
-        pub qvbr_quality_level: Option<i64>,
+        pub max_bitrate: Option<i32>,
+        pub min_i_interval: Option<i32>,
+        pub par_denominator: Option<i32>,
+        pub par_numerator: Option<i32>,
+        pub qvbr_quality_level: Option<i32>,
         pub rate_control_mode: Option<crate::value::ExpString>,
         pub scene_change_detect: Option<crate::value::ExpString>,
         pub timecode_burnin_settings: Option<Box<TimecodeBurninSettings_>>,
@@ -1429,22 +1429,22 @@ pub mod channel {
     pub struct BurnInDestinationSettings_ {
         pub alignment: Option<crate::value::ExpString>,
         pub background_color: Option<crate::value::ExpString>,
-        pub background_opacity: Option<i64>,
+        pub background_opacity: Option<i32>,
         pub font: Option<Box<InputLocation_>>,
         pub font_color: Option<crate::value::ExpString>,
-        pub font_opacity: Option<i64>,
-        pub font_resolution: Option<i64>,
+        pub font_opacity: Option<i32>,
+        pub font_resolution: Option<i32>,
         pub font_size: Option<crate::value::ExpString>,
         pub outline_color: Option<crate::value::ExpString>,
-        pub outline_size: Option<i64>,
+        pub outline_size: Option<i32>,
         pub shadow_color: Option<crate::value::ExpString>,
-        pub shadow_opacity: Option<i64>,
-        pub shadow_x_offset: Option<i64>,
-        pub shadow_y_offset: Option<i64>,
+        pub shadow_opacity: Option<i32>,
+        pub shadow_x_offset: Option<i32>,
+        pub shadow_y_offset: Option<i32>,
         pub subtitle_rows: Option<crate::value::ExpString>,
         pub teletext_grid_control: Option<crate::value::ExpString>,
-        pub x_position: Option<i64>,
-        pub y_position: Option<i64>,
+        pub x_position: Option<i32>,
+        pub y_position: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1751,7 +1751,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captionlanguagemapping.html
     pub struct CaptionLanguageMapping_ {
-        pub caption_channel: Option<i64>,
+        pub caption_channel: Option<i32>,
         pub language_code: Option<crate::value::ExpString>,
         pub language_description: Option<crate::value::ExpString>,
     }
@@ -1983,7 +1983,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-cmafingestcaptionlanguagemapping.html
     pub struct CmafIngestCaptionLanguageMapping_ {
-        pub caption_channel: Option<i64>,
+        pub caption_channel: Option<i32>,
         pub language_code: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -2026,11 +2026,11 @@ pub mod channel {
         pub nielsen_id3_name_modifier: Option<crate::value::ExpString>,
         pub scte35_name_modifier: Option<crate::value::ExpString>,
         pub scte35_type: Option<crate::value::ExpString>,
-        pub segment_length: Option<i64>,
+        pub segment_length: Option<i32>,
         pub segment_length_units: Option<crate::value::ExpString>,
-        pub send_delay_ms: Option<i64>,
+        pub send_delay_ms: Option<i32>,
         pub timed_metadata_id3_frame: Option<crate::value::ExpString>,
-        pub timed_metadata_id3_period: Option<i64>,
+        pub timed_metadata_id3_period: Option<i32>,
         pub timed_metadata_passthrough: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -2270,9 +2270,9 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbnitsettings.html
     pub struct DvbNitSettings_ {
-        pub network_id: Option<i64>,
+        pub network_id: Option<i32>,
         pub network_name: Option<crate::value::ExpString>,
-        pub rep_interval: Option<i64>,
+        pub rep_interval: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2310,7 +2310,7 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbsdtsettings.html
     pub struct DvbSdtSettings_ {
         pub output_sdt: Option<crate::value::ExpString>,
-        pub rep_interval: Option<i64>,
+        pub rep_interval: Option<i32>,
         pub service_name: Option<crate::value::ExpString>,
         pub service_provider_name: Option<crate::value::ExpString>,
     }
@@ -2357,22 +2357,22 @@ pub mod channel {
     pub struct DvbSubDestinationSettings_ {
         pub alignment: Option<crate::value::ExpString>,
         pub background_color: Option<crate::value::ExpString>,
-        pub background_opacity: Option<i64>,
+        pub background_opacity: Option<i32>,
         pub font: Option<Box<InputLocation_>>,
         pub font_color: Option<crate::value::ExpString>,
-        pub font_opacity: Option<i64>,
-        pub font_resolution: Option<i64>,
+        pub font_opacity: Option<i32>,
+        pub font_resolution: Option<i32>,
         pub font_size: Option<crate::value::ExpString>,
         pub outline_color: Option<crate::value::ExpString>,
-        pub outline_size: Option<i64>,
+        pub outline_size: Option<i32>,
         pub shadow_color: Option<crate::value::ExpString>,
-        pub shadow_opacity: Option<i64>,
-        pub shadow_x_offset: Option<i64>,
-        pub shadow_y_offset: Option<i64>,
+        pub shadow_opacity: Option<i32>,
+        pub shadow_x_offset: Option<i32>,
+        pub shadow_y_offset: Option<i32>,
         pub subtitle_rows: Option<crate::value::ExpString>,
         pub teletext_grid_control: Option<crate::value::ExpString>,
-        pub x_position: Option<i64>,
-        pub y_position: Option<i64>,
+        pub x_position: Option<i32>,
+        pub y_position: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2497,7 +2497,7 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbsubsourcesettings.html
     pub struct DvbSubSourceSettings_ {
         pub ocr_language: Option<crate::value::ExpString>,
-        pub pid: Option<i64>,
+        pub pid: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2525,7 +2525,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbtdtsettings.html
     pub struct DvbTdtSettings_ {
-        pub rep_interval: Option<i64>,
+        pub rep_interval: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2552,7 +2552,7 @@ pub mod channel {
     pub struct Eac3AtmosSettings_ {
         pub bitrate: Option<f64>,
         pub coding_mode: Option<crate::value::ExpString>,
-        pub dialnorm: Option<i64>,
+        pub dialnorm: Option<i32>,
         pub drc_line: Option<crate::value::ExpString>,
         pub drc_rf: Option<crate::value::ExpString>,
         pub height_trim: Option<f64>,
@@ -2619,7 +2619,7 @@ pub mod channel {
         pub bitstream_mode: Option<crate::value::ExpString>,
         pub coding_mode: Option<crate::value::ExpString>,
         pub dc_filter: Option<crate::value::ExpString>,
-        pub dialnorm: Option<i64>,
+        pub dialnorm: Option<i32>,
         pub drc_line: Option<crate::value::ExpString>,
         pub drc_rf: Option<crate::value::ExpString>,
         pub lfe_control: Option<crate::value::ExpString>,
@@ -2770,8 +2770,8 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-ebuttddestinationsettings.html
     pub struct EbuTtDDestinationSettings_ {
         pub copyright_holder: Option<crate::value::ExpString>,
-        pub default_font_size: Option<i64>,
-        pub default_line_height: Option<i64>,
+        pub default_font_size: Option<i32>,
+        pub default_line_height: Option<i32>,
         pub fill_line_gap: Option<crate::value::ExpString>,
         pub font_family: Option<crate::value::ExpString>,
         pub style_control: Option<crate::value::ExpString>,
@@ -2863,8 +2863,8 @@ pub mod channel {
     pub struct EmbeddedSourceSettings_ {
         pub convert608_to708: Option<crate::value::ExpString>,
         pub scte20_detection: Option<crate::value::ExpString>,
-        pub source608_channel_number: Option<i64>,
-        pub source608_track_number: Option<i64>,
+        pub source608_channel_number: Option<i32>,
+        pub source608_track_number: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3056,7 +3056,7 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-esam.html
     pub struct Esam_ {
         pub acquisition_point_id: Option<crate::value::ExpString>,
-        pub ad_avail_offset: Option<i64>,
+        pub ad_avail_offset: Option<i32>,
         pub password_param: Option<crate::value::ExpString>,
         pub pois_endpoint: Option<crate::value::ExpString>,
         pub username: Option<crate::value::ExpString>,
@@ -3211,9 +3211,9 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-fecoutputsettings.html
     pub struct FecOutputSettings_ {
-        pub column_depth: Option<i64>,
+        pub column_depth: Option<i32>,
         pub include_fec: Option<crate::value::ExpString>,
-        pub row_length: Option<i64>,
+        pub row_length: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3412,7 +3412,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecapturesettings.html
     pub struct FrameCaptureSettings_ {
-        pub capture_interval: Option<i64>,
+        pub capture_interval: Option<i32>,
         pub capture_interval_units: Option<crate::value::ExpString>,
         pub timecode_burnin_settings: Option<Box<TimecodeBurninSettings_>>,
     }
@@ -3451,7 +3451,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-globalconfiguration.html
     pub struct GlobalConfiguration_ {
-        pub initial_audio_gain: Option<i64>,
+        pub initial_audio_gain: Option<i32>,
         pub input_end_action: Option<crate::value::ExpString>,
         pub input_loss_behavior: Option<Box<InputLossBehavior_>>,
         pub output_locking_mode: Option<crate::value::ExpString>,
@@ -3591,9 +3591,9 @@ pub mod channel {
     pub struct H264Settings_ {
         pub adaptive_quantization: Option<crate::value::ExpString>,
         pub afd_signaling: Option<crate::value::ExpString>,
-        pub bitrate: Option<i64>,
-        pub buf_fill_pct: Option<i64>,
-        pub buf_size: Option<i64>,
+        pub bitrate: Option<i32>,
+        pub buf_fill_pct: Option<i32>,
+        pub buf_size: Option<i32>,
         pub color_metadata: Option<crate::value::ExpString>,
         pub color_space_settings: Option<Box<H264ColorSpaceSettings_>>,
         pub entropy_encoding: Option<crate::value::ExpString>,
@@ -3602,30 +3602,30 @@ pub mod channel {
         pub flicker_aq: Option<crate::value::ExpString>,
         pub force_field_pictures: Option<crate::value::ExpString>,
         pub framerate_control: Option<crate::value::ExpString>,
-        pub framerate_denominator: Option<i64>,
-        pub framerate_numerator: Option<i64>,
+        pub framerate_denominator: Option<i32>,
+        pub framerate_numerator: Option<i32>,
         pub gop_b_reference: Option<crate::value::ExpString>,
-        pub gop_closed_cadence: Option<i64>,
-        pub gop_num_b_frames: Option<i64>,
+        pub gop_closed_cadence: Option<i32>,
+        pub gop_num_b_frames: Option<i32>,
         pub gop_size: Option<f64>,
         pub gop_size_units: Option<crate::value::ExpString>,
         pub level: Option<crate::value::ExpString>,
         pub look_ahead_rate_control: Option<crate::value::ExpString>,
-        pub max_bitrate: Option<i64>,
-        pub min_i_interval: Option<i64>,
-        pub min_qp: Option<i64>,
-        pub num_ref_frames: Option<i64>,
+        pub max_bitrate: Option<i32>,
+        pub min_i_interval: Option<i32>,
+        pub min_qp: Option<i32>,
+        pub num_ref_frames: Option<i32>,
         pub par_control: Option<crate::value::ExpString>,
-        pub par_denominator: Option<i64>,
-        pub par_numerator: Option<i64>,
+        pub par_denominator: Option<i32>,
+        pub par_numerator: Option<i32>,
         pub profile: Option<crate::value::ExpString>,
         pub quality_level: Option<crate::value::ExpString>,
-        pub qvbr_quality_level: Option<i64>,
+        pub qvbr_quality_level: Option<i32>,
         pub rate_control_mode: Option<crate::value::ExpString>,
         pub scan_type: Option<crate::value::ExpString>,
         pub scene_change_detect: Option<crate::value::ExpString>,
-        pub slices: Option<i64>,
-        pub softness: Option<i64>,
+        pub slices: Option<i32>,
+        pub softness: Option<i32>,
         pub spatial_aq: Option<crate::value::ExpString>,
         pub subgop_length: Option<crate::value::ExpString>,
         pub syntax: Option<crate::value::ExpString>,
@@ -3984,38 +3984,38 @@ pub mod channel {
         pub adaptive_quantization: Option<crate::value::ExpString>,
         pub afd_signaling: Option<crate::value::ExpString>,
         pub alternative_transfer_function: Option<crate::value::ExpString>,
-        pub bitrate: Option<i64>,
-        pub buf_size: Option<i64>,
+        pub bitrate: Option<i32>,
+        pub buf_size: Option<i32>,
         pub color_metadata: Option<crate::value::ExpString>,
         pub color_space_settings: Option<Box<H265ColorSpaceSettings_>>,
         pub deblocking: Option<crate::value::ExpString>,
         pub filter_settings: Option<Box<H265FilterSettings_>>,
         pub fixed_afd: Option<crate::value::ExpString>,
         pub flicker_aq: Option<crate::value::ExpString>,
-        pub framerate_denominator: Option<i64>,
-        pub framerate_numerator: Option<i64>,
-        pub gop_closed_cadence: Option<i64>,
+        pub framerate_denominator: Option<i32>,
+        pub framerate_numerator: Option<i32>,
+        pub gop_closed_cadence: Option<i32>,
         pub gop_size: Option<f64>,
         pub gop_size_units: Option<crate::value::ExpString>,
         pub level: Option<crate::value::ExpString>,
         pub look_ahead_rate_control: Option<crate::value::ExpString>,
-        pub max_bitrate: Option<i64>,
-        pub min_i_interval: Option<i64>,
-        pub min_qp: Option<i64>,
+        pub max_bitrate: Option<i32>,
+        pub min_i_interval: Option<i32>,
+        pub min_qp: Option<i32>,
         pub mv_over_picture_boundaries: Option<crate::value::ExpString>,
         pub mv_temporal_predictor: Option<crate::value::ExpString>,
-        pub par_denominator: Option<i64>,
-        pub par_numerator: Option<i64>,
+        pub par_denominator: Option<i32>,
+        pub par_numerator: Option<i32>,
         pub profile: Option<crate::value::ExpString>,
-        pub qvbr_quality_level: Option<i64>,
+        pub qvbr_quality_level: Option<i32>,
         pub rate_control_mode: Option<crate::value::ExpString>,
         pub scan_type: Option<crate::value::ExpString>,
         pub scene_change_detect: Option<crate::value::ExpString>,
-        pub slices: Option<i64>,
+        pub slices: Option<i32>,
         pub tier: Option<crate::value::ExpString>,
-        pub tile_height: Option<i64>,
+        pub tile_height: Option<i32>,
         pub tile_padding: Option<crate::value::ExpString>,
-        pub tile_width: Option<i64>,
+        pub tile_width: Option<i32>,
         pub timecode_burnin_settings: Option<Box<TimecodeBurninSettings_>>,
         pub timecode_insertion: Option<crate::value::ExpString>,
         pub treeblock_size: Option<crate::value::ExpString>,
@@ -4253,8 +4253,8 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hdr10settings.html
     pub struct Hdr10Settings_ {
-        pub max_cll: Option<i64>,
-        pub max_fall: Option<i64>,
+        pub max_cll: Option<i32>,
+        pub max_fall: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4282,11 +4282,11 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsakamaisettings.html
     pub struct HlsAkamaiSettings_ {
-        pub connection_retry_interval: Option<i64>,
-        pub filecache_duration: Option<i64>,
+        pub connection_retry_interval: Option<i32>,
+        pub filecache_duration: Option<i32>,
         pub http_transfer_mode: Option<crate::value::ExpString>,
-        pub num_retries: Option<i64>,
-        pub restart_delay: Option<i64>,
+        pub num_retries: Option<i32>,
+        pub restart_delay: Option<i32>,
         pub salt: Option<crate::value::ExpString>,
         pub token: Option<crate::value::ExpString>,
     }
@@ -4343,10 +4343,10 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsbasicputsettings.html
     pub struct HlsBasicPutSettings_ {
-        pub connection_retry_interval: Option<i64>,
-        pub filecache_duration: Option<i64>,
-        pub num_retries: Option<i64>,
-        pub restart_delay: Option<i64>,
+        pub connection_retry_interval: Option<i32>,
+        pub filecache_duration: Option<i32>,
+        pub num_retries: Option<i32>,
+        pub restart_delay: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4460,30 +4460,30 @@ pub mod channel {
         pub hls_id3_segment_tagging: Option<crate::value::ExpString>,
         pub i_frame_only_playlists: Option<crate::value::ExpString>,
         pub incomplete_segment_behavior: Option<crate::value::ExpString>,
-        pub index_n_segments: Option<i64>,
+        pub index_n_segments: Option<i32>,
         pub input_loss_action: Option<crate::value::ExpString>,
         pub iv_in_manifest: Option<crate::value::ExpString>,
         pub iv_source: Option<crate::value::ExpString>,
-        pub keep_segments: Option<i64>,
+        pub keep_segments: Option<i32>,
         pub key_format: Option<crate::value::ExpString>,
         pub key_format_versions: Option<crate::value::ExpString>,
         pub key_provider_settings: Option<Box<KeyProviderSettings_>>,
         pub manifest_compression: Option<crate::value::ExpString>,
         pub manifest_duration_format: Option<crate::value::ExpString>,
-        pub min_segment_length: Option<i64>,
+        pub min_segment_length: Option<i32>,
         pub mode: Option<crate::value::ExpString>,
         pub output_selection: Option<crate::value::ExpString>,
         pub program_date_time: Option<crate::value::ExpString>,
         pub program_date_time_clock: Option<crate::value::ExpString>,
-        pub program_date_time_period: Option<i64>,
+        pub program_date_time_period: Option<i32>,
         pub redundant_manifest: Option<crate::value::ExpString>,
-        pub segment_length: Option<i64>,
+        pub segment_length: Option<i32>,
         pub segmentation_mode: Option<crate::value::ExpString>,
-        pub segments_per_subdirectory: Option<i64>,
+        pub segments_per_subdirectory: Option<i32>,
         pub stream_inf_resolution: Option<crate::value::ExpString>,
         pub timed_metadata_id3_frame: Option<crate::value::ExpString>,
-        pub timed_metadata_id3_period: Option<i64>,
-        pub timestamp_delta_milliseconds: Option<i64>,
+        pub timed_metadata_id3_period: Option<i32>,
+        pub timestamp_delta_milliseconds: Option<i32>,
         pub ts_file_mode: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -4758,10 +4758,10 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsinputsettings.html
     pub struct HlsInputSettings_ {
-        pub bandwidth: Option<i64>,
-        pub buffer_segments: Option<i64>,
-        pub retries: Option<i64>,
-        pub retry_interval: Option<i64>,
+        pub bandwidth: Option<i32>,
+        pub buffer_segments: Option<i32>,
+        pub retries: Option<i32>,
+        pub retry_interval: Option<i32>,
         pub scte35_source: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -4811,11 +4811,11 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsmediastoresettings.html
     pub struct HlsMediaStoreSettings_ {
-        pub connection_retry_interval: Option<i64>,
-        pub filecache_duration: Option<i64>,
+        pub connection_retry_interval: Option<i32>,
+        pub filecache_duration: Option<i32>,
         pub media_store_storage_class: Option<crate::value::ExpString>,
-        pub num_retries: Option<i64>,
-        pub restart_delay: Option<i64>,
+        pub num_retries: Option<i32>,
+        pub restart_delay: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4981,11 +4981,11 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlswebdavsettings.html
     pub struct HlsWebdavSettings_ {
-        pub connection_retry_interval: Option<i64>,
-        pub filecache_duration: Option<i64>,
+        pub connection_retry_interval: Option<i32>,
+        pub filecache_duration: Option<i32>,
         pub http_transfer_mode: Option<crate::value::ExpString>,
-        pub num_retries: Option<i64>,
-        pub restart_delay: Option<i64>,
+        pub num_retries: Option<i32>,
+        pub restart_delay: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -5103,8 +5103,8 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputchannellevel.html
     pub struct InputChannelLevel_ {
-        pub gain: Option<i64>,
-        pub input_channel: Option<i64>,
+        pub gain: Option<i32>,
+        pub input_channel: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -5168,11 +5168,11 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputlossbehavior.html
     pub struct InputLossBehavior_ {
-        pub black_frame_msec: Option<i64>,
+        pub black_frame_msec: Option<i32>,
         pub input_loss_image_color: Option<crate::value::ExpString>,
         pub input_loss_image_slate: Option<Box<InputLocation_>>,
         pub input_loss_image_type: Option<crate::value::ExpString>,
-        pub repeat_frame_msec: Option<i64>,
+        pub repeat_frame_msec: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -5221,7 +5221,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputlossfailoversettings.html
     pub struct InputLossFailoverSettings_ {
-        pub input_loss_threshold_msec: Option<i64>,
+        pub input_loss_threshold_msec: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -5250,10 +5250,10 @@ pub mod channel {
         pub caption_selectors: Option<Vec<CaptionSelector_>>,
         pub deblock_filter: Option<crate::value::ExpString>,
         pub denoise_filter: Option<crate::value::ExpString>,
-        pub filter_strength: Option<i64>,
+        pub filter_strength: Option<i32>,
         pub input_filter: Option<crate::value::ExpString>,
         pub network_input_settings: Option<Box<NetworkInputSettings_>>,
-        pub scte35_pid: Option<i64>,
+        pub scte35_pid: Option<i32>,
         pub smpte2038_data_preference: Option<crate::value::ExpString>,
         pub source_end_behavior: Option<crate::value::ExpString>,
         pub video_selector: Option<Box<VideoSelector_>>,
@@ -5407,10 +5407,10 @@ pub mod channel {
         pub arib_captions_pid: Option<crate::value::ExpString>,
         pub arib_captions_pid_control: Option<crate::value::ExpString>,
         pub audio_buffer_model: Option<crate::value::ExpString>,
-        pub audio_frames_per_pes: Option<i64>,
+        pub audio_frames_per_pes: Option<i32>,
         pub audio_pids: Option<crate::value::ExpString>,
         pub audio_stream_type: Option<crate::value::ExpString>,
-        pub bitrate: Option<i64>,
+        pub bitrate: Option<i32>,
         pub buffer_model: Option<crate::value::ExpString>,
         pub cc_descriptor: Option<crate::value::ExpString>,
         pub dvb_nit_settings: Option<Box<DvbNitSettings_>>,
@@ -5420,7 +5420,7 @@ pub mod channel {
         pub dvb_teletext_pid: Option<crate::value::ExpString>,
         pub ebif: Option<crate::value::ExpString>,
         pub ebp_audio_interval: Option<crate::value::ExpString>,
-        pub ebp_lookahead_ms: Option<i64>,
+        pub ebp_lookahead_ms: Option<i32>,
         pub ebp_placement: Option<crate::value::ExpString>,
         pub ecm_pid: Option<crate::value::ExpString>,
         pub es_rate_in_pes: Option<crate::value::ExpString>,
@@ -5431,13 +5431,13 @@ pub mod channel {
         pub klv_data_pids: Option<crate::value::ExpString>,
         pub nielsen_id3_behavior: Option<crate::value::ExpString>,
         pub null_packet_bitrate: Option<f64>,
-        pub pat_interval: Option<i64>,
+        pub pat_interval: Option<i32>,
         pub pcr_control: Option<crate::value::ExpString>,
-        pub pcr_period: Option<i64>,
+        pub pcr_period: Option<i32>,
         pub pcr_pid: Option<crate::value::ExpString>,
-        pub pmt_interval: Option<i64>,
+        pub pmt_interval: Option<i32>,
         pub pmt_pid: Option<crate::value::ExpString>,
-        pub program_num: Option<i64>,
+        pub program_num: Option<i32>,
         pub rate_mode: Option<crate::value::ExpString>,
         pub scte27_pids: Option<crate::value::ExpString>,
         pub scte35_control: Option<crate::value::ExpString>,
@@ -5448,7 +5448,7 @@ pub mod channel {
         pub segmentation_time: Option<f64>,
         pub timed_metadata_behavior: Option<crate::value::ExpString>,
         pub timed_metadata_pid: Option<crate::value::ExpString>,
-        pub transport_stream_id: Option<i64>,
+        pub transport_stream_id: Option<i32>,
         pub video_pid: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -5738,24 +5738,24 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-m3u8settings.html
     pub struct M3u8Settings_ {
-        pub audio_frames_per_pes: Option<i64>,
+        pub audio_frames_per_pes: Option<i32>,
         pub audio_pids: Option<crate::value::ExpString>,
         pub ecm_pid: Option<crate::value::ExpString>,
         pub klv_behavior: Option<crate::value::ExpString>,
         pub klv_data_pids: Option<crate::value::ExpString>,
         pub nielsen_id3_behavior: Option<crate::value::ExpString>,
-        pub pat_interval: Option<i64>,
+        pub pat_interval: Option<i32>,
         pub pcr_control: Option<crate::value::ExpString>,
-        pub pcr_period: Option<i64>,
+        pub pcr_period: Option<i32>,
         pub pcr_pid: Option<crate::value::ExpString>,
-        pub pmt_interval: Option<i64>,
+        pub pmt_interval: Option<i32>,
         pub pmt_pid: Option<crate::value::ExpString>,
-        pub program_num: Option<i64>,
+        pub program_num: Option<i32>,
         pub scte35_behavior: Option<crate::value::ExpString>,
         pub scte35_pid: Option<crate::value::ExpString>,
         pub timed_metadata_behavior: Option<crate::value::ExpString>,
         pub timed_metadata_pid: Option<crate::value::ExpString>,
-        pub transport_stream_id: Option<i64>,
+        pub transport_stream_id: Option<i32>,
         pub video_pid: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -6246,10 +6246,10 @@ pub mod channel {
         pub display_aspect_ratio: Option<crate::value::ExpString>,
         pub filter_settings: Option<Box<Mpeg2FilterSettings_>>,
         pub fixed_afd: Option<crate::value::ExpString>,
-        pub framerate_denominator: Option<i64>,
-        pub framerate_numerator: Option<i64>,
-        pub gop_closed_cadence: Option<i64>,
-        pub gop_num_b_frames: Option<i64>,
+        pub framerate_denominator: Option<i32>,
+        pub framerate_numerator: Option<i32>,
+        pub gop_closed_cadence: Option<i32>,
+        pub gop_num_b_frames: Option<i32>,
         pub gop_size: Option<f64>,
         pub gop_size_units: Option<crate::value::ExpString>,
         pub scan_type: Option<crate::value::ExpString>,
@@ -6379,18 +6379,18 @@ pub mod channel {
         pub acquisition_point_id: Option<crate::value::ExpString>,
         pub audio_only_timecode_control: Option<crate::value::ExpString>,
         pub certificate_mode: Option<crate::value::ExpString>,
-        pub connection_retry_interval: Option<i64>,
+        pub connection_retry_interval: Option<i32>,
         pub destination: Option<Box<OutputLocationRef_>>,
         pub event_id: Option<crate::value::ExpString>,
         pub event_id_mode: Option<crate::value::ExpString>,
         pub event_stop_behavior: Option<crate::value::ExpString>,
-        pub filecache_duration: Option<i64>,
-        pub fragment_length: Option<i64>,
+        pub filecache_duration: Option<i32>,
+        pub fragment_length: Option<i32>,
         pub input_loss_action: Option<crate::value::ExpString>,
-        pub num_retries: Option<i64>,
-        pub restart_delay: Option<i64>,
+        pub num_retries: Option<i32>,
+        pub restart_delay: Option<i32>,
         pub segmentation_mode: Option<crate::value::ExpString>,
-        pub send_delay_ms: Option<i64>,
+        pub send_delay_ms: Option<i32>,
         pub sparse_track_type: Option<crate::value::ExpString>,
         pub stream_manifest_behavior: Option<crate::value::ExpString>,
         pub timestamp_offset: Option<crate::value::ExpString>,
@@ -6628,7 +6628,7 @@ pub mod channel {
         pub absent_input_audio_behavior: Option<crate::value::ExpString>,
         pub arib: Option<crate::value::ExpString>,
         pub audio_buffer_model: Option<crate::value::ExpString>,
-        pub audio_frames_per_pes: Option<i64>,
+        pub audio_frames_per_pes: Option<i32>,
         pub audio_stream_type: Option<crate::value::ExpString>,
         pub cc_descriptor: Option<crate::value::ExpString>,
         pub ebif: Option<crate::value::ExpString>,
@@ -6636,7 +6636,7 @@ pub mod channel {
         pub klv: Option<crate::value::ExpString>,
         pub nielsen_id3_behavior: Option<crate::value::ExpString>,
         pub pcr_control: Option<crate::value::ExpString>,
-        pub pcr_period: Option<i64>,
+        pub pcr_period: Option<i32>,
         pub scte35_control: Option<crate::value::ExpString>,
         pub scte35_preroll_pullup_milliseconds: Option<f64>,
     }
@@ -7481,8 +7481,8 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-remixsettings.html
     pub struct RemixSettings_ {
         pub channel_mappings: Option<Vec<AudioChannelMapping_>>,
-        pub channels_in: Option<i64>,
-        pub channels_out: Option<i64>,
+        pub channels_in: Option<i32>,
+        pub channels_out: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -7538,11 +7538,11 @@ pub mod channel {
         pub ad_markers: Option<Vec<crate::value::ExpString>>,
         pub authentication_scheme: Option<crate::value::ExpString>,
         pub cache_full_behavior: Option<crate::value::ExpString>,
-        pub cache_length: Option<i64>,
+        pub cache_length: Option<i32>,
         pub caption_data: Option<crate::value::ExpString>,
         pub include_filler_nal_units: Option<crate::value::ExpString>,
         pub input_loss_action: Option<crate::value::ExpString>,
-        pub restart_delay: Option<i64>,
+        pub restart_delay: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -7610,9 +7610,9 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rtmpoutputsettings.html
     pub struct RtmpOutputSettings_ {
         pub certificate_mode: Option<crate::value::ExpString>,
-        pub connection_retry_interval: Option<i64>,
+        pub connection_retry_interval: Option<i32>,
         pub destination: Option<Box<OutputLocationRef_>>,
-        pub num_retries: Option<i64>,
+        pub num_retries: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -7672,7 +7672,7 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte20sourcesettings.html
     pub struct Scte20SourceSettings_ {
         pub convert608_to708: Option<crate::value::ExpString>,
-        pub source608_channel_number: Option<i64>,
+        pub source608_channel_number: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -7720,7 +7720,7 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte27sourcesettings.html
     pub struct Scte27SourceSettings_ {
         pub ocr_language: Option<crate::value::ExpString>,
-        pub pid: Option<i64>,
+        pub pid: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -7748,7 +7748,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte35spliceinsert.html
     pub struct Scte35SpliceInsert_ {
-        pub ad_avail_offset: Option<i64>,
+        pub ad_avail_offset: Option<i32>,
         pub no_regional_blackout_flag: Option<crate::value::ExpString>,
         pub web_delivery_allowed_flag: Option<crate::value::ExpString>,
     }
@@ -7787,7 +7787,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte35timesignalapos.html
     pub struct Scte35TimeSignalApos_ {
-        pub ad_avail_offset: Option<i64>,
+        pub ad_avail_offset: Option<i32>,
         pub no_regional_blackout_flag: Option<crate::value::ExpString>,
         pub web_delivery_allowed_flag: Option<crate::value::ExpString>,
     }
@@ -7903,11 +7903,11 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-srtoutputsettings.html
     pub struct SrtOutputSettings_ {
-        pub buffer_msec: Option<i64>,
+        pub buffer_msec: Option<i32>,
         pub container_settings: Option<Box<UdpContainerSettings_>>,
         pub destination: Option<Box<OutputLocationRef_>>,
         pub encryption_type: Option<crate::value::ExpString>,
-        pub latency: Option<i64>,
+        pub latency: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -8159,7 +8159,7 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-timecodeconfig.html
     pub struct TimecodeConfig_ {
         pub source: Option<crate::value::ExpString>,
-        pub sync_threshold: Option<i64>,
+        pub sync_threshold: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -8239,7 +8239,7 @@ pub mod channel {
     pub struct UdpGroupSettings_ {
         pub input_loss_action: Option<crate::value::ExpString>,
         pub timed_metadata_id3_frame: Option<crate::value::ExpString>,
-        pub timed_metadata_id3_period: Option<i64>,
+        pub timed_metadata_id3_period: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -8276,7 +8276,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-udpoutputsettings.html
     pub struct UdpOutputSettings_ {
-        pub buffer_msec: Option<i64>,
+        pub buffer_msec: Option<i32>,
         pub container_settings: Option<Box<UdpContainerSettings_>>,
         pub destination: Option<Box<OutputLocationRef_>>,
         pub fec_output_settings: Option<Box<FecOutputSettings_>>,
@@ -8323,7 +8323,7 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoblackfailoversettings.html
     pub struct VideoBlackFailoverSettings_ {
         pub black_detect_threshold: Option<f64>,
-        pub video_black_threshold_msec: Option<i64>,
+        pub video_black_threshold_msec: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -8408,12 +8408,12 @@ pub mod channel {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videodescription.html
     pub struct VideoDescription_ {
         pub codec_settings: Option<Box<VideoCodecSettings_>>,
-        pub height: Option<i64>,
+        pub height: Option<i32>,
         pub name: Option<crate::value::ExpString>,
         pub respond_to_afd: Option<crate::value::ExpString>,
         pub scaling_behavior: Option<crate::value::ExpString>,
-        pub sharpness: Option<i64>,
-        pub width: Option<i64>,
+        pub sharpness: Option<i32>,
+        pub width: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -8536,7 +8536,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoselectorpid.html
     pub struct VideoSelectorPid_ {
-        pub pid: Option<i64>,
+        pub pid: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -8558,7 +8558,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-videoselectorprogramid.html
     pub struct VideoSelectorProgramId_ {
-        pub program_id: Option<i64>,
+        pub program_id: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -8984,7 +8984,7 @@ pub mod input {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-inputsdplocation.html
     pub struct InputSdpLocation_ {
-        pub media_index: Option<i64>,
+        pub media_index: Option<i32>,
         pub sdp_url: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -9336,7 +9336,7 @@ pub mod input {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-srtcallersourcerequest.html
     pub struct SrtCallerSourceRequest_ {
         pub decryption: Option<Box<SrtCallerDecryptionRequest_>>,
-        pub minimum_latency: Option<i64>,
+        pub minimum_latency: Option<i32>,
         pub srt_listener_address: Option<crate::value::ExpString>,
         pub srt_listener_port: Option<crate::value::ExpString>,
         pub stream_id: Option<crate::value::ExpString>,
@@ -9490,10 +9490,10 @@ pub mod multiplex {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexsettings.html
     pub struct MultiplexSettings_ {
-        pub maximum_video_buffer_delay_milliseconds: Option<i64>,
-        pub transport_stream_bitrate: i64,
-        pub transport_stream_id: i64,
-        pub transport_stream_reserved_bitrate: Option<i64>,
+        pub maximum_video_buffer_delay_milliseconds: Option<i32>,
+        pub transport_stream_bitrate: i32,
+        pub transport_stream_id: i32,
+        pub transport_stream_reserved_bitrate: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -9560,19 +9560,19 @@ pub mod multiplex {
 pub mod multiplexprogram {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html
     pub struct MultiplexProgramPacketIdentifiersMap_ {
-        pub audio_pids: Option<Vec<i64>>,
-        pub dvb_sub_pids: Option<Vec<i64>>,
-        pub dvb_teletext_pid: Option<i64>,
-        pub etv_platform_pid: Option<i64>,
-        pub etv_signal_pid: Option<i64>,
-        pub klv_data_pids: Option<Vec<i64>>,
-        pub pcr_pid: Option<i64>,
-        pub pmt_pid: Option<i64>,
-        pub private_metadata_pid: Option<i64>,
-        pub scte27_pids: Option<Vec<i64>>,
-        pub scte35_pid: Option<i64>,
-        pub timed_metadata_pid: Option<i64>,
-        pub video_pid: Option<i64>,
+        pub audio_pids: Option<Vec<i32>>,
+        pub dvb_sub_pids: Option<Vec<i32>>,
+        pub dvb_teletext_pid: Option<i32>,
+        pub etv_platform_pid: Option<i32>,
+        pub etv_signal_pid: Option<i32>,
+        pub klv_data_pids: Option<Vec<i32>>,
+        pub pcr_pid: Option<i32>,
+        pub pmt_pid: Option<i32>,
+        pub private_metadata_pid: Option<i32>,
+        pub scte27_pids: Option<Vec<i32>>,
+        pub scte35_pid: Option<i32>,
+        pub timed_metadata_pid: Option<i32>,
+        pub video_pid: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -9724,7 +9724,7 @@ pub mod multiplexprogram {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogramsettings.html
     pub struct MultiplexProgramSettings_ {
         pub preferred_channel_pipeline: Option<crate::value::ExpString>,
-        pub program_number: i64,
+        pub program_number: i32,
         pub service_descriptor: Option<Box<MultiplexProgramServiceDescriptor_>>,
         pub video_settings: Option<Box<MultiplexVideoSettings_>>,
     }
@@ -9767,9 +9767,9 @@ pub mod multiplexprogram {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexstatmuxvideosettings.html
     pub struct MultiplexStatmuxVideoSettings_ {
-        pub maximum_bitrate: Option<i64>,
-        pub minimum_bitrate: Option<i64>,
-        pub priority: Option<i64>,
+        pub maximum_bitrate: Option<i32>,
+        pub minimum_bitrate: Option<i32>,
+        pub priority: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -9806,7 +9806,7 @@ pub mod multiplexprogram {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexvideosettings.html
     pub struct MultiplexVideoSettings_ {
-        pub constant_bitrate: Option<i64>,
+        pub constant_bitrate: Option<i32>,
         pub statmux_settings: Option<Box<MultiplexStatmuxVideoSettings_>>,
     }
     #[doc(hidden)]

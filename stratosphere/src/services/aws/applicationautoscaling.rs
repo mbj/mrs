@@ -1,8 +1,8 @@
 pub mod scalabletarget {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-scalabletargetaction.html
     pub struct ScalableTargetAction_ {
-        pub max_capacity: Option<i64>,
-        pub min_capacity: Option<i64>,
+        pub max_capacity: Option<i32>,
+        pub min_capacity: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -528,10 +528,10 @@ pub mod scalingpolicy {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predictivescalingpolicyconfiguration.html
     pub struct PredictiveScalingPolicyConfiguration_ {
         pub max_capacity_breach_behavior: Option<crate::value::ExpString>,
-        pub max_capacity_buffer: Option<i64>,
+        pub max_capacity_buffer: Option<i32>,
         pub metric_specifications: Vec<PredictiveScalingMetricSpecification_>,
         pub mode: Option<crate::value::ExpString>,
-        pub scheduling_buffer_time: Option<i64>,
+        pub scheduling_buffer_time: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -667,7 +667,7 @@ pub mod scalingpolicy {
     pub struct StepAdjustment_ {
         pub metric_interval_lower_bound: Option<f64>,
         pub metric_interval_upper_bound: Option<f64>,
-        pub scaling_adjustment: i64,
+        pub scaling_adjustment: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -703,9 +703,9 @@ pub mod scalingpolicy {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration.html
     pub struct StepScalingPolicyConfiguration_ {
         pub adjustment_type: Option<crate::value::ExpString>,
-        pub cooldown: Option<i64>,
+        pub cooldown: Option<i32>,
         pub metric_aggregation_type: Option<crate::value::ExpString>,
-        pub min_adjustment_magnitude: Option<i64>,
+        pub min_adjustment_magnitude: Option<i32>,
         pub step_adjustments: Option<Vec<StepAdjustment_>>,
     }
     #[doc(hidden)]
@@ -900,8 +900,8 @@ pub mod scalingpolicy {
         pub customized_metric_specification: Option<Box<CustomizedMetricSpecification_>>,
         pub disable_scale_in: Option<crate::value::ExpBool>,
         pub predefined_metric_specification: Option<Box<PredefinedMetricSpecification_>>,
-        pub scale_in_cooldown: Option<i64>,
-        pub scale_out_cooldown: Option<i64>,
+        pub scale_in_cooldown: Option<i32>,
+        pub scale_out_cooldown: Option<i32>,
         pub target_value: f64,
     }
     #[doc(hidden)]
@@ -956,8 +956,8 @@ pub mod scalingpolicy {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html
 pub struct ScalableTarget_ {
-    pub max_capacity: i64,
-    pub min_capacity: i64,
+    pub max_capacity: i32,
+    pub min_capacity: i32,
     pub resource_id: crate::value::ExpString,
     pub role_arn: Option<crate::value::ExpString>,
     pub scalable_dimension: crate::value::ExpString,

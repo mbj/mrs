@@ -455,7 +455,7 @@ pub mod datasource {
     pub struct ConnectionConfiguration_ {
         pub database_host: crate::value::ExpString,
         pub database_name: crate::value::ExpString,
-        pub database_port: i64,
+        pub database_port: i32,
         pub secret_arn: crate::value::ExpString,
         pub table_name: crate::value::ExpString,
     }
@@ -827,7 +827,7 @@ pub mod datasource {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributevalue.html
     pub struct DocumentAttributeValue_ {
         pub date_value: Option<crate::value::ExpString>,
-        pub long_value: Option<i64>,
+        pub long_value: Option<i32>,
         pub string_list_value: Option<Vec<crate::value::ExpString>>,
         pub string_value: Option<crate::value::ExpString>,
     }
@@ -1128,7 +1128,7 @@ pub mod datasource {
     pub struct ProxyConfiguration_ {
         pub credentials: Option<crate::value::ExpString>,
         pub host: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1909,7 +1909,7 @@ pub mod datasource {
     pub struct WebCrawlerBasicAuthentication_ {
         pub credentials: crate::value::ExpString,
         pub host: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1941,10 +1941,10 @@ pub mod datasource {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerconfiguration.html
     pub struct WebCrawlerConfiguration_ {
         pub authentication_configuration: Option<Box<WebCrawlerAuthenticationConfiguration_>>,
-        pub crawl_depth: Option<i64>,
+        pub crawl_depth: Option<i32>,
         pub max_content_size_per_page_in_mega_bytes: Option<f64>,
-        pub max_links_per_page: Option<i64>,
-        pub max_urls_per_minute_crawl_rate: Option<i64>,
+        pub max_links_per_page: Option<i32>,
+        pub max_urls_per_minute_crawl_rate: Option<i32>,
         pub proxy_configuration: Option<Box<ProxyConfiguration_>>,
         pub url_exclusion_patterns: Option<Vec<crate::value::ExpString>>,
         pub url_inclusion_patterns: Option<Vec<crate::value::ExpString>>,
@@ -2194,8 +2194,8 @@ pub mod faq {
 pub mod index {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-capacityunitsconfiguration.html
     pub struct CapacityUnitsConfiguration_ {
-        pub query_capacity_units: i64,
-        pub storage_capacity_units: i64,
+        pub query_capacity_units: i32,
+        pub storage_capacity_units: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2350,7 +2350,7 @@ pub mod index {
     pub struct Relevance_ {
         pub duration: Option<crate::value::ExpString>,
         pub freshness: Option<crate::value::ExpBool>,
-        pub importance: Option<i64>,
+        pub importance: Option<i32>,
         pub rank_order: Option<crate::value::ExpString>,
         pub value_importance_items: Option<Vec<ValueImportanceItem_>>,
     }
@@ -2505,7 +2505,7 @@ pub mod index {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-index-valueimportanceitem.html
     pub struct ValueImportanceItem_ {
         pub key: Option<crate::value::ExpString>,
-        pub value: Option<i64>,
+        pub value: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

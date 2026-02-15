@@ -39,7 +39,7 @@ pub mod integration {
         pub dashboard_viewer_principals: Vec<crate::value::ExpString>,
         pub data_source_role_arn: crate::value::ExpString,
         pub kms_key_arn: Option<crate::value::ExpString>,
-        pub retention_days: Option<i64>,
+        pub retention_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1660,7 +1660,7 @@ pub struct LogGroup_ {
     pub log_group_class: Option<crate::value::ExpString>,
     pub log_group_name: Option<crate::value::ExpString>,
     pub resource_policy_document: Option<serde_json::Value>,
-    pub retention_in_days: Option<i64>,
+    pub retention_in_days: Option<i32>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]

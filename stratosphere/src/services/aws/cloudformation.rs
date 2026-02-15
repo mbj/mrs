@@ -589,10 +589,10 @@ pub mod stackset {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-operationpreferences.html
     pub struct OperationPreferences_ {
         pub concurrency_mode: Option<crate::value::ExpString>,
-        pub failure_tolerance_count: Option<i64>,
-        pub failure_tolerance_percentage: Option<i64>,
-        pub max_concurrent_count: Option<i64>,
-        pub max_concurrent_percentage: Option<i64>,
+        pub failure_tolerance_count: Option<i32>,
+        pub failure_tolerance_percentage: Option<i32>,
+        pub max_concurrent_count: Option<i32>,
+        pub max_concurrent_percentage: Option<i32>,
         pub region_concurrency_type: Option<crate::value::ExpString>,
         pub region_order: Option<Vec<crate::value::ExpString>>,
     }
@@ -753,7 +753,7 @@ pub mod typeactivation {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html
 pub struct CustomResource_ {
-    pub service_timeout: Option<i64>,
+    pub service_timeout: Option<i32>,
     pub service_token: crate::value::ExpString,
 }
 #[doc(hidden)]
@@ -1425,7 +1425,7 @@ pub struct Stack_ {
     pub parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub template_url: crate::value::ExpString,
-    pub timeout_in_minutes: Option<i64>,
+    pub timeout_in_minutes: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -1691,7 +1691,7 @@ impl crate::template::ToResource for TypeActivation_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitcondition.html
 pub struct WaitCondition_ {
-    pub count: Option<i64>,
+    pub count: Option<i32>,
     pub handle: Option<crate::value::ExpString>,
     pub timeout: Option<crate::value::ExpString>,
 }

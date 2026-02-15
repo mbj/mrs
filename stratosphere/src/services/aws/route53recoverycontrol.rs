@@ -33,7 +33,7 @@ pub mod safetyrule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoverycontrol-safetyrule-assertionrule.html
     pub struct AssertionRule_ {
         pub asserted_controls: Vec<crate::value::ExpString>,
-        pub wait_period_ms: i64,
+        pub wait_period_ms: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -62,7 +62,7 @@ pub mod safetyrule {
     pub struct GatingRule_ {
         pub gating_controls: Vec<crate::value::ExpString>,
         pub target_controls: Vec<crate::value::ExpString>,
-        pub wait_period_ms: i64,
+        pub wait_period_ms: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -94,7 +94,7 @@ pub mod safetyrule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53recoverycontrol-safetyrule-ruleconfig.html
     pub struct RuleConfig_ {
         pub inverted: crate::value::ExpBool,
-        pub threshold: i64,
+        pub threshold: i32,
         pub r#type: crate::value::ExpString,
     }
     #[doc(hidden)]

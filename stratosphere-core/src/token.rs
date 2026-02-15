@@ -630,7 +630,7 @@ fn mk_primitive_list_type(primitive_item_type: &PrimitiveItemType) -> proc_macro
     let item_type = match primitive_item_type {
         PrimitiveItemType::Json => quote! { serde_json::Value },
         PrimitiveItemType::Double => quote! { f64 },
-        PrimitiveItemType::Integer => quote! { i64 },
+        PrimitiveItemType::Integer => quote! { i32 },
         PrimitiveItemType::String => quote! { crate::value::ExpString },
     };
 
@@ -657,7 +657,7 @@ fn mk_primitive_map_type(primitive_item_type: &PrimitiveItemType) -> proc_macro2
     let item_type = match primitive_item_type {
         PrimitiveItemType::Json => quote! { serde_json::Value },
         PrimitiveItemType::Double => quote! { f64 },
-        PrimitiveItemType::Integer => quote! { i64 },
+        PrimitiveItemType::Integer => quote! { i32 },
         PrimitiveItemType::String => quote! { crate::value::ExpString },
     };
 
@@ -678,7 +678,7 @@ fn mk_type_reference_type(
         TypeReference::List => match primitive_item_type {
             Some(PrimitiveItemType::Json) => quote! { Vec<serde_json::Value> },
             Some(PrimitiveItemType::Double) => quote! { Vec<f64> },
-            Some(PrimitiveItemType::Integer) => quote! { Vec<i64> },
+            Some(PrimitiveItemType::Integer) => quote! { Vec<i32> },
             Some(PrimitiveItemType::String) => quote! { Vec<crate::value::ExpString> },
             None => panic!("TypeReference::List requires primitive_item_type to be specified"),
         },
@@ -690,7 +690,7 @@ fn mk_type_reference_type(
                 quote! { std::collections::BTreeMap<String, f64> }
             }
             Some(PrimitiveItemType::Integer) => {
-                quote! { std::collections::BTreeMap<String, i64> }
+                quote! { std::collections::BTreeMap<String, i32> }
             }
             Some(PrimitiveItemType::String) => {
                 quote! { std::collections::BTreeMap<String, crate::value::ExpString> }
@@ -770,7 +770,7 @@ fn mk_primitive_type(primitive_type: &PrimitiveType) -> proc_macro2::TokenStream
     match primitive_type {
         PrimitiveType::Boolean => quote! { crate::value::ExpBool },
         PrimitiveType::Double => quote! { f64 },
-        PrimitiveType::Integer => quote! { i64 },
+        PrimitiveType::Integer => quote! { i32 },
         PrimitiveType::Long => quote! { i64 },
         PrimitiveType::String => quote! { crate::value::ExpString },
         PrimitiveType::Timestamp => quote! { chrono::DateTime<chrono::Utc> },

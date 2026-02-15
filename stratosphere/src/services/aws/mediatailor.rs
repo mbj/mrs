@@ -477,7 +477,7 @@ pub mod playbackconfiguration {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-liveprerollconfiguration.html
     pub struct LivePreRollConfiguration_ {
         pub ad_decision_server_url: Option<crate::value::ExpString>,
-        pub max_duration_seconds: Option<i64>,
+        pub max_duration_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -511,7 +511,7 @@ pub mod playbackconfiguration {
         pub ads_interaction_log: Option<Box<AdsInteractionLog_>>,
         pub enabled_logging_strategies: Option<Vec<crate::value::ExpString>>,
         pub manifest_service_interaction_log: Option<Box<ManifestServiceInteractionLog_>>,
-        pub percent_enabled: i64,
+        pub percent_enabled: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -963,7 +963,7 @@ pub struct PlaybackConfiguration_ {
     pub manifest_processing_rules:
         Option<super::mediatailor::playbackconfiguration::ManifestProcessingRules_>,
     pub name: crate::value::ExpString,
-    pub personalization_threshold_seconds: Option<i64>,
+    pub personalization_threshold_seconds: Option<i32>,
     pub slate_ad_url: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub transcode_profile_name: Option<crate::value::ExpString>,

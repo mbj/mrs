@@ -26,7 +26,7 @@ pub mod alias {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-provisionedconcurrencyconfiguration.html
     pub struct ProvisionedConcurrencyConfiguration_ {
-        pub provisioned_concurrent_executions: i64,
+        pub provisioned_concurrent_executions: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -428,8 +428,8 @@ pub mod eventsourcemapping {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-provisionedpollerconfig.html
     pub struct ProvisionedPollerConfig_ {
-        pub maximum_pollers: Option<i64>,
-        pub minimum_pollers: Option<i64>,
+        pub maximum_pollers: Option<i32>,
+        pub minimum_pollers: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -460,7 +460,7 @@ pub mod eventsourcemapping {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-scalingconfig.html
     pub struct ScalingConfig_ {
-        pub maximum_concurrency: Option<i64>,
+        pub maximum_concurrency: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -774,7 +774,7 @@ pub mod function {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-ephemeralstorage.html
     pub struct EphemeralStorage_ {
-        pub size: i64,
+        pub size: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1100,7 +1100,7 @@ pub mod url {
         pub allow_methods: Option<Vec<crate::value::ExpString>>,
         pub allow_origins: Option<Vec<crate::value::ExpString>>,
         pub expose_headers: Option<Vec<crate::value::ExpString>>,
-        pub max_age: Option<i64>,
+        pub max_age: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1154,7 +1154,7 @@ pub mod url {
 pub mod version {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-version-provisionedconcurrencyconfiguration.html
     pub struct ProvisionedConcurrencyConfiguration_ {
-        pub provisioned_concurrent_executions: i64,
+        pub provisioned_concurrent_executions: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1322,8 +1322,8 @@ impl crate::template::ToResource for CodeSigningConfig_ {
 pub struct EventInvokeConfig_ {
     pub destination_config: Option<super::lambda::eventinvokeconfig::DestinationConfig_>,
     pub function_name: crate::value::ExpString,
-    pub maximum_event_age_in_seconds: Option<i64>,
-    pub maximum_retry_attempts: Option<i64>,
+    pub maximum_event_age_in_seconds: Option<i32>,
+    pub maximum_retry_attempts: Option<i32>,
     pub qualifier: crate::value::ExpString,
 }
 #[doc(hidden)]
@@ -1379,7 +1379,7 @@ impl crate::template::ToResource for EventInvokeConfig_ {
 pub struct EventSourceMapping_ {
     pub amazon_managed_kafka_event_source_config:
         Option<super::lambda::eventsourcemapping::AmazonManagedKafkaEventSourceConfig_>,
-    pub batch_size: Option<i64>,
+    pub batch_size: Option<i32>,
     pub bisect_batch_on_function_error: Option<crate::value::ExpBool>,
     pub destination_config: Option<super::lambda::eventsourcemapping::DestinationConfig_>,
     pub document_db_event_source_config:
@@ -1390,11 +1390,11 @@ pub struct EventSourceMapping_ {
     pub function_name: crate::value::ExpString,
     pub function_response_types: Option<Vec<crate::value::ExpString>>,
     pub kms_key_arn: Option<crate::value::ExpString>,
-    pub maximum_batching_window_in_seconds: Option<i64>,
-    pub maximum_record_age_in_seconds: Option<i64>,
-    pub maximum_retry_attempts: Option<i64>,
+    pub maximum_batching_window_in_seconds: Option<i32>,
+    pub maximum_record_age_in_seconds: Option<i32>,
+    pub maximum_retry_attempts: Option<i32>,
     pub metrics_config: Option<super::lambda::eventsourcemapping::MetricsConfig_>,
-    pub parallelization_factor: Option<i64>,
+    pub parallelization_factor: Option<i32>,
     pub provisioned_poller_config:
         Option<super::lambda::eventsourcemapping::ProvisionedPollerConfig_>,
     pub queues: Option<Vec<crate::value::ExpString>>,
@@ -1409,7 +1409,7 @@ pub struct EventSourceMapping_ {
     pub starting_position_timestamp: Option<f64>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub topics: Option<Vec<crate::value::ExpString>>,
-    pub tumbling_window_in_seconds: Option<i64>,
+    pub tumbling_window_in_seconds: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -1601,16 +1601,16 @@ pub struct Function_ {
     pub kms_key_arn: Option<crate::value::ExpString>,
     pub layers: Option<Vec<crate::value::ExpString>>,
     pub logging_config: Option<super::lambda::function::LoggingConfig_>,
-    pub memory_size: Option<i64>,
+    pub memory_size: Option<i32>,
     pub package_type: Option<crate::value::ExpString>,
     pub recursive_loop: Option<crate::value::ExpString>,
-    pub reserved_concurrent_executions: Option<i64>,
+    pub reserved_concurrent_executions: Option<i32>,
     pub role: crate::value::ExpString,
     pub runtime: Option<crate::value::ExpString>,
     pub runtime_management_config: Option<super::lambda::function::RuntimeManagementConfig_>,
     pub snap_start: Option<super::lambda::function::SnapStart_>,
     pub tags: Option<Vec<crate::Tag_>>,
-    pub timeout: Option<i64>,
+    pub timeout: Option<i32>,
     pub tracing_config: Option<super::lambda::function::TracingConfig_>,
     pub vpc_config: Option<super::lambda::function::VpcConfig_>,
 }

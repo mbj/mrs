@@ -36,8 +36,8 @@ pub mod table {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-autoscalingsetting.html
     pub struct AutoScalingSetting_ {
         pub auto_scaling_disabled: Option<crate::value::ExpBool>,
-        pub maximum_units: Option<i64>,
-        pub minimum_units: Option<i64>,
+        pub maximum_units: Option<i32>,
+        pub minimum_units: Option<i32>,
         pub scaling_policy: Option<Box<ScalingPolicy_>>,
     }
     #[doc(hidden)]
@@ -265,8 +265,8 @@ pub mod table {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-provisionedthroughput.html
     pub struct ProvisionedThroughput_ {
-        pub read_capacity_units: i64,
-        pub write_capacity_units: i64,
+        pub read_capacity_units: i32,
+        pub write_capacity_units: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -294,7 +294,7 @@ pub mod table {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-replicaspecification.html
     pub struct ReplicaSpecification_ {
         pub read_capacity_auto_scaling: Option<Box<AutoScalingSetting_>>,
-        pub read_capacity_units: Option<i64>,
+        pub read_capacity_units: Option<i32>,
         pub region: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -357,9 +357,9 @@ pub mod table {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-targettrackingscalingpolicyconfiguration.html
     pub struct TargetTrackingScalingPolicyConfiguration_ {
         pub disable_scale_in: Option<crate::value::ExpBool>,
-        pub scale_in_cooldown: Option<i64>,
-        pub scale_out_cooldown: Option<i64>,
-        pub target_value: i64,
+        pub scale_in_cooldown: Option<i32>,
+        pub scale_out_cooldown: Option<i32>,
+        pub target_value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -487,7 +487,7 @@ pub struct Table_ {
     pub cdc_specification: Option<super::cassandra::table::CdcSpecification_>,
     pub client_side_timestamps_enabled: Option<crate::value::ExpBool>,
     pub clustering_key_columns: Option<Vec<super::cassandra::table::ClusteringKeyColumn_>>,
-    pub default_time_to_live: Option<i64>,
+    pub default_time_to_live: Option<i32>,
     pub encryption_specification: Option<super::cassandra::table::EncryptionSpecification_>,
     pub keyspace_name: crate::value::ExpString,
     pub partition_key_columns: Vec<super::cassandra::table::Column_>,

@@ -5,7 +5,7 @@ pub mod listener {
         pub authenticate_oidc_config: Option<Box<AuthenticateOidcConfig_>>,
         pub fixed_response_config: Option<Box<FixedResponseConfig_>>,
         pub forward_config: Option<Box<ForwardConfig_>>,
-        pub order: Option<i64>,
+        pub order: Option<i32>,
         pub redirect_config: Option<Box<RedirectConfig_>>,
         pub target_group_arn: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -435,7 +435,7 @@ pub mod listener {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-targetgroupstickinessconfig.html
     pub struct TargetGroupStickinessConfig_ {
-        pub duration_seconds: Option<i64>,
+        pub duration_seconds: Option<i32>,
         pub enabled: Option<crate::value::ExpBool>,
     }
     #[doc(hidden)]
@@ -468,7 +468,7 @@ pub mod listener {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-targetgrouptuple.html
     pub struct TargetGroupTuple_ {
         pub target_group_arn: Option<crate::value::ExpString>,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -529,7 +529,7 @@ pub mod listenerrule {
         pub authenticate_oidc_config: Option<Box<AuthenticateOidcConfig_>>,
         pub fixed_response_config: Option<Box<FixedResponseConfig_>>,
         pub forward_config: Option<Box<ForwardConfig_>>,
-        pub order: Option<i64>,
+        pub order: Option<i32>,
         pub redirect_config: Option<Box<RedirectConfig_>>,
         pub target_group_arn: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -599,7 +599,7 @@ pub mod listenerrule {
         pub on_unauthenticated_request: Option<crate::value::ExpString>,
         pub scope: Option<crate::value::ExpString>,
         pub session_cookie_name: Option<crate::value::ExpString>,
-        pub session_timeout: Option<i64>,
+        pub session_timeout: Option<i32>,
         pub user_pool_arn: crate::value::ExpString,
         pub user_pool_client_id: crate::value::ExpString,
         pub user_pool_domain: crate::value::ExpString,
@@ -669,7 +669,7 @@ pub mod listenerrule {
         pub on_unauthenticated_request: Option<crate::value::ExpString>,
         pub scope: Option<crate::value::ExpString>,
         pub session_cookie_name: Option<crate::value::ExpString>,
-        pub session_timeout: Option<i64>,
+        pub session_timeout: Option<i32>,
         pub token_endpoint: crate::value::ExpString,
         pub use_existing_client_secret: Option<crate::value::ExpBool>,
         pub user_info_endpoint: crate::value::ExpString,
@@ -1098,7 +1098,7 @@ pub mod listenerrule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-targetgroupstickinessconfig.html
     pub struct TargetGroupStickinessConfig_ {
-        pub duration_seconds: Option<i64>,
+        pub duration_seconds: Option<i32>,
         pub enabled: Option<crate::value::ExpBool>,
     }
     #[doc(hidden)]
@@ -1131,7 +1131,7 @@ pub mod listenerrule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-targetgrouptuple.html
     pub struct TargetGroupTuple_ {
         pub target_group_arn: Option<crate::value::ExpString>,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1187,7 +1187,7 @@ pub mod loadbalancer {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-minimumloadbalancercapacity.html
     pub struct MinimumLoadBalancerCapacity_ {
-        pub capacity_units: i64,
+        pub capacity_units: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1297,7 +1297,7 @@ pub mod targetgroup {
     pub struct TargetDescription_ {
         pub availability_zone: Option<crate::value::ExpString>,
         pub id: crate::value::ExpString,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1397,7 +1397,7 @@ pub mod truststorerevocation {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-truststorerevocation.html
     pub struct TrustStoreRevocation_ {
-        pub number_of_revoked_entries: Option<i64>,
+        pub number_of_revoked_entries: Option<i32>,
         pub revocation_id: Option<crate::value::ExpString>,
         pub revocation_type: Option<crate::value::ExpString>,
         pub trust_store_arn: Option<crate::value::ExpString>,
@@ -1452,7 +1452,7 @@ pub struct Listener_ {
     pub load_balancer_arn: crate::value::ExpString,
     pub mutual_authentication:
         Option<super::elasticloadbalancingv2::listener::MutualAuthentication_>,
-    pub port: Option<i64>,
+    pub port: Option<i32>,
     pub protocol: Option<crate::value::ExpString>,
     pub ssl_policy: Option<crate::value::ExpString>,
 }
@@ -1567,7 +1567,7 @@ pub struct ListenerRule_ {
     pub actions: Vec<super::elasticloadbalancingv2::listenerrule::Action_>,
     pub conditions: Vec<super::elasticloadbalancingv2::listenerrule::RuleCondition_>,
     pub listener_arn: Option<crate::value::ExpString>,
-    pub priority: i64,
+    pub priority: i32,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -1728,16 +1728,16 @@ impl crate::template::ToResource for LoadBalancer_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html
 pub struct TargetGroup_ {
     pub health_check_enabled: Option<crate::value::ExpBool>,
-    pub health_check_interval_seconds: Option<i64>,
+    pub health_check_interval_seconds: Option<i32>,
     pub health_check_path: Option<crate::value::ExpString>,
     pub health_check_port: Option<crate::value::ExpString>,
     pub health_check_protocol: Option<crate::value::ExpString>,
-    pub health_check_timeout_seconds: Option<i64>,
-    pub healthy_threshold_count: Option<i64>,
+    pub health_check_timeout_seconds: Option<i32>,
+    pub healthy_threshold_count: Option<i32>,
     pub ip_address_type: Option<crate::value::ExpString>,
     pub matcher: Option<super::elasticloadbalancingv2::targetgroup::Matcher_>,
     pub name: Option<crate::value::ExpString>,
-    pub port: Option<i64>,
+    pub port: Option<i32>,
     pub protocol: Option<crate::value::ExpString>,
     pub protocol_version: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1745,7 +1745,7 @@ pub struct TargetGroup_ {
         Option<Vec<super::elasticloadbalancingv2::targetgroup::TargetGroupAttribute_>>,
     pub target_type: Option<crate::value::ExpString>,
     pub targets: Option<Vec<super::elasticloadbalancingv2::targetgroup::TargetDescription_>>,
-    pub unhealthy_threshold_count: Option<i64>,
+    pub unhealthy_threshold_count: Option<i32>,
     pub vpc_id: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]

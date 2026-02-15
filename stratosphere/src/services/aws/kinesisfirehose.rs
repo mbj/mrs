@@ -1,8 +1,8 @@
 pub mod deliverystream {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchserverlessbufferinghints.html
     pub struct AmazonOpenSearchServerlessBufferingHints_ {
-        pub interval_in_seconds: Option<i64>,
-        pub size_in_m_bs: Option<i64>,
+        pub interval_in_seconds: Option<i32>,
+        pub size_in_m_bs: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -115,7 +115,7 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchserverlessretryoptions.html
     pub struct AmazonOpenSearchServerlessRetryOptions_ {
-        pub duration_in_seconds: Option<i64>,
+        pub duration_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -140,8 +140,8 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicebufferinghints.html
     pub struct AmazonopensearchserviceBufferingHints_ {
-        pub interval_in_seconds: Option<i64>,
-        pub size_in_m_bs: Option<i64>,
+        pub interval_in_seconds: Option<i32>,
+        pub size_in_m_bs: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -282,7 +282,7 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchserviceretryoptions.html
     pub struct AmazonopensearchserviceRetryOptions_ {
-        pub duration_in_seconds: Option<i64>,
+        pub duration_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -335,8 +335,8 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-bufferinghints.html
     pub struct BufferingHints_ {
-        pub interval_in_seconds: Option<i64>,
-        pub size_in_m_bs: Option<i64>,
+        pub interval_in_seconds: Option<i32>,
+        pub size_in_m_bs: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -583,7 +583,7 @@ pub mod deliverystream {
         pub databases: Box<Databases_>,
         pub digest: Option<crate::value::ExpString>,
         pub endpoint: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub public_certificate: Option<crate::value::ExpString>,
         pub ssl_mode: Option<crate::value::ExpString>,
         pub snapshot_watermark_table: crate::value::ExpString,
@@ -862,7 +862,7 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-directputsourceconfiguration.html
     pub struct DirectPutSourceConfiguration_ {
-        pub throughput_hint_in_m_bs: Option<i64>,
+        pub throughput_hint_in_m_bs: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -942,8 +942,8 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchbufferinghints.html
     pub struct ElasticsearchBufferingHints_ {
-        pub interval_in_seconds: Option<i64>,
-        pub size_in_m_bs: Option<i64>,
+        pub interval_in_seconds: Option<i32>,
+        pub size_in_m_bs: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1084,7 +1084,7 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchretryoptions.html
     pub struct ElasticsearchRetryOptions_ {
-        pub duration_in_seconds: Option<i64>,
+        pub duration_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1712,7 +1712,7 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-orcserde.html
     pub struct OrcSerDe_ {
-        pub block_size_bytes: Option<i64>,
+        pub block_size_bytes: Option<i32>,
         pub bloom_filter_columns: Option<Vec<crate::value::ExpString>>,
         pub bloom_filter_false_positive_probability: Option<f64>,
         pub compression: Option<crate::value::ExpString>,
@@ -1720,8 +1720,8 @@ pub mod deliverystream {
         pub enable_padding: Option<crate::value::ExpBool>,
         pub format_version: Option<crate::value::ExpString>,
         pub padding_tolerance: Option<f64>,
-        pub row_index_stride: Option<i64>,
-        pub stripe_size_bytes: Option<i64>,
+        pub row_index_stride: Option<i32>,
+        pub stripe_size_bytes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1825,11 +1825,11 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-parquetserde.html
     pub struct ParquetSerDe_ {
-        pub block_size_bytes: Option<i64>,
+        pub block_size_bytes: Option<i32>,
         pub compression: Option<crate::value::ExpString>,
         pub enable_dictionary_compression: Option<crate::value::ExpBool>,
-        pub max_padding_bytes: Option<i64>,
-        pub page_size_bytes: Option<i64>,
+        pub max_padding_bytes: Option<i32>,
+        pub page_size_bytes: Option<i32>,
         pub writer_version: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -2117,7 +2117,7 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftretryoptions.html
     pub struct RedshiftRetryOptions_ {
-        pub duration_in_seconds: Option<i64>,
+        pub duration_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2142,7 +2142,7 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-retryoptions.html
     pub struct RetryOptions_ {
-        pub duration_in_seconds: Option<i64>,
+        pub duration_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2385,8 +2385,8 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-snowflakebufferinghints.html
     pub struct SnowflakeBufferingHints_ {
-        pub interval_in_seconds: Option<i64>,
-        pub size_in_m_bs: Option<i64>,
+        pub interval_in_seconds: Option<i32>,
+        pub size_in_m_bs: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2560,7 +2560,7 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-snowflakeretryoptions.html
     pub struct SnowflakeRetryOptions_ {
-        pub duration_in_seconds: Option<i64>,
+        pub duration_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2640,8 +2640,8 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-splunkbufferinghints.html
     pub struct SplunkBufferingHints_ {
-        pub interval_in_seconds: Option<i64>,
-        pub size_in_m_bs: Option<i64>,
+        pub interval_in_seconds: Option<i32>,
+        pub size_in_m_bs: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2674,7 +2674,7 @@ pub mod deliverystream {
     pub struct SplunkDestinationConfiguration_ {
         pub buffering_hints: Option<Box<SplunkBufferingHints_>>,
         pub cloud_watch_logging_options: Option<Box<CloudWatchLoggingOptions_>>,
-        pub hec_acknowledgment_timeout_in_seconds: Option<i64>,
+        pub hec_acknowledgment_timeout_in_seconds: Option<i32>,
         pub hec_endpoint: crate::value::ExpString,
         pub hec_endpoint_type: crate::value::ExpString,
         pub hec_token: Option<crate::value::ExpString>,
@@ -2761,7 +2761,7 @@ pub mod deliverystream {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-splunkretryoptions.html
     pub struct SplunkRetryOptions_ {
-        pub duration_in_seconds: Option<i64>,
+        pub duration_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

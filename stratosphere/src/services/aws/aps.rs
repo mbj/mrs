@@ -371,7 +371,7 @@ pub mod workspace {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-limitsperlabelsetentry.html
     pub struct LimitsPerLabelSetEntry_ {
-        pub max_series: Option<i64>,
+        pub max_series: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -449,7 +449,7 @@ pub mod workspace {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-loggingfilter.html
     pub struct LoggingFilter_ {
-        pub qsp_threshold: i64,
+        pub qsp_threshold: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -496,7 +496,7 @@ pub mod workspace {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-workspaceconfiguration.html
     pub struct WorkspaceConfiguration_ {
         pub limits_per_label_sets: Option<Vec<LimitsPerLabelSet_>>,
-        pub retention_period_in_days: Option<i64>,
+        pub retention_period_in_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

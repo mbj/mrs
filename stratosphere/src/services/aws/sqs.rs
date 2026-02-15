@@ -2,20 +2,20 @@
 pub struct Queue_ {
     pub content_based_deduplication: Option<crate::value::ExpBool>,
     pub deduplication_scope: Option<crate::value::ExpString>,
-    pub delay_seconds: Option<i64>,
+    pub delay_seconds: Option<i32>,
     pub fifo_queue: Option<crate::value::ExpBool>,
     pub fifo_throughput_limit: Option<crate::value::ExpString>,
-    pub kms_data_key_reuse_period_seconds: Option<i64>,
+    pub kms_data_key_reuse_period_seconds: Option<i32>,
     pub kms_master_key_id: Option<crate::value::ExpString>,
-    pub maximum_message_size: Option<i64>,
-    pub message_retention_period: Option<i64>,
+    pub maximum_message_size: Option<i32>,
+    pub message_retention_period: Option<i32>,
     pub queue_name: Option<crate::value::ExpString>,
-    pub receive_message_wait_time_seconds: Option<i64>,
+    pub receive_message_wait_time_seconds: Option<i32>,
     pub redrive_allow_policy: Option<serde_json::Value>,
     pub redrive_policy: Option<serde_json::Value>,
     pub sqs_managed_sse_enabled: Option<crate::value::ExpBool>,
     pub tags: Option<Vec<crate::Tag_>>,
-    pub visibility_timeout: Option<i64>,
+    pub visibility_timeout: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]

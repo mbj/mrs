@@ -43,7 +43,7 @@ pub mod api {
         pub allow_methods: Option<Vec<crate::value::ExpString>>,
         pub allow_origins: Option<Vec<crate::value::ExpString>>,
         pub expose_headers: Option<Vec<crate::value::ExpString>>,
-        pub max_age: Option<i64>,
+        pub max_age: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -129,7 +129,7 @@ pub mod apigatewaymanagedoverrides {
         pub description: Option<crate::value::ExpString>,
         pub integration_method: Option<crate::value::ExpString>,
         pub payload_format_version: Option<crate::value::ExpString>,
-        pub timeout_in_millis: Option<i64>,
+        pub timeout_in_millis: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -225,7 +225,7 @@ pub mod apigatewaymanagedoverrides {
         pub data_trace_enabled: Option<crate::value::ExpBool>,
         pub detailed_metrics_enabled: Option<crate::value::ExpBool>,
         pub logging_level: Option<crate::value::ExpString>,
-        pub throttling_burst_limit: Option<i64>,
+        pub throttling_burst_limit: Option<i32>,
         pub throttling_rate_limit: Option<f64>,
     }
     #[doc(hidden)]
@@ -766,7 +766,7 @@ pub mod stage {
         pub data_trace_enabled: Option<crate::value::ExpBool>,
         pub detailed_metrics_enabled: Option<crate::value::ExpBool>,
         pub logging_level: Option<crate::value::ExpString>,
-        pub throttling_burst_limit: Option<i64>,
+        pub throttling_burst_limit: Option<i32>,
         pub throttling_rate_limit: Option<f64>,
     }
     #[doc(hidden)]
@@ -1056,7 +1056,7 @@ pub struct Authorizer_ {
     pub api_id: crate::value::ExpString,
     pub authorizer_credentials_arn: Option<crate::value::ExpString>,
     pub authorizer_payload_format_version: Option<crate::value::ExpString>,
-    pub authorizer_result_ttl_in_seconds: Option<i64>,
+    pub authorizer_result_ttl_in_seconds: Option<i32>,
     pub authorizer_type: crate::value::ExpString,
     pub authorizer_uri: Option<crate::value::ExpString>,
     pub enable_simple_responses: Option<crate::value::ExpBool>,
@@ -1271,7 +1271,7 @@ pub struct Integration_ {
         std::collections::BTreeMap<String, super::apigatewayv2::integration::ResponseParameterMap_>,
     >,
     pub template_selection_expression: Option<crate::value::ExpString>,
-    pub timeout_in_millis: Option<i64>,
+    pub timeout_in_millis: Option<i32>,
     pub tls_config: Option<super::apigatewayv2::integration::TlsConfig_>,
 }
 #[doc(hidden)]
@@ -1700,7 +1700,7 @@ pub struct RoutingRule_ {
     pub actions: Vec<super::apigatewayv2::routingrule::Action_>,
     pub conditions: Vec<super::apigatewayv2::routingrule::Condition_>,
     pub domain_name_arn: crate::value::ExpString,
-    pub priority: i64,
+    pub priority: i32,
 }
 #[doc(hidden)]
 #[macro_export]

@@ -29,8 +29,8 @@ pub mod automationrule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-automationrulesfindingfieldsupdate.html
     pub struct AutomationRulesFindingFieldsUpdate_ {
-        pub confidence: Option<i64>,
-        pub criticality: Option<i64>,
+        pub confidence: Option<i32>,
+        pub criticality: Option<i32>,
         pub note: Option<Box<NoteUpdate_>>,
         pub related_findings: Option<Vec<RelatedFinding_>>,
         pub severity: Option<Box<SeverityUpdate_>>,
@@ -537,7 +537,7 @@ pub mod automationrule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-severityupdate.html
     pub struct SeverityUpdate_ {
         pub label: Option<crate::value::ExpString>,
-        pub normalized: Option<i64>,
+        pub normalized: Option<i32>,
         pub product: Option<f64>,
     }
     #[doc(hidden)]
@@ -663,8 +663,8 @@ pub mod automationrulev2 {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-automationrulesfindingfieldsupdatev2.html
     pub struct AutomationRulesFindingFieldsUpdateV2_ {
         pub comment: Option<crate::value::ExpString>,
-        pub severity_id: Option<i64>,
-        pub status_id: Option<i64>,
+        pub severity_id: Option<i32>,
+        pub status_id: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1191,8 +1191,8 @@ pub mod configurationpolicy {
         pub double: Option<f64>,
         pub r#enum: Option<crate::value::ExpString>,
         pub enum_list: Option<Vec<crate::value::ExpString>>,
-        pub integer: Option<i64>,
-        pub integer_list: Option<Vec<i64>>,
+        pub integer: Option<i32>,
+        pub integer_list: Option<Vec<i32>>,
         pub string: Option<crate::value::ExpString>,
         pub string_list: Option<Vec<crate::value::ExpString>>,
     }
@@ -2323,8 +2323,8 @@ pub mod securitycontrol {
         pub double: Option<f64>,
         pub r#enum: Option<crate::value::ExpString>,
         pub enum_list: Option<Vec<crate::value::ExpString>>,
-        pub integer: Option<i64>,
-        pub integer_list: Option<Vec<i64>>,
+        pub integer: Option<i32>,
+        pub integer_list: Option<Vec<i32>>,
         pub string: Option<crate::value::ExpString>,
         pub string_list: Option<Vec<crate::value::ExpString>>,
     }
@@ -2459,7 +2459,7 @@ pub struct AutomationRule_ {
     pub description: crate::value::ExpString,
     pub is_terminal: Option<crate::value::ExpBool>,
     pub rule_name: crate::value::ExpString,
-    pub rule_order: i64,
+    pub rule_order: i32,
     pub rule_status: Option<crate::value::ExpString>,
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
 }

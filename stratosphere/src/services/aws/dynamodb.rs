@@ -29,9 +29,9 @@ pub mod globaltable {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-capacityautoscalingsettings.html
     pub struct CapacityAutoScalingSettings_ {
-        pub max_capacity: i64,
-        pub min_capacity: i64,
-        pub seed_capacity: Option<i64>,
+        pub max_capacity: i32,
+        pub min_capacity: i32,
+        pub seed_capacity: Option<i32>,
         pub target_tracking_scaling_policy_configuration:
             Box<TargetTrackingScalingPolicyConfiguration_>,
     }
@@ -265,7 +265,7 @@ pub mod globaltable {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-pointintimerecoveryspecification.html
     pub struct PointInTimeRecoverySpecification_ {
         pub point_in_time_recovery_enabled: Option<crate::value::ExpBool>,
-        pub recovery_period_in_days: Option<i64>,
+        pub recovery_period_in_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -328,7 +328,7 @@ pub mod globaltable {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-readondemandthroughputsettings.html
     pub struct ReadOnDemandThroughputSettings_ {
-        pub max_read_request_units: Option<i64>,
+        pub max_read_request_units: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -354,7 +354,7 @@ pub mod globaltable {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-readprovisionedthroughputsettings.html
     pub struct ReadProvisionedThroughputSettings_ {
         pub read_capacity_auto_scaling_settings: Option<Box<CapacityAutoScalingSettings_>>,
-        pub read_capacity_units: Option<i64>,
+        pub read_capacity_units: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -656,8 +656,8 @@ pub mod globaltable {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-targettrackingscalingpolicyconfiguration.html
     pub struct TargetTrackingScalingPolicyConfiguration_ {
         pub disable_scale_in: Option<crate::value::ExpBool>,
-        pub scale_in_cooldown: Option<i64>,
-        pub scale_out_cooldown: Option<i64>,
+        pub scale_in_cooldown: Option<i32>,
+        pub scale_out_cooldown: Option<i32>,
         pub target_value: f64,
     }
     #[doc(hidden)]
@@ -729,8 +729,8 @@ pub mod globaltable {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-warmthroughput.html
     pub struct WarmThroughput_ {
-        pub read_units_per_second: Option<i64>,
-        pub write_units_per_second: Option<i64>,
+        pub read_units_per_second: Option<i32>,
+        pub write_units_per_second: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -761,7 +761,7 @@ pub mod globaltable {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-writeondemandthroughputsettings.html
     pub struct WriteOnDemandThroughputSettings_ {
-        pub max_write_request_units: Option<i64>,
+        pub max_write_request_units: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1116,8 +1116,8 @@ pub mod table {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ondemandthroughput.html
     pub struct OnDemandThroughput_ {
-        pub max_read_request_units: Option<i64>,
-        pub max_write_request_units: Option<i64>,
+        pub max_read_request_units: Option<i32>,
+        pub max_write_request_units: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1149,7 +1149,7 @@ pub mod table {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-pointintimerecoveryspecification.html
     pub struct PointInTimeRecoverySpecification_ {
         pub point_in_time_recovery_enabled: Option<crate::value::ExpBool>,
-        pub recovery_period_in_days: Option<i64>,
+        pub recovery_period_in_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1212,8 +1212,8 @@ pub mod table {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-provisionedthroughput.html
     pub struct ProvisionedThroughput_ {
-        pub read_capacity_units: i64,
-        pub write_capacity_units: i64,
+        pub read_capacity_units: i32,
+        pub write_capacity_units: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1397,8 +1397,8 @@ pub mod table {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-warmthroughput.html
     pub struct WarmThroughput_ {
-        pub read_units_per_second: Option<i64>,
-        pub write_units_per_second: Option<i64>,
+        pub read_units_per_second: Option<i32>,
+        pub write_units_per_second: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

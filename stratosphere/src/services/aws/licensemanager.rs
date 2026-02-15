@@ -2,7 +2,7 @@ pub mod license {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-borrowconfiguration.html
     pub struct BorrowConfiguration_ {
         pub allow_early_check_in: crate::value::ExpBool,
-        pub max_time_to_live_in_minutes: i64,
+        pub max_time_to_live_in_minutes: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -69,7 +69,7 @@ pub mod license {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-entitlement.html
     pub struct Entitlement_ {
         pub allow_check_in: Option<crate::value::ExpBool>,
-        pub max_count: Option<i64>,
+        pub max_count: Option<i32>,
         pub name: crate::value::ExpString,
         pub overage: Option<crate::value::ExpBool>,
         pub unit: crate::value::ExpString,
@@ -179,7 +179,7 @@ pub mod license {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-licensemanager-license-provisionalconfiguration.html
     pub struct ProvisionalConfiguration_ {
-        pub max_time_to_live_in_minutes: i64,
+        pub max_time_to_live_in_minutes: i32,
     }
     #[doc(hidden)]
     #[macro_export]

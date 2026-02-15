@@ -99,7 +99,7 @@ pub struct InvestigationGroup_ {
     pub investigation_group_policy: Option<crate::value::ExpString>,
     pub is_cloud_trail_event_history_enabled: Option<crate::value::ExpBool>,
     pub name: crate::value::ExpString,
-    pub retention_in_days: Option<i64>,
+    pub retention_in_days: Option<i32>,
     pub role_arn: Option<crate::value::ExpString>,
     pub tag_key_boundaries: Option<Vec<crate::value::ExpString>>,
     pub tags: Option<Vec<crate::Tag_>>,

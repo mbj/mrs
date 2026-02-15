@@ -1,7 +1,7 @@
 pub mod servicelevelobjective {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-burnrateconfiguration.html
     pub struct BurnRateConfiguration_ {
-        pub look_back_window_minutes: i64,
+        pub look_back_window_minutes: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -24,9 +24,9 @@ pub mod servicelevelobjective {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-calendarinterval.html
     pub struct CalendarInterval_ {
-        pub duration: i64,
+        pub duration: i32,
         pub duration_unit: crate::value::ExpString,
-        pub start_time: i64,
+        pub start_time: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -313,7 +313,7 @@ pub mod servicelevelobjective {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-metricstat.html
     pub struct MetricStat_ {
         pub metric: Box<Metric_>,
-        pub period: i64,
+        pub period: i32,
         pub stat: crate::value::ExpString,
         pub unit: Option<crate::value::ExpString>,
     }
@@ -501,7 +501,7 @@ pub mod servicelevelobjective {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-rollinginterval.html
     pub struct RollingInterval_ {
-        pub duration: i64,
+        pub duration: i32,
         pub duration_unit: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -567,7 +567,7 @@ pub mod servicelevelobjective {
         pub metric_data_queries: Option<Vec<MetricDataQuery_>>,
         pub metric_type: Option<crate::value::ExpString>,
         pub operation_name: Option<crate::value::ExpString>,
-        pub period_seconds: Option<i64>,
+        pub period_seconds: Option<i32>,
         pub statistic: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -629,7 +629,7 @@ pub mod servicelevelobjective {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationsignals-servicelevelobjective-window.html
     pub struct Window_ {
-        pub duration: i64,
+        pub duration: i32,
         pub duration_unit: crate::value::ExpString,
     }
     #[doc(hidden)]

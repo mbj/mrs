@@ -124,7 +124,7 @@ pub mod accesspoint {
 pub mod bucket {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-abortincompletemultipartupload.html
     pub struct AbortIncompleteMultipartUpload_ {
-        pub days_after_initiation: i64,
+        pub days_after_initiation: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -280,7 +280,7 @@ pub mod bucket {
         pub allowed_origins: Vec<crate::value::ExpString>,
         pub exposed_headers: Option<Vec<crate::value::ExpString>>,
         pub id: Option<crate::value::ExpString>,
-        pub max_age: Option<i64>,
+        pub max_age: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -353,9 +353,9 @@ pub mod bucket {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-defaultretention.html
     pub struct DefaultRetention_ {
-        pub days: Option<i64>,
+        pub days: Option<i32>,
         pub mode: Option<crate::value::ExpString>,
-        pub years: Option<i64>,
+        pub years: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -994,8 +994,8 @@ pub mod bucket {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-noncurrentversionexpiration.html
     pub struct NoncurrentVersionExpiration_ {
-        pub newer_noncurrent_versions: Option<i64>,
-        pub noncurrent_days: i64,
+        pub newer_noncurrent_versions: Option<i32>,
+        pub noncurrent_days: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1024,9 +1024,9 @@ pub mod bucket {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-noncurrentversiontransition.html
     pub struct NoncurrentVersionTransition_ {
-        pub newer_noncurrent_versions: Option<i64>,
+        pub newer_noncurrent_versions: Option<i32>,
         pub storage_class: crate::value::ExpString,
-        pub transition_in_days: i64,
+        pub transition_in_days: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1333,7 +1333,7 @@ pub mod bucket {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-recordexpiration.html
     pub struct RecordExpiration_ {
-        pub days: Option<i64>,
+        pub days: Option<i32>,
         pub expiration: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -1564,7 +1564,7 @@ pub mod bucket {
         pub filter: Option<Box<ReplicationRuleFilter_>>,
         pub id: Option<crate::value::ExpString>,
         pub prefix: Option<crate::value::ExpString>,
-        pub priority: Option<i64>,
+        pub priority: Option<i32>,
         pub source_selection_criteria: Option<Box<SourceSelectionCriteria_>>,
         pub status: crate::value::ExpString,
     }
@@ -1710,7 +1710,7 @@ pub mod bucket {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationtimevalue.html
     pub struct ReplicationTimeValue_ {
-        pub minutes: i64,
+        pub minutes: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1797,11 +1797,11 @@ pub mod bucket {
     pub struct Rule_ {
         pub abort_incomplete_multipart_upload: Option<Box<AbortIncompleteMultipartUpload_>>,
         pub expiration_date: Option<crate::value::ExpString>,
-        pub expiration_in_days: Option<i64>,
+        pub expiration_in_days: Option<i32>,
         pub expired_object_delete_marker: Option<crate::value::ExpBool>,
         pub id: Option<crate::value::ExpString>,
         pub noncurrent_version_expiration: Option<Box<NoncurrentVersionExpiration_>>,
-        pub noncurrent_version_expiration_in_days: Option<i64>,
+        pub noncurrent_version_expiration_in_days: Option<i32>,
         pub noncurrent_version_transition: Option<Box<NoncurrentVersionTransition_>>,
         pub noncurrent_version_transitions: Option<Vec<NoncurrentVersionTransition_>>,
         pub object_size_greater_than: Option<crate::value::ExpString>,
@@ -2185,7 +2185,7 @@ pub mod bucket {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-tiering.html
     pub struct Tiering_ {
         pub access_tier: crate::value::ExpString,
-        pub days: i64,
+        pub days: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2246,7 +2246,7 @@ pub mod bucket {
     pub struct Transition_ {
         pub storage_class: crate::value::ExpString,
         pub transition_date: Option<crate::value::ExpString>,
-        pub transition_in_days: Option<i64>,
+        pub transition_in_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2930,7 +2930,7 @@ pub mod storagelens {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-selectioncriteria.html
     pub struct SelectionCriteria_ {
         pub delimiter: Option<crate::value::ExpString>,
-        pub max_depth: Option<i64>,
+        pub max_depth: Option<i32>,
         pub min_storage_bytes_percentage: Option<f64>,
     }
     #[doc(hidden)]
@@ -3203,8 +3203,8 @@ pub mod storagelensgroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-matchobjectage.html
     pub struct MatchObjectAge_ {
-        pub days_greater_than: Option<i64>,
-        pub days_less_than: Option<i64>,
+        pub days_greater_than: Option<i32>,
+        pub days_less_than: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3235,8 +3235,8 @@ pub mod storagelensgroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-matchobjectsize.html
     pub struct MatchObjectSize_ {
-        pub bytes_greater_than: Option<i64>,
-        pub bytes_less_than: Option<i64>,
+        pub bytes_greater_than: Option<i32>,
+        pub bytes_less_than: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

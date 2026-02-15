@@ -148,7 +148,7 @@ pub mod filesystem {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-lustreconfiguration-datareadcacheconfiguration.html
     pub struct DataReadCacheConfiguration_ {
-        pub size_gi_b: Option<i64>,
+        pub size_gi_b: Option<i32>,
         pub sizing_mode: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -180,7 +180,7 @@ pub mod filesystem {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-diskiopsconfiguration.html
     pub struct DiskIopsConfiguration_ {
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub mode: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -207,7 +207,7 @@ pub mod filesystem {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-lustreconfiguration.html
     pub struct LustreConfiguration_ {
         pub auto_import_policy: Option<crate::value::ExpString>,
-        pub automatic_backup_retention_days: Option<i64>,
+        pub automatic_backup_retention_days: Option<i32>,
         pub copy_tags_to_backups: Option<crate::value::ExpBool>,
         pub daily_automatic_backup_start_time: Option<crate::value::ExpString>,
         pub data_compression_type: Option<crate::value::ExpString>,
@@ -217,10 +217,10 @@ pub mod filesystem {
         pub efa_enabled: Option<crate::value::ExpBool>,
         pub export_path: Option<crate::value::ExpString>,
         pub import_path: Option<crate::value::ExpString>,
-        pub imported_file_chunk_size: Option<i64>,
+        pub imported_file_chunk_size: Option<i32>,
         pub metadata_configuration: Option<Box<MetadataConfiguration_>>,
-        pub per_unit_storage_throughput: Option<i64>,
-        pub throughput_capacity: Option<i64>,
+        pub per_unit_storage_throughput: Option<i32>,
+        pub throughput_capacity: Option<i32>,
         pub weekly_maintenance_start_time: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -336,7 +336,7 @@ pub mod filesystem {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-lustreconfiguration-metadataconfiguration.html
     pub struct MetadataConfiguration_ {
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub mode: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -387,17 +387,17 @@ pub mod filesystem {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-ontapconfiguration.html
     pub struct OntapConfiguration_ {
-        pub automatic_backup_retention_days: Option<i64>,
+        pub automatic_backup_retention_days: Option<i32>,
         pub daily_automatic_backup_start_time: Option<crate::value::ExpString>,
         pub deployment_type: crate::value::ExpString,
         pub disk_iops_configuration: Option<Box<DiskIopsConfiguration_>>,
         pub endpoint_ip_address_range: Option<crate::value::ExpString>,
         pub fsx_admin_password: Option<crate::value::ExpString>,
-        pub ha_pairs: Option<i64>,
+        pub ha_pairs: Option<i32>,
         pub preferred_subnet_id: Option<crate::value::ExpString>,
         pub route_table_ids: Option<Vec<crate::value::ExpString>>,
-        pub throughput_capacity: Option<i64>,
-        pub throughput_capacity_per_ha_pair: Option<i64>,
+        pub throughput_capacity: Option<i32>,
+        pub throughput_capacity_per_ha_pair: Option<i32>,
         pub weekly_maintenance_start_time: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -487,7 +487,7 @@ pub mod filesystem {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration.html
     pub struct OpenZFSConfiguration_ {
-        pub automatic_backup_retention_days: Option<i64>,
+        pub automatic_backup_retention_days: Option<i32>,
         pub copy_tags_to_backups: Option<crate::value::ExpBool>,
         pub copy_tags_to_volumes: Option<crate::value::ExpBool>,
         pub daily_automatic_backup_start_time: Option<crate::value::ExpString>,
@@ -500,7 +500,7 @@ pub mod filesystem {
         pub read_cache_configuration: Option<Box<ReadCacheConfiguration_>>,
         pub root_volume_configuration: Option<Box<RootVolumeConfiguration_>>,
         pub route_table_ids: Option<Vec<crate::value::ExpString>>,
-        pub throughput_capacity: Option<i64>,
+        pub throughput_capacity: Option<i32>,
         pub weekly_maintenance_start_time: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -608,7 +608,7 @@ pub mod filesystem {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-readcacheconfiguration.html
     pub struct ReadCacheConfiguration_ {
-        pub size_gi_b: Option<i64>,
+        pub size_gi_b: Option<i32>,
         pub sizing_mode: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -644,7 +644,7 @@ pub mod filesystem {
         pub data_compression_type: Option<crate::value::ExpString>,
         pub nfs_exports: Option<Vec<NfsExports_>>,
         pub read_only: Option<crate::value::ExpBool>,
-        pub record_size_ki_b: Option<i64>,
+        pub record_size_ki_b: Option<i32>,
         pub user_and_group_quotas: Option<Vec<UserAndGroupQuotas_>>,
     }
     #[doc(hidden)]
@@ -757,8 +757,8 @@ pub mod filesystem {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-filesystem-openzfsconfiguration-rootvolumeconfiguration-userandgroupquotas.html
     pub struct UserAndGroupQuotas_ {
-        pub id: Option<i64>,
-        pub storage_capacity_quota_gi_b: Option<i64>,
+        pub id: Option<i32>,
+        pub storage_capacity_quota_gi_b: Option<i32>,
         pub r#type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -793,7 +793,7 @@ pub mod filesystem {
         pub active_directory_id: Option<crate::value::ExpString>,
         pub aliases: Option<Vec<crate::value::ExpString>>,
         pub audit_log_configuration: Option<Box<AuditLogConfiguration_>>,
-        pub automatic_backup_retention_days: Option<i64>,
+        pub automatic_backup_retention_days: Option<i32>,
         pub copy_tags_to_backups: Option<crate::value::ExpBool>,
         pub daily_automatic_backup_start_time: Option<crate::value::ExpString>,
         pub deployment_type: Option<crate::value::ExpString>,
@@ -801,7 +801,7 @@ pub mod filesystem {
         pub preferred_subnet_id: Option<crate::value::ExpString>,
         pub self_managed_active_directory_configuration:
             Option<Box<SelfManagedActiveDirectoryConfiguration_>>,
-        pub throughput_capacity: i64,
+        pub throughput_capacity: i32,
         pub weekly_maintenance_start_time: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1165,7 +1165,7 @@ pub mod volume {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-ontapconfiguration-aggregateconfiguration.html
     pub struct AggregateConfiguration_ {
         pub aggregates: Option<Vec<crate::value::ExpString>>,
-        pub constituents_per_aggregate: Option<i64>,
+        pub constituents_per_aggregate: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1197,7 +1197,7 @@ pub mod volume {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-ontapconfiguration-snaplockconfiguration-autocommitperiod.html
     pub struct AutocommitPeriod_ {
         pub r#type: crate::value::ExpString,
-        pub value: Option<i64>,
+        pub value: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1388,9 +1388,9 @@ pub mod volume {
         pub origin_snapshot: Option<Box<OriginSnapshot_>>,
         pub parent_volume_id: crate::value::ExpString,
         pub read_only: Option<crate::value::ExpBool>,
-        pub record_size_ki_b: Option<i64>,
-        pub storage_capacity_quota_gi_b: Option<i64>,
-        pub storage_capacity_reservation_gi_b: Option<i64>,
+        pub record_size_ki_b: Option<i32>,
+        pub storage_capacity_quota_gi_b: Option<i32>,
+        pub storage_capacity_reservation_gi_b: Option<i32>,
         pub user_and_group_quotas: Option<Vec<UserAndGroupQuotas_>>,
     }
     #[doc(hidden)]
@@ -1503,7 +1503,7 @@ pub mod volume {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-retentionperiod.html
     pub struct RetentionPeriod_ {
         pub r#type: crate::value::ExpString,
-        pub value: Option<i64>,
+        pub value: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1620,7 +1620,7 @@ pub mod volume {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-ontapconfiguration-tieringpolicy.html
     pub struct TieringPolicy_ {
-        pub cooling_period: Option<i64>,
+        pub cooling_period: Option<i32>,
         pub name: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1649,8 +1649,8 @@ pub mod volume {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fsx-volume-openzfsconfiguration-userandgroupquotas.html
     pub struct UserAndGroupQuotas_ {
-        pub id: i64,
-        pub storage_capacity_quota_gi_b: i64,
+        pub id: i32,
+        pub storage_capacity_quota_gi_b: i32,
         pub r#type: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -1684,7 +1684,7 @@ pub struct DataRepositoryAssociation_ {
     pub data_repository_path: crate::value::ExpString,
     pub file_system_id: crate::value::ExpString,
     pub file_system_path: crate::value::ExpString,
-    pub imported_file_chunk_size: Option<i64>,
+    pub imported_file_chunk_size: Option<i32>,
     pub s3: Option<super::fsx::datarepositoryassociation::S3_>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -1752,7 +1752,7 @@ pub struct FileSystem_ {
     pub ontap_configuration: Option<super::fsx::filesystem::OntapConfiguration_>,
     pub open_zfs_configuration: Option<super::fsx::filesystem::OpenZFSConfiguration_>,
     pub security_group_ids: Option<Vec<crate::value::ExpString>>,
-    pub storage_capacity: Option<i64>,
+    pub storage_capacity: Option<i32>,
     pub storage_type: Option<crate::value::ExpString>,
     pub subnet_ids: Vec<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,

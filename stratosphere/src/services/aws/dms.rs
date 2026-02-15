@@ -2,7 +2,7 @@ pub mod datamigration {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-datamigration-datamigrationsettings.html
     pub struct DataMigrationSettings_ {
         pub cloudwatch_logs_enabled: Option<crate::value::ExpBool>,
-        pub number_of_jobs: Option<i64>,
+        pub number_of_jobs: Option<i32>,
         pub selection_rules: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -90,7 +90,7 @@ pub mod dataprovider {
     pub struct DocDbSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub database_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub server_name: crate::value::ExpString,
         pub ssl_mode: Option<crate::value::ExpString>,
     }
@@ -137,7 +137,7 @@ pub mod dataprovider {
     pub struct IbmDb2LuwSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub database_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub server_name: crate::value::ExpString,
         pub ssl_mode: crate::value::ExpString,
     }
@@ -182,7 +182,7 @@ pub mod dataprovider {
     pub struct IbmDb2zOsSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub database_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub server_name: crate::value::ExpString,
         pub ssl_mode: crate::value::ExpString,
     }
@@ -226,7 +226,7 @@ pub mod dataprovider {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-mariadbsettings.html
     pub struct MariaDbSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
-        pub port: i64,
+        pub port: i32,
         pub server_name: crate::value::ExpString,
         pub ssl_mode: crate::value::ExpString,
     }
@@ -267,7 +267,7 @@ pub mod dataprovider {
     pub struct MicrosoftSqlServerSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub database_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub server_name: crate::value::ExpString,
         pub ssl_mode: crate::value::ExpString,
     }
@@ -315,7 +315,7 @@ pub mod dataprovider {
         pub auth_type: Option<crate::value::ExpString>,
         pub certificate_arn: Option<crate::value::ExpString>,
         pub database_name: Option<crate::value::ExpString>,
-        pub port: i64,
+        pub port: i32,
         pub server_name: crate::value::ExpString,
         pub ssl_mode: Option<crate::value::ExpString>,
     }
@@ -381,7 +381,7 @@ pub mod dataprovider {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-mysqlsettings.html
     pub struct MySqlSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
-        pub port: i64,
+        pub port: i32,
         pub server_name: crate::value::ExpString,
         pub ssl_mode: crate::value::ExpString,
     }
@@ -423,7 +423,7 @@ pub mod dataprovider {
         pub asm_server: Option<crate::value::ExpString>,
         pub certificate_arn: Option<crate::value::ExpString>,
         pub database_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub secrets_manager_oracle_asm_access_role_arn: Option<crate::value::ExpString>,
         pub secrets_manager_oracle_asm_secret_id: Option<crate::value::ExpString>,
         pub secrets_manager_security_db_encryption_access_role_arn: Option<crate::value::ExpString>,
@@ -502,7 +502,7 @@ pub mod dataprovider {
     pub struct PostgreSqlSettings_ {
         pub certificate_arn: Option<crate::value::ExpString>,
         pub database_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub server_name: crate::value::ExpString,
         pub ssl_mode: crate::value::ExpString,
     }
@@ -546,7 +546,7 @@ pub mod dataprovider {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-dataprovider-redshiftsettings.html
     pub struct RedshiftSettings_ {
         pub database_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub server_name: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -668,7 +668,7 @@ pub mod dataprovider {
 pub mod endpoint {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-docdbsettings.html
     pub struct DocDbSettings_ {
-        pub docs_to_investigate: Option<i64>,
+        pub docs_to_investigate: Option<i32>,
         pub extract_doc_id: Option<crate::value::ExpBool>,
         pub nesting_level: Option<crate::value::ExpString>,
         pub secrets_manager_access_role_arn: Option<crate::value::ExpString>,
@@ -747,8 +747,8 @@ pub mod endpoint {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-elasticsearchsettings.html
     pub struct ElasticsearchSettings_ {
         pub endpoint_uri: Option<crate::value::ExpString>,
-        pub error_retry_duration: Option<i64>,
-        pub full_load_error_percentage: Option<i64>,
+        pub error_retry_duration: Option<i32>,
+        pub full_load_error_percentage: Option<i32>,
         pub service_access_role_arn: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -795,11 +795,11 @@ pub mod endpoint {
         pub after_connect_script: Option<crate::value::ExpString>,
         pub clean_source_metadata_on_mismatch: Option<crate::value::ExpBool>,
         pub database_name: Option<crate::value::ExpString>,
-        pub events_poll_interval: Option<i64>,
-        pub max_file_size: Option<i64>,
-        pub parallel_load_threads: Option<i64>,
+        pub events_poll_interval: Option<i32>,
+        pub max_file_size: Option<i32>,
+        pub parallel_load_threads: Option<i32>,
         pub password: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub secrets_manager_access_role_arn: Option<crate::value::ExpString>,
         pub secrets_manager_secret_id: Option<crate::value::ExpString>,
         pub server_name: Option<crate::value::ExpString>,
@@ -900,13 +900,13 @@ pub mod endpoint {
     pub struct IbmDb2Settings_ {
         pub current_lsn: Option<crate::value::ExpString>,
         pub keep_csv_files: Option<crate::value::ExpBool>,
-        pub load_timeout: Option<i64>,
-        pub max_file_size: Option<i64>,
-        pub max_k_bytes_per_read: Option<i64>,
+        pub load_timeout: Option<i32>,
+        pub max_file_size: Option<i32>,
+        pub max_k_bytes_per_read: Option<i32>,
         pub secrets_manager_access_role_arn: Option<crate::value::ExpString>,
         pub secrets_manager_secret_id: Option<crate::value::ExpString>,
         pub set_data_capture_changes: Option<crate::value::ExpBool>,
-        pub write_buffer_size: Option<i64>,
+        pub write_buffer_size: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -986,7 +986,7 @@ pub mod endpoint {
         pub include_table_alter_operations: Option<crate::value::ExpBool>,
         pub include_transaction_details: Option<crate::value::ExpBool>,
         pub message_format: Option<crate::value::ExpString>,
-        pub message_max_bytes: Option<i64>,
+        pub message_max_bytes: Option<i32>,
         pub no_hex_prefix: Option<crate::value::ExpBool>,
         pub partition_include_schema_table: Option<crate::value::ExpBool>,
         pub sasl_password: Option<crate::value::ExpString>,
@@ -1205,12 +1205,12 @@ pub mod endpoint {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html
     pub struct MicrosoftSqlServerSettings_ {
-        pub bcp_packet_size: Option<i64>,
+        pub bcp_packet_size: Option<i32>,
         pub control_tables_file_group: Option<crate::value::ExpString>,
         pub database_name: Option<crate::value::ExpString>,
         pub force_lob_lookup: Option<crate::value::ExpBool>,
         pub password: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub query_single_always_on_node: Option<crate::value::ExpBool>,
         pub read_backup_only: Option<crate::value::ExpBool>,
         pub safeguard_policy: Option<crate::value::ExpString>,
@@ -1347,7 +1347,7 @@ pub mod endpoint {
         pub extract_doc_id: Option<crate::value::ExpString>,
         pub nesting_level: Option<crate::value::ExpString>,
         pub password: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub secrets_manager_access_role_arn: Option<crate::value::ExpString>,
         pub secrets_manager_secret_id: Option<crate::value::ExpString>,
         pub server_name: Option<crate::value::ExpString>,
@@ -1447,9 +1447,9 @@ pub mod endpoint {
     pub struct MySqlSettings_ {
         pub after_connect_script: Option<crate::value::ExpString>,
         pub clean_source_metadata_on_mismatch: Option<crate::value::ExpBool>,
-        pub events_poll_interval: Option<i64>,
-        pub max_file_size: Option<i64>,
-        pub parallel_load_threads: Option<i64>,
+        pub events_poll_interval: Option<i32>,
+        pub max_file_size: Option<i32>,
+        pub parallel_load_threads: Option<i32>,
         pub secrets_manager_access_role_arn: Option<crate::value::ExpString>,
         pub secrets_manager_secret_id: Option<crate::value::ExpString>,
         pub server_timezone: Option<crate::value::ExpString>,
@@ -1526,10 +1526,10 @@ pub mod endpoint {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-neptunesettings.html
     pub struct NeptuneSettings_ {
-        pub error_retry_duration: Option<i64>,
+        pub error_retry_duration: Option<i32>,
         pub iam_auth_enabled: Option<crate::value::ExpBool>,
-        pub max_file_size: Option<i64>,
-        pub max_retry_count: Option<i64>,
+        pub max_file_size: Option<i32>,
+        pub max_retry_count: Option<i32>,
         pub s3_bucket_folder: Option<crate::value::ExpString>,
         pub s3_bucket_name: Option<crate::value::ExpString>,
         pub service_access_role_arn: Option<crate::value::ExpString>,
@@ -1595,9 +1595,9 @@ pub mod endpoint {
     pub struct OracleSettings_ {
         pub access_alternate_directly: Option<crate::value::ExpBool>,
         pub add_supplemental_logging: Option<crate::value::ExpBool>,
-        pub additional_archived_log_dest_id: Option<i64>,
+        pub additional_archived_log_dest_id: Option<i32>,
         pub allow_select_nested_tables: Option<crate::value::ExpBool>,
-        pub archived_log_dest_id: Option<i64>,
+        pub archived_log_dest_id: Option<i32>,
         pub archived_logs_only: Option<crate::value::ExpBool>,
         pub asm_password: Option<crate::value::ExpString>,
         pub asm_server: Option<crate::value::ExpString>,
@@ -1606,15 +1606,15 @@ pub mod endpoint {
         pub direct_path_no_log: Option<crate::value::ExpBool>,
         pub direct_path_parallel_load: Option<crate::value::ExpBool>,
         pub enable_homogenous_tablespace: Option<crate::value::ExpBool>,
-        pub extra_archived_log_dest_ids: Option<Vec<i64>>,
+        pub extra_archived_log_dest_ids: Option<Vec<i32>>,
         pub fail_tasks_on_lob_truncation: Option<crate::value::ExpBool>,
-        pub number_datatype_scale: Option<i64>,
+        pub number_datatype_scale: Option<i32>,
         pub oracle_path_prefix: Option<crate::value::ExpString>,
-        pub parallel_asm_read_threads: Option<i64>,
-        pub read_ahead_blocks: Option<i64>,
+        pub parallel_asm_read_threads: Option<i32>,
+        pub read_ahead_blocks: Option<i32>,
         pub read_table_space_name: Option<crate::value::ExpBool>,
         pub replace_path_prefix: Option<crate::value::ExpBool>,
-        pub retry_interval: Option<i64>,
+        pub retry_interval: Option<i32>,
         pub secrets_manager_access_role_arn: Option<crate::value::ExpString>,
         pub secrets_manager_oracle_asm_access_role_arn: Option<crate::value::ExpString>,
         pub secrets_manager_oracle_asm_secret_id: Option<crate::value::ExpString>,
@@ -1622,7 +1622,7 @@ pub mod endpoint {
         pub security_db_encryption: Option<crate::value::ExpString>,
         pub security_db_encryption_name: Option<crate::value::ExpString>,
         pub spatial_data_option_to_geo_json_function_name: Option<crate::value::ExpString>,
-        pub standby_delay_time: Option<i64>,
+        pub standby_delay_time: Option<i32>,
         pub use_alternate_folder_for_online: Option<crate::value::ExpBool>,
         pub use_b_file: Option<crate::value::ExpBool>,
         pub use_direct_path_full_load: Option<crate::value::ExpBool>,
@@ -1861,13 +1861,13 @@ pub mod endpoint {
         pub capture_ddls: Option<crate::value::ExpBool>,
         pub database_mode: Option<crate::value::ExpString>,
         pub ddl_artifacts_schema: Option<crate::value::ExpString>,
-        pub execute_timeout: Option<i64>,
+        pub execute_timeout: Option<i32>,
         pub fail_tasks_on_lob_truncation: Option<crate::value::ExpBool>,
         pub heartbeat_enable: Option<crate::value::ExpBool>,
-        pub heartbeat_frequency: Option<i64>,
+        pub heartbeat_frequency: Option<i32>,
         pub heartbeat_schema: Option<crate::value::ExpString>,
         pub map_boolean_as_boolean: Option<crate::value::ExpBool>,
-        pub max_file_size: Option<i64>,
+        pub max_file_size: Option<i32>,
         pub plugin_name: Option<crate::value::ExpString>,
         pub secrets_manager_access_role_arn: Option<crate::value::ExpString>,
         pub secrets_manager_secret_id: Option<crate::value::ExpString>,
@@ -2056,15 +2056,15 @@ pub mod endpoint {
         pub bucket_name: Option<crate::value::ExpString>,
         pub case_sensitive_names: Option<crate::value::ExpBool>,
         pub comp_update: Option<crate::value::ExpBool>,
-        pub connection_timeout: Option<i64>,
+        pub connection_timeout: Option<i32>,
         pub date_format: Option<crate::value::ExpString>,
         pub empty_as_null: Option<crate::value::ExpBool>,
         pub encryption_mode: Option<crate::value::ExpString>,
         pub explicit_ids: Option<crate::value::ExpBool>,
-        pub file_transfer_upload_streams: Option<i64>,
-        pub load_timeout: Option<i64>,
+        pub file_transfer_upload_streams: Option<i32>,
+        pub load_timeout: Option<i32>,
         pub map_boolean_as_boolean: Option<crate::value::ExpBool>,
-        pub max_file_size: Option<i64>,
+        pub max_file_size: Option<i32>,
         pub remove_quotes: Option<crate::value::ExpBool>,
         pub replace_chars: Option<crate::value::ExpString>,
         pub replace_invalid_chars: Option<crate::value::ExpString>,
@@ -2075,7 +2075,7 @@ pub mod endpoint {
         pub time_format: Option<crate::value::ExpString>,
         pub trim_blanks: Option<crate::value::ExpBool>,
         pub truncate_columns: Option<crate::value::ExpBool>,
-        pub write_buffer_size: Option<i64>,
+        pub write_buffer_size: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2257,8 +2257,8 @@ pub mod endpoint {
         pub canned_acl_for_objects: Option<crate::value::ExpString>,
         pub cdc_inserts_and_updates: Option<crate::value::ExpBool>,
         pub cdc_inserts_only: Option<crate::value::ExpBool>,
-        pub cdc_max_batch_interval: Option<i64>,
-        pub cdc_min_file_size: Option<i64>,
+        pub cdc_max_batch_interval: Option<i32>,
+        pub cdc_min_file_size: Option<i32>,
         pub cdc_path: Option<crate::value::ExpString>,
         pub compression_type: Option<crate::value::ExpString>,
         pub csv_delimiter: Option<crate::value::ExpString>,
@@ -2266,26 +2266,26 @@ pub mod endpoint {
         pub csv_null_value: Option<crate::value::ExpString>,
         pub csv_row_delimiter: Option<crate::value::ExpString>,
         pub data_format: Option<crate::value::ExpString>,
-        pub data_page_size: Option<i64>,
+        pub data_page_size: Option<i32>,
         pub date_partition_delimiter: Option<crate::value::ExpString>,
         pub date_partition_enabled: Option<crate::value::ExpBool>,
         pub date_partition_sequence: Option<crate::value::ExpString>,
         pub date_partition_timezone: Option<crate::value::ExpString>,
-        pub dict_page_size_limit: Option<i64>,
+        pub dict_page_size_limit: Option<i32>,
         pub enable_statistics: Option<crate::value::ExpBool>,
         pub encoding_type: Option<crate::value::ExpString>,
         pub encryption_mode: Option<crate::value::ExpString>,
         pub expected_bucket_owner: Option<crate::value::ExpString>,
         pub external_table_definition: Option<crate::value::ExpString>,
         pub glue_catalog_generation: Option<crate::value::ExpBool>,
-        pub ignore_header_rows: Option<i64>,
+        pub ignore_header_rows: Option<i32>,
         pub include_op_for_full_load: Option<crate::value::ExpBool>,
-        pub max_file_size: Option<i64>,
+        pub max_file_size: Option<i32>,
         pub parquet_timestamp_in_millisecond: Option<crate::value::ExpBool>,
         pub parquet_version: Option<crate::value::ExpString>,
         pub preserve_transactions: Option<crate::value::ExpBool>,
         pub rfc4180: Option<crate::value::ExpBool>,
-        pub row_group_length: Option<i64>,
+        pub row_group_length: Option<i32>,
         pub server_side_encryption_kms_key_id: Option<crate::value::ExpString>,
         pub service_access_role_arn: Option<crate::value::ExpString>,
         pub timestamp_column_name: Option<crate::value::ExpString>,
@@ -2679,8 +2679,8 @@ pub mod replicationconfig {
         pub availability_zone: Option<crate::value::ExpString>,
         pub dns_name_servers: Option<crate::value::ExpString>,
         pub kms_key_id: Option<crate::value::ExpString>,
-        pub max_capacity_units: i64,
-        pub min_capacity_units: Option<i64>,
+        pub max_capacity_units: i32,
+        pub min_capacity_units: Option<i32>,
         pub multi_az: Option<crate::value::ExpBool>,
         pub preferred_maintenance_window: Option<crate::value::ExpString>,
         pub replication_subnet_group_id: Option<crate::value::ExpString>,
@@ -2966,7 +2966,7 @@ pub struct Endpoint_ {
     pub neptune_settings: Option<super::dms::endpoint::NeptuneSettings_>,
     pub oracle_settings: Option<super::dms::endpoint::OracleSettings_>,
     pub password: Option<crate::value::ExpString>,
-    pub port: Option<i64>,
+    pub port: Option<i32>,
     pub postgre_sql_settings: Option<super::dms::endpoint::PostgreSqlSettings_>,
     pub redis_settings: Option<super::dms::endpoint::RedisSettings_>,
     pub redshift_settings: Option<super::dms::endpoint::RedshiftSettings_>,
@@ -3526,7 +3526,7 @@ impl crate::template::ToResource for ReplicationConfig_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html
 pub struct ReplicationInstance_ {
-    pub allocated_storage: Option<i64>,
+    pub allocated_storage: Option<i32>,
     pub allow_major_version_upgrade: Option<crate::value::ExpBool>,
     pub auto_minor_version_upgrade: Option<crate::value::ExpBool>,
     pub availability_zone: Option<crate::value::ExpString>,

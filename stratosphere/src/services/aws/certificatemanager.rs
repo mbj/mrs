@@ -1,7 +1,7 @@
 pub mod account {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-certificatemanager-account-expiryeventsconfiguration.html
     pub struct ExpiryEventsConfiguration_ {
-        pub days_before_expiry: Option<i64>,
+        pub days_before_expiry: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

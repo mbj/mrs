@@ -27,7 +27,7 @@ pub mod application {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-autostopconfiguration.html
     pub struct AutoStopConfiguration_ {
         pub enabled: Option<crate::value::ExpBool>,
-        pub idle_timeout_minutes: Option<i64>,
+        pub idle_timeout_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -199,7 +199,7 @@ pub mod application {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-initialcapacityconfig.html
     pub struct InitialCapacityConfig_ {
         pub worker_configuration: Box<WorkerConfiguration_>,
-        pub worker_count: i64,
+        pub worker_count: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -511,8 +511,8 @@ pub mod application {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-schedulerconfiguration.html
     pub struct SchedulerConfiguration_ {
-        pub max_concurrent_runs: Option<i64>,
-        pub queue_timeout_minutes: Option<i64>,
+        pub max_concurrent_runs: Option<i32>,
+        pub queue_timeout_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

@@ -338,7 +338,7 @@ pub mod budget {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-historicaloptions.html
     pub struct HistoricalOptions_ {
-        pub budget_adjustment_period: i64,
+        pub budget_adjustment_period: i32,
     }
     #[doc(hidden)]
     #[macro_export]

@@ -155,7 +155,7 @@ pub mod inferencescheduler {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lookoutequipment-inferencescheduler.html
 pub struct InferenceScheduler_ {
-    pub data_delay_offset_in_minutes: Option<i64>,
+    pub data_delay_offset_in_minutes: Option<i32>,
     pub data_input_configuration:
         super::lookoutequipment::inferencescheduler::DataInputConfiguration_,
     pub data_output_configuration:

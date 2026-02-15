@@ -31,7 +31,7 @@ pub mod dbcluster {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html
 pub struct DBCluster_ {
     pub availability_zones: Option<Vec<crate::value::ExpString>>,
-    pub backup_retention_period: Option<i64>,
+    pub backup_retention_period: Option<i32>,
     pub copy_tags_to_snapshot: Option<crate::value::ExpBool>,
     pub db_cluster_identifier: Option<crate::value::ExpString>,
     pub db_cluster_parameter_group_name: Option<crate::value::ExpString>,
@@ -46,7 +46,7 @@ pub struct DBCluster_ {
     pub master_user_secret_kms_key_id: Option<crate::value::ExpString>,
     pub master_username: Option<crate::value::ExpString>,
     pub network_type: Option<crate::value::ExpString>,
-    pub port: Option<i64>,
+    pub port: Option<i32>,
     pub preferred_backup_window: Option<crate::value::ExpString>,
     pub preferred_maintenance_window: Option<crate::value::ExpString>,
     pub restore_to_time: Option<crate::value::ExpString>,

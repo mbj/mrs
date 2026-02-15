@@ -90,8 +90,8 @@ pub mod gatewayroute {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayrouterangematch.html
     pub struct GatewayRouteRangeMatch_ {
-        pub end: i64,
-        pub start: i64,
+        pub end: i32,
+        pub start: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -121,7 +121,7 @@ pub mod gatewayroute {
         pub grpc_route: Option<Box<GrpcGatewayRoute_>>,
         pub http2_route: Option<Box<HttpGatewayRoute_>>,
         pub http_route: Option<Box<HttpGatewayRoute_>>,
-        pub priority: Option<i64>,
+        pub priority: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -164,7 +164,7 @@ pub mod gatewayroute {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayroutetarget.html
     pub struct GatewayRouteTarget_ {
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub virtual_service: Box<GatewayRouteVirtualService_>,
     }
     #[doc(hidden)]
@@ -274,7 +274,7 @@ pub mod gatewayroute {
     pub struct GrpcGatewayRouteMatch_ {
         pub hostname: Option<Box<GatewayRouteHostnameMatch_>>,
         pub metadata: Option<Vec<GrpcGatewayRouteMetadata_>>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub service_name: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -502,7 +502,7 @@ pub mod gatewayroute {
         pub hostname: Option<Box<GatewayRouteHostnameMatch_>>,
         pub method: Option<crate::value::ExpString>,
         pub path: Option<Box<HttpPathMatch_>>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub prefix: Option<crate::value::ExpString>,
         pub query_parameters: Option<Vec<QueryParameter_>>,
     }
@@ -797,7 +797,7 @@ pub mod route {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-duration.html
     pub struct Duration_ {
         pub unit: crate::value::ExpString,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -826,7 +826,7 @@ pub mod route {
     pub struct GrpcRetryPolicy_ {
         pub grpc_retry_events: Option<Vec<crate::value::ExpString>>,
         pub http_retry_events: Option<Vec<crate::value::ExpString>>,
-        pub max_retries: i64,
+        pub max_retries: i32,
         pub per_retry_timeout: Box<Duration_>,
         pub tcp_retry_events: Option<Vec<crate::value::ExpString>>,
     }
@@ -940,7 +940,7 @@ pub mod route {
     pub struct GrpcRouteMatch_ {
         pub metadata: Option<Vec<GrpcRouteMetadata_>>,
         pub method_name: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub service_name: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1166,7 +1166,7 @@ pub mod route {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-httpretrypolicy.html
     pub struct HttpRetryPolicy_ {
         pub http_retry_events: Option<Vec<crate::value::ExpString>>,
-        pub max_retries: i64,
+        pub max_retries: i32,
         pub per_retry_timeout: Box<Duration_>,
         pub tcp_retry_events: Option<Vec<crate::value::ExpString>>,
     }
@@ -1306,7 +1306,7 @@ pub mod route {
         pub headers: Option<Vec<HttpRouteHeader_>>,
         pub method: Option<crate::value::ExpString>,
         pub path: Option<Box<HttpPathMatch_>>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub prefix: Option<crate::value::ExpString>,
         pub query_parameters: Option<Vec<QueryParameter_>>,
         pub scheme: Option<crate::value::ExpString>,
@@ -1384,8 +1384,8 @@ pub mod route {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-matchrange.html
     pub struct MatchRange_ {
-        pub end: i64,
-        pub start: i64,
+        pub end: i32,
+        pub start: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1442,7 +1442,7 @@ pub mod route {
         pub grpc_route: Option<Box<GrpcRoute_>>,
         pub http2_route: Option<Box<HttpRoute_>>,
         pub http_route: Option<Box<HttpRoute_>>,
-        pub priority: Option<i64>,
+        pub priority: Option<i32>,
         pub tcp_route: Option<Box<TcpRoute_>>,
     }
     #[doc(hidden)]
@@ -1549,7 +1549,7 @@ pub mod route {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-tcproutematch.html
     pub struct TcpRouteMatch_ {
-        pub port: Option<i64>,
+        pub port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1593,9 +1593,9 @@ pub mod route {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-route-weightedtarget.html
     pub struct WeightedTarget_ {
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub virtual_node: crate::value::ExpString,
-        pub weight: i64,
+        pub weight: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1797,7 +1797,7 @@ pub mod virtualgateway {
     pub struct VirtualGatewayClientPolicyTls_ {
         pub certificate: Option<Box<VirtualGatewayClientTlsCertificate_>>,
         pub enforce: Option<crate::value::ExpBool>,
-        pub ports: Option<Vec<i64>>,
+        pub ports: Option<Vec<i32>>,
         pub validation: Box<VirtualGatewayTlsValidationContext_>,
     }
     #[doc(hidden)]
@@ -1919,7 +1919,7 @@ pub mod virtualgateway {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewaygrpcconnectionpool.html
     pub struct VirtualGatewayGrpcConnectionPool_ {
-        pub max_requests: i64,
+        pub max_requests: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1942,13 +1942,13 @@ pub mod virtualgateway {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayhealthcheckpolicy.html
     pub struct VirtualGatewayHealthCheckPolicy_ {
-        pub healthy_threshold: i64,
-        pub interval_millis: i64,
+        pub healthy_threshold: i32,
+        pub interval_millis: i32,
         pub path: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub protocol: crate::value::ExpString,
-        pub timeout_millis: i64,
-        pub unhealthy_threshold: i64,
+        pub timeout_millis: i32,
+        pub unhealthy_threshold: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1993,7 +1993,7 @@ pub mod virtualgateway {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayhttp2connectionpool.html
     pub struct VirtualGatewayHttp2ConnectionPool_ {
-        pub max_requests: i64,
+        pub max_requests: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2016,8 +2016,8 @@ pub mod virtualgateway {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayhttpconnectionpool.html
     pub struct VirtualGatewayHttpConnectionPool_ {
-        pub max_connections: i64,
-        pub max_pending_requests: Option<i64>,
+        pub max_connections: i32,
+        pub max_pending_requests: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2307,7 +2307,7 @@ pub mod virtualgateway {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualgateway-virtualgatewayportmapping.html
     pub struct VirtualGatewayPortMapping_ {
-        pub port: i64,
+        pub port: i32,
         pub protocol: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -2669,7 +2669,7 @@ pub mod virtualnode {
     pub struct ClientPolicyTls_ {
         pub certificate: Option<Box<ClientTlsCertificate_>>,
         pub enforce: Option<crate::value::ExpBool>,
-        pub ports: Option<Vec<i64>>,
+        pub ports: Option<Vec<i32>>,
         pub validation: Box<TlsValidationContext_>,
     }
     #[doc(hidden)]
@@ -2772,7 +2772,7 @@ pub mod virtualnode {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-duration.html
     pub struct Duration_ {
         pub unit: crate::value::ExpString,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2855,13 +2855,13 @@ pub mod virtualnode {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-healthcheck.html
     pub struct HealthCheck_ {
-        pub healthy_threshold: i64,
-        pub interval_millis: i64,
+        pub healthy_threshold: i32,
+        pub interval_millis: i32,
         pub path: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub protocol: crate::value::ExpString,
-        pub timeout_millis: i64,
-        pub unhealthy_threshold: i64,
+        pub timeout_millis: i32,
+        pub unhealthy_threshold: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3300,8 +3300,8 @@ pub mod virtualnode {
     pub struct OutlierDetection_ {
         pub base_ejection_duration: Box<Duration_>,
         pub interval: Box<Duration_>,
-        pub max_ejection_percent: i64,
-        pub max_server_errors: i64,
+        pub max_ejection_percent: i32,
+        pub max_server_errors: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3336,7 +3336,7 @@ pub mod virtualnode {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-portmapping.html
     pub struct PortMapping_ {
-        pub port: i64,
+        pub port: i32,
         pub protocol: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -3623,7 +3623,7 @@ pub mod virtualnode {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodegrpcconnectionpool.html
     pub struct VirtualNodeGrpcConnectionPool_ {
-        pub max_requests: i64,
+        pub max_requests: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3646,7 +3646,7 @@ pub mod virtualnode {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodehttp2connectionpool.html
     pub struct VirtualNodeHttp2ConnectionPool_ {
-        pub max_requests: i64,
+        pub max_requests: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3669,8 +3669,8 @@ pub mod virtualnode {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodehttpconnectionpool.html
     pub struct VirtualNodeHttpConnectionPool_ {
-        pub max_connections: i64,
-        pub max_pending_requests: Option<i64>,
+        pub max_connections: i32,
+        pub max_pending_requests: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3752,7 +3752,7 @@ pub mod virtualnode {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualnode-virtualnodetcpconnectionpool.html
     pub struct VirtualNodeTcpConnectionPool_ {
-        pub max_connections: i64,
+        pub max_connections: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3807,7 +3807,7 @@ pub mod virtualnode {
 pub mod virtualrouter {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-virtualrouter-portmapping.html
     pub struct PortMapping_ {
-        pub port: i64,
+        pub port: i32,
         pub protocol: crate::value::ExpString,
     }
     #[doc(hidden)]

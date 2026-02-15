@@ -30,7 +30,7 @@ pub mod rule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rbin-rule-retentionperiod.html
     pub struct RetentionPeriod_ {
         pub retention_period_unit: crate::value::ExpString,
-        pub retention_period_value: i64,
+        pub retention_period_value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -58,7 +58,7 @@ pub mod rule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rbin-rule-unlockdelay.html
     pub struct UnlockDelay_ {
         pub unlock_delay_unit: Option<crate::value::ExpString>,
-        pub unlock_delay_value: Option<i64>,
+        pub unlock_delay_value: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

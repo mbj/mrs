@@ -62,16 +62,16 @@ pub mod healthcheck {
         pub alarm_identifier: Option<Box<AlarmIdentifier_>>,
         pub child_health_checks: Option<Vec<crate::value::ExpString>>,
         pub enable_sni: Option<crate::value::ExpBool>,
-        pub failure_threshold: Option<i64>,
+        pub failure_threshold: Option<i32>,
         pub fully_qualified_domain_name: Option<crate::value::ExpString>,
-        pub health_threshold: Option<i64>,
+        pub health_threshold: Option<i32>,
         pub ip_address: Option<crate::value::ExpString>,
         pub insufficient_data_health_status: Option<crate::value::ExpString>,
         pub inverted: Option<crate::value::ExpBool>,
         pub measure_latency: Option<crate::value::ExpBool>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub regions: Option<Vec<crate::value::ExpString>>,
-        pub request_interval: Option<i64>,
+        pub request_interval: Option<i32>,
         pub resource_path: Option<crate::value::ExpString>,
         pub routing_control_arn: Option<crate::value::ExpString>,
         pub search_string: Option<crate::value::ExpString>,
@@ -458,7 +458,7 @@ pub mod recordset {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-geoproximitylocation.html
     pub struct GeoProximityLocation_ {
         pub aws_region: Option<crate::value::ExpString>,
-        pub bias: Option<i64>,
+        pub bias: Option<i32>,
         pub coordinates: Option<Box<Coordinates_>>,
         pub local_zone_group: Option<crate::value::ExpString>,
     }
@@ -633,7 +633,7 @@ pub mod recordsetgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-geoproximitylocation.html
     pub struct GeoProximityLocation_ {
         pub aws_region: Option<crate::value::ExpString>,
-        pub bias: Option<i64>,
+        pub bias: Option<i32>,
         pub coordinates: Option<Box<Coordinates_>>,
         pub local_zone_group: Option<crate::value::ExpString>,
     }
@@ -690,7 +690,7 @@ pub mod recordsetgroup {
         pub set_identifier: Option<crate::value::ExpString>,
         pub ttl: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1017,7 +1017,7 @@ pub struct RecordSet_ {
     pub set_identifier: Option<crate::value::ExpString>,
     pub ttl: Option<crate::value::ExpString>,
     pub r#type: crate::value::ExpString,
-    pub weight: Option<i64>,
+    pub weight: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]

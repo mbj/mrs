@@ -2,7 +2,7 @@ pub mod index {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-index.html
     pub struct Index_ {
         pub knn: Option<crate::value::ExpBool>,
-        pub knn_algo_param_ef_search: Option<i64>,
+        pub knn_algo_param_ef_search: Option<i32>,
         pub refresh_interval: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -125,8 +125,8 @@ pub mod index {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-parameters.html
     pub struct Parameters_ {
-        pub ef_construction: Option<i64>,
-        pub m: Option<i64>,
+        pub ef_construction: Option<i32>,
+        pub m: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -154,7 +154,7 @@ pub mod index {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-propertymapping.html
     pub struct PropertyMapping_ {
-        pub dimension: Option<i64>,
+        pub dimension: Option<i32>,
         pub index: Option<crate::value::ExpBool>,
         pub method: Option<Box<Method_>>,
         pub properties: Option<std::collections::BTreeMap<String, PropertyMapping_>>,
@@ -298,7 +298,7 @@ pub mod securityconfig {
         pub group_attribute: Option<crate::value::ExpString>,
         pub metadata: crate::value::ExpString,
         pub open_search_serverless_entity_id: Option<crate::value::ExpString>,
-        pub session_timeout: Option<i64>,
+        pub session_timeout: Option<i32>,
         pub user_attribute: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]

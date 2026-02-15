@@ -3,7 +3,7 @@ pub mod organizationtelemetryrule {
     pub struct TelemetryDestinationConfiguration_ {
         pub destination_pattern: Option<crate::value::ExpString>,
         pub destination_type: Option<crate::value::ExpString>,
-        pub retention_in_days: Option<i64>,
+        pub retention_in_days: Option<i32>,
         pub vpc_flow_log_parameters: Option<Box<VPCFlowLogParameters_>>,
     }
     #[doc(hidden)]
@@ -94,7 +94,7 @@ pub mod organizationtelemetryrule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-organizationtelemetryrule-vpcflowlogparameters.html
     pub struct VPCFlowLogParameters_ {
         pub log_format: Option<crate::value::ExpString>,
-        pub max_aggregation_interval: Option<i64>,
+        pub max_aggregation_interval: Option<i32>,
         pub traffic_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -136,7 +136,7 @@ pub mod telemetryrule {
     pub struct TelemetryDestinationConfiguration_ {
         pub destination_pattern: Option<crate::value::ExpString>,
         pub destination_type: Option<crate::value::ExpString>,
-        pub retention_in_days: Option<i64>,
+        pub retention_in_days: Option<i32>,
         pub vpc_flow_log_parameters: Option<Box<VPCFlowLogParameters_>>,
     }
     #[doc(hidden)]
@@ -223,7 +223,7 @@ pub mod telemetryrule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-observabilityadmin-telemetryrule-vpcflowlogparameters.html
     pub struct VPCFlowLogParameters_ {
         pub log_format: Option<crate::value::ExpString>,
-        pub max_aggregation_interval: Option<i64>,
+        pub max_aggregation_interval: Option<i32>,
         pub traffic_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]

@@ -165,7 +165,7 @@ pub mod canary {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-retryconfig.html
     pub struct RetryConfig_ {
-        pub max_retries: i64,
+        pub max_retries: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -191,9 +191,9 @@ pub mod canary {
         pub active_tracing: Option<crate::value::ExpBool>,
         pub environment_variables:
             Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
-        pub ephemeral_storage: Option<i64>,
-        pub memory_in_mb: Option<i64>,
-        pub timeout_in_seconds: Option<i64>,
+        pub ephemeral_storage: Option<i32>,
+        pub memory_in_mb: Option<i32>,
+        pub timeout_in_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -394,7 +394,7 @@ pub struct Canary_ {
     pub code: super::synthetics::canary::Code_,
     pub dry_run_and_update: Option<crate::value::ExpBool>,
     pub execution_role_arn: crate::value::ExpString,
-    pub failure_retention_period: Option<i64>,
+    pub failure_retention_period: Option<i32>,
     pub name: crate::value::ExpString,
     pub provisioned_resource_cleanup: Option<crate::value::ExpString>,
     pub resources_to_replicate_tags: Option<Vec<crate::value::ExpString>>,
@@ -402,7 +402,7 @@ pub struct Canary_ {
     pub runtime_version: crate::value::ExpString,
     pub schedule: super::synthetics::canary::Schedule_,
     pub start_canary_after_creation: Option<crate::value::ExpBool>,
-    pub success_retention_period: Option<i64>,
+    pub success_retention_period: Option<i32>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub vpc_config: Option<super::synthetics::canary::VPCConfig_>,
     pub visual_references: Option<Vec<super::synthetics::canary::VisualReference_>>,

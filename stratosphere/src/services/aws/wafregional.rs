@@ -236,7 +236,7 @@ pub mod sizeconstraintset {
     pub struct SizeConstraint_ {
         pub comparison_operator: crate::value::ExpString,
         pub field_to_match: Box<FieldToMatch_>,
-        pub size: i64,
+        pub size: i32,
         pub text_transformation: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -355,7 +355,7 @@ pub mod webacl {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-webacl-rule.html
     pub struct Rule_ {
         pub action: Box<Action_>,
-        pub priority: i64,
+        pub priority: i32,
         pub rule_id: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -563,7 +563,7 @@ pub struct RateBasedRule_ {
     pub metric_name: crate::value::ExpString,
     pub name: crate::value::ExpString,
     pub rate_key: crate::value::ExpString,
-    pub rate_limit: i64,
+    pub rate_limit: i32,
 }
 #[doc(hidden)]
 #[macro_export]

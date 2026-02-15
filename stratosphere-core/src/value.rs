@@ -643,6 +643,12 @@ impl<A: ToValue> ToValue for Vec<A> {
     }
 }
 
+impl ToValue for i32 {
+    fn to_value(&self) -> serde_json::Value {
+        serde_json::to_value(self).unwrap()
+    }
+}
+
 impl ToValue for i64 {
     fn to_value(&self) -> serde_json::Value {
         serde_json::to_value(self).unwrap()

@@ -207,7 +207,7 @@ pub mod api {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-api-lambdaauthorizerconfig.html
     pub struct LambdaAuthorizerConfig_ {
-        pub authorizer_result_ttl_in_seconds: Option<i64>,
+        pub authorizer_result_ttl_in_seconds: Option<i32>,
         pub authorizer_uri: crate::value::ExpString,
         pub identity_validation_expression: Option<crate::value::ExpString>,
     }
@@ -1769,7 +1769,7 @@ pub struct FunctionConfiguration_ {
     pub data_source_name: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
     pub function_version: Option<crate::value::ExpString>,
-    pub max_batch_size: Option<i64>,
+    pub max_batch_size: Option<i32>,
     pub name: crate::value::ExpString,
     pub request_mapping_template: Option<crate::value::ExpString>,
     pub request_mapping_template_s3_location: Option<crate::value::ExpString>,
@@ -1891,8 +1891,8 @@ pub struct GraphQLApi_ {
     pub name: crate::value::ExpString,
     pub open_id_connect_config: Option<super::appsync::graphqlapi::OpenIDConnectConfig_>,
     pub owner_contact: Option<crate::value::ExpString>,
-    pub query_depth_limit: Option<i64>,
-    pub resolver_count_limit: Option<i64>,
+    pub query_depth_limit: Option<i32>,
+    pub resolver_count_limit: Option<i32>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub user_pool_config: Option<super::appsync::graphqlapi::UserPoolConfig_>,
     pub visibility: Option<crate::value::ExpString>,
@@ -2076,7 +2076,7 @@ pub struct Resolver_ {
     pub data_source_name: Option<crate::value::ExpString>,
     pub field_name: crate::value::ExpString,
     pub kind: Option<crate::value::ExpString>,
-    pub max_batch_size: Option<i64>,
+    pub max_batch_size: Option<i32>,
     pub metrics_config: Option<crate::value::ExpString>,
     pub pipeline_config: Option<super::appsync::resolver::PipelineConfig_>,
     pub request_mapping_template: Option<crate::value::ExpString>,

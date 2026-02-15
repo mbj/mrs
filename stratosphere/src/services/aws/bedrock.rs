@@ -2268,8 +2268,8 @@ pub mod datasource {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-fixedsizechunkingconfiguration.html
     pub struct FixedSizeChunkingConfiguration_ {
-        pub max_tokens: i64,
-        pub overlap_percentage: i64,
+        pub max_tokens: i32,
+        pub overlap_percentage: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2297,7 +2297,7 @@ pub mod datasource {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-hierarchicalchunkingconfiguration.html
     pub struct HierarchicalChunkingConfiguration_ {
         pub level_configurations: Vec<HierarchicalChunkingLevelConfiguration_>,
-        pub overlap_tokens: i64,
+        pub overlap_tokens: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2324,7 +2324,7 @@ pub mod datasource {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-hierarchicalchunkinglevelconfiguration.html
     pub struct HierarchicalChunkingLevelConfiguration_ {
-        pub max_tokens: i64,
+        pub max_tokens: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2662,9 +2662,9 @@ pub mod datasource {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-semanticchunkingconfiguration.html
     pub struct SemanticChunkingConfiguration_ {
-        pub breakpoint_percentile_threshold: i64,
-        pub buffer_size: i64,
-        pub max_tokens: i64,
+        pub breakpoint_percentile_threshold: i32,
+        pub buffer_size: i32,
+        pub max_tokens: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3025,8 +3025,8 @@ pub mod datasource {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-datasource-webcrawlerlimits.html
     pub struct WebCrawlerLimits_ {
-        pub max_pages: Option<i64>,
-        pub rate_limit: Option<i64>,
+        pub max_pages: Option<i32>,
+        pub rate_limit: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -6664,7 +6664,7 @@ pub mod intelligentpromptrouter {
 pub mod knowledgebase {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-bedrockembeddingmodelconfiguration.html
     pub struct BedrockEmbeddingModelConfiguration_ {
-        pub dimensions: Option<i64>,
+        pub dimensions: Option<i32>,
         pub embedding_data_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -7208,7 +7208,7 @@ pub mod knowledgebase {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-bedrock-knowledgebase-querygenerationconfiguration.html
     pub struct QueryGenerationConfiguration_ {
-        pub execution_timeout_seconds: Option<i64>,
+        pub execution_timeout_seconds: Option<i32>,
         pub generation_context: Option<Box<QueryGenerationContext_>>,
     }
     #[doc(hidden)]

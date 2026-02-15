@@ -256,7 +256,7 @@ pub mod rulegroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-asnmatchstatement.html
     pub struct AsnMatchStatement_ {
-        pub asn_list: Option<Vec<i64>>,
+        pub asn_list: Option<Vec<i32>>,
         pub forwarded_ip_config: Option<Box<ForwardedIPConfiguration_>>,
     }
     #[doc(hidden)]
@@ -631,7 +631,7 @@ pub mod rulegroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-customresponse.html
     pub struct CustomResponse_ {
         pub custom_response_body_key: Option<crate::value::ExpString>,
-        pub response_code: i64,
+        pub response_code: i32,
         pub response_headers: Option<Vec<CustomHTTPHeader_>>,
     }
     #[doc(hidden)]
@@ -990,7 +990,7 @@ pub mod rulegroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-immunitytimeproperty.html
     pub struct ImmunityTimeProperty_ {
-        pub immunity_time: i64,
+        pub immunity_time: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1251,9 +1251,9 @@ pub mod rulegroup {
     pub struct RateBasedStatement_ {
         pub aggregate_key_type: crate::value::ExpString,
         pub custom_keys: Option<Vec<RateBasedStatementCustomKey_>>,
-        pub evaluation_window_sec: Option<i64>,
+        pub evaluation_window_sec: Option<i32>,
         pub forwarded_ip_config: Option<Box<ForwardedIPConfiguration_>>,
-        pub limit: i64,
+        pub limit: i32,
         pub scope_down_statement: Option<Box<Statement_>>,
     }
     #[doc(hidden)]
@@ -1664,7 +1664,7 @@ pub mod rulegroup {
         pub captcha_config: Option<Box<CaptchaConfig_>>,
         pub challenge_config: Option<Box<ChallengeConfig_>>,
         pub name: crate::value::ExpString,
-        pub priority: i64,
+        pub priority: i32,
         pub rule_labels: Option<Vec<Label_>>,
         pub statement: Box<Statement_>,
         pub visibility_config: Box<VisibilityConfig_>,
@@ -2002,7 +2002,7 @@ pub mod rulegroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-texttransformation.html
     pub struct TextTransformation_ {
-        pub priority: i64,
+        pub priority: i32,
         pub r#type: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -2317,7 +2317,7 @@ pub mod webacl {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-asnmatchstatement.html
     pub struct AsnMatchStatement_ {
-        pub asn_list: Option<Vec<i64>>,
+        pub asn_list: Option<Vec<i32>>,
         pub forwarded_ip_config: Option<Box<ForwardedIPConfiguration_>>,
     }
     #[doc(hidden)]
@@ -2778,7 +2778,7 @@ pub mod webacl {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-customresponse.html
     pub struct CustomResponse_ {
         pub custom_response_body_key: Option<crate::value::ExpString>,
-        pub response_code: i64,
+        pub response_code: i32,
         pub response_headers: Option<Vec<CustomHTTPHeader_>>,
     }
     #[doc(hidden)]
@@ -3304,7 +3304,7 @@ pub mod webacl {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-immunitytimeproperty.html
     pub struct ImmunityTimeProperty_ {
-        pub immunity_time: i64,
+        pub immunity_time: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3729,9 +3729,9 @@ pub mod webacl {
     pub struct RateBasedStatement_ {
         pub aggregate_key_type: crate::value::ExpString,
         pub custom_keys: Option<Vec<RateBasedStatementCustomKey_>>,
-        pub evaluation_window_sec: Option<i64>,
+        pub evaluation_window_sec: Option<i32>,
         pub forwarded_ip_config: Option<Box<ForwardedIPConfiguration_>>,
-        pub limit: i64,
+        pub limit: i32,
         pub scope_down_statement: Option<Box<Statement_>>,
     }
     #[doc(hidden)]
@@ -4411,8 +4411,8 @@ pub mod webacl {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-responseinspectionstatuscode.html
     pub struct ResponseInspectionStatusCode_ {
-        pub failure_codes: Vec<i64>,
-        pub success_codes: Vec<i64>,
+        pub failure_codes: Vec<i32>,
+        pub success_codes: Vec<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4444,7 +4444,7 @@ pub mod webacl {
         pub challenge_config: Option<Box<ChallengeConfig_>>,
         pub name: crate::value::ExpString,
         pub override_action: Option<Box<OverrideAction_>>,
-        pub priority: i64,
+        pub priority: i32,
         pub rule_labels: Option<Vec<Label_>>,
         pub statement: Box<Statement_>,
         pub visibility_config: Box<VisibilityConfig_>,
@@ -4867,7 +4867,7 @@ pub mod webacl {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-texttransformation.html
     pub struct TextTransformation_ {
-        pub priority: i64,
+        pub priority: i32,
         pub r#type: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -5140,7 +5140,7 @@ impl crate::template::ToResource for RegexPatternSet_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-rulegroup.html
 pub struct RuleGroup_ {
     pub available_labels: Option<Vec<super::wafv2::rulegroup::LabelSummary_>>,
-    pub capacity: i64,
+    pub capacity: i32,
     pub consumed_labels: Option<Vec<super::wafv2::rulegroup::LabelSummary_>>,
     pub custom_response_bodies:
         Option<std::collections::BTreeMap<String, super::wafv2::rulegroup::CustomResponseBody_>>,

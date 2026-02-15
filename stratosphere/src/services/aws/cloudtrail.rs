@@ -32,7 +32,7 @@ pub mod dashboard {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-dashboard-frequency.html
     pub struct Frequency_ {
         pub unit: crate::value::ExpString,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -580,7 +580,7 @@ pub struct EventDataStore_ {
     pub multi_region_enabled: Option<crate::value::ExpBool>,
     pub name: Option<crate::value::ExpString>,
     pub organization_enabled: Option<crate::value::ExpBool>,
-    pub retention_period: Option<i64>,
+    pub retention_period: Option<i32>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub termination_protection_enabled: Option<crate::value::ExpBool>,
 }

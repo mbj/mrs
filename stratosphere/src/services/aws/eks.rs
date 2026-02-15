@@ -909,9 +909,9 @@ pub mod nodegroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-scalingconfig.html
     pub struct ScalingConfig_ {
-        pub desired_size: Option<i64>,
-        pub max_size: Option<i64>,
-        pub min_size: Option<i64>,
+        pub desired_size: Option<i32>,
+        pub max_size: Option<i32>,
+        pub min_size: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1424,7 +1424,7 @@ pub struct Nodegroup_ {
     pub ami_type: Option<crate::value::ExpString>,
     pub capacity_type: Option<crate::value::ExpString>,
     pub cluster_name: crate::value::ExpString,
-    pub disk_size: Option<i64>,
+    pub disk_size: Option<i32>,
     pub force_update_enabled: Option<crate::value::ExpBool>,
     pub instance_types: Option<Vec<crate::value::ExpString>>,
     pub labels: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,

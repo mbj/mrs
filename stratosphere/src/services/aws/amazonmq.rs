@@ -2,7 +2,7 @@ pub mod broker {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-configurationid.html
     pub struct ConfigurationId_ {
         pub id: crate::value::ExpString,
-        pub revision: i64,
+        pub revision: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -306,7 +306,7 @@ pub mod configurationassociation {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-configurationassociation-configurationid.html
     pub struct ConfigurationId_ {
         pub id: crate::value::ExpString,
-        pub revision: i64,
+        pub revision: i32,
     }
     #[doc(hidden)]
     #[macro_export]

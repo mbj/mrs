@@ -25,7 +25,7 @@ pub mod accesspoint {
 pub mod bucket {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-abortincompletemultipartupload.html
     pub struct AbortIncompleteMultipartUpload_ {
-        pub days_after_initiation: i64,
+        pub days_after_initiation: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -161,7 +161,7 @@ pub mod bucket {
     pub struct Rule_ {
         pub abort_incomplete_multipart_upload: Option<Box<AbortIncompleteMultipartUpload_>>,
         pub expiration_date: Option<crate::value::ExpString>,
-        pub expiration_in_days: Option<i64>,
+        pub expiration_in_days: Option<i32>,
         pub filter: Option<Box<Filter_>>,
         pub id: Option<crate::value::ExpString>,
         pub status: crate::value::ExpString,

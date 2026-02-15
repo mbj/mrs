@@ -330,7 +330,7 @@ pub mod anomalydetector {
         pub metric_set_frequency: Option<crate::value::ExpString>,
         pub metric_set_name: crate::value::ExpString,
         pub metric_source: Box<MetricSource_>,
-        pub offset: Option<i64>,
+        pub offset: Option<i32>,
         pub timestamp_column: Option<Box<TimestampColumn_>>,
         pub timezone: Option<crate::value::ExpString>,
     }
@@ -452,7 +452,7 @@ pub mod anomalydetector {
         pub db_instance_identifier: crate::value::ExpString,
         pub database_host: crate::value::ExpString,
         pub database_name: crate::value::ExpString,
-        pub database_port: i64,
+        pub database_port: i32,
         pub role_arn: crate::value::ExpString,
         pub secret_manager_arn: crate::value::ExpString,
         pub table_name: crate::value::ExpString,
@@ -510,7 +510,7 @@ pub mod anomalydetector {
         pub cluster_identifier: crate::value::ExpString,
         pub database_host: crate::value::ExpString,
         pub database_name: crate::value::ExpString,
-        pub database_port: i64,
+        pub database_port: i32,
         pub role_arn: crate::value::ExpString,
         pub secret_manager_arn: crate::value::ExpString,
         pub table_name: crate::value::ExpString,
@@ -671,7 +671,7 @@ pub struct Alert_ {
     pub action: super::lookoutmetrics::alert::Action_,
     pub alert_description: Option<crate::value::ExpString>,
     pub alert_name: Option<crate::value::ExpString>,
-    pub alert_sensitivity_threshold: i64,
+    pub alert_sensitivity_threshold: i32,
     pub anomaly_detector_arn: crate::value::ExpString,
 }
 #[doc(hidden)]
