@@ -216,6 +216,63 @@ pub mod dbcluster {
     }
 }
 pub mod dbinstance {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-additionalstoragevolume.html
+    pub struct AdditionalStorageVolume_ {
+        pub allocated_storage: Option<crate::value::ExpString>,
+        pub iops: Option<i32>,
+        pub max_allocated_storage: Option<i32>,
+        pub storage_throughput: Option<i32>,
+        pub storage_type: Option<crate::value::ExpString>,
+        pub volume_name: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_rds_DBInstance_AdditionalStorageVolume {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::RDS::DBInstance.AdditionalStorageVolume"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_rds_DBInstance_AdditionalStorageVolume as AdditionalStorageVolume;
+    impl crate::value::ToValue for AdditionalStorageVolume_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.allocated_storage {
+                properties.insert(
+                    "AllocatedStorage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.iops {
+                properties.insert("Iops".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.max_allocated_storage {
+                properties.insert(
+                    "MaxAllocatedStorage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.storage_throughput {
+                properties.insert(
+                    "StorageThroughput".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.storage_type {
+                properties.insert(
+                    "StorageType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.volume_name {
+                properties.insert(
+                    "VolumeName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbinstance-certificatedetails.html
     pub struct CertificateDetails_ {
         pub ca_identifier: Option<crate::value::ExpString>,
@@ -865,6 +922,7 @@ pub struct DBCluster_ {
     pub iops: Option<i32>,
     pub kms_key_id: Option<crate::value::ExpString>,
     pub manage_master_user_password: Option<crate::value::ExpBool>,
+    pub master_user_authentication_type: Option<crate::value::ExpString>,
     pub master_user_password: Option<crate::value::ExpString>,
     pub master_user_secret: Option<super::rds::dbcluster::MasterUserSecret_>,
     pub master_username: Option<crate::value::ExpString>,
@@ -1103,6 +1161,12 @@ impl crate::template::ToResource for DBCluster_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.master_user_authentication_type {
+            properties.insert(
+                "MasterUserAuthenticationType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.master_user_password {
             properties.insert(
                 "MasterUserPassword".to_string(),
@@ -1316,6 +1380,7 @@ impl crate::template::ToResource for DBClusterParameterGroup_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbinstance.html
 pub struct DBInstance_ {
+    pub additional_storage_volumes: Option<Vec<super::rds::dbinstance::AdditionalStorageVolume_>>,
     pub allocated_storage: Option<crate::value::ExpString>,
     pub allow_major_version_upgrade: Option<crate::value::ExpBool>,
     pub apply_immediately: Option<crate::value::ExpBool>,
@@ -1362,6 +1427,7 @@ pub struct DBInstance_ {
     pub kms_key_id: Option<crate::value::ExpString>,
     pub license_model: Option<crate::value::ExpString>,
     pub manage_master_user_password: Option<crate::value::ExpBool>,
+    pub master_user_authentication_type: Option<crate::value::ExpString>,
     pub master_user_password: Option<crate::value::ExpString>,
     pub master_user_secret: Option<super::rds::dbinstance::MasterUserSecret_>,
     pub master_username: Option<crate::value::ExpString>,
@@ -1416,6 +1482,12 @@ impl crate::template::ToResource for DBInstance_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.additional_storage_volumes {
+            properties.insert(
+                "AdditionalStorageVolumes".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.allocated_storage {
             properties.insert(
                 "AllocatedStorage".to_string(),
@@ -1680,6 +1752,12 @@ impl crate::template::ToResource for DBInstance_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.master_user_authentication_type {
+            properties.insert(
+                "MasterUserAuthenticationType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.master_user_password {
             properties.insert(
                 "MasterUserPassword".to_string(),
@@ -1931,14 +2009,17 @@ impl crate::template::ToResource for DBParameterGroup_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbproxy.html
 pub struct DBProxy_ {
-    pub auth: Vec<super::rds::dbproxy::AuthFormat_>,
+    pub auth: Option<Vec<super::rds::dbproxy::AuthFormat_>>,
     pub db_proxy_name: crate::value::ExpString,
     pub debug_logging: Option<crate::value::ExpBool>,
+    pub default_auth_scheme: Option<crate::value::ExpString>,
+    pub endpoint_network_type: Option<crate::value::ExpString>,
     pub engine_family: crate::value::ExpString,
     pub idle_client_timeout: Option<i32>,
     pub require_tls: Option<crate::value::ExpBool>,
     pub role_arn: crate::value::ExpString,
     pub tags: Option<Vec<super::rds::dbproxy::TagFormat_>>,
+    pub target_connection_network_type: Option<crate::value::ExpString>,
     pub vpc_security_group_ids: Option<Vec<crate::value::ExpString>>,
     pub vpc_subnet_ids: Vec<crate::value::ExpString>,
 }
@@ -1962,10 +2043,9 @@ impl crate::template::ToResource for DBProxy_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
-        properties.insert(
-            "Auth".to_string(),
-            crate::value::ToValue::to_value(&self.auth),
-        );
+        if let Some(ref value) = self.auth {
+            properties.insert("Auth".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties.insert(
             "DBProxyName".to_string(),
             crate::value::ToValue::to_value(&self.db_proxy_name),
@@ -1973,6 +2053,18 @@ impl crate::template::ToResource for DBProxy_ {
         if let Some(ref value) = self.debug_logging {
             properties.insert(
                 "DebugLogging".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.default_auth_scheme {
+            properties.insert(
+                "DefaultAuthScheme".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.endpoint_network_type {
+            properties.insert(
+                "EndpointNetworkType".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1999,6 +2091,12 @@ impl crate::template::ToResource for DBProxy_ {
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
+        if let Some(ref value) = self.target_connection_network_type {
+            properties.insert(
+                "TargetConnectionNetworkType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.vpc_security_group_ids {
             properties.insert(
                 "VpcSecurityGroupIds".to_string(),
@@ -2016,6 +2114,7 @@ impl crate::template::ToResource for DBProxy_ {
 pub struct DBProxyEndpoint_ {
     pub db_proxy_endpoint_name: crate::value::ExpString,
     pub db_proxy_name: crate::value::ExpString,
+    pub endpoint_network_type: Option<crate::value::ExpString>,
     pub tags: Option<Vec<super::rds::dbproxyendpoint::TagFormat_>>,
     pub target_role: Option<crate::value::ExpString>,
     pub vpc_security_group_ids: Option<Vec<crate::value::ExpString>>,
@@ -2049,6 +2148,12 @@ impl crate::template::ToResource for DBProxyEndpoint_ {
             "DBProxyName".to_string(),
             crate::value::ToValue::to_value(&self.db_proxy_name),
         );
+        if let Some(ref value) = self.endpoint_network_type {
+            properties.insert(
+                "EndpointNetworkType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }

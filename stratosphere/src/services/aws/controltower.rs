@@ -158,6 +158,7 @@ impl crate::template::ToResource for EnabledControl_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-controltower-landingzone.html
 pub struct LandingZone_ {
     pub manifest: serde_json::Value,
+    pub remediation_types: Option<Vec<crate::value::ExpString>>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub version: crate::value::ExpString,
 }
@@ -185,6 +186,12 @@ impl crate::template::ToResource for LandingZone_ {
             "Manifest".to_string(),
             crate::value::ToValue::to_value(&self.manifest),
         );
+        if let Some(ref value) = self.remediation_types {
+            properties.insert(
+                "RemediationTypes".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }

@@ -76,6 +76,165 @@ pub mod alias {
         }
     }
 }
+pub mod capacityprovider {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-capacityproviderpermissionsconfig.html
+    pub struct CapacityProviderPermissionsConfig_ {
+        pub capacity_provider_operator_role_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lambda_CapacityProvider_CapacityProviderPermissionsConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lambda::CapacityProvider.CapacityProviderPermissionsConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lambda_CapacityProvider_CapacityProviderPermissionsConfig as CapacityProviderPermissionsConfig;
+    impl crate::value::ToValue for CapacityProviderPermissionsConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "CapacityProviderOperatorRoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.capacity_provider_operator_role_arn),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-capacityproviderscalingconfig.html
+    pub struct CapacityProviderScalingConfig_ {
+        pub max_v_cpu_count: Option<i32>,
+        pub scaling_mode: Option<crate::value::ExpString>,
+        pub scaling_policies: Option<Vec<TargetTrackingScalingPolicy_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lambda_CapacityProvider_CapacityProviderScalingConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lambda::CapacityProvider.CapacityProviderScalingConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lambda_CapacityProvider_CapacityProviderScalingConfig as CapacityProviderScalingConfig;
+    impl crate::value::ToValue for CapacityProviderScalingConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.max_v_cpu_count {
+                properties.insert(
+                    "MaxVCpuCount".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.scaling_mode {
+                properties.insert(
+                    "ScalingMode".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.scaling_policies {
+                properties.insert(
+                    "ScalingPolicies".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-capacityprovidervpcconfig.html
+    pub struct CapacityProviderVpcConfig_ {
+        pub security_group_ids: Vec<crate::value::ExpString>,
+        pub subnet_ids: Vec<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lambda_CapacityProvider_CapacityProviderVpcConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lambda::CapacityProvider.CapacityProviderVpcConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lambda_CapacityProvider_CapacityProviderVpcConfig as CapacityProviderVpcConfig;
+    impl crate::value::ToValue for CapacityProviderVpcConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "SecurityGroupIds".to_string(),
+                crate::value::ToValue::to_value(&self.security_group_ids),
+            );
+            properties.insert(
+                "SubnetIds".to_string(),
+                crate::value::ToValue::to_value(&self.subnet_ids),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-instancerequirements.html
+    pub struct InstanceRequirements_ {
+        pub allowed_instance_types: Option<Vec<crate::value::ExpString>>,
+        pub architectures: Option<Vec<crate::value::ExpString>>,
+        pub excluded_instance_types: Option<Vec<crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lambda_CapacityProvider_InstanceRequirements {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lambda::CapacityProvider.InstanceRequirements"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lambda_CapacityProvider_InstanceRequirements as InstanceRequirements;
+    impl crate::value::ToValue for InstanceRequirements_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.allowed_instance_types {
+                properties.insert(
+                    "AllowedInstanceTypes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.architectures {
+                properties.insert(
+                    "Architectures".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.excluded_instance_types {
+                properties.insert(
+                    "ExcludedInstanceTypes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-capacityprovider-targettrackingscalingpolicy.html
+    pub struct TargetTrackingScalingPolicy_ {
+        pub predefined_metric_type: crate::value::ExpString,
+        pub target_value: f64,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lambda_CapacityProvider_TargetTrackingScalingPolicy {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lambda::CapacityProvider.TargetTrackingScalingPolicy"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lambda_CapacityProvider_TargetTrackingScalingPolicy as TargetTrackingScalingPolicy;
+    impl crate::value::ToValue for TargetTrackingScalingPolicy_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "PredefinedMetricType".to_string(),
+                crate::value::ToValue::to_value(&self.predefined_metric_type),
+            );
+            properties.insert(
+                "TargetValue".to_string(),
+                crate::value::ToValue::to_value(&self.target_value),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod codesigningconfig {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-codesigningconfig-allowedpublishers.html
     pub struct AllowedPublishers_ {
@@ -376,6 +535,31 @@ pub mod eventsourcemapping {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-loggingconfig.html
+    pub struct LoggingConfig_ {
+        pub system_log_level: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lambda_EventSourceMapping_LoggingConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lambda::EventSourceMapping.LoggingConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lambda_EventSourceMapping_LoggingConfig as LoggingConfig;
+    impl crate::value::ToValue for LoggingConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.system_log_level {
+                properties.insert(
+                    "SystemLogLevel".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-metricsconfig.html
     pub struct MetricsConfig_ {
         pub metrics: Option<Vec<crate::value::ExpString>>,
@@ -430,6 +614,7 @@ pub mod eventsourcemapping {
     pub struct ProvisionedPollerConfig_ {
         pub maximum_pollers: Option<i32>,
         pub minimum_pollers: Option<i32>,
+        pub poller_group_name: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -452,6 +637,12 @@ pub mod eventsourcemapping {
             if let Some(ref value) = self.minimum_pollers {
                 properties.insert(
                     "MinimumPollers".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.poller_group_name {
+                properties.insert(
+                    "PollerGroupName".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -665,6 +856,32 @@ pub mod eventsourcemapping {
     }
 }
 pub mod function {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-capacityproviderconfig.html
+    pub struct CapacityProviderConfig_ {
+        pub lambda_managed_instances_capacity_provider_config:
+            Box<LambdaManagedInstancesCapacityProviderConfig_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lambda_Function_CapacityProviderConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.CapacityProviderConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lambda_Function_CapacityProviderConfig as CapacityProviderConfig;
+    impl crate::value::ToValue for CapacityProviderConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "LambdaManagedInstancesCapacityProviderConfig".to_string(),
+                crate::value::ToValue::to_value(
+                    &self.lambda_managed_instances_capacity_provider_config,
+                ),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html
     pub struct Code_ {
         pub image_uri: Option<crate::value::ExpString>,
@@ -747,6 +964,36 @@ pub mod function {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-durableconfig.html
+    pub struct DurableConfig_ {
+        pub execution_timeout: i32,
+        pub retention_period_in_days: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lambda_Function_DurableConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.DurableConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lambda_Function_DurableConfig as DurableConfig;
+    impl crate::value::ToValue for DurableConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ExecutionTimeout".to_string(),
+                crate::value::ToValue::to_value(&self.execution_timeout),
+            );
+            if let Some(ref value) = self.retention_period_in_days {
+                properties.insert(
+                    "RetentionPeriodInDays".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-environment.html
     pub struct Environment_ {
         pub variables: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -823,6 +1070,38 @@ pub mod function {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-functionscalingconfig.html
+    pub struct FunctionScalingConfig_ {
+        pub max_execution_environments: Option<i32>,
+        pub min_execution_environments: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lambda_Function_FunctionScalingConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.FunctionScalingConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lambda_Function_FunctionScalingConfig as FunctionScalingConfig;
+    impl crate::value::ToValue for FunctionScalingConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.max_execution_environments {
+                properties.insert(
+                    "MaxExecutionEnvironments".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.min_execution_environments {
+                properties.insert(
+                    "MinExecutionEnvironments".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-imageconfig.html
     pub struct ImageConfig_ {
         pub command: Option<Vec<crate::value::ExpString>>,
@@ -856,6 +1135,43 @@ pub mod function {
             if let Some(ref value) = self.working_directory {
                 properties.insert(
                     "WorkingDirectory".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-lambdamanagedinstancescapacityproviderconfig.html
+    pub struct LambdaManagedInstancesCapacityProviderConfig_ {
+        pub capacity_provider_arn: crate::value::ExpString,
+        pub execution_environment_memory_gi_b_per_v_cpu: Option<f64>,
+        pub per_execution_environment_max_concurrency: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lambda_Function_LambdaManagedInstancesCapacityProviderConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.LambdaManagedInstancesCapacityProviderConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lambda_Function_LambdaManagedInstancesCapacityProviderConfig as LambdaManagedInstancesCapacityProviderConfig;
+    impl crate::value::ToValue for LambdaManagedInstancesCapacityProviderConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "CapacityProviderArn".to_string(),
+                crate::value::ToValue::to_value(&self.capacity_provider_arn),
+            );
+            if let Some(ref value) = self.execution_environment_memory_gi_b_per_v_cpu {
+                properties.insert(
+                    "ExecutionEnvironmentMemoryGiBPerVCpu".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.per_execution_environment_max_concurrency {
+                properties.insert(
+                    "PerExecutionEnvironmentMaxConcurrency".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -990,6 +1306,29 @@ pub mod function {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tenancyconfig.html
+    pub struct TenancyConfig_ {
+        pub tenant_isolation_mode: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lambda_Function_TenancyConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Function.TenancyConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lambda_Function_TenancyConfig as TenancyConfig;
+    impl crate::value::ToValue for TenancyConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "TenantIsolationMode".to_string(),
+                crate::value::ToValue::to_value(&self.tenant_isolation_mode),
+            );
             properties.into()
         }
     }
@@ -1152,6 +1491,38 @@ pub mod url {
     }
 }
 pub mod version {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-version-functionscalingconfig.html
+    pub struct FunctionScalingConfig_ {
+        pub max_execution_environments: Option<i32>,
+        pub min_execution_environments: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lambda_Version_FunctionScalingConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lambda::Version.FunctionScalingConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lambda_Version_FunctionScalingConfig as FunctionScalingConfig;
+    impl crate::value::ToValue for FunctionScalingConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.max_execution_environments {
+                properties.insert(
+                    "MaxExecutionEnvironments".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.min_execution_environments {
+                properties.insert(
+                    "MinExecutionEnvironments".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-version-provisionedconcurrencyconfiguration.html
     pub struct ProvisionedConcurrencyConfiguration_ {
         pub provisioned_concurrent_executions: i32,
@@ -1266,6 +1637,75 @@ impl crate::template::ToResource for Alias_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-capacityprovider.html
+pub struct CapacityProvider_ {
+    pub capacity_provider_name: Option<crate::value::ExpString>,
+    pub capacity_provider_scaling_config:
+        Option<super::lambda::capacityprovider::CapacityProviderScalingConfig_>,
+    pub instance_requirements: Option<super::lambda::capacityprovider::InstanceRequirements_>,
+    pub kms_key_arn: Option<crate::value::ExpString>,
+    pub permissions_config: super::lambda::capacityprovider::CapacityProviderPermissionsConfig_,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub vpc_config: super::lambda::capacityprovider::CapacityProviderVpcConfig_,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_lambda_CapacityProvider {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Lambda::CapacityProvider"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_lambda_CapacityProvider as CapacityProvider;
+impl crate::template::ToResource for CapacityProvider_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Lambda"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("CapacityProvider"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.capacity_provider_name {
+            properties.insert(
+                "CapacityProviderName".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.capacity_provider_scaling_config {
+            properties.insert(
+                "CapacityProviderScalingConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.instance_requirements {
+            properties.insert(
+                "InstanceRequirements".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.kms_key_arn {
+            properties.insert(
+                "KmsKeyArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "PermissionsConfig".to_string(),
+            crate::value::ToValue::to_value(&self.permissions_config),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "VpcConfig".to_string(),
+            crate::value::ToValue::to_value(&self.vpc_config),
+        );
         properties
     }
 }
@@ -1390,6 +1830,7 @@ pub struct EventSourceMapping_ {
     pub function_name: crate::value::ExpString,
     pub function_response_types: Option<Vec<crate::value::ExpString>>,
     pub kms_key_arn: Option<crate::value::ExpString>,
+    pub logging_config: Option<super::lambda::eventsourcemapping::LoggingConfig_>,
     pub maximum_batching_window_in_seconds: Option<i32>,
     pub maximum_record_age_in_seconds: Option<i32>,
     pub maximum_retry_attempts: Option<i32>,
@@ -1495,6 +1936,12 @@ impl crate::template::ToResource for EventSourceMapping_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.logging_config {
+            properties.insert(
+                "LoggingConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.maximum_batching_window_in_seconds {
             properties.insert(
                 "MaximumBatchingWindowInSeconds".to_string(),
@@ -1588,14 +2035,17 @@ impl crate::template::ToResource for EventSourceMapping_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html
 pub struct Function_ {
     pub architectures: Option<Vec<crate::value::ExpString>>,
+    pub capacity_provider_config: Option<super::lambda::function::CapacityProviderConfig_>,
     pub code: super::lambda::function::Code_,
     pub code_signing_config_arn: Option<crate::value::ExpString>,
     pub dead_letter_config: Option<super::lambda::function::DeadLetterConfig_>,
     pub description: Option<crate::value::ExpString>,
+    pub durable_config: Option<super::lambda::function::DurableConfig_>,
     pub environment: Option<super::lambda::function::Environment_>,
     pub ephemeral_storage: Option<super::lambda::function::EphemeralStorage_>,
     pub file_system_configs: Option<Vec<super::lambda::function::FileSystemConfig_>>,
     pub function_name: Option<crate::value::ExpString>,
+    pub function_scaling_config: Option<super::lambda::function::FunctionScalingConfig_>,
     pub handler: Option<crate::value::ExpString>,
     pub image_config: Option<super::lambda::function::ImageConfig_>,
     pub kms_key_arn: Option<crate::value::ExpString>,
@@ -1603,6 +2053,7 @@ pub struct Function_ {
     pub logging_config: Option<super::lambda::function::LoggingConfig_>,
     pub memory_size: Option<i32>,
     pub package_type: Option<crate::value::ExpString>,
+    pub publish_to_latest_published: Option<crate::value::ExpBool>,
     pub recursive_loop: Option<crate::value::ExpString>,
     pub reserved_concurrent_executions: Option<i32>,
     pub role: crate::value::ExpString,
@@ -1610,6 +2061,7 @@ pub struct Function_ {
     pub runtime_management_config: Option<super::lambda::function::RuntimeManagementConfig_>,
     pub snap_start: Option<super::lambda::function::SnapStart_>,
     pub tags: Option<Vec<crate::Tag_>>,
+    pub tenancy_config: Option<super::lambda::function::TenancyConfig_>,
     pub timeout: Option<i32>,
     pub tracing_config: Option<super::lambda::function::TracingConfig_>,
     pub vpc_config: Option<super::lambda::function::VpcConfig_>,
@@ -1640,6 +2092,12 @@ impl crate::template::ToResource for Function_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.capacity_provider_config {
+            properties.insert(
+                "CapacityProviderConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "Code".to_string(),
             crate::value::ToValue::to_value(&self.code),
@@ -1659,6 +2117,12 @@ impl crate::template::ToResource for Function_ {
         if let Some(ref value) = self.description {
             properties.insert(
                 "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.durable_config {
+            properties.insert(
+                "DurableConfig".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1683,6 +2147,12 @@ impl crate::template::ToResource for Function_ {
         if let Some(ref value) = self.function_name {
             properties.insert(
                 "FunctionName".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.function_scaling_config {
+            properties.insert(
+                "FunctionScalingConfig".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1725,6 +2195,12 @@ impl crate::template::ToResource for Function_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.publish_to_latest_published {
+            properties.insert(
+                "PublishToLatestPublished".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.recursive_loop {
             properties.insert(
                 "RecursiveLoop".to_string(),
@@ -1761,6 +2237,12 @@ impl crate::template::ToResource for Function_ {
         }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.tenancy_config {
+            properties.insert(
+                "TenancyConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         if let Some(ref value) = self.timeout {
             properties.insert(
@@ -1903,6 +2385,7 @@ pub struct Permission_ {
     pub event_source_token: Option<crate::value::ExpString>,
     pub function_name: crate::value::ExpString,
     pub function_url_auth_type: Option<crate::value::ExpString>,
+    pub invoked_via_function_url: Option<crate::value::ExpBool>,
     pub principal: crate::value::ExpString,
     pub principal_org_id: Option<crate::value::ExpString>,
     pub source_account: Option<crate::value::ExpString>,
@@ -1945,6 +2428,12 @@ impl crate::template::ToResource for Permission_ {
         if let Some(ref value) = self.function_url_auth_type {
             properties.insert(
                 "FunctionUrlAuthType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.invoked_via_function_url {
+            properties.insert(
+                "InvokedViaFunctionUrl".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -2032,6 +2521,7 @@ pub struct Version_ {
     pub code_sha256: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
     pub function_name: crate::value::ExpString,
+    pub function_scaling_config: Option<super::lambda::version::FunctionScalingConfig_>,
     pub provisioned_concurrency_config:
         Option<super::lambda::version::ProvisionedConcurrencyConfiguration_>,
     pub runtime_policy: Option<super::lambda::version::RuntimePolicy_>,
@@ -2072,6 +2562,12 @@ impl crate::template::ToResource for Version_ {
             "FunctionName".to_string(),
             crate::value::ToValue::to_value(&self.function_name),
         );
+        if let Some(ref value) = self.function_scaling_config {
+            properties.insert(
+                "FunctionScalingConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.provisioned_concurrency_config {
             properties.insert(
                 "ProvisionedConcurrencyConfig".to_string(),

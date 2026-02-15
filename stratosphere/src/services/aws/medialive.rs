@@ -1112,13 +1112,17 @@ pub mod channel {
         pub level: Option<crate::value::ExpString>,
         pub look_ahead_rate_control: Option<crate::value::ExpString>,
         pub max_bitrate: Option<i32>,
+        pub min_bitrate: Option<i32>,
         pub min_i_interval: Option<i32>,
         pub par_denominator: Option<i32>,
         pub par_numerator: Option<i32>,
         pub qvbr_quality_level: Option<i32>,
         pub rate_control_mode: Option<crate::value::ExpString>,
         pub scene_change_detect: Option<crate::value::ExpString>,
+        pub spatial_aq: Option<crate::value::ExpString>,
+        pub temporal_aq: Option<crate::value::ExpString>,
         pub timecode_burnin_settings: Option<Box<TimecodeBurninSettings_>>,
+        pub timecode_insertion: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1201,6 +1205,12 @@ pub mod channel {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.min_bitrate {
+                properties.insert(
+                    "MinBitrate".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.min_i_interval {
                 properties.insert(
                     "MinIInterval".to_string(),
@@ -1237,9 +1247,27 @@ pub mod channel {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.spatial_aq {
+                properties.insert(
+                    "SpatialAq".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.temporal_aq {
+                properties.insert(
+                    "TemporalAq".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.timecode_burnin_settings {
                 properties.insert(
                     "TimecodeBurninSettings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.timecode_insertion {
+                properties.insert(
+                    "TimecodeInsertion".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -2250,6 +2278,31 @@ pub mod channel {
     impl crate::value::ToValue for ColorSpacePassthroughSettings_ {
         fn to_value(&self) -> serde_json::Value {
             serde_json::Value::Object(serde_json::Map::new())
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-disabledlockingsettings.html
+    pub struct DisabledLockingSettings_ {
+        pub custom_epoch: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_medialive_Channel_DisabledLockingSettings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.DisabledLockingSettings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_medialive_Channel_DisabledLockingSettings as DisabledLockingSettings;
+    impl crate::value::ToValue for DisabledLockingSettings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.custom_epoch {
+                properties.insert(
+                    "CustomEpoch".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
         }
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dolbyvision81settings.html
@@ -3287,6 +3340,38 @@ pub mod channel {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-followerchannelsettings.html
+    pub struct FollowerChannelSettings_ {
+        pub linked_channel_type: Option<crate::value::ExpString>,
+        pub primary_channel_arn: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_medialive_Channel_FollowerChannelSettings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.FollowerChannelSettings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_medialive_Channel_FollowerChannelSettings as FollowerChannelSettings;
+    impl crate::value::ToValue for FollowerChannelSettings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.linked_channel_type {
+                properties.insert(
+                    "LinkedChannelType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.primary_channel_arn {
+                properties.insert(
+                    "PrimaryChannelArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecapturecdnsettings.html
     pub struct FrameCaptureCdnSettings_ {
         pub frame_capture_s3_settings: Option<Box<FrameCaptureS3Settings_>>,
@@ -3612,6 +3697,7 @@ pub mod channel {
         pub level: Option<crate::value::ExpString>,
         pub look_ahead_rate_control: Option<crate::value::ExpString>,
         pub max_bitrate: Option<i32>,
+        pub min_bitrate: Option<i32>,
         pub min_i_interval: Option<i32>,
         pub min_qp: Option<i32>,
         pub num_ref_frames: Option<i32>,
@@ -3780,6 +3866,12 @@ pub mod channel {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.min_bitrate {
+                properties.insert(
+                    "MinBitrate".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.min_i_interval {
                 properties.insert(
                     "MinIInterval".to_string(),
@@ -3899,6 +3991,7 @@ pub mod channel {
         pub color_space_passthrough_settings: Option<Box<ColorSpacePassthroughSettings_>>,
         pub dolby_vision81_settings: Option<Box<DolbyVision81Settings_>>,
         pub hdr10_settings: Option<Box<Hdr10Settings_>>,
+        pub hlg2020_settings: Option<Box<Hlg2020Settings_>>,
         pub rec601_settings: Option<Box<Rec601Settings_>>,
         pub rec709_settings: Option<Box<Rec709Settings_>>,
     }
@@ -3929,6 +4022,12 @@ pub mod channel {
             if let Some(ref value) = self.hdr10_settings {
                 properties.insert(
                     "Hdr10Settings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.hlg2020_settings {
+                properties.insert(
+                    "Hlg2020Settings".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -3994,12 +4093,15 @@ pub mod channel {
         pub flicker_aq: Option<crate::value::ExpString>,
         pub framerate_denominator: Option<i32>,
         pub framerate_numerator: Option<i32>,
+        pub gop_b_reference: Option<crate::value::ExpString>,
         pub gop_closed_cadence: Option<i32>,
+        pub gop_num_b_frames: Option<i32>,
         pub gop_size: Option<f64>,
         pub gop_size_units: Option<crate::value::ExpString>,
         pub level: Option<crate::value::ExpString>,
         pub look_ahead_rate_control: Option<crate::value::ExpString>,
         pub max_bitrate: Option<i32>,
+        pub min_bitrate: Option<i32>,
         pub min_i_interval: Option<i32>,
         pub min_qp: Option<i32>,
         pub mv_over_picture_boundaries: Option<crate::value::ExpString>,
@@ -4012,6 +4114,7 @@ pub mod channel {
         pub scan_type: Option<crate::value::ExpString>,
         pub scene_change_detect: Option<crate::value::ExpString>,
         pub slices: Option<i32>,
+        pub subgop_length: Option<crate::value::ExpString>,
         pub tier: Option<crate::value::ExpString>,
         pub tile_height: Option<i32>,
         pub tile_padding: Option<crate::value::ExpString>,
@@ -4110,9 +4213,21 @@ pub mod channel {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.gop_b_reference {
+                properties.insert(
+                    "GopBReference".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.gop_closed_cadence {
                 properties.insert(
                     "GopClosedCadence".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.gop_num_b_frames {
+                properties.insert(
+                    "GopNumBFrames".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -4140,6 +4255,12 @@ pub mod channel {
             if let Some(ref value) = self.max_bitrate {
                 properties.insert(
                     "MaxBitrate".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.min_bitrate {
+                properties.insert(
+                    "MinBitrate".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -4208,6 +4329,12 @@ pub mod channel {
             }
             if let Some(ref value) = self.slices {
                 properties.insert("Slices".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.subgop_length {
+                properties.insert(
+                    "SubgopLength".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
             }
             if let Some(ref value) = self.tier {
                 properties.insert("Tier".to_string(), crate::value::ToValue::to_value(value));
@@ -4278,6 +4405,22 @@ pub mod channel {
                 );
             }
             properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlg2020settings.html
+    pub struct Hlg2020Settings_ {}
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_medialive_Channel_Hlg2020Settings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.Hlg2020Settings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_medialive_Channel_Hlg2020Settings as Hlg2020Settings;
+    impl crate::value::ToValue for Hlg2020Settings_ {
+        fn to_value(&self) -> serde_json::Value {
+            serde_json::Value::Object(serde_json::Map::new())
         }
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsakamaisettings.html
@@ -5400,6 +5543,38 @@ pub mod channel {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-linkedchannelsettings.html
+    pub struct LinkedChannelSettings_ {
+        pub follower_channel_settings: Option<Box<FollowerChannelSettings_>>,
+        pub primary_channel_settings: Option<Box<PrimaryChannelSettings_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_medialive_Channel_LinkedChannelSettings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.LinkedChannelSettings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_medialive_Channel_LinkedChannelSettings as LinkedChannelSettings;
+    impl crate::value::ToValue for LinkedChannelSettings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.follower_channel_settings {
+                properties.insert(
+                    "FollowerChannelSettings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.primary_channel_settings {
+                properties.insert(
+                    "PrimaryChannelSettings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-m2tssettings.html
     pub struct M2tsSettings_ {
         pub absent_input_audio_behavior: Option<crate::value::ExpString>,
@@ -5949,6 +6124,31 @@ pub mod channel {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackageadditionaldestinations.html
+    pub struct MediaPackageAdditionalDestinations_ {
+        pub destination: Option<Box<OutputLocationRef_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_medialive_Channel_MediaPackageAdditionalDestinations {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.MediaPackageAdditionalDestinations"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_medialive_Channel_MediaPackageAdditionalDestinations as MediaPackageAdditionalDestinations;
+    impl crate::value::ToValue for MediaPackageAdditionalDestinations_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.destination {
+                properties.insert(
+                    "Destination".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackagegroupsettings.html
     pub struct MediaPackageGroupSettings_ {
         pub destination: Option<Box<OutputLocationRef_>>,
@@ -5983,9 +6183,11 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackageoutputdestinationsettings.html
     pub struct MediaPackageOutputDestinationSettings_ {
+        pub channel_endpoint_id: Option<crate::value::ExpString>,
         pub channel_group: Option<crate::value::ExpString>,
         pub channel_id: Option<crate::value::ExpString>,
         pub channel_name: Option<crate::value::ExpString>,
+        pub media_package_region_name: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -5999,6 +6201,12 @@ pub mod channel {
     impl crate::value::ToValue for MediaPackageOutputDestinationSettings_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.channel_endpoint_id {
+                properties.insert(
+                    "ChannelEndpointId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.channel_group {
                 properties.insert(
                     "ChannelGroup".to_string(),
@@ -6014,6 +6222,12 @@ pub mod channel {
             if let Some(ref value) = self.channel_name {
                 properties.insert(
                     "ChannelName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.media_package_region_name {
+                properties.insert(
+                    "MediaPackageRegionName".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -6093,7 +6307,17 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mediapackagev2groupsettings.html
     pub struct MediaPackageV2GroupSettings_ {
+        pub additional_destinations: Option<Vec<MediaPackageAdditionalDestinations_>>,
         pub caption_language_mappings: Option<Vec<CaptionLanguageMapping_>>,
+        pub id3_behavior: Option<crate::value::ExpString>,
+        pub klv_behavior: Option<crate::value::ExpString>,
+        pub nielsen_id3_behavior: Option<crate::value::ExpString>,
+        pub scte35_type: Option<crate::value::ExpString>,
+        pub segment_length: Option<i32>,
+        pub segment_length_units: Option<crate::value::ExpString>,
+        pub timed_metadata_id3_frame: Option<crate::value::ExpString>,
+        pub timed_metadata_id3_period: Option<i32>,
+        pub timed_metadata_passthrough: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -6107,9 +6331,69 @@ pub mod channel {
     impl crate::value::ToValue for MediaPackageV2GroupSettings_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.additional_destinations {
+                properties.insert(
+                    "AdditionalDestinations".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.caption_language_mappings {
                 properties.insert(
                     "CaptionLanguageMappings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.id3_behavior {
+                properties.insert(
+                    "Id3Behavior".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.klv_behavior {
+                properties.insert(
+                    "KlvBehavior".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.nielsen_id3_behavior {
+                properties.insert(
+                    "NielsenId3Behavior".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.scte35_type {
+                properties.insert(
+                    "Scte35Type".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.segment_length {
+                properties.insert(
+                    "SegmentLength".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.segment_length_units {
+                properties.insert(
+                    "SegmentLengthUnits".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.timed_metadata_id3_frame {
+                properties.insert(
+                    "TimedMetadataId3Frame".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.timed_metadata_id3_period {
+                properties.insert(
+                    "TimedMetadataId3Period".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.timed_metadata_passthrough {
+                properties.insert(
+                    "TimedMetadataPassthrough".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -7280,6 +7564,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputlockingsettings.html
     pub struct OutputLockingSettings_ {
+        pub disabled_locking_settings: Option<Box<DisabledLockingSettings_>>,
         pub epoch_locking_settings: Option<Box<EpochLockingSettings_>>,
         pub pipeline_locking_settings: Option<Box<PipelineLockingSettings_>>,
     }
@@ -7295,6 +7580,12 @@ pub mod channel {
     impl crate::value::ToValue for OutputLockingSettings_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.disabled_locking_settings {
+                properties.insert(
+                    "DisabledLockingSettings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.epoch_locking_settings {
                 properties.insert(
                     "EpochLockingSettings".to_string(),
@@ -7415,7 +7706,10 @@ pub mod channel {
         }
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-pipelinelockingsettings.html
-    pub struct PipelineLockingSettings_ {}
+    pub struct PipelineLockingSettings_ {
+        pub custom_epoch: Option<crate::value::ExpString>,
+        pub pipeline_locking_method: Option<crate::value::ExpString>,
+    }
     #[doc(hidden)]
     #[macro_export]
     macro_rules! __aws_medialive_Channel_PipelineLockingSettings {
@@ -7427,7 +7721,45 @@ pub mod channel {
     pub use crate::__aws_medialive_Channel_PipelineLockingSettings as PipelineLockingSettings;
     impl crate::value::ToValue for PipelineLockingSettings_ {
         fn to_value(&self) -> serde_json::Value {
-            serde_json::Value::Object(serde_json::Map::new())
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.custom_epoch {
+                properties.insert(
+                    "CustomEpoch".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.pipeline_locking_method {
+                properties.insert(
+                    "PipelineLockingMethod".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-primarychannelsettings.html
+    pub struct PrimaryChannelSettings_ {
+        pub linked_channel_type: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_medialive_Channel_PrimaryChannelSettings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Channel.PrimaryChannelSettings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_medialive_Channel_PrimaryChannelSettings as PrimaryChannelSettings;
+    impl crate::value::ToValue for PrimaryChannelSettings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.linked_channel_type {
+                properties.insert(
+                    "LinkedChannelType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
         }
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rawsettings.html
@@ -9212,6 +9544,70 @@ pub mod input {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-routerdestinationsettings.html
+    pub struct RouterDestinationSettings_ {
+        pub availability_zone_name: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_medialive_Input_RouterDestinationSettings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.RouterDestinationSettings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_medialive_Input_RouterDestinationSettings as RouterDestinationSettings;
+    impl crate::value::ToValue for RouterDestinationSettings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.availability_zone_name {
+                properties.insert(
+                    "AvailabilityZoneName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-routersettings.html
+    pub struct RouterSettings_ {
+        pub destinations: Option<Vec<RouterDestinationSettings_>>,
+        pub encryption_type: Option<crate::value::ExpString>,
+        pub secret_arn: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_medialive_Input_RouterSettings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.RouterSettings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_medialive_Input_RouterSettings as RouterSettings;
+    impl crate::value::ToValue for RouterSettings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.destinations {
+                properties.insert(
+                    "Destinations".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.encryption_type {
+                properties.insert(
+                    "EncryptionType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.secret_arn {
+                properties.insert(
+                    "SecretArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-smpte2110receivergroup.html
     pub struct Smpte2110ReceiverGroup_ {
         pub sdp_settings: Option<Box<Smpte2110ReceiverGroupSdpSettings_>>,
@@ -9295,6 +9691,31 @@ pub mod input {
             if let Some(ref value) = self.smpte2110_receiver_groups {
                 properties.insert(
                     "Smpte2110ReceiverGroups".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-input-specialroutersettings.html
+    pub struct SpecialRouterSettings_ {
+        pub router_arn: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_medialive_Input_SpecialRouterSettings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaLive::Input.SpecialRouterSettings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_medialive_Input_SpecialRouterSettings as SpecialRouterSettings;
+    impl crate::value::ToValue for SpecialRouterSettings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.router_arn {
+                properties.insert(
+                    "RouterArn".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -10085,6 +10506,7 @@ pub struct Channel_ {
     pub encoder_settings: Option<super::medialive::channel::EncoderSettings_>,
     pub input_attachments: Option<Vec<super::medialive::channel::InputAttachment_>>,
     pub input_specification: Option<super::medialive::channel::InputSpecification_>,
+    pub linked_channel_settings: Option<super::medialive::channel::LinkedChannelSettings_>,
     pub log_level: Option<crate::value::ExpString>,
     pub maintenance: Option<super::medialive::channel::MaintenanceCreateSettings_>,
     pub name: Option<crate::value::ExpString>,
@@ -10160,6 +10582,12 @@ impl crate::template::ToResource for Channel_ {
         if let Some(ref value) = self.input_specification {
             properties.insert(
                 "InputSpecification".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.linked_channel_settings {
+            properties.insert(
+                "LinkedChannelSettings".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -10549,6 +10977,7 @@ pub struct Input_ {
     pub multicast_settings: Option<super::medialive::input::MulticastSettingsCreateRequest_>,
     pub name: Option<crate::value::ExpString>,
     pub role_arn: Option<crate::value::ExpString>,
+    pub router_settings: Option<super::medialive::input::RouterSettings_>,
     pub sdi_sources: Option<Vec<crate::value::ExpString>>,
     pub smpte2110_receiver_group_settings:
         Option<super::medialive::input::Smpte2110ReceiverGroupSettings_>,
@@ -10620,6 +11049,12 @@ impl crate::template::ToResource for Input_ {
         if let Some(ref value) = self.role_arn {
             properties.insert(
                 "RoleArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.router_settings {
+            properties.insert(
+                "RouterSettings".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

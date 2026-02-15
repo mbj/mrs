@@ -346,6 +346,35 @@ pub mod cluster {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clustercapacityrequirements.html
+    pub struct ClusterCapacityRequirements_ {
+        pub on_demand: Option<serde_json::Value>,
+        pub spot: Option<serde_json::Value>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_sagemaker_Cluster_ClusterCapacityRequirements {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterCapacityRequirements"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_sagemaker_Cluster_ClusterCapacityRequirements as ClusterCapacityRequirements;
+    impl crate::value::ToValue for ClusterCapacityRequirements_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.on_demand {
+                properties.insert(
+                    "OnDemand".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.spot {
+                properties.insert("Spot".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterebsvolumeconfig.html
     pub struct ClusterEbsVolumeConfig_ {
         pub root_volume: Option<crate::value::ExpBool>,
@@ -387,6 +416,7 @@ pub mod cluster {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterinstancegroup.html
     pub struct ClusterInstanceGroup_ {
+        pub capacity_requirements: Option<Box<ClusterCapacityRequirements_>>,
         pub current_count: Option<i32>,
         pub execution_role: crate::value::ExpString,
         pub image_id: Option<crate::value::ExpString>,
@@ -394,7 +424,9 @@ pub mod cluster {
         pub instance_group_name: crate::value::ExpString,
         pub instance_storage_configs: Option<Vec<ClusterInstanceStorageConfig_>>,
         pub instance_type: crate::value::ExpString,
+        pub kubernetes_config: Option<Box<ClusterKubernetesConfig_>>,
         pub life_cycle_config: Box<ClusterLifeCycleConfig_>,
+        pub min_instance_count: Option<i32>,
         pub on_start_deep_health_checks: Option<Vec<crate::value::ExpString>>,
         pub override_vpc_config: Option<Box<VpcConfig_>>,
         pub scheduled_update_config: Option<Box<ScheduledUpdateConfig_>>,
@@ -413,6 +445,12 @@ pub mod cluster {
     impl crate::value::ToValue for ClusterInstanceGroup_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.capacity_requirements {
+                properties.insert(
+                    "CapacityRequirements".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.current_count {
                 properties.insert(
                     "CurrentCount".to_string(),
@@ -447,10 +485,22 @@ pub mod cluster {
                 "InstanceType".to_string(),
                 crate::value::ToValue::to_value(&self.instance_type),
             );
+            if let Some(ref value) = self.kubernetes_config {
+                properties.insert(
+                    "KubernetesConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "LifeCycleConfig".to_string(),
                 crate::value::ToValue::to_value(&self.life_cycle_config),
             );
+            if let Some(ref value) = self.min_instance_count {
+                properties.insert(
+                    "MinInstanceCount".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.on_start_deep_health_checks {
                 properties.insert(
                     "OnStartDeepHealthChecks".to_string(),
@@ -505,6 +555,64 @@ pub mod cluster {
                     "EbsVolumeConfig".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterkubernetesconfig.html
+    pub struct ClusterKubernetesConfig_ {
+        pub labels: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+        pub taints: Option<Vec<ClusterKubernetesTaint_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_sagemaker_Cluster_ClusterKubernetesConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterKubernetesConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_sagemaker_Cluster_ClusterKubernetesConfig as ClusterKubernetesConfig;
+    impl crate::value::ToValue for ClusterKubernetesConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.labels {
+                properties.insert("Labels".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.taints {
+                properties.insert("Taints".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-clusterkubernetestaint.html
+    pub struct ClusterKubernetesTaint_ {
+        pub effect: crate::value::ExpString,
+        pub key: crate::value::ExpString,
+        pub value: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_sagemaker_Cluster_ClusterKubernetesTaint {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.ClusterKubernetesTaint"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_sagemaker_Cluster_ClusterKubernetesTaint as ClusterKubernetesTaint;
+    impl crate::value::ToValue for ClusterKubernetesTaint_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Effect".to_string(),
+                crate::value::ToValue::to_value(&self.effect),
+            );
+            properties.insert(
+                "Key".to_string(),
+                crate::value::ToValue::to_value(&self.key),
+            );
+            if let Some(ref value) = self.value {
+                properties.insert("Value".to_string(), crate::value::ToValue::to_value(value));
             }
             properties.into()
         }
@@ -816,6 +924,36 @@ pub mod cluster {
             properties.insert(
                 "ScheduleExpression".to_string(),
                 crate::value::ToValue::to_value(&self.schedule_expression),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-cluster-tieredstorageconfig.html
+    pub struct TieredStorageConfig_ {
+        pub instance_memory_allocation_percentage: Option<i32>,
+        pub mode: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_sagemaker_Cluster_TieredStorageConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SageMaker::Cluster.TieredStorageConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_sagemaker_Cluster_TieredStorageConfig as TieredStorageConfig;
+    impl crate::value::ToValue for TieredStorageConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.instance_memory_allocation_percentage {
+                properties.insert(
+                    "InstanceMemoryAllocationPercentage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Mode".to_string(),
+                crate::value::ToValue::to_value(&self.mode),
             );
             properties.into()
         }
@@ -1917,6 +2055,7 @@ pub mod domain {
     pub struct DomainSettings_ {
         pub docker_settings: Option<Box<DockerSettings_>>,
         pub execution_role_identity_config: Option<crate::value::ExpString>,
+        pub ip_address_type: Option<crate::value::ExpString>,
         pub r_studio_server_pro_domain_settings: Option<Box<RStudioServerProDomainSettings_>>,
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub unified_studio_settings: Option<Box<UnifiedStudioSettings_>>,
@@ -1942,6 +2081,12 @@ pub mod domain {
             if let Some(ref value) = self.execution_role_identity_config {
                 properties.insert(
                     "ExecutionRoleIdentityConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.ip_address_type {
+                properties.insert(
+                    "IpAddressType".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -12709,6 +12854,7 @@ pub struct Cluster_ {
     pub restricted_instance_groups:
         Option<Vec<super::sagemaker::cluster::ClusterRestrictedInstanceGroup_>>,
     pub tags: Option<Vec<crate::Tag_>>,
+    pub tiered_storage_config: Option<super::sagemaker::cluster::TieredStorageConfig_>,
     pub vpc_config: Option<super::sagemaker::cluster::VpcConfig_>,
 }
 #[doc(hidden)]
@@ -12781,6 +12927,12 @@ impl crate::template::ToResource for Cluster_ {
         }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.tiered_storage_config {
+            properties.insert(
+                "TieredStorageConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         if let Some(ref value) = self.vpc_config {
             properties.insert(
@@ -14716,8 +14868,10 @@ impl crate::template::ToResource for NotebookInstanceLifecycleConfig_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-partnerapp.html
 pub struct PartnerApp_ {
+    pub app_version: Option<crate::value::ExpString>,
     pub application_config: Option<super::sagemaker::partnerapp::PartnerAppConfig_>,
     pub auth_type: crate::value::ExpString,
+    pub enable_auto_minor_version_upgrade: Option<crate::value::ExpBool>,
     pub enable_iam_session_based_identity: Option<crate::value::ExpBool>,
     pub execution_role_arn: crate::value::ExpString,
     pub kms_key_id: Option<crate::value::ExpString>,
@@ -14747,6 +14901,12 @@ impl crate::template::ToResource for PartnerApp_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.app_version {
+            properties.insert(
+                "AppVersion".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.application_config {
             properties.insert(
                 "ApplicationConfig".to_string(),
@@ -14757,6 +14917,12 @@ impl crate::template::ToResource for PartnerApp_ {
             "AuthType".to_string(),
             crate::value::ToValue::to_value(&self.auth_type),
         );
+        if let Some(ref value) = self.enable_auto_minor_version_upgrade {
+            properties.insert(
+                "EnableAutoMinorVersionUpgrade".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.enable_iam_session_based_identity {
             properties.insert(
                 "EnableIamSessionBasedIdentity".to_string(),

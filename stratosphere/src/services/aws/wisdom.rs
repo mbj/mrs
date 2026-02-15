@@ -3,7 +3,15 @@ pub mod aiagent {
     pub struct AIAgentConfiguration_ {
         pub answer_recommendation_ai_agent_configuration:
             Option<Box<AnswerRecommendationAIAgentConfiguration_>>,
+        pub case_summarization_ai_agent_configuration:
+            Option<Box<CaseSummarizationAIAgentConfiguration_>>,
+        pub email_generative_answer_ai_agent_configuration:
+            Option<Box<EmailGenerativeAnswerAIAgentConfiguration_>>,
+        pub email_overview_ai_agent_configuration: Option<Box<EmailOverviewAIAgentConfiguration_>>,
+        pub email_response_ai_agent_configuration: Option<Box<EmailResponseAIAgentConfiguration_>>,
         pub manual_search_ai_agent_configuration: Option<Box<ManualSearchAIAgentConfiguration_>>,
+        pub note_taking_ai_agent_configuration: Option<Box<NoteTakingAIAgentConfiguration_>>,
+        pub orchestration_ai_agent_configuration: Option<Box<OrchestrationAIAgentConfiguration_>>,
         pub self_service_ai_agent_configuration: Option<Box<SelfServiceAIAgentConfiguration_>>,
     }
     #[doc(hidden)]
@@ -24,9 +32,45 @@ pub mod aiagent {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.case_summarization_ai_agent_configuration {
+                properties.insert(
+                    "CaseSummarizationAIAgentConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.email_generative_answer_ai_agent_configuration {
+                properties.insert(
+                    "EmailGenerativeAnswerAIAgentConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.email_overview_ai_agent_configuration {
+                properties.insert(
+                    "EmailOverviewAIAgentConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.email_response_ai_agent_configuration {
+                properties.insert(
+                    "EmailResponseAIAgentConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.manual_search_ai_agent_configuration {
                 properties.insert(
                     "ManualSearchAIAgentConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.note_taking_ai_agent_configuration {
+                properties.insert(
+                    "NoteTakingAIAgentConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.orchestration_ai_agent_configuration {
+                properties.insert(
+                    "OrchestrationAIAgentConfiguration".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -161,6 +205,157 @@ pub mod aiagent {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-casesummarizationaiagentconfiguration.html
+    pub struct CaseSummarizationAIAgentConfiguration_ {
+        pub case_summarization_ai_guardrail_id: Option<crate::value::ExpString>,
+        pub case_summarization_ai_prompt_id: Option<crate::value::ExpString>,
+        pub locale: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AIAgent_CaseSummarizationAIAgentConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.CaseSummarizationAIAgentConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AIAgent_CaseSummarizationAIAgentConfiguration as CaseSummarizationAIAgentConfiguration;
+    impl crate::value::ToValue for CaseSummarizationAIAgentConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.case_summarization_ai_guardrail_id {
+                properties.insert(
+                    "CaseSummarizationAIGuardrailId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.case_summarization_ai_prompt_id {
+                properties.insert(
+                    "CaseSummarizationAIPromptId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.locale {
+                properties.insert("Locale".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-emailgenerativeansweraiagentconfiguration.html
+    pub struct EmailGenerativeAnswerAIAgentConfiguration_ {
+        pub association_configurations: Option<Vec<AssociationConfiguration_>>,
+        pub email_generative_answer_ai_prompt_id: Option<crate::value::ExpString>,
+        pub email_query_reformulation_ai_prompt_id: Option<crate::value::ExpString>,
+        pub locale: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AIAgent_EmailGenerativeAnswerAIAgentConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.EmailGenerativeAnswerAIAgentConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AIAgent_EmailGenerativeAnswerAIAgentConfiguration as EmailGenerativeAnswerAIAgentConfiguration;
+    impl crate::value::ToValue for EmailGenerativeAnswerAIAgentConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.association_configurations {
+                properties.insert(
+                    "AssociationConfigurations".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.email_generative_answer_ai_prompt_id {
+                properties.insert(
+                    "EmailGenerativeAnswerAIPromptId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.email_query_reformulation_ai_prompt_id {
+                properties.insert(
+                    "EmailQueryReformulationAIPromptId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.locale {
+                properties.insert("Locale".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-emailoverviewaiagentconfiguration.html
+    pub struct EmailOverviewAIAgentConfiguration_ {
+        pub email_overview_ai_prompt_id: Option<crate::value::ExpString>,
+        pub locale: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AIAgent_EmailOverviewAIAgentConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.EmailOverviewAIAgentConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AIAgent_EmailOverviewAIAgentConfiguration as EmailOverviewAIAgentConfiguration;
+    impl crate::value::ToValue for EmailOverviewAIAgentConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.email_overview_ai_prompt_id {
+                properties.insert(
+                    "EmailOverviewAIPromptId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.locale {
+                properties.insert("Locale".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-emailresponseaiagentconfiguration.html
+    pub struct EmailResponseAIAgentConfiguration_ {
+        pub association_configurations: Option<Vec<AssociationConfiguration_>>,
+        pub email_query_reformulation_ai_prompt_id: Option<crate::value::ExpString>,
+        pub email_response_ai_prompt_id: Option<crate::value::ExpString>,
+        pub locale: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AIAgent_EmailResponseAIAgentConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.EmailResponseAIAgentConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AIAgent_EmailResponseAIAgentConfiguration as EmailResponseAIAgentConfiguration;
+    impl crate::value::ToValue for EmailResponseAIAgentConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.association_configurations {
+                properties.insert(
+                    "AssociationConfigurations".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.email_query_reformulation_ai_prompt_id {
+                properties.insert(
+                    "EmailQueryReformulationAIPromptId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.email_response_ai_prompt_id {
+                properties.insert(
+                    "EmailResponseAIPromptId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.locale {
+                properties.insert("Locale".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-knowledgebaseassociationconfigurationdata.html
     pub struct KnowledgeBaseAssociationConfigurationData_ {
         pub content_tag_filter: Option<Box<TagFilter_>>,
@@ -243,6 +438,42 @@ pub mod aiagent {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-notetakingaiagentconfiguration.html
+    pub struct NoteTakingAIAgentConfiguration_ {
+        pub locale: Option<crate::value::ExpString>,
+        pub note_taking_ai_guardrail_id: Option<crate::value::ExpString>,
+        pub note_taking_ai_prompt_id: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AIAgent_NoteTakingAIAgentConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.NoteTakingAIAgentConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AIAgent_NoteTakingAIAgentConfiguration as NoteTakingAIAgentConfiguration;
+    impl crate::value::ToValue for NoteTakingAIAgentConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.locale {
+                properties.insert("Locale".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.note_taking_ai_guardrail_id {
+                properties.insert(
+                    "NoteTakingAIGuardrailId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.note_taking_ai_prompt_id {
+                properties.insert(
+                    "NoteTakingAIPromptId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-orcondition.html
     pub struct OrCondition_ {
         pub and_conditions: Option<Vec<TagCondition_>>,
@@ -269,6 +500,54 @@ pub mod aiagent {
             if let Some(ref value) = self.tag_condition {
                 properties.insert(
                     "TagCondition".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-orchestrationaiagentconfiguration.html
+    pub struct OrchestrationAIAgentConfiguration_ {
+        pub connect_instance_arn: Option<crate::value::ExpString>,
+        pub locale: Option<crate::value::ExpString>,
+        pub orchestration_ai_guardrail_id: Option<crate::value::ExpString>,
+        pub orchestration_ai_prompt_id: crate::value::ExpString,
+        pub tool_configurations: Option<Vec<ToolConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AIAgent_OrchestrationAIAgentConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.OrchestrationAIAgentConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AIAgent_OrchestrationAIAgentConfiguration as OrchestrationAIAgentConfiguration;
+    impl crate::value::ToValue for OrchestrationAIAgentConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.connect_instance_arn {
+                properties.insert(
+                    "ConnectInstanceArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.locale {
+                properties.insert("Locale".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.orchestration_ai_guardrail_id {
+                properties.insert(
+                    "OrchestrationAIGuardrailId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "OrchestrationAIPromptId".to_string(),
+                crate::value::ToValue::to_value(&self.orchestration_ai_prompt_id),
+            );
+            if let Some(ref value) = self.tool_configurations {
+                properties.insert(
+                    "ToolConfigurations".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -381,6 +660,296 @@ pub mod aiagent {
             if let Some(ref value) = self.tag_condition {
                 properties.insert(
                     "TagCondition".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-toolconfiguration.html
+    pub struct ToolConfiguration_ {
+        pub annotations: Option<serde_json::Value>,
+        pub description: Option<crate::value::ExpString>,
+        pub input_schema: Option<serde_json::Value>,
+        pub instruction: Option<Box<ToolInstruction_>>,
+        pub output_filters: Option<Vec<ToolOutputFilter_>>,
+        pub output_schema: Option<serde_json::Value>,
+        pub override_input_values: Option<Vec<ToolOverrideInputValue_>>,
+        pub title: Option<crate::value::ExpString>,
+        pub tool_id: Option<crate::value::ExpString>,
+        pub tool_name: crate::value::ExpString,
+        pub tool_type: crate::value::ExpString,
+        pub user_interaction_configuration: Option<Box<UserInteractionConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AIAgent_ToolConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.ToolConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AIAgent_ToolConfiguration as ToolConfiguration;
+    impl crate::value::ToValue for ToolConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.annotations {
+                properties.insert(
+                    "Annotations".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.description {
+                properties.insert(
+                    "Description".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.input_schema {
+                properties.insert(
+                    "InputSchema".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.instruction {
+                properties.insert(
+                    "Instruction".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.output_filters {
+                properties.insert(
+                    "OutputFilters".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.output_schema {
+                properties.insert(
+                    "OutputSchema".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.override_input_values {
+                properties.insert(
+                    "OverrideInputValues".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.title {
+                properties.insert("Title".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.tool_id {
+                properties.insert("ToolId".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.insert(
+                "ToolName".to_string(),
+                crate::value::ToValue::to_value(&self.tool_name),
+            );
+            properties.insert(
+                "ToolType".to_string(),
+                crate::value::ToValue::to_value(&self.tool_type),
+            );
+            if let Some(ref value) = self.user_interaction_configuration {
+                properties.insert(
+                    "UserInteractionConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-toolinstruction.html
+    pub struct ToolInstruction_ {
+        pub examples: Option<Vec<crate::value::ExpString>>,
+        pub instruction: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AIAgent_ToolInstruction {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.ToolInstruction"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AIAgent_ToolInstruction as ToolInstruction;
+    impl crate::value::ToValue for ToolInstruction_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.examples {
+                properties.insert(
+                    "Examples".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.instruction {
+                properties.insert(
+                    "Instruction".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloutputconfiguration.html
+    pub struct ToolOutputConfiguration_ {
+        pub output_variable_name_override: Option<crate::value::ExpString>,
+        pub session_data_namespace: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AIAgent_ToolOutputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.ToolOutputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AIAgent_ToolOutputConfiguration as ToolOutputConfiguration;
+    impl crate::value::ToValue for ToolOutputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.output_variable_name_override {
+                properties.insert(
+                    "OutputVariableNameOverride".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.session_data_namespace {
+                properties.insert(
+                    "SessionDataNamespace".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloutputfilter.html
+    pub struct ToolOutputFilter_ {
+        pub json_path: crate::value::ExpString,
+        pub output_configuration: Option<Box<ToolOutputConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AIAgent_ToolOutputFilter {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.ToolOutputFilter"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AIAgent_ToolOutputFilter as ToolOutputFilter;
+    impl crate::value::ToValue for ToolOutputFilter_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "JsonPath".to_string(),
+                crate::value::ToValue::to_value(&self.json_path),
+            );
+            if let Some(ref value) = self.output_configuration {
+                properties.insert(
+                    "OutputConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloverrideconstantinputvalue.html
+    pub struct ToolOverrideConstantInputValue_ {
+        pub r#type: crate::value::ExpString,
+        pub value: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AIAgent_ToolOverrideConstantInputValue {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.ToolOverrideConstantInputValue"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AIAgent_ToolOverrideConstantInputValue as ToolOverrideConstantInputValue;
+    impl crate::value::ToValue for ToolOverrideConstantInputValue_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Type".to_string(),
+                crate::value::ToValue::to_value(&self.r#type),
+            );
+            properties.insert(
+                "Value".to_string(),
+                crate::value::ToValue::to_value(&self.value),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloverrideinputvalue.html
+    pub struct ToolOverrideInputValue_ {
+        pub json_path: crate::value::ExpString,
+        pub value: Box<ToolOverrideInputValueConfiguration_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AIAgent_ToolOverrideInputValue {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.ToolOverrideInputValue"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AIAgent_ToolOverrideInputValue as ToolOverrideInputValue;
+    impl crate::value::ToValue for ToolOverrideInputValue_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "JsonPath".to_string(),
+                crate::value::ToValue::to_value(&self.json_path),
+            );
+            properties.insert(
+                "Value".to_string(),
+                crate::value::ToValue::to_value(&self.value),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-tooloverrideinputvalueconfiguration.html
+    pub struct ToolOverrideInputValueConfiguration_ {
+        pub constant: Box<ToolOverrideConstantInputValue_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AIAgent_ToolOverrideInputValueConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.ToolOverrideInputValueConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AIAgent_ToolOverrideInputValueConfiguration as ToolOverrideInputValueConfiguration;
+    impl crate::value::ToValue for ToolOverrideInputValueConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Constant".to_string(),
+                crate::value::ToValue::to_value(&self.constant),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-aiagent-userinteractionconfiguration.html
+    pub struct UserInteractionConfiguration_ {
+        pub is_user_confirmation_required: Option<crate::value::ExpBool>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AIAgent_UserInteractionConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AIAgent.UserInteractionConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AIAgent_UserInteractionConfiguration as UserInteractionConfiguration;
+    impl crate::value::ToValue for UserInteractionConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.is_user_confirmation_required {
+                properties.insert(
+                    "IsUserConfirmationRequired".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -819,7 +1388,9 @@ pub mod assistant {
 pub mod assistantassociation {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-assistantassociation-associationdata.html
     pub struct AssociationData_ {
-        pub knowledge_base_id: crate::value::ExpString,
+        pub external_bedrock_knowledge_base_config:
+            Option<Box<ExternalBedrockKnowledgeBaseConfig_>>,
+        pub knowledge_base_id: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -833,9 +1404,45 @@ pub mod assistantassociation {
     impl crate::value::ToValue for AssociationData_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.external_bedrock_knowledge_base_config {
+                properties.insert(
+                    "ExternalBedrockKnowledgeBaseConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.knowledge_base_id {
+                properties.insert(
+                    "KnowledgeBaseId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wisdom-assistantassociation-externalbedrockknowledgebaseconfig.html
+    pub struct ExternalBedrockKnowledgeBaseConfig_ {
+        pub access_role_arn: crate::value::ExpString,
+        pub bedrock_knowledge_base_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wisdom_AssistantAssociation_ExternalBedrockKnowledgeBaseConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Wisdom::AssistantAssociation.ExternalBedrockKnowledgeBaseConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wisdom_AssistantAssociation_ExternalBedrockKnowledgeBaseConfig as ExternalBedrockKnowledgeBaseConfig;
+    impl crate::value::ToValue for ExternalBedrockKnowledgeBaseConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
             properties.insert(
-                "KnowledgeBaseId".to_string(),
-                crate::value::ToValue::to_value(&self.knowledge_base_id),
+                "AccessRoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.access_role_arn),
+            );
+            properties.insert(
+                "BedrockKnowledgeBaseArn".to_string(),
+                crate::value::ToValue::to_value(&self.bedrock_knowledge_base_arn),
             );
             properties.into()
         }

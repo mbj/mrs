@@ -259,6 +259,29 @@ pub mod playbackconfiguration {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-addecisionserverconfiguration.html
+    pub struct AdDecisionServerConfiguration_ {
+        pub http_request: Box<HttpRequest_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediatailor_PlaybackConfiguration_AdDecisionServerConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.AdDecisionServerConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediatailor_PlaybackConfiguration_AdDecisionServerConfiguration as AdDecisionServerConfiguration;
+    impl crate::value::ToValue for AdDecisionServerConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "HttpRequest".to_string(),
+                crate::value::ToValue::to_value(&self.http_request),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-admarkerpassthrough.html
     pub struct AdMarkerPassthrough_ {
         pub enabled: Option<crate::value::ExpBool>,
@@ -468,6 +491,49 @@ pub mod playbackconfiguration {
             if let Some(ref value) = self.manifest_endpoint_prefix {
                 properties.insert(
                     "ManifestEndpointPrefix".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediatailor-playbackconfiguration-httprequest.html
+    pub struct HttpRequest_ {
+        pub body: Option<crate::value::ExpString>,
+        pub compress_request: Option<crate::value::ExpString>,
+        pub headers: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+        pub http_method: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediatailor_PlaybackConfiguration_HttpRequest {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaTailor::PlaybackConfiguration.HttpRequest"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediatailor_PlaybackConfiguration_HttpRequest as HttpRequest;
+    impl crate::value::ToValue for HttpRequest_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.body {
+                properties.insert("Body".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.compress_request {
+                properties.insert(
+                    "CompressRequest".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.headers {
+                properties.insert(
+                    "Headers".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.http_method {
+                properties.insert(
+                    "HttpMethod".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -949,6 +1015,8 @@ impl crate::template::ToResource for LiveSource_ {
 pub struct PlaybackConfiguration_ {
     pub ad_conditioning_configuration:
         Option<super::mediatailor::playbackconfiguration::AdConditioningConfiguration_>,
+    pub ad_decision_server_configuration:
+        Option<super::mediatailor::playbackconfiguration::AdDecisionServerConfiguration_>,
     pub ad_decision_server_url: crate::value::ExpString,
     pub avail_suppression: Option<super::mediatailor::playbackconfiguration::AvailSuppression_>,
     pub bumper: Option<super::mediatailor::playbackconfiguration::Bumper_>,
@@ -992,6 +1060,12 @@ impl crate::template::ToResource for PlaybackConfiguration_ {
         if let Some(ref value) = self.ad_conditioning_configuration {
             properties.insert(
                 "AdConditioningConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.ad_decision_server_configuration {
+            properties.insert(
+                "AdDecisionServerConfiguration".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

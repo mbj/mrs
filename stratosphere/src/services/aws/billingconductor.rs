@@ -2,7 +2,8 @@ pub mod billinggroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-billinggroup-accountgrouping.html
     pub struct AccountGrouping_ {
         pub auto_associate: Option<crate::value::ExpBool>,
-        pub linked_account_ids: Vec<crate::value::ExpString>,
+        pub linked_account_ids: Option<Vec<crate::value::ExpString>>,
+        pub responsibility_transfer_arn: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -22,10 +23,18 @@ pub mod billinggroup {
                     crate::value::ToValue::to_value(value),
                 );
             }
-            properties.insert(
-                "LinkedAccountIds".to_string(),
-                crate::value::ToValue::to_value(&self.linked_account_ids),
-            );
+            if let Some(ref value) = self.linked_account_ids {
+                properties.insert(
+                    "LinkedAccountIds".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.responsibility_transfer_arn {
+                properties.insert(
+                    "ResponsibilityTransferArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -183,8 +192,9 @@ pub mod customlineitem {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-customlineitem-lineitemfilter.html
     pub struct LineItemFilter_ {
         pub attribute: crate::value::ExpString,
+        pub attribute_values: Option<Vec<crate::value::ExpString>>,
         pub match_option: crate::value::ExpString,
-        pub values: Vec<crate::value::ExpString>,
+        pub values: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -202,13 +212,41 @@ pub mod customlineitem {
                 "Attribute".to_string(),
                 crate::value::ToValue::to_value(&self.attribute),
             );
+            if let Some(ref value) = self.attribute_values {
+                properties.insert(
+                    "AttributeValues".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "MatchOption".to_string(),
                 crate::value::ToValue::to_value(&self.match_option),
             );
+            if let Some(ref value) = self.values {
+                properties.insert("Values".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-billingconductor-customlineitem-presentationdetails.html
+    pub struct PresentationDetails_ {
+        pub service: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_billingconductor_CustomLineItem_PresentationDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::BillingConductor::CustomLineItem.PresentationDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_billingconductor_CustomLineItem_PresentationDetails as PresentationDetails;
+    impl crate::value::ToValue for PresentationDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
             properties.insert(
-                "Values".to_string(),
-                crate::value::ToValue::to_value(&self.values),
+                "Service".to_string(),
+                crate::value::ToValue::to_value(&self.service),
             );
             properties.into()
         }
@@ -270,7 +308,7 @@ pub struct BillingGroup_ {
     pub computation_preference: super::billingconductor::billinggroup::ComputationPreference_,
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
-    pub primary_account_id: crate::value::ExpString,
+    pub primary_account_id: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -311,10 +349,12 @@ impl crate::template::ToResource for BillingGroup_ {
             "Name".to_string(),
             crate::value::ToValue::to_value(&self.name),
         );
-        properties.insert(
-            "PrimaryAccountId".to_string(),
-            crate::value::ToValue::to_value(&self.primary_account_id),
-        );
+        if let Some(ref value) = self.primary_account_id {
+            properties.insert(
+                "PrimaryAccountId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
@@ -326,10 +366,12 @@ pub struct CustomLineItem_ {
     pub account_id: Option<crate::value::ExpString>,
     pub billing_group_arn: crate::value::ExpString,
     pub billing_period_range: Option<super::billingconductor::customlineitem::BillingPeriodRange_>,
+    pub computation_rule: Option<crate::value::ExpString>,
     pub custom_line_item_charge_details:
         Option<super::billingconductor::customlineitem::CustomLineItemChargeDetails_>,
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
+    pub presentation_details: Option<super::billingconductor::customlineitem::PresentationDetails_>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -368,6 +410,12 @@ impl crate::template::ToResource for CustomLineItem_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.computation_rule {
+            properties.insert(
+                "ComputationRule".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.custom_line_item_charge_details {
             properties.insert(
                 "CustomLineItemChargeDetails".to_string(),
@@ -384,6 +432,12 @@ impl crate::template::ToResource for CustomLineItem_ {
             "Name".to_string(),
             crate::value::ToValue::to_value(&self.name),
         );
+        if let Some(ref value) = self.presentation_details {
+            properties.insert(
+                "PresentationDetails".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }

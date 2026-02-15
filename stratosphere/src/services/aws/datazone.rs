@@ -1,4 +1,43 @@
 pub mod connection {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-amazonqpropertiesinput.html
+    pub struct AmazonQPropertiesInput_ {
+        pub auth_mode: Option<crate::value::ExpString>,
+        pub is_enabled: Option<crate::value::ExpBool>,
+        pub profile_arn: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_datazone_Connection_AmazonQPropertiesInput {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.AmazonQPropertiesInput"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_datazone_Connection_AmazonQPropertiesInput as AmazonQPropertiesInput;
+    impl crate::value::ToValue for AmazonQPropertiesInput_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.auth_mode {
+                properties.insert(
+                    "AuthMode".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.is_enabled {
+                properties.insert(
+                    "IsEnabled".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.profile_arn {
+                properties.insert(
+                    "ProfileArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-athenapropertiesinput.html
     pub struct AthenaPropertiesInput_ {
         pub workgroup_name: crate::value::ExpString,
@@ -195,11 +234,14 @@ pub mod connection {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-connectionpropertiesinput.html
     pub struct ConnectionPropertiesInput_ {
+        pub amazon_q_properties: Option<Box<AmazonQPropertiesInput_>>,
         pub athena_properties: Option<Box<AthenaPropertiesInput_>>,
         pub glue_properties: Option<Box<GluePropertiesInput_>>,
         pub hyper_pod_properties: Option<Box<HyperPodPropertiesInput_>>,
         pub iam_properties: Option<Box<IamPropertiesInput_>>,
+        pub mlflow_properties: Option<Box<MlflowPropertiesInput_>>,
         pub redshift_properties: Option<Box<RedshiftPropertiesInput_>>,
+        pub s3_properties: Option<Box<S3PropertiesInput_>>,
         pub spark_emr_properties: Option<Box<SparkEmrPropertiesInput_>>,
         pub spark_glue_properties: Option<Box<SparkGluePropertiesInput_>>,
     }
@@ -215,6 +257,12 @@ pub mod connection {
     impl crate::value::ToValue for ConnectionPropertiesInput_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.amazon_q_properties {
+                properties.insert(
+                    "AmazonQProperties".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.athena_properties {
                 properties.insert(
                     "AthenaProperties".to_string(),
@@ -239,9 +287,21 @@ pub mod connection {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.mlflow_properties {
+                properties.insert(
+                    "MlflowProperties".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.redshift_properties {
                 properties.insert(
                     "RedshiftProperties".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.s3_properties {
+                properties.insert(
+                    "S3Properties".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -498,6 +558,31 @@ pub mod connection {
             if let Some(ref value) = self.schedule {
                 properties.insert(
                     "Schedule".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-mlflowpropertiesinput.html
+    pub struct MlflowPropertiesInput_ {
+        pub tracking_server_arn: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_datazone_Connection_MlflowPropertiesInput {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.MlflowPropertiesInput"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_datazone_Connection_MlflowPropertiesInput as MlflowPropertiesInput;
+    impl crate::value::ToValue for MlflowPropertiesInput_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.tracking_server_arn {
+                properties.insert(
+                    "TrackingServerArn".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -793,12 +878,43 @@ pub mod connection {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-s3propertiesinput.html
+    pub struct S3PropertiesInput_ {
+        pub s3_access_grant_location_id: Option<crate::value::ExpString>,
+        pub s3_uri: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_datazone_Connection_S3PropertiesInput {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::DataZone::Connection.S3PropertiesInput"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_datazone_Connection_S3PropertiesInput as S3PropertiesInput;
+    impl crate::value::ToValue for S3PropertiesInput_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.s3_access_grant_location_id {
+                properties.insert(
+                    "S3AccessGrantLocationId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "S3Uri".to_string(),
+                crate::value::ToValue::to_value(&self.s3_uri),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-connection-sparkemrpropertiesinput.html
     pub struct SparkEmrPropertiesInput_ {
         pub compute_arn: Option<crate::value::ExpString>,
         pub instance_profile_arn: Option<crate::value::ExpString>,
         pub java_virtual_env: Option<crate::value::ExpString>,
         pub log_uri: Option<crate::value::ExpString>,
+        pub managed_endpoint_arn: Option<crate::value::ExpString>,
         pub python_virtual_env: Option<crate::value::ExpString>,
         pub runtime_role: Option<crate::value::ExpString>,
         pub trusted_certificates_s3_uri: Option<crate::value::ExpString>,
@@ -835,6 +951,12 @@ pub mod connection {
             }
             if let Some(ref value) = self.log_uri {
                 properties.insert("LogUri".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.managed_endpoint_arn {
+                properties.insert(
+                    "ManagedEndpointArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
             }
             if let Some(ref value) = self.python_virtual_env {
                 properties.insert(
@@ -1603,6 +1725,30 @@ pub mod environmentprofile {
             }
             if let Some(ref value) = self.value {
                 properties.insert("Value".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+}
+pub mod formtype {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datazone-formtype-model.html
+    pub struct Model_ {
+        pub smithy: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_datazone_FormType_Model {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::DataZone::FormType.Model"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_datazone_FormType_Model as Model;
+    impl crate::value::ToValue for Model_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.smithy {
+                properties.insert("Smithy".to_string(), crate::value::ToValue::to_value(value));
             }
             properties.into()
         }
@@ -2438,7 +2584,7 @@ pub mod projectprofile {
         pub deployment_order: Option<f64>,
         pub description: Option<crate::value::ExpString>,
         pub environment_blueprint_id: crate::value::ExpString,
-        pub id: Option<crate::value::ExpString>,
+        pub environment_configuration_id: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -2491,8 +2637,11 @@ pub mod projectprofile {
                 "EnvironmentBlueprintId".to_string(),
                 crate::value::ToValue::to_value(&self.environment_blueprint_id),
             );
-            if let Some(ref value) = self.id {
-                properties.insert("Id".to_string(), crate::value::ToValue::to_value(value));
+            if let Some(ref value) = self.environment_configuration_id {
+                properties.insert(
+                    "EnvironmentConfigurationId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
             }
             properties.insert(
                 "Name".to_string(),
@@ -2721,9 +2870,12 @@ pub struct Connection_ {
     pub aws_location: Option<super::datazone::connection::AwsLocation_>,
     pub description: Option<crate::value::ExpString>,
     pub domain_identifier: crate::value::ExpString,
-    pub environment_identifier: crate::value::ExpString,
+    pub enable_trusted_identity_propagation: Option<crate::value::ExpBool>,
+    pub environment_identifier: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
+    pub project_identifier: Option<crate::value::ExpString>,
     pub props: Option<super::datazone::connection::ConnectionPropertiesInput_>,
+    pub scope: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -2761,16 +2913,33 @@ impl crate::template::ToResource for Connection_ {
             "DomainIdentifier".to_string(),
             crate::value::ToValue::to_value(&self.domain_identifier),
         );
-        properties.insert(
-            "EnvironmentIdentifier".to_string(),
-            crate::value::ToValue::to_value(&self.environment_identifier),
-        );
+        if let Some(ref value) = self.enable_trusted_identity_propagation {
+            properties.insert(
+                "EnableTrustedIdentityPropagation".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.environment_identifier {
+            properties.insert(
+                "EnvironmentIdentifier".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "Name".to_string(),
             crate::value::ToValue::to_value(&self.name),
         );
+        if let Some(ref value) = self.project_identifier {
+            properties.insert(
+                "ProjectIdentifier".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.props {
             properties.insert("Props".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.scope {
+            properties.insert("Scope".to_string(), crate::value::ToValue::to_value(value));
         }
         properties
     }
@@ -3009,10 +3178,13 @@ impl crate::template::ToResource for DomainUnit_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-environment.html
 pub struct Environment_ {
+    pub deployment_order: Option<i32>,
     pub description: Option<crate::value::ExpString>,
     pub domain_identifier: crate::value::ExpString,
     pub environment_account_identifier: Option<crate::value::ExpString>,
     pub environment_account_region: Option<crate::value::ExpString>,
+    pub environment_blueprint_identifier: Option<crate::value::ExpString>,
+    pub environment_configuration_id: Option<crate::value::ExpString>,
     pub environment_profile_identifier: Option<crate::value::ExpString>,
     pub environment_role_arn: Option<crate::value::ExpString>,
     pub glossary_terms: Option<Vec<crate::value::ExpString>>,
@@ -3040,6 +3212,12 @@ impl crate::template::ToResource for Environment_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.deployment_order {
+            properties.insert(
+                "DeploymentOrder".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.description {
             properties.insert(
                 "Description".to_string(),
@@ -3059,6 +3237,18 @@ impl crate::template::ToResource for Environment_ {
         if let Some(ref value) = self.environment_account_region {
             properties.insert(
                 "EnvironmentAccountRegion".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.environment_blueprint_identifier {
+            properties.insert(
+                "EnvironmentBlueprintIdentifier".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.environment_configuration_id {
+            properties.insert(
+                "EnvironmentConfigurationId".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -3169,6 +3359,7 @@ pub struct EnvironmentBlueprintConfiguration_ {
     pub enabled_regions: Vec<crate::value::ExpString>,
     pub environment_blueprint_identifier: crate::value::ExpString,
     pub environment_role_permission_boundary: Option<crate::value::ExpString>,
+    pub global_parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub manage_access_role_arn: Option<crate::value::ExpString>,
     pub provisioning_configurations:
         Option<Vec<super::datazone::environmentblueprintconfiguration::ProvisioningConfiguration_>>,
@@ -3213,6 +3404,12 @@ impl crate::template::ToResource for EnvironmentBlueprintConfiguration_ {
         if let Some(ref value) = self.environment_role_permission_boundary {
             properties.insert(
                 "EnvironmentRolePermissionBoundary".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.global_parameters {
+            properties.insert(
+                "GlobalParameters".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -3309,6 +3506,63 @@ impl crate::template::ToResource for EnvironmentProfile_ {
                 "UserParameters".to_string(),
                 crate::value::ToValue::to_value(value),
             );
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datazone-formtype.html
+pub struct FormType_ {
+    pub description: Option<crate::value::ExpString>,
+    pub domain_identifier: crate::value::ExpString,
+    pub model: super::datazone::formtype::Model_,
+    pub name: crate::value::ExpString,
+    pub owning_project_identifier: crate::value::ExpString,
+    pub status: Option<crate::value::ExpString>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_datazone_FormType {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::DataZone::FormType"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_datazone_FormType as FormType;
+impl crate::template::ToResource for FormType_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("DataZone"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("FormType"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.description {
+            properties.insert(
+                "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "DomainIdentifier".to_string(),
+            crate::value::ToValue::to_value(&self.domain_identifier),
+        );
+        properties.insert(
+            "Model".to_string(),
+            crate::value::ToValue::to_value(&self.model),
+        );
+        properties.insert(
+            "Name".to_string(),
+            crate::value::ToValue::to_value(&self.name),
+        );
+        properties.insert(
+            "OwningProjectIdentifier".to_string(),
+            crate::value::ToValue::to_value(&self.owning_project_identifier),
+        );
+        if let Some(ref value) = self.status {
+            properties.insert("Status".to_string(), crate::value::ToValue::to_value(value));
         }
         properties
     }
@@ -3590,6 +3844,7 @@ pub struct ProjectProfile_ {
         Option<Vec<super::datazone::projectprofile::EnvironmentConfiguration_>>,
     pub name: crate::value::ExpString,
     pub status: Option<crate::value::ExpString>,
+    pub use_default_configurations: Option<crate::value::ExpBool>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -3641,6 +3896,12 @@ impl crate::template::ToResource for ProjectProfile_ {
         );
         if let Some(ref value) = self.status {
             properties.insert("Status".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.use_default_configurations {
+            properties.insert(
+                "UseDefaultConfigurations".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         properties
     }

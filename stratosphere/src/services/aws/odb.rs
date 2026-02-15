@@ -1029,6 +1029,7 @@ impl crate::template::ToResource for OdbNetwork_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-odb-odbpeeringconnection.html
 pub struct OdbPeeringConnection_ {
+    pub additional_peer_network_cidrs: Option<Vec<crate::value::ExpString>>,
     pub display_name: Option<crate::value::ExpString>,
     pub odb_network_id: Option<crate::value::ExpString>,
     pub peer_network_id: Option<crate::value::ExpString>,
@@ -1054,6 +1055,12 @@ impl crate::template::ToResource for OdbPeeringConnection_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.additional_peer_network_cidrs {
+            properties.insert(
+                "AdditionalPeerNetworkCidrs".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.display_name {
             properties.insert(
                 "DisplayName".to_string(),

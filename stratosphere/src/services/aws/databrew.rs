@@ -820,7 +820,7 @@ pub mod job {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-jobsample.html
     pub struct JobSample_ {
         pub mode: Option<crate::value::ExpString>,
-        pub size: Option<i32>,
+        pub size: Option<i64>,
     }
     #[doc(hidden)]
     #[macro_export]

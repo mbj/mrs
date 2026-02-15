@@ -290,10 +290,10 @@ pub mod application {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-checkpointconfiguration.html
     pub struct CheckpointConfiguration_ {
-        pub checkpoint_interval: Option<i32>,
+        pub checkpoint_interval: Option<i64>,
         pub checkpointing_enabled: Option<crate::value::ExpBool>,
         pub configuration_type: crate::value::ExpString,
-        pub min_pause_between_checkpoints: Option<i32>,
+        pub min_pause_between_checkpoints: Option<i64>,
     }
     #[doc(hidden)]
     #[macro_export]

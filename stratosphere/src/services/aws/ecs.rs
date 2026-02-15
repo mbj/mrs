@@ -1,4 +1,56 @@
 pub mod capacityprovider {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-acceleratorcountrequest.html
+    pub struct AcceleratorCountRequest_ {
+        pub max: Option<i32>,
+        pub min: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_AcceleratorCountRequest {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.AcceleratorCountRequest"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_AcceleratorCountRequest as AcceleratorCountRequest;
+    impl crate::value::ToValue for AcceleratorCountRequest_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.max {
+                properties.insert("Max".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.min {
+                properties.insert("Min".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-acceleratortotalmemorymibrequest.html
+    pub struct AcceleratorTotalMemoryMiBRequest_ {
+        pub max: Option<i32>,
+        pub min: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_AcceleratorTotalMemoryMiBRequest {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.AcceleratorTotalMemoryMiBRequest"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_AcceleratorTotalMemoryMiBRequest as AcceleratorTotalMemoryMiBRequest;
+    impl crate::value::ToValue for AcceleratorTotalMemoryMiBRequest_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.max {
+                properties.insert("Max".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.min {
+                properties.insert("Min".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-autoscalinggroupprovider.html
     pub struct AutoScalingGroupProvider_ {
         pub auto_scaling_group_arn: crate::value::ExpString,
@@ -40,6 +92,395 @@ pub mod capacityprovider {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-baselineebsbandwidthmbpsrequest.html
+    pub struct BaselineEbsBandwidthMbpsRequest_ {
+        pub max: Option<i32>,
+        pub min: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_BaselineEbsBandwidthMbpsRequest {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.BaselineEbsBandwidthMbpsRequest"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_BaselineEbsBandwidthMbpsRequest as BaselineEbsBandwidthMbpsRequest;
+    impl crate::value::ToValue for BaselineEbsBandwidthMbpsRequest_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.max {
+                properties.insert("Max".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.min {
+                properties.insert("Min".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-infrastructureoptimization.html
+    pub struct InfrastructureOptimization_ {
+        pub scale_in_after: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_InfrastructureOptimization {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.InfrastructureOptimization"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_InfrastructureOptimization as InfrastructureOptimization;
+    impl crate::value::ToValue for InfrastructureOptimization_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.scale_in_after {
+                properties.insert(
+                    "ScaleInAfter".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-instancelaunchtemplate.html
+    pub struct InstanceLaunchTemplate_ {
+        pub capacity_option_type: Option<crate::value::ExpString>,
+        pub ec2_instance_profile_arn: crate::value::ExpString,
+        pub fips_enabled: Option<crate::value::ExpBool>,
+        pub instance_requirements: Option<Box<InstanceRequirementsRequest_>>,
+        pub monitoring: Option<crate::value::ExpString>,
+        pub network_configuration: Box<ManagedInstancesNetworkConfiguration_>,
+        pub storage_configuration: Option<Box<ManagedInstancesStorageConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_InstanceLaunchTemplate {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.InstanceLaunchTemplate"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_InstanceLaunchTemplate as InstanceLaunchTemplate;
+    impl crate::value::ToValue for InstanceLaunchTemplate_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.capacity_option_type {
+                properties.insert(
+                    "CapacityOptionType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Ec2InstanceProfileArn".to_string(),
+                crate::value::ToValue::to_value(&self.ec2_instance_profile_arn),
+            );
+            if let Some(ref value) = self.fips_enabled {
+                properties.insert(
+                    "FipsEnabled".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.instance_requirements {
+                properties.insert(
+                    "InstanceRequirements".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.monitoring {
+                properties.insert(
+                    "Monitoring".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "NetworkConfiguration".to_string(),
+                crate::value::ToValue::to_value(&self.network_configuration),
+            );
+            if let Some(ref value) = self.storage_configuration {
+                properties.insert(
+                    "StorageConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-instancerequirementsrequest.html
+    pub struct InstanceRequirementsRequest_ {
+        pub accelerator_count: Option<Box<AcceleratorCountRequest_>>,
+        pub accelerator_manufacturers: Option<Vec<crate::value::ExpString>>,
+        pub accelerator_names: Option<Vec<crate::value::ExpString>>,
+        pub accelerator_total_memory_mi_b: Option<Box<AcceleratorTotalMemoryMiBRequest_>>,
+        pub accelerator_types: Option<Vec<crate::value::ExpString>>,
+        pub allowed_instance_types: Option<Vec<crate::value::ExpString>>,
+        pub bare_metal: Option<crate::value::ExpString>,
+        pub baseline_ebs_bandwidth_mbps: Option<Box<BaselineEbsBandwidthMbpsRequest_>>,
+        pub burstable_performance: Option<crate::value::ExpString>,
+        pub cpu_manufacturers: Option<Vec<crate::value::ExpString>>,
+        pub excluded_instance_types: Option<Vec<crate::value::ExpString>>,
+        pub instance_generations: Option<Vec<crate::value::ExpString>>,
+        pub local_storage: Option<crate::value::ExpString>,
+        pub local_storage_types: Option<Vec<crate::value::ExpString>>,
+        pub max_spot_price_as_percentage_of_optimal_on_demand_price: Option<i32>,
+        pub memory_gi_b_per_v_cpu: Option<Box<MemoryGiBPerVCpuRequest_>>,
+        pub memory_mi_b: Box<MemoryMiBRequest_>,
+        pub network_bandwidth_gbps: Option<Box<NetworkBandwidthGbpsRequest_>>,
+        pub network_interface_count: Option<Box<NetworkInterfaceCountRequest_>>,
+        pub on_demand_max_price_percentage_over_lowest_price: Option<i32>,
+        pub require_hibernate_support: Option<crate::value::ExpBool>,
+        pub spot_max_price_percentage_over_lowest_price: Option<i32>,
+        pub total_local_storage_gb: Option<Box<TotalLocalStorageGBRequest_>>,
+        pub v_cpu_count: Box<VCpuCountRangeRequest_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_InstanceRequirementsRequest {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.InstanceRequirementsRequest"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_InstanceRequirementsRequest as InstanceRequirementsRequest;
+    impl crate::value::ToValue for InstanceRequirementsRequest_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.accelerator_count {
+                properties.insert(
+                    "AcceleratorCount".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.accelerator_manufacturers {
+                properties.insert(
+                    "AcceleratorManufacturers".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.accelerator_names {
+                properties.insert(
+                    "AcceleratorNames".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.accelerator_total_memory_mi_b {
+                properties.insert(
+                    "AcceleratorTotalMemoryMiB".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.accelerator_types {
+                properties.insert(
+                    "AcceleratorTypes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.allowed_instance_types {
+                properties.insert(
+                    "AllowedInstanceTypes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.bare_metal {
+                properties.insert(
+                    "BareMetal".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.baseline_ebs_bandwidth_mbps {
+                properties.insert(
+                    "BaselineEbsBandwidthMbps".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.burstable_performance {
+                properties.insert(
+                    "BurstablePerformance".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.cpu_manufacturers {
+                properties.insert(
+                    "CpuManufacturers".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.excluded_instance_types {
+                properties.insert(
+                    "ExcludedInstanceTypes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.instance_generations {
+                properties.insert(
+                    "InstanceGenerations".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.local_storage {
+                properties.insert(
+                    "LocalStorage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.local_storage_types {
+                properties.insert(
+                    "LocalStorageTypes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.max_spot_price_as_percentage_of_optimal_on_demand_price {
+                properties.insert(
+                    "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.memory_gi_b_per_v_cpu {
+                properties.insert(
+                    "MemoryGiBPerVCpu".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "MemoryMiB".to_string(),
+                crate::value::ToValue::to_value(&self.memory_mi_b),
+            );
+            if let Some(ref value) = self.network_bandwidth_gbps {
+                properties.insert(
+                    "NetworkBandwidthGbps".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.network_interface_count {
+                properties.insert(
+                    "NetworkInterfaceCount".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.on_demand_max_price_percentage_over_lowest_price {
+                properties.insert(
+                    "OnDemandMaxPricePercentageOverLowestPrice".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.require_hibernate_support {
+                properties.insert(
+                    "RequireHibernateSupport".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.spot_max_price_percentage_over_lowest_price {
+                properties.insert(
+                    "SpotMaxPricePercentageOverLowestPrice".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.total_local_storage_gb {
+                properties.insert(
+                    "TotalLocalStorageGB".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "VCpuCount".to_string(),
+                crate::value::ToValue::to_value(&self.v_cpu_count),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-managedinstancesnetworkconfiguration.html
+    pub struct ManagedInstancesNetworkConfiguration_ {
+        pub security_groups: Vec<crate::value::ExpString>,
+        pub subnets: Vec<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_ManagedInstancesNetworkConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.ManagedInstancesNetworkConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_ManagedInstancesNetworkConfiguration as ManagedInstancesNetworkConfiguration;
+    impl crate::value::ToValue for ManagedInstancesNetworkConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "SecurityGroups".to_string(),
+                crate::value::ToValue::to_value(&self.security_groups),
+            );
+            properties.insert(
+                "Subnets".to_string(),
+                crate::value::ToValue::to_value(&self.subnets),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-managedinstancesprovider.html
+    pub struct ManagedInstancesProvider_ {
+        pub infrastructure_optimization: Option<Box<InfrastructureOptimization_>>,
+        pub infrastructure_role_arn: crate::value::ExpString,
+        pub instance_launch_template: Box<InstanceLaunchTemplate_>,
+        pub propagate_tags: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_ManagedInstancesProvider {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.ManagedInstancesProvider"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_ManagedInstancesProvider as ManagedInstancesProvider;
+    impl crate::value::ToValue for ManagedInstancesProvider_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.infrastructure_optimization {
+                properties.insert(
+                    "InfrastructureOptimization".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "InfrastructureRoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.infrastructure_role_arn),
+            );
+            properties.insert(
+                "InstanceLaunchTemplate".to_string(),
+                crate::value::ToValue::to_value(&self.instance_launch_template),
+            );
+            if let Some(ref value) = self.propagate_tags {
+                properties.insert(
+                    "PropagateTags".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-managedinstancesstorageconfiguration.html
+    pub struct ManagedInstancesStorageConfiguration_ {
+        pub storage_size_gi_b: i32,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_ManagedInstancesStorageConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.ManagedInstancesStorageConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_ManagedInstancesStorageConfiguration as ManagedInstancesStorageConfiguration;
+    impl crate::value::ToValue for ManagedInstancesStorageConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "StorageSizeGiB".to_string(),
+                crate::value::ToValue::to_value(&self.storage_size_gi_b),
+            );
             properties.into()
         }
     }
@@ -90,6 +531,164 @@ pub mod capacityprovider {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-memorygibpervcpurequest.html
+    pub struct MemoryGiBPerVCpuRequest_ {
+        pub max: Option<f64>,
+        pub min: Option<f64>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_MemoryGiBPerVCpuRequest {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.MemoryGiBPerVCpuRequest"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_MemoryGiBPerVCpuRequest as MemoryGiBPerVCpuRequest;
+    impl crate::value::ToValue for MemoryGiBPerVCpuRequest_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.max {
+                properties.insert("Max".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.min {
+                properties.insert("Min".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-memorymibrequest.html
+    pub struct MemoryMiBRequest_ {
+        pub max: Option<i32>,
+        pub min: i32,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_MemoryMiBRequest {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.MemoryMiBRequest"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_MemoryMiBRequest as MemoryMiBRequest;
+    impl crate::value::ToValue for MemoryMiBRequest_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.max {
+                properties.insert("Max".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.insert(
+                "Min".to_string(),
+                crate::value::ToValue::to_value(&self.min),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-networkbandwidthgbpsrequest.html
+    pub struct NetworkBandwidthGbpsRequest_ {
+        pub max: Option<f64>,
+        pub min: Option<f64>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_NetworkBandwidthGbpsRequest {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.NetworkBandwidthGbpsRequest"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_NetworkBandwidthGbpsRequest as NetworkBandwidthGbpsRequest;
+    impl crate::value::ToValue for NetworkBandwidthGbpsRequest_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.max {
+                properties.insert("Max".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.min {
+                properties.insert("Min".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-networkinterfacecountrequest.html
+    pub struct NetworkInterfaceCountRequest_ {
+        pub max: Option<i32>,
+        pub min: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_NetworkInterfaceCountRequest {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.NetworkInterfaceCountRequest"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_NetworkInterfaceCountRequest as NetworkInterfaceCountRequest;
+    impl crate::value::ToValue for NetworkInterfaceCountRequest_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.max {
+                properties.insert("Max".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.min {
+                properties.insert("Min".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-totallocalstoragegbrequest.html
+    pub struct TotalLocalStorageGBRequest_ {
+        pub max: Option<f64>,
+        pub min: Option<f64>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_TotalLocalStorageGBRequest {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.TotalLocalStorageGBRequest"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_TotalLocalStorageGBRequest as TotalLocalStorageGBRequest;
+    impl crate::value::ToValue for TotalLocalStorageGBRequest_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.max {
+                properties.insert("Max".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.min {
+                properties.insert("Min".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-vcpucountrangerequest.html
+    pub struct VCpuCountRangeRequest_ {
+        pub max: Option<i32>,
+        pub min: i32,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_CapacityProvider_VCpuCountRangeRequest {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::CapacityProvider.VCpuCountRangeRequest"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_CapacityProvider_VCpuCountRangeRequest as VCpuCountRangeRequest;
+    impl crate::value::ToValue for VCpuCountRangeRequest_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.max {
+                properties.insert("Max".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.insert(
+                "Min".to_string(),
+                crate::value::ToValue::to_value(&self.min),
+            );
             properties.into()
         }
     }
@@ -369,6 +968,549 @@ pub mod clustercapacityproviderassociations {
         }
     }
 }
+pub mod expressgatewayservice {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-expressgatewayservice-autoscalingarns.html
+    pub struct AutoScalingArns_ {
+        pub application_auto_scaling_policies: Option<Vec<crate::value::ExpString>>,
+        pub scalable_target: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_ExpressGatewayService_AutoScalingArns {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::ExpressGatewayService.AutoScalingArns"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_ExpressGatewayService_AutoScalingArns as AutoScalingArns;
+    impl crate::value::ToValue for AutoScalingArns_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.application_auto_scaling_policies {
+                properties.insert(
+                    "ApplicationAutoScalingPolicies".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.scalable_target {
+                properties.insert(
+                    "ScalableTarget".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-expressgatewayservice-ecsmanagedresourcearns.html
+    pub struct ECSManagedResourceArns_ {
+        pub auto_scaling: Option<Box<AutoScalingArns_>>,
+        pub ingress_path: Option<Box<IngressPathArns_>>,
+        pub log_groups: Option<Vec<crate::value::ExpString>>,
+        pub metric_alarms: Option<Vec<crate::value::ExpString>>,
+        pub service_security_groups: Option<Vec<crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_ExpressGatewayService_ECSManagedResourceArns {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::ExpressGatewayService.ECSManagedResourceArns"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_ExpressGatewayService_ECSManagedResourceArns as ECSManagedResourceArns;
+    impl crate::value::ToValue for ECSManagedResourceArns_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.auto_scaling {
+                properties.insert(
+                    "AutoScaling".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.ingress_path {
+                properties.insert(
+                    "IngressPath".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.log_groups {
+                properties.insert(
+                    "LogGroups".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.metric_alarms {
+                properties.insert(
+                    "MetricAlarms".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.service_security_groups {
+                properties.insert(
+                    "ServiceSecurityGroups".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-expressgatewayservice-expressgatewaycontainer.html
+    pub struct ExpressGatewayContainer_ {
+        pub aws_logs_configuration: Option<Box<ExpressGatewayServiceAwsLogsConfiguration_>>,
+        pub command: Option<Vec<crate::value::ExpString>>,
+        pub container_port: Option<i32>,
+        pub environment: Option<Vec<KeyValuePair_>>,
+        pub image: crate::value::ExpString,
+        pub repository_credentials: Option<Box<ExpressGatewayRepositoryCredentials_>>,
+        pub secrets: Option<Vec<Secret_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_ExpressGatewayService_ExpressGatewayContainer {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::ExpressGatewayService.ExpressGatewayContainer"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_ExpressGatewayService_ExpressGatewayContainer as ExpressGatewayContainer;
+    impl crate::value::ToValue for ExpressGatewayContainer_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.aws_logs_configuration {
+                properties.insert(
+                    "AwsLogsConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.command {
+                properties.insert(
+                    "Command".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.container_port {
+                properties.insert(
+                    "ContainerPort".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.environment {
+                properties.insert(
+                    "Environment".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Image".to_string(),
+                crate::value::ToValue::to_value(&self.image),
+            );
+            if let Some(ref value) = self.repository_credentials {
+                properties.insert(
+                    "RepositoryCredentials".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.secrets {
+                properties.insert(
+                    "Secrets".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-expressgatewayservice-expressgatewayrepositorycredentials.html
+    pub struct ExpressGatewayRepositoryCredentials_ {
+        pub credentials_parameter: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_ExpressGatewayService_ExpressGatewayRepositoryCredentials {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::ExpressGatewayService.ExpressGatewayRepositoryCredentials"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_ExpressGatewayService_ExpressGatewayRepositoryCredentials as ExpressGatewayRepositoryCredentials;
+    impl crate::value::ToValue for ExpressGatewayRepositoryCredentials_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "CredentialsParameter".to_string(),
+                crate::value::ToValue::to_value(&self.credentials_parameter),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-expressgatewayservice-expressgatewayscalingtarget.html
+    pub struct ExpressGatewayScalingTarget_ {
+        pub auto_scaling_metric: Option<crate::value::ExpString>,
+        pub auto_scaling_target_value: Option<i32>,
+        pub max_task_count: Option<i32>,
+        pub min_task_count: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_ExpressGatewayService_ExpressGatewayScalingTarget {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::ExpressGatewayService.ExpressGatewayScalingTarget"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_ExpressGatewayService_ExpressGatewayScalingTarget as ExpressGatewayScalingTarget;
+    impl crate::value::ToValue for ExpressGatewayScalingTarget_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.auto_scaling_metric {
+                properties.insert(
+                    "AutoScalingMetric".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.auto_scaling_target_value {
+                properties.insert(
+                    "AutoScalingTargetValue".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.max_task_count {
+                properties.insert(
+                    "MaxTaskCount".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.min_task_count {
+                properties.insert(
+                    "MinTaskCount".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-expressgatewayservice-expressgatewayserviceawslogsconfiguration.html
+    pub struct ExpressGatewayServiceAwsLogsConfiguration_ {
+        pub log_group: crate::value::ExpString,
+        pub log_stream_prefix: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_ExpressGatewayService_ExpressGatewayServiceAwsLogsConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::ExpressGatewayService.ExpressGatewayServiceAwsLogsConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_ExpressGatewayService_ExpressGatewayServiceAwsLogsConfiguration as ExpressGatewayServiceAwsLogsConfiguration;
+    impl crate::value::ToValue for ExpressGatewayServiceAwsLogsConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "LogGroup".to_string(),
+                crate::value::ToValue::to_value(&self.log_group),
+            );
+            properties.insert(
+                "LogStreamPrefix".to_string(),
+                crate::value::ToValue::to_value(&self.log_stream_prefix),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-expressgatewayservice-expressgatewayserviceconfiguration.html
+    pub struct ExpressGatewayServiceConfiguration_ {
+        pub cpu: Option<crate::value::ExpString>,
+        pub created_at: Option<crate::value::ExpString>,
+        pub execution_role_arn: Option<crate::value::ExpString>,
+        pub health_check_path: Option<crate::value::ExpString>,
+        pub ingress_paths: Option<Vec<IngressPathSummary_>>,
+        pub memory: Option<crate::value::ExpString>,
+        pub network_configuration: Option<Box<ExpressGatewayServiceNetworkConfiguration_>>,
+        pub primary_container: Option<Box<ExpressGatewayContainer_>>,
+        pub scaling_target: Option<Box<ExpressGatewayScalingTarget_>>,
+        pub service_revision_arn: Option<crate::value::ExpString>,
+        pub task_role_arn: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_ExpressGatewayService_ExpressGatewayServiceConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::ExpressGatewayService.ExpressGatewayServiceConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_ExpressGatewayService_ExpressGatewayServiceConfiguration as ExpressGatewayServiceConfiguration;
+    impl crate::value::ToValue for ExpressGatewayServiceConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.cpu {
+                properties.insert("Cpu".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.created_at {
+                properties.insert(
+                    "CreatedAt".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.execution_role_arn {
+                properties.insert(
+                    "ExecutionRoleArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.health_check_path {
+                properties.insert(
+                    "HealthCheckPath".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.ingress_paths {
+                properties.insert(
+                    "IngressPaths".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.memory {
+                properties.insert("Memory".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.network_configuration {
+                properties.insert(
+                    "NetworkConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.primary_container {
+                properties.insert(
+                    "PrimaryContainer".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.scaling_target {
+                properties.insert(
+                    "ScalingTarget".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.service_revision_arn {
+                properties.insert(
+                    "ServiceRevisionArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.task_role_arn {
+                properties.insert(
+                    "TaskRoleArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-expressgatewayservice-expressgatewayservicenetworkconfiguration.html
+    pub struct ExpressGatewayServiceNetworkConfiguration_ {
+        pub security_groups: Option<Vec<crate::value::ExpString>>,
+        pub subnets: Option<Vec<crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_ExpressGatewayService_ExpressGatewayServiceNetworkConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::ExpressGatewayService.ExpressGatewayServiceNetworkConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_ExpressGatewayService_ExpressGatewayServiceNetworkConfiguration as ExpressGatewayServiceNetworkConfiguration;
+    impl crate::value::ToValue for ExpressGatewayServiceNetworkConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.security_groups {
+                properties.insert(
+                    "SecurityGroups".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.subnets {
+                properties.insert(
+                    "Subnets".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-expressgatewayservice-expressgatewayservicestatus.html
+    pub struct ExpressGatewayServiceStatus_ {
+        pub status_code: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_ExpressGatewayService_ExpressGatewayServiceStatus {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::ExpressGatewayService.ExpressGatewayServiceStatus"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_ExpressGatewayService_ExpressGatewayServiceStatus as ExpressGatewayServiceStatus;
+    impl crate::value::ToValue for ExpressGatewayServiceStatus_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.status_code {
+                properties.insert(
+                    "StatusCode".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-expressgatewayservice-ingresspatharns.html
+    pub struct IngressPathArns_ {
+        pub certificate_arn: Option<crate::value::ExpString>,
+        pub listener_arn: Option<crate::value::ExpString>,
+        pub listener_rule_arn: Option<crate::value::ExpString>,
+        pub load_balancer_arn: Option<crate::value::ExpString>,
+        pub load_balancer_security_groups: Option<Vec<crate::value::ExpString>>,
+        pub target_group_arns: Option<Vec<crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_ExpressGatewayService_IngressPathArns {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::ExpressGatewayService.IngressPathArns"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_ExpressGatewayService_IngressPathArns as IngressPathArns;
+    impl crate::value::ToValue for IngressPathArns_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.certificate_arn {
+                properties.insert(
+                    "CertificateArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.listener_arn {
+                properties.insert(
+                    "ListenerArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.listener_rule_arn {
+                properties.insert(
+                    "ListenerRuleArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.load_balancer_arn {
+                properties.insert(
+                    "LoadBalancerArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.load_balancer_security_groups {
+                properties.insert(
+                    "LoadBalancerSecurityGroups".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.target_group_arns {
+                properties.insert(
+                    "TargetGroupArns".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-expressgatewayservice-ingresspathsummary.html
+    pub struct IngressPathSummary_ {
+        pub access_type: Option<crate::value::ExpString>,
+        pub endpoint: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_ExpressGatewayService_IngressPathSummary {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::ExpressGatewayService.IngressPathSummary"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_ExpressGatewayService_IngressPathSummary as IngressPathSummary;
+    impl crate::value::ToValue for IngressPathSummary_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.access_type {
+                properties.insert(
+                    "AccessType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.endpoint {
+                properties.insert(
+                    "Endpoint".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-expressgatewayservice-keyvaluepair.html
+    pub struct KeyValuePair_ {
+        pub name: crate::value::ExpString,
+        pub value: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_ExpressGatewayService_KeyValuePair {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::ExpressGatewayService.KeyValuePair"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_ExpressGatewayService_KeyValuePair as KeyValuePair;
+    impl crate::value::ToValue for KeyValuePair_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.insert(
+                "Value".to_string(),
+                crate::value::ToValue::to_value(&self.value),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-expressgatewayservice-secret.html
+    pub struct Secret_ {
+        pub name: crate::value::ExpString,
+        pub value_from: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_ExpressGatewayService_Secret {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::ExpressGatewayService.Secret"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_ExpressGatewayService_Secret as Secret;
+    impl crate::value::ToValue for Secret_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.insert(
+                "ValueFrom".to_string(),
+                crate::value::ToValue::to_value(&self.value_from),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod service {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-advancedconfiguration.html
     pub struct AdvancedConfiguration_ {
@@ -447,6 +1589,38 @@ pub mod service {
             if let Some(ref value) = self.subnets {
                 properties.insert(
                     "Subnets".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-canaryconfiguration.html
+    pub struct CanaryConfiguration_ {
+        pub canary_bake_time_in_minutes: Option<i32>,
+        pub canary_percent: Option<f64>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_Service_CanaryConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.CanaryConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_Service_CanaryConfiguration as CanaryConfiguration;
+    impl crate::value::ToValue for CanaryConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.canary_bake_time_in_minutes {
+                properties.insert(
+                    "CanaryBakeTimeInMinutes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.canary_percent {
+                properties.insert(
+                    "CanaryPercent".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -551,8 +1725,10 @@ pub mod service {
     pub struct DeploymentConfiguration_ {
         pub alarms: Option<Box<DeploymentAlarms_>>,
         pub bake_time_in_minutes: Option<i32>,
+        pub canary_configuration: Option<Box<CanaryConfiguration_>>,
         pub deployment_circuit_breaker: Option<Box<DeploymentCircuitBreaker_>>,
         pub lifecycle_hooks: Option<Vec<DeploymentLifecycleHook_>>,
+        pub linear_configuration: Option<Box<LinearConfiguration_>>,
         pub maximum_percent: Option<i32>,
         pub minimum_healthy_percent: Option<i32>,
         pub strategy: Option<crate::value::ExpString>,
@@ -578,6 +1754,12 @@ pub mod service {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.canary_configuration {
+                properties.insert(
+                    "CanaryConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.deployment_circuit_breaker {
                 properties.insert(
                     "DeploymentCircuitBreaker".to_string(),
@@ -587,6 +1769,12 @@ pub mod service {
             if let Some(ref value) = self.lifecycle_hooks {
                 properties.insert(
                     "LifecycleHooks".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.linear_configuration {
+                properties.insert(
+                    "LinearConfiguration".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -731,6 +1919,38 @@ pub mod service {
             if let Some(ref value) = self.force_new_deployment_nonce {
                 properties.insert(
                     "ForceNewDeploymentNonce".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-linearconfiguration.html
+    pub struct LinearConfiguration_ {
+        pub step_bake_time_in_minutes: Option<i32>,
+        pub step_percent: Option<f64>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_Service_LinearConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.LinearConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_Service_LinearConfiguration as LinearConfiguration;
+    impl crate::value::ToValue for LinearConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.step_bake_time_in_minutes {
+                properties.insert(
+                    "StepBakeTimeInMinutes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.step_percent {
+                properties.insert(
+                    "StepPercent".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -939,6 +2159,36 @@ pub mod service {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectaccesslogconfiguration.html
+    pub struct ServiceConnectAccessLogConfiguration_ {
+        pub format: crate::value::ExpString,
+        pub include_query_parameters: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecs_Service_ServiceConnectAccessLogConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECS::Service.ServiceConnectAccessLogConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecs_Service_ServiceConnectAccessLogConfiguration as ServiceConnectAccessLogConfiguration;
+    impl crate::value::ToValue for ServiceConnectAccessLogConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Format".to_string(),
+                crate::value::ToValue::to_value(&self.format),
+            );
+            if let Some(ref value) = self.include_query_parameters {
+                properties.insert(
+                    "IncludeQueryParameters".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectclientalias.html
     pub struct ServiceConnectClientAlias_ {
         pub dns_name: Option<crate::value::ExpString>,
@@ -978,6 +2228,7 @@ pub mod service {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectconfiguration.html
     pub struct ServiceConnectConfiguration_ {
+        pub access_log_configuration: Option<Box<ServiceConnectAccessLogConfiguration_>>,
         pub enabled: crate::value::ExpBool,
         pub log_configuration: Option<Box<LogConfiguration_>>,
         pub namespace: Option<crate::value::ExpString>,
@@ -995,6 +2246,12 @@ pub mod service {
     impl crate::value::ToValue for ServiceConnectConfiguration_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.access_log_configuration {
+                properties.insert(
+                    "AccessLogConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "Enabled".to_string(),
                 crate::value::ToValue::to_value(&self.enabled),
@@ -3042,6 +4299,8 @@ pub mod taskset {
 pub struct CapacityProvider_ {
     pub auto_scaling_group_provider:
         Option<super::ecs::capacityprovider::AutoScalingGroupProvider_>,
+    pub cluster_name: Option<crate::value::ExpString>,
+    pub managed_instances_provider: Option<super::ecs::capacityprovider::ManagedInstancesProvider_>,
     pub name: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -3068,6 +4327,18 @@ impl crate::template::ToResource for CapacityProvider_ {
         if let Some(ref value) = self.auto_scaling_group_provider {
             properties.insert(
                 "AutoScalingGroupProvider".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.cluster_name {
+            properties.insert(
+                "ClusterName".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.managed_instances_provider {
+            properties.insert(
+                "ManagedInstancesProvider".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -3155,7 +4426,7 @@ impl crate::template::ToResource for Cluster_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-clustercapacityproviderassociations.html
 pub struct ClusterCapacityProviderAssociations_ {
-    pub capacity_providers: Vec<crate::value::ExpString>,
+    pub capacity_providers: Option<Vec<crate::value::ExpString>>,
     pub cluster: crate::value::ExpString,
     pub default_capacity_provider_strategy:
         Vec<super::ecs::clustercapacityproviderassociations::CapacityProviderStrategy_>,
@@ -3182,10 +4453,12 @@ impl crate::template::ToResource for ClusterCapacityProviderAssociations_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
-        properties.insert(
-            "CapacityProviders".to_string(),
-            crate::value::ToValue::to_value(&self.capacity_providers),
-        );
+        if let Some(ref value) = self.capacity_providers {
+            properties.insert(
+                "CapacityProviders".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "Cluster".to_string(),
             crate::value::ToValue::to_value(&self.cluster),
@@ -3194,6 +4467,102 @@ impl crate::template::ToResource for ClusterCapacityProviderAssociations_ {
             "DefaultCapacityProviderStrategy".to_string(),
             crate::value::ToValue::to_value(&self.default_capacity_provider_strategy),
         );
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-expressgatewayservice.html
+pub struct ExpressGatewayService_ {
+    pub cluster: Option<crate::value::ExpString>,
+    pub cpu: Option<crate::value::ExpString>,
+    pub execution_role_arn: crate::value::ExpString,
+    pub health_check_path: Option<crate::value::ExpString>,
+    pub infrastructure_role_arn: crate::value::ExpString,
+    pub memory: Option<crate::value::ExpString>,
+    pub network_configuration:
+        Option<super::ecs::expressgatewayservice::ExpressGatewayServiceNetworkConfiguration_>,
+    pub primary_container: super::ecs::expressgatewayservice::ExpressGatewayContainer_,
+    pub scaling_target: Option<super::ecs::expressgatewayservice::ExpressGatewayScalingTarget_>,
+    pub service_name: Option<crate::value::ExpString>,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub task_role_arn: Option<crate::value::ExpString>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_ecs_ExpressGatewayService {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::ECS::ExpressGatewayService"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_ecs_ExpressGatewayService as ExpressGatewayService;
+impl crate::template::ToResource for ExpressGatewayService_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("ECS"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("ExpressGatewayService"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.cluster {
+            properties.insert(
+                "Cluster".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.cpu {
+            properties.insert("Cpu".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "ExecutionRoleArn".to_string(),
+            crate::value::ToValue::to_value(&self.execution_role_arn),
+        );
+        if let Some(ref value) = self.health_check_path {
+            properties.insert(
+                "HealthCheckPath".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "InfrastructureRoleArn".to_string(),
+            crate::value::ToValue::to_value(&self.infrastructure_role_arn),
+        );
+        if let Some(ref value) = self.memory {
+            properties.insert("Memory".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.network_configuration {
+            properties.insert(
+                "NetworkConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "PrimaryContainer".to_string(),
+            crate::value::ToValue::to_value(&self.primary_container),
+        );
+        if let Some(ref value) = self.scaling_target {
+            properties.insert(
+                "ScalingTarget".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.service_name {
+            properties.insert(
+                "ServiceName".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.task_role_arn {
+            properties.insert(
+                "TaskRoleArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties
     }
 }

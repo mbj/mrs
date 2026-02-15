@@ -413,12 +413,37 @@ pub mod cacertificate {
     }
 }
 pub mod command {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-awsjsonsubstitutioncommandpreprocessorconfig.html
+    pub struct AwsJsonSubstitutionCommandPreprocessorConfig_ {
+        pub output_format: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_iot_Command_AwsJsonSubstitutionCommandPreprocessorConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::IoT::Command.AwsJsonSubstitutionCommandPreprocessorConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_iot_Command_AwsJsonSubstitutionCommandPreprocessorConfig as AwsJsonSubstitutionCommandPreprocessorConfig;
+    impl crate::value::ToValue for AwsJsonSubstitutionCommandPreprocessorConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "OutputFormat".to_string(),
+                crate::value::ToValue::to_value(&self.output_format),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandparameter.html
     pub struct CommandParameter_ {
         pub default_value: Option<Box<CommandParameterValue_>>,
         pub description: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
+        pub r#type: Option<crate::value::ExpString>,
         pub value: Option<Box<CommandParameterValue_>>,
+        pub value_conditions: Option<Vec<CommandParameterValueCondition_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -448,8 +473,17 @@ pub mod command {
                 "Name".to_string(),
                 crate::value::ToValue::to_value(&self.name),
             );
+            if let Some(ref value) = self.r#type {
+                properties.insert("Type".to_string(), crate::value::ToValue::to_value(value));
+            }
             if let Some(ref value) = self.value {
                 properties.insert("Value".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.value_conditions {
+                properties.insert(
+                    "ValueConditions".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
             }
             properties.into()
         }
@@ -500,6 +534,109 @@ pub mod command {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandparametervaluecomparisonoperand.html
+    pub struct CommandParameterValueComparisonOperand_ {
+        pub number: Option<crate::value::ExpString>,
+        pub number_range: Option<Box<CommandParameterValueNumberRange_>>,
+        pub numbers: Option<Vec<crate::value::ExpString>>,
+        pub string: Option<crate::value::ExpString>,
+        pub strings: Option<Vec<crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_iot_Command_CommandParameterValueComparisonOperand {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::IoT::Command.CommandParameterValueComparisonOperand"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_iot_Command_CommandParameterValueComparisonOperand as CommandParameterValueComparisonOperand;
+    impl crate::value::ToValue for CommandParameterValueComparisonOperand_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.number {
+                properties.insert("Number".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.number_range {
+                properties.insert(
+                    "NumberRange".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.numbers {
+                properties.insert(
+                    "Numbers".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.string {
+                properties.insert("String".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.strings {
+                properties.insert(
+                    "Strings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandparametervaluecondition.html
+    pub struct CommandParameterValueCondition_ {
+        pub comparison_operator: crate::value::ExpString,
+        pub operand: Box<CommandParameterValueComparisonOperand_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_iot_Command_CommandParameterValueCondition {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::IoT::Command.CommandParameterValueCondition"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_iot_Command_CommandParameterValueCondition as CommandParameterValueCondition;
+    impl crate::value::ToValue for CommandParameterValueCondition_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ComparisonOperator".to_string(),
+                crate::value::ToValue::to_value(&self.comparison_operator),
+            );
+            properties.insert(
+                "Operand".to_string(),
+                crate::value::ToValue::to_value(&self.operand),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandparametervaluenumberrange.html
+    pub struct CommandParameterValueNumberRange_ {
+        pub max: crate::value::ExpString,
+        pub min: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_iot_Command_CommandParameterValueNumberRange {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::IoT::Command.CommandParameterValueNumberRange"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_iot_Command_CommandParameterValueNumberRange as CommandParameterValueNumberRange;
+    impl crate::value::ToValue for CommandParameterValueNumberRange_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Max".to_string(),
+                crate::value::ToValue::to_value(&self.max),
+            );
+            properties.insert(
+                "Min".to_string(),
+                crate::value::ToValue::to_value(&self.min),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandpayload.html
     pub struct CommandPayload_ {
         pub content: Option<crate::value::ExpString>,
@@ -526,6 +663,31 @@ pub mod command {
             if let Some(ref value) = self.content_type {
                 properties.insert(
                     "ContentType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-command-commandpreprocessor.html
+    pub struct CommandPreprocessor_ {
+        pub aws_json_substitution: Option<Box<AwsJsonSubstitutionCommandPreprocessorConfig_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_iot_Command_CommandPreprocessor {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::IoT::Command.CommandPreprocessor"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_iot_Command_CommandPreprocessor as CommandPreprocessor;
+    impl crate::value::ToValue for CommandPreprocessor_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.aws_json_substitution {
+                properties.insert(
+                    "AwsJsonSubstitution".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -1064,6 +1226,45 @@ pub mod jobtemplate {
                 "InProgressTimeoutInMinutes".to_string(),
                 crate::value::ToValue::to_value(&self.in_progress_timeout_in_minutes),
             );
+            properties.into()
+        }
+    }
+}
+pub mod logging {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-logging-eventconfiguration.html
+    pub struct EventConfiguration_ {
+        pub event_type: crate::value::ExpString,
+        pub log_destination: Option<crate::value::ExpString>,
+        pub log_level: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_iot_Logging_EventConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::IoT::Logging.EventConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_iot_Logging_EventConfiguration as EventConfiguration;
+    impl crate::value::ToValue for EventConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "EventType".to_string(),
+                crate::value::ToValue::to_value(&self.event_type),
+            );
+            if let Some(ref value) = self.log_destination {
+                properties.insert(
+                    "LogDestination".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.log_level {
+                properties.insert(
+                    "LogLevel".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -2192,6 +2393,45 @@ pub mod topicrule {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-batchconfig.html
+    pub struct BatchConfig_ {
+        pub max_batch_open_ms: Option<i32>,
+        pub max_batch_size: Option<i32>,
+        pub max_batch_size_bytes: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_iot_TopicRule_BatchConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::IoT::TopicRule.BatchConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_iot_TopicRule_BatchConfig as BatchConfig;
+    impl crate::value::ToValue for BatchConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.max_batch_open_ms {
+                properties.insert(
+                    "MaxBatchOpenMs".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.max_batch_size {
+                properties.insert(
+                    "MaxBatchSize".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.max_batch_size_bytes {
+                properties.insert(
+                    "MaxBatchSizeBytes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchalarmaction.html
     pub struct CloudwatchAlarmAction_ {
         pub alarm_name: crate::value::ExpString,
@@ -2505,7 +2745,9 @@ pub mod topicrule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-httpaction.html
     pub struct HttpAction_ {
         pub auth: Option<Box<HttpAuthorization_>>,
+        pub batch_config: Option<Box<BatchConfig_>>,
         pub confirmation_url: Option<crate::value::ExpString>,
+        pub enable_batching: Option<crate::value::ExpBool>,
         pub headers: Option<Vec<HttpActionHeader_>>,
         pub url: crate::value::ExpString,
     }
@@ -2524,9 +2766,21 @@ pub mod topicrule {
             if let Some(ref value) = self.auth {
                 properties.insert("Auth".to_string(), crate::value::ToValue::to_value(value));
             }
+            if let Some(ref value) = self.batch_config {
+                properties.insert(
+                    "BatchConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.confirmation_url {
                 properties.insert(
                     "ConfirmationUrl".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.enable_batching {
+                properties.insert(
+                    "EnableBatching".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -3922,7 +4176,9 @@ pub struct Command_ {
     pub mandatory_parameters: Option<Vec<super::iot::command::CommandParameter_>>,
     pub namespace: Option<crate::value::ExpString>,
     pub payload: Option<super::iot::command::CommandPayload_>,
+    pub payload_template: Option<crate::value::ExpString>,
     pub pending_deletion: Option<crate::value::ExpBool>,
+    pub preprocessor: Option<super::iot::command::CommandPreprocessor_>,
     pub role_arn: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -3998,9 +4254,21 @@ impl crate::template::ToResource for Command_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.payload_template {
+            properties.insert(
+                "PayloadTemplate".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.pending_deletion {
             properties.insert(
                 "PendingDeletion".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.preprocessor {
+            properties.insert(
+                "Preprocessor".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -4466,6 +4734,7 @@ impl crate::template::ToResource for JobTemplate_ {
 pub struct Logging_ {
     pub account_id: crate::value::ExpString,
     pub default_log_level: crate::value::ExpString,
+    pub event_configurations: Option<Vec<super::iot::logging::EventConfiguration_>>,
     pub role_arn: crate::value::ExpString,
 }
 #[doc(hidden)]
@@ -4496,6 +4765,12 @@ impl crate::template::ToResource for Logging_ {
             "DefaultLogLevel".to_string(),
             crate::value::ToValue::to_value(&self.default_log_level),
         );
+        if let Some(ref value) = self.event_configurations {
+            properties.insert(
+                "EventConfigurations".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "RoleArn".to_string(),
             crate::value::ToValue::to_value(&self.role_arn),

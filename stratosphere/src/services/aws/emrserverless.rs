@@ -199,7 +199,7 @@ pub mod application {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emrserverless-application-initialcapacityconfig.html
     pub struct InitialCapacityConfig_ {
         pub worker_configuration: Box<WorkerConfiguration_>,
-        pub worker_count: i32,
+        pub worker_count: i64,
     }
     #[doc(hidden)]
     #[macro_export]

@@ -184,6 +184,7 @@ pub mod cluster {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-connectivityinfo.html
     pub struct ConnectivityInfo_ {
+        pub network_type: Option<crate::value::ExpString>,
         pub public_access: Option<Box<PublicAccess_>>,
         pub vpc_connectivity: Option<Box<VpcConnectivity_>>,
     }
@@ -199,6 +200,12 @@ pub mod cluster {
     impl crate::value::ToValue for ConnectivityInfo_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.network_type {
+                properties.insert(
+                    "NetworkType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.public_access {
                 properties.insert(
                     "PublicAccess".to_string(),
@@ -561,6 +568,29 @@ pub mod cluster {
             if let Some(ref value) = self.r#type {
                 properties.insert("Type".to_string(), crate::value::ToValue::to_value(value));
             }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-msk-cluster-rebalancing.html
+    pub struct Rebalancing_ {
+        pub status: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_msk_Cluster_Rebalancing {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MSK::Cluster.Rebalancing"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_msk_Cluster_Rebalancing as Rebalancing;
+    impl crate::value::ToValue for Rebalancing_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Status".to_string(),
+                crate::value::ToValue::to_value(&self.status),
+            );
             properties.into()
         }
     }
@@ -1336,13 +1366,13 @@ pub struct Cluster_ {
     pub client_authentication: Option<super::msk::cluster::ClientAuthentication_>,
     pub cluster_name: crate::value::ExpString,
     pub configuration_info: Option<super::msk::cluster::ConfigurationInfo_>,
-    pub current_version: Option<crate::value::ExpString>,
     pub encryption_info: Option<super::msk::cluster::EncryptionInfo_>,
     pub enhanced_monitoring: Option<crate::value::ExpString>,
     pub kafka_version: crate::value::ExpString,
     pub logging_info: Option<super::msk::cluster::LoggingInfo_>,
     pub number_of_broker_nodes: i32,
     pub open_monitoring: Option<super::msk::cluster::OpenMonitoring_>,
+    pub rebalancing: Option<super::msk::cluster::Rebalancing_>,
     pub storage_mode: Option<crate::value::ExpString>,
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
 }
@@ -1386,12 +1416,6 @@ impl crate::template::ToResource for Cluster_ {
                 crate::value::ToValue::to_value(value),
             );
         }
-        if let Some(ref value) = self.current_version {
-            properties.insert(
-                "CurrentVersion".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
         if let Some(ref value) = self.encryption_info {
             properties.insert(
                 "EncryptionInfo".to_string(),
@@ -1421,6 +1445,12 @@ impl crate::template::ToResource for Cluster_ {
         if let Some(ref value) = self.open_monitoring {
             properties.insert(
                 "OpenMonitoring".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.rebalancing {
+            properties.insert(
+                "Rebalancing".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1627,6 +1657,59 @@ impl crate::template::ToResource for ServerlessCluster_ {
         properties.insert(
             "VpcConfigs".to_string(),
             crate::value::ToValue::to_value(&self.vpc_configs),
+        );
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-msk-topic.html
+pub struct Topic_ {
+    pub cluster_arn: crate::value::ExpString,
+    pub configs: Option<crate::value::ExpString>,
+    pub partition_count: i32,
+    pub replication_factor: i32,
+    pub topic_name: crate::value::ExpString,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_msk_Topic {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::MSK::Topic" $($field
+        $value)*)
+    };
+}
+pub use crate::__aws_msk_Topic as Topic;
+impl crate::template::ToResource for Topic_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("MSK"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("Topic"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "ClusterArn".to_string(),
+            crate::value::ToValue::to_value(&self.cluster_arn),
+        );
+        if let Some(ref value) = self.configs {
+            properties.insert(
+                "Configs".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "PartitionCount".to_string(),
+            crate::value::ToValue::to_value(&self.partition_count),
+        );
+        properties.insert(
+            "ReplicationFactor".to_string(),
+            crate::value::ToValue::to_value(&self.replication_factor),
+        );
+        properties.insert(
+            "TopicName".to_string(),
+            crate::value::ToValue::to_value(&self.topic_name),
         );
         properties
     }

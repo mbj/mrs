@@ -525,38 +525,6 @@ pub mod eventbus {
         }
     }
 }
-pub mod eventbuspolicy {
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-eventbuspolicy-condition.html
-    pub struct Condition_ {
-        pub key: Option<crate::value::ExpString>,
-        pub r#type: Option<crate::value::ExpString>,
-        pub value: Option<crate::value::ExpString>,
-    }
-    #[doc(hidden)]
-    #[macro_export]
-    macro_rules! __aws_events_EventBusPolicy_Condition {
-        ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::Events::EventBusPolicy.Condition"
-            $($field $value)*)
-        };
-    }
-    pub use crate::__aws_events_EventBusPolicy_Condition as Condition;
-    impl crate::value::ToValue for Condition_ {
-        fn to_value(&self) -> serde_json::Value {
-            let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.key {
-                properties.insert("Key".to_string(), crate::value::ToValue::to_value(value));
-            }
-            if let Some(ref value) = self.r#type {
-                properties.insert("Type".to_string(), crate::value::ToValue::to_value(value));
-            }
-            if let Some(ref value) = self.value {
-                properties.insert("Value".to_string(), crate::value::ToValue::to_value(value));
-            }
-            properties.into()
-        }
-    }
-}
 pub mod rule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-appsyncparameters.html
     pub struct AppSyncParameters_ {
@@ -1715,10 +1683,7 @@ impl crate::template::ToResource for EventBus_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-eventbuspolicy.html
 pub struct EventBusPolicy_ {
-    pub action: Option<crate::value::ExpString>,
-    pub condition: Option<super::events::eventbuspolicy::Condition_>,
     pub event_bus_name: Option<crate::value::ExpString>,
-    pub principal: Option<crate::value::ExpString>,
     pub statement: Option<serde_json::Value>,
     pub statement_id: crate::value::ExpString,
 }
@@ -1742,24 +1707,9 @@ impl crate::template::ToResource for EventBusPolicy_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
-        if let Some(ref value) = self.action {
-            properties.insert("Action".to_string(), crate::value::ToValue::to_value(value));
-        }
-        if let Some(ref value) = self.condition {
-            properties.insert(
-                "Condition".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
         if let Some(ref value) = self.event_bus_name {
             properties.insert(
                 "EventBusName".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
-        if let Some(ref value) = self.principal {
-            properties.insert(
-                "Principal".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

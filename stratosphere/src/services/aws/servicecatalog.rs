@@ -808,8 +808,8 @@ impl crate::template::ToResource for PortfolioPrincipalAssociation_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-portfolioproductassociation.html
 pub struct PortfolioProductAssociation_ {
     pub accept_language: Option<crate::value::ExpString>,
-    pub portfolio_id: crate::value::ExpString,
-    pub product_id: crate::value::ExpString,
+    pub portfolio_id: Option<crate::value::ExpString>,
+    pub product_id: Option<crate::value::ExpString>,
     pub source_portfolio_id: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]
@@ -840,14 +840,18 @@ impl crate::template::ToResource for PortfolioProductAssociation_ {
                 crate::value::ToValue::to_value(value),
             );
         }
-        properties.insert(
-            "PortfolioId".to_string(),
-            crate::value::ToValue::to_value(&self.portfolio_id),
-        );
-        properties.insert(
-            "ProductId".to_string(),
-            crate::value::ToValue::to_value(&self.product_id),
-        );
+        if let Some(ref value) = self.portfolio_id {
+            properties.insert(
+                "PortfolioId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.product_id {
+            properties.insert(
+                "ProductId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.source_portfolio_id {
             properties.insert(
                 "SourcePortfolioId".to_string(),
@@ -1173,8 +1177,8 @@ impl crate::template::ToResource for TagOption_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-tagoptionassociation.html
 pub struct TagOptionAssociation_ {
-    pub resource_id: crate::value::ExpString,
-    pub tag_option_id: crate::value::ExpString,
+    pub resource_id: Option<crate::value::ExpString>,
+    pub tag_option_id: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -1196,14 +1200,18 @@ impl crate::template::ToResource for TagOptionAssociation_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
-        properties.insert(
-            "ResourceId".to_string(),
-            crate::value::ToValue::to_value(&self.resource_id),
-        );
-        properties.insert(
-            "TagOptionId".to_string(),
-            crate::value::ToValue::to_value(&self.tag_option_id),
-        );
+        if let Some(ref value) = self.resource_id {
+            properties.insert(
+                "ResourceId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.tag_option_id {
+            properties.insert(
+                "TagOptionId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties
     }
 }

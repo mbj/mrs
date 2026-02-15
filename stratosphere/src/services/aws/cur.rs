@@ -11,6 +11,7 @@ pub struct ReportDefinition_ {
     pub s3_bucket: crate::value::ExpString,
     pub s3_prefix: crate::value::ExpString,
     pub s3_region: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
     pub time_unit: crate::value::ExpString,
 }
 #[doc(hidden)]
@@ -83,6 +84,9 @@ impl crate::template::ToResource for ReportDefinition_ {
             "S3Region".to_string(),
             crate::value::ToValue::to_value(&self.s3_region),
         );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties.insert(
             "TimeUnit".to_string(),
             crate::value::ToValue::to_value(&self.time_unit),

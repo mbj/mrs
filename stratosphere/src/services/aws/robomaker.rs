@@ -2,7 +2,7 @@ pub mod robotapplication {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-robotapplication-robotsoftwaresuite.html
     pub struct RobotSoftwareSuite_ {
         pub name: crate::value::ExpString,
-        pub version: Option<crate::value::ExpString>,
+        pub version: crate::value::ExpString,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -20,12 +20,10 @@ pub mod robotapplication {
                 "Name".to_string(),
                 crate::value::ToValue::to_value(&self.name),
             );
-            if let Some(ref value) = self.version {
-                properties.insert(
-                    "Version".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "Version".to_string(),
+                crate::value::ToValue::to_value(&self.version),
+            );
             properties.into()
         }
     }
@@ -95,7 +93,7 @@ pub mod simulationapplication {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-simulationapplication-robotsoftwaresuite.html
     pub struct RobotSoftwareSuite_ {
         pub name: crate::value::ExpString,
-        pub version: Option<crate::value::ExpString>,
+        pub version: crate::value::ExpString,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -113,19 +111,17 @@ pub mod simulationapplication {
                 "Name".to_string(),
                 crate::value::ToValue::to_value(&self.name),
             );
-            if let Some(ref value) = self.version {
-                properties.insert(
-                    "Version".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "Version".to_string(),
+                crate::value::ToValue::to_value(&self.version),
+            );
             properties.into()
         }
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-robomaker-simulationapplication-simulationsoftwaresuite.html
     pub struct SimulationSoftwareSuite_ {
         pub name: crate::value::ExpString,
-        pub version: Option<crate::value::ExpString>,
+        pub version: crate::value::ExpString,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -143,12 +139,10 @@ pub mod simulationapplication {
                 "Name".to_string(),
                 crate::value::ToValue::to_value(&self.name),
             );
-            if let Some(ref value) = self.version {
-                properties.insert(
-                    "Version".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "Version".to_string(),
+                crate::value::ToValue::to_value(&self.version),
+            );
             properties.into()
         }
     }
@@ -189,7 +183,7 @@ pub mod simulationapplication {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-fleet.html
 pub struct Fleet_ {
     pub name: Option<crate::value::ExpString>,
-    pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+    pub tags: Option<serde_json::Value>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -226,7 +220,7 @@ pub struct Robot_ {
     pub fleet: Option<crate::value::ExpString>,
     pub greengrass_group_id: crate::value::ExpString,
     pub name: Option<crate::value::ExpString>,
-    pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+    pub tags: Option<serde_json::Value>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -271,11 +265,10 @@ impl crate::template::ToResource for Robot_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplication.html
 pub struct RobotApplication_ {
     pub current_revision_id: Option<crate::value::ExpString>,
-    pub environment: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
     pub robot_software_suite: super::robomaker::robotapplication::RobotSoftwareSuite_,
-    pub sources: Option<Vec<super::robomaker::robotapplication::SourceConfig_>>,
-    pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+    pub sources: Vec<super::robomaker::robotapplication::SourceConfig_>,
+    pub tags: Option<serde_json::Value>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -303,12 +296,6 @@ impl crate::template::ToResource for RobotApplication_ {
                 crate::value::ToValue::to_value(value),
             );
         }
-        if let Some(ref value) = self.environment {
-            properties.insert(
-                "Environment".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
         if let Some(ref value) = self.name {
             properties.insert("Name".to_string(), crate::value::ToValue::to_value(value));
         }
@@ -316,12 +303,10 @@ impl crate::template::ToResource for RobotApplication_ {
             "RobotSoftwareSuite".to_string(),
             crate::value::ToValue::to_value(&self.robot_software_suite),
         );
-        if let Some(ref value) = self.sources {
-            properties.insert(
-                "Sources".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
+        properties.insert(
+            "Sources".to_string(),
+            crate::value::ToValue::to_value(&self.sources),
+        );
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
@@ -369,14 +354,13 @@ impl crate::template::ToResource for RobotApplicationVersion_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplication.html
 pub struct SimulationApplication_ {
     pub current_revision_id: Option<crate::value::ExpString>,
-    pub environment: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
-    pub rendering_engine: Option<super::robomaker::simulationapplication::RenderingEngine_>,
+    pub rendering_engine: super::robomaker::simulationapplication::RenderingEngine_,
     pub robot_software_suite: super::robomaker::simulationapplication::RobotSoftwareSuite_,
     pub simulation_software_suite:
         super::robomaker::simulationapplication::SimulationSoftwareSuite_,
-    pub sources: Option<Vec<super::robomaker::simulationapplication::SourceConfig_>>,
-    pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+    pub sources: Vec<super::robomaker::simulationapplication::SourceConfig_>,
+    pub tags: Option<serde_json::Value>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -404,21 +388,13 @@ impl crate::template::ToResource for SimulationApplication_ {
                 crate::value::ToValue::to_value(value),
             );
         }
-        if let Some(ref value) = self.environment {
-            properties.insert(
-                "Environment".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
         if let Some(ref value) = self.name {
             properties.insert("Name".to_string(), crate::value::ToValue::to_value(value));
         }
-        if let Some(ref value) = self.rendering_engine {
-            properties.insert(
-                "RenderingEngine".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
+        properties.insert(
+            "RenderingEngine".to_string(),
+            crate::value::ToValue::to_value(&self.rendering_engine),
+        );
         properties.insert(
             "RobotSoftwareSuite".to_string(),
             crate::value::ToValue::to_value(&self.robot_software_suite),
@@ -427,12 +403,10 @@ impl crate::template::ToResource for SimulationApplication_ {
             "SimulationSoftwareSuite".to_string(),
             crate::value::ToValue::to_value(&self.simulation_software_suite),
         );
-        if let Some(ref value) = self.sources {
-            properties.insert(
-                "Sources".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
+        properties.insert(
+            "Sources".to_string(),
+            crate::value::ToValue::to_value(&self.sources),
+        );
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }

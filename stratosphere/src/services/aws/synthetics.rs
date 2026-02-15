@@ -79,8 +79,9 @@ pub mod canary {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-synthetics-canary-code.html
     pub struct Code_ {
+        pub blueprint_types: Option<Vec<crate::value::ExpString>>,
         pub dependencies: Option<Vec<Dependency_>>,
-        pub handler: crate::value::ExpString,
+        pub handler: Option<crate::value::ExpString>,
         pub s3_bucket: Option<crate::value::ExpString>,
         pub s3_key: Option<crate::value::ExpString>,
         pub s3_object_version: Option<crate::value::ExpString>,
@@ -99,16 +100,24 @@ pub mod canary {
     impl crate::value::ToValue for Code_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.blueprint_types {
+                properties.insert(
+                    "BlueprintTypes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.dependencies {
                 properties.insert(
                     "Dependencies".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
-            properties.insert(
-                "Handler".to_string(),
-                crate::value::ToValue::to_value(&self.handler),
-            );
+            if let Some(ref value) = self.handler {
+                properties.insert(
+                    "Handler".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.s3_bucket {
                 properties.insert(
                     "S3Bucket".to_string(),

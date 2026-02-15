@@ -1,3 +1,37 @@
+pub mod collection {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-collection-encryptionconfig.html
+    pub struct EncryptionConfig_ {
+        pub aws_owned_key: Option<crate::value::ExpBool>,
+        pub kms_key_arn: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_opensearchserverless_Collection_EncryptionConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchServerless::Collection.EncryptionConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_opensearchserverless_Collection_EncryptionConfig as EncryptionConfig;
+    impl crate::value::ToValue for EncryptionConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.aws_owned_key {
+                properties.insert(
+                    "AWSOwnedKey".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.kms_key_arn {
+                properties.insert(
+                    "KmsKeyArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
 pub mod index {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchserverless-index-index.html
     pub struct Index_ {
@@ -395,7 +429,9 @@ impl crate::template::ToResource for AccessPolicy_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchserverless-collection.html
 pub struct Collection_ {
+    pub collection_group_name: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
+    pub encryption_config: Option<super::opensearchserverless::collection::EncryptionConfig_>,
     pub name: crate::value::ExpString,
     pub standby_replicas: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -421,9 +457,21 @@ impl crate::template::ToResource for Collection_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.collection_group_name {
+            properties.insert(
+                "CollectionGroupName".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.description {
             properties.insert(
                 "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.encryption_config {
+            properties.insert(
+                "EncryptionConfig".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

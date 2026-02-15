@@ -98,6 +98,38 @@ pub mod application {
     }
 }
 pub mod domain {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-aimloptions.html
+    pub struct AIMLOptions_ {
+        pub s3_vectors_engine: Option<Box<S3VectorsEngine_>>,
+        pub serverless_vector_acceleration: Option<Box<ServerlessVectorAcceleration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_opensearchservice_Domain_AIMLOptions {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.AIMLOptions"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_opensearchservice_Domain_AIMLOptions as AIMLOptions;
+    impl crate::value::ToValue for AIMLOptions_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.s3_vectors_engine {
+                properties.insert(
+                    "S3VectorsEngine".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.serverless_vector_acceleration {
+                properties.insert(
+                    "ServerlessVectorAcceleration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-advancedsecurityoptionsinput.html
     pub struct AdvancedSecurityOptionsInput_ {
         pub anonymous_auth_disable_date: Option<crate::value::ExpString>,
@@ -878,6 +910,29 @@ pub mod domain {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-s3vectorsengine.html
+    pub struct S3VectorsEngine_ {
+        pub enabled: crate::value::ExpBool,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_opensearchservice_Domain_S3VectorsEngine {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.S3VectorsEngine"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_opensearchservice_Domain_S3VectorsEngine as S3VectorsEngine;
+    impl crate::value::ToValue for S3VectorsEngine_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Enabled".to_string(),
+                crate::value::ToValue::to_value(&self.enabled),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-samloptions.html
     pub struct SAMLOptions_ {
         pub enabled: Option<crate::value::ExpBool>,
@@ -936,6 +991,31 @@ pub mod domain {
             if let Some(ref value) = self.subject_key {
                 properties.insert(
                     "SubjectKey".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opensearchservice-domain-serverlessvectoracceleration.html
+    pub struct ServerlessVectorAcceleration_ {
+        pub enabled: Option<crate::value::ExpBool>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_opensearchservice_Domain_ServerlessVectorAcceleration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::OpenSearchService::Domain.ServerlessVectorAcceleration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_opensearchservice_Domain_ServerlessVectorAcceleration as ServerlessVectorAcceleration;
+    impl crate::value::ToValue for ServerlessVectorAcceleration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.enabled {
+                properties.insert(
+                    "Enabled".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -1218,6 +1298,7 @@ impl crate::template::ToResource for Application_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opensearchservice-domain.html
 pub struct Domain_ {
+    pub aiml_options: Option<super::opensearchservice::domain::AIMLOptions_>,
     pub access_policies: Option<serde_json::Value>,
     pub advanced_options: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub advanced_security_options:
@@ -1264,6 +1345,12 @@ impl crate::template::ToResource for Domain_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.aiml_options {
+            properties.insert(
+                "AIMLOptions".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.access_policies {
             properties.insert(
                 "AccessPolicies".to_string(),

@@ -365,7 +365,7 @@ pub mod jobdefinition {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-consumableresourcerequirement.html
     pub struct ConsumableResourceRequirement_ {
         pub consumable_resource: crate::value::ExpString,
-        pub quantity: i32,
+        pub quantity: i64,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2094,6 +2094,31 @@ pub mod jobdefinition {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-resourceretentionpolicy.html
+    pub struct ResourceRetentionPolicy_ {
+        pub skip_deregister_on_update: Option<crate::value::ExpBool>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_batch_JobDefinition_ResourceRetentionPolicy {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.ResourceRetentionPolicy"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_batch_JobDefinition_ResourceRetentionPolicy as ResourceRetentionPolicy;
+    impl crate::value::ToValue for ResourceRetentionPolicy_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.skip_deregister_on_update {
+                properties.insert(
+                    "SkipDeregisterOnUpdate".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-retrystrategy.html
     pub struct RetryStrategy_ {
         pub attempts: Option<i32>,
@@ -2748,7 +2773,7 @@ pub struct ConsumableResource_ {
     pub consumable_resource_name: Option<crate::value::ExpString>,
     pub resource_type: crate::value::ExpString,
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
-    pub total_quantity: i32,
+    pub total_quantity: i64,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -2802,6 +2827,7 @@ pub struct JobDefinition_ {
     pub parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub platform_capabilities: Option<Vec<crate::value::ExpString>>,
     pub propagate_tags: Option<crate::value::ExpBool>,
+    pub resource_retention_policy: Option<super::batch::jobdefinition::ResourceRetentionPolicy_>,
     pub retry_strategy: Option<super::batch::jobdefinition::RetryStrategy_>,
     pub scheduling_priority: Option<i32>,
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
@@ -2879,6 +2905,12 @@ impl crate::template::ToResource for JobDefinition_ {
         if let Some(ref value) = self.propagate_tags {
             properties.insert(
                 "PropagateTags".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.resource_retention_policy {
+            properties.insert(
+                "ResourceRetentionPolicy".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

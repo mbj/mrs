@@ -132,6 +132,7 @@ pub mod firewallpolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-firewallpolicy.html
     pub struct FirewallPolicy_ {
+        pub enable_tls_session_holding: Option<crate::value::ExpBool>,
         pub policy_variables: Option<Box<PolicyVariables_>>,
         pub stateful_default_actions: Option<Vec<crate::value::ExpString>>,
         pub stateful_engine_options: Option<Box<StatefulEngineOptions_>>,
@@ -154,6 +155,12 @@ pub mod firewallpolicy {
     impl crate::value::ToValue for FirewallPolicy_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.enable_tls_session_holding {
+                properties.insert(
+                    "EnableTLSSessionHolding".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.policy_variables {
                 properties.insert(
                     "PolicyVariables".to_string(),

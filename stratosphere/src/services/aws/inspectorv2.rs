@@ -431,8 +431,8 @@ pub mod codesecurityscanconfiguration {
 pub mod filter {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-inspectorv2-filter-datefilter.html
     pub struct DateFilter_ {
-        pub end_inclusive: Option<i32>,
-        pub start_inclusive: Option<i32>,
+        pub end_inclusive: Option<i64>,
+        pub start_inclusive: Option<i64>,
     }
     #[doc(hidden)]
     #[macro_export]

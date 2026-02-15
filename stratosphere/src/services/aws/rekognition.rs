@@ -258,6 +258,7 @@ impl crate::template::ToResource for Collection_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rekognition-project.html
 pub struct Project_ {
     pub project_name: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -283,6 +284,9 @@ impl crate::template::ToResource for Project_ {
             "ProjectName".to_string(),
             crate::value::ToValue::to_value(&self.project_name),
         );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties
     }
 }

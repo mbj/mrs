@@ -451,8 +451,10 @@ pub struct ResolverEndpoint_ {
     pub preferred_instance_type: Option<crate::value::ExpString>,
     pub protocols: Option<Vec<crate::value::ExpString>>,
     pub resolver_endpoint_type: Option<crate::value::ExpString>,
+    pub rni_enhanced_metrics_enabled: Option<crate::value::ExpBool>,
     pub security_group_ids: Vec<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
+    pub target_name_server_metrics_enabled: Option<crate::value::ExpBool>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -509,12 +511,24 @@ impl crate::template::ToResource for ResolverEndpoint_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.rni_enhanced_metrics_enabled {
+            properties.insert(
+                "RniEnhancedMetricsEnabled".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "SecurityGroupIds".to_string(),
             crate::value::ToValue::to_value(&self.security_group_ids),
         );
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.target_name_server_metrics_enabled {
+            properties.insert(
+                "TargetNameServerMetricsEnabled".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         properties
     }

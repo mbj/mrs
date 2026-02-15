@@ -135,7 +135,7 @@ pub mod connector {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-customplugin.html
     pub struct CustomPlugin_ {
         pub custom_plugin_arn: crate::value::ExpString,
-        pub revision: i32,
+        pub revision: i64,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -307,7 +307,7 @@ pub mod connector {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-provisionedcapacity.html
     pub struct ProvisionedCapacity_ {
-        pub mcu_count: Option<i32>,
+        pub mcu_count: i32,
         pub worker_count: i32,
     }
     #[doc(hidden)]
@@ -322,12 +322,10 @@ pub mod connector {
     impl crate::value::ToValue for ProvisionedCapacity_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.mcu_count {
-                properties.insert(
-                    "McuCount".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "McuCount".to_string(),
+                crate::value::ToValue::to_value(&self.mcu_count),
+            );
             properties.insert(
                 "WorkerCount".to_string(),
                 crate::value::ToValue::to_value(&self.worker_count),
@@ -442,7 +440,7 @@ pub mod connector {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-workerconfiguration.html
     pub struct WorkerConfiguration_ {
-        pub revision: i32,
+        pub revision: i64,
         pub worker_configuration_arn: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -509,7 +507,7 @@ pub mod customplugin {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-customplugin-custompluginfiledescription.html
     pub struct CustomPluginFileDescription_ {
         pub file_md5: Option<crate::value::ExpString>,
-        pub file_size: Option<i32>,
+        pub file_size: Option<i64>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -610,6 +608,7 @@ pub struct Connector_ {
         super::kafkaconnect::connector::KafkaClusterEncryptionInTransit_,
     pub kafka_connect_version: crate::value::ExpString,
     pub log_delivery: Option<super::kafkaconnect::connector::LogDelivery_>,
+    pub network_type: Option<crate::value::ExpString>,
     pub plugins: Vec<super::kafkaconnect::connector::Plugin_>,
     pub service_execution_role_arn: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -672,6 +671,12 @@ impl crate::template::ToResource for Connector_ {
         if let Some(ref value) = self.log_delivery {
             properties.insert(
                 "LogDelivery".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.network_type {
+            properties.insert(
+                "NetworkType".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

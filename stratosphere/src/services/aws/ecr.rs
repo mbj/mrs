@@ -393,6 +393,66 @@ pub mod repositorycreationtemplate {
         }
     }
 }
+pub mod signingconfiguration {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-signingconfiguration-repositoryfilter.html
+    pub struct RepositoryFilter_ {
+        pub filter: crate::value::ExpString,
+        pub filter_type: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecr_SigningConfiguration_RepositoryFilter {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECR::SigningConfiguration.RepositoryFilter"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecr_SigningConfiguration_RepositoryFilter as RepositoryFilter;
+    impl crate::value::ToValue for RepositoryFilter_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Filter".to_string(),
+                crate::value::ToValue::to_value(&self.filter),
+            );
+            properties.insert(
+                "FilterType".to_string(),
+                crate::value::ToValue::to_value(&self.filter_type),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-signingconfiguration-rule.html
+    pub struct Rule_ {
+        pub repository_filters: Option<Vec<RepositoryFilter_>>,
+        pub signing_profile_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ecr_SigningConfiguration_Rule {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ECR::SigningConfiguration.Rule"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ecr_SigningConfiguration_Rule as Rule;
+    impl crate::value::ToValue for Rule_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.repository_filters {
+                properties.insert(
+                    "RepositoryFilters".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "SigningProfileArn".to_string(),
+                crate::value::ToValue::to_value(&self.signing_profile_arn),
+            );
+            properties.into()
+        }
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-publicrepository.html
 pub struct PublicRepository_ {
     pub repository_catalog_data: Option<super::ecr::publicrepository::RepositoryCatalogData_>,
@@ -509,6 +569,37 @@ impl crate::template::ToResource for PullThroughCacheRule_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-pulltimeupdateexclusion.html
+pub struct PullTimeUpdateExclusion_ {
+    pub principal_arn: crate::value::ExpString,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_ecr_PullTimeUpdateExclusion {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::ECR::PullTimeUpdateExclusion"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_ecr_PullTimeUpdateExclusion as PullTimeUpdateExclusion;
+impl crate::template::ToResource for PullTimeUpdateExclusion_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("ECR"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("PullTimeUpdateExclusion"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "PrincipalArn".to_string(),
+            crate::value::ToValue::to_value(&self.principal_arn),
+        );
         properties
     }
 }
@@ -792,6 +883,37 @@ impl crate::template::ToResource for RepositoryCreationTemplate_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-signingconfiguration.html
+pub struct SigningConfiguration_ {
+    pub rules: Vec<super::ecr::signingconfiguration::Rule_>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_ecr_SigningConfiguration {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::ECR::SigningConfiguration"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_ecr_SigningConfiguration as SigningConfiguration;
+impl crate::template::ToResource for SigningConfiguration_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("ECR"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("SigningConfiguration"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "Rules".to_string(),
+            crate::value::ToValue::to_value(&self.rules),
+        );
         properties
     }
 }

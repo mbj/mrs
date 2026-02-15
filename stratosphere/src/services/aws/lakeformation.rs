@@ -173,6 +173,22 @@ pub mod datalakesettings {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-datalakesettings-readonlyadmins.html
+    pub struct ReadOnlyAdmins_ {}
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lakeformation_DataLakeSettings_ReadOnlyAdmins {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::LakeFormation::DataLakeSettings.ReadOnlyAdmins"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lakeformation_DataLakeSettings_ReadOnlyAdmins as ReadOnlyAdmins;
+    impl crate::value::ToValue for ReadOnlyAdmins_ {
+        fn to_value(&self) -> serde_json::Value {
+            serde_json::Value::Object(serde_json::Map::new())
+        }
+    }
 }
 pub mod permissions {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lakeformation-permissions-columnwildcard.html
@@ -1101,6 +1117,7 @@ pub struct DataLakeSettings_ {
         Option<super::lakeformation::datalakesettings::ExternalDataFilteringAllowList_>,
     pub mutation_type: Option<crate::value::ExpString>,
     pub parameters: Option<serde_json::Value>,
+    pub read_only_admins: Option<super::lakeformation::datalakesettings::ReadOnlyAdmins_>,
     pub trusted_resource_owners: Option<Vec<crate::value::ExpString>>,
 }
 #[doc(hidden)]
@@ -1171,6 +1188,12 @@ impl crate::template::ToResource for DataLakeSettings_ {
         if let Some(ref value) = self.parameters {
             properties.insert(
                 "Parameters".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.read_only_admins {
+            properties.insert(
+                "ReadOnlyAdmins".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

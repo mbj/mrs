@@ -30,7 +30,10 @@ pub mod table {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergmetadata.html
     pub struct IcebergMetadata_ {
+        pub iceberg_partition_spec: Option<Box<IcebergPartitionSpec_>>,
         pub iceberg_schema: Box<IcebergSchema_>,
+        pub iceberg_sort_order: Option<Box<IcebergSortOrder_>>,
+        pub table_properties: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -44,10 +47,95 @@ pub mod table {
     impl crate::value::ToValue for IcebergMetadata_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.iceberg_partition_spec {
+                properties.insert(
+                    "IcebergPartitionSpec".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "IcebergSchema".to_string(),
                 crate::value::ToValue::to_value(&self.iceberg_schema),
             );
+            if let Some(ref value) = self.iceberg_sort_order {
+                properties.insert(
+                    "IcebergSortOrder".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.table_properties {
+                properties.insert(
+                    "TableProperties".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergpartitionfield.html
+    pub struct IcebergPartitionField_ {
+        pub field_id: Option<i32>,
+        pub name: crate::value::ExpString,
+        pub source_id: i32,
+        pub transform: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_s3tables_Table_IcebergPartitionField {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::S3Tables::Table.IcebergPartitionField"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_s3tables_Table_IcebergPartitionField as IcebergPartitionField;
+    impl crate::value::ToValue for IcebergPartitionField_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.field_id {
+                properties.insert(
+                    "FieldId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.insert(
+                "SourceId".to_string(),
+                crate::value::ToValue::to_value(&self.source_id),
+            );
+            properties.insert(
+                "Transform".to_string(),
+                crate::value::ToValue::to_value(&self.transform),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergpartitionspec.html
+    pub struct IcebergPartitionSpec_ {
+        pub fields: Vec<IcebergPartitionField_>,
+        pub spec_id: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_s3tables_Table_IcebergPartitionSpec {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::S3Tables::Table.IcebergPartitionSpec"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_s3tables_Table_IcebergPartitionSpec as IcebergPartitionSpec;
+    impl crate::value::ToValue for IcebergPartitionSpec_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Fields".to_string(),
+                crate::value::ToValue::to_value(&self.fields),
+            );
+            if let Some(ref value) = self.spec_id {
+                properties.insert("SpecId".to_string(), crate::value::ToValue::to_value(value));
+            }
             properties.into()
         }
     }
@@ -74,8 +162,77 @@ pub mod table {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergsortfield.html
+    pub struct IcebergSortField_ {
+        pub direction: crate::value::ExpString,
+        pub null_order: crate::value::ExpString,
+        pub source_id: i32,
+        pub transform: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_s3tables_Table_IcebergSortField {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::S3Tables::Table.IcebergSortField"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_s3tables_Table_IcebergSortField as IcebergSortField;
+    impl crate::value::ToValue for IcebergSortField_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Direction".to_string(),
+                crate::value::ToValue::to_value(&self.direction),
+            );
+            properties.insert(
+                "NullOrder".to_string(),
+                crate::value::ToValue::to_value(&self.null_order),
+            );
+            properties.insert(
+                "SourceId".to_string(),
+                crate::value::ToValue::to_value(&self.source_id),
+            );
+            properties.insert(
+                "Transform".to_string(),
+                crate::value::ToValue::to_value(&self.transform),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-icebergsortorder.html
+    pub struct IcebergSortOrder_ {
+        pub fields: Vec<IcebergSortField_>,
+        pub order_id: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_s3tables_Table_IcebergSortOrder {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::S3Tables::Table.IcebergSortOrder"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_s3tables_Table_IcebergSortOrder as IcebergSortOrder;
+    impl crate::value::ToValue for IcebergSortOrder_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Fields".to_string(),
+                crate::value::ToValue::to_value(&self.fields),
+            );
+            if let Some(ref value) = self.order_id {
+                properties.insert(
+                    "OrderId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-schemafield.html
     pub struct SchemaField_ {
+        pub id: Option<i32>,
         pub name: crate::value::ExpString,
         pub required: Option<crate::value::ExpBool>,
         pub r#type: crate::value::ExpString,
@@ -92,6 +249,9 @@ pub mod table {
     impl crate::value::ToValue for SchemaField_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.id {
+                properties.insert("Id".to_string(), crate::value::ToValue::to_value(value));
+            }
             properties.insert(
                 "Name".to_string(),
                 crate::value::ToValue::to_value(&self.name),
@@ -145,6 +305,31 @@ pub mod table {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-table-storageclassconfiguration.html
+    pub struct StorageClassConfiguration_ {
+        pub storage_class: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_s3tables_Table_StorageClassConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::S3Tables::Table.StorageClassConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_s3tables_Table_StorageClassConfiguration as StorageClassConfiguration;
+    impl crate::value::ToValue for StorageClassConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.storage_class {
+                properties.insert(
+                    "StorageClass".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
 }
 pub mod tablebucket {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-tablebucket-encryptionconfiguration.html
@@ -173,6 +358,53 @@ pub mod tablebucket {
             if let Some(ref value) = self.sse_algorithm {
                 properties.insert(
                     "SSEAlgorithm".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-tablebucket-metricsconfiguration.html
+    pub struct MetricsConfiguration_ {
+        pub status: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_s3tables_TableBucket_MetricsConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::S3Tables::TableBucket.MetricsConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_s3tables_TableBucket_MetricsConfiguration as MetricsConfiguration;
+    impl crate::value::ToValue for MetricsConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.status {
+                properties.insert("Status".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3tables-tablebucket-storageclassconfiguration.html
+    pub struct StorageClassConfiguration_ {
+        pub storage_class: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_s3tables_TableBucket_StorageClassConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::S3Tables::TableBucket.StorageClassConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_s3tables_TableBucket_StorageClassConfiguration as StorageClassConfiguration;
+    impl crate::value::ToValue for StorageClassConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.storage_class {
+                properties.insert(
+                    "StorageClass".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -259,8 +491,10 @@ pub struct Table_ {
     pub namespace: crate::value::ExpString,
     pub open_table_format: crate::value::ExpString,
     pub snapshot_management: Option<super::s3tables::table::SnapshotManagement_>,
+    pub storage_class_configuration: Option<super::s3tables::table::StorageClassConfiguration_>,
     pub table_bucket_arn: crate::value::ExpString,
     pub table_name: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
     pub without_metadata: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]
@@ -309,6 +543,12 @@ impl crate::template::ToResource for Table_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.storage_class_configuration {
+            properties.insert(
+                "StorageClassConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "TableBucketARN".to_string(),
             crate::value::ToValue::to_value(&self.table_bucket_arn),
@@ -317,6 +557,9 @@ impl crate::template::ToResource for Table_ {
             "TableName".to_string(),
             crate::value::ToValue::to_value(&self.table_name),
         );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
         if let Some(ref value) = self.without_metadata {
             properties.insert(
                 "WithoutMetadata".to_string(),
@@ -329,7 +572,11 @@ impl crate::template::ToResource for Table_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3tables-tablebucket.html
 pub struct TableBucket_ {
     pub encryption_configuration: Option<super::s3tables::tablebucket::EncryptionConfiguration_>,
+    pub metrics_configuration: Option<super::s3tables::tablebucket::MetricsConfiguration_>,
+    pub storage_class_configuration:
+        Option<super::s3tables::tablebucket::StorageClassConfiguration_>,
     pub table_bucket_name: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
     pub unreferenced_file_removal: Option<super::s3tables::tablebucket::UnreferencedFileRemoval_>,
 }
 #[doc(hidden)]
@@ -358,10 +605,25 @@ impl crate::template::ToResource for TableBucket_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.metrics_configuration {
+            properties.insert(
+                "MetricsConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.storage_class_configuration {
+            properties.insert(
+                "StorageClassConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "TableBucketName".to_string(),
             crate::value::ToValue::to_value(&self.table_bucket_name),
         );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
         if let Some(ref value) = self.unreferenced_file_removal {
             properties.insert(
                 "UnreferencedFileRemoval".to_string(),

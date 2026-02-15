@@ -244,6 +244,31 @@ pub mod hostedzone {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonefeatures.html
+    pub struct HostedZoneFeatures_ {
+        pub enable_accelerated_recovery: Option<crate::value::ExpBool>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_route53_HostedZone_HostedZoneFeatures {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Route53::HostedZone.HostedZoneFeatures"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_route53_HostedZone_HostedZoneFeatures as HostedZoneFeatures;
+    impl crate::value::ToValue for HostedZoneFeatures_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.enable_accelerated_recovery {
+                properties.insert(
+                    "EnableAcceleratedRecovery".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetag.html
     pub struct HostedZoneTag_ {
         pub key: crate::value::ExpString,
@@ -901,6 +926,7 @@ impl crate::template::ToResource for HealthCheck_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html
 pub struct HostedZone_ {
     pub hosted_zone_config: Option<super::route53::hostedzone::HostedZoneConfig_>,
+    pub hosted_zone_features: Option<super::route53::hostedzone::HostedZoneFeatures_>,
     pub hosted_zone_tags: Option<Vec<super::route53::hostedzone::HostedZoneTag_>>,
     pub name: Option<crate::value::ExpString>,
     pub query_logging_config: Option<super::route53::hostedzone::QueryLoggingConfig_>,
@@ -929,6 +955,12 @@ impl crate::template::ToResource for HostedZone_ {
         if let Some(ref value) = self.hosted_zone_config {
             properties.insert(
                 "HostedZoneConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.hosted_zone_features {
+            properties.insert(
+                "HostedZoneFeatures".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

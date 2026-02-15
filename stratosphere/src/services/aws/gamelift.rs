@@ -244,9 +244,10 @@ pub mod containerfleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-locationcapacity.html
     pub struct LocationCapacity_ {
-        pub desired_ec2_instances: i32,
+        pub desired_ec2_instances: Option<i32>,
+        pub managed_capacity_configuration: Option<Box<ManagedCapacityConfiguration_>>,
         pub max_size: i32,
-        pub min_size: i32,
+        pub min_size: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -260,18 +261,28 @@ pub mod containerfleet {
     impl crate::value::ToValue for LocationCapacity_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            properties.insert(
-                "DesiredEC2Instances".to_string(),
-                crate::value::ToValue::to_value(&self.desired_ec2_instances),
-            );
+            if let Some(ref value) = self.desired_ec2_instances {
+                properties.insert(
+                    "DesiredEC2Instances".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.managed_capacity_configuration {
+                properties.insert(
+                    "ManagedCapacityConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "MaxSize".to_string(),
                 crate::value::ToValue::to_value(&self.max_size),
             );
-            properties.insert(
-                "MinSize".to_string(),
-                crate::value::ToValue::to_value(&self.min_size),
-            );
+            if let Some(ref value) = self.min_size {
+                properties.insert(
+                    "MinSize".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -348,6 +359,36 @@ pub mod containerfleet {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-containerfleet-managedcapacityconfiguration.html
+    pub struct ManagedCapacityConfiguration_ {
+        pub scale_in_after_inactivity_minutes: Option<i32>,
+        pub zero_capacity_strategy: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_gamelift_ContainerFleet_ManagedCapacityConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GameLift::ContainerFleet.ManagedCapacityConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_gamelift_ContainerFleet_ManagedCapacityConfiguration as ManagedCapacityConfiguration;
+    impl crate::value::ToValue for ManagedCapacityConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.scale_in_after_inactivity_minutes {
+                properties.insert(
+                    "ScaleInAfterInactivityMinutes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "ZeroCapacityStrategy".to_string(),
+                crate::value::ToValue::to_value(&self.zero_capacity_strategy),
+            );
             properties.into()
         }
     }
@@ -897,9 +938,10 @@ pub mod fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-locationcapacity.html
     pub struct LocationCapacity_ {
-        pub desired_ec2_instances: i32,
+        pub desired_ec2_instances: Option<i32>,
+        pub managed_capacity_configuration: Option<Box<ManagedCapacityConfiguration_>>,
         pub max_size: i32,
-        pub min_size: i32,
+        pub min_size: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -913,18 +955,28 @@ pub mod fleet {
     impl crate::value::ToValue for LocationCapacity_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            properties.insert(
-                "DesiredEC2Instances".to_string(),
-                crate::value::ToValue::to_value(&self.desired_ec2_instances),
-            );
+            if let Some(ref value) = self.desired_ec2_instances {
+                properties.insert(
+                    "DesiredEC2Instances".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.managed_capacity_configuration {
+                properties.insert(
+                    "ManagedCapacityConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "MaxSize".to_string(),
                 crate::value::ToValue::to_value(&self.max_size),
             );
-            properties.insert(
-                "MinSize".to_string(),
-                crate::value::ToValue::to_value(&self.min_size),
-            );
+            if let Some(ref value) = self.min_size {
+                properties.insert(
+                    "MinSize".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -955,6 +1007,36 @@ pub mod fleet {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-managedcapacityconfiguration.html
+    pub struct ManagedCapacityConfiguration_ {
+        pub scale_in_after_inactivity_minutes: Option<i32>,
+        pub zero_capacity_strategy: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_gamelift_Fleet_ManagedCapacityConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GameLift::Fleet.ManagedCapacityConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_gamelift_Fleet_ManagedCapacityConfiguration as ManagedCapacityConfiguration;
+    impl crate::value::ToValue for ManagedCapacityConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.scale_in_after_inactivity_minutes {
+                properties.insert(
+                    "ScaleInAfterInactivityMinutes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "ZeroCapacityStrategy".to_string(),
+                crate::value::ToValue::to_value(&self.zero_capacity_strategy),
+            );
             properties.into()
         }
     }
@@ -2407,6 +2489,7 @@ impl crate::template::ToResource for MatchmakingRuleSet_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-script.html
 pub struct Script_ {
     pub name: Option<crate::value::ExpString>,
+    pub node_js_version: Option<crate::value::ExpString>,
     pub storage_location: super::gamelift::script::S3Location_,
     pub tags: Option<Vec<crate::Tag_>>,
     pub version: Option<crate::value::ExpString>,
@@ -2433,6 +2516,12 @@ impl crate::template::ToResource for Script_ {
         let mut properties = crate::template::ResourceProperties::new();
         if let Some(ref value) = self.name {
             properties.insert("Name".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.node_js_version {
+            properties.insert(
+                "NodeJsVersion".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         properties.insert(
             "StorageLocation".to_string(),
