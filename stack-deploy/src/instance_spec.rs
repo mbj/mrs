@@ -54,8 +54,9 @@ impl TemplateUploader<'_> {
 #[derive(Debug)]
 pub struct InstanceSpec {
     pub capabilities: Capabilities,
-    pub stack_name: StackName,
     pub parameter_map: ParameterMap,
+    pub stack_name: StackName,
+    pub tag_map: TagMap,
     pub template: Template,
 }
 
@@ -386,6 +387,7 @@ impl Context<'_> {
                     .to_create_parameters(),
             ))
             .set_capabilities(Some(self.capabilities()))
+            .set_tags(Some(self.instance_spec.tag_map.to_sdk_tags()))
             .client_request_token(&client_request_token);
 
         let stack_id = StackId(
@@ -429,6 +431,7 @@ impl Context<'_> {
                     ),
             ))
             .set_capabilities(Some(self.capabilities()))
+            .set_tags(Some(self.instance_spec.tag_map.to_sdk_tags()))
             .client_token(&client_request_token);
 
         let output = self
@@ -463,6 +466,7 @@ impl Context<'_> {
                     ),
             ))
             .set_capabilities(Some(self.capabilities()))
+            .set_tags(Some(self.instance_spec.tag_map.to_sdk_tags()))
             .client_request_token(&client_request_token);
 
         let response = self.set_update_template(request).await.send().await;
@@ -484,6 +488,7 @@ impl Context<'_> {
                 user_parameter_map.to_parameter_update_parameters(existing_stack),
             ))
             .set_capabilities(Some(self.capabilities()))
+            .set_tags(Some(self.instance_spec.tag_map.to_sdk_tags()))
             .client_request_token(&client_request_token)
             .use_previous_template(true)
             .send()

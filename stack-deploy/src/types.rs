@@ -727,6 +727,53 @@ impl From<TemplateUrl> for String {
     }
 }
 
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
+pub struct TagKey(pub String);
+
+impl From<&str> for TagKey {
+    fn from(value: &str) -> Self {
+        Self(value.into())
+    }
+}
+
+#[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
+pub struct TagValue(pub String);
+
+impl From<&str> for TagValue {
+    fn from(value: &str) -> Self {
+        Self(value.into())
+    }
+}
+
+#[derive(Debug, PartialEq)]
+pub struct TagMap(pub std::collections::BTreeMap<TagKey, TagValue>);
+
+impl Default for TagMap {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+impl TagMap {
+    #[must_use]
+    pub fn new() -> Self {
+        Self(std::collections::BTreeMap::new())
+    }
+
+    #[must_use]
+    pub fn to_sdk_tags(&self) -> Vec<aws_sdk_cloudformation::types::Tag> {
+        self.0
+            .iter()
+            .map(|(key, value)| {
+                aws_sdk_cloudformation::types::Tag::builder()
+                    .key(&key.0)
+                    .value(&value.0)
+                    .build()
+            })
+            .collect()
+    }
+}
+
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct ChangeSetName(String);
 
