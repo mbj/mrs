@@ -31,7 +31,7 @@ pub mod dbcluster {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html
 pub struct DBCluster_ {
     pub availability_zones: Option<Vec<crate::value::ExpString>>,
-    pub backup_retention_period: Option<i64>,
+    pub backup_retention_period: Option<i32>,
     pub copy_tags_to_snapshot: Option<crate::value::ExpBool>,
     pub db_cluster_identifier: Option<crate::value::ExpString>,
     pub db_cluster_parameter_group_name: Option<crate::value::ExpString>,
@@ -46,7 +46,7 @@ pub struct DBCluster_ {
     pub master_user_secret_kms_key_id: Option<crate::value::ExpString>,
     pub master_username: Option<crate::value::ExpString>,
     pub network_type: Option<crate::value::ExpString>,
-    pub port: Option<i64>,
+    pub port: Option<i32>,
     pub preferred_backup_window: Option<crate::value::ExpString>,
     pub preferred_maintenance_window: Option<crate::value::ExpString>,
     pub restore_to_time: Option<crate::value::ExpString>,
@@ -506,6 +506,73 @@ impl crate::template::ToResource for EventSubscription_ {
                 "SubscriptionName".to_string(),
                 crate::value::ToValue::to_value(value),
             );
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-globalcluster.html
+pub struct GlobalCluster_ {
+    pub deletion_protection: Option<crate::value::ExpBool>,
+    pub engine: Option<crate::value::ExpString>,
+    pub engine_version: Option<crate::value::ExpString>,
+    pub global_cluster_identifier: crate::value::ExpString,
+    pub source_db_cluster_identifier: Option<crate::value::ExpString>,
+    pub storage_encrypted: Option<crate::value::ExpBool>,
+    pub tags: Option<Vec<crate::Tag_>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_docdb_GlobalCluster {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::DocDB::GlobalCluster"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_docdb_GlobalCluster as GlobalCluster;
+impl crate::template::ToResource for GlobalCluster_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("DocDB"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("GlobalCluster"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.deletion_protection {
+            properties.insert(
+                "DeletionProtection".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.engine {
+            properties.insert("Engine".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.engine_version {
+            properties.insert(
+                "EngineVersion".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "GlobalClusterIdentifier".to_string(),
+            crate::value::ToValue::to_value(&self.global_cluster_identifier),
+        );
+        if let Some(ref value) = self.source_db_cluster_identifier {
+            properties.insert(
+                "SourceDBClusterIdentifier".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.storage_encrypted {
+            properties.insert(
+                "StorageEncrypted".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
         properties
     }

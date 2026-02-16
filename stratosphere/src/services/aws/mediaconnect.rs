@@ -39,9 +39,9 @@ pub mod bridge {
         pub ip_address: crate::value::ExpString,
         pub name: crate::value::ExpString,
         pub network_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub protocol: crate::value::ExpString,
-        pub ttl: i64,
+        pub ttl: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -88,7 +88,7 @@ pub mod bridge {
         pub multicast_source_settings: Option<Box<MulticastSourceSettings_>>,
         pub name: crate::value::ExpString,
         pub network_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub protocol: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -191,7 +191,7 @@ pub mod bridge {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-egressgatewaybridge.html
     pub struct EgressGatewayBridge_ {
-        pub max_bitrate: i64,
+        pub max_bitrate: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -248,8 +248,8 @@ pub mod bridge {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-ingressgatewaybridge.html
     pub struct IngressGatewayBridge_ {
-        pub max_bitrate: i64,
-        pub max_outputs: i64,
+        pub max_bitrate: i32,
+        pub max_outputs: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -355,9 +355,9 @@ pub mod bridgeoutput {
     pub struct BridgeNetworkOutput_ {
         pub ip_address: crate::value::ExpString,
         pub network_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub protocol: crate::value::ExpString,
-        pub ttl: i64,
+        pub ttl: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -431,7 +431,7 @@ pub mod bridgesource {
         pub multicast_ip: crate::value::ExpString,
         pub multicast_source_settings: Option<Box<MulticastSourceSettings_>>,
         pub network_name: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
         pub protocol: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -551,7 +551,7 @@ pub mod flow {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-blackframes.html
     pub struct BlackFrames_ {
         pub state: Option<crate::value::ExpString>,
-        pub threshold_seconds: Option<i64>,
+        pub threshold_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -653,7 +653,7 @@ pub mod flow {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-failoverconfig.html
     pub struct FailoverConfig_ {
         pub failover_mode: Option<crate::value::ExpString>,
-        pub recovery_window: Option<i64>,
+        pub recovery_window: Option<i32>,
         pub source_priority: Option<Box<SourcePriority_>>,
         pub state: Option<crate::value::ExpString>,
     }
@@ -689,6 +689,68 @@ pub mod flow {
             }
             if let Some(ref value) = self.state {
                 properties.insert("State".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-flowtransitencryption.html
+    pub struct FlowTransitEncryption_ {
+        pub encryption_key_configuration: Box<FlowTransitEncryptionKeyConfiguration_>,
+        pub encryption_key_type: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_Flow_FlowTransitEncryption {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.FlowTransitEncryption"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_Flow_FlowTransitEncryption as FlowTransitEncryption;
+    impl crate::value::ToValue for FlowTransitEncryption_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "EncryptionKeyConfiguration".to_string(),
+                crate::value::ToValue::to_value(&self.encryption_key_configuration),
+            );
+            if let Some(ref value) = self.encryption_key_type {
+                properties.insert(
+                    "EncryptionKeyType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-flowtransitencryptionkeyconfiguration.html
+    pub struct FlowTransitEncryptionKeyConfiguration_ {
+        pub automatic: Option<serde_json::Value>,
+        pub secrets_manager: Option<Box<SecretsManagerEncryptionKeyConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_Flow_FlowTransitEncryptionKeyConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.FlowTransitEncryptionKeyConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_Flow_FlowTransitEncryptionKeyConfiguration as FlowTransitEncryptionKeyConfiguration;
+    impl crate::value::ToValue for FlowTransitEncryptionKeyConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.automatic {
+                properties.insert(
+                    "Automatic".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.secrets_manager {
+                properties.insert(
+                    "SecretsManager".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
             }
             properties.into()
         }
@@ -754,7 +816,7 @@ pub mod flow {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-frozenframes.html
     pub struct FrozenFrames_ {
         pub state: Option<crate::value::ExpString>,
-        pub threshold_seconds: Option<i64>,
+        pub threshold_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -812,7 +874,7 @@ pub mod flow {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-inputconfiguration.html
     pub struct InputConfiguration_ {
-        pub input_port: i64,
+        pub input_port: i32,
         pub interface: Box<Interface_>,
     }
     #[doc(hidden)]
@@ -892,10 +954,10 @@ pub mod flow {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-mediastream.html
     pub struct MediaStream_ {
         pub attributes: Option<Box<MediaStreamAttributes_>>,
-        pub clock_rate: Option<i64>,
+        pub clock_rate: Option<i32>,
         pub description: Option<crate::value::ExpString>,
-        pub fmt: Option<i64>,
-        pub media_stream_id: i64,
+        pub fmt: Option<i32>,
+        pub media_stream_id: i32,
         pub media_stream_name: crate::value::ExpString,
         pub media_stream_type: crate::value::ExpString,
         pub video_format: Option<crate::value::ExpString>,
@@ -1057,7 +1119,7 @@ pub mod flow {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-ndidiscoveryserverconfig.html
     pub struct NdiDiscoveryServerConfig_ {
         pub discovery_server_address: crate::value::ExpString,
-        pub discovery_server_port: Option<i64>,
+        pub discovery_server_port: Option<i32>,
         pub vpc_interface_adapter: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -1089,10 +1151,38 @@ pub mod flow {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-secretsmanagerencryptionkeyconfiguration.html
+    pub struct SecretsManagerEncryptionKeyConfiguration_ {
+        pub role_arn: crate::value::ExpString,
+        pub secret_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_Flow_SecretsManagerEncryptionKeyConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::Flow.SecretsManagerEncryptionKeyConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_Flow_SecretsManagerEncryptionKeyConfiguration as SecretsManagerEncryptionKeyConfiguration;
+    impl crate::value::ToValue for SecretsManagerEncryptionKeyConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "RoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.role_arn),
+            );
+            properties.insert(
+                "SecretArn".to_string(),
+                crate::value::ToValue::to_value(&self.secret_arn),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-silentaudio.html
     pub struct SilentAudio_ {
         pub state: Option<crate::value::ExpString>,
-        pub threshold_seconds: Option<i64>,
+        pub threshold_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1125,20 +1215,22 @@ pub mod flow {
         pub entitlement_arn: Option<crate::value::ExpString>,
         pub gateway_bridge_source: Option<Box<GatewayBridgeSource_>>,
         pub ingest_ip: Option<crate::value::ExpString>,
-        pub ingest_port: Option<i64>,
-        pub max_bitrate: Option<i64>,
-        pub max_latency: Option<i64>,
-        pub max_sync_buffer: Option<i64>,
+        pub ingest_port: Option<i32>,
+        pub max_bitrate: Option<i32>,
+        pub max_latency: Option<i32>,
+        pub max_sync_buffer: Option<i32>,
         pub media_stream_source_configurations: Option<Vec<MediaStreamSourceConfiguration_>>,
-        pub min_latency: Option<i64>,
+        pub min_latency: Option<i32>,
         pub name: Option<crate::value::ExpString>,
         pub protocol: Option<crate::value::ExpString>,
-        pub sender_control_port: Option<i64>,
+        pub router_integration_state: Option<crate::value::ExpString>,
+        pub router_integration_transit_decryption: Option<Box<FlowTransitEncryption_>>,
+        pub sender_control_port: Option<i32>,
         pub sender_ip_address: Option<crate::value::ExpString>,
         pub source_arn: Option<crate::value::ExpString>,
         pub source_ingest_port: Option<crate::value::ExpString>,
         pub source_listener_address: Option<crate::value::ExpString>,
-        pub source_listener_port: Option<i64>,
+        pub source_listener_port: Option<i32>,
         pub stream_id: Option<crate::value::ExpString>,
         pub vpc_interface_name: Option<crate::value::ExpString>,
         pub whitelist_cidr: Option<crate::value::ExpString>,
@@ -1227,6 +1319,18 @@ pub mod flow {
             if let Some(ref value) = self.protocol {
                 properties.insert(
                     "Protocol".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.router_integration_state {
+                properties.insert(
+                    "RouterIntegrationState".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.router_integration_transit_decryption {
+                properties.insert(
+                    "RouterIntegrationTransitDecryption".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -1543,7 +1647,7 @@ pub mod flowoutput {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-destinationconfiguration.html
     pub struct DestinationConfiguration_ {
         pub destination_ip: crate::value::ExpString,
-        pub destination_port: i64,
+        pub destination_port: i32,
         pub interface: Box<Interface_>,
     }
     #[doc(hidden)]
@@ -1645,6 +1749,68 @@ pub mod flowoutput {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-flowtransitencryption.html
+    pub struct FlowTransitEncryption_ {
+        pub encryption_key_configuration: Box<FlowTransitEncryptionKeyConfiguration_>,
+        pub encryption_key_type: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_FlowOutput_FlowTransitEncryption {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::FlowOutput.FlowTransitEncryption"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_FlowOutput_FlowTransitEncryption as FlowTransitEncryption;
+    impl crate::value::ToValue for FlowTransitEncryption_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "EncryptionKeyConfiguration".to_string(),
+                crate::value::ToValue::to_value(&self.encryption_key_configuration),
+            );
+            if let Some(ref value) = self.encryption_key_type {
+                properties.insert(
+                    "EncryptionKeyType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-flowtransitencryptionkeyconfiguration.html
+    pub struct FlowTransitEncryptionKeyConfiguration_ {
+        pub automatic: Option<serde_json::Value>,
+        pub secrets_manager: Option<Box<SecretsManagerEncryptionKeyConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_FlowOutput_FlowTransitEncryptionKeyConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::FlowOutput.FlowTransitEncryptionKeyConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_FlowOutput_FlowTransitEncryptionKeyConfiguration as FlowTransitEncryptionKeyConfiguration;
+    impl crate::value::ToValue for FlowTransitEncryptionKeyConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.automatic {
+                properties.insert(
+                    "Automatic".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.secrets_manager {
+                properties.insert(
+                    "SecretsManager".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-interface.html
     pub struct Interface_ {
         pub name: crate::value::ExpString,
@@ -1706,6 +1872,34 @@ pub mod flowoutput {
             properties.insert(
                 "MediaStreamName".to_string(),
                 crate::value::ToValue::to_value(&self.media_stream_name),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-secretsmanagerencryptionkeyconfiguration.html
+    pub struct SecretsManagerEncryptionKeyConfiguration_ {
+        pub role_arn: crate::value::ExpString,
+        pub secret_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_FlowOutput_SecretsManagerEncryptionKeyConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::FlowOutput.SecretsManagerEncryptionKeyConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_FlowOutput_SecretsManagerEncryptionKeyConfiguration as SecretsManagerEncryptionKeyConfiguration;
+    impl crate::value::ToValue for SecretsManagerEncryptionKeyConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "RoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.role_arn),
+            );
+            properties.insert(
+                "SecretArn".to_string(),
+                crate::value::ToValue::to_value(&self.secret_arn),
             );
             properties.into()
         }
@@ -1891,6 +2085,1349 @@ pub mod gateway {
             properties.insert(
                 "Name".to_string(),
                 crate::value::ToValue::to_value(&self.name),
+            );
+            properties.into()
+        }
+    }
+}
+pub mod routerinput {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-failoverrouterinputconfiguration.html
+    pub struct FailoverRouterInputConfiguration_ {
+        pub network_interface_arn: crate::value::ExpString,
+        pub primary_source_index: Option<i32>,
+        pub protocol_configurations: Vec<FailoverRouterInputProtocolConfiguration_>,
+        pub source_priority_mode: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_FailoverRouterInputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.FailoverRouterInputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_FailoverRouterInputConfiguration as FailoverRouterInputConfiguration;
+    impl crate::value::ToValue for FailoverRouterInputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "NetworkInterfaceArn".to_string(),
+                crate::value::ToValue::to_value(&self.network_interface_arn),
+            );
+            if let Some(ref value) = self.primary_source_index {
+                properties.insert(
+                    "PrimarySourceIndex".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "ProtocolConfigurations".to_string(),
+                crate::value::ToValue::to_value(&self.protocol_configurations),
+            );
+            properties.insert(
+                "SourcePriorityMode".to_string(),
+                crate::value::ToValue::to_value(&self.source_priority_mode),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-failoverrouterinputprotocolconfiguration.html
+    pub struct FailoverRouterInputProtocolConfiguration_ {
+        pub rist: Option<Box<RistRouterInputConfiguration_>>,
+        pub rtp: Option<Box<RtpRouterInputConfiguration_>>,
+        pub srt_caller: Option<Box<SrtCallerRouterInputConfiguration_>>,
+        pub srt_listener: Option<Box<SrtListenerRouterInputConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_FailoverRouterInputProtocolConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.FailoverRouterInputProtocolConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_FailoverRouterInputProtocolConfiguration as FailoverRouterInputProtocolConfiguration;
+    impl crate::value::ToValue for FailoverRouterInputProtocolConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.rist {
+                properties.insert("Rist".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.rtp {
+                properties.insert("Rtp".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.srt_caller {
+                properties.insert(
+                    "SrtCaller".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.srt_listener {
+                properties.insert(
+                    "SrtListener".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-flowtransitencryption.html
+    pub struct FlowTransitEncryption_ {
+        pub encryption_key_configuration: Box<FlowTransitEncryptionKeyConfiguration_>,
+        pub encryption_key_type: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_FlowTransitEncryption {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.FlowTransitEncryption"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_FlowTransitEncryption as FlowTransitEncryption;
+    impl crate::value::ToValue for FlowTransitEncryption_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "EncryptionKeyConfiguration".to_string(),
+                crate::value::ToValue::to_value(&self.encryption_key_configuration),
+            );
+            if let Some(ref value) = self.encryption_key_type {
+                properties.insert(
+                    "EncryptionKeyType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-flowtransitencryptionkeyconfiguration.html
+    pub struct FlowTransitEncryptionKeyConfiguration_ {
+        pub automatic: Option<serde_json::Value>,
+        pub secrets_manager: Option<Box<SecretsManagerEncryptionKeyConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_FlowTransitEncryptionKeyConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.FlowTransitEncryptionKeyConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_FlowTransitEncryptionKeyConfiguration as FlowTransitEncryptionKeyConfiguration;
+    impl crate::value::ToValue for FlowTransitEncryptionKeyConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.automatic {
+                properties.insert(
+                    "Automatic".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.secrets_manager {
+                properties.insert(
+                    "SecretsManager".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-maintenanceconfiguration.html
+    pub struct MaintenanceConfiguration_ {
+        pub default: Option<serde_json::Value>,
+        pub preferred_day_time: Option<Box<PreferredDayTimeMaintenanceConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_MaintenanceConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.MaintenanceConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_MaintenanceConfiguration as MaintenanceConfiguration;
+    impl crate::value::ToValue for MaintenanceConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.default {
+                properties.insert(
+                    "Default".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.preferred_day_time {
+                properties.insert(
+                    "PreferredDayTime".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-mediaconnectflowrouterinputconfiguration.html
+    pub struct MediaConnectFlowRouterInputConfiguration_ {
+        pub flow_arn: Option<crate::value::ExpString>,
+        pub flow_output_arn: Option<crate::value::ExpString>,
+        pub source_transit_decryption: Box<FlowTransitEncryption_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_MediaConnectFlowRouterInputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.MediaConnectFlowRouterInputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_MediaConnectFlowRouterInputConfiguration as MediaConnectFlowRouterInputConfiguration;
+    impl crate::value::ToValue for MediaConnectFlowRouterInputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.flow_arn {
+                properties.insert(
+                    "FlowArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.flow_output_arn {
+                properties.insert(
+                    "FlowOutputArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "SourceTransitDecryption".to_string(),
+                crate::value::ToValue::to_value(&self.source_transit_decryption),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-mergerouterinputconfiguration.html
+    pub struct MergeRouterInputConfiguration_ {
+        pub merge_recovery_window_milliseconds: i32,
+        pub network_interface_arn: crate::value::ExpString,
+        pub protocol_configurations: Vec<MergeRouterInputProtocolConfiguration_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_MergeRouterInputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.MergeRouterInputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_MergeRouterInputConfiguration as MergeRouterInputConfiguration;
+    impl crate::value::ToValue for MergeRouterInputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "MergeRecoveryWindowMilliseconds".to_string(),
+                crate::value::ToValue::to_value(&self.merge_recovery_window_milliseconds),
+            );
+            properties.insert(
+                "NetworkInterfaceArn".to_string(),
+                crate::value::ToValue::to_value(&self.network_interface_arn),
+            );
+            properties.insert(
+                "ProtocolConfigurations".to_string(),
+                crate::value::ToValue::to_value(&self.protocol_configurations),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-mergerouterinputprotocolconfiguration.html
+    pub struct MergeRouterInputProtocolConfiguration_ {
+        pub rist: Option<Box<RistRouterInputConfiguration_>>,
+        pub rtp: Option<Box<RtpRouterInputConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_MergeRouterInputProtocolConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.MergeRouterInputProtocolConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_MergeRouterInputProtocolConfiguration as MergeRouterInputProtocolConfiguration;
+    impl crate::value::ToValue for MergeRouterInputProtocolConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.rist {
+                properties.insert("Rist".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.rtp {
+                properties.insert("Rtp".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-preferreddaytimemaintenanceconfiguration.html
+    pub struct PreferredDayTimeMaintenanceConfiguration_ {
+        pub day: crate::value::ExpString,
+        pub time: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_PreferredDayTimeMaintenanceConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.PreferredDayTimeMaintenanceConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_PreferredDayTimeMaintenanceConfiguration as PreferredDayTimeMaintenanceConfiguration;
+    impl crate::value::ToValue for PreferredDayTimeMaintenanceConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Day".to_string(),
+                crate::value::ToValue::to_value(&self.day),
+            );
+            properties.insert(
+                "Time".to_string(),
+                crate::value::ToValue::to_value(&self.time),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-ristrouterinputconfiguration.html
+    pub struct RistRouterInputConfiguration_ {
+        pub port: i32,
+        pub recovery_latency_milliseconds: i32,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_RistRouterInputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.RistRouterInputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_RistRouterInputConfiguration as RistRouterInputConfiguration;
+    impl crate::value::ToValue for RistRouterInputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Port".to_string(),
+                crate::value::ToValue::to_value(&self.port),
+            );
+            properties.insert(
+                "RecoveryLatencyMilliseconds".to_string(),
+                crate::value::ToValue::to_value(&self.recovery_latency_milliseconds),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-routerinputconfiguration.html
+    pub struct RouterInputConfiguration_ {
+        pub failover: Option<Box<FailoverRouterInputConfiguration_>>,
+        pub media_connect_flow: Option<Box<MediaConnectFlowRouterInputConfiguration_>>,
+        pub merge: Option<Box<MergeRouterInputConfiguration_>>,
+        pub standard: Option<Box<StandardRouterInputConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_RouterInputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.RouterInputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_RouterInputConfiguration as RouterInputConfiguration;
+    impl crate::value::ToValue for RouterInputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.failover {
+                properties.insert(
+                    "Failover".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.media_connect_flow {
+                properties.insert(
+                    "MediaConnectFlow".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.merge {
+                properties.insert("Merge".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.standard {
+                properties.insert(
+                    "Standard".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-routerinputprotocolconfiguration.html
+    pub struct RouterInputProtocolConfiguration_ {
+        pub rist: Option<Box<RistRouterInputConfiguration_>>,
+        pub rtp: Option<Box<RtpRouterInputConfiguration_>>,
+        pub srt_caller: Option<Box<SrtCallerRouterInputConfiguration_>>,
+        pub srt_listener: Option<Box<SrtListenerRouterInputConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_RouterInputProtocolConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.RouterInputProtocolConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_RouterInputProtocolConfiguration as RouterInputProtocolConfiguration;
+    impl crate::value::ToValue for RouterInputProtocolConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.rist {
+                properties.insert("Rist".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.rtp {
+                properties.insert("Rtp".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.srt_caller {
+                properties.insert(
+                    "SrtCaller".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.srt_listener {
+                properties.insert(
+                    "SrtListener".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-routerinputtransitencryption.html
+    pub struct RouterInputTransitEncryption_ {
+        pub encryption_key_configuration: Box<RouterInputTransitEncryptionKeyConfiguration_>,
+        pub encryption_key_type: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_RouterInputTransitEncryption {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.RouterInputTransitEncryption"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_RouterInputTransitEncryption as RouterInputTransitEncryption;
+    impl crate::value::ToValue for RouterInputTransitEncryption_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "EncryptionKeyConfiguration".to_string(),
+                crate::value::ToValue::to_value(&self.encryption_key_configuration),
+            );
+            if let Some(ref value) = self.encryption_key_type {
+                properties.insert(
+                    "EncryptionKeyType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-routerinputtransitencryptionkeyconfiguration.html
+    pub struct RouterInputTransitEncryptionKeyConfiguration_ {
+        pub automatic: Option<serde_json::Value>,
+        pub secrets_manager: Option<Box<SecretsManagerEncryptionKeyConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_RouterInputTransitEncryptionKeyConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.RouterInputTransitEncryptionKeyConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_RouterInputTransitEncryptionKeyConfiguration as RouterInputTransitEncryptionKeyConfiguration;
+    impl crate::value::ToValue for RouterInputTransitEncryptionKeyConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.automatic {
+                properties.insert(
+                    "Automatic".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.secrets_manager {
+                properties.insert(
+                    "SecretsManager".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-rtprouterinputconfiguration.html
+    pub struct RtpRouterInputConfiguration_ {
+        pub forward_error_correction: Option<crate::value::ExpString>,
+        pub port: i32,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_RtpRouterInputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.RtpRouterInputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_RtpRouterInputConfiguration as RtpRouterInputConfiguration;
+    impl crate::value::ToValue for RtpRouterInputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.forward_error_correction {
+                properties.insert(
+                    "ForwardErrorCorrection".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Port".to_string(),
+                crate::value::ToValue::to_value(&self.port),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-secretsmanagerencryptionkeyconfiguration.html
+    pub struct SecretsManagerEncryptionKeyConfiguration_ {
+        pub role_arn: crate::value::ExpString,
+        pub secret_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_SecretsManagerEncryptionKeyConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.SecretsManagerEncryptionKeyConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_SecretsManagerEncryptionKeyConfiguration as SecretsManagerEncryptionKeyConfiguration;
+    impl crate::value::ToValue for SecretsManagerEncryptionKeyConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "RoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.role_arn),
+            );
+            properties.insert(
+                "SecretArn".to_string(),
+                crate::value::ToValue::to_value(&self.secret_arn),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-srtcallerrouterinputconfiguration.html
+    pub struct SrtCallerRouterInputConfiguration_ {
+        pub decryption_configuration: Option<Box<SrtDecryptionConfiguration_>>,
+        pub minimum_latency_milliseconds: i32,
+        pub source_address: crate::value::ExpString,
+        pub source_port: i32,
+        pub stream_id: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_SrtCallerRouterInputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.SrtCallerRouterInputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_SrtCallerRouterInputConfiguration as SrtCallerRouterInputConfiguration;
+    impl crate::value::ToValue for SrtCallerRouterInputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.decryption_configuration {
+                properties.insert(
+                    "DecryptionConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "MinimumLatencyMilliseconds".to_string(),
+                crate::value::ToValue::to_value(&self.minimum_latency_milliseconds),
+            );
+            properties.insert(
+                "SourceAddress".to_string(),
+                crate::value::ToValue::to_value(&self.source_address),
+            );
+            properties.insert(
+                "SourcePort".to_string(),
+                crate::value::ToValue::to_value(&self.source_port),
+            );
+            if let Some(ref value) = self.stream_id {
+                properties.insert(
+                    "StreamId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-srtdecryptionconfiguration.html
+    pub struct SrtDecryptionConfiguration_ {
+        pub encryption_key: Box<SecretsManagerEncryptionKeyConfiguration_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_SrtDecryptionConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.SrtDecryptionConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_SrtDecryptionConfiguration as SrtDecryptionConfiguration;
+    impl crate::value::ToValue for SrtDecryptionConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "EncryptionKey".to_string(),
+                crate::value::ToValue::to_value(&self.encryption_key),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-srtlistenerrouterinputconfiguration.html
+    pub struct SrtListenerRouterInputConfiguration_ {
+        pub decryption_configuration: Option<Box<SrtDecryptionConfiguration_>>,
+        pub minimum_latency_milliseconds: i32,
+        pub port: i32,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_SrtListenerRouterInputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.SrtListenerRouterInputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_SrtListenerRouterInputConfiguration as SrtListenerRouterInputConfiguration;
+    impl crate::value::ToValue for SrtListenerRouterInputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.decryption_configuration {
+                properties.insert(
+                    "DecryptionConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "MinimumLatencyMilliseconds".to_string(),
+                crate::value::ToValue::to_value(&self.minimum_latency_milliseconds),
+            );
+            properties.insert(
+                "Port".to_string(),
+                crate::value::ToValue::to_value(&self.port),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routerinput-standardrouterinputconfiguration.html
+    pub struct StandardRouterInputConfiguration_ {
+        pub network_interface_arn: crate::value::ExpString,
+        pub protocol: Option<crate::value::ExpString>,
+        pub protocol_configuration: Box<RouterInputProtocolConfiguration_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterInput_StandardRouterInputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterInput.StandardRouterInputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterInput_StandardRouterInputConfiguration as StandardRouterInputConfiguration;
+    impl crate::value::ToValue for StandardRouterInputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "NetworkInterfaceArn".to_string(),
+                crate::value::ToValue::to_value(&self.network_interface_arn),
+            );
+            if let Some(ref value) = self.protocol {
+                properties.insert(
+                    "Protocol".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "ProtocolConfiguration".to_string(),
+                crate::value::ToValue::to_value(&self.protocol_configuration),
+            );
+            properties.into()
+        }
+    }
+}
+pub mod routernetworkinterface {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routernetworkinterface-publicrouternetworkinterfaceconfiguration.html
+    pub struct PublicRouterNetworkInterfaceConfiguration_ {
+        pub allow_rules: Vec<PublicRouterNetworkInterfaceRule_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterNetworkInterface_PublicRouterNetworkInterfaceConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterNetworkInterface.PublicRouterNetworkInterfaceConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterNetworkInterface_PublicRouterNetworkInterfaceConfiguration as PublicRouterNetworkInterfaceConfiguration;
+    impl crate::value::ToValue for PublicRouterNetworkInterfaceConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "AllowRules".to_string(),
+                crate::value::ToValue::to_value(&self.allow_rules),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routernetworkinterface-publicrouternetworkinterfacerule.html
+    pub struct PublicRouterNetworkInterfaceRule_ {
+        pub cidr: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterNetworkInterface_PublicRouterNetworkInterfaceRule {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterNetworkInterface.PublicRouterNetworkInterfaceRule"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterNetworkInterface_PublicRouterNetworkInterfaceRule as PublicRouterNetworkInterfaceRule;
+    impl crate::value::ToValue for PublicRouterNetworkInterfaceRule_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Cidr".to_string(),
+                crate::value::ToValue::to_value(&self.cidr),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routernetworkinterface-routernetworkinterfaceconfiguration.html
+    pub struct RouterNetworkInterfaceConfiguration_ {
+        pub public: Option<Box<PublicRouterNetworkInterfaceConfiguration_>>,
+        pub vpc: Option<Box<VpcRouterNetworkInterfaceConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterNetworkInterface_RouterNetworkInterfaceConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterNetworkInterface.RouterNetworkInterfaceConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterNetworkInterface_RouterNetworkInterfaceConfiguration as RouterNetworkInterfaceConfiguration;
+    impl crate::value::ToValue for RouterNetworkInterfaceConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.public {
+                properties.insert("Public".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.vpc {
+                properties.insert("Vpc".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routernetworkinterface-vpcrouternetworkinterfaceconfiguration.html
+    pub struct VpcRouterNetworkInterfaceConfiguration_ {
+        pub security_group_ids: Vec<crate::value::ExpString>,
+        pub subnet_id: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterNetworkInterface_VpcRouterNetworkInterfaceConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterNetworkInterface.VpcRouterNetworkInterfaceConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterNetworkInterface_VpcRouterNetworkInterfaceConfiguration as VpcRouterNetworkInterfaceConfiguration;
+    impl crate::value::ToValue for VpcRouterNetworkInterfaceConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "SecurityGroupIds".to_string(),
+                crate::value::ToValue::to_value(&self.security_group_ids),
+            );
+            properties.insert(
+                "SubnetId".to_string(),
+                crate::value::ToValue::to_value(&self.subnet_id),
+            );
+            properties.into()
+        }
+    }
+}
+pub mod routeroutput {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-flowtransitencryption.html
+    pub struct FlowTransitEncryption_ {
+        pub encryption_key_configuration: Box<FlowTransitEncryptionKeyConfiguration_>,
+        pub encryption_key_type: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_FlowTransitEncryption {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.FlowTransitEncryption"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_FlowTransitEncryption as FlowTransitEncryption;
+    impl crate::value::ToValue for FlowTransitEncryption_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "EncryptionKeyConfiguration".to_string(),
+                crate::value::ToValue::to_value(&self.encryption_key_configuration),
+            );
+            if let Some(ref value) = self.encryption_key_type {
+                properties.insert(
+                    "EncryptionKeyType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-flowtransitencryptionkeyconfiguration.html
+    pub struct FlowTransitEncryptionKeyConfiguration_ {
+        pub automatic: Option<serde_json::Value>,
+        pub secrets_manager: Option<Box<SecretsManagerEncryptionKeyConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_FlowTransitEncryptionKeyConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.FlowTransitEncryptionKeyConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_FlowTransitEncryptionKeyConfiguration as FlowTransitEncryptionKeyConfiguration;
+    impl crate::value::ToValue for FlowTransitEncryptionKeyConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.automatic {
+                properties.insert(
+                    "Automatic".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.secrets_manager {
+                properties.insert(
+                    "SecretsManager".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-maintenanceconfiguration.html
+    pub struct MaintenanceConfiguration_ {
+        pub default: Option<serde_json::Value>,
+        pub preferred_day_time: Option<Box<PreferredDayTimeMaintenanceConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_MaintenanceConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.MaintenanceConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_MaintenanceConfiguration as MaintenanceConfiguration;
+    impl crate::value::ToValue for MaintenanceConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.default {
+                properties.insert(
+                    "Default".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.preferred_day_time {
+                properties.insert(
+                    "PreferredDayTime".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-mediaconnectflowrouteroutputconfiguration.html
+    pub struct MediaConnectFlowRouterOutputConfiguration_ {
+        pub destination_transit_encryption: Box<FlowTransitEncryption_>,
+        pub flow_arn: Option<crate::value::ExpString>,
+        pub flow_source_arn: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_MediaConnectFlowRouterOutputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.MediaConnectFlowRouterOutputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_MediaConnectFlowRouterOutputConfiguration as MediaConnectFlowRouterOutputConfiguration;
+    impl crate::value::ToValue for MediaConnectFlowRouterOutputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "DestinationTransitEncryption".to_string(),
+                crate::value::ToValue::to_value(&self.destination_transit_encryption),
+            );
+            if let Some(ref value) = self.flow_arn {
+                properties.insert(
+                    "FlowArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.flow_source_arn {
+                properties.insert(
+                    "FlowSourceArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-medialiveinputrouteroutputconfiguration.html
+    pub struct MediaLiveInputRouterOutputConfiguration_ {
+        pub destination_transit_encryption: Box<MediaLiveTransitEncryption_>,
+        pub media_live_input_arn: Option<crate::value::ExpString>,
+        pub media_live_pipeline_id: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_MediaLiveInputRouterOutputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.MediaLiveInputRouterOutputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_MediaLiveInputRouterOutputConfiguration as MediaLiveInputRouterOutputConfiguration;
+    impl crate::value::ToValue for MediaLiveInputRouterOutputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "DestinationTransitEncryption".to_string(),
+                crate::value::ToValue::to_value(&self.destination_transit_encryption),
+            );
+            if let Some(ref value) = self.media_live_input_arn {
+                properties.insert(
+                    "MediaLiveInputArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.media_live_pipeline_id {
+                properties.insert(
+                    "MediaLivePipelineId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-medialivetransitencryption.html
+    pub struct MediaLiveTransitEncryption_ {
+        pub encryption_key_configuration: Box<MediaLiveTransitEncryptionKeyConfiguration_>,
+        pub encryption_key_type: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_MediaLiveTransitEncryption {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.MediaLiveTransitEncryption"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_MediaLiveTransitEncryption as MediaLiveTransitEncryption;
+    impl crate::value::ToValue for MediaLiveTransitEncryption_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "EncryptionKeyConfiguration".to_string(),
+                crate::value::ToValue::to_value(&self.encryption_key_configuration),
+            );
+            if let Some(ref value) = self.encryption_key_type {
+                properties.insert(
+                    "EncryptionKeyType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-medialivetransitencryptionkeyconfiguration.html
+    pub struct MediaLiveTransitEncryptionKeyConfiguration_ {
+        pub automatic: Option<serde_json::Value>,
+        pub secrets_manager: Option<Box<SecretsManagerEncryptionKeyConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_MediaLiveTransitEncryptionKeyConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.MediaLiveTransitEncryptionKeyConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_MediaLiveTransitEncryptionKeyConfiguration as MediaLiveTransitEncryptionKeyConfiguration;
+    impl crate::value::ToValue for MediaLiveTransitEncryptionKeyConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.automatic {
+                properties.insert(
+                    "Automatic".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.secrets_manager {
+                properties.insert(
+                    "SecretsManager".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-preferreddaytimemaintenanceconfiguration.html
+    pub struct PreferredDayTimeMaintenanceConfiguration_ {
+        pub day: crate::value::ExpString,
+        pub time: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_PreferredDayTimeMaintenanceConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.PreferredDayTimeMaintenanceConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_PreferredDayTimeMaintenanceConfiguration as PreferredDayTimeMaintenanceConfiguration;
+    impl crate::value::ToValue for PreferredDayTimeMaintenanceConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Day".to_string(),
+                crate::value::ToValue::to_value(&self.day),
+            );
+            properties.insert(
+                "Time".to_string(),
+                crate::value::ToValue::to_value(&self.time),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-ristrouteroutputconfiguration.html
+    pub struct RistRouterOutputConfiguration_ {
+        pub destination_address: crate::value::ExpString,
+        pub destination_port: i32,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_RistRouterOutputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.RistRouterOutputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_RistRouterOutputConfiguration as RistRouterOutputConfiguration;
+    impl crate::value::ToValue for RistRouterOutputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "DestinationAddress".to_string(),
+                crate::value::ToValue::to_value(&self.destination_address),
+            );
+            properties.insert(
+                "DestinationPort".to_string(),
+                crate::value::ToValue::to_value(&self.destination_port),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-routeroutputconfiguration.html
+    pub struct RouterOutputConfiguration_ {
+        pub media_connect_flow: Option<Box<MediaConnectFlowRouterOutputConfiguration_>>,
+        pub media_live_input: Option<Box<MediaLiveInputRouterOutputConfiguration_>>,
+        pub standard: Option<Box<StandardRouterOutputConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_RouterOutputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.RouterOutputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_RouterOutputConfiguration as RouterOutputConfiguration;
+    impl crate::value::ToValue for RouterOutputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.media_connect_flow {
+                properties.insert(
+                    "MediaConnectFlow".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.media_live_input {
+                properties.insert(
+                    "MediaLiveInput".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.standard {
+                properties.insert(
+                    "Standard".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-routeroutputprotocolconfiguration.html
+    pub struct RouterOutputProtocolConfiguration_ {
+        pub rist: Option<Box<RistRouterOutputConfiguration_>>,
+        pub rtp: Option<Box<RtpRouterOutputConfiguration_>>,
+        pub srt_caller: Option<Box<SrtCallerRouterOutputConfiguration_>>,
+        pub srt_listener: Option<Box<SrtListenerRouterOutputConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_RouterOutputProtocolConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.RouterOutputProtocolConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_RouterOutputProtocolConfiguration as RouterOutputProtocolConfiguration;
+    impl crate::value::ToValue for RouterOutputProtocolConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.rist {
+                properties.insert("Rist".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.rtp {
+                properties.insert("Rtp".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.srt_caller {
+                properties.insert(
+                    "SrtCaller".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.srt_listener {
+                properties.insert(
+                    "SrtListener".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-rtprouteroutputconfiguration.html
+    pub struct RtpRouterOutputConfiguration_ {
+        pub destination_address: crate::value::ExpString,
+        pub destination_port: i32,
+        pub forward_error_correction: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_RtpRouterOutputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.RtpRouterOutputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_RtpRouterOutputConfiguration as RtpRouterOutputConfiguration;
+    impl crate::value::ToValue for RtpRouterOutputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "DestinationAddress".to_string(),
+                crate::value::ToValue::to_value(&self.destination_address),
+            );
+            properties.insert(
+                "DestinationPort".to_string(),
+                crate::value::ToValue::to_value(&self.destination_port),
+            );
+            if let Some(ref value) = self.forward_error_correction {
+                properties.insert(
+                    "ForwardErrorCorrection".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-secretsmanagerencryptionkeyconfiguration.html
+    pub struct SecretsManagerEncryptionKeyConfiguration_ {
+        pub role_arn: crate::value::ExpString,
+        pub secret_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_SecretsManagerEncryptionKeyConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.SecretsManagerEncryptionKeyConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_SecretsManagerEncryptionKeyConfiguration as SecretsManagerEncryptionKeyConfiguration;
+    impl crate::value::ToValue for SecretsManagerEncryptionKeyConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "RoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.role_arn),
+            );
+            properties.insert(
+                "SecretArn".to_string(),
+                crate::value::ToValue::to_value(&self.secret_arn),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-srtcallerrouteroutputconfiguration.html
+    pub struct SrtCallerRouterOutputConfiguration_ {
+        pub destination_address: crate::value::ExpString,
+        pub destination_port: i32,
+        pub encryption_configuration: Option<Box<SrtEncryptionConfiguration_>>,
+        pub minimum_latency_milliseconds: i32,
+        pub stream_id: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_SrtCallerRouterOutputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.SrtCallerRouterOutputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_SrtCallerRouterOutputConfiguration as SrtCallerRouterOutputConfiguration;
+    impl crate::value::ToValue for SrtCallerRouterOutputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "DestinationAddress".to_string(),
+                crate::value::ToValue::to_value(&self.destination_address),
+            );
+            properties.insert(
+                "DestinationPort".to_string(),
+                crate::value::ToValue::to_value(&self.destination_port),
+            );
+            if let Some(ref value) = self.encryption_configuration {
+                properties.insert(
+                    "EncryptionConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "MinimumLatencyMilliseconds".to_string(),
+                crate::value::ToValue::to_value(&self.minimum_latency_milliseconds),
+            );
+            if let Some(ref value) = self.stream_id {
+                properties.insert(
+                    "StreamId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-srtencryptionconfiguration.html
+    pub struct SrtEncryptionConfiguration_ {
+        pub encryption_key: Box<SecretsManagerEncryptionKeyConfiguration_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_SrtEncryptionConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.SrtEncryptionConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_SrtEncryptionConfiguration as SrtEncryptionConfiguration;
+    impl crate::value::ToValue for SrtEncryptionConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "EncryptionKey".to_string(),
+                crate::value::ToValue::to_value(&self.encryption_key),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-srtlistenerrouteroutputconfiguration.html
+    pub struct SrtListenerRouterOutputConfiguration_ {
+        pub encryption_configuration: Option<Box<SrtEncryptionConfiguration_>>,
+        pub minimum_latency_milliseconds: i32,
+        pub port: i32,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_SrtListenerRouterOutputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.SrtListenerRouterOutputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_SrtListenerRouterOutputConfiguration as SrtListenerRouterOutputConfiguration;
+    impl crate::value::ToValue for SrtListenerRouterOutputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.encryption_configuration {
+                properties.insert(
+                    "EncryptionConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "MinimumLatencyMilliseconds".to_string(),
+                crate::value::ToValue::to_value(&self.minimum_latency_milliseconds),
+            );
+            properties.insert(
+                "Port".to_string(),
+                crate::value::ToValue::to_value(&self.port),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-routeroutput-standardrouteroutputconfiguration.html
+    pub struct StandardRouterOutputConfiguration_ {
+        pub network_interface_arn: crate::value::ExpString,
+        pub protocol: Option<crate::value::ExpString>,
+        pub protocol_configuration: Box<RouterOutputProtocolConfiguration_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_mediaconnect_RouterOutput_StandardRouterOutputConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::MediaConnect::RouterOutput.StandardRouterOutputConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_mediaconnect_RouterOutput_StandardRouterOutputConfiguration as StandardRouterOutputConfiguration;
+    impl crate::value::ToValue for StandardRouterOutputConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "NetworkInterfaceArn".to_string(),
+                crate::value::ToValue::to_value(&self.network_interface_arn),
+            );
+            if let Some(ref value) = self.protocol {
+                properties.insert(
+                    "Protocol".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "ProtocolConfiguration".to_string(),
+                crate::value::ToValue::to_value(&self.protocol_configuration),
             );
             properties.into()
         }
@@ -2150,7 +3687,7 @@ impl crate::template::ToResource for Flow_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowentitlement.html
 pub struct FlowEntitlement_ {
-    pub data_transfer_subscriber_fee_percent: Option<i64>,
+    pub data_transfer_subscriber_fee_percent: Option<i32>,
     pub description: crate::value::ExpString,
     pub encryption: Option<super::mediaconnect::flowentitlement::Encryption_>,
     pub entitlement_status: Option<crate::value::ExpString>,
@@ -2222,18 +3759,21 @@ pub struct FlowOutput_ {
     pub destination: Option<crate::value::ExpString>,
     pub encryption: Option<super::mediaconnect::flowoutput::Encryption_>,
     pub flow_arn: crate::value::ExpString,
-    pub max_latency: Option<i64>,
+    pub max_latency: Option<i32>,
     pub media_stream_output_configurations:
         Option<Vec<super::mediaconnect::flowoutput::MediaStreamOutputConfiguration_>>,
-    pub min_latency: Option<i64>,
+    pub min_latency: Option<i32>,
     pub name: Option<crate::value::ExpString>,
     pub ndi_program_name: Option<crate::value::ExpString>,
-    pub ndi_speed_hq_quality: Option<i64>,
+    pub ndi_speed_hq_quality: Option<i32>,
     pub output_status: Option<crate::value::ExpString>,
-    pub port: Option<i64>,
-    pub protocol: crate::value::ExpString,
+    pub port: Option<i32>,
+    pub protocol: Option<crate::value::ExpString>,
     pub remote_id: Option<crate::value::ExpString>,
-    pub smoothing_latency: Option<i64>,
+    pub router_integration_state: Option<crate::value::ExpString>,
+    pub router_integration_transit_encryption:
+        Option<super::mediaconnect::flowoutput::FlowTransitEncryption_>,
+    pub smoothing_latency: Option<i32>,
     pub stream_id: Option<crate::value::ExpString>,
     pub vpc_interface_attachment: Option<super::mediaconnect::flowoutput::VpcInterfaceAttachment_>,
 }
@@ -2327,13 +3867,27 @@ impl crate::template::ToResource for FlowOutput_ {
         if let Some(ref value) = self.port {
             properties.insert("Port".to_string(), crate::value::ToValue::to_value(value));
         }
-        properties.insert(
-            "Protocol".to_string(),
-            crate::value::ToValue::to_value(&self.protocol),
-        );
+        if let Some(ref value) = self.protocol {
+            properties.insert(
+                "Protocol".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.remote_id {
             properties.insert(
                 "RemoteId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.router_integration_state {
+            properties.insert(
+                "RouterIntegrationState".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.router_integration_transit_encryption {
+            properties.insert(
+                "RouterIntegrationTransitEncryption".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -2365,16 +3919,16 @@ pub struct FlowSource_ {
     pub entitlement_arn: Option<crate::value::ExpString>,
     pub flow_arn: Option<crate::value::ExpString>,
     pub gateway_bridge_source: Option<super::mediaconnect::flowsource::GatewayBridgeSource_>,
-    pub ingest_port: Option<i64>,
-    pub max_bitrate: Option<i64>,
-    pub max_latency: Option<i64>,
-    pub min_latency: Option<i64>,
+    pub ingest_port: Option<i32>,
+    pub max_bitrate: Option<i32>,
+    pub max_latency: Option<i32>,
+    pub min_latency: Option<i32>,
     pub name: crate::value::ExpString,
     pub protocol: Option<crate::value::ExpString>,
-    pub sender_control_port: Option<i64>,
+    pub sender_control_port: Option<i32>,
     pub sender_ip_address: Option<crate::value::ExpString>,
     pub source_listener_address: Option<crate::value::ExpString>,
-    pub source_listener_port: Option<i64>,
+    pub source_listener_port: Option<i32>,
     pub stream_id: Option<crate::value::ExpString>,
     pub vpc_interface_name: Option<crate::value::ExpString>,
     pub whitelist_cidr: Option<crate::value::ExpString>,
@@ -2594,6 +4148,215 @@ impl crate::template::ToResource for Gateway_ {
         properties.insert(
             "Networks".to_string(),
             crate::value::ToValue::to_value(&self.networks),
+        );
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-routerinput.html
+pub struct RouterInput_ {
+    pub availability_zone: Option<crate::value::ExpString>,
+    pub configuration: super::mediaconnect::routerinput::RouterInputConfiguration_,
+    pub maintenance_configuration:
+        Option<super::mediaconnect::routerinput::MaintenanceConfiguration_>,
+    pub maximum_bitrate: i32,
+    pub name: crate::value::ExpString,
+    pub region_name: Option<crate::value::ExpString>,
+    pub routing_scope: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub tier: crate::value::ExpString,
+    pub transit_encryption: Option<super::mediaconnect::routerinput::RouterInputTransitEncryption_>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_mediaconnect_RouterInput {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::MediaConnect::RouterInput"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_mediaconnect_RouterInput as RouterInput;
+impl crate::template::ToResource for RouterInput_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("MediaConnect"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("RouterInput"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.availability_zone {
+            properties.insert(
+                "AvailabilityZone".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "Configuration".to_string(),
+            crate::value::ToValue::to_value(&self.configuration),
+        );
+        if let Some(ref value) = self.maintenance_configuration {
+            properties.insert(
+                "MaintenanceConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "MaximumBitrate".to_string(),
+            crate::value::ToValue::to_value(&self.maximum_bitrate),
+        );
+        properties.insert(
+            "Name".to_string(),
+            crate::value::ToValue::to_value(&self.name),
+        );
+        if let Some(ref value) = self.region_name {
+            properties.insert(
+                "RegionName".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "RoutingScope".to_string(),
+            crate::value::ToValue::to_value(&self.routing_scope),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "Tier".to_string(),
+            crate::value::ToValue::to_value(&self.tier),
+        );
+        if let Some(ref value) = self.transit_encryption {
+            properties.insert(
+                "TransitEncryption".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-routernetworkinterface.html
+pub struct RouterNetworkInterface_ {
+    pub configuration:
+        super::mediaconnect::routernetworkinterface::RouterNetworkInterfaceConfiguration_,
+    pub name: crate::value::ExpString,
+    pub region_name: Option<crate::value::ExpString>,
+    pub tags: Option<Vec<crate::Tag_>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_mediaconnect_RouterNetworkInterface {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::MediaConnect::RouterNetworkInterface"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_mediaconnect_RouterNetworkInterface as RouterNetworkInterface;
+impl crate::template::ToResource for RouterNetworkInterface_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("MediaConnect"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("RouterNetworkInterface"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "Configuration".to_string(),
+            crate::value::ToValue::to_value(&self.configuration),
+        );
+        properties.insert(
+            "Name".to_string(),
+            crate::value::ToValue::to_value(&self.name),
+        );
+        if let Some(ref value) = self.region_name {
+            properties.insert(
+                "RegionName".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-routeroutput.html
+pub struct RouterOutput_ {
+    pub availability_zone: Option<crate::value::ExpString>,
+    pub configuration: super::mediaconnect::routeroutput::RouterOutputConfiguration_,
+    pub maintenance_configuration:
+        Option<super::mediaconnect::routeroutput::MaintenanceConfiguration_>,
+    pub maximum_bitrate: i32,
+    pub name: crate::value::ExpString,
+    pub region_name: Option<crate::value::ExpString>,
+    pub routing_scope: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub tier: crate::value::ExpString,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_mediaconnect_RouterOutput {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::MediaConnect::RouterOutput"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_mediaconnect_RouterOutput as RouterOutput;
+impl crate::template::ToResource for RouterOutput_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("MediaConnect"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("RouterOutput"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.availability_zone {
+            properties.insert(
+                "AvailabilityZone".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "Configuration".to_string(),
+            crate::value::ToValue::to_value(&self.configuration),
+        );
+        if let Some(ref value) = self.maintenance_configuration {
+            properties.insert(
+                "MaintenanceConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "MaximumBitrate".to_string(),
+            crate::value::ToValue::to_value(&self.maximum_bitrate),
+        );
+        properties.insert(
+            "Name".to_string(),
+            crate::value::ToValue::to_value(&self.name),
+        );
+        if let Some(ref value) = self.region_name {
+            properties.insert(
+                "RegionName".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "RoutingScope".to_string(),
+            crate::value::ToValue::to_value(&self.routing_scope),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "Tier".to_string(),
+            crate::value::ToValue::to_value(&self.tier),
         );
         properties
     }

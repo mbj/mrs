@@ -91,7 +91,7 @@ pub mod environment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-m2-environment-highavailabilityconfig.html
     pub struct HighAvailabilityConfig_ {
-        pub desired_capacity: i64,
+        pub desired_capacity: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -210,7 +210,7 @@ impl crate::template::ToResource for Application_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-m2-deployment.html
 pub struct Deployment_ {
     pub application_id: crate::value::ExpString,
-    pub application_version: i64,
+    pub application_version: i32,
     pub environment_id: crate::value::ExpString,
 }
 #[doc(hidden)]

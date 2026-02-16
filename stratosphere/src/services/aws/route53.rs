@@ -62,16 +62,16 @@ pub mod healthcheck {
         pub alarm_identifier: Option<Box<AlarmIdentifier_>>,
         pub child_health_checks: Option<Vec<crate::value::ExpString>>,
         pub enable_sni: Option<crate::value::ExpBool>,
-        pub failure_threshold: Option<i64>,
+        pub failure_threshold: Option<i32>,
         pub fully_qualified_domain_name: Option<crate::value::ExpString>,
-        pub health_threshold: Option<i64>,
+        pub health_threshold: Option<i32>,
         pub ip_address: Option<crate::value::ExpString>,
         pub insufficient_data_health_status: Option<crate::value::ExpString>,
         pub inverted: Option<crate::value::ExpBool>,
         pub measure_latency: Option<crate::value::ExpBool>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub regions: Option<Vec<crate::value::ExpString>>,
-        pub request_interval: Option<i64>,
+        pub request_interval: Option<i32>,
         pub resource_path: Option<crate::value::ExpString>,
         pub routing_control_arn: Option<crate::value::ExpString>,
         pub search_string: Option<crate::value::ExpString>,
@@ -238,6 +238,31 @@ pub mod hostedzone {
             if let Some(ref value) = self.comment {
                 properties.insert(
                     "Comment".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonefeatures.html
+    pub struct HostedZoneFeatures_ {
+        pub enable_accelerated_recovery: Option<crate::value::ExpBool>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_route53_HostedZone_HostedZoneFeatures {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Route53::HostedZone.HostedZoneFeatures"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_route53_HostedZone_HostedZoneFeatures as HostedZoneFeatures;
+    impl crate::value::ToValue for HostedZoneFeatures_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.enable_accelerated_recovery {
+                properties.insert(
+                    "EnableAcceleratedRecovery".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -458,7 +483,7 @@ pub mod recordset {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-geoproximitylocation.html
     pub struct GeoProximityLocation_ {
         pub aws_region: Option<crate::value::ExpString>,
-        pub bias: Option<i64>,
+        pub bias: Option<i32>,
         pub coordinates: Option<Box<Coordinates_>>,
         pub local_zone_group: Option<crate::value::ExpString>,
     }
@@ -633,7 +658,7 @@ pub mod recordsetgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-geoproximitylocation.html
     pub struct GeoProximityLocation_ {
         pub aws_region: Option<crate::value::ExpString>,
-        pub bias: Option<i64>,
+        pub bias: Option<i32>,
         pub coordinates: Option<Box<Coordinates_>>,
         pub local_zone_group: Option<crate::value::ExpString>,
     }
@@ -690,7 +715,7 @@ pub mod recordsetgroup {
         pub set_identifier: Option<crate::value::ExpString>,
         pub ttl: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -901,6 +926,7 @@ impl crate::template::ToResource for HealthCheck_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html
 pub struct HostedZone_ {
     pub hosted_zone_config: Option<super::route53::hostedzone::HostedZoneConfig_>,
+    pub hosted_zone_features: Option<super::route53::hostedzone::HostedZoneFeatures_>,
     pub hosted_zone_tags: Option<Vec<super::route53::hostedzone::HostedZoneTag_>>,
     pub name: Option<crate::value::ExpString>,
     pub query_logging_config: Option<super::route53::hostedzone::QueryLoggingConfig_>,
@@ -929,6 +955,12 @@ impl crate::template::ToResource for HostedZone_ {
         if let Some(ref value) = self.hosted_zone_config {
             properties.insert(
                 "HostedZoneConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.hosted_zone_features {
+            properties.insert(
+                "HostedZoneFeatures".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1017,7 +1049,7 @@ pub struct RecordSet_ {
     pub set_identifier: Option<crate::value::ExpString>,
     pub ttl: Option<crate::value::ExpString>,
     pub r#type: crate::value::ExpString,
-    pub weight: Option<i64>,
+    pub weight: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]

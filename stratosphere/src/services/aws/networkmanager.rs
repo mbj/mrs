@@ -26,7 +26,7 @@ pub mod connectattachment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectattachment-proposednetworkfunctiongroupchange.html
     pub struct ProposedNetworkFunctionGroupChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -62,7 +62,7 @@ pub mod connectattachment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-connectattachment-proposedsegmentchange.html
     pub struct ProposedSegmentChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -435,7 +435,7 @@ pub mod device {
 pub mod directconnectgatewayattachment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-directconnectgatewayattachment-proposednetworkfunctiongroupchange.html
     pub struct ProposedNetworkFunctionGroupChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -471,7 +471,7 @@ pub mod directconnectgatewayattachment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-directconnectgatewayattachment-proposedsegmentchange.html
     pub struct ProposedSegmentChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -509,8 +509,8 @@ pub mod directconnectgatewayattachment {
 pub mod link {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-link-bandwidth.html
     pub struct Bandwidth_ {
-        pub download_speed: Option<i64>,
-        pub upload_speed: Option<i64>,
+        pub download_speed: Option<i32>,
+        pub upload_speed: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -584,7 +584,7 @@ pub mod site {
 pub mod sitetositevpnattachment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-sitetositevpnattachment-proposednetworkfunctiongroupchange.html
     pub struct ProposedNetworkFunctionGroupChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -620,7 +620,7 @@ pub mod sitetositevpnattachment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-sitetositevpnattachment-proposedsegmentchange.html
     pub struct ProposedSegmentChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -658,7 +658,7 @@ pub mod sitetositevpnattachment {
 pub mod transitgatewayroutetableattachment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-transitgatewayroutetableattachment-proposednetworkfunctiongroupchange.html
     pub struct ProposedNetworkFunctionGroupChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -694,7 +694,7 @@ pub mod transitgatewayroutetableattachment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-transitgatewayroutetableattachment-proposedsegmentchange.html
     pub struct ProposedSegmentChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -732,7 +732,7 @@ pub mod transitgatewayroutetableattachment {
 pub mod vpcattachment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-vpcattachment-proposednetworkfunctiongroupchange.html
     pub struct ProposedNetworkFunctionGroupChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub network_function_group_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -768,7 +768,7 @@ pub mod vpcattachment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkmanager-vpcattachment-proposedsegmentchange.html
     pub struct ProposedSegmentChange_ {
-        pub attachment_policy_rule_number: Option<i64>,
+        pub attachment_policy_rule_number: Option<i32>,
         pub segment_name: Option<crate::value::ExpString>,
         pub tags: Option<Vec<crate::Tag_>>,
     }
@@ -859,6 +859,7 @@ pub struct ConnectAttachment_ {
         Option<super::networkmanager::connectattachment::ProposedNetworkFunctionGroupChange_>,
     pub proposed_segment_change:
         Option<super::networkmanager::connectattachment::ProposedSegmentChange_>,
+    pub routing_policy_label: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub transport_attachment_id: crate::value::ExpString,
 }
@@ -909,6 +910,12 @@ impl crate::template::ToResource for ConnectAttachment_ {
         if let Some(ref value) = self.proposed_segment_change {
             properties.insert(
                 "ProposedSegmentChange".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.routing_policy_label {
+            properties.insert(
+                "RoutingPolicyLabel".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1036,6 +1043,49 @@ impl crate::template::ToResource for CoreNetwork_ {
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkmanager-corenetworkprefixlistassociation.html
+pub struct CoreNetworkPrefixListAssociation_ {
+    pub core_network_id: crate::value::ExpString,
+    pub prefix_list_alias: crate::value::ExpString,
+    pub prefix_list_arn: crate::value::ExpString,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_networkmanager_CoreNetworkPrefixListAssociation {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::NetworkManager::CoreNetworkPrefixListAssociation"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_networkmanager_CoreNetworkPrefixListAssociation as CoreNetworkPrefixListAssociation;
+impl crate::template::ToResource for CoreNetworkPrefixListAssociation_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("NetworkManager"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName(
+                "CoreNetworkPrefixListAssociation",
+            ),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "CoreNetworkId".to_string(),
+            crate::value::ToValue::to_value(&self.core_network_id),
+        );
+        properties.insert(
+            "PrefixListAlias".to_string(),
+            crate::value::ToValue::to_value(&self.prefix_list_alias),
+        );
+        properties.insert(
+            "PrefixListArn".to_string(),
+            crate::value::ToValue::to_value(&self.prefix_list_arn),
+        );
         properties
     }
 }
@@ -1175,6 +1225,7 @@ pub struct DirectConnectGatewayAttachment_ {
     >,
     pub proposed_segment_change:
         Option<super::networkmanager::directconnectgatewayattachment::ProposedSegmentChange_>,
+    pub routing_policy_label: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -1220,6 +1271,12 @@ impl crate::template::ToResource for DirectConnectGatewayAttachment_ {
         if let Some(ref value) = self.proposed_segment_change {
             properties.insert(
                 "ProposedSegmentChange".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.routing_policy_label {
+            properties.insert(
+                "RoutingPolicyLabel".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1438,6 +1495,7 @@ pub struct SiteToSiteVpnAttachment_ {
         Option<super::networkmanager::sitetositevpnattachment::ProposedNetworkFunctionGroupChange_>,
     pub proposed_segment_change:
         Option<super::networkmanager::sitetositevpnattachment::ProposedSegmentChange_>,
+    pub routing_policy_label: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub vpn_connection_arn: crate::value::ExpString,
 }
@@ -1480,6 +1538,12 @@ impl crate::template::ToResource for SiteToSiteVpnAttachment_ {
         if let Some(ref value) = self.proposed_segment_change {
             properties.insert(
                 "ProposedSegmentChange".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.routing_policy_label {
+            properties.insert(
+                "RoutingPolicyLabel".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1581,6 +1645,7 @@ pub struct TransitGatewayRouteTableAttachment_ {
     pub proposed_segment_change: Option<
         super::networkmanager::transitgatewayroutetableattachment::ProposedSegmentChange_,
     >,
+    pub routing_policy_label: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub transit_gateway_route_table_arn: crate::value::ExpString,
 }
@@ -1628,6 +1693,12 @@ impl crate::template::ToResource for TransitGatewayRouteTableAttachment_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.routing_policy_label {
+            properties.insert(
+                "RoutingPolicyLabel".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
@@ -1646,6 +1717,7 @@ pub struct VpcAttachment_ {
         Option<super::networkmanager::vpcattachment::ProposedNetworkFunctionGroupChange_>,
     pub proposed_segment_change:
         Option<super::networkmanager::vpcattachment::ProposedSegmentChange_>,
+    pub routing_policy_label: Option<crate::value::ExpString>,
     pub subnet_arns: Vec<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub vpc_arn: crate::value::ExpString,
@@ -1689,6 +1761,12 @@ impl crate::template::ToResource for VpcAttachment_ {
         if let Some(ref value) = self.proposed_segment_change {
             properties.insert(
                 "ProposedSegmentChange".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.routing_policy_label {
+            properties.insert(
+                "RoutingPolicyLabel".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

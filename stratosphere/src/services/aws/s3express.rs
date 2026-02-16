@@ -103,7 +103,7 @@ pub mod accesspoint {
 pub mod directorybucket {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-directorybucket-abortincompletemultipartupload.html
     pub struct AbortIncompleteMultipartUpload_ {
-        pub days_after_initiation: i64,
+        pub days_after_initiation: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -173,7 +173,7 @@ pub mod directorybucket {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3express-directorybucket-rule.html
     pub struct Rule_ {
         pub abort_incomplete_multipart_upload: Option<Box<AbortIncompleteMultipartUpload_>>,
-        pub expiration_in_days: Option<i64>,
+        pub expiration_in_days: Option<i32>,
         pub id: Option<crate::value::ExpString>,
         pub object_size_greater_than: Option<crate::value::ExpString>,
         pub object_size_less_than: Option<crate::value::ExpString>,

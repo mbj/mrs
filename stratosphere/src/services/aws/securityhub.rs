@@ -29,8 +29,8 @@ pub mod automationrule {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-automationrulesfindingfieldsupdate.html
     pub struct AutomationRulesFindingFieldsUpdate_ {
-        pub confidence: Option<i64>,
-        pub criticality: Option<i64>,
+        pub confidence: Option<i32>,
+        pub criticality: Option<i32>,
         pub note: Option<Box<NoteUpdate_>>,
         pub related_findings: Option<Vec<RelatedFinding_>>,
         pub severity: Option<Box<SeverityUpdate_>>,
@@ -537,7 +537,7 @@ pub mod automationrule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrule-severityupdate.html
     pub struct SeverityUpdate_ {
         pub label: Option<crate::value::ExpString>,
-        pub normalized: Option<i64>,
+        pub normalized: Option<i32>,
         pub product: Option<f64>,
     }
     #[doc(hidden)]
@@ -663,8 +663,8 @@ pub mod automationrulev2 {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-automationrulev2-automationrulesfindingfieldsupdatev2.html
     pub struct AutomationRulesFindingFieldsUpdateV2_ {
         pub comment: Option<crate::value::ExpString>,
-        pub severity_id: Option<i64>,
-        pub status_id: Option<i64>,
+        pub severity_id: Option<i32>,
+        pub status_id: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1191,8 +1191,8 @@ pub mod configurationpolicy {
         pub double: Option<f64>,
         pub r#enum: Option<crate::value::ExpString>,
         pub enum_list: Option<Vec<crate::value::ExpString>>,
-        pub integer: Option<i64>,
-        pub integer_list: Option<Vec<i64>>,
+        pub integer: Option<i32>,
+        pub integer_list: Option<Vec<i32>>,
         pub string: Option<crate::value::ExpString>,
         pub string_list: Option<Vec<crate::value::ExpString>>,
     }
@@ -1382,6 +1382,91 @@ pub mod configurationpolicy {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            properties.into()
+        }
+    }
+}
+pub mod connectorv2 {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-connectorv2-jiracloudproviderconfiguration.html
+    pub struct JiraCloudProviderConfiguration_ {
+        pub project_key: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_securityhub_ConnectorV2_JiraCloudProviderConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::ConnectorV2.JiraCloudProviderConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_securityhub_ConnectorV2_JiraCloudProviderConfiguration as JiraCloudProviderConfiguration;
+    impl crate::value::ToValue for JiraCloudProviderConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ProjectKey".to_string(),
+                crate::value::ToValue::to_value(&self.project_key),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-connectorv2-provider.html
+    pub struct Provider_ {
+        pub jira_cloud: Option<Box<JiraCloudProviderConfiguration_>>,
+        pub service_now: Option<Box<ServiceNowProviderConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_securityhub_ConnectorV2_Provider {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::ConnectorV2.Provider"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_securityhub_ConnectorV2_Provider as Provider;
+    impl crate::value::ToValue for Provider_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.jira_cloud {
+                properties.insert(
+                    "JiraCloud".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.service_now {
+                properties.insert(
+                    "ServiceNow".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securityhub-connectorv2-servicenowproviderconfiguration.html
+    pub struct ServiceNowProviderConfiguration_ {
+        pub instance_name: crate::value::ExpString,
+        pub secret_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_securityhub_ConnectorV2_ServiceNowProviderConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SecurityHub::ConnectorV2.ServiceNowProviderConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_securityhub_ConnectorV2_ServiceNowProviderConfiguration as ServiceNowProviderConfiguration;
+    impl crate::value::ToValue for ServiceNowProviderConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "InstanceName".to_string(),
+                crate::value::ToValue::to_value(&self.instance_name),
+            );
+            properties.insert(
+                "SecretArn".to_string(),
+                crate::value::ToValue::to_value(&self.secret_arn),
+            );
             properties.into()
         }
     }
@@ -2323,8 +2408,8 @@ pub mod securitycontrol {
         pub double: Option<f64>,
         pub r#enum: Option<crate::value::ExpString>,
         pub enum_list: Option<Vec<crate::value::ExpString>>,
-        pub integer: Option<i64>,
-        pub integer_list: Option<Vec<i64>>,
+        pub integer: Option<i32>,
+        pub integer_list: Option<Vec<i32>>,
         pub string: Option<crate::value::ExpString>,
         pub string_list: Option<Vec<crate::value::ExpString>>,
     }
@@ -2459,7 +2544,7 @@ pub struct AutomationRule_ {
     pub description: crate::value::ExpString,
     pub is_terminal: Option<crate::value::ExpBool>,
     pub rule_name: crate::value::ExpString,
-    pub rule_order: i64,
+    pub rule_order: i32,
     pub rule_status: Option<crate::value::ExpString>,
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
 }
@@ -2623,6 +2708,60 @@ impl crate::template::ToResource for ConfigurationPolicy_ {
         properties.insert(
             "Name".to_string(),
             crate::value::ToValue::to_value(&self.name),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-securityhub-connectorv2.html
+pub struct ConnectorV2_ {
+    pub description: Option<crate::value::ExpString>,
+    pub kms_key_arn: Option<crate::value::ExpString>,
+    pub name: crate::value::ExpString,
+    pub provider: super::securityhub::connectorv2::Provider_,
+    pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_securityhub_ConnectorV2 {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::SecurityHub::ConnectorV2"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_securityhub_ConnectorV2 as ConnectorV2;
+impl crate::template::ToResource for ConnectorV2_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("SecurityHub"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("ConnectorV2"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.description {
+            properties.insert(
+                "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.kms_key_arn {
+            properties.insert(
+                "KmsKeyArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "Name".to_string(),
+            crate::value::ToValue::to_value(&self.name),
+        );
+        properties.insert(
+            "Provider".to_string(),
+            crate::value::ToValue::to_value(&self.provider),
         );
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));

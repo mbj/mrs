@@ -30,7 +30,7 @@ pub mod environmentec2 {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html
 pub struct EnvironmentEC2_ {
-    pub automatic_stop_time_minutes: Option<i64>,
+    pub automatic_stop_time_minutes: Option<i32>,
     pub connection_type: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
     pub image_id: crate::value::ExpString,

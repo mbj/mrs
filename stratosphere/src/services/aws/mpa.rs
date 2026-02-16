@@ -73,7 +73,7 @@ pub mod approvalteam {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mpa-approvalteam-mofnapprovalstrategy.html
     pub struct MofNApprovalStrategy_ {
-        pub min_approvals_required: i64,
+        pub min_approvals_required: i32,
     }
     #[doc(hidden)]
     #[macro_export]

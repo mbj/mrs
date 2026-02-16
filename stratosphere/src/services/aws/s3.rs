@@ -124,7 +124,7 @@ pub mod accesspoint {
 pub mod bucket {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-abortincompletemultipartupload.html
     pub struct AbortIncompleteMultipartUpload_ {
-        pub days_after_initiation: i64,
+        pub days_after_initiation: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -227,6 +227,31 @@ pub mod bucket {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-blockedencryptiontypes.html
+    pub struct BlockedEncryptionTypes_ {
+        pub encryption_type: Option<Vec<crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_s3_Bucket_BlockedEncryptionTypes {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::S3::Bucket.BlockedEncryptionTypes"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_s3_Bucket_BlockedEncryptionTypes as BlockedEncryptionTypes;
+    impl crate::value::ToValue for BlockedEncryptionTypes_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.encryption_type {
+                properties.insert(
+                    "EncryptionType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-bucketencryption.html
     pub struct BucketEncryption_ {
         pub server_side_encryption_configuration: Vec<ServerSideEncryptionRule_>,
@@ -280,7 +305,7 @@ pub mod bucket {
         pub allowed_origins: Vec<crate::value::ExpString>,
         pub exposed_headers: Option<Vec<crate::value::ExpString>>,
         pub id: Option<crate::value::ExpString>,
-        pub max_age: Option<i64>,
+        pub max_age: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -353,9 +378,9 @@ pub mod bucket {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-defaultretention.html
     pub struct DefaultRetention_ {
-        pub days: Option<i64>,
+        pub days: Option<i32>,
         pub mode: Option<crate::value::ExpString>,
-        pub years: Option<i64>,
+        pub years: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -994,8 +1019,8 @@ pub mod bucket {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-noncurrentversionexpiration.html
     pub struct NoncurrentVersionExpiration_ {
-        pub newer_noncurrent_versions: Option<i64>,
-        pub noncurrent_days: i64,
+        pub newer_noncurrent_versions: Option<i32>,
+        pub noncurrent_days: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1024,9 +1049,9 @@ pub mod bucket {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-noncurrentversiontransition.html
     pub struct NoncurrentVersionTransition_ {
-        pub newer_noncurrent_versions: Option<i64>,
+        pub newer_noncurrent_versions: Option<i32>,
         pub storage_class: crate::value::ExpString,
-        pub transition_in_days: i64,
+        pub transition_in_days: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1333,7 +1358,7 @@ pub mod bucket {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-recordexpiration.html
     pub struct RecordExpiration_ {
-        pub days: Option<i64>,
+        pub days: Option<i32>,
         pub expiration: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -1564,7 +1589,7 @@ pub mod bucket {
         pub filter: Option<Box<ReplicationRuleFilter_>>,
         pub id: Option<crate::value::ExpString>,
         pub prefix: Option<crate::value::ExpString>,
-        pub priority: Option<i64>,
+        pub priority: Option<i32>,
         pub source_selection_criteria: Option<Box<SourceSelectionCriteria_>>,
         pub status: crate::value::ExpString,
     }
@@ -1710,7 +1735,7 @@ pub mod bucket {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationtimevalue.html
     pub struct ReplicationTimeValue_ {
-        pub minutes: i64,
+        pub minutes: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1797,11 +1822,11 @@ pub mod bucket {
     pub struct Rule_ {
         pub abort_incomplete_multipart_upload: Option<Box<AbortIncompleteMultipartUpload_>>,
         pub expiration_date: Option<crate::value::ExpString>,
-        pub expiration_in_days: Option<i64>,
+        pub expiration_in_days: Option<i32>,
         pub expired_object_delete_marker: Option<crate::value::ExpBool>,
         pub id: Option<crate::value::ExpString>,
         pub noncurrent_version_expiration: Option<Box<NoncurrentVersionExpiration_>>,
-        pub noncurrent_version_expiration_in_days: Option<i64>,
+        pub noncurrent_version_expiration_in_days: Option<i32>,
         pub noncurrent_version_transition: Option<Box<NoncurrentVersionTransition_>>,
         pub noncurrent_version_transitions: Option<Vec<NoncurrentVersionTransition_>>,
         pub object_size_greater_than: Option<crate::value::ExpString>,
@@ -2012,6 +2037,7 @@ pub mod bucket {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html
     pub struct ServerSideEncryptionRule_ {
+        pub blocked_encryption_types: Option<Box<BlockedEncryptionTypes_>>,
         pub bucket_key_enabled: Option<crate::value::ExpBool>,
         pub server_side_encryption_by_default: Option<Box<ServerSideEncryptionByDefault_>>,
     }
@@ -2027,6 +2053,12 @@ pub mod bucket {
     impl crate::value::ToValue for ServerSideEncryptionRule_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.blocked_encryption_types {
+                properties.insert(
+                    "BlockedEncryptionTypes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.bucket_key_enabled {
                 properties.insert(
                     "BucketKeyEnabled".to_string(),
@@ -2185,7 +2217,7 @@ pub mod bucket {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-tiering.html
     pub struct Tiering_ {
         pub access_tier: crate::value::ExpString,
-        pub days: i64,
+        pub days: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2246,7 +2278,7 @@ pub mod bucket {
     pub struct Transition_ {
         pub storage_class: crate::value::ExpString,
         pub transition_date: Option<crate::value::ExpString>,
-        pub transition_in_days: Option<i64>,
+        pub transition_in_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2458,6 +2490,7 @@ pub mod storagelens {
         pub activity_metrics: Option<Box<ActivityMetrics_>>,
         pub advanced_cost_optimization_metrics: Option<Box<AdvancedCostOptimizationMetrics_>>,
         pub advanced_data_protection_metrics: Option<Box<AdvancedDataProtectionMetrics_>>,
+        pub advanced_performance_metrics: Option<Box<AdvancedPerformanceMetrics_>>,
         pub bucket_level: Box<BucketLevel_>,
         pub detailed_status_codes_metrics: Option<Box<DetailedStatusCodesMetrics_>>,
         pub storage_lens_group_level: Option<Box<StorageLensGroupLevel_>>,
@@ -2489,6 +2522,12 @@ pub mod storagelens {
             if let Some(ref value) = self.advanced_data_protection_metrics {
                 properties.insert(
                     "AdvancedDataProtectionMetrics".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.advanced_performance_metrics {
+                properties.insert(
+                    "AdvancedPerformanceMetrics".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -2586,6 +2625,31 @@ pub mod storagelens {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-advancedperformancemetrics.html
+    pub struct AdvancedPerformanceMetrics_ {
+        pub is_enabled: Option<crate::value::ExpBool>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_s3_StorageLens_AdvancedPerformanceMetrics {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.AdvancedPerformanceMetrics"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_s3_StorageLens_AdvancedPerformanceMetrics as AdvancedPerformanceMetrics;
+    impl crate::value::ToValue for AdvancedPerformanceMetrics_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.is_enabled {
+                properties.insert(
+                    "IsEnabled".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-awsorg.html
     pub struct AwsOrg_ {
         pub arn: crate::value::ExpString,
@@ -2614,6 +2678,7 @@ pub mod storagelens {
         pub activity_metrics: Option<Box<ActivityMetrics_>>,
         pub advanced_cost_optimization_metrics: Option<Box<AdvancedCostOptimizationMetrics_>>,
         pub advanced_data_protection_metrics: Option<Box<AdvancedDataProtectionMetrics_>>,
+        pub advanced_performance_metrics: Option<Box<AdvancedPerformanceMetrics_>>,
         pub detailed_status_codes_metrics: Option<Box<DetailedStatusCodesMetrics_>>,
         pub prefix_level: Option<Box<PrefixLevel_>>,
     }
@@ -2644,6 +2709,12 @@ pub mod storagelens {
             if let Some(ref value) = self.advanced_data_protection_metrics {
                 properties.insert(
                     "AdvancedDataProtectionMetrics".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.advanced_performance_metrics {
+                properties.insert(
+                    "AdvancedPerformanceMetrics".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -2721,6 +2792,7 @@ pub mod storagelens {
     pub struct DataExport_ {
         pub cloud_watch_metrics: Option<Box<CloudWatchMetrics_>>,
         pub s3_bucket_destination: Option<Box<S3BucketDestination_>>,
+        pub storage_lens_table_destination: Option<Box<StorageLensTableDestination_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2743,6 +2815,12 @@ pub mod storagelens {
             if let Some(ref value) = self.s3_bucket_destination {
                 properties.insert(
                     "S3BucketDestination".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.storage_lens_table_destination {
+                properties.insert(
+                    "StorageLensTableDestination".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -2930,7 +3008,7 @@ pub mod storagelens {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-selectioncriteria.html
     pub struct SelectionCriteria_ {
         pub delimiter: Option<crate::value::ExpString>,
-        pub max_depth: Option<i64>,
+        pub max_depth: Option<i32>,
         pub min_storage_bytes_percentage: Option<f64>,
     }
     #[doc(hidden)]
@@ -2972,9 +3050,11 @@ pub mod storagelens {
         pub aws_org: Option<Box<AwsOrg_>>,
         pub data_export: Option<Box<DataExport_>>,
         pub exclude: Option<Box<BucketsAndRegions_>>,
+        pub expanded_prefixes_data_export: Option<Box<StorageLensExpandedPrefixesDataExport_>>,
         pub id: crate::value::ExpString,
         pub include: Option<Box<BucketsAndRegions_>>,
         pub is_enabled: crate::value::ExpBool,
+        pub prefix_delimiter: Option<crate::value::ExpString>,
         pub storage_lens_arn: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -3008,6 +3088,12 @@ pub mod storagelens {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.expanded_prefixes_data_export {
+                properties.insert(
+                    "ExpandedPrefixesDataExport".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert("Id".to_string(), crate::value::ToValue::to_value(&self.id));
             if let Some(ref value) = self.include {
                 properties.insert(
@@ -3019,9 +3105,47 @@ pub mod storagelens {
                 "IsEnabled".to_string(),
                 crate::value::ToValue::to_value(&self.is_enabled),
             );
+            if let Some(ref value) = self.prefix_delimiter {
+                properties.insert(
+                    "PrefixDelimiter".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.storage_lens_arn {
                 properties.insert(
                     "StorageLensArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelensexpandedprefixesdataexport.html
+    pub struct StorageLensExpandedPrefixesDataExport_ {
+        pub s3_bucket_destination: Option<Box<S3BucketDestination_>>,
+        pub storage_lens_table_destination: Option<Box<StorageLensTableDestination_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_s3_StorageLens_StorageLensExpandedPrefixesDataExport {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.StorageLensExpandedPrefixesDataExport"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_s3_StorageLens_StorageLensExpandedPrefixesDataExport as StorageLensExpandedPrefixesDataExport;
+    impl crate::value::ToValue for StorageLensExpandedPrefixesDataExport_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.s3_bucket_destination {
+                properties.insert(
+                    "S3BucketDestination".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.storage_lens_table_destination {
+                properties.insert(
+                    "StorageLensTableDestination".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -3082,6 +3206,36 @@ pub mod storagelens {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelenstabledestination.html
+    pub struct StorageLensTableDestination_ {
+        pub encryption: Option<Box<Encryption_>>,
+        pub is_enabled: crate::value::ExpBool,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_s3_StorageLens_StorageLensTableDestination {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::S3::StorageLens.StorageLensTableDestination"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_s3_StorageLens_StorageLensTableDestination as StorageLensTableDestination;
+    impl crate::value::ToValue for StorageLensTableDestination_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.encryption {
+                properties.insert(
+                    "Encryption".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "IsEnabled".to_string(),
+                crate::value::ToValue::to_value(&self.is_enabled),
+            );
             properties.into()
         }
     }
@@ -3203,8 +3357,8 @@ pub mod storagelensgroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-matchobjectage.html
     pub struct MatchObjectAge_ {
-        pub days_greater_than: Option<i64>,
-        pub days_less_than: Option<i64>,
+        pub days_greater_than: Option<i32>,
+        pub days_less_than: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3425,8 +3579,8 @@ impl crate::template::ToResource for AccessGrantsInstance_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accessgrantslocation.html
 pub struct AccessGrantsLocation_ {
-    pub iam_role_arn: Option<crate::value::ExpString>,
-    pub location_scope: Option<crate::value::ExpString>,
+    pub iam_role_arn: crate::value::ExpString,
+    pub location_scope: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -3449,18 +3603,14 @@ impl crate::template::ToResource for AccessGrantsLocation_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
-        if let Some(ref value) = self.iam_role_arn {
-            properties.insert(
-                "IamRoleArn".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
-        if let Some(ref value) = self.location_scope {
-            properties.insert(
-                "LocationScope".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
+        properties.insert(
+            "IamRoleArn".to_string(),
+            crate::value::ToValue::to_value(&self.iam_role_arn),
+        );
+        properties.insert(
+            "LocationScope".to_string(),
+            crate::value::ToValue::to_value(&self.location_scope),
+        );
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
@@ -3534,6 +3684,7 @@ impl crate::template::ToResource for AccessPoint_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucket.html
 pub struct Bucket_ {
+    pub abac_status: Option<crate::value::ExpString>,
     pub accelerate_configuration: Option<super::s3::bucket::AccelerateConfiguration_>,
     pub access_control: Option<crate::value::ExpString>,
     pub analytics_configurations: Option<Vec<super::s3::bucket::AnalyticsConfiguration_>>,
@@ -3579,6 +3730,12 @@ impl crate::template::ToResource for Bucket_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.abac_status {
+            properties.insert(
+                "AbacStatus".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.accelerate_configuration {
             properties.insert(
                 "AccelerateConfiguration".to_string(),

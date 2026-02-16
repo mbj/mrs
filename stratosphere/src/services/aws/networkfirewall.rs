@@ -132,6 +132,7 @@ pub mod firewallpolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-firewallpolicy.html
     pub struct FirewallPolicy_ {
+        pub enable_tls_session_holding: Option<crate::value::ExpBool>,
         pub policy_variables: Option<Box<PolicyVariables_>>,
         pub stateful_default_actions: Option<Vec<crate::value::ExpString>>,
         pub stateful_engine_options: Option<Box<StatefulEngineOptions_>>,
@@ -154,6 +155,12 @@ pub mod firewallpolicy {
     impl crate::value::ToValue for FirewallPolicy_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.enable_tls_session_holding {
+                properties.insert(
+                    "EnableTLSSessionHolding".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.policy_variables {
                 properties.insert(
                     "PolicyVariables".to_string(),
@@ -209,7 +216,7 @@ pub mod firewallpolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-flowtimeouts.html
     pub struct FlowTimeouts_ {
-        pub tcp_idle_timeout_seconds: Option<i64>,
+        pub tcp_idle_timeout_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -370,7 +377,7 @@ pub mod firewallpolicy {
     pub struct StatefulRuleGroupReference_ {
         pub deep_threat_inspection: Option<crate::value::ExpBool>,
         pub r#override: Option<Box<StatefulRuleGroupOverride_>>,
-        pub priority: Option<i64>,
+        pub priority: Option<i32>,
         pub resource_arn: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -412,7 +419,7 @@ pub mod firewallpolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statelessrulegroupreference.html
     pub struct StatelessRuleGroupReference_ {
-        pub priority: i64,
+        pub priority: i32,
         pub resource_arn: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -699,7 +706,7 @@ pub mod rulegroup {
     pub struct MatchAttributes_ {
         pub destination_ports: Option<Vec<PortRange_>>,
         pub destinations: Option<Vec<Address_>>,
-        pub protocols: Option<Vec<i64>>,
+        pub protocols: Option<Vec<i32>>,
         pub source_ports: Option<Vec<PortRange_>>,
         pub sources: Option<Vec<Address_>>,
         pub tcp_flags: Option<Vec<TCPFlagField_>>,
@@ -757,8 +764,8 @@ pub mod rulegroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-portrange.html
     pub struct PortRange_ {
-        pub from_port: i64,
-        pub to_port: i64,
+        pub from_port: i32,
+        pub to_port: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1126,7 +1133,7 @@ pub mod rulegroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-statelessrule.html
     pub struct StatelessRule_ {
-        pub priority: i64,
+        pub priority: i32,
         pub rule_definition: Box<RuleDefinition_>,
     }
     #[doc(hidden)]
@@ -1293,8 +1300,8 @@ pub mod tlsinspectionconfiguration {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-portrange.html
     pub struct PortRange_ {
-        pub from_port: i64,
-        pub to_port: i64,
+        pub from_port: i32,
+        pub to_port: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1391,7 +1398,7 @@ pub mod tlsinspectionconfiguration {
     pub struct ServerCertificateScope_ {
         pub destination_ports: Option<Vec<PortRange_>>,
         pub destinations: Option<Vec<Address_>>,
-        pub protocols: Option<Vec<i64>>,
+        pub protocols: Option<Vec<i32>>,
         pub source_ports: Option<Vec<PortRange_>>,
         pub sources: Option<Vec<Address_>>,
     }
@@ -1705,7 +1712,7 @@ impl crate::template::ToResource for LoggingConfiguration_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-rulegroup.html
 pub struct RuleGroup_ {
-    pub capacity: i64,
+    pub capacity: i32,
     pub description: Option<crate::value::ExpString>,
     pub rule_group: Option<super::networkfirewall::rulegroup::RuleGroup_>,
     pub rule_group_name: crate::value::ExpString,

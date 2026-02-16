@@ -350,7 +350,7 @@ pub mod locationhdfs {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationhdfs-namenode.html
     pub struct NameNode_ {
         pub hostname: crate::value::ExpString,
-        pub port: i64,
+        pub port: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -569,6 +569,89 @@ pub mod locations3 {
     }
 }
 pub mod locationsmb {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationsmb-cmksecretconfig.html
+    pub struct CmkSecretConfig_ {
+        pub kms_key_arn: Option<crate::value::ExpString>,
+        pub secret_arn: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_datasync_LocationSMB_CmkSecretConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationSMB.CmkSecretConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_datasync_LocationSMB_CmkSecretConfig as CmkSecretConfig;
+    impl crate::value::ToValue for CmkSecretConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.kms_key_arn {
+                properties.insert(
+                    "KmsKeyArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.secret_arn {
+                properties.insert(
+                    "SecretArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationsmb-customsecretconfig.html
+    pub struct CustomSecretConfig_ {
+        pub secret_access_role_arn: crate::value::ExpString,
+        pub secret_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_datasync_LocationSMB_CustomSecretConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationSMB.CustomSecretConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_datasync_LocationSMB_CustomSecretConfig as CustomSecretConfig;
+    impl crate::value::ToValue for CustomSecretConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "SecretAccessRoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.secret_access_role_arn),
+            );
+            properties.insert(
+                "SecretArn".to_string(),
+                crate::value::ToValue::to_value(&self.secret_arn),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationsmb-managedsecretconfig.html
+    pub struct ManagedSecretConfig_ {
+        pub secret_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_datasync_LocationSMB_ManagedSecretConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::DataSync::LocationSMB.ManagedSecretConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_datasync_LocationSMB_ManagedSecretConfig as ManagedSecretConfig;
+    impl crate::value::ToValue for ManagedSecretConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "SecretArn".to_string(),
+                crate::value::ToValue::to_value(&self.secret_arn),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datasync-locationsmb-mountoptions.html
     pub struct MountOptions_ {
         pub version: Option<crate::value::ExpString>,
@@ -1744,7 +1827,7 @@ pub struct LocationObjectStorage_ {
     pub secret_key: Option<crate::value::ExpString>,
     pub server_certificate: Option<crate::value::ExpString>,
     pub server_hostname: Option<crate::value::ExpString>,
-    pub server_port: Option<i64>,
+    pub server_port: Option<i32>,
     pub server_protocol: Option<crate::value::ExpString>,
     pub subdirectory: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -1901,6 +1984,8 @@ impl crate::template::ToResource for LocationS3_ {
 pub struct LocationSMB_ {
     pub agent_arns: Vec<crate::value::ExpString>,
     pub authentication_type: Option<crate::value::ExpString>,
+    pub cmk_secret_config: Option<super::datasync::locationsmb::CmkSecretConfig_>,
+    pub custom_secret_config: Option<super::datasync::locationsmb::CustomSecretConfig_>,
     pub dns_ip_addresses: Option<Vec<crate::value::ExpString>>,
     pub domain: Option<crate::value::ExpString>,
     pub kerberos_keytab: Option<crate::value::ExpString>,
@@ -1940,6 +2025,18 @@ impl crate::template::ToResource for LocationSMB_ {
         if let Some(ref value) = self.authentication_type {
             properties.insert(
                 "AuthenticationType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.cmk_secret_config {
+            properties.insert(
+                "CmkSecretConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.custom_secret_config {
+            properties.insert(
+                "CustomSecretConfig".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

@@ -626,7 +626,7 @@ pub mod application {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-inputparallelism.html
     pub struct InputParallelism_ {
-        pub count: Option<i64>,
+        pub count: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -881,8 +881,8 @@ pub mod application {
     pub struct ParallelismConfiguration_ {
         pub auto_scaling_enabled: Option<crate::value::ExpBool>,
         pub configuration_type: crate::value::ExpString,
-        pub parallelism: Option<i64>,
-        pub parallelism_per_kpu: Option<i64>,
+        pub parallelism: Option<i32>,
+        pub parallelism_per_kpu: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

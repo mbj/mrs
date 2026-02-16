@@ -686,7 +686,7 @@ pub mod certificateauthority {
         pub custom_cname: Option<crate::value::ExpString>,
         pub custom_path: Option<crate::value::ExpString>,
         pub enabled: crate::value::ExpBool,
-        pub expiration_in_days: Option<i64>,
+        pub expiration_in_days: Option<i32>,
         pub s3_bucket_name: Option<crate::value::ExpString>,
         pub s3_object_acl: Option<crate::value::ExpString>,
     }

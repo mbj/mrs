@@ -1,3 +1,39 @@
+pub mod component {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-component-latestversion.html
+    pub struct LatestVersion_ {
+        pub arn: Option<crate::value::ExpString>,
+        pub major: Option<crate::value::ExpString>,
+        pub minor: Option<crate::value::ExpString>,
+        pub patch: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_imagebuilder_Component_LatestVersion {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::Component.LatestVersion"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_imagebuilder_Component_LatestVersion as LatestVersion;
+    impl crate::value::ToValue for LatestVersion_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.arn {
+                properties.insert("Arn".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.major {
+                properties.insert("Major".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.minor {
+                properties.insert("Minor".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.patch {
+                properties.insert("Patch".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+}
 pub mod containerrecipe {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-componentconfiguration.html
     pub struct ComponentConfiguration_ {
@@ -63,11 +99,11 @@ pub mod containerrecipe {
     pub struct EbsInstanceBlockDeviceSpecification_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub encrypted: Option<crate::value::ExpBool>,
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub kms_key_id: Option<crate::value::ExpString>,
         pub snapshot_id: Option<crate::value::ExpString>,
-        pub throughput: Option<i64>,
-        pub volume_size: Option<i64>,
+        pub throughput: Option<i32>,
+        pub volume_size: Option<i32>,
         pub volume_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -198,6 +234,40 @@ pub mod containerrecipe {
             }
             if let Some(ref value) = self.image {
                 properties.insert("Image".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-latestversion.html
+    pub struct LatestVersion_ {
+        pub arn: Option<crate::value::ExpString>,
+        pub major: Option<crate::value::ExpString>,
+        pub minor: Option<crate::value::ExpString>,
+        pub patch: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_imagebuilder_ContainerRecipe_LatestVersion {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ContainerRecipe.LatestVersion"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_imagebuilder_ContainerRecipe_LatestVersion as LatestVersion;
+    impl crate::value::ToValue for LatestVersion_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.arn {
+                properties.insert("Arn".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.major {
+                properties.insert("Major".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.minor {
+                properties.insert("Minor".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.patch {
+                properties.insert("Patch".to_string(), crate::value::ToValue::to_value(value));
             }
             properties.into()
         }
@@ -402,7 +472,7 @@ pub mod distributionconfiguration {
         pub account_id: Option<crate::value::ExpString>,
         pub enabled: Option<crate::value::ExpBool>,
         pub launch_template: Option<Box<FastLaunchLaunchTemplateSpecification_>>,
-        pub max_parallel_launches: Option<i64>,
+        pub max_parallel_launches: Option<i32>,
         pub snapshot_configuration: Option<Box<FastLaunchSnapshotConfiguration_>>,
     }
     #[doc(hidden)]
@@ -491,7 +561,7 @@ pub mod distributionconfiguration {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-distributionconfiguration-fastlaunchsnapshotconfiguration.html
     pub struct FastLaunchSnapshotConfiguration_ {
-        pub target_resource_count: Option<i64>,
+        pub target_resource_count: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -670,6 +740,29 @@ pub mod distributionconfiguration {
     }
 }
 pub mod image {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-deletionsettings.html
+    pub struct DeletionSettings_ {
+        pub execution_role: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_imagebuilder_Image_DeletionSettings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::Image.DeletionSettings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_imagebuilder_Image_DeletionSettings as DeletionSettings;
+    impl crate::value::ToValue for DeletionSettings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ExecutionRole".to_string(),
+                crate::value::ToValue::to_value(&self.execution_role),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-ecrconfiguration.html
     pub struct EcrConfiguration_ {
         pub container_tags: Option<Vec<crate::value::ExpString>>,
@@ -696,6 +789,63 @@ pub mod image {
             if let Some(ref value) = self.repository_name {
                 properties.insert(
                     "RepositoryName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-imageloggingconfiguration.html
+    pub struct ImageLoggingConfiguration_ {
+        pub log_group_name: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_imagebuilder_Image_ImageLoggingConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::Image.ImageLoggingConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_imagebuilder_Image_ImageLoggingConfiguration as ImageLoggingConfiguration;
+    impl crate::value::ToValue for ImageLoggingConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.log_group_name {
+                properties.insert(
+                    "LogGroupName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-imagepipelineexecutionsettings.html
+    pub struct ImagePipelineExecutionSettings_ {
+        pub deployment_id: Option<crate::value::ExpString>,
+        pub on_update: Option<crate::value::ExpBool>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_imagebuilder_Image_ImagePipelineExecutionSettings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::Image.ImagePipelineExecutionSettings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_imagebuilder_Image_ImagePipelineExecutionSettings as ImagePipelineExecutionSettings;
+    impl crate::value::ToValue for ImagePipelineExecutionSettings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.deployment_id {
+                properties.insert(
+                    "DeploymentId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.on_update {
+                properties.insert(
+                    "OnUpdate".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -737,7 +887,7 @@ pub mod image {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-imagetestsconfiguration.html
     pub struct ImageTestsConfiguration_ {
         pub image_tests_enabled: Option<crate::value::ExpBool>,
-        pub timeout_minutes: Option<i64>,
+        pub timeout_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -762,6 +912,40 @@ pub mod image {
                     "TimeoutMinutes".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-image-latestversion.html
+    pub struct LatestVersion_ {
+        pub arn: Option<crate::value::ExpString>,
+        pub major: Option<crate::value::ExpString>,
+        pub minor: Option<crate::value::ExpString>,
+        pub patch: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_imagebuilder_Image_LatestVersion {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::Image.LatestVersion"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_imagebuilder_Image_LatestVersion as LatestVersion;
+    impl crate::value::ToValue for LatestVersion_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.arn {
+                properties.insert("Arn".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.major {
+                properties.insert("Major".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.minor {
+                properties.insert("Minor".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.patch {
+                properties.insert("Patch".to_string(), crate::value::ToValue::to_value(value));
             }
             properties.into()
         }
@@ -840,6 +1024,29 @@ pub mod image {
     }
 }
 pub mod imagepipeline {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-autodisablepolicy.html
+    pub struct AutoDisablePolicy_ {
+        pub failure_count: i32,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_imagebuilder_ImagePipeline_AutoDisablePolicy {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImagePipeline.AutoDisablePolicy"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_imagebuilder_ImagePipeline_AutoDisablePolicy as AutoDisablePolicy;
+    impl crate::value::ToValue for AutoDisablePolicy_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "FailureCount".to_string(),
+                crate::value::ToValue::to_value(&self.failure_count),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-ecrconfiguration.html
     pub struct EcrConfiguration_ {
         pub container_tags: Option<Vec<crate::value::ExpString>>,
@@ -907,7 +1114,7 @@ pub mod imagepipeline {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-imagetestsconfiguration.html
     pub struct ImageTestsConfiguration_ {
         pub image_tests_enabled: Option<crate::value::ExpBool>,
-        pub timeout_minutes: Option<i64>,
+        pub timeout_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -936,8 +1143,41 @@ pub mod imagepipeline {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-pipelineloggingconfiguration.html
+    pub struct PipelineLoggingConfiguration_ {
+        pub image_log_group_name: Option<crate::value::ExpString>,
+        pub pipeline_log_group_name: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_imagebuilder_ImagePipeline_PipelineLoggingConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImagePipeline.PipelineLoggingConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_imagebuilder_ImagePipeline_PipelineLoggingConfiguration as PipelineLoggingConfiguration;
+    impl crate::value::ToValue for PipelineLoggingConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.image_log_group_name {
+                properties.insert(
+                    "ImageLogGroupName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.pipeline_log_group_name {
+                properties.insert(
+                    "PipelineLogGroupName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagepipeline-schedule.html
     pub struct Schedule_ {
+        pub auto_disable_policy: Option<Box<AutoDisablePolicy_>>,
         pub pipeline_execution_start_condition: Option<crate::value::ExpString>,
         pub schedule_expression: Option<crate::value::ExpString>,
     }
@@ -953,6 +1193,12 @@ pub mod imagepipeline {
     impl crate::value::ToValue for Schedule_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.auto_disable_policy {
+                properties.insert(
+                    "AutoDisablePolicy".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.pipeline_execution_start_condition {
                 properties.insert(
                     "PipelineExecutionStartCondition".to_string(),
@@ -1138,11 +1384,11 @@ pub mod imagerecipe {
     pub struct EbsInstanceBlockDeviceSpecification_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub encrypted: Option<crate::value::ExpBool>,
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub kms_key_id: Option<crate::value::ExpString>,
         pub snapshot_id: Option<crate::value::ExpString>,
-        pub throughput: Option<i64>,
-        pub volume_size: Option<i64>,
+        pub throughput: Option<i32>,
+        pub volume_size: Option<i32>,
         pub volume_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1248,6 +1494,40 @@ pub mod imagerecipe {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-latestversion.html
+    pub struct LatestVersion_ {
+        pub arn: Option<crate::value::ExpString>,
+        pub major: Option<crate::value::ExpString>,
+        pub minor: Option<crate::value::ExpString>,
+        pub patch: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_imagebuilder_ImageRecipe_LatestVersion {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::ImageRecipe.LatestVersion"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_imagebuilder_ImageRecipe_LatestVersion as LatestVersion;
+    impl crate::value::ToValue for LatestVersion_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.arn {
+                properties.insert("Arn".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.major {
+                properties.insert("Major".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.minor {
+                properties.insert("Minor".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.patch {
+                properties.insert("Patch".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-systemsmanageragent.html
     pub struct SystemsManagerAgent_ {
         pub uninstall_after_build: Option<crate::value::ExpBool>,
@@ -1277,7 +1557,7 @@ pub mod imagerecipe {
 pub mod infrastructureconfiguration {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-infrastructureconfiguration-instancemetadataoptions.html
     pub struct InstanceMetadataOptions_ {
-        pub http_put_response_hop_limit: Option<i64>,
+        pub http_put_response_hop_limit: Option<i32>,
         pub http_tokens: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1514,10 +1794,10 @@ pub mod lifecyclepolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-filter.html
     pub struct Filter_ {
-        pub retain_at_least: Option<i64>,
+        pub retain_at_least: Option<i32>,
         pub r#type: crate::value::ExpString,
         pub unit: Option<crate::value::ExpString>,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1590,7 +1870,7 @@ pub mod lifecyclepolicy {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-lifecyclepolicy-lastlaunched.html
     pub struct LastLaunched_ {
         pub unit: crate::value::ExpString,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1708,6 +1988,42 @@ pub mod lifecyclepolicy {
         }
     }
 }
+pub mod workflow {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-workflow-latestversion.html
+    pub struct LatestVersion_ {
+        pub arn: Option<crate::value::ExpString>,
+        pub major: Option<crate::value::ExpString>,
+        pub minor: Option<crate::value::ExpString>,
+        pub patch: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_imagebuilder_Workflow_LatestVersion {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::ImageBuilder::Workflow.LatestVersion"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_imagebuilder_Workflow_LatestVersion as LatestVersion;
+    impl crate::value::ToValue for LatestVersion_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.arn {
+                properties.insert("Arn".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.major {
+                properties.insert("Major".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.minor {
+                properties.insert("Minor".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.patch {
+                properties.insert("Patch".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-component.html
 pub struct Component_ {
     pub change_description: Option<crate::value::ExpString>,
@@ -1791,7 +2107,7 @@ impl crate::template::ToResource for Component_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-containerrecipe.html
 pub struct ContainerRecipe_ {
-    pub components: Vec<super::imagebuilder::containerrecipe::ComponentConfiguration_>,
+    pub components: Option<Vec<super::imagebuilder::containerrecipe::ComponentConfiguration_>>,
     pub container_type: crate::value::ExpString,
     pub description: Option<crate::value::ExpString>,
     pub dockerfile_template_data: Option<crate::value::ExpString>,
@@ -1828,10 +2144,12 @@ impl crate::template::ToResource for ContainerRecipe_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
-        properties.insert(
-            "Components".to_string(),
-            crate::value::ToValue::to_value(&self.components),
-        );
+        if let Some(ref value) = self.components {
+            properties.insert(
+                "Components".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "ContainerType".to_string(),
             crate::value::ToValue::to_value(&self.container_type),
@@ -1956,14 +2274,18 @@ impl crate::template::ToResource for DistributionConfiguration_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-image.html
 pub struct Image_ {
     pub container_recipe_arn: Option<crate::value::ExpString>,
+    pub deletion_settings: Option<super::imagebuilder::image::DeletionSettings_>,
     pub distribution_configuration_arn: Option<crate::value::ExpString>,
     pub enhanced_image_metadata_enabled: Option<crate::value::ExpBool>,
     pub execution_role: Option<crate::value::ExpString>,
+    pub image_pipeline_execution_settings:
+        Option<super::imagebuilder::image::ImagePipelineExecutionSettings_>,
     pub image_recipe_arn: Option<crate::value::ExpString>,
     pub image_scanning_configuration:
         Option<super::imagebuilder::image::ImageScanningConfiguration_>,
     pub image_tests_configuration: Option<super::imagebuilder::image::ImageTestsConfiguration_>,
     pub infrastructure_configuration_arn: Option<crate::value::ExpString>,
+    pub logging_configuration: Option<super::imagebuilder::image::ImageLoggingConfiguration_>,
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub workflows: Option<Vec<super::imagebuilder::image::WorkflowConfiguration_>>,
 }
@@ -1993,6 +2315,12 @@ impl crate::template::ToResource for Image_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.deletion_settings {
+            properties.insert(
+                "DeletionSettings".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.distribution_configuration_arn {
             properties.insert(
                 "DistributionConfigurationArn".to_string(),
@@ -2008,6 +2336,12 @@ impl crate::template::ToResource for Image_ {
         if let Some(ref value) = self.execution_role {
             properties.insert(
                 "ExecutionRole".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.image_pipeline_execution_settings {
+            properties.insert(
+                "ImagePipelineExecutionSettings".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -2032,6 +2366,12 @@ impl crate::template::ToResource for Image_ {
         if let Some(ref value) = self.infrastructure_configuration_arn {
             properties.insert(
                 "InfrastructureConfigurationArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.logging_configuration {
+            properties.insert(
+                "LoggingConfiguration".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -2060,6 +2400,8 @@ pub struct ImagePipeline_ {
     pub image_tests_configuration:
         Option<super::imagebuilder::imagepipeline::ImageTestsConfiguration_>,
     pub infrastructure_configuration_arn: crate::value::ExpString,
+    pub logging_configuration:
+        Option<super::imagebuilder::imagepipeline::PipelineLoggingConfiguration_>,
     pub name: crate::value::ExpString,
     pub schedule: Option<super::imagebuilder::imagepipeline::Schedule_>,
     pub status: Option<crate::value::ExpString>,
@@ -2138,6 +2480,12 @@ impl crate::template::ToResource for ImagePipeline_ {
             "InfrastructureConfigurationArn".to_string(),
             crate::value::ToValue::to_value(&self.infrastructure_configuration_arn),
         );
+        if let Some(ref value) = self.logging_configuration {
+            properties.insert(
+                "LoggingConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "Name".to_string(),
             crate::value::ToValue::to_value(&self.name),
@@ -2167,9 +2515,10 @@ impl crate::template::ToResource for ImagePipeline_ {
 pub struct ImageRecipe_ {
     pub additional_instance_configuration:
         Option<super::imagebuilder::imagerecipe::AdditionalInstanceConfiguration_>,
+    pub ami_tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub block_device_mappings:
         Option<Vec<super::imagebuilder::imagerecipe::InstanceBlockDeviceMapping_>>,
-    pub components: Vec<super::imagebuilder::imagerecipe::ComponentConfiguration_>,
+    pub components: Option<Vec<super::imagebuilder::imagerecipe::ComponentConfiguration_>>,
     pub description: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
     pub parent_image: crate::value::ExpString,
@@ -2203,16 +2552,24 @@ impl crate::template::ToResource for ImageRecipe_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.ami_tags {
+            properties.insert(
+                "AmiTags".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.block_device_mappings {
             properties.insert(
                 "BlockDeviceMappings".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
-        properties.insert(
-            "Components".to_string(),
-            crate::value::ToValue::to_value(&self.components),
-        );
+        if let Some(ref value) = self.components {
+            properties.insert(
+                "Components".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.description {
             properties.insert(
                 "Description".to_string(),

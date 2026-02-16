@@ -109,6 +109,7 @@ pub mod config {
         pub antenna_uplink_config: Option<Box<AntennaUplinkConfig_>>,
         pub dataflow_endpoint_config: Option<Box<DataflowEndpointConfig_>>,
         pub s3_recording_config: Option<Box<S3RecordingConfig_>>,
+        pub telemetry_sink_config: Option<Box<TelemetrySinkConfig_>>,
         pub tracking_config: Option<Box<TrackingConfig_>>,
         pub uplink_echo_config: Option<Box<UplinkEchoConfig_>>,
     }
@@ -151,6 +152,12 @@ pub mod config {
             if let Some(ref value) = self.s3_recording_config {
                 properties.insert(
                     "S3RecordingConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.telemetry_sink_config {
+                properties.insert(
+                    "TelemetrySinkConfig".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -329,6 +336,34 @@ pub mod config {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-kinesisdatastreamdata.html
+    pub struct KinesisDataStreamData_ {
+        pub kinesis_data_stream_arn: crate::value::ExpString,
+        pub kinesis_role_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_Config_KinesisDataStreamData {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.KinesisDataStreamData"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_Config_KinesisDataStreamData as KinesisDataStreamData;
+    impl crate::value::ToValue for KinesisDataStreamData_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "KinesisDataStreamArn".to_string(),
+                crate::value::ToValue::to_value(&self.kinesis_data_stream_arn),
+            );
+            properties.insert(
+                "KinesisRoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.kinesis_role_arn),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-s3recordingconfig.html
     pub struct S3RecordingConfig_ {
         pub bucket_arn: Option<crate::value::ExpString>,
@@ -401,6 +436,57 @@ pub mod config {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-telemetrysinkconfig.html
+    pub struct TelemetrySinkConfig_ {
+        pub telemetry_sink_data: Box<TelemetrySinkData_>,
+        pub telemetry_sink_type: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_Config_TelemetrySinkConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.TelemetrySinkConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_Config_TelemetrySinkConfig as TelemetrySinkConfig;
+    impl crate::value::ToValue for TelemetrySinkConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "TelemetrySinkData".to_string(),
+                crate::value::ToValue::to_value(&self.telemetry_sink_data),
+            );
+            properties.insert(
+                "TelemetrySinkType".to_string(),
+                crate::value::ToValue::to_value(&self.telemetry_sink_type),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-config-telemetrysinkdata.html
+    pub struct TelemetrySinkData_ {
+        pub kinesis_data_stream_data: Box<KinesisDataStreamData_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_Config_TelemetrySinkData {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::Config.TelemetrySinkData"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_Config_TelemetrySinkData as TelemetrySinkData;
+    impl crate::value::ToValue for TelemetrySinkData_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "KinesisDataStreamData".to_string(),
+                crate::value::ToValue::to_value(&self.kinesis_data_stream_data),
+            );
             properties.into()
         }
     }
@@ -547,7 +633,7 @@ pub mod dataflowendpointgroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-connectiondetails.html
     pub struct ConnectionDetails_ {
-        pub mtu: Option<i64>,
+        pub mtu: Option<i32>,
         pub socket_address: Option<Box<SocketAddress_>>,
     }
     #[doc(hidden)]
@@ -577,7 +663,7 @@ pub mod dataflowendpointgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-dataflowendpoint.html
     pub struct DataflowEndpoint_ {
         pub address: Option<Box<SocketAddress_>>,
-        pub mtu: Option<i64>,
+        pub mtu: Option<i32>,
         pub name: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -648,8 +734,8 @@ pub mod dataflowendpointgroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-integerrange.html
     pub struct IntegerRange_ {
-        pub maximum: Option<i64>,
-        pub minimum: Option<i64>,
+        pub maximum: Option<i32>,
+        pub minimum: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -680,7 +766,7 @@ pub mod dataflowendpointgroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-rangedconnectiondetails.html
     pub struct RangedConnectionDetails_ {
-        pub mtu: Option<i64>,
+        pub mtu: Option<i32>,
         pub socket_address: Option<Box<RangedSocketAddress_>>,
     }
     #[doc(hidden)]
@@ -778,7 +864,7 @@ pub mod dataflowendpointgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-socketaddress.html
     pub struct SocketAddress_ {
         pub name: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -798,6 +884,456 @@ pub mod dataflowendpointgroup {
             if let Some(ref value) = self.port {
                 properties.insert("Port".to_string(), crate::value::ToValue::to_value(value));
             }
+            properties.into()
+        }
+    }
+}
+pub mod dataflowendpointgroupv2 {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-connectiondetails.html
+    pub struct ConnectionDetails_ {
+        pub mtu: Option<i32>,
+        pub socket_address: Box<SocketAddress_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_ConnectionDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.ConnectionDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_ConnectionDetails as ConnectionDetails;
+    impl crate::value::ToValue for ConnectionDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.mtu {
+                properties.insert("Mtu".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.insert(
+                "SocketAddress".to_string(),
+                crate::value::ToValue::to_value(&self.socket_address),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-createendpointdetails.html
+    pub struct CreateEndpointDetails_ {
+        pub downlink_aws_ground_station_agent_endpoint:
+            Option<Box<DownlinkAwsGroundStationAgentEndpoint_>>,
+        pub uplink_aws_ground_station_agent_endpoint:
+            Option<Box<UplinkAwsGroundStationAgentEndpoint_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_CreateEndpointDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.CreateEndpointDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_CreateEndpointDetails as CreateEndpointDetails;
+    impl crate::value::ToValue for CreateEndpointDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.downlink_aws_ground_station_agent_endpoint {
+                properties.insert(
+                    "DownlinkAwsGroundStationAgentEndpoint".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.uplink_aws_ground_station_agent_endpoint {
+                properties.insert(
+                    "UplinkAwsGroundStationAgentEndpoint".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-downlinkawsgroundstationagentendpoint.html
+    pub struct DownlinkAwsGroundStationAgentEndpoint_ {
+        pub dataflow_details: Box<DownlinkDataflowDetails_>,
+        pub name: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_DownlinkAwsGroundStationAgentEndpoint {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.DownlinkAwsGroundStationAgentEndpoint"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_DownlinkAwsGroundStationAgentEndpoint as DownlinkAwsGroundStationAgentEndpoint;
+    impl crate::value::ToValue for DownlinkAwsGroundStationAgentEndpoint_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "DataflowDetails".to_string(),
+                crate::value::ToValue::to_value(&self.dataflow_details),
+            );
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-downlinkawsgroundstationagentendpointdetails.html
+    pub struct DownlinkAwsGroundStationAgentEndpointDetails_ {
+        pub agent_status: Option<crate::value::ExpString>,
+        pub audit_results: Option<crate::value::ExpString>,
+        pub dataflow_details: Box<DownlinkDataflowDetails_>,
+        pub name: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_DownlinkAwsGroundStationAgentEndpointDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.DownlinkAwsGroundStationAgentEndpointDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_DownlinkAwsGroundStationAgentEndpointDetails as DownlinkAwsGroundStationAgentEndpointDetails;
+    impl crate::value::ToValue for DownlinkAwsGroundStationAgentEndpointDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.agent_status {
+                properties.insert(
+                    "AgentStatus".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.audit_results {
+                properties.insert(
+                    "AuditResults".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "DataflowDetails".to_string(),
+                crate::value::ToValue::to_value(&self.dataflow_details),
+            );
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-downlinkconnectiondetails.html
+    pub struct DownlinkConnectionDetails_ {
+        pub agent_ip_and_port_address: Box<RangedConnectionDetails_>,
+        pub egress_address_and_port: Box<ConnectionDetails_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_DownlinkConnectionDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.DownlinkConnectionDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_DownlinkConnectionDetails as DownlinkConnectionDetails;
+    impl crate::value::ToValue for DownlinkConnectionDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "AgentIpAndPortAddress".to_string(),
+                crate::value::ToValue::to_value(&self.agent_ip_and_port_address),
+            );
+            properties.insert(
+                "EgressAddressAndPort".to_string(),
+                crate::value::ToValue::to_value(&self.egress_address_and_port),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-downlinkdataflowdetails.html
+    pub struct DownlinkDataflowDetails_ {
+        pub agent_connection_details: Box<DownlinkConnectionDetails_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_DownlinkDataflowDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.DownlinkDataflowDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_DownlinkDataflowDetails as DownlinkDataflowDetails;
+    impl crate::value::ToValue for DownlinkDataflowDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "AgentConnectionDetails".to_string(),
+                crate::value::ToValue::to_value(&self.agent_connection_details),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-endpointdetails.html
+    pub struct EndpointDetails_ {
+        pub downlink_aws_ground_station_agent_endpoint:
+            Option<Box<DownlinkAwsGroundStationAgentEndpointDetails_>>,
+        pub uplink_aws_ground_station_agent_endpoint:
+            Option<Box<UplinkAwsGroundStationAgentEndpointDetails_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_EndpointDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.EndpointDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_EndpointDetails as EndpointDetails;
+    impl crate::value::ToValue for EndpointDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.downlink_aws_ground_station_agent_endpoint {
+                properties.insert(
+                    "DownlinkAwsGroundStationAgentEndpoint".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.uplink_aws_ground_station_agent_endpoint {
+                properties.insert(
+                    "UplinkAwsGroundStationAgentEndpoint".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-integerrange.html
+    pub struct IntegerRange_ {
+        pub maximum: i32,
+        pub minimum: i32,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_IntegerRange {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.IntegerRange"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_IntegerRange as IntegerRange;
+    impl crate::value::ToValue for IntegerRange_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Maximum".to_string(),
+                crate::value::ToValue::to_value(&self.maximum),
+            );
+            properties.insert(
+                "Minimum".to_string(),
+                crate::value::ToValue::to_value(&self.minimum),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-rangedconnectiondetails.html
+    pub struct RangedConnectionDetails_ {
+        pub mtu: Option<i32>,
+        pub socket_address: Box<RangedSocketAddress_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_RangedConnectionDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.RangedConnectionDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_RangedConnectionDetails as RangedConnectionDetails;
+    impl crate::value::ToValue for RangedConnectionDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.mtu {
+                properties.insert("Mtu".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.insert(
+                "SocketAddress".to_string(),
+                crate::value::ToValue::to_value(&self.socket_address),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-rangedsocketaddress.html
+    pub struct RangedSocketAddress_ {
+        pub name: crate::value::ExpString,
+        pub port_range: Box<IntegerRange_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_RangedSocketAddress {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.RangedSocketAddress"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_RangedSocketAddress as RangedSocketAddress;
+    impl crate::value::ToValue for RangedSocketAddress_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.insert(
+                "PortRange".to_string(),
+                crate::value::ToValue::to_value(&self.port_range),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-socketaddress.html
+    pub struct SocketAddress_ {
+        pub name: crate::value::ExpString,
+        pub port: i32,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_SocketAddress {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.SocketAddress"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_SocketAddress as SocketAddress;
+    impl crate::value::ToValue for SocketAddress_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.insert(
+                "Port".to_string(),
+                crate::value::ToValue::to_value(&self.port),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-uplinkawsgroundstationagentendpoint.html
+    pub struct UplinkAwsGroundStationAgentEndpoint_ {
+        pub dataflow_details: Box<UplinkDataflowDetails_>,
+        pub name: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_UplinkAwsGroundStationAgentEndpoint {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.UplinkAwsGroundStationAgentEndpoint"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_UplinkAwsGroundStationAgentEndpoint as UplinkAwsGroundStationAgentEndpoint;
+    impl crate::value::ToValue for UplinkAwsGroundStationAgentEndpoint_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "DataflowDetails".to_string(),
+                crate::value::ToValue::to_value(&self.dataflow_details),
+            );
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-uplinkawsgroundstationagentendpointdetails.html
+    pub struct UplinkAwsGroundStationAgentEndpointDetails_ {
+        pub agent_status: Option<crate::value::ExpString>,
+        pub audit_results: Option<crate::value::ExpString>,
+        pub dataflow_details: Box<UplinkDataflowDetails_>,
+        pub name: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_UplinkAwsGroundStationAgentEndpointDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.UplinkAwsGroundStationAgentEndpointDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_UplinkAwsGroundStationAgentEndpointDetails as UplinkAwsGroundStationAgentEndpointDetails;
+    impl crate::value::ToValue for UplinkAwsGroundStationAgentEndpointDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.agent_status {
+                properties.insert(
+                    "AgentStatus".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.audit_results {
+                properties.insert(
+                    "AuditResults".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "DataflowDetails".to_string(),
+                crate::value::ToValue::to_value(&self.dataflow_details),
+            );
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-uplinkconnectiondetails.html
+    pub struct UplinkConnectionDetails_ {
+        pub agent_ip_and_port_address: Box<RangedConnectionDetails_>,
+        pub ingress_address_and_port: Box<ConnectionDetails_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_UplinkConnectionDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.UplinkConnectionDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_UplinkConnectionDetails as UplinkConnectionDetails;
+    impl crate::value::ToValue for UplinkConnectionDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "AgentIpAndPortAddress".to_string(),
+                crate::value::ToValue::to_value(&self.agent_ip_and_port_address),
+            );
+            properties.insert(
+                "IngressAddressAndPort".to_string(),
+                crate::value::ToValue::to_value(&self.ingress_address_and_port),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroupv2-uplinkdataflowdetails.html
+    pub struct UplinkDataflowDetails_ {
+        pub agent_connection_details: Box<UplinkConnectionDetails_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_groundstation_DataflowEndpointGroupV2_UplinkDataflowDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::GroundStation::DataflowEndpointGroupV2.UplinkDataflowDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_groundstation_DataflowEndpointGroupV2_UplinkDataflowDetails as UplinkDataflowDetails;
+    impl crate::value::ToValue for UplinkDataflowDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "AgentConnectionDetails".to_string(),
+                crate::value::ToValue::to_value(&self.agent_connection_details),
+            );
             properties.into()
         }
     }
@@ -914,8 +1450,8 @@ impl crate::template::ToResource for Config_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-dataflowendpointgroup.html
 pub struct DataflowEndpointGroup_ {
-    pub contact_post_pass_duration_seconds: Option<i64>,
-    pub contact_pre_pass_duration_seconds: Option<i64>,
+    pub contact_post_pass_duration_seconds: Option<i32>,
+    pub contact_pre_pass_duration_seconds: Option<i32>,
     pub endpoint_details: Vec<super::groundstation::dataflowendpointgroup::EndpointDetails_>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -961,16 +1497,69 @@ impl crate::template::ToResource for DataflowEndpointGroup_ {
         properties
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-dataflowendpointgroupv2.html
+pub struct DataflowEndpointGroupV2_ {
+    pub contact_post_pass_duration_seconds: Option<i32>,
+    pub contact_pre_pass_duration_seconds: Option<i32>,
+    pub endpoints:
+        Option<Vec<super::groundstation::dataflowendpointgroupv2::CreateEndpointDetails_>>,
+    pub tags: Option<Vec<crate::Tag_>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_groundstation_DataflowEndpointGroupV2 {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::GroundStation::DataflowEndpointGroupV2"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_groundstation_DataflowEndpointGroupV2 as DataflowEndpointGroupV2;
+impl crate::template::ToResource for DataflowEndpointGroupV2_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("GroundStation"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("DataflowEndpointGroupV2"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.contact_post_pass_duration_seconds {
+            properties.insert(
+                "ContactPostPassDurationSeconds".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.contact_pre_pass_duration_seconds {
+            properties.insert(
+                "ContactPrePassDurationSeconds".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.endpoints {
+            properties.insert(
+                "Endpoints".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-missionprofile.html
 pub struct MissionProfile_ {
-    pub contact_post_pass_duration_seconds: Option<i64>,
-    pub contact_pre_pass_duration_seconds: Option<i64>,
+    pub contact_post_pass_duration_seconds: Option<i32>,
+    pub contact_pre_pass_duration_seconds: Option<i32>,
     pub dataflow_edges: Vec<super::groundstation::missionprofile::DataflowEdge_>,
-    pub minimum_viable_contact_duration_seconds: i64,
+    pub minimum_viable_contact_duration_seconds: i32,
     pub name: crate::value::ExpString,
     pub streams_kms_key: Option<super::groundstation::missionprofile::StreamsKmsKey_>,
     pub streams_kms_role: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
+    pub telemetry_sink_config_arn: Option<crate::value::ExpString>,
     pub tracking_config_arn: crate::value::ExpString,
 }
 #[doc(hidden)]
@@ -1031,6 +1620,12 @@ impl crate::template::ToResource for MissionProfile_ {
         }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.telemetry_sink_config_arn {
+            properties.insert(
+                "TelemetrySinkConfigArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         properties.insert(
             "TrackingConfigArn".to_string(),

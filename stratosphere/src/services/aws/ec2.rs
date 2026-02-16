@@ -2,7 +2,7 @@ pub mod capacityreservation {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservation-capacityallocation.html
     pub struct CapacityAllocation_ {
         pub allocation_type: Option<crate::value::ExpString>,
-        pub count: Option<i64>,
+        pub count: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -31,7 +31,7 @@ pub mod capacityreservation {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservation-commitmentinfo.html
     pub struct CommitmentInfo_ {
         pub commitment_end_date: Option<crate::value::ExpString>,
-        pub committed_instance_count: Option<i64>,
+        pub committed_instance_count: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -98,7 +98,7 @@ pub mod capacityreservationfleet {
         pub ebs_optimized: Option<crate::value::ExpBool>,
         pub instance_platform: Option<crate::value::ExpString>,
         pub instance_type: Option<crate::value::ExpString>,
-        pub priority: Option<i64>,
+        pub priority: Option<i32>,
         pub weight: Option<f64>,
     }
     #[doc(hidden)]
@@ -460,8 +460,8 @@ pub mod clientvpnendpoint {
 pub mod ec2fleet {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-acceleratorcountrequest.html
     pub struct AcceleratorCountRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -486,8 +486,8 @@ pub mod ec2fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-acceleratortotalmemorymibrequest.html
     pub struct AcceleratorTotalMemoryMiBRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -512,8 +512,8 @@ pub mod ec2fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-baselineebsbandwidthmbpsrequest.html
     pub struct BaselineEbsBandwidthMbpsRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -604,7 +604,7 @@ pub mod ec2fleet {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-capacityrebalance.html
     pub struct CapacityRebalance_ {
         pub replacement_strategy: Option<crate::value::ExpString>,
-        pub termination_delay: Option<i64>,
+        pub termination_delay: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -687,10 +687,10 @@ pub mod ec2fleet {
     pub struct EbsBlockDevice_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub encrypted: Option<crate::value::ExpBool>,
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub kms_key_id: Option<crate::value::ExpString>,
         pub snapshot_id: Option<crate::value::ExpString>,
-        pub volume_size: Option<i64>,
+        pub volume_size: Option<i32>,
         pub volume_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -782,6 +782,7 @@ pub mod ec2fleet {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest.html
     pub struct FleetLaunchTemplateOverridesRequest_ {
         pub availability_zone: Option<crate::value::ExpString>,
+        pub availability_zone_id: Option<crate::value::ExpString>,
         pub block_device_mappings: Option<Vec<BlockDeviceMapping_>>,
         pub instance_requirements: Option<Box<InstanceRequirementsRequest_>>,
         pub instance_type: Option<crate::value::ExpString>,
@@ -806,6 +807,12 @@ pub mod ec2fleet {
             if let Some(ref value) = self.availability_zone {
                 properties.insert(
                     "AvailabilityZone".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.availability_zone_id {
+                properties.insert(
+                    "AvailabilityZoneId".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -914,14 +921,15 @@ pub mod ec2fleet {
         pub instance_generations: Option<Vec<crate::value::ExpString>>,
         pub local_storage: Option<crate::value::ExpString>,
         pub local_storage_types: Option<Vec<crate::value::ExpString>>,
-        pub max_spot_price_as_percentage_of_optimal_on_demand_price: Option<i64>,
+        pub max_spot_price_as_percentage_of_optimal_on_demand_price: Option<i32>,
         pub memory_gi_b_per_v_cpu: Option<Box<MemoryGiBPerVCpuRequest_>>,
         pub memory_mi_b: Option<Box<MemoryMiBRequest_>>,
         pub network_bandwidth_gbps: Option<Box<NetworkBandwidthGbpsRequest_>>,
         pub network_interface_count: Option<Box<NetworkInterfaceCountRequest_>>,
-        pub on_demand_max_price_percentage_over_lowest_price: Option<i64>,
+        pub on_demand_max_price_percentage_over_lowest_price: Option<i32>,
+        pub require_encryption_in_transit: Option<crate::value::ExpBool>,
         pub require_hibernate_support: Option<crate::value::ExpBool>,
-        pub spot_max_price_percentage_over_lowest_price: Option<i64>,
+        pub spot_max_price_percentage_over_lowest_price: Option<i32>,
         pub total_local_storage_gb: Option<Box<TotalLocalStorageGBRequest_>>,
         pub v_cpu_count: Option<Box<VCpuCountRangeRequest_>>,
     }
@@ -1063,6 +1071,12 @@ pub mod ec2fleet {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.require_encryption_in_transit {
+                properties.insert(
+                    "RequireEncryptionInTransit".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.require_hibernate_support {
                 properties.insert(
                     "RequireHibernateSupport".to_string(),
@@ -1143,8 +1157,8 @@ pub mod ec2fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-memorymibrequest.html
     pub struct MemoryMiBRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1195,8 +1209,8 @@ pub mod ec2fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-networkinterfacecountrequest.html
     pub struct NetworkInterfaceCountRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1224,7 +1238,7 @@ pub mod ec2fleet {
         pub allocation_strategy: Option<crate::value::ExpString>,
         pub capacity_reservation_options: Option<Box<CapacityReservationOptionsRequest_>>,
         pub max_total_price: Option<crate::value::ExpString>,
-        pub min_target_capacity: Option<i64>,
+        pub min_target_capacity: Option<i32>,
         pub single_availability_zone: Option<crate::value::ExpBool>,
         pub single_instance_type: Option<crate::value::ExpBool>,
     }
@@ -1311,7 +1325,7 @@ pub mod ec2fleet {
         pub group_name: Option<crate::value::ExpString>,
         pub host_id: Option<crate::value::ExpString>,
         pub host_resource_group_arn: Option<crate::value::ExpString>,
-        pub partition_number: Option<i64>,
+        pub partition_number: Option<i32>,
         pub spread_domain: Option<crate::value::ExpString>,
         pub tenancy: Option<crate::value::ExpString>,
     }
@@ -1379,10 +1393,10 @@ pub mod ec2fleet {
     pub struct SpotOptionsRequest_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
         pub instance_interruption_behavior: Option<crate::value::ExpString>,
-        pub instance_pools_to_use_count: Option<i64>,
+        pub instance_pools_to_use_count: Option<i32>,
         pub maintenance_strategies: Option<Box<MaintenanceStrategies_>>,
         pub max_total_price: Option<crate::value::ExpString>,
-        pub min_target_capacity: Option<i64>,
+        pub min_target_capacity: Option<i32>,
         pub single_availability_zone: Option<crate::value::ExpBool>,
         pub single_instance_type: Option<crate::value::ExpBool>,
     }
@@ -1481,10 +1495,10 @@ pub mod ec2fleet {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-targetcapacityspecificationrequest.html
     pub struct TargetCapacitySpecificationRequest_ {
         pub default_target_capacity_type: Option<crate::value::ExpString>,
-        pub on_demand_target_capacity: Option<i64>,
-        pub spot_target_capacity: Option<i64>,
+        pub on_demand_target_capacity: Option<i32>,
+        pub spot_target_capacity: Option<i32>,
         pub target_capacity_unit_type: Option<crate::value::ExpString>,
-        pub total_target_capacity: i64,
+        pub total_target_capacity: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1557,8 +1571,8 @@ pub mod ec2fleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-vcpucountrangerequest.html
     pub struct VCpuCountRangeRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1776,6 +1790,36 @@ pub mod ipamresourcediscovery {
         }
     }
 }
+pub mod ipamscope {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ipamscope-ipamscopeexternalauthorityconfiguration.html
+    pub struct IpamScopeExternalAuthorityConfiguration_ {
+        pub external_resource_identifier: crate::value::ExpString,
+        pub ipam_scope_external_authority_type: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ec2_IPAMScope_IpamScopeExternalAuthorityConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::EC2::IPAMScope.IpamScopeExternalAuthorityConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ec2_IPAMScope_IpamScopeExternalAuthorityConfiguration as IpamScopeExternalAuthorityConfiguration;
+    impl crate::value::ToValue for IpamScopeExternalAuthorityConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ExternalResourceIdentifier".to_string(),
+                crate::value::ToValue::to_value(&self.external_resource_identifier),
+            );
+            properties.insert(
+                "IpamScopeExternalAuthorityType".to_string(),
+                crate::value::ToValue::to_value(&self.ipam_scope_external_authority_type),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod instance {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-associationparameter.html
     pub struct AssociationParameter_ {
@@ -1848,8 +1892,8 @@ pub mod instance {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-cpuoptions.html
     pub struct CpuOptions_ {
-        pub core_count: Option<i64>,
-        pub threads_per_core: Option<i64>,
+        pub core_count: Option<i32>,
+        pub threads_per_core: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1907,10 +1951,10 @@ pub mod instance {
     pub struct Ebs_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub encrypted: Option<crate::value::ExpBool>,
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub kms_key_id: Option<crate::value::ExpString>,
         pub snapshot_id: Option<crate::value::ExpString>,
-        pub volume_size: Option<i64>,
+        pub volume_size: Option<i32>,
         pub volume_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1992,7 +2036,7 @@ pub mod instance {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-elasticinferenceaccelerator.html
     pub struct ElasticInferenceAccelerator_ {
-        pub count: Option<i64>,
+        pub count: Option<i32>,
         pub r#type: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -2211,7 +2255,7 @@ pub mod instance {
     pub struct MetadataOptions_ {
         pub http_endpoint: Option<crate::value::ExpString>,
         pub http_protocol_ipv6: Option<crate::value::ExpString>,
-        pub http_put_response_hop_limit: Option<i64>,
+        pub http_put_response_hop_limit: Option<i32>,
         pub http_tokens: Option<crate::value::ExpString>,
         pub instance_metadata_tags: Option<crate::value::ExpString>,
     }
@@ -2269,12 +2313,12 @@ pub mod instance {
         pub device_index: crate::value::ExpString,
         pub ena_srd_specification: Option<Box<EnaSrdSpecification_>>,
         pub group_set: Option<Vec<crate::value::ExpString>>,
-        pub ipv6_address_count: Option<i64>,
+        pub ipv6_address_count: Option<i32>,
         pub ipv6_addresses: Option<Vec<InstanceIpv6Address_>>,
         pub network_interface_id: Option<crate::value::ExpString>,
         pub private_ip_address: Option<crate::value::ExpString>,
         pub private_ip_addresses: Option<Vec<PrivateIpAddressSpecification_>>,
-        pub secondary_private_ip_address_count: Option<i64>,
+        pub secondary_private_ip_address_count: Option<i32>,
         pub subnet_id: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -2529,8 +2573,8 @@ pub mod instance {
 pub mod launchtemplate {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-acceleratorcount.html
     pub struct AcceleratorCount_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2555,8 +2599,8 @@ pub mod launchtemplate {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-acceleratortotalmemorymib.html
     pub struct AcceleratorTotalMemoryMiB_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2581,8 +2625,8 @@ pub mod launchtemplate {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-baselineebsbandwidthmbps.html
     pub struct BaselineEbsBandwidthMbps_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2736,9 +2780,9 @@ pub mod launchtemplate {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-connectiontrackingspecification.html
     pub struct ConnectionTrackingSpecification_ {
-        pub tcp_established_timeout: Option<i64>,
-        pub udp_stream_timeout: Option<i64>,
-        pub udp_timeout: Option<i64>,
+        pub tcp_established_timeout: Option<i32>,
+        pub udp_stream_timeout: Option<i32>,
+        pub udp_timeout: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2801,8 +2845,8 @@ pub mod launchtemplate {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-cpuoptions.html
     pub struct CpuOptions_ {
         pub amd_sev_snp: Option<crate::value::ExpString>,
-        pub core_count: Option<i64>,
-        pub threads_per_core: Option<i64>,
+        pub core_count: Option<i32>,
+        pub threads_per_core: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2865,13 +2909,14 @@ pub mod launchtemplate {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-ebs.html
     pub struct Ebs_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
+        pub ebs_card_index: Option<i32>,
         pub encrypted: Option<crate::value::ExpBool>,
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub kms_key_id: Option<crate::value::ExpString>,
         pub snapshot_id: Option<crate::value::ExpString>,
-        pub throughput: Option<i64>,
-        pub volume_initialization_rate: Option<i64>,
-        pub volume_size: Option<i64>,
+        pub throughput: Option<i32>,
+        pub volume_initialization_rate: Option<i32>,
+        pub volume_size: Option<i32>,
         pub volume_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -2889,6 +2934,12 @@ pub mod launchtemplate {
             if let Some(ref value) = self.delete_on_termination {
                 properties.insert(
                     "DeleteOnTermination".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.ebs_card_index {
+                properties.insert(
+                    "EbsCardIndex".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -3122,14 +3173,14 @@ pub mod launchtemplate {
         pub instance_generations: Option<Vec<crate::value::ExpString>>,
         pub local_storage: Option<crate::value::ExpString>,
         pub local_storage_types: Option<Vec<crate::value::ExpString>>,
-        pub max_spot_price_as_percentage_of_optimal_on_demand_price: Option<i64>,
+        pub max_spot_price_as_percentage_of_optimal_on_demand_price: Option<i32>,
         pub memory_gi_b_per_v_cpu: Option<Box<MemoryGiBPerVCpu_>>,
         pub memory_mi_b: Option<Box<MemoryMiB_>>,
         pub network_bandwidth_gbps: Option<Box<NetworkBandwidthGbps_>>,
         pub network_interface_count: Option<Box<NetworkInterfaceCount_>>,
-        pub on_demand_max_price_percentage_over_lowest_price: Option<i64>,
+        pub on_demand_max_price_percentage_over_lowest_price: Option<i32>,
         pub require_hibernate_support: Option<crate::value::ExpBool>,
-        pub spot_max_price_percentage_over_lowest_price: Option<i64>,
+        pub spot_max_price_percentage_over_lowest_price: Option<i32>,
         pub total_local_storage_gb: Option<Box<TotalLocalStorageGB_>>,
         pub v_cpu_count: Option<Box<VCpuCount_>>,
     }
@@ -3708,8 +3759,8 @@ pub mod launchtemplate {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-memorymib.html
     pub struct MemoryMiB_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3736,7 +3787,7 @@ pub mod launchtemplate {
     pub struct MetadataOptions_ {
         pub http_endpoint: Option<crate::value::ExpString>,
         pub http_protocol_ipv6: Option<crate::value::ExpString>,
-        pub http_put_response_hop_limit: Option<i64>,
+        pub http_put_response_hop_limit: Option<i32>,
         pub http_tokens: Option<crate::value::ExpString>,
         pub instance_metadata_tags: Option<crate::value::ExpString>,
     }
@@ -3843,23 +3894,23 @@ pub mod launchtemplate {
         pub connection_tracking_specification: Option<Box<ConnectionTrackingSpecification_>>,
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub description: Option<crate::value::ExpString>,
-        pub device_index: Option<i64>,
-        pub ena_queue_count: Option<i64>,
+        pub device_index: Option<i32>,
+        pub ena_queue_count: Option<i32>,
         pub ena_srd_specification: Option<Box<EnaSrdSpecification_>>,
         pub groups: Option<Vec<crate::value::ExpString>>,
         pub interface_type: Option<crate::value::ExpString>,
-        pub ipv4_prefix_count: Option<i64>,
+        pub ipv4_prefix_count: Option<i32>,
         pub ipv4_prefixes: Option<Vec<Ipv4PrefixSpecification_>>,
-        pub ipv6_address_count: Option<i64>,
+        pub ipv6_address_count: Option<i32>,
         pub ipv6_addresses: Option<Vec<Ipv6Add_>>,
-        pub ipv6_prefix_count: Option<i64>,
+        pub ipv6_prefix_count: Option<i32>,
         pub ipv6_prefixes: Option<Vec<Ipv6PrefixSpecification_>>,
-        pub network_card_index: Option<i64>,
+        pub network_card_index: Option<i32>,
         pub network_interface_id: Option<crate::value::ExpString>,
         pub primary_ipv6: Option<crate::value::ExpBool>,
         pub private_ip_address: Option<crate::value::ExpString>,
         pub private_ip_addresses: Option<Vec<PrivateIpAdd_>>,
-        pub secondary_private_ip_address_count: Option<i64>,
+        pub secondary_private_ip_address_count: Option<i32>,
         pub subnet_id: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -4014,8 +4065,8 @@ pub mod launchtemplate {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterfacecount.html
     pub struct NetworkInterfaceCount_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4071,7 +4122,7 @@ pub mod launchtemplate {
         pub group_name: Option<crate::value::ExpString>,
         pub host_id: Option<crate::value::ExpString>,
         pub host_resource_group_arn: Option<crate::value::ExpString>,
-        pub partition_number: Option<i64>,
+        pub partition_number: Option<i32>,
         pub spread_domain: Option<crate::value::ExpString>,
         pub tenancy: Option<crate::value::ExpString>,
     }
@@ -4239,7 +4290,7 @@ pub mod launchtemplate {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-spotoptions.html
     pub struct SpotOptions_ {
-        pub block_duration_minutes: Option<i64>,
+        pub block_duration_minutes: Option<i32>,
         pub instance_interruption_behavior: Option<crate::value::ExpString>,
         pub max_price: Option<crate::value::ExpString>,
         pub spot_instance_type: Option<crate::value::ExpString>,
@@ -4347,8 +4398,8 @@ pub mod launchtemplate {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-vcpucount.html
     pub struct VCpuCount_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4372,11 +4423,50 @@ pub mod launchtemplate {
         }
     }
 }
+pub mod natgateway {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-natgateway-availabilityzoneaddress.html
+    pub struct AvailabilityZoneAddress_ {
+        pub allocation_ids: Vec<crate::value::ExpString>,
+        pub availability_zone: Option<crate::value::ExpString>,
+        pub availability_zone_id: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ec2_NatGateway_AvailabilityZoneAddress {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::EC2::NatGateway.AvailabilityZoneAddress"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ec2_NatGateway_AvailabilityZoneAddress as AvailabilityZoneAddress;
+    impl crate::value::ToValue for AvailabilityZoneAddress_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "AllocationIds".to_string(),
+                crate::value::ToValue::to_value(&self.allocation_ids),
+            );
+            if let Some(ref value) = self.availability_zone {
+                properties.insert(
+                    "AvailabilityZone".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.availability_zone_id {
+                properties.insert(
+                    "AvailabilityZoneId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
 pub mod networkaclentry {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-icmp.html
     pub struct Icmp_ {
-        pub code: Option<i64>,
-        pub r#type: Option<i64>,
+        pub code: Option<i32>,
+        pub r#type: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4401,8 +4491,8 @@ pub mod networkaclentry {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html
     pub struct PortRange_ {
-        pub from: Option<i64>,
-        pub to: Option<i64>,
+        pub from: Option<i32>,
+        pub to: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4706,7 +4796,7 @@ pub mod networkinsightsanalysis {
         pub port_range: Option<Box<PortRange_>>,
         pub protocol: Option<crate::value::ExpString>,
         pub rule_action: Option<crate::value::ExpString>,
-        pub rule_number: Option<i64>,
+        pub rule_number: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4781,8 +4871,8 @@ pub mod networkinsightsanalysis {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisloadbalancerlistener.html
     pub struct AnalysisLoadBalancerListener_ {
-        pub instance_port: Option<i64>,
-        pub load_balancer_port: Option<i64>,
+        pub instance_port: Option<i32>,
+        pub load_balancer_port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4816,7 +4906,7 @@ pub mod networkinsightsanalysis {
         pub address: Option<crate::value::ExpString>,
         pub availability_zone: Option<crate::value::ExpString>,
         pub instance: Option<Box<AnalysisComponent_>>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -5075,16 +5165,16 @@ pub mod networkinsightsanalysis {
         pub ingress_route_table: Option<Box<AnalysisComponent_>>,
         pub internet_gateway: Option<Box<AnalysisComponent_>>,
         pub load_balancer_arn: Option<crate::value::ExpString>,
-        pub load_balancer_listener_port: Option<i64>,
+        pub load_balancer_listener_port: Option<i32>,
         pub load_balancer_target: Option<Box<AnalysisLoadBalancerTarget_>>,
         pub load_balancer_target_group: Option<Box<AnalysisComponent_>>,
         pub load_balancer_target_groups: Option<Vec<AnalysisComponent_>>,
-        pub load_balancer_target_port: Option<i64>,
+        pub load_balancer_target_port: Option<i32>,
         pub missing_component: Option<crate::value::ExpString>,
         pub nat_gateway: Option<Box<AnalysisComponent_>>,
         pub network_interface: Option<Box<AnalysisComponent_>>,
         pub packet_field: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub port_ranges: Option<Vec<PortRange_>>,
         pub prefix_list: Option<Box<AnalysisComponent_>>,
         pub protocols: Option<Vec<crate::value::ExpString>>,
@@ -5422,7 +5512,7 @@ pub mod networkinsightsanalysis {
         pub outbound_header: Option<Box<AnalysisPacketHeader_>>,
         pub route_table_route: Option<Box<AnalysisRouteTableRoute_>>,
         pub security_group_rule: Option<Box<AnalysisSecurityGroupRule_>>,
-        pub sequence_number: Option<i64>,
+        pub sequence_number: Option<i32>,
         pub service_name: Option<crate::value::ExpString>,
         pub source_vpc: Option<Box<AnalysisComponent_>>,
         pub subnet: Option<Box<AnalysisComponent_>>,
@@ -5543,8 +5633,8 @@ pub mod networkinsightsanalysis {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-portrange.html
     pub struct PortRange_ {
-        pub from: Option<i64>,
-        pub to: Option<i64>,
+        pub from: Option<i32>,
+        pub to: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -5635,8 +5725,8 @@ pub mod networkinsightsanalysis {
 pub mod networkinsightspath {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightspath-filterportrange.html
     pub struct FilterPortRange_ {
-        pub from_port: Option<i64>,
-        pub to_port: Option<i64>,
+        pub from_port: Option<i32>,
+        pub to_port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -5712,9 +5802,9 @@ pub mod networkinsightspath {
 pub mod networkinterface {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-connectiontrackingspecification.html
     pub struct ConnectionTrackingSpecification_ {
-        pub tcp_established_timeout: Option<i64>,
-        pub udp_stream_timeout: Option<i64>,
-        pub udp_timeout: Option<i64>,
+        pub tcp_established_timeout: Option<i32>,
+        pub udp_stream_timeout: Option<i32>,
+        pub udp_timeout: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -5843,6 +5933,52 @@ pub mod networkinterface {
                 "PrivateIpAddress".to_string(),
                 crate::value::ToValue::to_value(&self.private_ip_address),
             );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-publicipdnsnameoptions.html
+    pub struct PublicIpDnsNameOptions_ {
+        pub dns_hostname_type: Option<crate::value::ExpString>,
+        pub public_dual_stack_dns_name: Option<crate::value::ExpString>,
+        pub public_ipv4_dns_name: Option<crate::value::ExpString>,
+        pub public_ipv6_dns_name: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ec2_NetworkInterface_PublicIpDnsNameOptions {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::EC2::NetworkInterface.PublicIpDnsNameOptions"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ec2_NetworkInterface_PublicIpDnsNameOptions as PublicIpDnsNameOptions;
+    impl crate::value::ToValue for PublicIpDnsNameOptions_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.dns_hostname_type {
+                properties.insert(
+                    "DnsHostnameType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.public_dual_stack_dns_name {
+                properties.insert(
+                    "PublicDualStackDnsName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.public_ipv4_dns_name {
+                properties.insert(
+                    "PublicIpv4DnsName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.public_ipv6_dns_name {
+                properties.insert(
+                    "PublicIpv6DnsName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -5980,9 +6116,9 @@ pub mod securitygroup {
         pub description: Option<crate::value::ExpString>,
         pub destination_prefix_list_id: Option<crate::value::ExpString>,
         pub destination_security_group_id: Option<crate::value::ExpString>,
-        pub from_port: Option<i64>,
+        pub from_port: Option<i32>,
         pub ip_protocol: crate::value::ExpString,
-        pub to_port: Option<i64>,
+        pub to_port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -6044,13 +6180,13 @@ pub mod securitygroup {
         pub cidr_ip: Option<crate::value::ExpString>,
         pub cidr_ipv6: Option<crate::value::ExpString>,
         pub description: Option<crate::value::ExpString>,
-        pub from_port: Option<i64>,
+        pub from_port: Option<i32>,
         pub ip_protocol: crate::value::ExpString,
         pub source_prefix_list_id: Option<crate::value::ExpString>,
         pub source_security_group_id: Option<crate::value::ExpString>,
         pub source_security_group_name: Option<crate::value::ExpString>,
         pub source_security_group_owner_id: Option<crate::value::ExpString>,
-        pub to_port: Option<i64>,
+        pub to_port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -6123,8 +6259,8 @@ pub mod securitygroup {
 pub mod spotfleet {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-acceleratorcountrequest.html
     pub struct AcceleratorCountRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -6149,8 +6285,8 @@ pub mod spotfleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-acceleratortotalmemorymibrequest.html
     pub struct AcceleratorTotalMemoryMiBRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -6175,8 +6311,8 @@ pub mod spotfleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-baselineebsbandwidthmbpsrequest.html
     pub struct BaselineEbsBandwidthMbpsRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -6337,9 +6473,9 @@ pub mod spotfleet {
     pub struct EbsBlockDevice_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub encrypted: Option<crate::value::ExpBool>,
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub snapshot_id: Option<crate::value::ExpString>,
-        pub volume_size: Option<i64>,
+        pub volume_size: Option<i32>,
         pub volume_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -6500,13 +6636,13 @@ pub mod spotfleet {
         pub associate_public_ip_address: Option<crate::value::ExpBool>,
         pub delete_on_termination: Option<crate::value::ExpBool>,
         pub description: Option<crate::value::ExpString>,
-        pub device_index: Option<i64>,
+        pub device_index: Option<i32>,
         pub groups: Option<Vec<crate::value::ExpString>>,
-        pub ipv6_address_count: Option<i64>,
+        pub ipv6_address_count: Option<i32>,
         pub ipv6_addresses: Option<Vec<InstanceIpv6Address_>>,
         pub network_interface_id: Option<crate::value::ExpString>,
         pub private_ip_addresses: Option<Vec<PrivateIpAddressSpecification_>>,
-        pub secondary_private_ip_address_count: Option<i64>,
+        pub secondary_private_ip_address_count: Option<i32>,
         pub subnet_id: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -6604,14 +6740,15 @@ pub mod spotfleet {
         pub instance_generations: Option<Vec<crate::value::ExpString>>,
         pub local_storage: Option<crate::value::ExpString>,
         pub local_storage_types: Option<Vec<crate::value::ExpString>>,
-        pub max_spot_price_as_percentage_of_optimal_on_demand_price: Option<i64>,
+        pub max_spot_price_as_percentage_of_optimal_on_demand_price: Option<i32>,
         pub memory_gi_b_per_v_cpu: Option<Box<MemoryGiBPerVCpuRequest_>>,
         pub memory_mi_b: Option<Box<MemoryMiBRequest_>>,
         pub network_bandwidth_gbps: Option<Box<NetworkBandwidthGbpsRequest_>>,
         pub network_interface_count: Option<Box<NetworkInterfaceCountRequest_>>,
-        pub on_demand_max_price_percentage_over_lowest_price: Option<i64>,
+        pub on_demand_max_price_percentage_over_lowest_price: Option<i32>,
+        pub require_encryption_in_transit: Option<crate::value::ExpBool>,
         pub require_hibernate_support: Option<crate::value::ExpBool>,
-        pub spot_max_price_percentage_over_lowest_price: Option<i64>,
+        pub spot_max_price_percentage_over_lowest_price: Option<i32>,
         pub total_local_storage_gb: Option<Box<TotalLocalStorageGBRequest_>>,
         pub v_cpu_count: Option<Box<VCpuCountRangeRequest_>>,
     }
@@ -6753,6 +6890,12 @@ pub mod spotfleet {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.require_encryption_in_transit {
+                properties.insert(
+                    "RequireEncryptionInTransit".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.require_hibernate_support {
                 properties.insert(
                     "RequireHibernateSupport".to_string(),
@@ -6815,6 +6958,7 @@ pub mod spotfleet {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html
     pub struct LaunchTemplateOverrides_ {
         pub availability_zone: Option<crate::value::ExpString>,
+        pub availability_zone_id: Option<crate::value::ExpString>,
         pub instance_requirements: Option<Box<InstanceRequirementsRequest_>>,
         pub instance_type: Option<crate::value::ExpString>,
         pub priority: Option<f64>,
@@ -6837,6 +6981,12 @@ pub mod spotfleet {
             if let Some(ref value) = self.availability_zone {
                 properties.insert(
                     "AvailabilityZone".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.availability_zone_id {
+                properties.insert(
+                    "AvailabilityZoneId".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -6939,8 +7089,8 @@ pub mod spotfleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-memorymibrequest.html
     pub struct MemoryMiBRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -6991,8 +7141,8 @@ pub mod spotfleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-networkinterfacecountrequest.html
     pub struct NetworkInterfaceCountRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -7073,7 +7223,7 @@ pub mod spotfleet {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotcapacityrebalance.html
     pub struct SpotCapacityRebalance_ {
         pub replacement_strategy: Option<crate::value::ExpString>,
-        pub termination_delay: Option<i64>,
+        pub termination_delay: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -7276,19 +7426,19 @@ pub mod spotfleet {
         pub excess_capacity_termination_policy: Option<crate::value::ExpString>,
         pub iam_fleet_role: crate::value::ExpString,
         pub instance_interruption_behavior: Option<crate::value::ExpString>,
-        pub instance_pools_to_use_count: Option<i64>,
+        pub instance_pools_to_use_count: Option<i32>,
         pub launch_specifications: Option<Vec<SpotFleetLaunchSpecification_>>,
         pub launch_template_configs: Option<Vec<LaunchTemplateConfig_>>,
         pub load_balancers_config: Option<Box<LoadBalancersConfig_>>,
         pub on_demand_allocation_strategy: Option<crate::value::ExpString>,
         pub on_demand_max_total_price: Option<crate::value::ExpString>,
-        pub on_demand_target_capacity: Option<i64>,
+        pub on_demand_target_capacity: Option<i32>,
         pub replace_unhealthy_instances: Option<crate::value::ExpBool>,
         pub spot_maintenance_strategies: Option<Box<SpotMaintenanceStrategies_>>,
         pub spot_max_total_price: Option<crate::value::ExpString>,
         pub spot_price: Option<crate::value::ExpString>,
         pub tag_specifications: Option<Vec<SpotFleetTagSpecification_>>,
-        pub target_capacity: i64,
+        pub target_capacity: i32,
         pub target_capacity_unit_type: Option<crate::value::ExpString>,
         pub terminate_instances_with_expiration: Option<crate::value::ExpBool>,
         pub r#type: Option<crate::value::ExpString>,
@@ -7498,6 +7648,7 @@ pub mod spotfleet {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotplacement.html
     pub struct SpotPlacement_ {
         pub availability_zone: Option<crate::value::ExpString>,
+        pub availability_zone_id: Option<crate::value::ExpString>,
         pub group_name: Option<crate::value::ExpString>,
         pub tenancy: Option<crate::value::ExpString>,
     }
@@ -7516,6 +7667,12 @@ pub mod spotfleet {
             if let Some(ref value) = self.availability_zone {
                 properties.insert(
                     "AvailabilityZone".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.availability_zone_id {
+                properties.insert(
+                    "AvailabilityZoneId".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -7608,8 +7765,8 @@ pub mod spotfleet {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-vcpucountrangerequest.html
     pub struct VCpuCountRangeRequest_ {
-        pub max: Option<i64>,
-        pub min: Option<i64>,
+        pub max: Option<i32>,
+        pub min: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -7702,8 +7859,8 @@ pub mod subnet {
 pub mod trafficmirrorfilterrule {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-trafficmirrorfilterrule-trafficmirrorportrange.html
     pub struct TrafficMirrorPortRange_ {
-        pub from_port: i64,
-        pub to_port: i64,
+        pub from_port: i32,
+        pub to_port: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -8028,11 +8185,115 @@ pub mod transitgatewayvpcattachment {
         }
     }
 }
+pub mod vpcencryptioncontrol {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpcencryptioncontrol-resourceexclusions.html
+    pub struct ResourceExclusions_ {
+        pub egress_only_internet_gateway: Option<Box<VpcEncryptionControlExclusion_>>,
+        pub elastic_file_system: Option<Box<VpcEncryptionControlExclusion_>>,
+        pub internet_gateway: Option<Box<VpcEncryptionControlExclusion_>>,
+        pub lambda: Option<Box<VpcEncryptionControlExclusion_>>,
+        pub nat_gateway: Option<Box<VpcEncryptionControlExclusion_>>,
+        pub virtual_private_gateway: Option<Box<VpcEncryptionControlExclusion_>>,
+        pub vpc_lattice: Option<Box<VpcEncryptionControlExclusion_>>,
+        pub vpc_peering: Option<Box<VpcEncryptionControlExclusion_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ec2_VPCEncryptionControl_ResourceExclusions {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::EC2::VPCEncryptionControl.ResourceExclusions"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ec2_VPCEncryptionControl_ResourceExclusions as ResourceExclusions;
+    impl crate::value::ToValue for ResourceExclusions_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.egress_only_internet_gateway {
+                properties.insert(
+                    "EgressOnlyInternetGateway".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.elastic_file_system {
+                properties.insert(
+                    "ElasticFileSystem".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.internet_gateway {
+                properties.insert(
+                    "InternetGateway".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.lambda {
+                properties.insert("Lambda".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.nat_gateway {
+                properties.insert(
+                    "NatGateway".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.virtual_private_gateway {
+                properties.insert(
+                    "VirtualPrivateGateway".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.vpc_lattice {
+                properties.insert(
+                    "VpcLattice".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.vpc_peering {
+                properties.insert(
+                    "VpcPeering".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpcencryptioncontrol-vpcencryptioncontrolexclusion.html
+    pub struct VpcEncryptionControlExclusion_ {
+        pub state: Option<crate::value::ExpString>,
+        pub state_message: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ec2_VPCEncryptionControl_VpcEncryptionControlExclusion {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::EC2::VPCEncryptionControl.VpcEncryptionControlExclusion"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ec2_VPCEncryptionControl_VpcEncryptionControlExclusion as VpcEncryptionControlExclusion;
+    impl crate::value::ToValue for VpcEncryptionControlExclusion_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.state {
+                properties.insert("State".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.state_message {
+                properties.insert(
+                    "StateMessage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
 pub mod vpcendpoint {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpcendpoint-dnsoptionsspecification.html
     pub struct DnsOptionsSpecification_ {
         pub dns_record_ip_type: Option<crate::value::ExpString>,
         pub private_dns_only_for_inbound_resolver_endpoint: Option<crate::value::ExpString>,
+        pub private_dns_preference: Option<crate::value::ExpString>,
+        pub private_dns_specified_domains: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -8058,6 +8319,18 @@ pub mod vpcendpoint {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.private_dns_preference {
+                properties.insert(
+                    "PrivateDnsPreference".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.private_dns_specified_domains {
+                properties.insert(
+                    "PrivateDnsSpecifiedDomains".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -8065,6 +8338,9 @@ pub mod vpcendpoint {
 pub mod vpnconnection {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-cloudwatchlogoptionsspecification.html
     pub struct CloudwatchLogOptionsSpecification_ {
+        pub bgp_log_enabled: Option<crate::value::ExpBool>,
+        pub bgp_log_group_arn: Option<crate::value::ExpString>,
+        pub bgp_log_output_format: Option<crate::value::ExpString>,
         pub log_enabled: Option<crate::value::ExpBool>,
         pub log_group_arn: Option<crate::value::ExpString>,
         pub log_output_format: Option<crate::value::ExpString>,
@@ -8081,6 +8357,24 @@ pub mod vpnconnection {
     impl crate::value::ToValue for CloudwatchLogOptionsSpecification_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.bgp_log_enabled {
+                properties.insert(
+                    "BgpLogEnabled".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.bgp_log_group_arn {
+                properties.insert(
+                    "BgpLogGroupArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.bgp_log_output_format {
+                properties.insert(
+                    "BgpLogOutputFormat".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.log_enabled {
                 properties.insert(
                     "LogEnabled".to_string(),
@@ -8126,7 +8420,7 @@ pub mod vpnconnection {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-phase1dhgroupnumbersrequestlistvalue.html
     pub struct Phase1DHGroupNumbersRequestListValue_ {
-        pub value: Option<i64>,
+        pub value: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -8192,7 +8486,7 @@ pub mod vpnconnection {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-phase2dhgroupnumbersrequestlistvalue.html
     pub struct Phase2DHGroupNumbersRequestListValue_ {
-        pub value: Option<i64>,
+        pub value: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -8284,22 +8578,22 @@ pub mod vpnconnection {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-vpntunneloptionsspecification.html
     pub struct VpnTunnelOptionsSpecification_ {
         pub dpd_timeout_action: Option<crate::value::ExpString>,
-        pub dpd_timeout_seconds: Option<i64>,
+        pub dpd_timeout_seconds: Option<i32>,
         pub enable_tunnel_lifecycle_control: Option<crate::value::ExpBool>,
         pub ike_versions: Option<Vec<IKEVersionsRequestListValue_>>,
         pub log_options: Option<Box<VpnTunnelLogOptionsSpecification_>>,
         pub phase1_dh_group_numbers: Option<Vec<Phase1DHGroupNumbersRequestListValue_>>,
         pub phase1_encryption_algorithms: Option<Vec<Phase1EncryptionAlgorithmsRequestListValue_>>,
         pub phase1_integrity_algorithms: Option<Vec<Phase1IntegrityAlgorithmsRequestListValue_>>,
-        pub phase1_lifetime_seconds: Option<i64>,
+        pub phase1_lifetime_seconds: Option<i32>,
         pub phase2_dh_group_numbers: Option<Vec<Phase2DHGroupNumbersRequestListValue_>>,
         pub phase2_encryption_algorithms: Option<Vec<Phase2EncryptionAlgorithmsRequestListValue_>>,
         pub phase2_integrity_algorithms: Option<Vec<Phase2IntegrityAlgorithmsRequestListValue_>>,
-        pub phase2_lifetime_seconds: Option<i64>,
+        pub phase2_lifetime_seconds: Option<i32>,
         pub pre_shared_key: Option<crate::value::ExpString>,
-        pub rekey_fuzz_percentage: Option<i64>,
-        pub rekey_margin_time_seconds: Option<i64>,
-        pub replay_window_size: Option<i64>,
+        pub rekey_fuzz_percentage: Option<i32>,
+        pub rekey_margin_time_seconds: Option<i32>,
+        pub replay_window_size: Option<i32>,
         pub startup_action: Option<crate::value::ExpString>,
         pub tunnel_inside_cidr: Option<crate::value::ExpString>,
         pub tunnel_inside_ipv6_cidr: Option<crate::value::ExpString>,
@@ -8487,7 +8781,7 @@ pub mod verifiedaccessendpoint {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-loadbalanceroptions.html
     pub struct LoadBalancerOptions_ {
         pub load_balancer_arn: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub port_ranges: Option<Vec<PortRange_>>,
         pub protocol: Option<crate::value::ExpString>,
         pub subnet_ids: Option<Vec<crate::value::ExpString>>,
@@ -8537,7 +8831,7 @@ pub mod verifiedaccessendpoint {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-networkinterfaceoptions.html
     pub struct NetworkInterfaceOptions_ {
         pub network_interface_id: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub port_ranges: Option<Vec<PortRange_>>,
         pub protocol: Option<crate::value::ExpString>,
     }
@@ -8579,8 +8873,8 @@ pub mod verifiedaccessendpoint {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-portrange.html
     pub struct PortRange_ {
-        pub from_port: Option<i64>,
-        pub to_port: Option<i64>,
+        pub from_port: Option<i32>,
+        pub to_port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -8608,7 +8902,7 @@ pub mod verifiedaccessendpoint {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-verifiedaccessendpoint-rdsoptions.html
     pub struct RdsOptions_ {
-        pub port: Option<i64>,
+        pub port: Option<i32>,
         pub protocol: Option<crate::value::ExpString>,
         pub rds_db_cluster_arn: Option<crate::value::ExpString>,
         pub rds_db_instance_arn: Option<crate::value::ExpString>,
@@ -9144,6 +9438,58 @@ pub mod verifiedaccesstrustprovider {
         }
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacitymanagerdataexport.html
+pub struct CapacityManagerDataExport_ {
+    pub output_format: crate::value::ExpString,
+    pub s3_bucket_name: crate::value::ExpString,
+    pub s3_bucket_prefix: Option<crate::value::ExpString>,
+    pub schedule: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_ec2_CapacityManagerDataExport {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::EC2::CapacityManagerDataExport"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_ec2_CapacityManagerDataExport as CapacityManagerDataExport;
+impl crate::template::ToResource for CapacityManagerDataExport_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("EC2"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("CapacityManagerDataExport"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "OutputFormat".to_string(),
+            crate::value::ToValue::to_value(&self.output_format),
+        );
+        properties.insert(
+            "S3BucketName".to_string(),
+            crate::value::ToValue::to_value(&self.s3_bucket_name),
+        );
+        if let Some(ref value) = self.s3_bucket_prefix {
+            properties.insert(
+                "S3BucketPrefix".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "Schedule".to_string(),
+            crate::value::ToValue::to_value(&self.schedule),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html
 pub struct CapacityReservation_ {
     pub availability_zone: Option<crate::value::ExpString>,
@@ -9152,7 +9498,7 @@ pub struct CapacityReservation_ {
     pub end_date: Option<crate::value::ExpString>,
     pub end_date_type: Option<crate::value::ExpString>,
     pub ephemeral_storage: Option<crate::value::ExpBool>,
-    pub instance_count: i64,
+    pub instance_count: i32,
     pub instance_match_criteria: Option<crate::value::ExpString>,
     pub instance_platform: crate::value::ExpString,
     pub instance_type: crate::value::ExpString,
@@ -9280,7 +9626,7 @@ pub struct CapacityReservationFleet_ {
     pub remove_end_date: Option<crate::value::ExpBool>,
     pub tag_specifications: Option<Vec<super::ec2::capacityreservationfleet::TagSpecification_>>,
     pub tenancy: Option<crate::value::ExpString>,
-    pub total_target_capacity: Option<i64>,
+    pub total_target_capacity: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -9466,15 +9812,17 @@ pub struct ClientVpnEndpoint_ {
     pub description: Option<crate::value::ExpString>,
     pub disconnect_on_session_timeout: Option<crate::value::ExpBool>,
     pub dns_servers: Option<Vec<crate::value::ExpString>>,
+    pub endpoint_ip_address_type: Option<crate::value::ExpString>,
     pub security_group_ids: Option<Vec<crate::value::ExpString>>,
     pub self_service_portal: Option<crate::value::ExpString>,
     pub server_certificate_arn: crate::value::ExpString,
-    pub session_timeout_hours: Option<i64>,
+    pub session_timeout_hours: Option<i32>,
     pub split_tunnel: Option<crate::value::ExpBool>,
     pub tag_specifications: Option<Vec<super::ec2::clientvpnendpoint::TagSpecification_>>,
+    pub traffic_ip_address_type: Option<crate::value::ExpString>,
     pub transport_protocol: Option<crate::value::ExpString>,
     pub vpc_id: Option<crate::value::ExpString>,
-    pub vpn_port: Option<i64>,
+    pub vpn_port: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -9546,6 +9894,12 @@ impl crate::template::ToResource for ClientVpnEndpoint_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.endpoint_ip_address_type {
+            properties.insert(
+                "EndpointIpAddressType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.security_group_ids {
             properties.insert(
                 "SecurityGroupIds".to_string(),
@@ -9577,6 +9931,12 @@ impl crate::template::ToResource for ClientVpnEndpoint_ {
         if let Some(ref value) = self.tag_specifications {
             properties.insert(
                 "TagSpecifications".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.traffic_ip_address_type {
+            properties.insert(
+                "TrafficIpAddressType".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -9686,7 +10046,7 @@ impl crate::template::ToResource for ClientVpnTargetNetworkAssociation_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customergateway.html
 pub struct CustomerGateway_ {
-    pub bgp_asn: Option<i64>,
+    pub bgp_asn: Option<i32>,
     pub bgp_asn_extended: Option<f64>,
     pub certificate_arn: Option<crate::value::ExpString>,
     pub device_name: Option<crate::value::ExpString>,
@@ -9753,9 +10113,9 @@ impl crate::template::ToResource for CustomerGateway_ {
 pub struct DHCPOptions_ {
     pub domain_name: Option<crate::value::ExpString>,
     pub domain_name_servers: Option<Vec<crate::value::ExpString>>,
-    pub ipv6_address_preferred_lease_time: Option<i64>,
+    pub ipv6_address_preferred_lease_time: Option<i32>,
     pub netbios_name_servers: Option<Vec<crate::value::ExpString>>,
-    pub netbios_node_type: Option<i64>,
+    pub netbios_node_type: Option<i32>,
     pub ntp_servers: Option<Vec<crate::value::ExpString>>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -10136,7 +10496,7 @@ pub struct FlowLog_ {
     pub log_destination_type: Option<crate::value::ExpString>,
     pub log_format: Option<crate::value::ExpString>,
     pub log_group_name: Option<crate::value::ExpString>,
-    pub max_aggregation_interval: Option<i64>,
+    pub max_aggregation_interval: Option<i32>,
     pub resource_id: crate::value::ExpString,
     pub resource_type: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -10427,7 +10787,7 @@ pub struct IPAMAllocation_ {
     pub cidr: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
     pub ipam_pool_id: crate::value::ExpString,
-    pub netmask_length: Option<i64>,
+    pub netmask_length: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -10474,9 +10834,9 @@ impl crate::template::ToResource for IPAMAllocation_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipampool.html
 pub struct IPAMPool_ {
     pub address_family: crate::value::ExpString,
-    pub allocation_default_netmask_length: Option<i64>,
-    pub allocation_max_netmask_length: Option<i64>,
-    pub allocation_min_netmask_length: Option<i64>,
+    pub allocation_default_netmask_length: Option<i32>,
+    pub allocation_max_netmask_length: Option<i32>,
+    pub allocation_min_netmask_length: Option<i32>,
     pub allocation_resource_tags: Option<Vec<crate::Tag_>>,
     pub auto_import: Option<crate::value::ExpBool>,
     pub aws_service: Option<crate::value::ExpString>,
@@ -10603,7 +10963,7 @@ impl crate::template::ToResource for IPAMPool_ {
 pub struct IPAMPoolCidr_ {
     pub cidr: Option<crate::value::ExpString>,
     pub ipam_pool_id: crate::value::ExpString,
-    pub netmask_length: Option<i64>,
+    pub netmask_length: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -10739,6 +11099,8 @@ impl crate::template::ToResource for IPAMResourceDiscoveryAssociation_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ipamscope.html
 pub struct IPAMScope_ {
     pub description: Option<crate::value::ExpString>,
+    pub external_authority_configuration:
+        Option<super::ec2::ipamscope::IpamScopeExternalAuthorityConfiguration_>,
     pub ipam_id: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -10765,6 +11127,12 @@ impl crate::template::ToResource for IPAMScope_ {
         if let Some(ref value) = self.description {
             properties.insert(
                 "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.external_authority_configuration {
+            properties.insert(
+                "ExternalAuthorityConfiguration".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -10799,7 +11167,7 @@ pub struct Instance_ {
     pub image_id: Option<crate::value::ExpString>,
     pub instance_initiated_shutdown_behavior: Option<crate::value::ExpString>,
     pub instance_type: Option<crate::value::ExpString>,
-    pub ipv6_address_count: Option<i64>,
+    pub ipv6_address_count: Option<i32>,
     pub ipv6_addresses: Option<Vec<super::ec2::instance::InstanceIpv6Address_>>,
     pub kernel_id: Option<crate::value::ExpString>,
     pub key_name: Option<crate::value::ExpString>,
@@ -11492,17 +11860,142 @@ impl crate::template::ToResource for LocalGatewayRouteTableVirtualInterfaceGroup
         properties
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayvirtualinterface.html
+pub struct LocalGatewayVirtualInterface_ {
+    pub local_address: crate::value::ExpString,
+    pub local_gateway_virtual_interface_group_id: crate::value::ExpString,
+    pub outpost_lag_id: crate::value::ExpString,
+    pub peer_address: crate::value::ExpString,
+    pub peer_bgp_asn: Option<i32>,
+    pub peer_bgp_asn_extended: Option<i64>,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub vlan: i32,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_ec2_LocalGatewayVirtualInterface {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::EC2::LocalGatewayVirtualInterface"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_ec2_LocalGatewayVirtualInterface as LocalGatewayVirtualInterface;
+impl crate::template::ToResource for LocalGatewayVirtualInterface_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("EC2"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName(
+                "LocalGatewayVirtualInterface",
+            ),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "LocalAddress".to_string(),
+            crate::value::ToValue::to_value(&self.local_address),
+        );
+        properties.insert(
+            "LocalGatewayVirtualInterfaceGroupId".to_string(),
+            crate::value::ToValue::to_value(&self.local_gateway_virtual_interface_group_id),
+        );
+        properties.insert(
+            "OutpostLagId".to_string(),
+            crate::value::ToValue::to_value(&self.outpost_lag_id),
+        );
+        properties.insert(
+            "PeerAddress".to_string(),
+            crate::value::ToValue::to_value(&self.peer_address),
+        );
+        if let Some(ref value) = self.peer_bgp_asn {
+            properties.insert(
+                "PeerBgpAsn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.peer_bgp_asn_extended {
+            properties.insert(
+                "PeerBgpAsnExtended".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "Vlan".to_string(),
+            crate::value::ToValue::to_value(&self.vlan),
+        );
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayvirtualinterfacegroup.html
+pub struct LocalGatewayVirtualInterfaceGroup_ {
+    pub local_bgp_asn: Option<i32>,
+    pub local_bgp_asn_extended: Option<i64>,
+    pub local_gateway_id: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_ec2_LocalGatewayVirtualInterfaceGroup {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::EC2::LocalGatewayVirtualInterfaceGroup"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_ec2_LocalGatewayVirtualInterfaceGroup as LocalGatewayVirtualInterfaceGroup;
+impl crate::template::ToResource for LocalGatewayVirtualInterfaceGroup_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("EC2"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName(
+                "LocalGatewayVirtualInterfaceGroup",
+            ),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.local_bgp_asn {
+            properties.insert(
+                "LocalBgpAsn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.local_bgp_asn_extended {
+            properties.insert(
+                "LocalBgpAsnExtended".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "LocalGatewayId".to_string(),
+            crate::value::ToValue::to_value(&self.local_gateway_id),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html
 pub struct NatGateway_ {
     pub allocation_id: Option<crate::value::ExpString>,
+    pub availability_mode: Option<crate::value::ExpString>,
+    pub availability_zone_addresses: Option<Vec<super::ec2::natgateway::AvailabilityZoneAddress_>>,
     pub connectivity_type: Option<crate::value::ExpString>,
-    pub max_drain_duration_seconds: Option<i64>,
+    pub max_drain_duration_seconds: Option<i32>,
     pub private_ip_address: Option<crate::value::ExpString>,
     pub secondary_allocation_ids: Option<Vec<crate::value::ExpString>>,
-    pub secondary_private_ip_address_count: Option<i64>,
+    pub secondary_private_ip_address_count: Option<i32>,
     pub secondary_private_ip_addresses: Option<Vec<crate::value::ExpString>>,
     pub subnet_id: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
+    pub vpc_id: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -11527,6 +12020,18 @@ impl crate::template::ToResource for NatGateway_ {
         if let Some(ref value) = self.allocation_id {
             properties.insert(
                 "AllocationId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.availability_mode {
+            properties.insert(
+                "AvailabilityMode".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.availability_zone_addresses {
+            properties.insert(
+                "AvailabilityZoneAddresses".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -11575,6 +12080,9 @@ impl crate::template::ToResource for NatGateway_ {
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
+        if let Some(ref value) = self.vpc_id {
+            properties.insert("VpcId".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties
     }
 }
@@ -11621,9 +12129,9 @@ pub struct NetworkAclEntry_ {
     pub ipv6_cidr_block: Option<crate::value::ExpString>,
     pub network_acl_id: crate::value::ExpString,
     pub port_range: Option<super::ec2::networkaclentry::PortRange_>,
-    pub protocol: i64,
+    pub protocol: i32,
     pub rule_action: crate::value::ExpString,
-    pub rule_number: i64,
+    pub rule_number: i32,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -11831,7 +12339,7 @@ impl crate::template::ToResource for NetworkInsightsAnalysis_ {
 pub struct NetworkInsightsPath_ {
     pub destination: Option<crate::value::ExpString>,
     pub destination_ip: Option<crate::value::ExpString>,
-    pub destination_port: Option<i64>,
+    pub destination_port: Option<i32>,
     pub filter_at_destination: Option<super::ec2::networkinsightspath::PathFilter_>,
     pub filter_at_source: Option<super::ec2::networkinsightspath::PathFilter_>,
     pub protocol: crate::value::ExpString,
@@ -11916,16 +12424,17 @@ pub struct NetworkInterface_ {
     pub description: Option<crate::value::ExpString>,
     pub group_set: Option<Vec<crate::value::ExpString>>,
     pub interface_type: Option<crate::value::ExpString>,
-    pub ipv4_prefix_count: Option<i64>,
+    pub ipv4_prefix_count: Option<i32>,
     pub ipv4_prefixes: Option<Vec<super::ec2::networkinterface::Ipv4PrefixSpecification_>>,
-    pub ipv6_address_count: Option<i64>,
+    pub ipv6_address_count: Option<i32>,
     pub ipv6_addresses: Option<Vec<super::ec2::networkinterface::InstanceIpv6Address_>>,
-    pub ipv6_prefix_count: Option<i64>,
+    pub ipv6_prefix_count: Option<i32>,
     pub ipv6_prefixes: Option<Vec<super::ec2::networkinterface::Ipv6PrefixSpecification_>>,
     pub private_ip_address: Option<crate::value::ExpString>,
     pub private_ip_addresses:
         Option<Vec<super::ec2::networkinterface::PrivateIpAddressSpecification_>>,
-    pub secondary_private_ip_address_count: Option<i64>,
+    pub public_ip_dns_hostname_type_specification: Option<crate::value::ExpString>,
+    pub secondary_private_ip_address_count: Option<i32>,
     pub source_dest_check: Option<crate::value::ExpBool>,
     pub subnet_id: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -12022,6 +12531,12 @@ impl crate::template::ToResource for NetworkInterface_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.public_ip_dns_hostname_type_specification {
+            properties.insert(
+                "PublicIpDnsHostnameTypeSpecification".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.secondary_private_ip_address_count {
             properties.insert(
                 "SecondaryPrivateIpAddressCount".to_string(),
@@ -12048,6 +12563,7 @@ impl crate::template::ToResource for NetworkInterface_ {
 pub struct NetworkInterfaceAttachment_ {
     pub delete_on_termination: Option<crate::value::ExpBool>,
     pub device_index: crate::value::ExpString,
+    pub ena_queue_count: Option<i32>,
     pub ena_srd_specification: Option<super::ec2::networkinterfaceattachment::EnaSrdSpecification_>,
     pub instance_id: crate::value::ExpString,
     pub network_interface_id: crate::value::ExpString,
@@ -12084,6 +12600,12 @@ impl crate::template::ToResource for NetworkInterfaceAttachment_ {
             "DeviceIndex".to_string(),
             crate::value::ToValue::to_value(&self.device_index),
         );
+        if let Some(ref value) = self.ena_queue_count {
+            properties.insert(
+                "EnaQueueCount".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.ena_srd_specification {
             properties.insert(
                 "EnaSrdSpecification".to_string(),
@@ -12194,7 +12716,7 @@ impl crate::template::ToResource for NetworkPerformanceMetricSubscription_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-placementgroup.html
 pub struct PlacementGroup_ {
-    pub partition_count: Option<i64>,
+    pub partition_count: Option<i32>,
     pub spread_level: Option<crate::value::ExpString>,
     pub strategy: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -12247,7 +12769,7 @@ impl crate::template::ToResource for PlacementGroup_ {
 pub struct PrefixList_ {
     pub address_family: crate::value::ExpString,
     pub entries: Option<Vec<super::ec2::prefixlist::Entry_>>,
-    pub max_entries: Option<i64>,
+    pub max_entries: Option<i32>,
     pub prefix_list_name: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -12741,10 +13263,10 @@ pub struct SecurityGroupEgress_ {
     pub description: Option<crate::value::ExpString>,
     pub destination_prefix_list_id: Option<crate::value::ExpString>,
     pub destination_security_group_id: Option<crate::value::ExpString>,
-    pub from_port: Option<i64>,
+    pub from_port: Option<i32>,
     pub group_id: crate::value::ExpString,
     pub ip_protocol: crate::value::ExpString,
-    pub to_port: Option<i64>,
+    pub to_port: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -12818,7 +13340,7 @@ pub struct SecurityGroupIngress_ {
     pub cidr_ip: Option<crate::value::ExpString>,
     pub cidr_ipv6: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
-    pub from_port: Option<i64>,
+    pub from_port: Option<i32>,
     pub group_id: Option<crate::value::ExpString>,
     pub group_name: Option<crate::value::ExpString>,
     pub ip_protocol: crate::value::ExpString,
@@ -12826,7 +13348,7 @@ pub struct SecurityGroupIngress_ {
     pub source_security_group_id: Option<crate::value::ExpString>,
     pub source_security_group_name: Option<crate::value::ExpString>,
     pub source_security_group_owner_id: Option<crate::value::ExpString>,
-    pub to_port: Option<i64>,
+    pub to_port: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -12987,6 +13509,7 @@ impl crate::template::ToResource for SnapshotBlockPublicAccess_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html
 pub struct SpotFleet_ {
     pub spot_fleet_request_config_data: super::ec2::spotfleet::SpotFleetRequestConfigData_,
+    pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -13012,6 +13535,9 @@ impl crate::template::ToResource for SpotFleet_ {
             "SpotFleetRequestConfigData".to_string(),
             crate::value::ToValue::to_value(&self.spot_fleet_request_config_data),
         );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties
     }
 }
@@ -13022,13 +13548,13 @@ pub struct Subnet_ {
     pub availability_zone_id: Option<crate::value::ExpString>,
     pub cidr_block: Option<crate::value::ExpString>,
     pub enable_dns64: Option<crate::value::ExpBool>,
-    pub enable_lni_at_device_index: Option<i64>,
+    pub enable_lni_at_device_index: Option<i32>,
     pub ipv4_ipam_pool_id: Option<crate::value::ExpString>,
-    pub ipv4_netmask_length: Option<i64>,
+    pub ipv4_netmask_length: Option<i32>,
     pub ipv6_cidr_block: Option<crate::value::ExpString>,
     pub ipv6_ipam_pool_id: Option<crate::value::ExpString>,
     pub ipv6_native: Option<crate::value::ExpBool>,
-    pub ipv6_netmask_length: Option<i64>,
+    pub ipv6_netmask_length: Option<i32>,
     pub map_public_ip_on_launch: Option<crate::value::ExpBool>,
     pub outpost_arn: Option<crate::value::ExpString>,
     pub private_dns_name_options_on_launch:
@@ -13160,7 +13686,7 @@ impl crate::template::ToResource for Subnet_ {
 pub struct SubnetCidrBlock_ {
     pub ipv6_cidr_block: Option<crate::value::ExpString>,
     pub ipv6_ipam_pool_id: Option<crate::value::ExpString>,
-    pub ipv6_netmask_length: Option<i64>,
+    pub ipv6_netmask_length: Option<i32>,
     pub subnet_id: crate::value::ExpString,
 }
 #[doc(hidden)]
@@ -13334,9 +13860,9 @@ pub struct TrafficMirrorFilterRule_ {
     pub destination_cidr_block: crate::value::ExpString,
     pub destination_port_range:
         Option<super::ec2::trafficmirrorfilterrule::TrafficMirrorPortRange_>,
-    pub protocol: Option<i64>,
+    pub protocol: Option<i32>,
     pub rule_action: crate::value::ExpString,
-    pub rule_number: i64,
+    pub rule_number: i32,
     pub source_cidr_block: crate::value::ExpString,
     pub source_port_range: Option<super::ec2::trafficmirrorfilterrule::TrafficMirrorPortRange_>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -13422,12 +13948,12 @@ pub struct TrafficMirrorSession_ {
     pub description: Option<crate::value::ExpString>,
     pub network_interface_id: crate::value::ExpString,
     pub owner_id: Option<crate::value::ExpString>,
-    pub packet_length: Option<i64>,
-    pub session_number: i64,
+    pub packet_length: Option<i32>,
+    pub session_number: i32,
     pub tags: Option<Vec<crate::Tag_>>,
     pub traffic_mirror_filter_id: crate::value::ExpString,
     pub traffic_mirror_target_id: crate::value::ExpString,
-    pub virtual_network_id: Option<i64>,
+    pub virtual_network_id: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -13562,6 +14088,7 @@ pub struct TransitGateway_ {
     pub default_route_table_propagation: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
     pub dns_support: Option<crate::value::ExpString>,
+    pub encryption_support: Option<crate::value::ExpString>,
     pub multicast_support: Option<crate::value::ExpString>,
     pub propagation_default_route_table_id: Option<crate::value::ExpString>,
     pub security_group_referencing_support: Option<crate::value::ExpString>,
@@ -13628,6 +14155,12 @@ impl crate::template::ToResource for TransitGateway_ {
         if let Some(ref value) = self.dns_support {
             properties.insert(
                 "DnsSupport".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.encryption_support {
+            properties.insert(
+                "EncryptionSupport".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -13796,6 +14329,156 @@ impl crate::template::ToResource for TransitGatewayConnectPeer_ {
         properties.insert(
             "TransitGatewayAttachmentId".to_string(),
             crate::value::ToValue::to_value(&self.transit_gateway_attachment_id),
+        );
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymeteringpolicy.html
+pub struct TransitGatewayMeteringPolicy_ {
+    pub middlebox_attachment_ids: Option<Vec<crate::value::ExpString>>,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub transit_gateway_id: crate::value::ExpString,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_ec2_TransitGatewayMeteringPolicy {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayMeteringPolicy"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_ec2_TransitGatewayMeteringPolicy as TransitGatewayMeteringPolicy;
+impl crate::template::ToResource for TransitGatewayMeteringPolicy_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("EC2"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName(
+                "TransitGatewayMeteringPolicy",
+            ),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.middlebox_attachment_ids {
+            properties.insert(
+                "MiddleboxAttachmentIds".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "TransitGatewayId".to_string(),
+            crate::value::ToValue::to_value(&self.transit_gateway_id),
+        );
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymeteringpolicyentry.html
+pub struct TransitGatewayMeteringPolicyEntry_ {
+    pub destination_cidr_block: Option<crate::value::ExpString>,
+    pub destination_port_range: Option<crate::value::ExpString>,
+    pub destination_transit_gateway_attachment_id: Option<crate::value::ExpString>,
+    pub destination_transit_gateway_attachment_type: Option<crate::value::ExpString>,
+    pub metered_account: crate::value::ExpString,
+    pub policy_rule_number: i32,
+    pub protocol: Option<crate::value::ExpString>,
+    pub source_cidr_block: Option<crate::value::ExpString>,
+    pub source_port_range: Option<crate::value::ExpString>,
+    pub source_transit_gateway_attachment_id: Option<crate::value::ExpString>,
+    pub source_transit_gateway_attachment_type: Option<crate::value::ExpString>,
+    pub transit_gateway_metering_policy_id: crate::value::ExpString,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_ec2_TransitGatewayMeteringPolicyEntry {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::EC2::TransitGatewayMeteringPolicyEntry"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_ec2_TransitGatewayMeteringPolicyEntry as TransitGatewayMeteringPolicyEntry;
+impl crate::template::ToResource for TransitGatewayMeteringPolicyEntry_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("EC2"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName(
+                "TransitGatewayMeteringPolicyEntry",
+            ),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.destination_cidr_block {
+            properties.insert(
+                "DestinationCidrBlock".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.destination_port_range {
+            properties.insert(
+                "DestinationPortRange".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.destination_transit_gateway_attachment_id {
+            properties.insert(
+                "DestinationTransitGatewayAttachmentId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.destination_transit_gateway_attachment_type {
+            properties.insert(
+                "DestinationTransitGatewayAttachmentType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "MeteredAccount".to_string(),
+            crate::value::ToValue::to_value(&self.metered_account),
+        );
+        properties.insert(
+            "PolicyRuleNumber".to_string(),
+            crate::value::ToValue::to_value(&self.policy_rule_number),
+        );
+        if let Some(ref value) = self.protocol {
+            properties.insert(
+                "Protocol".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.source_cidr_block {
+            properties.insert(
+                "SourceCidrBlock".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.source_port_range {
+            properties.insert(
+                "SourcePortRange".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.source_transit_gateway_attachment_id {
+            properties.insert(
+                "SourceTransitGatewayAttachmentId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.source_transit_gateway_attachment_type {
+            properties.insert(
+                "SourceTransitGatewayAttachmentType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "TransitGatewayMeteringPolicyId".to_string(),
+            crate::value::ToValue::to_value(&self.transit_gateway_metering_policy_id),
         );
         properties
     }
@@ -14261,7 +14944,7 @@ pub struct VPC_ {
     pub enable_dns_support: Option<crate::value::ExpBool>,
     pub instance_tenancy: Option<crate::value::ExpString>,
     pub ipv4_ipam_pool_id: Option<crate::value::ExpString>,
-    pub ipv4_netmask_length: Option<i64>,
+    pub ipv4_netmask_length: Option<i32>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -14412,11 +15095,11 @@ pub struct VPCCidrBlock_ {
     pub amazon_provided_ipv6_cidr_block: Option<crate::value::ExpBool>,
     pub cidr_block: Option<crate::value::ExpString>,
     pub ipv4_ipam_pool_id: Option<crate::value::ExpString>,
-    pub ipv4_netmask_length: Option<i64>,
+    pub ipv4_netmask_length: Option<i32>,
     pub ipv6_cidr_block: Option<crate::value::ExpString>,
     pub ipv6_cidr_block_network_border_group: Option<crate::value::ExpString>,
     pub ipv6_ipam_pool_id: Option<crate::value::ExpString>,
-    pub ipv6_netmask_length: Option<i64>,
+    pub ipv6_netmask_length: Option<i32>,
     pub ipv6_pool: Option<crate::value::ExpString>,
     pub vpc_id: crate::value::ExpString,
 }
@@ -14534,6 +15217,100 @@ impl crate::template::ToResource for VPCDHCPOptionsAssociation_ {
             "VpcId".to_string(),
             crate::value::ToValue::to_value(&self.vpc_id),
         );
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcencryptioncontrol.html
+pub struct VPCEncryptionControl_ {
+    pub egress_only_internet_gateway_exclusion_input: Option<crate::value::ExpString>,
+    pub elastic_file_system_exclusion_input: Option<crate::value::ExpString>,
+    pub internet_gateway_exclusion_input: Option<crate::value::ExpString>,
+    pub lambda_exclusion_input: Option<crate::value::ExpString>,
+    pub mode: Option<crate::value::ExpString>,
+    pub nat_gateway_exclusion_input: Option<crate::value::ExpString>,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub virtual_private_gateway_exclusion_input: Option<crate::value::ExpString>,
+    pub vpc_id: Option<crate::value::ExpString>,
+    pub vpc_lattice_exclusion_input: Option<crate::value::ExpString>,
+    pub vpc_peering_exclusion_input: Option<crate::value::ExpString>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_ec2_VPCEncryptionControl {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPCEncryptionControl"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_ec2_VPCEncryptionControl as VPCEncryptionControl;
+impl crate::template::ToResource for VPCEncryptionControl_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("EC2"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("VPCEncryptionControl"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.egress_only_internet_gateway_exclusion_input {
+            properties.insert(
+                "EgressOnlyInternetGatewayExclusionInput".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.elastic_file_system_exclusion_input {
+            properties.insert(
+                "ElasticFileSystemExclusionInput".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.internet_gateway_exclusion_input {
+            properties.insert(
+                "InternetGatewayExclusionInput".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.lambda_exclusion_input {
+            properties.insert(
+                "LambdaExclusionInput".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.mode {
+            properties.insert("Mode".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.nat_gateway_exclusion_input {
+            properties.insert(
+                "NatGatewayExclusionInput".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.virtual_private_gateway_exclusion_input {
+            properties.insert(
+                "VirtualPrivateGatewayExclusionInput".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.vpc_id {
+            properties.insert("VpcId".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.vpc_lattice_exclusion_input {
+            properties.insert(
+                "VpcLatticeExclusionInput".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.vpc_peering_exclusion_input {
+            properties.insert(
+                "VpcPeeringExclusionInput".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties
     }
 }
@@ -14933,6 +15710,46 @@ impl crate::template::ToResource for VPCPeeringConnection_ {
         properties
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpnconcentrator.html
+pub struct VPNConcentrator_ {
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub transit_gateway_id: crate::value::ExpString,
+    pub r#type: crate::value::ExpString,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_ec2_VPNConcentrator {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::EC2::VPNConcentrator"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_ec2_VPNConcentrator as VPNConcentrator;
+impl crate::template::ToResource for VPNConcentrator_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("EC2"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("VPNConcentrator"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "TransitGatewayId".to_string(),
+            crate::value::ToValue::to_value(&self.transit_gateway_id),
+        );
+        properties.insert(
+            "Type".to_string(),
+            crate::value::ToValue::to_value(&self.r#type),
+        );
+        properties
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpnconnection.html
 pub struct VPNConnection_ {
     pub customer_gateway_id: crate::value::ExpString,
@@ -14947,8 +15764,10 @@ pub struct VPNConnection_ {
     pub tags: Option<Vec<crate::Tag_>>,
     pub transit_gateway_id: Option<crate::value::ExpString>,
     pub transport_transit_gateway_attachment_id: Option<crate::value::ExpString>,
+    pub tunnel_bandwidth: Option<crate::value::ExpString>,
     pub tunnel_inside_ip_version: Option<crate::value::ExpString>,
     pub r#type: crate::value::ExpString,
+    pub vpn_concentrator_id: Option<crate::value::ExpString>,
     pub vpn_gateway_id: Option<crate::value::ExpString>,
     pub vpn_tunnel_options_specifications:
         Option<Vec<super::ec2::vpnconnection::VpnTunnelOptionsSpecification_>>,
@@ -15040,6 +15859,12 @@ impl crate::template::ToResource for VPNConnection_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.tunnel_bandwidth {
+            properties.insert(
+                "TunnelBandwidth".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.tunnel_inside_ip_version {
             properties.insert(
                 "TunnelInsideIpVersion".to_string(),
@@ -15050,6 +15875,12 @@ impl crate::template::ToResource for VPNConnection_ {
             "Type".to_string(),
             crate::value::ToValue::to_value(&self.r#type),
         );
+        if let Some(ref value) = self.vpn_concentrator_id {
+            properties.insert(
+                "VpnConcentratorId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.vpn_gateway_id {
             properties.insert(
                 "VpnGatewayId".to_string(),
@@ -15542,17 +16373,19 @@ impl crate::template::ToResource for VerifiedAccessTrustProvider_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-volume.html
 pub struct Volume_ {
     pub auto_enable_io: Option<crate::value::ExpBool>,
-    pub availability_zone: crate::value::ExpString,
+    pub availability_zone: Option<crate::value::ExpString>,
+    pub availability_zone_id: Option<crate::value::ExpString>,
     pub encrypted: Option<crate::value::ExpBool>,
-    pub iops: Option<i64>,
+    pub iops: Option<i32>,
     pub kms_key_id: Option<crate::value::ExpString>,
     pub multi_attach_enabled: Option<crate::value::ExpBool>,
     pub outpost_arn: Option<crate::value::ExpString>,
-    pub size: Option<i64>,
+    pub size: Option<i32>,
     pub snapshot_id: Option<crate::value::ExpString>,
+    pub source_volume_id: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
-    pub throughput: Option<i64>,
-    pub volume_initialization_rate: Option<i64>,
+    pub throughput: Option<i32>,
+    pub volume_initialization_rate: Option<i32>,
     pub volume_type: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]
@@ -15581,10 +16414,18 @@ impl crate::template::ToResource for Volume_ {
                 crate::value::ToValue::to_value(value),
             );
         }
-        properties.insert(
-            "AvailabilityZone".to_string(),
-            crate::value::ToValue::to_value(&self.availability_zone),
-        );
+        if let Some(ref value) = self.availability_zone {
+            properties.insert(
+                "AvailabilityZone".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.availability_zone_id {
+            properties.insert(
+                "AvailabilityZoneId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.encrypted {
             properties.insert(
                 "Encrypted".to_string(),
@@ -15621,6 +16462,12 @@ impl crate::template::ToResource for Volume_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.source_volume_id {
+            properties.insert(
+                "SourceVolumeId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
@@ -15648,6 +16495,7 @@ impl crate::template::ToResource for Volume_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-volumeattachment.html
 pub struct VolumeAttachment_ {
     pub device: Option<crate::value::ExpString>,
+    pub ebs_card_index: Option<i32>,
     pub instance_id: crate::value::ExpString,
     pub volume_id: crate::value::ExpString,
 }
@@ -15673,6 +16521,12 @@ impl crate::template::ToResource for VolumeAttachment_ {
         let mut properties = crate::template::ResourceProperties::new();
         if let Some(ref value) = self.device {
             properties.insert("Device".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.ebs_card_index {
+            properties.insert(
+                "EbsCardIndex".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         properties.insert(
             "InstanceId".to_string(),

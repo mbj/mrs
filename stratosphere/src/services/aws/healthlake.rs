@@ -1,7 +1,7 @@
 pub mod fhirdatastore {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-healthlake-fhirdatastore-createdat.html
     pub struct CreatedAt_ {
-        pub nanos: i64,
+        pub nanos: i32,
         pub seconds: crate::value::ExpString,
     }
     #[doc(hidden)]

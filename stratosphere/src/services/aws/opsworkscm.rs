@@ -30,7 +30,7 @@ pub mod server {
 pub struct Server_ {
     pub associate_public_ip_address: Option<crate::value::ExpBool>,
     pub backup_id: Option<crate::value::ExpString>,
-    pub backup_retention_count: Option<i64>,
+    pub backup_retention_count: Option<i32>,
     pub custom_certificate: Option<crate::value::ExpString>,
     pub custom_domain: Option<crate::value::ExpString>,
     pub custom_private_key: Option<crate::value::ExpString>,

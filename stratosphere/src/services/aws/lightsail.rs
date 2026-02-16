@@ -175,12 +175,12 @@ pub mod container {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-healthcheckconfig.html
     pub struct HealthCheckConfig_ {
-        pub healthy_threshold: Option<i64>,
-        pub interval_seconds: Option<i64>,
+        pub healthy_threshold: Option<i32>,
+        pub interval_seconds: Option<i32>,
         pub path: Option<crate::value::ExpString>,
         pub success_codes: Option<crate::value::ExpString>,
-        pub timeout_seconds: Option<i64>,
-        pub unhealthy_threshold: Option<i64>,
+        pub timeout_seconds: Option<i32>,
+        pub unhealthy_threshold: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -319,7 +319,7 @@ pub mod container {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-container-publicendpoint.html
     pub struct PublicEndpoint_ {
         pub container_name: Option<crate::value::ExpString>,
-        pub container_port: Option<i64>,
+        pub container_port: Option<i32>,
         pub health_check_config: Option<Box<HealthCheckConfig_>>,
     }
     #[doc(hidden)]
@@ -432,6 +432,40 @@ pub mod database {
         }
     }
 }
+pub mod databasesnapshot {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-databasesnapshot-location.html
+    pub struct Location_ {
+        pub availability_zone: Option<crate::value::ExpString>,
+        pub region_name: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lightsail_DatabaseSnapshot_Location {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::DatabaseSnapshot.Location"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lightsail_DatabaseSnapshot_Location as Location;
+    impl crate::value::ToValue for Location_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.availability_zone {
+                properties.insert(
+                    "AvailabilityZone".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.region_name {
+                properties.insert(
+                    "RegionName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
 pub mod disk {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-disk-addon.html
     pub struct AddOn_ {
@@ -506,6 +540,40 @@ pub mod disk {
         };
     }
     pub use crate::__aws_lightsail_Disk_Location as Location;
+    impl crate::value::ToValue for Location_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.availability_zone {
+                properties.insert(
+                    "AvailabilityZone".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.region_name {
+                properties.insert(
+                    "RegionName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
+pub mod disksnapshot {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-disksnapshot-location.html
+    pub struct Location_ {
+        pub availability_zone: Option<crate::value::ExpString>,
+        pub region_name: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_lightsail_DiskSnapshot_Location {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Lightsail::DiskSnapshot.Location"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_lightsail_DiskSnapshot_Location as Location;
     impl crate::value::ToValue for Location_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
@@ -921,7 +989,7 @@ pub mod instance {
         pub attached_to: Option<crate::value::ExpString>,
         pub attachment_state: Option<crate::value::ExpString>,
         pub disk_name: crate::value::ExpString,
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub is_system_disk: Option<crate::value::ExpBool>,
         pub path: crate::value::ExpString,
         pub size_in_gb: Option<crate::value::ExpString>,
@@ -978,9 +1046,9 @@ pub mod instance {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-hardware.html
     pub struct Hardware_ {
-        pub cpu_count: Option<i64>,
+        pub cpu_count: Option<i32>,
         pub disks: Option<Vec<Disk_>>,
-        pub ram_size_in_gb: Option<i64>,
+        pub ram_size_in_gb: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1107,10 +1175,10 @@ pub mod instance {
         pub cidr_list_aliases: Option<Vec<crate::value::ExpString>>,
         pub cidrs: Option<Vec<crate::value::ExpString>>,
         pub common_name: Option<crate::value::ExpString>,
-        pub from_port: Option<i64>,
+        pub from_port: Option<i32>,
         pub ipv6_cidrs: Option<Vec<crate::value::ExpString>>,
         pub protocol: Option<crate::value::ExpString>,
-        pub to_port: Option<i64>,
+        pub to_port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1183,7 +1251,7 @@ pub mod instance {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lightsail-instance-state.html
     pub struct State_ {
-        pub code: Option<i64>,
+        pub code: Option<i32>,
         pub name: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1247,8 +1315,8 @@ pub struct Alarm_ {
     pub alarm_name: crate::value::ExpString,
     pub comparison_operator: crate::value::ExpString,
     pub contact_protocols: Option<Vec<crate::value::ExpString>>,
-    pub datapoints_to_alarm: Option<i64>,
-    pub evaluation_periods: i64,
+    pub datapoints_to_alarm: Option<i32>,
+    pub evaluation_periods: i32,
     pub metric_name: crate::value::ExpString,
     pub monitored_resource_name: crate::value::ExpString,
     pub notification_enabled: Option<crate::value::ExpBool>,
@@ -1456,7 +1524,7 @@ pub struct Container_ {
     pub power: crate::value::ExpString,
     pub private_registry_access: Option<super::lightsail::container::PrivateRegistryAccess_>,
     pub public_domain_names: Option<Vec<super::lightsail::container::PublicDomainName_>>,
-    pub scale: i64,
+    pub scale: i32,
     pub service_name: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
 }
@@ -1641,13 +1709,53 @@ impl crate::template::ToResource for Database_ {
         properties
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-databasesnapshot.html
+pub struct DatabaseSnapshot_ {
+    pub relational_database_name: crate::value::ExpString,
+    pub relational_database_snapshot_name: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_lightsail_DatabaseSnapshot {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::DatabaseSnapshot"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_lightsail_DatabaseSnapshot as DatabaseSnapshot;
+impl crate::template::ToResource for DatabaseSnapshot_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Lightsail"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("DatabaseSnapshot"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "RelationalDatabaseName".to_string(),
+            crate::value::ToValue::to_value(&self.relational_database_name),
+        );
+        properties.insert(
+            "RelationalDatabaseSnapshotName".to_string(),
+            crate::value::ToValue::to_value(&self.relational_database_snapshot_name),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-disk.html
 pub struct Disk_ {
     pub add_ons: Option<Vec<super::lightsail::disk::AddOn_>>,
     pub availability_zone: Option<crate::value::ExpString>,
     pub disk_name: crate::value::ExpString,
     pub location: Option<super::lightsail::disk::Location_>,
-    pub size_in_gb: i64,
+    pub size_in_gb: i32,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -1692,6 +1800,46 @@ impl crate::template::ToResource for Disk_ {
         properties.insert(
             "SizeInGb".to_string(),
             crate::value::ToValue::to_value(&self.size_in_gb),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lightsail-disksnapshot.html
+pub struct DiskSnapshot_ {
+    pub disk_name: crate::value::ExpString,
+    pub disk_snapshot_name: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_lightsail_DiskSnapshot {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Lightsail::DiskSnapshot"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_lightsail_DiskSnapshot as DiskSnapshot;
+impl crate::template::ToResource for DiskSnapshot_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Lightsail"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("DiskSnapshot"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "DiskName".to_string(),
+            crate::value::ToValue::to_value(&self.disk_name),
+        );
+        properties.insert(
+            "DiskSnapshotName".to_string(),
+            crate::value::ToValue::to_value(&self.disk_snapshot_name),
         );
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
@@ -1965,7 +2113,7 @@ impl crate::template::ToResource for InstanceSnapshot_ {
 pub struct LoadBalancer_ {
     pub attached_instances: Option<Vec<crate::value::ExpString>>,
     pub health_check_path: Option<crate::value::ExpString>,
-    pub instance_port: i64,
+    pub instance_port: i32,
     pub ip_address_type: Option<crate::value::ExpString>,
     pub load_balancer_name: crate::value::ExpString,
     pub session_stickiness_enabled: Option<crate::value::ExpBool>,

@@ -26,7 +26,7 @@ pub mod datalake {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-datalake-expiration.html
     pub struct Expiration_ {
-        pub days: Option<i64>,
+        pub days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -112,7 +112,7 @@ pub mod datalake {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-securitylake-datalake-transitions.html
     pub struct Transitions_ {
-        pub days: Option<i64>,
+        pub days: Option<i32>,
         pub storage_class: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]

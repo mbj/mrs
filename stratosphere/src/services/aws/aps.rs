@@ -1,3 +1,162 @@
+pub mod anomalydetector {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-anomalydetectorconfiguration.html
+    pub struct AnomalyDetectorConfiguration_ {
+        pub random_cut_forest: Box<RandomCutForestConfiguration_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_aps_AnomalyDetector_AnomalyDetectorConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::APS::AnomalyDetector.AnomalyDetectorConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_aps_AnomalyDetector_AnomalyDetectorConfiguration as AnomalyDetectorConfiguration;
+    impl crate::value::ToValue for AnomalyDetectorConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "RandomCutForest".to_string(),
+                crate::value::ToValue::to_value(&self.random_cut_forest),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-ignorenearexpected.html
+    pub struct IgnoreNearExpected_ {
+        pub amount: Option<f64>,
+        pub ratio: Option<f64>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_aps_AnomalyDetector_IgnoreNearExpected {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::APS::AnomalyDetector.IgnoreNearExpected"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_aps_AnomalyDetector_IgnoreNearExpected as IgnoreNearExpected;
+    impl crate::value::ToValue for IgnoreNearExpected_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.amount {
+                properties.insert("Amount".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.ratio {
+                properties.insert("Ratio".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-label.html
+    pub struct Label_ {
+        pub key: crate::value::ExpString,
+        pub value: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_aps_AnomalyDetector_Label {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::APS::AnomalyDetector.Label"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_aps_AnomalyDetector_Label as Label;
+    impl crate::value::ToValue for Label_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Key".to_string(),
+                crate::value::ToValue::to_value(&self.key),
+            );
+            properties.insert(
+                "Value".to_string(),
+                crate::value::ToValue::to_value(&self.value),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-missingdataaction.html
+    pub struct MissingDataAction_ {
+        pub mark_as_anomaly: Option<crate::value::ExpBool>,
+        pub skip: Option<crate::value::ExpBool>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_aps_AnomalyDetector_MissingDataAction {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::APS::AnomalyDetector.MissingDataAction"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_aps_AnomalyDetector_MissingDataAction as MissingDataAction;
+    impl crate::value::ToValue for MissingDataAction_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.mark_as_anomaly {
+                properties.insert(
+                    "MarkAsAnomaly".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.skip {
+                properties.insert("Skip".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-anomalydetector-randomcutforestconfiguration.html
+    pub struct RandomCutForestConfiguration_ {
+        pub ignore_near_expected_from_above: Option<Box<IgnoreNearExpected_>>,
+        pub ignore_near_expected_from_below: Option<Box<IgnoreNearExpected_>>,
+        pub query: crate::value::ExpString,
+        pub sample_size: Option<i32>,
+        pub shingle_size: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_aps_AnomalyDetector_RandomCutForestConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::APS::AnomalyDetector.RandomCutForestConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_aps_AnomalyDetector_RandomCutForestConfiguration as RandomCutForestConfiguration;
+    impl crate::value::ToValue for RandomCutForestConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.ignore_near_expected_from_above {
+                properties.insert(
+                    "IgnoreNearExpectedFromAbove".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.ignore_near_expected_from_below {
+                properties.insert(
+                    "IgnoreNearExpectedFromBelow".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Query".to_string(),
+                crate::value::ToValue::to_value(&self.query),
+            );
+            if let Some(ref value) = self.sample_size {
+                properties.insert(
+                    "SampleSize".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.shingle_size {
+                properties.insert(
+                    "ShingleSize".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
 pub mod scraper {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-ampconfiguration.html
     pub struct AmpConfiguration_ {
@@ -267,7 +426,8 @@ pub mod scraper {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-source.html
     pub struct Source_ {
-        pub eks_configuration: Box<EksConfiguration_>,
+        pub eks_configuration: Option<Box<EksConfiguration_>>,
+        pub vpc_configuration: Option<Box<VpcConfiguration_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -281,9 +441,45 @@ pub mod scraper {
     impl crate::value::ToValue for Source_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.eks_configuration {
+                properties.insert(
+                    "EksConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.vpc_configuration {
+                properties.insert(
+                    "VpcConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-scraper-vpcconfiguration.html
+    pub struct VpcConfiguration_ {
+        pub security_group_ids: Vec<crate::value::ExpString>,
+        pub subnet_ids: Vec<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_aps_Scraper_VpcConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::APS::Scraper.VpcConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_aps_Scraper_VpcConfiguration as VpcConfiguration;
+    impl crate::value::ToValue for VpcConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
             properties.insert(
-                "EksConfiguration".to_string(),
-                crate::value::ToValue::to_value(&self.eks_configuration),
+                "SecurityGroupIds".to_string(),
+                crate::value::ToValue::to_value(&self.security_group_ids),
+            );
+            properties.insert(
+                "SubnetIds".to_string(),
+                crate::value::ToValue::to_value(&self.subnet_ids),
             );
             properties.into()
         }
@@ -371,7 +567,7 @@ pub mod workspace {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-limitsperlabelsetentry.html
     pub struct LimitsPerLabelSetEntry_ {
-        pub max_series: Option<i64>,
+        pub max_series: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -449,7 +645,7 @@ pub mod workspace {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-loggingfilter.html
     pub struct LoggingFilter_ {
-        pub qsp_threshold: i64,
+        pub qsp_threshold: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -496,7 +692,7 @@ pub mod workspace {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-aps-workspace-workspaceconfiguration.html
     pub struct WorkspaceConfiguration_ {
         pub limits_per_label_sets: Option<Vec<LimitsPerLabelSet_>>,
-        pub retention_period_in_days: Option<i64>,
+        pub retention_period_in_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -524,6 +720,69 @@ pub mod workspace {
             }
             properties.into()
         }
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-anomalydetector.html
+pub struct AnomalyDetector_ {
+    pub alias: crate::value::ExpString,
+    pub configuration: super::aps::anomalydetector::AnomalyDetectorConfiguration_,
+    pub evaluation_interval_in_seconds: Option<i32>,
+    pub labels: Option<Vec<super::aps::anomalydetector::Label_>>,
+    pub missing_data_action: Option<super::aps::anomalydetector::MissingDataAction_>,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub workspace: crate::value::ExpString,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_aps_AnomalyDetector {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::APS::AnomalyDetector"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_aps_AnomalyDetector as AnomalyDetector;
+impl crate::template::ToResource for AnomalyDetector_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("APS"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("AnomalyDetector"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "Alias".to_string(),
+            crate::value::ToValue::to_value(&self.alias),
+        );
+        properties.insert(
+            "Configuration".to_string(),
+            crate::value::ToValue::to_value(&self.configuration),
+        );
+        if let Some(ref value) = self.evaluation_interval_in_seconds {
+            properties.insert(
+                "EvaluationIntervalInSeconds".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.labels {
+            properties.insert("Labels".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.missing_data_action {
+            properties.insert(
+                "MissingDataAction".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "Workspace".to_string(),
+            crate::value::ToValue::to_value(&self.workspace),
+        );
+        properties
     }
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-aps-resourcepolicy.html

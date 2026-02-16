@@ -419,7 +419,7 @@ pub mod userpool {
     pub struct AdminCreateUserConfig_ {
         pub allow_admin_create_user_only: Option<crate::value::ExpBool>,
         pub invite_message_template: Option<Box<InviteMessageTemplate_>>,
-        pub unused_account_validity_days: Option<i64>,
+        pub unused_account_validity_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -625,6 +625,38 @@ pub mod userpool {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-inboundfederation.html
+    pub struct InboundFederation_ {
+        pub lambda_arn: Option<crate::value::ExpString>,
+        pub lambda_version: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cognito_UserPool_InboundFederation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Cognito::UserPool.InboundFederation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cognito_UserPool_InboundFederation as InboundFederation;
+    impl crate::value::ToValue for InboundFederation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.lambda_arn {
+                properties.insert(
+                    "LambdaArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.lambda_version {
+                properties.insert(
+                    "LambdaVersion".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-invitemessagetemplate.html
     pub struct InviteMessageTemplate_ {
         pub email_message: Option<crate::value::ExpString>,
@@ -671,6 +703,7 @@ pub mod userpool {
         pub custom_message: Option<crate::value::ExpString>,
         pub custom_sms_sender: Option<Box<CustomSMSSender_>>,
         pub define_auth_challenge: Option<crate::value::ExpString>,
+        pub inbound_federation: Option<Box<InboundFederation_>>,
         pub kms_key_id: Option<crate::value::ExpString>,
         pub post_authentication: Option<crate::value::ExpString>,
         pub post_confirmation: Option<crate::value::ExpString>,
@@ -720,6 +753,12 @@ pub mod userpool {
             if let Some(ref value) = self.define_auth_challenge {
                 properties.insert(
                     "DefineAuthChallenge".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.inbound_federation {
+                properties.insert(
+                    "InboundFederation".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -814,13 +853,13 @@ pub mod userpool {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-passwordpolicy.html
     pub struct PasswordPolicy_ {
-        pub minimum_length: Option<i64>,
-        pub password_history_size: Option<i64>,
+        pub minimum_length: Option<i32>,
+        pub password_history_size: Option<i32>,
         pub require_lowercase: Option<crate::value::ExpBool>,
         pub require_numbers: Option<crate::value::ExpBool>,
         pub require_symbols: Option<crate::value::ExpBool>,
         pub require_uppercase: Option<crate::value::ExpBool>,
-        pub temporary_password_validity_days: Option<i64>,
+        pub temporary_password_validity_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -946,7 +985,7 @@ pub mod userpool {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-recoveryoption.html
     pub struct RecoveryOption_ {
         pub name: Option<crate::value::ExpString>,
-        pub priority: Option<i64>,
+        pub priority: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1332,7 +1371,7 @@ pub mod userpoolclient {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpoolclient-refreshtokenrotation.html
     pub struct RefreshTokenRotation_ {
         pub feature: Option<crate::value::ExpString>,
-        pub retry_grace_period_seconds: Option<i64>,
+        pub retry_grace_period_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2072,6 +2111,64 @@ impl crate::template::ToResource for ManagedLoginBranding_ {
         properties
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-terms.html
+pub struct Terms_ {
+    pub client_id: Option<crate::value::ExpString>,
+    pub enforcement: crate::value::ExpString,
+    pub links: std::collections::BTreeMap<String, crate::value::ExpString>,
+    pub terms_name: crate::value::ExpString,
+    pub terms_source: crate::value::ExpString,
+    pub user_pool_id: crate::value::ExpString,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_cognito_Terms {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Cognito::Terms" $($field
+        $value)*)
+    };
+}
+pub use crate::__aws_cognito_Terms as Terms;
+impl crate::template::ToResource for Terms_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Cognito"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("Terms"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.client_id {
+            properties.insert(
+                "ClientId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "Enforcement".to_string(),
+            crate::value::ToValue::to_value(&self.enforcement),
+        );
+        properties.insert(
+            "Links".to_string(),
+            crate::value::ToValue::to_value(&self.links),
+        );
+        properties.insert(
+            "TermsName".to_string(),
+            crate::value::ToValue::to_value(&self.terms_name),
+        );
+        properties.insert(
+            "TermsSource".to_string(),
+            crate::value::ToValue::to_value(&self.terms_source),
+        );
+        properties.insert(
+            "UserPoolId".to_string(),
+            crate::value::ToValue::to_value(&self.user_pool_id),
+        );
+        properties
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html
 pub struct UserPool_ {
     pub account_recovery_setting: Option<super::cognito::userpool::AccountRecoverySetting_>,
@@ -2302,12 +2399,12 @@ impl crate::template::ToResource for UserPool_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html
 pub struct UserPoolClient_ {
-    pub access_token_validity: Option<i64>,
+    pub access_token_validity: Option<i32>,
     pub allowed_o_auth_flows: Option<Vec<crate::value::ExpString>>,
     pub allowed_o_auth_flows_user_pool_client: Option<crate::value::ExpBool>,
     pub allowed_o_auth_scopes: Option<Vec<crate::value::ExpString>>,
     pub analytics_configuration: Option<super::cognito::userpoolclient::AnalyticsConfiguration_>,
-    pub auth_session_validity: Option<i64>,
+    pub auth_session_validity: Option<i32>,
     pub callback_ur_ls: Option<Vec<crate::value::ExpString>>,
     pub client_name: Option<crate::value::ExpString>,
     pub default_redirect_uri: Option<crate::value::ExpString>,
@@ -2315,12 +2412,12 @@ pub struct UserPoolClient_ {
     pub enable_token_revocation: Option<crate::value::ExpBool>,
     pub explicit_auth_flows: Option<Vec<crate::value::ExpString>>,
     pub generate_secret: Option<crate::value::ExpBool>,
-    pub id_token_validity: Option<i64>,
+    pub id_token_validity: Option<i32>,
     pub logout_ur_ls: Option<Vec<crate::value::ExpString>>,
     pub prevent_user_existence_errors: Option<crate::value::ExpString>,
     pub read_attributes: Option<Vec<crate::value::ExpString>>,
     pub refresh_token_rotation: Option<super::cognito::userpoolclient::RefreshTokenRotation_>,
-    pub refresh_token_validity: Option<i64>,
+    pub refresh_token_validity: Option<i32>,
     pub supported_identity_providers: Option<Vec<crate::value::ExpString>>,
     pub token_validity_units: Option<super::cognito::userpoolclient::TokenValidityUnits_>,
     pub user_pool_id: crate::value::ExpString,
@@ -2489,7 +2586,7 @@ impl crate::template::ToResource for UserPoolClient_ {
 pub struct UserPoolDomain_ {
     pub custom_domain_config: Option<super::cognito::userpooldomain::CustomDomainConfigType_>,
     pub domain: crate::value::ExpString,
-    pub managed_login_version: Option<i64>,
+    pub managed_login_version: Option<i32>,
     pub user_pool_id: crate::value::ExpString,
 }
 #[doc(hidden)]
@@ -2539,7 +2636,7 @@ impl crate::template::ToResource for UserPoolDomain_ {
 pub struct UserPoolGroup_ {
     pub description: Option<crate::value::ExpString>,
     pub group_name: Option<crate::value::ExpString>,
-    pub precedence: Option<i64>,
+    pub precedence: Option<i32>,
     pub role_arn: Option<crate::value::ExpString>,
     pub user_pool_id: crate::value::ExpString,
 }

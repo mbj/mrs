@@ -29,9 +29,9 @@ pub mod connector {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-autoscaling.html
     pub struct AutoScaling_ {
-        pub max_worker_count: i64,
-        pub mcu_count: i64,
-        pub min_worker_count: i64,
+        pub max_worker_count: i32,
+        pub mcu_count: i32,
+        pub min_worker_count: i32,
         pub scale_in_policy: Box<ScaleInPolicy_>,
         pub scale_out_policy: Box<ScaleOutPolicy_>,
     }
@@ -307,8 +307,8 @@ pub mod connector {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-provisionedcapacity.html
     pub struct ProvisionedCapacity_ {
-        pub mcu_count: Option<i64>,
-        pub worker_count: i64,
+        pub mcu_count: i32,
+        pub worker_count: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -322,12 +322,10 @@ pub mod connector {
     impl crate::value::ToValue for ProvisionedCapacity_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.mcu_count {
-                properties.insert(
-                    "McuCount".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "McuCount".to_string(),
+                crate::value::ToValue::to_value(&self.mcu_count),
+            );
             properties.insert(
                 "WorkerCount".to_string(),
                 crate::value::ToValue::to_value(&self.worker_count),
@@ -368,7 +366,7 @@ pub mod connector {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-scaleinpolicy.html
     pub struct ScaleInPolicy_ {
-        pub cpu_utilization_percentage: i64,
+        pub cpu_utilization_percentage: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -391,7 +389,7 @@ pub mod connector {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kafkaconnect-connector-scaleoutpolicy.html
     pub struct ScaleOutPolicy_ {
-        pub cpu_utilization_percentage: i64,
+        pub cpu_utilization_percentage: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -610,6 +608,7 @@ pub struct Connector_ {
         super::kafkaconnect::connector::KafkaClusterEncryptionInTransit_,
     pub kafka_connect_version: crate::value::ExpString,
     pub log_delivery: Option<super::kafkaconnect::connector::LogDelivery_>,
+    pub network_type: Option<crate::value::ExpString>,
     pub plugins: Vec<super::kafkaconnect::connector::Plugin_>,
     pub service_execution_role_arn: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -672,6 +671,12 @@ impl crate::template::ToResource for Connector_ {
         if let Some(ref value) = self.log_delivery {
             properties.insert(
                 "LogDelivery".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.network_type {
+            properties.insert(
+                "NetworkType".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

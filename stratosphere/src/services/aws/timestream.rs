@@ -644,7 +644,7 @@ impl crate::template::ToResource for Database_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-timestream-influxdbinstance.html
 pub struct InfluxDBInstance_ {
-    pub allocated_storage: Option<i64>,
+    pub allocated_storage: Option<i32>,
     pub bucket: Option<crate::value::ExpString>,
     pub db_instance_type: Option<crate::value::ExpString>,
     pub db_parameter_group_identifier: Option<crate::value::ExpString>,
@@ -656,7 +656,7 @@ pub struct InfluxDBInstance_ {
     pub network_type: Option<crate::value::ExpString>,
     pub organization: Option<crate::value::ExpString>,
     pub password: Option<crate::value::ExpString>,
-    pub port: Option<i64>,
+    pub port: Option<i32>,
     pub publicly_accessible: Option<crate::value::ExpBool>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub username: Option<crate::value::ExpString>,

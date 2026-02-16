@@ -39,7 +39,7 @@ pub mod endpointgroup {
         pub attachment_arn: Option<crate::value::ExpString>,
         pub client_ip_preservation_enabled: Option<crate::value::ExpBool>,
         pub endpoint_id: crate::value::ExpString,
-        pub weight: Option<i64>,
+        pub weight: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -77,8 +77,8 @@ pub mod endpointgroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-globalaccelerator-endpointgroup-portoverride.html
     pub struct PortOverride_ {
-        pub endpoint_port: i64,
-        pub listener_port: i64,
+        pub endpoint_port: i32,
+        pub listener_port: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -107,8 +107,8 @@ pub mod endpointgroup {
 pub mod listener {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-globalaccelerator-listener-portrange.html
     pub struct PortRange_ {
-        pub from_port: i64,
-        pub to_port: i64,
+        pub from_port: i32,
+        pub to_port: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -244,13 +244,13 @@ pub struct EndpointGroup_ {
     pub endpoint_configurations:
         Option<Vec<super::globalaccelerator::endpointgroup::EndpointConfiguration_>>,
     pub endpoint_group_region: crate::value::ExpString,
-    pub health_check_interval_seconds: Option<i64>,
+    pub health_check_interval_seconds: Option<i32>,
     pub health_check_path: Option<crate::value::ExpString>,
-    pub health_check_port: Option<i64>,
+    pub health_check_port: Option<i32>,
     pub health_check_protocol: Option<crate::value::ExpString>,
     pub listener_arn: crate::value::ExpString,
     pub port_overrides: Option<Vec<super::globalaccelerator::endpointgroup::PortOverride_>>,
-    pub threshold_count: Option<i64>,
+    pub threshold_count: Option<i32>,
     pub traffic_dial_percentage: Option<f64>,
 }
 #[doc(hidden)]

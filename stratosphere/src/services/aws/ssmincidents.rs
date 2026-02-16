@@ -162,7 +162,7 @@ pub mod responseplan {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-incidenttemplate.html
     pub struct IncidentTemplate_ {
         pub dedupe_string: Option<crate::value::ExpString>,
-        pub impact: i64,
+        pub impact: i32,
         pub incident_tags: Option<Vec<crate::Tag_>>,
         pub notification_targets: Option<Vec<NotificationTargetItem_>>,
         pub summary: Option<crate::value::ExpString>,

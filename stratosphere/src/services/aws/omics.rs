@@ -220,6 +220,38 @@ pub mod variantstore {
     }
 }
 pub mod workflow {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-containerregistrymap.html
+    pub struct ContainerRegistryMap_ {
+        pub image_mappings: Option<Vec<ImageMapping_>>,
+        pub registry_mappings: Option<Vec<RegistryMapping_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_omics_Workflow_ContainerRegistryMap {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Omics::Workflow.ContainerRegistryMap"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_omics_Workflow_ContainerRegistryMap as ContainerRegistryMap;
+    impl crate::value::ToValue for ContainerRegistryMap_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.image_mappings {
+                properties.insert(
+                    "ImageMappings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.registry_mappings {
+                properties.insert(
+                    "RegistryMappings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-definitionrepository.html
     pub struct DefinitionRepository_ {
         pub connection_arn: Option<crate::value::ExpString>,
@@ -260,6 +292,84 @@ pub mod workflow {
             if let Some(ref value) = self.source_reference {
                 properties.insert(
                     "sourceReference".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-imagemapping.html
+    pub struct ImageMapping_ {
+        pub destination_image: Option<crate::value::ExpString>,
+        pub source_image: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_omics_Workflow_ImageMapping {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Omics::Workflow.ImageMapping"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_omics_Workflow_ImageMapping as ImageMapping;
+    impl crate::value::ToValue for ImageMapping_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.destination_image {
+                properties.insert(
+                    "DestinationImage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.source_image {
+                properties.insert(
+                    "SourceImage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflow-registrymapping.html
+    pub struct RegistryMapping_ {
+        pub ecr_account_id: Option<crate::value::ExpString>,
+        pub ecr_repository_prefix: Option<crate::value::ExpString>,
+        pub upstream_registry_url: Option<crate::value::ExpString>,
+        pub upstream_repository_prefix: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_omics_Workflow_RegistryMapping {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Omics::Workflow.RegistryMapping"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_omics_Workflow_RegistryMapping as RegistryMapping;
+    impl crate::value::ToValue for RegistryMapping_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.ecr_account_id {
+                properties.insert(
+                    "EcrAccountId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.ecr_repository_prefix {
+                properties.insert(
+                    "EcrRepositoryPrefix".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.upstream_registry_url {
+                properties.insert(
+                    "UpstreamRegistryUrl".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.upstream_repository_prefix {
+                properties.insert(
+                    "UpstreamRepositoryPrefix".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -326,6 +436,38 @@ pub mod workflow {
     }
 }
 pub mod workflowversion {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-containerregistrymap.html
+    pub struct ContainerRegistryMap_ {
+        pub image_mappings: Option<Vec<ImageMapping_>>,
+        pub registry_mappings: Option<Vec<RegistryMapping_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_omics_WorkflowVersion_ContainerRegistryMap {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Omics::WorkflowVersion.ContainerRegistryMap"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_omics_WorkflowVersion_ContainerRegistryMap as ContainerRegistryMap;
+    impl crate::value::ToValue for ContainerRegistryMap_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.image_mappings {
+                properties.insert(
+                    "ImageMappings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.registry_mappings {
+                properties.insert(
+                    "RegistryMappings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-definitionrepository.html
     pub struct DefinitionRepository_ {
         pub connection_arn: Option<crate::value::ExpString>,
@@ -366,6 +508,84 @@ pub mod workflowversion {
             if let Some(ref value) = self.source_reference {
                 properties.insert(
                     "sourceReference".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-imagemapping.html
+    pub struct ImageMapping_ {
+        pub destination_image: Option<crate::value::ExpString>,
+        pub source_image: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_omics_WorkflowVersion_ImageMapping {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Omics::WorkflowVersion.ImageMapping"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_omics_WorkflowVersion_ImageMapping as ImageMapping;
+    impl crate::value::ToValue for ImageMapping_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.destination_image {
+                properties.insert(
+                    "DestinationImage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.source_image {
+                properties.insert(
+                    "SourceImage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-omics-workflowversion-registrymapping.html
+    pub struct RegistryMapping_ {
+        pub ecr_account_id: Option<crate::value::ExpString>,
+        pub ecr_repository_prefix: Option<crate::value::ExpString>,
+        pub upstream_registry_url: Option<crate::value::ExpString>,
+        pub upstream_repository_prefix: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_omics_WorkflowVersion_RegistryMapping {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Omics::WorkflowVersion.RegistryMapping"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_omics_WorkflowVersion_RegistryMapping as RegistryMapping;
+    impl crate::value::ToValue for RegistryMapping_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.ecr_account_id {
+                properties.insert(
+                    "EcrAccountId".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.ecr_repository_prefix {
+                properties.insert(
+                    "EcrRepositoryPrefix".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.upstream_registry_url {
+                properties.insert(
+                    "UpstreamRegistryUrl".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.upstream_repository_prefix {
+                properties.insert(
+                    "UpstreamRepositoryPrefix".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -751,6 +971,8 @@ impl crate::template::ToResource for VariantStore_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-workflow.html
 pub struct Workflow_ {
     pub accelerators: Option<crate::value::ExpString>,
+    pub container_registry_map: Option<super::omics::workflow::ContainerRegistryMap_>,
+    pub container_registry_map_uri: Option<crate::value::ExpString>,
     pub definition_repository: Option<super::omics::workflow::DefinitionRepository_>,
     pub definition_uri: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -791,6 +1013,18 @@ impl crate::template::ToResource for Workflow_ {
         if let Some(ref value) = self.accelerators {
             properties.insert(
                 "Accelerators".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.container_registry_map {
+            properties.insert(
+                "ContainerRegistryMap".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.container_registry_map_uri {
+            properties.insert(
+                "ContainerRegistryMapUri".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -878,6 +1112,8 @@ impl crate::template::ToResource for Workflow_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-omics-workflowversion.html
 pub struct WorkflowVersion_ {
     pub accelerators: Option<crate::value::ExpString>,
+    pub container_registry_map: Option<super::omics::workflowversion::ContainerRegistryMap_>,
+    pub container_registry_map_uri: Option<crate::value::ExpString>,
     pub definition_repository: Option<super::omics::workflowversion::DefinitionRepository_>,
     pub definition_uri: Option<crate::value::ExpString>,
     pub description: Option<crate::value::ExpString>,
@@ -920,6 +1156,18 @@ impl crate::template::ToResource for WorkflowVersion_ {
         if let Some(ref value) = self.accelerators {
             properties.insert(
                 "Accelerators".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.container_registry_map {
+            properties.insert(
+                "ContainerRegistryMap".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.container_registry_map_uri {
+            properties.insert(
+                "ContainerRegistryMapUri".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

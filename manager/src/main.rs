@@ -1418,22 +1418,22 @@ async fn stratosphere_sync(reject_dirty: bool) -> Result<(), Box<dyn std::error:
 
     if reject_dirty {
         log::info!("Checking for uncommitted changes");
-        let status = git_proc::status::new()
+        let result = git_proc::diff::new()
             .repo_path(&workspace_root)
-            .porcelain()
+            .exit_code()
             .build()
-            .stdout_capture()
-            .string()
-            .await
-            .map_err(|error| format!("Failed to run git status: {error}"))?;
+            .status()
+            .await;
 
-        if !status.is_empty() {
-            return Err(format!(
-                "Git working directory is dirty after sync. Uncommitted changes:\n{status}"
-            )
-            .into());
+        match result {
+            Ok(()) => log::info!("Working directory is clean"),
+            Err(error) => {
+                if error.exit_status.is_some() {
+                    return Err("Git working directory is dirty after sync.".into());
+                }
+                return Err(format!("Failed to run git diff: {error}").into());
+            }
         }
-        log::info!("Working directory is clean");
     }
 
     Ok(())

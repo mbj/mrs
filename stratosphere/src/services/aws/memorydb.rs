@@ -2,7 +2,7 @@ pub mod cluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-memorydb-cluster-endpoint.html
     pub struct Endpoint_ {
         pub address: Option<crate::value::ExpString>,
-        pub port: Option<i64>,
+        pub port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -119,14 +119,14 @@ pub struct Cluster_ {
     pub multi_region_cluster_name: Option<crate::value::ExpString>,
     pub network_type: Option<crate::value::ExpString>,
     pub node_type: crate::value::ExpString,
-    pub num_replicas_per_shard: Option<i64>,
-    pub num_shards: Option<i64>,
+    pub num_replicas_per_shard: Option<i32>,
+    pub num_shards: Option<i32>,
     pub parameter_group_name: Option<crate::value::ExpString>,
-    pub port: Option<i64>,
+    pub port: Option<i32>,
     pub security_group_ids: Option<Vec<crate::value::ExpString>>,
     pub snapshot_arns: Option<Vec<crate::value::ExpString>>,
     pub snapshot_name: Option<crate::value::ExpString>,
-    pub snapshot_retention_limit: Option<i64>,
+    pub snapshot_retention_limit: Option<i32>,
     pub snapshot_window: Option<crate::value::ExpString>,
     pub sns_topic_arn: Option<crate::value::ExpString>,
     pub sns_topic_status: Option<crate::value::ExpString>,
@@ -324,7 +324,7 @@ pub struct MultiRegionCluster_ {
     pub multi_region_cluster_name_suffix: Option<crate::value::ExpString>,
     pub multi_region_parameter_group_name: Option<crate::value::ExpString>,
     pub node_type: crate::value::ExpString,
-    pub num_shards: Option<i64>,
+    pub num_shards: Option<i32>,
     pub tls_enabled: Option<crate::value::ExpBool>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub update_strategy: Option<crate::value::ExpString>,

@@ -256,7 +256,7 @@ pub mod rulegroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-asnmatchstatement.html
     pub struct AsnMatchStatement_ {
-        pub asn_list: Option<Vec<i64>>,
+        pub asn_list: Option<Vec<i32>>,
         pub forwarded_ip_config: Option<Box<ForwardedIPConfiguration_>>,
     }
     #[doc(hidden)]
@@ -631,7 +631,7 @@ pub mod rulegroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-customresponse.html
     pub struct CustomResponse_ {
         pub custom_response_body_key: Option<crate::value::ExpString>,
-        pub response_code: i64,
+        pub response_code: i32,
         pub response_headers: Option<Vec<CustomHTTPHeader_>>,
     }
     #[doc(hidden)]
@@ -698,6 +698,7 @@ pub mod rulegroup {
         pub all_query_arguments: Option<serde_json::Value>,
         pub body: Option<Box<Body_>>,
         pub cookies: Option<Box<Cookies_>>,
+        pub header_order: Option<Box<HeaderOrder_>>,
         pub headers: Option<Box<Headers_>>,
         pub ja3_fingerprint: Option<Box<JA3Fingerprint_>>,
         pub ja4_fingerprint: Option<Box<JA4Fingerprint_>>,
@@ -733,6 +734,12 @@ pub mod rulegroup {
             if let Some(ref value) = self.cookies {
                 properties.insert(
                     "Cookies".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.header_order {
+                properties.insert(
+                    "HeaderOrder".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -892,6 +899,29 @@ pub mod rulegroup {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-headerorder.html
+    pub struct HeaderOrder_ {
+        pub oversize_handling: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wafv2_RuleGroup_HeaderOrder {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::RuleGroup.HeaderOrder"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wafv2_RuleGroup_HeaderOrder as HeaderOrder;
+    impl crate::value::ToValue for HeaderOrder_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "OversizeHandling".to_string(),
+                crate::value::ToValue::to_value(&self.oversize_handling),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-headers.html
     pub struct Headers_ {
         pub match_pattern: Box<HeaderMatchPattern_>,
@@ -990,7 +1020,7 @@ pub mod rulegroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-immunitytimeproperty.html
     pub struct ImmunityTimeProperty_ {
-        pub immunity_time: i64,
+        pub immunity_time: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1251,9 +1281,9 @@ pub mod rulegroup {
     pub struct RateBasedStatement_ {
         pub aggregate_key_type: crate::value::ExpString,
         pub custom_keys: Option<Vec<RateBasedStatementCustomKey_>>,
-        pub evaluation_window_sec: Option<i64>,
+        pub evaluation_window_sec: Option<i32>,
         pub forwarded_ip_config: Option<Box<ForwardedIPConfiguration_>>,
-        pub limit: i64,
+        pub limit: i32,
         pub scope_down_statement: Option<Box<Statement_>>,
     }
     #[doc(hidden)]
@@ -1664,7 +1694,7 @@ pub mod rulegroup {
         pub captcha_config: Option<Box<CaptchaConfig_>>,
         pub challenge_config: Option<Box<ChallengeConfig_>>,
         pub name: crate::value::ExpString,
-        pub priority: i64,
+        pub priority: i32,
         pub rule_labels: Option<Vec<Label_>>,
         pub statement: Box<Statement_>,
         pub visibility_config: Box<VisibilityConfig_>,
@@ -2002,7 +2032,7 @@ pub mod rulegroup {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-texttransformation.html
     pub struct TextTransformation_ {
-        pub priority: i64,
+        pub priority: i32,
         pub r#type: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -2315,9 +2345,60 @@ pub mod webacl {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-applicationattribute.html
+    pub struct ApplicationAttribute_ {
+        pub name: crate::value::ExpString,
+        pub values: Vec<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wafv2_WebACL_ApplicationAttribute {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ApplicationAttribute"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wafv2_WebACL_ApplicationAttribute as ApplicationAttribute;
+    impl crate::value::ToValue for ApplicationAttribute_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Name".to_string(),
+                crate::value::ToValue::to_value(&self.name),
+            );
+            properties.insert(
+                "Values".to_string(),
+                crate::value::ToValue::to_value(&self.values),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-applicationconfig.html
+    pub struct ApplicationConfig_ {
+        pub attributes: Vec<ApplicationAttribute_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wafv2_WebACL_ApplicationConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.ApplicationConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wafv2_WebACL_ApplicationConfig as ApplicationConfig;
+    impl crate::value::ToValue for ApplicationConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Attributes".to_string(),
+                crate::value::ToValue::to_value(&self.attributes),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-asnmatchstatement.html
     pub struct AsnMatchStatement_ {
-        pub asn_list: Option<Vec<i64>>,
+        pub asn_list: Option<Vec<i32>>,
         pub forwarded_ip_config: Option<Box<ForwardedIPConfiguration_>>,
     }
     #[doc(hidden)]
@@ -2778,7 +2859,7 @@ pub mod webacl {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-customresponse.html
     pub struct CustomResponse_ {
         pub custom_response_body_key: Option<crate::value::ExpString>,
-        pub response_code: i64,
+        pub response_code: i32,
         pub response_headers: Option<Vec<CustomHTTPHeader_>>,
     }
     #[doc(hidden)]
@@ -2982,6 +3063,7 @@ pub mod webacl {
         pub all_query_arguments: Option<serde_json::Value>,
         pub body: Option<Box<Body_>>,
         pub cookies: Option<Box<Cookies_>>,
+        pub header_order: Option<Box<HeaderOrder_>>,
         pub headers: Option<Box<Headers_>>,
         pub ja3_fingerprint: Option<Box<JA3Fingerprint_>>,
         pub ja4_fingerprint: Option<Box<JA4Fingerprint_>>,
@@ -3017,6 +3099,12 @@ pub mod webacl {
             if let Some(ref value) = self.cookies {
                 properties.insert(
                     "Cookies".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.header_order {
+                properties.insert(
+                    "HeaderOrder".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -3206,6 +3294,29 @@ pub mod webacl {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-headerorder.html
+    pub struct HeaderOrder_ {
+        pub oversize_handling: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_wafv2_WebACL_HeaderOrder {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::WAFv2::WebACL.HeaderOrder"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_wafv2_WebACL_HeaderOrder as HeaderOrder;
+    impl crate::value::ToValue for HeaderOrder_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "OversizeHandling".to_string(),
+                crate::value::ToValue::to_value(&self.oversize_handling),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-headers.html
     pub struct Headers_ {
         pub match_pattern: Box<HeaderMatchPattern_>,
@@ -3304,7 +3415,7 @@ pub mod webacl {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-immunitytimeproperty.html
     pub struct ImmunityTimeProperty_ {
-        pub immunity_time: i64,
+        pub immunity_time: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3729,9 +3840,9 @@ pub mod webacl {
     pub struct RateBasedStatement_ {
         pub aggregate_key_type: crate::value::ExpString,
         pub custom_keys: Option<Vec<RateBasedStatementCustomKey_>>,
-        pub evaluation_window_sec: Option<i64>,
+        pub evaluation_window_sec: Option<i32>,
         pub forwarded_ip_config: Option<Box<ForwardedIPConfiguration_>>,
-        pub limit: i64,
+        pub limit: i32,
         pub scope_down_statement: Option<Box<Statement_>>,
     }
     #[doc(hidden)]
@@ -4411,8 +4522,8 @@ pub mod webacl {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-responseinspectionstatuscode.html
     pub struct ResponseInspectionStatusCode_ {
-        pub failure_codes: Vec<i64>,
-        pub success_codes: Vec<i64>,
+        pub failure_codes: Vec<i32>,
+        pub success_codes: Vec<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -4444,7 +4555,7 @@ pub mod webacl {
         pub challenge_config: Option<Box<ChallengeConfig_>>,
         pub name: crate::value::ExpString,
         pub override_action: Option<Box<OverrideAction_>>,
-        pub priority: i64,
+        pub priority: i32,
         pub rule_labels: Option<Vec<Label_>>,
         pub statement: Box<Statement_>,
         pub visibility_config: Box<VisibilityConfig_>,
@@ -4867,7 +4978,7 @@ pub mod webacl {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-texttransformation.html
     pub struct TextTransformation_ {
-        pub priority: i64,
+        pub priority: i32,
         pub r#type: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -5140,7 +5251,7 @@ impl crate::template::ToResource for RegexPatternSet_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-rulegroup.html
 pub struct RuleGroup_ {
     pub available_labels: Option<Vec<super::wafv2::rulegroup::LabelSummary_>>,
-    pub capacity: i64,
+    pub capacity: i32,
     pub consumed_labels: Option<Vec<super::wafv2::rulegroup::LabelSummary_>>,
     pub custom_response_bodies:
         Option<std::collections::BTreeMap<String, super::wafv2::rulegroup::CustomResponseBody_>>,
@@ -5221,6 +5332,7 @@ impl crate::template::ToResource for RuleGroup_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html
 pub struct WebACL_ {
+    pub application_config: Option<super::wafv2::webacl::ApplicationConfig_>,
     pub association_config: Option<super::wafv2::webacl::AssociationConfig_>,
     pub captcha_config: Option<super::wafv2::webacl::CaptchaConfig_>,
     pub challenge_config: Option<super::wafv2::webacl::ChallengeConfig_>,
@@ -5258,6 +5370,12 @@ impl crate::template::ToResource for WebACL_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.application_config {
+            properties.insert(
+                "ApplicationConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.association_config {
             properties.insert(
                 "AssociationConfig".to_string(),

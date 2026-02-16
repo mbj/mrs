@@ -227,7 +227,7 @@ pub mod experimenttemplate {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatelogconfiguration.html
     pub struct ExperimentTemplateLogConfiguration_ {
         pub cloud_watch_logs_configuration: Option<Box<CloudWatchLogsConfiguration_>>,
-        pub log_schema_version: i64,
+        pub log_schema_version: i32,
         pub s3_configuration: Option<Box<S3Configuration_>>,
     }
     #[doc(hidden)]

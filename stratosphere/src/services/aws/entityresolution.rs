@@ -64,6 +64,7 @@ pub mod idmappingworkflow {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-idmappingworkflow-idmappingtechniques.html
     pub struct IdMappingTechniques_ {
         pub id_mapping_type: Option<crate::value::ExpString>,
+        pub normalization_version: Option<crate::value::ExpString>,
         pub provider_properties: Option<Box<ProviderProperties_>>,
         pub rule_based_properties: Option<Box<IdMappingRuleBasedProperties_>>,
     }
@@ -82,6 +83,12 @@ pub mod idmappingworkflow {
             if let Some(ref value) = self.id_mapping_type {
                 properties.insert(
                     "IdMappingType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.normalization_version {
+                properties.insert(
+                    "NormalizationVersion".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -423,6 +430,34 @@ pub mod idnamespace {
     }
 }
 pub mod matchingworkflow {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-customerprofilesintegrationconfig.html
+    pub struct CustomerProfilesIntegrationConfig_ {
+        pub domain_arn: crate::value::ExpString,
+        pub object_type_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_entityresolution_MatchingWorkflow_CustomerProfilesIntegrationConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::EntityResolution::MatchingWorkflow.CustomerProfilesIntegrationConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_entityresolution_MatchingWorkflow_CustomerProfilesIntegrationConfig as CustomerProfilesIntegrationConfig;
+    impl crate::value::ToValue for CustomerProfilesIntegrationConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "DomainArn".to_string(),
+                crate::value::ToValue::to_value(&self.domain_arn),
+            );
+            properties.insert(
+                "ObjectTypeArn".to_string(),
+                crate::value::ToValue::to_value(&self.object_type_arn),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-incrementalrunconfig.html
     pub struct IncrementalRunConfig_ {
         pub incremental_run_type: crate::value::ExpString,
@@ -534,9 +569,10 @@ pub mod matchingworkflow {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-entityresolution-matchingworkflow-outputsource.html
     pub struct OutputSource_ {
         pub apply_normalization: Option<crate::value::ExpBool>,
+        pub customer_profiles_integration_config: Option<Box<CustomerProfilesIntegrationConfig_>>,
         pub kms_arn: Option<crate::value::ExpString>,
         pub output: Vec<OutputAttribute_>,
-        pub output_s3_path: crate::value::ExpString,
+        pub output_s3_path: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -556,6 +592,12 @@ pub mod matchingworkflow {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.customer_profiles_integration_config {
+                properties.insert(
+                    "CustomerProfilesIntegrationConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.kms_arn {
                 properties.insert("KMSArn".to_string(), crate::value::ToValue::to_value(value));
             }
@@ -563,10 +605,12 @@ pub mod matchingworkflow {
                 "Output".to_string(),
                 crate::value::ToValue::to_value(&self.output),
             );
-            properties.insert(
-                "OutputS3Path".to_string(),
-                crate::value::ToValue::to_value(&self.output_s3_path),
-            );
+            if let Some(ref value) = self.output_s3_path {
+                properties.insert(
+                    "OutputS3Path".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }

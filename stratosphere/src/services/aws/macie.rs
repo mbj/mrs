@@ -178,7 +178,7 @@ pub struct CustomDataIdentifier_ {
     pub description: Option<crate::value::ExpString>,
     pub ignore_words: Option<Vec<crate::value::ExpString>>,
     pub keywords: Option<Vec<crate::value::ExpString>>,
-    pub maximum_match_distance: Option<i64>,
+    pub maximum_match_distance: Option<i32>,
     pub name: crate::value::ExpString,
     pub regex: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -247,7 +247,7 @@ pub struct FindingsFilter_ {
     pub description: Option<crate::value::ExpString>,
     pub finding_criteria: super::macie::findingsfilter::FindingCriteria_,
     pub name: crate::value::ExpString,
-    pub position: Option<i64>,
+    pub position: Option<i32>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]

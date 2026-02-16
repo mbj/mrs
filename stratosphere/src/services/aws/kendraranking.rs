@@ -1,7 +1,7 @@
 pub mod executionplan {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendraranking-executionplan-capacityunitsconfiguration.html
     pub struct CapacityUnitsConfiguration_ {
-        pub rescore_capacity_units: i64,
+        pub rescore_capacity_units: i32,
     }
     #[doc(hidden)]
     #[macro_export]

@@ -1,21 +1,21 @@
 pub mod deviceprofile {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-deviceprofile-lorawandeviceprofile.html
     pub struct LoRaWANDeviceProfile_ {
-        pub class_b_timeout: Option<i64>,
-        pub class_c_timeout: Option<i64>,
-        pub factory_preset_freqs_list: Option<Vec<i64>>,
+        pub class_b_timeout: Option<i32>,
+        pub class_c_timeout: Option<i32>,
+        pub factory_preset_freqs_list: Option<Vec<i32>>,
         pub mac_version: Option<crate::value::ExpString>,
-        pub max_duty_cycle: Option<i64>,
-        pub max_eirp: Option<i64>,
-        pub ping_slot_dr: Option<i64>,
-        pub ping_slot_freq: Option<i64>,
-        pub ping_slot_period: Option<i64>,
+        pub max_duty_cycle: Option<i32>,
+        pub max_eirp: Option<i32>,
+        pub ping_slot_dr: Option<i32>,
+        pub ping_slot_freq: Option<i32>,
+        pub ping_slot_period: Option<i32>,
         pub reg_params_revision: Option<crate::value::ExpString>,
         pub rf_region: Option<crate::value::ExpString>,
-        pub rx_data_rate2: Option<i64>,
-        pub rx_delay1: Option<i64>,
-        pub rx_dr_offset1: Option<i64>,
-        pub rx_freq2: Option<i64>,
+        pub rx_data_rate2: Option<i32>,
+        pub rx_delay1: Option<i32>,
+        pub rx_dr_offset1: Option<i32>,
+        pub rx_freq2: Option<i32>,
         pub supports32_bit_f_cnt: Option<crate::value::ExpBool>,
         pub supports_class_b: Option<crate::value::ExpBool>,
         pub supports_class_c: Option<crate::value::ExpBool>,
@@ -187,8 +187,8 @@ pub mod multicastgroup {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-multicastgroup-lorawan.html
     pub struct LoRaWAN_ {
         pub dl_class: crate::value::ExpString,
-        pub number_of_devices_in_group: Option<i64>,
-        pub number_of_devices_requested: Option<i64>,
+        pub number_of_devices_in_group: Option<i32>,
+        pub number_of_devices_requested: Option<i32>,
         pub rf_region: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -352,22 +352,22 @@ pub mod serviceprofile {
     pub struct LoRaWANServiceProfile_ {
         pub add_gw_metadata: Option<crate::value::ExpBool>,
         pub channel_mask: Option<crate::value::ExpString>,
-        pub dev_status_req_freq: Option<i64>,
-        pub dl_bucket_size: Option<i64>,
-        pub dl_rate: Option<i64>,
+        pub dev_status_req_freq: Option<i32>,
+        pub dl_bucket_size: Option<i32>,
+        pub dl_rate: Option<i32>,
         pub dl_rate_policy: Option<crate::value::ExpString>,
-        pub dr_max: Option<i64>,
-        pub dr_min: Option<i64>,
+        pub dr_max: Option<i32>,
+        pub dr_min: Option<i32>,
         pub hr_allowed: Option<crate::value::ExpBool>,
-        pub min_gw_diversity: Option<i64>,
+        pub min_gw_diversity: Option<i32>,
         pub nwk_geo_loc: Option<crate::value::ExpBool>,
         pub pr_allowed: Option<crate::value::ExpBool>,
         pub ra_allowed: Option<crate::value::ExpBool>,
         pub report_dev_status_battery: Option<crate::value::ExpBool>,
         pub report_dev_status_margin: Option<crate::value::ExpBool>,
-        pub target_per: Option<i64>,
-        pub ul_bucket_size: Option<i64>,
-        pub ul_rate: Option<i64>,
+        pub target_per: Option<i32>,
+        pub ul_bucket_size: Option<i32>,
+        pub ul_rate: Option<i32>,
         pub ul_rate_policy: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -703,7 +703,7 @@ pub mod wirelessdevice {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdevice-application.html
     pub struct Application_ {
         pub destination_name: Option<crate::value::ExpString>,
-        pub f_port: Option<i64>,
+        pub f_port: Option<i32>,
         pub r#type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]

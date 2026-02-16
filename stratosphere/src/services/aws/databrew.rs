@@ -207,7 +207,7 @@ pub mod dataset {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-exceloptions.html
     pub struct ExcelOptions_ {
         pub header_row: Option<crate::value::ExpBool>,
-        pub sheet_indexes: Option<Vec<i64>>,
+        pub sheet_indexes: Option<Vec<i32>>,
         pub sheet_names: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
@@ -245,7 +245,7 @@ pub mod dataset {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-fileslimit.html
     pub struct FilesLimit_ {
-        pub max_files: i64,
+        pub max_files: i32,
         pub order: Option<crate::value::ExpString>,
         pub ordered_by: Option<crate::value::ExpString>,
     }
@@ -849,7 +849,7 @@ pub mod job {
         pub format: Option<crate::value::ExpString>,
         pub format_options: Option<Box<OutputFormatOptions_>>,
         pub location: Box<S3Location_>,
-        pub max_output_files: Option<i64>,
+        pub max_output_files: Option<i32>,
         pub overwrite: Option<crate::value::ExpBool>,
         pub partition_columns: Option<Vec<crate::value::ExpString>>,
     }
@@ -1188,7 +1188,7 @@ pub mod job {
 pub mod project {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-project-sample.html
     pub struct Sample_ {
-        pub size: Option<i64>,
+        pub size: Option<i32>,
         pub r#type: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -1426,7 +1426,7 @@ pub mod recipe {
         pub sample_type: Option<crate::value::ExpString>,
         pub second_input: Option<crate::value::ExpString>,
         pub secondary_inputs: Option<Vec<SecondaryInput_>>,
-        pub sheet_indexes: Option<Vec<i64>>,
+        pub sheet_indexes: Option<Vec<i32>>,
         pub sheet_names: Option<Vec<crate::value::ExpString>>,
         pub source_column: Option<crate::value::ExpString>,
         pub source_column1: Option<crate::value::ExpString>,
@@ -2351,8 +2351,8 @@ pub struct Job_ {
     pub encryption_mode: Option<crate::value::ExpString>,
     pub job_sample: Option<super::databrew::job::JobSample_>,
     pub log_subscription: Option<crate::value::ExpString>,
-    pub max_capacity: Option<i64>,
-    pub max_retries: Option<i64>,
+    pub max_capacity: Option<i32>,
+    pub max_retries: Option<i32>,
     pub name: crate::value::ExpString,
     pub output_location: Option<super::databrew::job::OutputLocation_>,
     pub outputs: Option<Vec<super::databrew::job::Output_>>,
@@ -2361,7 +2361,7 @@ pub struct Job_ {
     pub recipe: Option<super::databrew::job::Recipe_>,
     pub role_arn: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
-    pub timeout: Option<i64>,
+    pub timeout: Option<i32>,
     pub r#type: crate::value::ExpString,
     pub validation_configurations: Option<Vec<super::databrew::job::ValidationConfiguration_>>,
 }

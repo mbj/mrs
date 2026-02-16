@@ -1,4 +1,59 @@
 pub mod configurationset {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-archivingoptions.html
+    pub struct ArchivingOptions_ {
+        pub archive_arn: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ses_ConfigurationSet_ArchivingOptions {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSet.ArchivingOptions"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ses_ConfigurationSet_ArchivingOptions as ArchivingOptions;
+    impl crate::value::ToValue for ArchivingOptions_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.archive_arn {
+                properties.insert(
+                    "ArchiveArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-conditionthreshold.html
+    pub struct ConditionThreshold_ {
+        pub condition_threshold_enabled: crate::value::ExpString,
+        pub overall_confidence_threshold: Option<Box<OverallConfidenceThreshold_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ses_ConfigurationSet_ConditionThreshold {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSet.ConditionThreshold"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ses_ConfigurationSet_ConditionThreshold as ConditionThreshold;
+    impl crate::value::ToValue for ConditionThreshold_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ConditionThresholdEnabled".to_string(),
+                crate::value::ToValue::to_value(&self.condition_threshold_enabled),
+            );
+            if let Some(ref value) = self.overall_confidence_threshold {
+                properties.insert(
+                    "OverallConfidenceThreshold".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-dashboardoptions.html
     pub struct DashboardOptions_ {
         pub engagement_metrics: crate::value::ExpString,
@@ -84,6 +139,29 @@ pub mod configurationset {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-overallconfidencethreshold.html
+    pub struct OverallConfidenceThreshold_ {
+        pub confidence_verdict_threshold: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ses_ConfigurationSet_OverallConfidenceThreshold {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSet.OverallConfidenceThreshold"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ses_ConfigurationSet_OverallConfidenceThreshold as OverallConfidenceThreshold;
+    impl crate::value::ToValue for OverallConfidenceThreshold_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ConfidenceVerdictThreshold".to_string(),
+                crate::value::ToValue::to_value(&self.confidence_verdict_threshold),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-reputationoptions.html
     pub struct ReputationOptions_ {
         pub reputation_metrics_enabled: Option<crate::value::ExpBool>,
@@ -137,6 +215,7 @@ pub mod configurationset {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-suppressionoptions.html
     pub struct SuppressionOptions_ {
         pub suppressed_reasons: Option<Vec<crate::value::ExpString>>,
+        pub validation_options: Option<Box<ValidationOptions_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -153,6 +232,12 @@ pub mod configurationset {
             if let Some(ref value) = self.suppressed_reasons {
                 properties.insert(
                     "SuppressedReasons".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.validation_options {
+                properties.insert(
+                    "ValidationOptions".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -188,6 +273,29 @@ pub mod configurationset {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-validationoptions.html
+    pub struct ValidationOptions_ {
+        pub condition_threshold: Box<ConditionThreshold_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ses_ConfigurationSet_ValidationOptions {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SES::ConfigurationSet.ValidationOptions"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ses_ConfigurationSet_ValidationOptions as ValidationOptions;
+    impl crate::value::ToValue for ValidationOptions_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ConditionThreshold".to_string(),
+                crate::value::ToValue::to_value(&self.condition_threshold),
+            );
             properties.into()
         }
     }
@@ -2115,6 +2223,54 @@ pub mod mailmanagertrafficpolicy {
         }
     }
 }
+pub mod multiregionendpoint {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-multiregionendpoint-details.html
+    pub struct Details_ {
+        pub route_details: Vec<RouteDetailsItems_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ses_MultiRegionEndpoint_Details {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SES::MultiRegionEndpoint.Details"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ses_MultiRegionEndpoint_Details as Details;
+    impl crate::value::ToValue for Details_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "RouteDetails".to_string(),
+                crate::value::ToValue::to_value(&self.route_details),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-multiregionendpoint-routedetailsitems.html
+    pub struct RouteDetailsItems_ {
+        pub region: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ses_MultiRegionEndpoint_RouteDetailsItems {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SES::MultiRegionEndpoint.RouteDetailsItems"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ses_MultiRegionEndpoint_RouteDetailsItems as RouteDetailsItems;
+    impl crate::value::ToValue for RouteDetailsItems_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Region".to_string(),
+                crate::value::ToValue::to_value(&self.region),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod receiptfilter {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptfilter-filter.html
     pub struct Filter_ {
@@ -2634,6 +2790,31 @@ pub mod template {
         }
     }
 }
+pub mod tenant {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-tenant-resourceassociation.html
+    pub struct ResourceAssociation_ {
+        pub resource_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_ses_Tenant_ResourceAssociation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::SES::Tenant.ResourceAssociation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_ses_Tenant_ResourceAssociation as ResourceAssociation;
+    impl crate::value::ToValue for ResourceAssociation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ResourceArn".to_string(),
+                crate::value::ToValue::to_value(&self.resource_arn),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod vdmattributes {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-vdmattributes-dashboardattributes.html
     pub struct DashboardAttributes_ {
@@ -2688,6 +2869,7 @@ pub mod vdmattributes {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html
 pub struct ConfigurationSet_ {
+    pub archiving_options: Option<super::ses::configurationset::ArchivingOptions_>,
     pub delivery_options: Option<super::ses::configurationset::DeliveryOptions_>,
     pub name: Option<crate::value::ExpString>,
     pub reputation_options: Option<super::ses::configurationset::ReputationOptions_>,
@@ -2717,6 +2899,12 @@ impl crate::template::ToResource for ConfigurationSet_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.archiving_options {
+            properties.insert(
+                "ArchivingOptions".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.delivery_options {
             properties.insert(
                 "DeliveryOptions".to_string(),
@@ -2845,6 +3033,68 @@ impl crate::template::ToResource for ContactList_ {
         if let Some(ref value) = self.topics {
             properties.insert("Topics".to_string(), crate::value::ToValue::to_value(value));
         }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-customverificationemailtemplate.html
+pub struct CustomVerificationEmailTemplate_ {
+    pub failure_redirection_url: crate::value::ExpString,
+    pub from_email_address: crate::value::ExpString,
+    pub success_redirection_url: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub template_content: crate::value::ExpString,
+    pub template_name: crate::value::ExpString,
+    pub template_subject: crate::value::ExpString,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_ses_CustomVerificationEmailTemplate {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::SES::CustomVerificationEmailTemplate"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_ses_CustomVerificationEmailTemplate as CustomVerificationEmailTemplate;
+impl crate::template::ToResource for CustomVerificationEmailTemplate_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("SES"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName(
+                "CustomVerificationEmailTemplate",
+            ),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "FailureRedirectionURL".to_string(),
+            crate::value::ToValue::to_value(&self.failure_redirection_url),
+        );
+        properties.insert(
+            "FromEmailAddress".to_string(),
+            crate::value::ToValue::to_value(&self.from_email_address),
+        );
+        properties.insert(
+            "SuccessRedirectionURL".to_string(),
+            crate::value::ToValue::to_value(&self.success_redirection_url),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "TemplateContent".to_string(),
+            crate::value::ToValue::to_value(&self.template_content),
+        );
+        properties.insert(
+            "TemplateName".to_string(),
+            crate::value::ToValue::to_value(&self.template_name),
+        );
+        properties.insert(
+            "TemplateSubject".to_string(),
+            crate::value::ToValue::to_value(&self.template_subject),
+        );
         properties
     }
 }
@@ -3345,6 +3595,46 @@ impl crate::template::ToResource for MailManagerTrafficPolicy_ {
         properties
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-multiregionendpoint.html
+pub struct MultiRegionEndpoint_ {
+    pub details: super::ses::multiregionendpoint::Details_,
+    pub endpoint_name: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_ses_MultiRegionEndpoint {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::SES::MultiRegionEndpoint"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_ses_MultiRegionEndpoint as MultiRegionEndpoint;
+impl crate::template::ToResource for MultiRegionEndpoint_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("SES"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("MultiRegionEndpoint"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "Details".to_string(),
+            crate::value::ToValue::to_value(&self.details),
+        );
+        properties.insert(
+            "EndpointName".to_string(),
+            crate::value::ToValue::to_value(&self.endpoint_name),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptfilter.html
 pub struct ReceiptFilter_ {
     pub filter: super::ses::receiptfilter::Filter_,
@@ -3451,6 +3741,7 @@ impl crate::template::ToResource for ReceiptRuleSet_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-template.html
 pub struct Template_ {
+    pub tags: Option<Vec<crate::Tag_>>,
     pub template: Option<super::ses::template::Template_>,
 }
 #[doc(hidden)]
@@ -3473,12 +3764,57 @@ impl crate::template::ToResource for Template_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
         if let Some(ref value) = self.template {
             properties.insert(
                 "Template".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-tenant.html
+pub struct Tenant_ {
+    pub resource_associations: Option<Vec<super::ses::tenant::ResourceAssociation_>>,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub tenant_name: crate::value::ExpString,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_ses_Tenant {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::SES::Tenant" $($field
+        $value)*)
+    };
+}
+pub use crate::__aws_ses_Tenant as Tenant;
+impl crate::template::ToResource for Tenant_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("SES"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("Tenant"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.resource_associations {
+            properties.insert(
+                "ResourceAssociations".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "TenantName".to_string(),
+            crate::value::ToValue::to_value(&self.tenant_name),
+        );
         properties
     }
 }

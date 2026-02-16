@@ -29,9 +29,9 @@ pub mod globaltable {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-capacityautoscalingsettings.html
     pub struct CapacityAutoScalingSettings_ {
-        pub max_capacity: i64,
-        pub min_capacity: i64,
-        pub seed_capacity: Option<i64>,
+        pub max_capacity: i32,
+        pub min_capacity: i32,
+        pub seed_capacity: Option<i32>,
         pub target_tracking_scaling_policy_configuration:
             Box<TargetTrackingScalingPolicyConfiguration_>,
     }
@@ -95,11 +95,39 @@ pub mod globaltable {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-globalreadprovisionedthroughputsettings.html
+    pub struct GlobalReadProvisionedThroughputSettings_ {
+        pub read_capacity_units: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_dynamodb_GlobalTable_GlobalReadProvisionedThroughputSettings {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::DynamoDB::GlobalTable.GlobalReadProvisionedThroughputSettings"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_dynamodb_GlobalTable_GlobalReadProvisionedThroughputSettings as GlobalReadProvisionedThroughputSettings;
+    impl crate::value::ToValue for GlobalReadProvisionedThroughputSettings_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.read_capacity_units {
+                properties.insert(
+                    "ReadCapacityUnits".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-globalsecondaryindex.html
     pub struct GlobalSecondaryIndex_ {
         pub index_name: crate::value::ExpString,
         pub key_schema: Vec<KeySchema_>,
         pub projection: Box<Projection_>,
+        pub read_on_demand_throughput_settings: Option<Box<ReadOnDemandThroughputSettings_>>,
+        pub read_provisioned_throughput_settings:
+            Option<Box<GlobalReadProvisionedThroughputSettings_>>,
         pub warm_throughput: Option<Box<WarmThroughput_>>,
         pub write_on_demand_throughput_settings: Option<Box<WriteOnDemandThroughputSettings_>>,
         pub write_provisioned_throughput_settings: Option<Box<WriteProvisionedThroughputSettings_>>,
@@ -128,6 +156,18 @@ pub mod globaltable {
                 "Projection".to_string(),
                 crate::value::ToValue::to_value(&self.projection),
             );
+            if let Some(ref value) = self.read_on_demand_throughput_settings {
+                properties.insert(
+                    "ReadOnDemandThroughputSettings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.read_provisioned_throughput_settings {
+                properties.insert(
+                    "ReadProvisionedThroughputSettings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.warm_throughput {
                 properties.insert(
                     "WarmThroughput".to_string(),
@@ -265,7 +305,7 @@ pub mod globaltable {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-pointintimerecoveryspecification.html
     pub struct PointInTimeRecoverySpecification_ {
         pub point_in_time_recovery_enabled: Option<crate::value::ExpBool>,
-        pub recovery_period_in_days: Option<i64>,
+        pub recovery_period_in_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -328,7 +368,7 @@ pub mod globaltable {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-readondemandthroughputsettings.html
     pub struct ReadOnDemandThroughputSettings_ {
-        pub max_read_request_units: Option<i64>,
+        pub max_read_request_units: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -354,7 +394,7 @@ pub mod globaltable {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-readprovisionedthroughputsettings.html
     pub struct ReadProvisionedThroughputSettings_ {
         pub read_capacity_auto_scaling_settings: Option<Box<CapacityAutoScalingSettings_>>,
-        pub read_capacity_units: Option<i64>,
+        pub read_capacity_units: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -455,6 +495,7 @@ pub mod globaltable {
         pub contributor_insights_specification: Option<Box<ContributorInsightsSpecification_>>,
         pub deletion_protection_enabled: Option<crate::value::ExpBool>,
         pub global_secondary_indexes: Option<Vec<ReplicaGlobalSecondaryIndexSpecification_>>,
+        pub global_table_settings_replication_mode: Option<crate::value::ExpString>,
         pub kinesis_stream_specification: Option<Box<KinesisStreamSpecification_>>,
         pub point_in_time_recovery_specification: Option<Box<PointInTimeRecoverySpecification_>>,
         pub read_on_demand_throughput_settings: Option<Box<ReadOnDemandThroughputSettings_>>,
@@ -493,6 +534,12 @@ pub mod globaltable {
             if let Some(ref value) = self.global_secondary_indexes {
                 properties.insert(
                     "GlobalSecondaryIndexes".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.global_table_settings_replication_mode {
+                properties.insert(
+                    "GlobalTableSettingsReplicationMode".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -656,8 +703,8 @@ pub mod globaltable {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-targettrackingscalingpolicyconfiguration.html
     pub struct TargetTrackingScalingPolicyConfiguration_ {
         pub disable_scale_in: Option<crate::value::ExpBool>,
-        pub scale_in_cooldown: Option<i64>,
-        pub scale_out_cooldown: Option<i64>,
+        pub scale_in_cooldown: Option<i32>,
+        pub scale_out_cooldown: Option<i32>,
         pub target_value: f64,
     }
     #[doc(hidden)]
@@ -729,8 +776,8 @@ pub mod globaltable {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-warmthroughput.html
     pub struct WarmThroughput_ {
-        pub read_units_per_second: Option<i64>,
-        pub write_units_per_second: Option<i64>,
+        pub read_units_per_second: Option<i32>,
+        pub write_units_per_second: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -761,7 +808,7 @@ pub mod globaltable {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-writeondemandthroughputsettings.html
     pub struct WriteOnDemandThroughputSettings_ {
-        pub max_write_request_units: Option<i64>,
+        pub max_write_request_units: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1116,8 +1163,8 @@ pub mod table {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ondemandthroughput.html
     pub struct OnDemandThroughput_ {
-        pub max_read_request_units: Option<i64>,
-        pub max_write_request_units: Option<i64>,
+        pub max_read_request_units: Option<i32>,
+        pub max_write_request_units: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1149,7 +1196,7 @@ pub mod table {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-pointintimerecoveryspecification.html
     pub struct PointInTimeRecoverySpecification_ {
         pub point_in_time_recovery_enabled: Option<crate::value::ExpBool>,
-        pub recovery_period_in_days: Option<i64>,
+        pub recovery_period_in_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1212,8 +1259,8 @@ pub mod table {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-provisionedthroughput.html
     pub struct ProvisionedThroughput_ {
-        pub read_capacity_units: i64,
-        pub write_capacity_units: i64,
+        pub read_capacity_units: i32,
+        pub write_capacity_units: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1397,8 +1444,8 @@ pub mod table {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-warmthroughput.html
     pub struct WarmThroughput_ {
-        pub read_units_per_second: Option<i64>,
-        pub write_units_per_second: Option<i64>,
+        pub read_units_per_second: Option<i32>,
+        pub write_units_per_second: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1430,15 +1477,18 @@ pub mod table {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-globaltable.html
 pub struct GlobalTable_ {
-    pub attribute_definitions: Vec<super::dynamodb::globaltable::AttributeDefinition_>,
+    pub attribute_definitions: Option<Vec<super::dynamodb::globaltable::AttributeDefinition_>>,
     pub billing_mode: Option<crate::value::ExpString>,
     pub global_secondary_indexes: Option<Vec<super::dynamodb::globaltable::GlobalSecondaryIndex_>>,
-    pub global_table_settings_replication_mode: Option<crate::value::ExpString>,
     pub global_table_source_arn: Option<crate::value::ExpString>,
     pub global_table_witnesses: Option<Vec<super::dynamodb::globaltable::GlobalTableWitness_>>,
-    pub key_schema: Vec<super::dynamodb::globaltable::KeySchema_>,
+    pub key_schema: Option<Vec<super::dynamodb::globaltable::KeySchema_>>,
     pub local_secondary_indexes: Option<Vec<super::dynamodb::globaltable::LocalSecondaryIndex_>>,
     pub multi_region_consistency: Option<crate::value::ExpString>,
+    pub read_on_demand_throughput_settings:
+        Option<super::dynamodb::globaltable::ReadOnDemandThroughputSettings_>,
+    pub read_provisioned_throughput_settings:
+        Option<super::dynamodb::globaltable::GlobalReadProvisionedThroughputSettings_>,
     pub replicas: Vec<super::dynamodb::globaltable::ReplicaSpecification_>,
     pub sse_specification: Option<super::dynamodb::globaltable::SSESpecification_>,
     pub stream_specification: Option<super::dynamodb::globaltable::StreamSpecification_>,
@@ -1470,10 +1520,12 @@ impl crate::template::ToResource for GlobalTable_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
-        properties.insert(
-            "AttributeDefinitions".to_string(),
-            crate::value::ToValue::to_value(&self.attribute_definitions),
-        );
+        if let Some(ref value) = self.attribute_definitions {
+            properties.insert(
+                "AttributeDefinitions".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.billing_mode {
             properties.insert(
                 "BillingMode".to_string(),
@@ -1483,12 +1535,6 @@ impl crate::template::ToResource for GlobalTable_ {
         if let Some(ref value) = self.global_secondary_indexes {
             properties.insert(
                 "GlobalSecondaryIndexes".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
-        if let Some(ref value) = self.global_table_settings_replication_mode {
-            properties.insert(
-                "GlobalTableSettingsReplicationMode".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1504,10 +1550,12 @@ impl crate::template::ToResource for GlobalTable_ {
                 crate::value::ToValue::to_value(value),
             );
         }
-        properties.insert(
-            "KeySchema".to_string(),
-            crate::value::ToValue::to_value(&self.key_schema),
-        );
+        if let Some(ref value) = self.key_schema {
+            properties.insert(
+                "KeySchema".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.local_secondary_indexes {
             properties.insert(
                 "LocalSecondaryIndexes".to_string(),
@@ -1517,6 +1565,18 @@ impl crate::template::ToResource for GlobalTable_ {
         if let Some(ref value) = self.multi_region_consistency {
             properties.insert(
                 "MultiRegionConsistency".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.read_on_demand_throughput_settings {
+            properties.insert(
+                "ReadOnDemandThroughputSettings".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.read_provisioned_throughput_settings {
+            properties.insert(
+                "ReadProvisionedThroughputSettings".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -1577,7 +1637,6 @@ pub struct Table_ {
         Option<super::dynamodb::table::ContributorInsightsSpecification_>,
     pub deletion_protection_enabled: Option<crate::value::ExpBool>,
     pub global_secondary_indexes: Option<Vec<super::dynamodb::table::GlobalSecondaryIndex_>>,
-    pub global_table_settings_replication_mode: Option<crate::value::ExpString>,
     pub import_source_specification: Option<super::dynamodb::table::ImportSourceSpecification_>,
     pub key_schema: Vec<super::dynamodb::table::KeySchema_>,
     pub kinesis_stream_specification: Option<super::dynamodb::table::KinesisStreamSpecification_>,
@@ -1642,12 +1701,6 @@ impl crate::template::ToResource for Table_ {
         if let Some(ref value) = self.global_secondary_indexes {
             properties.insert(
                 "GlobalSecondaryIndexes".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
-        if let Some(ref value) = self.global_table_settings_replication_mode {
-            properties.insert(
-                "GlobalTableSettingsReplicationMode".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

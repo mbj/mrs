@@ -1,3 +1,429 @@
+pub mod actionconnector {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-apikeyconnectionmetadata.html
+    pub struct APIKeyConnectionMetadata_ {
+        pub api_key: crate::value::ExpString,
+        pub base_endpoint: crate::value::ExpString,
+        pub email: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_ActionConnector_APIKeyConnectionMetadata {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::ActionConnector.APIKeyConnectionMetadata"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_ActionConnector_APIKeyConnectionMetadata as APIKeyConnectionMetadata;
+    impl crate::value::ToValue for APIKeyConnectionMetadata_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ApiKey".to_string(),
+                crate::value::ToValue::to_value(&self.api_key),
+            );
+            properties.insert(
+                "BaseEndpoint".to_string(),
+                crate::value::ToValue::to_value(&self.base_endpoint),
+            );
+            if let Some(ref value) = self.email {
+                properties.insert("Email".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authconfig.html
+    pub struct AuthConfig_ {
+        pub authentication_metadata: Box<AuthenticationMetadata_>,
+        pub authentication_type: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_ActionConnector_AuthConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::ActionConnector.AuthConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_ActionConnector_AuthConfig as AuthConfig;
+    impl crate::value::ToValue for AuthConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "AuthenticationMetadata".to_string(),
+                crate::value::ToValue::to_value(&self.authentication_metadata),
+            );
+            properties.insert(
+                "AuthenticationType".to_string(),
+                crate::value::ToValue::to_value(&self.authentication_type),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authenticationmetadata.html
+    pub struct AuthenticationMetadata_ {
+        pub api_key_connection_metadata: Option<Box<APIKeyConnectionMetadata_>>,
+        pub authorization_code_grant_metadata: Option<Box<AuthorizationCodeGrantMetadata_>>,
+        pub basic_auth_connection_metadata: Option<Box<BasicAuthConnectionMetadata_>>,
+        pub client_credentials_grant_metadata: Option<Box<ClientCredentialsGrantMetadata_>>,
+        pub iam_connection_metadata: Option<Box<IAMConnectionMetadata_>>,
+        pub none_connection_metadata: Option<Box<NoneConnectionMetadata_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_ActionConnector_AuthenticationMetadata {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::ActionConnector.AuthenticationMetadata"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_ActionConnector_AuthenticationMetadata as AuthenticationMetadata;
+    impl crate::value::ToValue for AuthenticationMetadata_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.api_key_connection_metadata {
+                properties.insert(
+                    "ApiKeyConnectionMetadata".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.authorization_code_grant_metadata {
+                properties.insert(
+                    "AuthorizationCodeGrantMetadata".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.basic_auth_connection_metadata {
+                properties.insert(
+                    "BasicAuthConnectionMetadata".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.client_credentials_grant_metadata {
+                properties.insert(
+                    "ClientCredentialsGrantMetadata".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.iam_connection_metadata {
+                properties.insert(
+                    "IamConnectionMetadata".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.none_connection_metadata {
+                properties.insert(
+                    "NoneConnectionMetadata".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authorizationcodegrantcredentialsdetails.html
+    pub struct AuthorizationCodeGrantCredentialsDetails_ {
+        pub authorization_code_grant_details: Box<AuthorizationCodeGrantDetails_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_ActionConnector_AuthorizationCodeGrantCredentialsDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::ActionConnector.AuthorizationCodeGrantCredentialsDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_ActionConnector_AuthorizationCodeGrantCredentialsDetails as AuthorizationCodeGrantCredentialsDetails;
+    impl crate::value::ToValue for AuthorizationCodeGrantCredentialsDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "AuthorizationCodeGrantDetails".to_string(),
+                crate::value::ToValue::to_value(&self.authorization_code_grant_details),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authorizationcodegrantdetails.html
+    pub struct AuthorizationCodeGrantDetails_ {
+        pub authorization_endpoint: crate::value::ExpString,
+        pub client_id: crate::value::ExpString,
+        pub client_secret: crate::value::ExpString,
+        pub token_endpoint: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_ActionConnector_AuthorizationCodeGrantDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::ActionConnector.AuthorizationCodeGrantDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_ActionConnector_AuthorizationCodeGrantDetails as AuthorizationCodeGrantDetails;
+    impl crate::value::ToValue for AuthorizationCodeGrantDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "AuthorizationEndpoint".to_string(),
+                crate::value::ToValue::to_value(&self.authorization_endpoint),
+            );
+            properties.insert(
+                "ClientId".to_string(),
+                crate::value::ToValue::to_value(&self.client_id),
+            );
+            properties.insert(
+                "ClientSecret".to_string(),
+                crate::value::ToValue::to_value(&self.client_secret),
+            );
+            properties.insert(
+                "TokenEndpoint".to_string(),
+                crate::value::ToValue::to_value(&self.token_endpoint),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-authorizationcodegrantmetadata.html
+    pub struct AuthorizationCodeGrantMetadata_ {
+        pub authorization_code_grant_credentials_details:
+            Option<Box<AuthorizationCodeGrantCredentialsDetails_>>,
+        pub authorization_code_grant_credentials_source: Option<crate::value::ExpString>,
+        pub base_endpoint: crate::value::ExpString,
+        pub redirect_url: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_ActionConnector_AuthorizationCodeGrantMetadata {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::ActionConnector.AuthorizationCodeGrantMetadata"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_ActionConnector_AuthorizationCodeGrantMetadata as AuthorizationCodeGrantMetadata;
+    impl crate::value::ToValue for AuthorizationCodeGrantMetadata_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.authorization_code_grant_credentials_details {
+                properties.insert(
+                    "AuthorizationCodeGrantCredentialsDetails".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.authorization_code_grant_credentials_source {
+                properties.insert(
+                    "AuthorizationCodeGrantCredentialsSource".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "BaseEndpoint".to_string(),
+                crate::value::ToValue::to_value(&self.base_endpoint),
+            );
+            properties.insert(
+                "RedirectUrl".to_string(),
+                crate::value::ToValue::to_value(&self.redirect_url),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-basicauthconnectionmetadata.html
+    pub struct BasicAuthConnectionMetadata_ {
+        pub base_endpoint: crate::value::ExpString,
+        pub password: crate::value::ExpString,
+        pub username: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_ActionConnector_BasicAuthConnectionMetadata {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::ActionConnector.BasicAuthConnectionMetadata"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_ActionConnector_BasicAuthConnectionMetadata as BasicAuthConnectionMetadata;
+    impl crate::value::ToValue for BasicAuthConnectionMetadata_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "BaseEndpoint".to_string(),
+                crate::value::ToValue::to_value(&self.base_endpoint),
+            );
+            properties.insert(
+                "Password".to_string(),
+                crate::value::ToValue::to_value(&self.password),
+            );
+            properties.insert(
+                "Username".to_string(),
+                crate::value::ToValue::to_value(&self.username),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-clientcredentialsdetails.html
+    pub struct ClientCredentialsDetails_ {
+        pub client_credentials_grant_details: Box<ClientCredentialsGrantDetails_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_ActionConnector_ClientCredentialsDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::ActionConnector.ClientCredentialsDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_ActionConnector_ClientCredentialsDetails as ClientCredentialsDetails;
+    impl crate::value::ToValue for ClientCredentialsDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ClientCredentialsGrantDetails".to_string(),
+                crate::value::ToValue::to_value(&self.client_credentials_grant_details),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-clientcredentialsgrantdetails.html
+    pub struct ClientCredentialsGrantDetails_ {
+        pub client_id: crate::value::ExpString,
+        pub client_secret: crate::value::ExpString,
+        pub token_endpoint: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_ActionConnector_ClientCredentialsGrantDetails {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::ActionConnector.ClientCredentialsGrantDetails"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_ActionConnector_ClientCredentialsGrantDetails as ClientCredentialsGrantDetails;
+    impl crate::value::ToValue for ClientCredentialsGrantDetails_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ClientId".to_string(),
+                crate::value::ToValue::to_value(&self.client_id),
+            );
+            properties.insert(
+                "ClientSecret".to_string(),
+                crate::value::ToValue::to_value(&self.client_secret),
+            );
+            properties.insert(
+                "TokenEndpoint".to_string(),
+                crate::value::ToValue::to_value(&self.token_endpoint),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-clientcredentialsgrantmetadata.html
+    pub struct ClientCredentialsGrantMetadata_ {
+        pub base_endpoint: crate::value::ExpString,
+        pub client_credentials_details: Option<Box<ClientCredentialsDetails_>>,
+        pub client_credentials_source: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_ActionConnector_ClientCredentialsGrantMetadata {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::ActionConnector.ClientCredentialsGrantMetadata"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_ActionConnector_ClientCredentialsGrantMetadata as ClientCredentialsGrantMetadata;
+    impl crate::value::ToValue for ClientCredentialsGrantMetadata_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "BaseEndpoint".to_string(),
+                crate::value::ToValue::to_value(&self.base_endpoint),
+            );
+            if let Some(ref value) = self.client_credentials_details {
+                properties.insert(
+                    "ClientCredentialsDetails".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.client_credentials_source {
+                properties.insert(
+                    "ClientCredentialsSource".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-iamconnectionmetadata.html
+    pub struct IAMConnectionMetadata_ {
+        pub role_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_ActionConnector_IAMConnectionMetadata {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::ActionConnector.IAMConnectionMetadata"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_ActionConnector_IAMConnectionMetadata as IAMConnectionMetadata;
+    impl crate::value::ToValue for IAMConnectionMetadata_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "RoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.role_arn),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-noneconnectionmetadata.html
+    pub struct NoneConnectionMetadata_ {
+        pub base_endpoint: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_ActionConnector_NoneConnectionMetadata {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::ActionConnector.NoneConnectionMetadata"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_ActionConnector_NoneConnectionMetadata as NoneConnectionMetadata;
+    impl crate::value::ToValue for NoneConnectionMetadata_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "BaseEndpoint".to_string(),
+                crate::value::ToValue::to_value(&self.base_endpoint),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-actionconnector-resourcepermission.html
+    pub struct ResourcePermission_ {
+        pub actions: Vec<crate::value::ExpString>,
+        pub principal: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_ActionConnector_ResourcePermission {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::ActionConnector.ResourcePermission"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_ActionConnector_ResourcePermission as ResourcePermission;
+    impl crate::value::ToValue for ResourcePermission_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Actions".to_string(),
+                crate::value::ToValue::to_value(&self.actions),
+            );
+            properties.insert(
+                "Principal".to_string(),
+                crate::value::ToValue::to_value(&self.principal),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod analysis {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-analysis-aggregationfunction.html
     pub struct AggregationFunction_ {
@@ -21429,28 +21855,42 @@ pub mod analysis {
 pub mod custompermissions {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-custompermissions-capabilities.html
     pub struct Capabilities_ {
+        pub action: Option<crate::value::ExpString>,
         pub add_or_run_anomaly_detection_for_analyses: Option<crate::value::ExpString>,
+        pub analysis: Option<crate::value::ExpString>,
+        pub automate: Option<crate::value::ExpString>,
+        pub chat_agent: Option<crate::value::ExpString>,
         pub create_and_update_dashboard_email_reports: Option<crate::value::ExpString>,
         pub create_and_update_data_sources: Option<crate::value::ExpString>,
         pub create_and_update_datasets: Option<crate::value::ExpString>,
         pub create_and_update_themes: Option<crate::value::ExpString>,
         pub create_and_update_threshold_alerts: Option<crate::value::ExpString>,
+        pub create_chat_agents: Option<crate::value::ExpString>,
         pub create_spice_dataset: Option<crate::value::ExpString>,
         pub create_shared_folders: Option<crate::value::ExpString>,
+        pub dashboard: Option<crate::value::ExpString>,
         pub export_to_csv: Option<crate::value::ExpString>,
         pub export_to_csv_in_scheduled_reports: Option<crate::value::ExpString>,
         pub export_to_excel: Option<crate::value::ExpString>,
         pub export_to_excel_in_scheduled_reports: Option<crate::value::ExpString>,
         pub export_to_pdf: Option<crate::value::ExpString>,
         pub export_to_pdf_in_scheduled_reports: Option<crate::value::ExpString>,
+        pub flow: Option<crate::value::ExpString>,
         pub include_content_in_scheduled_reports_email: Option<crate::value::ExpString>,
+        pub knowledge_base: Option<crate::value::ExpString>,
+        pub perform_flow_ui_task: Option<crate::value::ExpString>,
         pub print_reports: Option<crate::value::ExpString>,
+        pub publish_without_approval: Option<crate::value::ExpString>,
         pub rename_shared_folders: Option<crate::value::ExpString>,
+        pub research: Option<crate::value::ExpString>,
         pub share_analyses: Option<crate::value::ExpString>,
         pub share_dashboards: Option<crate::value::ExpString>,
         pub share_data_sources: Option<crate::value::ExpString>,
         pub share_datasets: Option<crate::value::ExpString>,
+        pub space: Option<crate::value::ExpString>,
         pub subscribe_dashboard_email_reports: Option<crate::value::ExpString>,
+        pub use_agent_web_search: Option<crate::value::ExpString>,
+        pub use_bedrock_models: Option<crate::value::ExpString>,
         pub view_account_spice_capacity: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -21465,9 +21905,30 @@ pub mod custompermissions {
     impl crate::value::ToValue for Capabilities_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.action {
+                properties.insert("Action".to_string(), crate::value::ToValue::to_value(value));
+            }
             if let Some(ref value) = self.add_or_run_anomaly_detection_for_analyses {
                 properties.insert(
                     "AddOrRunAnomalyDetectionForAnalyses".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.analysis {
+                properties.insert(
+                    "Analysis".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.automate {
+                properties.insert(
+                    "Automate".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.chat_agent {
+                properties.insert(
+                    "ChatAgent".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -21501,6 +21962,12 @@ pub mod custompermissions {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.create_chat_agents {
+                properties.insert(
+                    "CreateChatAgents".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.create_spice_dataset {
                 properties.insert(
                     "CreateSPICEDataset".to_string(),
@@ -21510,6 +21977,12 @@ pub mod custompermissions {
             if let Some(ref value) = self.create_shared_folders {
                 properties.insert(
                     "CreateSharedFolders".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.dashboard {
+                properties.insert(
+                    "Dashboard".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -21549,9 +22022,24 @@ pub mod custompermissions {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.flow {
+                properties.insert("Flow".to_string(), crate::value::ToValue::to_value(value));
+            }
             if let Some(ref value) = self.include_content_in_scheduled_reports_email {
                 properties.insert(
                     "IncludeContentInScheduledReportsEmail".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.knowledge_base {
+                properties.insert(
+                    "KnowledgeBase".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.perform_flow_ui_task {
+                properties.insert(
+                    "PerformFlowUiTask".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -21561,9 +22049,21 @@ pub mod custompermissions {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.publish_without_approval {
+                properties.insert(
+                    "PublishWithoutApproval".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.rename_shared_folders {
                 properties.insert(
                     "RenameSharedFolders".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.research {
+                properties.insert(
+                    "Research".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -21591,9 +22091,24 @@ pub mod custompermissions {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.space {
+                properties.insert("Space".to_string(), crate::value::ToValue::to_value(value));
+            }
             if let Some(ref value) = self.subscribe_dashboard_email_reports {
                 properties.insert(
                     "SubscribeDashboardEmailReports".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.use_agent_web_search {
+                properties.insert(
+                    "UseAgentWebSearch".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.use_bedrock_models {
+                properties.insert(
+                    "UseBedrockModels".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -25199,8 +25714,11 @@ pub mod dashboard {
         pub data_point_menu_label_option: Option<Box<DataPointMenuLabelOption_>>,
         pub data_point_tooltip_option: Option<Box<DataPointTooltipOption_>>,
         pub data_qa_enabled_option: Option<Box<DataQAEnabledOption_>>,
+        pub data_stories_sharing_option: Option<Box<DataStoriesSharingOption_>>,
+        pub executive_summary_option: Option<Box<ExecutiveSummaryOption_>>,
         pub export_to_csv_option: Option<Box<ExportToCSVOption_>>,
         pub export_with_hidden_fields_option: Option<Box<ExportWithHiddenFieldsOption_>>,
+        pub quick_suite_actions_option: Option<Box<QuickSuiteActionsOption_>>,
         pub sheet_controls_option: Option<Box<SheetControlsOption_>>,
         pub sheet_layout_element_maximization_option:
             Option<Box<SheetLayoutElementMaximizationOption_>>,
@@ -25250,6 +25768,18 @@ pub mod dashboard {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.data_stories_sharing_option {
+                properties.insert(
+                    "DataStoriesSharingOption".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.executive_summary_option {
+                properties.insert(
+                    "ExecutiveSummaryOption".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.export_to_csv_option {
                 properties.insert(
                     "ExportToCSVOption".to_string(),
@@ -25259,6 +25789,12 @@ pub mod dashboard {
             if let Some(ref value) = self.export_with_hidden_fields_option {
                 properties.insert(
                     "ExportWithHiddenFieldsOption".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.quick_suite_actions_option {
+                properties.insert(
+                    "QuickSuiteActionsOption".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -26093,6 +26629,31 @@ pub mod dashboard {
                 "DataSetPlaceholder".to_string(),
                 crate::value::ToValue::to_value(&self.data_set_placeholder),
             );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-datastoriessharingoption.html
+    pub struct DataStoriesSharingOption_ {
+        pub availability_status: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_Dashboard_DataStoriesSharingOption {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.DataStoriesSharingOption"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_Dashboard_DataStoriesSharingOption as DataStoriesSharingOption;
+    impl crate::value::ToValue for DataStoriesSharingOption_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.availability_status {
+                properties.insert(
+                    "AvailabilityStatus".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -27502,6 +28063,31 @@ pub mod dashboard {
             );
             if let Some(ref value) = self.status {
                 properties.insert("Status".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-executivesummaryoption.html
+    pub struct ExecutiveSummaryOption_ {
+        pub availability_status: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_Dashboard_ExecutiveSummaryOption {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.ExecutiveSummaryOption"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_Dashboard_ExecutiveSummaryOption as ExecutiveSummaryOption;
+    impl crate::value::ToValue for ExecutiveSummaryOption_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.availability_status {
+                properties.insert(
+                    "AvailabilityStatus".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
             }
             properties.into()
         }
@@ -29216,11 +29802,13 @@ pub mod dashboard {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-freeformlayoutelement.html
     pub struct FreeFormLayoutElement_ {
         pub background_style: Option<Box<FreeFormLayoutElementBackgroundStyle_>>,
+        pub border_radius: Option<crate::value::ExpString>,
         pub border_style: Option<Box<FreeFormLayoutElementBorderStyle_>>,
         pub element_id: crate::value::ExpString,
         pub element_type: crate::value::ExpString,
         pub height: crate::value::ExpString,
         pub loading_animation: Option<Box<LoadingAnimation_>>,
+        pub padding: Option<crate::value::ExpString>,
         pub rendering_rules: Option<Vec<SheetElementRenderingRule_>>,
         pub selected_border_style: Option<Box<FreeFormLayoutElementBorderStyle_>>,
         pub visibility: Option<crate::value::ExpString>,
@@ -29246,6 +29834,12 @@ pub mod dashboard {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.border_radius {
+                properties.insert(
+                    "BorderRadius".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.border_style {
                 properties.insert(
                     "BorderStyle".to_string(),
@@ -29267,6 +29861,12 @@ pub mod dashboard {
             if let Some(ref value) = self.loading_animation {
                 properties.insert(
                     "LoadingAnimation".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.padding {
+                properties.insert(
+                    "Padding".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -29336,6 +29936,7 @@ pub mod dashboard {
     pub struct FreeFormLayoutElementBorderStyle_ {
         pub color: Option<crate::value::ExpString>,
         pub visibility: Option<crate::value::ExpString>,
+        pub width: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -29357,6 +29958,9 @@ pub mod dashboard {
                     "Visibility".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
+            }
+            if let Some(ref value) = self.width {
+                properties.insert("Width".to_string(), crate::value::ToValue::to_value(value));
             }
             properties.into()
         }
@@ -31510,12 +32114,18 @@ pub mod dashboard {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutelement.html
     pub struct GridLayoutElement_ {
+        pub background_style: Option<Box<GridLayoutElementBackgroundStyle_>>,
+        pub border_radius: Option<crate::value::ExpString>,
+        pub border_style: Option<Box<GridLayoutElementBorderStyle_>>,
         pub column_index: Option<f64>,
         pub column_span: f64,
         pub element_id: crate::value::ExpString,
         pub element_type: crate::value::ExpString,
+        pub loading_animation: Option<Box<LoadingAnimation_>>,
+        pub padding: Option<crate::value::ExpString>,
         pub row_index: Option<f64>,
         pub row_span: f64,
+        pub selected_border_style: Option<Box<GridLayoutElementBorderStyle_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -31529,6 +32139,24 @@ pub mod dashboard {
     impl crate::value::ToValue for GridLayoutElement_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.background_style {
+                properties.insert(
+                    "BackgroundStyle".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.border_radius {
+                properties.insert(
+                    "BorderRadius".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.border_style {
+                properties.insert(
+                    "BorderStyle".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.column_index {
                 properties.insert(
                     "ColumnIndex".to_string(),
@@ -31547,6 +32175,18 @@ pub mod dashboard {
                 "ElementType".to_string(),
                 crate::value::ToValue::to_value(&self.element_type),
             );
+            if let Some(ref value) = self.loading_animation {
+                properties.insert(
+                    "LoadingAnimation".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.padding {
+                properties.insert(
+                    "Padding".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             if let Some(ref value) = self.row_index {
                 properties.insert(
                     "RowIndex".to_string(),
@@ -31557,6 +32197,74 @@ pub mod dashboard {
                 "RowSpan".to_string(),
                 crate::value::ToValue::to_value(&self.row_span),
             );
+            if let Some(ref value) = self.selected_border_style {
+                properties.insert(
+                    "SelectedBorderStyle".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutelementbackgroundstyle.html
+    pub struct GridLayoutElementBackgroundStyle_ {
+        pub color: Option<crate::value::ExpString>,
+        pub visibility: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_Dashboard_GridLayoutElementBackgroundStyle {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GridLayoutElementBackgroundStyle"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_Dashboard_GridLayoutElementBackgroundStyle as GridLayoutElementBackgroundStyle;
+    impl crate::value::ToValue for GridLayoutElementBackgroundStyle_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.color {
+                properties.insert("Color".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.visibility {
+                properties.insert(
+                    "Visibility".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-gridlayoutelementborderstyle.html
+    pub struct GridLayoutElementBorderStyle_ {
+        pub color: Option<crate::value::ExpString>,
+        pub visibility: Option<crate::value::ExpString>,
+        pub width: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_Dashboard_GridLayoutElementBorderStyle {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.GridLayoutElementBorderStyle"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_Dashboard_GridLayoutElementBorderStyle as GridLayoutElementBorderStyle;
+    impl crate::value::ToValue for GridLayoutElementBorderStyle_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.color {
+                properties.insert("Color".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.visibility {
+                properties.insert(
+                    "Visibility".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.width {
+                properties.insert("Width".to_string(), crate::value::ToValue::to_value(value));
+            }
             properties.into()
         }
     }
@@ -37236,6 +37944,31 @@ pub mod dashboard {
             if let Some(ref value) = self.visibility {
                 properties.insert(
                     "Visibility".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dashboard-quicksuiteactionsoption.html
+    pub struct QuickSuiteActionsOption_ {
+        pub availability_status: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_Dashboard_QuickSuiteActionsOption {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::Dashboard.QuickSuiteActionsOption"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_Dashboard_QuickSuiteActionsOption as QuickSuiteActionsOption;
+    impl crate::value::ToValue for QuickSuiteActionsOption_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.availability_status {
+                properties.insert(
+                    "AvailabilityStatus".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -43522,6 +44255,149 @@ pub mod dashboard {
     }
 }
 pub mod dataset {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-aggregateoperation.html
+    pub struct AggregateOperation_ {
+        pub aggregations: Vec<Aggregation_>,
+        pub alias: crate::value::ExpString,
+        pub group_by_column_names: Option<Vec<crate::value::ExpString>>,
+        pub source: Box<TransformOperationSource_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_AggregateOperation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.AggregateOperation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_AggregateOperation as AggregateOperation;
+    impl crate::value::ToValue for AggregateOperation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Aggregations".to_string(),
+                crate::value::ToValue::to_value(&self.aggregations),
+            );
+            properties.insert(
+                "Alias".to_string(),
+                crate::value::ToValue::to_value(&self.alias),
+            );
+            if let Some(ref value) = self.group_by_column_names {
+                properties.insert(
+                    "GroupByColumnNames".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Source".to_string(),
+                crate::value::ToValue::to_value(&self.source),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-aggregation.html
+    pub struct Aggregation_ {
+        pub aggregation_function: Box<DataPrepAggregationFunction_>,
+        pub new_column_id: crate::value::ExpString,
+        pub new_column_name: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_Aggregation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.Aggregation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_Aggregation as Aggregation;
+    impl crate::value::ToValue for Aggregation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "AggregationFunction".to_string(),
+                crate::value::ToValue::to_value(&self.aggregation_function),
+            );
+            properties.insert(
+                "NewColumnId".to_string(),
+                crate::value::ToValue::to_value(&self.new_column_id),
+            );
+            properties.insert(
+                "NewColumnName".to_string(),
+                crate::value::ToValue::to_value(&self.new_column_name),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-appendoperation.html
+    pub struct AppendOperation_ {
+        pub alias: crate::value::ExpString,
+        pub appended_columns: Vec<AppendedColumn_>,
+        pub first_source: Option<Box<TransformOperationSource_>>,
+        pub second_source: Option<Box<TransformOperationSource_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_AppendOperation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.AppendOperation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_AppendOperation as AppendOperation;
+    impl crate::value::ToValue for AppendOperation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Alias".to_string(),
+                crate::value::ToValue::to_value(&self.alias),
+            );
+            properties.insert(
+                "AppendedColumns".to_string(),
+                crate::value::ToValue::to_value(&self.appended_columns),
+            );
+            if let Some(ref value) = self.first_source {
+                properties.insert(
+                    "FirstSource".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.second_source {
+                properties.insert(
+                    "SecondSource".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-appendedcolumn.html
+    pub struct AppendedColumn_ {
+        pub column_name: crate::value::ExpString,
+        pub new_column_id: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_AppendedColumn {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.AppendedColumn"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_AppendedColumn as AppendedColumn;
+    impl crate::value::ToValue for AppendedColumn_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ColumnName".to_string(),
+                crate::value::ToValue::to_value(&self.column_name),
+            );
+            properties.insert(
+                "NewColumnId".to_string(),
+                crate::value::ToValue::to_value(&self.new_column_id),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-calculatedcolumn.html
     pub struct CalculatedColumn_ {
         pub column_id: crate::value::ExpString,
@@ -43557,7 +44433,7 @@ pub mod dataset {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-castcolumntypeoperation.html
     pub struct CastColumnTypeOperation_ {
-        pub column_name: Option<crate::value::ExpString>,
+        pub column_name: crate::value::ExpString,
         pub format: Option<crate::value::ExpString>,
         pub new_column_type: crate::value::ExpString,
         pub sub_type: Option<crate::value::ExpString>,
@@ -43574,12 +44450,10 @@ pub mod dataset {
     impl crate::value::ToValue for CastColumnTypeOperation_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.column_name {
-                properties.insert(
-                    "ColumnName".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "ColumnName".to_string(),
+                crate::value::ToValue::to_value(&self.column_name),
+            );
             if let Some(ref value) = self.format {
                 properties.insert("Format".to_string(), crate::value::ToValue::to_value(value));
             }
@@ -43596,25 +44470,36 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-columndescription.html
-    pub struct ColumnDescription_ {
-        pub text: Option<crate::value::ExpString>,
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-castcolumntypesoperation.html
+    pub struct CastColumnTypesOperation_ {
+        pub alias: crate::value::ExpString,
+        pub cast_column_type_operations: Vec<CastColumnTypeOperation_>,
+        pub source: Box<TransformOperationSource_>,
     }
     #[doc(hidden)]
     #[macro_export]
-    macro_rules! __aws_quicksight_DataSet_ColumnDescription {
+    macro_rules! __aws_quicksight_DataSet_CastColumnTypesOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.ColumnDescription"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.CastColumnTypesOperation"
             $($field $value)*)
         };
     }
-    pub use crate::__aws_quicksight_DataSet_ColumnDescription as ColumnDescription;
-    impl crate::value::ToValue for ColumnDescription_ {
+    pub use crate::__aws_quicksight_DataSet_CastColumnTypesOperation as CastColumnTypesOperation;
+    impl crate::value::ToValue for CastColumnTypesOperation_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.text {
-                properties.insert("Text".to_string(), crate::value::ToValue::to_value(value));
-            }
+            properties.insert(
+                "Alias".to_string(),
+                crate::value::ToValue::to_value(&self.alias),
+            );
+            properties.insert(
+                "CastColumnTypeOperations".to_string(),
+                crate::value::ToValue::to_value(&self.cast_column_type_operations),
+            );
+            properties.insert(
+                "Source".to_string(),
+                crate::value::ToValue::to_value(&self.source),
+            );
             properties.into()
         }
     }
@@ -43675,32 +44560,32 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-columntag.html
-    pub struct ColumnTag_ {
-        pub column_description: Option<Box<ColumnDescription_>>,
-        pub column_geographic_role: Option<crate::value::ExpString>,
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-columntounpivot.html
+    pub struct ColumnToUnpivot_ {
+        pub column_name: Option<crate::value::ExpString>,
+        pub new_value: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
-    macro_rules! __aws_quicksight_DataSet_ColumnTag {
+    macro_rules! __aws_quicksight_DataSet_ColumnToUnpivot {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.ColumnTag"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.ColumnToUnpivot"
             $($field $value)*)
         };
     }
-    pub use crate::__aws_quicksight_DataSet_ColumnTag as ColumnTag;
-    impl crate::value::ToValue for ColumnTag_ {
+    pub use crate::__aws_quicksight_DataSet_ColumnToUnpivot as ColumnToUnpivot;
+    impl crate::value::ToValue for ColumnToUnpivot_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.column_description {
+            if let Some(ref value) = self.column_name {
                 properties.insert(
-                    "ColumnDescription".to_string(),
+                    "ColumnName".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
-            if let Some(ref value) = self.column_geographic_role {
+            if let Some(ref value) = self.new_value {
                 properties.insert(
-                    "ColumnGeographicRole".to_string(),
+                    "NewValue".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -43709,7 +44594,9 @@ pub mod dataset {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-createcolumnsoperation.html
     pub struct CreateColumnsOperation_ {
-        pub columns: Option<Vec<CalculatedColumn_>>,
+        pub alias: Option<crate::value::ExpString>,
+        pub columns: Vec<CalculatedColumn_>,
+        pub source: Option<Box<TransformOperationSource_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -43723,18 +44610,22 @@ pub mod dataset {
     impl crate::value::ToValue for CreateColumnsOperation_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.columns {
-                properties.insert(
-                    "Columns".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
+            if let Some(ref value) = self.alias {
+                properties.insert("Alias".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.insert(
+                "Columns".to_string(),
+                crate::value::ToValue::to_value(&self.columns),
+            );
+            if let Some(ref value) = self.source {
+                properties.insert("Source".to_string(), crate::value::ToValue::to_value(value));
             }
             properties.into()
         }
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-customsql.html
     pub struct CustomSql_ {
-        pub columns: Option<Vec<InputColumn_>>,
+        pub columns: Vec<InputColumn_>,
         pub data_source_arn: crate::value::ExpString,
         pub name: crate::value::ExpString,
         pub sql_query: crate::value::ExpString,
@@ -43751,12 +44642,10 @@ pub mod dataset {
     impl crate::value::ToValue for CustomSql_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.columns {
-                properties.insert(
-                    "Columns".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "Columns".to_string(),
+                crate::value::ToValue::to_value(&self.columns),
+            );
             properties.insert(
                 "DataSourceArn".to_string(),
                 crate::value::ToValue::to_value(&self.data_source_arn),
@@ -43769,6 +44658,475 @@ pub mod dataset {
                 "SqlQuery".to_string(),
                 crate::value::ToValue::to_value(&self.sql_query),
             );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-dataprepaggregationfunction.html
+    pub struct DataPrepAggregationFunction_ {
+        pub list_aggregation: Option<Box<DataPrepListAggregationFunction_>>,
+        pub percentile_aggregation: Option<Box<DataPrepPercentileAggregationFunction_>>,
+        pub simple_aggregation: Option<Box<DataPrepSimpleAggregationFunction_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataPrepAggregationFunction {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataPrepAggregationFunction"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataPrepAggregationFunction as DataPrepAggregationFunction;
+    impl crate::value::ToValue for DataPrepAggregationFunction_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.list_aggregation {
+                properties.insert(
+                    "ListAggregation".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.percentile_aggregation {
+                properties.insert(
+                    "PercentileAggregation".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.simple_aggregation {
+                properties.insert(
+                    "SimpleAggregation".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-dataprepconfiguration.html
+    pub struct DataPrepConfiguration_ {
+        pub destination_table_map: std::collections::BTreeMap<String, DestinationTable_>,
+        pub source_table_map: std::collections::BTreeMap<String, SourceTable_>,
+        pub transform_step_map: std::collections::BTreeMap<String, TransformStep_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataPrepConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataPrepConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataPrepConfiguration as DataPrepConfiguration;
+    impl crate::value::ToValue for DataPrepConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "DestinationTableMap".to_string(),
+                crate::value::ToValue::to_value(&self.destination_table_map),
+            );
+            properties.insert(
+                "SourceTableMap".to_string(),
+                crate::value::ToValue::to_value(&self.source_table_map),
+            );
+            properties.insert(
+                "TransformStepMap".to_string(),
+                crate::value::ToValue::to_value(&self.transform_step_map),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datapreplistaggregationfunction.html
+    pub struct DataPrepListAggregationFunction_ {
+        pub distinct: crate::value::ExpBool,
+        pub input_column_name: Option<crate::value::ExpString>,
+        pub separator: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataPrepListAggregationFunction {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataPrepListAggregationFunction"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataPrepListAggregationFunction as DataPrepListAggregationFunction;
+    impl crate::value::ToValue for DataPrepListAggregationFunction_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Distinct".to_string(),
+                crate::value::ToValue::to_value(&self.distinct),
+            );
+            if let Some(ref value) = self.input_column_name {
+                properties.insert(
+                    "InputColumnName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Separator".to_string(),
+                crate::value::ToValue::to_value(&self.separator),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datapreppercentileaggregationfunction.html
+    pub struct DataPrepPercentileAggregationFunction_ {
+        pub input_column_name: Option<crate::value::ExpString>,
+        pub percentile_value: f64,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataPrepPercentileAggregationFunction {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataPrepPercentileAggregationFunction"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataPrepPercentileAggregationFunction as DataPrepPercentileAggregationFunction;
+    impl crate::value::ToValue for DataPrepPercentileAggregationFunction_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.input_column_name {
+                properties.insert(
+                    "InputColumnName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "PercentileValue".to_string(),
+                crate::value::ToValue::to_value(&self.percentile_value),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-dataprepsimpleaggregationfunction.html
+    pub struct DataPrepSimpleAggregationFunction_ {
+        pub function_type: crate::value::ExpString,
+        pub input_column_name: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataPrepSimpleAggregationFunction {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataPrepSimpleAggregationFunction"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataPrepSimpleAggregationFunction as DataPrepSimpleAggregationFunction;
+    impl crate::value::ToValue for DataPrepSimpleAggregationFunction_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "FunctionType".to_string(),
+                crate::value::ToValue::to_value(&self.function_type),
+            );
+            if let Some(ref value) = self.input_column_name {
+                properties.insert(
+                    "InputColumnName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetcolumnidmapping.html
+    pub struct DataSetColumnIdMapping_ {
+        pub source_column_id: crate::value::ExpString,
+        pub target_column_id: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataSetColumnIdMapping {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetColumnIdMapping"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataSetColumnIdMapping as DataSetColumnIdMapping;
+    impl crate::value::ToValue for DataSetColumnIdMapping_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "SourceColumnId".to_string(),
+                crate::value::ToValue::to_value(&self.source_column_id),
+            );
+            properties.insert(
+                "TargetColumnId".to_string(),
+                crate::value::ToValue::to_value(&self.target_column_id),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetdatecomparisonfiltercondition.html
+    pub struct DataSetDateComparisonFilterCondition_ {
+        pub operator: crate::value::ExpString,
+        pub value: Option<Box<DataSetDateFilterValue_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataSetDateComparisonFilterCondition {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetDateComparisonFilterCondition"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataSetDateComparisonFilterCondition as DataSetDateComparisonFilterCondition;
+    impl crate::value::ToValue for DataSetDateComparisonFilterCondition_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Operator".to_string(),
+                crate::value::ToValue::to_value(&self.operator),
+            );
+            if let Some(ref value) = self.value {
+                properties.insert("Value".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetdatefiltercondition.html
+    pub struct DataSetDateFilterCondition_ {
+        pub column_name: Option<crate::value::ExpString>,
+        pub comparison_filter_condition: Option<Box<DataSetDateComparisonFilterCondition_>>,
+        pub range_filter_condition: Option<Box<DataSetDateRangeFilterCondition_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataSetDateFilterCondition {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetDateFilterCondition"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataSetDateFilterCondition as DataSetDateFilterCondition;
+    impl crate::value::ToValue for DataSetDateFilterCondition_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.column_name {
+                properties.insert(
+                    "ColumnName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.comparison_filter_condition {
+                properties.insert(
+                    "ComparisonFilterCondition".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.range_filter_condition {
+                properties.insert(
+                    "RangeFilterCondition".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetdatefiltervalue.html
+    pub struct DataSetDateFilterValue_ {
+        pub static_value: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataSetDateFilterValue {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetDateFilterValue"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataSetDateFilterValue as DataSetDateFilterValue;
+    impl crate::value::ToValue for DataSetDateFilterValue_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.static_value {
+                properties.insert(
+                    "StaticValue".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetdaterangefiltercondition.html
+    pub struct DataSetDateRangeFilterCondition_ {
+        pub include_maximum: Option<crate::value::ExpBool>,
+        pub include_minimum: Option<crate::value::ExpBool>,
+        pub range_maximum: Option<Box<DataSetDateFilterValue_>>,
+        pub range_minimum: Option<Box<DataSetDateFilterValue_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataSetDateRangeFilterCondition {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetDateRangeFilterCondition"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataSetDateRangeFilterCondition as DataSetDateRangeFilterCondition;
+    impl crate::value::ToValue for DataSetDateRangeFilterCondition_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.include_maximum {
+                properties.insert(
+                    "IncludeMaximum".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.include_minimum {
+                properties.insert(
+                    "IncludeMinimum".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.range_maximum {
+                properties.insert(
+                    "RangeMaximum".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.range_minimum {
+                properties.insert(
+                    "RangeMinimum".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetnumericcomparisonfiltercondition.html
+    pub struct DataSetNumericComparisonFilterCondition_ {
+        pub operator: crate::value::ExpString,
+        pub value: Option<Box<DataSetNumericFilterValue_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataSetNumericComparisonFilterCondition {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetNumericComparisonFilterCondition"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataSetNumericComparisonFilterCondition as DataSetNumericComparisonFilterCondition;
+    impl crate::value::ToValue for DataSetNumericComparisonFilterCondition_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Operator".to_string(),
+                crate::value::ToValue::to_value(&self.operator),
+            );
+            if let Some(ref value) = self.value {
+                properties.insert("Value".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetnumericfiltercondition.html
+    pub struct DataSetNumericFilterCondition_ {
+        pub column_name: Option<crate::value::ExpString>,
+        pub comparison_filter_condition: Option<Box<DataSetNumericComparisonFilterCondition_>>,
+        pub range_filter_condition: Option<Box<DataSetNumericRangeFilterCondition_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataSetNumericFilterCondition {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetNumericFilterCondition"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataSetNumericFilterCondition as DataSetNumericFilterCondition;
+    impl crate::value::ToValue for DataSetNumericFilterCondition_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.column_name {
+                properties.insert(
+                    "ColumnName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.comparison_filter_condition {
+                properties.insert(
+                    "ComparisonFilterCondition".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.range_filter_condition {
+                properties.insert(
+                    "RangeFilterCondition".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetnumericfiltervalue.html
+    pub struct DataSetNumericFilterValue_ {
+        pub static_value: Option<f64>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataSetNumericFilterValue {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetNumericFilterValue"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataSetNumericFilterValue as DataSetNumericFilterValue;
+    impl crate::value::ToValue for DataSetNumericFilterValue_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.static_value {
+                properties.insert(
+                    "StaticValue".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetnumericrangefiltercondition.html
+    pub struct DataSetNumericRangeFilterCondition_ {
+        pub include_maximum: Option<crate::value::ExpBool>,
+        pub include_minimum: Option<crate::value::ExpBool>,
+        pub range_maximum: Option<Box<DataSetNumericFilterValue_>>,
+        pub range_minimum: Option<Box<DataSetNumericFilterValue_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataSetNumericRangeFilterCondition {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetNumericRangeFilterCondition"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataSetNumericRangeFilterCondition as DataSetNumericRangeFilterCondition;
+    impl crate::value::ToValue for DataSetNumericRangeFilterCondition_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.include_maximum {
+                properties.insert(
+                    "IncludeMaximum".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.include_minimum {
+                properties.insert(
+                    "IncludeMinimum".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.range_maximum {
+                properties.insert(
+                    "RangeMaximum".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.range_minimum {
+                properties.insert(
+                    "RangeMinimum".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -43798,6 +45156,149 @@ pub mod dataset {
             if let Some(ref value) = self.refresh_configuration {
                 properties.insert(
                     "RefreshConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringcomparisonfiltercondition.html
+    pub struct DataSetStringComparisonFilterCondition_ {
+        pub operator: crate::value::ExpString,
+        pub value: Option<Box<DataSetStringFilterValue_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataSetStringComparisonFilterCondition {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetStringComparisonFilterCondition"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataSetStringComparisonFilterCondition as DataSetStringComparisonFilterCondition;
+    impl crate::value::ToValue for DataSetStringComparisonFilterCondition_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Operator".to_string(),
+                crate::value::ToValue::to_value(&self.operator),
+            );
+            if let Some(ref value) = self.value {
+                properties.insert("Value".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringfiltercondition.html
+    pub struct DataSetStringFilterCondition_ {
+        pub column_name: Option<crate::value::ExpString>,
+        pub comparison_filter_condition: Option<Box<DataSetStringComparisonFilterCondition_>>,
+        pub list_filter_condition: Option<Box<DataSetStringListFilterCondition_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataSetStringFilterCondition {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetStringFilterCondition"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataSetStringFilterCondition as DataSetStringFilterCondition;
+    impl crate::value::ToValue for DataSetStringFilterCondition_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.column_name {
+                properties.insert(
+                    "ColumnName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.comparison_filter_condition {
+                properties.insert(
+                    "ComparisonFilterCondition".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.list_filter_condition {
+                properties.insert(
+                    "ListFilterCondition".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringfiltervalue.html
+    pub struct DataSetStringFilterValue_ {
+        pub static_value: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataSetStringFilterValue {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetStringFilterValue"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataSetStringFilterValue as DataSetStringFilterValue;
+    impl crate::value::ToValue for DataSetStringFilterValue_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.static_value {
+                properties.insert(
+                    "StaticValue".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringlistfiltercondition.html
+    pub struct DataSetStringListFilterCondition_ {
+        pub operator: crate::value::ExpString,
+        pub values: Option<Box<DataSetStringListFilterValue_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataSetStringListFilterCondition {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetStringListFilterCondition"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataSetStringListFilterCondition as DataSetStringListFilterCondition;
+    impl crate::value::ToValue for DataSetStringListFilterCondition_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Operator".to_string(),
+                crate::value::ToValue::to_value(&self.operator),
+            );
+            if let Some(ref value) = self.values {
+                properties.insert("Values".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-datasetstringlistfiltervalue.html
+    pub struct DataSetStringListFilterValue_ {
+        pub static_values: Option<Vec<crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DataSetStringListFilterValue {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DataSetStringListFilterValue"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DataSetStringListFilterValue as DataSetStringListFilterValue;
+    impl crate::value::ToValue for DataSetStringListFilterValue_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.static_values {
+                properties.insert(
+                    "StaticValues".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -44013,6 +45514,57 @@ pub mod dataset {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-destinationtable.html
+    pub struct DestinationTable_ {
+        pub alias: crate::value::ExpString,
+        pub source: Box<DestinationTableSource_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DestinationTable {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DestinationTable"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DestinationTable as DestinationTable;
+    impl crate::value::ToValue for DestinationTable_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Alias".to_string(),
+                crate::value::ToValue::to_value(&self.alias),
+            );
+            properties.insert(
+                "Source".to_string(),
+                crate::value::ToValue::to_value(&self.source),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-destinationtablesource.html
+    pub struct DestinationTableSource_ {
+        pub transform_operation_id: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_DestinationTableSource {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.DestinationTableSource"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_DestinationTableSource as DestinationTableSource;
+    impl crate::value::ToValue for DestinationTableSource_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "TransformOperationId".to_string(),
+                crate::value::ToValue::to_value(&self.transform_operation_id),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-fieldfolder.html
     pub struct FieldFolder_ {
         pub columns: Option<Vec<crate::value::ExpString>>,
@@ -44048,6 +45600,9 @@ pub mod dataset {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-filteroperation.html
     pub struct FilterOperation_ {
         pub condition_expression: Option<crate::value::ExpString>,
+        pub date_filter_condition: Option<Box<DataSetDateFilterCondition_>>,
+        pub numeric_filter_condition: Option<Box<DataSetNumericFilterCondition_>>,
+        pub string_filter_condition: Option<Box<DataSetStringFilterCondition_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -44067,6 +45622,57 @@ pub mod dataset {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.date_filter_condition {
+                properties.insert(
+                    "DateFilterCondition".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.numeric_filter_condition {
+                properties.insert(
+                    "NumericFilterCondition".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.string_filter_condition {
+                properties.insert(
+                    "StringFilterCondition".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-filtersoperation.html
+    pub struct FiltersOperation_ {
+        pub alias: crate::value::ExpString,
+        pub filter_operations: Vec<FilterOperation_>,
+        pub source: Box<TransformOperationSource_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_FiltersOperation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.FiltersOperation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_FiltersOperation as FiltersOperation;
+    impl crate::value::ToValue for FiltersOperation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Alias".to_string(),
+                crate::value::ToValue::to_value(&self.alias),
+            );
+            properties.insert(
+                "FilterOperations".to_string(),
+                crate::value::ToValue::to_value(&self.filter_operations),
+            );
+            properties.insert(
+                "Source".to_string(),
+                crate::value::ToValue::to_value(&self.source),
+            );
             properties.into()
         }
     }
@@ -44101,6 +45707,64 @@ pub mod dataset {
             properties.insert(
                 "Name".to_string(),
                 crate::value::ToValue::to_value(&self.name),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-importtableoperation.html
+    pub struct ImportTableOperation_ {
+        pub alias: crate::value::ExpString,
+        pub source: Box<ImportTableOperationSource_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_ImportTableOperation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.ImportTableOperation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_ImportTableOperation as ImportTableOperation;
+    impl crate::value::ToValue for ImportTableOperation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Alias".to_string(),
+                crate::value::ToValue::to_value(&self.alias),
+            );
+            properties.insert(
+                "Source".to_string(),
+                crate::value::ToValue::to_value(&self.source),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-importtableoperationsource.html
+    pub struct ImportTableOperationSource_ {
+        pub column_id_mappings: Option<Vec<DataSetColumnIdMapping_>>,
+        pub source_table_id: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_ImportTableOperationSource {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.ImportTableOperationSource"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_ImportTableOperationSource as ImportTableOperationSource;
+    impl crate::value::ToValue for ImportTableOperationSource_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.column_id_mappings {
+                properties.insert(
+                    "ColumnIdMappings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "SourceTableId".to_string(),
+                crate::value::ToValue::to_value(&self.source_table_id),
             );
             properties.into()
         }
@@ -44162,6 +45826,7 @@ pub mod dataset {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-inputcolumn.html
     pub struct InputColumn_ {
+        pub id: Option<crate::value::ExpString>,
         pub name: crate::value::ExpString,
         pub sub_type: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
@@ -44178,6 +45843,9 @@ pub mod dataset {
     impl crate::value::ToValue for InputColumn_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.id {
+                properties.insert("Id".to_string(), crate::value::ToValue::to_value(value));
+            }
             properties.insert(
                 "Name".to_string(),
                 crate::value::ToValue::to_value(&self.name),
@@ -44234,7 +45902,7 @@ pub mod dataset {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-integerdatasetparameterdefaultvalues.html
     pub struct IntegerDatasetParameterDefaultValues_ {
-        pub static_values: Option<Vec<f64>>,
+        pub static_values: Option<Vec<i64>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -44257,153 +45925,83 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-joininstruction.html
-    pub struct JoinInstruction_ {
-        pub left_join_key_properties: Option<Box<JoinKeyProperties_>>,
-        pub left_operand: crate::value::ExpString,
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-joinoperandproperties.html
+    pub struct JoinOperandProperties_ {
+        pub output_column_name_overrides: Vec<OutputColumnNameOverride_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_JoinOperandProperties {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.JoinOperandProperties"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_JoinOperandProperties as JoinOperandProperties;
+    impl crate::value::ToValue for JoinOperandProperties_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "OutputColumnNameOverrides".to_string(),
+                crate::value::ToValue::to_value(&self.output_column_name_overrides),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-joinoperation.html
+    pub struct JoinOperation_ {
+        pub alias: crate::value::ExpString,
+        pub left_operand: Box<TransformOperationSource_>,
+        pub left_operand_properties: Option<Box<JoinOperandProperties_>>,
         pub on_clause: crate::value::ExpString,
-        pub right_join_key_properties: Option<Box<JoinKeyProperties_>>,
-        pub right_operand: crate::value::ExpString,
+        pub right_operand: Box<TransformOperationSource_>,
+        pub right_operand_properties: Option<Box<JoinOperandProperties_>>,
         pub r#type: crate::value::ExpString,
     }
     #[doc(hidden)]
     #[macro_export]
-    macro_rules! __aws_quicksight_DataSet_JoinInstruction {
+    macro_rules! __aws_quicksight_DataSet_JoinOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.JoinInstruction"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.JoinOperation"
             $($field $value)*)
         };
     }
-    pub use crate::__aws_quicksight_DataSet_JoinInstruction as JoinInstruction;
-    impl crate::value::ToValue for JoinInstruction_ {
-        fn to_value(&self) -> serde_json::Value {
-            let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.left_join_key_properties {
-                properties.insert(
-                    "LeftJoinKeyProperties".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
-            properties.insert(
-                "LeftOperand".to_string(),
-                crate::value::ToValue::to_value(&self.left_operand),
-            );
-            properties.insert(
-                "OnClause".to_string(),
-                crate::value::ToValue::to_value(&self.on_clause),
-            );
-            if let Some(ref value) = self.right_join_key_properties {
-                properties.insert(
-                    "RightJoinKeyProperties".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
-            properties.insert(
-                "RightOperand".to_string(),
-                crate::value::ToValue::to_value(&self.right_operand),
-            );
-            properties.insert(
-                "Type".to_string(),
-                crate::value::ToValue::to_value(&self.r#type),
-            );
-            properties.into()
-        }
-    }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-joinkeyproperties.html
-    pub struct JoinKeyProperties_ {
-        pub unique_key: Option<crate::value::ExpBool>,
-    }
-    #[doc(hidden)]
-    #[macro_export]
-    macro_rules! __aws_quicksight_DataSet_JoinKeyProperties {
-        ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.JoinKeyProperties"
-            $($field $value)*)
-        };
-    }
-    pub use crate::__aws_quicksight_DataSet_JoinKeyProperties as JoinKeyProperties;
-    impl crate::value::ToValue for JoinKeyProperties_ {
-        fn to_value(&self) -> serde_json::Value {
-            let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.unique_key {
-                properties.insert(
-                    "UniqueKey".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
-            properties.into()
-        }
-    }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-logicaltable.html
-    pub struct LogicalTable_ {
-        pub alias: crate::value::ExpString,
-        pub data_transforms: Option<Vec<TransformOperation_>>,
-        pub source: Option<Box<LogicalTableSource_>>,
-    }
-    #[doc(hidden)]
-    #[macro_export]
-    macro_rules! __aws_quicksight_DataSet_LogicalTable {
-        ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.LogicalTable"
-            $($field $value)*)
-        };
-    }
-    pub use crate::__aws_quicksight_DataSet_LogicalTable as LogicalTable;
-    impl crate::value::ToValue for LogicalTable_ {
+    pub use crate::__aws_quicksight_DataSet_JoinOperation as JoinOperation;
+    impl crate::value::ToValue for JoinOperation_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
             properties.insert(
                 "Alias".to_string(),
                 crate::value::ToValue::to_value(&self.alias),
             );
-            if let Some(ref value) = self.data_transforms {
+            properties.insert(
+                "LeftOperand".to_string(),
+                crate::value::ToValue::to_value(&self.left_operand),
+            );
+            if let Some(ref value) = self.left_operand_properties {
                 properties.insert(
-                    "DataTransforms".to_string(),
+                    "LeftOperandProperties".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
-            if let Some(ref value) = self.source {
-                properties.insert("Source".to_string(), crate::value::ToValue::to_value(value));
-            }
-            properties.into()
-        }
-    }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-logicaltablesource.html
-    pub struct LogicalTableSource_ {
-        pub data_set_arn: Option<crate::value::ExpString>,
-        pub join_instruction: Option<Box<JoinInstruction_>>,
-        pub physical_table_id: Option<crate::value::ExpString>,
-    }
-    #[doc(hidden)]
-    #[macro_export]
-    macro_rules! __aws_quicksight_DataSet_LogicalTableSource {
-        ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.LogicalTableSource"
-            $($field $value)*)
-        };
-    }
-    pub use crate::__aws_quicksight_DataSet_LogicalTableSource as LogicalTableSource;
-    impl crate::value::ToValue for LogicalTableSource_ {
-        fn to_value(&self) -> serde_json::Value {
-            let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.data_set_arn {
+            properties.insert(
+                "OnClause".to_string(),
+                crate::value::ToValue::to_value(&self.on_clause),
+            );
+            properties.insert(
+                "RightOperand".to_string(),
+                crate::value::ToValue::to_value(&self.right_operand),
+            );
+            if let Some(ref value) = self.right_operand_properties {
                 properties.insert(
-                    "DataSetArn".to_string(),
+                    "RightOperandProperties".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
-            if let Some(ref value) = self.join_instruction {
-                properties.insert(
-                    "JoinInstruction".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
-            if let Some(ref value) = self.physical_table_id {
-                properties.insert(
-                    "PhysicalTableId".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "Type".to_string(),
+                crate::value::ToValue::to_value(&self.r#type),
+            );
             properties.into()
         }
     }
@@ -44440,55 +46038,10 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-newdefaultvalues.html
-    pub struct NewDefaultValues_ {
-        pub date_time_static_values: Option<Vec<crate::value::ExpString>>,
-        pub decimal_static_values: Option<Vec<f64>>,
-        pub integer_static_values: Option<Vec<f64>>,
-        pub string_static_values: Option<Vec<crate::value::ExpString>>,
-    }
-    #[doc(hidden)]
-    #[macro_export]
-    macro_rules! __aws_quicksight_DataSet_NewDefaultValues {
-        ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.NewDefaultValues"
-            $($field $value)*)
-        };
-    }
-    pub use crate::__aws_quicksight_DataSet_NewDefaultValues as NewDefaultValues;
-    impl crate::value::ToValue for NewDefaultValues_ {
-        fn to_value(&self) -> serde_json::Value {
-            let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.date_time_static_values {
-                properties.insert(
-                    "DateTimeStaticValues".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
-            if let Some(ref value) = self.decimal_static_values {
-                properties.insert(
-                    "DecimalStaticValues".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
-            if let Some(ref value) = self.integer_static_values {
-                properties.insert(
-                    "IntegerStaticValues".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
-            if let Some(ref value) = self.string_static_values {
-                properties.insert(
-                    "StringStaticValues".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
-            properties.into()
-        }
-    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-outputcolumn.html
     pub struct OutputColumn_ {
         pub description: Option<crate::value::ExpString>,
+        pub id: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
         pub sub_type: Option<crate::value::ExpString>,
         pub r#type: Option<crate::value::ExpString>,
@@ -44511,6 +46064,9 @@ pub mod dataset {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.id {
+                properties.insert("Id".to_string(), crate::value::ToValue::to_value(value));
+            }
             if let Some(ref value) = self.name {
                 properties.insert("Name".to_string(), crate::value::ToValue::to_value(value));
             }
@@ -44526,39 +46082,60 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-overridedatasetparameteroperation.html
-    pub struct OverrideDatasetParameterOperation_ {
-        pub new_default_values: Option<Box<NewDefaultValues_>>,
-        pub new_parameter_name: Option<crate::value::ExpString>,
-        pub parameter_name: crate::value::ExpString,
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-outputcolumnnameoverride.html
+    pub struct OutputColumnNameOverride_ {
+        pub output_column_name: crate::value::ExpString,
+        pub source_column_name: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
-    macro_rules! __aws_quicksight_DataSet_OverrideDatasetParameterOperation {
+    macro_rules! __aws_quicksight_DataSet_OutputColumnNameOverride {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.OverrideDatasetParameterOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.OutputColumnNameOverride"
             $($field $value)*)
         };
     }
-    pub use crate::__aws_quicksight_DataSet_OverrideDatasetParameterOperation as OverrideDatasetParameterOperation;
-    impl crate::value::ToValue for OverrideDatasetParameterOperation_ {
+    pub use crate::__aws_quicksight_DataSet_OutputColumnNameOverride as OutputColumnNameOverride;
+    impl crate::value::ToValue for OutputColumnNameOverride_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.new_default_values {
-                properties.insert(
-                    "NewDefaultValues".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
-            if let Some(ref value) = self.new_parameter_name {
-                properties.insert(
-                    "NewParameterName".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
             properties.insert(
-                "ParameterName".to_string(),
-                crate::value::ToValue::to_value(&self.parameter_name),
+                "OutputColumnName".to_string(),
+                crate::value::ToValue::to_value(&self.output_column_name),
+            );
+            if let Some(ref value) = self.source_column_name {
+                properties.insert(
+                    "SourceColumnName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-parentdataset.html
+    pub struct ParentDataSet_ {
+        pub data_set_arn: crate::value::ExpString,
+        pub input_columns: Vec<InputColumn_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_ParentDataSet {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.ParentDataSet"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_ParentDataSet as ParentDataSet;
+    impl crate::value::ToValue for ParentDataSet_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "DataSetArn".to_string(),
+                crate::value::ToValue::to_value(&self.data_set_arn),
+            );
+            properties.insert(
+                "InputColumns".to_string(),
+                crate::value::ToValue::to_value(&self.input_columns),
             );
             properties.into()
         }
@@ -44593,6 +46170,7 @@ pub mod dataset {
         pub custom_sql: Option<Box<CustomSql_>>,
         pub relational_table: Option<Box<RelationalTable_>>,
         pub s3_source: Option<Box<S3Source_>>,
+        pub saa_s_table: Option<Box<SaaSTable_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -44624,12 +46202,128 @@ pub mod dataset {
                     crate::value::ToValue::to_value(value),
                 );
             }
+            if let Some(ref value) = self.saa_s_table {
+                properties.insert(
+                    "SaaSTable".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-pivotconfiguration.html
+    pub struct PivotConfiguration_ {
+        pub label_column_name: Option<crate::value::ExpString>,
+        pub pivoted_labels: Vec<PivotedLabel_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_PivotConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.PivotConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_PivotConfiguration as PivotConfiguration;
+    impl crate::value::ToValue for PivotConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.label_column_name {
+                properties.insert(
+                    "LabelColumnName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "PivotedLabels".to_string(),
+                crate::value::ToValue::to_value(&self.pivoted_labels),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-pivotoperation.html
+    pub struct PivotOperation_ {
+        pub alias: crate::value::ExpString,
+        pub group_by_column_names: Option<Vec<crate::value::ExpString>>,
+        pub pivot_configuration: Box<PivotConfiguration_>,
+        pub source: Box<TransformOperationSource_>,
+        pub value_column_configuration: Box<ValueColumnConfiguration_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_PivotOperation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.PivotOperation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_PivotOperation as PivotOperation;
+    impl crate::value::ToValue for PivotOperation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Alias".to_string(),
+                crate::value::ToValue::to_value(&self.alias),
+            );
+            if let Some(ref value) = self.group_by_column_names {
+                properties.insert(
+                    "GroupByColumnNames".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "PivotConfiguration".to_string(),
+                crate::value::ToValue::to_value(&self.pivot_configuration),
+            );
+            properties.insert(
+                "Source".to_string(),
+                crate::value::ToValue::to_value(&self.source),
+            );
+            properties.insert(
+                "ValueColumnConfiguration".to_string(),
+                crate::value::ToValue::to_value(&self.value_column_configuration),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-pivotedlabel.html
+    pub struct PivotedLabel_ {
+        pub label_name: crate::value::ExpString,
+        pub new_column_id: crate::value::ExpString,
+        pub new_column_name: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_PivotedLabel {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.PivotedLabel"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_PivotedLabel as PivotedLabel;
+    impl crate::value::ToValue for PivotedLabel_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "LabelName".to_string(),
+                crate::value::ToValue::to_value(&self.label_name),
+            );
+            properties.insert(
+                "NewColumnId".to_string(),
+                crate::value::ToValue::to_value(&self.new_column_id),
+            );
+            properties.insert(
+                "NewColumnName".to_string(),
+                crate::value::ToValue::to_value(&self.new_column_name),
+            );
             properties.into()
         }
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-projectoperation.html
     pub struct ProjectOperation_ {
+        pub alias: Option<crate::value::ExpString>,
         pub projected_columns: Option<Vec<crate::value::ExpString>>,
+        pub source: Option<Box<TransformOperationSource_>>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -44643,11 +46337,17 @@ pub mod dataset {
     impl crate::value::ToValue for ProjectOperation_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.alias {
+                properties.insert("Alias".to_string(), crate::value::ToValue::to_value(value));
+            }
             if let Some(ref value) = self.projected_columns {
                 properties.insert(
                     "ProjectedColumns".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
+            }
+            if let Some(ref value) = self.source {
+                properties.insert("Source".to_string(), crate::value::ToValue::to_value(value));
             }
             properties.into()
         }
@@ -44729,7 +46429,7 @@ pub mod dataset {
     pub struct RelationalTable_ {
         pub catalog: Option<crate::value::ExpString>,
         pub data_source_arn: crate::value::ExpString,
-        pub input_columns: Option<Vec<InputColumn_>>,
+        pub input_columns: Vec<InputColumn_>,
         pub name: crate::value::ExpString,
         pub schema: Option<crate::value::ExpString>,
     }
@@ -44755,12 +46455,10 @@ pub mod dataset {
                 "DataSourceArn".to_string(),
                 crate::value::ToValue::to_value(&self.data_source_arn),
             );
-            if let Some(ref value) = self.input_columns {
-                properties.insert(
-                    "InputColumns".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "InputColumns".to_string(),
+                crate::value::ToValue::to_value(&self.input_columns),
+            );
             properties.insert(
                 "Name".to_string(),
                 crate::value::ToValue::to_value(&self.name),
@@ -44773,8 +46471,8 @@ pub mod dataset {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-renamecolumnoperation.html
     pub struct RenameColumnOperation_ {
-        pub column_name: Option<crate::value::ExpString>,
-        pub new_column_name: Option<crate::value::ExpString>,
+        pub column_name: crate::value::ExpString,
+        pub new_column_name: crate::value::ExpString,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -44788,18 +46486,47 @@ pub mod dataset {
     impl crate::value::ToValue for RenameColumnOperation_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.column_name {
-                properties.insert(
-                    "ColumnName".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
-            if let Some(ref value) = self.new_column_name {
-                properties.insert(
-                    "NewColumnName".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "ColumnName".to_string(),
+                crate::value::ToValue::to_value(&self.column_name),
+            );
+            properties.insert(
+                "NewColumnName".to_string(),
+                crate::value::ToValue::to_value(&self.new_column_name),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-renamecolumnsoperation.html
+    pub struct RenameColumnsOperation_ {
+        pub alias: crate::value::ExpString,
+        pub rename_column_operations: Vec<RenameColumnOperation_>,
+        pub source: Box<TransformOperationSource_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_RenameColumnsOperation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.RenameColumnsOperation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_RenameColumnsOperation as RenameColumnsOperation;
+    impl crate::value::ToValue for RenameColumnsOperation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Alias".to_string(),
+                crate::value::ToValue::to_value(&self.alias),
+            );
+            properties.insert(
+                "RenameColumnOperations".to_string(),
+                crate::value::ToValue::to_value(&self.rename_column_operations),
+            );
+            properties.insert(
+                "Source".to_string(),
+                crate::value::ToValue::to_value(&self.source),
+            );
             properties.into()
         }
     }
@@ -44828,6 +46555,38 @@ pub mod dataset {
                 "Principal".to_string(),
                 crate::value::ToValue::to_value(&self.principal),
             );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-rowlevelpermissionconfiguration.html
+    pub struct RowLevelPermissionConfiguration_ {
+        pub row_level_permission_data_set: Option<Box<RowLevelPermissionDataSet_>>,
+        pub tag_configuration: Option<Box<RowLevelPermissionTagConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_RowLevelPermissionConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.RowLevelPermissionConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_RowLevelPermissionConfiguration as RowLevelPermissionConfiguration;
+    impl crate::value::ToValue for RowLevelPermissionConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.row_level_permission_data_set {
+                properties.insert(
+                    "RowLevelPermissionDataSet".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.tag_configuration {
+                properties.insert(
+                    "TagConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -44913,7 +46672,7 @@ pub mod dataset {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-rowlevelpermissiontagrule.html
     pub struct RowLevelPermissionTagRule_ {
-        pub column_name: Option<crate::value::ExpString>,
+        pub column_name: crate::value::ExpString,
         pub match_all_value: Option<crate::value::ExpString>,
         pub tag_key: crate::value::ExpString,
         pub tag_multi_value_delimiter: Option<crate::value::ExpString>,
@@ -44930,12 +46689,10 @@ pub mod dataset {
     impl crate::value::ToValue for RowLevelPermissionTagRule_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.column_name {
-                properties.insert(
-                    "ColumnName".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "ColumnName".to_string(),
+                crate::value::ToValue::to_value(&self.column_name),
+            );
             if let Some(ref value) = self.match_all_value {
                 properties.insert(
                     "MatchAllValue".to_string(),
@@ -44958,7 +46715,7 @@ pub mod dataset {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-s3source.html
     pub struct S3Source_ {
         pub data_source_arn: crate::value::ExpString,
-        pub input_columns: Option<Vec<InputColumn_>>,
+        pub input_columns: Vec<InputColumn_>,
         pub upload_settings: Option<Box<UploadSettings_>>,
     }
     #[doc(hidden)]
@@ -44977,15 +46734,138 @@ pub mod dataset {
                 "DataSourceArn".to_string(),
                 crate::value::ToValue::to_value(&self.data_source_arn),
             );
-            if let Some(ref value) = self.input_columns {
-                properties.insert(
-                    "InputColumns".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "InputColumns".to_string(),
+                crate::value::ToValue::to_value(&self.input_columns),
+            );
             if let Some(ref value) = self.upload_settings {
                 properties.insert(
                     "UploadSettings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-saastable.html
+    pub struct SaaSTable_ {
+        pub data_source_arn: crate::value::ExpString,
+        pub input_columns: Vec<InputColumn_>,
+        pub table_path: Vec<TablePathElement_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_SaaSTable {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.SaaSTable"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_SaaSTable as SaaSTable;
+    impl crate::value::ToValue for SaaSTable_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "DataSourceArn".to_string(),
+                crate::value::ToValue::to_value(&self.data_source_arn),
+            );
+            properties.insert(
+                "InputColumns".to_string(),
+                crate::value::ToValue::to_value(&self.input_columns),
+            );
+            properties.insert(
+                "TablePath".to_string(),
+                crate::value::ToValue::to_value(&self.table_path),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-semanticmodelconfiguration.html
+    pub struct SemanticModelConfiguration_ {
+        pub table_map: Option<std::collections::BTreeMap<String, SemanticTable_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_SemanticModelConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.SemanticModelConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_SemanticModelConfiguration as SemanticModelConfiguration;
+    impl crate::value::ToValue for SemanticModelConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.table_map {
+                properties.insert(
+                    "TableMap".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-semantictable.html
+    pub struct SemanticTable_ {
+        pub alias: crate::value::ExpString,
+        pub destination_table_id: crate::value::ExpString,
+        pub row_level_permission_configuration: Option<Box<RowLevelPermissionConfiguration_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_SemanticTable {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.SemanticTable"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_SemanticTable as SemanticTable;
+    impl crate::value::ToValue for SemanticTable_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Alias".to_string(),
+                crate::value::ToValue::to_value(&self.alias),
+            );
+            properties.insert(
+                "DestinationTableId".to_string(),
+                crate::value::ToValue::to_value(&self.destination_table_id),
+            );
+            if let Some(ref value) = self.row_level_permission_configuration {
+                properties.insert(
+                    "RowLevelPermissionConfiguration".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-sourcetable.html
+    pub struct SourceTable_ {
+        pub data_set: Option<Box<ParentDataSet_>>,
+        pub physical_table_id: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_SourceTable {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.SourceTable"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_SourceTable as SourceTable;
+    impl crate::value::ToValue for SourceTable_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.data_set {
+                properties.insert(
+                    "DataSet".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.physical_table_id {
+                properties.insert(
+                    "PhysicalTableId".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -45054,102 +46934,151 @@ pub mod dataset {
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-tagcolumnoperation.html
-    pub struct TagColumnOperation_ {
-        pub column_name: crate::value::ExpString,
-        pub tags: Vec<ColumnTag_>,
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-tablepathelement.html
+    pub struct TablePathElement_ {
+        pub id: Option<crate::value::ExpString>,
+        pub name: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
-    macro_rules! __aws_quicksight_DataSet_TagColumnOperation {
+    macro_rules! __aws_quicksight_DataSet_TablePathElement {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.TagColumnOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.TablePathElement"
             $($field $value)*)
         };
     }
-    pub use crate::__aws_quicksight_DataSet_TagColumnOperation as TagColumnOperation;
-    impl crate::value::ToValue for TagColumnOperation_ {
+    pub use crate::__aws_quicksight_DataSet_TablePathElement as TablePathElement;
+    impl crate::value::ToValue for TablePathElement_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.id {
+                properties.insert("Id".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.name {
+                properties.insert("Name".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-transformoperationsource.html
+    pub struct TransformOperationSource_ {
+        pub column_id_mappings: Option<Vec<DataSetColumnIdMapping_>>,
+        pub transform_operation_id: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_TransformOperationSource {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.TransformOperationSource"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_TransformOperationSource as TransformOperationSource;
+    impl crate::value::ToValue for TransformOperationSource_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.column_id_mappings {
+                properties.insert(
+                    "ColumnIdMappings".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
-                "ColumnName".to_string(),
-                crate::value::ToValue::to_value(&self.column_name),
-            );
-            properties.insert(
-                "Tags".to_string(),
-                crate::value::ToValue::to_value(&self.tags),
+                "TransformOperationId".to_string(),
+                crate::value::ToValue::to_value(&self.transform_operation_id),
             );
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-transformoperation.html
-    pub struct TransformOperation_ {
-        pub cast_column_type_operation: Option<Box<CastColumnTypeOperation_>>,
-        pub create_columns_operation: Option<Box<CreateColumnsOperation_>>,
-        pub filter_operation: Option<Box<FilterOperation_>>,
-        pub override_dataset_parameter_operation: Option<Box<OverrideDatasetParameterOperation_>>,
-        pub project_operation: Option<Box<ProjectOperation_>>,
-        pub rename_column_operation: Option<Box<RenameColumnOperation_>>,
-        pub tag_column_operation: Option<Box<TagColumnOperation_>>,
-        pub untag_column_operation: Option<Box<UntagColumnOperation_>>,
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-transformstep.html
+    pub struct TransformStep_ {
+        pub aggregate_step: Option<Box<AggregateOperation_>>,
+        pub append_step: Option<Box<AppendOperation_>>,
+        pub cast_column_types_step: Option<Box<CastColumnTypesOperation_>>,
+        pub create_columns_step: Option<Box<CreateColumnsOperation_>>,
+        pub filters_step: Option<Box<FiltersOperation_>>,
+        pub import_table_step: Option<Box<ImportTableOperation_>>,
+        pub join_step: Option<Box<JoinOperation_>>,
+        pub pivot_step: Option<Box<PivotOperation_>>,
+        pub project_step: Option<Box<ProjectOperation_>>,
+        pub rename_columns_step: Option<Box<RenameColumnsOperation_>>,
+        pub unpivot_step: Option<Box<UnpivotOperation_>>,
     }
     #[doc(hidden)]
     #[macro_export]
-    macro_rules! __aws_quicksight_DataSet_TransformOperation {
+    macro_rules! __aws_quicksight_DataSet_TransformStep {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.TransformOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.TransformStep"
             $($field $value)*)
         };
     }
-    pub use crate::__aws_quicksight_DataSet_TransformOperation as TransformOperation;
-    impl crate::value::ToValue for TransformOperation_ {
+    pub use crate::__aws_quicksight_DataSet_TransformStep as TransformStep;
+    impl crate::value::ToValue for TransformStep_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.cast_column_type_operation {
+            if let Some(ref value) = self.aggregate_step {
                 properties.insert(
-                    "CastColumnTypeOperation".to_string(),
+                    "AggregateStep".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
-            if let Some(ref value) = self.create_columns_operation {
+            if let Some(ref value) = self.append_step {
                 properties.insert(
-                    "CreateColumnsOperation".to_string(),
+                    "AppendStep".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
-            if let Some(ref value) = self.filter_operation {
+            if let Some(ref value) = self.cast_column_types_step {
                 properties.insert(
-                    "FilterOperation".to_string(),
+                    "CastColumnTypesStep".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
-            if let Some(ref value) = self.override_dataset_parameter_operation {
+            if let Some(ref value) = self.create_columns_step {
                 properties.insert(
-                    "OverrideDatasetParameterOperation".to_string(),
+                    "CreateColumnsStep".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
-            if let Some(ref value) = self.project_operation {
+            if let Some(ref value) = self.filters_step {
                 properties.insert(
-                    "ProjectOperation".to_string(),
+                    "FiltersStep".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
-            if let Some(ref value) = self.rename_column_operation {
+            if let Some(ref value) = self.import_table_step {
                 properties.insert(
-                    "RenameColumnOperation".to_string(),
+                    "ImportTableStep".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
-            if let Some(ref value) = self.tag_column_operation {
+            if let Some(ref value) = self.join_step {
                 properties.insert(
-                    "TagColumnOperation".to_string(),
+                    "JoinStep".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
-            if let Some(ref value) = self.untag_column_operation {
+            if let Some(ref value) = self.pivot_step {
                 properties.insert(
-                    "UntagColumnOperation".to_string(),
+                    "PivotStep".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.project_step {
+                properties.insert(
+                    "ProjectStep".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.rename_columns_step {
+                properties.insert(
+                    "RenameColumnsStep".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.unpivot_step {
+                properties.insert(
+                    "UnpivotStep".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -45158,7 +47087,7 @@ pub mod dataset {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-uniquekey.html
     pub struct UniqueKey_ {
-        pub column_names: Option<Vec<crate::value::ExpString>>,
+        pub column_names: Vec<crate::value::ExpString>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -45172,39 +47101,62 @@ pub mod dataset {
     impl crate::value::ToValue for UniqueKey_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
-            if let Some(ref value) = self.column_names {
-                properties.insert(
-                    "ColumnNames".to_string(),
-                    crate::value::ToValue::to_value(value),
-                );
-            }
+            properties.insert(
+                "ColumnNames".to_string(),
+                crate::value::ToValue::to_value(&self.column_names),
+            );
             properties.into()
         }
     }
-    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-untagcolumnoperation.html
-    pub struct UntagColumnOperation_ {
-        pub column_name: crate::value::ExpString,
-        pub tag_names: Vec<crate::value::ExpString>,
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-unpivotoperation.html
+    pub struct UnpivotOperation_ {
+        pub alias: crate::value::ExpString,
+        pub columns_to_unpivot: Vec<ColumnToUnpivot_>,
+        pub source: Box<TransformOperationSource_>,
+        pub unpivoted_label_column_id: crate::value::ExpString,
+        pub unpivoted_label_column_name: crate::value::ExpString,
+        pub unpivoted_value_column_id: crate::value::ExpString,
+        pub unpivoted_value_column_name: crate::value::ExpString,
     }
     #[doc(hidden)]
     #[macro_export]
-    macro_rules! __aws_quicksight_DataSet_UntagColumnOperation {
+    macro_rules! __aws_quicksight_DataSet_UnpivotOperation {
         ($($field:ident : $value:expr),* $(,)?) => {
-            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.UntagColumnOperation"
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.UnpivotOperation"
             $($field $value)*)
         };
     }
-    pub use crate::__aws_quicksight_DataSet_UntagColumnOperation as UntagColumnOperation;
-    impl crate::value::ToValue for UntagColumnOperation_ {
+    pub use crate::__aws_quicksight_DataSet_UnpivotOperation as UnpivotOperation;
+    impl crate::value::ToValue for UnpivotOperation_ {
         fn to_value(&self) -> serde_json::Value {
             let mut properties = serde_json::Map::new();
             properties.insert(
-                "ColumnName".to_string(),
-                crate::value::ToValue::to_value(&self.column_name),
+                "Alias".to_string(),
+                crate::value::ToValue::to_value(&self.alias),
             );
             properties.insert(
-                "TagNames".to_string(),
-                crate::value::ToValue::to_value(&self.tag_names),
+                "ColumnsToUnpivot".to_string(),
+                crate::value::ToValue::to_value(&self.columns_to_unpivot),
+            );
+            properties.insert(
+                "Source".to_string(),
+                crate::value::ToValue::to_value(&self.source),
+            );
+            properties.insert(
+                "UnpivotedLabelColumnId".to_string(),
+                crate::value::ToValue::to_value(&self.unpivoted_label_column_id),
+            );
+            properties.insert(
+                "UnpivotedLabelColumnName".to_string(),
+                crate::value::ToValue::to_value(&self.unpivoted_label_column_name),
+            );
+            properties.insert(
+                "UnpivotedValueColumnId".to_string(),
+                crate::value::ToValue::to_value(&self.unpivoted_value_column_id),
+            );
+            properties.insert(
+                "UnpivotedValueColumnName".to_string(),
+                crate::value::ToValue::to_value(&self.unpivoted_value_column_name),
             );
             properties.into()
         }
@@ -45253,6 +47205,31 @@ pub mod dataset {
             if let Some(ref value) = self.text_qualifier {
                 properties.insert(
                     "TextQualifier".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-valuecolumnconfiguration.html
+    pub struct ValueColumnConfiguration_ {
+        pub aggregation_function: Option<Box<DataPrepAggregationFunction_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSet_ValueColumnConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSet.ValueColumnConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSet_ValueColumnConfiguration as ValueColumnConfiguration;
+    impl crate::value::ToValue for ValueColumnConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.aggregation_function {
+                properties.insert(
+                    "AggregationFunction".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -45451,6 +47428,7 @@ pub mod datasource {
     pub struct DataSourceCredentials_ {
         pub copy_source_arn: Option<crate::value::ExpString>,
         pub credential_pair: Option<Box<CredentialPair_>>,
+        pub key_pair_credentials: Option<Box<KeyPairCredentials_>>,
         pub secret_arn: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -45474,6 +47452,12 @@ pub mod datasource {
             if let Some(ref value) = self.credential_pair {
                 properties.insert(
                     "CredentialPair".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.key_pair_credentials {
+                properties.insert(
+                    "KeyPairCredentials".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -45725,6 +47709,41 @@ pub mod datasource {
             if let Some(ref value) = self.enable_identity_propagation {
                 properties.insert(
                     "EnableIdentityPropagation".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-keypaircredentials.html
+    pub struct KeyPairCredentials_ {
+        pub key_pair_username: crate::value::ExpString,
+        pub private_key: crate::value::ExpString,
+        pub private_key_passphrase: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_quicksight_DataSource_KeyPairCredentials {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::QuickSight::DataSource.KeyPairCredentials"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_quicksight_DataSource_KeyPairCredentials as KeyPairCredentials;
+    impl crate::value::ToValue for KeyPairCredentials_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "KeyPairUsername".to_string(),
+                crate::value::ToValue::to_value(&self.key_pair_username),
+            );
+            properties.insert(
+                "PrivateKey".to_string(),
+                crate::value::ToValue::to_value(&self.private_key),
+            );
+            if let Some(ref value) = self.private_key_passphrase {
+                properties.insert(
+                    "PrivateKeyPassphrase".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -68739,6 +70758,84 @@ pub mod vpcconnection {
         }
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-actionconnector.html
+pub struct ActionConnector_ {
+    pub action_connector_id: crate::value::ExpString,
+    pub authentication_config: Option<super::quicksight::actionconnector::AuthConfig_>,
+    pub aws_account_id: crate::value::ExpString,
+    pub description: Option<crate::value::ExpString>,
+    pub name: crate::value::ExpString,
+    pub permissions: Option<Vec<super::quicksight::actionconnector::ResourcePermission_>>,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub r#type: crate::value::ExpString,
+    pub vpc_connection_arn: Option<crate::value::ExpString>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_quicksight_ActionConnector {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::QuickSight::ActionConnector"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_quicksight_ActionConnector as ActionConnector;
+impl crate::template::ToResource for ActionConnector_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("QuickSight"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("ActionConnector"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "ActionConnectorId".to_string(),
+            crate::value::ToValue::to_value(&self.action_connector_id),
+        );
+        if let Some(ref value) = self.authentication_config {
+            properties.insert(
+                "AuthenticationConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "AwsAccountId".to_string(),
+            crate::value::ToValue::to_value(&self.aws_account_id),
+        );
+        if let Some(ref value) = self.description {
+            properties.insert(
+                "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "Name".to_string(),
+            crate::value::ToValue::to_value(&self.name),
+        );
+        if let Some(ref value) = self.permissions {
+            properties.insert(
+                "Permissions".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "Type".to_string(),
+            crate::value::ToValue::to_value(&self.r#type),
+        );
+        if let Some(ref value) = self.vpc_connection_arn {
+            properties.insert(
+                "VpcConnectionArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-analysis.html
 pub struct Analysis_ {
     pub analysis_id: crate::value::ExpString,
@@ -69020,6 +71117,7 @@ pub struct DataSet_ {
     pub column_groups: Option<Vec<super::quicksight::dataset::ColumnGroup_>>,
     pub column_level_permission_rules:
         Option<Vec<super::quicksight::dataset::ColumnLevelPermissionRule_>>,
+    pub data_prep_configuration: Option<super::quicksight::dataset::DataPrepConfiguration_>,
     pub data_set_id: Option<crate::value::ExpString>,
     pub data_set_refresh_properties: Option<super::quicksight::dataset::DataSetRefreshProperties_>,
     pub data_set_usage_configuration:
@@ -69030,17 +71128,13 @@ pub struct DataSet_ {
     pub folder_arns: Option<Vec<crate::value::ExpString>>,
     pub import_mode: Option<crate::value::ExpString>,
     pub ingestion_wait_policy: Option<super::quicksight::dataset::IngestionWaitPolicy_>,
-    pub logical_table_map:
-        Option<std::collections::BTreeMap<String, super::quicksight::dataset::LogicalTable_>>,
     pub name: Option<crate::value::ExpString>,
     pub performance_configuration: Option<super::quicksight::dataset::PerformanceConfiguration_>,
     pub permissions: Option<Vec<super::quicksight::dataset::ResourcePermission_>>,
     pub physical_table_map:
         Option<std::collections::BTreeMap<String, super::quicksight::dataset::PhysicalTable_>>,
-    pub row_level_permission_data_set:
-        Option<super::quicksight::dataset::RowLevelPermissionDataSet_>,
-    pub row_level_permission_tag_configuration:
-        Option<super::quicksight::dataset::RowLevelPermissionTagConfiguration_>,
+    pub semantic_model_configuration:
+        Option<super::quicksight::dataset::SemanticModelConfiguration_>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub use_as: Option<crate::value::ExpString>,
 }
@@ -69079,6 +71173,12 @@ impl crate::template::ToResource for DataSet_ {
         if let Some(ref value) = self.column_level_permission_rules {
             properties.insert(
                 "ColumnLevelPermissionRules".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.data_prep_configuration {
+            properties.insert(
+                "DataPrepConfiguration".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }
@@ -69130,12 +71230,6 @@ impl crate::template::ToResource for DataSet_ {
                 crate::value::ToValue::to_value(value),
             );
         }
-        if let Some(ref value) = self.logical_table_map {
-            properties.insert(
-                "LogicalTableMap".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
         if let Some(ref value) = self.name {
             properties.insert("Name".to_string(), crate::value::ToValue::to_value(value));
         }
@@ -69157,15 +71251,9 @@ impl crate::template::ToResource for DataSet_ {
                 crate::value::ToValue::to_value(value),
             );
         }
-        if let Some(ref value) = self.row_level_permission_data_set {
+        if let Some(ref value) = self.semantic_model_configuration {
             properties.insert(
-                "RowLevelPermissionDataSet".to_string(),
-                crate::value::ToValue::to_value(value),
-            );
-        }
-        if let Some(ref value) = self.row_level_permission_tag_configuration {
-            properties.insert(
-                "RowLevelPermissionTagConfiguration".to_string(),
+                "SemanticModelConfiguration".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

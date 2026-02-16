@@ -68,7 +68,7 @@ pub mod channel {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-channel-retentionperiod.html
     pub struct RetentionPeriod_ {
-        pub number_of_days: Option<i64>,
+        pub number_of_days: Option<i32>,
         pub unlimited: Option<crate::value::ExpBool>,
     }
     #[doc(hidden)]
@@ -264,7 +264,7 @@ pub mod dataset {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-deltatime.html
     pub struct DeltaTime_ {
-        pub offset_seconds: i64,
+        pub offset_seconds: i32,
         pub time_expression: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -292,7 +292,7 @@ pub mod dataset {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-deltatimesessionwindowconfiguration.html
     pub struct DeltaTimeSessionWindowConfiguration_ {
-        pub timeout_in_minutes: i64,
+        pub timeout_in_minutes: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -506,7 +506,7 @@ pub mod dataset {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-resourceconfiguration.html
     pub struct ResourceConfiguration_ {
         pub compute_type: crate::value::ExpString,
-        pub volume_size_in_gb: i64,
+        pub volume_size_in_gb: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -533,7 +533,7 @@ pub mod dataset {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-retentionperiod.html
     pub struct RetentionPeriod_ {
-        pub number_of_days: Option<i64>,
+        pub number_of_days: Option<i32>,
         pub unlimited: Option<crate::value::ExpBool>,
     }
     #[doc(hidden)]
@@ -734,7 +734,7 @@ pub mod dataset {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-versioningconfiguration.html
     pub struct VersioningConfiguration_ {
-        pub max_versions: Option<i64>,
+        pub max_versions: Option<i32>,
         pub unlimited: Option<crate::value::ExpBool>,
     }
     #[doc(hidden)]
@@ -1062,7 +1062,7 @@ pub mod datastore {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-retentionperiod.html
     pub struct RetentionPeriod_ {
-        pub number_of_days: Option<i64>,
+        pub number_of_days: Option<i32>,
         pub unlimited: Option<crate::value::ExpBool>,
     }
     #[doc(hidden)]
@@ -1438,7 +1438,7 @@ pub mod pipeline {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-lambda.html
     pub struct Lambda_ {
-        pub batch_size: i64,
+        pub batch_size: i32,
         pub lambda_name: crate::value::ExpString,
         pub name: crate::value::ExpString,
         pub next: Option<crate::value::ExpString>,

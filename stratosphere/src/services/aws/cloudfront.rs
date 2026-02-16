@@ -4,7 +4,9 @@ pub mod anycastiplist {
         pub anycast_ips: Vec<crate::value::ExpString>,
         pub arn: crate::value::ExpString,
         pub id: crate::value::ExpString,
-        pub ip_count: i64,
+        pub ip_address_type: Option<crate::value::ExpString>,
+        pub ip_count: i32,
+        pub ipam_cidr_config_results: Option<Vec<IpamCidrConfigResult_>>,
         pub last_modified_time: crate::value::ExpString,
         pub name: crate::value::ExpString,
         pub status: crate::value::ExpString,
@@ -30,10 +32,22 @@ pub mod anycastiplist {
                 crate::value::ToValue::to_value(&self.arn),
             );
             properties.insert("Id".to_string(), crate::value::ToValue::to_value(&self.id));
+            if let Some(ref value) = self.ip_address_type {
+                properties.insert(
+                    "IpAddressType".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "IpCount".to_string(),
                 crate::value::ToValue::to_value(&self.ip_count),
             );
+            if let Some(ref value) = self.ipam_cidr_config_results {
+                properties.insert(
+                    "IpamCidrConfigResults".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.insert(
                 "LastModifiedTime".to_string(),
                 crate::value::ToValue::to_value(&self.last_modified_time),
@@ -46,6 +60,74 @@ pub mod anycastiplist {
                 "Status".to_string(),
                 crate::value::ToValue::to_value(&self.status),
             );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-anycastiplist-ipamcidrconfig.html
+    pub struct IpamCidrConfig_ {
+        pub cidr: crate::value::ExpString,
+        pub ipam_pool_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cloudfront_AnycastIpList_IpamCidrConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::AnycastIpList.IpamCidrConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cloudfront_AnycastIpList_IpamCidrConfig as IpamCidrConfig;
+    impl crate::value::ToValue for IpamCidrConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Cidr".to_string(),
+                crate::value::ToValue::to_value(&self.cidr),
+            );
+            properties.insert(
+                "IpamPoolArn".to_string(),
+                crate::value::ToValue::to_value(&self.ipam_pool_arn),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-anycastiplist-ipamcidrconfigresult.html
+    pub struct IpamCidrConfigResult_ {
+        pub anycast_ip: Option<crate::value::ExpString>,
+        pub cidr: Option<crate::value::ExpString>,
+        pub ipam_pool_arn: Option<crate::value::ExpString>,
+        pub status: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cloudfront_AnycastIpList_IpamCidrConfigResult {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::AnycastIpList.IpamCidrConfigResult"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cloudfront_AnycastIpList_IpamCidrConfigResult as IpamCidrConfigResult;
+    impl crate::value::ToValue for IpamCidrConfigResult_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.anycast_ip {
+                properties.insert(
+                    "AnycastIp".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.cidr {
+                properties.insert("Cidr".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.ipam_pool_arn {
+                properties.insert(
+                    "IpamPoolArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.status {
+                properties.insert("Status".to_string(), crate::value::ToValue::to_value(value));
+            }
             properties.into()
         }
     }
@@ -287,6 +369,66 @@ pub mod cloudfrontoriginaccessidentity {
         }
     }
 }
+pub mod connectionfunction {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-connectionfunction-connectionfunctionconfig.html
+    pub struct ConnectionFunctionConfig_ {
+        pub comment: crate::value::ExpString,
+        pub key_value_store_associations: Option<Vec<KeyValueStoreAssociation_>>,
+        pub runtime: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cloudfront_ConnectionFunction_ConnectionFunctionConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ConnectionFunction.ConnectionFunctionConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cloudfront_ConnectionFunction_ConnectionFunctionConfig as ConnectionFunctionConfig;
+    impl crate::value::ToValue for ConnectionFunctionConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Comment".to_string(),
+                crate::value::ToValue::to_value(&self.comment),
+            );
+            if let Some(ref value) = self.key_value_store_associations {
+                properties.insert(
+                    "KeyValueStoreAssociations".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "Runtime".to_string(),
+                crate::value::ToValue::to_value(&self.runtime),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-connectionfunction-keyvaluestoreassociation.html
+    pub struct KeyValueStoreAssociation_ {
+        pub key_value_store_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cloudfront_ConnectionFunction_KeyValueStoreAssociation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::ConnectionFunction.KeyValueStoreAssociation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cloudfront_ConnectionFunction_KeyValueStoreAssociation as KeyValueStoreAssociation;
+    impl crate::value::ToValue for KeyValueStoreAssociation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "KeyValueStoreARN".to_string(),
+                crate::value::ToValue::to_value(&self.key_value_store_arn),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod continuousdeploymentpolicy {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-continuousdeploymentpolicyconfig.html
     pub struct ContinuousDeploymentPolicyConfig_ {
@@ -343,8 +485,8 @@ pub mod continuousdeploymentpolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-continuousdeploymentpolicy-sessionstickinessconfig.html
     pub struct SessionStickinessConfig_ {
-        pub idle_ttl: i64,
-        pub maximum_ttl: i64,
+        pub idle_ttl: i32,
+        pub maximum_ttl: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -677,6 +819,26 @@ pub mod distribution {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-connectionfunctionassociation.html
+    pub struct ConnectionFunctionAssociation_ {
+        pub id: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cloudfront_Distribution_ConnectionFunctionAssociation {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.ConnectionFunctionAssociation"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cloudfront_Distribution_ConnectionFunctionAssociation as ConnectionFunctionAssociation;
+    impl crate::value::ToValue for ConnectionFunctionAssociation_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert("Id".to_string(), crate::value::ToValue::to_value(&self.id));
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cookies.html
     pub struct Cookies_ {
         pub forward: crate::value::ExpString,
@@ -710,8 +872,8 @@ pub mod distribution {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customerrorresponse.html
     pub struct CustomErrorResponse_ {
         pub error_caching_min_ttl: Option<f64>,
-        pub error_code: i64,
-        pub response_code: Option<i64>,
+        pub error_code: i32,
+        pub response_code: Option<i32>,
         pub response_page_path: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -753,12 +915,13 @@ pub mod distribution {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html
     pub struct CustomOriginConfig_ {
-        pub http_port: Option<i64>,
-        pub https_port: Option<i64>,
+        pub http_port: Option<i32>,
+        pub https_port: Option<i32>,
         pub ip_address_type: Option<crate::value::ExpString>,
-        pub origin_keepalive_timeout: Option<i64>,
+        pub origin_keepalive_timeout: Option<i32>,
+        pub origin_mtls_config: Option<Box<OriginMtlsConfig_>>,
         pub origin_protocol_policy: crate::value::ExpString,
-        pub origin_read_timeout: Option<i64>,
+        pub origin_read_timeout: Option<i32>,
         pub origin_ssl_protocols: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
@@ -794,6 +957,12 @@ pub mod distribution {
             if let Some(ref value) = self.origin_keepalive_timeout {
                 properties.insert(
                     "OriginKeepaliveTimeout".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.origin_mtls_config {
+                properties.insert(
+                    "OriginMtlsConfig".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -996,6 +1165,7 @@ pub mod distribution {
         pub cnam_es: Option<Vec<crate::value::ExpString>>,
         pub cache_behaviors: Option<Vec<CacheBehavior_>>,
         pub comment: Option<crate::value::ExpString>,
+        pub connection_function_association: Option<Box<ConnectionFunctionAssociation_>>,
         pub connection_mode: Option<crate::value::ExpString>,
         pub continuous_deployment_policy_id: Option<crate::value::ExpString>,
         pub custom_error_responses: Option<Vec<CustomErrorResponse_>>,
@@ -1014,6 +1184,7 @@ pub mod distribution {
         pub staging: Option<crate::value::ExpBool>,
         pub tenant_config: Option<Box<TenantConfig_>>,
         pub viewer_certificate: Option<Box<ViewerCertificate_>>,
+        pub viewer_mtls_config: Option<Box<ViewerMtlsConfig_>>,
         pub web_acl_id: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -1052,6 +1223,12 @@ pub mod distribution {
             if let Some(ref value) = self.comment {
                 properties.insert(
                     "Comment".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.connection_function_association {
+                properties.insert(
+                    "ConnectionFunctionAssociation".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -1156,6 +1333,12 @@ pub mod distribution {
             if let Some(ref value) = self.viewer_certificate {
                 properties.insert(
                     "ViewerCertificate".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.viewer_mtls_config {
+                properties.insert(
+                    "ViewerMtlsConfig".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -1339,8 +1522,8 @@ pub mod distribution {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html
     pub struct LegacyCustomOrigin_ {
         pub dns_name: crate::value::ExpString,
-        pub http_port: Option<i64>,
-        pub https_port: Option<i64>,
+        pub http_port: Option<i32>,
+        pub https_port: Option<i32>,
         pub origin_protocol_policy: crate::value::ExpString,
         pub origin_ssl_protocols: Vec<crate::value::ExpString>,
     }
@@ -1448,8 +1631,8 @@ pub mod distribution {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html
     pub struct Origin_ {
-        pub connection_attempts: Option<i64>,
-        pub connection_timeout: Option<i64>,
+        pub connection_attempts: Option<i32>,
+        pub connection_timeout: Option<i32>,
         pub custom_origin_config: Option<Box<CustomOriginConfig_>>,
         pub domain_name: crate::value::ExpString,
         pub id: crate::value::ExpString,
@@ -1457,7 +1640,7 @@ pub mod distribution {
         pub origin_custom_headers: Option<Vec<OriginCustomHeader_>>,
         pub origin_path: Option<crate::value::ExpString>,
         pub origin_shield: Option<Box<OriginShield_>>,
-        pub response_completion_timeout: Option<i64>,
+        pub response_completion_timeout: Option<i32>,
         pub s3_origin_config: Option<Box<S3OriginConfig_>>,
         pub vpc_origin_config: Option<Box<VpcOriginConfig_>>,
     }
@@ -1655,7 +1838,7 @@ pub mod distribution {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupmembers.html
     pub struct OriginGroupMembers_ {
         pub items: Vec<OriginGroupMember_>,
-        pub quantity: i64,
+        pub quantity: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1683,7 +1866,7 @@ pub mod distribution {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroups.html
     pub struct OriginGroups_ {
         pub items: Option<Vec<OriginGroup_>>,
-        pub quantity: i64,
+        pub quantity: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1703,6 +1886,29 @@ pub mod distribution {
             properties.insert(
                 "Quantity".to_string(),
                 crate::value::ToValue::to_value(&self.quantity),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-originmtlsconfig.html
+    pub struct OriginMtlsConfig_ {
+        pub client_certificate_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cloudfront_Distribution_OriginMtlsConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.OriginMtlsConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cloudfront_Distribution_OriginMtlsConfig as OriginMtlsConfig;
+    impl crate::value::ToValue for OriginMtlsConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "ClientCertificateArn".to_string(),
+                crate::value::ToValue::to_value(&self.client_certificate_arn),
             );
             properties.into()
         }
@@ -1793,7 +1999,7 @@ pub mod distribution {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-s3originconfig.html
     pub struct S3OriginConfig_ {
         pub origin_access_identity: Option<crate::value::ExpString>,
-        pub origin_read_timeout: Option<i64>,
+        pub origin_read_timeout: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1824,8 +2030,8 @@ pub mod distribution {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-statuscodes.html
     pub struct StatusCodes_ {
-        pub items: Vec<i64>,
-        pub quantity: i64,
+        pub items: Vec<i32>,
+        pub quantity: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1912,6 +2118,43 @@ pub mod distribution {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-truststoreconfig.html
+    pub struct TrustStoreConfig_ {
+        pub advertise_trust_store_ca_names: Option<crate::value::ExpBool>,
+        pub ignore_certificate_expiry: Option<crate::value::ExpBool>,
+        pub trust_store_id: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cloudfront_Distribution_TrustStoreConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.TrustStoreConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cloudfront_Distribution_TrustStoreConfig as TrustStoreConfig;
+    impl crate::value::ToValue for TrustStoreConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.advertise_trust_store_ca_names {
+                properties.insert(
+                    "AdvertiseTrustStoreCaNames".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.ignore_certificate_expiry {
+                properties.insert(
+                    "IgnoreCertificateExpiry".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.insert(
+                "TrustStoreId".to_string(),
+                crate::value::ToValue::to_value(&self.trust_store_id),
+            );
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html
     pub struct ViewerCertificate_ {
         pub acm_certificate_arn: Option<crate::value::ExpString>,
@@ -1965,10 +2208,40 @@ pub mod distribution {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewermtlsconfig.html
+    pub struct ViewerMtlsConfig_ {
+        pub mode: Option<crate::value::ExpString>,
+        pub trust_store_config: Option<Box<TrustStoreConfig_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cloudfront_Distribution_ViewerMtlsConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::Distribution.ViewerMtlsConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cloudfront_Distribution_ViewerMtlsConfig as ViewerMtlsConfig;
+    impl crate::value::ToValue for ViewerMtlsConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.mode {
+                properties.insert("Mode".to_string(), crate::value::ToValue::to_value(value));
+            }
+            if let Some(ref value) = self.trust_store_config {
+                properties.insert(
+                    "TrustStoreConfig".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-vpcoriginconfig.html
     pub struct VpcOriginConfig_ {
-        pub origin_keepalive_timeout: Option<i64>,
-        pub origin_read_timeout: Option<i64>,
+        pub origin_keepalive_timeout: Option<i32>,
+        pub origin_read_timeout: Option<i32>,
+        pub owner_account_id: Option<crate::value::ExpString>,
         pub vpc_origin_id: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -1992,6 +2265,12 @@ pub mod distribution {
             if let Some(ref value) = self.origin_read_timeout {
                 properties.insert(
                     "OriginReadTimeout".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.owner_account_id {
+                properties.insert(
+                    "OwnerAccountId".to_string(),
                     crate::value::ToValue::to_value(value),
                 );
             }
@@ -2849,7 +3128,7 @@ pub mod responseheaderspolicy {
         pub access_control_allow_methods: Box<AccessControlAllowMethods_>,
         pub access_control_allow_origins: Box<AccessControlAllowOrigins_>,
         pub access_control_expose_headers: Option<Box<AccessControlExposeHeaders_>>,
-        pub access_control_max_age_sec: Option<i64>,
+        pub access_control_max_age_sec: Option<i32>,
         pub origin_override: crate::value::ExpBool,
     }
     #[doc(hidden)]
@@ -3214,7 +3493,7 @@ pub mod responseheaderspolicy {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-stricttransportsecurity.html
     pub struct StrictTransportSecurity_ {
-        pub access_control_max_age_sec: i64,
+        pub access_control_max_age_sec: i32,
         pub include_subdomains: Option<crate::value::ExpBool>,
         pub r#override: crate::value::ExpBool,
         pub preload: Option<crate::value::ExpBool>,
@@ -3449,12 +3728,77 @@ pub mod streamingdistribution {
         }
     }
 }
+pub mod truststore {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-truststore-cacertificatesbundles3location.html
+    pub struct CaCertificatesBundleS3Location_ {
+        pub bucket: crate::value::ExpString,
+        pub key: crate::value::ExpString,
+        pub region: crate::value::ExpString,
+        pub version: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cloudfront_TrustStore_CaCertificatesBundleS3Location {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::TrustStore.CaCertificatesBundleS3Location"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cloudfront_TrustStore_CaCertificatesBundleS3Location as CaCertificatesBundleS3Location;
+    impl crate::value::ToValue for CaCertificatesBundleS3Location_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Bucket".to_string(),
+                crate::value::ToValue::to_value(&self.bucket),
+            );
+            properties.insert(
+                "Key".to_string(),
+                crate::value::ToValue::to_value(&self.key),
+            );
+            properties.insert(
+                "Region".to_string(),
+                crate::value::ToValue::to_value(&self.region),
+            );
+            if let Some(ref value) = self.version {
+                properties.insert(
+                    "Version".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-truststore-cacertificatesbundlesource.html
+    pub struct CaCertificatesBundleSource_ {
+        pub ca_certificates_bundle_s3_location: Box<CaCertificatesBundleS3Location_>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_cloudfront_TrustStore_CaCertificatesBundleSource {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CloudFront::TrustStore.CaCertificatesBundleSource"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_cloudfront_TrustStore_CaCertificatesBundleSource as CaCertificatesBundleSource;
+    impl crate::value::ToValue for CaCertificatesBundleSource_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "CaCertificatesBundleS3Location".to_string(),
+                crate::value::ToValue::to_value(&self.ca_certificates_bundle_s3_location),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod vpcorigin {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-vpcorigin-vpcoriginendpointconfig.html
     pub struct VpcOriginEndpointConfig_ {
         pub arn: crate::value::ExpString,
-        pub http_port: Option<i64>,
-        pub https_port: Option<i64>,
+        pub http_port: Option<i32>,
+        pub https_port: Option<i32>,
         pub name: crate::value::ExpString,
         pub origin_protocol_policy: Option<crate::value::ExpString>,
         pub origin_ssl_protocols: Option<Vec<crate::value::ExpString>>,
@@ -3509,7 +3853,9 @@ pub mod vpcorigin {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-anycastiplist.html
 pub struct AnycastIpList_ {
-    pub ip_count: i64,
+    pub ip_address_type: Option<crate::value::ExpString>,
+    pub ip_count: i32,
+    pub ipam_cidr_configs: Option<Vec<super::cloudfront::anycastiplist::IpamCidrConfig_>>,
     pub name: crate::value::ExpString,
     pub tags: Option<super::cloudfront::anycastiplist::Tags_>,
 }
@@ -3533,10 +3879,22 @@ impl crate::template::ToResource for AnycastIpList_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.ip_address_type {
+            properties.insert(
+                "IpAddressType".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "IpCount".to_string(),
             crate::value::ToValue::to_value(&self.ip_count),
         );
+        if let Some(ref value) = self.ipam_cidr_configs {
+            properties.insert(
+                "IpamCidrConfigs".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "Name".to_string(),
             crate::value::ToValue::to_value(&self.name),
@@ -3609,6 +3967,59 @@ impl crate::template::ToResource for CloudFrontOriginAccessIdentity_ {
             "CloudFrontOriginAccessIdentityConfig".to_string(),
             crate::value::ToValue::to_value(&self.cloud_front_origin_access_identity_config),
         );
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-connectionfunction.html
+pub struct ConnectionFunction_ {
+    pub auto_publish: Option<crate::value::ExpBool>,
+    pub connection_function_code: crate::value::ExpString,
+    pub connection_function_config:
+        super::cloudfront::connectionfunction::ConnectionFunctionConfig_,
+    pub name: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_cloudfront_ConnectionFunction {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::ConnectionFunction"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_cloudfront_ConnectionFunction as ConnectionFunction;
+impl crate::template::ToResource for ConnectionFunction_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("CloudFront"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("ConnectionFunction"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.auto_publish {
+            properties.insert(
+                "AutoPublish".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "ConnectionFunctionCode".to_string(),
+            crate::value::ToValue::to_value(&self.connection_function_code),
+        );
+        properties.insert(
+            "ConnectionFunctionConfig".to_string(),
+            crate::value::ToValue::to_value(&self.connection_function_config),
+        );
+        properties.insert(
+            "Name".to_string(),
+            crate::value::ToValue::to_value(&self.name),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties
     }
 }
@@ -3909,6 +4320,7 @@ pub struct KeyValueStore_ {
     pub comment: Option<crate::value::ExpString>,
     pub import_source: Option<super::cloudfront::keyvaluestore::ImportSource_>,
     pub name: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -3946,6 +4358,9 @@ impl crate::template::ToResource for KeyValueStore_ {
             "Name".to_string(),
             crate::value::ToValue::to_value(&self.name),
         );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties
     }
 }
@@ -4192,6 +4607,49 @@ impl crate::template::ToResource for StreamingDistribution_ {
             "Tags".to_string(),
             crate::value::ToValue::to_value(&self.tags),
         );
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-truststore.html
+pub struct TrustStore_ {
+    pub ca_certificates_bundle_source:
+        Option<super::cloudfront::truststore::CaCertificatesBundleSource_>,
+    pub name: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_cloudfront_TrustStore {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::CloudFront::TrustStore"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_cloudfront_TrustStore as TrustStore;
+impl crate::template::ToResource for TrustStore_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("CloudFront"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("TrustStore"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.ca_certificates_bundle_source {
+            properties.insert(
+                "CaCertificatesBundleSource".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "Name".to_string(),
+            crate::value::ToValue::to_value(&self.name),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties
     }
 }

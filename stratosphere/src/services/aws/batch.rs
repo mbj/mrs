@@ -2,16 +2,16 @@ pub mod computeenvironment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html
     pub struct ComputeResources_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
-        pub bid_percentage: Option<i64>,
-        pub desiredv_cpus: Option<i64>,
+        pub bid_percentage: Option<i32>,
+        pub desiredv_cpus: Option<i32>,
         pub ec2_configuration: Option<Vec<Ec2ConfigurationObject_>>,
         pub ec2_key_pair: Option<crate::value::ExpString>,
         pub image_id: Option<crate::value::ExpString>,
         pub instance_role: Option<crate::value::ExpString>,
         pub instance_types: Option<Vec<crate::value::ExpString>>,
         pub launch_template: Option<Box<LaunchTemplateSpecification_>>,
-        pub maxv_cpus: i64,
-        pub minv_cpus: Option<i64>,
+        pub maxv_cpus: i32,
+        pub minv_cpus: Option<i32>,
         pub placement_group: Option<crate::value::ExpString>,
         pub security_group_ids: Option<Vec<crate::value::ExpString>>,
         pub spot_iam_fleet_role: Option<crate::value::ExpString>,
@@ -307,7 +307,7 @@ pub mod computeenvironment {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-updatepolicy.html
     pub struct UpdatePolicy_ {
-        pub job_execution_timeout_minutes: Option<i64>,
+        pub job_execution_timeout_minutes: Option<i32>,
         pub terminate_jobs_on_update: Option<crate::value::ExpBool>,
     }
     #[doc(hidden)]
@@ -402,7 +402,7 @@ pub mod jobdefinition {
         pub job_role_arn: Option<crate::value::ExpString>,
         pub linux_parameters: Option<Box<LinuxParameters_>>,
         pub log_configuration: Option<Box<LogConfiguration_>>,
-        pub memory: Option<i64>,
+        pub memory: Option<i32>,
         pub mount_points: Option<Vec<MountPoint_>>,
         pub network_configuration: Option<Box<NetworkConfiguration_>>,
         pub privileged: Option<crate::value::ExpBool>,
@@ -413,7 +413,7 @@ pub mod jobdefinition {
         pub secrets: Option<Vec<Secret_>>,
         pub ulimits: Option<Vec<Ulimit_>>,
         pub user: Option<crate::value::ExpString>,
-        pub vcpus: Option<i64>,
+        pub vcpus: Option<i32>,
         pub volumes: Option<Vec<Volume_>>,
     }
     #[doc(hidden)]
@@ -632,7 +632,7 @@ pub mod jobdefinition {
         pub file_system_id: crate::value::ExpString,
         pub root_directory: Option<crate::value::ExpString>,
         pub transit_encryption: Option<crate::value::ExpString>,
-        pub transit_encryption_port: Option<i64>,
+        pub transit_encryption_port: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -926,9 +926,9 @@ pub mod jobdefinition {
         pub allow_privilege_escalation: Option<crate::value::ExpBool>,
         pub privileged: Option<crate::value::ExpBool>,
         pub read_only_root_filesystem: Option<crate::value::ExpBool>,
-        pub run_as_group: Option<i64>,
+        pub run_as_group: Option<i32>,
         pub run_as_non_root: Option<crate::value::ExpBool>,
-        pub run_as_user: Option<i64>,
+        pub run_as_user: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1353,7 +1353,7 @@ pub mod jobdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ephemeralstorage.html
     pub struct EphemeralStorage_ {
-        pub size_in_gi_b: i64,
+        pub size_in_gi_b: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1522,7 +1522,7 @@ pub mod jobdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-jobtimeout.html
     pub struct JobTimeout_ {
-        pub attempt_duration_seconds: Option<i64>,
+        pub attempt_duration_seconds: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1549,9 +1549,9 @@ pub mod jobdefinition {
     pub struct LinuxParameters_ {
         pub devices: Option<Vec<Device_>>,
         pub init_process_enabled: Option<crate::value::ExpBool>,
-        pub max_swap: Option<i64>,
-        pub shared_memory_size: Option<i64>,
-        pub swappiness: Option<i64>,
+        pub max_swap: Option<i32>,
+        pub shared_memory_size: Option<i32>,
+        pub swappiness: Option<i32>,
         pub tmpfs: Option<Vec<Tmpfs_>>,
     }
     #[doc(hidden)]
@@ -1690,7 +1690,7 @@ pub mod jobdefinition {
         pub job_role_arn: Option<crate::value::ExpString>,
         pub linux_parameters: Option<Box<LinuxParameters_>>,
         pub log_configuration: Option<Box<LogConfiguration_>>,
-        pub memory: Option<i64>,
+        pub memory: Option<i32>,
         pub mount_points: Option<Vec<MountPoint_>>,
         pub privileged: Option<crate::value::ExpBool>,
         pub readonly_root_filesystem: Option<crate::value::ExpBool>,
@@ -1700,7 +1700,7 @@ pub mod jobdefinition {
         pub secrets: Option<Vec<Secret_>>,
         pub ulimits: Option<Vec<Ulimit_>>,
         pub user: Option<crate::value::ExpString>,
-        pub vcpus: Option<i64>,
+        pub vcpus: Option<i32>,
         pub volumes: Option<Vec<Volume_>>,
     }
     #[doc(hidden)]
@@ -1956,9 +1956,9 @@ pub mod jobdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-nodeproperties.html
     pub struct NodeProperties_ {
-        pub main_node: i64,
+        pub main_node: i32,
         pub node_range_properties: Vec<NodeRangeProperty_>,
-        pub num_nodes: i64,
+        pub num_nodes: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2094,9 +2094,34 @@ pub mod jobdefinition {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-resourceretentionpolicy.html
+    pub struct ResourceRetentionPolicy_ {
+        pub skip_deregister_on_update: Option<crate::value::ExpBool>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_batch_JobDefinition_ResourceRetentionPolicy {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Batch::JobDefinition.ResourceRetentionPolicy"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_batch_JobDefinition_ResourceRetentionPolicy as ResourceRetentionPolicy;
+    impl crate::value::ToValue for ResourceRetentionPolicy_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.skip_deregister_on_update {
+                properties.insert(
+                    "SkipDeregisterOnUpdate".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-retrystrategy.html
     pub struct RetryStrategy_ {
-        pub attempts: Option<i64>,
+        pub attempts: Option<i32>,
         pub evaluate_on_exit: Option<Vec<EvaluateOnExit_>>,
     }
     #[doc(hidden)]
@@ -2347,7 +2372,7 @@ pub mod jobdefinition {
     pub struct Tmpfs_ {
         pub container_path: crate::value::ExpString,
         pub mount_options: Option<Vec<crate::value::ExpString>>,
-        pub size: i64,
+        pub size: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2380,9 +2405,9 @@ pub mod jobdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ulimit.html
     pub struct Ulimit_ {
-        pub hard_limit: i64,
+        pub hard_limit: i32,
         pub name: crate::value::ExpString,
-        pub soft_limit: i64,
+        pub soft_limit: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2449,7 +2474,7 @@ pub mod jobqueue {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-computeenvironmentorder.html
     pub struct ComputeEnvironmentOrder_ {
         pub compute_environment: crate::value::ExpString,
-        pub order: i64,
+        pub order: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2477,7 +2502,7 @@ pub mod jobqueue {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-jobstatetimelimitaction.html
     pub struct JobStateTimeLimitAction_ {
         pub action: crate::value::ExpString,
-        pub max_time_seconds: i64,
+        pub max_time_seconds: i32,
         pub reason: crate::value::ExpString,
         pub state: crate::value::ExpString,
     }
@@ -2514,7 +2539,7 @@ pub mod jobqueue {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-serviceenvironmentorder.html
     pub struct ServiceEnvironmentOrder_ {
-        pub order: i64,
+        pub order: i32,
         pub service_environment: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -2618,7 +2643,7 @@ pub mod serviceenvironment {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-serviceenvironment-capacitylimit.html
     pub struct CapacityLimit_ {
         pub capacity_unit: Option<crate::value::ExpString>,
-        pub max_capacity: Option<i64>,
+        pub max_capacity: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2659,7 +2684,7 @@ pub struct ComputeEnvironment_ {
     pub state: Option<crate::value::ExpString>,
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub r#type: crate::value::ExpString,
-    pub unmanagedv_cpus: Option<i64>,
+    pub unmanagedv_cpus: Option<i32>,
     pub update_policy: Option<super::batch::computeenvironment::UpdatePolicy_>,
 }
 #[doc(hidden)]
@@ -2802,8 +2827,9 @@ pub struct JobDefinition_ {
     pub parameters: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub platform_capabilities: Option<Vec<crate::value::ExpString>>,
     pub propagate_tags: Option<crate::value::ExpBool>,
+    pub resource_retention_policy: Option<super::batch::jobdefinition::ResourceRetentionPolicy_>,
     pub retry_strategy: Option<super::batch::jobdefinition::RetryStrategy_>,
-    pub scheduling_priority: Option<i64>,
+    pub scheduling_priority: Option<i32>,
     pub tags: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
     pub timeout: Option<super::batch::jobdefinition::JobTimeout_>,
     pub r#type: crate::value::ExpString,
@@ -2882,6 +2908,12 @@ impl crate::template::ToResource for JobDefinition_ {
                 crate::value::ToValue::to_value(value),
             );
         }
+        if let Some(ref value) = self.resource_retention_policy {
+            properties.insert(
+                "ResourceRetentionPolicy".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.retry_strategy {
             properties.insert(
                 "RetryStrategy".to_string(),
@@ -2916,7 +2948,7 @@ pub struct JobQueue_ {
     pub job_queue_name: Option<crate::value::ExpString>,
     pub job_queue_type: Option<crate::value::ExpString>,
     pub job_state_time_limit_actions: Option<Vec<super::batch::jobqueue::JobStateTimeLimitAction_>>,
-    pub priority: i64,
+    pub priority: i32,
     pub scheduling_policy_arn: Option<crate::value::ExpString>,
     pub service_environment_order: Option<Vec<super::batch::jobqueue::ServiceEnvironmentOrder_>>,
     pub state: Option<crate::value::ExpString>,

@@ -106,6 +106,36 @@ pub mod key {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-paymentcryptography-key-replicationstatustype.html
+    pub struct ReplicationStatusType_ {
+        pub status: crate::value::ExpString,
+        pub status_message: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_paymentcryptography_Key_ReplicationStatusType {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::PaymentCryptography::Key.ReplicationStatusType"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_paymentcryptography_Key_ReplicationStatusType as ReplicationStatusType;
+    impl crate::value::ToValue for ReplicationStatusType_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "Status".to_string(),
+                crate::value::ToValue::to_value(&self.status),
+            );
+            if let Some(ref value) = self.status_message {
+                properties.insert(
+                    "StatusMessage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-paymentcryptography-alias.html
 pub struct Alias_ {
@@ -149,6 +179,7 @@ pub struct Key_ {
     pub exportable: crate::value::ExpBool,
     pub key_attributes: super::paymentcryptography::key::KeyAttributes_,
     pub key_check_value_algorithm: Option<crate::value::ExpString>,
+    pub replication_regions: Option<Vec<crate::value::ExpString>>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -194,6 +225,12 @@ impl crate::template::ToResource for Key_ {
         if let Some(ref value) = self.key_check_value_algorithm {
             properties.insert(
                 "KeyCheckValueAlgorithm".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.replication_regions {
+            properties.insert(
+                "ReplicationRegions".to_string(),
                 crate::value::ToValue::to_value(value),
             );
         }

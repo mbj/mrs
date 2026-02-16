@@ -178,8 +178,8 @@ impl crate::template::ToResource for LoggingConfiguration_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivschat-room.html
 pub struct Room_ {
     pub logging_configuration_identifiers: Option<Vec<crate::value::ExpString>>,
-    pub maximum_message_length: Option<i64>,
-    pub maximum_message_rate_per_second: Option<i64>,
+    pub maximum_message_length: Option<i32>,
+    pub maximum_message_rate_per_second: Option<i32>,
     pub message_review_handler: Option<super::ivschat::room::MessageReviewHandler_>,
     pub name: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,

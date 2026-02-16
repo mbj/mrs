@@ -708,7 +708,7 @@ pub mod crawler {
     pub struct HudiTarget_ {
         pub connection_name: Option<crate::value::ExpString>,
         pub exclusions: Option<Vec<crate::value::ExpString>>,
-        pub maximum_traversal_depth: Option<i64>,
+        pub maximum_traversal_depth: Option<i32>,
         pub paths: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
@@ -751,7 +751,7 @@ pub mod crawler {
     pub struct IcebergTarget_ {
         pub connection_name: Option<crate::value::ExpString>,
         pub exclusions: Option<Vec<crate::value::ExpString>>,
-        pub maximum_traversal_depth: Option<i64>,
+        pub maximum_traversal_depth: Option<i32>,
         pub paths: Option<Vec<crate::value::ExpString>>,
     }
     #[doc(hidden)]
@@ -926,7 +926,7 @@ pub mod crawler {
         pub event_queue_arn: Option<crate::value::ExpString>,
         pub exclusions: Option<Vec<crate::value::ExpString>>,
         pub path: Option<crate::value::ExpString>,
-        pub sample_size: Option<i64>,
+        pub sample_size: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1438,6 +1438,113 @@ pub mod database {
         }
     }
 }
+pub mod integration {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-integration-integrationconfig.html
+    pub struct IntegrationConfig_ {
+        pub continuous_sync: Option<crate::value::ExpBool>,
+        pub refresh_interval: Option<crate::value::ExpString>,
+        pub source_properties: Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_glue_Integration_IntegrationConfig {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Glue::Integration.IntegrationConfig"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_glue_Integration_IntegrationConfig as IntegrationConfig;
+    impl crate::value::ToValue for IntegrationConfig_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.continuous_sync {
+                properties.insert(
+                    "ContinuousSync".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.refresh_interval {
+                properties.insert(
+                    "RefreshInterval".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.source_properties {
+                properties.insert(
+                    "SourceProperties".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
+pub mod integrationresourceproperty {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-integrationresourceproperty-sourceprocessingproperties.html
+    pub struct SourceProcessingProperties_ {
+        pub role_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_glue_IntegrationResourceProperty_SourceProcessingProperties {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Glue::IntegrationResourceProperty.SourceProcessingProperties"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_glue_IntegrationResourceProperty_SourceProcessingProperties as SourceProcessingProperties;
+    impl crate::value::ToValue for SourceProcessingProperties_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            properties.insert(
+                "RoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.role_arn),
+            );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-integrationresourceproperty-targetprocessingproperties.html
+    pub struct TargetProcessingProperties_ {
+        pub connection_name: Option<crate::value::ExpString>,
+        pub event_bus_arn: Option<crate::value::ExpString>,
+        pub kms_arn: Option<crate::value::ExpString>,
+        pub role_arn: crate::value::ExpString,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_glue_IntegrationResourceProperty_TargetProcessingProperties {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::Glue::IntegrationResourceProperty.TargetProcessingProperties"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_glue_IntegrationResourceProperty_TargetProcessingProperties as TargetProcessingProperties;
+    impl crate::value::ToValue for TargetProcessingProperties_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.connection_name {
+                properties.insert(
+                    "ConnectionName".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.event_bus_arn {
+                properties.insert(
+                    "EventBusArn".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.kms_arn {
+                properties.insert("KmsArn".to_string(), crate::value::ToValue::to_value(value));
+            }
+            properties.insert(
+                "RoleArn".to_string(),
+                crate::value::ToValue::to_value(&self.role_arn),
+            );
+            properties.into()
+        }
+    }
+}
 pub mod job {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-connectionslist.html
     pub struct ConnectionsList_ {
@@ -1534,7 +1641,7 @@ pub mod job {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-notificationproperty.html
     pub struct NotificationProperty_ {
-        pub notify_delay_after: Option<i64>,
+        pub notify_delay_after: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1801,7 +1908,7 @@ pub mod partition {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-order.html
     pub struct Order_ {
         pub column: crate::value::ExpString,
-        pub sort_order: Option<i64>,
+        pub sort_order: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1908,7 +2015,7 @@ pub mod partition {
     pub struct SchemaReference_ {
         pub schema_id: Option<Box<SchemaId_>>,
         pub schema_version_id: Option<crate::value::ExpString>,
-        pub schema_version_number: Option<i64>,
+        pub schema_version_number: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2025,7 +2132,7 @@ pub mod partition {
         pub compressed: Option<crate::value::ExpBool>,
         pub input_format: Option<crate::value::ExpString>,
         pub location: Option<crate::value::ExpString>,
-        pub number_of_buckets: Option<i64>,
+        pub number_of_buckets: Option<i32>,
         pub output_format: Option<crate::value::ExpString>,
         pub parameters: Option<serde_json::Value>,
         pub schema_reference: Option<Box<SchemaReference_>>,
@@ -2158,7 +2265,7 @@ pub mod schema {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schema-schemaversion.html
     pub struct SchemaVersion_ {
         pub is_latest: Option<crate::value::ExpBool>,
-        pub version_number: Option<i64>,
+        pub version_number: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2493,7 +2600,7 @@ pub mod table {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-order.html
     pub struct Order_ {
         pub column: crate::value::ExpString,
-        pub sort_order: i64,
+        pub sort_order: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2561,7 +2668,7 @@ pub mod table {
     pub struct SchemaReference_ {
         pub schema_id: Option<Box<SchemaId_>>,
         pub schema_version_id: Option<crate::value::ExpString>,
-        pub schema_version_number: Option<i64>,
+        pub schema_version_number: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2678,7 +2785,7 @@ pub mod table {
         pub compressed: Option<crate::value::ExpBool>,
         pub input_format: Option<crate::value::ExpString>,
         pub location: Option<crate::value::ExpString>,
-        pub number_of_buckets: Option<i64>,
+        pub number_of_buckets: Option<i32>,
         pub output_format: Option<crate::value::ExpString>,
         pub parameters: Option<serde_json::Value>,
         pub schema_reference: Option<Box<SchemaReference_>>,
@@ -2827,7 +2934,7 @@ pub mod table {
         pub owner: Option<crate::value::ExpString>,
         pub parameters: Option<serde_json::Value>,
         pub partition_keys: Option<Vec<Column_>>,
-        pub retention: Option<i64>,
+        pub retention: Option<i32>,
         pub storage_descriptor: Option<Box<StorageDescriptor_>>,
         pub table_type: Option<crate::value::ExpString>,
         pub target_table: Option<Box<TableIdentifier_>>,
@@ -2914,7 +3021,7 @@ pub mod tableoptimizer {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-tableoptimizer-tableoptimizerconfiguration-orphanfiledeletionconfiguration-icebergconfiguration.html
     pub struct IcebergConfiguration_ {
         pub location: Option<crate::value::ExpString>,
-        pub orphan_file_retention_period_in_days: Option<i64>,
+        pub orphan_file_retention_period_in_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2946,8 +3053,8 @@ pub mod tableoptimizer {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-tableoptimizer-icebergretentionconfiguration.html
     pub struct IcebergRetentionConfiguration_ {
         pub clean_expired_files: Option<crate::value::ExpBool>,
-        pub number_of_snapshots_to_retain: Option<i64>,
-        pub snapshot_retention_period_in_days: Option<i64>,
+        pub number_of_snapshots_to_retain: Option<i32>,
+        pub snapshot_retention_period_in_days: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3115,7 +3222,7 @@ pub mod trigger {
         pub job_name: Option<crate::value::ExpString>,
         pub notification_property: Option<Box<NotificationProperty_>>,
         pub security_configuration: Option<crate::value::ExpString>,
-        pub timeout: Option<i64>,
+        pub timeout: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3220,8 +3327,8 @@ pub mod trigger {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-eventbatchingcondition.html
     pub struct EventBatchingCondition_ {
-        pub batch_size: i64,
-        pub batch_window: Option<i64>,
+        pub batch_size: i32,
+        pub batch_window: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3250,7 +3357,7 @@ pub mod trigger {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-notificationproperty.html
     pub struct NotificationProperty_ {
-        pub notify_delay_after: Option<i64>,
+        pub notify_delay_after: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -3789,8 +3896,8 @@ pub struct DevEndpoint_ {
     pub extra_jars_s3_path: Option<crate::value::ExpString>,
     pub extra_python_libs_s3_path: Option<crate::value::ExpString>,
     pub glue_version: Option<crate::value::ExpString>,
-    pub number_of_nodes: Option<i64>,
-    pub number_of_workers: Option<i64>,
+    pub number_of_nodes: Option<i32>,
+    pub number_of_workers: Option<i32>,
     pub public_key: Option<crate::value::ExpString>,
     pub public_keys: Option<Vec<crate::value::ExpString>>,
     pub role_arn: crate::value::ExpString,
@@ -3908,6 +4015,184 @@ impl crate::template::ToResource for DevEndpoint_ {
         properties
     }
 }
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-identitycenterconfiguration.html
+pub struct IdentityCenterConfiguration_ {
+    pub instance_arn: crate::value::ExpString,
+    pub scopes: Option<Vec<crate::value::ExpString>>,
+    pub user_background_sessions_enabled: Option<crate::value::ExpBool>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_glue_IdentityCenterConfiguration {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Glue::IdentityCenterConfiguration"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_glue_IdentityCenterConfiguration as IdentityCenterConfiguration;
+impl crate::template::ToResource for IdentityCenterConfiguration_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Glue"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName(
+                "IdentityCenterConfiguration",
+            ),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "InstanceArn".to_string(),
+            crate::value::ToValue::to_value(&self.instance_arn),
+        );
+        if let Some(ref value) = self.scopes {
+            properties.insert("Scopes".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.user_background_sessions_enabled {
+            properties.insert(
+                "UserBackgroundSessionsEnabled".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-integration.html
+pub struct Integration_ {
+    pub additional_encryption_context:
+        Option<std::collections::BTreeMap<String, crate::value::ExpString>>,
+    pub data_filter: Option<crate::value::ExpString>,
+    pub description: Option<crate::value::ExpString>,
+    pub integration_config: Option<super::glue::integration::IntegrationConfig_>,
+    pub integration_name: crate::value::ExpString,
+    pub kms_key_id: Option<crate::value::ExpString>,
+    pub source_arn: crate::value::ExpString,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub target_arn: crate::value::ExpString,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_glue_Integration {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Glue::Integration"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_glue_Integration as Integration;
+impl crate::template::ToResource for Integration_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Glue"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName("Integration"),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.additional_encryption_context {
+            properties.insert(
+                "AdditionalEncryptionContext".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.data_filter {
+            properties.insert(
+                "DataFilter".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.description {
+            properties.insert(
+                "Description".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.integration_config {
+            properties.insert(
+                "IntegrationConfig".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "IntegrationName".to_string(),
+            crate::value::ToValue::to_value(&self.integration_name),
+        );
+        if let Some(ref value) = self.kms_key_id {
+            properties.insert(
+                "KmsKeyId".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties.insert(
+            "SourceArn".to_string(),
+            crate::value::ToValue::to_value(&self.source_arn),
+        );
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        properties.insert(
+            "TargetArn".to_string(),
+            crate::value::ToValue::to_value(&self.target_arn),
+        );
+        properties
+    }
+}
+///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-integrationresourceproperty.html
+pub struct IntegrationResourceProperty_ {
+    pub resource_arn: crate::value::ExpString,
+    pub source_processing_properties:
+        Option<super::glue::integrationresourceproperty::SourceProcessingProperties_>,
+    pub tags: Option<Vec<crate::Tag_>>,
+    pub target_processing_properties:
+        Option<super::glue::integrationresourceproperty::TargetProcessingProperties_>,
+}
+#[doc(hidden)]
+#[macro_export]
+macro_rules! __aws_glue_IntegrationResourceProperty {
+    ($($field:ident : $value:expr),* $(,)?) => {
+        stratosphere::generator::construct_resource_type!("AWS::Glue::IntegrationResourceProperty"
+        $($field $value)*)
+    };
+}
+pub use crate::__aws_glue_IntegrationResourceProperty as IntegrationResourceProperty;
+impl crate::template::ToResource for IntegrationResourceProperty_ {
+    const RESOURCE_TYPE_NAME: crate::resource_specification::ResourceTypeName<'static> =
+        crate::resource_specification::ResourceTypeName {
+            service: crate::resource_specification::ServiceIdentifier {
+                service_name: crate::resource_specification::ServiceName("Glue"),
+                vendor_name: crate::resource_specification::VendorName("AWS"),
+            },
+            resource_name: crate::resource_specification::ResourceName(
+                "IntegrationResourceProperty",
+            ),
+        };
+    fn to_resource_properties(&self) -> crate::template::ResourceProperties {
+        let mut properties = crate::template::ResourceProperties::new();
+        properties.insert(
+            "ResourceArn".to_string(),
+            crate::value::ToValue::to_value(&self.resource_arn),
+        );
+        if let Some(ref value) = self.source_processing_properties {
+            properties.insert(
+                "SourceProcessingProperties".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.tags {
+            properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.target_processing_properties {
+            properties.insert(
+                "TargetProcessingProperties".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        properties
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html
 pub struct Job_ {
     pub allocated_capacity: Option<f64>,
@@ -3927,11 +4212,11 @@ pub struct Job_ {
     pub name: Option<crate::value::ExpString>,
     pub non_overridable_arguments: Option<serde_json::Value>,
     pub notification_property: Option<super::glue::job::NotificationProperty_>,
-    pub number_of_workers: Option<i64>,
+    pub number_of_workers: Option<i32>,
     pub role: crate::value::ExpString,
     pub security_configuration: Option<crate::value::ExpString>,
     pub tags: Option<serde_json::Value>,
-    pub timeout: Option<i64>,
+    pub timeout: Option<i32>,
     pub worker_type: Option<crate::value::ExpString>,
 }
 #[doc(hidden)]
@@ -4088,12 +4373,12 @@ pub struct MLTransform_ {
     pub glue_version: Option<crate::value::ExpString>,
     pub input_record_tables: super::glue::mltransform::InputRecordTables_,
     pub max_capacity: Option<f64>,
-    pub max_retries: Option<i64>,
+    pub max_retries: Option<i32>,
     pub name: Option<crate::value::ExpString>,
-    pub number_of_workers: Option<i64>,
+    pub number_of_workers: Option<i32>,
     pub role: crate::value::ExpString,
     pub tags: Option<serde_json::Value>,
-    pub timeout: Option<i64>,
+    pub timeout: Option<i32>,
     pub transform_encryption: Option<super::glue::mltransform::TransformEncryption_>,
     pub transform_parameters: super::glue::mltransform::TransformParameters_,
     pub worker_type: Option<crate::value::ExpString>,
@@ -4699,7 +4984,7 @@ impl crate::template::ToResource for UsageProfile_ {
 pub struct Workflow_ {
     pub default_run_properties: Option<serde_json::Value>,
     pub description: Option<crate::value::ExpString>,
-    pub max_concurrent_runs: Option<i64>,
+    pub max_concurrent_runs: Option<i32>,
     pub name: Option<crate::value::ExpString>,
     pub tags: Option<serde_json::Value>,
 }

@@ -45,8 +45,8 @@ pub struct Key_ {
     pub key_usage: Option<crate::value::ExpString>,
     pub multi_region: Option<crate::value::ExpBool>,
     pub origin: Option<crate::value::ExpString>,
-    pub pending_window_in_days: Option<i64>,
-    pub rotation_period_in_days: Option<i64>,
+    pub pending_window_in_days: Option<i32>,
+    pub rotation_period_in_days: Option<i32>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -143,7 +143,7 @@ pub struct ReplicaKey_ {
     pub description: Option<crate::value::ExpString>,
     pub enabled: Option<crate::value::ExpBool>,
     pub key_policy: serde_json::Value,
-    pub pending_window_in_days: Option<i64>,
+    pub pending_window_in_days: Option<i32>,
     pub primary_key_arn: crate::value::ExpString,
     pub tags: Option<Vec<crate::Tag_>>,
 }

@@ -199,9 +199,9 @@ pub mod instance {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-ebsblockdevice.html
     pub struct EbsBlockDevice_ {
         pub delete_on_termination: Option<crate::value::ExpBool>,
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub snapshot_id: Option<crate::value::ExpString>,
-        pub volume_size: Option<i64>,
+        pub volume_size: Option<i32>,
         pub volume_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -309,11 +309,11 @@ pub mod layer {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling-autoscalingthresholds.html
     pub struct AutoScalingThresholds_ {
         pub cpu_threshold: Option<f64>,
-        pub ignore_metrics_time: Option<i64>,
-        pub instance_count: Option<i64>,
+        pub ignore_metrics_time: Option<i32>,
+        pub instance_count: Option<i32>,
         pub load_threshold: Option<f64>,
         pub memory_threshold: Option<f64>,
-        pub thresholds_wait_time: Option<i64>,
+        pub thresholds_wait_time: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -477,7 +477,7 @@ pub mod layer {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration-shutdowneventconfiguration.html
     pub struct ShutdownEventConfiguration_ {
         pub delay_until_elb_connections_drained: Option<crate::value::ExpBool>,
-        pub execution_timeout: Option<i64>,
+        pub execution_timeout: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -509,11 +509,11 @@ pub mod layer {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-volumeconfiguration.html
     pub struct VolumeConfiguration_ {
         pub encrypted: Option<crate::value::ExpBool>,
-        pub iops: Option<i64>,
+        pub iops: Option<i32>,
         pub mount_point: Option<crate::value::ExpString>,
-        pub number_of_disks: Option<i64>,
-        pub raid_level: Option<i64>,
-        pub size: Option<i64>,
+        pub number_of_disks: Option<i32>,
+        pub raid_level: Option<i32>,
+        pub size: Option<i32>,
         pub volume_type: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]

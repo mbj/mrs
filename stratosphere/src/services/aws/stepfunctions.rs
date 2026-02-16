@@ -1,7 +1,7 @@
 pub mod activity {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-activity-encryptionconfiguration.html
     pub struct EncryptionConfiguration_ {
-        pub kms_data_key_reuse_period_seconds: Option<i64>,
+        pub kms_data_key_reuse_period_seconds: Option<i32>,
         pub kms_key_id: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
     }
@@ -93,7 +93,7 @@ pub mod statemachine {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-encryptionconfiguration.html
     pub struct EncryptionConfiguration_ {
-        pub kms_data_key_reuse_period_seconds: Option<i64>,
+        pub kms_data_key_reuse_period_seconds: Option<i32>,
         pub kms_key_id: Option<crate::value::ExpString>,
         pub r#type: crate::value::ExpString,
     }
@@ -282,8 +282,8 @@ pub mod statemachinealias {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-deploymentpreference.html
     pub struct DeploymentPreference_ {
         pub alarms: Option<Vec<crate::value::ExpString>>,
-        pub interval: Option<i64>,
-        pub percentage: Option<i64>,
+        pub interval: Option<i32>,
+        pub percentage: Option<i32>,
         pub state_machine_version_arn: crate::value::ExpString,
         pub r#type: crate::value::ExpString,
     }
@@ -328,7 +328,7 @@ pub mod statemachinealias {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-routingconfigurationversion.html
     pub struct RoutingConfigurationVersion_ {
         pub state_machine_version_arn: crate::value::ExpString,
-        pub weight: i64,
+        pub weight: i32,
     }
     #[doc(hidden)]
     #[macro_export]

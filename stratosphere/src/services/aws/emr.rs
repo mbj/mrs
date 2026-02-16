@@ -124,10 +124,10 @@ pub mod cluster {
     pub struct CloudWatchAlarmDefinition_ {
         pub comparison_operator: crate::value::ExpString,
         pub dimensions: Option<Vec<MetricDimension_>>,
-        pub evaluation_periods: Option<i64>,
+        pub evaluation_periods: Option<i32>,
         pub metric_name: crate::value::ExpString,
         pub namespace: Option<crate::value::ExpString>,
-        pub period: i64,
+        pub period: i32,
         pub statistic: Option<crate::value::ExpString>,
         pub threshold: f64,
         pub unit: Option<crate::value::ExpString>,
@@ -192,10 +192,10 @@ pub mod cluster {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-computelimits.html
     pub struct ComputeLimits_ {
-        pub maximum_capacity_units: i64,
-        pub maximum_core_capacity_units: Option<i64>,
-        pub maximum_on_demand_capacity_units: Option<i64>,
-        pub minimum_capacity_units: i64,
+        pub maximum_capacity_units: i32,
+        pub maximum_core_capacity_units: Option<i32>,
+        pub maximum_on_demand_capacity_units: Option<i32>,
+        pub minimum_capacity_units: i32,
         pub unit_type: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -280,7 +280,7 @@ pub mod cluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ebsblockdeviceconfig.html
     pub struct EbsBlockDeviceConfig_ {
         pub volume_specification: Box<VolumeSpecification_>,
-        pub volumes_per_instance: Option<i64>,
+        pub volumes_per_instance: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -386,8 +386,8 @@ pub mod cluster {
         pub launch_specifications: Option<Box<InstanceFleetProvisioningSpecifications_>>,
         pub name: Option<crate::value::ExpString>,
         pub resize_specifications: Option<Box<InstanceFleetResizingSpecifications_>>,
-        pub target_on_demand_capacity: Option<i64>,
-        pub target_spot_capacity: Option<i64>,
+        pub target_on_demand_capacity: Option<i32>,
+        pub target_spot_capacity: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -508,7 +508,7 @@ pub mod cluster {
         pub configurations: Option<Vec<Configuration_>>,
         pub custom_ami_id: Option<crate::value::ExpString>,
         pub ebs_configuration: Option<Box<EbsConfiguration_>>,
-        pub instance_count: i64,
+        pub instance_count: i32,
         pub instance_type: crate::value::ExpString,
         pub market: Option<crate::value::ExpString>,
         pub name: Option<crate::value::ExpString>,
@@ -581,7 +581,7 @@ pub mod cluster {
         pub ebs_configuration: Option<Box<EbsConfiguration_>>,
         pub instance_type: crate::value::ExpString,
         pub priority: Option<f64>,
-        pub weighted_capacity: Option<i64>,
+        pub weighted_capacity: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -874,7 +874,7 @@ pub mod cluster {
     pub struct ManagedScalingPolicy_ {
         pub compute_limits: Option<Box<ComputeLimits_>>,
         pub scaling_strategy: Option<crate::value::ExpString>,
-        pub utilization_performance_index: Option<i64>,
+        pub utilization_performance_index: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1010,7 +1010,7 @@ pub mod cluster {
     pub struct OnDemandResizingSpecification_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
         pub capacity_reservation_options: Option<Box<OnDemandCapacityReservationOptions_>>,
-        pub timeout_duration_minutes: Option<i64>,
+        pub timeout_duration_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1127,8 +1127,8 @@ pub mod cluster {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingconstraints.html
     pub struct ScalingConstraints_ {
-        pub max_capacity: i64,
-        pub min_capacity: i64,
+        pub max_capacity: i32,
+        pub min_capacity: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1246,8 +1246,8 @@ pub mod cluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-simplescalingpolicyconfiguration.html
     pub struct SimpleScalingPolicyConfiguration_ {
         pub adjustment_type: Option<crate::value::ExpString>,
-        pub cool_down: Option<i64>,
-        pub scaling_adjustment: i64,
+        pub cool_down: Option<i32>,
+        pub scaling_adjustment: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1283,9 +1283,9 @@ pub mod cluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-spotprovisioningspecification.html
     pub struct SpotProvisioningSpecification_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
-        pub block_duration_minutes: Option<i64>,
+        pub block_duration_minutes: Option<i32>,
         pub timeout_action: crate::value::ExpString,
-        pub timeout_duration_minutes: i64,
+        pub timeout_duration_minutes: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1325,7 +1325,7 @@ pub mod cluster {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-spotresizingspecification.html
     pub struct SpotResizingSpecification_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
-        pub timeout_duration_minutes: Option<i64>,
+        pub timeout_duration_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1391,9 +1391,9 @@ pub mod cluster {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-volumespecification.html
     pub struct VolumeSpecification_ {
-        pub iops: Option<i64>,
-        pub size_in_gb: i64,
-        pub throughput: Option<i64>,
+        pub iops: Option<i32>,
+        pub size_in_gb: i32,
+        pub throughput: Option<i32>,
         pub volume_type: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -1473,7 +1473,7 @@ pub mod instancefleetconfig {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ebsblockdeviceconfig.html
     pub struct EbsBlockDeviceConfig_ {
         pub volume_specification: Box<VolumeSpecification_>,
-        pub volumes_per_instance: Option<i64>,
+        pub volumes_per_instance: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1605,7 +1605,7 @@ pub mod instancefleetconfig {
         pub ebs_configuration: Option<Box<EbsConfiguration_>>,
         pub instance_type: crate::value::ExpString,
         pub priority: Option<f64>,
-        pub weighted_capacity: Option<i64>,
+        pub weighted_capacity: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1741,7 +1741,7 @@ pub mod instancefleetconfig {
     pub struct OnDemandResizingSpecification_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
         pub capacity_reservation_options: Option<Box<OnDemandCapacityReservationOptions_>>,
-        pub timeout_duration_minutes: Option<i64>,
+        pub timeout_duration_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1779,9 +1779,9 @@ pub mod instancefleetconfig {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-spotprovisioningspecification.html
     pub struct SpotProvisioningSpecification_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
-        pub block_duration_minutes: Option<i64>,
+        pub block_duration_minutes: Option<i32>,
         pub timeout_action: crate::value::ExpString,
-        pub timeout_duration_minutes: i64,
+        pub timeout_duration_minutes: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1821,7 +1821,7 @@ pub mod instancefleetconfig {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-spotresizingspecification.html
     pub struct SpotResizingSpecification_ {
         pub allocation_strategy: Option<crate::value::ExpString>,
-        pub timeout_duration_minutes: Option<i64>,
+        pub timeout_duration_minutes: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1852,9 +1852,9 @@ pub mod instancefleetconfig {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-volumespecification.html
     pub struct VolumeSpecification_ {
-        pub iops: Option<i64>,
-        pub size_in_gb: i64,
-        pub throughput: Option<i64>,
+        pub iops: Option<i32>,
+        pub size_in_gb: i32,
+        pub throughput: Option<i32>,
         pub volume_type: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -1923,10 +1923,10 @@ pub mod instancegroupconfig {
     pub struct CloudWatchAlarmDefinition_ {
         pub comparison_operator: crate::value::ExpString,
         pub dimensions: Option<Vec<MetricDimension_>>,
-        pub evaluation_periods: Option<i64>,
+        pub evaluation_periods: Option<i32>,
         pub metric_name: crate::value::ExpString,
         pub namespace: Option<crate::value::ExpString>,
-        pub period: i64,
+        pub period: i32,
         pub statistic: Option<crate::value::ExpString>,
         pub threshold: f64,
         pub unit: Option<crate::value::ExpString>,
@@ -2032,7 +2032,7 @@ pub mod instancegroupconfig {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html
     pub struct EbsBlockDeviceConfig_ {
         pub volume_specification: Box<VolumeSpecification_>,
-        pub volumes_per_instance: Option<i64>,
+        pub volumes_per_instance: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2148,8 +2148,8 @@ pub mod instancegroupconfig {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingconstraints.html
     pub struct ScalingConstraints_ {
-        pub max_capacity: i64,
-        pub min_capacity: i64,
+        pub max_capacity: i32,
+        pub min_capacity: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2240,8 +2240,8 @@ pub mod instancegroupconfig {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-simplescalingpolicyconfiguration.html
     pub struct SimpleScalingPolicyConfiguration_ {
         pub adjustment_type: Option<crate::value::ExpString>,
-        pub cool_down: Option<i64>,
-        pub scaling_adjustment: i64,
+        pub cool_down: Option<i32>,
+        pub scaling_adjustment: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -2276,9 +2276,9 @@ pub mod instancegroupconfig {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html
     pub struct VolumeSpecification_ {
-        pub iops: Option<i64>,
-        pub size_in_gb: i64,
-        pub throughput: Option<i64>,
+        pub iops: Option<i32>,
+        pub size_in_gb: i32,
+        pub throughput: Option<i32>,
         pub volume_type: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -2392,9 +2392,9 @@ pub struct Cluster_ {
     pub bootstrap_actions: Option<Vec<super::emr::cluster::BootstrapActionConfig_>>,
     pub configurations: Option<Vec<super::emr::cluster::Configuration_>>,
     pub custom_ami_id: Option<crate::value::ExpString>,
-    pub ebs_root_volume_iops: Option<i64>,
-    pub ebs_root_volume_size: Option<i64>,
-    pub ebs_root_volume_throughput: Option<i64>,
+    pub ebs_root_volume_iops: Option<i32>,
+    pub ebs_root_volume_size: Option<i32>,
+    pub ebs_root_volume_throughput: Option<i32>,
     pub instances: super::emr::cluster::JobFlowInstancesConfig_,
     pub job_flow_role: crate::value::ExpString,
     pub kerberos_attributes: Option<super::emr::cluster::KerberosAttributes_>,
@@ -2408,7 +2408,7 @@ pub struct Cluster_ {
     pub scale_down_behavior: Option<crate::value::ExpString>,
     pub security_configuration: Option<crate::value::ExpString>,
     pub service_role: crate::value::ExpString,
-    pub step_concurrency_level: Option<i64>,
+    pub step_concurrency_level: Option<i32>,
     pub steps: Option<Vec<super::emr::cluster::StepConfig_>>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub visible_to_all_users: Option<crate::value::ExpBool>,
@@ -2591,8 +2591,8 @@ pub struct InstanceFleetConfig_ {
     pub name: Option<crate::value::ExpString>,
     pub resize_specifications:
         Option<super::emr::instancefleetconfig::InstanceFleetResizingSpecifications_>,
-    pub target_on_demand_capacity: Option<i64>,
-    pub target_spot_capacity: Option<i64>,
+    pub target_on_demand_capacity: Option<i32>,
+    pub target_spot_capacity: Option<i32>,
 }
 #[doc(hidden)]
 #[macro_export]
@@ -2665,7 +2665,7 @@ pub struct InstanceGroupConfig_ {
     pub configurations: Option<Vec<super::emr::instancegroupconfig::Configuration_>>,
     pub custom_ami_id: Option<crate::value::ExpString>,
     pub ebs_configuration: Option<super::emr::instancegroupconfig::EbsConfiguration_>,
-    pub instance_count: i64,
+    pub instance_count: i32,
     pub instance_role: crate::value::ExpString,
     pub instance_type: crate::value::ExpString,
     pub job_flow_id: crate::value::ExpString,
@@ -2785,8 +2785,10 @@ impl crate::template::ToResource for SecurityConfiguration_ {
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html
 pub struct Step_ {
     pub action_on_failure: crate::value::ExpString,
+    pub encryption_key_arn: Option<crate::value::ExpString>,
     pub hadoop_jar_step: super::emr::step::HadoopJarStepConfig_,
     pub job_flow_id: crate::value::ExpString,
+    pub log_uri: Option<crate::value::ExpString>,
     pub name: crate::value::ExpString,
 }
 #[doc(hidden)]
@@ -2813,6 +2815,12 @@ impl crate::template::ToResource for Step_ {
             "ActionOnFailure".to_string(),
             crate::value::ToValue::to_value(&self.action_on_failure),
         );
+        if let Some(ref value) = self.encryption_key_arn {
+            properties.insert(
+                "EncryptionKeyArn".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         properties.insert(
             "HadoopJarStep".to_string(),
             crate::value::ToValue::to_value(&self.hadoop_jar_step),
@@ -2821,6 +2829,9 @@ impl crate::template::ToResource for Step_ {
             "JobFlowId".to_string(),
             crate::value::ToValue::to_value(&self.job_flow_id),
         );
+        if let Some(ref value) = self.log_uri {
+            properties.insert("LogUri".to_string(), crate::value::ToValue::to_value(value));
+        }
         properties.insert(
             "Name".to_string(),
             crate::value::ToValue::to_value(&self.name),

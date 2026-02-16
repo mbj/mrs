@@ -227,7 +227,7 @@ pub struct Application_ {
     pub application_source_config: super::appintegrations::application::ApplicationSourceConfig_,
     pub description: crate::value::ExpString,
     pub iframe_config: Option<super::appintegrations::application::IframeConfig_>,
-    pub initialization_timeout: Option<i64>,
+    pub initialization_timeout: Option<i32>,
     pub is_service: Option<crate::value::ExpBool>,
     pub name: crate::value::ExpString,
     pub namespace: crate::value::ExpString,

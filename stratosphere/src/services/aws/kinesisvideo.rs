@@ -1,6 +1,33 @@
+pub mod stream {
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisvideo-stream-streamstorageconfiguration.html
+    pub struct StreamStorageConfiguration_ {
+        pub default_storage_tier: Option<crate::value::ExpString>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_kinesisvideo_Stream_StreamStorageConfiguration {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::KinesisVideo::Stream.StreamStorageConfiguration"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_kinesisvideo_Stream_StreamStorageConfiguration as StreamStorageConfiguration;
+    impl crate::value::ToValue for StreamStorageConfiguration_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.default_storage_tier {
+                properties.insert(
+                    "DefaultStorageTier".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
+}
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisvideo-signalingchannel.html
 pub struct SignalingChannel_ {
-    pub message_ttl_seconds: Option<i64>,
+    pub message_ttl_seconds: Option<i32>,
     pub name: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
     pub r#type: Option<crate::value::ExpString>,
@@ -45,11 +72,13 @@ impl crate::template::ToResource for SignalingChannel_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisvideo-stream.html
 pub struct Stream_ {
-    pub data_retention_in_hours: Option<i64>,
+    pub data_retention_in_hours: Option<i32>,
     pub device_name: Option<crate::value::ExpString>,
     pub kms_key_id: Option<crate::value::ExpString>,
     pub media_type: Option<crate::value::ExpString>,
     pub name: Option<crate::value::ExpString>,
+    pub stream_storage_configuration:
+        Option<super::kinesisvideo::stream::StreamStorageConfiguration_>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -98,6 +127,12 @@ impl crate::template::ToResource for Stream_ {
         }
         if let Some(ref value) = self.name {
             properties.insert("Name".to_string(), crate::value::ToValue::to_value(value));
+        }
+        if let Some(ref value) = self.stream_storage_configuration {
+            properties.insert(
+                "StreamStorageConfiguration".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
         }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));

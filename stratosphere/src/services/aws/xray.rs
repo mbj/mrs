@@ -39,15 +39,15 @@ pub mod samplingrule {
         pub fixed_rate: f64,
         pub http_method: crate::value::ExpString,
         pub host: crate::value::ExpString,
-        pub priority: i64,
-        pub reservoir_size: i64,
+        pub priority: i32,
+        pub reservoir_size: i32,
         pub resource_arn: crate::value::ExpString,
         pub rule_arn: Option<crate::value::ExpString>,
         pub rule_name: Option<crate::value::ExpString>,
         pub service_name: crate::value::ExpString,
         pub service_type: crate::value::ExpString,
         pub url_path: crate::value::ExpString,
-        pub version: Option<i64>,
+        pub version: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]

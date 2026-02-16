@@ -52,7 +52,7 @@ pub mod calculatedattributedefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-conditions.html
     pub struct Conditions_ {
-        pub object_count: Option<i64>,
+        pub object_count: Option<i32>,
         pub range: Option<Box<Range_>>,
         pub threshold: Option<Box<Threshold_>>,
     }
@@ -91,7 +91,7 @@ pub mod calculatedattributedefinition {
         pub timestamp_format: Option<crate::value::ExpString>,
         pub timestamp_source: Option<crate::value::ExpString>,
         pub unit: crate::value::ExpString,
-        pub value: Option<i64>,
+        pub value: Option<i32>,
         pub value_range: Option<Box<ValueRange_>>,
     }
     #[doc(hidden)]
@@ -137,7 +137,7 @@ pub mod calculatedattributedefinition {
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-readiness.html
     pub struct Readiness_ {
         pub message: Option<crate::value::ExpString>,
-        pub progress_percentage: Option<i64>,
+        pub progress_percentage: Option<i32>,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -196,8 +196,8 @@ pub mod calculatedattributedefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-valuerange.html
     pub struct ValueRange_ {
-        pub end: i64,
-        pub start: i64,
+        pub end: i32,
+        pub start: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -362,6 +362,38 @@ pub mod domain {
                 "MatchingAttributesList".to_string(),
                 crate::value::ToValue::to_value(&self.matching_attributes_list),
             );
+            properties.into()
+        }
+    }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-datastore.html
+    pub struct DataStore_ {
+        pub enabled: Option<crate::value::ExpBool>,
+        pub readiness: Option<Box<Readiness_>>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_customerprofiles_Domain_DataStore {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.DataStore"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_customerprofiles_Domain_DataStore as DataStore;
+    impl crate::value::ToValue for DataStore_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.enabled {
+                properties.insert(
+                    "Enabled".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.readiness {
+                properties.insert(
+                    "Readiness".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
             properties.into()
         }
     }
@@ -531,6 +563,38 @@ pub mod domain {
             properties.into()
         }
     }
+    ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-readiness.html
+    pub struct Readiness_ {
+        pub message: Option<crate::value::ExpString>,
+        pub progress_percentage: Option<i32>,
+    }
+    #[doc(hidden)]
+    #[macro_export]
+    macro_rules! __aws_customerprofiles_Domain_Readiness {
+        ($($field:ident : $value:expr),* $(,)?) => {
+            stratosphere::generator::construct_property_type!("AWS::CustomerProfiles::Domain.Readiness"
+            $($field $value)*)
+        };
+    }
+    pub use crate::__aws_customerprofiles_Domain_Readiness as Readiness;
+    impl crate::value::ToValue for Readiness_ {
+        fn to_value(&self) -> serde_json::Value {
+            let mut properties = serde_json::Map::new();
+            if let Some(ref value) = self.message {
+                properties.insert(
+                    "Message".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            if let Some(ref value) = self.progress_percentage {
+                properties.insert(
+                    "ProgressPercentage".to_string(),
+                    crate::value::ToValue::to_value(value),
+                );
+            }
+            properties.into()
+        }
+    }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-rulebasedmatching.html
     pub struct RuleBasedMatching_ {
         pub attribute_types_selector: Option<Box<AttributeTypesSelector_>>,
@@ -538,8 +602,8 @@ pub mod domain {
         pub enabled: crate::value::ExpBool,
         pub exporting_config: Option<Box<ExportingConfig_>>,
         pub matching_rules: Option<Vec<MatchingRule_>>,
-        pub max_allowed_rule_level_for_matching: Option<i64>,
-        pub max_allowed_rule_level_for_merging: Option<i64>,
+        pub max_allowed_rule_level_for_matching: Option<i32>,
+        pub max_allowed_rule_level_for_merging: Option<i32>,
         pub status: Option<crate::value::ExpString>,
     }
     #[doc(hidden)]
@@ -786,10 +850,10 @@ pub mod eventtrigger {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventtrigger-period.html
     pub struct Period_ {
-        pub max_invocations_per_profile: Option<i64>,
+        pub max_invocations_per_profile: Option<i32>,
         pub unit: crate::value::ExpString,
         pub unlimited: Option<crate::value::ExpBool>,
-        pub value: i64,
+        pub value: i32,
     }
     #[doc(hidden)]
     #[macro_export]
@@ -1077,7 +1141,7 @@ pub mod integration {
         pub first_execution_from: Option<f64>,
         pub schedule_end_time: Option<f64>,
         pub schedule_expression: crate::value::ExpString,
-        pub schedule_offset: Option<i64>,
+        pub schedule_offset: Option<i32>,
         pub schedule_start_time: Option<f64>,
         pub timezone: Option<crate::value::ExpString>,
     }
@@ -2031,8 +2095,8 @@ pub mod segmentdefinition {
     }
     ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-segmentdefinition-rangeoverride.html
     pub struct RangeOverride_ {
-        pub end: Option<i64>,
-        pub start: i64,
+        pub end: Option<i32>,
+        pub start: i32,
         pub unit: crate::value::ExpString,
     }
     #[doc(hidden)]
@@ -2199,9 +2263,10 @@ impl crate::template::ToResource for CalculatedAttributeDefinition_ {
 }
 ///http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-domain.html
 pub struct Domain_ {
+    pub data_store: Option<super::customerprofiles::domain::DataStore_>,
     pub dead_letter_queue_url: Option<crate::value::ExpString>,
     pub default_encryption_key: Option<crate::value::ExpString>,
-    pub default_expiration_days: i64,
+    pub default_expiration_days: i32,
     pub domain_name: crate::value::ExpString,
     pub matching: Option<super::customerprofiles::domain::Matching_>,
     pub rule_based_matching: Option<super::customerprofiles::domain::RuleBasedMatching_>,
@@ -2227,6 +2292,12 @@ impl crate::template::ToResource for Domain_ {
         };
     fn to_resource_properties(&self) -> crate::template::ResourceProperties {
         let mut properties = crate::template::ResourceProperties::new();
+        if let Some(ref value) = self.data_store {
+            properties.insert(
+                "DataStore".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.dead_letter_queue_url {
             properties.insert(
                 "DeadLetterQueueUrl".to_string(),
@@ -2455,10 +2526,10 @@ pub struct ObjectType_ {
     pub description: crate::value::ExpString,
     pub domain_name: crate::value::ExpString,
     pub encryption_key: Option<crate::value::ExpString>,
-    pub expiration_days: Option<i64>,
+    pub expiration_days: Option<i32>,
     pub fields: Option<Vec<super::customerprofiles::objecttype::FieldMap_>>,
     pub keys: Option<Vec<super::customerprofiles::objecttype::KeyMap_>>,
-    pub max_profile_object_count: Option<i64>,
+    pub max_profile_object_count: Option<i32>,
     pub object_type_name: crate::value::ExpString,
     pub source_last_updated_timestamp_format: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
@@ -2550,7 +2621,8 @@ pub struct SegmentDefinition_ {
     pub display_name: crate::value::ExpString,
     pub domain_name: crate::value::ExpString,
     pub segment_definition_name: crate::value::ExpString,
-    pub segment_groups: super::customerprofiles::segmentdefinition::SegmentGroup_,
+    pub segment_groups: Option<super::customerprofiles::segmentdefinition::SegmentGroup_>,
+    pub segment_sql_query: Option<crate::value::ExpString>,
     pub tags: Option<Vec<crate::Tag_>>,
 }
 #[doc(hidden)]
@@ -2591,10 +2663,18 @@ impl crate::template::ToResource for SegmentDefinition_ {
             "SegmentDefinitionName".to_string(),
             crate::value::ToValue::to_value(&self.segment_definition_name),
         );
-        properties.insert(
-            "SegmentGroups".to_string(),
-            crate::value::ToValue::to_value(&self.segment_groups),
-        );
+        if let Some(ref value) = self.segment_groups {
+            properties.insert(
+                "SegmentGroups".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
+        if let Some(ref value) = self.segment_sql_query {
+            properties.insert(
+                "SegmentSqlQuery".to_string(),
+                crate::value::ToValue::to_value(value),
+            );
+        }
         if let Some(ref value) = self.tags {
             properties.insert("Tags".to_string(), crate::value::ToValue::to_value(value));
         }
