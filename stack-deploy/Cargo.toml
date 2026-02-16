@@ -1,7 +1,16 @@
 [package]
-edition.workspace = true
 name = "stack-deploy"
 version = "0.0.2"
+edition.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "AWS CloudFormation stack deployment orchestration library with change set review, event monitoring, and Lambda deployment support"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/mbj/mrs/tree/main/stack-deploy"
+homepage = "https://github.com/mbj/mrs/tree/main/stack-deploy"
+keywords = ["aws", "cloudformation", "deployment", "infrastructure"]
+categories = ["development-tools"]
 
 [lints]
 workspace = true
