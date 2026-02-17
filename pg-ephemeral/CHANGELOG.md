@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.2
+
+### Changed
+
+- Resolve `sql-file` paths and relative-path `command` executables relative to the
+  config file's directory instead of the process working directory
+
 ## 0.0.1
 
 ### Breaking Changes

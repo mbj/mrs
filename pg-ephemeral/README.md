@@ -23,7 +23,10 @@ supported PostgreSQL image on the auto-detected container backend.
 
 ## Configuration
 
-Place a `database.toml` in the working directory (or pass `--config-file <path>`):
+Place a `database.toml` in the working directory (or pass `--config-file <path>`).
+File paths in the config are resolved relative to the config file's location, not the
+process working directory. This means tests can be run from any subdirectory without
+changing the paths in `database.toml`.
 
 ```toml
 image = "17.1"
@@ -62,9 +65,9 @@ Seeds run in declaration order inside the container. Each seed has a `type`:
 
 | Type       | Fields                          | Description                                                                 |
 |------------|---------------------------------|-----------------------------------------------------------------------------|
-| `sql-file` | `path`, optional `git_revision` | Apply a SQL file. With `git_revision`, reads the file from that git commit. |
+| `sql-file` | `path`, optional `git_revision` | Apply a SQL file. With `git_revision`, reads the file from that git commit. `path` is resolved relative to the config file's directory. |
 | `script`   | `script`                        | Run a shell script with `sh -e -c`.                                         |
-| `command`  | `command`, `arguments`, `cache` | Run an arbitrary command.                                                   |
+| `command`  | `command`, `arguments`, `cache` | Run an arbitrary command. If `command` is a relative path (contains `/`), it is resolved relative to the config file's directory; bare names like `psql` are looked up via `PATH`. |
 
 ### Multiple instances
 

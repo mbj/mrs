@@ -240,10 +240,66 @@ impl Config {
         file: impl AsRef<std::path::Path>,
         overwrites: &InstanceDefinition,
     ) -> Result<super::InstanceMap, Error> {
+        let file = file.as_ref();
+        let base_dir = file
+            .parent()
+            .map(std::path::Path::to_path_buf)
+            .unwrap_or_default();
+
         std::fs::read_to_string(file)
             .map_err(|error| Error::IO(error.into()))
             .and_then(Self::load_toml)
+            .map(|config| config.resolve_paths(&base_dir))
             .and_then(|config| config.instance_map(overwrites))
+    }
+
+    fn resolve_paths(mut self, base_dir: &std::path::Path) -> Self {
+        let resolve_path = |path: std::path::PathBuf| -> std::path::PathBuf {
+            if path.is_relative() {
+                base_dir.join(path)
+            } else {
+                path
+            }
+        };
+
+        // Resolve a command string if it looks like a relative file path (contains a
+        // path separator). Plain command names such as "sh" or "psql" are left alone
+        // so they continue to be resolved via PATH.
+        let resolve_command = |command: &mut String| {
+            let path = std::path::Path::new(command.as_str());
+            if path.is_relative() && path.components().count() > 1 {
+                // Strip leading CurDir (`.`) components so `./bin/foo` and `bin/foo`
+                // both produce the same absolute result after joining.
+                let stripped: std::path::PathBuf = path
+                    .components()
+                    .filter(|c| !matches!(c, std::path::Component::CurDir))
+                    .collect();
+                *command = base_dir.join(stripped).to_string_lossy().into_owned();
+            }
+        };
+
+        if let Some(instances) = self.instances.as_mut() {
+            for instance in instances.values_mut() {
+                for seed in instance.seeds.values_mut() {
+                    match seed {
+                        SeedConfig::SqlFile { path, .. } => *path = resolve_path(path.clone()),
+                        SeedConfig::Command { command, cache, .. } => {
+                            resolve_command(command);
+                            if let CommandCacheConfig::KeyCommand {
+                                command: key_command,
+                                ..
+                            } = cache
+                            {
+                                resolve_command(key_command);
+                            }
+                        }
+                        SeedConfig::Script { .. } => {}
+                    }
+                }
+            }
+        }
+
+        self
     }
 
     pub fn load_toml(contents: impl AsRef<str>) -> Result<Config, Error> {
@@ -283,5 +339,115 @@ impl Config {
                 Ok(instance_map)
             }
         }
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn sql_file_path_resolved_relative_to_config() {
+        let dir = std::env::temp_dir().join("pg-ephemeral-config-test-sql-file");
+        std::fs::create_dir_all(&dir).unwrap();
+        let config_path = dir.join("database.toml");
+        std::fs::write(
+            &config_path,
+            indoc::indoc! {r#"
+                image = "15.6"
+
+                [instances.main.seeds.schema]
+                type = "sql-file"
+                path = "db/structure.sql"
+            "#},
+        )
+        .unwrap();
+
+        let instance_map =
+            Config::load_toml_file(&config_path, &InstanceDefinition::empty()).unwrap();
+
+        let instance_name: crate::InstanceName = "main".parse().unwrap();
+        let instance = instance_map.get(&instance_name).unwrap();
+        let seed_name: crate::seed::SeedName = "schema".parse().unwrap();
+
+        assert_eq!(
+            instance.seeds[&seed_name],
+            crate::seed::Seed::SqlFile {
+                path: dir.join("db/structure.sql"),
+            }
+        );
+    }
+
+    #[test]
+    fn command_path_resolved_relative_to_config() {
+        let dir = std::env::temp_dir().join("pg-ephemeral-config-test-command");
+        std::fs::create_dir_all(&dir).unwrap();
+        let config_path = dir.join("database.toml");
+        std::fs::write(
+            &config_path,
+            indoc::indoc! {r#"
+                image = "15.6"
+
+                [instances.main.seeds.migrate]
+                type = "command"
+                command = "./bin/migrate"
+                arguments = ["up"]
+                cache = { type = "none" }
+            "#},
+        )
+        .unwrap();
+
+        let instance_map =
+            Config::load_toml_file(&config_path, &InstanceDefinition::empty()).unwrap();
+
+        let instance_name: crate::InstanceName = "main".parse().unwrap();
+        let instance = instance_map.get(&instance_name).unwrap();
+        let seed_name: crate::seed::SeedName = "migrate".parse().unwrap();
+
+        assert_eq!(
+            instance.seeds[&seed_name],
+            crate::seed::Seed::Command {
+                command: crate::seed::Command::new(
+                    dir.join("bin/migrate").to_string_lossy(),
+                    ["up"],
+                ),
+                cache: crate::seed::CommandCacheConfig::None,
+            }
+        );
+    }
+
+    #[test]
+    fn bare_command_name_not_resolved() {
+        let dir = std::env::temp_dir().join("pg-ephemeral-config-test-bare-command");
+        std::fs::create_dir_all(&dir).unwrap();
+        let config_path = dir.join("database.toml");
+        std::fs::write(
+            &config_path,
+            indoc::indoc! {r#"
+                image = "15.6"
+
+                [instances.main.seeds.schema]
+                type = "command"
+                command = "psql"
+                arguments = ["-f", "schema.sql"]
+                cache = { type = "command-hash" }
+            "#},
+        )
+        .unwrap();
+
+        let instance_map =
+            Config::load_toml_file(&config_path, &InstanceDefinition::empty()).unwrap();
+
+        let instance_name: crate::InstanceName = "main".parse().unwrap();
+        let instance = instance_map.get(&instance_name).unwrap();
+        let seed_name: crate::seed::SeedName = "schema".parse().unwrap();
+
+        assert_eq!(
+            instance.seeds[&seed_name],
+            crate::seed::Seed::Command {
+                command: crate::seed::Command::new("psql", ["-f", "schema.sql"]),
+                cache: crate::seed::CommandCacheConfig::CommandHash,
+            }
+        );
     }
 }
