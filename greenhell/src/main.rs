@@ -293,6 +293,10 @@ impl App {
 
                 let repository = git::get_github_repository(remote).await?;
                 let remote = Remote::from(remote.clone());
+
+                log::info!("Fetching {remote}");
+                git_proc::fetch::new().remote(&remote).status().await?;
+
                 let branch = git::get_current_branch().await?;
 
                 let base_ref = match base {
