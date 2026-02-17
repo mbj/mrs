@@ -1020,7 +1020,8 @@ mod tests {
                 }"#,
             );
 
-            let result = GetRepository::DECODER.decode(response).await.unwrap();
+            let decoder = GetRepository::DECODER;
+            let result = decoder.decode(response).await.unwrap();
 
             assert_eq!(
                 result,
@@ -1090,7 +1091,8 @@ mod tests {
                 }"#,
             );
 
-            let result = CompareCommits::DECODER.decode(response).await.unwrap();
+            let decoder = CompareCommits::DECODER;
+            let result = decoder.decode(response).await.unwrap();
 
             assert_eq!(
                 result,
@@ -1176,7 +1178,8 @@ mod tests {
                 }"#,
             );
 
-            let result = ListCheckRuns::DECODER.decode(response).await.unwrap();
+            let decoder = ListCheckRuns::DECODER;
+            let result = decoder.decode(response).await.unwrap();
 
             assert_eq!(
                 result,
@@ -1280,7 +1283,8 @@ mod tests {
                 }"#,
             );
 
-            let result = GetPullRequest::DECODER.decode(response).await.unwrap();
+            let decoder = GetPullRequest::DECODER;
+            let result = decoder.decode(response).await.unwrap();
 
             assert_eq!(
                 result,
@@ -1429,7 +1433,8 @@ mod tests {
                 ]"#,
             );
 
-            let result = ListPullRequests::DECODER.decode(response).await.unwrap();
+            let decoder = ListPullRequests::DECODER;
+            let result = decoder.decode(response).await.unwrap();
 
             assert_eq!(
                 result,
@@ -1575,10 +1580,8 @@ mod tests {
                 ]"#,
             );
 
-            let result = ListPullRequestCommits::DECODER
-                .decode(response)
-                .await
-                .unwrap();
+            let decoder = ListPullRequestCommits::DECODER;
+            let result = decoder.decode(response).await.unwrap();
 
             assert_eq!(
                 result,
