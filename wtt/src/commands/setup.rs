@@ -1,11 +1,11 @@
-use crate::{Config, Error, GitUrl, ORIGIN, RepoName};
+use crate::{Config, Error, ORIGIN, RepoName, repository};
 
 #[derive(Debug, clap::Parser)]
 pub struct Setup {
-    /// Git remote URL to clone
-    url: GitUrl,
+    /// Git repository address to clone
+    address: repository::Address,
 
-    /// Local name for the repository (defaults to repo name extracted from URL)
+    /// Local name for the repository (defaults to repo name extracted from address)
     #[clap(long)]
     repo: Option<RepoName>,
 }
@@ -14,7 +14,7 @@ impl Setup {
     pub async fn run(self, config: &Config) -> Result<(), Error> {
         let repo = match self.repo {
             Some(name) => name,
-            None => RepoName::from_git_url(&self.url)?,
+            None => RepoName::from_repository_address(&self.address)?,
         };
 
         let bare_path = config.bare_repo_path(&repo);
@@ -26,7 +26,7 @@ impl Setup {
 
         log::info!("Cloning bare repository to {}", bare_path.display());
 
-        git_proc::clone::new(&self.url)
+        git_proc::clone::new(&self.address)
             .bare()
             .directory(&bare_path)
             .status()

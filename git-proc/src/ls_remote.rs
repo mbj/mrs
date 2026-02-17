@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use crate::url::Remote;
+use crate::repository::Remote;
 
 /// Create a new `git ls-remote` command builder.
 #[must_use]

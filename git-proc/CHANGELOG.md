@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.3.0
+
+### Breaking Changes
+
+- Rename module `url` to `repository`
+- Rename `GitUrl` to `repository::Address`
+- Rename `GitUrlError` to `repository::AddressError`
+- Rename `SshUrl` to `SshAddress`
+- Rename `PathUrl` to `PathAddress`
+- Rename `Remote::Url` variant to `Remote::RepositoryAddress`
+
+`GitUrl` was inaccurate: SCP-style SSH addresses (`git@host:path`) and bare
+local paths (`/path/to/repo`) are not URLs. The `Git` prefix was redundant
+within the `git_proc` crate. The module rename from `url` to `repository`
+allows shorter qualified type names (e.g. `repository::Address`).
+
+`HttpsUrl` is unchanged as it represents an actual URL. `GitProtocolUrl` is
+renamed to `GitUrl` for consistency with `HttpsUrl` (`{Scheme}Url` pattern).
+
 ## 0.2.1
 
 ### Changed

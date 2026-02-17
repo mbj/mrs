@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use crate::url::RemoteName;
+use crate::repository::RemoteName;
 
 /// Create a `git remote get-url` command builder.
 #[must_use]

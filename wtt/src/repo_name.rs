@@ -7,7 +7,7 @@ impl RepoName {
         &self.0
     }
 
-    /// Extract a repository name from a git URL.
+    /// Extract a repository name from a repository address.
     ///
     /// Takes the last path component, removes the `.git` suffix if present,
     /// and validates it as a repository name.
@@ -15,23 +15,25 @@ impl RepoName {
     /// # Examples
     ///
     /// ```
-    /// # use wtt::{GitUrl, RepoName};
-    /// let url: GitUrl = "git@github.com:user/repo.git".parse().unwrap();
-    /// let name = RepoName::from_git_url(&url).unwrap();
+    /// # use wtt::{repository, RepoName};
+    /// let address: repository::Address = "git@github.com:user/repo.git".parse().unwrap();
+    /// let name = RepoName::from_repository_address(&address).unwrap();
     /// assert_eq!(name.as_str(), "repo");
     ///
-    /// let url: GitUrl = "https://github.com/user/my-repo".parse().unwrap();
-    /// let name = RepoName::from_git_url(&url).unwrap();
+    /// let address: repository::Address = "https://github.com/user/my-repo".parse().unwrap();
+    /// let name = RepoName::from_repository_address(&address).unwrap();
     /// assert_eq!(name.as_str(), "my-repo");
     /// ```
-    pub fn from_git_url(url: &crate::GitUrl) -> Result<Self, RepoNameError> {
-        use crate::GitUrl;
+    pub fn from_repository_address(
+        address: &crate::repository::Address,
+    ) -> Result<Self, RepoNameError> {
+        use crate::repository::Address;
 
-        let path = match url {
-            GitUrl::Ssh(ssh) => ssh.path(),
-            GitUrl::Https(https) => https.path(),
-            GitUrl::Git(git) => git.path(),
-            GitUrl::Path(path_url) => path_url
+        let path = match address {
+            Address::Ssh(ssh) => ssh.path(),
+            Address::Https(https) => https.path(),
+            Address::Git(git) => git.path(),
+            Address::Path(path_address) => path_address
                 .path()
                 .file_name()
                 .and_then(|s| s.to_str())
@@ -92,68 +94,69 @@ pub enum RepoNameError {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::GitUrl;
+    use crate::repository;
 
     #[test]
-    fn test_from_git_url_ssh_scp_style() {
-        let url: GitUrl = "git@github.com:user/repo.git".parse().unwrap();
-        let name = RepoName::from_git_url(&url).unwrap();
+    fn test_from_repository_address_ssh_scp_style() {
+        let address: repository::Address = "git@github.com:user/repo.git".parse().unwrap();
+        let name = RepoName::from_repository_address(&address).unwrap();
         assert_eq!(name.as_str(), "repo");
     }
 
     #[test]
-    fn test_from_git_url_ssh_scp_style_no_git_suffix() {
-        let url: GitUrl = "git@github.com:user/my-repo".parse().unwrap();
-        let name = RepoName::from_git_url(&url).unwrap();
+    fn test_from_repository_address_ssh_scp_style_no_git_suffix() {
+        let address: repository::Address = "git@github.com:user/my-repo".parse().unwrap();
+        let name = RepoName::from_repository_address(&address).unwrap();
         assert_eq!(name.as_str(), "my-repo");
     }
 
     #[test]
-    fn test_from_git_url_ssh_url_style() {
-        let url: GitUrl = "ssh://git@github.com/user/repo.git".parse().unwrap();
-        let name = RepoName::from_git_url(&url).unwrap();
+    fn test_from_repository_address_ssh_url_style() {
+        let address: repository::Address = "ssh://git@github.com/user/repo.git".parse().unwrap();
+        let name = RepoName::from_repository_address(&address).unwrap();
         assert_eq!(name.as_str(), "repo");
     }
 
     #[test]
-    fn test_from_git_url_https() {
-        let url: GitUrl = "https://github.com/user/repo.git".parse().unwrap();
-        let name = RepoName::from_git_url(&url).unwrap();
+    fn test_from_repository_address_https() {
+        let address: repository::Address = "https://github.com/user/repo.git".parse().unwrap();
+        let name = RepoName::from_repository_address(&address).unwrap();
         assert_eq!(name.as_str(), "repo");
     }
 
     #[test]
-    fn test_from_git_url_https_no_git_suffix() {
-        let url: GitUrl = "https://github.com/user/my-awesome-repo".parse().unwrap();
-        let name = RepoName::from_git_url(&url).unwrap();
+    fn test_from_repository_address_https_no_git_suffix() {
+        let address: repository::Address =
+            "https://github.com/user/my-awesome-repo".parse().unwrap();
+        let name = RepoName::from_repository_address(&address).unwrap();
         assert_eq!(name.as_str(), "my-awesome-repo");
     }
 
     #[test]
-    fn test_from_git_url_git_protocol() {
-        let url: GitUrl = "git://github.com/user/repo.git".parse().unwrap();
-        let name = RepoName::from_git_url(&url).unwrap();
+    fn test_from_repository_address_git_protocol() {
+        let address: repository::Address = "git://github.com/user/repo.git".parse().unwrap();
+        let name = RepoName::from_repository_address(&address).unwrap();
         assert_eq!(name.as_str(), "repo");
     }
 
     #[test]
-    fn test_from_git_url_path() {
-        let url: GitUrl = "/home/user/my-repo.git".parse().unwrap();
-        let name = RepoName::from_git_url(&url).unwrap();
+    fn test_from_repository_address_path() {
+        let address: repository::Address = "/home/user/my-repo.git".parse().unwrap();
+        let name = RepoName::from_repository_address(&address).unwrap();
         assert_eq!(name.as_str(), "my-repo");
     }
 
     #[test]
-    fn test_from_git_url_path_no_git_suffix() {
-        let url: GitUrl = "/home/user/my-repo".parse().unwrap();
-        let name = RepoName::from_git_url(&url).unwrap();
+    fn test_from_repository_address_path_no_git_suffix() {
+        let address: repository::Address = "/home/user/my-repo".parse().unwrap();
+        let name = RepoName::from_repository_address(&address).unwrap();
         assert_eq!(name.as_str(), "my-repo");
     }
 
     #[test]
-    fn test_from_git_url_trailing_slash() {
-        let url: GitUrl = "https://github.com/user/repo.git/".parse().unwrap();
-        let name = RepoName::from_git_url(&url).unwrap();
+    fn test_from_repository_address_trailing_slash() {
+        let address: repository::Address = "https://github.com/user/repo.git/".parse().unwrap();
+        let name = RepoName::from_repository_address(&address).unwrap();
         assert_eq!(name.as_str(), "repo");
     }
 }

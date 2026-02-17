@@ -1,6 +1,6 @@
 use clap::error::ErrorKind;
 use futures_util::StreamExt;
-use git_proc::url::{Remote, RemoteName};
+use git_proc::repository::{Remote, RemoteName};
 use greenhell::github::{Branch, PullRequestNumber, Ref, Repository};
 
 #[derive(Debug, Eq, PartialEq, clap::Parser)]

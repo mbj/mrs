@@ -1,12 +1,12 @@
 use std::path::Path;
 
 use crate::CommandError;
-use crate::url::GitUrl;
+use crate::repository::Address;
 
 /// Create a new `git clone` command builder.
 #[must_use]
-pub fn new(url: &GitUrl) -> Clone<'_> {
-    Clone::new(url)
+pub fn new(address: &Address) -> Clone<'_> {
+    Clone::new(address)
 }
 
 /// Builder for `git clone` command.
@@ -14,16 +14,16 @@ pub fn new(url: &GitUrl) -> Clone<'_> {
 /// See `git clone --help` for full documentation.
 #[derive(Debug)]
 pub struct Clone<'a> {
-    url: &'a GitUrl,
+    address: &'a Address,
     directory: Option<&'a Path>,
     bare: bool,
 }
 
 impl<'a> Clone<'a> {
     #[must_use]
-    fn new(url: &'a GitUrl) -> Self {
+    fn new(address: &'a Address) -> Self {
         Self {
-            url,
+            address,
             directory: None,
             bare: false,
         }
@@ -54,7 +54,7 @@ impl crate::Build for Clone<'_> {
         cmd_proc::Command::new("git")
             .argument("clone")
             .optional_flag(self.bare, "--bare")
-            .argument(self.url)
+            .argument(self.address)
             .optional_argument(self.directory)
     }
 }
@@ -64,7 +64,7 @@ impl Clone<'_> {
     /// Compare the built command with another command using debug representation.
     pub fn test_eq(&self, other: &cmd_proc::Command) {
         let command = crate::Build::build(Self {
-            url: self.url,
+            address: self.address,
             directory: self.directory,
             bare: self.bare,
         });
