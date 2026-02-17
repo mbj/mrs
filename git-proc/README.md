@@ -35,7 +35,7 @@ matching the git CLI options from `git <command> --help`.
 
 ```rust,ignore
 use git_proc::{Build, rev_parse, status, clone, fetch, worktree};
-use git_proc::url::GitUrl;
+use git_proc::repository;
 use std::path::Path;
 
 // git rev-parse --abbrev-ref HEAD
@@ -54,9 +54,9 @@ let output = status::new()
     .stdout_capture()
     .string().await?;
 
-// git clone --bare <url> <path>
-let url: GitUrl = "https://github.com/user/repo.git".parse()?;
-clone::new(&url)
+// git clone --bare <address> <path>
+let address: repository::Address = "https://github.com/user/repo.git".parse()?;
+clone::new(&address)
     .bare()
     .directory(Path::new("/path/to/bare.git"))
     .status().await?;
@@ -124,7 +124,7 @@ configuration to `cmd_proc::Command`.
 | `show`       | `git show`           | Show objects                         |
 | `show_ref`   | `git show-ref`       | List references                      |
 | `status`     | `git status`         | Show working tree status             |
-| `url`        | -                    | URL and remote types (`GitUrl`, `Remote`, `RemoteName`) |
+| `repository` | -                    | Repository address and remote types (`Address`, `Remote`, `RemoteName`) |
 | `worktree`   | `git worktree`       | Manage worktrees (list, add, remove) |
 
 ## Testing

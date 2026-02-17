@@ -1,6 +1,6 @@
 use super::Repository;
 use git_proc::Build;
-use git_proc::url::{Remote, RemoteName};
+use git_proc::repository::{Remote, RemoteName};
 use nom::{IResult, Parser, bytes::complete::take_till, character::complete::char};
 use url::Url;
 

@@ -1,83 +1,83 @@
 use std::borrow::Cow;
 use std::path::{Path, PathBuf};
 
-/// A validated git repository URL.
+/// A validated git repository address.
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub enum GitUrl {
-    /// SSH URL: `git@host:path` or `ssh://user@host/path`
-    Ssh(SshUrl),
+pub enum Address {
+    /// SSH address: `git@host:path` (SCP-style) or `ssh://user@host/path`
+    Ssh(SshAddress),
     /// HTTPS URL: `https://host/path`
     Https(HttpsUrl),
     /// Git protocol URL: `git://host/path`
-    Git(GitProtocolUrl),
+    Git(GitUrl),
     /// Local file path: `/path/to/repo` or `file:///path/to/repo`
-    Path(PathUrl),
+    Path(PathAddress),
 }
 
-impl GitUrl {
+impl Address {
     #[must_use]
     pub fn as_str(&self) -> &str {
         match self {
-            Self::Ssh(url) => url.as_str(),
-            Self::Https(url) => url.as_str(),
-            Self::Git(url) => url.as_str(),
-            Self::Path(url) => url.as_str(),
+            Self::Ssh(address) => address.as_str(),
+            Self::Https(address) => address.as_str(),
+            Self::Git(address) => address.as_str(),
+            Self::Path(address) => address.as_str(),
         }
     }
 }
 
-impl std::fmt::Display for GitUrl {
+impl std::fmt::Display for Address {
     fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(formatter, "{}", self.as_str())
     }
 }
 
-impl AsRef<std::ffi::OsStr> for GitUrl {
+impl AsRef<std::ffi::OsStr> for Address {
     fn as_ref(&self) -> &std::ffi::OsStr {
         self.as_str().as_ref()
     }
 }
 
-impl std::str::FromStr for GitUrl {
-    type Err = GitUrlError;
+impl std::str::FromStr for Address {
+    type Err = AddressError;
 
     fn from_str(input: &str) -> Result<Self, Self::Err> {
         if input.is_empty() {
-            return Err(GitUrlError::Empty);
+            return Err(AddressError::Empty);
         }
 
         // Try SCP-style SSH first (not a valid URL, so must be checked before URL parsing)
-        if let Some(url) = SshUrl::from_scp(input) {
-            return Ok(Self::Ssh(url));
+        if let Some(address) = SshAddress::from_scp(input) {
+            return Ok(Self::Ssh(address));
         }
 
         // Try parsing as a URL
         if let Ok(parsed) = url::Url::parse(input) {
             match parsed.scheme() {
                 "https" => return Ok(Self::Https(HttpsUrl::from_parsed(input, parsed)?)),
-                "ssh" => return Ok(Self::Ssh(SshUrl::from_parsed(input, parsed)?)),
-                "git" => return Ok(Self::Git(GitProtocolUrl::from_parsed(input, parsed)?)),
-                "file" => return Ok(Self::Path(PathUrl::from_parsed(input, parsed)?)),
+                "ssh" => return Ok(Self::Ssh(SshAddress::from_parsed(input, parsed)?)),
+                "git" => return Ok(Self::Git(GitUrl::from_parsed(input, parsed)?)),
+                "file" => return Ok(Self::Path(PathAddress::from_parsed(input, parsed)?)),
                 _ => {}
             }
         }
 
         // Try absolute path
-        if let Ok(url) = input.parse::<PathUrl>() {
-            return Ok(Self::Path(url));
+        if let Ok(address) = input.parse::<PathAddress>() {
+            return Ok(Self::Path(address));
         }
 
-        Err(GitUrlError::InvalidFormat)
+        Err(AddressError::InvalidFormat)
     }
 }
 
-/// A git remote reference: either a named remote or a URL.
+/// A git remote reference: either a named remote or an address.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Remote {
     /// A named remote (e.g., `origin`, `upstream`).
     Name(RemoteName),
-    /// A repository URL.
-    Url(GitUrl),
+    /// A repository address.
+    RepositoryAddress(Address),
 }
 
 impl Remote {
@@ -85,7 +85,7 @@ impl Remote {
     pub fn as_str(&self) -> &str {
         match self {
             Self::Name(name) => name.as_str(),
-            Self::Url(url) => url.as_str(),
+            Self::RepositoryAddress(address) => address.as_str(),
         }
     }
 }
@@ -110,9 +110,9 @@ impl std::str::FromStr for Remote {
             return Err(RemoteError::Empty);
         }
 
-        // Try parsing as URL first
-        if let Ok(url) = input.parse::<GitUrl>() {
-            return Ok(Self::Url(url));
+        // Try parsing as address first
+        if let Ok(address) = input.parse::<Address>() {
+            return Ok(Self::RepositoryAddress(address));
         }
 
         // Fall back to remote name
@@ -126,9 +126,9 @@ impl From<RemoteName> for Remote {
     }
 }
 
-impl From<GitUrl> for Remote {
-    fn from(url: GitUrl) -> Self {
-        Self::Url(url)
+impl From<Address> for Remote {
+    fn from(address: Address) -> Self {
+        Self::RepositoryAddress(address)
     }
 }
 
@@ -203,23 +203,23 @@ pub enum RemoteError {
     InvalidRemoteName,
 }
 
-/// SSH URL: `git@host:path` (SCP-style) or `ssh://user@host/path`
+/// SSH address: `git@host:path` (SCP-style) or `ssh://user@host/path`
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub struct SshUrl {
+pub struct SshAddress {
     raw: String,
     user: String,
     host: String,
     path: String,
 }
 
-impl SshUrl {
-    fn from_parsed(raw: &str, parsed: url::Url) -> Result<Self, GitUrlError> {
+impl SshAddress {
+    fn from_parsed(raw: &str, parsed: url::Url) -> Result<Self, AddressError> {
         let user = parsed.username();
-        let host = parsed.host_str().ok_or(GitUrlError::InvalidSshUrl)?;
+        let host = parsed.host_str().ok_or(AddressError::InvalidSshAddress)?;
         let path = parsed.path();
 
         if user.is_empty() || host.is_empty() {
-            return Err(GitUrlError::InvalidSshUrl);
+            return Err(AddressError::InvalidSshAddress);
         }
 
         Ok(Self {
@@ -230,7 +230,7 @@ impl SshUrl {
         })
     }
 
-    /// Parse SCP-style SSH URL: `user@host:path`
+    /// Parse SCP-style SSH address: `user@host:path`
     ///
     /// Path must not start with `/` to distinguish from URL-style.
     fn from_scp(input: &str) -> Option<Self> {
@@ -283,11 +283,11 @@ pub struct HttpsUrl {
 }
 
 impl HttpsUrl {
-    fn from_parsed(raw: &str, parsed: url::Url) -> Result<Self, GitUrlError> {
-        let host = parsed.host_str().ok_or(GitUrlError::InvalidHttpsUrl)?;
+    fn from_parsed(raw: &str, parsed: url::Url) -> Result<Self, AddressError> {
+        let host = parsed.host_str().ok_or(AddressError::InvalidHttpsUrl)?;
 
         if host.is_empty() {
-            return Err(GitUrlError::InvalidHttpsUrl);
+            return Err(AddressError::InvalidHttpsUrl);
         }
 
         Ok(Self {
@@ -315,20 +315,18 @@ impl HttpsUrl {
 
 /// Git protocol URL: `git://host/path`
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub struct GitProtocolUrl {
+pub struct GitUrl {
     raw: String,
     host: String,
     path: String,
 }
 
-impl GitProtocolUrl {
-    fn from_parsed(raw: &str, parsed: url::Url) -> Result<Self, GitUrlError> {
-        let host = parsed
-            .host_str()
-            .ok_or(GitUrlError::InvalidGitProtocolUrl)?;
+impl GitUrl {
+    fn from_parsed(raw: &str, parsed: url::Url) -> Result<Self, AddressError> {
+        let host = parsed.host_str().ok_or(AddressError::InvalidGitUrl)?;
 
         if host.is_empty() {
-            return Err(GitUrlError::InvalidGitProtocolUrl);
+            return Err(AddressError::InvalidGitUrl);
         }
 
         Ok(Self {
@@ -354,18 +352,18 @@ impl GitProtocolUrl {
     }
 }
 
-/// Local file path URL: `/path/to/repo` or `file:///path/to/repo`
+/// Local file path address: `/path/to/repo` or `file:///path/to/repo`
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub struct PathUrl {
+pub struct PathAddress {
     raw: String,
     path: PathBuf,
 }
 
-impl PathUrl {
-    fn from_parsed(raw: &str, parsed: url::Url) -> Result<Self, GitUrlError> {
+impl PathAddress {
+    fn from_parsed(raw: &str, parsed: url::Url) -> Result<Self, AddressError> {
         let path = parsed
             .to_file_path()
-            .map_err(|()| GitUrlError::InvalidPathUrl)?;
+            .map_err(|()| AddressError::InvalidPathAddress)?;
 
         Ok(Self {
             raw: raw.to_string(),
@@ -384,8 +382,8 @@ impl PathUrl {
     }
 }
 
-impl std::str::FromStr for PathUrl {
-    type Err = GitUrlError;
+impl std::str::FromStr for PathAddress {
+    type Err = AddressError;
 
     fn from_str(input: &str) -> Result<Self, Self::Err> {
         let path = PathBuf::from(input);
@@ -397,24 +395,24 @@ impl std::str::FromStr for PathUrl {
             });
         }
 
-        Err(GitUrlError::InvalidPathUrl)
+        Err(AddressError::InvalidPathAddress)
     }
 }
 
 #[derive(Debug, thiserror::Error)]
-pub enum GitUrlError {
-    #[error("Git URL cannot be empty")]
+pub enum AddressError {
+    #[error("Repository address cannot be empty")]
     Empty,
-    #[error("Invalid git URL format")]
+    #[error("Invalid repository address format")]
     InvalidFormat,
-    #[error("Invalid SSH URL format (expected user@host:path or ssh://user@host/path)")]
-    InvalidSshUrl,
+    #[error("Invalid SSH address format (expected user@host:path or ssh://user@host/path)")]
+    InvalidSshAddress,
     #[error("Invalid HTTPS URL format (expected https://host/path)")]
     InvalidHttpsUrl,
-    #[error("Invalid git protocol URL format (expected git://host/path)")]
-    InvalidGitProtocolUrl,
-    #[error("Invalid path URL format (expected absolute path or file:// URL)")]
-    InvalidPathUrl,
+    #[error("Invalid git:// URL format (expected git://host/path)")]
+    InvalidGitUrl,
+    #[error("Invalid path address format (expected absolute path or file:// URL)")]
+    InvalidPathAddress,
 }
 
 #[cfg(test)]
@@ -423,9 +421,9 @@ mod tests {
 
     #[test]
     fn test_ssh_scp_style() {
-        let url: GitUrl = "git@github.com:user/repo.git".parse().unwrap();
-        assert!(matches!(url, GitUrl::Ssh(_)));
-        if let GitUrl::Ssh(ssh) = url {
+        let address: Address = "git@github.com:user/repo.git".parse().unwrap();
+        assert!(matches!(address, Address::Ssh(_)));
+        if let Address::Ssh(ssh) = address {
             assert_eq!(ssh.user(), "git");
             assert_eq!(ssh.host(), "github.com");
             assert_eq!(ssh.path(), "user/repo.git");
@@ -434,9 +432,9 @@ mod tests {
 
     #[test]
     fn test_ssh_url_style() {
-        let url: GitUrl = "ssh://git@github.com/user/repo.git".parse().unwrap();
-        assert!(matches!(url, GitUrl::Ssh(_)));
-        if let GitUrl::Ssh(ssh) = url {
+        let address: Address = "ssh://git@github.com/user/repo.git".parse().unwrap();
+        assert!(matches!(address, Address::Ssh(_)));
+        if let Address::Ssh(ssh) = address {
             assert_eq!(ssh.user(), "git");
             assert_eq!(ssh.host(), "github.com");
             assert_eq!(ssh.path(), "/user/repo.git");
@@ -445,9 +443,9 @@ mod tests {
 
     #[test]
     fn test_https() {
-        let url: GitUrl = "https://github.com/user/repo.git".parse().unwrap();
-        assert!(matches!(url, GitUrl::Https(_)));
-        if let GitUrl::Https(https) = url {
+        let address: Address = "https://github.com/user/repo.git".parse().unwrap();
+        assert!(matches!(address, Address::Https(_)));
+        if let Address::Https(https) = address {
             assert_eq!(https.host(), "github.com");
             assert_eq!(https.path(), "/user/repo.git");
         }
@@ -455,9 +453,9 @@ mod tests {
 
     #[test]
     fn test_git_protocol() {
-        let url: GitUrl = "git://github.com/user/repo.git".parse().unwrap();
-        assert!(matches!(url, GitUrl::Git(_)));
-        if let GitUrl::Git(git) = url {
+        let address: Address = "git://github.com/user/repo.git".parse().unwrap();
+        assert!(matches!(address, Address::Git(_)));
+        if let Address::Git(git) = address {
             assert_eq!(git.host(), "github.com");
             assert_eq!(git.path(), "/user/repo.git");
         }
@@ -465,70 +463,70 @@ mod tests {
 
     #[test]
     fn test_file_url() {
-        let url: GitUrl = "file:///home/user/repo".parse().unwrap();
-        assert!(matches!(url, GitUrl::Path(_)));
-        if let GitUrl::Path(path) = url {
+        let address: Address = "file:///home/user/repo".parse().unwrap();
+        assert!(matches!(address, Address::Path(_)));
+        if let Address::Path(path) = address {
             assert_eq!(path.path(), Path::new("/home/user/repo"));
         }
     }
 
     #[test]
     fn test_absolute_path() {
-        let url: GitUrl = "/home/user/repo".parse().unwrap();
-        assert!(matches!(url, GitUrl::Path(_)));
-        if let GitUrl::Path(path) = url {
+        let address: Address = "/home/user/repo".parse().unwrap();
+        assert!(matches!(address, Address::Path(_)));
+        if let Address::Path(path) = address {
             assert_eq!(path.path(), Path::new("/home/user/repo"));
         }
     }
 
     #[test]
     fn test_empty() {
-        assert!(matches!("".parse::<GitUrl>(), Err(GitUrlError::Empty)));
+        assert!(matches!("".parse::<Address>(), Err(AddressError::Empty)));
     }
 
     #[test]
     fn test_invalid() {
         assert!(matches!(
-            "not-a-valid-url".parse::<GitUrl>(),
-            Err(GitUrlError::InvalidFormat)
+            "not-a-valid-url".parse::<Address>(),
+            Err(AddressError::InvalidFormat)
         ));
     }
 
     #[test]
     fn test_display() {
-        let url: GitUrl = "git@github.com:user/repo.git".parse().unwrap();
-        assert_eq!(url.to_string(), "git@github.com:user/repo.git");
-        assert_eq!(url.as_str(), "git@github.com:user/repo.git");
+        let address: Address = "git@github.com:user/repo.git".parse().unwrap();
+        assert_eq!(address.to_string(), "git@github.com:user/repo.git");
+        assert_eq!(address.as_str(), "git@github.com:user/repo.git");
     }
 
     #[test]
     fn test_as_ref_os_str() {
-        let url: GitUrl = "git@github.com:user/repo.git".parse().unwrap();
-        let os_str: &std::ffi::OsStr = url.as_ref();
+        let address: Address = "git@github.com:user/repo.git".parse().unwrap();
+        let os_str: &std::ffi::OsStr = address.as_ref();
         assert_eq!(os_str, "git@github.com:user/repo.git");
     }
 
     #[test]
     fn test_scp_empty_user() {
         assert!(matches!(
-            "@github.com:path".parse::<GitUrl>(),
-            Err(GitUrlError::InvalidFormat)
+            "@github.com:path".parse::<Address>(),
+            Err(AddressError::InvalidFormat)
         ));
     }
 
     #[test]
     fn test_scp_empty_host() {
         assert!(matches!(
-            "git@:path".parse::<GitUrl>(),
-            Err(GitUrlError::InvalidFormat)
+            "git@:path".parse::<Address>(),
+            Err(AddressError::InvalidFormat)
         ));
     }
 
     #[test]
     fn test_scp_empty_path() {
         assert!(matches!(
-            "git@github.com:".parse::<GitUrl>(),
-            Err(GitUrlError::InvalidFormat)
+            "git@github.com:".parse::<Address>(),
+            Err(AddressError::InvalidFormat)
         ));
     }
 
@@ -536,32 +534,32 @@ mod tests {
     fn test_scp_path_with_leading_slash_rejected() {
         // git@host:/path is not valid SCP (path starts with /) and not a valid URL
         assert!(matches!(
-            "git@github.com:/user/repo".parse::<GitUrl>(),
-            Err(GitUrlError::InvalidFormat)
+            "git@github.com:/user/repo".parse::<Address>(),
+            Err(AddressError::InvalidFormat)
         ));
     }
 
     #[test]
     fn test_ssh_url_missing_user() {
         assert!(matches!(
-            "ssh://github.com/user/repo.git".parse::<GitUrl>(),
-            Err(GitUrlError::InvalidSshUrl)
+            "ssh://github.com/user/repo.git".parse::<Address>(),
+            Err(AddressError::InvalidSshAddress)
         ));
     }
 
     #[test]
     fn test_relative_path() {
         assert!(matches!(
-            "./relative/path".parse::<GitUrl>(),
-            Err(GitUrlError::InvalidFormat)
+            "./relative/path".parse::<Address>(),
+            Err(AddressError::InvalidFormat)
         ));
     }
 
     #[test]
     fn test_unknown_scheme() {
         assert!(matches!(
-            "ftp://example.com/repo".parse::<GitUrl>(),
-            Err(GitUrlError::InvalidFormat)
+            "ftp://example.com/repo".parse::<Address>(),
+            Err(AddressError::InvalidFormat)
         ));
     }
 
@@ -573,16 +571,16 @@ mod tests {
     }
 
     #[test]
-    fn test_remote_url() {
+    fn test_remote_repository_address() {
         let remote: Remote = "git@github.com:user/repo.git".parse().unwrap();
-        assert!(matches!(remote, Remote::Url(_)));
+        assert!(matches!(remote, Remote::RepositoryAddress(_)));
         assert_eq!(remote.as_str(), "git@github.com:user/repo.git");
     }
 
     #[test]
     fn test_remote_https_url() {
         let remote: Remote = "https://github.com/user/repo.git".parse().unwrap();
-        assert!(matches!(remote, Remote::Url(_)));
+        assert!(matches!(remote, Remote::RepositoryAddress(_)));
     }
 
     #[test]
@@ -612,9 +610,9 @@ mod tests {
     }
 
     #[test]
-    fn test_remote_from_git_url() {
-        let url: GitUrl = "git@github.com:user/repo.git".parse().unwrap();
-        let remote: Remote = url.into();
-        assert!(matches!(remote, Remote::Url(_)));
+    fn test_remote_from_address() {
+        let address: Address = "git@github.com:user/repo.git".parse().unwrap();
+        let remote: Remote = address.into();
+        assert!(matches!(remote, Remote::RepositoryAddress(_)));
     }
 }

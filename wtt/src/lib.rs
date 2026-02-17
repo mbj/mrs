@@ -12,7 +12,7 @@ pub use config::{Config, Error as ConfigError, Source as ConfigSource};
 pub use detect::{DetectError, detect_repo_from_cwd};
 pub use git_proc::CommandError;
 pub use git_proc::branch::{Branch, BranchError};
-pub use git_proc::url::{GitUrl, GitUrlError, Remote, RemoteName};
+pub use git_proc::repository::{self, Remote, RemoteName};
 pub use repo_name::{RepoName, RepoNameError};
 
 use std::path::PathBuf;

@@ -1350,7 +1350,7 @@ dependencies = [
 
 [[package]]
 name = "git-proc"
-version = "0.2.1"
+version = "0.3.0"
 dependencies = [
  "cmd-proc",
  "thiserror 2.0.18",

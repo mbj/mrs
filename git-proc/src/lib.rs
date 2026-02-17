@@ -79,12 +79,12 @@ pub mod init;
 pub mod ls_remote;
 pub mod push;
 pub mod remote;
+pub mod repository;
 pub mod rev_list;
 pub mod rev_parse;
 pub mod show;
 pub mod show_ref;
 pub mod status;
-pub mod url;
 pub mod worktree;
 
 use std::path::Path;

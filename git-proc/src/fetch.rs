@@ -1,7 +1,7 @@
 use std::path::Path;
 
 use crate::CommandError;
-use crate::url::Remote;
+use crate::repository::Remote;
 
 /// Create a new `git fetch` command builder.
 #[must_use]
