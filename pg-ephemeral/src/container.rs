@@ -1,4 +1,4 @@
-use rand::Rng;
+use rand::RngExt;
 
 use crate::LOCALHOST_HOST_ADDR;
 use crate::LOCALHOST_IP;
@@ -345,9 +345,7 @@ impl Container {
 }
 
 fn generate_password() -> pg_client::Password {
-    let rng = rand::rng();
-
-    let value: String = rng
+    let value: String = rand::rng()
         .sample_iter(rand::distr::Alphanumeric)
         .take(32)
         .map(char::from)

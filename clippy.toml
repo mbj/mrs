@@ -16,16 +16,20 @@ allowed-duplicate-crates = [
     "foldhash",
     "hashbrown",
 
-    # sqlx (upstream) uses rand 0.8, while pg-ephemeral and aws-sdk use rand 0.9
-    # Source: sqlx-postgres -> rand 0.8, pg-ephemeral/aws-sdk -> rand 0.9
+    # sqlx (upstream) uses rand 0.8, while pg-ephemeral uses rand 0.10
+    # Source: sqlx-postgres -> rand 0.8, pg-ephemeral -> rand 0.10
     # Note: We keep sqlx close to upstream to ease future updates
     "rand",
     "rand_core",
     "rand_chacha",
 
-    # Transitive from rand 0.8/0.9 split, plus ring (crypto) uses getrandom 0.2
-    # Source: rand 0.8 -> getrandom 0.2, rand 0.9 -> getrandom 0.3
+    # Transitive from rand 0.8/0.10 split, plus ring (crypto) uses getrandom 0.2
+    # Source: rand 0.8 -> getrandom 0.2, rand 0.10 -> getrandom 0.4
     "getrandom",
+
+    # rand 0.10 -> chacha20 -> cpufeatures 0.3, while aes/sha1/sha2 use cpufeatures 0.2
+    # Stable releases of aes/sha1/sha2 with cpufeatures 0.3 are not yet available
+    "cpufeatures",
 
     # sqlx uses webpki-roots 0.26 which internally depends on webpki-roots 1.0
     # Source: sqlx-core -> webpki-roots 0.26 -> webpki-roots 1.0
